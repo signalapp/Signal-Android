@@ -1334,8 +1334,8 @@
   <string name="RegistrationActivity_play_services_error">Erreur des Services Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Les services Google Play sont en cours de mise à jour ou temporairement non disponibles. Veuillez réessayer.</string>
   <string name="RegistrationActivity_terms_and_privacy">Conditions générales et politique de confidentialité</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts et médias afin de se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts pour se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin des autorisations Contacts et Médias pour vous aider à vous connecter avec vos amis et à envoyer des messages. Vos contacts sont téléversés en utilisant la découverte confidentielle des contacts de Signal, ce qui signifie qu’ils sont chiffrés de bout en bout et ne sont jamais visibles par le service Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal a besoin de l’autorisation Contacts pour vous aider à vous connecter avec vos amis. Vos contacts sont téléversés en utilisant la découverte confidentielle des contacts de Signal, ce qui signifie qu’ils sont chiffrés de bout en bout et ne sont jamais visibles par le service Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
   <string name="RegistrationActivity_non_standard_number_format">Format de numéro non standard</string>
@@ -3307,7 +3307,7 @@ Nouvelle tentative…</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un pourvoyeur</string>
   <string name="ImageView__badge">Badge</string>
-  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal est propulsé par des personnes telles que vous.</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal est propulsé par des personnes comme vous.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Soutenez une technologie conçue pour vous – pas pour vos données – en rejoignant la communauté qui la porte.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Soutenez une technologie conçue pour vous, pas pour vos données, en rejoignant la communauté qui porte Signal.</string>
   <string name="SubscribeFragment__currency">Devise</string>
@@ -3348,7 +3348,7 @@ Nouvelle tentative…</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Abonnement</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Erreur de lecture de l\'abonnement</string>
   <string name="BoostFragment__give_signal_a_boost">Donnez un coup de pouce à Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Dites « merci » et gagnez le badge Encouragement pour %1$d jours.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Dites « merci » et gagnez le badge Boost pour %1$d jours.</string>
   <string name="Boost__enter_custom_amount">Saisissez un montant personnalisé</string>
   <string name="Boost__one_time_contribution">Contribution unique</string>
   <string name="MySupportPreference__add_a_signal_boost">Ajouter un Boost Signal</string>
@@ -3361,8 +3361,11 @@ Nouvelle tentative…</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre badge a expiré</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge expiré</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulé</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Votre badge Boost a expiré et n’est plus visible par les autres sur votre profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vous pouvez réactiver votre badge Boost pour 30 jours supplémentaires en versant une somme unique.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pour continuer à soutenir la technologie conçue pour vous, veuillez envisager de devenir un donateur mensuel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un soutien</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Ajouter un Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Votre abonnement de soutien a été automatiquement annulé car vous êtes resté inactif pendant trop longtemps. Le badge %1$s n\'est plus visible sur votre profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez continuer à utiliser Signal mais pour soutenir l\'application et réactiver votre badge, renouvelez maintenant.</string>

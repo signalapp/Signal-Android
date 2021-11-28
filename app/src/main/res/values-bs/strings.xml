@@ -1414,8 +1414,8 @@
   <string name="RegistrationActivity_play_services_error">Play Services greška</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se ažuriraju ili su privremeno nedostupni. Pokušajte ponovo.</string>
   <string name="RegistrationActivity_terms_and_privacy">Sporazum o korištenju i privatnosti</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signalu je potrebno dopuštenje da pristupi Vašim kontaktima i datotekama kako biste uspostavili vezu sa prijateljima i razmjenjivali poruke i zaštićene pozive</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signalu je potrebno dopuštenje da pristupi Vašim kontaktima kako biste uspostavili vezu sa prijateljima i razmjenjivali poruke i zaštićene pozive</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signalu je potrebno dopuštenje da pristupi kontaktima i multimediji kako bi Vam pomogao u povezivanju s prijateljima i slanju poruka. Vaši su kontakti preneseni na Signal server putem Signalovog privatnog uvezivanja kontakata, što znači da su šifrirani s kraja na kraj i nisu nikada vidljivi Signal servisu.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signalu je potrebno dopuštenje da pristupi kontaktima kako bi Vam pomogao u povezivanju s prijateljima. Vaši su kontakti preneseni na Signal server putem Signalovog privatnog uvezivanja kontakata, što znači da su šifrirani s kraja na kraj i nisu nikada vidljivi Signal servisu.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Pokušali ste previše puta registrovati ovaj broj. Molimo pokušajte ponovo kasnije.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezivanje nije uspjelo. Molimo provjerite internet-konekciju i pokušajte ponovo.</string>
   <string name="RegistrationActivity_non_standard_number_format">Nestandardni oblik broja</string>

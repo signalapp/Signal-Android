@@ -1493,6 +1493,7 @@
   <string name="RegistrationActivity_rate_limited_to_service">עשית יותר מדי ניסיונות להירשם עם המספר הזה. אנא נסה שוב מאוחר יותר.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">לא היה ניתן להתחבר אל השירות. אנא בדוק את חיבור האינטרנט ונסה שוב.</string>
   <string name="RegistrationActivity_non_standard_number_format">תסדיר אי־תקני של מספר</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">המספר שהכנסת (%1$s) כנראה בתסדיר בלתי תקני.\n\nהאם התכוונת אל %2$s?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - תסדיר מספר טלפון</string>
   <string name="RegistrationActivity_call_requested">שיחה התבקשה</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -2112,6 +2113,16 @@
   <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- אנא בחר אפשרות \-\-</item>
+    <item>משהו לא עובד</item>
+    <item>בקשת מאפיין</item>
+    <item>שאלה</item>
+    <item>משוב</item>
+    <item>אחר</item>
+    <item>תשלומים (MobileCoin)</item>
+    <item>מחזיקים ותמריץ Signal</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">בשימוש לאחרונה</string>
@@ -2569,6 +2580,7 @@
   <string name="Insights__title">תובנות</string>
   <string name="InsightsDashboardFragment__title">תובנות</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">פרוטוקול Signal הגן באופן אוטומטי על %1$d%% מההודעות היוצאות שלך במהלך %2$d הימים האחרונים. שיחות בין משתמשי Signal תמיד מוצפנות מקצה־אל־קצה.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">הפץ את המילה</string>
   <string name="InsightsDashboardFragment__not_enough_data">אין מספיק נתונים</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">אחוז התובנות שלך מחושב על סמך הודעות יוצאות בטווח %1$d הימים האחרונים שלא נעלמו או לא נמחקו.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">התחל שיחה</string>
@@ -3508,6 +3520,7 @@
   <string name="ImageView__badge">תג</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ממונע על ידי אנשים כמוך.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">תמוך בטכנולוגיה שנבנתה עבורך—לא עבור הנתונים שלך—ע״י הצטרפות אל קהילת האנשים שמחזיקים אותה.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">תמוך בטכנולוגיה שנבנתה עבורך, לא עבור הנתונים שלך, ע״י הצטרפות אל הקהילה שמחזיקה את Signal.</string>
   <string name="SubscribeFragment__currency">מטבע</string>
   <string name="SubscribeFragment__more_payment_options">עוד אפשרויות תשלום</string>
   <string name="SubscribeFragment__cancel_subscription">בטל מינוי</string>
@@ -3520,11 +3533,14 @@
   <string name="SubscribeFragment__update_subscription_question">לעדכן מינוי?</string>
   <string name="SubscribeFragment__update">עדכן</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">תחויב היום בסכום המלא של המחיר של המינוי החדש. המינוי שלך יחודש בתאריך %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">תחויב בסכום המלא (%1$s) של המחיר של המינוי החדש. המינוי שלך יחודש באופן חודשי.</string>
   <string name="Subscription__s_per_month">%s/חודש</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/חודש · מתחדש %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/חודש · יפוג %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal הוא ללא מטרות רווח בלי מפרסמים או משקיעים, מוחזק רק ע״י האנשים שמשתמשים בו ומעריכים אותו. בצע תרומה חודשית חוזרת וקבל תג פרופיל כדי לשתף את התמיכה שלך.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">למה לתרום?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal מחויב לפתח טכנולוגית פרטיות בקוד פתוח אשר מגינה על חופש ביטוי ומאפשרת תקשורת עולמית מאובטחת.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">התרומה שלך מתדלקת את המטרה הזאת ומשלמת עבור הפיתוח והפעולות של יישום שנמצא בשימוש ע״י מיליוני אנשים למען תקשורת פרטית. ללא פרסומות. ללא עוקבנים. ללא שטויות.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">תודה על התמיכה שלך!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">תודה על התמריץ!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">הרווחת את התג %s! עזור אל Signal לבנות מוּדָעוּת ע״י הצגת התג הזה בפרופיל שלך.</string>
@@ -3536,6 +3552,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">סיים</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">כשיהיו לך יותר מתג אחד, תוכל לבחור אחד להבליט כדי שאחרים יראו בפרופיל שלך.</string>
   <string name="BecomeASustainerFragment__get_badges">השג תגים עבור הפרופיל שלך ע״י תמיכה ב־Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal הוא ארגון ללא מטרות רווח בלי מפרסמים או משקיעים, שנתמך רק ע״י אנשים כמוך.</string>
   <string name="ManageDonationsFragment__my_support">התמיכה שלי</string>
   <string name="ManageDonationsFragment__manage_subscription">נהל מינוי</string>
   <string name="ManageDonationsFragment__badges">תגים</string>
@@ -3555,9 +3572,14 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">התג שלך פג</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">תג פג</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">מינוי בוטל</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">תג התמריץ שלך פג, ואינו גלוי יותר אל אחרים בפרופיל שלך.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">אתה יכול להפעיל מחדש את תג התמריץ שלך למשך 30 ימים נוספים עם תרומה חד־פעמית.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">כדי להמשיך לתמוך בטכנולוגיה שנבנתה עבורך, אנא שקול להפוך למחזיק חודשי.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">הפוך אל מחזיק</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">הוסף תמריץ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">מינוי התמריץ שלך בוטל באופן אוטומטי מאחר שהיית בלתי פעיל למשך זמן רב. תג ה%1$s שלך אינו גלוי יותר בפרופיל שלך.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">אתה יכול להמשיך להשתמש ב־Signal אבל כדי לתמוך ביישום ולהפעיל מחדש את התג שלך, חדש עכשיו.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">חדש מינוי</string>
   <string name="Subscription__please_contact_support_for_more_information">אנא צור קשר עם התמיכה לעוד מידע.</string>
   <string name="Subscription__contact_support">צור קשר עם תמיכה</string>
@@ -3567,14 +3589,17 @@
   <string name="DonationsErrors__error_processing_payment">שגיאה בעיבוד תשלום</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__error_processing_payment_s">שגיאה בעיבוד תשלום. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">התג שלך לא היה יכול להתווסף אל החשבון שלך, אבל ייתכן שחויבת. אנא צור קשר עם התמיכה.</string>
   <string name="DonationsErrors__your_payment">התשלום שלך לא היה יכול להיות מעובד ולא חויבת. אנא נסה שוב.</string>
   <string name="DonationsErrors__still_processing">עדין מעבד</string>
   <string name="DonationsErrors__couldnt_add_badge">לא היה ניתן להוסיף תג</string>
+  <string name="DonationsErrors__your_badge_could_not">התג שלך לא היה יכול להתווסף אל החשבון שלך, אבל ייתכן שחויבת. אנא צור קשר עם התמיכה.</string>
   <string name="DonationsErrors__your_payment_is_still">התשלום שלך עדין מעובד. זה יכול לקחת מספר דקות בהתאם לחיבור שלך.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay לא זמין</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">אתה חייב להגדיר את Google Pay כדי לתרום בתוך יישום.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">נכשל בביטול מינוי</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ביטול מינוי דורש חיבור אינטרנט.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">המכשיר שלך לא תומך ב־Google Pay, כך שאתה לא יכול להירשם כמנוי כדי להרוויח תג. אתה עדין יכול לתמוך ב־Signal ע״י ביצוע תרומה באתר שלנו.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">שגיאת רשת. בדוק את החיבור שלך ונסה שוב.</string>
   <string name="NetworkFailure__retry">נסה שוב</string>
   <!--EOF-->
