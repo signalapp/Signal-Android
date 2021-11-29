@@ -8,6 +8,12 @@ Expect updates about every 3 months.
 
 Or install it via this [apk](https://github.com/benarmstead/Signal-BA/releases/latest).
 
+## Installation
+
+Signal-BA uses the original signal package name, and therefore can be installed and replace signal without having to re-setup signal or lose any data.
+
+However this can sometimes fail, in which case you will need to clear your signal app data (in android settings), uninstall signal, and then install Signal-BA (this will result in the loss of your signal data so make sure to backup first).
+
 ## Features
 
 - **Deleting messages time extension**
