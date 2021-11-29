@@ -85,12 +85,10 @@ public abstract class MediaPreviewFragment extends Fragment {
     return null;
   }
 
-  public void checkMediaStillAvailable() {
+  private void checkMediaStillAvailable() {
     if (attachmentId == null) {
       attachmentId = new PartUriParser(Objects.requireNonNull(requireArguments().getParcelable(DATA_URI))).getPartId();
     }
-
-    final Context context = requireContext().getApplicationContext();
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
                    () -> SignalDatabase.attachments().hasAttachment(attachmentId),
