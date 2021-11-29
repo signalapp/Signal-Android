@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -88,6 +89,7 @@ public class ReactionSendJob extends BaseJob {
                                remove,
                                new Parameters.Builder()
                                              .setQueue(conversationRecipient.getId().toQueueKey())
+                                             .addConstraint(NetworkConstraint.KEY)
                                              .setLifespan(TimeUnit.DAYS.toMillis(1))
                                              .setMaxAttempts(Parameters.UNLIMITED)
                                              .build());
