@@ -138,7 +138,7 @@ sealed class ConversationSettingsViewModel(
             isSearchAvailable = true
           ),
           disappearingMessagesLifespan = recipient.expiresInSeconds,
-          canModifyBlockedState = !recipient.isSelf,
+          canModifyBlockedState = !recipient.isSelf && RecipientUtil.isBlockable(recipient),
           specificSettingsState = state.requireRecipientSettingsState().copy(
             contactLinkState = when {
               recipient.isSelf -> ContactLinkState.NONE
