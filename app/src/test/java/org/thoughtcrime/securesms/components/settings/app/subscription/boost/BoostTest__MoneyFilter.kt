@@ -62,6 +62,16 @@ class BoostTest__MoneyFilter {
   }
 
   @Test
+  fun `Given USD, when I enter 00005dot00, then I expect 5 from text change`() {
+    val testSubject = Boost.MoneyFilter(usd)
+    val editable = SpannableStringBuilder("00005.00")
+
+    testSubject.afterTextChanged(editable)
+
+    assertEquals("$5", editable.toString())
+  }
+
+  @Test
   fun `Given USD, when I enter 5dot000, then I expect successful filter`() {
     val testSubject = Boost.MoneyFilter(yen)
     val editable = SpannableStringBuilder("5.000")

@@ -600,7 +600,10 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
       if (adapter != null) {
         MediaItem item = adapter.getMediaItemFor(position);
-        if (item.recipient != null) item.recipient.live().observe(MediaPreviewActivity.this, r -> initializeActionBar());
+        if (item != null && item.recipient != null) {
+          item.recipient.live().observe(MediaPreviewActivity.this, r -> initializeActionBar());
+        }
+
         viewModel.setActiveAlbumRailItem(MediaPreviewActivity.this, position);
         initializeActionBar();
       }
@@ -613,7 +616,9 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
       if (adapter != null) {
         MediaItem item = adapter.getMediaItemFor(position);
-        if (item.recipient != null) item.recipient.live().removeObservers(MediaPreviewActivity.this);
+        if (item != null && item.recipient != null) {
+          item.recipient.live().removeObservers(MediaPreviewActivity.this);
+        }
 
         adapter.pause(position);
       }
@@ -663,7 +668,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     }
 
     @Override
-    public MediaItem getMediaItemFor(int position) {
+    public @Nullable MediaItem getMediaItemFor(int position) {
       return new MediaItem(null, null, null, uri, mediaType, -1, true);
     }
 
@@ -769,8 +774,15 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
       super.destroyItem(container, position, object);
     }
 
-    public MediaItem getMediaItemFor(int position) {
-      cursor.moveToPosition(getCursorPosition(position));
+    public @Nullable MediaItem getMediaItemFor(int position) {
+      int cursorPosition = getCursorPosition(position);
+
+      if (cursor.isClosed() || cursorPosition < 0) {
+        Log.w(TAG, "Invalid cursor state! Closed: " + cursor.isClosed() + " Position: " + cursorPosition);
+        return null;
+      }
+
+      cursor.moveToPosition(cursorPosition);
 
       MediaRecord        mediaRecord       = MediaRecord.from(context, cursor);
       DatabaseAttachment attachment        = Objects.requireNonNull(mediaRecord.getAttachment());
@@ -838,7 +850,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   }
 
   interface MediaItemAdapter {
-    MediaItem getMediaItemFor(int position);
+    @Nullable MediaItem getMediaItemFor(int position);
     void pause(int position);
     @Nullable View getPlaybackControls(int position);
     boolean hasFragmentFor(int position);

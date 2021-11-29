@@ -1481,8 +1481,8 @@
   <string name="RegistrationActivity_play_services_error">Napaka Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Aplikacija Google Play Services se posodablja ali pa je začasno nedosegljiva. Poskusite znova.</string>
   <string name="RegistrationActivity_terms_and_privacy">Pogoji &amp; politika zasebnosti</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Aplikacija Signal potrebuje dovoljenje za dostop do vaših stikov in medijskih vsebin za povezavo s prijatelji/cami, izmenjavo sporočil in opravljanje varnih klicev.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Za povezavo s prijatelji/cami, izmenjavo sporočil in opravljanje varnih klicev potrebuje aplikacija Signal dovoljenje za dostop do vaših stikov.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrebuje dovoljenje za dostop do vaših stikov in medijskih datotek, da lahko komunicirate s svojimi prijatelji/cami in pošiljate sporočila. Vaši stiki so prenešeni na strežnik preko Signalovga zasebnega odkrivanja stikov, kar pomeni, da so šifrirani od-konca-do-konca in niso nikdar vidni storitvi Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrebuje dovoljenje za dostop do vaših stikov, da lahko komunicirate s svojimi prijatelji/cami. Vaši stiki so prenešeni na strežnik preko Signalovga zasebnega odkrivanja stikov, kar pomeni, da so šifrirani od-konca-do-konca in niso nikdar vidni storitvi Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Preveč neuspešnih poskusov registracije te telefonske številke. Prosimo poskusite znova kasneje.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezava s storitvijo ni mogoča. Preverite omrežje in poskusite znova.</string>
   <string name="RegistrationActivity_non_standard_number_format">Nestandardni format številk</string>
@@ -3563,8 +3563,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Vaš bedž je potekel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Bedž je potekel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Naročnina je prekinjena</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Vaš bedž Pospešek Signalu je potekel in zato ni več viden drugim na vašem profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bedž Pospešek Signalu lahko aktivirate za nadaljnjih 30 dni z novim enkratnim prispevkom.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Razmislite, če želite postati naš mesečni podpornik/ca in tako še naprej prispevati k tehnologiji, ki je bila narejena za vas.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite podpornik/ca</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Dodaj pospešek</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne zdaj</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaša naročnina je bila avtomatsko prekinjena, ker ste bili predolgo neaktivni. Vaš %1$s bedž ni več viden na vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Še naprej lahko uporabljate Signal, za nadaljevanje podpore in reaktivacijo vašega bedža pa lahko obnovite naročnino.</string>

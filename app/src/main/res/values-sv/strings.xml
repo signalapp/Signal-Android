@@ -128,7 +128,7 @@
   <string name="ClientDeprecatedActivity_update">Uppdatera</string>
   <string name="ClientDeprecatedActivity_dont_update">Uppdatera inte</string>
   <string name="ClientDeprecatedActivity_warning">Varning</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Din version av Signal har gått ut. Du kan visa din meddelandehistorik men du kan inte skicka eller ta emot meddelanden förrän du uppdaterar.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Din version av Signal har upphört att gälla. Du kan visa din meddelandehistorik men du kan inte skicka eller ta emot meddelanden förrän du uppdaterar.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen webbläsare hittades.</string>
   <string name="CommunicationActions_send_email">Skicka e-post</string>
@@ -445,7 +445,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheten stöder inte Play-tjänster. Tryck för att inaktivera systembatterioptimeringar som hindrar Signal från att hämta meddelanden vid inaktivitet.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denna version av Signal har gått ut. Uppdatera nu för att skicka och ta emot meddelanden.</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denna version av Signal har upphört att gälla. Uppdatera nu för att skicka och ta emot meddelanden.</string>
   <string name="ExpiredBuildReminder_update_now">Uppdatera nu</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1160,10 +1160,10 @@
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Det går inte att skanna en QR-kod utan behörigheten Kamera</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppdatera nu</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denna version av Signal går ut idag. Uppdatera till den senaste versionen.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denna version av Signal upphör att gälla idag. Uppdatera till den senaste versionen.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="one">Denna version av Signal går ut i morgon. Uppdatera till den senaste versionen.</item>
-    <item quantity="other">Denna version av Signal går ut om %d dagar. Uppdatera till den senaste versionen.</item>
+    <item quantity="one">Denna version av Signal upphör att gälla i morgon. Uppdatera till den senaste versionen.</item>
+    <item quantity="other">Denna version av Signal upphör att gälla om %d dagar. Uppdatera till den senaste versionen.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ange lösenord</string>
@@ -2399,6 +2399,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollet skyddade automatiskt %1$d%% av dina utgående meddelanden under de senaste %2$d dagarna. Konversationer mellan Signal-användare är alltid ände-till-ände-krypterade.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Sprid ordet</string>
   <string name="InsightsDashboardFragment__not_enough_data">Inte tillräckligt med data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Din statistikprocentsats beräknas utifrån utgående meddelanden inom det förflutna %1$d dagarna som inte har försvunnit eller tagits bort.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Starta en konversation</string>
@@ -3353,12 +3354,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
   <string name="MySupportPreference__processing_transaction">Bearbetar transaktionen…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Det gick inte att lägga till märket. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Vänligen kontakta supporten.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har löpt ut</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har upphört att gälla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märket har upphört att gälla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerationen uppsagd</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ditt Boost-märke har upphört att gälla och är inte längre synligt för andra på din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan återaktivera ditt Boost-märke för ytterligare 30 dagar med ett engångsbidrag.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">För att fortsätta stöda teknik som är byggd för dig, överväg att bli en månatlig upprätthållare.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lägg till en Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Din upprätthållarprenumeration avslutades automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke är inte längre synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
@@ -3368,7 +3373,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Subscription__earn_a_s_badge">Tjäna ett %1$s-märke</string>
   <string name="SubscribeFragment__processing_payment">Bearbetar betalningen…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Fel vid bearbetning av betalningen</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Fel vid bearbetning av betalningen. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Ditt märke kunde inte läggas till ditt konto, men du kan ha blivit debiterad. Vänligen kontakta supporten.</string>
   <string name="DonationsErrors__your_payment">Din betalning kunde inte behandlas och du har inte debiterats. Vänligen försök igen.</string>
   <string name="DonationsErrors__still_processing">Bearbetar fortfarande</string>

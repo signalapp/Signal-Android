@@ -266,7 +266,8 @@ data class Boost(
       if (withoutSymbol != withoutLeadingZeroes) {
         text?.removeTextChangedListener(this)
 
-        s.replace(s.indexOf(withoutSymbol), withoutSymbol.length, withoutLeadingZeroes)
+        val start = s.indexOf(withoutSymbol)
+        s.replace(start, start + withoutSymbol.length, withoutLeadingZeroes)
 
         text?.addTextChangedListener(this)
       }

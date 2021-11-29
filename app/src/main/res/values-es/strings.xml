@@ -1340,12 +1340,12 @@ número de teléfono
   <string name="RegistrationActivity_play_services_error">Fallo en «Play Services»</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se está actualizando o está temporalmente suspendido. Por favor, inténtalo de nuevo.</string>
   <string name="RegistrationActivity_terms_and_privacy">Términos y política de privacidad</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos y medios para conectar con tus amistades, chatear, y hacer llamadas seguras. Tu lista de contactos no se guarda en el servidor de Signal.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita acceso a tus contactos para conectar con tus amistades, chatear, y hacer llamadas seguras. Tu lista de contactos de este dispositivo no se guarda en el servidor de Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita los permisos de acceso a tus contactos y medios para chatear, y hacer llamadas seguras. Tu lista de contactos se cifra en tu teléfono y se trasmite al servicio de Signal para descubrir contactos. Como la lista está cifrada con tu PIN de Signal, ni Signal ni terceras personas tienen acceso ni la pueden descifrar. </string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita los permisos de acceso a tus contactos para contactar con tus amistades. Tu lista de contactos se cifra en tu teléfono y se trasmite al servicio de Signal para descubrir contactos. Como la lista está cifrada con tu PIN de Signal, ni Signal ni terceras personas tienen acceso ni la pueden descifrar. </string>
   <string name="RegistrationActivity_rate_limited_to_service">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo más tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar con el servidor. Por favor, comprueba la conexión de red e inténtalo de nuevo.</string>
   <string name="RegistrationActivity_non_standard_number_format">Número en formato no estándar</string>
-  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">El número que has introducido (%1$s) parece usar un formato no estándar. ¿Es %2$s correcto?</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">El número que has introducido (%1$s) parece usar un formato no estándar. ¿Es %2$s el correcto?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Formato de número</string>
   <string name="RegistrationActivity_call_requested">Llamada solicitada</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -2406,6 +2406,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="Insights__title">Estadísticas</string>
   <string name="InsightsDashboardFragment__title">Estadísticas</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El protocolo de Signal ha cifrado automáticamente %1$d%% de tus mensajes enviados en los últimos %2$d días. Los chats en Signal siempre están cifrados de extremo a extremo.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Hazlo saber</string>
   <string name="InsightsDashboardFragment__not_enough_data">No hay datos suficientes</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Este porcentaje se calcula con los mensajes enviados durante los últimos %1$d días que no han desaparecido o se han eliminado.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comienza un chat</string>
@@ -3365,8 +3366,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Distintivo caducado</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Suscripción cancelada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Tu distintivo de impulso ha caducado y ya no es visible para otr@s en tu perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Puedes reactivar tu distintivo de impulso por otros 30 días al hacer otra contribución.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar apoyando la tecnología desarrollada para ti, considera una suscripción mensual.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sostén Signal</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Danos un impulso</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Tu suscripción mensual se ha cancelado automáticamente por cuenta inactiva. Tu distintivo %1$s ya no es visible en tu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puedes continuar usando la aplicación, pero para apoyar a Signal, reactiva tu distintivo. Renuévalo ahora.</string>
@@ -3378,6 +3382,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Fallo al procesar el pago</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Fallo al procesar el pago. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">No se ha podido añadir el distintivo a tu perfil, pero puede haberte sido cobrado. Por favor, contacta con el soporte.</string>
   <string name="DonationsErrors__your_payment">No se ha podido procesar tu pago y no hemos hecho el cargo. Inténtalo de nuevo.</string>
   <string name="DonationsErrors__still_processing">En proceso …</string>

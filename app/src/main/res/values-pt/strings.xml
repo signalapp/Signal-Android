@@ -1339,8 +1339,8 @@
   <string name="RegistrationActivity_play_services_error">Erro do Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">O Google Play Services está a ser atualizado ou está temporariamente indisponível. Por favor, tente novamente.</string>
   <string name="RegistrationActivity_terms_and_privacy">Termos e Política de privacidade</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Signal necessita de aceder aos seus contactos e armazenamento de forma a poder ligar-se com os seus amigos, trocar mensagens e efetuar chamadas seguras.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal necessita de aceder aos seus contactos de forma a poder ligar-se a amigos, trocar mensagens e fazer chamadas seguras</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Signal necessita das permissões de acesso aos contatos e à multimédia para o ajudar a ligar-se a amigos e a enviar mensagens. Os seus contactos são carregados utilizando a descoberta de contacto privado do Signal, o que significa que eles são encriptados de ponta a ponta e nunca visíveis para o serviço do Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal necessita das permissões de acesso aos contatos para o ajudar a ligar-se a amigos. Os seus contactos são carregados utilizando a descoberta de contacto privado do Signal, o que significa que eles são encriptados de ponta a ponta e nunca visíveis para o serviço do Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Fez demasiadas tentativas para registar este número. Por favor, tente mais tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não foi possível ligar ao serviço. Por favor, verifique a sua ligação à rede e tente novamente.</string>
   <string name="RegistrationActivity_non_standard_number_format">Formato de número não padronizado</string>
@@ -3365,8 +3365,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu crachá expirou</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Crachá expirado</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscrição cancelada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">O seu crachá de Apoio expirou e deixou de ser visível para os outras pessoas através do seu perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pode reativar o seu crachá de Apoio por mais 30 dias com uma contribuição única.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar a suportar a tecnologia que foi construída para si, considere ser um apoiante mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num Apoiante</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Apoiar o Signal</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">A sua assinatura de Apoiante foi cancelada automaticamente porque se encontra inativo à muito tempo. O seu crachá %1$s deixou de estar visível no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pode continuar a utilizar o Signal mas, para apoiar a aplicação e reativar o seu crachá, renove agora.</string>

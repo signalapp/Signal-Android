@@ -3572,8 +3572,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Jūsų ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Ženkliukas nebegalioja</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerata nutraukta</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Jūsų paskatinimo ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje kitiems žmonėms.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Paaukodami, galite dar 30-čiai dienų iš naujo aktyvuoti paskatinimo ženkliuką.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti remėju ir remti kas mėnesį.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti remėju</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pridėti paskatinimą</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Jūsų remėjo prenumerata buvo automatiškai nutraukta, nes pernelyg ilgą laiką buvote neaktyvūs. Jūsų %1$s ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Galite ir toliau naudotis Signal programėle, bet norėdami ją paremti ir iš naujo aktyvuoti ženkliuką, atnaujinkite prenumeratą dabar.</string>

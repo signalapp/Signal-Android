@@ -1340,8 +1340,8 @@
   <string name="RegistrationActivity_play_services_error">Play Xidmətlər Xətası</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Xidmətləri yenilənir və ya müvəqqəti olaraq əlçatmazdır. Zəhmət olmasa yenidən sınayın.</string>
   <string name="RegistrationActivity_terms_and_privacy">Şərtlər və Gizlilik Siyasəti</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Dostlarınızla əlaqə qurmaq, mesajlaşmaq və onlara güvənli zənglər edə bilmək üçün Signal-ın, əlaqələrinizə və medianıza müraciətinə ehtiyacı var.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Dostlarınızla əlaqə qurmaq, mesajlaşmaq və onlara güvənli zənglər edə bilmək üçün Signal-ın, əlaqələrinizə müraciətinə ehtiyacı var.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal-ın dostlarınızla bağlantı qurmağınıza və mesaj göndərməyinizə kömək etməsi üçün əlaqələr və media icazələrinə ehtiyacı var. Əlaqələriniz Signal-ın özəl əlaqə kəşfi istifadə edilərək yüklənir, bu da o deməkdir ki, əlaqələriniz bir ucdan digərinə qədər şifrələnir və heç vaxt Signal xidməti tərəfindən görüntülənə bilmir.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal-ın dostlarınızla bağlantı qurmağınıza kömək etməsi üçün əlaqələr və media icazələrinə ehtiyacı var. Əlaqələriniz Signal-ın özəl əlaqə kəşfi istifadə edilərək yüklənir, bu da o deməkdir ki, əlaqələriniz bir ucdan digərinə qədər şifrələnir və heç vaxt Signal xidməti tərəfindən görüntülənə bilmir.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Bu nömrəni qeydiyyatdan keçirmək üçün həddindən çox cəhd etdiniz. Zəhmət olmasa daha sonra yenidən sınayın.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Xidmətlə bağlantı qurula bilmir. Zəhmət olmasa şəbəkə bağlantınızı yoxlayıb yenidən sınayın.</string>
   <string name="RegistrationActivity_non_standard_number_format">Standart olmayan nömrə formatı</string>
@@ -2406,6 +2406,7 @@
   <string name="Insights__title">Təhlillər</string>
   <string name="InsightsDashboardFragment__title">Təhlillər</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolu, son %2$d gündə gedən mesajlarınızın %1$d%%-ni avtomatik olaraq qorudu. Signal istifadəçiləri arasındakı danışıqlar hər zaman bir ucdan digər uca kimi şifrələnir.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Sözü yayın</string>
   <string name="InsightsDashboardFragment__not_enough_data">Yetərli məlumat yoxdur</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Təhlil faiziniz, son %1$d gündə yox olmayan və ya silinmədən gedən mesajlar əsasında hesablanır.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bir danışıq başlat</string>
@@ -3365,8 +3366,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Nişanınızın müddəti bitdi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Nişan müddəti bitdi</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abunəlik ləğv edildi</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Gücləndirmə nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Gücləndirmə nişanını növbəti 30 gün üçün təksəfərlik töhfə ilə təkrar aktivləşdirə bilərsiniz.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq Dəstəkçi olmağı düşünün.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi olun</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Bir Gücləndirmə əlavə et</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Uzun müddət aktiv olmadığınız üçün Dəstəkçi abunəliyiniz avtomatik olaraq ləğv edildi. %1$s nişanınız artıq profilinizdə görünmür.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-ı istifadə etməyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktiv etmək üçün abunəliyi indi yeniləyin.</string>
@@ -3378,6 +3382,7 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Ödəniş emal xətası</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Ödəniş emal xətası. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Nişanınız hesabınıza əlavə edilə bilmədi, ancaq sizdən ödəniş alınmış ola bilər. Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
   <string name="DonationsErrors__your_payment">Ödənişiniz emal edilə bilmədi və sizdən ödəniş alınmadı. Zəhmət olmasa yenidən sınayın.</string>
   <string name="DonationsErrors__still_processing">Hələ də emal olunur</string>

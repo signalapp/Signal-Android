@@ -1483,8 +1483,8 @@
   <string name="RegistrationActivity_play_services_error">Błąd Usług Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Trwa aktualizacja Usług Google Play lub są one niedostępne. Spróbuj ponownie.</string>
   <string name="RegistrationActivity_terms_and_privacy">Regulamin &amp; Polityka prywatności</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów i plików multimedialnych w celu połączenia ze znajomymi, wymiany wiadomości oraz wykonywania bezpiecznych połączeń</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów w celu połączenia ze znajomymi, wymiany wiadomości oraz wykonywania bezpiecznych połączeń</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów i plików multimedialnych, aby ułatwić Ci połączenia ze znajomymi i wymianę wiadomości. Twoje kontakty są przesyłane z użyciem prywatnego wyszukiwania kontaktów Signal, co oznacza, że są zaszyfrowane metodą end-to-end i niedostępne dla usługi Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów, aby ułatwić Ci połączenia ze znajomymi. Twoje kontakty są przesyłane z użyciem prywatnego wyszukiwania kontaktów Signal, co oznacza, że są zaszyfrowane metodą end-to-end i niedostępne dla usługi Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Zbyt dużo nieudanych prób rejestracji tego numeru. Spróbuj ponownie później.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nie można połączyć się z serwisem. Proszę sprawdzić połączenie internetowe i spróbować ponownie.</string>
   <string name="RegistrationActivity_non_standard_number_format">Niestandardowy format numeru</string>
@@ -3564,9 +3564,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Twoja odznaka wygasła</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Odznaka wygasła</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subskrypcja anulowana</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Twoja odznaka Wsparcie wygasła i inni nie będą jej już widzieć w Twoim profilu.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Możesz reaktywować swoją odznakę Wsparcie na kolejne 30 dni, dzięki jednorazowemu datkowi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Aby nadal wspierać technologię stworzoną dla Ciebie, nie dla zdobycia Twoich 
 danych, rozważ miesięczną subskrypcję.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Zostań wspierającym</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Wesprzyj</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie teraz</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Twoja subskrypcja Wspierającego została automatycznie anulowana, gdyż zbyt długo pozostajesz nieaktywny(a). Twoja odznaka %1$s nie jest już widoczna w Twoim profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Możesz nadal korzystać z Signal, ale jeśli chcesz wesprzeć aplikację i ponownie uaktywnić swoją odznakę, złóż datek.</string>

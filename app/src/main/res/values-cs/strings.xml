@@ -1487,8 +1487,8 @@ telefonní číslo
   <string name="RegistrationActivity_play_services_error">Chyba Google Play </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Služba Google Play se aktualizuje nebo je dočasně nedostupná. Zkuste to prosím znovu.</string>
   <string name="RegistrationActivity_terms_and_privacy">Podmínky a zásady ochrany osobních údajů</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potřebuje přístup ke kontaktům a médiím, abyste se mohli spojit s vašimi přáteli, vyměňovat si zprávy a bezpečně telefonovat.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potřebuje přístup k vašim kontaktům, aby bylo možné propojení s přáteli, vyměňování zpráv a uskutečňování zabezpečených hovorů. </string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potřebuje oprávnění pro přístup ke kontaktům a médiím, abyste se mohli spojit s přáteli a posílat zprávy. Vaše kontakty jsou nahrávány pomocí soukromého zjišťování kontaktů služby Signal, což znamená, že jsou end-to-end šifrovány a pro Signal nejsou nikdy viditelné.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potřebuje oprávnění pro přístup ke kontaktům, abyste se mohli spojit s přáteli a posílat zprávy. Vaše kontakty jsou nahrávány pomocí soukromého zjišťování kontaktů služby Signal, což znamená, že jsou end-to-end šifrovány a pro Signal nejsou nikdy viditelné.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Učinili jste příliš mnoho pokusů zaregistrovat toto číslo. Zkuste to prosím znovu později.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nelze se připojit k službě. Prosím zkontrolujte připojení k internetu a poté to zkuste znovu.</string>
   <string name="RegistrationActivity_non_standard_number_format">Nestandardní formát čísla</string>
@@ -3571,8 +3571,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Váš odznak vypršel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnost odznaku vypršela</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Předplatné zrušeno</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnost vašeho odznaku Boost vypršela a již není pro ostatní na vašem profilu viditelný.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jednorázovým příspěvkem si můžete odznak Boost znovu aktivovat na dalších 30 dní.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Chcete-li i nadále podporovat technologii, která je vytvořena pro vás, zvažte možnost stát se měsíčním podporovatelem.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Přidat Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše předplatné Sustainer bylo automaticky zrušeno, protože jste byli příliš dlouho neaktivní. Váš %1$s odznak již není na vašem profilu viditelný.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>

@@ -3366,8 +3366,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">O seu selo tornou-se inválido</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Selo inválido</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Doação mensal cancelada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">O seu selo Boost expirou e não é mais visualizado por outras pessoas no seu perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Você pode reativar o seu selo Boost por mais 30 dias com uma doação única.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar a apoiar uma tecnologia desenvolvida para você, considere se tornar um Apoiador mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se um apoiador</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Fazer uma doação</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Sua doação como Apoiador mensal foi cancelada automaticamente porque você ficou sem usar o Signal por muito tempo. Seu selo %1$s não é mais visualizado por outras pessoas no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Você ainda pode usar o Signal, mas para apoiar o aplicativo e ter esse selo novamente, faça uma doação mensal.</string>

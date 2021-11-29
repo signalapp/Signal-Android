@@ -1336,8 +1336,8 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_play_services_error">Error amb el Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">El Google Play Services s\'està actualitzant o no està disponible. Torneu a provar-ho.</string>
   <string name="RegistrationActivity_terms_and_privacy">Termes i política de privadesa</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">El Signal necessita accés als contactes i als continguts multimèdia per tal de connectar amb amistats, intercanviar-hi missatges i fer trucades amb seguretat.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">El Signal necessita accés als contactes per tal de connectar amb amistats, intercanviar-hi missatges i fer trucades amb seguretat.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">El Signal necessita els contactes i els permisos multimèdia per ajudar-vos a connectar-vos amb amics i enviar missatges. Els vostres contactes es carreguen mitjançant el descobriment de contactes privats del Signal, la qual cosa significa que estan encriptats d\'extrem a extrem i mai no són visibles per al servei de Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">El Signal necessita el permís dels contactes per ajudar-vos a connectar-vos amb els amics. Els vostres contactes es carreguen mitjançant el descobriment de contactes privats del Signal, la qual cosa significa que estan encriptats d\'extrem a extrem i mai no són visibles per al servei de Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Heu fet massa intents per registrar aquest número. Si us plau, torneu-ho a provar més tard.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No es pot connectar al servei. Si us plau, comproveu la connexió de xarxa i torneu-ho a provar.</string>
   <string name="RegistrationActivity_non_standard_number_format">Format de número no estàndard</string>
@@ -3360,8 +3360,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">La insígnia ha vençut.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">La insígnia ha vençut.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Subscripció cancel·lada</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">La vostra insígnia d\'empenta ha vençut i ja no és visible per als altres al perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Podeu reactivar la insígnia d\'empenta durant 30 dies més amb una aportació única.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Per continuar donant suport a la tecnologia creada per a vós, considereu convertir-vos en un sostenidor mensual.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sigueu-ne un sostenidor</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Afegiu-hi una empenta</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">La vostra subscripció de sostenidor s\'ha cancel·lat automàticament perquè heu estat massa temps inactiu. La insígnia %1$s ja no és visible al perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Podeu continuar usant el Signal, però per donar suport a l\'aplicació i reactivar la insígnia, renoveu-la ara.</string>

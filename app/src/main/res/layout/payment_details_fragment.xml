@@ -38,6 +38,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <org.thoughtcrime.securesms.badges.BadgeImageView
+                android:id="@+id/payments_details_badge"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="34dp"
+                android:contentDescription="@string/ImageView__badge"
+                app:badge_size="medium"
+                app:layout_constraintStart_toStartOf="@id/payments_details_avatar"
+                app:layout_constraintTop_toTopOf="@id/payments_details_avatar" />
+
             <TextView
                 android:id="@+id/payments_details_contact_to_from"
                 style="@style/TextAppearance.Signal.Body2"

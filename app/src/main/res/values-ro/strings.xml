@@ -1323,12 +1323,12 @@
   <string name="WebRtcCallView__reconnecting">Se reconectează…</string>
   <string name="WebRtcCallView__joining">Se alătură…</string>
   <string name="WebRtcCallView__disconnected">Deconectat</string>
-  <string name="WebRtcCallView__signal_will_ring_s">Signal va suna la %1$s</string>
-  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal va suna la %1$s și %2$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal va suna pe %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal va suna pe %1$s și %2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-    <item quantity="one">Signal va suna la %1$s, %2$s, și %3$d altul</item>
-    <item quantity="few">Signal va suna la %1$s, %2$s, și %3$d alții</item>
-    <item quantity="other">Signal va suna la %1$s, %2$s, și %3$d alții</item>
+    <item quantity="one">Signal va suna pe %1$s, %2$s, și %3$d altul</item>
+    <item quantity="few">Signal va suna pe %1$s, %2$s, și %3$d alții</item>
+    <item quantity="other">Signal va suna pe %1$s, %2$s, și %3$d alții</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s va fi notificat</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s și %2$s vor fi notificați</string>
@@ -2489,6 +2489,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="Insights__title">Statistici</string>
   <string name="InsightsDashboardFragment__title">Statistici</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protocolul Signal a protejat automat %1$d%% din mesajele tale expediate în ultimele %2$d zile. Conversațiile dintre utilizatorii de Signal sunt întotdeauna criptate integral.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Anunță-ți prietenii</string>
   <string name="InsightsDashboardFragment__not_enough_data">Date insuficiente</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Statisticile sunt calculate pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Începe o conversație</string>
@@ -3155,7 +3156,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Când e activată opțiunea, mesajele noi trimise și primite în conversații noi începute de tine vor dispărea după ce au fost vizualizate.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Cu opțiunea activă, mesajele trimise și primite în conversație vor dispărea după ce sunt văzute.</string>
-  <string name="ExpireTimerSettingsFragment__off">Dezactivate</string>
+  <string name="ExpireTimerSettingsFragment__off">Dezactivat</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 săptămâni</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 săptămână</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 zi</string>
@@ -3464,8 +3465,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Insigna ta a expirat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Insigna a expirat</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonament anulat</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Insigna ta Boost a expirat și nu mai este vizibilă pentru alții, pe profilul tău.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Iți poți reactiva insigna Boost pentru încă 30 de zile cu o contribuție unică.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pentru a continua să sprijini tehnologie construită pentru tine, te rugăm să iei în considerare posibilitatea de a devenii un Susținător lunar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Fii un Susținător</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Adaugă un Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Abonamentul tău de Susținător a fost anulat automat deoarece ai fost inactiv pentru o perioadă prea lungă de timp. Insigna ta %1$s nu mai este vizibilă pe profilul tău.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru ați reactiva insigna, reînnoiește acum.</string>

@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
   <string name="ApplicationPreferencesActivity_hide">Agochar</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">¿Agochar o recordatorio?</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de poder desactivar o PIN, tes que gardar a túa frase de recuperación de pagamentos para asegurarte de que podes recuperar a conta de pagamentos.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -195,7 +196,7 @@
   <string name="ConversationActivity_transport_insecure_sms">SMS insegura</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS insegura</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Imos cambiar a Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Conversa comigo en Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Por favor, elixe un contacto</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede o límite para o tipo de mensaxe que estás a enviar.</string>
@@ -642,7 +643,7 @@
   <string name="ManageProfileFragment_profile_name">Nome do perfil</string>
   <string name="ManageProfileFragment_username">Nome de usuario</string>
   <string name="ManageProfileFragment_about">Acerca de</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escriba unhas palabras de si mesmo</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escribe unhas palabras acerca de ti</string>
   <string name="ManageProfileFragment_your_name">O teu nome</string>
   <string name="ManageProfileFragment_your_username">O seu nome de usuario</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Fallou a configuración do avatar</string>
@@ -732,6 +733,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartir</string>
   <string name="InviteActivity_share_with_contacts">Compartir con contactos</string>
+  <string name="InviteActivity_share_via">Comparte en…</string>
   <string name="InviteActivity_cancel">Cancelar</string>
   <string name="InviteActivity_sending">A enviar…</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
@@ -740,7 +742,7 @@
     <item quantity="one">Enviar %d SMS de convite?</item>
     <item quantity="other">Enviar %d SMS de convite?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Imos cambiar a Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Conversa comigo en Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Semella que non hai ningunha que permita compartir.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber máis</string>
@@ -1234,6 +1236,8 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita acceder aos teus contactos para contactar coas túas amizades, intercambiar mensaxes e facer chamadas seguras</string>
   <string name="RegistrationActivity_rate_limited_to_service">Levas demasiados intentos para rexistrar este número. Téntao máis tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Non é posible contactar co servizo. Comproba a túa conexión de rede e téntao de novo.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Número con formato non-estándar</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">O número escrito (%1$s) non semella estar nun formato estándar.\n\nSerá máis ben %2$s?</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Estás a %d pasos de enviar un informe de depuración.</item>
     <item quantity="other">Estás a %d pasos de enviar un informe de depuración.</item>
@@ -1729,7 +1733,7 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Os nomes de grupos MMS personalizados e fotos só serán visibles para ti.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Acerca de</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Escriba unhas palabras sobre si mesmo</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Escribe unhas palabras acerca de ti…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Fale libremente</string>
   <string name="EditAboutFragment_encrypted">Cifrado</string>
@@ -1912,6 +1916,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicita un informe de entrega para cada SMS que envías</string>
   <string name="preferences__data_and_storage">Datos e almacenamento</string>
   <string name="preferences__storage">Almacenamento</string>
+  <string name="preferences__payments">Pagamentos</string>
+  <string name="preferences__payments_beta">Pagamentos (Beta)</string>
   <string name="preferences__conversation_length_limit">Lonxitude máxima das conversas</string>
   <string name="preferences__keep_messages">Manter as mensaxes</string>
   <string name="preferences__clear_message_history">Baleirar historial de mensaxes</string>
@@ -1940,6 +1946,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se desactivas as confirmacións de lectura, non poderás ver as confirmacións dos demais.</string>
   <string name="preferences__typing_indicators">Indicador de escritura</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escritura están desactivados non verás cando outras persoas está a escribir.</string>
+  <string name="preferences__request_keyboard_to_disable">Pedirlle ao teclado que desactive a aprendizaxe personalizada.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Este axuste non é garantía ningunha e o teclado podería ignoralo.</string>
   <string name="preferences_app_protection__blocked_users">Usuarios bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Usando datos móbiles</string>
   <string name="preferences_chats__when_using_wifi">Usando conexión wifi</string>
@@ -2022,14 +2030,22 @@
   <string name="PaymentsAllActivityFragment__all">Todo</string>
   <string name="PaymentsAllActivityFragment__sent">Enviada</string>
   <string name="PaymentsAllActivityFragment__received">Recibida</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Presentámosche pagamentos (Beta)</string>
+  <string name="PaymentsHomeFragment__activate_payments">Activar Pagamentos</string>
+  <string name="PaymentsHomeFragment__activating_payments">Activando pagamentos…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Restablecer conta de pagamentos</string>
   <string name="PaymentsHomeFragment__see_all">Ver todo</string>
   <string name="PaymentsHomeFragment__send">Enviar</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Desactivar pagamentos</string>
   <string name="PaymentsHomeFragment__help">Axuda</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">O servizo de pagamentos non está dispoñible na túa rexión.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Non se activou pagamentos. Inténtao máis tarde.</string>
   <string name="PaymentsHomeFragment__continue">Continuar</string>
   <string name="PaymentsHomeFragment__details">Detalles</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado ao portapapeis</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Para engadir fondos envía MobileCoin ao enderezo da túa carteira. Comeza unha transacción desde a túa conta nun intercambio que soporte MobileCoin, despois escanea o código QR ou copia o endereo da túa carteira.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detalles</string>
   <string name="PaymentsDetailsFragment__status">Estado</string>
@@ -2598,12 +2614,18 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Fondo de pantalla do chat</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Cor do chat</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Restablecer cores do chat</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Estabelecer o fondo de pantalla</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">O modo escuro atenúa o fondo</string>
   <string name="ChatWallpaperFragment__contact_name">Nome de contacto</string>
   <string name="ChatWallpaperFragment__reset">Restablecer</string>
   <string name="ChatWallpaperFragment__clear">Despexar</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Visualización do fondo de pantalla</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Fondo de pantalla por defecto</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Reestabelecer todos os fondos de pantalla</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Restablecer fondos de pantalla</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Restablecer fondo de pantalla</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Restablecer fondo?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Escoller de entre as fotos</string>
   <string name="ChatWallpaperSelectionFragment__presets">Preestabelecidos</string>
@@ -2647,9 +2669,12 @@
   <string name="GroupsInCommonMessageRequest__okay">De acordo</string>
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Estándar</string>
   <string name="QualitySelectorBottomSheetDialog__high">Alta</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Convida ás túas amizades</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Conta</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">Continuar</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -2658,6 +2683,7 @@
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Cambiar número</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vas cambiar o teu número de teléfono de %1$s a %2$s.\n\nAntes de seguir, comproba que o número inferior é correcto.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Editar número</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
@@ -2667,6 +2693,7 @@
   <string name="ChangeNumberLockActivity__leave">Abandonar</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Enviar rexistro de depuración</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Teclado</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Tecla Intro para enviar</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Aplicación predefinida das SMS</string>
@@ -2675,9 +2702,15 @@
   <string name="NotificationsSettingsFragment__calls">Chamadas</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Bloqueado</string>
+  <string name="PrivacySettingsFragment__messaging">Mensaxería</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Desaparición das mensaxes</string>
+  <string name="PrivacySettingsFragment__app_security">Seguranza da app</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquea as capturas na listaxe de recentes e no interior da aplicación.</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Mensaxes e chamadas Signal, redirección de chamadas e remitente selado</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Establecer caducidade para os novos chats</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Establece o período após o cal desaparecerán as mensaxes en novos chats que ti inicies.</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostrar icona de estado</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">Off</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 semana</string>
@@ -2694,7 +2727,11 @@
   <string name="HelpSettingsFragment__debug_log">Rexistro de depuración</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos e política de privacidade</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Calidade multimedia</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Calidade dos envíos</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Enviando multimedia con alta calidade usarás máis datos</string>
   <string name="DataAndStorageSettingsFragment__high">Alta</string>
+  <string name="DataAndStorageSettingsFragment__standard">Estándar</string>
   <string name="DataAndStorageSettingsFragment__calls">Chamadas</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">Cor do chat</string>
