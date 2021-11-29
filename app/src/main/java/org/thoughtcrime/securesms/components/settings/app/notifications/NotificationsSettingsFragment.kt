@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
@@ -10,6 +11,7 @@ import android.net.Uri
 import android.provider.Settings
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -241,7 +243,6 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     }
   }
 
-  @Suppress("DEPRECATION")
   private fun launchMessageSoundSelectionIntent() {
     val current = SignalStore.settings().messageNotificationSound
 
@@ -255,7 +256,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     )
     intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current)
 
-    startActivityForResult(intent, MESSAGE_SOUND_SELECT)
+    openRingtonePicker(intent, MESSAGE_SOUND_SELECT)
   }
 
   @RequiresApi(26)
@@ -269,7 +270,6 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     startActivity(intent)
   }
 
-  @Suppress("DEPRECATION")
   private fun launchCallRingtoneSelectionIntent() {
     val current = SignalStore.settings().callRingtone
 
@@ -283,7 +283,16 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     )
     intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current)
 
-    startActivityForResult(intent, CALL_RINGTONE_SELECT)
+    openRingtonePicker(intent, CALL_RINGTONE_SELECT)
+  }
+
+  @Suppress("DEPRECATION")
+  private fun openRingtonePicker(intent: Intent, requestCode: Int) {
+    try {
+      startActivityForResult(intent, requestCode)
+    } catch (e: ActivityNotFoundException) {
+      Toast.makeText(requireContext(), R.string.NotificationSettingsFragment__failed_to_open_picker, Toast.LENGTH_LONG).show()
+    }
   }
 
   private class LedColorPreference(
