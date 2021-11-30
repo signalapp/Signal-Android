@@ -1262,8 +1262,8 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_play_services_error">Lỗi Dịch vụ Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Dịch vụ Google Play đang cập nhật hoặc tạm thời không khả dụng. Hãy thử lại sau.</string>
   <string name="RegistrationActivity_terms_and_privacy">Điều khoản &amp; Quyền riêng tư</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal cần quyền truy cập danh bạ và bộ nhớ để kết nối với bạn bè, trao đổi tin nhắn và gọi điện.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal cần truy cập danh bạ của bạn để kết nối với bạn bè của bạn, trao đổi tin nhắn, và thực hiện cuộc gọi bảo mật</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal cần được cấp quyền truy cập vào liên hệ và thư viện của bạn để giúp bạn kết nối và nhắn tin đến bạn bè. Mọi thông tin liên hệ của bạn được tải lên đều sử dụng trình bảo mật thông tin liên hệ của Signal, nghĩa là chúng sẽ được mã hóa đầu cuối và cũng không được hiển thì trên chính dịch vụ Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal cần được cấp quyền truy cập vào liên hệ của bạn để giúp bạn kết nối đến bạn bè. Mọi thông tin liên hệ của bạn được tải lên đều sử dụng trình bảo mật thông tin liên hệ của Signal, nghĩa là chúng sẽ được mã hóa đầu cuối và cũng không được hiển thì trên chính dịch vụ Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Bạn đã thử đăng kí số điện thoại này quá nhiều lần. Vui lòng thử lại sau.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Không thể kết nối với dịch vụ. Vui lòng kiểm tra đuờng truyền mạng và thử lại.</string>
   <string name="RegistrationActivity_non_standard_number_format">Định dạng số không chuẩn</string>
@@ -3257,8 +3257,11 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Huy hiệu của bạn đã hết hạn</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Huy hiệu hết hạn</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Quyên góp đã bị hủy bỏ</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Huy hiệu quyên góp của bạn đã hết hạn và mọi người sẽ không còn nhìn thấy nó trên hồ sơ cá nhân của bạn được nữa.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bạn có thể tái kích hoạt huy hiệu quyên góp của mình trong 30 ngày chỉ với một lần quyên góp.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Để tiếp tục ủng hộ chúng tôi, ứng dụng sinh ra để dành cho bạn, hãy trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Thêm quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Bạn vẫn có thể tiếp tục dùng Signal, nhưng nếu bạn muốn tiếp tục quyên góp ủng hộ cho ứng dụng và nhận lại huy hiệu của mình thì bạn cần đăng ký lại.</string>

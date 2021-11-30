@@ -1252,8 +1252,6 @@
   <string name="RegistrationActivity_play_services_error">சேவைகளில் பிழை</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play சேவைகள் புதுப்பித்தல் அல்லது தற்காலிகமாக கிடைக்கவில்லை. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_terms_and_privacy">விதிமுறைகள் &amp; ஆம்ப்; தனியுரிமைக் கொள்கை</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">நண்பர்களுடன் இணைவதற்கும், செய்திகளைப் பரிமாறிக் கொள்வதற்கும், பாதுகாப்பான அழைப்புகளைச் செய்வதற்கும் Signal உங்கள் தொடர்புகள் மற்றும் ஊடகங்களுக்கான அணுகல் தேவை</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">உங்கள் நண்பர்களுடன் தொடர்புகொள்வதற்கும், செய்திகளைப் பரிமாறிக்கொள்வதற்கும், பாதுகாப்பான அழைப்புகளைச் செய்வதற்கும், சிக்னலுக்கு உங்கள் தொடர்புகள் பிரிவுக்கு அணுகல் அனுமதி தேவை.</string>
   <string name="RegistrationActivity_rate_limited_to_service">இந்த எண்ணை பதிவு செய்ய நீங்கள் பல முயற்சிகளை செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">சேவையுடன் இணைக்க முடியவில்லை. பிணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

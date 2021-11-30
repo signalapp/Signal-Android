@@ -1278,8 +1278,6 @@
   <string name="RegistrationActivity_play_services_error">Грешка с Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services се обновяват или временно не са достъпни. Моля, опитайте отново.</string>
   <string name="RegistrationActivity_terms_and_privacy">Условия и Политика за поверителност</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal се нуждае от достъп до контактите и мултимедията ви, за да можете да се свързвате с приятелите си, да разменяте съобщения и да провеждате защитени разговори</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има нужда от достъп до контактите ви, за да можете да се свързвате с приятели, да разменяте съобщения и да провеждате защитени разговори</string>
   <string name="RegistrationActivity_rate_limited_to_service">Направихте прекалено много опити за регистриране на този номер. Моля, опитайте отново по-късно.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Неуспешно свързване с услугата. Моля, проверете мрежовата връзка и опитайте отново.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

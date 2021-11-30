@@ -1307,8 +1307,6 @@ broj telefona</string>
   <string name="RegistrationActivity_play_services_error">Pogreška Play Servicesa</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se trenutno ažurira ili je nedostupno. Pokušajte ponovno kasnije.</string>
   <string name="RegistrationActivity_terms_and_privacy">Uvjeti korištenja i Politika privatnosti</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal zahtijeva pristup vašim kontaktima i medijskim zapisima za povezivanje s prijateljima, razmjenu poruka i upućivanje sigurnih poziva</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal zahtijeva pristup vašim kontaktima za povezivanje s prijateljima, razmjenu poruka i upućivanje sigurnih poziva</string>
   <string name="RegistrationActivity_rate_limited_to_service">Previše neuspjelih pokušaja registracije ovog broja telefona. Pokušajte ponovo kasnije.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezivanje s uslugom nije moguće. Provjerite mrežnu vezu i pokušajte ponovo.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -2006,6 +2004,7 @@ broj telefona</string>
   <string name="preferences__donate_to_signal">Donirajte Signalu</string>
   <string name="preferences__subscription">Pretplata</string>
   <string name="preferences__become_a_signal_sustainer">Postanite Signalov pretplatnik</string>
+  <string name="preferences__signal_boost">Jednokratna donacija</string>
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS korisnički agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručne MMS postavke</string>

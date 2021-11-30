@@ -1259,8 +1259,6 @@
   <string name="RegistrationActivity_play_services_error">Ralat Perkhidmatan Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Perkhidmatan Google Play sedang dikemas kini atau tidak tersedia sementara waktu. Sila cuba sekali lagi.</string>
   <string name="RegistrationActivity_terms_and_privacy">Terma &amp; Dasar Privasi</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal memerlukan akses kepada kenalan dan media anda untuk berhubung dengan rakan, bertukar-tukar mesej, dan membuat panggilan selamat</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal memerlukan akses kepada kenalan anda untuk berhubung dengan rakan, bertukar-tukar mesej, dan membuat panggilan selamat</string>
   <string name="RegistrationActivity_rate_limited_to_service">Anda telah membuat terlalu banyak percubaan untuk mendaftar nombor ini. Sila cuba lagi kemudian.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Perkhidmatan tidak dapat disambungkan. Sila semak sambungan rangkaian dan cuba lagi.</string>
   <string name="RegistrationActivity_call_requested">Panggilan diminta</string>

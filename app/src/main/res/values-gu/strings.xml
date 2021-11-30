@@ -1245,8 +1245,6 @@
   <string name="RegistrationActivity_play_services_error">Play Services ભૂલ</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services અપડેટ થઈ રહી છે અથવા અસ્થાયીરૂપે અનુપલબ્ધ છે. મેહરબાની કરી ને ફરીથી પ્રયાસ કરો.</string>
   <string name="RegistrationActivity_terms_and_privacy">શરતો &amp; ગોપનીયતા નીતિ</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">મિત્રો સાથે જોડાવા, મેસેજ આપ-લે કરવા અને સલામત કૉલ્સ કરવા માટે Signal ને તમારા સંપર્કો અને મીડિયા એક્સેસની જરૂર છે</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">મિત્રો સાથે જોડાવા, મેસેજ આપલે કરવા અને સલામત કૉલ્સ કરવા માટે Signal ને તમારા સંપર્કોની ઍક્સેસની જરૂર છે</string>
   <string name="RegistrationActivity_rate_limited_to_service">તમે આ નંબરને રજીસ્ટર કરવા માટે ઘણા પ્રયત્નો કર્યા છે. પછીથી ફરી પ્રયત્ન કરો.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">સેવાથી કનેક્ટ કરવામાં અસમર્થ. કૃપા કરીને નેટવર્ક કનેક્શન તપાસો અને ફરીથી પ્રયાસ કરો.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

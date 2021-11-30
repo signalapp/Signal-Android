@@ -1237,8 +1237,6 @@
   <string name="RegistrationActivity_play_services_error">Play Services 오류</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services가 업데이트 중이거나 잠시 제공되지 않고 있습니다. 다시 시도해 주세요.</string>
   <string name="RegistrationActivity_terms_and_privacy">이용 약관 &amp; 개인 정보 보호 정책</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal에서 친구들과 연락하고, 메시지를 주고받으며 안전하게 전화하기 위해 연락처와 미디어 권한이 필요합니다.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal에서 친구들과 연락하고, 메시지를 주고받으며 안전하게 전화하기 위해 연락처 권한이 필요합니다.</string>
   <string name="RegistrationActivity_rate_limited_to_service">이 전화번호를 등록하려고 너무 많이 시도했습니다. 나중에 다시 시도하세요.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">서비스에 연결할 수 없습니다. 네트워크 연결을 확인 후 다시 시도해 주세요.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

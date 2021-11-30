@@ -1488,8 +1488,8 @@
   <string name="RegistrationActivity_play_services_error">שגיאת שירותי Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">שירותי Google Play מתעדכנים או שהם בלתי זמינים באופן זמני. אנא נסה שוב.</string>
   <string name="RegistrationActivity_terms_and_privacy">תנאים ומדיניות פרטיות</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal צריך גישה אל אנשי הקשר והמדיה שלך על מנת לחבור אל חברים, להחליף הודעות ולקיים שיחות מאובטחות</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal צריך גישה אל אנשי הקשר שלך על מנת לחבור אל חברים, להחליף הודעות ולקיים שיחות מאובטחות</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal צריך הרשאה אל אנשי הקשר והמדיה שלך כדי לעזור לך לחבור אל חברים ולשלוח הודעות. אנשי הקשר שלך מועלים ע״י שימוש בגילוי אנשי קשר פרטי של Signal, מה שאומר שהם מוצפנים מקצה־אל־קצה ואף פעם אינם גלויים אל השירות של Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal צריך הרשאה אל אנשי הקשר שלך כדי לעזור לך לחבור אל חברים. אנשי הקשר שלך מועלים ע״י שימוש בגילוי אנשי קשר פרטי של Signal, מה שאומר שהם מוצפנים מקצה־אל־קצה ואף פעם אינם גלויים אל השירות של Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">עשית יותר מדי ניסיונות להירשם עם המספר הזה. אנא נסה שוב מאוחר יותר.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">לא היה ניתן להתחבר אל השירות. אנא בדוק את חיבור האינטרנט ונסה שוב.</string>
   <string name="RegistrationActivity_non_standard_number_format">תסדיר אי־תקני של מספר</string>

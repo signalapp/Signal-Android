@@ -1339,8 +1339,6 @@
   <string name="RegistrationActivity_play_services_error">خطای خدمات Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">خدمات Google Play در حال به‌روزرسانی است یا موقتاً در دسترس نیست. لطفاً دوباره تلاش کنید.</string>
   <string name="RegistrationActivity_terms_and_privacy">شرایط و خط مشی حریم خصوصی</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">برای ارتباط با دوستان، تبادل پیام و برقراری تماس امن سیگنال نیاز دارد تا به مخاطبین و رسانه‌های شما دسترسی داشته باشد</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">سیگنال به دسترسی به مخاطبین شما برای برقراری ارتباط با دوستان، تبادل پیام و گرفتن تماس‌های امن نیاز دارد.</string>
   <string name="RegistrationActivity_rate_limited_to_service">شما تلاش‌های بسیاری برای ثبت‌نام این شماره انجام داده‌اید. لطفاً دوباره امتحان کنید.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">اتصال به سرویس ممکن نیست. لطفاً اتصال شبکه را بررسی کرده و دوباره امتحان کنید.</string>
   <string name="RegistrationActivity_non_standard_number_format">قالب شمارهٔ غیر-استاندارد</string>

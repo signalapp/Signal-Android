@@ -1488,8 +1488,6 @@
   <string name="RegistrationActivity_play_services_error">„Play“ paslaugų klaida</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">„Google Play“ paslaugos yra atnaujinamos arba laikinai neprieinamos. Prašome bandyti dar kartą.</string>
   <string name="RegistrationActivity_terms_and_privacy">Sąlygos ir Privatumo politika</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų adresatų ir medijos</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Norinti susisiekti su draugais, keistis žinutėmis ir saugiai skambinti, Signal reikia prieigos prie jūsų adresatų</string>
   <string name="RegistrationActivity_rate_limited_to_service">Atlikote per daug bandymų užregistruoti šį numerį. Vėliau bandykite dar kartą.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepavyksta prisijungti prie paslaugos. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
   <string name="RegistrationActivity_non_standard_number_format">Nestandartinis numerio formatas</string>

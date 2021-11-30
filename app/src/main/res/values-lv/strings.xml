@@ -1307,8 +1307,6 @@ tālruņa numurs
   <string name="RegistrationActivity_play_services_error">Google Play pakalpojumu kļūme</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play pakalpojumi tiek aktualizēti vai īslaicīgi nav pieejami. Lūdzu, mēģiniet vēlreiz.</string>
   <string name="RegistrationActivity_terms_and_privacy">Noteikumi &amp; privātuma politika</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ir nepieciešama piekļuve Jūsu kontaktpersonām un multividei, lai sazinātos ar draugiem, apmainītos ar ziņām un veiktu drošus zvanus</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Lietotnei Signal ir nepieciešama piekļuve jūsu kontaktpersonām, lai jūs varētu sazināties ar draugiem, apmainīties ar ziņām un veikt drošus zvanus</string>
   <string name="RegistrationActivity_rate_limited_to_service">Pārāk daudz šī numura reģistrēšanas mēģinājumu. Vēlāk mēģiniet vēlreiz.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nevar izveidot savienojumu ar pakalpojumu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

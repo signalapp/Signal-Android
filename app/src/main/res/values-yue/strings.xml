@@ -2319,6 +2319,7 @@
   <string name="Insights__title">覺察</string>
   <string name="InsightsDashboardFragment__title">覺察</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol 喺過去 %2$d 日，已經自動保護咗 %1$d%% 由您發送出去嘅訊息。Signal 使用者之間嘅對話，就幾時都係端對端加密嘅。</string>
+  <string name="InsightsDashboardFragment__spread_the_word">沒更好的小心意</string>
   <string name="InsightsDashboardFragment__not_enough_data">資料唔夠</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您嘅「覺察」巴仙，係用過去 %1$d 日未有消失或刪除嘅送出訊息數量計算出嚟嘅。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">發起一個對話</string>

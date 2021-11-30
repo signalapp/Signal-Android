@@ -2318,6 +2318,7 @@
   <string name="Insights__title">省覧</string>
   <string name="InsightsDashboardFragment__title">省覧</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol 在過去 %2$d 天內，已自動保護您外寄訊息數目中的 %1$d%%。Signal 使用者之間的對話一律經端對端加密。</string>
+  <string name="InsightsDashboardFragment__spread_the_word">這空間裡 從不只我一個</string>
   <string name="InsightsDashboardFragment__not_enough_data">資料不足</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的「省覧」百分比，乃是基於過去 %1$d 天內未有消失或刪除的外寄訊息而計算。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">開展一個對話</string>
@@ -3226,7 +3227,7 @@
   <string name="Subscription__s_per_month">%s/月</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/月 · %2$s 續期</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/月 · %2$s 屆滿</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴使用並珍重 Signal 的人維持。祈盼樂善好施，力所能及作月供捐款，奉贈一枚個人資料徽章，與人分享您的支持。</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴使用並珍重 Signal 的人維持。祈盼樂善好施，力所能及作月供捐款，並笑納一枚個人資料徽章，好與人分享您的支持。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">為何要捐款？</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal 致力開發開放原始碼的私隱技術，保護自由表達並讓全球通訊變得安全。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">您的捐款，驅動這因由，並有助補貼程式開發與運作，讓世界各地數以百萬計「惜爐」使用者，共星光中作私密通訊。無廣告 · 無追蹤 · 無戲言。</string>
@@ -3272,7 +3273,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為訂閱續期</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援團隊以取得更多資訊。</string>
   <string name="Subscription__contact_support">聯絡支援</string>
-  <string name="Subscription__earn_a_s_badge">獲取一枚 %1$s 徽章</string>
+  <string name="Subscription__earn_a_s_badge">獲取一枚「%1$s」徽章</string>
   <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">處理付款時發生錯誤</string>

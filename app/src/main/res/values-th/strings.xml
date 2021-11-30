@@ -1192,8 +1192,6 @@
   <string name="RegistrationActivity_play_services_error">ข้อผิดพลาดเกี่ยวกับ Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services กำลังปรับรุ่นหรือใช้ไม่ได้ชั่วคราว โปรดลองอีกครั้ง</string>
   <string name="RegistrationActivity_terms_and_privacy">เงื่อนไขและนโยบายความเป็นส่วนตัว</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ต้องการเข้าถึงสื่อและผู้ติดต่อที่คุณติดต่อด้วย เพื่อที่จะเชื่อมต่อคุณกับเพื่อน แลกเปลี่ยนข้อความ และโทรหากันแบบปลอดภัย</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal ต้องการเข้าถึงผู้ติดต่อที่คุณติดต่อด้วย เพื่อที่จะเชื่อมต่อคุณกับเพื่อน แลกเปลี่ยนข้อความ และโทรหากันแบบปลอดภัย</string>
   <string name="RegistrationActivity_rate_limited_to_service">คุณได้พยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองใหม่ในภายหลัง</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
   <plurals name="RegistrationActivity_debug_log_hint">

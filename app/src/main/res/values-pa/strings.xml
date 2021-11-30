@@ -1261,8 +1261,6 @@
   <string name="RegistrationActivity_play_services_error">Play ਸੇਵਾਵਾਂ ਚ ਤਰੁੱਟੀ</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play ਸੇਵਾਵਾਂ ਅਪਡੇਟ ਹੋ ਰਹੀਆਂ ਹਨ ਜਾਂ ਅਸਥਾਈ ਤੌਰ ’ਤੇ ਉਪਲਬਧ ਨਹੀਂ ਹਨ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ ਕਰੋ।</string>
   <string name="RegistrationActivity_terms_and_privacy">ਸ਼ਰਤਾਂ  &amp; ਪਰਦੇਦਾਰੀ ਨੀਤੀ</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ਨੂੰ ਦੋਸਤਾਂ ਨਾਲ ਜੁੜਨ, ਸੁਨੇਹਿਆਂ ਦਾ ਮੁਲਾਂਕਣ ਕਰਨ ਅਤੇ ਸੁਰੱਖਿਅਤ ਕਾਲ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਅਤੇ ਮੀਡੀਆ ਤਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal ਨੂੰ ਦੋਸਤਾਂ ਨਾਲ ਜੁੜਨ, ਸੁਨੇਹੇ ਭੇਜਣ-ਪ੍ਰਾਪਤ ਕਰਨ, ਅਤੇ ਸੁਰੱਖਿਅਤ ਕਾਲਾਂ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਤਾਈਂ ਪਹੁੰਚ ਕਰਨ ਦੀ ਲੋੜ ਹੈ</string>
   <string name="RegistrationActivity_rate_limited_to_service">ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਦੀਆਂ ਬਹੁਤ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਕਰ ਲਈਆਂ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ਸੇਵਾ ਨਾਲ ਜੁੜਨ ਵਿੱਚ ਅਸਮਰੱਥ। ਕਿਰਪਾ ਕਰਕੇ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <plurals name="RegistrationActivity_debug_log_hint">

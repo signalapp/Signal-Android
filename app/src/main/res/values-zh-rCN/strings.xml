@@ -1182,8 +1182,6 @@
   <string name="RegistrationActivity_play_services_error">Google Play 服务错误</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服务正在更新或者暂时不可用，请稍后再试。</string>
   <string name="RegistrationActivity_terms_and_privacy">条款和隐私政策</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">为了联系朋友，交换消息与进行加密呼叫，Signal 需要访问联系人和媒体。</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">为了联系朋友，交换消息与进行加密呼叫，Signal 需要访问联系人和媒体。</string>
   <string name="RegistrationActivity_rate_limited_to_service">您尝试注册此号码次数过多，请稍候再试。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">无法连接到 Signal 服务，请检查网络连接并重试。</string>
   <plurals name="RegistrationActivity_debug_log_hint">

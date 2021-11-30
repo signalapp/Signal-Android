@@ -1286,8 +1286,6 @@
   <string name="RegistrationActivity_play_services_error">Play مۇلازىمەتلىرى خاتالىقى</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play مۇلازىمەتلىرى يېڭىلىنىۋاتىدۇ ياكى ئۇلارنى ۋاقىتلىق ئىشلەتكىلى بولمايدۇ. سەل تۇرۇپ قايتا سىناڭ.</string>
   <string name="RegistrationActivity_terms_and_privacy">شەرتلەر &amp;  مەخپىيەتلىك تۈزۈمى</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">دوستلار بىلەن ئالاقە قىلىش ، ئۇچۇر ئالماشتۇرۇش ۋە بىخەتەر تېلېفون قىلالىشىڭىز ئۈچۈن Signal ئالاقىداشلىرىڭىز ۋە مېدىيالىرىڭىزنى زىيارەت قىلىشى كېرەك</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">دوستلار بىلەن ئالاقىلىشىش، ئۇچۇر ئالماشتۇرۇش ۋە بىخەتەر تېلېفون قىلالىشىڭىز ئۈچۈن Signal ئالاقەداشلىرىڭىزنى زىيارەت قىلىشى كېرەك</string>
   <string name="RegistrationActivity_rate_limited_to_service">سىز بۇ نومۇرنى تىزىملىتىشقا بەك كۆپ قېتىم ئۇرۇندىڭىز. كېيىنرەك قايتا سىناڭ.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">مۇلازىمەتكە ئۇلانغىلى بولمىدى. تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ.</string>
   <string name="RegistrationActivity_call_requested">چاقىرىق تەلەپ قىلىندى</string>

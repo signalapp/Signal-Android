@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN απενεργοποιημένο.</string>
   <string name="ApplicationPreferencesActivity_hide">Απόκρυψη</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Απόκρυψη υπενθύμισης;</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ηχογραφήστε το συνθηματικό της αποκατάστασης των πληρωμών</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Καταγραφή φράσης</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -58,6 +59,7 @@
   <string name="AttachmentKeyboard_location">Τοποθεσία</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Το Signal χρειάζεται άδεια για να εμφανίσει τις φωτογραφίες και τα βίντεό σου.</string>
   <string name="AttachmentKeyboard_give_access">Να δοθεί πρόσβαση</string>
+  <string name="AttachmentKeyboard_payment">Πληρωμή</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δεν μπορεί να βρεθεί εφαρμογή για επιλογή πολυμέσων.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio"> Το Signal χρειάζεται τα δικαιώματα Αποθηκευτικού Χώρου για την επισύναψη φωτογραφιών, βίντεο ή κομματιών ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\". </string>
@@ -1333,8 +1335,6 @@
   <string name="RegistrationActivity_play_services_error">Σφάλμα υπηρεσιών Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Οι υπηρεσίες Google Play αναβαθμίζονται ή είναι προσωρινά μη διαθέσιμες. Παρακαλώ ξαναπροσπάθησε.</string>
   <string name="RegistrationActivity_terms_and_privacy">Όροι &amp; Πολιτική Απορρήτου</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές και τα πολυμέσα σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να στείλεις και να λάβεις μηνύματα, και να κάνεις ασφαλείς κλήσεις.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Το Signal χρειάζεται πρόσβαση στις επαφές σου για να μπορέσει να σε συνδέσει με φίλους και φίλες σου, να ανταλλάξεις μηνύματα και να κάνεις ασφαλείς κλήσεις</string>
   <string name="RegistrationActivity_rate_limited_to_service">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Παρακαλώ ξαναπροσπάθησε αργότερα.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
   <string name="RegistrationActivity_non_standard_number_format">Μη-τυπική μορφή αριθμού</string>

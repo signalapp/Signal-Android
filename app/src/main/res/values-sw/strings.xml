@@ -1247,8 +1247,6 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_play_services_error">Hitilafu katika huduma za Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Huduma za Google Play zinasasisha au hazipatikani kwa muda. Tafadhali jaribu tena.</string>
   <string name="RegistrationActivity_terms_and_privacy">Vigezo &amp;amp: Sera ya Faragha</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal inahitaji kupata wawasiliani wako ama Media ili kukuunganisha na marafiki, kubadilishana jumbe, na kupiga simu kisalama</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal inahitaji ufikizi kwenye waasiliani wako ili kukuunganisha na marafiki, kubadilishana ujumbe, na kupiga miito salama</string>
   <string name="RegistrationActivity_rate_limited_to_service">Umefanya majaribio mengi sana ili kusajili nambari hii. Tafadhali jaribu tena baadaye.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Imeshindwa kuunganisha kwenye huduma. Tafadhali angalia muunganisho wako wa mtandao na ujaribu tena.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

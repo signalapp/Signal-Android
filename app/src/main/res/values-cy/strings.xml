@@ -1490,8 +1490,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_play_services_error">Gwall Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Mae Google Play Services yn cael eu diweddaru neu nid yw ar gael dros dro. Ceisiwch eto os gwelwch yn dda.</string>
   <string name="RegistrationActivity_terms_and_privacy">Telerau a Pholisi Preifatrwydd</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Mae ar Signal angen mynediad i\'ch cysylltiadau a\'ch cyfryngau er mwyn cysylltu â ffrindiau, cyfnewid negeseuon, a gwneud galwadau diogel</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Mae Signal angen mynediad i\'ch cysylltiadau er mwyn cysylltu â ffrindiau, cyfnewid negeseuon, a gwneud galwadau diogel</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Mae Signal angen caniatâd y cysylltiad â\'r cyfryngau i\'ch helpu i gysylltu â ffrindiau ac i anfon negeseuon. Mae eich cysylltiadau wedi\'u llwytho gan ddefnyddio canfod preifat Signal, sy\'n golygu eu bod wedi’u hamgryptio o ben-i-ben a byth yn weladwy i wasanaeth Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Mae Signal angen caniatâd y cysylltiad i\'ch helpu i gysylltu â ffrindiau. Mae eich cysylltiadau wedi\'u llwytho gan ddefnyddio canfod preifat Signal, sy\'n golygu eu bod wedi’u hamgryptio o ben-i-ben a byth yn weladwy i wasanaeth Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Rydych wedi ceisio cofrestri\'r rhif hwn gormod o weithiau. Ceisiwch eto\'n hwyrach.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Methu cysylltu â\'r gwasanaeth. Gwiriwch y cysylltiad rhwydwaith a cheisio eto.</string>
   <string name="RegistrationActivity_non_standard_number_format">Fformat rhif ansafonol</string>

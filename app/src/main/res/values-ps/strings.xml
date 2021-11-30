@@ -1286,8 +1286,6 @@
   <string name="RegistrationActivity_play_services_error">د Play خدماتو تېروتنه</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">د Google Play خدمات د اپډېټ کېدو په حال کې دي یا په مؤقت ډول موجود نه دي. مهرباني وکړئ بیا کوښښ وکړئ. </string>
   <string name="RegistrationActivity_terms_and_privacy">شرایط او ضوابط؛ د محرمیت تګلاره</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal اړتیا لري ستاسو مخاطبينو او میډیا ته لاسرسی ولري ترڅو وکولای شئ له خپلو ملګرو سره وصل شئ، پیغامونه سره تبادله کړئ او خوندي اړيکې ټینګې کړئ</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal اړتیا لري ستاسو مخاطبينو ته لاسرسی ولري ترڅو وکولای شئ له خپلو ملګرو سره وصل شئ، پیغامونه سره تبادله کړئ او خوندي اړيکې ټینګې کړئ</string>
   <string name="RegistrationActivity_rate_limited_to_service">تاسو ډېر ځله کوښښ کړی چې دغه شمېره ثبت کړئ. مهرباني وکړئ وروسته بیا کوښښ وکړئ.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">نشئ کولای له خدمتاتو سره وصل شئ. مهرباني وکړئ خپل اتصال چک کړئ او بیا کوښښ وکړئ.</string>
   <string name="RegistrationActivity_call_requested">د اړیکې نیولو غوښتنه شوې</string>

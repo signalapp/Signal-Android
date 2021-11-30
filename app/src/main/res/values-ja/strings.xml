@@ -2982,8 +2982,8 @@
   <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__media_quality">メディアの画質</string>
-  <string name="DataAndStorageSettingsFragment__sent_media_quality">送信済みメディアの画質</string>
-  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">高画質なメディアの送信には、より多くのデータ量を使用します。</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">送信メディアの画質</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">高画質なメディアの送信には、より多くのデータを使用します。</string>
   <string name="DataAndStorageSettingsFragment__high">高画質</string>
   <string name="DataAndStorageSettingsFragment__standard">標準</string>
   <string name="DataAndStorageSettingsFragment__calls">通話</string>

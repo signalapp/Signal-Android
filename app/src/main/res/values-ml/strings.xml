@@ -1247,8 +1247,6 @@
   <string name="RegistrationActivity_play_services_error">Play Services പിശക്</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services അപ്‌ഡേറ്റുചെയ്യുന്നു അല്ലെങ്കിൽ താൽക്കാലികമായി ലഭ്യമല്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_terms_and_privacy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">ചങ്ങാതിമാരുമായി ബന്ധപ്പെടുന്നതിനും സന്ദേശങ്ങൾ കൈമാറുന്നതിനും സുരക്ഷിത കോളുകൾ ചെയ്യുന്നതിനും Signal-ന് നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകളിലേക്കും മീഡിയയിലേക്കും ആക്‌സസ് ആവശ്യമാണ്</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">ചങ്ങാതിമാരുമായി ബന്ധപ്പെടുന്നതിനും സന്ദേശങ്ങൾ കൈമാറുന്നതിനും സുരക്ഷിത കോളുകൾ ചെയ്യുന്നതിനും Signal - ന് നിങ്ങളുടെ കോണ്ടാക്ടുകളിലേക്ക് ആക്‌സസ് ആവശ്യമാണ്</string>
   <string name="RegistrationActivity_rate_limited_to_service">ഈ നമ്പർ രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങൾ വളരെയധികം ശ്രമങ്ങൾ നടത്തി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യാനായില്ല. നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

@@ -1240,8 +1240,6 @@
   <string name="RegistrationActivity_play_services_error">گوگل پلے سروسز خرابی</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">گوگل پلے سروسز تجدید ہو رہی ہیں یا عارضی طور پر دستیاب نہیں۔ براہ کرم دوبارہ کوشش کریں۔</string>
   <string name="RegistrationActivity_terms_and_privacy">شرائط &amp;amp:رازداری کی پالیسی</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal کو دوستوں کے ساتھ رابطے کیلئے میڈیا اور رابطوں تک رسائی کی ضرورت ہے، پیغامات کا تبادلہ کریں، اور محفوظ کال بنائیں</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">دوستوں سے رابطہ قائم کرنے ، پیغامات کا تبادلہ کرنے اور محفوظ کال کرنے کیلئے Signal کو آپ کے رابطوں تک رسائی کی ضرورت ہے</string>
   <string name="RegistrationActivity_rate_limited_to_service">آپ نے اس نمبر کو رجسٹر کرنے کے لئے بہت زیادہ کوششیں کی ہیں۔ براہ کرم کچھ دیر بعد کوشش کریں.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">سروس سے رابطے کے قابل نہیں۔ براہ کرم نیٹ ورک کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
   <plurals name="RegistrationActivity_debug_log_hint">

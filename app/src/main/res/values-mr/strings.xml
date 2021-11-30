@@ -2825,7 +2825,7 @@
   <string name="DeleteAccountFragment__deleting_your_account_will">आपले खाते हटवल्याने खालील गोष्टी होतील:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">आपला फोन नंबर प्रविष्ट करा</string>
   <string name="DeleteAccountFragment__delete_account">खाते हटवा</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">आपली खाते माहिती आणि प्रोफाईल फोटो हटवली जाईल</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">आपली खाते माहिती आणि प्रोफाईल फोटो हटवला जाईल</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">आपले सर्व संदेश हटवले जातील</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">आपल्या पेमेंट खात्यामध्ये %1$s हटवा</string>
   <string name="DeleteAccountFragment__no_country_code">कुठलेही देश कोड निर्दिष्ट नाही</string>

@@ -1414,8 +1414,6 @@
   <string name="RegistrationActivity_play_services_error">Грешка Play сервиса</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play сервиси се ажурирају или су привремено недоступни. Покушајте поново касније.</string>
   <string name="RegistrationActivity_terms_and_privacy">Услови и политика приватности</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal-у је потребан приступ вашем именику и медијима да бисте могли ступити у везу са пријатељима, размењивати поруке и водити сигурне позиве</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal-у је потребан приступ вашем именику да бисте могли ступити у контакт са пријатељима, размењивати поруке и водити сигурне позиве</string>
   <string name="RegistrationActivity_rate_limited_to_service">Превише пута сте покушали да региструјете овај број. Покушајте поново касније.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Није могуће успоставити везу са сервисом. Проверите да ли сте повезани на интернет и покушајте поново.</string>
   <string name="RegistrationActivity_non_standard_number_format">Не стандардни формат цифре</string>

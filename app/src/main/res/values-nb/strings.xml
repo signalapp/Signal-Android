@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kode deaktivert.</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Skjul påminnelse?</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere PIN-koden din, må du registrere betalingsgjenopprettingsfrasen for å sikre at du kan gjenopprette betalingskontoen din.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -201,6 +202,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrider maksimal størrelsesgrense for gjeldende meldingstype.</string>
   <string name="ConversationActivity_unable_to_record_audio">Kan ikke ta opp lyd!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikke sende meldinger til denne gruppen fordi du ikke lenger er medlem av den.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Kun %1$s kan sende meldinger.</string>
+  <string name="ConversationActivity_cant_start_group_call">Kan ikke starte gruppeanrop</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Bare administratorer for denne gruppen kan starte en samtale.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din forespørsel om å bli med har blitt sendt til gruppeadministratoren. Du vil bli varslet når de tar aksjon.</string>
   <string name="ConversationActivity_cancel_request">Avbryt forespørsel</string>
@@ -308,6 +312,10 @@
     <item quantity="other">Flyttet %d samtaler til innboks</item>
   </plurals>
   <string name="ConversationListFragment_select">Velg</string>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Slett</item>
+    <item quantity="other">Slett</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Velg alle</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
@@ -405,6 +413,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flere vedlegg støttes bare for bilder og videoer</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har ikke tillatelse til å sende til denne gruppen</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonssvikt!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg i Google Play-tjenesten. Signal-meldinger og -samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
@@ -730,6 +739,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_share_with_contacts">Del med kontakter</string>
+  <string name="InviteActivity_share_via">Del via…</string>
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Sender…</string>
   <string name="InviteActivity_invitations_sent">Invitasjoner sendt.</string>
@@ -742,6 +752,7 @@
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lær mer</string>
+  <string name="SpanUtil__read_more">Les mer</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Kunne ikke finne meldingen</string>
   <string name="LongMessageActivity_message_from_s">Melding fra %1$s</string>
@@ -777,6 +788,14 @@
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valgt</string>
   <string name="MediaOverviewActivity_select_all">Velg alle</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Lagre</item>
+    <item quantity="other">Lagre</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Slett</item>
+    <item quantity="other">Slett</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -997,6 +1016,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du markerte sikkerhetsnummeret for %s som bekreftet fra en annen enhet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte sikkerhetsnummer for %s som ikke bekreftet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte sikkerhetsnummer for %s som ikke bekreftet fra en annen enhet</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En melding fra %s kunne ikke leveres</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startet en gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
@@ -1165,6 +1185,9 @@
   <string name="WebRtcCallView__reconnecting">Kobler til på nytt…</string>
   <string name="WebRtcCallView__joining">Blir med…</string>
   <string name="WebRtcCallView__disconnected">Koblet fra</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal vil ringe %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal vil ringe %1$s og %2$s</string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s vil bli varslet</string>
   <string name="WebRtcCallView__no_one_else_is_here">Ingen andre er her</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$ser i denne samtalen</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s er i denne samtalen.</string>
@@ -1217,8 +1240,8 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_play_services_error">Play Tjenester Feil</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjenester er opptatt eller midlertidig utilgjengelig. Vent litt, og prøv på nytt.</string>
   <string name="RegistrationActivity_terms_and_privacy">Vilkår og personvernerklæring</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal må ha tilgang til kontakter og medier på systemet for å kunne koble til venner, sende/motta meldinger og ringe sikkert</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal må ha tilgang til kontaktene dine for å kunne koble til venner, sende/motta meldinger og ringe sikkert</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal trenger kontaktene og medietillatelsene for å hjelpe deg med å få kontakt med venner og sende meldinger. Kontaktene dine lastes opp ved hjelp av Signal private kontaktoppdagelse, noe som betyr at de er ende-til-ende-krypterte og aldri synlige for Signal-tjenesten.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal trenger kontakttillatelsen for å hjelpe deg med å få kontakt med venner. Kontaktene dine lastes opp ved hjelp av Signal private kontaktoppdagelse, noe som betyr at de er ende-til-ende-krypterte og aldri synlige for Signal-tjenesten.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har gjort for mange forsøk på å registrere dette nummeret. Prøv igjen senere.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Klarte ikke å koble til tjenesten. Kontroller at du har en stabil nettilkobling og prøv på nytt.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1757,6 +1780,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sveip ned for å avvise</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
+  <string name="message_details_header__sent">Sendt:</string>
+  <string name="message_details_header__received">Mottatt:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Avventer</string>
   <string name="message_details_recipient_header__sent_to">Sendt til</string>
@@ -1810,6 +1835,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flagg</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ingen resultater</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Bruk forvalgt</string>
   <string name="arrays__use_custom">Bruk selvvalgt</string>
@@ -2027,6 +2053,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Ingen nylig aktivitet</string>
   <string name="PaymentsHomeFragment__see_all">Se alle</string>
   <string name="PaymentsHomeFragment__send">Send</string>
+  <string name="PaymentsHomeFragment__sent_s">Sendt %1$s</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Deaktiver betalinger</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsHomeFragment__help">Hjelp</string>
@@ -2044,6 +2071,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Betalinger er deaktivert</string>
   <string name="PaymentsHomeFragment__payment_failed">Betaling mislyktes</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kan bruke Signal til å sende og motta MobileCoin. Alle betalinger er underlagt vilkårene for bruk for MobileCoins og MobileCoin-lommeboken. Dette er en betafunksjon slik at du kan støte på noen problemer og betalinger eller saldoer du kan miste kan ikke gjenopprettes.</string>
   <string name="PaymentsHomeFragment__activate">Aktiver</string>
   <string name="PaymentsHomeFragment__payments_not_available">Betalinger i Signal er ikke lenger tilgjengelige. Du kan fortsatt overføre midler til en veksler, men du kan ikke lenger sende eller motta betalinger eller legge til midler.</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2778,6 +2806,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Oppdater PIN</string>
   <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Det ser ut til at du prøvde å endre nummeret ditt, men vi klarte ikke å finne ut om det var vellykket.\n\nSjekker på nytt nå…</string>
   <string name="ChangeNumberLockActivity__retry">Prøv på nytt</string>
   <string name="ChangeNumberLockActivity__leave">Forlat</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Send feilsøkingslogg</string>
@@ -2882,6 +2911,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_stickers">Klistremerker</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_no_results_found">Ingen resultater</string>
+  <string name="EmojiSearchFragment__no_results_found">Ingen resultater</string>
   <!--ConversationSettingsFragment-->
   <string name="ConversationSettingsFragment__message">Melding</string>
   <string name="ConversationSettingsFragment__video">Video</string>
@@ -2921,6 +2952,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Ny melding</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Søk etter navn eller nummer</string>
   <!--VoiceNotePlayerView-->
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>

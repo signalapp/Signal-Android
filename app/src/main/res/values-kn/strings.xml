@@ -1250,8 +1250,6 @@
   <string name="RegistrationActivity_play_services_error">ಪ್ಲೇ ಸರ್ವೀಸಸ್ ದೋಷ</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತಿದೆ ಅಥವಾ ತಾತ್ಕಾಲಿಕವಾಗಿ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="RegistrationActivity_terms_and_privacy">ನಿಯಮಗಳು &amp; ಖಾಸಗಿತನ ನೀತಿ</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends"> Signal ಗೆ ನಿಮ್ಮ ಸ್ನೇಹಿತರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು, ಸಂದೇಶಗಳನ್ನು ವಿನಿಮಯ ಮಾಡಿಕೊಳ್ಳಲು, ಮತ್ತು ಸುರಕ್ಷಿತ ಕರೆಗಳನ್ನು ಮಾಡಲು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಆಕ್ಸೆಸ್ ಮಾಡುವುದು ಅಗತ್ಯವಿರುತ್ತದೆ.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">ಸ್ನೇಹಿತರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು, ಮೆಸೇಜ್‌ಗಳನ್ನು ವಿನಿಮಯ ಮಾಡಿಕೊಳ್ಳಲು ಮತ್ತು ಸುರಕ್ಷಿತ ಕರೆಗಳನ್ನು ಮಾಡಲು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ Signal ಪ್ರವೇಶಾವಕಾಶ ಪಡೆಯಬೇ</string>
   <string name="RegistrationActivity_rate_limited_to_service">ಈ ಸಂಖ್ಯೆಯನ್ನು ರಿಜಿಸ್ಟರ್ ಮಾಡಲು ನೀವು ತುಂಬಾ ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. ದಯವಿಟ್ಟು ಪುನಃ </string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

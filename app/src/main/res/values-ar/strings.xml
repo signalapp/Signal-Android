@@ -1634,8 +1634,6 @@
   <string name="RegistrationActivity_play_services_error">خطأ في خدمات Play </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جاري تحديث خدمات Google Play  أو أنها غير موجودة مؤقتاً. يرجى المحاولة مجدداً. </string>
   <string name="RegistrationActivity_terms_and_privacy">الشروط وسياسة الخصوصية</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات الاتصال والوسائط من أجل التواصل مع الأصدقا، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات اتصالك والوسائط من أجل التواصل مع الأصدقاء، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
   <string name="RegistrationActivity_rate_limited_to_service">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. الرجاء المحاولة لاحقاً.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
   <string name="RegistrationActivity_non_standard_number_format">نسق العدد غير المعياري</string>

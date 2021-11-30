@@ -1339,8 +1339,6 @@
   <string name="RegistrationActivity_play_services_error">Play Hizmetleri Hatası</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Hizmetleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen tekrar deneyiniz.</string>
   <string name="RegistrationActivity_terms_and_privacy">Koşullar ve Gizlilik İlkesi</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kişilerinizle iletişim kurabilmeniz ve güvenli aramalar yapabilmeniz için Signal\'in Kişilerinize ve Depolamanıza erişime ihtiyacı var</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Kişilerinizle iletişim kurabilmeniz ve güvenli aramalar yapabilmeniz için Signal\'in Kişilerinize erişime ihtiyacı var</string>
   <string name="RegistrationActivity_rate_limited_to_service">Bu numarayı kaydettirmek için çok fazla deneme yaptınız. Lütfen daha sonra tekrar deneyiniz.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Hizmete bağlanılamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin. </string>
   <string name="RegistrationActivity_call_requested">Arama istendi</string>

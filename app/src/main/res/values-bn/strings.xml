@@ -1335,8 +1335,6 @@
   <string name="RegistrationActivity_play_services_error">প্লে সার্ভিস সমস্যা</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">গুগল প্লে পরিষেবাদি আপডেট করছে বা অস্থায়ীভাবে অনুপলব্ধ। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
   <string name="RegistrationActivity_terms_and_privacy">শর্তাদি এবং গোপনীয়তা নীতি</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">বন্ধুদের সাথে সংযোগ করতে, বার্তা বিনিময় করতে এবং সুরক্ষিত কল সমূহ করার জন্য Signal এর আপনার পরিচিতি এবংমিডিয়া অ্যাক্সেস প্রয়োজন</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">বন্ধুদের সাথে সংযোগ করতে, বার্তাগুলি বিনিময় করতে এবং সুরক্ষিত কল করার জন্য Signal\'র আপনার পরিচিতিগুলিতে প্রবেশ করা প্রয়োজন</string>
   <string name="RegistrationActivity_rate_limited_to_service">আপনি এই নম্বরটি নিবন্ধন করার জন্য অনেকবার চেষ্টা করেছেন। দয়া করে পরে আবার চেষ্টা করুন।</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">পরিষেবাতে সংযোগ করতে অক্ষম। নেটওয়ার্ক সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
   <string name="RegistrationActivity_call_requested">কল অনুরোধ করা হয়েছে</string>
