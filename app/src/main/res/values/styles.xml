@@ -538,4 +538,15 @@
         <item name="hintTextColor">@color/signal_accent_primary</item>
         <item name="android:textColorHint">@color/signal_text_hint</item>
     </style>
+
+    <style name="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:minWidth">@dimen/mtrl_btn_dialog_btn_min_width</item>
+        <!-- Allow buttons to span more than one line so that the end isn't cut
+             off for long strings. MDC defaults to 1 line. -->
+        <item name="android:lines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginStart">@dimen/mtrl_btn_text_btn_padding_left</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:gravity">end|center_vertical</item>
+    </style>
 </resources>
