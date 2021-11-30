@@ -1341,8 +1341,8 @@
   <string name="RegistrationActivity_play_services_error">Eraro de servoj „Play“</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">La servoj „Play“ el Google ĝisdatiĝas aŭ provizore ne disponeblas. Bv. re-provi.</string>
   <string name="RegistrationActivity_terms_and_privacy">Kondiĉoj de uzo kaj regularo pri privateco</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj kaj aŭdvidaĵoj por konekti kun amikoj, interŝanĝi mesaĝojn, kaj fari sekurajn alvokojn.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj kaj aŭdvidaĵoj por konekti kun amikoj, interŝanĝi mesaĝojn, kaj sekure alvoki.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj kaj aŭdvidaĵoj por konekti kun amikoj, interŝanĝi mesaĝojn, kaj fari sekurajn alvokojn. Viaj kontaktoj alŝutiĝas uzante la privatan malkovron de kontaktoj de Signal; tio signifas, ke ili estas tutvoje ĉifritaj kaj neniam videblaj de Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal bezonas aliri al viaj kontaktoj por konekti kun viaj amikoj. Viaj kontaktoj alŝutiĝas uzante la privatan malkovron de kontaktoj de Signal; tio signifas, ke ili estas tutvoje ĉifritaj kaj neniam videblaj de Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Vi tro faris neĝustajn provojn por registri tiun numeron. Reprovu poste.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Konekto al servo ne eblas. Bv. kontroli retkonekton, kaj provi denove.</string>
   <string name="RegistrationActivity_non_standard_number_format">Nenorma numeroformo</string>

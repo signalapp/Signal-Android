@@ -1339,8 +1339,8 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_play_services_error">Play Services fejl</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services bliver opdateret eller er midlertidigt utilgængelig. Prøv venligst igen</string>
   <string name="RegistrationActivity_terms_and_privacy">Vilkår og privatlivspolitik</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal har brug for tilladelse til at tilgå dine kontakter og mediefiler for at kunne oprette forbindelser til venner, udveksle beskeder og foretage sikre opkald</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal har brug for adgang til dine kontakter for at kunne forbinde med dine venner, udveksle beskeder og foretage sikre opkald</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal har brug for tilladelse til at tilgå kontakter og lagerplads for at du kan oprette forbindelse til venner og sende beskeder. Dine kontakter uploades ved hjælp af Signals private kontaktopdagelse, hvilket betyder, at de er end-to-end-krypteret og aldrig synlige for Signal-tjenesten.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal har brug for tilladelse til at tilgå kontakter for at du kan oprette forbindelse til venner. Dine kontakter uploades ved hjælp af Signals private kontaktopdagelse, hvilket betyder, at de er end-to-end-krypteret og aldrig synlige for Signal-tjenesten.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har foretaget for mange forsøg på at registrere dette nummer. Prøv igen senere.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen.</string>
   <string name="RegistrationActivity_non_standard_number_format">Ikke-standardiseret nummerformat</string>

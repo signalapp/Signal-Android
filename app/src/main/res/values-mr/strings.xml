@@ -80,17 +80,17 @@
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यात सक्षम होणार नाही.</string>
   <string name="BlockedUsersActivity__block">अवरोधित करा</string>
   <string name="BlockedUsersActivity__unblock_user">वापरकर्ता अनब्लॉक करायचा?</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">आपण \"%1$s\" अनब्लॉक करू इच्छिता?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">आपण \"%1$s\" ला अनब्लॉक करू इच्छिता?</string>
   <string name="BlockedUsersActivity__unblock">अनब्लॉक करा</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s अवरोधित करायचे आणि सोडायचे ?</string>
-  <string name="BlockUnblockDialog_block_s">%1$s अवरोधित करायचे?</string>
+  <string name="BlockUnblockDialog_block_s">%1$s ला अवरोधित करायचे?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">आपणास यापुढे या गटाकडून संदेश किंवा अद्यतने प्राप्त होणार नाहीत आणि सदस्य आपल्याला या गटामध्ये पुन्हा जोडण्यास सक्षम राहणार नाहीत.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">गट सदस्य आपल्याला या गटामध्ये पुन्हा जोडू शकणार नाहीत.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">गट सदस्य आपल्याला पुन्हा या गटात जोडू शकतील.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आपण एकमेकांना संदेश पाठविण्यात आणि कॉल करण्यात सक्षम असाल आणि आपले नाव आणि फोटो त्यांच्यासह सामायिक केला जाईल.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">अवरोधित लोक आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यास सक्षम असणार नाहीत.</string>
-  <string name="BlockUnblockDialog_unblock_s">%1$s अनब्लॉक करायचे?</string>
+  <string name="BlockUnblockDialog_unblock_s">%1$s ला अनब्लॉक करायचे?</string>
   <string name="BlockUnblockDialog_block">अवरोधित करा</string>
   <string name="BlockUnblockDialog_block_and_leave">अवरोधित करा आणि सोडा</string>
   <string name="BlockUnblockDialog_report_spam_and_block">स्पॅम म्हणून रिपोर्ट करा आणि अवरोधित करा</string>
@@ -399,7 +399,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">आपल्या बॅकअप सांकेतिक वाक्यांशाची चाचणी घ्या आणि ते जुळत असल्याचे सत्यापित करा</string>
   <string name="BackupsPreferenceFragment__turn_on">चालू करा</string>
   <string name="BackupsPreferenceFragment__turn_off">बंद करा</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">बॅकअप पुनर्संचयित करण्यासाठी, Signalची नवीन प्रत स्थापित करा. अ‍ॅप उघडा आणि \"बॅकअप पुनर्स्थापना करा\" टॅप करा, नंतर एक बॅकअप फाईल शोधा. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">बॅकअप पुनर्संचयित करण्यासाठी, Signal ची नवीन प्रत स्थापित करा. अ‍ॅप उघडा आणि \"बॅकअप पुनर्स्थापना करा\" टॅप करा, नंतर एक बॅकअप फाईल शोधा. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">अधिक जाणा</string>
   <string name="BackupsPreferenceFragment__in_progress">प्रगतीपथावर…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d आतापर्यंत…</string>
@@ -467,6 +467,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">स्टिकर</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">सदस्य जोडायचा?</string>
+  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ला \"%2$s\" मध्ये जोडायचे?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ने \"%2$s\" ला जोडले.</string>
   <string name="AddToGroupActivity_add_to_group">गटात जोडा</string>
   <string name="AddToGroupActivity_add_to_groups">गटात जोडा</string>
@@ -1337,8 +1338,8 @@
   <string name="RegistrationActivity_play_services_error">प्ले सेवा त्रुटी</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google प्ले सेवा अद्ययावत होत आहे किंवा तात्पुर्ते अनुपलब्ध आहे. कृपया पुन्हा प्रयत्न करा.</string>
   <string name="RegistrationActivity_terms_and_privacy">अटी आणि गोपनीयता धोरण</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">आपल्या मित्रांसोबत जोडण्यासाठी, संदेश अदलाबदल करण्यासाठी, आणि सुरक्षित कॉल करण्यासाठी Signal ला आपल्या संपर्काच्या अॅक्सेसची गरज आहे.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">आपल्या मित्रांसोबत जोडण्यासाठी, संदेश अदलाबदल करण्यासाठी, आणि सुरक्षित कॉल करण्यासाठी Signal ला आपल्या संपर्काच्या अॅक्सेसची गरज आहे.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ला तुम्हाला तुमच्या मित्रांशी कनेक्ट करण्यासाठी आणि संदेश पाठवण्यासाठी संपर्क आणि मीडिया परवानग्या आवश्यक आहेत. तुमचे संपर्क Signal चे खाजगी संपर्क शोध वापरून अपलोड केले जातात, याचा अर्थ ते एंड-टू-एंड एनक्रिप्ट केलेले आहेत आणि Signal सेवेला ते कधीही दिसत नाहीत.    </string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal ला तुम्हाला तुमच्या मित्रांशी कनेक्ट करण्यासाठी संपर्क परवानगी आवश्यक आहेत. तुमचे संपर्क Signal चे खाजगी संपर्क शोध वापरून अपलोड केले जातात, याचा अर्थ ते एंड-टू-एंड एनक्रिप्ट केलेले आहेत आणि Signal सेवेला ते कधीही दिसत नाहीत.    </string>
   <string name="RegistrationActivity_rate_limited_to_service">तुम्ही हा नंबर नोंदवण्यासाठी खूप प्रयत्न केले आहेत. कृपया नंतर पुन्हा प्रयत्न करा.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">सेवेसोबत कनेक्ट करण्यात अक्षम. कृपया नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="RegistrationActivity_non_standard_number_format">अ-मानक क्रमांक स्वरूप</string>
@@ -2402,6 +2403,7 @@
   <string name="Insights__title">अंतर्दृष्टी</string>
   <string name="InsightsDashboardFragment__title">अंतर्दृष्टी</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल याने स्वयंचलितपणे%2$d दिवसांमध्ये %1$d%% आपले जाणारे संदेश संरक्षित केलेत. Signal वापरकर्त्यांमधील संभाषण हे नेहमी एंड-टू-एंड एन्क्रिप्टेड असते.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">प्रसार करा</string>
   <string name="InsightsDashboardFragment__not_enough_data">पुरेसा डेटा नाही</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">मागील %1$d दिवसांच्या जाणारे संदेश जे अदृश्य झाले नाहीत किंवा हटविले गेले नाहीत त्यांच्या आधारावर आपली ईन्साईट टक्केवारी याची गणना केली जाते.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">संभाषण चालू करा</string>

@@ -1266,8 +1266,8 @@
   <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新，或暫時未能運作。請再試一次。</string>
   <string name="RegistrationActivity_terms_and_privacy">條款及私隱條例</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">為使你能與朋友連繫、交換訊息及作安全通話，Signal 須要存取你的聯絡人及媒體檔案資料。</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">為使你能與朋友連繫、交換訊息及作安全通話，Signal 須要存取你的聯絡人資料。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要聯絡人和媒體權限，以助您與好友連繫和傳送訊息。您的聯絡人將經 Signal 私密聯絡人探索上載，即是經端對端加密，Signal 服務從不可見到。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal 需要聯絡人權限，以助您與好友連繫。您的聯絡人將經 Signal 私密聯絡人探索上載，即是經端對端加密，Signal 服務從不可見到。</string>
   <string name="RegistrationActivity_rate_limited_to_service">你已多次嘗試登記此電話號碼。請稍後再試。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連上服務。請檢查網絡連線，並稍後再試。</string>
   <string name="RegistrationActivity_non_standard_number_format">非標準號碼格式</string>

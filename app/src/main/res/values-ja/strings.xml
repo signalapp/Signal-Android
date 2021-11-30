@@ -1259,8 +1259,8 @@
   <string name="RegistrationActivity_play_services_error">Google Play開発者サービスのエラー</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play開発者サービスは更新中か一時的に使用不能です。再度試してください。</string>
   <string name="RegistrationActivity_terms_and_privacy">使用条件とプライバシーポリシー</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、安全な通話をするには、Signalに連絡先やメディアへのアクセス許可が必要です。</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">友達とつながったり、メッセージを交換したり、安全な通話をするには、Signalに連絡先へのアクセス許可が必要です。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signalは、ご友人とのつながりやメッセージ送信を支えるため、連絡先とメディアへのアクセス許可が必要です。連絡先はエンドツーエンドで暗号化し、Signalプライベートコンタクトディスカバリーを使用してアップロードされるため、Signalのサービス管理者は閲覧できません。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signalは、ご友人とのつながりを支えるため、連絡先へのアクセス許可が必要です。連絡先はエンドツーエンドで暗号化し、Signalプライベートコンタクトディスカバリーを使用してアップロードされるため、Signalのサービス管理者は閲覧できません。</string>
   <string name="RegistrationActivity_rate_limited_to_service">この番号の登録試行回数が多すぎます。あとで再度試してください。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できませんでした。ネットワークの接続を確認してから、再度試してください。</string>
   <string name="RegistrationActivity_non_standard_number_format">非標準の数字フォーマット</string>
@@ -2309,6 +2309,7 @@
   <string name="Insights__title">統計</string>
   <string name="InsightsDashboardFragment__title">統計</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signalプロトコルは過去%2$d日間の送信メッセージの%1$d%%を自動的に保護しました。Signalユーザー間のチャットは常にエンドツーエンドで暗号化されます。</string>
+  <string name="InsightsDashboardFragment__spread_the_word">普及活動</string>
   <string name="InsightsDashboardFragment__not_enough_data">データ不足</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは、過去%1$d日間に消えたり削除されていない送信メッセージに基づいて算出されます。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">チャットを始める</string>
@@ -3188,7 +3189,7 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">この写真に加えた変更はすべて失われます。</string>
   <string name="CameraFragment__failed_to_open_camera">カメラを起動できませんでした</string>
   <string name="BadgesOverviewFragment__my_badges">マイバッジ</string>
-  <string name="BadgesOverviewFragment__featured_badge">注目のバッジ</string>
+  <string name="BadgesOverviewFragment__featured_badge">表示するバッジ</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">バッジをプロフィールに表示する</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
   <string name="BadgeSelectionFragment__select_badges">バッジの選択</string>
@@ -3228,7 +3229,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">また、</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">月次サポーターになることもできます。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">注目のバッジにする</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">このバッジを表示する</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完了</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">複数のバッジを持っている場合は、自分のプロフィールに表示するバッジを選ぶことができます。</string>
   <string name="BecomeASustainerFragment__get_badges">Signalをサポートすると、あなたのプロフィールにバッジが表示されます。</string>

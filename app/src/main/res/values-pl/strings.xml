@@ -1483,8 +1483,8 @@
   <string name="RegistrationActivity_play_services_error">Błąd Usług Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Trwa aktualizacja Usług Google Play lub są one niedostępne. Spróbuj ponownie.</string>
   <string name="RegistrationActivity_terms_and_privacy">Regulamin &amp; Polityka prywatności</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów i plików multimedialnych w celu połączenia ze znajomymi, wymiany wiadomości oraz wykonywania bezpiecznych połączeń</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów w celu połączenia ze znajomymi, wymiany wiadomości oraz wykonywania bezpiecznych połączeń</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów i plików multimedialnych, aby ułatwić Ci połączenia ze znajomymi i wymianę wiadomości. Twoje kontakty są przesyłane z użyciem prywatnego wyszukiwania kontaktów Signal, co oznacza, że są zaszyfrowane metodą end-to-end i niedostępne dla usługi Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrzebuje dostępu do Twoich kontaktów, aby ułatwić Ci połączenia ze znajomymi. Twoje kontakty są przesyłane z użyciem prywatnego wyszukiwania kontaktów Signal, co oznacza, że są zaszyfrowane metodą end-to-end i niedostępne dla usługi Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Zbyt dużo nieudanych prób rejestracji tego numeru. Spróbuj ponownie później.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nie można połączyć się z serwisem. Proszę sprawdzić połączenie internetowe i spróbować ponownie.</string>
   <string name="RegistrationActivity_non_standard_number_format">Niestandardowy format numeru</string>

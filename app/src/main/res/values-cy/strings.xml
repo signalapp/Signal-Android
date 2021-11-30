@@ -787,6 +787,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageProfileFragment_your_username">Eich enw defnyddiwr</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Wedi methu gosod afatar</string>
   <string name="ManageProfileFragment_badges">Bathodynnau</string>
+  <string name="ManageProfileFragment__edit_photo">Golygu llun</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Dim grwpiau\'n gyffredin</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1493,6 +1494,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Mae Signal angen mynediad i\'ch cysylltiadau er mwyn cysylltu â ffrindiau, cyfnewid negeseuon, a gwneud galwadau diogel</string>
   <string name="RegistrationActivity_rate_limited_to_service">Rydych wedi ceisio cofrestri\'r rhif hwn gormod o weithiau. Ceisiwch eto\'n hwyrach.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Methu cysylltu â\'r gwasanaeth. Gwiriwch y cysylltiad rhwydwaith a cheisio eto.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Fformat rhif ansafonol</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Mae\'n ymddangos bod y rhif rydych wedi ei roi (%1$s) yn fformat ansafonol.\n\nA ydych chi\'n golygu %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Fformat Rhif Ffôn</string>
   <string name="RegistrationActivity_call_requested">Gofynnwyd am alwad</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Rydych chi nawr %d cam cyn cyflwyno cofnod dadfygio.</item>
@@ -2111,6 +2115,16 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__debug_log">Cofnod Dadfygio:</string>
   <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Dewiswch opsiwn \-\-</item>
+    <item>Mae Rhywbeth Wedi Torri</item>
+    <item>Cais Nodwedd</item>
+    <item>Cwestiwn</item>
+    <item> Adborth</item>
+    <item>Arall</item>
+    <item>Taliadau (MobileCoin)</item>
+    <item>Rhoddion (Cynhalwyr a Signal Boost)</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Y Neges hon</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Defnyddiwyd yn ddiweddar</string>
@@ -2568,6 +2582,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="Insights__title">Mewnwelediadau</string>
   <string name="InsightsDashboardFragment__title">Mewnwelediadau</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Mae Protocol Signal wedi amddiffyn %1$d%% o\'ch negeseuon â anfonwyd yn awtomatig dros y %2$d diwrnod diwethaf. Mae sgyrsiau rhwng defnyddwyr Signal bob amser yn cael eu hamgryptio o\'r dechrau i\'r diwedd.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Dwedwch wrth bawb</string>
   <string name="InsightsDashboardFragment__not_enough_data">Dim digon o ddata</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Mae eich canran Mewnwelediadau yn cael ei gyfrifo ar sail negeseuon sy\'n mynd allan yn ystod y %1$d diwrnod diwethaf nad ydyn\'t wedi diflannu na\'u dileu.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Cychwyn sgwrs</string>
@@ -3326,6 +3341,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ychwanegu llun</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Dod yn Gynhaliwr</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Mae Signal yn cael ei egni gan bobl fel chi. Cyfrannwch a derbyn bathodyn proffil.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Dim diolch</string>
   <string name="BecomeASustainerMegaphone__contribute">Cyfrannu</string>
   <!--KeyboardPagerFragment-->
@@ -3376,6 +3392,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Sgwrs wedi\'i dewi am byth</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Wedi copïo’r rhif ffôn i\'r clipfwrdd</string>
   <string name="ConversationSettingsFragment__phone_number">Rhif ffôn</string>
+  <string name="ConversationSettingsFragment__get_badges">Cewch fathodynnau ar gyfer eich proffil trwy gefnogi Signal. Tapiwch ar fathodyn i ddysgu rhagor.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ychwanegu aelodau</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Golygu manylion y grŵp</string>
@@ -3505,6 +3522,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ImageView__badge">Bathodyn</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Mae nerth Signal mewn pobl fel chi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Cefnogwch dechnoleg sydd wedi\'i hadeiladu ar eich cyfer chi—nid ar gyfer eich data—trwy ymuno â\'r gymuned o bobl sy\'n ei chynnal.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Cefnogwch dechnoleg sy\'n cael ei hadeiladu ar eich cyfer chi, nid ar gyfer eich data, trwy ymuno â\'r gymuned sy\'n cynnal Signal.</string>
+  <string name="SubscribeFragment__currency">Arian</string>
   <string name="SubscribeFragment__more_payment_options">Rhagor o Ddewisiadau Talu</string>
   <string name="SubscribeFragment__cancel_subscription">Diddymu\'r Tanysgrifiad</string>
   <string name="SubscribeFragment__confirm_cancellation">Cadarnhau\'r Dileu?</string>
@@ -3516,17 +3535,26 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubscribeFragment__update_subscription_question">Diweddaru tanysgrifiad?</string>
   <string name="SubscribeFragment__update">Diweddaru</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bydd swm llawn y pris tanysgrifio newydd yn cael ei godi arnoch heddiw. Bydd eich tanysgrifiad yn adnewyddu ar %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bydd swm llawn (%1$s) y pris tanysgrifio newydd yn cael ei godi arnoch heddiw. Bydd eich tanysgrifiad yn adnewyddu\'n fisol.</string>
   <string name="Subscription__s_per_month">%s/month</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Adnewyddu ar %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mis · Yn dod i ben %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Mae Signal yn gorff ddim-er-elw heb unrhyw hysbysebwyr na buddsoddwyr, sy\'n cael ei gynnal dim ond gan y bobl sy\'n ei ddefnyddio a\'i werthfawrogi. Gwnewch gyfraniad misol cylchol a derbyn bathodyn proffil i rannu\'ch cefnogaeth.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pam Cyfrannu?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Mae Signal wedi ymrwymo i ddatblygu technoleg preifatrwydd cod agored sy\'n diogelu mynegiant rhydd ac yn galluogi cyfathrebu byd-eang diogel.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mae eich cyfraniad yn cynnal yr achos hwn ac yn talu am ddatblygu a gweithredu ap sy\'n cael ei ddefnyddio gan filiynau ar gyfer cyfathrebu preifat. Dim hysbysebion. Dim tracwyr. Dim chwarae o gwmpas.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Diolch am eich Cefnogaeth!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Diolch am yr Hwb!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Rydych wedi ennill bathodyn %s! Helpwch i godi ymwybyddiaeth am Signal trwy ddangos y bathodyn hwn ar eich proffil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Rydych chi wedi ennill bathodyn Boost! Helpwch i godi ymwybyddiaeth am Signal trwy ddangos y bathodyn hwn ar eich proffil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Gallwch hefyd</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ddod yn Gefnogwr misol.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Dangos ar eich Proffil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gwneud y bathodyn yn amlwg</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Wedi Gorffen</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Pan fydd gennych fwy nag un bathodyn, gallwch ddewis un i\'w ddangos i eraill gael ei weld ar eich proffil.</string>
+  <string name="BecomeASustainerFragment__get_badges">Cael bathodynnau ar gyfer eich proffil trwy gefnogi Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Mae Signal yn gorff dim-er-elw heb unrhyw hysbysebwyr na buddsoddwyr, sy\'n cael ei gefnogi dim ond gan bobl fel chi.</string>
   <string name="ManageDonationsFragment__my_support">Fy nghefnogaeth</string>
   <string name="ManageDonationsFragment__manage_subscription">Rheoli tanysgrifiad</string>
   <string name="ManageDonationsFragment__badges">Bathodynnau</string>
@@ -3539,23 +3567,42 @@ Send neges heb ei ddiogelu?</string>
   <string name="MySupportPreference__add_a_signal_boost">Ychwanegu Hwb Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/month</string>
   <string name="MySupportPreference__renews_s">Yn adnewyddu ar %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Prosesu\'r trafodyn…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Methu ychwanegu bathodyn. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Cysylltwch â chymorth</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Mae\'ch Bathodyn wedi dod i ben</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Daeth y bathodyn i ben</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Diddymwyd y tanysgrifiad</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Mae eich bathodyn Boost wedi dod i ben ac nid yw bellach yn weladwy i eraill ar eich proffil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Gallwch ail-greu eich bathodyn Boost am 30 diwrnod arall gyda chyfraniad unwaith yn unig.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Er mwyn parhau i gefnogi technoleg sydd wedi\'i hadeiladu ar eich cyfer chi, ystyriwch ddod yn Gefnogwr misol.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gynhaliwr</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Ychwanegwch Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw\'ch bathodyn %1$s i\'w weld ar eich proffil mwyach.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Gallwch barhau i ddefnyddio Signal ond i gefnogi\'r ap ac ail-greu\'ch bathodyn, adnewyddwch nawr.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Adnewyddu tanysgrifiad</string>
   <string name="Subscription__please_contact_support_for_more_information">Cysylltwch â\'n cefnogaeth i gael mwy o wybodaeth.</string>
   <string name="Subscription__contact_support">Cysylltu â Chymorth Signal</string>
   <string name="Subscription__earn_a_s_badge">Enillwch fathodyn %1$s</string>
   <string name="SubscribeFragment__processing_payment">Yn prosesu taliad</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Gwall wrth brosesu taliad</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Gwall wrth brosesu taliad. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Nid oedd modd ychwanegu eich bathodyn at eich cyfrif, ond efallai y codwyd tâl arnoch. Cysylltwch â\'n cefnogaeth.</string>
   <string name="DonationsErrors__your_payment">Nid oedd modd prosesu\'ch taliad ac nid ydym wedi codi tâl arnoch. Ceisiwch eto.</string>
+  <string name="DonationsErrors__still_processing">Yn dal i brosesu</string>
+  <string name="DonationsErrors__couldnt_add_badge">Methu ychwanegu bathodyn</string>
+  <string name="DonationsErrors__your_badge_could_not">Nid oedd modd ychwanegu eich bathodyn at eich cyfrif, ond efallai y codwyd tâl arnoch. Cysylltwch â\'n cefnogaeth.</string>
   <string name="DonationsErrors__your_payment_is_still">Mae\'ch taliad yn dal yn prosesu. Gall hyn gymryd rhai munudau yn dibynnu ar eich cysylltiad.</string>
   <string name="DonationsErrors__google_pay_unavailable">Nid yw Google Pay ar gael</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Mae\'n rhaid i chi osod Google Pay i roi o fewn yr ap.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Wedi methu diddymu\'r tanysgrifiad</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Rhaid cael cysylltiad rhyngrwyd i ddiddymu tanysgrifiad.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Nid yw\'ch dyfais yn cefnogi Google Pay, felly nid ydych yn gallu tanysgrifio i ennill bathodyn. Gallwch barhau i gefnogi Signal trwy roi rhodd ar ein gwefan.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gwall rhwydwaith. Gwiriwch eich cysylltiad a cheisio eto.</string>
   <string name="NetworkFailure__retry">Ailgynnig</string>
   <!--EOF-->
 </resources>

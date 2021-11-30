@@ -1487,8 +1487,8 @@ telefónne číslo
   <string name="RegistrationActivity_play_services_error">Chyba služby Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Služba Google Play sa aktualizuje, alebo je dočasne nedostupná. Prosím, skúste to znova.</string>
   <string name="RegistrationActivity_terms_and_privacy">Podmienky a Zásady ochrany osobných údajov</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrebuje prístup k vašim kontaktom a médiám aby sa mohol spojiť s vašimi priateľmi, posielať správy a uskutočniť zabezpečené hovory</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrebuje prístup k vašim kontaktom, aby sa mohol spojiť s vašimi priateľmi, posielať správy a uskutočniť zabezpečené hovory</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal potrebuje povolenia na kontakty a médiá, aby vám pomohol spojiť sa s priateľmi a odosielať správy. Vaše kontakty sa nahrávajú pomocou zisťovania súkromných kontaktov Signal, čo znamená, že sú šifrované end-to-end a nikdy ich služba Signal nevidí.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal potrebuje povolenie kontaktov, aby vám pomohol spojiť sa s priateľmi. Vaše kontakty sa nahrávajú pomocou zisťovania súkromných kontaktov Signal, čo znamená, že sú šifrované end-to-end a nikdy ich služba Signal nevidí.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Urobili ste príliš veľa pokusov o zaregistrovanie tohto čísla. Prosím, skúste to znovu neskôr.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepodarilo sa pripojiť k službe. Prosím, overte Vaše sieťové pripojenie a skúste to znovu.</string>
   <string name="RegistrationActivity_non_standard_number_format">Neštandardný formát čísla</string>
