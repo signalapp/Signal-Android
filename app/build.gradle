@@ -24,12 +24,6 @@ repositories {
             includeGroupByRegex "org\\.signal.*"
         }
     }
-    maven { // textdrawable
-        url 'https://dl.bintray.com/amulyakhare/maven'
-        content {
-            includeGroupByRegex "com\\.amulyakhare.*"
-        }
-    }
     maven {
         url "https://www.jitpack.io"
     }
@@ -46,7 +40,6 @@ repositories {
             includeVersion "cn.carbswang.android", "NumberPickerView", "1.0.9"
             includeVersion "com.takisoft.fix", "colorpicker", "0.9.1"
             includeVersion "com.codewaves.stickyheadergrid", "stickyheadergrid", "0.9.4"
-            includeVersion "com.amulyakhare", "com.amulyakhare.textdrawable", "1.0.1"
             includeVersion "com.google.android", "flexbox", "0.3.0"
         }
     }
@@ -480,7 +473,6 @@ dependencies {
     implementation libs.floatingactionbutton
     implementation libs.google.zxing.android.integration
     implementation libs.time.duration.picker
-    implementation libs.textdrawable
     implementation libs.google.zxing.core
     implementation (libs.subsampling.scale.image.view) {
         exclude group: 'com.android.support', module: 'support-annotations'
