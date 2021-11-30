@@ -218,6 +218,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       if (!SignalStore.donationsValues().isUserManuallyCancelled()) {
         Log.d(TAG, "Detected an unexpected subscription expiry.", true);
+        MultiDeviceSubscriptionSyncRequestJob.enqueue();
         SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
       }
     } else if (!remoteHasBoostBadges && localHasBoostBadges) {

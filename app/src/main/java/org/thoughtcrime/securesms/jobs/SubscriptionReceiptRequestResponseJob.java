@@ -104,6 +104,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   public void onFailure() {
     DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
     SignalStore.donationsValues().markSubscriptionRedemptionFailed();
+    MultiDeviceSubscriptionSyncRequestJob.enqueue();
   }
 
   @Override
@@ -128,6 +129,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     } else {
       Log.i(TAG, "Recording end of period from active subscription.", true);
       SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
+      MultiDeviceSubscriptionSyncRequestJob.enqueue();
     }
 
     if (requestContext == null) {
@@ -240,6 +242,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   private void onPaymentFailure() {
     SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
     setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_PAYMENT_FAILURE, true).build());
+    MultiDeviceSubscriptionSyncRequestJob.enqueue();
   }
 
   /**

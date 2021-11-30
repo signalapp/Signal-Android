@@ -434,6 +434,7 @@ public class SignalServiceSyncMessage {
 
   public enum FetchType {
     LOCAL_PROFILE,
-    STORAGE_MANIFEST
+    STORAGE_MANIFEST,
+    SUBSCRIPTION_STATUS
   }
 }
