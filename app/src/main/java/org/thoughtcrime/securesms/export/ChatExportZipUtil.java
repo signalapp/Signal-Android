@@ -17,8 +17,8 @@ import androidx.documentfile.provider.DocumentFile;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -118,7 +118,7 @@ public class ChatExportZipUtil extends ProgressDialogAsyncTask<ChatExportZipUtil
 
 
     private String createFileName () {
-        ThreadDatabase db = DatabaseFactory.getThreadDatabase (getContext ());
+        ThreadDatabase db = SignalDatabase.threads();
         Recipient r = db.getRecipientForThreadId(threadId);
         String groupName = null;
         if (r != null) groupName = r.getDisplayName (getContext ());

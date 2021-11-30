@@ -64,6 +64,8 @@
         <xs:all>
             <xs:element name="profile_name" type="xs:string" minOccurs="0"/>
             <xs:element name="relation" type="xs:string" minOccurs="0"/>
+            <xs:element name="trackingid" type="xs:string" minOccurs="0"/>
+            <xs:element name="teamid" type="xs:string" minOccurs="0"/>
             <xs:element name="about" type="xs:string" minOccurs="0"/>
             <xs:element name="phone" type="xs:string" minOccurs="0"/>
             <xs:element name="email" type="xs:string" minOccurs="0"/>
@@ -95,6 +97,7 @@
             <xs:sequence>
                 <xs:element name="turn" type="turnListType" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
+        <xs:attribute name="date" type="xs:string"/>
     </xs:complexType>
 
 
@@ -108,6 +111,7 @@
             <xs:element name="message" type="messageType"/>
         </xs:all>
         <xs:attribute name="author" type="xs:string"/>
+        <xs:attribute name="authorid" type="xs:string"/>
     </xs:complexType>
 
     <xs:complexType name="messageType">
@@ -121,9 +125,11 @@
         </xs:all>
         <xs:attribute name="id" type="xs:string"/>
         <xs:attribute name="time" type="xs:string"/>
+        <xs:attribute name="local_time" type="xs:string"/>
         <xs:attribute name="is_deleted" type="xs:boolean"/>
         <xs:attribute name="status" type="xs:string"/>
         <xs:attribute name="mismatched_identities" type="xs:string"/>
+        <xs:attribute name="networkfailure" type="xs:string"/>
         <xs:attribute name="expires_in" type="xs:string"/>
     </xs:complexType>
 
@@ -232,7 +238,7 @@
             </xs:element>
             <xs:element name="content_path" type="xs:string" minOccurs="0"/>
         </xs:all>
-        <xs:attribute name="downloaded" type="xs:boolean" use="optional"/>
+        <xs:attribute name="downloaded" type="xs:boolean" />
     </xs:complexType>
 
     <xs:complexType name="sharedContactType">
@@ -285,7 +291,8 @@
             <xs:documentation>
                 Registers quotes
             </xs:documentation>
-        </xs:annotation><xs:sequence>
+        </xs:annotation>
+        <xs:sequence>
         <xs:element name="author" type="xs:string"/>
         <xs:element name="quote_text" type="xs:string"/>
         <xs:element name="timestamp" type="xs:string"/>
@@ -299,6 +306,12 @@
                 Registers mentions
             </xs:documentation>
         </xs:annotation>
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="start" type="xs:string"/>
+            <xs:element name="length" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
     </xs:complexType>
 
     <xs:complexType name="linkPreviewType">

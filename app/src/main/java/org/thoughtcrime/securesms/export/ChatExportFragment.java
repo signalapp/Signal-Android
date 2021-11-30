@@ -30,8 +30,8 @@ import androidx.navigation.Navigation;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.StorageUtil;
@@ -86,7 +86,7 @@ public class ChatExportFragment extends Fragment {
         assert getArguments () != null;
         RecipientId rId = (RecipientId) getActivity().getIntent().getExtras().get(RECIPIENT_ID);
         if(rId!=null)
-        existingThread = DatabaseFactory.getThreadDatabase (this.getContext ()).getThreadIdIfExistsFor (rId);
+        existingThread = SignalDatabase.threads().getThreadIdIfExistsFor (rId);
         return view;
     }
 

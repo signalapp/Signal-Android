@@ -73,7 +73,7 @@
                   if($(this).length == 0 || typeof $(this) === 'undefined') return;
                   var name = $(this).find("name").text();
                   var start = $(this).find("start").text();
-                  mention_length = $(this).find("mention_length").text();
+                  mention_length = $(this).find("length").text();
                   mention_text = insert(mention_text,start, name);
                   mention_comment = mention_text;
                 });

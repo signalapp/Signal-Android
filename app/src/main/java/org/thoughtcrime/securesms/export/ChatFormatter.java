@@ -20,13 +20,13 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadBodyUtil;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -62,6 +62,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -86,7 +87,7 @@ import javax.xml.transform.stream.StreamResult;
  *
  * @author  @anlaji
  * @version 1.0
- * @since   2021-10-10
+ * @since   2021-11-27
  */
 
 public class ChatFormatter {
@@ -103,15 +104,15 @@ public class ChatFormatter {
     private       Document              dom;
     private final Cursor                conversation;
     private final MmsSmsDatabase.Reader reader;
+    private final MmsSmsDatabase        db;
     private final String                timePeriod;
-
 
     ChatFormatter (@NonNull Context context, long threadId, Date fromDate, Date untilDate) {
         this.context = context;
         this.threadId = threadId;
         this.selectedMedia = new HashMap<> ();
         this.otherFiles = new HashMap<> ();
-        MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase (context);
+        this.db = SignalDatabase.mmsSms();
         timePeriod =  DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, atStartOfDay (fromDate).getTime ()) + " - " + DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, atEndOfDay (untilDate).getTime ());
         int countBeforeStartDate = db.getConversationCount (threadId, atStartOfDay (fromDate).getTime ());
         int countBeforeEndDate = db.getConversationCount (threadId, atEndOfDay (untilDate).getTime ());
@@ -143,14 +144,14 @@ public class ChatFormatter {
             dom = db.newDocument ();
 
             // create the root element
-            Element rootEle = dom.createElement ("chatExport");
+            Element rootEle = dom.createElement ("chatexport");
             dom.appendChild (dom.createProcessingInstruction (StreamResult.PI_DISABLE_OUTPUT_ESCAPING, "")); // <=== ADD THIS LINE for reading emojis
             dom.appendChild (rootEle);
             dom.appendChild (dom.createProcessingInstruction (StreamResult.PI_ENABLE_OUTPUT_ESCAPING, "")); // <=== ADD THIS LINE
-            // create data elements and place them under root
-            Element chat = addElement (rootEle, "chat");
-            createMembersElem (chat);
-            createConversationElem (chat);
+
+                // create data elements and place them under root
+            createMembersElem (rootEle);
+            createConversationElem (rootEle);
              //write the content into xml file
              TransformerFactory transformerFactory = TransformerFactory.newInstance ();
              Transformer transformer = transformerFactory.newTransformer ();
@@ -179,8 +180,8 @@ public class ChatFormatter {
 
 
     private void createMembersElem (Element conv) {
-        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase (context);
-        RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+        ThreadDatabase threadDatabase = SignalDatabase.threads();
+        RecipientDatabase recipientDatabase = SignalDatabase.recipients();
         Recipient recipient = threadDatabase.getRecipientForThreadId (threadId);
         assert recipient != null;
         RecipientDatabase.RecipientSettings settings = recipientDatabase.getRecipientSettings(recipient.getId ());
@@ -222,6 +223,12 @@ public class ChatFormatter {
         else if(recipient.isBlocked ()){
             addElement (contact, "relation", "blocked");
         }
+        if(recipient.getGroupId ().isPresent()){
+            addElement (contact, "teamid", recipient.getGroupId().get().toString());
+        }
+        if(recipient.getDefaultSubscriptionId().isPresent()){
+            addElement (contact, "trackingid", recipient.getDefaultSubscriptionId().asSet().toString());
+        }
         if(recipient.getCombinedAboutAndEmoji ()!=null) addElement (contact, "about", recipient.getCombinedAboutAndEmoji ());
         if (recipient.getEmail ().isPresent ())
             addElement (contact, "email", recipient.getEmail ().get ());
@@ -245,6 +252,7 @@ public class ChatFormatter {
 
         MessageRecord record = reader.getCurrent ();
         Element records = addElement (conv, "chat_records");
+        addAttribute (records, "threadid", String.valueOf(threadId));
         addAttribute (conv, "selected_time_period", timePeriod);
 
         Date date, old_date = null;
@@ -273,26 +281,27 @@ public class ChatFormatter {
                         author = record.getIndividualRecipient ();
                     }
                     addAttribute (turn, "author", author.getProfileName ().getGivenName ());
-
+                    addAttribute (turn, "authorid", author.getId ().toString());
 
                     Element message = addElement (turn, "message");
                     addAttribute (message, MmsSmsColumns.ID, String.valueOf (record.getId ()));
+                    long expires_in = record.getExpiresIn ();
                     if(record.isRemoteDelete ()) addAttribute (message, "is_deleted", String.valueOf (record.isRemoteDelete ()));
+                    else if (expires_in > 0) addAttribute (message, MmsSmsColumns.EXPIRES_IN, String.valueOf ((int) (record.getExpiresIn () / 1000)));
+                    else if (record.hasNetworkFailures()) addAttribute (message, "networkfailure", "yes");
+
                     else {
                         String timestamp_ =  new SimpleDateFormat ("HH:mm", Resources.getSystem ().getConfiguration ().locale).format (new Date (record.getDateSent ()));
 
                         addAttribute (message, "time", timestamp_);
+                        addElement (message, "local_time", DateUtils.formatDate(Locale.getDefault(), record.getTimestamp()));
                         if (record.isOutgoing ())
                             addAttribute (message, "status", getStatusFor (record));
-
                         Element body = addElement (message, "body");
                         createBodyElem (body, record);
                         if (!record.getReactions ().isEmpty ()) createReactionsElem (body, record);
                         if (!record.getIdentityKeyMismatches ().isEmpty ())
                             addAttribute (message, MmsSmsColumns.MISMATCHED_IDENTITIES, IdentityKeyMismatch.class.getName ());
-                        long expires_in = record.getExpiresIn ();
-                        if (expires_in > 0)
-                            addAttribute (message, MmsSmsColumns.EXPIRES_IN, String.valueOf ((int) (record.getExpiresIn () / 1000)));
                     }
                 } catch (Exception e) {
                     System.out.println ("ANGELA XML error by accesing message details: " + e.getMessage () + " " + e.toString ());
@@ -308,7 +317,7 @@ public class ChatFormatter {
         try {
 
             if (record.isMms ()) {
-                List<Mention> mentions = DatabaseFactory.getMentionDatabase (context).getMentionsForMessage (record.getId ());
+                List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage (record.getId ());
                 if (!mentions.isEmpty ())
                     createMentions (context, record, mentions, body);
                 else if (record.isMms () && MessageRecordUtil.hasSharedContact(record))
@@ -363,7 +372,7 @@ public class ChatFormatter {
             if(q.getDisplayText () == null)
                 addElement (quote, "attachment", "is_missing");
         }
-        MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(q.getId(), quoteAuthor.getId ());
+        MessageRecord message = SignalDatabase.mmsSms().getMessageFor(q.getId(), quoteAuthor.getId ());
         if(message != null)
             addElement(quote, "timestamp",
                     DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, message.getReceiptTimestamp()));
@@ -396,7 +405,7 @@ public class ChatFormatter {
                                 DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale,
                                                        lp.getDate ()));
                 if (lp.getAttachmentId() != null && lp.getAttachmentId().isValid()) {
-                    DatabaseAttachment a = DatabaseFactory.getAttachmentDatabase(context).getAttachment(lp.getAttachmentId());
+                    DatabaseAttachment a = SignalDatabase.attachments().getAttachment(lp.getAttachmentId());
                     Element link_preview = addElement(link, "link_preview");
                     MediaRecord mediaRecord = new MediaRecord(a, record.getRecipient().getId(), threadId, record.getDateSent(), record.isOutgoing());
                     selectedMedia.put(a.getKey(), mediaRecord);
@@ -458,7 +467,7 @@ public class ChatFormatter {
             addAttribute (mention, "id", String.valueOf (m.getRecipientId ()));
             addElement (mention, "name", Recipient.resolved (m.getRecipientId ()).getDisplayName (context));
             addElement (mention, "start", String.valueOf (m.getStart ()));
-            addElement (mention, "mention_length", String.valueOf (m.getLength ()));
+            addElement (mention, "length", String.valueOf (m.getLength ()));
         }
     }
 
@@ -534,7 +543,7 @@ public class ChatFormatter {
 
     @NonNull private List<DatabaseAttachment> getDatabaseAttachments(@NonNull MessageRecord record) {
         List<DatabaseAttachment> allAttachments;
-        allAttachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(record.getId());
+        allAttachments = SignalDatabase.attachments().getAttachmentsForMessage(record.getId());
         return allAttachments;
     }
 
@@ -542,7 +551,7 @@ public class ChatFormatter {
         String name;
         Element s = addElement (a, "sticker");
         addAttribute (s, "id", String.valueOf (Objects.requireNonNull (sticker.getSticker ()).getStickerId ()));
-        if (sticker.isBorderless ()) addElement (s, "is_borderless", "true");
+        addElement (s, "is_borderless", String.valueOf(sticker.isBorderless ()));
         addElement (s, "emoji", Objects.requireNonNull (sticker.getSticker ()).getEmoji ());
         addElement (s, "describe_contents", String.valueOf(sticker.getSticker ().describeContents ()));
         addAttribute (s, "content_type", sticker.getContentType ());
@@ -609,7 +618,7 @@ public class ChatFormatter {
                     }
                 }
             }
-            else if(MessageRecordUtil.hasLocation(DatabaseFactory.getMmsDatabase(context).getMessageRecord(attachment.getMmsId()))){
+            else if(MessageRecordUtil.hasLocation(SignalDatabase.mms().getMessageRecord(attachment.getMmsId()))){
                 Element location = addElement (metadata, "location");
                 addElement (location, "description", attachment.getLocation());
             }
@@ -660,7 +669,7 @@ public class ChatFormatter {
 
     private void createReactionsElem (Element body, MessageRecord record) {
         try {
-            Element reactions = addElement (body, MmsSmsColumns.REACTIONS);
+            Element reactions = addElement (body, "reactions");
             for (ReactionRecord rr : record.getReactions ()) {
                 Element r = addElement (reactions, "reaction");
                 addAttribute (r, "author_id", rr.getAuthor ().toString ());
@@ -691,6 +700,10 @@ public class ChatFormatter {
             return "SENT";
         if (record.isPending ())
             return "PENDING";
+        if (record.isRemoteDelete ())
+            return "REMOTE_DELETED";
+        if (record.isFailed ())
+            return"FAILED";
         return "UNKNOWN";
     }
 
@@ -928,7 +941,7 @@ public class ChatFormatter {
         }
 
         public static MediaRecord from (@NonNull Context context, @NonNull Cursor cursor, MessageRecord record) {
-            AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase (context);
+            AttachmentDatabase attachmentDatabase = SignalDatabase.attachments();
            // List<DatabaseAttachment> attachments = attachmentDatabase.getAttachment (cursor);
             List<DatabaseAttachment> attachments = null;
             RecipientId recipientId = RecipientId.from (cursor.getLong (cursor.getColumnIndexOrThrow (MmsDatabase.RECIPIENT_ID)));
