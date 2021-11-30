@@ -180,7 +180,8 @@ public final class FeatureFlags {
       GROUP_CALL_RINGING,
       CDSH,
       SENDER_KEY_MAX_AGE,
-      DONOR_BADGES_DISPLAY
+      DONOR_BADGES_DISPLAY,
+      DONATE_MEGAPHONE
   );
 
   /**
