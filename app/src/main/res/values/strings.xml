@@ -3250,6 +3250,8 @@
     <string name="RecipientBottomSheet_block">Block</string>
     <string name="RecipientBottomSheet_unblock">Unblock</string>
     <string name="RecipientBottomSheet_add_to_contacts">Add to contacts</string>
+    <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
+    <string name="RecipientBottomSheet_unable_to_open_contacts">Can\'t find an app able to open contacts.</string>
     <string name="RecipientBottomSheet_add_to_a_group">Add to a group</string>
     <string name="RecipientBottomSheet_add_to_another_group">Add to another group</string>
     <string name="RecipientBottomSheet_view_safety_number">View safety number</string>
