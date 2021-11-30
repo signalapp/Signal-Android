@@ -3364,6 +3364,18 @@
     <string name="DeleteAccountFragment__failed_to_delete_account">Failed to delete account. Do you have a network connection?</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Failed to delete local data. You can manually clear it in the system application settings.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Launch App Settings</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
+    <string name="DeleteAccountFragment__leaving_groups">Leaving groups…</string>
+    <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_account">Deleting account…</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Depending on the number of groups you\'re in, this might take a few minutes</string>
+    <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
+    <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Deleting user data and resetting the app</string>
+    <!-- Title of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__account_not_deleted">Account Not Deleted</string>
+    <!-- Message of error dialog shown when a network error occurs during account deletion -->
+    <string name="DeleteAccountFragment__there_was_a_problem">There was a problem completing the deletion process. Check your network connection and try again.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">Search Countries</string>

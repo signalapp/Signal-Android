@@ -1,13 +1,17 @@
 package org.thoughtcrime.securesms.delete;
 
 import androidx.annotation.NonNull;
+import androidx.core.util.Consumer;
 
 import com.annimon.stream.Stream;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.pin.KbsEnclaves;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
@@ -36,18 +40,40 @@ class DeleteAccountRepository {
     return PhoneNumberUtil.getInstance().getCountryCodeForRegion(region);
   }
 
-  void deleteAccount(@NonNull Runnable onFailureToRemovePin,
-                     @NonNull Runnable onFailureToDeleteFromService,
-                     @NonNull Runnable onFailureToDeleteLocalData)
-  {
+  void deleteAccount(@NonNull Consumer<DeleteAccountEvent> onDeleteAccountEvent) {
     SignalExecutors.BOUNDED.execute(() -> {
+      Log.i(TAG, "deleteAccount: attempting to leave groups...");
+
+      int groupsLeft = 0;
+      try (GroupDatabase.Reader groups = SignalDatabase.groups().getGroups()) {
+        GroupDatabase.GroupRecord groupRecord = groups.getNext();
+        onDeleteAccountEvent.accept(new DeleteAccountEvent.LeaveGroupsProgress(groups.getCount(), 0));
+        Log.i(TAG, "deleteAccount: found " + groups.getCount() + " groups to leave.");
+
+        while (groupRecord != null) {
+          if (groupRecord.getId().isPush() && groupRecord.isActive()) {
+            GroupManager.leaveGroup(ApplicationDependencies.getApplication(), groupRecord.getId().requirePush());
+            onDeleteAccountEvent.accept(new DeleteAccountEvent.LeaveGroupsProgress(groups.getCount(), ++groupsLeft));
+          }
+
+          groupRecord = groups.getNext();
+        }
+
+        onDeleteAccountEvent.accept(DeleteAccountEvent.LeaveGroupsFinished.INSTANCE);
+      } catch (Exception e) {
+        Log.w(TAG, "deleteAccount: failed to leave groups", e);
+        onDeleteAccountEvent.accept(DeleteAccountEvent.LeaveGroupsFailed.INSTANCE);
+        return;
+      }
+
+      Log.i(TAG, "deleteAccount: successfully left all groups.");
       Log.i(TAG, "deleteAccount: attempting to remove pin...");
 
       try {
         ApplicationDependencies.getKeyBackupService(KbsEnclaves.current()).newPinChangeSession().removePin();
       } catch (UnauthenticatedResponseException | IOException e) {
         Log.w(TAG, "deleteAccount: failed to remove PIN", e);
-        onFailureToRemovePin.run();
+        onDeleteAccountEvent.accept(DeleteAccountEvent.PinDeletionFailed.INSTANCE);
         return;
       }
 
@@ -58,7 +84,7 @@ class DeleteAccountRepository {
         ApplicationDependencies.getSignalServiceAccountManager().deleteAccount();
       } catch (IOException e) {
         Log.w(TAG, "deleteAccount: failed to delete account from signal service", e);
-        onFailureToDeleteFromService.run();
+        onDeleteAccountEvent.accept(DeleteAccountEvent.ServerDeletionFailed.INSTANCE);
         return;
       }
 
@@ -67,7 +93,7 @@ class DeleteAccountRepository {
 
       if (!ServiceUtil.getActivityManager(ApplicationDependencies.getApplication()).clearApplicationUserData()) {
         Log.w(TAG, "deleteAccount: failed to delete user data");
-        onFailureToDeleteLocalData.run();
+        onDeleteAccountEvent.accept(DeleteAccountEvent.LocalDataDeletionFailed.INSTANCE);
       }
     });
   }
