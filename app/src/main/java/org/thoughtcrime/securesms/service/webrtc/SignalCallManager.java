@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.BubbleUtil;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -484,6 +485,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override public void onNetworkRouteChanged(Remote remote, NetworkRoute networkRoute) {
     Log.i(TAG, "onNetworkRouteChanged: localAdapterType: " + networkRoute.getLocalAdapterType());
+    try {
+      callManager.updateBandwidthMode(NetworkUtil.getCallingBandwidthMode(context, networkRoute.getLocalAdapterType()));
+    } catch (CallException e) {
+      Log.w(TAG, "Unable to update bandwidth mode on CallManager", e);
+    }
   }
 
   @Override

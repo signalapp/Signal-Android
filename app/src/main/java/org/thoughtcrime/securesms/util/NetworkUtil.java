@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.webrtc.PeerConnection;
 
 public final class NetworkUtil {
 
@@ -29,13 +30,32 @@ public final class NetworkUtil {
   }
 
   public static @NonNull CallManager.BandwidthMode getCallingBandwidthMode(@NonNull Context context) {
-    return useLowBandwidthCalling(context) ? CallManager.BandwidthMode.LOW : CallManager.BandwidthMode.NORMAL;
+    return getCallingBandwidthMode(context, PeerConnection.AdapterType.UNKNOWN);
   }
 
-  private static boolean useLowBandwidthCalling(@NonNull Context context) {
+  public static @NonNull CallManager.BandwidthMode getCallingBandwidthMode(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {
+    return useLowBandwidthCalling(context, networkAdapter) ? CallManager.BandwidthMode.LOW : CallManager.BandwidthMode.NORMAL;
+  }
+
+  private static boolean useLowBandwidthCalling(@NonNull Context context, @NonNull PeerConnection.AdapterType networkAdapter) {
     switch (SignalStore.settings().getCallBandwidthMode()) {
       case HIGH_ON_WIFI:
-        return !NetworkUtil.isConnectedWifi(context);
+        switch (networkAdapter) {
+          case UNKNOWN:
+          case VPN:
+          case ADAPTER_TYPE_ANY:
+            return !NetworkUtil.isConnectedWifi(context);
+          case ETHERNET:
+          case WIFI:
+          case LOOPBACK:
+            return false;
+          case CELLULAR:
+          case CELLULAR_2G:
+          case CELLULAR_3G:
+          case CELLULAR_4G:
+          case CELLULAR_5G:
+            return true;
+        }
       case HIGH_ALWAYS:
         return false;
       default:
