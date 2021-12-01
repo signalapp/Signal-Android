@@ -49,7 +49,7 @@
         android:layout_toEndOf="@id/contact_photo_container"
         android:orientation="vertical">
 
-        <org.thoughtcrime.securesms.components.FromTextView
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/title"
             style="@style/TextSecure.TitleTextStyle"
             android:layout_width="wrap_content"
