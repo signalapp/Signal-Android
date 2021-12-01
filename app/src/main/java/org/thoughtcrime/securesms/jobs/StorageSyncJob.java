@@ -10,7 +10,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -391,7 +391,7 @@ public class StorageSyncJob extends BaseJob {
         case ManifestRecord.Identifier.Type.CONTACT_VALUE:
         case ManifestRecord.Identifier.Type.GROUPV1_VALUE:
         case ManifestRecord.Identifier.Type.GROUPV2_VALUE:
-          RecipientSettings settings = recipientDatabase.getByStorageId(id.getRaw());
+          RecipientRecord settings = recipientDatabase.getByStorageId(id.getRaw());
           if (settings != null) {
             if (settings.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 && settings.getSyncExtras().getGroupMasterKey() == null) {
               throw new MissingGv2MasterKeyError();

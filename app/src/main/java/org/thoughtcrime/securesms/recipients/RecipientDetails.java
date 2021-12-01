@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -88,7 +88,7 @@ public class RecipientDetails {
                           boolean systemContact,
                           boolean isSelf,
                           @NonNull RegisteredState registeredState,
-                          @NonNull RecipientSettings settings,
+                          @NonNull RecipientRecord settings,
                           @Nullable List<Recipient> participants)
   {
     this.groupAvatarId               = groupAvatarId;
@@ -199,7 +199,7 @@ public class RecipientDetails {
     this.badges                      = Collections.emptyList();
   }
 
-  public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {
+  public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientRecord settings) {
     boolean systemContact = !settings.getSystemProfileName().isEmpty();
     boolean isSelf        = (settings.getE164() != null && settings.getE164().equals(SignalStore.account().getE164())) ||
                             (settings.getAci() != null && settings.getAci().equals(SignalStore.account().getAci()));

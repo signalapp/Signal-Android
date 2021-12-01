@@ -82,7 +82,7 @@ public class StorageForcePushJob extends BaseJob {
     long                        newVersion           = currentVersion + 1;
     Map<RecipientId, StorageId> newContactStorageIds = generateContactStorageIds(oldContactStorageIds);
     List<SignalStorageRecord>   inserts              = Stream.of(oldContactStorageIds.keySet())
-                                                             .map(recipientDatabase::getRecipientSettingsForSync)
+                                                             .map(recipientDatabase::getRecordForSync)
                                                              .withoutNulls()
                                                              .map(s -> StorageSyncModels.localToRemoteRecord(s, Objects.requireNonNull(newContactStorageIds.get(s.getId())).getRaw()))
                                                              .toList();

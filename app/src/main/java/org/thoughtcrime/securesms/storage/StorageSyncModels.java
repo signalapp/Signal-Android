@@ -8,7 +8,7 @@ import com.annimon.stream.Stream;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.subscription.Subscriber;
@@ -29,7 +29,7 @@ public final class StorageSyncModels {
 
   private StorageSyncModels() {}
 
-  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings) {
+  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientRecord settings) {
     if (settings.getStorageId() == null) {
       throw new AssertionError("Must have a storage key!");
     }
@@ -37,7 +37,7 @@ public final class StorageSyncModels {
     return localToRemoteRecord(settings, settings.getStorageId());
   }
 
-  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings, @NonNull GroupMasterKey groupMasterKey) {
+  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientRecord settings, @NonNull GroupMasterKey groupMasterKey) {
     if (settings.getStorageId() == null) {
       throw new AssertionError("Must have a storage key!");
     }
@@ -45,7 +45,7 @@ public final class StorageSyncModels {
     return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, settings.getStorageId(), groupMasterKey));
   }
 
-  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings, @NonNull byte[] rawStorageId) {
+  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientRecord settings, @NonNull byte[] rawStorageId) {
     switch (settings.getGroupType()) {
       case NONE:      return SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId));
       case SIGNAL_V1: return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
@@ -72,7 +72,7 @@ public final class StorageSyncModels {
     }
   }
 
-  public static List<SignalAccountRecord.PinnedConversation> localToRemotePinnedConversations(@NonNull List<RecipientSettings> settings) {
+  public static List<SignalAccountRecord.PinnedConversation> localToRemotePinnedConversations(@NonNull List<RecipientRecord> settings) {
     return Stream.of(settings)
                  .filter(s -> s.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V1 ||
                               s.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 ||
@@ -81,7 +81,7 @@ public final class StorageSyncModels {
                  .toList();
   }
 
-  private static @NonNull SignalAccountRecord.PinnedConversation localToRemotePinnedConversation(@NonNull RecipientSettings settings) {
+  private static @NonNull SignalAccountRecord.PinnedConversation localToRemotePinnedConversation(@NonNull RecipientRecord settings) {
     switch (settings.getGroupType()) {
       case NONE     : return SignalAccountRecord.PinnedConversation.forContact(new SignalServiceAddress(settings.getAci(), settings.getE164()));
       case SIGNAL_V1: return SignalAccountRecord.PinnedConversation.forGroupV1(settings.getGroupId().requireV1().getDecodedId());
@@ -90,7 +90,7 @@ public final class StorageSyncModels {
     }
   }
 
-  private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientSettings recipient, byte[] rawStorageId) {
+  private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientRecord recipient, byte[] rawStorageId) {
     if (recipient.getAci() == null && recipient.getE164() == null) {
       throw new AssertionError("Must have either a UUID or a phone number!");
     }
@@ -112,7 +112,7 @@ public final class StorageSyncModels {
                                   .build();
   }
 
-  private static @NonNull SignalGroupV1Record localToRemoteGroupV1(@NonNull RecipientSettings recipient, byte[] rawStorageId) {
+  private static @NonNull SignalGroupV1Record localToRemoteGroupV1(@NonNull RecipientRecord recipient, byte[] rawStorageId) {
     GroupId groupId = recipient.getGroupId();
 
     if (groupId == null) {
@@ -133,7 +133,7 @@ public final class StorageSyncModels {
                                   .build();
   }
 
-  private static @NonNull SignalGroupV2Record localToRemoteGroupV2(@NonNull RecipientSettings recipient, byte[] rawStorageId, @NonNull GroupMasterKey groupMasterKey) {
+  private static @NonNull SignalGroupV2Record localToRemoteGroupV2(@NonNull RecipientRecord recipient, byte[] rawStorageId, @NonNull GroupMasterKey groupMasterKey) {
     GroupId groupId = recipient.getGroupId();
 
     if (groupId == null) {

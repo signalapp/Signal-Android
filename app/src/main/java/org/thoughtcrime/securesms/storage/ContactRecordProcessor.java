@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -69,7 +70,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     Optional<RecipientId> byUuid  = recipientDatabase.getByAci(address.getAci());
     Optional<RecipientId> byE164  = address.getNumber().isPresent() ? recipientDatabase.getByE164(address.getNumber().get()) : Optional.absent();
 
-    return byUuid.or(byE164).transform(recipientDatabase::getRecipientSettingsForSync)
+    return byUuid.or(byE164).transform(recipientDatabase::getRecordForSync)
                             .transform(settings -> {
                               if (settings.getStorageId() != null) {
                                 return StorageSyncModels.localToRemoteRecord(settings);
@@ -77,7 +78,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                 Log.w(TAG, "Newly discovering a registered user via storage service. Saving a storageId for them.");
                                 recipientDatabase.updateStorageId(settings.getId(), keyGenerator.generate());
 
-                                RecipientDatabase.RecipientSettings updatedSettings = Objects.requireNonNull(recipientDatabase.getRecipientSettingsForSync(settings.getId()));
+                                RecipientRecord updatedSettings = Objects.requireNonNull(recipientDatabase.getRecordForSync(settings.getId()));
                                 return StorageSyncModels.localToRemoteRecord(updatedSettings);
                               }
                             })

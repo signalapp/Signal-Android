@@ -35,10 +35,10 @@ import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -1561,8 +1561,8 @@ public class ThreadDatabase extends Database {
     }
 
     public ThreadRecord getCurrent() {
-      RecipientId       recipientId       = RecipientId.from(CursorUtil.requireLong(cursor, ThreadDatabase.RECIPIENT_ID));
-      RecipientSettings recipientSettings = RecipientDatabase.getRecipientSettings(context, cursor, ThreadDatabase.RECIPIENT_ID);
+      RecipientId     recipientId       = RecipientId.from(CursorUtil.requireLong(cursor, ThreadDatabase.RECIPIENT_ID));
+      RecipientRecord recipientSettings = SignalDatabase.recipients().getRecord(context, cursor, ThreadDatabase.RECIPIENT_ID);
 
       Recipient recipient;
 
