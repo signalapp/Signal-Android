@@ -20,6 +20,7 @@ class BoostTest__MoneyFilter {
 
   private val usd = Currency.getInstance("USD")
   private val yen = Currency.getInstance("JPY")
+  private val inr = Currency.getInstance("INR")
 
   @Before
   fun setUp() {
@@ -141,5 +142,41 @@ class BoostTest__MoneyFilter {
     val filterResult = testSubject.filter(editable, 0, editable.length, dest, 0, 0)
 
     assertNotNull(filterResult)
+  }
+
+  @Test
+  fun `Given MR and INR, when I enter 5dot55, then I expect localized`() {
+    Locale.setDefault(Locale.forLanguageTag("mr"))
+
+    val testSubject = Boost.MoneyFilter(inr)
+    val editable = SpannableStringBuilder("5.55")
+
+    testSubject.afterTextChanged(editable)
+
+    assertEquals("₹५.५५", editable.toString())
+  }
+
+  @Test
+  fun `Given MR and INR, when I enter dot, then I expect it to be retained in output`() {
+    Locale.setDefault(Locale.forLanguageTag("mr"))
+
+    val testSubject = Boost.MoneyFilter(inr)
+    val editable = SpannableStringBuilder("₹५.")
+
+    testSubject.afterTextChanged(editable)
+
+    assertEquals("₹५.", editable.toString())
+  }
+
+  @Test
+  fun `Given RTL indicator, when I enter five, then I expect successful match`() {
+    val testSubject = Boost.MoneyFilter(yen)
+    val editable = SpannableStringBuilder("\u200F5")
+    val dest = SpannableStringBuilder()
+
+    testSubject.afterTextChanged(editable)
+    val filterResult = testSubject.filter(editable, 0, editable.length, dest, 0, 0)
+
+    assertNull(filterResult)
   }
 }
