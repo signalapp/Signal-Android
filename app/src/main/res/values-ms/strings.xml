@@ -3228,5 +3228,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan sambungan internet.</string>
   <string name="NetworkFailure__retry">Cuba Semula</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

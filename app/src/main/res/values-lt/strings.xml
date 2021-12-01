@@ -3600,5 +3600,6 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Jūsų įrenginys nepalaiko „Google Pay“, todėl negalite prenumeruoti, kad gautumėte ženkliuką. Kita vertus, vis tiek galite palaikyti Signal, paaukodami mūsų internetinėje svetainėje.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="NetworkFailure__retry">Bandyti dar kartą</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

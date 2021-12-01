@@ -3195,5 +3195,6 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

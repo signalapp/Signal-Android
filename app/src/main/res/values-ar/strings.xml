@@ -3780,5 +3780,6 @@
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالاً بالإنترنت.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
   <string name="NetworkFailure__retry">إعادة المُحاولة</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

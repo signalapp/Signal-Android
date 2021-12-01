@@ -2980,6 +2980,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubscribeFragment__confirm">Bekreft</string>
   <string name="SubscribeFragment__update">Oppdater</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mer enn ett merke, kan du velge ett som skal vises som andre kan se på profilen din.</string>
   <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
@@ -2988,5 +2989,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">Prøv på nytt</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

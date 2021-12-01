@@ -3336,5 +3336,6 @@
   <string name="DonationsErrors__failed_to_cancel_subscription">সাবস্ক্রিপশন বাতিল করতে ব্যর্থ হয়েছে</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">সাবস্ক্রিপশন বাতিল করার জন্য একটি ইন্টারনেট সংযোগ প্রয়োজন।</string>
   <string name="NetworkFailure__retry">পুনরায় চেষ্টা করুন</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

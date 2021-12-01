@@ -3339,5 +3339,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abonelik iptal edilemedi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abonelik iptali için internet bağlantısı gerekir.</string>
   <string name="NetworkFailure__retry">Tekrar dene</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

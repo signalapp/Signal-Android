@@ -3334,5 +3334,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="DonationsErrors__failed_to_cancel_subscription">सब्सक्रिप्शन रद्द करने में असफ़ल</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">सब्सक्रिप्शन को रद्द करने के लिए इंटरनेट कनेक्शन की ज़रुरत है.</string>
   <string name="NetworkFailure__retry">दोबारा कोशिश करें</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

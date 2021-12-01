@@ -1340,8 +1340,8 @@ número de teléfono
   <string name="RegistrationActivity_play_services_error">Fallo en «Play Services»</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se está actualizando o está temporalmente suspendido. Por favor, inténtalo de nuevo.</string>
   <string name="RegistrationActivity_terms_and_privacy">Términos y política de privacidad</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita los permisos de acceso a tus contactos y medios para chatear y contactar con tus amistades. Tu lista de contactos se cifra en tu teléfono y se trasmite al servicio de Signal para descubrir contactos. Como la lista está cifrada con tu PIN de Signal, ni Signal ni terceras personas tienen acceso ni la pueden descifrar. </string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita los permisos de acceso a tus contactos para chatear y contactar con tus amistades. Tu lista de contactos se cifra en tu teléfono y se trasmite al servicio de Signal para descubrir contactos. Como la lista está cifrada con tu PIN de Signal, ni Signal ni terceras personas tienen acceso ni la pueden descifrar. </string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal necesita los permisos de acceso a tus contactos y medios para chatear y contactar con tus amistades. Tu lista de contactos se cifra en tu teléfono y se trasmite al servicio de Signal para descubrir contactos. Como la lista está cifrada, ni Signal ni terceras personas tienen acceso.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal necesita los permisos de acceso a tus contactos para chatear y contactar con tus amistades. Tu lista de contactos se cifra en tu teléfono y se trasmite al servicio de Signal para descubrir contactos. Como la lista está cifrada, ni Signal ni terceras personas tienen acceso.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Has hecho demasiados intentos para registrar este número. Inténtalo de nuevo más tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No se puede conectar con el servidor. Por favor, comprueba la conexión de red e inténtalo de nuevo.</string>
   <string name="RegistrationActivity_non_standard_number_format">Número en formato no estándar</string>
@@ -3396,5 +3396,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Tu dispositivo no tiene Google Pay activado, por lo que no puedes crear una suscripción y conseguir un distintivo. También puedes contribuir a Signal al hacer una donación en la página web de Signal.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Fallo en la red. Comprueba tu conexión e inténtalo de nuevo.</string>
   <string name="NetworkFailure__retry">Reintentar</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Fallo al abrir el selector.</string>
   <!--EOF-->
 </resources>

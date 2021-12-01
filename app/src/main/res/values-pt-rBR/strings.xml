@@ -3396,5 +3396,6 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Seu aparelho não é compatível com Google Pay, portanto você não pode doar para ganhar um selo. Você ainda pode apoiar o Signal ao fazer uma doação em nosso site.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua conexão e tente novamente.</string>
   <string name="NetworkFailure__retry">Tentar novamente</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

@@ -3275,5 +3275,7 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Η συσκευή σου δεν υποστηρίζει το Google Pay, οπότε δεν μπορείς να γίνεις συνδρομητής για να λάβεις έμβλημα. Μπορείς όμως να υποστηρίξεις το Signal κάνοντας μια δωρεά στην ιστοσελίδα μας.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
   <string name="NetworkFailure__retry">Επανάληψη</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Αποτυχία ανοίγματος επιλογέα.</string>
   <!--EOF-->
 </resources>

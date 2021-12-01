@@ -3226,5 +3226,6 @@ broj telefona</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još uvijek obrađuje. To može potrajati nekoliko minuta ovisno o vašoj vezi.</string>
   <string name="NetworkFailure__retry">Pokušajte ponovno</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

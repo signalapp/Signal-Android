@@ -3287,5 +3287,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hổ trợ Google Pay, vì vậy bạn không thể đăng ký quyên góp và nhận huy hiệu trên thiết bị này. Bạn vẫn có thể đống góp cho Signal trên trang Web của chúng tôi.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Lỗi kết nối: Hãy kiểm tra kết nối của bạn và thử lại.</string>
   <string name="NetworkFailure__retry">Thử lại</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

@@ -3389,5 +3389,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Din enhet stöder inte Google Pay, så du kan inte prenumerera för att få ett märke. Du kan fortfarande stöda Signal genom att göra en donation på vår webbplats.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nätverksfel. Kontrollera din anslutning och försök igen.</string>
   <string name="NetworkFailure__retry">Försök igen</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

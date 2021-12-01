@@ -915,7 +915,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s menjadikan %2$s sebagai admin.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s menjadikan Anda sebagai admin.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Anda membatalkan akses admin dari %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s membatalkan privilese admin Anda.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s membatalkan akses admin Anda.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s membatalkan akses admin %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s sekarang menjadi admin.</string>
   <string name="MessageRecord_you_are_now_an_admin">Anda sekarang menjadi admin.</string>
@@ -960,20 +960,20 @@
   <string name="MessageRecord_the_group_description_has_changed">Deskripsi grup telah diubah.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Anda mengubah avatar grup.</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">%1$s mengganti avatar grup.</string>
-  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Avatar grup telah berubah.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s mengubah avatar grup.</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">Avatar grup telah diubah.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Anda memberikan akses untuk menyunting info grup ke \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s memberikan akses untuk dapat menyunting informasi grup ke \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Anggota yang dapat menyunting informasi grup telah diganti menjadi \"%1$s\".</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Anda mengganti siapa yang dapat mengubah keanggotaan grup menjadi \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s memberikan akses untuk mengubah keanggotaan grup kepada \"%2$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s memberikan akses untuk menyunting keanggotaan grup kepada \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Anggota yang dapat menyunting keanggotaan grup berubah menjadi \"%1$s\".</string>
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Anda mengubah pengaturan grup mengizinkan semua anggota untuk mengirimkan pesan.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">Anda mengubah pengaturan grup hanya mengizinkan admin untuk mengirimkan pesan.</string>
-  <string name="MessageRecord_s_allow_all_members_to_send">%1$s mengubah pengaturan grup untuk mengizinkan semua pengguna untuk mengirimkan pesan.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s mengubah pengaturan grup untuk mengizinkan semua anggota untuk mengirimkan pesan.</string>
   <string name="MessageRecord_s_allow_only_admins_to_send">%1$s mengubah pengaturan grup hanya mengizinkan admin untuk mengirimkan pesan.</string>
   <string name="MessageRecord_allow_all_members_to_send">Pengaturan grup telah diubah mengizinkan semua anggota untuk mengirimkan pesan.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Pengaturan grup telah diubah hanya mengizinkan admin untuk mengirimkan pesan.</string>
@@ -984,37 +984,37 @@
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s menyalakan tautan grup tanpa persetujuan admin.</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s menyalakan tautan grup dengan persetujuan admin.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s menonaktifkan tautan grup.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Tautan grup telah diaktifkan tanpa memerlukan persetujuan dari ketua.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Tautan grup telah diaktifkan dengan memerlukan persetujuan dari ketua.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_off">Tautan grup ini telah dinonaktifkan</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Tautan grup telah diaktifkan tanpa persetujuan admin.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Tautan grup dinyalakan dengan persetujuan admin.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Tautan grup dinonaktifkan.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Anda mematikan persetujuan admin untuk tautan grup.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s menonaktifkan persetujuan admin untuk tautan grup.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Persetujuan ketua untuk tautan grup telah di matikan.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s mematikan persetujuan admin untuk tautan grup.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Persetujuan admin untuk tautan grup telah dimatikan.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Anda menyalakan persetujuan admin untuk tautan grup.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s mengaktifkan persetujuan admin untuk tautan grup.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Persetujuan ketua untuk grup ini telah diaktifkan.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s menyalakan persetujuan admin untuk tautan grup.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Persetujuan admin untuk tautan grup telah dinyalakan.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Anda mengatur ulang tautan grup.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s reset tautan grup.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s mengatur ulang tautan grup.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">Tautan grup telah diatur ulang.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">Anda bergabung ke dalam grup melalui tautan grup.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s bergabung dengan grup melalui tautan.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s bergabung ke dalam grup melalui tautan grup.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Anda mengirimkan permintaan untuk bergabung ke grup.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s meminta perizinan untuk bergabung kedalam grup melalui tautan.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s meminta untuk bergabung melalui tautan grup.</string>
   <!--GV2 group link approvals-->
-  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s mengizinkan permintaan anda untuk bergabung kedalam grup.</string>
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s menerima permintaan Anda untuk bergabung kedalam grup.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s menerima permintaan bergabung ke grup dari %2$s.</string>
   <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Anda menerima permintaan bergabung ke grup dari %1$s.</string>
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Permintaan Anda bergabung ke grup disetujui.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Permintaan bergabung ke grup dari %1$s telah disetujui.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Permintaan Anda bergabung ke grup diterima.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Permintaan bergabung ke grup dari %1$s telah diterima.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Permintaan Anda bergabung grup ditolak admin.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Permintaan Anda bergabung grup ditolak oleh admin.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s menolak permintaan bergabung ke grup dari %2$s.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Permintaan bergabung ke grup dari %1$s ditolak.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Anda membatalkan permintaan bergabung ke grup.</string>
-  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s membatalkan permintaan gabung ke grup.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s membatalkan permintaannya bergabung ke grup.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Nomor keamanan Anda dengan %s telah berubah.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Anda menandai nomor keamanan anda dengan %s terverifikasi</string>
@@ -1043,18 +1043,18 @@
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Terima</string>
-  <string name="MessageRequestBottomView_continue">Lanjut</string>
+  <string name="MessageRequestBottomView_continue">Lanjutkan</string>
   <string name="MessageRequestBottomView_delete">Hapus</string>
   <string name="MessageRequestBottomView_block">Blokir</string>
   <string name="MessageRequestBottomView_unblock">Buka blokir</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Izinkan %1$s mengirim pesan dan berbagi nama dan foto Anda dengannya? Dia tidak akan tahu Anda telah melihat pesannya hingga Anda mengizinkan.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Izinkan %1$s mengirim pesan dan berbagi nama dan foto Anda dengannya? Dia tidak akan tahu Anda telah melihat pesannya hingga Anda menerimanya.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Izinkan %1$s mengirimkan Anda pesan dan bagikan nama dan foto Anda dengan mereka? Anda tidak akan menerima pesan apapun sampai Anda membuka blokir mereka.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Lanjutkan percakapan Anda dengan grup ini dan bagikan nama dan foto Anda dengan anggotanya?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Perbarui grup ini untuk mengaktifkan fitur-fitur baru seperti @mention dan admin. Anggota yang tidak membagikan nama atau fotonya di grup ini akan diundang untuk bergabung.</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Perbarui grup ini untuk mengaktifkan fitur-fitur baru seperti @penyebutan dan admin. Anggota yang tidak membagikan nama atau fotonya di grup ini akan diundang untuk bergabung.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Grup Lama tidak lagi dapat digunakan karena berukuran terlalu besar. Ukuran maksimum grup adalah %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Lanjutkan percakapan Anda dengan %1$s dan bagikan nama dan foto Anda dengan mereka?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung dengan grup ini dan bagikan nama dan foto Anda dengan anggotanya? Mereka tidak akan mengetahuinya sampai Anda menerimanya.</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung kedalam grup? Mereka tidak akan tahu jika kamu telah membaca pesan mereka, sampai kamu menyetujuinya.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung ke dalam grup? Mereka tidak akan tahu jika Anda telah membaca pesan mereka, sampai Anda menerimanya.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Buka blokir grup ini dan bagikan nama dan foto Anda dengan anggotanya? Anda tidak akan menerima pesan apapun sampai Anda membuka blokirnya.</string>
   <string name="MessageRequestProfileView_view">Lihat</string>
   <string name="MessageRequestProfileView_member_of_one_group">Anggota dari %1$s</string>
@@ -1064,7 +1064,7 @@
     <item quantity="other">%1$d anggota</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="other">%1$d anggota (+ %2$d diundang)</item>
+    <item quantity="other">%1$d anggota (+%2$d diundang)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="other">%d grup tambahan</item>
@@ -1095,9 +1095,9 @@
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Tidak bisa memindai kode QR tanpa izin Kamera</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Perbarui sekarang</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Versi applikasi Signal ini akan kedaluarsa hari ini. Segera perbarui ke versi yang terbaru.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Versi applikasi Signal ini akan kedawluarsa hari ini. Segera perbarui ke versi terbaru.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="other">Versi applikasi Signal ini akan kedaluarsa dalam %d hari. Segera perbarui ke versi yang lebih terbaru.</item>
+    <item quantity="other">Versi Signal ini akan kedaluwarsa dalam %d hari. Segera perbarui ke versi yang terbaru.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Masukkan frasa sandi</string>
@@ -1117,7 +1117,7 @@
   <string name="PinRestoreEntryFragment_skip_pin_entry">Lewati memasukkan PIN?</string>
   <string name="PinRestoreEntryFragment_need_help">Butuh bantuan?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN Anda adalah %1$d+ digit kode yang Anda buat yang dapat berupa numerik atau alfanumerik.\n\nJika Anda tidak dapat mengingat PINnya, Anda dapat membuat yang baru. Anda dapat mendaftar dan menggunakan akun Anda namun Anda akan kehilangan pengaturan yang disimpan seperti informasi profil Anda.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jika Anda tidak dapat mengingat PIN Anda, Anda dapat membuat yang baru. Anda dapat mendaftar dan menggunakan akun Anda namun akan pengaturan dan informasi profil Anda akan dihapus.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jika Anda tidak dapat mengingat PIN Anda, Anda dapat membuat yang baru. Anda dapat mendaftar dan menggunakan akun Anda namun Anda akan kehilangan pengaturan yang disimpan seperti informasi profil Anda.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Buat PIN Baru</string>
   <string name="PinRestoreEntryFragment_contact_support">Hubungi Bantuan</string>
   <string name="PinRestoreEntryFragment_cancel">Batal</string>
@@ -1130,7 +1130,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Masukkan PIN numerik</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Buat PIN Anda</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Anda telah kehabisan percobaan PIN, namun Anda tetap dapat mengakses akun Signal Anda dengan membuat PIN baru. Untuk privasi dan keamanan, akun Anda akan dipulihkan tanpa informasi profil atau pengarturan.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Anda telah kehabisan percobaan PIN, namun Anda tetap dapat mengakses akun Signal Anda dengan membuat PIN baru. Untuk privasi dan keamanan, akun Anda akan dipulihkan tanpa informasi profil atau pengarturan yang telah disimpan.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Buat PIN baru</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Peringatan</string>
@@ -1161,8 +1161,8 @@
   <string name="RecipientProvider_unnamed_group">Grup tanpa nama</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Menjawab…</string>
-  <string name="RedPhone_ending_call">Akhiri panggilan…</string>
-  <string name="RedPhone_ringing">Berbunyi…</string>
+  <string name="RedPhone_ending_call">Mengakhiri panggilan…</string>
+  <string name="RedPhone_ringing">Berdering…</string>
   <string name="RedPhone_busy">Sibuk</string>
   <string name="RedPhone_recipient_unavailable">Penerima tidak tersedia</string>
   <string name="RedPhone_network_failed">Jaringan gagal!</string>
@@ -1173,34 +1173,34 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ketuk di sini untuk menyalakan video Anda</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Untuk menelepon %1$s, Signal memerlukan akses kamera Anda</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">Panggilan…</string>
-  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grup terlalu besar untuk menghubungi peserta</string>
+  <string name="WebRtcCallActivity__calling">Memanggil…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grup terlalu besar untuk menghubungi peserta.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Panggilan Signal</string>
   <string name="WebRtcCallView__signal_video_call">Panggilan Video Signal</string>
   <string name="WebRtcCallView__start_call">Mulai Panggilan</string>
   <string name="WebRtcCallView__join_call">Bergabung Panggilan</string>
   <string name="WebRtcCallView__call_is_full">Panggilan penuh</string>
-  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maksimum jumlah dari %1$d partisipan telah tercapai untuk panggilan ini. Coba lagi nanti.</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maksimum jumlah dari %1$d peserta telah tercapai untuk panggilan ini. Coba lagi nanti.</string>
   <string name="WebRtcCallView__view_participants_list">Lihat peserta</string>
   <string name="WebRtcCallView__your_video_is_off">Video Anda mati</string>
   <string name="WebRtcCallView__reconnecting">Menyambungkan ulang…</string>
   <string name="WebRtcCallView__joining">Bergabung…</string>
   <string name="WebRtcCallView__disconnected">Terputus</string>
-  <string name="WebRtcCallView__signal_will_ring_s">Signal akan berdering %1$s</string>
-  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal akan berdering %1$s dan %2$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal akan memanggil %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal akan memanggil %1$s dan %2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-    <item quantity="other">Signal akan berdering %1$s, %2$s, dan %3$d lainnya</item>
+    <item quantity="other">Signal akan memanggil %1$s, %2$s, dan %3$d lainnya</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s akan diberitahukan</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s dan %2$s akan diberitahukan</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
     <item quantity="other">%1$s, %2$s, dan %3$d lainnya akan diberitahukan</item>
   </plurals>
-  <string name="WebRtcCallView__ringing_s">Berdering %1$s</string>
-  <string name="WebRtcCallView__ringing_s_and_s">Berdering %1$s dan %2$s</string>
+  <string name="WebRtcCallView__ringing_s">Memanggil %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Memanggil %1$s dan %2$s</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-    <item quantity="other">Berdering %1$s, %2$s, dan %3$d lainnya</item>
+    <item quantity="other">Memanggil %1$s, %2$s, dan %3$d lainnya</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s memanggil Anda</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s memanggil Anda dan %2$s</string>
@@ -3293,5 +3293,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Perangkat Anda tidak mendukung Google Pay, sehingga Anda tidak dapat berlangganan untuk memperoleh sebuah lencana. Anda tetap dapat mendukung Signal dengan berdonasi melalui situsweb kami.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Galat jaringan. Periksa koneksi Anda dan coba lagi.</string>
   <string name="NetworkFailure__retry">Coba lagi</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal membuka pemilih dering.</string>
   <!--EOF-->
 </resources>

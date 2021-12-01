@@ -3297,5 +3297,6 @@
   <string name="DonationsErrors__failed_to_cancel_subscription">Не успеа да се откажете претплатата</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет конекција.</string>
   <string name="NetworkFailure__retry">Пробај пак</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>
