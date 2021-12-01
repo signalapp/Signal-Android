@@ -1143,8 +1143,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     new SignalContextMenu.Builder(view, list)
         .offsetX(ViewUtil.dpToPx(12))
         .offsetY(ViewUtil.dpToPx(12))
-        .onDismiss(() -> view.setSelected(false))
+        .onDismiss(() -> {
+          view.setSelected(false);
+          list.suppressLayout(false);
+        })
         .show(items);
+
+    list.suppressLayout(true);
 
     return true;
   }
