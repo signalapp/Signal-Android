@@ -472,7 +472,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
           return p.handleReceivedOfferWhileActive(s, remotePeer);
         case ENDED_LOCAL_HANGUP:
         case ENDED_APP_DROPPED_CALL:
-        case IGNORE_CALLS_FROM_NON_MULTIRING_CALLERS:
           Log.i(TAG, "Ignoring event: " + event);
           break;
         default:
@@ -562,17 +561,17 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   @Override
-  public void onSendHangup(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @NonNull CallManager.HangupType hangupType, @NonNull Integer deviceId, @NonNull Boolean useLegacyHangupMessage) {
+  public void onSendHangup(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @NonNull CallManager.HangupType hangupType, @NonNull Integer deviceId) {
     if (!(remote instanceof RemotePeer)) {
       return;
     }
 
     RemotePeer remotePeer = (RemotePeer) remote;
 
-    Log.i(TAG, "onSendHangup: id: " + remotePeer.getCallId().format(remoteDevice) + " type: " + hangupType.name() + " isLegacy: " + useLegacyHangupMessage);
+    Log.i(TAG, "onSendHangup: id: " + remotePeer.getCallId().format(remoteDevice) + " type: " + hangupType.name());
 
     WebRtcData.CallMetadata   callMetadata   = new WebRtcData.CallMetadata(remotePeer, remoteDevice);
-    WebRtcData.HangupMetadata hangupMetadata = new WebRtcData.HangupMetadata(WebRtcUtil.getHangupTypeFromCallHangupType(hangupType), useLegacyHangupMessage, deviceId);
+    WebRtcData.HangupMetadata hangupMetadata = new WebRtcData.HangupMetadata(WebRtcUtil.getHangupTypeFromCallHangupType(hangupType), false, deviceId);
 
     process((s, p) -> p.handleSendHangup(s, callMetadata, hangupMetadata, broadcast));
   }

@@ -213,7 +213,6 @@ public abstract class WebRtcActionProcessor {
                                                       messageAgeSec,
                                                       WebRtcUtil.getCallMediaTypeFromOfferType(offerMetadata.getOfferType()),
                                                       1,
-                                                      receivedOfferMetadata.isMultiRing(),
                                                       true,
                                                       remoteIdentityKey,
                                                       localIdentityKey);
