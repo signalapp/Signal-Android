@@ -79,23 +79,23 @@ public class SubscriptionKeepAliveJob extends BaseJob {
                                                                      .blockingGet();
 
     verifyResponse(response);
-    Log.i(TAG, "Successful call to PUT subscription ID");
+    Log.i(TAG, "Successful call to PUT subscription ID", true);
 
     ServiceResponse<ActiveSubscription> activeSubscriptionResponse = ApplicationDependencies.getDonationsService()
                                                                                             .getSubscription(subscriber.getSubscriberId())
                                                                                             .blockingGet();
 
     verifyResponse(activeSubscriptionResponse);
-    Log.i(TAG, "Successful call to GET active subscription");
+    Log.i(TAG, "Successful call to GET active subscription", true);
 
     ActiveSubscription activeSubscription = activeSubscriptionResponse.getResult().get();
     if (activeSubscription.getActiveSubscription() == null || !activeSubscription.getActiveSubscription().isActive()) {
-      Log.i(TAG, "User does not have an active subscription. Exiting.");
+      Log.i(TAG, "User does not have an active subscription. Exiting.", true);
       return;
     }
 
     if (activeSubscription.getActiveSubscription().getEndOfCurrentPeriod() > SignalStore.donationsValues().getLastEndOfPeriod()) {
-      Log.i(TAG, "Last end of period change. Requesting receipt refresh.");
+      Log.i(TAG, "Last end of period change. Requesting receipt refresh.", true);
       SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue();
     }
   }
