@@ -91,7 +91,7 @@
     <xs:complexType name="logListType">
         <xs:annotation>
            <xs:documentation>
-               List of entries for the founded messages
+               List of entries for the found messages
             </xs:documentation>
         </xs:annotation>
             <xs:sequence>
