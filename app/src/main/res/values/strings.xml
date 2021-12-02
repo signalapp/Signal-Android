@@ -2443,7 +2443,7 @@
     <string name="preferences__incognito_keyboard">Incognito keyboard</string>
     <string name="preferences__read_receipts">Read receipts</string>
     <string name="preferences__compression">Compression</string>
-    <string name="preferences__compression_description">If compression is enabled, signal will act as normal. Otherwise, all compression will be ignored.</string>
+    <string name="preferences__compression_description">If compression is enabled, signal will act as normal. Otherwise, all compression will be ignored. Compression also sends attachment metadata!</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
     <string name="preferences__typing_indicators">Typing indicators</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
