@@ -209,10 +209,11 @@ data class Boost(
      * * '\uFF10' through '\uFF19', Fullwidth digits
      */
     val digitsGroup: String = "[\\u0030-\\u0039]|[\\u0660-\\u0669]|[\\u06F0-\\u06F9]|[\\u0966-\\u096F]|[\\uFF10-\\uFF19]"
+    val zeros: String = "\\u0030|\\u0660|\\u06F0|\\u0966|\\uFF10"
 
     val pattern: Pattern = "($digitsGroup)*([$separator]){0,$separatorCount}($digitsGroup){0,${currency.defaultFractionDigits}}".toPattern()
     val symbolPattern: Regex = """\s*${Regex.escape(symbol)}\s*""".toRegex()
-    val leadingZeroesPattern: Regex = """^0*""".toRegex()
+    val leadingZeroesPattern: Regex = """^($zeros)*""".toRegex()
 
     override fun filter(
       source: CharSequence,
@@ -252,7 +253,13 @@ data class Boost(
       } else if (!hasSymbol) {
         val formatter = NumberFormat.getCurrencyInstance()
         formatter.currency = currency
-        formatter.minimumFractionDigits = 0
+
+        if (s.contains(separator)) {
+          formatter.minimumFractionDigits = s.split(separator).last().length
+        } else {
+          formatter.minimumFractionDigits = 0
+        }
+
         formatter.maximumFractionDigits = currency.defaultFractionDigits
 
         val value = s.toString().toDoubleOrNull()
@@ -278,10 +285,14 @@ data class Boost(
       val withoutLeadingZeroes: String = try {
         NumberFormat.getInstance().apply {
           isGroupingUsed = false
+
+          if (s.contains(separator)) {
+            minimumFractionDigits = s.split(separator).last().length
+          }
         }.format(withoutSymbol.toBigDecimal()) + (if (withoutSymbol.endsWith(separator)) separator else "")
       } catch (e: NumberFormatException) {
         withoutSymbol
-      }.replace(leadingZeroesPattern, "")
+      }
 
       if (withoutSymbol != withoutLeadingZeroes) {
         text?.removeTextChangedListener(this)
