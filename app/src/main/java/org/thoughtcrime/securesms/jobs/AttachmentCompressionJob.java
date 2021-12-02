@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
 import org.thoughtcrime.securesms.video.TranscoderCancelationSignal;
@@ -178,6 +179,10 @@ public final class AttachmentCompressionJob extends BaseJob {
     AttachmentDatabase.TransformProperties transformProperties = attachment.getTransformProperties();
 
     boolean allowSkipOnFailure = false;
+
+    if(!TextSecurePreferences.isCompressionEnabled(context)) {
+      return attachment;
+    }
 
     if (!MediaConstraints.isVideoTranscodeAvailable()) {
       if (transformProperties.isVideoEdited()) {

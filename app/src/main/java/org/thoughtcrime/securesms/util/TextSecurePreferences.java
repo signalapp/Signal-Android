@@ -113,6 +113,7 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   public  static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
+  public  static final String COMPRESSION_PREF                 = "pref_compression";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
   public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
   private static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
@@ -474,8 +475,18 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, READ_RECEIPTS_PREF, false);
   }
 
+  public static boolean setCompressionEnabled(Context context) {return getBooleanPreference(context, COMPRESSION_PREF, false); }
+
   public static void setReadReceiptsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, READ_RECEIPTS_PREF, enabled);
+  }
+
+  public static boolean isCompressionEnabled(Context context) {
+    return getBooleanPreference(context, COMPRESSION_PREF, false);
+  }
+
+  public static void setCompressionEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, COMPRESSION_PREF, enabled);
   }
 
   public static boolean isTypingIndicatorsEnabled(Context context) {

@@ -28,6 +28,11 @@ class PrivacySettingsViewModel(
     }
   }
 
+  fun setCompressionEnabled(enabled: Boolean) {
+    sharedPreferences.edit().putBoolean(TextSecurePreferences.COMPRESSION_PREF, enabled).apply()
+    refresh()
+  }
+
   fun setReadReceiptsEnabled(enabled: Boolean) {
     sharedPreferences.edit().putBoolean(TextSecurePreferences.READ_RECEIPTS_PREF, enabled).apply()
     repository.syncReadReceiptState()
@@ -91,6 +96,7 @@ class PrivacySettingsViewModel(
     return PrivacySettingsState(
       blockedCount = 0,
       readReceipts = TextSecurePreferences.isReadReceiptsEnabled(ApplicationDependencies.getApplication()),
+      compression = TextSecurePreferences.isCompressionEnabled(ApplicationDependencies.getApplication()),
       typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(ApplicationDependencies.getApplication()),
       screenLock = TextSecurePreferences.isScreenLockEnabled(ApplicationDependencies.getApplication()),
       screenLockActivityTimeout = TextSecurePreferences.getScreenLockTimeout(ApplicationDependencies.getApplication()),
