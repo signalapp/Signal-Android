@@ -126,60 +126,6 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
         }
       )
 
-      dividerPref()
-
-      clickPref(
-        title = DSLSettingsText.from(R.string.preferences__help),
-        icon = DSLSettingsIcon.from(R.drawable.ic_help_24),
-        onClick = {
-          Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_helpSettingsFragment)
-        }
-      )
-
-      clickPref(
-        title = DSLSettingsText.from(R.string.AppSettingsFragment__invite_your_friends),
-        icon = DSLSettingsIcon.from(R.drawable.ic_invite_24),
-        onClick = {
-          Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_inviteActivity)
-        }
-      )
-
-      if (FeatureFlags.donorBadges() && PlayServicesUtil.getPlayServicesStatus(requireContext()) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
-        customPref(
-          SubscriptionPreference(
-            title = DSLSettingsText.from(
-              if (state.hasActiveSubscription) {
-                R.string.preferences__subscription
-              } else {
-                R.string.preferences__become_a_signal_sustainer
-              }
-            ),
-            icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
-            isActive = state.hasActiveSubscription,
-            onClick = { isActive ->
-              if (isActive) {
-                findNavController().navigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToManageDonationsFragment())
-              } else {
-                findNavController().navigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToSubscribeFragment())
-              }
-            }
-          )
-        )
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences__signal_boost),
-          icon = DSLSettingsIcon.from(R.drawable.ic_boost_24),
-          onClick = {
-            findNavController().navigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToBoostsFragment())
-          }
-        )
-      } else {
-        externalLinkPref(
-          title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
-          icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
-          linkId = R.string.donate_url
-        )
-      }
-
       if (FeatureFlags.internalUser()) {
         dividerPref()
 
