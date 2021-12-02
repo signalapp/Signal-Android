@@ -2,8 +2,6 @@
 
 Signal-BA is an unofficial version of Signal with some extra features.
 
-Expect updates about every 3 months.
-
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="100">](https://benarmstead.github.io/fdroid/repo?fingerprint=9CCBC7C297F0B54520834681D1D29C2184B2CD262E80AA9E453215284ED3D684)
 
 Or install it via this [apk](https://github.com/benarmstead/Signal-BA/releases/latest).
@@ -22,7 +20,7 @@ However this can sometimes fail, in which case you will need to clear your signa
   
 - **Does not allow remote deletion on the device**
   
-  Signal allows contacts to delete messages up to 3 hours after sending. This fork will ignore these deletion requests.
+  Signal allows contacts to delete messages on your device up to 3 hours after sending. This fork will ignore these deletion requests.
 
 - **Does not compress images or video**
 
