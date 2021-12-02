@@ -90,7 +90,7 @@ public class ApplicationMigrations {
     static final int CHANGE_NUMBER_CAPABILITY_2    = 46;
     static final int DEFAULT_REACTIONS_SYNC        = 47;
     static final int DB_REACTIONS_MIGRATION        = 48;
-    static final int CHANGE_NUMBER_CAPABILITY_3    = 49;
+    //static final int CHANGE_NUMBER_CAPABILITY_3  = 49;
   }
 
   public static final int CURRENT_VERSION = 49;
@@ -393,10 +393,6 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.DB_REACTIONS_MIGRATION) {
       jobs.put(Version.DB_REACTIONS_MIGRATION, new DatabaseMigrationJob());
-    }
-
-    if (lastSeenVersion < Version.CHANGE_NUMBER_CAPABILITY_3) {
-      jobs.put(Version.CHANGE_NUMBER_CAPABILITY_3, new AttributesMigrationJob());
     }
 
     return jobs;
