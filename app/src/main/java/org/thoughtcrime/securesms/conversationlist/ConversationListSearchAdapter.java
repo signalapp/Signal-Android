@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -162,7 +163,7 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
               @NonNull  Locale        locale,
               @Nullable String        query)
     {
-      root.bindThread(conversationResult, glideRequests, locale, Collections.emptySet(), Collections.emptySet(), false, query);
+      root.bindThread(conversationResult, glideRequests, locale, Collections.emptySet(), new ConversationSet(), query);
       root.setOnClickListener(view -> eventListener.onConversationClicked(conversationResult));
     }
 

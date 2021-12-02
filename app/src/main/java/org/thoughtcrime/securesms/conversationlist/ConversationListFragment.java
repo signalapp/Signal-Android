@@ -57,14 +57,12 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionManager;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
@@ -673,6 +671,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     };
 
     viewModel.getUnreadPaymentsLiveData().observe(getViewLifecycleOwner(), this::onUnreadPaymentsChanged);
+
+    viewModel.getSelectedConversations().observe(getViewLifecycleOwner(), conversations -> {
+      defaultAdapter.setSelectedConversations(conversations);
+      updateMultiSelectState();
+    });
   }
 
   private void onConversationListChanged(@NonNull List<Conversation> conversations) {
@@ -987,11 +990,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     });
   }
 
-  private void handleSelectAllThreads() {
-    defaultAdapter.selectAllThreads();
-    updateMultiSelectState();
-  }
-
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType) {
     getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
@@ -1083,9 +1081,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (actionMode == null) {
       handleCreateConversation(conversation.getThreadRecord().getThreadId(), conversation.getThreadRecord().getRecipient(), conversation.getThreadRecord().getDistributionType());
     } else {
-      defaultAdapter.toggleConversationInBatchSet(conversation);
+      viewModel.toggleConversationSelected(conversation);
 
-      if (defaultAdapter.getBatchSelectionIds().size() == 0) {
+      if (viewModel.currentSelectedConversations().isEmpty()) {
         endActionModeIfActive();
       } else {
         updateMultiSelectState();
@@ -1127,8 +1125,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select), () -> {
-      defaultAdapter.initializeBatchMode(true);
-      defaultAdapter.toggleConversationInBatchSet(conversation);
+      viewModel.startSelection(conversation);
       startActionMode();
     }));
 
@@ -1173,7 +1170,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onDestroyActionMode(ActionMode mode) {
-    defaultAdapter.initializeBatchMode(false);
+    viewModel.endSelection();
 
     if (Build.VERSION.SDK_INT >= 21) {
       TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
@@ -1207,10 +1204,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void updateMultiSelectState() {
-    int     count       = defaultAdapter.getBatchSelectionIds().size();
-    boolean hasUnread   = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isRead());
-    boolean hasUnpinned = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
-    boolean hasUnmuted  = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
+    int     count       = viewModel.currentSelectedConversations().size();
+    boolean hasUnread   = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().isRead());
+    boolean hasUnpinned = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
+    boolean hasUnmuted  = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
     boolean canPin      = viewModel.getPinnedCount() < MAXIMUM_PINNED_CONVERSATIONS;
 
     if (actionMode != null) {
@@ -1219,34 +1216,39 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     List<ActionItem> items = new ArrayList<>();
 
+    Set<Long> selectionIds = viewModel.currentSelectedConversations()
+                                      .stream()
+                                      .map(conversation -> conversation.getThreadRecord().getThreadId())
+                                      .collect(Collectors.toSet());
+
     if (hasUnread) {
-      items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(selectionIds)));
     } else {
-      items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, count), () -> handleMarkAsUnread(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, count), () -> handleMarkAsUnread(selectionIds)));
     }
 
     if (!isArchived() && hasUnpinned && canPin) {
-      items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin_plural, count), () -> handlePin(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin_plural, count), () -> handlePin(viewModel.currentSelectedConversations())));
     } else if (!isArchived() && !hasUnpinned) {
-      items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin_plural, count), () -> handleUnpin(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin_plural, count), () -> handleUnpin(selectionIds)));
     }
 
     if (isArchived()) {
-      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive_plural, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
+      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive_plural, count), () -> handleArchive(selectionIds, true)));
     } else {
-      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive_plural, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
+      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive_plural, count), () -> handleArchive(selectionIds, true)));
     }
 
-    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, count), () -> handleDelete(defaultAdapter.getBatchSelectionIds())));
+    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, count), () -> handleDelete(selectionIds)));
 
 
     if (hasUnmuted) {
-      items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute_plural, count), () -> handleMute(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute_plural, count), () -> handleMute(viewModel.currentSelectedConversations())));
     } else {
-      items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute_plural, count), () -> handleUnmute(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute_plural, count), () -> handleUnmute(viewModel.currentSelectedConversations())));
     }
 
-    items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select_all), this::handleSelectAllThreads));
+    items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select_all), viewModel::onSelectAllClick));
 
     bottomActionBar.setItems(items);
   }

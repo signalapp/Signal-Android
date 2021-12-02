@@ -1744,6 +1744,33 @@ public class ThreadDatabase extends Database {
     public @Nullable String getIndividualRecipientId() {
       return individualRecipientId;
     }
+
+    @Override public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Extra extra = (Extra) o;
+      return isRevealable == extra.isRevealable                         &&
+             isSticker == extra.isSticker                               &&
+             isAlbum == extra.isAlbum                                   &&
+             isRemoteDelete == extra.isRemoteDelete                     &&
+             isMessageRequestAccepted == extra.isMessageRequestAccepted &&
+             isGv2Invite == extra.isGv2Invite                           &&
+             Objects.equals(stickerEmoji, extra.stickerEmoji)           &&
+             Objects.equals(groupAddedBy, extra.groupAddedBy)           &&
+             Objects.equals(individualRecipientId, extra.individualRecipientId);
+    }
+
+    @Override public int hashCode() {
+      return Objects.hash(isRevealable,
+                          isSticker,
+                          stickerEmoji,
+                          isAlbum,
+                          isRemoteDelete,
+                          isMessageRequestAccepted,
+                          isGv2Invite,
+                          groupAddedBy,
+                          individualRecipientId);
+    }
   }
 
   enum ReadStatus {
