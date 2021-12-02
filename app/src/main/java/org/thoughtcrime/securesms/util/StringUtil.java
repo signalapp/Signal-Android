@@ -233,6 +233,10 @@ public final class StringUtil {
     return text.replaceAll("[\\u2068\\u2069\\u202c]", "");
   }
 
+  public static @NonNull String stripBidiIndicator(@NonNull String text) {
+    return text.replace("\u200F", "");
+  }
+
   /**
    * Trims a {@link CharSequence} of starting and trailing whitespace. Behavior matches
    * {@link String#trim()} to preserve expectations around results.

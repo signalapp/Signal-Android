@@ -101,7 +101,6 @@ dependencyResolutionManagement {
             alias('waitingdots').to('pl.tajchert:waitingdots:0.1.0')
             alias('floatingactionbutton').to('com.melnykov:floatingactionbutton:1.3.0')
             alias('time-duration-picker').to('mobi.upod:time-duration-picker:1.1.3')
-            alias('textdrawable').to('com.amulyakhare:com.amulyakhare.textdrawable:1.0.1')
             alias('subsampling-scale-image-view').to('com.davemorrissey.labs:subsampling-scale-image-view:3.10.0')
             alias('numberpickerview').to('cn.carbswang.android:NumberPickerView:1.0.9')
             alias('android-tooltips').to('com.tomergoldst.android:tooltips:1.0.6')

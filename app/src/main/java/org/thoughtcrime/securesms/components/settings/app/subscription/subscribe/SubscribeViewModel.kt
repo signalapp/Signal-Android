@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationE
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationExceptions
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.Subscriber
@@ -169,6 +170,7 @@ class SubscribeViewModel(
           SignalStore.donationsValues().setLastEndOfPeriod(0L)
           SignalStore.donationsValues().clearLevelOperations()
           SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt = false
+          MultiDeviceSubscriptionSyncRequestJob.enqueue()
         }
       } else {
         Completable.complete()
@@ -185,6 +187,7 @@ class SubscribeViewModel(
         SignalStore.donationsValues().clearLevelOperations()
         SignalStore.donationsValues().markUserManuallyCancelled()
         refreshActiveSubscription()
+        MultiDeviceSubscriptionSyncRequestJob.enqueue()
         store.update { it.copy(stage = SubscribeState.Stage.READY) }
       },
       onError = { throwable ->

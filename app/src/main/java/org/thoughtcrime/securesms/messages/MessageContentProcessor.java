@@ -967,6 +967,9 @@ public final class MessageContentProcessor {
       case STORAGE_MANIFEST:
         StorageSyncHelper.scheduleSyncForDataChange();
         break;
+      case SUBSCRIPTION_STATUS:
+        warn(TAG, "Dropping subscription status fetch message.");
+        break;
       default:
         warn(TAG, "Received a fetch message for an unknown type.");
     }

@@ -258,9 +258,6 @@ dependencyVerification {
         ['com.airbnb.android:lottie:3.6.0',
          '70ea0650e82fd858e317af60ee1ffd84bc6f406bbcf017cedcc45217408e20d1'],
 
-        ['com.amulyakhare:com.amulyakhare.textdrawable:1.0.1',
-         '54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb'],
-
         ['com.annimon:stream:1.1.8',
          '5da6e2e3e0551d61a3ea7014f04312276549e3dd739cf637996e4cf43c5535b9'],
 
