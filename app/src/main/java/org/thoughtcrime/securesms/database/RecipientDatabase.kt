@@ -390,7 +390,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun getAndPossiblyMerge(aci: ACI?, e164: String?, highTrust: Boolean, changeSelf: Boolean): RecipientId {
-    require(!(aci == null && e164 == null)) { "Must provide a UUID or E164!" }
+    require(!(aci == null && e164 == null)) { "Must provide an ACI or E164!" }
 
     var recipientNeedingRefresh: RecipientId? = null
     var remapped: Pair<RecipientId, RecipientId>? = null
@@ -417,8 +417,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         if (aci != null) {
           val e164Record: RecipientRecord = getRecord(byE164.get())
           if (e164Record.aci != null) {
-            if (highTrust) {
-              Log.w(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}), but that user already has an ACI (${e164Record.aci}). Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to a new entry", true)
+            if (highTrust && e164Record.aci != SignalStore.account().aci) {
+              Log.w(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}), but that user already has an ACI (${e164Record.aci}). Likely a case of re-registration. High-trust, so stripping the E164 ($e164) from the existing account and assigning it to a new entry.", true)
               removePhoneNumber(byE164.get(), db)
               recipientNeedingRefresh = byE164.get()
 
@@ -428,7 +428,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
               val id = db.insert(TABLE_NAME, null, insertValues)
               finalId = RecipientId.from(id)
             } else {
-              Log.w(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}), but that user already has an ACI (${e164Record.aci}). Likely a case of re-registration. Low-trust, so making a new user for the UUID.", true)
+              if (e164Record.aci == SignalStore.account().aci) {
+                Log.w(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}), but that user is us! Likely a case where we changed our number, but the old owner is sending sealed sender messages. Keeping the E164 ($e164) for ourselves and making a new user for the ACI.", true)
+              } else {
+                Log.w(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}), but that user already has an ACI (${e164Record.aci}). Likely a case of re-registration. Low-trust, so making a new user for the ACI.", true)
+              }
               val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, aci))
               finalId = RecipientId.from(id)
             }
@@ -463,7 +467,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
               }
             }
           } else {
-            Log.i(TAG, "Found out about an E164 (%s) for a known ACI user (%s). Low-trust, so doing nothing.", true)
+            Log.i(TAG, "Found out about an E164 ($e164) for a known ACI user (${byAci.get()}). Low-trust, so doing nothing.", true)
             finalId = byAci.get()
           }
         } else {
@@ -476,8 +480,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           Log.w(TAG, "Hit a conflict between ${byE164.get()} (E164 of $e164) and ${byAci.get()} (ACI $aci). They map to different recipients.", Throwable(), true)
           val e164Record: RecipientRecord = getRecord(byE164.get())
           if (e164Record.aci != null) {
-            if (highTrust) {
-              Log.w(TAG, "The E164 contact has a different ACI. Likely a case of re-registration. High-trust, so stripping the E164 from the existing account and assigning it to the ACI entry.", true)
+            if (highTrust && e164Record.aci != SignalStore.account().aci) {
+              Log.w(TAG, "The E164 contact (${byE164.get()}) has a different ACI ($aci). Likely a case of re-registration. High-trust, so stripping the E164 ($e164) from the existing account and assigning it to the ACI entry.", true)
               removePhoneNumber(byE164.get(), db)
 
               recipientNeedingRefresh = byE164.get()
@@ -489,7 +493,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
                 recipientChangedNumber = finalId
               }
             } else {
-              Log.w(TAG, "The E164 contact has a different ACI. Likely a case of re-registration. Low-trust, so doing nothing.", true)
+              if (e164Record.aci == SignalStore.account().aci) {
+                Log.w(TAG, "The E164 contact (${byE164.get()}) has a different ACI ($aci), but the E164 contact is us! Likely a case where we changed our number, but the old owner is sending sealed sender messages. Keeping the E164 ($e164) for ourselves.", true)
+              } else {
+                Log.w(TAG, "The E164 contact (${byE164.get()}) has a different ACI ($aci). Likely a case of re-registration. Low-trust, so doing nothing.", true)
+              }
               finalId = byAci.get()
             }
           } else {

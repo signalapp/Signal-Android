@@ -190,6 +190,16 @@ android {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
 
+    sourceSets {
+        test {
+            java.srcDirs += "$projectDir/src/testShared"
+        }
+
+        androidTest {
+            java.srcDirs += "$projectDir/src/testShared"
+        }
+    }
+
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JAVA_VERSION
