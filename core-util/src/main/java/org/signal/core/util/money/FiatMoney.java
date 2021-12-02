@@ -62,7 +62,7 @@ public class FiatMoney {
     NumberFormat formatter = NumberFormat.getInstance(Locale.US);
     formatter.setMaximumFractionDigits(0);
     formatter.setGroupingUsed(false);
-    
+
     BigDecimal multiplicand = BigDecimal.TEN.pow(currency.getCurrencyCode().equals("UGX") ? 2 : currency.getDefaultFractionDigits());
 
     return formatter.format(amount.multiply(multiplicand));
@@ -72,5 +72,14 @@ public class FiatMoney {
     return Objects.equals(left.amount, right.amount) &&
            Objects.equals(left.currency, right.currency) &&
            Objects.equals(left.timestamp, right.timestamp);
+  }
+
+  @Override
+  public String toString() {
+    return "FiatMoney{" +
+           "amount=" + amount +
+           ", currency=" + currency +
+           ", timestamp=" + timestamp +
+           '}';
   }
 }

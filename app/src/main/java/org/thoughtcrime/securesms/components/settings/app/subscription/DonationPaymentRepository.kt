@@ -86,11 +86,11 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   }
 
   fun continuePayment(price: FiatMoney, paymentData: PaymentData): Completable {
-    Log.d(TAG, "Creating payment intent...", true)
+    Log.d(TAG, "Creating payment intent for $price...", true)
     return stripeApi.createPaymentIntent(price, application.getString(R.string.Boost__thank_you_for_your_donation))
       .onErrorResumeNext { Single.error(DonationExceptions.SetupFailed(it)) }
       .flatMapCompletable { result ->
-        Log.d(TAG, "Created payment intent.", true)
+        Log.d(TAG, "Created payment intent for $price.", true)
         when (result) {
           is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost amount is too small")))
           is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost amount is too large")))
@@ -277,7 +277,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   }
 
   override fun fetchPaymentIntent(price: FiatMoney, description: String?): Single<StripeApi.PaymentIntent> {
-    Log.d(TAG, "Fetching payment intent from Signal service...")
+    Log.d(TAG, "Fetching payment intent from Signal service for $price... (Locale.US minimum precision: ${price.minimumUnitPrecisionString})")
     return ApplicationDependencies
       .getDonationsService()
       .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, description)

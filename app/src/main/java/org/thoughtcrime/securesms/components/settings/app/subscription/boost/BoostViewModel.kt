@@ -179,8 +179,10 @@ class BoostViewModel(
     store.update { it.copy(stage = BoostState.Stage.TOKEN_REQUEST) }
 
     val boost = if (snapshot.isCustomAmountFocused) {
+      Log.d(TAG, "Boosting with custom amount ${snapshot.customAmount}")
       Boost(snapshot.customAmount)
     } else {
+      Log.d(TAG, "Boosting with preset amount ${snapshot.selectedBoost.price}")
       snapshot.selectedBoost
     }
 
