@@ -51,7 +51,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     if (address == null) {
       Log.w(TAG, "No address on the ContentRecord -- marking as invalid.");
       return true;
-    } else if (address.getAci().equals(UuidUtil.UNKNOWN_UUID)) {
+    } else if (!address.hasValidAci()) {
       Log.w(TAG, "Found a ContactRecord without a UUID -- marking as invalid.");
       return true;
     } else if ((self.getAci().isPresent() && address.getAci().equals(self.requireAci())) ||
