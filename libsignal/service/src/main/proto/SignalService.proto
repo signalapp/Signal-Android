@@ -447,9 +447,10 @@ message SyncMessage {
 
   message FetchLatest {
     enum Type {
-      UNKNOWN          = 0;
-      LOCAL_PROFILE    = 1;
-      STORAGE_MANIFEST = 2;
+      UNKNOWN             = 0;
+      LOCAL_PROFILE       = 1;
+      STORAGE_MANIFEST    = 2;
+      SUBSCRIPTION_STATUS = 3;
     }
 
     optional Type type = 1;

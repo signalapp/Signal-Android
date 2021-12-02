@@ -2442,11 +2442,11 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已經寫下密碼。沒有密碼，我將無法還原此備份。</string>
   <string name="registration_activity__restore_backup">還原備份</string>
   <string name="registration_activity__transfer_or_restore_account">移轉或還原帳號</string>
-  <string name="registration_activity__transfer_account">移轉賬號</string>
+  <string name="registration_activity__transfer_account">轉移帳號</string>
   <string name="registration_activity__skip">略過</string>
   <string name="preferences_chats__chat_backups">聊天備份</string>
   <string name="preferences_chats__backup_chats_to_external_storage">備份聊天到外部儲存空間</string>
-  <string name="preferences_chats__transfer_account">移轉賬號</string>
+  <string name="preferences_chats__transfer_account">轉移帳號</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">將帳號轉移到新的Android裝置</string>
   <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
   <string name="RegistrationActivity_restore">還原</string>
@@ -2467,7 +2467,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">要啟用備份，請選擇一個資料夾。 備份將儲存到該位置。</string>
   <string name="BackupDialog_choose_folder">選擇資料夾</string>
   <string name="BackupDialog_copied_to_clipboard">已複製到剪貼簿</string>
-  <string name="BackupDialog_no_file_picker_available">無可用的檔案挑選器。</string>
+  <string name="BackupDialog_no_file_picker_available">無可用的檔案選擇器。</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">輸入你的備份碼以確認</string>
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">你已成功的輸入你的備份碼</string>
@@ -2523,10 +2523,10 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">輕觸以解鎖</string>
   <string name="Recipient_unknown">未知</string>
   <!--TransferOrRestoreFragment-->
-  <string name="TransferOrRestoreFragment__transfer_or_restore_account">移轉或還原帳號</string>
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">轉移或還原帳號</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">如果你以前註冊過Signal帳號，則可以轉移或還原你的帳號和訊息</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">從Android裝置移轉</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">從舊的Android裝置移轉你的帳號和訊息。你需要連結舊裝置。</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">從舊的Android裝置轉移你的帳號和訊息。你需要連結舊裝置。</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">你需要連結舊裝置。</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">從備份還原</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">從本地備份還原你的訊息。 如果你現在不還原，則以後將無法還原。</string>
@@ -3289,5 +3289,7 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">你的裝置不支援 Google Pay，因此你無法訂閱以獲得徽章。 你仍然可以透過在我們的網站上捐款來支持 Signal。</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網路錯誤。 檢查你的網路連接並重試。</string>
   <string name="NetworkFailure__retry">重試</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">無法開啟選擇器。</string>
   <!--EOF-->
 </resources>

@@ -1345,8 +1345,8 @@ Viss du ikkje er ein avansert brukar, ikkje køyrer ein sjølvinstallert Android
   <string name="RegistrationActivity_play_services_error">Feil med Play-tenester</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tenester oppdaterer seg eller er mellombels utilgjengeleg. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_terms_and_privacy">Vilkår &amp; personvernreglar</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine og media for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal treng tilgang til kontaktane dine for å ta kontakt med vennar, utveksla meldingar og oppretta trygge samtalar</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal treng tilgang til kontaktar og media for å hjelpa deg med å ta kontakt med vennane dine og senda meldingar. Kontaktane blir lasta opp med Signals private kontaktoppdagingssystem, som betyr at dei er ende-til-ende-krypterte og aldri synlege for Signal-tenesta.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal treng tilgang til kontaktar for å hjelpa deg med å ta kontakt med vennane dine. Kontaktane blir lasta opp med Signals private kontaktoppdagingssystem, som betyr at dei er ende-til-ende-krypterte og aldri synlege for Signal-tenesta.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har prøvd for mange gongar å registrera dette nummeret. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Kan ikkje kopla til tenesta. Sjekk nettverkstilkoplinga og prøv igjen.</string>
   <string name="RegistrationActivity_non_standard_number_format">Ikkje-standard nummerformat</string>
@@ -3412,5 +3412,7 @@ Sjekkar igjen no …</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Eininga di støttar ikkje Google Pay, så du kan ikkje abonnera for å få eit merke. Du kan likevel støtta Signal ved å donera via nettsidene våre.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nettverksfeil. Sjekk tilkoplinga di og prøv igjen.</string>
   <string name="NetworkFailure__retry">Prøv igjen</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Klarte ikkje opna veljar.</string>
   <!--EOF-->
 </resources>

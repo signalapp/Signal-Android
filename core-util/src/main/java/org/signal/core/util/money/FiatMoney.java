@@ -59,7 +59,7 @@ public class FiatMoney {
    * @return amount, in smallest possible units (cents, yen, etc.)
    */
   public @NonNull String getMinimumUnitPrecisionString() {
-    NumberFormat formatter = NumberFormat.getInstance();
+    NumberFormat formatter = NumberFormat.getInstance(Locale.US);
     formatter.setMaximumFractionDigits(0);
     formatter.setGroupingUsed(false);
     

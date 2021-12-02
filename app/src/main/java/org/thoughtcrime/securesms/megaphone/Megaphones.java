@@ -351,7 +351,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowDonateMegaphone(@NonNull Context context) {
-    return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && LocaleFeatureFlags.isInDonateMegaphone() &&
+    return VersionTracker.getDaysSinceFirstInstalled(context) >= 3 && LocaleFeatureFlags.isInDonateMegaphone() &&
            Recipient.self()
                      .getBadges()
                      .stream()

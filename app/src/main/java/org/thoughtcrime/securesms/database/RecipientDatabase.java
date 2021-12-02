@@ -842,7 +842,7 @@ public class RecipientDatabase extends Database {
 
     if (id < 0) {
       Log.w(TAG,  "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.");
-      recipientId = getAndPossiblyMerge(insert.getAddress().hasValidAci() ? insert.getAddress().getAci() : null, insert.getAddress().getNumber().get(), true);
+      recipientId = getAndPossiblyMerge(insert.getAddress().hasValidAci() ? insert.getAddress().getAci() : null, insert.getAddress().getNumber().orNull(), true);
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
     } else {
       recipientId = RecipientId.from(id);

@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationP
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
+import org.thoughtcrime.securesms.util.StringUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.lang.NumberFormatException
 import java.math.BigDecimal
@@ -196,7 +197,8 @@ class BoostViewModel(
     }
   }
 
-  fun setCustomAmount(amount: String) {
+  fun setCustomAmount(rawAmount: String) {
+    val amount = StringUtil.stripBidiIndicator(rawAmount)
     val bigDecimalAmount: BigDecimal = if (amount.isEmpty() || amount == DecimalFormatSymbols.getInstance().decimalSeparator.toString()) {
       BigDecimal.ZERO
     } else {

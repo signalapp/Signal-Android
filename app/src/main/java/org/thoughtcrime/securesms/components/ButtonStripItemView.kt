@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.components
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import org.thoughtcrime.securesms.R
 
@@ -24,7 +26,9 @@ class ButtonStripItemView @JvmOverloads constructor(
 
     val array = context.obtainStyledAttributes(attrs, R.styleable.ButtonStripItemView)
 
-    val icon = array.getDrawable(R.styleable.ButtonStripItemView_bsiv_icon)
+    val iconId = array.getResourceId(R.styleable.ButtonStripItemView_bsiv_icon, -1)
+    val icon: Drawable? = if (iconId > 0) AppCompatResources.getDrawable(context, iconId) else null
+
     val contentDescription = array.getString(R.styleable.ButtonStripItemView_bsiv_icon_contentDescription)
     val label = array.getString(R.styleable.ButtonStripItemView_bsiv_label)
 
