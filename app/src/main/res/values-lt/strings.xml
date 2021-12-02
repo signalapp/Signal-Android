@@ -1488,6 +1488,8 @@
   <string name="RegistrationActivity_play_services_error">„Play“ paslaugų klaida</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">„Google Play“ paslaugos yra atnaujinamos arba laikinai neprieinamos. Prašome bandyti dar kartą.</string>
   <string name="RegistrationActivity_terms_and_privacy">Sąlygos ir Privatumo politika</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal programėlei reikia leidimo gauti prieigą prie jūsų adresatų ir medijos, kad padėtų jums susisiekti su draugais ir siųsti žinutes. Jūsų adresatai yra išsiunčiami naudojant Signal privatų adresatų atradimą, o tai reiškia, kad adresatai yra šifruoti ištisiniu būdu ir niekada nebus matomi Signal paslaugai.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal programėlei reikia leidimo gauti prieigą prie jūsų adresatų, kad padėtų jums susisiekti su draugais. Jūsų adresatai yra išsiunčiami naudojant Signal privatų adresatų atradimą, o tai reiškia, kad adresatai yra šifruoti ištisiniu būdu ir niekada nebus matomi Signal paslaugai.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Atlikote per daug bandymų užregistruoti šį numerį. Vėliau bandykite dar kartą.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepavyksta prisijungti prie paslaugos. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
   <string name="RegistrationActivity_non_standard_number_format">Nestandartinis numerio formatas</string>
@@ -3601,5 +3603,6 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="NetworkFailure__retry">Bandyti dar kartą</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Nepavyko atverti parinkiklio.</string>
   <!--EOF-->
 </resources>

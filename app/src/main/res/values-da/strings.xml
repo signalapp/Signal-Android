@@ -343,7 +343,7 @@
   <string name="ConversationListFragment_select">Vælg</string>
   <plurals name="ConversationListFragment_archive_plural">
     <item quantity="one">Arkiver</item>
-    <item quantity="other">Arkiver</item>
+    <item quantity="other">Arkivér</item>
   </plurals>
   <plurals name="ConversationListFragment_unarchive_plural">
     <item quantity="one">Ophæv arkivering</item>

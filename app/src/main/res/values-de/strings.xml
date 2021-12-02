@@ -3386,6 +3386,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netzfehler. Überprüfe deine Internetverbindung und versuche es erneut.</string>
   <string name="NetworkFailure__retry">Erneut versuchen</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
-  <string name="NotificationSettingsFragment__failed_to_open_picker">Klingeltonauswahl konnte nicht geöffnet werden.</string>
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Tonauswahlmenü konnte nicht geöffnet werden.</string>
   <!--EOF-->
 </resources>

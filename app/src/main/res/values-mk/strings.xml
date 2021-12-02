@@ -1338,8 +1338,13 @@
   <string name="RegistrationActivity_play_services_error">Грешка со Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services се ажурира или моментално е недостапна. Ве молиме обидетете се повторно.</string>
   <string name="RegistrationActivity_terms_and_privacy">Услови &amp; Политика на приватност</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се прикачуваат со користење на приватно откривање контакти на Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти за да ви помогне да се поврзете со пријателите. Вашите контакти се прикачуваат со користење на приватно откривање контакти на Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Направивте премногу обиди за регистрација на овој број. Ве молиме обидете се повторно подоцна.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не можеше да се поврзе на услугата. Ве молиме проверете го мрежното поврзување и обидете се повторно.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Нестандарден формат на број</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Бројот што го внесовте (%1$s) се чини дека е нестандарден формат.\n\nДали мислевте на %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Формат на телефонски број</string>
   <string name="RegistrationActivity_call_requested">Повикот е побаран</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Сега сте %d чекор оддалечени од испраќање на лог за грешки.</item>
@@ -3294,9 +3299,12 @@
   <string name="DonationsErrors__couldnt_add_badge">Не може да се додаде беџ</string>
   <string name="DonationsErrors__your_badge_could_not">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со поддршката.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недостапен</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Мора да поставите Google Pay за да донирате во апликацијата.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Не успеа да се откажете претплатата</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет конекција.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <string name="NetworkFailure__retry">Пробај пак</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Не успеа да се отвори менито за избор.</string>
   <!--EOF-->
 </resources>

@@ -1224,11 +1224,11 @@
   <string name="WebRtcCallView__end_call">Akhiri panggilan</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-    <item quantity="other">Di panggilan ini .%1$d  orang</item>
+    <item quantity="other">Di panggilan ini · %1$d orang</item>
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s diblokir</string>
-  <string name="CallParticipantView__more_info">Info lebih lanjut</string>
+  <string name="CallParticipantView__more_info">Info Lebih Lanjut</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Anda tidak akan bisa menerima panggilan suara atau video dan mereka tidak bisa menerima panggilan Anda.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Tidak dapat menerima audio &amp; video dari %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Tidak dapat menerima audio dan video dari %1$s</string>
@@ -1273,7 +1273,7 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_non_standard_number_format">Format nomor tidak umum</string>
   <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Nomor yang Anda masukkan (%1$s) terlihat bukan format nomor yang umum.\n\nApakah maksud Anda %2$s?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Format Nomor Telepon</string>
-  <string name="RegistrationActivity_call_requested">Panggilan dimintakan</string>
+  <string name="RegistrationActivity_call_requested">Panggilan diminta</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Kamu memiliki %d langkah lagi untuk mengirimkan catatan awakutu.</item>
   </plurals>
@@ -1323,7 +1323,7 @@ isikan (%s) tidak valid.
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Kami akan mengingatkan Anda lagi dalam beberapa hari.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Kami akan mengingatkan Anda lagi dalam seminggu.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Kami akan mengingatkan Anda lagi dalam beberapa minggu.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Kami akan mengingatkan Anda lagi sebulan ini.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Kami akan mengingatkan Anda sebulan lagi.</string>
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_sticker">Stiker</string>
@@ -1341,7 +1341,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SmsMessageRecord_secure_session_reset_s">%s mengatur ulang sesi aman.</string>
   <string name="SmsMessageRecord_duplicate_message">Pesan Duplikat</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Pesan ini tidak dapat diproses karena dikirim dari versi Signal yang lebih baru. Anda dapat meminta kontak anda untuk mengirim pesan ini lagi setelah Anda melakukan pembaruan.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Kesalahan dalam penanganan pesan baru.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Kesalahan dalam penanganan pesan masuk.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stiker</string>
   <!--StickerManagementAdapter-->
@@ -1365,12 +1365,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Ketuk pecakapan untuk menghapus</string>
   <string name="SubmitDebugLogActivity_submit">Kirimkan</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Gagal mengirimkan catatan</string>
-  <string name="SubmitDebugLogActivity_success">Sukses!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan kirimkan ke email support <b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_success">Berhasil!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan tambahkan ke laporan masalah Anda atau kirimkan ke surel dukungan:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Bagikan</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Catatan ini akan dipasang secara daring kepada publik untuk dilihat oleh kontributor. Anda dapat memeriksa dan menyuntingnya sebelum mengunggah.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Catatan ini akan dipasang secara daring kepada publik untuk dilihat oleh kontributor. Anda dapat memeriksanya sebelum mengunggah.</string>
   <!--SupportEmailUtil-->
-  <string name="SupportEmailUtil_filter">Filter:</string>
+  <string name="SupportEmailUtil_filter">Saring:</string>
   <string name="SupportEmailUtil_device_info">Informasi perangkat:</string>
   <string name="SupportEmailUtil_android_version">Versi Android:</string>
   <string name="SupportEmailUtil_signal_version">Versi Signal:</string>
@@ -1548,7 +1548,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Untuk menjawab panggilan dari %s, berikan Signal akses ke mikrofon Anda.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal memerlukan izin Mikrofon dan Kamera untuk menerima atau melakukan panggilan, tetapi saat ini izin ditolak secara permanen. Mohon lanjutkan ke pengatuaran aplikasi, pilih \"Izin\" lalu aktifkan \"Mikrofon\" serta \"Kamera\". </string>
-  <string name="WebRtcCallActivity__answered_on_a_linked_device">Jawab di perangkat terkait</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Jawab di perangkat terhubung.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Tolak di perangkat terkait</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Sibuk di perangkat tersambung.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Seseorang telah bergabung dalam panggilan ini dengan nomor keamanan yang berubah.</string>
@@ -1633,7 +1633,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Memuat</string>
   <string name="ConversationUpdateItem_learn_more">Pelajari lebih lanjut</string>
-  <string name="ConversationUpdateItem_join_call">Bergabung Panggilan</string>
+  <string name="ConversationUpdateItem_join_call">Bergabung panggilan</string>
   <string name="ConversationUpdateItem_return_to_call">Kembali ke panggilan</string>
   <string name="ConversationUpdateItem_call_is_full">Panggilan penuh</string>
   <string name="ConversationUpdateItem_invite_friends">Undang teman</string>

@@ -855,8 +855,8 @@
   <string name="MediaOverviewActivity_voice_message">व्हॉईस संदेश</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s ने पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you">आपल्या द्वारे पाठवले</string>
-  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s ला पाठवले</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s ला आपल्याद्वारे पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ने %2$s ला पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s"> आपन %1$s ला पाठवले</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">सादर करत आहे प्रतिक्रिया</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">आपल्याला कसे वाटते त्यासोबत जलद शेअर करण्यासाठी कुठल्याही संदेशावर टॅप करा आणि धरून ठेवा.</string>

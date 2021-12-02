@@ -3305,7 +3305,7 @@ Nouvelle tentative…</string>
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Sélectionnez un badge</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Vous devez sélectionner un badge</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un pourvoyeur</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un soutien</string>
   <string name="ImageView__badge">Badge</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal est propulsé par des personnes comme vous.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Soutenez une technologie conçue pour vous – pas pour vos données – en rejoignant la communauté qui la porte.</string>

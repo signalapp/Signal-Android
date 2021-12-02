@@ -3397,5 +3397,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Villa í netkerfi. Athugaðu nettenginguna þína og prófaðu svo aftur.</string>
   <string name="NetworkFailure__retry">Reyna aftur</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Mistókst að opna veljara.</string>
   <!--EOF-->
 </resources>

@@ -2037,7 +2037,7 @@
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__donate_to_signal">Κάνε μια δωρεά στο Signal</string>
   <string name="preferences__subscription">Συνδρομή</string>
-  <string name="preferences__become_a_signal_sustainer">Γίνε Υποστηρικτής Signal</string>
+  <string name="preferences__become_a_signal_sustainer">Γίνε Υποστηρικτής/τρια Signal</string>
   <string name="preferences__signal_boost">Ενίσχυση Signal</string>
   <string name="preferences__privacy">Ιδιωτικότητα</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -3020,7 +3020,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">Όχι τώρα</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Προσθήκη φωτογραφίας</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__become_a_sustainer">Γίνε υποστηρικτής</string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Γίνε υποστηρικτής/τρια</string>
   <string name="BecomeASustainerMegaphone__signal_is_powered">Το Signal βασίζεται σε άτομα σαν κι εσένα. Με τη συνεισφορά σου λαμβάνεις ένα έμβλημα για το προφίλ σου.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Όχι, ευχαριστώ</string>
   <string name="BecomeASustainerMegaphone__contribute">Συνεισφορά</string>
@@ -3189,7 +3189,7 @@
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Επιλογή εμβλήματος</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Πρέπει να επιλέξεις έμβλημα</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Αποτυχία ανανέωσης προφίλ</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε συνεχόμενα υποστηρικτής</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε συνεχόμενα υποστηρικτής/τρια</string>
   <string name="ImageView__badge">Έμβλημα</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Το Signal στηρίζεται σε άτομα σαν κι εσένα.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα - όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν.</string>
@@ -3219,7 +3219,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Κέρδισες το έμβλημα %s! Βοήθησε με την ευαισθητοποίηση για το Signal, επιδεικνύοντας το έμβλημα στο προφίλ σου.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Κέρδισες το έμβλημα Ενίσχυσης! Βοήθησε με την ευαισθητοποίηση για το Signal, επιδεικνύοντας το έμβλημα στο προφίλ σου.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Μπορείς επίσης</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Να γίνεις μηνιαίος υποστηρικτής.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Να γίνει το βασικό έμβλημα</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Τέλος</string>
@@ -3247,11 +3247,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Η συνδρομή ακυρώθηκε</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Το έμβλημα Ενίσχυσης έληξε, και δεν θα εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Μπορείς να επανενεργοποιήσεις το έμβλημα Ενίσχυσης για ακόμα 30 ημέρες, με μια μεμονωμένη συνεισφορά.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε υποστηρικτής</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε υποστηρικτής/τρια</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Προσθήκη Ενίσχυσης</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Η συνδρομή υποστηρικτή σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το έμβλημα %1$s σου δεν είναι πλέον ορατό στο προφίλ σου.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Η συνδρομή υποστηρικτή/τριας σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το έμβλημα %1$s σου δεν είναι πλέον ορατό στο προφίλ σου.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal αλλά για να υποστηρίξεις την εφαρμογή και να επανενεργοποιήσεις το έμβλημά σου, ανανέωσε τώρα.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Ανανέωση συνδρομής</string>
   <string name="Subscription__please_contact_support_for_more_information">Παρακαλούμε επικοινώνησε με την υποστήριξη για περισσότερες πληροφορίες.</string>
