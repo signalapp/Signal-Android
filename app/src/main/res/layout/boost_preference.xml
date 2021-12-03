@@ -112,23 +112,6 @@
         app:strokeWidth="1.5dp"
         tools:text="$100" />
 
-    <TextView
-        android:id="@+id/boost_currency_start"
-        android:layout_width="wrap_content"
-        android:layout_height="48sp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/rounded_rectangle_secondary"
-        android:gravity="center"
-        android:minWidth="48sp"
-        android:textAppearance="@style/Signal.Text.Body"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/boost_custom"
-        app:layout_constraintEnd_toStartOf="@id/boost_custom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/boost_custom"
-        tools:text="$"
-        tools:visibility="visible" />
-
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/boost_custom"
         android:layout_width="0dp"
@@ -139,29 +122,12 @@
         android:hint="@string/Boost__enter_custom_amount"
         android:imeOptions="actionDone"
         android:inputType="numberDecimal"
-        android:paddingStart="21dp"
-        android:paddingEnd="21dp"
         android:textAppearance="@style/Signal.Text.Body"
         android:textColor="@color/signal_text_primary"
         android:textColorHint="@color/signal_text_primary"
-        app:layout_constraintEnd_toStartOf="@id/boost_currency_end"
-        app:layout_constraintStart_toEndOf="@id/boost_currency_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/boost_4" />
 
-    <TextView
-        android:id="@+id/boost_currency_end"
-        android:layout_width="wrap_content"
-        android:layout_height="48sp"
-        android:layout_marginStart="12dp"
-        android:background="@drawable/rounded_rectangle_secondary"
-        android:gravity="center"
-        android:minWidth="48sp"
-        android:textAppearance="@style/Signal.Text.Body"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/boost_custom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/boost_custom"
-        app:layout_constraintTop_toTopOf="@id/boost_custom"
-        tools:text="$" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
