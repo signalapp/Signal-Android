@@ -64,15 +64,16 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
 
     override fun onBindItemViewHolder(viewHolder: ViewHolder, cursor: Cursor) {
         val message = getMessage(cursor)!!
+        val position = viewHolder.adapterPosition
+        val messageBefore = getMessageBefore(position, cursor)
         when (viewHolder) {
             is VisibleMessageViewHolder -> {
                 val view = viewHolder.view
                 val isSelected = selectedItems.contains(message)
                 view.snIsSelected = isSelected
                 view.messageTimestampTextView.isVisible = isSelected
-                val position = viewHolder.adapterPosition
                 view.indexInAdapter = position
-                view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide, searchQuery)
+                view.bind(message, messageBefore, getMessageAfter(position, cursor), glide, searchQuery)
                 if (!message.isDeleted) {
                     view.onPress = { event -> onItemPress(message, viewHolder.adapterPosition, view, event) }
                     view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
@@ -80,7 +81,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 }
                 view.contentViewDelegate = visibleMessageContentViewDelegate
             }
-            is ControlMessageViewHolder -> viewHolder.view.bind(message)
+            is ControlMessageViewHolder -> viewHolder.view.bind(message, messageBefore)
         }
     }
 
