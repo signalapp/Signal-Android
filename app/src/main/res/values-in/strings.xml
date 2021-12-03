@@ -1662,8 +1662,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="safety_number_change_dialog__accept">Terima</string>
   <string name="safety_number_change_dialog__send_anyway">Tetap kirim</string>
   <string name="safety_number_change_dialog__call_anyway">Tetap panggil</string>
-  <string name="safety_number_change_dialog__join_call">Bergabung Panggilan</string>
-  <string name="safety_number_change_dialog__continue_call">Teruskan panggilan</string>
+  <string name="safety_number_change_dialog__join_call">Bergabung panggilan</string>
+  <string name="safety_number_change_dialog__continue_call">Lanjutkan panggilan</string>
   <string name="safety_number_change_dialog__leave_call">Tinggalkan panggilan</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Orang-orang berikut mungkin telah memasang ulang atau mengganti perangkat. Verifikasi nomor keamanan Anda dengan mereka untuk memastikan privasi.</string>
   <string name="safety_number_change_dialog__view">Lihat</string>
@@ -1776,15 +1776,15 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="EditAboutFragment_encrypted">Terenkripsi</string>
   <string name="EditAboutFragment_be_kind">Ramah</string>
   <string name="EditAboutFragment_coffee_lover">Penyuka kopi</string>
-  <string name="EditAboutFragment_free_to_chat">Seggang untuk mengobrol</string>
+  <string name="EditAboutFragment_free_to_chat">Bebas untuk mengobrol</string>
   <string name="EditAboutFragment_taking_a_break">Istirahat</string>
   <string name="EditAboutFragment_working_on_something_new">Sedang mengerjakan sesuatu yang baru</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group">Ubah grup</string>
+  <string name="EditProfileFragment__edit_group">Sunting grup</string>
   <string name="EditProfileFragment__group_name">Nama grup</string>
   <string name="EditProfileFragment__group_description">Deskripsi grup</string>
   <!--EditProfileNameFragment-->
-  <string name="EditProfileNameFragment_your_name">Nama anda</string>
+  <string name="EditProfileNameFragment_your_name">Nama Anda</string>
   <string name="EditProfileNameFragment_first_name">Nama depan</string>
   <string name="EditProfileNameFragment_last_name_optional">Nama belakang (opsional)</string>
   <string name="EditProfileNameFragment_save">Simpan</string>
@@ -1794,7 +1794,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Masukkan nama atau nomor</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Untuk memverifikasi keamanan enkripsi end-to-end Anda dengan %s, bandingkan nomor di atas dengan yang ada di perangkat mereka. Anda juga dapat memindai kodenya di ponsel mereka. <a href="https://signal.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Untuk memverifikasi keamanan enkripsi ujung-ke-ujung Anda dengan %s, bandingkan nomor di atas dengan yang ada di perangkat mereka. Anda juga dapat memindai kodenya di ponsel mereka. <a href="https://signal.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
   <string name="verify_display_fragment__successful_match">Pencocokan berhasil</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Gagal memverifikasi nomor keamanan</string>
@@ -1804,7 +1804,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bagikan nomor keamanan</string>
   <!--verity_scan_fragment-->
-  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Pindai kode QR pada perangkat kontak Anda</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Pindai kode QR pada perangkat kontak Anda.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Geser ke atas untuk menjawab</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Geser ke bawah untuk menolak panggilan</string>
@@ -1812,11 +1812,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="message_details_header__issues_need_your_attention">Beberapa masalah memerlukan perhatian Anda.</string>
   <string name="message_details_header__sent">Terkirim:</string>
   <string name="message_details_header__received">Diterima:</string>
-  <string name="message_details_header__disappears">Hilang:</string>
+  <string name="message_details_header__disappears">Menghilang:</string>
   <string name="message_details_header__via">Melalui:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Tertunda</string>
-  <string name="message_details_recipient_header__sent_to">Kirim ke</string>
+  <string name="message_details_recipient_header__sent_to">Terkirim ke</string>
   <string name="message_details_recipient_header__sent_from">Dikirim dari</string>
   <string name="message_details_recipient_header__delivered_to">Terkirim ke</string>
   <string name="message_details_recipient_header__read_by">Dibaca oleh</string>
@@ -1839,22 +1839,22 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AndroidManifest_remove_photo">Buang foto</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Undangan percakapan</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Pengguna dapat menerima percakapan baru. Nama profil digunakan untuk mengidentifikasi pengirim pesan dalam percakapan.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Pengguna sekarang dapat memilih untuk menerima percakapan baru. Nama profil memungkinkan orang mengetahui siapa yang mengirmkan mereka pesan.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Tambahkan nama profil</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">Sudahkah Anda membaca FAQ?</string>
   <string name="HelpFragment__next">Berikutnya</string>
   <string name="HelpFragment__contact_us">Hubungi kami</string>
-  <string name="HelpFragment__tell_us_whats_going_on">Sebutkan galat yang terjadi</string>
-  <string name="HelpFragment__include_debug_log">Cantumkan catatan debug</string>
-  <string name="HelpFragment__whats_this">Penjelasan bantuan</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Beritahu kami apa yang terjadi</string>
+  <string name="HelpFragment__include_debug_log">Sertakan catatan awakutu.</string>
+  <string name="HelpFragment__whats_this">Apakah ini?</string>
   <string name="HelpFragment__how_do_you_feel">Saran dan kesan (opsional)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Beritahu mengapa Anda menghubungi kami.</string>
-  <string name="HelpFragment__support_info">Informasi support</string>
-  <string name="HelpFragment__signal_android_support_request">Support Signal pada Android</string>
-  <string name="HelpFragment__debug_log">Catatan debug:</string>
+  <string name="HelpFragment__support_info">Informasi Bantuan</string>
+  <string name="HelpFragment__signal_android_support_request">Permintaan Bantuan Signal Android</string>
+  <string name="HelpFragment__debug_log">Catatan Awakutu:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
-  <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan sedeskriptif mungkin untuk membantu kami memahami permasalahannya.</string>
   <string-array name="HelpFragment__categories_3">
     <item>\-\- Mohon pilih sebuah opsi \-\-</item>
     <item>Sesuatu Tidak Berfungsi</item>
@@ -1917,9 +1917,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
   <string name="preferences__pref_use_address_book_photos">Gunakan foto dari kontak</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Tampilkan foto dari buku kontak jika tersedia</string>
-  <string name="preferences__generate_link_previews">Buat tinjauan tautan</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Mengambil pratinjau dari tautan secara langsung dari situs web untuk pesan yang dikirimkan.</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Tampilkan foto dari kontak jika tersedia</string>
+  <string name="preferences__generate_link_previews">Buat pratinjau tautan</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Mengambil pratinjau dari tautan secara langsung dari situs web untuk pesan yang Anda kirimkan.</string>
   <string name="preferences__choose_identity">Pilih identitas</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
   <string name="preferences__change_passphrase">Ganti frasa sandi</string>
@@ -1962,7 +1962,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__donate_to_signal">Berdonasi ke Signal</string>
   <string name="preferences__subscription">Berlangganan</string>
   <string name="preferences__become_a_signal_sustainer">Menjadi Penyokong Signal</string>
-  <string name="preferences__signal_boost">Signal Boost</string>
+  <string name="preferences__signal_boost">Penguat Signal</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">User Agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Pengaturan Manual MMS</string>
@@ -2019,13 +2019,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_storage__files">Berkas</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Tinjau penyimpanan</string>
-  <string name="preferences_storage__delete_older_messages">Hapus pesan lama?</string>
+  <string name="preferences_storage__delete_older_messages">Hapus pesan-pesan lama?</string>
   <string name="preferences_storage__clear_message_history">Hapus riwayat pesan?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus semua riwayat pesan dan media dari perangkat Anda yang lebih lama dari%1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ini akan secara permanen memotong semua percakapan ke %1$s pesan-pesan terbaru.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan menghapus semua riwayat pesan dan media selamanya dari perangkat Anda.</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Anda yakin menghapus semua riwayat pesan?</string>
-  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus selamanya. Ini tidak dapat dibatalkan.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Apakah Anda yakin ingin menghapus semua riwayat pesan?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus selamanya. Tindakan ini tidak dapat dibatalkan.</string>
   <string name="preferences_storage__delete_all_now">Hapus semua sekarang</string>
   <string name="preferences_storage__forever">Selamanya</string>
   <string name="preferences_storage__one_year">1 tahun</string>
@@ -2038,13 +2038,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Nonaktifkan dukungan emoji Signal bawaan</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Sampaikan semua panggilan melalui peladen Signal untuk menghindari pengungkapan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
   <string name="preferences_advanced__always_relay_calls">Selalu relay panggilan</string>
-  <string name="preferences_app_protection__who_can">Siapa yang mampu</string>
+  <string name="preferences_app_protection__who_can">Siapa yang dapat…</string>
   <string name="preferences_app_protection__app_access">Akses aplikasi</string>
   <string name="preferences_app_protection__communication">Komunikasi</string>
   <string name="preferences_chats__chats">Obrolan</string>
-  <string name="preferences_data_and_storage__manage_storage">Atur penyimpanan</string>
+  <string name="preferences_data_and_storage__manage_storage">Kelola penyimpanan</string>
   <string name="preferences_data_and_storage__calls">Panggilan</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">Kurangi penggunaan data panggilan</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Kurangi penggunaan data untuk panggilan</string>
   <string name="preferences_data_and_storage__never">Tidak pernah</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi dan data seluler</string>
   <string name="preferences_data_and_storage__mobile_data_only">Data seluler saja</string>
@@ -2070,7 +2070,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_proxy">Proksi</string>
   <string name="preferences_use_proxy">Gunakan proksi</string>
   <string name="preferences_off">Mati</string>
-  <string name="preferences_on">Aktif</string>
+  <string name="preferences_on">Nyala</string>
   <string name="preferences_proxy_address">Alamat proksi</string>
   <string name="preferences_only_use_a_proxy_if">Gunakan proksi hanya ketika Anda tidak dapat tersambung ke Signal menggunakan data seluler atau Wi-Fi.</string>
   <string name="preferences_share">Bagikan</string>

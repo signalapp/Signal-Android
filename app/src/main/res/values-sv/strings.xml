@@ -2042,7 +2042,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__donate_to_signal">Donera till Signal</string>
   <string name="preferences__subscription">Prenumeration</string>
   <string name="preferences__become_a_signal_sustainer">Bli en Signal-upprätthållare</string>
-  <string name="preferences__signal_boost">Signal-boost</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Integritet</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
@@ -2205,7 +2205,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Betalningar inaktiverade.</string>
   <string name="PaymentsHomeFragment__payment_failed">Betalning misslyckades</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kan använda Signal för att skicka och ta emot MobileCoin. Alla betalningar omfattas av användarvillkoren för MobileCoins och MobileCoin Wallet. Detta är en beta-funktion så att du kan stöta på vissa problem och betalningar eller saldon som du kan förlora kan inte återställas.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kan använda Signal för att skicka och ta emot MobileCoin. Alla betalningar omfattas av användarvillkoren för MobileCoins och MobileCoin Wallet. Detta är en beta-funktion så du kan stöta på vissa problem och betalningar eller saldon som du kan förlora kan inte återställas.</string>
   <string name="PaymentsHomeFragment__activate">Aktivera</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Visa MobileCoin-villkor</string>
   <string name="PaymentsHomeFragment__payments_not_available">Betalningar i Signal är inte längre tillgängliga. Du kan fortfarande överföra pengar till en börs men du kan inte längre skicka och ta emot betalningar eller lägga till pengar.</string>
@@ -2893,7 +2893,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Om MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin är en ny integritetsfokuserad digital valuta.</string>
-  <string name="payment_info_card_adding_funds">Lägger till pengar</string>
+  <string name="payment_info_card_adding_funds">Lägga till pengar</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Du kan lägga till pengar för användning i Signal genom att skicka MobileCoin till din plånboksadress.</string>
   <string name="payment_info_card_cashing_out">Utbetalning</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Du kan betala ut MobileCoin när som helst på ett börs som stöder MobileCoin. Gör bara en överföring till ditt konto vid växlingen.</string>
@@ -3346,10 +3346,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om prenumeration</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få prenumeration.</string>
   <string name="BoostFragment__give_signal_a_boost">Ge Signal ett lyft</string>
-  <string name="BoostFragment__say_thanks_and_earn">Säg \"Tack!\" och förtjäna boost-märket i %1$d dagar.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Säg \"Tack!\" och förtjäna Boost-märket i %1$d dagar.</string>
   <string name="Boost__enter_custom_amount">Ange anpassat belopp</string>
   <string name="Boost__one_time_contribution">Engångsbidrag</string>
-  <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal-boost</string>
+  <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
   <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
   <string name="MySupportPreference__processing_transaction">Bearbetar transaktionen…</string>

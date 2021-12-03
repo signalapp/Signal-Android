@@ -1940,7 +1940,7 @@
     <item>Retour d\'information</item>
     <item>Autre</item>
     <item>Paiements (MobileCoin)</item>
-    <item>Soutien et Amplificateur de signal</item>
+    <item>Soutiens et Boost Signal</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
@@ -3326,7 +3326,7 @@ Nouvelle tentative…</string>
   <string name="Subscription__s_per_month">%s/mois</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mois · Renouvellement %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mois · Expire %2$s </string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal est une fondation à but non lucratif sans annonceurs ni investisseurs, soutenue uniquement par les gens qui l\'utilisent et l\'apprécient. Faites un don mensuel récurrent et recevez un badge de profil pour afficher votre soutien.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par les gens qui l’utilisent et l’apprécient. Faites un don mensuel récurrent et recevez un badge de profil pour afficher votre soutien.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pourquoi contribuer ?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal s\'engage à développer une technologie de protection de la vie privée à code source ouvert qui protège la libre expression et permet une communication mondiale sécurisée.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Votre contribution alimente cette cause et permet de financer le développement et le fonctionnement d\'une application utilisée par des millions de personnes pour la communication privée. Pas de publicité. Pas de traceurs. Sans blague.</string>
