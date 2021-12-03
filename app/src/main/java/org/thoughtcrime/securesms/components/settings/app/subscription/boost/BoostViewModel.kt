@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.StringUtil
 import org.thoughtcrime.securesms.util.livedata.Store
-import java.lang.NumberFormatException
 import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -194,7 +193,8 @@ class BoostViewModel(
     store.update {
       it.copy(
         isCustomAmountFocused = false,
-        selectedBoost = boost
+        selectedBoost = boost,
+        customAmount = FiatMoney(BigDecimal.ZERO, it.currencySelection)
       )
     }
   }
@@ -218,7 +218,9 @@ class BoostViewModel(
   }
 
   fun setCustomAmountFocused(isFocused: Boolean) {
-    store.update { it.copy(isCustomAmountFocused = isFocused) }
+    store.update {
+      it.copy(isCustomAmountFocused = isFocused)
+    }
   }
 
   private data class BoostInfo(val boosts: List<Boost>, val defaultBoost: Boost?, val boostBadge: Badge, val supportedCurrencies: Set<Currency>)

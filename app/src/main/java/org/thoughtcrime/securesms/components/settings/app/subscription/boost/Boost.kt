@@ -3,15 +3,17 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.boost
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.text.Editable
+import android.text.InputFilter
+import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextWatcher
 import android.text.method.DigitsKeyListener
+import android.view.Gravity
 import android.view.View
-import androidx.annotation.VisibleForTesting
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.animation.doOnEnd
-import androidx.core.text.isDigitsOnly
 import com.google.android.material.button.MaterialButton
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
@@ -21,14 +23,12 @@ import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
-import org.thoughtcrime.securesms.util.StringUtil
 import org.thoughtcrime.securesms.util.ViewUtil
-import java.lang.Integer.min
+import org.thoughtcrime.securesms.util.text.AfterTextChanged
+import org.thoughtcrime.securesms.util.visible
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
 import java.util.Currency
-import java.util.Locale
-import java.util.regex.Pattern
 
 /**
  * A Signal Boost is a one-time ephemeral show of support. Each boost level
@@ -122,7 +122,11 @@ data class Boost(
     private val boost4: MaterialButton = itemView.findViewById(R.id.boost_4)
     private val boost5: MaterialButton = itemView.findViewById(R.id.boost_5)
     private val boost6: MaterialButton = itemView.findViewById(R.id.boost_6)
+    private val currencyStart: TextView = itemView.findViewById(R.id.boost_currency_start)
+    private val currencyEnd: TextView = itemView.findViewById(R.id.boost_currency_end)
     private val custom: AppCompatEditText = itemView.findViewById(R.id.boost_custom)
+
+    private var textChangedWatcher: TextWatcher? = null
 
     private val boostButtons: List<MaterialButton>
       get() {
@@ -132,8 +136,6 @@ data class Boost(
           listOf(boost3, boost2, boost1, boost6, boost5, boost4)
         }
       }
-
-    private var filter: MoneyFilter? = null
 
     init {
       custom.filters = emptyArray()
@@ -157,20 +159,33 @@ data class Boost(
         }
       }
 
-      if (filter == null || filter?.currency != model.currency) {
-        custom.removeTextChangedListener(filter)
+      currencyStart.text = model.currency.symbol
+      currencyEnd.text = model.currency.symbol
 
-        filter = MoneyFilter(model.currency, custom) {
-          model.onCustomAmountChanged(it)
-        }
-
-        custom.keyListener = filter
-        custom.addTextChangedListener(filter)
-
-        custom.setText("")
+      if (model.currency.defaultFractionDigits > 0) {
+        custom.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_DECIMAL
+        custom.filters = arrayOf(DecimalPlacesFilter(model.currency.defaultFractionDigits, custom.keyListener as DigitsKeyListener))
+      } else {
+        custom.inputType = EditorInfo.TYPE_CLASS_NUMBER
+        custom.filters = arrayOf()
       }
 
+      custom.removeTextChangedListener(textChangedWatcher)
+
+      textChangedWatcher = AfterTextChanged {
+        model.onCustomAmountChanged(it.toString())
+      }
+
+      custom.addTextChangedListener(textChangedWatcher)
+      custom.setText("")
+
       custom.setOnFocusChangeListener { _, hasFocus ->
+        val isCurrencyAtFrontOfNumber = currencyIsAtFrontOfNumber(model.currency)
+
+        currencyStart.visible = isCurrencyAtFrontOfNumber && hasFocus
+        currencyEnd.visible = !isCurrencyAtFrontOfNumber && hasFocus
+
+        custom.gravity = if (hasFocus) (Gravity.START or Gravity.CENTER_VERTICAL) else Gravity.CENTER
         model.onCustomAmountFocusChanged(hasFocus)
       }
 
@@ -181,6 +196,51 @@ data class Boost(
         custom.clearFocus()
       }
     }
+
+    private fun currencyIsAtFrontOfNumber(currency: Currency): Boolean {
+      val formatter = NumberFormat.getCurrencyInstance().apply {
+        this.currency = currency
+      }
+      return formatter.format(1).startsWith(currency.symbol)
+    }
+  }
+
+  /**
+   * Restricts output of the given Digits filter to the given number of decimal places.
+   */
+  private class DecimalPlacesFilter(private val decimalPlaces: Int, private val digitsKeyListener: DigitsKeyListener) : InputFilter {
+
+    private val decimalSeparator = DecimalFormatSymbols.getInstance().decimalSeparator
+    private val builder = SpannableStringBuilder()
+
+    override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dstart: Int, dend: Int): CharSequence? {
+      val keyListenerResult = digitsKeyListener.filter(source, start, end, dest, dstart, dend)
+
+      builder.clear()
+      builder.clearSpans()
+
+      val toInsert = keyListenerResult ?: source.substring(start, end)
+
+      builder.append(dest)
+
+      if (dstart == dend) {
+        builder.insert(dstart, toInsert)
+      } else {
+        builder.replace(dstart, dend, toInsert)
+      }
+
+      val separatorIndex = builder.indexOf(decimalSeparator)
+      return if (separatorIndex > -1) {
+        val suffix = builder.split(decimalSeparator).last()
+        if (suffix.length > decimalPlaces) {
+          dest.subSequence(dstart, dend)
+        } else {
+          null
+        }
+      } else {
+        null
+      }
+    }
   }
 
   private class HeadingViewHolder(itemView: View) : MappingViewHolder<HeadingModel>(itemView) {
@@ -189,121 +249,6 @@ data class Boost(
 
     override fun bind(model: HeadingModel) {
       badgeImageView.setBadge(model.boostBadge)
-    }
-  }
-
-  @VisibleForTesting
-  class MoneyFilter(val currency: Currency, private val text: AppCompatEditText? = null, private val onCustomAmountChanged: (String) -> Unit = {}) : DigitsKeyListener(false, true), TextWatcher {
-
-    val separator = DecimalFormatSymbols.getInstance().decimalSeparator
-    val separatorCount = min(1, currency.defaultFractionDigits)
-    val symbol: String = currency.getSymbol(Locale.getDefault())
-
-    /**
-     * From Character.isDigit:
-     *
-     * * '\u0030' through '\u0039', ISO-LATIN-1 digits ('0' through '9')
-     * * '\u0660' through '\u0669', Arabic-Indic digits
-     * * '\u06F0' through '\u06F9', Extended Arabic-Indic digits
-     * * '\u0966' through '\u096F', Devanagari digits
-     * * '\uFF10' through '\uFF19', Fullwidth digits
-     */
-    val digitsGroup: String = "[\\u0030-\\u0039]|[\\u0660-\\u0669]|[\\u06F0-\\u06F9]|[\\u0966-\\u096F]|[\\uFF10-\\uFF19]"
-    val zeros: String = "\\u0030|\\u0660|\\u06F0|\\u0966|\\uFF10"
-
-    val pattern: Pattern = "($digitsGroup)*([$separator]){0,$separatorCount}($digitsGroup){0,${currency.defaultFractionDigits}}".toPattern()
-    val symbolPattern: Regex = """\s*${Regex.escape(symbol)}\s*""".toRegex()
-    val leadingZeroesPattern: Regex = """^($zeros)*""".toRegex()
-
-    override fun filter(
-      source: CharSequence,
-      start: Int,
-      end: Int,
-      dest: Spanned,
-      dstart: Int,
-      dend: Int
-    ): CharSequence? {
-
-      val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
-      val resultWithoutCurrencyPrefix = StringUtil.stripBidiIndicator(result.removePrefix(symbol).removeSuffix(symbol).trim())
-
-      if (resultWithoutCurrencyPrefix.length == 1 && !resultWithoutCurrencyPrefix.isDigitsOnly() && resultWithoutCurrencyPrefix != separator.toString()) {
-        return dest.subSequence(dstart, dend)
-      }
-
-      val matcher = pattern.matcher(resultWithoutCurrencyPrefix)
-
-      if (!matcher.matches()) {
-        return dest.subSequence(dstart, dend)
-      }
-
-      return null
-    }
-
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
-
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) = Unit
-
-    override fun afterTextChanged(s: Editable?) {
-      if (s.isNullOrEmpty()) return
-
-      val hasSymbol = s.startsWith(symbol) || s.endsWith(symbol)
-      if (hasSymbol && symbolPattern.matchEntire(s.toString()) != null) {
-        s.clear()
-      } else if (!hasSymbol) {
-        val formatter = NumberFormat.getCurrencyInstance()
-        formatter.currency = currency
-
-        if (s.contains(separator)) {
-          formatter.minimumFractionDigits = s.split(separator).last().length
-        } else {
-          formatter.minimumFractionDigits = 0
-        }
-
-        formatter.maximumFractionDigits = currency.defaultFractionDigits
-
-        val value = s.toString().toDoubleOrNull()
-
-        if (value != null) {
-          val formatted = formatter.format(value)
-
-          text?.removeTextChangedListener(this)
-
-          s.replace(0, s.length, formatted)
-          if (formatted.endsWith(symbol)) {
-            val result: MatchResult? = symbolPattern.find(formatted)
-            if (result != null && result.range.first < s.length) {
-              text?.setSelection(result.range.first)
-            }
-          }
-
-          text?.addTextChangedListener(this)
-        }
-      }
-
-      val withoutSymbol = s.removePrefix(symbol).removeSuffix(symbol).trim().toString()
-      val withoutLeadingZeroes: String = try {
-        NumberFormat.getInstance().apply {
-          isGroupingUsed = false
-
-          if (s.contains(separator)) {
-            minimumFractionDigits = s.split(separator).last().length
-          }
-        }.format(withoutSymbol.toBigDecimal()) + (if (withoutSymbol.endsWith(separator)) separator else "")
-      } catch (e: NumberFormatException) {
-        withoutSymbol
-      }
-
-      if (withoutSymbol != withoutLeadingZeroes) {
-        text?.removeTextChangedListener(this)
-
-        val start = s.indexOf(withoutSymbol)
-        s.replace(start, start + withoutSymbol.length, withoutLeadingZeroes)
-
-        text?.addTextChangedListener(this)
-      }
-
-      onCustomAmountChanged(s.removePrefix(symbol).removeSuffix(symbol).trim().toString())
     }
   }
 
