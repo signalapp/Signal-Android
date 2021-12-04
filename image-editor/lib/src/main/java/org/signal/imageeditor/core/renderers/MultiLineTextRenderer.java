@@ -173,8 +173,8 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
   }
 
   private class Line {
-    private final Matrix accentMatrix            = new Matrix();
-    private final Matrix decentMatrix            = new Matrix();
+    private final Matrix ascentMatrix            = new Matrix();
+    private final Matrix descentMatrix           = new Matrix();
     private final Matrix projectionMatrix        = new Matrix();
     private final Matrix inverseProjectionMatrix = new Matrix();
     private final RectF  selectionBounds         = new RectF();
@@ -252,8 +252,8 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
       projectionMatrix.preTranslate(-textBounds.centerX(), 0);
       projectionMatrix.invert(inverseProjectionMatrix);
 
-      accentMatrix.setTranslate(0, -ascentInBounds);
-      decentMatrix.setTranslate(0, descentInBounds);
+      ascentMatrix.setTranslate(0, -ascentInBounds);
+      descentMatrix.setTranslate(0, descentInBounds + HIGHLIGHT_TOP_PADDING + HIGHLIGHT_BOTTOM_PADDING);
 
       invalidate();
     }
@@ -310,7 +310,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
 
     public void render(@NonNull RendererContext rendererContext) {
       // add our ascent for ourselves and the next lines
-      rendererContext.canvasMatrix.concat(accentMatrix);
+      rendererContext.canvasMatrix.concat(ascentMatrix);
 
       rendererContext.save();
 
@@ -321,7 +321,6 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
                        selectionBounds.top - HIGHLIGHT_TOP_PADDING,
                        textBounds.right + HIGHLIGHT_HORIZONTAL_PADDING,
                        selectionBounds.bottom + HIGHLIGHT_BOTTOM_PADDING);
-
         int alpha = modePaint.getAlpha();
         modePaint.setAlpha(rendererContext.getAlpha(alpha));
         rendererContext.canvas.drawRoundRect(modeBounds, HIGHLIGHT_CORNER_RADIUS, HIGHLIGHT_CORNER_RADIUS, modePaint);
@@ -367,7 +366,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
       rendererContext.restore();
 
       // add our descent for the next lines
-      rendererContext.canvasMatrix.concat(decentMatrix);
+      rendererContext.canvasMatrix.concat(descentMatrix);
     }
 
     void setSelection(int selStart, int selEnd) {
