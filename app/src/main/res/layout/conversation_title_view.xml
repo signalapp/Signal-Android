@@ -43,7 +43,7 @@
 
     <LinearLayout
         android:id="@+id/content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/contact_photo_container"
@@ -52,7 +52,7 @@
         <org.thoughtcrime.securesms.components.FromTextView
             android:id="@+id/title"
             style="@style/TextSecure.TitleTextStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
             android:drawablePadding="3dp"
