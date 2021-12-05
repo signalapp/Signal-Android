@@ -8,6 +8,7 @@ import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Pair;
@@ -93,15 +94,24 @@ public class MediaUtil {
     }
 
     switch (getSlideTypeFromContentType(attachment.getContentType())) {
-      case GIF       : return new GifSlide(context, attachment);
-      case IMAGE     : return new ImageSlide(context, attachment);
-      case VIDEO     : return new VideoSlide(context, attachment);
-      case AUDIO     : return new AudioSlide(context, attachment);
-      case MMS       : return new MmsSlide(context, attachment);
-      case LONG_TEXT : return new TextSlide(context, attachment);
-      case VIEW_ONCE : return new ViewOnceSlide(context, attachment);
-      case DOCUMENT  : return new DocumentSlide(context, attachment);
-      default        : throw new AssertionError();
+      case GIF:
+        return new GifSlide(context, attachment);
+      case IMAGE:
+        return new ImageSlide(context, attachment);
+      case VIDEO:
+        return new VideoSlide(context, attachment);
+      case AUDIO:
+        return new AudioSlide(context, attachment);
+      case MMS:
+        return new MmsSlide(context, attachment);
+      case LONG_TEXT:
+        return new TextSlide(context, attachment);
+      case VIEW_ONCE:
+        return new ViewOnceSlide(context, attachment);
+      case DOCUMENT:
+        return new DocumentSlide(context, attachment);
+      default:
+        throw new AssertionError();
     }
   }
 
@@ -129,13 +139,13 @@ public class MediaUtil {
   public static @Nullable String getCorrectedMimeType(@Nullable String mimeType) {
     if (mimeType == null) return null;
 
-    switch(mimeType) {
-    case "image/jpg":
-      return MimeTypeMap.getSingleton().hasMimeType(IMAGE_JPEG)
-             ? IMAGE_JPEG
-             : mimeType;
-    default:
-      return mimeType;
+    switch (mimeType) {
+      case "image/jpg":
+        return MimeTypeMap.getSingleton().hasMimeType(IMAGE_JPEG)
+               ? IMAGE_JPEG
+               : mimeType;
+      default:
+        return mimeType;
     }
   }
 
@@ -189,13 +199,13 @@ public class MediaUtil {
       try {
         if (MediaUtil.isJpegType(contentType)) {
           attachmentStream = PartAuthority.getAttachmentStream(context, uri);
-          dimens = BitmapUtil.getExifDimensions(attachmentStream);
+          dimens           = BitmapUtil.getExifDimensions(attachmentStream);
           attachmentStream.close();
           attachmentStream = null;
         }
         if (dimens == null) {
           attachmentStream = PartAuthority.getAttachmentStream(context, uri);
-          dimens = BitmapUtil.getDimensions(attachmentStream);
+          dimens           = BitmapUtil.getDimensions(attachmentStream);
         }
       } catch (FileNotFoundException e) {
         Log.w(TAG, "Failed to find file when retrieving media dimensions.", e);
@@ -357,7 +367,8 @@ public class MediaUtil {
     } else if (uri.toString().startsWith(MediaStore.Video.Media.EXTERNAL_CONTENT_URI.toString())) {
       return true;
     } else if (uri.toString().startsWith("file://") &&
-               MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
+               MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString())))
+    {
       return true;
     } else if (PartAuthority.isAttachmentUri(uri) && MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri))) {
       return true;
@@ -385,10 +396,11 @@ public class MediaUtil {
                                                       MediaStore.Images.Thumbnails.MINI_KIND,
                                                       null);
     } else if (uri.toString().startsWith("file://") &&
-               MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
+               MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString())))
+    {
       return ThumbnailUtils.createVideoThumbnail(uri.toString().replace("file://", ""),
                                                  MediaStore.Video.Thumbnails.MINI_KIND);
-    } else if (Build.VERSION.SDK_INT >= 23   &&
+    } else if (Build.VERSION.SDK_INT >= 23 &&
                BlobProvider.isAuthority(uri) &&
                MediaUtil.isVideo(BlobProvider.getMimeType(uri)))
     {
@@ -398,7 +410,7 @@ public class MediaUtil {
       } catch (IOException e) {
         Log.w(TAG, "Failed to extract frame for URI: " + uri, e);
       }
-    } else if (Build.VERSION.SDK_INT >= 23        &&
+    } else if (Build.VERSION.SDK_INT >= 23 &&
                PartAuthority.isAttachmentUri(uri) &&
                MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri)))
     {
@@ -434,7 +446,7 @@ public class MediaUtil {
   public static class ThumbnailData implements AutoCloseable {
 
     @NonNull private final Bitmap bitmap;
-             private final float  aspectRatio;
+    private final          float  aspectRatio;
 
     public ThumbnailData(@NonNull Bitmap bitmap) {
       this.bitmap      = bitmap;
@@ -455,8 +467,25 @@ public class MediaUtil {
 
     @Override
     public void close() {
-     bitmap.recycle();
+      bitmap.recycle();
     }
+  }
+
+  public static String getSaveTargetPath(String fileMetadata) {
+    if (fileMetadata == null || !fileMetadata.contains(":")) {
+      return "Error processing file metadata";
+    }
+    String contentType = fileMetadata.split(":")[1];
+    String fileName    = fileMetadata.split(":")[0];
+    if (contentType.contains("image")) {
+      String imagesDefaultPath = android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_PICTURES).getPath();
+      return imagesDefaultPath + "/" + fileName;
+    } else if (contentType.contains("video")) {
+      String videoDefaultPath = android.os.Environment.getExternalStoragePublicDirectory(android.os.Environment.DIRECTORY_MOVIES).getPath();
+      return videoDefaultPath + "/" + fileName;
+    }
+    String defaultPathForOtherTypes = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+    return defaultPathForOtherTypes + "/" + fileName;
   }
 
   private static boolean isSupportedVideoUriScheme(@Nullable String scheme) {
