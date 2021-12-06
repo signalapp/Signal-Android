@@ -922,7 +922,7 @@
   <string name="MessageRecord_left_group">आपण गट सोडला आहे.</string>
   <string name="MessageRecord_you_updated_group">आपण गट अद्ययावत केले.</string>
   <string name="MessageRecord_the_group_was_updated">गट अद्यतनित केला गेला.</string>
-  <string name="MessageRecord_you_called_date"> आपण काॅल केला . %1$s</string>
+  <string name="MessageRecord_you_called_date"> आपण कॉल केला . %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">सुटलेला ऑडिओ कॉल · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">सुटलेला व्हिडिओ कॉल · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ने गट अद्ययावत केले.</string>
@@ -1154,11 +1154,11 @@
   <string name="DeviceProvisioningActivity_content_progress_network_error">नेटवर्क त्रुटी.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">अवैध QR कोड.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">क्षमस्व, आपल्याकडे आधीपासून खूप सारे डिव्हाईस लिंक केलेले आहेत, काही काढून प्रयत्न करा</string>
-  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">क्षमस्व, हा एक वैध डिव्हाईस दुवा QR कोड नाही.</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">क्षमस्व, हा एक वैध डिव्हाईस लिंक QR कोड नाही.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">एक Signal डिव्हाईस लिंक करायचा?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">आपण 3य पक्ष स्कॅनर वापरून Signal डिव्हाईस लिंक करण्याचा प्रयत्न करत आहात. आपल्या सुरक्षेसाठी, कृपया Signal मध्ये कोड पुन्हा स्कॅन करा.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR कोड स्कॅन करण्यासाठी Signal ला कॅमेरा परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"कॅमेरा\" सक्षम करा.</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">कॅमेरा परवानगी विनाQR कोड स्कॅन करण्यास अक्षम</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">कॅमेरा परवानगी विना QR कोड स्कॅन करण्यास अक्षम</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">आता अद्ययावत करा</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal ची ही आवृत्ती आज कालबाह्य होईल. सर्वात अलीकडील आवृत्तीवर अद्यतनित करा.</string>
@@ -1761,7 +1761,7 @@
   <string name="country_selection_fragment__search">शोध</string>
   <string name="country_selection_fragment__no_matching_countries">कुठलेही जुळणारे देश नाहीत</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">लिंक करण्यासाठी डिव्हाईस वर दाखवलेले QR कोड स्कॅन करा</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">लिंक करण्यासाठी डिव्हाईस वर दाखवलेला QR कोड स्कॅन करा</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">डिव्हाईस लिंक करा</string>
   <!--device_list_fragment-->
@@ -2402,7 +2402,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">अंतर्दृष्टी</string>
   <string name="InsightsDashboardFragment__title">अंतर्दृष्टी</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल याने स्वयंचलितपणे%2$d दिवसांमध्ये %1$d%% आपले जाणारे संदेश संरक्षित केलेत. Signal वापरकर्त्यांमधील संभाषण हे नेहमी एंड-टू-एंड एन्क्रिप्टेड असते.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉलने स्वयंचलितपणे %2$d दिवसांमध्ये %1$d%% आपले जाणारे संदेश संरक्षित केलेत. Signal वापरकर्त्यांमधील संभाषण हे नेहमी एंड-टू-एंड एन्क्रिप्टेड असते.</string>
   <string name="InsightsDashboardFragment__spread_the_word">प्रसार करा</string>
   <string name="InsightsDashboardFragment__not_enough_data">पुरेसा डेटा नाही</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">मागील %1$d दिवसांच्या जाणारे संदेश जे अदृश्य झाले नाहीत किंवा हटविले गेले नाहीत त्यांच्या आधारावर आपली ईन्साईट टक्केवारी याची गणना केली जाते.</string>

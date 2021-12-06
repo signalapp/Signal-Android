@@ -296,7 +296,7 @@
   <string name="ConversationFragment_verify">Bekræft</string>
   <string name="ConversationFragment_not_now">Ikke nu</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Dit sikkerhedsnummer med %s er ændret</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Dit sikkerhedsnummer med %s er ændret, sandsynligvis fordi de geninstallerede Signal eller ændrede enheder. Tryk på Bekræft for at bekræfte det nye sikkerhedsnummer. Dette er valgfrit.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Dit sikkerhedsnummer med %s er ændret. Sandsynligvis fordi denne kontakt geninstallerede Signal eller skiftede enheder. Tryk på Bekræft for at bekræfte det nye sikkerhedsnummer. Dette er valgfrit.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Slet valgte samtale?</item>
     <item quantity="other">Slet valgte samtaler?</item>
@@ -2047,7 +2047,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences__advanced">Avanceret</string>
   <string name="preferences__donate_to_signal">Donér til Signal</string>
   <string name="preferences__subscription">Abonnement</string>
-  <string name="preferences__become_a_signal_sustainer">Bliv en Signal-bidragsyder</string>
+  <string name="preferences__become_a_signal_sustainer">Bliv Signal-bidragsyder</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Privatliv</string>
   <string name="preferences__mms_user_agent">MMS-brugeragent</string>
