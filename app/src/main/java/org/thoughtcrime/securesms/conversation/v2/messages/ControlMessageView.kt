@@ -1,9 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.AttributeSet
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -27,7 +25,8 @@ class ControlMessageView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MessageRecord) {
+    fun bind(message: MessageRecord, previous: MessageRecord?) {
+        dateBreakTextView.showDateBreak(message, previous)
         iconImageView.visibility = View.GONE
         if (message.isExpirationTimerUpdate) {
             iconImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_timer, context.theme))
