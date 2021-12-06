@@ -1,0 +1,5 @@
+Licensed under GNU GENERAL PUBLIC LICENSE 3.0
+
+Files under com/google/android (c) 2020 Angus Turnbull https://www.twinhelix.com/
+Files com/google/android/gms/maps/{GoogleMap.java,MapView.java,SupportMapFragment.java} (c) Fumiaki Yoshimatsu https://github.com/fumiakiy/Signal-Android/tree/fumiakiy/share-location-osm
+Files under com/google/firebase (c) Oscar Mira / valldrac https://github.com/mollyim/mollyim-android/tree/master/libfakegms/src/main/java/com/google/firebase

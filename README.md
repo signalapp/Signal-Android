@@ -1,6 +1,6 @@
 # Signal-BA
 
-Signal-BA is an unofficial version of Signal with some extra features.
+Signal-BA is an unofficial fully FOSS version of Signal with some extra features.
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="100">](https://benarmstead.github.io/fdroid/repo?fingerprint=9CCBC7C297F0B54520834681D1D29C2184B2CD262E80AA9E453215284ED3D684)
 
@@ -13,6 +13,14 @@ Signal-BA uses the original signal package name, and therefore can be installed 
 However this can sometimes fail, in which case you will need to clear your signal app data (in android settings), uninstall signal, and then install Signal-BA (this will result in the loss of your signal data so make sure to backup first).
 
 ## Features
+
+- **Fully FOSS**
+
+  The official signal client includes some proprietary google dependencies. In this fork, they are replaced the with FOSS alternatives
+
+- **Uses Open Street Maps**
+
+  The official signal client uses google maps as its default maps provider (for sharing location). In this fork, open street maps is used instead.
 
 - **Deleting messages time extension**
 

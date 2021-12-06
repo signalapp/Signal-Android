@@ -421,14 +421,8 @@ dependencies {
     implementation libs.androidx.biometric
     implementation libs.androidx.sharetarget
 
-    implementation (libs.firebase.messaging) {
-        exclude group: 'com.google.firebase', module: 'firebase-core'
-        exclude group: 'com.google.firebase', module: 'firebase-analytics'
-        exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
-    }
-
-    implementation libs.google.play.services.maps
-    implementation libs.google.play.services.auth
+    implementation project(':libfakegms')
+    implementation libs.osmdroid
 
     implementation libs.bundles.exoplayer
 

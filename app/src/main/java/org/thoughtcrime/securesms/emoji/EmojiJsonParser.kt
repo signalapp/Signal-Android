@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.emoji
 import android.net.Uri
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.android.gms.common.util.Hex
+import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.components.emoji.CompositeEmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.Emoji
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
@@ -101,7 +101,7 @@ private fun JsonNode.toDensityList(): List<String> {
   return map { it.textValue() }
 }
 
-private fun String.encodeAsUtf16() = String(Hex.stringToBytes(this), Charset.forName("UTF-16"))
+private fun String.encodeAsUtf16() = String(Hex.fromStringCondensed(this), Charset.forName("UTF-16"))
 private fun String.asCategoryKey() = replace("(_\\d+)*$".toRegex(), "")
 private fun String.getPageIndex() = "^.*_(\\d+)+$".toRegex().find(this)?.let { it.groupValues[1] }?.toInt() ?: throw IllegalStateException("No index.")
 

@@ -2,6 +2,7 @@ enableFeaturePreview('VERSION_CATALOGS')
 
 include ':app'
 include ':libsignal-service'
+include ':libfakegms'
 include ':lintchecks'
 include ':paging'
 include ':paging-app'

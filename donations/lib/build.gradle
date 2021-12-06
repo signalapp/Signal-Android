@@ -47,7 +47,7 @@ dependencies {
     implementation libs.androidx.annotation
     implementation libs.androidx.appcompat
 
-    api libs.google.play.services.wallet
+    api project(':libfakegms')
     api libs.square.okhttp3
     api libs.rxjava3.rxjava
 

@@ -113,6 +113,7 @@ dependencyResolutionManagement {
             alias('dnsjava').to('dnsjava:dnsjava:2.1.9')
             alias('facebook-flipper').to('com.facebook.flipper:flipper:0.91.0')
             alias('facebook-soloader').to('com.facebook.soloader:soloader:0.10.1')
+            alias('osmdroid').to('org.osmdroid:osmdroid-android:6.1.11')
 
             // Mp4Parser
             alias('mp4parser-isoparser').to('org.mp4parser', 'isoparser').versionRef('mp4parser')
