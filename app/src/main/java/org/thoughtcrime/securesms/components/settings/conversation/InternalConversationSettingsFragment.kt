@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
 import java.util.Objects
 
 /**
@@ -60,11 +61,18 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       )
 
       if (!recipient.isGroup) {
-        val uuid = recipient.aci.transform(ACI::toString).or("null")
+        val aci = recipient.aci.transform(ACI::toString).or("null")
         longClickPref(
-          title = DSLSettingsText.from("UUID"),
-          summary = DSLSettingsText.from(uuid),
-          onLongClick = { copyToClipboard(uuid) }
+          title = DSLSettingsText.from("ACI"),
+          summary = DSLSettingsText.from(aci),
+          onLongClick = { copyToClipboard(aci) }
+        )
+
+        val pni = recipient.pni.transform(PNI::toString).or("null")
+        longClickPref(
+          title = DSLSettingsText.from("PNI"),
+          summary = DSLSettingsText.from(pni),
+          onLongClick = { copyToClipboard(pni) }
         )
       }
 

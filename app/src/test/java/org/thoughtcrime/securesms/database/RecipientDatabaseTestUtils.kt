@@ -93,6 +93,7 @@ object RecipientDatabaseTestUtils {
       RecipientRecord(
         recipientId,
         aci,
+        null,
         username,
         e164,
         email,

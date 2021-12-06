@@ -178,8 +178,9 @@ object SignalDatabaseMigrations {
   private const val SENDER_KEY_UUID = 119
   private const val SENDER_KEY_SHARED_TIMESTAMP = 120
   private const val REACTION_REFACTOR = 121
+  private const val PNI = 122
 
-  const val DATABASE_VERSION = 121
+  const val DATABASE_VERSION = 122
 
   @JvmStatic
   fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2169,6 +2170,11 @@ object SignalDatabaseMigrations {
       db.execSQL("CREATE TRIGGER reactions_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 0; END")
       db.execSQL("UPDATE sms SET reactions = NULL WHERE reactions NOT NULL")
       db.execSQL("UPDATE mms SET reactions = NULL WHERE reactions NOT NULL")
+    }
+
+    if (oldVersion < PNI) {
+      db.execSQL("ALTER TABLE recipient ADD COLUMN pni TEXT DEFAULT NULL")
+      db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS recipient_pni_index ON recipient (pni)")
     }
   }
 

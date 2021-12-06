@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
 
 /**
  * Database model for [RecipientDatabase].
@@ -28,6 +29,7 @@ import org.whispersystems.signalservice.api.push.ACI
 data class RecipientRecord(
   val id: RecipientId,
   val aci: ACI?,
+  val pni: PNI?,
   val username: String?,
   val e164: String?,
   val email: String?,

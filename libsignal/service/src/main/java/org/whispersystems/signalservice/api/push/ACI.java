@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import io.reactivex.rxjava3.annotations.NonNull;
-
 /**
  * An ACI is an "Account Identity". They're just UUIDs, but given multiple different things could be UUIDs, this wrapper exists to give us type safety around
  * this *specific type* of UUID.
@@ -65,7 +63,7 @@ public final class ACI extends AccountIdentifier {
     return uuid != null ? uuid : UNKNOWN;
   }
 
-  public static List<ACI> filterKnown(@NonNull Collection<ACI> acis) {
+  public static List<ACI> filterKnown(Collection<ACI> acis) {
     return acis.stream().filter(aci -> !aci.equals(UNKNOWN)).collect(Collectors.toList());
   }
 

@@ -77,6 +77,7 @@ import org.whispersystems.libsignal.util.Pair
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
@@ -108,6 +109,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     const val ID = "_id"
     private const val ACI_COLUMN = "uuid"
+    private const val PNI_COLUMN = "pni"
     private const val USERNAME = "username"
     const val PHONE = "phone"
     const val EMAIL = "email"
@@ -216,17 +218,20 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         $GROUPS_IN_COMMON INTEGER DEFAULT 0,
         $CHAT_COLORS BLOB DEFAULT NULL,
         $CUSTOM_CHAT_COLORS_ID INTEGER DEFAULT 0,
-        $BADGES BLOB DEFAULT NULL
+        $BADGES BLOB DEFAULT NULL,
+        $PNI_COLUMN TEXT DEFAULT NULL
       )
       """.trimIndent()
 
     val CREATE_INDEXS = arrayOf(
-      "CREATE INDEX IF NOT EXISTS recipient_group_type_index ON $TABLE_NAME ($GROUP_TYPE);"
+      "CREATE INDEX IF NOT EXISTS recipient_group_type_index ON $TABLE_NAME ($GROUP_TYPE);",
+      "CREATE UNIQUE INDEX IF NOT EXISTS recipient_pni_index ON $TABLE_NAME ($PNI_COLUMN)"
     )
 
     private val RECIPIENT_PROJECTION: Array<String> = arrayOf(
       ID,
       ACI_COLUMN,
+      PNI_COLUMN,
       USERNAME,
       PHONE,
       EMAIL,
@@ -1807,6 +1812,13 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return results
   }
 
+  fun setPni(id: RecipientId, pni: PNI) {
+    val values = ContentValues().apply {
+      put(PNI_COLUMN, pni.toString())
+    }
+    writableDatabase.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(id))
+  }
+
   /**
    * @return True if setting the UUID resulted in changed recipientId, otherwise false.
    */
@@ -2777,6 +2789,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return RecipientRecord(
       id = recipientId,
       aci = ACI.parseOrNull(cursor.requireString(ACI_COLUMN)),
+      pni = PNI.parseOrNull(cursor.requireString(PNI_COLUMN)),
       username = cursor.requireString(USERNAME),
       e164 = cursor.requireString(PHONE),
       email = cursor.requireString(EMAIL),
