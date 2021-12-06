@@ -25,6 +25,7 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.conversation.v2.ConversationConstants.MAX_TIME_BETWEEN_BREAKS
 import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.home.UserDetailsBottomSheet
@@ -69,7 +70,6 @@ class VisibleMessageView : LinearLayout {
         const val longPressMovementTreshold = 10.0f // dp
         const val longPressDurationThreshold = 250L // ms
         const val maxDoubleTapInterval = 200L
-        const val maxTimeBetweenBreaks = 5 * 60 * 1000L // 5 minutes
     }
 
     // region Lifecycle
@@ -120,7 +120,7 @@ class VisibleMessageView : LinearLayout {
             senderNameTextView.visibility = View.GONE
         }
         // Date break
-        val showDateBreak = (previous == null || message.timestamp - previous.timestamp > maxTimeBetweenBreaks)
+        val showDateBreak = (previous == null || message.timestamp - previous.timestamp > MAX_TIME_BETWEEN_BREAKS)
         dateBreakTextView.isVisible = showDateBreak
         dateBreakTextView.text = if (showDateBreak) DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), message.timestamp) else ""
         // Timestamp
