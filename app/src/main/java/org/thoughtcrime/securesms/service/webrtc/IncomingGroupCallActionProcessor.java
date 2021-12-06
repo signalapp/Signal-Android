@@ -169,6 +169,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     byte[] groupId = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
                                                                             SignalStore.internalValues().groupCallingServer(),
+                                                                            new byte[0],
                                                                             SignalStore.internalValues().audioProcessingMethod(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
