@@ -17,6 +17,9 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import static org.session.libsession.utilities.GroupUtil.OPEN_GROUP_PREFIX;
+import static org.thoughtcrime.securesms.database.GroupDatabase.GROUP_ID;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -374,7 +377,9 @@ public class ThreadDatabase extends Database {
 
   private Cursor getConversationList(String archived) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", 0);
+    String         where  = "(" + MESSAGE_COUNT + " != 0 OR " + GroupDatabase.TABLE_NAME + "." + GROUP_ID + " LIKE '" + OPEN_GROUP_PREFIX + "%') " +
+                            "AND " + ARCHIVED + " = ?";
+    String         query  = createQuery(where, 0);
     Cursor         cursor = db.rawQuery(query, new String[]{archived});
 
     setNotifyConverationListListeners(cursor);
@@ -615,7 +620,7 @@ public class ThreadDatabase extends Database {
            " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
            " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
            " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
-           " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID +
+           " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GROUP_ID +
            " WHERE " + where +
            " ORDER BY " + TABLE_NAME + "." + DATE + " DESC";
 
