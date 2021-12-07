@@ -91,8 +91,8 @@ public final class ScrubberTest {
       "***.com:443"
     },
 
-    { "Failed to resolve textsecure-service.whispersystems.org using . Continuing.",
-      "Failed to resolve textsecure-service.whispersystems.org using . Continuing."
+    { "Failed to resolve chat.signal.org using . Continuing.",
+      "Failed to resolve chat.signal.org using . Continuing."
     },
 
     { " Caused by: java.io.IOException: unexpected end of stream on Connection{storage.signal.org:443, proxy=DIRECT hostAddress=storage.signal.org/142.251.32.211:443 cipherSuite=TLS_AES_128_GCM_SHA256 protocol=http/1.1}",
