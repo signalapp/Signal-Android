@@ -38,6 +38,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -124,6 +125,7 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
+import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder;
 import org.thoughtcrime.securesms.components.reminder.PendingGroupJoinRequestsReminder;
@@ -1873,6 +1875,19 @@ public class ConversationActivity extends PassphraseRequiredActivity
         }
       });
       reminderView.get().setOnDismissListener(() -> {
+      });
+    } else if (isInBubble() && !SignalStore.tooltips().hasSeenBubbleOptOutTooltip() && Build.VERSION.SDK_INT > 29) {
+      reminderView.get().showReminder(new BubbleOptOutReminder(this));
+      reminderView.get().setOnActionClickListener(actionId -> {
+        SignalStore.tooltips().markBubbleOptOutTooltipSeen();
+        reminderView.get().hide();
+
+        if (actionId == R.id.reminder_action_turn_off) {
+          Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_BUBBLE_SETTINGS)
+              .putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName())
+              .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+          startActivity(intent);
+        }
       });
     } else if (reminderView.resolved()) {
       reminderView.get().hide();

@@ -2024,6 +2024,14 @@
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
 
+    <!-- BubbleOptOutTooltip -->
+    <!-- Message to inform the user of what Android chat bubbles are -->
+    <string name="BubbleOptOutTooltip__description">Bubbles are an Android feature that you can turn off for Signal chats.</string>
+    <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
+    <string name="BubbleOptOutTooltip__not_now">Not now</string>
+    <!-- Button to move to the system settings to control the use of Android bubbles -->
+    <string name="BubbleOptOutTooltip__turn_off">Turn off</string>
+
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Safety Number Changes</string>
     <string name="safety_number_change_dialog__accept">Accept</string>
