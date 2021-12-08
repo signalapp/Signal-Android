@@ -8,6 +8,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.Badge.Category.Companion.fromCode
@@ -20,6 +21,9 @@ import java.math.BigDecimal
 import java.sql.Timestamp
 
 object Badges {
+
+  private val TAG: String = Log.tag(Badges::class.java)
+
   fun DSLConfiguration.displayBadges(
     context: Context,
     badges: List<Badge>,
@@ -70,6 +74,8 @@ object Badges {
       "xxhdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[4]), "xxhdpi")
       "xxxhdpi" -> Pair(getBadgeImageUri(serviceBadge.sprites6[5]), "xxxhdpi")
       else -> Pair(getBadgeImageUri(serviceBadge.sprites6[3]), "xhdpi")
+    }.also {
+      Log.d(TAG, "Selected badge density ${it.second()}")
     }
   }
 
