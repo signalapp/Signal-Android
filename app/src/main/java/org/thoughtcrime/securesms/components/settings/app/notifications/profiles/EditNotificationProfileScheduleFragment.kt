@@ -35,7 +35,7 @@ import java.time.format.DateTimeFormatter
  */
 class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragment_edit_notification_profile_schedule) {
 
-  private val viewModel: EditNotificationProfileScheduleViewModel by viewModels(factoryProducer = { EditNotificationProfileScheduleViewModel.Factory(profileId) })
+  private val viewModel: EditNotificationProfileScheduleViewModel by viewModels(factoryProducer = { EditNotificationProfileScheduleViewModel.Factory(profileId, createMode) })
   private val lifecycleDisposable = LifecycleDisposable()
 
   private val profileId: Long by lazy { EditNotificationProfileScheduleFragmentArgs.fromBundle(requireArguments()).profileId }

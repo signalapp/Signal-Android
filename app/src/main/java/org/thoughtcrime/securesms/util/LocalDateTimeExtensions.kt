@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.OffsetDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -10,10 +11,17 @@ import java.time.format.FormatStyle
 import java.util.concurrent.TimeUnit
 
 /**
+ * Given a [ZoneId] return the time offset as a [ZoneOffset].
+ */
+fun ZoneId.toOffset(): ZoneOffset {
+  return OffsetDateTime.now(this).offset
+}
+
+/**
  * Convert [LocalDateTime] to be same as [System.currentTimeMillis]
  */
-fun LocalDateTime.toMillis(): Long {
-  return TimeUnit.SECONDS.toMillis(toEpochSecond(ZoneOffset.UTC))
+fun LocalDateTime.toMillis(zoneOffset: ZoneOffset = ZoneId.systemDefault().toOffset()): Long {
+  return TimeUnit.SECONDS.toMillis(toEpochSecond(zoneOffset))
 }
 
 /**

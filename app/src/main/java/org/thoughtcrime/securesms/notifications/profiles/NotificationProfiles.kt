@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.toLocalDateTime
 import org.thoughtcrime.securesms.util.toLocalTime
 import org.thoughtcrime.securesms.util.toMillis
+import org.thoughtcrime.securesms.util.toOffset
 import java.time.LocalDateTime
 import java.time.ZoneId
 
@@ -26,7 +27,7 @@ object NotificationProfiles {
     val manualProfile: NotificationProfile? = profiles.firstOrNull { it.id == storeValues.manuallyEnabledProfile }
 
     val scheduledProfile: NotificationProfile? = profiles.sortedDescending().filter { it.schedule.isCurrentlyActive(now, zoneId) }.firstOrNull { profile ->
-      profile.schedule.startDateTime(localNow).toMillis() > storeValues.manuallyDisabledAt
+      profile.schedule.startDateTime(localNow).toMillis(zoneId.toOffset()) > storeValues.manuallyDisabledAt
     }
 
     if (manualProfile == null || scheduledProfile == null) {

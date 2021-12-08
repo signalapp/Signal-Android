@@ -9,8 +9,10 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.util.isBetween
 import org.thoughtcrime.securesms.util.livedata.Store
-import java.util.Calendar
+import org.thoughtcrime.securesms.util.toMillis
+import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
 
 class NotificationProfileSelectionViewModel(private val repository: NotificationProfilesRepository) : ViewModel() {
@@ -53,29 +55,24 @@ class NotificationProfileSelectionViewModel(private val repository: Notification
       .subscribe()
   }
 
-  fun enableUntil(profile: NotificationProfile, calendar: Calendar) {
-    disposables += repository.manuallyEnableProfileForDuration(profile.id, calendar.timeInMillis)
+  fun enableUntil(profile: NotificationProfile, enableUntil: LocalDateTime) {
+    disposables += repository.manuallyEnableProfileForDuration(profile.id, enableUntil.toMillis())
       .subscribe()
   }
 
   companion object {
-    private fun getTimeSlotB(): Calendar {
-      val now = Calendar.getInstance()
-      val sixPm = Calendar.getInstance()
-      val eightAm = Calendar.getInstance()
+    @Suppress("CascadeIf")
+    private fun getTimeSlotB(): LocalDateTime {
+      val now = LocalDateTime.now()
+      val sixPm = now.withHour(18).withMinute(0).withSecond(0)
+      val eightAm = now.withHour(8).withMinute(0).withSecond(0)
 
-      sixPm.set(Calendar.HOUR_OF_DAY, 18)
-      sixPm.set(Calendar.MINUTE, 0)
-      sixPm.set(Calendar.SECOND, 0)
-
-      eightAm.set(Calendar.HOUR_OF_DAY, 8)
-      eightAm.set(Calendar.MINUTE, 0)
-      eightAm.set(Calendar.SECOND, 0)
-
-      return if (now.before(sixPm) && (now.after(eightAm) || now == eightAm)) {
+      return if (now.isBetween(eightAm, sixPm)) {
         sixPm
-      } else {
+      } else if (now.isBefore(eightAm)) {
         eightAm
+      } else {
+        eightAm.plusDays(1)
       }
     }
   }

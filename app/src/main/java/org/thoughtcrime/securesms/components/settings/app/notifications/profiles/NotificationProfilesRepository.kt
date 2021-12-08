@@ -96,19 +96,23 @@ class NotificationProfilesRepository {
   }
 
   fun manuallyToggleProfile(profile: NotificationProfile, now: Long = System.currentTimeMillis()): Completable {
+    return manuallyToggleProfile(profile.id, profile.schedule, now)
+  }
+
+  fun manuallyToggleProfile(profileId: Long, schedule: NotificationProfileSchedule, now: Long = System.currentTimeMillis()): Completable {
     return Completable.fromAction {
       val profiles = database.getProfiles()
       val activeProfile = NotificationProfiles.getActiveProfile(profiles, now)
 
-      if (profile.id == activeProfile?.id) {
+      if (profileId == activeProfile?.id) {
         SignalStore.notificationProfileValues().manuallyEnabledProfile = 0
         SignalStore.notificationProfileValues().manuallyEnabledUntil = 0
         SignalStore.notificationProfileValues().manuallyDisabledAt = now
         SignalStore.notificationProfileValues().lastProfilePopup = 0
         SignalStore.notificationProfileValues().lastProfilePopupTime = 0
       } else {
-        val inScheduledWindow = profile.schedule.isCurrentlyActive(now)
-        SignalStore.notificationProfileValues().manuallyEnabledProfile = if (inScheduledWindow) 0 else profile.id
+        val inScheduledWindow = schedule.isCurrentlyActive(now)
+        SignalStore.notificationProfileValues().manuallyEnabledProfile = if (inScheduledWindow) 0 else profileId
         SignalStore.notificationProfileValues().manuallyEnabledUntil = if (inScheduledWindow) 0 else Long.MAX_VALUE
         SignalStore.notificationProfileValues().manuallyDisabledAt = if (inScheduledWindow) 0 else now
       }

@@ -9,12 +9,12 @@ import org.thoughtcrime.securesms.components.emoji.EmojiImageView
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
-import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.visible
-import java.util.Calendar
-import java.util.Locale
+import java.time.LocalDateTime
+import java.time.LocalTime
 
 /**
  * Notification Profile selection preference.
@@ -34,10 +34,10 @@ object NotificationProfileSelection {
     override val summary: DSLSettingsText,
     val notificationProfile: NotificationProfile,
     val isExpanded: Boolean,
-    val timeSlotB: Calendar,
+    val timeSlotB: LocalDateTime,
     val onRowClick: (NotificationProfile) -> Unit,
     val onTimeSlotAClick: (NotificationProfile) -> Unit,
-    val onTimeSlotBClick: (NotificationProfile, Calendar) -> Unit,
+    val onTimeSlotBClick: (NotificationProfile, LocalDateTime) -> Unit,
     val onViewSettingsClick: (NotificationProfile) -> Unit,
     val onToggleClick: (NotificationProfile) -> Unit
   ) : PreferenceModel<Entry>() {
@@ -87,7 +87,7 @@ object NotificationProfileSelection {
       expansion.visible = model.isExpanded
       timeSlotB.text = context.getString(
         R.string.NotificationProfileSelection__until_s,
-        DateUtils.getTimeString(context, Locale.getDefault(), model.timeSlotB.timeInMillis)
+        LocalTime.from(model.timeSlotB).formatHours()
       )
 
       if (TOGGLE_EXPANSION in payload || UPDATE_TIMESLOT in payload) {
@@ -107,7 +107,7 @@ object NotificationProfileSelection {
 
       timeSlotB.text = context.getString(
         R.string.NotificationProfileSelection__until_s,
-        DateUtils.getTimeString(context, Locale.getDefault(), model.timeSlotB.timeInMillis)
+        LocalTime.from(model.timeSlotB).formatHours()
       )
 
       itemView.isSelected = model.isOn

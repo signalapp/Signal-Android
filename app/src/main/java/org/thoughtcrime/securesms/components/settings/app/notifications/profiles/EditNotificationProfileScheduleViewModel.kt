@@ -17,7 +17,8 @@ import java.time.DayOfWeek
  * from the database and into the [scheduleSubject] allowing the safe use of !! with [schedule].
  */
 class EditNotificationProfileScheduleViewModel(
-  profileId: Long,
+  private val profileId: Long,
+  private val createMode: Boolean,
   private val repository: NotificationProfilesRepository
 ) : ViewModel() {
 
@@ -72,14 +73,23 @@ class EditNotificationProfileScheduleViewModel(
     } else if (createMode && !schedule.enabled) {
       Single.just(SaveScheduleResult.Success)
     } else {
-      repository.updateSchedule(schedule).toSingle { SaveScheduleResult.Success }
+      repository.updateSchedule(schedule)
+        .toSingleDefault(SaveScheduleResult.Success)
+        .flatMap { r ->
+          if (createMode && schedule.enabled && schedule.coversTime(System.currentTimeMillis())) {
+            repository.manuallyToggleProfile(profileId, schedule)
+              .toSingleDefault(r)
+          } else {
+            Single.just(r)
+          }
+        }
     }
     return result.observeOn(AndroidSchedulers.mainThread())
   }
 
-  class Factory(private val profileId: Long) : ViewModelProvider.Factory {
+  class Factory(private val profileId: Long, private val createMode: Boolean) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(EditNotificationProfileScheduleViewModel(profileId, NotificationProfilesRepository()))!!
+      return modelClass.cast(EditNotificationProfileScheduleViewModel(profileId, createMode, NotificationProfilesRepository()))!!
     }
   }
 

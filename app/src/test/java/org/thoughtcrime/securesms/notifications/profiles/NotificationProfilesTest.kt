@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.util.toMillis
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -69,30 +70,30 @@ class NotificationProfilesTest {
   fun `when first is scheduled and second is not manually enabled and now is within schedule return first`() {
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule), second)
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(), utc), `is`(profiles[0]))
+    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
   }
 
   @Test
   fun `when first is scheduled and second is manually enabled forever within first's schedule then return second`() {
     signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_PROFILE, second.id)
     signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, Long.MAX_VALUE)
-    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis())
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis(ZoneOffset.UTC))
 
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule), second)
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(), utc), `is`(profiles[1]))
+    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[1]))
   }
 
   @Test
   fun `when first is scheduled and second is manually enabled forever before first's schedule start then return first`() {
     signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_PROFILE, second.id)
     signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, Long.MAX_VALUE)
-    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis())
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis(ZoneOffset.UTC))
 
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 900, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule), second)
 
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(), utc), `is`(profiles[0]))
+    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
   }
 
   @Test
@@ -101,41 +102,41 @@ class NotificationProfilesTest {
     val secondSchedule = NotificationProfileSchedule(id = 4L, true, start = 800, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = firstSchedule), second.copy(schedule = secondSchedule))
 
-    assertThat("active profile is second", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(), utc), `is`(profiles[1]))
+    assertThat("active profile is second", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[1]))
   }
 
   @Test
   fun `when first and second have overlapping schedules and first is created before second and first is manually enabled within overlapping schedule then return first`() {
     signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_PROFILE, first.id)
     signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, Long.MAX_VALUE)
-    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis())
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis(ZoneOffset.UTC))
 
     val firstSchedule = NotificationProfileSchedule(id = 3L, true, start = 700, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val secondSchedule = NotificationProfileSchedule(id = 4L, true, start = 700, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = firstSchedule), second.copy(schedule = secondSchedule))
 
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(), utc), `is`(profiles[0]))
+    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
   }
 
   @Test
   fun `when profile is manually enabled for set time after schedule end and now is after schedule end but before manual then return profile`() {
     signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_PROFILE, first.id)
-    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, sunday930am.toMillis())
-    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis())
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, sunday930am.toMillis(ZoneOffset.UTC))
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis(ZoneOffset.UTC))
 
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, end = 845, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule))
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(), utc), `is`(profiles[0]))
+    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
   }
 
   @Test
   fun `when profile is manually enabled for set time before schedule end and now is after manual but before schedule end then return null`() {
     signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_PROFILE, first.id)
-    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, sunday9am.toMillis())
-    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis())
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, sunday9am.toMillis(ZoneOffset.UTC))
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis(ZoneOffset.UTC))
 
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, end = 1000, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule))
-    assertThat("active profile is null", NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(), utc), nullValue())
+    assertThat("active profile is null", NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), nullValue())
   }
 }
