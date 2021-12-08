@@ -55,3 +55,5 @@ fun Cursor.optionalBlob(column: String): Optional<ByteArray> {
 fun Cursor.isNull(column: String): Boolean {
   return CursorUtil.isNull(this, column)
 }
+
+fun Boolean.toInt(): Int = if (this) 1 else 0

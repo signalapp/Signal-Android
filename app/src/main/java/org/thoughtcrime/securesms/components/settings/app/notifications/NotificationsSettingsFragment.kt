@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -213,6 +214,18 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
         isEnabled = state.callNotificationsState.notificationsEnabled,
         onClick = {
           viewModel.setCallVibrateEnabled(!state.callNotificationsState.vibrateEnabled)
+        }
+      )
+
+      dividerPref()
+
+      sectionHeaderPref(R.string.NotificationsSettingsFragment__notification_profiles)
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.NotificationsSettingsFragment__profiles),
+        summary = DSLSettingsText.from(R.string.NotificationsSettingsFragment__set_up_notification_profiles),
+        onClick = {
+          findNavController().navigate(R.id.action_notificationsSettingsFragment_to_notificationProfilesFragment)
         }
       )
 

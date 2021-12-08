@@ -2,23 +2,19 @@ package org.thoughtcrime.securesms.util;
 
 import android.app.Application;
 
-import androidx.test.core.app.ApplicationProvider;
-
-import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.ParameterizedRobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.thoughtcrime.securesms.SignalStoreRule;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
-import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
-import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
-import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 import java.util.Arrays;
 import java.util.Collection;
+
+import kotlin.Unit;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -46,17 +42,11 @@ public class SignalMeUtilText_parseE164FromLink {
     });
   }
 
-  @Before
-  public void setup() {
-    if (!ApplicationDependencies.isInitialized()) {
-      ApplicationDependencies.init(ApplicationProvider.getApplicationContext(), new MockApplicationDependencyProvider());
-    }
-
-    KeyValueDataSet dataSet = new KeyValueDataSet();
+  @Rule
+  public SignalStoreRule signalStore = new SignalStoreRule(dataSet -> {
     dataSet.putString(AccountValues.KEY_E164, "+15555555555");
-
-    SignalStore.inject(new KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)));
-  }
+    return Unit.INSTANCE;
+  });
 
   public SignalMeUtilText_parseE164FromLink(String input, String output) {
     this.input  = input;

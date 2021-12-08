@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
@@ -110,6 +109,7 @@ public final class Megaphones {
       put(Event.CHAT_COLORS, ALWAYS);
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
       put(Event.BECOME_A_SUSTAINER, shouldShowDonateMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
+      put(Event.NOTIFICATION_PROFILES, ShowForDurationSchedule.showForDays(7));
     }};
   }
 
@@ -141,6 +141,8 @@ public final class Megaphones {
         return buildAddAProfilePhotoMegaphone(context);
       case BECOME_A_SUSTAINER:
         return buildBecomeASustainerMegaphone(context);
+      case NOTIFICATION_PROFILES:
+        return buildNotificationProfilesMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -342,6 +344,20 @@ public final class Megaphones {
         .build();
   }
 
+  private static @NonNull Megaphone buildNotificationProfilesMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.NOTIFICATION_PROFILES, Megaphone.Style.BASIC)
+        .setTitle(R.string.NotificationProfilesMegaphone__notification_profiles)
+        .setImage(R.drawable.ic_notification_profiles_megaphone)
+        .setBody(R.string.NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose)
+        .setActionButton(R.string.NotificationProfilesMegaphone__create_a_profile, (megaphone, listener) -> {
+          listener.onMegaphoneNavigationRequested(AppSettingsActivity.notificationProfiles(context));
+          listener.onMegaphoneCompleted(Event.NOTIFICATION_PROFILES);
+        })
+        .setSecondaryButton(R.string.NotificationProfilesMegaphone__not_now, (megaphone, listener) -> {
+          listener.onMegaphoneCompleted(Event.NOTIFICATION_PROFILES);
+        })
+        .build();
+  }
 
   private static boolean shouldShowMessageRequestsMegaphone() {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
@@ -420,7 +436,8 @@ public final class Megaphones {
     NOTIFICATIONS("notifications"),
     CHAT_COLORS("chat_colors"),
     ADD_A_PROFILE_PHOTO("add_a_profile_photo"),
-    BECOME_A_SUSTAINER("become_a_sustainer");
+    BECOME_A_SUSTAINER("become_a_sustainer"),
+    NOTIFICATION_PROFILES("notification_profiles");
 
     private final String key;
 

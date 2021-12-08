@@ -53,6 +53,9 @@ sealed class DSLSettingsText {
     override fun modify(context: Context, charSequence: CharSequence): CharSequence {
       return SpanUtil.color(textColor, charSequence)
     }
+
+    override fun equals(other: Any?): Boolean = textColor == (other as? ColorModifier)?.textColor
+    override fun hashCode(): Int = textColor
   }
 
   object CenterModifier : Modifier {
@@ -68,6 +71,9 @@ sealed class DSLSettingsText {
     override fun modify(context: Context, charSequence: CharSequence): CharSequence {
       return SpanUtil.textAppearance(context, textAppearance, charSequence)
     }
+
+    override fun equals(other: Any?): Boolean = textAppearance == (other as? TextAppearanceModifier)?.textAppearance
+    override fun hashCode(): Int = textAppearance
   }
 
   object BoldModifier : Modifier {

@@ -549,6 +549,7 @@ dependencies {
 
     implementation libs.rxjava3.rxandroid
     implementation libs.rxjava3.rxkotlin
+    implementation libs.rxdogtag
 
     androidTestUtil 'androidx.test:orchestrator:1.4.0'
 }

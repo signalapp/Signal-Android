@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.identities
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.notificationProfiles
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.reactions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
@@ -2591,6 +2592,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     // Reactions
     reactions.remapRecipient(byE164, byAci)
+
+    // Notification Profiles
+    notificationProfiles.remapRecipient(byE164, byAci)
 
     // Recipient
     Log.w(TAG, "Deleting recipient $byE164", true)

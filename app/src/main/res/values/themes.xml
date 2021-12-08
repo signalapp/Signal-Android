@@ -187,6 +187,8 @@
         <item name="colorControlNormal">@color/core_grey_90</item>
 
         <item name="materialAlertDialogTheme">@style/Signal.ThemeOverlay.Dialog.Rounded</item>
+        <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
+        <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
@@ -242,6 +244,8 @@
         <item name="colorControlNormal">@color/core_white</item>
 
         <item name="materialAlertDialogTheme">@style/Signal.ThemeOverlay.Dialog.Rounded</item>
+        <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
+        <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">

@@ -345,6 +345,8 @@
     <string name="ConversationFragment_not_now">Not now</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">Your safety number with %s changed</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Your safety number with %s changed, likely because they reinstalled Signal or changed devices. Tap Verify to confirm the new safety number. This is optional.</string>
+    <!-- Message shown to indicate which notification profile is on/active -->
+    <string name="ConversationFragment__s_on">%1$s on</string>
 
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Delete selected conversation?</item>
@@ -407,6 +409,13 @@
         <item quantity="one">%d selected</item>
         <item quantity="other">%d selected</item>
     </plurals>
+
+    <!-- Show in conversation list overflow menu to open selection bottom sheet -->
+    <string name="ConversationListFragment__notification_profile">Notification Profile</string>
+    <!-- Tooltip shown after you have created your first notification profile -->
+    <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Turn your notification profile on or off here.</string>
+    <!-- Message shown in top toast to indicate the named profile is on -->
+    <string name="ConversationListFragment__s_on">%1$s on</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Key exchange message</string>
@@ -2664,7 +2673,7 @@
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copied to clipboard</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">To add funds, send MobileCoin to your wallet address. Start a transaction from your account on an exchange that supports MobileCoin, then scan the QR code or copy your wallet address.</string>
     <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    
+
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Details</string>
     <string name="PaymentsDetailsFragment__status">Status</string>
@@ -3640,6 +3649,18 @@
     <string name="NotificationsSettingsFragment__calls">Calls</string>
     <string name="NotificationsSettingsFragment__notify_when">Notify when…</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+    <!-- Notification preference header -->
+    <string name="NotificationsSettingsFragment__notification_profiles">Notification profiles</string>
+    <!-- Notification preference option header -->
+    <string name="NotificationsSettingsFragment__profiles">Profiles</string>
+    <!-- Notification preference summary text -->
+    <string name="NotificationsSettingsFragment__set_up_notification_profiles">Set up notification profiles</string>
+
+    <!-- NotificationProfilesFragment -->
+    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <string name="NotificationProfilesFragment__notification_profiles">Notification profiles</string>
+    <!-- Button text to create a notification profile -->
+    <string name="NotificationProfilesFragment__create_profile">Create profile</string>
 
     <!-- PrivacySettingsFragment -->
     <string name="PrivacySettingsFragment__blocked">Blocked</string>
@@ -3933,7 +3954,7 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
 
     <string name="CameraFragment__failed_to_open_camera">Failed to open camera</string>
-    
+
     <string name="BadgesOverviewFragment__my_badges">My badges</string>
     <string name="BadgesOverviewFragment__featured_badge">Featured badge</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
@@ -4048,6 +4069,149 @@
     <string name="NetworkFailure__retry">Retry</string>
 
     <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
+
+    <!-- Title of create notification profile screen -->
+    <string name="EditNotificationProfileFragment__name_your_profile">Name your profile</string>
+    <!-- Hint text for create/edit notification profile name -->
+    <string name="EditNotificationProfileFragment__profile_name">Profile name</string>
+    <!-- Name has a max length, this shows how many characters are used out of the max -->
+    <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+    <!-- Call to action button once the profile is named to continue to the next create step -->
+    <string name="EditNotificationProfileFragment__next">Next</string>
+    <!-- Call to action button once the profile name is edited -->
+    <string name="EditNotificationProfileFragment__save">Save</string>
+    <!-- Title of edit notification profile screen -->
+    <string name="EditNotificationProfileFragment__edit_this_profile">Edit this profile</string>
+    <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
+    <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">A profile with this name already exists</string>
+    <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
+    <string name="EditNotificationProfileFragment__work">Work</string>
+    <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
+    <string name="EditNotificationProfileFragment__sleep">Sleep</string>
+    <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
+    <string name="EditNotificationProfileFragment__driving">Driving</string>
+    <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
+    <string name="EditNotificationProfileFragment__downtime">Downtime</string>
+    <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
+    <string name="EditNotificationProfileFragment__focus">Focus</string>
+    <!-- Error message shown when attempting to next/save without a profile name -->
+    <string name="EditNotificationProfileFragment__profile_must_have_a_name">Must have a name</string>
+
+    <!-- Title for add recipients to notification profile screen in create flow -->
+    <string name="AddAllowedMembers__allowed_notifications">Allowed notifications</string>
+    <!-- Description of what the user should be doing with this screen -->
+    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Add people and groups you want notifications and calls from when this profile is on</string>
+    <!-- Button text that launches the contact picker to select from -->
+    <string name="AddAllowedMembers__add_people_or_groups">Add people or groups</string>
+
+    <!-- Call to action button on contact picker for adding to profile -->
+    <string name="SelectRecipientsFragment__add">Add</string>
+
+    <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
+    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Create a profile to receive notifications and calls only from the people and groups you want to hear from.</string>
+    <!-- Header shown above list of all notification profiles -->
+    <string name="NotificationProfilesFragment__profiles">Profiles</string>
+    <!-- Button that starts the create new notification profile flow -->
+    <string name="NotificationProfilesFragment__new_profile">New profile</string>
+    <!-- Profile active status, indicating the current profile is on for an unknown amount of time -->
+    <string name="NotificationProfilesFragment__on">On</string>
+
+    <!-- Button use to permanently delete a notification profile -->
+    <string name="NotificationProfileDetails__delete_profile">Delete profile</string>
+    <!-- Snakbar message shown when removing a recipient from a profile -->
+    <string name="NotificationProfileDetails__s_removed">\"%1$s\" removed.</string>
+    <!-- Snackbar button text that will undo the recipient remove -->
+    <string name="NotificationProfileDetails__undo">Undo</string>
+    <!-- Dialog message shown to confirm deleting a profile -->
+    <string name="NotificationProfileDetails__permanently_delete_profile">Permanently delete profile?</string>
+    <!-- Dialog button to delete profile -->
+    <string name="NotificationProfileDetails__delete">Delete</string>
+    <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
+    <string name="NotificationProfileDetails__edit_notification_profile">Edit notification profile</string>
+    <!-- Schedule description if all days are selected -->
+    <string name="NotificationProfileDetails__everyday">Everyday</string>
+    <!-- Profile status on if it is the active profile -->
+    <string name="NotificationProfileDetails__on">On</string>
+    <!-- Profile status on if it is not the active profile -->
+    <string name="NotificationProfileDetails__off">Off</string>
+    <!-- Description of hours for schedule (start to end) times -->
+    <string name="NotificationProfileDetails__s_to_s">%1$s to %2$s</string>
+    <!-- Section header for exceptions to the notification profile -->
+    <string name="NotificationProfileDetails__exceptions">Exceptions</string>
+    <!-- Profile exception to allow all calls through the profile restrictions -->
+    <string name="NotificationProfileDetails__allow_all_calls">Allow all calls</string>
+    <!-- Profile exception to allow all @mentions through the profile restrictions -->
+    <string name="NotificationProfileDetails__notify_for_all_mentions">Notify for all mentions</string>
+    <!-- Section header for showing schedule information -->
+    <string name="NotificationProfileDetails__schedule">Schedule</string>
+
+    <!-- Title for add schedule to profile in create flow -->
+    <string name="EditNotificationProfileSchedule__add_a_schedule">Add a schedule</string>
+    <!-- Descriptor text indicating what the user can do with this screen -->
+    <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Turn on and edit your schedule to automate this profile.</string>
+    <!-- Text shown next to toggle switch to enable/disable schedule -->
+    <string name="EditNotificationProfileSchedule__schedule">Schedule</string>
+    <!-- Label for showing the start time for the schedule -->
+    <string name="EditNotificationProfileSchedule__start">Start</string>
+    <!-- Label for showing the end time for the schedule -->
+    <string name="EditNotificationProfileSchedule__end">End</string>
+    <!-- First letter of Sunday -->
+    <string name="EditNotificationProfileSchedule__sunday_first_letter">S</string>
+    <!-- First letter of Monday -->
+    <string name="EditNotificationProfileSchedule__monday_first_letter">M</string>
+    <!-- First letter of Tuesday -->
+    <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
+    <!-- First letter of Wednesday -->
+    <string name="EditNotificationProfileSchedule__wednesday_first_letter">W</string>
+    <!-- First letter of Thursday -->
+    <string name="EditNotificationProfileSchedule__thursday_first_letter">T</string>
+    <!-- First letter of Friday -->
+    <string name="EditNotificationProfileSchedule__friday_first_letter">F</string>
+    <!-- First letter of Saturday -->
+    <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
+    <!-- Title of select time dialog shown when setting start time for schedule -->
+    <string name="EditNotificationProfileSchedule__set_start_time">Set start time</string>
+    <!-- Title of select time dialog shown when setting end time for schedule -->
+    <string name="EditNotificationProfileSchedule__set_end_time">Set end time</string>
+    <!-- If in edit mode, call to action button text show to save schedule to profile -->
+    <string name="EditNotificationProfileSchedule__save">Save</string>
+    <!-- If in create mode, call to action button text to show to skip enabling a schedule -->
+    <string name="EditNotificationProfileSchedule__skip">Skip</string>
+    <!-- If in create mode, call to action button text to show to use the enabled schedule and move to the next screen -->
+    <string name="EditNotificationProfileSchedule__next">Next</string>
+    <!-- Error message shown if trying to save/use a schedule with no days selected -->
+    <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Schedule must have at least one day</string>
+
+    <!-- Title for final screen shown after completing a profile creation -->
+    <string name="NotificationProfileCreated__profile_created">Profile created</string>
+    <!-- Call to action button to press to close the created screen and move to the profile details screen -->
+    <string name="NotificationProfileCreated__done">Done</string>
+    <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">You can turn your profile on or off manually via the menu on the chat list.</string>
+    <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Add a schedule in settings to automate your profile.</string>
+    <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Your profile will turn on and off automatically according to your schedule.</string>
+
+    <!-- Button text shown in profile selection bottom sheet to create a new profile -->
+    <string name="NotificationProfileSelection__new_notification_profile">New notification profile</string>
+    <!-- Manual enable option to manually enable a profile for 1 hour -->
+    <string name="NotificationProfileSelection__for_1_hour">For 1 Hour</string>
+    <!-- Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next) -->
+    <string name="NotificationProfileSelection__until_s">Until %1$s</string>
+    <!-- Option to view profile details -->
+    <string name="NotificationProfileSelection__view_settings">View settings</string>
+    <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
+    <string name="NotificationProfileSelection__on_until_s">On until %1$s</string>
+
+    <!-- Title for notification profile megaphone -->
+    <string name="NotificationProfilesMegaphone__notification_profiles">Notification profiles</string>
+    <!-- Description for notification profile megaphone -->
+    <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Only get notifications from the people and groups you choose.</string>
+    <!-- Call to action button to create a profile from megaphone -->
+    <string name="NotificationProfilesMegaphone__create_a_profile">Create a profile</string>
+    <!-- Button to dismiss notification profile megaphone -->
+    <string name="NotificationProfilesMegaphone__not_now">Now now</string>
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
