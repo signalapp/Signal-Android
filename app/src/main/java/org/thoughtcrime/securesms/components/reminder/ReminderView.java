@@ -117,6 +117,10 @@ public final class ReminderView extends FrameLayout {
       }
     });
 
+    if (reminder.getImportance() == Reminder.Importance.NORMAL) {
+      closeButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
+    }
+
     int progress = reminder.getProgress();
     if (progress != -1) {
       progressBar.setProgress(progress);

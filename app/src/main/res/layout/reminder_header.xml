@@ -48,7 +48,7 @@
 
     <TextView
         android:id="@+id/reminder_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
@@ -57,6 +57,7 @@
         android:textSize="20sp"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toTopOf="@id/reminder_text"
+        app:layout_constraintEnd_toStartOf="@id/cancel"
         app:layout_constraintStart_toEndOf="@id/reminder_progress"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginStart="16dp"
