@@ -3342,8 +3342,8 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mede met jou bijdrage wordt deze missie mogelijk gemaakt en wordt betaald voor de ontwikkeling en het in werking houden van apps waardoor miljoenen mensen wereldwijd in vrijheid gesprekken kunnen voeren. Geen advertenties, geen volgers, geen grapje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Je hebt de %s-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Je hebt de eenmalige-donateur-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Je hebt de ‘%s’-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Je hebt de ‘Eenmalige donateur’-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Je kunt ook</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maandelijks doneren.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
@@ -3358,7 +3358,7 @@
   <string name="ManageDonationsFragment__subscription_faq">Informatie over maandelijkse donaties</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fout bij het ophalen van informatie over maandelijkse donaties.</string>
   <string name="BoostFragment__give_signal_a_boost">Help Signal met een eenmalige bijdrage</string>
-  <string name="BoostFragment__say_thanks_and_earn">Bedank Signal en verdien de eenmalige-donateur-badge voor %1$d dagen.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Bedank Signal en verdien de ‘Eenmalige donateur’-badge voor %1$d dagen.</string>
   <string name="Boost__enter_custom_amount">Vul een zelfgekozen bedrag in</string>
   <string name="Boost__one_time_contribution">Eenmalige bijdrage</string>
   <string name="MySupportPreference__add_a_signal_boost">Geef Signal een oppepper</string>
@@ -3371,18 +3371,18 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Je badge is verlopen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge verlopen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Maandelijkse donaties geannuleerd</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Je eenmalige-donateur-badge is verlopen en is daarom niet langer voor anderen te zien op je profiel.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je eenmalige-donateur-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Je ‘Eenmalige donateur’-badge is verlopen en is daarom niet langer voor anderen te zien op je profiel.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je ‘Eenmalige donateur’-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overweeg maandelijkse donaties in te stellen om technologie die is gemaakt voor jou in plaats van voor het verzamelen van gegevens te blijven ondersteunen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mogelijk maken</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nogmaals eenmalig doneren</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Je maandelijkse donaties zijn automatisch geannuleerd omdat je te lang inactief bent geweest. Je %1$s-badge is niet langer voor anderen te zien op je profiel.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Je maandelijkse donaties zijn automatisch geannuleerd omdat je te lang inactief bent geweest. Je ‘%1$s’-badge is niet langer voor anderen te zien op je profiel.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
   <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
   <string name="Subscription__contact_support">Neem contact op</string>
-  <string name="Subscription__earn_a_s_badge">Verdien een %1$s-badge</string>
+  <string name="Subscription__earn_a_s_badge">Verdien een ‘%1$s’-badge</string>
   <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van een overschrijving</string>

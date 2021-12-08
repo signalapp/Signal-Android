@@ -1715,14 +1715,14 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Otwórz Signal, aby zobaczyć najnowsze powiadomienia.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <string name="MessageNotifier_reacted_s_to_s">Zareagował(a) w ten sposób %1$s na \"%2$s\".</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">Zareagował(a) w ten sposób %1$s na Twoje wideo.</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">Zareagował(a) w ten sposób %1$s na Twoje zdjęcie.</string>
-  <string name="MessageNotifier_reacted_s_to_your_gif">Zareagował(a) w ten sposób %1$s na Twój GIF.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">Zareagował(a) w ten sposób %1$s na Twój plik.</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">Zareagował(a) w ten sposób %1$s na Twoje audio.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Zareagował(a) w ten sposób %1$s na Twoje multimedia jednorazowe.</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">Zareagował(a) w ten sposób %1$s na Twoją naklejkę.</string>
+  <string name="MessageNotifier_reacted_s_to_s">Zareagował(a) tak %1$s na \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Zareagował(a) tak %1$s na Twoje wideo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Zareagował(a) tak %1$s na Twoje zdjęcie.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Zareagował(a) tak %1$s na Twój GIF.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Zareagował(a) tak %1$s na Twój plik.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Zareagował(a) tak %1$s na Twoje audio.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Zareagował(a) tak %1$s na Twoje multimedia jednorazowe.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Zareagował(a) tak %1$s na Twoją naklejkę.</string>
   <string name="MessageNotifier_this_message_was_deleted">Ta wiadomość została usunięta.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Wyłączyć powiadomienia \"Kontakt dołączył do Signal\"? Możesz włączyć je ponownie w Signal &gt; Ustawienia &gt; Powiadomienia.</string>
   <!--Notification Channels-->

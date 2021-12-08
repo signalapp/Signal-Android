@@ -699,6 +699,7 @@
   <string name="ManageProfileFragment_your_username">Kullanıcı adınız</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar ayarlanamadı</string>
   <string name="ManageProfileFragment_badges">Rozetler</string>
+  <string name="ManageProfileFragment__edit_photo">Fotoğrafı düzenle</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ortak grubunuz yok</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1339,8 +1340,13 @@
   <string name="RegistrationActivity_play_services_error">Play Hizmetleri Hatası</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Hizmetleri güncelleniyor veya geçiçi olarak kullanılamaz durumda. Lütfen tekrar deneyiniz.</string>
   <string name="RegistrationActivity_terms_and_privacy">Koşullar ve Gizlilik İlkesi</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal, arkadaşlarına bağlanmana yardımcı olmak ve mesaj gönderebilmek için kişilere ve medyaya erişim iznine ihtiyaç duyar. Kişi listen Signal\'ın gizli kişi bulma özelliğiyle yüklenir; yani uçtan uca şifrelenir ve Signal hizmeti tarafından hiç görülmez.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal, arkadaşlarına bağlanmana yardımcı olabilmek için kişilere erişim iznine ihtiyaç duyuyor. Kişilerin, Signal\'ın gizli kişi bulma özelliğiyle yüklenir; yani uçtan uca şifrelenir ve Signal hizmeti tarafından hiç görülmez.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Bu numarayı kaydettirmek için çok fazla deneme yaptınız. Lütfen daha sonra tekrar deneyiniz.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Hizmete bağlanılamadı. Lütfen ağ bağlantınızı kontrol edip tekrar deneyin. </string>
+  <string name="RegistrationActivity_non_standard_number_format">Standart olmayan numara formatı</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Girdiğin numara (%1$s) standart olmayan bir formatta gibi görünüyor.\n\n%2$s mi demek istedin?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefon Numarası Formatı</string>
   <string name="RegistrationActivity_call_requested">Arama istendi</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Artık bir hata ayıklama günlüğü göndermekten %d adım uzaktasınız.</item>
@@ -1933,6 +1939,16 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__debug_log">Hata Ayıklama Günlüğü:</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Lütfen birini seç \-\-</item>
+    <item>Çalışmayan Bir Şey Var</item>
+    <item>Özellik İsteği</item>
+    <item>Soru</item>
+    <item>Geri Bildirim</item>
+    <item>Diğer</item>
+    <item>Ödemeler (MobileCoin)</item>
+    <item>Destekçiler &amp; Signal Boost</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Bu İleti</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Yakınlarda Kullanılmış</string>
@@ -2030,6 +2046,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__advanced">Gelişmiş</string>
   <string name="preferences__donate_to_signal">Signal\'e Bağış Yap</string>
   <string name="preferences__subscription">Abonelik</string>
+  <string name="preferences__become_a_signal_sustainer">Signal Destekçisi Ol</string>
   <string name="preferences__signal_boost">Signal Arttırma</string>
   <string name="preferences__privacy">Gizlilik</string>
   <string name="preferences__mms_user_agent">MMS Kullanıcı Aracı</string>
@@ -2387,6 +2404,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="Insights__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__title">İçgörüler</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolü son %2$d gündeki iletilerinizin %%%1$d kadarını otomatik olarak korudu. Signal kullanıcıları arasındaki konuşmalar her zaman uçtan uca şifrelidir.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Bizden bahset</string>
   <string name="InsightsDashboardFragment__not_enough_data">Yetersiz veri</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">İçgörü yüzdeniz son %1$d gün içerisinde gönderdiğiniz kaybolmamış veya silinmemiş iletilere göre hesaplanır.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Konuşma başlat</string>
@@ -3120,7 +3138,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Şimdi değil</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Fotoğraf ekleyin</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Destekçi Ol</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal senin gibi insanlar tarafından destekleniyor. Katkıda bulun ve bir profil rozeti kazan.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Hayır teşekkürler</string>
+  <string name="BecomeASustainerMegaphone__contribute">Katkıda Bulun</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji arayıcıyı aç</string>
@@ -3169,6 +3190,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konuşma sonsuza kadar sessiz yapıldı</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefon numarası panoya kopyalandı</string>
   <string name="ConversationSettingsFragment__phone_number">Telefon numarası</string>
+  <string name="ConversationSettingsFragment__get_badges">Signal\'ı destekleyerek profilin için rozet kazan. Daha fazlasını öğrenmek için bir rozete dokun.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Üye ekle</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Grup bilgisini düzenle</string>
@@ -3290,6 +3312,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ImageView__badge">Rozet</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal sizin gibi bireyler sayesinde var.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Bunu sürdüren insanlar topluluğuna katılarak verileriniz için değil, sizin için oluşturulan teknolojiyi destekleyin.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signal\'ı ayakta tutan topluluğa katılarak, verilerin için değil senin için geliştirilen teknolojiyi destekle.</string>
+  <string name="SubscribeFragment__currency">Para birimi</string>
   <string name="SubscribeFragment__more_payment_options">Diğer Ödeme Seçenekleri</string>
   <string name="SubscribeFragment__cancel_subscription">Aboneliği iptal et</string>
   <string name="SubscribeFragment__confirm_cancellation">İptal edilsin mi?</string>
@@ -3301,17 +3325,26 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubscribeFragment__update_subscription_question">Abonelik güncellensin mi?</string>
   <string name="SubscribeFragment__update">Güncelle</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Bugün yeni abonelik fiyatının tamamı sizden tahsil edilecektir. Aboneliğiniz %1$s tarihinde yenilenir.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bugün yeni abonelik ücretinin tam tutarıyla (%1$s) ücretlendirileceksin. Aboneliğin aylık olarak yenilenecek.</string>
   <string name="Subscription__s_per_month">%s/ay</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ay · Yenilenme %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ay · Bitiş %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal, reklamvereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yapın ve desteğinizi gösteren bir profil rozeti alın.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Neden Katkıda Bulunulmalı?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal, ifade özgürlüğünü koruyan ve güvenli küresel iletişimi mümkün kılan, açık kaynak gizlilik teknolojisi geliştirmeye adanmıştır.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Katkıların bu hedefe hizmet edecek ve milyonlar tarafından mahrem iletişimde kullanılan bir uygulamanın geliştirilmesi ve işletilmesi için harcanacaktır. Reklam yok. Takipçi yok. Yalan yok.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Arttırıcı için teşekkürler!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">%s rozeti kazandın! Bu rozeti profilinde görüntüleyerek Signal\'ın farkındalık oluşturmasına yardımcı ol.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bir Boost rozeti kazandın! Bu rozeti profilinde göstererek Signal\'ın farkındalık oluşturmasına yardım et.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Aynı zamanda</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">aylık bir Destekçi ol.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profilde Göster</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Öne çıkarılan rozet seçin</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tamam</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Birden fazla rozetiniz olduğunda, profilinizde başkalarının görmesi için birini seçebilirsiniz.</string>
+  <string name="BecomeASustainerFragment__get_badges">Signal\'ı destekleyerek profilin için rozet kazan.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal reklam almaz, sponsoru yoktur ve kâr amacı gütmez; sadece senin gibi gönüllüler tarafından destekleniyor.</string>
   <string name="ManageDonationsFragment__my_support">Desteğim</string>
   <string name="ManageDonationsFragment__manage_subscription">Aboneliği yönet</string>
   <string name="ManageDonationsFragment__badges">Rozetler</string>
@@ -3324,21 +3357,44 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MySupportPreference__add_a_signal_boost">Signal Arttırıcı ekleyin</string>
   <string name="MySupportPreference__s_per_month">%1$s/ay</string>
   <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
+  <string name="MySupportPreference__processing_transaction">İşlem gerçekleştiriliyor…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Rozet eklenemedi. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Lütfen destek ekibiyle iletişime geç.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Rozetinizin Süresi Geçti</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Rozetin süresi doldu</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonelik iptal edildi</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Boost rozetinin süresi doldu ve artık profilinde başkalarına görünür olmayacak.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bir seferlik bir katkıyla Boost rozetini ilave 30 gün için yeniden etkinleştirebilirsin.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Senin için geliştirilen teknolojiyi desteklemeye devam etmek için, lütfen aylık Destekçi olmayı düşün.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Destekçi Ol</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost Ekle</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Destekçi aboneliğin otomatik olarak iptal edildi, çünkü uzun süredir aktif değilsin. %1$s rozetin artık profilinde görülebilir değil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'ı kullanmaya devam edebilirsin ama uygulamaya destek olmak ve rozetini tekrar etkinleştirmek için şimdi yenile.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Aboneliği yenile</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha fazla bilgi için lütfen bizimle iletişime geçin.</string>
   <string name="Subscription__contact_support">Destekle İletişime Geçin</string>
   <string name="Subscription__earn_a_s_badge">Bir %1$s rozeti kazanın</string>
   <string name="SubscribeFragment__processing_payment">Ödeme işleniyor…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Ödemenin işlenmesinde hata</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Ödemenin işlenmesinde hata. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Rozetin hesabına eklenemedi ama ödediğin ücret alınmış olabilir. Lütfen destek ekibiyle iletişime geç.</string>
   <string name="DonationsErrors__your_payment">Ödemeniz işlenemedi ve sizden ödeme alınmadı. Lütfen tekrar deneyin.</string>
+  <string name="DonationsErrors__still_processing">İşlem sürüyor</string>
+  <string name="DonationsErrors__couldnt_add_badge">Rozet eklenemedi</string>
+  <string name="DonationsErrors__your_badge_could_not">Rozetin hesabına eklenemedi, ancak senden ücret alınmış olabilir. Lütfen destek ekibiyle iletişime geç.</string>
+  <string name="DonationsErrors__your_payment_is_still">Ödemen hâlâ işleniyor. Bu, bağlantına bağlı olarak birkaç dakika sürebilir.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Kullanılamıyor</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Uygulama içi bağış yapmak için Google Pay\'i kurmanız gerekir.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abonelik iptal edilemedi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abonelik iptali için internet bağlantısı gerekir.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Cihazın Google Pay\'i desteklemiyor, bu yüzden abone olup rozet kazanamazsın. Yine de websitemizden bağışta bulunarak Signal\'ı destekleyebilirsin.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ağ hatası. Bağlantını kontrol edip tekrar dene.</string>
   <string name="NetworkFailure__retry">Tekrar dene</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Seçicinin açılmasında hata oldu.</string>
   <!--EOF-->
 </resources>

@@ -1340,6 +1340,8 @@
   <string name="RegistrationActivity_play_services_error">Villa í Play-þjónustum</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play þjónustur eru að uppfærast eða eru tímabundi óaðgengilegar. Prófaðu aftur.</string>
   <string name="RegistrationActivity_terms_and_privacy">Skilmálar og meðferð persónuupplýsinga</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal þarf heimild til að nota tengiliðaskrá og margmiðlunarefni svo þú eigir auðveldara með að tengjast vinum þínum og senda skilaboð. Tengiliðirnir þínir eru sendir inn til Signal með sérstöku persónuverndarkerfi, sem þýðir að upplýsingarnar eru dulritaðar enda-í-enda og aldrei sýnilegar Signal þjónustunni.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal þarf heimild til að nota tengiliðaskrá svo þú eigir auðveldara með að tengjast vinum þínum. Tengiliðirnir þínir eru sendir inn til Signal með sérstöku persónuverndarkerfi, sem þýðir að upplýsingarnar eru dulritaðar enda-í-enda og aldrei sýnilegar Signal þjónustunni.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Þú hefur gert of margar tilraunir til að skrá þetta númer. Prófaðu aftur síðar.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Mistókst að tengjast þjónustu. Athugaðu netsambandið þitt og prófaðu aftur.</string>
   <string name="RegistrationActivity_non_standard_number_format">Óstaðlað tölusnið</string>

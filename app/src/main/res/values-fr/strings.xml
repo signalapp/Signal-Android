@@ -698,7 +698,7 @@
   <string name="ManageProfileFragment_your_name">Votre nom</string>
   <string name="ManageProfileFragment_your_username">Votre nom d’utilisateur</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Échec de définition de l’avatar</string>
-  <string name="ManageProfileFragment_badges">Badges</string>
+  <string name="ManageProfileFragment_badges">Macarons</string>
   <string name="ManageProfileFragment__edit_photo">Modifier la photo</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Aucun groupe en commun</string>
@@ -1935,12 +1935,12 @@
   <string-array name="HelpFragment__categories_3">
     <item>\-\- Veuillez sélectionner une option \-\-\-</item>
     <item>Quelque chose ne fonctionne pas</item>
-    <item>Demande de fonctionnalité</item>
+    <item>Demande de fonction</item>
     <item>Question</item>
-    <item>Retour d\'information</item>
+    <item>Rétroaction</item>
     <item>Autre</item>
     <item>Paiements (MobileCoin)</item>
-    <item>Soutiens et Boost Signal</item>
+    <item>Donateurs mensuels et coups de pouce à Signal</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
@@ -2039,8 +2039,8 @@
   <string name="preferences__advanced">Avancés</string>
   <string name="preferences__donate_to_signal">Faire un don à Signal</string>
   <string name="preferences__subscription">Abonnement</string>
-  <string name="preferences__become_a_signal_sustainer">Devenir un soutien de Signal</string>
-  <string name="preferences__signal_boost">Encourager Signal</string>
+  <string name="preferences__become_a_signal_sustainer">Devenir donateur mensuel de Signal</string>
+  <string name="preferences__signal_boost">Coup de pouce à Signal</string>
   <string name="preferences__privacy">Confidentialité</string>
   <string name="preferences__mms_user_agent">Agent utilisateur MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Paramètres manuels de messagerie multimédia</string>
@@ -3135,8 +3135,8 @@ Nouvelle tentative…</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Pas maintenant</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ajouter une photo</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__become_a_sustainer">Devenir un soutien</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal est propulsé par des personnes comme vous. Contribuez et recevez un badge de profil. </string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Devenir donateur mensuel</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal est propulsé par des personnes comme vous. Contribuez et recevez un macaron de profil. </string>
   <string name="BecomeASustainerMegaphone__no_thanks">Non merci</string>
   <string name="BecomeASustainerMegaphone__contribute">Contribuer</string>
   <!--KeyboardPagerFragment-->
@@ -3187,7 +3187,7 @@ Nouvelle tentative…</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation en sourdine pour toujours</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numéro de téléphone copié dans le presse-papier.</string>
   <string name="ConversationSettingsFragment__phone_number">Numéro de téléphone</string>
-  <string name="ConversationSettingsFragment__get_badges">Obtenez des badges pour votre profil en soutenant Signal. Touchez un badge pour en savoir plus.</string>
+  <string name="ConversationSettingsFragment__get_badges">Obtenez des macarons pour votre profil en soutenant Signal. Touchez un macaron pour en savoir plus.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifier les renseignements</string>
@@ -3296,17 +3296,17 @@ Nouvelle tentative…</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Abandonner les changements ?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Vous perdrez toutes les modifications apportées à cette photo.</string>
   <string name="CameraFragment__failed_to_open_camera">Échec d’ouverture de l’appareil photo</string>
-  <string name="BadgesOverviewFragment__my_badges">Mes badges</string>
-  <string name="BadgesOverviewFragment__featured_badge">Badges mis en avant</string>
-  <string name="BadgesOverviewFragment__display_badges_on_profile">Afficher les badges sur le profil</string>
+  <string name="BadgesOverviewFragment__my_badges">Mes macarons</string>
+  <string name="BadgesOverviewFragment__featured_badge">Macarons mis en avant</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Afficher les macarons sur le profil</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
-  <string name="BadgeSelectionFragment__select_badges">Sélectionnez des badges</string>
+  <string name="BadgeSelectionFragment__select_badges">Sélectionnez des macarons</string>
   <string name="SelectFeaturedBadgeFragment__preview">Aperçu</string>
-  <string name="SelectFeaturedBadgeFragment__select_a_badge">Sélectionnez un badge</string>
-  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Vous devez sélectionner un badge</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Sélectionnez un macaron</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Vous devez sélectionner un macaron</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Échec de mise à jour du profil</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un soutien</string>
-  <string name="ImageView__badge">Badge</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir donateur mensuel</string>
+  <string name="ImageView__badge">Macaron</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal est propulsé par des personnes comme vous.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Soutenez une technologie conçue pour vous – pas pour vos données – en rejoignant la communauté qui la porte.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Soutenez une technologie conçue pour vous, pas pour vos données, en rejoignant la communauté qui porte Signal.</string>
@@ -3314,7 +3314,7 @@ Nouvelle tentative…</string>
   <string name="SubscribeFragment__more_payment_options">Plus d’options de paiement</string>
   <string name="SubscribeFragment__cancel_subscription">Annuler l’abonnement</string>
   <string name="SubscribeFragment__confirm_cancellation">Confirmer l’annulation ?</string>
-  <string name="SubscribeFragment__you_wont_be_charged_again">Vous ne serez plus facturé. Votre badge sera supprimé de votre profil à la fin de votre période de facturation.</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Vous ne serez plus facturé. Votre macaron sera supprimé de votre profil à la fin de votre période de facturation.</string>
   <string name="SubscribeFragment__not_now">Pas maintenant</string>
   <string name="SubscribeFragment__confirm">Confirmer</string>
   <string name="SubscribeFragment__update_subscription">Mettre à jour l’abonnement</string>
@@ -3326,69 +3326,69 @@ Nouvelle tentative…</string>
   <string name="Subscription__s_per_month">%s/mois</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mois · Renouvellement %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mois · Expire %2$s </string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par les gens qui l’utilisent et l’apprécient. Faites un don mensuel récurrent et recevez un badge de profil pour afficher votre soutien.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par les gens qui l’utilisent et l’apprécient. Faites un don mensuel récurrent et recevez un macaron de profil pour afficher votre soutien.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pourquoi contribuer ?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal s\'engage à développer une technologie de protection de la vie privée à code source ouvert qui protège la libre expression et permet une communication mondiale sécurisée.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Votre contribution alimente cette cause et permet de financer le développement et le fonctionnement d\'une application utilisée par des millions de personnes pour la communication privée. Pas de publicité. Pas de traceurs. Sans blague.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Merci pour le coup de pouce !</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vous avez obtenu le badge %s ! Aidez Signal à se faire connaître en affichant ce badge sur votre profil.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vous avez obtenu le badge Boost ! Aidez Signal à se faire connaître en affichant ce badge sur votre profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vous avez obtenu le macaron %s ! Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Vous avez obtenu un macaron Encouragement. Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vous pouvez aussi</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">devenir un donateur mensuel.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afficher sur le profil</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Mettre en avant ce badge</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Mettre en avant ce macaron</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Terminé</string>
-  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si vous avez plus d’un badge, vous pouvez en choisir un que les autres pourront voir sur votre profil.</string>
-  <string name="BecomeASustainerFragment__get_badges">Obtenez des badges pour votre profil en soutenant Signal.</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si vous avez plus d’un macaron, vous pouvez en choisir un que les autres pourront voir sur votre profil.</string>
+  <string name="BecomeASustainerFragment__get_badges">Obtenez des macarons pour votre profil en soutenant Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par des personnes comme vous.</string>
   <string name="ManageDonationsFragment__my_support">Mon soutien</string>
   <string name="ManageDonationsFragment__manage_subscription">Gérer l\'abonnement</string>
-  <string name="ManageDonationsFragment__badges">Badges</string>
+  <string name="ManageDonationsFragment__badges">Macarons</string>
   <string name="ManageDonationsFragment__subscription_faq">FAQ Abonnement</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Erreur de lecture de l\'abonnement</string>
   <string name="BoostFragment__give_signal_a_boost">Donnez un coup de pouce à Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Dites « merci » et gagnez le badge Boost pour %1$d jours.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Dites « Merci ! » et gagnez le macaron Encouragement pour %1$d jours.   </string>
   <string name="Boost__enter_custom_amount">Saisissez un montant personnalisé</string>
   <string name="Boost__one_time_contribution">Contribution unique</string>
-  <string name="MySupportPreference__add_a_signal_boost">Ajouter un Boost Signal</string>
+  <string name="MySupportPreference__add_a_signal_boost">Donner un coup de pouce à Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/mois</string>
   <string name="MySupportPreference__renews_s">Renouvellement %1$s</string>
   <string name="MySupportPreference__processing_transaction">Traitement de la transaction…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
-  <string name="MySupportPreference__couldnt_add_badge_s">Impossible d\'ajouter un badge. %1$s</string>
+  <string name="MySupportPreference__couldnt_add_badge_s">Impossible d\'ajouter un macaron. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Veuillez contacter l’assistance.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre badge a expiré</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge expiré</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Votre macaron a expiré</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Macaron expiré</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulé</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Votre badge Boost a expiré et n’est plus visible par les autres sur votre profil.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vous pouvez réactiver votre badge Boost pour 30 jours supplémentaires en versant une somme unique.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Votre macaron Encouragement est expiré et n’est plus visible par les autres sur votre profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Vous pouvez réactiver votre macaron Encouragement pour 30 jours supplémentaires en versant une somme unique.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Pour continuer à soutenir la technologie conçue pour vous, veuillez envisager de devenir un donateur mensuel.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir un soutien</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Ajouter un Boost</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir donateur mensuel</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Donner un coup de pouce</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Votre abonnement de soutien a été automatiquement annulé car vous êtes resté inactif pendant trop longtemps. Le badge %1$s n\'est plus visible sur votre profil.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez continuer à utiliser Signal mais pour soutenir l\'application et réactiver votre badge, renouvelez maintenant.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Votre don mensuel a automatiquement été résilié en raison d’une inaction trop longue. Votre macaron %1$s n’est plus visible sur votre profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez continuer à utiliser Signal mais pour soutenir l\'application et réactiver votre macaron, renouvelez maintenant.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renouveler l’abonnement</string>
   <string name="Subscription__please_contact_support_for_more_information">Veuillez contacter l’assistance pour plus de renseignements.</string>
   <string name="Subscription__contact_support">Contacter l’assistance</string>
-  <string name="Subscription__earn_a_s_badge">Obtenez un badge %1$s</string>
+  <string name="Subscription__earn_a_s_badge">Obtenez un macaron %1$s</string>
   <string name="SubscribeFragment__processing_payment">Traitement du paiement…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Erreur de traitement du paiement</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__error_processing_payment_s">Erreur de traitement du paiement. %1$s</string>
-  <string name="DonationsErrors__your_badge_could_not_be_added">Votre badge n\'a pas pu être ajouté à votre compte, mais vous avez peut-être été facturé. Veuillez contacter le service d\'assistance.</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Votre macaron n\'a pas pu être ajouté à votre compte, mais vous avez peut-être été facturé. Veuillez contacter le service d\'assistance.</string>
   <string name="DonationsErrors__your_payment">Votre paiement n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
   <string name="DonationsErrors__still_processing">En cours de traitement</string>
-  <string name="DonationsErrors__couldnt_add_badge">Impossible d\'ajouter le badge</string>
-  <string name="DonationsErrors__your_badge_could_not">Votre badge n’a pas pu être ajouté à votre compte, mais vous avez peut-être été facturé. Veuillez contacter le service d’assistance.</string>
+  <string name="DonationsErrors__couldnt_add_badge">Impossible d\'ajouter le macaron</string>
+  <string name="DonationsErrors__your_badge_could_not">Votre macaron n’a pas pu être ajouté à votre compte, mais vous avez peut-être été facturé. Veuillez contacter le service d’assistance.</string>
   <string name="DonationsErrors__your_payment_is_still">Votre paiement est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponible</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vous devez configurer Google Pay pour faire un don dans l’application.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Échec de l’annulation de l’abonnement</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L’annulation de l’abonnement nécessite une connexion Internet.</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil ne prend pas en charge Google Pay, vous ne pouvez donc pas vous abonner pour gagner un badge. Vous pouvez toujours soutenir Signal en faisant un don sur notre site Web.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil ne prend pas en charge Google Pay, vous ne pouvez donc pas vous abonner pour gagner un macaron. Vous pouvez toujours soutenir Signal en faisant un don sur notre site Web.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur de réseau. Vérifiez votre connexion et réessayez.</string>
   <string name="NetworkFailure__retry">Réessayer</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->

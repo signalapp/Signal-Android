@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">Απόκρυψη υπενθύμισης;</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ηχογραφήστε το συνθηματικό της αποκατάστασης των πληρωμών</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Καταγραφή φράσης</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Πριν μπορέσετε να απενεργοποιήσετε το PIN σας, πρέπει να καταγράψετε τη φράση ανάκτησης πληρωμών για να διασφαλίσετε ότι μπορείτε να ανακτήσετε τον λογαριασμό πληρωμών σας.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d λεπτό</item>
@@ -1335,6 +1336,8 @@
   <string name="RegistrationActivity_play_services_error">Σφάλμα υπηρεσιών Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Οι υπηρεσίες Google Play αναβαθμίζονται ή είναι προσωρινά μη διαθέσιμες. Παρακαλώ ξαναπροσπάθησε.</string>
   <string name="RegistrationActivity_terms_and_privacy">Όροι &amp; Πολιτική Απορρήτου</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Το Signal χρειάζεται τα δικαιώματα επαφών και πολυμέσων για να σας βοηθήσει να συνδεθείτε με φίλους και να στείλετε μηνύματα. Οι επαφές σας μεταφορτώνονται χρησιμοποιώντας τον ιδιωτικό εντοπισμό επαφών του Signal, πράγμα που σημαίνει ότι είναι κρυπτογραφημένες end-to-end και ποτέ ορατές από την υπηρεσία Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Το Signal χρειάζεται την άδεια επαφών για να σας βοηθήσει να συνδεθείτε με φίλους. Οι επαφές σας μεταφορτώνονται χρησιμοποιώντας τον ιδιωτικό εντοπισμό επαφών του Signal, πράγμα που σημαίνει ότι είναι κρυπτογραφημένες end-to-end και ποτέ ορατές από την υπηρεσία Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Έχεις προσπαθήσει πάρα πολλές φορές να εγγράψεις αυτόν τον αριθμό. Παρακαλώ ξαναπροσπάθησε αργότερα.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Αδυναμία σύνδεσης στην υπηρεσία. Παρακαλώ έλεγξε τη σύνδεση στο δίκτυο και ξαναπροσπάθησε.</string>
   <string name="RegistrationActivity_non_standard_number_format">Μη-τυπική μορφή αριθμού</string>
@@ -1549,6 +1552,8 @@
   <string name="MessageNotifier_message_delivery_failed">Η παράδοση του μηνύματος απέτυχε.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Αποτυχία παράδοσης του μηνύματος.</string>
   <string name="MessageNotifier_error_delivering_message">Σφάλμα κατά την παράδοση του μηνύματος.</string>
+  <string name="MessageNotifier_message_delivery_paused">Αποστολή μηνύματος σε παύση.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Επαληθεύστε για να συνεχίσετε να αποστέλλετε μηνύματα στο Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Σημείωση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_mark_read">Σημείωση ως αναγνωσμένο</string>
   <string name="MessageNotifier_turn_off_these_notifications">Απενεργοποίηση αυτών των ειδοποιήσεων</string>
@@ -1583,6 +1588,7 @@
   <string name="NotificationChannel_missing_display_name">Άγνωστο</string>
   <string name="NotificationChannel_voice_notes">Ηχητικές σημειώσεις</string>
   <string name="NotificationChannel_contact_joined_signal">Επαφή που εγκατέστησε το Signal</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Δεν υπάρχει διαθέσιμη δραστηριότητα για το άνοιγμα ρυθμίσεων του καναλιού ειδοποίησης.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
@@ -2166,45 +2172,94 @@
   <string name="PaymentsAllActivityFragment__all">Όλοι/ες</string>
   <string name="PaymentsAllActivityFragment__sent">Στάλθηκε στις</string>
   <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Παρουσίαση των πληρωμών (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Χρησιμοποιήστε το Signal για να στείλετε και να λάβετε MobileCoin, ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στο απόρρητο. Ενεργοποιήστε για να ξεκινήσετε.</string>
   <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
   <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">Επαναφορά λογαριασμού πληρωμών</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Καμία πρόσφατη δραστηριότητα ακόμα</string>
+  <string name="PaymentsHomeFragment__pending_requests">Εκκρεμή αιτήματα</string>
+  <string name="PaymentsHomeFragment__recent_activity">Πρόσφατη δραστηριότητα</string>
   <string name="PaymentsHomeFragment__see_all">Προβολή όλων</string>
+  <string name="PaymentsHomeFragment__add_funds">Προσθήκη κεφαλαίων</string>
   <string name="PaymentsHomeFragment__send">Αποστολή</string>
+  <string name="PaymentsHomeFragment__sent_s">Στάλθηκαν %1$s</string>
+  <string name="PaymentsHomeFragment__received_s">Λήφθηκαν %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Μεταφορά για ανταλλαγή</string>
   <string name="PaymentsHomeFragment__currency_conversion">Μετατροπή νομίσματος</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Απενεργοποίηση πληρωμών</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Φράση ανάκτησης</string>
   <string name="PaymentsHomeFragment__help">Βοήθεια</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Τέλος εκκαθάρισης νομισμάτων</string>
+  <string name="PaymentsHomeFragment__sent_payment">Αποστολή πληρωμής</string>
+  <string name="PaymentsHomeFragment__received_payment">Ληφθείσα πληρωμή</string>
+  <string name="PaymentsHomeFragment__processing_payment">Επεξεργασία πληρωμής</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Μετατροπή συνα΄αλλάγματος μη διαθέσιμη</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Αδυναμία προβολής μετατροπής νομίσματος. Ελέγξτε τη σύνδεση του τηλεφώνου σας και δοκιμάστε ξανά.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Οι πληρωμές δεν είναι διαθέσιμες στην περιοχή σας.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Δεν ήταν δυνατή η ενεργοποίηση πληρωμών. Δοκιμάστε ξανά αργότερα.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Απενεργοποίηση πληρωμών;</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Δεν θα μπορείτε να στείλετε ή να λάβετε MobileCoin στο Signal εάν απενεργοποιήσετε τις πληρωμές.</string>
   <string name="PaymentsHomeFragment__deactivate">Απενεργοποίηση</string>
   <string name="PaymentsHomeFragment__continue">Συνέχεια</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Το υπόλοιπο δεν είναι διαθέσιμο αυτήν τη στιγμή.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Οι πληρωμές απενεργοποιήθηκαν.</string>
   <string name="PaymentsHomeFragment__payment_failed">Η πληρωμή απέτυχε</string>
   <string name="PaymentsHomeFragment__details">Λεπτομέρειες</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Μπορείτε να χρησιμοποιήσετε το Signal για να στείλετε και να λάβετε MobileCoin. Όλες οι πληρωμές υπόκεινται στους Όρους Χρήσης MobileCoin και Πορτοφολιού MobileCoin. Αυτή είναι μια λειτουργία beta, επομένως ενδέχεται να αντιμετωπίσετε ορισμένα ζητήματα και οι πληρωμές ή τα υπόλοιπα που μπορεί να χάσετε δεν μπορούν να ανακτηθούν.</string>
   <string name="PaymentsHomeFragment__activate">Ενεργοποίηση</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Προβολή όρων MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Οι πληρωμές στο Signal δεν είναι πλέον διαθέσιμες. Μπορείτε ακόμα να μεταφέρετε χρήματα προς ένα ανταλλακτήριο, αλλά δεν μπορείτε πλέον να στέλνετε και να λαμβάνετε πληρωμές ή να προσθέτετε χρήματα.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Προσθήκη χρημάτων</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Η διεύθυνση πορτοφολιού σας</string>
   <string name="PaymentsAddMoneyFragment__copy">Αντιγραφή</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Για να προσθέσετε χρήματα, στείλτε MobileCoin στη διεύθυνση πορτοφολιού σας. Ξεκινήστε μια συναλλαγή από το λογαριασμό σας σε ένα ανταλλακτήριο που υποστηρίζει το MobileCoin και, στη συνέχεια, σαρώστε τον κωδικό QR ή αντιγράψτε τη διεύθυνση πορτοφολιού σας.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Λεπτομέρειες</string>
   <string name="PaymentsDetailsFragment__status">Κατάσταση</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Υποβολή πληρωμής…</string>
   <string name="PaymentsDetailsFragment__processing_payment">Επεξεργασία πληρωμής…</string>
   <string name="PaymentsDetailsFragment__payment_complete">Η πληρωμή ολοκληρώθηκε</string>
   <string name="PaymentsDetailsFragment__payment_failed">Η πληρωμή απέτυχε</string>
   <string name="PaymentsDetailsFragment__network_fee">Χρέωση δικτύου</string>
+  <string name="PaymentsDetailsFragment__sent_by">Αποστολή από</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">Στάλθηκε σε %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Εσείς στις %1$s στις %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s στις %2$s στις %3$s</string>
   <string name="PaymentsDetailsFragment__to">Προς</string>
   <string name="PaymentsDetailsFragment__from">Από</string>
+  <string name="PaymentsDetailsFragment__information">Τα στοιχεία της συναλλαγής, συμπεριλαμβανομένου του ποσού πληρωμής και του χρόνου συναλλαγής, αποτελούν μέρος του Καθολικού MobileCoin.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Τέλος καθαρισμού νομισμάτων</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Ένα «τέλος καθαρισμού κερμάτων» χρεώνεται όταν τα κέρματα που έχετε στην κατοχή σας δεν μπορούν να συνδυαστούν για να ολοκληρωθεί μια συναλλαγή. Ο καθαρισμός θα σας επιτρέψει να συνεχίσετε να στέλνετε πληρωμές.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Δεν υπάρχουν περισσότερες λεπτομέρειες για αυτήν τη συναλλαγή</string>
+  <string name="PaymentsDetailsFragment__sent_payment">Αποστολή πληρωμής</string>
+  <string name="PaymentsDetailsFragment__received_payment">Ληφθείσα πληρωμή</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Πληρωμή ολοκληρώθηκε %1$s</string>
   <string name="PaymentsDetailsFragment__block_number">Φραγή αριθμού</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Μεταφορά</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Σκανάρισμα κωδικού QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Προς: Σαρώστε ή εισαγάγετε διεύθυνση πορτοφολιού</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Μπορείτε να μεταφέρετε MobileCoin ολοκληρώνοντας μια μεταφορά στη διεύθυνση πορτοφολιού που παρέχεται από το ανταλλακτήριο. Η διεύθυνση πορτοφολιού είναι η ακολουθία αριθμών και γραμμάτων που βρίσκεται συνήθως κάτω από τον κωδικό QR.</string>
   <string name="PaymentsTransferFragment__next">Επόμενο</string>
+  <string name="PaymentsTransferFragment__invalid_address">Μη έγκυρη διεύθυνση</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Ελέγξτε τη διεύθυνση πορτοφολιού στην οποία προσπαθείτε να μεταφέρετε και δοκιμάστε ξανά.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Δεν μπορείτε να πραγματοποιήσετε μεταφορά στη δική σας διεύθυνση πορτοφολιού Signal. Εισαγάγετε τη διεύθυνση πορτοφολιού στον λογαριασμό σας σε ένα υποστηριζόμενο ανταλλακτήριο.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Για να σαρώσει έναν κωδικό QR, το Signal χρειάζεται πρόσβαση στην κάμερα.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Το Signal χρειάζεται την άδεια της κάμερας για να καταγράψει έναν κωδικό QR. Μεταβείτε στις ρυθμίσεις, επιλέξτε Άδειες και ενεργοποιήστε την Κάμερα. </string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Για να σαρώσετε έναν κωδικό QR, το Signal χρειάζεται πρόσβαση στην κάμερά σας.</string>
   <string name="PaymentsTransferFragment__settings">Ρυθμίσεις</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Σάρωση Κωδικού QR Διεύθυνσης</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Σαρώστε τον κωδικό QR της διεύθυνσης του δικαιούχου πληρωμής</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Αίτημα</string>
   <string name="CreatePaymentFragment__pay">Πληρωμή</string>
+  <string name="CreatePaymentFragment__available_balance_s">Εναπομείναν υπόλοιπο: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Ενεργοποίηση</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2219,17 +2274,25 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Προσθήκη σημείωσης</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Οι μετατροπές είναι απλώς εκτιμήσεις και μπορεί να μην είναι ακριβείς.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Σημείωση</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Επιβεβαίωση πληρωμής</string>
   <string name="ConfirmPayment__network_fee">Χρέωση δικτύου</string>
+  <string name="ConfirmPayment__error_getting_fee">Σφάλμα λήψης του τέλους</string>
+  <string name="ConfirmPayment__estimated_s">Εκτιμώμενο %1$s</string>
   <string name="ConfirmPayment__to">Προς</string>
   <string name="ConfirmPayment__total_amount">Συνολικό ποσό</string>
   <string name="ConfirmPayment__balance_s">Υπόλοιπο: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Υποβολή πληρωμής…</string>
   <string name="ConfirmPayment__processing_payment">Επεξεργασία πληρωμής…</string>
   <string name="ConfirmPayment__payment_complete">Η πληρωμή ολοκληρώθηκε</string>
   <string name="ConfirmPayment__payment_failed">Η πληρωμή απέτυχε</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Η επεξεργασία της πληρωμής θα συνεχιστεί</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Μη έγκυρος παραλήπτης</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Αυτό το άτομο δεν έχει ενεργοποιήσει τις πληρωμές</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Δεν είναι δυνατή η αίτηση χρέωσης δικτύου. Για να συνεχίσετε αυτήν την πληρωμή, πατήστε Εντάξει για να προσπαθήσετε ξανά.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s στις %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2566,6 +2629,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Πάτα στη φωτογραφία προφίλ σου πάνω αριστερά για να ανοίξεις τις Ρυθμίσεις</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Πατήστε στο «Λογαριασμός»</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Πάτα \"Μεταφορά λογαριασμού\" και μετά \"Συνέχεια\" και στις δύο συσκευές</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2664,6 +2728,9 @@
   <string name="OldDeviceTransferLockedDialog__done">Τέλος</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Ακύρωση και ενεργοποίηση αυτής της συσκευής</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Μεταφορά υπολοίπου MOB;</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Έχετε υπόλοιπο %1$s. Εάν δεν μεταφέρετε τα χρήματά σας σε άλλη διεύθυνση πορτοφολιού πριν διαγράψετε τον λογαριασμό σας, θα τα χάσετε για πάντα.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Όχι μεταφορά</string>
   <string name="AdvancedPreferenceFragment__transfer">Μεταφορά</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Φραγή</string>
@@ -2758,6 +2825,7 @@
   <string name="DeleteAccountFragment__delete_account">Διαγραφή λογαριασμού</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Διαγραφη των πληροφοριών του λογαριασμού σου και της φωτογραφίας προφίλ σου</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Διαγραφή όλων των μηνυμάτων σου</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Διαγραφή %1$s στον λογαριασμό πληρωμών σας</string>
   <string name="DeleteAccountFragment__no_country_code">Δεν διευκρινίστηκε κωδικός χώρας</string>
   <string name="DeleteAccountFragment__no_number">Δεν διευκρινίστηκε αριθμός</string>
   <string name="DeleteAccountFragment__the_phone_number">Ο αριθμός τηλεφώνου που έγραψες δεν αντιστοιχεί στο λογαριασμό σου.</string>
@@ -2826,34 +2894,81 @@
   <string name="WallpaperCropActivity__blur_photo">Θόλωμα φωτογραφίας</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Σχετικά με το MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">Το MobileCoin είναι ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στο απόρρητο.</string>
+  <string name="payment_info_card_adding_funds">Προσθήκη χρημάτων</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Μπορείτε να προσθέσετε χρήματα για χρήση στο Signal στέλνοντας MobileCoin στη διεύθυνση πορτοφολιού σας.</string>
+  <string name="payment_info_card_cashing_out">Εξαργύρωση</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Μπορείτε να εξαργυρώσετε MobileCoin ανά πάσα στιγμή σε ένα ανταλλακτήριο που υποστηρίζει το MobileCoin. Απλά κάντε μεταφορά στον λογαριασμό σας στο εν λόγω ανταλλακτήριο.</string>
+  <string name="payment_info_card_hide_this_card">Απόκρυψη αυτής της κάρτας;</string>
   <string name="payment_info_card_hide">Απόκρυψη</string>
+  <string name="payment_info_card_record_recovery_phrase">Καταγραφή φράσης ανάκτησης</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Η φράση ανάκτησης παρέχει έναν ακόμη τρόπο επαναφοράς του λογαριασμού πληρωμών σας.</string>
+  <string name="payment_info_card_record_your_phrase">Καταγράψτε τη φράση σας</string>
   <string name="payment_info_card_update_your_pin">Ενημέρωση του PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Με υψηλό υπόλοιπο, ίσως θελήσετε να αλλάξετε σε ένα αλφαριθμητικό PIN για να προσθέσετε μεγαλύτερη προστασία στον λογαριασμό σας.</string>
   <string name="payment_info_card_update_pin">Ανανέωση PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Απενεργοποίηση Πορτοφολιού</string>
+  <string name="DeactivateWalletFragment__your_balance">Το Υπόλοιπό Σας</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Συνιστάται να μεταφέρετε τα χρήματά σας σε άλλη διεύθυνση πορτοφολιού πριν απενεργοποιήσετε τις πληρωμές. Εάν επιλέξετε να μην μεταφέρετε τα χρήματά σας τώρα, θα παραμείνουν στο πορτοφόλι σας που είναι συνδεδεμένο με το Signal εάν ενεργοποιήσετε εκ νέου τις πληρωμές.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Μεταφορά εναπομείναντος υπολοίπου</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Απενεργοποίηση χωρίς μεταφορά</string>
   <string name="DeactivateWalletFragment__deactivate">Απενεργοποίηση</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Απενεργοποίηση χωρίς μεταφορά;</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Το υπόλοιπό σας θα παραμείνει στο πορτοφόλι που είναι συνδεδεμένο με το Signal, εάν επιλέξετε να ενεργοποιήσετε εκ νέου τις πληρωμές.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Σφάλμα κατά την απενεργοποίηση πορτοφολιού.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Φράση ανάκτησης</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Προβολή φράσης ανάκτησης</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Εισαγάγετε τη φράση ανάκτησης</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Το υπόλοιπό σας θα αποκατασταθεί αυτόματα όταν εγκαταστήσετε ξανά το Signal, εάν επιβεβαιώσετε το Signal PIN. Μπορείτε επίσης να επαναφέρετε το υπόλοιπό σας χρησιμοποιώντας μια φράση ανάκτησης, η οποία είναι μια φράση %1$d λέξεων, μοναδική για εσάς. Σημειώστε την και αποθηκεύστε την σε ασφαλές μέρος.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Η φράση ανάκτησης είναι μια φράση %1$d λέξεων, μοναδική για εσάς. Χρησιμοποιήστε αυτή τη φράση για να επαναφέρετε το υπόλοιπό σας.</string>
   <string name="PaymentsRecoveryStartFragment__start">Εκκίνηση</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Χειροκίνητη εισαγωγή</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Επικόλληση από πρόχειρο</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Επικόλληση φράσης ανάκτησης</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Φράση ανάκτησης</string>
   <string name="PaymentsRecoveryPasteFragment__next">Επόμενο</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Μη έγκυρη φράση ανάκτησης</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Βεβαιωθείτε ότι πληκτρολογήσατε %1$d λέξεις και δοκιμάστε ξανά.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Επόμενο</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Eπεξεργασία</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Προηγούμενο</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Η φράση σας ανάκτησης</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Γράψτε τις ακόλουθες %1$d λέξεις με τη σειρά. Αποθηκεύστε τη λίστα σας σε ασφαλές μέρος.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Βεβαιωθείτε ότι έχετε εισαγάγει σωστά τη φράση σας.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Μην τραβάτε στιγμιότυπα ή στέλνετε με email.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Ο λογαριασμός πληρωμών αποκαταστάθηκε.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Μη έγκυρη φράση ανάκτησης</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Βεβαιωθείτε ότι έχετε εισαγάγει σωστά τη φράση σας και προσπαθήστε ξανά.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Αντιγραφή στο πρόχειρο;</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Εάν επιλέξετε να αποθηκεύσετε τη φράση ανάκτησης ψηφιακά, βεβαιωθείτε ότι είναι αποθηκευμένη με ασφάλεια σε μέρος που εμπιστεύεστε.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Αντιγραφή</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Επιβεβαίωση φράσης ανάκτησης</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Εισαγάγετε τις ακόλουθες λέξεις από τη φράση ανάκτησής σας.</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Λέξη %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Επαναπροβολή της φράσης</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Τέλος</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Η φράση ανάκτησης επιβεβαιώθηκε</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Πληκτρολογήστε φράση ανάκτησης</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Εισαγάγετε τη λέξη %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Λέξη %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Επόμενο</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Μη έγκυρη λέξη</string>
   <!--ClearClipboardAlarmReceiver-->
   <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Το πρόχειρο εκκαθαρίστηκε.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Εμφάνιση</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s σας έστειλε %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d νέες ειδοποιήσεις πληρωμών</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Δεν είναι δυνατή η αποστολή πληρωμής</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Για να στείλετε μια πληρωμή σε αυτόν τον χρήστη πρέπει να αποδεχτεί ένα μήνυμα με αίτημα από εσάς. Στείλτε τους μήνυμα για δημιουργία μηνύματος με αίτημα.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Στείλε ένα μήνυμα</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Δεν είσαι σε κοινές ομάδες με αυτό το άτομο. Εξέτασε τα αιτήματα προσεκτικά πριν αποδεχτείς, για να γλιτώσεις ανεπιθύμητα μηνύματα.</string>
@@ -3098,6 +3213,7 @@
   <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Νέα πληρωμή</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Νέο μήνυμα</string>
   <!--ContactFilterView-->

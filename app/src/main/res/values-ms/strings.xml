@@ -657,6 +657,7 @@
   <string name="ManageProfileFragment_your_username">Nama pengguna anda</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Gagal menetapkan avatar</string>
   <string name="ManageProfileFragment_badges">Lencana</string>
+  <string name="ManageProfileFragment__edit_photo">Edit Foto</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Tiada kumpulan yang serupa</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1259,8 +1260,13 @@
   <string name="RegistrationActivity_play_services_error">Ralat Perkhidmatan Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Perkhidmatan Google Play sedang dikemas kini atau tidak tersedia sementara waktu. Sila cuba sekali lagi.</string>
   <string name="RegistrationActivity_terms_and_privacy">Terma &amp; Dasar Privasi</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal memerlukan kebenaran dari kenalan dan pihak media untuk membantu anda berhubung dengan rakan dan menghantar mesej. Kenalan anda dimuat naik menggunakan penemuan kenalan peribadi Signal, yang bermaksud mereka dienkripsikan dari hujung ke hujung dan tidak dipaparkan kepada perkhidmatan Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal memerlukan kebenaran perhubungan untuk membantu anda berhubung dengan kenalan anda. Maklumat kenalan anda akan dimuat naik menggunakan ciri penerokaan kenalan peribadi Signal, yang bermakna ia dienkripsi hujung ke hujung dan tidak ditunjukkan kepada perkhidmatan Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Anda telah membuat terlalu banyak percubaan untuk mendaftar nombor ini. Sila cuba lagi kemudian.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Perkhidmatan tidak dapat disambungkan. Sila semak sambungan rangkaian dan cuba lagi.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Format nombor bukan standard</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Nombor yang anda telah masukkan (%1$s) adalah dalam format bukan standard.\n\nAdakah anda maksudkan %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Format Nombor Telefon</string>
   <string name="RegistrationActivity_call_requested">Panggilan diminta</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Anda kini %d langkah daripada menghantar log nyahpepijat.</item>
@@ -1840,6 +1846,16 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="HelpFragment__debug_log">Log Nyahpepijat:</string>
   <string name="HelpFragment__could_not_upload_logs">Tidak dapat memuat naik log</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Tolong terangkan dengan sejelas mungkin untuk bantu kami memahami isu tersebut.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Sila pilih satu opsyen \-\-</item>
+    <item>Terdapat Isu</item>
+    <item>Permintaan Ciri</item>
+    <item>Soalan</item>
+    <item>Maklum Balas</item>
+    <item>Lain-Lain</item>
+    <item>Pembayaran (MobileCoin)</item>
+    <item>Sustainers &amp; Signal Boost</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Mesej Ini</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Digunakan Baru-baru Ini</string>
@@ -1936,6 +1952,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__donate_to_signal">Sumbang kepada Signal</string>
   <string name="preferences__subscription">Langganan</string>
+  <string name="preferences__become_a_signal_sustainer">Jadilah seorang Signal Sustainer</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">Agen Pengguna MMS</string>
@@ -2293,6 +2310,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="Insights__title">Wawasan</string>
   <string name="InsightsDashboardFragment__title">Wawasan</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol telah melindungi %1$d%% daripada mesej keluar anda secara automatik selama %2$d hari yang lepas. Perbualan antara pengguna Signal selalu disulitkan dari hujung ke hujung.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Sebarkan berita</string>
   <string name="InsightsDashboardFragment__not_enough_data">Data tidak mencukupi</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Peratusan Insights anda dikira berdasarkan mesej keluar selama %1$d hari yang lalu yang belum hilang atau dipadamkan.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Mulakan perbualan</string>
@@ -3014,7 +3032,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Bukan sekarang</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Tambah foto</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Jadilah seorang Sustainer</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal dikuasakan oleh orang ramai seperti anda. Berikan sumbangan dan terima lencana profil.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Tidak, terima kasih</string>
+  <string name="BecomeASustainerMegaphone__contribute">Beri sumbangan</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Buka carian emoji</string>
@@ -3063,6 +3084,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Perbualan diredam selama-lamanya</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Nombor telefon telah disalin ke papan keratan.</string>
   <string name="ConversationSettingsFragment__phone_number">Nombor telefon</string>
+  <string name="ConversationSettingsFragment__get_badges">Dapatkan lencana untuk profil anda dengan menyokong Signal. Tekan pada lencana untuk mempelajari lebih lanjut.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Tambah ahli</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Edit info kumpulan</string>
@@ -3180,6 +3202,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ImageView__badge">Lencana</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal dikuasakan oleh orang seperti anda.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Teknologi sokongan yang dibina untuk anda—bukan untuk data anda—dengan menyertai komuniti orang yang mengekalkannya.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Sokong teknologi yang dibina untuk anda, bukan untuk data anda, dengan menyertai komuniti yang memelihara Signal.</string>
+  <string name="SubscribeFragment__currency">Matawang</string>
   <string name="SubscribeFragment__more_payment_options">Lebih Banyak Pilihan Pembayaran</string>
   <string name="SubscribeFragment__cancel_subscription">Batal Langganan</string>
   <string name="SubscribeFragment__confirm_cancellation">Sahkan Pembatalan?</string>
@@ -3191,17 +3215,26 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="SubscribeFragment__update_subscription_question">Kemas kini langganan</string>
   <string name="SubscribeFragment__update">Kemas Kini</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Anda akan dicaj amaun penuh harga langganan baharu hari ini. Langganan anda akan memperbaharui %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Anda akan dikenakan jumlah penuh (%1$s) daripada harga langganan baharu hari ini. Langganan anda akan diperbaharui setiap bulan.</string>
   <string name="Subscription__s_per_month">%s/bulan</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/bulan · Perbaharui semula %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/bulan · Luput pada %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ialah organisasi bukan untung tanpa pengiklan atau pelabur, hanya dikekalkan oleh orang yang menggunakannya dan menghargainya. Buat sumbangan bulanan berulang dan terima lencana profil untuk berkongsi sokongan anda.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Mengapa Menyumbang?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal komited untuk membangunkan teknologi privasi sumber terbuka yang melindungi ungkapan bebas dan membolehkan komunikasi global yang selamat.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Sumbangan anda memperkasakan isu ini dan membayar untuk pembangunan dan operasi aplikasi yang digunakan oleh jutaan orang bagi komunikasi peribadi. Tiada iklan. Tiada penjejak. Bukan bahan jenaka.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih atas Sokongan anda!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Anda memperolehi lencana %s! Bantu Signal membina kesedaran dengan memaparkan lencana ini di profil anda.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Anda telah memperolehi lencana Boost! Bantu Signal membina kesedaran dengan memaparkan lencana ini di profil anda.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Anda juga boleh</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">jadilah Sustainer bulanan.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pamerkan di Profil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Buat lencana untuk ditampilkan</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Apabila anda memiliki lebih daripada satu lencana, anda boleh memilih satu untuk dipamerkan agar dapat dilihat oleh orang lain di profil anda.</string>
+  <string name="BecomeASustainerFragment__get_badges">Dapatkan lencana untuk profil anda dengan menyokong Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal adalah organisasi bukan untung tanpa pengiklan atau pelabur, hanya disokong oleh orang ramai seperti anda.</string>
   <string name="ManageDonationsFragment__my_support">Sokongan saya</string>
   <string name="ManageDonationsFragment__manage_subscription">Urus langganan</string>
   <string name="ManageDonationsFragment__badges">Lencana</string>
@@ -3213,21 +3246,44 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MySupportPreference__add_a_signal_boost">Tambah Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/bulan</string>
   <string name="MySupportPreference__renews_s">Memperbaharui %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Memproses transaksi…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Tidak dapat menambah lencana. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Sila hubungi pusat bantuan.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Lencana anda telah luput</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Lencana telah luput</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Langganan dibatalkan</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Lencana Boost anda telah luput dan tidak lagi ditunjukkan kepada orang lain di profil anda.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda boleh mengaktifkan semula lencana Boost anda selama 30 hari lagi dengan satu sumbangan derma.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Untuk terus menyokong teknologi yang dibina untuk anda, sila pertimbangkan untuk menjadi Sustainer bulanan.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Sustainer</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tambah Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Langganan Sustainer anda telah dibatalkan secara automatik kerana anda terlalu lama tidak aktif. Lencana %1$s anda tidak lagi dipaparkan di profil anda. </string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda boleh terus menggunakan Signal tetapi untuk menyokong aplikasi dan mengaktifkan semula lencana anda, sila perbaharui sekarang.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perbaharui langganan</string>
   <string name="Subscription__please_contact_support_for_more_information">Sila hubungi bantuan untuk maklumat lebih lanjut</string>
   <string name="Subscription__contact_support">Hubungi Sokongan</string>
   <string name="Subscription__earn_a_s_badge">Dapatkan lencana %1$s</string>
   <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Ralat memproses pembayaran</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Ralat memproses pembayaran. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Lencana anda tidak dapat ditambahkan ke akaun anda, tetapi anda mungkin telah dikenakan bayaran. Sila hubungi pusat bantuan.</string>
   <string name="DonationsErrors__your_payment">Pembayaran anda tidak dapat diproses dan anda belum dicaj. Sila cuba lagi.</string>
+  <string name="DonationsErrors__still_processing">Masih sedang diproses</string>
+  <string name="DonationsErrors__couldnt_add_badge">Tidak dapat menambah lencana</string>
+  <string name="DonationsErrors__your_badge_could_not">Lencana anda tidak dapat ditambahkan ke akaun anda, tetapi anda mungkin telah dikenakan bayaran. Sila hubungi pusat bantuan.</string>
+  <string name="DonationsErrors__your_payment_is_still">Bayaran anda masih diproses. Ini boleh mengambil masa beberapa minit bergantung kepada sambungan anda.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda perlu memasang Google Pay untuk menderma dalam aplikasi.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan sambungan internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Peranti anda tidak menyokong penggunaan Google Pay, oleh itu anda tidak boleh melanggan untuk mendapatkan lencana. Anda masih boleh menyokong Signal dengan memberikan derma di halaman web kami. </string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ralat rangkaian. Periksa sambungan anda dan cuba lagi.</string>
   <string name="NetworkFailure__retry">Cuba Semula</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal untuk membuka pemilih.</string>
   <!--EOF-->
 </resources>

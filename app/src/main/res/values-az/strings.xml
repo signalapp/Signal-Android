@@ -3397,5 +3397,6 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Şəbəkə xətası. Bağlantınızı yoxlayıb yenidən sınayın.</string>
   <string name="NetworkFailure__retry">Yenidən sına</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Seçici, açılmadı.</string>
   <!--EOF-->
 </resources>

@@ -3497,7 +3497,7 @@
   <string name="ImageEditorHud__done_editing">Užbaigti taisymą</string>
   <string name="ImageEditorHud__clear_all">Viską išvalyti</string>
   <string name="ImageEditorHud__undo">Atšaukti</string>
-  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Perjungti tarp pieštuko ir markerio</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Perjungti tarp flomasterio ir markerio</string>
   <string name="ImageEditorHud__delete">Ištrinti</string>
   <string name="ImageEditorHud__toggle_between_text_styles">Perjungti tarp teksto stilių</string>
   <string name="MediaCountIndicatorButton__send">Siųsti</string>

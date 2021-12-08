@@ -854,7 +854,7 @@
   <string name="MediaOverviewActivity_image">चित्र</string>
   <string name="MediaOverviewActivity_voice_message">व्हॉईस संदेश</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s ने पाठवले</string>
-  <string name="MediaOverviewActivity_sent_by_you">आपल्या द्वारे पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_you">आपन पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ने %2$s ला पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s"> आपन %1$s ला पाठवले</string>
   <!--Megaphones-->
@@ -3394,5 +3394,6 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर उघडण्यात अयशस्वी.</string>
   <!--EOF-->
 </resources>

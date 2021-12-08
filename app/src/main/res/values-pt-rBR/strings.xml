@@ -3397,5 +3397,6 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua conexão e tente novamente.</string>
   <string name="NetworkFailure__retry">Tentar novamente</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Falha ao abrir o selecionador de toques.</string>
   <!--EOF-->
 </resources>

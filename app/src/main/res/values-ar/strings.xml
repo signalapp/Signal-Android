@@ -1634,6 +1634,8 @@
   <string name="RegistrationActivity_play_services_error">خطأ في خدمات Play </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جاري تحديث خدمات Google Play  أو أنها غير موجودة مؤقتاً. يرجى المحاولة مجدداً. </string>
   <string name="RegistrationActivity_terms_and_privacy">الشروط وسياسة الخصوصية</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج Signal إلى أذونات جهات الاتصال والوسائط للمساعدة في التواصل مع أصدقائك وإرسال الرسائل. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في Signal، مما يعني أنها مشفرة من الطرفين وغير مرئية على الإطلاق لخدمة Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج Signal إلى أذونات جهات الاتصال للمساعدة في التواصل مع أصدقائك. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في Signal، مما يعني أنها مشفرة من الطرفين وغير مرئية على الإطلاق لخدمة Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. الرجاء المحاولة لاحقاً.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
   <string name="RegistrationActivity_non_standard_number_format">نسق العدد غير المعياري</string>
@@ -2749,6 +2751,7 @@
   <string name="Insights__title">رؤى</string>
   <string name="InsightsDashboardFragment__title">رؤى</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol أو بروتوكول سيجنال قام بحماية  %1$d%% من رسائلك الصادرة خلال %2$d يوما الماضية. المحادثات بين مستخدمي Signal مُعمَّاة دائما من طرف إلى طرف.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">انشر الخبر</string>
   <string name="InsightsDashboardFragment__not_enough_data">لا يوجد بيانات كافية</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">نسبة الرؤى الخاصة بك يتم حسابها بناءً على الرسائل المرسلة خلال %1$d يوما الماضية والتي لم تختفي أو يتم حذفها.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ابدأ محادثة</string>
@@ -3733,6 +3736,7 @@
   <string name="SubscribeFragment__update_subscription_question">تحديث الاشتراك؟</string>
   <string name="SubscribeFragment__update">تحديث التطبيق</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">سيتم تحصيل المبلغ الكامل لسعر الاشتراك الجديد اليوم. سيتم تجديد اشتراكك %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ستدفع كامل مبلغ (%1$s) من سعر الاشتراك الجديد اليوم. وسيتجدد اشتراكك الجديد شهرياً.</string>
   <string name="Subscription__s_per_month">%s شهرياً</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s شهرياً . يُجدد في  %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s شهرياً . ينتهي في  %2$s</string>
@@ -3742,10 +3746,16 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">إن مساهماتك تُقوِّي هذه القضية وتُموِّل تطوير التطبيق وسير عمله للملايين من الناس لحماية خصوصية اتصالاتهم. إذ ليست فيه الإعلانات، ولا أي متعقبات. نحن حقا لا نمزح في ذلك.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">شكرا لدعمك!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">شكراً على الدعم!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">لقد ربحت شارة %s! ساعد Signal على نشر الوعي بعرض هذه الشارة في ملفك الشخصي.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">لقد ربحت شارة دعم! ساعد Signal على نشر الوعي بعرض هذه الشارة في ملفك الشخصي.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">يُمكنك أيضاً</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">كُن داعماً شهرياً.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">عرض في الملف الشخصي</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">اصنع شارة مميزة</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمّ</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">عندما يكون لديك أكثر من شارة واحدة، يمكنك اختيار واحدة لتمييزها ليراها الآخرين في ملفك الشخصي.</string>
+  <string name="BecomeASustainerFragment__get_badges">احصل على شارات لملفك الشخصي عن طريق دعم Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">إن Signal غير ربحي بلا إعلانات أو مستثمرين، ويدعمه فقط أشخاص مثلك.</string>
   <string name="ManageDonationsFragment__my_support">دعمي</string>
   <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
   <string name="ManageDonationsFragment__badges">شارات</string>
@@ -3760,26 +3770,42 @@
   <string name="MySupportPreference__renews_s">يجدد %1$s</string>
   <string name="MySupportPreference__processing_transaction">تجري معالجة المعاملة…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">تعذّر إضافة الشارة. %1$s</string>
   <string name="MySupportPreference__please_contact_support">يُرجى الاتصال بفريق الدعم.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">انتهت صلاحية شارتك</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">لقد نفذت الشارة</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">لقد أُلغي الاشتراك</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">انتهت صلاحية شارة الدعم الخاصة بك ولم تعد ظاهرة للآخرين في ملفك الشخصي.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">يُمكنك إعادة تفعيل شارة الدعم الخاصة بك لمدة 30 يوماً آخرين بالمساهمة لمرة واحدة.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">للاستمرار في استخدام تكنولوجيا تمّ إنشاؤها من أجلك، يُرجى النظر في أن تصبح داعماً بشكل شهري.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن من الداعمين</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">أضف دعماً</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">تمّ إلغاء اشتراك الداعم الخاص بك تلقائياً لعدم نشاطك لفترة طويلة. لم تعد شارة %1$s الخاصة بك ظاهرة في ملفك الشخصي.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام Signal، ولكن لدعم التطبيق وإعادة تفعيل شارتك، جدد الآن.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
   <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>
   <string name="Subscription__contact_support">الاتصال بالدعم</string>
   <string name="Subscription__earn_a_s_badge">احصل على شارة %1$s</string>
   <string name="SubscribeFragment__processing_payment">تجري معالجة الدفوعات…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">حدث خطأ أثناء معالجة عملية الدفع</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">حدث خطأ أثناء معالجة عملية الدفع. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">تعذّر إضافة شارتك إلى حسابك، ولكن قد تكون تحملت التكلفة. يُرجى التواصل مع الدعم.</string>
   <string name="DonationsErrors__your_payment">تعذرت معالجة دفعتك ولم يتم تحصيل رسوم منك. حاول مرة اخرى.</string>
+  <string name="DonationsErrors__still_processing">ما زال قيد المعالجة</string>
+  <string name="DonationsErrors__couldnt_add_badge">تعذّر إضافة الشارة</string>
+  <string name="DonationsErrors__your_badge_could_not">تعذّر إضافة شارتك إلى حسابك، ولكن قد تكون تحملت التكلفة. يُرجى التواصل مع الدعم.</string>
+  <string name="DonationsErrors__your_payment_is_still">ما زالت عملية الدفع الخاصة بك قيد المعالجة. قد يستغرق الأمر بضع دقائق وفقاً لاتصال شبكتك.</string>
   <string name="DonationsErrors__google_pay_unavailable">خدمة Google Pay غير متوفرة</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">يجب عليك إعداد Google Pay للتبرع داخل التطبيق.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالاً بالإنترنت.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">لا يدعم جهازك Google Pay، لذلك لا يُمكنك الاشتراك لربح شارة. ما زال يُمكنك دعم Signal بالتبرع على موقعنا الإلكتروني.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
   <string name="NetworkFailure__retry">إعادة المُحاولة</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">تعذّر فتح المنتقي.</string>
   <!--EOF-->
 </resources>

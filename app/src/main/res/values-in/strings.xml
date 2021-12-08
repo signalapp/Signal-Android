@@ -2021,9 +2021,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_storage__review_storage">Tinjau penyimpanan</string>
   <string name="preferences_storage__delete_older_messages">Hapus pesan-pesan lama?</string>
   <string name="preferences_storage__clear_message_history">Hapus riwayat pesan?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus semua riwayat pesan dan media dari perangkat Anda yang lebih lama dari%1$s.</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus secara permanen semua riwayat pesan dan media dari perangkat Anda yang lebih lama dari %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ini akan secara permanen memotong semua percakapan ke %1$s pesan-pesan terbaru.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan menghapus semua riwayat pesan dan media selamanya dari perangkat Anda.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan menghapus semua riwayat pesan dan media secara permanen dari perangkat Anda.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Apakah Anda yakin ingin menghapus semua riwayat pesan?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus selamanya. Tindakan ini tidak dapat dibatalkan.</string>
   <string name="preferences_storage__delete_all_now">Hapus semua sekarang</string>

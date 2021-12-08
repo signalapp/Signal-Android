@@ -1336,6 +1336,8 @@ puhelinnumero</string>
   <string name="RegistrationActivity_play_services_error">Play-palvelujen virhe</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play -palveluita päivitetään tai ne eivät ole käytettävissä. Yritä myöhemmin uudelleen.</string>
   <string name="RegistrationActivity_terms_and_privacy">Käyttöehdot ja yksityisyydensuoja</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal tarvitsee yhteystietojen ja median käyttöoikeuden helpottaakseen kavereihin yhdistämistä ja viestien lähetykseen. Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua, eli ne on suojattu päästä päähän -salauksella, eivätkä missään vaiheessa paljasti Signal-palvelulle.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal tarvitsee yhteystietojesi käyttöoikeuden helpottaakseen kavereihin yhdistämistä. Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua, eli ne on suojattu päästä päähän -salauksella, eivätkä missään vaiheessa paljastu Signal-palvelulle.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Olet yrittänyt rekisteröidä tätä numeroa liian monta kertaa. Yritä myöhemmin uudelleen.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Yhteyttä ei voitu muodostaa palveluun. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
   <string name="RegistrationActivity_non_standard_number_format">Epästandardi numeron muoto</string>
@@ -3358,8 +3360,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkkisi on vanhentunut</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merkki on erääntynyt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Tilaus on peruttu</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Boost-merkkisi on erääntynyt, eikä se näy enää muille profiilissasi.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Voit aktivoida Boost-merkkisi uudelleen 30-päiväksi kertaluontoisella lahjoituksella.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Harkitse kuukausittaiseksi Tukijaksi ryhtymistä, jos haluat jatkaa sinua, eikä tietojasi varten kehitetyn teknologian tukemista.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy Tukijaksi</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lisää Boostaus</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Tukija-tilauksesi on lopetettu automaattisesti, koska olit liian pitkään toimettomana. %1$s -merkkisi ei ole enää nähtävillä profiilissasi.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkkisi uudelleen, uudista nyt.</string>
@@ -3386,5 +3391,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Verkkovirhe. Tarkista yhteys ja yritä uudelleen.</string>
   <string name="NetworkFailure__retry">Yritä uudelleen</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Valitsimen avaus epäonnistui.</string>
   <!--EOF-->
 </resources>

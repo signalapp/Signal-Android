@@ -72,7 +72,7 @@
   <string name="BackgroundMessageRetriever_checking_for_messages">メッセージを確認しています…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ブロック中のユーザー</string>
-  <string name="BlockedUsersActivity__add_blocked_user">ブロックするユーザーを追加する</string>
+  <string name="BlockedUsersActivity__add_blocked_user">ブロックするユーザーを追加</string>
   <string name="BlockedUsersActivity__blocked_users_will">ブロックされたユーザーは、あなたにメッセージや通話の発信ができなくなります。</string>
   <string name="BlockedUsersActivity__no_blocked_users">ブロック中のユーザーはいません</string>
   <string name="BlockedUsersActivity__block_user">ユーザーをブロックしますか？</string>
@@ -641,7 +641,7 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットするには、連絡先をSignalに招待してください。</string>
   <string name="ManageGroupActivity_invite_now">招待する</string>
   <string name="ManageGroupActivity_more">続き</string>
-  <string name="ManageGroupActivity_add_group_description">グループの説明を追加…</string>
+  <string name="ManageGroupActivity_add_group_description">グループの説明を追加してください…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ミュートしたチャットでメンションがあった際に、通知を受け取りますか？</string>
@@ -3086,13 +3086,13 @@
   <string name="ConversationSettingsFragment__get_badges">Signalをサポートすると、あなたのプロフィールにバッジが表示されます。バッジをタップすると詳細が表示されます。</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">メンバーの追加</string>
-  <string name="PermissionsSettingsFragment__edit_group_info">グループ情報を編集</string>
-  <string name="PermissionsSettingsFragment__send_messages">メッセージ送信</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">グループ情報の編集</string>
+  <string name="PermissionsSettingsFragment__send_messages">メッセージの送信</string>
   <string name="PermissionsSettingsFragment__all_members">すべてのメンバー</string>
   <string name="PermissionsSettingsFragment__only_admins">管理者のみ</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">メンバーを追加できるユーザーは？</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">グループ情報を編集できるユーザーは？</string>
-  <string name="PermissionsSettingsFragment__who_can_send_messages">メッセージを送信可能なユーザー</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">メッセージを送信できるユーザーは？</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">通知をミュート</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ミュートしていません</string>

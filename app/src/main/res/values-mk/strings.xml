@@ -2192,6 +2192,7 @@
   <string name="PaymentsHomeFragment__processing_payment">Обработка на плаќање</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Конверзија на валута не е достапна</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не може да се прикаже конверзија на валута. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Плаќањата не се достапни во Вашиот регион.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Не може да се овозможат плаќања. Обидете се повторно подоцна.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Да деактивирам плаќања?</string>
@@ -2223,6 +2224,7 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s на %2$s во %3$s</string>
   <string name="PaymentsDetailsFragment__to">До</string>
   <string name="PaymentsDetailsFragment__from">Од</string>
+  <string name="PaymentsDetailsFragment__information">Деталите за трансакцијата, вклучувајќи го износот на плаќање и времето на трансакцијата, се дел од MobileCoin регистарот.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Нема дополнителни детали за оваа трансакција</string>
   <string name="PaymentsDetailsFragment__sent_payment">Испратено плаќање</string>
   <string name="PaymentsDetailsFragment__received_payment">Примено плаќање</string>
@@ -2234,11 +2236,14 @@
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">До: Скенирајте или внесете ја адресата на паричникот</string>
   <string name="PaymentsTransferFragment__next">Следно</string>
   <string name="PaymentsTransferFragment__invalid_address">Невалидна адреса</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Проверете ја адресата на паричникот на која се обидувате да префрлите и обидете се повторно.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">За да скенира QR код, на Signal му е потребен пристап до камерата. </string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">На Signal му е потребна дозвола од камерата за да сними QR-код. Одете во поставки, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">За да скенира QR код, на Signal му е потребен пристап до камерата. </string>
   <string name="PaymentsTransferFragment__settings">Поставувања</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Скенирајте го QR кодот на адресата</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Скенирајте го QR кодот на адресата на примачот</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Барање</string>
   <string name="CreatePaymentFragment__pay">Плати</string>
@@ -2272,6 +2277,7 @@
   <string name="ConfirmPayment__payment_failed">Плаќањето не успеа</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Плаќањето ќе продолжи да се обработува</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Невалиден примач</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Оваа личност нема активирано плаќања</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s во %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2897,6 +2903,7 @@
   <string name="PaymentsRecoveryPhraseFragment__next">Следно</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Не правете слики од екранот и не испраќајте по е-пошта.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да копирам на таблата со исечоци?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
@@ -3252,6 +3259,9 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
   <string name="ImageView__badge">Беџ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal е овозможен од луѓе како тебе.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддржете ја технологијата што е создадена за Вас—не за Вашите податоци—со приклучување кон заедницата што го одржува Signal.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Поддржете ја технологијата што е создадена за Вас, а не за Вашите податоци, со приклучување кон заедницата што го одржува Signal.</string>
+  <string name="SubscribeFragment__currency">Валута</string>
   <string name="SubscribeFragment__more_payment_options">Повеќе опции за плаќање</string>
   <string name="SubscribeFragment__cancel_subscription">Откажи претплата</string>
   <string name="SubscribeFragment__confirm_cancellation">Потврди откажување?</string>
@@ -3266,6 +3276,7 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, одржуван само од луѓето кои го користат и ценат. Направете месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесеш?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Можете исто така да</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Станете месечен поддржувач</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Поставете како главен беџ</string>

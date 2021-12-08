@@ -211,7 +211,7 @@
   <string name="ConversationActivity_cant_start_group_call">Kan ikke starte gruppeopkald</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Kun administratorer af denne gruppe kan starte et opkald.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app tilgængelig på enheden, der kan åbne linket.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din anmodning om at blive medlem er sendt til gruppeadministratoren. Du får besked når den er behandlet.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din anmodning om at blive medlem er sendt til gruppeadministratoren. Du får besked, når den er behandlet.</string>
   <string name="ConversationActivity_cancel_request">Annullér forespørgsel</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Signal tilladelse til at tilgå mikrofonen.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal kræver tilladelse til at tilgå mikrofonen for at kunne sende lydfiler, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\".</string>
@@ -296,7 +296,7 @@
   <string name="ConversationFragment_verify">Bekræft</string>
   <string name="ConversationFragment_not_now">Ikke nu</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Dit sikkerhedsnummer med %s er ændret</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Dit sikkerhedsnummer med %s er ændret. Sandsynligvis fordi denne kontakt geninstallerede Signal eller skiftede enheder. Tryk på Bekræft for at bekræfte det nye sikkerhedsnummer. Dette er valgfrit.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Dit sikkerhedsnummer med %s er ændret. Sandsynligvis fordi vedkommende geninstallerede Signal eller skiftede enheder. Tryk på Bekræft for at bekræfte det nye sikkerhedsnummer. Dette er valgfrit.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Slet valgte samtale?</item>
     <item quantity="other">Slet valgte samtaler?</item>
@@ -1843,7 +1843,7 @@ nummer (%s) er ugyldigt</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Tryk \"OK\" og lav de nødvendige indstillinger for at sende multimedie- og gruppebeskeder. MMS-indstillingerne for dit teleselskab kan ofte findes ved at søge på \"dit teleselskab APN\". Dette skal kun gøres én gang.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Leveringsproblem</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">En besked, klistermærke, reaktion eller læsekvittering kunne ikke leveres til dig fra %s. De har muligvis forsøgt at sende direkte til dig eller i en gruppe.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">En besked, klistermærke, reaktion eller læsekvittering kunne ikke leveres til dig fra %s. Vedkommende har muligvis forsøgt at sende direkte til dig eller i en gruppe.</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">En besked, klistermærke, reaktion eller læsekvittering kunne ikke leveres til dig fra %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Fornavn (krævet)</string>

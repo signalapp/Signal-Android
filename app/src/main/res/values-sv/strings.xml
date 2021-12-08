@@ -3352,7 +3352,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal Boost</string>
   <string name="MySupportPreference__s_per_month">%1$s/månad</string>
   <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
-  <string name="MySupportPreference__processing_transaction">Bearbetar transaktionen…</string>
+  <string name="MySupportPreference__processing_transaction">Bearbetar transaktion…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Det gick inte att lägga till märket. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Vänligen kontakta supporten.</string>

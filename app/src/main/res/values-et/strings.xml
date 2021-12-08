@@ -313,8 +313,36 @@
     <item quantity="one">Vestlus postkasti liigutatud</item>
     <item quantity="other">%d vestlust postkasti liigutatud</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Loetud</item>
+    <item quantity="other">Loetud</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Lugemata</item>
+    <item quantity="other">Lugemata</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Vaigista</item>
+    <item quantity="other">Vaigista</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Eemalda vaigistus</item>
+    <item quantity="other">Eemalda vaigistus</item>
+  </plurals>
   <string name="ConversationListFragment_select">Vali</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arhiveeri</item>
+    <item quantity="other">Arhiveeri</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Kustuta</item>
+    <item quantity="other">Kustuta</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Vali kõik</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d valitud</item>
+    <item quantity="other">%d valitud</item>
+  </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
   <!--ConversationListItemAction-->
@@ -652,6 +680,8 @@
   <string name="ManageProfileFragment_your_name">Sinu nimi</string>
   <string name="ManageProfileFragment_your_username">Sinu kasutajanimi</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Profiilipildi määramine ei õnnestunud</string>
+  <string name="ManageProfileFragment_badges">Märgid</string>
+  <string name="ManageProfileFragment__edit_photo">Muuda fotot</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ühised grupid puuduvad</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -751,6 +781,7 @@
   <string name="InviteActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Rohkem infot</string>
+  <string name="SpanUtil__read_more">Loe rohkem</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Sõnumit ei leitud</string>
   <string name="LongMessageActivity_message_from_s">Sõnum kasutajalt %1$s</string>
@@ -786,6 +817,14 @@
   <string name="MediaOverviewActivity_List_view_description">Nimekirjavaade</string>
   <string name="MediaOverviewActivity_Selected_description">Valitud</string>
   <string name="MediaOverviewActivity_select_all">Vali kõik</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Salvesta</item>
+    <item quantity="other">Salvesta</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Kustuta</item>
+    <item quantity="other">Kustuta</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1933,6 +1972,8 @@
   <string name="preferences__help">Abi</string>
   <string name="preferences__advanced">Täpsem</string>
   <string name="preferences__donate_to_signal">Anneta Signalile</string>
+  <string name="preferences__subscription">Tellimus</string>
+  <string name="preferences__signal_boost">Signalile hoogu</string>
   <string name="preferences__privacy">Privaatsus</string>
   <string name="preferences__mms_user_agent">MMS kasutajaagent</string>
   <string name="preferences__advanced_mms_access_point_names">Käsitsi määratud MMS-seaded</string>
@@ -2858,6 +2899,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Autoriõigus Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Litsentsitud GPLv3 litsentsiga</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Meedia kvaliteet</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Saadetud meedia kvaliteet</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Kõrge kvaliteediga meedia saatmine kasutab rohkem andmesidet.</string>
   <string name="DataAndStorageSettingsFragment__high">Kõrge</string>
   <string name="DataAndStorageSettingsFragment__standard">Standardne</string>
@@ -3044,6 +3087,7 @@
   <string name="MediaReviewFragment__add_a_reply">Lisa vastus</string>
   <string name="MediaReviewFragment__send_to">Saaja</string>
   <string name="MediaReviewFragment__view_once_message">Ühekordne sõnum</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Liiga palju elemente valitud</string>
   <string name="ImageEditorHud__cancel">Loobu</string>
   <string name="ImageEditorHud__draw">Joonista</string>
   <string name="ImageEditorHud__write_text">Kirjuta tekst</string>
@@ -3062,13 +3106,27 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Kas loobuda muudatustest?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Sa kaotad kõik sellele fotole tehtud muudatused</string>
   <string name="CameraFragment__failed_to_open_camera">Kaamera avamine ei õnnestunud</string>
+  <string name="BadgesOverviewFragment__my_badges">Minu märgid</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Kuva profiilil märke</string>
+  <string name="BadgeSelectionFragment__select_badges">Vali märgid</string>
   <string name="SelectFeaturedBadgeFragment__preview">Eelvaade</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Vali märk</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalit loovad sinusugused inimesed.</string>
+  <string name="SubscribeFragment__currency">Rahaühik</string>
+  <string name="SubscribeFragment__more_payment_options">Rohkem maksevõimalusi</string>
+  <string name="SubscribeFragment__cancel_subscription">Tühista tellimus</string>
   <string name="SubscribeFragment__not_now">Mitte praegu</string>
   <string name="SubscribeFragment__confirm">Kinnita</string>
   <string name="SubscribeFragment__update">Uuenda</string>
+  <string name="Subscription__s_per_month">%s/month</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Aitäh hooandmise eest!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Kuva profiilil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tehtud</string>
+  <string name="ManageDonationsFragment__badges">Märgid</string>
+  <string name="BoostFragment__give_signal_a_boost">Anna Signalile hoogu</string>
   <string name="Boost__enter_custom_amount">Sisesta kohandatud summa</string>
+  <string name="MySupportPreference__add_a_signal_boost">Lisa Signalile hoogu</string>
+  <string name="MySupportPreference__s_per_month">%1$s/kuu</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
   <string name="Subscription__contact_support">Võta ühendust kasutajatoega</string>

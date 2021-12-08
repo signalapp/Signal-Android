@@ -699,6 +699,7 @@
   <string name="ManageProfileFragment_your_username">আপনার ব্যবহারকারি নাম</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">অবতার সেট করতে ব্যর্থ</string>
   <string name="ManageProfileFragment_badges">ব্যাজগুলি</string>
+  <string name="ManageProfileFragment__edit_photo">ছবি সম্পাদনা করুন</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">একই রকমের কোন গ্রুপ নেই</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1335,8 +1336,13 @@
   <string name="RegistrationActivity_play_services_error">প্লে সার্ভিস সমস্যা</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">গুগল প্লে পরিষেবাদি আপডেট করছে বা অস্থায়ীভাবে অনুপলব্ধ। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
   <string name="RegistrationActivity_terms_and_privacy">শর্তাদি এবং গোপনীয়তা নীতি</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">আপনাকে বন্ধুদের সাথে সংযোগ করতে এবং বার্তা পাঠাতে সাহায্য করার জন্য সিগন্যালের পরিচিতি এবং মিডিয়ার অনুমতির প্রয়োজন হয়। আপনার পরিচিতিগুলি সিগন্যালের ব্যক্তিগত পরিচিতি আবিষ্কার ব্যবহার করে আপলোড করা হয়, যার মানে সেগুলি এন্ড-টু-এন্ড এনক্রিপ্ট করা এবং সিগন্যাল পরিষেবাতে কখনই দৃশ্যমান নয়৷</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">আপনাকে বন্ধুদের সাথে সংযোগ করতে সাহায্য করার জন্য সিগন্যালের পরিচিতির অনুমতির প্রয়োজন হয়। আপনার পরিচিতিগুলি সিগন্যালের ব্যক্তিগত পরিচিতি আবিষ্কার ব্যবহার করে আপলোড করা হয়, যার মানে সেগুলি এন্ড-টু-এন্ড এনক্রিপ্ট করা এবং সিগন্যাল পরিষেবাতে কখনই দৃশ্যমান নয়।</string>
   <string name="RegistrationActivity_rate_limited_to_service">আপনি এই নম্বরটি নিবন্ধন করার জন্য অনেকবার চেষ্টা করেছেন। দয়া করে পরে আবার চেষ্টা করুন।</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">পরিষেবাতে সংযোগ করতে অক্ষম। নেটওয়ার্ক সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
+  <string name="RegistrationActivity_non_standard_number_format">নন-স্ট্যান্ডার্ড নম্বর বিন্যাস</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">আপনি যে নম্বরটি প্রবেশ করেছেন (%1$s) সেটি একটি অ-মানক বিন্যাস বলে মনে হচ্ছে।\n\nআপনি কি %2$s বলতে চান?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">সিগন্যাল অ্যান্ড্রয়েড - ফোন নম্বর ফর্ম্যাট</string>
   <string name="RegistrationActivity_call_requested">কল অনুরোধ করা হয়েছে</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">আপনি এখন একটি ডিবাগ লগ জমা দেওয়ার থেকে %d পদক্ষেপ দূরে।</item>
@@ -2026,6 +2032,7 @@
   <string name="preferences__advanced">উন্নততর</string>
   <string name="preferences__donate_to_signal">Signal -এ দান করুন</string>
   <string name="preferences__subscription">সাবস্ক্রিপশন</string>
+  <string name="preferences__become_a_signal_sustainer">একজন সিগন্যাল সাসটেইনার হোন</string>
   <string name="preferences__signal_boost">সিগন্যাল বুস্ট</string>
   <string name="preferences__privacy">গোপনীয়তা</string>
   <string name="preferences__mms_user_agent">এমএমএস ব্যবহারকারী এজেন্ট</string>
@@ -2383,6 +2390,7 @@
   <string name="Insights__title">অন্তর্দৃষ্টি</string>
   <string name="InsightsDashboardFragment__title">অন্তর্দৃষ্টি</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal প্রোটোকল গত %2$d দিনগুলিতে স্বয়ংক্রিয়ভাবে আপনার বহির্গামী বার্তাগুলির %1$d%% সুরক্ষিত করেছে। Signal ব্যবহারকারীদের মধ্যে কথোপকথন সর্বদা এক প্রান্ত থেকে অপর প্রান্ত এনক্রিপ্ট থাকে।</string>
+  <string name="InsightsDashboardFragment__spread_the_word">শব্দটি ছড়িয়ে দিন</string>
   <string name="InsightsDashboardFragment__not_enough_data">পর্যাপ্ত তথ্য নেই</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">আপনার অন্তর্দৃষ্টি শতাংশ বিগত %1$d দিনের মধ্যে বহির্গামী বার্তাগুলির উপর ভিত্তি করে গণনা করা হয় যা নিখোঁজ হয়নি বা মোছা হয়নি।</string>
   <string name="InsightsDashboardFragment__start_a_conversation">একটি কথোপকথন শুরু করুন</string>
@@ -3116,7 +3124,10 @@
   <string name="AddAProfilePhotoMegaphone__not_now">এখন না</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ছবি যুক্ত করুন</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">একজন সাসটেইনার হয়ে উঠুন</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">সিগন্যাল আপনার মতো লোকদের দ্বারা চালিত হয়। অবদান রাখুন এবং একটি প্রোফাইল ব্যাজ গ্রহণ করুন।</string>
   <string name="BecomeASustainerMegaphone__no_thanks">না ধন্যবাদ</string>
+  <string name="BecomeASustainerMegaphone__contribute">অবদান রাখুন</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ইমোজি</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ইমোজি সার্চ খুলুন</string>
@@ -3165,6 +3176,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">কথোপকথন সবসময়ের জন্য মিউট করা হয়েছে</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ফোন নাম্বার ক্লিপবোর্ডে কপি করা হয়েছে।</string>
   <string name="ConversationSettingsFragment__phone_number">ফোন নাম্বার</string>
+  <string name="ConversationSettingsFragment__get_badges">সিগন্যাল সমর্থন করে আপনার প্রোফাইলের জন্য ব্যাজ পান। আরও জানতে একটি ব্যাজে চাপুন।</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">সদস্যদের যোগ করান</string>
   <string name="PermissionsSettingsFragment__edit_group_info">গ্রুপের তথ্য সম্পাদনা করুন</string>
@@ -3286,6 +3298,8 @@
   <string name="ImageView__badge">ব্যাজ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal আপনার মতো ব্যক্তির সহায়তায় পরিচালিত হয়।</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">আপনার জন্য নির্মিত প্রযুক্তি সমর্থন করুন - আপনার তথ্যের জন্য নয় - এটিকে টিকিয়ে রাখে এমন লোকেদের সম্প্রদায়ে যোগদানের মাধ্যমে।</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">সমর্থন প্রযুক্তি যা আপনার জন্য তৈরি করা হয়েছে, আপনার ডেটার জন্য নয়, সিগন্যালকে টিকিয়ে রাখে এমন সম্প্রদায়ে যোগদানের মাধ্যমে।</string>
+  <string name="SubscribeFragment__currency">মুদ্রা</string>
   <string name="SubscribeFragment__more_payment_options">আরও পেমেন্ট অপশন</string>
   <string name="SubscribeFragment__cancel_subscription">সাবস্ক্রিপশন বাতিল করুন</string>
   <string name="SubscribeFragment__confirm_cancellation">বাতিলকরণ নিশ্চিত করবেন?</string>
@@ -3298,17 +3312,26 @@
 </string>
   <string name="SubscribeFragment__update">আপডেট করুন</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">আপনাকে আজ নতুন সদস্যতা মূল্যের পুরো পরিমাণ চার্জ করা হবে। আপনার সদস্যতা %1$s পুনর্নবীকরণ হবে।</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">আপনাকে আজ নতুন সদস্যতার মূল্যের পুরো পরিমাণ (%1$s)  চার্জ করা হবে। আপনার সদস্যতা মাসিক পুনর্নবীকরণ করা হবে।</string>
   <string name="Subscription__s_per_month">%s/মাস</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/মাস · পুনর্নবীকরণ %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/মাস · মেয়াদ শেষ হবে %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">সিগন্যাল হল একটি অলাভজনক যার কোনো বিজ্ঞাপনদাতা বা বিনিয়োগকারী নেই, শুধুমাত্র যারা এটি ব্যবহার করে এবং কদর করে তাদের দ্বারা টিকে রয়েছে। একটি পুনরাবৃত্ত মাসিক অবদান করুন এবং আপনার সমর্থন ভাগ করার জন্য একটি প্রোফাইল ব্যাজ পান৷</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">কেন অবদান?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">সিগন্যাল ওপেন সোর্স গোপনীয়তা প্রযুক্তি বিকাশে প্রতিশ্রুতিবদ্ধ যা মুক্ত অভিব্যক্তিকে রক্ষা করে এবং নিরাপদ বৈশ্বিক যোগাযোগকে সক্ষম করে।</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">আপনার অবদান এই কারণটিকে জ্বালানি দেয় এবং ব্যক্তিগত যোগাযোগের জন্য লক্ষ লক্ষ লোক দ্বারা ব্যবহৃত একটি অ্যাপের বিকাশ এবং ক্রিয়াকলাপের জন্য অর্থ প্রদান করে। কোন বিজ্ঞাপন নেই। কোনও ট্র্যাকার নেই। কোনো মজা নয়।</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">আপনার সহযোগীতার জন্য ধন্যবাদ!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">বুস্টের জন্য ধন্যবাদ!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">আপনি %s ব্যাজ অর্জন করেছেন! আপনার প্রোফাইলে এই ব্যাজটি প্রদর্শন করে সচেতনতা তৈরিতে সিগন্যালকে সহায়তা করুন।</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">আপনি একটি বুস্ট ব্যাজ অর্জন করেছেন! আপনার প্রোফাইলে এই ব্যাজটি প্রদর্শন করে সচেতনতা তৈরিতে সিগন্যালকে সহায়তা করুন।</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">আপনিও পারেন</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">একজন মাসিক সাসটেইনার হয়ে উঠুন।</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">প্রোফাইলে প্রদর্শন করুন</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">বৈশিষ্ট্যযুক্ত ব্যাজ তৈরি করুন</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">শেষ</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">যখন আপনার একাধিক ব্যাজ থাকে, আপনি অন্যদের আপনার প্রোফাইলে দেখার জন্য বৈশিষ্ট্যের একটি বেছে নিতে পারেন।</string>
+  <string name="BecomeASustainerFragment__get_badges">সিগন্যাল সমর্থন করে আপনার প্রোফাইলের জন্য ব্যাজ পান।</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">সিগন্যাল হল একটি অলাভজনক যেখানে কোন বিজ্ঞাপনদাতা বা বিনিয়োগকারী নেই, শুধুমাত্র আপনার মত লোকেদের দ্বারা সমর্থিত।</string>
   <string name="ManageDonationsFragment__my_support">আমার সমর্থন</string>
   <string name="ManageDonationsFragment__manage_subscription">সাবস্ক্রিপশন ব্যবহার করুন</string>
   <string name="ManageDonationsFragment__badges">ব্যাজ</string>
@@ -3321,21 +3344,44 @@
   <string name="MySupportPreference__add_a_signal_boost">একটি Signal বুস্ট যোগ করুন</string>
   <string name="MySupportPreference__s_per_month">%1$s/মাস</string>
   <string name="MySupportPreference__renews_s">%1$s রিনিউ</string>
+  <string name="MySupportPreference__processing_transaction">লেনদেন প্রক্রিয়া করা হচ্ছে…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">ব্যাজ যোগ করা যায় নি। %1$s</string>
+  <string name="MySupportPreference__please_contact_support">অনুগ্রহ করে সহায়তা কেন্দ্রে যোগাযোগ করুন।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">আপনার ব্যাজের মেয়াদ শেষ হয়ে গেছে</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ব্যাজের মেয়াদ শেষ হয়েছে</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">সদস্যতা বাতিল করা হয়েছে</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">আপনার বুস্ট ব্যাজের মেয়াদ শেষ হয়ে গেছে এবং আপনার প্রোফাইলে অন্যদের কাছে আর দৃশ্যমান নয়।</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">আপনি আপনার বুস্ট ব্যাজকে আরও 30 দিনের জন্য 1-কালীন অবদানের মাধ্যমে পুনরায় সক্রিয় করতে পারেন।</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">আপনার জন্য তৈরি করা প্রযুক্তিকে সমর্থন করা চালিয়ে যেতে, অনুগ্রহ করে মাসিক সাসটেইনার হওয়ার কথা বিবেচনা করুন।</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">একজন সাসটেইনার হোন</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">একটি বুস্ট যোগ করুন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">এখন না</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">আপনার সাসটেইনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে বাতিল হয়ে গেছে কারণ আপনি অনেক দিন ধরে নিষ্ক্রিয় ছিলেন। আপনার %1$s ব্যাজ আপনার প্রোফাইলে আর দৃশ্যমান নয়।</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">আপনি সিগন্যাল ব্যবহার চালিয়ে যেতে পারেন তবে অ্যাপটিকে সমর্থন করতে এবং আপনার ব্যাজ পুনরায় সক্রিয় করতে, এখনই নবায়ন করুন।</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">সদস্যতা নবায়ন করুন</string>
   <string name="Subscription__please_contact_support_for_more_information">আরও তথ্যের জন্য সাপোর্টে যোগাযোগ করুন।</string>
   <string name="Subscription__contact_support">সহায়তায় যোগাযোগ করুন</string>
   <string name="Subscription__earn_a_s_badge">একটি %1$s ব্যাজ অর্জন করুন</string>
   <string name="SubscribeFragment__processing_payment">পেমেন্ট প্রক্রিয়া করা হচ্ছে…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">ত্রুটি প্রক্রিয়াকরণ পেমেন্ট</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">ত্রুটি প্রক্রিয়াকরণ পেমেন্ট। %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">আপনার ব্যাজটি আপনার অ্যাকাউন্টে যোগ করা যায় নি, তবে আপনাকে চার্জ করা হতে পারে। অনুগ্রহ করে সহায়তা কেন্দ্রে যোগাযোগ করুন।</string>
   <string name="DonationsErrors__your_payment">আপনার পেমেন্ট প্রক্রিয়া করা যায়নি এবং আপনাকে চার্জ করা হয়নি। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
+  <string name="DonationsErrors__still_processing">এখনও প্রক্রিয়া করা হচ্ছে</string>
+  <string name="DonationsErrors__couldnt_add_badge">ব্যাজ যোগ করা যায় নি</string>
+  <string name="DonationsErrors__your_badge_could_not">আপনার ব্যাজ আপনার অ্যাকাউন্টে যোগ করা যায় নি, তবে আপনাকে চার্জ করা হতে পারে। অনুগ্রহ করে সহায়তা কেন্দ্রে যোগাযোগ করুন।</string>
+  <string name="DonationsErrors__your_payment_is_still">আপনার পেমেন্ট এখনও প্রক্রিয়া করা হচ্ছে। আপনার সংযোগের উপর নির্ভর করে এটি কয়েক মিনিট সময় নিতে পারে।</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay  সহজলভ্য নয়</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">অ্যাপের মধ্যে দান করার জন্য আপনাকে Google Pay সেট-আপ করতে হবে।</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">সাবস্ক্রিপশন বাতিল করতে ব্যর্থ হয়েছে</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">সাবস্ক্রিপশন বাতিল করার জন্য একটি ইন্টারনেট সংযোগ প্রয়োজন।</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">আপনার ডিভাইস গুগল পে সমর্থন করে না, তাই আপনি ব্যাজ অর্জন করতে সদস্যতা নিতে পারবেন না। আপনি এখনও আমাদের ওয়েবসাইটে অনুদান দিয়ে সিগন্যাল সমর্থন করতে পারেন।</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">নেটওয়ার্ক ত্রুটি। আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
   <string name="NetworkFailure__retry">পুনরায় চেষ্টা করুন</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">পিকার খুলতে ব্যর্থ হয়েছে।</string>
   <!--EOF-->
 </resources>
