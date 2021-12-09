@@ -301,7 +301,7 @@ public class DeleteAccountFragment extends Fragment {
   }
 
   private void ensureDeletionProgressDialog() {
-    if (deletionProgressDialog != null) {
+    if (deletionProgressDialog == null) {
       deletionProgressDialog = DeleteAccountProgressDialog.show(requireContext());
     }
   }
