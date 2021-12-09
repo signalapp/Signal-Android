@@ -2295,7 +2295,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val select =
       """
         SELECT r.$ID FROM $TABLE_NAME AS r 
-        INNER JOIN ${ThreadDatabase.TABLE_NAME} AS t ON t.${ThreadDatabase.RECIPIENT_ID} = r.ID 
+        INNER JOIN ${ThreadDatabase.TABLE_NAME} AS t ON t.${ThreadDatabase.RECIPIENT_ID} = r.$ID
         WHERE
           r.$PROFILE_SHARING = 0 AND (
             EXISTS(SELECT 1 FROM ${SmsDatabase.TABLE_NAME} WHERE ${SmsDatabase.THREAD_ID} = t.${ThreadDatabase.ID} AND ${SmsDatabase.DATE_RECEIVED} < ?) OR
