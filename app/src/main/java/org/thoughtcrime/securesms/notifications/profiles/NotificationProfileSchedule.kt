@@ -60,7 +60,7 @@ data class NotificationProfileSchedule(
   }
 
   fun endDateTime(now: LocalDateTime): LocalDateTime {
-    return end.toLocalDateTime(now)
+    return end.toLocalDateTime(now).plusDays(if (end < start) 1 else 0)
   }
 }
 

@@ -80,7 +80,8 @@ class EditNotificationProfileScheduleViewModel(
             repository.manuallyToggleProfile(profileId, schedule)
               .toSingleDefault(r)
           } else {
-            Single.just(r)
+            repository.updateManuallyEnabledDataIfNecessary(profileId, schedule)
+              .toSingleDefault(r)
           }
         }
     }
