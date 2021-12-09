@@ -4144,6 +4144,8 @@
     <string name="NotificationProfileDetails__notify_for_all_mentions">Notify for all mentions</string>
     <!-- Section header for showing schedule information -->
     <string name="NotificationProfileDetails__schedule">Schedule</string>
+    <!-- If member list is long, will truncate the list and show an option to then see all when tapped -->
+    <string name="NotificationProfileDetails__see_all">See all</string>
 
     <!-- Title for add schedule to profile in create flow -->
     <string name="EditNotificationProfileSchedule__add_a_schedule">Add a schedule</string>

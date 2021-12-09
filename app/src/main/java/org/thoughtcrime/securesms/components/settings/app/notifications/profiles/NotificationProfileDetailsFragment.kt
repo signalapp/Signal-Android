@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfilePreference
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfileRecipient
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.conversation.preferences.LargeIconClickPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
@@ -36,6 +37,8 @@ import org.thoughtcrime.securesms.util.orderOfDaysInWeek
 import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.util.Locale
+
+private const val MEMBER_COUNT_TO_SHOW_EXPAND: Int = 5
 
 class NotificationProfileDetailsFragment : DSLSettingsFragment() {
 
@@ -66,30 +69,31 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
     NotificationProfilePreference.register(adapter)
     NotificationProfileAddMembers.register(adapter)
     NotificationProfileRecipient.register(adapter)
+    LargeIconClickPreference.register(adapter)
 
-    lifecycleDisposable += viewModel.getProfile()
-      .subscribeBy(
-        onNext = { state ->
-          when (state) {
-            is NotificationProfileDetailsViewModel.State.Valid -> {
-              toolbar?.title = state.profile.name
-              toolbar?.setOnMenuItemClickListener { item ->
-                if (item.itemId == R.id.action_edit) {
-                  findNavController().navigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(state.profile.id))
-                  true
-                } else {
-                  false
-                }
-              }
-              adapter.submitList(getConfiguration(state.profile, state.recipients, state.isOn).toMappingModelList())
+    viewModel.state.observe(viewLifecycleOwner) { state ->
+      when (state) {
+        is NotificationProfileDetailsViewModel.State.Valid -> {
+          toolbar?.title = state.profile.name
+          toolbar?.setOnMenuItemClickListener { item ->
+            if (item.itemId == R.id.action_edit) {
+              findNavController().navigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(state.profile.id))
+              true
+            } else {
+              false
             }
-            NotificationProfileDetailsViewModel.State.Invalid -> findNavController().navigateUp()
           }
+          adapter.submitList(getConfiguration(state).toMappingModelList())
         }
-      )
+        NotificationProfileDetailsViewModel.State.NotLoaded -> Unit
+        NotificationProfileDetailsViewModel.State.Invalid -> findNavController().navigateUp()
+      }
+    }
   }
 
-  private fun getConfiguration(profile: NotificationProfile, recipients: List<Recipient>, isOn: Boolean): DSLConfiguration {
+  private fun getConfiguration(state: NotificationProfileDetailsViewModel.State.Valid): DSLConfiguration {
+    val (profile: NotificationProfile, recipients: List<Recipient>, isOn: Boolean, expanded: Boolean) = state
+
     return configure {
 
       customPref(
@@ -122,7 +126,14 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
           currentSelection = profile.allowedMembers
         )
       )
-      for (member in recipients) {
+
+      val membersToShow = if (expanded || recipients.size <= MEMBER_COUNT_TO_SHOW_EXPAND) {
+        recipients
+      } else {
+        recipients.slice(0 until MEMBER_COUNT_TO_SHOW_EXPAND)
+      }
+
+      for (member in membersToShow) {
         customPref(
           NotificationProfileRecipient.Model(
             recipientModel = RecipientPreference.Model(
@@ -142,6 +153,16 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
                   }
                 )
             }
+          )
+        )
+      }
+
+      if (!expanded && membersToShow != recipients) {
+        customPref(
+          LargeIconClickPreference.Model(
+            title = DSLSettingsText.from(R.string.NotificationProfileDetails__see_all),
+            icon = DSLSettingsIcon.from(R.drawable.show_more, NO_TINT),
+            onClick = viewModel::showAllMembers
           )
         )
       }
