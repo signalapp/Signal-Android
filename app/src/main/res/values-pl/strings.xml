@@ -312,7 +312,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Twój numer bezpieczeństwa dla %s zmienił się</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Twój numer bezpieczeństwa dla %s zmienił się. Ten kontakt prawdopodobnie ponownie zainstalował Signal lub zmienił urządzenie. Stuknij Zweryfikuj, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</string>
   <!--Message shown to indicate which notification profile is on/active-->
-  <string name="ConversationFragment__s_on">%1$s wł.</string>
+  <string name="ConversationFragment__s_on">%1$s włączony</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Usunąć wybraną rozmowę?</item>
     <item quantity="few">Usunąć wybrane rozmowy?</item>
@@ -407,7 +407,7 @@
   <!--Tooltip shown after you have created your first notification profile-->
   <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Tu włączysz lub wyłączysz swój profil powiadomień.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
-  <string name="ConversationListFragment__s_on">%1$s wł.</string>
+  <string name="ConversationListFragment__s_on">%1$s włączony</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
   <!--ConversationListItemAction-->
@@ -3267,7 +3267,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profile</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__set_up_notification_profiles">Skonfiguruj profile powiadomień</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Skonfiguruj profile powiadomień</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Profile powiadomień</string>
@@ -3708,7 +3708,7 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Dodaj harmonogram</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Włącz i edytuj harmonogram, aby zautomatyzować ten profil.</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Włącz i edytuj harmonogram, aby zautomatyzować ten profil.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Harmonogram</string>
   <!--Label for showing the start time for the schedule-->
@@ -3716,19 +3716,19 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Koniec</string>
   <!--First letter of Sunday-->
-  <string name="EditNotificationProfileSchedule__sunday_first_letter">N</string>
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">Ndz.</string>
   <!--First letter of Monday-->
-  <string name="EditNotificationProfileSchedule__monday_first_letter">P</string>
+  <string name="EditNotificationProfileSchedule__monday_first_letter">Pon.</string>
   <!--First letter of Tuesday-->
-  <string name="EditNotificationProfileSchedule__tuesday_first_letter">W</string>
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">Wt.</string>
   <!--First letter of Wednesday-->
-  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Ś</string>
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Śr.</string>
   <!--First letter of Thursday-->
-  <string name="EditNotificationProfileSchedule__thursday_first_letter">C</string>
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Czw.</string>
   <!--First letter of Friday-->
   <string name="EditNotificationProfileSchedule__friday_first_letter">Pt.</string>
   <!--First letter of Saturday-->
-  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">Sob.</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
   <string name="EditNotificationProfileSchedule__set_start_time">Ustaw czas rozpoczęcia</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
@@ -3752,7 +3752,7 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Twój profil będzie automatycznie włączać się i wyłączać zgodnie z harmonogramem.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <string name="NotificationProfileSelection__new_notification_profile">Nowy profil powiadomień</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Nowy profil powiadomień</string> -->
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">Na 1 godzinę</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->

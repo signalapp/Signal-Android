@@ -340,7 +340,6 @@
     <item quantity="other">%d 個已選取</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
-  <string name="ConversationListFragment__notification_profile">通知設定檔</string>
   <!--Tooltip shown after you have created your first notification profile-->
   <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">在此開啟或關閉您的通知設定檔。</string>
   <!--Message shown in top toast to indicate the named profile is on-->
@@ -2661,6 +2660,7 @@
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>
   <string name="RecipientBottomSheet_add_to_contacts">新增至通訊錄</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">找不到能夠開啟聯絡人的應用程式。</string>
   <string name="RecipientBottomSheet_add_to_a_group">新增至群組</string>
   <string name="RecipientBottomSheet_add_to_another_group">新增至另一個群組</string>
   <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
@@ -2765,7 +2765,9 @@
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">正在刪除使用者資料並重設應用程式</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">帳戶未被刪除</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">完成刪除過程時發生問題。請檢查您的網絡連線，然後再試一次。</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">搜尋國家</string>
   <!--CreateGroupActivity-->
@@ -2978,7 +2980,7 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">設定檔</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__set_up_notification_profiles">設立通知設定檔</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">設立通知設定檔</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">通知設定檔</string>
@@ -3427,6 +3429,7 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">下一步</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">排程必須有至少一日</string>
   <!--Title for final screen shown after completing a profile creation-->
   <string name="NotificationProfileCreated__profile_created">設定檔已建立</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
@@ -3435,7 +3438,7 @@
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <string name="NotificationProfileSelection__new_notification_profile">新增通知設定檔</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">新增通知設定檔</string> -->
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">直到 %1$s</string>
@@ -3447,6 +3450,7 @@
   <!--Call to action button to create a profile from megaphone-->
   <string name="NotificationProfilesMegaphone__create_a_profile">建立一個設定檔</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">現在不要</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">無法開啟挑選器。</string>
   <!--EOF-->

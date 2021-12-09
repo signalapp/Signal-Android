@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Via sekuriga numero kun %s ŝanĝiĝis</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Via sekuriga numero kun %s ŝanĝiĝis, probable ĉar ŝi aŭ li reinstalis Signal-on aŭ ŝanĝis sian aparaton. Tuŝetu „Kontroli“ por konfirmi la novan sekurigan numeron. Tio estas malnepra.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s elektita</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Ĉu forviŝi elektitan interparolon?</item>
     <item quantity="other">Ĉu forviŝi la elektitajn interparolojn?</item>
@@ -360,8 +361,11 @@
     <item quantity="other">%d elektitaj</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Sciigo-profilo</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Ŝalto aŭ malŝaltu vian sciigo-profilon ĉi tie.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s elektita</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
@@ -1742,6 +1746,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Vezikoj estas ebleco de Android, kiun vi povas malŝalti por Signal-interparoloj.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Ne nun</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2752,6 +2757,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_unblock">Malbloki</string>
   <string name="RecipientBottomSheet_add_to_contacts">Aldoni al kontaktoj</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Ne eblas trovi aplikaĵon por malfermi kontaktojn.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Aldoni al grupo</string>
   <string name="RecipientBottomSheet_add_to_another_group">Aldoni al plia grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Montri sekurigan numeron</string>
@@ -2851,11 +2857,17 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Malsukcesis forviŝado de lokaj datumoj. Vi povas mane forviŝi lokajn datumojn en la sistemaj agordoj pri la aplikaĵo.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Malfermi la aplikaĵajn agordojn</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Forlasado de grupoj…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Forigi de la konto…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Laŭ la nombro de viaj grupoj, tio povas daŭri kelkajn minutojn</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Forigado de la uzant-datumoj kaj restarigo de la aplikaĵo</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">La konto ne foriĝis</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Problemo okazis dum la forigado. Kontrolu vian retaliron, kaj reprovu.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Serĉi landojn</string>
   <!--CreateGroupActivity-->
@@ -3065,11 +3077,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NotificationsSettingsFragment__notify_when">Sciigi al mi kiam…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakto aliĝas al Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Sciigo-profiloj</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profiloj</string>
   <!--Notification preference summary text-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Agordi sciigo-profilojn</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Sciigo-profiloj</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Krei profilon</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokita</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontaktoj</string>
@@ -3420,6 +3437,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eraro de retkonekto. Kontrolu vian konekton kaj reprovu.</string>
   <string name="NetworkFailure__retry">Reprovi</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Nomi vian profilon</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profila nomo</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3429,14 +3447,21 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Konservi</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Modifi tiun profilon</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Samnoma profilo jam ekzistas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Laboro</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Dormo</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Veturigo</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Paŭzo</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Sinkoncentro</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">La nomo nepras</string>
   <!--Title for add recipients to notification profile screen in create flow-->
   <!--Description of what the user should be doing with this screen-->
   <!--Button text that launches the contact picker to select from-->
@@ -3444,6 +3469,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SelectRecipientsFragment__add">Aldoni</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profiloj</string>
   <!--Button that starts the create new notification profile flow-->
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Ŝaltita</string>
@@ -3501,9 +3527,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Option to view profile details-->
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Sciigo-profiloj</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ne nun</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Malsukceso malfermi la elektilon.</string>
   <!--EOF-->

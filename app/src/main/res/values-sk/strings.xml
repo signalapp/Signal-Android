@@ -402,7 +402,9 @@
     <item quantity="other">%d vybraných</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Notifikačný profil</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Tu môžete zapnúť alebo vypnúť svoj profil upozornení.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa výmeny kľúčov</string>
@@ -1899,6 +1901,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na koniec</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Bubliny sú funkciou systému Android, ktorú môžete vypnúť pre Signal konverzácie.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Teraz nie</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2939,6 +2942,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RecipientBottomSheet_unblock">Odblokovať</string>
   <string name="RecipientBottomSheet_add_to_contacts">Pridať medzi kontakty</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Nenašiel som aplikáciu, ktorá by mohla otvárať kontakty.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Pridať do skupiny</string>
   <string name="RecipientBottomSheet_add_to_another_group">Pridať do ďalšej skupiny</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobraziť bezpečnostné číslo</string>
@@ -3042,10 +3046,15 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepodarilo sa odstrániť lokálne údaje. Manuálne ich môžete vymazať v systémových nastaveniach aplikácie.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Spustiť nastavenía aplikácie</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Opúšťajú sa skupiny…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Odstraňuje sa účet…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">V závislosti od počtu skupín, v ktorých ste, to môže trvať niekoľko minút</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Odstránenie používateľských údajov a resetovanie aplikácie</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Účet nebol odstránený</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Vyhľadať krajinu</string>
@@ -3710,6 +3719,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Teraz nie</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Výber sa nepodarilo otvoriť.</string>
   <!--EOF-->

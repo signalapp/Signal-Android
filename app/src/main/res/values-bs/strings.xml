@@ -86,7 +86,7 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokirati i napustiti %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokirati %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nećete više primati poruke i obavijesti iz ove grupe, niti će Vas njeni članovi moći ponovo u grupu dodati.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nećete više primati poruke i obavještenja iz ove grupe, niti će Vas njeni članovi moći ponovo u grupu dodati.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Članovi grupe neće Vas moći ponovo uvrstiti u grupu.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Članovi grupe moći će Vas ponovo uvrstiti u grupu.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Moći ćete razmjenjivati poruke i pozive, a sa sagovornikom će biti podijeljeni i Vaše ime i slika.</string>
@@ -256,7 +256,7 @@
     <item quantity="few">Izbrisati označene poruke?</item>
     <item quantity="other">Izbrisati označene poruke?</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Pohraniti u memoriju?</string>
+  <string name="ConversationFragment_save_to_sd_card">Pohraniti u memoriju uređaja?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Pohranjivanje ove datoteke u memoriju omogućit će drugim aplikacijama na Vašem uređaju da joj pristupe.\n\nNastaviti?</item>
     <item quantity="few">Pohranjivanje ove %1$d datoteke u memoriju omogućit će drugim aplikacijama na Vašem uređaju da im pristupe.\n\nNastaviti?</item>
@@ -265,9 +265,9 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Greška prilikom pohranjivanja priloga u memoriju!</item>
     <item quantity="few">Greška prilikom pohranjivanja priloga u memoriju!</item>
-    <item quantity="other">Greška prilikom pohranjivanja priloga u memoriju!</item>
+    <item quantity="other">Greška prilikom pohranjivanja priloga u memoriju uređaja!</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pohranjivati u memoriju!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće pohranjivati u memoriju uređaja!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Pohranjujem prilog</item>
     <item quantity="few">Pohranjujem %1$d priloga</item>
@@ -276,7 +276,7 @@
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Pohranjujem prilog u memoriju…</item>
     <item quantity="few">Pohranjujem %1$d priloga u memoriju…</item>
-    <item quantity="other">Pohranjujem %1$d priloga u memoriju…</item>
+    <item quantity="other">Pohranjujem %1$d priloga u memoriju uređaja…</item>
   </plurals>
   <string name="ConversationFragment_pending">U obradi…</string>
   <string name="ConversationFragment_push">Internet (Signal)</string>
@@ -305,6 +305,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Vaš je sigurnosni broj sa %s promijenjen</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Vaš je sigurnosni broj sa %s promijenjen, vjerovatno zbog toga što su on ili ona iznova instalirali Signal ili promijenili uređaj. Pritisnite Verifikuj da potvrdite novi sigurnosni broj. Ova radnja nije obavezna.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s uključen</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Izbrisati označenu konverzaciju?</item>
     <item quantity="few">Izbrisati označene konverzacije?</item>
@@ -381,8 +382,11 @@
     <item quantity="other">%d odabrano</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Profil obavještenja</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Ovdje uključite ili isključite profil obavještenja.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s uključen</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Poruka za razmjenu ključa</string>
   <!--ConversationListItemAction-->
@@ -439,7 +443,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Izaberi iz galerije</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Ukloni fotografiju</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Slikanje zahtijeva dopuštenje za pristup kameri.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Pregledanje Vaše galerije zahtijeva dopuštenje za pristup memoriji.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Pregledanje Vaše galerije zahtijeva dopuštenje za pristup memoriji uređaja.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sad</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1821,6 +1825,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Spusti do dna</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Balončići su opcija Androida koju možete isključiti u Signal-porukama.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Ne sada</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2851,6 +2856,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="RecipientBottomSheet_unblock">Deblokiraj</string>
   <string name="RecipientBottomSheet_add_to_contacts">Dodaj među kontakte</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Nije pronađena aplikacija koja može otvoriti kontakte.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Uvrsti u grupu</string>
   <string name="RecipientBottomSheet_add_to_another_group">Uvrsti u drugu grupu</string>
   <string name="RecipientBottomSheet_view_safety_number">Vidi sigurnosni broj</string>
@@ -2952,11 +2958,17 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Neuspjelo brisanje lokalnih podataka. Možete ih ručno izbrisati kroz sistemska podešavanja aplikacija.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Pokreni podešavanja aplikacije</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Napuštam grupe…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Brišem račun…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Zavisno od toga u koliko ste grupa član, ovo može potrajati nekoliko minuta</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Brišem korisničke podatke i iznova pokrećem aplikaciju</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Račun nije izbrisan</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Došlo je do problema u okončanju procesa brisanja. Provjerite svoju internet-konekciju i pokušajte ponovo.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Traži državu</string>
   <!--CreateGroupActivity-->
@@ -3007,7 +3019,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Prevucite da biste pregledali druge pozadine</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Podesi pozadinu za sve konverzacije</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Podesi pozadinu za %1$s</string>
-  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Pregledanje Vaše galerije zahtijeva dopuštenje za pristup memoriji.</string>
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Pregledanje Vaše galerije zahtijeva dopuštenje za pristup memoriji uređaja.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Izaberite sliku pozadine</string>
   <!--WallpaperCropActivity-->
@@ -3167,11 +3179,16 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="NotificationsSettingsFragment__notify_when">Obavijesti kad…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt je počeo koristiti Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Profili obavještenja</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profili</string>
   <!--Notification preference summary text-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Podesi profile obavještenja</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Profili obavještenja</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Kreiraj profil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokirani</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakata</string>
@@ -3428,7 +3445,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="MediaCountIndicatorButton__send">Šalji</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Dotaknite da uklonite</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pritisnite da odaberete</string>
-  <string name="MediaReviewImagePageFragment__discard">Odbaci</string>
+  <string name="MediaReviewImagePageFragment__discard">Poništi</string>
   <string name="MediaReviewImagePageFragment__discard_changes">Poništiti promjene?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Poništit ćete svaku izmjenu koju ste načinili na ovoj slici.</string>
   <string name="CameraFragment__failed_to_open_camera">Neuspjelo pokretanje kamere</string>
@@ -3528,6 +3545,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Mrežna greška. Provjerite svoju internet-konekciju i pokušajte ponovo.</string>
   <string name="NetworkFailure__retry">Pokušaj</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Naslovite profil</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Ime profila</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3537,33 +3555,51 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Pohrani</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Uredi ovaj profil</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profil s ovim nazivom već postoji</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Poslovni</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Spavam</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Vozim</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">U zastoju</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Fokusiran/a</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Mora imati naziv</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Dopuštena obavještenja</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Dodajte osobe i grupe od kojih želite primati obavještenja kad je aktivan ovaj profil</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Dodaj osobe ili grupe</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Dodaj</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Kreirajte profil da biste primali obavještenja i pozive samo od onih osoba i grupa od kojih želite.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profili</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Novi profil</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Uključeno</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Izbriši profil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" uklonjen.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Vrati</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Bespovratno izbrisati profil?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Izbriši</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Uredi profil obavještenja</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Svakodnevno</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Uključeno</string>
   <!--Profile status on if it is not the active profile-->
@@ -3571,25 +3607,41 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s do %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Izuzeci</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Dopusti sve pozive</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Obavijesti svaki put kad me neko spomene</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Rasporedi</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Rasporedi</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Aktivirajte i uredite svoj raspored da automatizujete ovaj profil.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Raspored</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Započni</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Kraj</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">N</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">P</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">U</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">S</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Č</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">P</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Odredi početak</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Odredi kraj</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Pohrani</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3597,22 +3649,35 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Dalje</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Raspored mora sadržavati makar jedan dan</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profil je kreiran</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Uredu</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Profil možete ručno uključiti i isključiti putem izbornika u popisu konverzacija.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Dodajte raspored u podešavanjima da automatizujete svoj profil.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Vaš profil automatski će se uključiti i isključiti prema datom rasporedu.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Novi profil obavještenja</string> -->
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Na 1 sat</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Do %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Vidi podešavanja</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Uključen do %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Profili obavještenja</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Primajte obavještenja samo od osoba i grupa od kojih želite.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Kreirajte profil</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ne sada</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Neuspjelo otvaranje birača.</string>
   <!--EOF-->

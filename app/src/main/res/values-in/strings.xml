@@ -291,6 +291,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Nomor keamanan Anda dengan %s berubah</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Nomor keamanan Anda dengan %s berubah, mungkin karena mereka memasang ulang Signal atau mengganti perangkat. Ketuk Verifikasi untuk mengonfirmasi nomor keamanan barunya. Ini bersifat opsional.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s nyala</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">Hapus percakapan terpilih?</item>
   </plurals>
@@ -341,6 +342,7 @@
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <!--Tooltip shown after you have created your first notification profile-->
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s nyala</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci</string>
   <!--ConversationListItemAction-->
@@ -2658,6 +2660,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RecipientBottomSheet_unblock">Buka blokir</string>
   <string name="RecipientBottomSheet_add_to_contacts">Tambah ke kontak</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Tidak ada aplikasi yang dapat membuka kontak.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Tambahkan ke grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Tambahkan ke grup lain</string>
   <string name="RecipientBottomSheet_view_safety_number">Lihat nomor keamanan</string>
@@ -2755,11 +2758,17 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Gagal menghapus data lokal, kamu bisa menghapusnya secara manual melalui pengaturan applikasi.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Buka pengaturan applikasi</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Meninggalkan grup…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Menghapus akun…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Tergantung dari berapa jumlah grup yang Anda ikuti, ini mungkin memakan waktu beberapa menit</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Menghapus data pengguna dan mengatur ulang aplikasi</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Akun Tidak Dihapus</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Terjadi masalah menyelesaikan proses penghapusan. Periksa koneksi jaringan Anda dan coba lagi.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Cari negara</string>
   <!--CreateGroupActivity-->
@@ -2969,10 +2978,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontak bergabung di Signal</string>
   <!--Notification preference header-->
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profil</string>
   <!--Notification preference summary text-->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Buat profil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Terblokir</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontak</string>
@@ -3317,6 +3328,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Galat jaringan. Periksa koneksi Anda dan coba lagi.</string>
   <string name="NetworkFailure__retry">Coba lagi</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Beri nama profil Anda</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Nama profil</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3326,33 +3338,48 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Simpan</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Sunting profil ini</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profil dengan nama ini sudah ada</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Kantor</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Tidur</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Berkendara</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Fokus</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Harus memiliki nama</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Izinkan notifikasi</string>
   <!--Description of what the user should be doing with this screen-->
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Tambahkan orang atau grup</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Tambahkan</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Buat sebuah profil untuk menerima notifikasi dan panggilan hanya dari orang dan grup yang Anda inginkan.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profil</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Profil baru</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Nyala</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Hapus profil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" dikeluarkan.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Urungkan</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Hapus profil secara permanen?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Hapus</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Setiap hari</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Nyala</string>
   <!--Profile status on if it is not the active profile-->
@@ -3360,25 +3387,40 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s hingga %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Pengecualian</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Izinkan semua panggilan</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Jadwal</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Tambahkan jadwal</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Nyalakan dan sunting jadwal Anda untuk mengotomasi profil ini.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Jadwal</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Mulai</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Akhiri</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">M</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">S</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">S</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">R</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">K</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">J</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Atur waktu mulai</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Atur waktu selesai</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Simpan</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3387,21 +3429,31 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="EditNotificationProfileSchedule__next">Berikutnya</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profil dibuat</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Selesai</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Anda dapat menyalakan dan mematikan profil Anda secara manual melalui menu pada daftar percakapan.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Tambahkan jadwal di pengaturan untuk mengotomasi profil Anda.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profil Anda akan dinyalakan dan dimatikan secara otomatis berdasarkan jadwal.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Untuk 1 Jam</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Sampai %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Lihat pengaturan</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Nyalakan sampai %1$s</string>
   <!--Title for notification profile megaphone-->
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Dapatkan notifikasi hanya dari orang dan grup yang Anda pilih.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Buat profil</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Nanti saja</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal membuka pemilih dering.</string>
   <!--EOF-->

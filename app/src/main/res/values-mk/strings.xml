@@ -62,7 +62,7 @@
   <string name="AttachmentKeyboard_give_access">Дозволи пристап</string>
   <string name="AttachmentKeyboard_payment">Плаќање</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Не постои апликација за избор на датотеки.</string>
+  <string name="AttachmentManager_cant_open_media_selection">Не е пронајдена апликација за избор на медија.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">На Signal му е потребна дозвола за пристап до складот за да можете да прикачите слики, видеа или аудио. Ова е трајно одбиено. Ве молиме продолжете до менито со поставувања, изберете „Дозволи“, и вклучете „Склад“</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">На Signal му е потребна дозвола до контактите за да можете да прикачите информации за контакти. Ова е трајно одбиено. Ве молиме продолжете до менито за поставување на апликациите, изберете „Дозволи“ и вклучете \"Контакти\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal има потреба од дозвола за локацијата за да може да прикачи локација. Ова е трајно одбиено. Ве молиме продолжете во менито со поставувања и изберете „Дозволи“, и потоа вклучете „Локација“.</string>
@@ -174,7 +174,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Да се вратам на нешифрирани SMS пораки?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Да се вратам на нешифрирани MMS пораки?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Оваа порака <b>нема</b> да биде шифрирана бидејќи примачот повеќе не е корисник на Signal.\n\nДа испратам небезбедна порака?</string>
-  <string name="ConversationItem_unable_to_open_media">Не можам да пронајдам апликација за отворање на овој тип на медија.</string>
+  <string name="ConversationItem_unable_to_open_media">Не е пронајдена апликација која може да го отвори овој тип на медија.</string>
   <string name="ConversationItem_copied_text">Ископирано %s</string>
   <string name="ConversationItem_from_s">од %s</string>
   <string name="ConversationItem_to_s">до %s</string>
@@ -395,7 +395,7 @@
   <string name="RestoreBackupFragment__not_now">Не сега</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Резервни копии на разговори</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервните коопии се шифрирани со лозинката складирана на Вашиот уред.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервните копии се шифрираат со лозинка и се складираат на Вашиот уред.</string>
   <string name="BackupsPreferenceFragment__create_backup">Направи резервна копија</string>
   <string name="BackupsPreferenceFragment__last_backup">Последна резервна копија: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Папка за резервна копија</string>
@@ -467,7 +467,7 @@
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Грешка при преземање на GIF со целосна резолуција</string>
   <!--GiphyFragmentPageAdapter-->
-  <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF-ови</string>
   <string name="GiphyFragmentPagerAdapter_stickers">Стикери</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Да додадам член?</string>
@@ -565,7 +565,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Исклучи</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Преглед на било кој линк</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">За пораките кои што ги испраќате, можете да добивате прегледи за линкови директно од било кој веб сајт.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Сега можете да преземате прегледи на линкови директно од било која веб страница за испратените пораки.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Не е достапен преглед за линкот</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Групниот линк не е активен</string>
@@ -1424,7 +1424,7 @@
   <string name="StickerManagementAdapter_stickers_you_received">Стикери што сте ги примиле</string>
   <string name="StickerManagementAdapter_signal_artist_series">Серија уметници на Signal</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Нема стикери инсталирано</string>
-  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Сикерите до дојдовните пораки ќе се појават овде</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Стикерите од дојдовните пораки ќе се појават овде</string>
   <string name="StickerManagementAdapter_untitled">Неименувано</string>
   <string name="StickerManagementAdapter_unknown">Непознато</string>
   <!--StickerPackPreviewActivity-->
@@ -1549,7 +1549,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ова трајно ќе ја избрише оваа порака.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s до %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Медијата не е повеќе достапна.</string>
-  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не можам да најдам апликација која што може да споделува медија.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не е пронајдена апликација која може да го сподели овој тип на медија.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нови пораки во %2$d теми</string>
   <string name="MessageNotifier_most_recent_from_s">Најнови од: %1$s</string>
@@ -1661,7 +1661,7 @@
   <string name="SingleContactSelectionActivity_contact_photo">Слика на контакт</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal има потреба од дозвола да пристапи до Вашите контакти за да може да ги прикаже Вашите контакти. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете „Контакти“.</string>
-  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Грешка при преземање на контакти, проверете ја Вашата мрежна врска</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Грешка при преземање на контакти, проверете ја Вашата интернет конекција.</string>
   <string name="ContactSelectionListFragment_username_not_found">Корисничкото име не е пронајдено</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" не е корисник на Signal. Ве молиме проверете го корисничкото име и пробајте повторно.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Нема потреба да се додадете во групата</string>
@@ -1695,7 +1695,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Сними и испрати аудио прилог</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Заклучи снимка од аудио прилог</string>
   <string name="conversation_activity__enable_signal_for_sms">Вклучи Signal за SMS</string>
-  <string name="conversation_activity__message_could_not_be_sent">Пораката не може да биде испратена. Ве молиме проверета ја Вашата врска и пробајте повторно.</string>
+  <string name="conversation_activity__message_could_not_be_sent">Пораката не може да биде испратена. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Повлечи за откажување</string>
   <string name="conversation_input_panel__cancel">Откажи</string>
@@ -1989,7 +1989,7 @@
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документи</string>
   <string name="arrays__small">Мала</string>
-  <string name="arrays__normal">Нормално</string>
+  <string name="arrays__normal">Нормална</string>
   <string name="arrays__large">Голема</string>
   <string name="arrays__extra_large">Екстра голема</string>
   <string name="arrays__default">Стандардно </string>
@@ -2063,8 +2063,8 @@
   <string name="preferences__mms_proxy_port">MMS proxy порта</string>
   <string name="preferences__mmsc_username">MMSC корисничко име</string>
   <string name="preferences__mmsc_password">MMSC лозинка</string>
-  <string name="preferences__sms_delivery_reports">SMS потврда за достава</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Побарајте потврда за испорака за секоја испратена SMS порака</string>
+  <string name="preferences__sms_delivery_reports">Извештаи за испорака на SMS</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Побарајте извештај за испорака за секоја испратена SMS порака</string>
   <string name="preferences__data_and_storage">Податоци и складирање</string>
   <string name="preferences__storage">Склад</string>
   <string name="preferences__payments">Плаќања</string>
@@ -2354,7 +2354,7 @@
   <string name="conversation__menu_leave_group">Напушти група</string>
   <string name="conversation__menu_view_all_media">Цела медија</string>
   <string name="conversation__menu_conversation_settings">Разговорни поставувања</string>
-  <string name="conversation__menu_add_shortcut">Додај на домашниот екран</string>
+  <string name="conversation__menu_add_shortcut">Додај на почетниот екран</string>
   <string name="conversation__menu_create_bubble">Создај балонче</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Рашири скокачки прозорец</string>
@@ -2548,7 +2548,7 @@
   <string name="RegistrationActivity_backup_timestamp_s">Време на резервна копија: %s</string>
   <string name="BackupDialog_enable_local_backups">Да вклучам локална резервна копија?</string>
   <string name="BackupDialog_enable_backups">Вклучи резервна копија</string>
-  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ве молиме потврдете дека разбирате со штиклирање на кутивчето.</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ве молиме потврдете дека разбирате со означување на полето за потврда.</string>
   <string name="BackupDialog_delete_backups">Избриши резервни копии?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Да ги исклучам и избришам сите локални резервни копии?</string>
   <string name="BackupDialog_delete_backups_statement">Избриши резервни копии</string>
@@ -2730,6 +2730,7 @@
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>
   <string name="RecipientBottomSheet_add_to_contacts">Додај во контакти</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Не е пронајдена апликација која може да отвори контакти.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Додај во група</string>
   <string name="RecipientBottomSheet_add_to_another_group">Додај во друга група</string>
   <string name="RecipientBottomSheet_view_safety_number">Види сигурносен број</string>
@@ -3424,6 +3425,7 @@
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Не сега</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Не успеа да се отвори менито за избор.</string>
   <!--EOF-->

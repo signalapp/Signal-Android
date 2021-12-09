@@ -299,6 +299,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="ConversationFragment_your_safety_number_with_s_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Tryggleiksnummeret ditt med %s har endra seg; dei har kanskje installert Signal på nytt eller fått ny mobil. Trykk «Stadfest» om du vil godkjenna det nye tryggleiksnummeret. Dette er valfritt.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s på</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Vil du sletta vald samtale?</item>
     <item quantity="other">Vil du sletta valde samtalar?</item>
@@ -361,8 +362,10 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
     <item quantity="other">%d valde</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Varslingsprofil</string>
   <!--Tooltip shown after you have created your first notification profile-->
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s på</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
   <!--ConversationListItemAction-->
@@ -2859,6 +2862,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikkje å sletta lokal data. Du kan manuelt fjerna det i systemapplikasjonsinnstillingane.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Opna App-innstillingar</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Forlèt grupper …</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3520,6 +3524,7 @@ Sjekkar igjen no …</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ikkje no</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Klarte ikkje opna veljar.</string>
   <!--EOF-->

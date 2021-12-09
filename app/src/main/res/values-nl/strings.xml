@@ -316,7 +316,7 @@
   <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Gesprek naar postvak IN verplaatst</item>
-    <item quantity="other"> %d gesprekken naar postvak IN verplaatst</item>
+    <item quantity="other">%d gesprekken naar postvak IN verplaatst</item>
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
     <item quantity="one">Gelezen</item>
@@ -595,8 +595,7 @@
     <item quantity="other">%1$d uitnodigingen intrekken</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
-    <item quantity="one">Fout bij het intrekken van een uitnodiging
-</item>
+    <item quantity="one">Fout bij het intrekken van een uitnodiging</item>
     <item quantity="other">Fout bij het intrekken van uitnodigingen</item>
   </plurals>
   <!--RequestingMembersFragment-->
@@ -708,7 +707,7 @@
   <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
   <string name="ManageProfileFragment_badges">Badges</string>
-  <string name="ManageProfileFragment__edit_photo">Foto aanpassen</string>
+  <string name="ManageProfileFragment__edit_photo">Profielfoto aanpassen</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -846,8 +845,7 @@
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
   <string name="MediaOverviewActivity_select_all">Alles selecteren</string>
   <plurals name="MediaOverviewActivity_save_plural">
-    <item quantity="one">Onversleuteld opslaan
-</item>
+    <item quantity="one">Onversleuteld opslaan</item>
     <item quantity="other">Onversleuteld opslaan</item>
   </plurals>
   <plurals name="MediaOverviewActivity_delete_plural">
@@ -1296,8 +1294,8 @@
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Gesprek met %1$s en %2$s</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s laat zijn of haar scherm zien</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig.</item>
-    <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig.</item>
+    <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig</item>
+    <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig</item>
   </plurals>
   <string name="WebRtcCallView__flip">Omdraaien</string>
   <string name="WebRtcCallView__speaker">Luidspreker</string>
@@ -2866,7 +2864,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Gegevens aan het wissen …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
-  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Afhankelijk van het aantal groepen waarvan je lid bent kan dit wat langer duren</string>
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Afhankelijk van het aantal groepen waarvan je lid bent kan dit een aantal minuten duren</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Gebruikersgegevens worden gewist</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
@@ -3084,9 +3082,9 @@
   <!--Notification preference header-->
   <string name="NotificationsSettingsFragment__notification_profiles">Meldingsprofielen</string>
   <!--Notification preference option header-->
-  <string name="NotificationsSettingsFragment__profiles">Meldingsprofielen</string>
+  <string name="NotificationsSettingsFragment__profiles">Meldingsprofielen instellen</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__set_up_notification_profiles">Maak een meldingsprofiel aan waardoor je meldingen van bepaalde personen of groepen alleen krijgt op momenten dat jij daar zin in hebt</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Maak een meldingsprofiel aan waardoor je meldingen van bepaalde personen of groepen alleen krijgt op momenten dat jij daar zin in hebt</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Meldingsprofielen</string>
@@ -3450,7 +3448,7 @@
   <!--Call to action button once the profile is named to continue to the next create step-->
   <string name="EditNotificationProfileFragment__next">Volgende</string>
   <!--Call to action button once the profile name is edited-->
-  <string name="EditNotificationProfileFragment__save">Onversleuteld opslaan</string>
+  <string name="EditNotificationProfileFragment__save">Opslaan</string>
   <!--Title of edit notification profile screen-->
   <string name="EditNotificationProfileFragment__edit_this_profile">Dit meldingsprofiel aanpassen</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
@@ -3482,7 +3480,7 @@
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">Nieuw meldingsprofiel aanmaken</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">Aan</string>
+  <string name="NotificationProfilesFragment__on">Ingeschakeld</string>
   <!--Button use to permanently delete a notification profile-->
   <string name="NotificationProfileDetails__delete_profile">Meldingsprofiel wissen</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
@@ -3498,9 +3496,9 @@
   <!--Schedule description if all days are selected-->
   <string name="NotificationProfileDetails__everyday">Elke dag</string>
   <!--Profile status on if it is the active profile-->
-  <string name="NotificationProfileDetails__on">Aan</string>
+  <string name="NotificationProfileDetails__on">Ingeschakeld</string>
   <!--Profile status on if it is not the active profile-->
-  <string name="NotificationProfileDetails__off">Uit</string>
+  <string name="NotificationProfileDetails__off">Uitgeschakeld</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s naar %2$s</string>
   <!--Section header for exceptions to the notification profile-->
@@ -3510,13 +3508,13 @@
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <string name="NotificationProfileDetails__notify_for_all_mentions">Alle vermeldingen melden</string>
   <!--Section header for showing schedule information-->
-  <string name="NotificationProfileDetails__schedule">Planning</string>
+  <string name="NotificationProfileDetails__schedule">Tijdsplanning</string>
   <!--Title for add schedule to profile in create flow-->
-  <string name="EditNotificationProfileSchedule__add_a_schedule">Planning toevoegen</string>
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Tijdsplanning toevoegen</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Je kunt nu het meldingsprofiel inschakelen en een planning toevoegen, zodat het profiel automatisch actief wordt op bepaalde momenten.</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Je kunt nu optioneel een tijdsplanning inschakelen en instellen, zodat het profiel automatisch actief wordt op bepaalde momenten.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
-  <string name="EditNotificationProfileSchedule__schedule">Planning</string>
+  <string name="EditNotificationProfileSchedule__schedule">Tijdsplanning</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Beginnen</string>
   <!--Label for showing the end time for the schedule-->
@@ -3554,11 +3552,11 @@
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Je kunt een meldingsprofiel handmatig in- en uitschakelen via het menu in de gesprekkenlijst.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
-  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Voeg een planning toe om dit meldingsprofiel automatisch op bepaalde momenten te activeren en te deactiveren.</string>
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Voeg eventueel een tijdsplanning toe aan dit meldingsprofiel om het automatisch op bepaalde momenten te activeren en te deactiveren.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
-  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Je meldingsprofiel wordt automatisch geactiveerd en gedeactiveerd volgens je planning.</string>
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Je meldingsprofiel wordt automatisch geactiveerd en gedeactiveerd volgens je tijdsplanning.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <string name="NotificationProfileSelection__new_notification_profile">Nieuw meldingsprofiel</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Nieuw meldingsprofiel</string> -->
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">Een uur lang</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->

@@ -2752,6 +2752,7 @@
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Adicionar aos contatos</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Não foi possível encontrar um aplicativo capaz de abrir contatos.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Adicionar a um grupo</string>
   <string name="RecipientBottomSheet_add_to_another_group">Adicionar a outro grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver número de segurança</string>
@@ -2851,11 +2852,15 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Falha ao excluir os dados locais. Você pode limpá-los manualmente nas configurações do aplicativo no sistema.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Acessar as configurações do aplicativo</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Saindo dos grupos…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Excluindo a conta…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Dependendo do número de grupos em que você participa, a exclusão pode demorar alguns minutos</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Ocorreu um problema ao concluir o processo de exclusão. Verifique a sua conexão à rede e tente novamente.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Pesquisar países</string>
   <!--CreateGroupActivity-->
@@ -3438,8 +3443,10 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Error message shown when attempting to next/save without a profile name-->
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Notificações permitidas</string>
   <!--Description of what the user should be doing with this screen-->
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Adicionar pessoas ou grupos</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Adicionar</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
@@ -3461,8 +3468,9 @@
   <!--Profile status on if it is not the active profile-->
   <string name="NotificationProfileDetails__off">Desligado</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$s para %2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">%1$s até %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Exceções</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
@@ -3470,18 +3478,27 @@
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">Começar</string>
+  <string name="EditNotificationProfileSchedule__start">Início</string>
   <!--Label for showing the end time for the schedule-->
-  <string name="EditNotificationProfileSchedule__end">Encerrar</string>
+  <string name="EditNotificationProfileSchedule__end">Término</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">D</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">S</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Q</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Q</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">S</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Definir a hora de início</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Definir a hora de término</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Salvar</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3497,14 +3514,18 @@
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Durante 1 hora</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Até %1$s</string>
   <!--Option to view profile details-->
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Ligado até %1$s</string>
   <!--Title for notification profile megaphone-->
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Receba notificações apenas das pessoas e grupos que você escolher.</string>
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Agora não</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Falha ao abrir o selecionador de toques.</string>
   <!--EOF-->

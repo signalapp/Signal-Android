@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">شمارهٔ ایمنی شما با %s تغییر یافت</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">شمارهٔ ایمنی شما با %s تغییر یافت، احتمالاً به این خاطر که آن‌ها سیگنال را دوباره نصب کردند یا دستگاه‌شان را تغییر دادند. برای وارسی شمارهٔ ایمنی ضربه بزنید. انجام این کار انتخابی است.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s روشن</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">حذف مکالمهٔ انتخاب شده؟</item>
     <item quantity="other">حذف مکالمه‌ها‌ی انتخاب شده؟</item>
@@ -360,8 +361,11 @@
     <item quantity="other">%d انتخاب شد</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">پروفایل اعلان</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">پروفایل اعلان خود را اینجا خاموش یا روشن کنید.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s روشن</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
   <!--ConversationListItemAction-->
@@ -738,7 +742,7 @@
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">آیا از بازنشانی پیوند گروه اطمینان دارید؟ افراد دیگر نمی‌توانند با استفاده از پیوند فعلی به گروه بپیوندند.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">کد QR</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">افرادی که این این کد را اسکن می‌کنند قادر خواند بود تا به گروه شما بپیوندند. مدیران هنوز باید اعضای جدید را تأیید کنند اگر تنظیم آن فعال باشد.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">افرادی که این این کد را اسکن می‌کنند قادر خواهند بود تا به گروه شما بپیوندند. مدیران هنوز باید اعضای جدید را تأیید کنند اگر تنظیم آن فعال باشد.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">اشتراک‌گذاری کد</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">آیا می‌خواهید دعوتی که به %1$s فرستادید را لغو کنید؟</string>
@@ -1343,6 +1347,8 @@
   <string name="RegistrationActivity_play_services_error">خطای خدمات Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">خدمات Google Play در حال به‌روزرسانی است یا موقتاً در دسترس نیست. لطفاً دوباره تلاش کنید.</string>
   <string name="RegistrationActivity_terms_and_privacy">شرایط و خط مشی حریم خصوصی</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">سیگنال به مجوزها‌ی مخاطبین و رسانه‌ها برای کمک به متصل کردن شما به دوستان و ارسال پیام‌ها نیاز دارد. مخاطبین شما با استفاده از اکتشاف خصوصی مخاطب سیگنال بارگذاری می‌شوند، که این یعنی آن‌ها سرتاسر رمزگذاری شده هستند و هیچوقت برای سرویس سیگنال قابل رؤیت نیستند.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">سیگنال به مجوز مخاطبین برای کمک به متصل کردن شما به دوستان نیاز دارد. مخاطبین شما با استفاده از اکتشاف خصوصی مخاطب سیگنال بارگذاری می‌شوند، که این یعنی آن‌ها سرتاسر رمزگذاری شده هستند و هیچوقت برای سرویس سیگنال قابل رؤیت نیستند.</string>
   <string name="RegistrationActivity_rate_limited_to_service">شما تلاش‌های بسیاری برای ثبت‌نام این شماره انجام داده‌اید. لطفاً دوباره امتحان کنید.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">اتصال به سرویس ممکن نیست. لطفاً اتصال شبکه را بررسی کرده و دوباره امتحان کنید.</string>
   <string name="RegistrationActivity_non_standard_number_format">قالب شمارهٔ غیر-استاندارد</string>
@@ -1738,6 +1744,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">رفتن به پایین</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">حباب‌ها یک قابلیت اندروید هستند که شما می‌توانید آن‌ها را برای گفتگوها‌ی سیگنال خاموش کنید.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">حالا نه</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2412,6 +2419,7 @@
   <string name="Insights__title">بینش‌ها</string>
   <string name="InsightsDashboardFragment__title">بینش‌ها</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پروتکل سیگنال به صورت خودکار، از %1$d%% از پیام‌های خروجی شما در %2$d روز گذشته محافظت کرده است. مکالمه‌های بین کاربران سیگنال همیشه سرتاسر رمزگذاری می‌شوند.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">خبر را انتشار دهید</string>
   <string name="InsightsDashboardFragment__not_enough_data">داده‌ٔ کافی وجود ندارد</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که حذف نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">شروع یک مکالمه</string>
@@ -2706,7 +2714,7 @@
   <string name="DeviceTransfer__unable_to_transfer">انتقال ممکن نبود</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">انتقال حساب کاربری</string>
-  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">شما می‌توانید هنگام برپایی یک دستگاه اندروید جدید حساب کاربری سیگنال خود را انتقال دهید. قبل از ادامه دادن:</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">شما می‌توانید هنگام برپایی سیگنال روی یک دستگاه اندروید جدید حساب کاربری سیگنال خود را انتقال دهید. قبل از ادامه دادن:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">۱.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">سیگنال را روی دستگاه اندروید جدید خود بارگیری کنید</string>
   <string name="OldDeviceTransferInstructions__second_bullet">۲.</string>
@@ -2747,6 +2755,7 @@
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
   <string name="RecipientBottomSheet_add_to_contacts">افزودن به مخاطبین</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">نمی‌توان برنامه‌ای که قادر به باز کردن مخاطبین باشد پیدا کرد.</string>
   <string name="RecipientBottomSheet_add_to_a_group">افزودن به گروه</string>
   <string name="RecipientBottomSheet_add_to_another_group">افزودن به گروهی دیگر</string>
   <string name="RecipientBottomSheet_view_safety_number">مشاهدهٔ شمارهٔ ایمنی</string>
@@ -2846,11 +2855,17 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
   <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">ترک کردن گروه‌ها…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">در حال حذف حساب کاربری…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">وابسته به تعداد گروه‌هایی که شما در آن‌ها هستید، این کار ممکن است چند دقیقه به طول بیانجامد.</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">در حال حذف داده‌های کاربر و بازنشانی برنامه</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">حساب کاربری حذف نشد</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">مشکلی در تکمیل فرآیند حذف وجود داشت. اتصال شبکهٔ خود را بررسی و دوباره امتحان کنید.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">جستجوی کشورها</string>
   <!--CreateGroupActivity-->
@@ -3060,11 +3075,16 @@
   <string name="NotificationsSettingsFragment__notify_when">آگاه کردن هنگام…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">مخاطب به سیگنال می‌پیوندد</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">پروفایل‌های اعلان</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">پروفایل‌ها</string>
   <!--Notification preference summary text-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">برپایی پروفایل‌های اعلان</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">پروفایل‌های اعلان</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">ایجاد پروفایل</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">مسدود شده</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d مخاطبین</string>
@@ -3210,6 +3230,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">مکالمه برای همیشه بسته شد</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">شماره‌تلفن در کلیپ‌بورد کپی شد.</string>
   <string name="ConversationSettingsFragment__phone_number">شماره‌تلفن</string>
+  <string name="ConversationSettingsFragment__get_badges">برای پروفایل خود با حمایت از سیگنال نشان‌هایی دریافت کنید. روی نشان ضربه بزنید تا بیشتر یاد بگیرید.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">افزودن اعضا</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ویرایش اطلاعات گروه</string>
@@ -3330,24 +3351,30 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">به یک حامی تبدیل شوید</string>
   <string name="ImageView__badge">نشان</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">سیگنال با کمک افرادی همانند شما پشتیبانی می‌شود.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">از تکنولوژی‌ای که برای شما—نه برای داده‌هایتان—ساخته شده است با پیوستن به جمعی از مردم که آن را تداوم می‌بخشند، پشتیبانی کنید.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">از تکنولوژی‌ای که برای شما، نه برای داده‌هایتان ساخته شده است با پیوستن به جمعی از مردم که سیگنال را تداوم می‌بخشند، پشتیبانی کنید.</string>
   <string name="SubscribeFragment__currency">ارز</string>
   <string name="SubscribeFragment__more_payment_options">گزینه‌ها‌ی پرداخت بیشتر</string>
   <string name="SubscribeFragment__cancel_subscription">لغو اشتراک</string>
   <string name="SubscribeFragment__confirm_cancellation">تأیید لغو اشتراک؟</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">از شما دیگر هزینه‌ای کسر نخواهد شد. نشان شما از پروفایل شما در انتهای دورهٔ پرداخت شما حذف خواهد شد.</string>
   <string name="SubscribeFragment__not_now">حالا نه</string>
   <string name="SubscribeFragment__confirm">تأیید کنید</string>
   <string name="SubscribeFragment__update_subscription">به‌روزرسانی اشتراک</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">اشتراک شما لغو شد.</string>
   <string name="SubscribeFragment__update_subscription_question">به‌روزرسانی اشتراک؟</string>
   <string name="SubscribeFragment__update">به‌روزرسانی</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">مبلغ کامل اشتراک جدید امروز از شما کسر خواهد شد. اشتراک شما در %1$s به‌روزرسانی خواهد شد. </string>
   <string name="Subscription__s_per_month">%s/ماه</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ماه · در %2$s تمدید می‌شود</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ماه · در %2$s منقضی می‌شود</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">چرا کمک کنیم؟</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ممنون از پشتیبانی شما!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ممنون بابت تقویت!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">شما همچنین می‌توانید</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">به یک حامی ماهیانه تبدیل شوید.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">نمایش روی پروفایل</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">تبدیل به نشان مورد استفاده</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمام</string>
   <string name="BecomeASustainerFragment__get_badges">نشان‌هایی برای پروفایل خود از طریق پشتیبانی سیگنال دریافت کنید.</string>
   <string name="ManageDonationsFragment__my_support">پشتیبانی من</string>
@@ -3357,32 +3384,45 @@
   <string name="ManageDonationsFragment__error_getting_subscription">خطا در دریافت اشتراک.</string>
   <string name="BoostFragment__give_signal_a_boost">سیگنال را تقویت کنید</string>
   <string name="Boost__enter_custom_amount">مبلغ دلخواه را وارد کنید</string>
+  <string name="Boost__one_time_contribution">کمک اهدایی یک‌-باره</string>
   <string name="MySupportPreference__add_a_signal_boost">یک تقویت سیگنال اضافه کنید</string>
   <string name="MySupportPreference__s_per_month">%1$s/ماه</string>
   <string name="MySupportPreference__renews_s">در %1$s تمدید می‌شود</string>
+  <string name="MySupportPreference__processing_transaction">در حال پردازش تراکنش…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">افزودن نشان ممکن نبود. %1$s</string>
   <string name="MySupportPreference__please_contact_support">لطفاً با پشتیبانی تماس بگیرید.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">نشان شما منقضی شده است</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">نشان منقضی شد.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">اشتراک لغو شد</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">نشان تقویت شما منقضی شد و دیگر روی پروفایل شما برای دیگران قابل مشاهده نیست.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">شما می‌توانید نشان تقویت خود را برای ۳۰ روز دیگر با یک کمک اهدایی یک‌-باره دوباره فعال کنید.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">برای ادامهٔ حمایت از تکنولوژی‌ای که برای شما ساخته شده است. لطفاً تبدیل شدن به یک حامی ماهانه را در نظر بگیرید.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">به یک حامی تبدیل شوید</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">افزودن یک تقویت</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">اشتراک حامی شما به صورت خودکار لغو گردید چون شما برای مدتی طولانی غیرفعال بودید. نشان %1$s شما دیگر روی پروفایل شما قابل مشاهده نیست.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">شما می‌توانید به استفاده از سیگنال ادامه دهید اما برای پشتیبانی از برنامه و فعال کردن دوبارهٔ نشان خود، حالا تمدید کنید.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">تمدید اشتراک</string>
+  <string name="Subscription__please_contact_support_for_more_information">لطفاً با پشتیبانی برای اطلاعات بیشتر تماس بگیرید.</string>
   <string name="Subscription__contact_support">تماس با پشتیبانی</string>
   <string name="Subscription__earn_a_s_badge">یک نشان %1$s بدست آورید</string>
   <string name="SubscribeFragment__processing_payment">در حال پردازش پرداخت…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">خطا در پردازش پرداخت</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">خطا در پردازش پرداخت. %1$s</string>
   <string name="DonationsErrors__still_processing">هنوز در حال پردازش</string>
   <string name="DonationsErrors__couldnt_add_badge">امکان افزودن نشان وجود نداشت</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay در دسترس نیست</string>
-  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">شما باید Google Pay را تنظیم کنید تا بتوانید از درون‌-برنامه حمایت کنید.</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">شما باید Google Pay را تنظیم کنید تا بتوانید به صورت درون‌-برنامه‌ای حمایت کنید.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">لغو اشتراک ناموفق بود</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">لغو اشتراک به یک اتصال اینترنت نیاز دارد.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">دستگاه شما از Google Pay پشتیبانی نمی‌کند، پس شما نمی‌توانید برای بدست آوردن یک نشان برای اشتراک ثبت‌نام کنید. شما هنوز می‌توانید از طریق کمک‌های اهدایی در وب‌سایت ما از سیگنال پشتیبانی کنید.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">خطای شبکه. اتصال خود را بررسی و دوباره امتحان کنید.</string>
   <string name="NetworkFailure__retry">تلاش مجدد</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">پروفایل خود را نام‌گذاری کنید</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">نام پروفایل</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3392,33 +3432,51 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">ذخیره</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">ویرایش این پروفایل</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">یک پروفایل با این نام از قبل وجود دارد</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">کار</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">خواب</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">در حال رانندگی</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">استراحت</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">تمرکز</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">باید یک نام داشته باشید</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">اعلان‌ها‌ی مجاز</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">افراد و گروه‌هایی را که اعلان‌ها و تماس‌های آنان را هنگامی که این پروفایل روشن است، اضافه کنید</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">افزودن افراد یا گروه‌ها</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">افزودن</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">یک پروفایل برای دریافت اعلان‌ها و تماس‌ها فقط از افراد و گروه‌هایی که می‌خواهید از آن‌ها بشنوید ایجاد کنید.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">پروفایل‌ها</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">پروفایل جدید</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">روشن</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">حذف پروفایل</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">«%1$s» حذف شد.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">لغو</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">حذف پروفایل به صورت دائم؟</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">حذف</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">ویرایش پروفایل اعلان</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">هر روز</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">روشن</string>
   <!--Profile status on if it is not the active profile-->
@@ -3426,25 +3484,41 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s به %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">استثنائات</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">اجازه به تمامی تماس‌ها</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">برای همهٔ اشاره‌ها آگاه کن</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">برنامهٔ زمانی</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">افزودن یک برنامهٔ زمانی</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">برای خودکار کردن این پروفایل برنامهٔ زمانی خود را روشن و ویرایش کنید.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">برنامهٔ زمانی</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">شروع</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">قطع تماس</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">ی</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">د</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">س</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">چ</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">پ</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">ج</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">ش</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">تنظیم زمان آغاز</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">تنظیم زمان پایان</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">ذخیره</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3452,22 +3526,36 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">بعدی</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">برنامهٔ زمانی باید حداقل شامل یک روز باشد</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">پروفایل ایجاد شد</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">تمام</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">شما می‌توانید پروفایل خود را به صورت دستی از طریق منوی روی فهرست گفتگو خاموش و روشن کنید.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">یک برنامهٔ زمانی در تنظیمات برای خودکارسازی پروفایل خود اضافه کنید.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">پروفایل شما مطابق با برنامهٔ زمانی شما به صورت خودکار روشن و خاموش خواهد شد.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">پروفایل اعلان جدید</string> -->
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">برای ۱ ساعت</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">تا %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">مشاهدهٔ تنظیمات</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">روشن تا %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">پروفایل‌های اعلان</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">اعلان‌ها را فقط از افراد و گروه‌هایی که انتخاب می‌کنید دریافت کنید.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">ایجاد یک پروفایل</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">حالا نه</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">باز کردن گزینش‌گر ناموفق بود.</string>
   <!--EOF-->
 </resources>

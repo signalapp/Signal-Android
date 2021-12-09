@@ -3396,6 +3396,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Để sau</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

@@ -2754,6 +2754,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RecipientBottomSheet_unblock">Tiltás feloldása</string>
   <string name="RecipientBottomSheet_add_to_contacts">Hozzáadás a névjegyzékhez</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Nem található alkalmazás a névjegyzék megnyitásához.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Hozzáadás egy csoporthoz</string>
   <string name="RecipientBottomSheet_add_to_another_group">Hozzadás egy másik csoporthoz</string>
   <string name="RecipientBottomSheet_view_safety_number">Biztonsági szám megjelenítése</string>
@@ -2854,10 +2855,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="DeleteAccountFragment__launch_app_settings">App beállítások indítása</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Fiók törlése…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Fiók nem lett törölve</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Probléma lépett fel a törlés közben. Ellenőrizd a hálózati kapcsolatod, és próbáld újra!</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ország keresése</string>
   <!--CreateGroupActivity-->
@@ -3067,11 +3071,16 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NotificationsSettingsFragment__notify_when">Értesítsen mikor…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Ismerős csatlakozott Signalra</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Értesítési profilok</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profilok</string>
   <!--Notification preference summary text-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Értesítési profilok beállítása</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Értesítési profilok</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Profil létrehozása</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Letiltva</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakt</string>
@@ -3446,6 +3455,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SelectRecipientsFragment__add">Hozzáadás</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profilok</string>
   <!--Button that starts the create new notification profile flow-->
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Be</string>
@@ -3504,9 +3514,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Option to view profile details-->
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Értesítési profilok</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Később</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Sikertelen tallózás.</string>
   <!--EOF-->

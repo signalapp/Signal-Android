@@ -201,7 +201,7 @@
   <string name="ConversationActivity_transport_insecure_sms">Nesaugi SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesaugi MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Persijunkime į Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Bendraukime per Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Pasirinkite adresatą</string>
   <string name="ConversationActivity_unblock">Atblokuoti</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
@@ -402,7 +402,9 @@
     <item quantity="other">Pažymėta: %d</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Pranešimų profilis</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Čia galite įjungti ar išjungti pranešimų profilį.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
@@ -896,7 +898,7 @@
     <item quantity="many">Siųsti %d SMS pakvietimų?</item>
     <item quantity="other">Siųsti %d SMS pakvietimų?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Persijunkime į Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Bendraukime per Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis bendrinti.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sužinoti daugiau</string>
@@ -2940,6 +2942,7 @@
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>
   <string name="RecipientBottomSheet_add_to_contacts">Įtraukti į adresatus</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Nepavyksta rasti programėlės, galinčios atverti adresatus.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Pridėti į grupę</string>
   <string name="RecipientBottomSheet_add_to_another_group">Pridėti į kitą grupę</string>
   <string name="RecipientBottomSheet_view_safety_number">Rodyti saugumo numerį</string>
@@ -3043,10 +3046,14 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepavyko ištrinti vietinių duomenų. Galite rankiniu būdu juos ištrinti sisteminiuose programėlės nustatymuose.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Paleisti programėlės nustatymus</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Išeinama iš grupių…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Ištrinama paskyra…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Ištrinami naudotojo duomenys ir atstatoma programėlė</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Paskyra neištrinta</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ieškoti šalių</string>
@@ -3259,11 +3266,15 @@
   <string name="NotificationsSettingsFragment__notify_when">Pranešti, kai…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Adresatas prisijungia prie Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Pranešimų profiliai</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profiliai</string>
   <!--Notification preference summary text-->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Pranešimų profiliai</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Sukurti profilį</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Užblokuotas</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d adresatų</string>
@@ -3626,6 +3637,7 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="NetworkFailure__retry">Bandyti dar kartą</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Suteikti profiliui pavadinimą</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profilio pavadinimas</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3635,50 +3647,64 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Įrašyti</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Taisyti šį profilį</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profilis tokiu pavadinimu jau yra</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__work">Darbo</string>
+  <string name="EditNotificationProfileFragment__work">Darbas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Miegas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Vairavimas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Laisvas laikas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Privalo turėti pavadinimą</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Leidžiami pranešimai</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Pridėkite žmones ir grupės iš kurių, įjungus šį profilį, norite gauti pranešimus ir skambučius</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Pridėti žmones ar grupes</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Pridėti</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profiliai</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Naujas profilis</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">Įjungta</string>
+  <string name="NotificationProfilesFragment__on">Įjungtas</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Ištrinti profilį</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Atšaukti</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Ištrinti profilį visam laikui?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Ištrinti</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Taisyti pranešimų profilį</string>
   <!--Schedule description if all days are selected-->
   <!--Profile status on if it is the active profile-->
-  <string name="NotificationProfileDetails__on">Įjungta</string>
+  <string name="NotificationProfileDetails__on">Įjungtas</string>
   <!--Profile status on if it is not the active profile-->
-  <string name="NotificationProfileDetails__off">Išjungta</string>
+  <string name="NotificationProfileDetails__off">Išjungtas</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$s naudotojui %2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">Nuo %1$s iki %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Išimtys</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Leisti visus skambučius</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">Pradėti</string>
   <!--Label for showing the end time for the schedule-->
-  <string name="EditNotificationProfileSchedule__end">Baigti</string>
   <!--First letter of Sunday-->
   <!--First letter of Monday-->
   <!--First letter of Tuesday-->
@@ -3696,21 +3722,28 @@
   <string name="EditNotificationProfileSchedule__next">Kitas</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profilis sukurtas</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Atlikta</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Naujas pranešimų profilis</string> -->
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Iki %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Rodyti nustatymus</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Įjungtas iki %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Pranešimų profiliai</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Sukurti profilį</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ne dabar</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nepavyko atverti parinkiklio.</string>
   <!--EOF-->

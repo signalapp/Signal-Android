@@ -3497,6 +3497,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Inte nu</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

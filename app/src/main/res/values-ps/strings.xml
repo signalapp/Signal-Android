@@ -3385,6 +3385,7 @@
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">اوس نه</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

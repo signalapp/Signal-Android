@@ -360,7 +360,9 @@
     <item quantity="other">%d निवडले</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">सूचना प्रोफाइल</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">आपली सूचना प्रोफाइल येथे चालू किंवा बंद करा.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय संदेश</string>
@@ -1739,6 +1741,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">खालपर्यंत स्क्रोल करा</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">बबल्स हे एक Android वैशिष्ट्य आहे जे आपन Signal चॅटसाठी बंद करू शकता.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">आता नाही</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2848,11 +2851,17 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानिक डेटा हटवण्यात अयशस्वी. आपण त्यास सिस्टिम अॅपलिकेशन सेटिंग मधून व्यक्तीचलितपणे साफ करू शकता.</string>
   <string name="DeleteAccountFragment__launch_app_settings">अॅप सेटिंग लाँच करा</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">गट सोडत आहे…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">खाते हटवत आहे…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">आपन किती गटांमध्ये आहात यावर अवलंबून, यास काही मिनिटे लागू शकतात</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">वापरकर्ता डेटा हटवत आहे आणि अॅप रीसेट करत आहे</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">खाते हटवले नाही</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">हटवण्याची प्रक्रिया पूर्ण करताना समस्या आली. आपले नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">देश शोधा</string>
   <!--CreateGroupActivity-->
@@ -3062,11 +3071,16 @@
   <string name="NotificationsSettingsFragment__notify_when">तेव्हा सूचित करा…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">संपर्क Signal मध्ये सामील होतो</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">सूचना प्रोफाइल</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">प्रोफाईल</string>
   <!--Notification preference summary text-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">सूचना प्रोफाइल सेट करा</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">सूचना प्रोफाइल</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">प्रोफाइल तयार करा</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">अवरोधित केले</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d संपर्क</string>
@@ -3417,6 +3431,7 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">आपल्या प्रोफाइलला नाव द्या</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">प्रोफाईल नाव</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3426,7 +3441,9 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">जतन करा</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">हे प्रोफाइल संपादित करा</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">या नावाचे प्रोफाइल आधीपासून अस्तित्वात आहे</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">कार्य</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
@@ -3435,24 +3452,34 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Error message shown when attempting to next/save without a profile name-->
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">अनुमत सूचना</string>
   <!--Description of what the user should be doing with this screen-->
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">लोक किंवा गट जोडा</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">जोडा</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">आपल्याला ज्या लोकांकडून आणि गटांकडून ऐकायचे आहे त्यांच्याकडून सूचना आणि कॉल प्राप्त करण्यासाठी प्रोफाइल तयार करा.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">प्रोफाईल</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">नवीन प्रोफाईल</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">चालू</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">प्रोफाईल हटवा</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" ला काढले</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">अनडू करा</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">प्रोफाइल कायमचे हटवायचे?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">हटवा</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">सूचना प्रोफाइल संपादित करा</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">दररोज</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">चालू</string>
   <!--Profile status on if it is not the active profile-->
@@ -3460,22 +3487,37 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s ते %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">अपवाद</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">सर्व कॉल्सना परवानगी द्या</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">सर्व उल्लेखांसाठी सूचित करा</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">शेड्युल</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">शेड्यूल जोडा</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">चालू करा आणि हे प्रोफाइल स्वयंचलित करण्यासाठी आपले शेड्यूल संपादित करा.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">शेड्युल</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">चालू करा</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">समाप्त</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">र</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">सो</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">मं</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">बु</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">गु</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">शु</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">श</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
   <!--Title of select time dialog shown when setting end time for schedule-->
   <!--If in edit mode, call to action button text show to save schedule to profile-->
@@ -3485,22 +3527,34 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">पुढे</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">शेड्युलमध्ये किमान एक दिवस असणे आवश्यक आहे</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">प्रोफाइल तयार केले</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">ठीक</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">चॅट सूचीवरील मेनूद्वारे आपन आपले प्रोफाइल व्यक्तिचलितपणे चालू किंवा बंद करू शकता</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">आपले प्रोफाइल स्वयंचलित करण्यासाठी सेटिंग्जमध्ये शेड्यूल जोडा.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">आपल्या शेड्युलनुसार आपले प्रोफाइल आपोआप चालू आणि बंद होईल.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">नवीन सूचना प्रोफाइल</string> -->
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">१ तासासाठी</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s पर्यंत</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">सेटिंग्ज दाखवा</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">सूचना प्रोफाइल</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">फक्त आपन निवडलेल्या लोकांकडून आणि गटांकडून सूचना मिळवा.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">प्रोफाईल तयार करा</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">आता नाही</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर उघडण्यात अयशस्वी.</string>
   <!--EOF-->

@@ -1735,7 +1735,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Zum Ende scrollen</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
-  <string name="BubbleOptOutTooltip__description">Blasen-Benachrichtigungen sind eine Android-Funktion, die du für Signal-Unterhaltungen deaktivieren kannst.</string>
+  <string name="BubbleOptOutTooltip__description">Bubbles sind eine Android-Funktion, die du für Signal-Unterhaltungen deaktivieren kannst.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Jetzt nicht</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2852,7 +2852,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Je nachdem, in wie vielen Gruppen du bist, kann es einige Minuten dauern</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Löschen von Benutzerdaten und Zurücksetzen der Ap</string>
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Löschen von Nutzerdaten und Zurücksetzen der App</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">Konto wurde nicht gelöscht</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
@@ -3070,7 +3070,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profile</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__set_up_notification_profiles">Benachrichtigungsprofile einrichten</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Benachrichtigungsprofile einrichten</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Benachrichtigungsprofile</string>
@@ -3496,9 +3496,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Zeitplan</string>
   <!--Title for add schedule to profile in create flow-->
-  <string name="EditNotificationProfileSchedule__add_a_schedule">Einen Zeitplan hinzufügen</string>
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Füge einen Zeitplan hinzu</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Aktiviere und bearbeite deinen Zeitplan, um dieses Profil zu automatisieren.</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Aktiviere und bearbeite deinen Zeitplan, um dieses Profil zu automatisieren.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Zeitplan</string>
   <!--Label for showing the start time for the schedule-->
@@ -3536,13 +3536,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Fertig</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
-  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kannst dein Profil manuell über das Menü in der Unterhaltungsliste ein- und ausschalten.</string>
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kannst dein Profil über das Menü in der Unterhaltungsliste manuell ein- und ausschalten.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Füge einen Zeitplan in den Einstellungen hinzu, um dein Profil zu automatisieren.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Dein Profil wird sich gemäß deines Zeitplanes automatisch ein- und ausschalten.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <string name="NotificationProfileSelection__new_notification_profile">Neues Benachrichtigungsprofil</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Neues Benachrichtigungsprofil</string> -->
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">Für eine Stunde</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
@@ -3556,7 +3556,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Description for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Erhalte Benachrichtigungen nur von ausgewählten Personen und Gruppen.</string>
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Ein Profil erstellen</string>
+  <string name="NotificationProfilesMegaphone__create_a_profile">Profil erstellen</string>
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">Jetzt nicht</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
