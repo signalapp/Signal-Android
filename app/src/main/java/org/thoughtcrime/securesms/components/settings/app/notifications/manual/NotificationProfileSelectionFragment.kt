@@ -42,7 +42,7 @@ class NotificationProfileSelectionFragment : DSLSettingsBottomSheetFragment() {
 
     return configure {
 
-      state.notificationProfiles.forEach { profile ->
+      state.notificationProfiles.sortedDescending().forEach { profile ->
         customPref(
           NotificationProfileSelection.Entry(
             isOn = profile == activeProfile,

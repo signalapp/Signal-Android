@@ -90,7 +90,7 @@ class NotificationProfilesFragment : DSLSettingsFragment() {
         )
 
         val activeProfile: NotificationProfile? = NotificationProfiles.getActiveProfile(profiles)
-        for (profile: NotificationProfile in profiles) {
+        profiles.sortedDescending().forEach { profile ->
           customPref(
             NotificationProfilePreference.Model(
               title = DSLSettingsText.from(profile.name),
