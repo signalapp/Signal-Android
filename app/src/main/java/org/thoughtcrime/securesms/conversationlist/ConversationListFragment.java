@@ -1328,7 +1328,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, count), () -> handleDelete(selectionIds)));
 
-
     if (hasUnmuted) {
       items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute_plural, count), () -> handleMute(viewModel.currentSelectedConversations())));
     } else {
@@ -1337,7 +1336,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select_all), viewModel::onSelectAllClick));
 
-//    bottomActionBar.setItems(items);
+    bottomActionBar.setItems(items);
   }
 
   protected Toolbar getToolbar(@NonNull View rootView) {

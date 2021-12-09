@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.view.isGone
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -64,12 +63,7 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet) : Line
   }
 
   private fun present(items: List<ActionItem>) {
-    if (isGone) {
-      return
-    }
-
     if (width == 0) {
-      post { present(items) }
       return
     }
 
