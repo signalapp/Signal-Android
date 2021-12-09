@@ -1501,7 +1501,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     public void onReactionClicked(@NonNull MultiselectPart multiselectPart, long messageId, boolean isMms) {
       if (getContext() == null) return;
 
-      multiselectItemDecoration.setFocusedItem(multiselectPart);
       ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(requireFragmentManager(), null);
     }
 
