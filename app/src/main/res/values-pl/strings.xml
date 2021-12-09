@@ -311,6 +311,8 @@
   <string name="ConversationFragment_not_now">Nie teraz</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Twój numer bezpieczeństwa dla %s zmienił się</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Twój numer bezpieczeństwa dla %s zmienił się. Ten kontakt prawdopodobnie ponownie zainstalował Signal lub zmienił urządzenie. Stuknij Zweryfikuj, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</string>
+  <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s wł.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Usunąć wybraną rozmowę?</item>
     <item quantity="few">Usunąć wybrane rozmowy?</item>
@@ -400,6 +402,12 @@
     <item quantity="many">%d wybranych</item>
     <item quantity="other">%d wybrane</item>
   </plurals>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Profil powiadomień</string>
+  <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Tu włączysz lub wyłączysz swój profil powiadomień.</string>
+  <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s wł.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
   <!--ConversationListItemAction-->
@@ -1886,6 +1894,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QuoteView_original_missing">Nie znaleziono oryginalnej wiadomości</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Przewiń do dołu</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Dymki to funkcja systemu Android, którą możesz wyłączyć dla rozmów Signal.</string>
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">Nie teraz</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">Wyłącz</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Zmiany numeru bezpieczeństwa</string>
   <string name="safety_number_change_dialog__accept">Akceptuj</string>
@@ -2531,7 +2546,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation__menu_view_all_media">Wszystkie multimedia</string>
   <string name="conversation__menu_conversation_settings">Ustawienia konwersacji</string>
   <string name="conversation__menu_add_shortcut">Dodaj do ekranu głównego</string>
-  <string name="conversation__menu_create_bubble">Utwórz bańkę</string>
+  <string name="conversation__menu_create_bubble">Utwórz dymek</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Powiększ okno</string>
   <!--conversation_callable_insecure-->
@@ -2921,6 +2936,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RecipientBottomSheet_block">Zablokuj</string>
   <string name="RecipientBottomSheet_unblock">Odblokuj</string>
   <string name="RecipientBottomSheet_add_to_contacts">Dodaj do kontaktów</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Nie można znaleźć aplikacji, aby otworzyć kontakty.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Dodaj do grupy</string>
   <string name="RecipientBottomSheet_add_to_another_group">Dodaj do innej grupy</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobacz numer bezpieczeństwa</string>
@@ -3023,6 +3040,18 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Nie udało się usunąć konta. Sprawdź połączenie z siecią.</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Nie udało się usunąć lokalnych danych. Możesz usunąć je ręcznie w systemowych ustawieniach aplikacji.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Otwórz Ustawienia aplikacji</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Opuszczanie grup…</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Usuwanie konta…</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">W zależności od liczby grup, do których należysz, to może potrwać kilka minut</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Usuwanie danych użytkownika i resetowanie aplikacji</string>
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Konto nie zostało usunięte</string>
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Wystąpił problem z dokończeniem procesu usuwania. Sprawdź połączenie z siecią i spróbuj ponownie.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Wybierz kraj</string>
   <!--CreateGroupActivity-->
@@ -3233,6 +3262,17 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NotificationsSettingsFragment__calls">Połączenia</string>
   <string name="NotificationsSettingsFragment__notify_when">Powiadamiaj, gdy…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt dołączył do Signal</string>
+  <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Profile powiadomień</string>
+  <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profile</string>
+  <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__set_up_notification_profiles">Skonfiguruj profile powiadomień</string>
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Profile powiadomień</string>
+  <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Utwórz profil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Zablokowani</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakty(ów)</string>
@@ -3595,6 +3635,140 @@ danych, rozważ miesięczną subskrypcję.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Twoje urządzenie nie obsługuje Google Pay, więc nie możesz użyć subskrypcji, aby otrzymać odznakę. Wciąż możesz wesprzeć Signal datkiem, korzystając z naszej strony internetowej.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
   <string name="NetworkFailure__retry">Ponów</string>
+  <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Nazwij swój profil</string>
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">Nazwa profilu</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button once the profile is named to continue to the next create step-->
+  <string name="EditNotificationProfileFragment__next">Dalej</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">Zapisz</string>
+  <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Edytuj ten profil</string>
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profil o tej nazwie już istnieje</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">Praca</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Sen</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">W pojeździe</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Czas wolny</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Koncentracja</string>
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Profil musi mieć nazwę</string>
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Dozwolone powiadomienia</string>
+  <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Dodaj osoby i grupy, których powiadomienia i połączenia chcesz otrzymywać, gdy ten profil jest włączony</string>
+  <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Dodaj osoby lub grupy</string>
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">Dodaj</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Utwórz profil, aby otrzymywać powiadomienia i połączenia tylko od osób i grup, które Cię interesują.</string>
+  <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profile</string>
+  <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Nowy profil</string>
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">Włączony</string>
+  <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Usuń profil</string>
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" usunięty(a).</string>
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">Cofnij</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Trwale usunąć profil?</string>
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">Usuń</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Edytuj profil powiadomień</string>
+  <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Codziennie</string>
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">Włączony</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">Wyłączony</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s do %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Wyjątki</string>
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Zezwalaj na wszystkie połączenia</string>
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Powiadamiaj o wszystkich wzmiankach</string>
+  <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Harmonogram</string>
+  <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Dodaj harmonogram</string>
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Włącz i edytuj harmonogram, aby zautomatyzować ten profil.</string>
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Harmonogram</string>
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Rozpocznij</string>
+  <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Koniec</string>
+  <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">N</string>
+  <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">P</string>
+  <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">W</string>
+  <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Ś</string>
+  <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">C</string>
+  <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">Pt.</string>
+  <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Ustaw czas rozpoczęcia</string>
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Ustaw czas zakończenia</string>
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">Zapisz</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">Pomiń</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">Dalej</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">W harmonogramie musi być przynajmniej jeden dzień</string>
+  <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Utworzono profil</string>
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">Gotowe</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Możesz włączyć lub wyłączyć swój profil ręcznie, przez menu na liście rozmów.</string>
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Dodaj harmonogram w ustawieniach, aby zautomatyzować swój profil.</string>
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Twój profil będzie automatycznie włączać się i wyłączać zgodnie z harmonogramem.</string>
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_notification_profile">Nowy profil powiadomień</string>
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Na 1 godzinę</string>
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">Do %1$s</string>
+  <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Pokaż ustawienia</string>
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Włączony do %1$s</string>
+  <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Profile powiadomień</string>
+  <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Otrzymuj powiadomienia i połączenia tylko od wybranych osób i grup.</string>
+  <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Utwórz profil</string>
+  <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Nie teraz</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nie udało się otworzyć selektora dzwonków.</string>
   <!--EOF-->
