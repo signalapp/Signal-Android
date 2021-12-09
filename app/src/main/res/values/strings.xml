@@ -3654,7 +3654,7 @@
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profiles</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__set_up_notification_profiles">Set up notification profiles</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles -->
