@@ -121,7 +121,7 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
       .subscribeBy(
         onSuccess = { initial ->
           if (initial.createMode) {
-            saveButton.text = getString(R.string.EditNotificationProfileFragment__next)
+            saveButton.text = getString(R.string.EditNotificationProfileFragment__create)
             title.setText(R.string.EditNotificationProfileFragment__name_your_profile)
           } else {
             saveButton.text = getString(R.string.EditNotificationProfileFragment__save)
