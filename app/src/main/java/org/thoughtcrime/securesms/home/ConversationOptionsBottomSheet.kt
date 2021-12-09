@@ -8,18 +8,20 @@ import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_conversation_bottom_sheet.*
 import network.loki.messenger.R
-import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.util.UiModeUtilities
 
 public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
-    //FIXME AC: Supplying a recipient directly into the field from an activity
+    //FIXME AC: Supplying a threadRecord directly into the field from an activity
     // is not the best idea. It doesn't survive configuration change.
     // We should be dealing with IDs and all sorts of serializable data instead
     // if we want to use dialog fragments properly.
-    lateinit var recipient: Recipient
+    lateinit var thread: ThreadRecord
 
     var onViewDetailsTapped: (() -> Unit?)? = null
+    var onPinTapped: (() -> Unit)? = null
+    var onUnpinTapped: (() -> Unit)? = null
     var onBlockTapped: (() -> Unit)? = null
     var onUnblockTapped: (() -> Unit)? = null
     var onDeleteTapped: (() -> Unit)? = null
@@ -33,6 +35,8 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.
     override fun onClick(v: View?) {
         when (v) {
             detailsTextView -> onViewDetailsTapped?.invoke()
+            pinTextView -> onPinTapped?.invoke()
+            unpinTextView -> onUnpinTapped?.invoke()
             blockTextView -> onBlockTapped?.invoke()
             unblockTextView -> onUnblockTapped?.invoke()
             deleteTextView -> onDeleteTapped?.invoke()
@@ -44,7 +48,8 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (!this::recipient.isInitialized) { return dismiss() }
+        if (!this::thread.isInitialized) { return dismiss() }
+        val recipient = thread.recipient
         if (!recipient.isGroupRecipient && !recipient.isLocalNumber) {
             detailsTextView.visibility = View.VISIBLE
             unblockTextView.visibility = if (recipient.isBlocked) View.VISIBLE else View.GONE
@@ -62,6 +67,10 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.
         notificationsTextView.isVisible = recipient.isGroupRecipient && !recipient.isMuted
         notificationsTextView.setOnClickListener(this)
         deleteTextView.setOnClickListener(this)
+        pinTextView.isVisible = !thread.isPinned
+        unpinTextView.isVisible = thread.isPinned
+        pinTextView.setOnClickListener(this)
+        unpinTextView.setOnClickListener(this)
     }
 
     override fun onStart() {

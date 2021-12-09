@@ -31,6 +31,8 @@
     <color name="scroll_to_bottom_button_background">#FCFCFC</color>
     <color name="scroll_to_bottom_button_border">#99000000</color>
     <color name="conversation_unread_count_indicator_background">#E0E0E0</color>
+    <color name="conversation_pinned_background">#F0F0F0</color>
+    <color name="conversation_pinned_icon">#606060</color>
 
     <color name="default_background_start">#ffffff</color>
     <color name="default_background_end">#fcfcfc</color>

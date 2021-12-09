@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="16dp"
+    android:height="16dp"
+    android:viewportWidth="122.879"
+    android:viewportHeight="122.867"
+    android:tint="?attr/conversation_pinned_icon_color">
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M83.88,0.451 L122.427,39a1.55,1.55 0,0 1,0 2.188l-13.128,13.125a1.546,1.546 0,0 1,-2.187 0l-3.732,-3.73 -17.303,17.3c3.882,14.621 0.095,30.857 -11.37,42.32 -0.266,0.268 -0.535,0.529 -0.808,0.787 -1.004,0.955 -0.843,0.949 -1.813,-0.021L47.597,86.48 0,122.867l36.399,-47.584L11.874,50.76c-0.978,-0.98 -0.896,-0.826 0.066,-1.837 0.24,-0.251 0.485,-0.503 0.734,-0.753C24.137,36.707 40.376,32.917 54.996,36.8l17.301,-17.3 -3.733,-3.732a1.553,1.553 0,0 1,0 -2.188L81.691,0.451a1.554,1.554 0,0 1,2.189 0z" />
+</vector>

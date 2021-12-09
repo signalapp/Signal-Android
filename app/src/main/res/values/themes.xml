@@ -76,6 +76,8 @@
         <item name="menu_split_icon">@drawable/ic_baseline_call_split_24</item>
         <item name="menu_popup_expand">@drawable/ic_baseline_launch_24</item>
         <item name="menu_info_icon">@drawable/ic_baseline_info_24</item>
+        <item name="menu_pin_icon">@drawable/ic_outline_pin_24</item>
+        <item name="menu_unpin_icon">@drawable/ic_outline_pin_off_24</item>
 
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_filled_keyboard_24</item>
         <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_24</item>
@@ -88,6 +90,9 @@
         <item name="conversation_item_audio_seek_bar_color_incoming">@color/accent</item>
         <item name="conversation_item_audio_seek_bar_color_outgoing">@color/accent</item>
         <item name="conversation_item_audio_seek_bar_background_color">@color/text</item>
+
+        <item name="conversation_pinned_background_color">@color/conversation_pinned_background</item>
+        <item name="conversation_pinned_icon_color">@color/conversation_pinned_icon</item>
     </style>
 
     <!-- This should be the default theme for the application. -->

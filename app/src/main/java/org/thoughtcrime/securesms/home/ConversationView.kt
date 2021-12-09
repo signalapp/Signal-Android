@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
-import java.util.*
+import java.util.Locale
 
 class ConversationView : LinearLayout {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
@@ -39,6 +39,13 @@ class ConversationView : LinearLayout {
     // region Updating
     fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
+        if (thread.isPinned) {
+            conversationViewDisplayNameTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_pin, 0)
+            background = ContextCompat.getDrawable(context, R.drawable.conversation_pinned_background)
+        } else {
+            conversationViewDisplayNameTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
+            background = ContextCompat.getDrawable(context, R.drawable.conversation_view_background)
+        }
         profilePictureView.glide = glide
         val unreadCount = thread.unreadCount
         if (thread.recipient.isBlocked) {

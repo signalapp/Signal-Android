@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/conversation_view_background"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -52,12 +51,14 @@
                         android:id="@+id/conversationViewDisplayNameTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawablePadding="4dp"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:textAlignment="viewStart"
                         android:textSize="@dimen/medium_font_size"
                         android:textStyle="bold"
                         android:textColor="@color/text"
+                        tools:drawableRight="@drawable/ic_pin"
                         tools:text="I'm a very long display name. What are you going to do about it?" />
 
                     <RelativeLayout

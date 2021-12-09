@@ -59,11 +59,11 @@ import org.thoughtcrime.securesms.onboarding.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.preferences.SettingsActivity
 import org.thoughtcrime.securesms.util.*
 import java.io.IOException
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
+class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickListener,
+    SeedReminderViewDelegate, NewConversationButtonSetViewDelegate, LoaderManager.LoaderCallbacks<Cursor> {
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
@@ -73,6 +73,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
 
     private val publicKey: String
         get() = TextSecurePreferences.getLocalNumber(this)!!
+
+    private val homeAdapter:HomeAdapter by lazy {
+        HomeAdapter(this, threadDb.conversationList)
+    }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
@@ -104,8 +108,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             seedReminderStub.isVisible = false
         }
         // Set up recycler view
-        val cursor = threadDb.conversationList
-        val homeAdapter = HomeAdapter(this, cursor)
         homeAdapter.setHasStableIds(true)
         homeAdapter.glide = glide
         homeAdapter.conversationClickListener = this
@@ -115,21 +117,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
         IP2Country.configureIfNeeded(this@HomeActivity)
         // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
-        LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
-
-            override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
-                return HomeLoader(this@HomeActivity)
-            }
-
-            override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
-                homeAdapter.changeCursor(cursor)
-                updateEmptyState()
-            }
-
-            override fun onLoaderReset(cursor: Loader<Cursor>) {
-                homeAdapter.changeCursor(null)
-            }
-        })
+        LoaderManager.getInstance(this).restartLoader(0, null, this)
         // Set up new conversation button set
         newConversationButtonSet.delegate = this
         // Observe blocked contacts changed events
@@ -168,6 +156,19 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             }
         }
         EventBus.getDefault().register(this@HomeActivity)
+    }
+
+    override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
+        return HomeLoader(this@HomeActivity)
+    }
+
+    override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
+        homeAdapter.changeCursor(cursor)
+        updateEmptyState()
+    }
+
+    override fun onLoaderReset(cursor: Loader<Cursor>) {
+        homeAdapter.changeCursor(null)
     }
 
     override fun onResume() {
@@ -245,7 +246,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
     override fun onLongConversationClick(view: ConversationView) {
         val thread = view.thread ?: return
         val bottomSheet = ConversationOptionsBottomSheet()
-        bottomSheet.recipient = thread.recipient
+        bottomSheet.thread = thread
         bottomSheet.onViewDetailsTapped = {
             bottomSheet.dismiss()
             val userDetailsBottomSheet = UserDetailsBottomSheet()
@@ -278,6 +279,18 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             bottomSheet.dismiss()
             NotificationUtils.showNotifyDialog(this, thread.recipient) { notifyType ->
                 setNotifyType(thread, notifyType)
+            }
+        }
+        bottomSheet.onPinTapped = {
+            bottomSheet.dismiss()
+            if (!thread.isPinned) {
+                pinConversation(thread)
+            }
+        }
+        bottomSheet.onUnpinTapped = {
+            bottomSheet.dismiss()
+            if (thread.isPinned) {
+                unpinConversation(thread)
             }
         }
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
@@ -340,6 +353,24 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             recipientDatabase.setNotifyType(thread.recipient, newNotifyType)
             Util.runOnMain {
                 recyclerView.adapter!!.notifyDataSetChanged()
+            }
+        }
+    }
+
+    private fun pinConversation(thread: ThreadRecord) {
+        ThreadUtils.queue {
+            threadDb.setPinned(thread.threadId, true)
+            Util.runOnMain {
+                LoaderManager.getInstance(this).restartLoader(0, null, this)
+            }
+        }
+    }
+
+    private fun unpinConversation(thread: ThreadRecord) {
+        ThreadUtils.queue {
+            threadDb.setPinned(thread.threadId, false)
+            Util.runOnMain {
+                LoaderManager.getInstance(this).restartLoader(0, null, this)
             }
         }
     }

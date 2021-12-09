@@ -49,12 +49,13 @@ public class ThreadRecord extends DisplayRecord {
   private           final boolean archived;
   private           final long    expiresIn;
   private           final long    lastSeen;
+  private           final boolean pinned;
 
   public ThreadRecord(@NonNull String body, @Nullable Uri snippetUri,
                       @NonNull Recipient recipient, long date, long count, int unreadCount,
                       long threadId, int deliveryReceiptCount, int status, long snippetType,
                       int distributionType, boolean archived, long expiresIn, long lastSeen,
-                      int readReceiptCount)
+                      int readReceiptCount, boolean pinned)
   {
     super(body, recipient, date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
     this.snippetUri       = snippetUri;
@@ -64,6 +65,7 @@ public class ThreadRecord extends DisplayRecord {
     this.archived         = archived;
     this.expiresIn        = expiresIn;
     this.lastSeen         = lastSeen;
+    this.pinned         = pinned;
   }
 
   public @Nullable Uri getSnippetUri() {
@@ -162,5 +164,9 @@ public class ThreadRecord extends DisplayRecord {
 
   public long getLastSeen() {
     return lastSeen;
+  }
+
+  public boolean isPinned() {
+    return pinned;
   }
 }
