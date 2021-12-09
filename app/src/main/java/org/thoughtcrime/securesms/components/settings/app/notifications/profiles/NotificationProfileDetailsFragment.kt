@@ -32,11 +32,10 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.formatHours
+import org.thoughtcrime.securesms.util.orderOfDaysInWeek
 import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.util.Locale
-
-private val DAY_ORDER: List<DayOfWeek> = listOf(DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY)
 
 class NotificationProfileDetailsFragment : DSLSettingsFragment() {
 
@@ -221,7 +220,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
     if (daysEnabled.size == 7) {
       days.append(getString(R.string.NotificationProfileDetails__everyday))
     } else {
-      for (day in DAY_ORDER) {
+      for (day: DayOfWeek in Locale.getDefault().orderOfDaysInWeek()) {
         if (daysEnabled.contains(day)) {
           if (days.isNotEmpty()) {
             days.append(", ")

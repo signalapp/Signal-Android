@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util
 
+import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -8,6 +9,8 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import java.time.temporal.WeekFields
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**
@@ -50,4 +53,20 @@ fun Long.toLocalTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalTime {
  */
 fun LocalTime.formatHours(): String {
   return DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(this)
+}
+
+/**
+ * Get the days of the week in order based on [Locale].
+ */
+fun Locale.orderOfDaysInWeek(): List<DayOfWeek> {
+  val firstDayOfWeek: DayOfWeek = WeekFields.of(this).firstDayOfWeek
+  return listOf(
+    firstDayOfWeek,
+    firstDayOfWeek.plus(1),
+    firstDayOfWeek.plus(2),
+    firstDayOfWeek.plus(3),
+    firstDayOfWeek.plus(4),
+    firstDayOfWeek.plus(5),
+    firstDayOfWeek.plus(6),
+  )
 }
