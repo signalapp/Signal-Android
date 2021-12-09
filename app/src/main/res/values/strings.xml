@@ -4194,9 +4194,9 @@
     <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Your profile will turn on and off automatically according to your schedule.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
-    <string name="NotificationProfileSelection__new_notification_profile">New notification profile</string>
+    <string name="NotificationProfileSelection__new_profile">New profile</string>
     <!-- Manual enable option to manually enable a profile for 1 hour -->
-    <string name="NotificationProfileSelection__for_1_hour">For 1 Hour</string>
+    <string name="NotificationProfileSelection__for_1_hour">For 1 hour</string>
     <!-- Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next) -->
     <string name="NotificationProfileSelection__until_s">Until %1$s</string>
     <!-- Option to view profile details -->
