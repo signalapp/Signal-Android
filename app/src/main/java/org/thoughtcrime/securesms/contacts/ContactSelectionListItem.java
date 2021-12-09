@@ -72,6 +72,14 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
   }
 
   @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    if (recipient != null) {
+      recipient.observeForever(this);
+    }
+  }
+
+  @Override
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
     unbind();
@@ -150,7 +158,6 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
   public void unbind() {
     if (recipient != null) {
       recipient.removeForeverObserver(this);
-      recipient = null;
     }
   }
 

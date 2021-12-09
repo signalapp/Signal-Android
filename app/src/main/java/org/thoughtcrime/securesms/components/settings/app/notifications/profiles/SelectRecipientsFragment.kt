@@ -113,7 +113,7 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
     return mode or ContactsCursorLoader.DisplayMode.FLAG_HIDE_GROUPS_V1
   }
 
-  override fun onBeforeContactSelected(recipientId: Optional<RecipientId>, number: String, callback: Consumer<Boolean>) {
+  override fun onBeforeContactSelected(recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {
     if (recipientId.isPresent) {
       viewModel.select(recipientId.get())
       callback.accept(true)
@@ -123,7 +123,7 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
     }
   }
 
-  override fun onContactDeselected(recipientId: Optional<RecipientId>, number: String) {
+  override fun onContactDeselected(recipientId: Optional<RecipientId>, number: String?) {
     if (recipientId.isPresent) {
       viewModel.deselect(recipientId.get())
       updateAddToProfile()
