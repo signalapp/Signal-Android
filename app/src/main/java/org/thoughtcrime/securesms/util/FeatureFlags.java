@@ -126,13 +126,13 @@ public final class FeatureFlags {
       CDSH,
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES,
-      DONOR_BADGES_DISPLAY
+      DONOR_BADGES_DISPLAY,
+      CHANGE_NUMBER_ENABLED
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY_VERSION,
-      CHANGE_NUMBER_ENABLED
+      PHONE_NUMBER_PRIVACY_VERSION
   );
 
   /**
@@ -206,6 +206,7 @@ public final class FeatureFlags {
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
     put(SENDER_KEY, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
+    put(CHANGE_NUMBER_ENABLED, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();

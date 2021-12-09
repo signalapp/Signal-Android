@@ -409,12 +409,12 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isNonExpiringMmsMessage(@NonNull Cursor cursor) {
-    return cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0 &&
-           cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))    <= 0;
+    return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0 &&
+           cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))    <= 0;
   }
 
   private static boolean isNonExpiringSmsMessage(@NonNull Cursor cursor) {
-    return cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0;
+    return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0;
   }
 
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, long mmsId) {

@@ -19,6 +19,10 @@ public final class PNI extends AccountIdentifier {
     return uuid != null ? from(uuid) : null;
   }
 
+  public static PNI parseOrThrow(String raw) {
+    return from(UUID.fromString(raw));
+  }
+
   private PNI(UUID uuid) {
     super(uuid);
   }
@@ -35,5 +39,10 @@ public final class PNI extends AccountIdentifier {
     } else {
       return false;
     }
+  }
+
+  @Override
+  public String toString() {
+    return uuid.toString();
   }
 }

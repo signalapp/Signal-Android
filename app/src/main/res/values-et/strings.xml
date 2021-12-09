@@ -294,6 +294,7 @@
   <string name="ConversationFragment_not_now">Mitte praegu</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Sinu turvanumber kasutajaga %s on muutunud</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Sinu turvanumber kasutajaga %s on muutunud tõenäoliselt seepärast, et nad paigaldasid Signali uuesti või muutsid seadmeid. Uue turvanumbri kinnitamiseks klõpsa Kontrolli. See on valikuline tegevus.</string>
+  <!--Message shown to indicate which notification profile is on/active-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Kustutad valitud vestluse?</item>
     <item quantity="other">Kustutad valitud vestlused?</item>
@@ -313,8 +314,39 @@
     <item quantity="one">Vestlus postkasti liigutatud</item>
     <item quantity="other">%d vestlust postkasti liigutatud</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Loetud</item>
+    <item quantity="other">Loetud</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Lugemata</item>
+    <item quantity="other">Lugemata</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Vaigista</item>
+    <item quantity="other">Vaigista</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Eemalda vaigistus</item>
+    <item quantity="other">Eemalda vaigistus</item>
+  </plurals>
   <string name="ConversationListFragment_select">Vali</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arhiveeri</item>
+    <item quantity="other">Arhiveeri</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Kustuta</item>
+    <item quantity="other">Kustuta</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Vali kõik</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d valitud</item>
+    <item quantity="other">%d valitud</item>
+  </plurals>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <!--Tooltip shown after you have created your first notification profile-->
+  <!--Message shown in top toast to indicate the named profile is on-->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
   <!--ConversationListItemAction-->
@@ -652,6 +684,8 @@
   <string name="ManageProfileFragment_your_name">Sinu nimi</string>
   <string name="ManageProfileFragment_your_username">Sinu kasutajanimi</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Profiilipildi määramine ei õnnestunud</string>
+  <string name="ManageProfileFragment_badges">Märgid</string>
+  <string name="ManageProfileFragment__edit_photo">Muuda fotot</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ühised grupid puuduvad</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -751,6 +785,7 @@
   <string name="InviteActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Rohkem infot</string>
+  <string name="SpanUtil__read_more">Loe rohkem</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Sõnumit ei leitud</string>
   <string name="LongMessageActivity_message_from_s">Sõnum kasutajalt %1$s</string>
@@ -786,6 +821,14 @@
   <string name="MediaOverviewActivity_List_view_description">Nimekirjavaade</string>
   <string name="MediaOverviewActivity_Selected_description">Valitud</string>
   <string name="MediaOverviewActivity_select_all">Vali kõik</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Salvesta</item>
+    <item quantity="other">Salvesta</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Kustuta</item>
+    <item quantity="other">Kustuta</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1637,6 +1680,12 @@
   <string name="QuoteView_original_missing">Originaalsõnumit ei leitud</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Keri alla</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">Mitte praegu</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">Lülita välja</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Turvanumbri muudatused</string>
   <string name="safety_number_change_dialog__accept">Nõustun</string>
@@ -1933,6 +1982,8 @@
   <string name="preferences__help">Abi</string>
   <string name="preferences__advanced">Täpsem</string>
   <string name="preferences__donate_to_signal">Anneta Signalile</string>
+  <string name="preferences__subscription">Tellimus</string>
+  <string name="preferences__signal_boost">Signalile hoogu</string>
   <string name="preferences__privacy">Privaatsus</string>
   <string name="preferences__mms_user_agent">MMS kasutajaagent</string>
   <string name="preferences__advanced_mms_access_point_names">Käsitsi määratud MMS-seaded</string>
@@ -2557,6 +2608,7 @@
   <string name="RecipientBottomSheet_block">Blokeeri</string>
   <string name="RecipientBottomSheet_unblock">Eemalda blokeering</string>
   <string name="RecipientBottomSheet_add_to_contacts">Lisa kontaktidesse</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
   <string name="RecipientBottomSheet_add_to_a_group">Lisa gruppi</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lisa muusse gruppi</string>
   <string name="RecipientBottomSheet_view_safety_number">Näita turvanumbrit</string>
@@ -2654,6 +2706,12 @@
   <string name="DeleteAccountFragment__failed_to_delete_account">Konto kustutamine ei õnnestunud. Kas sul on võrguühendus olemas?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Kohalike andmete kustutamine ei õnnestunud. Andmeid saab käsitsi kustutada süsteemi rakenduse sätetest.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Käivita rakenduse sätted</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Otsi riikidest</string>
   <!--CreateGroupActivity-->
@@ -2820,6 +2878,12 @@
   <string name="NotificationsSettingsFragment__calls">Kõned</string>
   <string name="NotificationsSettingsFragment__notify_when">Teavita kui…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt liitub Signaliga</string>
+  <!--Notification preference header-->
+  <!--Notification preference option header-->
+  <!--Notification preference summary text-->
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <!--Button text to create a notification profile-->
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokeeritud</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakti</string>
@@ -2858,6 +2922,8 @@
   <string name="HelpFragment__copyright_signal_messenger">Autoriõigus Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Litsentsitud GPLv3 litsentsiga</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Meedia kvaliteet</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Saadetud meedia kvaliteet</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Kõrge kvaliteediga meedia saatmine kasutab rohkem andmesidet.</string>
   <string name="DataAndStorageSettingsFragment__high">Kõrge</string>
   <string name="DataAndStorageSettingsFragment__standard">Standardne</string>
@@ -3044,6 +3110,7 @@
   <string name="MediaReviewFragment__add_a_reply">Lisa vastus</string>
   <string name="MediaReviewFragment__send_to">Saaja</string>
   <string name="MediaReviewFragment__view_once_message">Ühekordne sõnum</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Liiga palju elemente valitud</string>
   <string name="ImageEditorHud__cancel">Loobu</string>
   <string name="ImageEditorHud__draw">Joonista</string>
   <string name="ImageEditorHud__write_text">Kirjuta tekst</string>
@@ -3062,19 +3129,118 @@
   <string name="MediaReviewImagePageFragment__discard_changes">Kas loobuda muudatustest?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Sa kaotad kõik sellele fotole tehtud muudatused</string>
   <string name="CameraFragment__failed_to_open_camera">Kaamera avamine ei õnnestunud</string>
+  <string name="BadgesOverviewFragment__my_badges">Minu märgid</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Kuva profiilil märke</string>
+  <string name="BadgeSelectionFragment__select_badges">Vali märgid</string>
   <string name="SelectFeaturedBadgeFragment__preview">Eelvaade</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Vali märk</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signalit loovad sinusugused inimesed.</string>
+  <string name="SubscribeFragment__currency">Rahaühik</string>
+  <string name="SubscribeFragment__more_payment_options">Rohkem maksevõimalusi</string>
+  <string name="SubscribeFragment__cancel_subscription">Tühista tellimus</string>
   <string name="SubscribeFragment__not_now">Mitte praegu</string>
   <string name="SubscribeFragment__confirm">Kinnita</string>
   <string name="SubscribeFragment__update">Uuenda</string>
+  <string name="Subscription__s_per_month">%s/month</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Aitäh hooandmise eest!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Kuva profiilil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tehtud</string>
+  <string name="ManageDonationsFragment__badges">Märgid</string>
+  <string name="BoostFragment__give_signal_a_boost">Anna Signalile hoogu</string>
   <string name="Boost__enter_custom_amount">Sisesta kohandatud summa</string>
+  <string name="MySupportPreference__add_a_signal_boost">Lisa Signalile hoogu</string>
+  <string name="MySupportPreference__s_per_month">%1$s/kuu</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
   <string name="Subscription__contact_support">Võta ühendust kasutajatoega</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">Proovi uuesti</string>
+  <!--Title of create notification profile screen-->
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">Profiilinimi</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button once the profile is named to continue to the next create step-->
+  <string name="EditNotificationProfileFragment__next">Edasi</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">Salvesta</string>
+  <!--Title of edit notification profile screen-->
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">Töö</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <!--Description of what the user should be doing with this screen-->
+  <!--Button text that launches the contact picker to select from-->
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">Lisa</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <!--Header shown above list of all notification profiles-->
+  <!--Button that starts the create new notification profile flow-->
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">Sees</string>
+  <!--Button use to permanently delete a notification profile-->
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">Võta tagasi</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">Kustuta</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <!--Schedule description if all days are selected-->
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">Sees</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">Väljas</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s saajale %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <!--Section header for showing schedule information-->
+  <!--Title for add schedule to profile in create flow-->
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Alusta</string>
+  <!--Label for showing the end time for the schedule-->
+  <!--First letter of Sunday-->
+  <!--First letter of Monday-->
+  <!--First letter of Tuesday-->
+  <!--First letter of Wednesday-->
+  <!--First letter of Thursday-->
+  <!--First letter of Friday-->
+  <!--First letter of Saturday-->
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">Salvesta</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">Jäta vahele</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">Edasi</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <!--Title for final screen shown after completing a profile creation-->
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">Tehtud</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">kuni %1$s</string>
+  <!--Option to view profile details-->
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <!--Title for notification profile megaphone-->
+  <!--Description for notification profile megaphone-->
+  <!--Call to action button to create a profile from megaphone-->
+  <!--Button to dismiss notification profile megaphone-->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

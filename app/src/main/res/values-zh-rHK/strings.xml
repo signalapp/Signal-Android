@@ -290,6 +290,8 @@
   <string name="ConversationFragment_not_now">現在不要</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">您與 %s 之間的安全碼已變更</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">您與 %s 之間的安全碼已變更，通常是對方已重新安裝 Signal 或更換了裝置。輕觸「驗證」以確認新的安全碼，惟不一定要這樣做。</string>
+  <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s 開啟</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">要刪除選取的對話嗎？</item>
   </plurals>
@@ -337,6 +339,12 @@
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">%d 個已選取</item>
   </plurals>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">通知設定檔</string>
+  <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">在此開啟或關閉您的通知設定檔。</string>
+  <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s 開啟</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
@@ -1656,6 +1664,12 @@
   <string name="QuoteView_original_missing">找不到原始訊息</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">捲動到最底</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">現在不要</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">關閉</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">安全碼變更</string>
   <string name="safety_number_change_dialog__accept">接受</string>
@@ -2646,6 +2660,7 @@
   <string name="RecipientBottomSheet_block">封鎖</string>
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>
   <string name="RecipientBottomSheet_add_to_contacts">新增至通訊錄</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
   <string name="RecipientBottomSheet_add_to_a_group">新增至群組</string>
   <string name="RecipientBottomSheet_add_to_another_group">新增至另一個群組</string>
   <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
@@ -2742,6 +2757,15 @@
   <string name="DeleteAccountFragment__failed_to_delete_account">刪除帳戶失敗。您現在已連線到互聯網嗎？</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">刪除本機資料失敗。您可在系統應用程式設定中手動進行清除。</string>
   <string name="DeleteAccountFragment__launch_app_settings">開啟應用程式設定</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">正在退出群組…</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">正在刪除帳戶…</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">正在刪除使用者資料並重設應用程式</string>
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">搜尋國家</string>
   <!--CreateGroupActivity-->
@@ -2949,6 +2973,17 @@
   <string name="NotificationsSettingsFragment__calls">通話</string>
   <string name="NotificationsSettingsFragment__notify_when">通知下列事件</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">聯絡人加入 Signal</string>
+  <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">通知設定檔</string>
+  <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">設定檔</string>
+  <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__set_up_notification_profiles">設立通知設定檔</string>
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">通知設定檔</string>
+  <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">建立設定檔</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">已封鎖</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d 個聯絡人</string>
@@ -3292,6 +3327,126 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">您的裝置不支援 Google Pay，故抱歉未能讓您訂閱並贈予徽章。您仍可在我們的網站上捐款以支持 Signal。</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡錯誤。請檢查您的連線，然後再試一次。</string>
   <string name="NetworkFailure__retry">重試</string>
+  <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">為您的設定檔命名</string>
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">設定檔名稱</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button once the profile is named to continue to the next create step-->
+  <string name="EditNotificationProfileFragment__next">下一步</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">儲存</string>
+  <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">編輯此設定檔</string>
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">以此為名的設定檔已存在</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">工作</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">睡覺</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">駕駛</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">專注</string>
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">須要名稱</string>
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">已允許通知</string>
+  <!--Description of what the user should be doing with this screen-->
+  <!--Button text that launches the contact picker to select from-->
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">新增</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">設定檔</string>
+  <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">新增設定檔</string>
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">開啟</string>
+  <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">刪除設定檔</string>
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">「%1$s」已移除。</string>
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">復原</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">要永久刪除設定檔嗎？</string>
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">刪除</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">編輯通知設定檔</string>
+  <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">每日</string>
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">開啟</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">關閉</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s 至 %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">例外</string>
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">允許所有通話</string>
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">通知所有提及</string>
+  <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">排程</string>
+  <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">新增排程</string>
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">排程</string>
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">開始</string>
+  <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">結束</string>
+  <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">日</string>
+  <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">一</string>
+  <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">二</string>
+  <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">三</string>
+  <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">四</string>
+  <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">五</string>
+  <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">六</string>
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">設定開始時間</string>
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">設定結束時間</string>
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">儲存</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">略過</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">下一步</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">設定檔已建立</string>
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">完成</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_notification_profile">新增通知設定檔</string>
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">直到 %1$s</string>
+  <!--Option to view profile details-->
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">通知設定檔</string>
+  <!--Description for notification profile megaphone-->
+  <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">建立一個設定檔</string>
+  <!--Button to dismiss notification profile megaphone-->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">無法開啟挑選器。</string>
   <!--EOF-->

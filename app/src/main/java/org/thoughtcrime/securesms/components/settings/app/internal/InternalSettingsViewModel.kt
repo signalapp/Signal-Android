@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.internal
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.keyvalue.InternalValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -90,6 +91,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setInternalAudioProcessingMethod(method: CallManager.AudioProcessingMethod) {
+    preferenceDataStore.putInt(InternalValues.AUDIO_PROCESSING_METHOD, method.ordinal)
+    refresh()
+  }
+
   private fun refresh() {
     store.update { getState().copy(emojiVersion = it.emojiVersion) }
   }
@@ -105,6 +111,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     disableAutoMigrationNotification = SignalStore.internalValues().disableGv1AutoMigrateNotification(),
     forceCensorship = SignalStore.internalValues().forcedCensorship(),
     callingServer = SignalStore.internalValues().groupCallingServer(),
+    audioProcessingMethod = SignalStore.internalValues().audioProcessingMethod(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),

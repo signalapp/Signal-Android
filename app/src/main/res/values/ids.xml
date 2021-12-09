@@ -12,6 +12,9 @@
     <item name="reminder_action_gv1_suggestion_no_thanks" type="id" />
     <item name="reminder_action_gv1_suggestion_add_members" type="id" />
 
+    <item name="reminder_action_not_now" type="id" />
+    <item name="reminder_action_turn_off" type="id" />
+
     <item name="status_bar_guideline" type="id" />
     <item name="navigation_bar_guideline" type="id" />
 </resources>

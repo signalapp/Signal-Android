@@ -10,9 +10,11 @@ import android.os.Build
 import android.service.notification.StatusBarNotification
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import me.leolin.shortcutbadger.ShortcutBadger
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
 import org.thoughtcrime.securesms.database.MessageDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -22,6 +24,8 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.notifications.MessageNotifier.ReminderReceiver
 import org.thoughtcrime.securesms.notifications.NotificationCancellationHelper
 import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
@@ -48,11 +52,23 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
   @Volatile private var previousLockedStatus: Boolean = KeyCachingService.isLocked(context)
   @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
   @Volatile private var previousState: NotificationStateV2 = NotificationStateV2.EMPTY
+  @Volatile private var notificationProfile: NotificationProfile? = null
+  @Volatile private var notificationProfileInitialized: Boolean = false
 
   private val threadReminders: MutableMap<Long, Reminder> = ConcurrentHashMap()
   private val stickyThreads: MutableMap<Long, StickyThread> = mutableMapOf()
 
   private val executor = CancelableExecutor()
+
+  init {
+    NotificationProfilesRepository().getProfiles()
+      .subscribeBy(
+        onNext = {
+          notificationProfile = NotificationProfiles.getActiveProfile(it)
+          notificationProfileInitialized = true
+        }
+      )
+  }
 
   override fun setVisibleThread(threadId: Long) {
     visibleThread = threadId
@@ -115,10 +131,6 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     reminderCount: Int,
     defaultBubbleState: BubbleState
   ) {
-    if (!SignalStore.settings().isMessageNotificationsEnabled) {
-      return
-    }
-
     val currentLockStatus: Boolean = KeyCachingService.isLocked(context)
     val currentPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
     val notificationConfigurationChanged: Boolean = currentLockStatus != previousLockedStatus || currentPrivacyPreference != previousPrivacyPreference
@@ -129,9 +141,41 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
       stickyThreads.clear()
     }
 
+    if (!notificationProfileInitialized) {
+      notificationProfile = NotificationProfiles.getActiveProfile(SignalDatabase.notificationProfiles.getProfiles())
+      notificationProfileInitialized = true
+    }
+
     Log.internal().i(TAG, "sticky thread: $stickyThreads")
-    var state: NotificationStateV2 = NotificationStateProvider.constructNotificationState(context, stickyThreads)
+    var state: NotificationStateV2 = NotificationStateProvider.constructNotificationState(stickyThreads, notificationProfile)
     Log.internal().i(TAG, "state: $state")
+
+    if (state.muteFilteredMessages.isNotEmpty()) {
+      Log.i(TAG, "Marking ${state.muteFilteredMessages.size} muted messages as notified to skip notification")
+      state.muteFilteredMessages.forEach { item ->
+        val messageDatabase: MessageDatabase = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
+        messageDatabase.markAsNotified(item.id)
+      }
+    }
+
+    if (state.profileFilteredMessages.isNotEmpty()) {
+      Log.i(TAG, "Marking ${state.profileFilteredMessages.size} profile filtered messages as notified to skip notification")
+      state.profileFilteredMessages.forEach { item ->
+        val messageDatabase: MessageDatabase = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
+        messageDatabase.markAsNotified(item.id)
+      }
+    }
+
+    if (!SignalStore.settings().isMessageNotificationsEnabled) {
+      Log.i(TAG, "Marking ${state.conversations.size} conversations as notified to skip notification")
+      state.conversations.forEach { conversation ->
+        conversation.notificationItems.forEach { item ->
+          val messageDatabase: MessageDatabase = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
+          messageDatabase.markAsNotified(item.id)
+        }
+      }
+      return
+    }
 
     val displayedNotifications: Set<Int>? = ServiceUtil.getNotificationManager(context).getDisplayedNotificationIds().getOrNull()
     if (displayedNotifications != null) {
@@ -146,7 +190,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
         }
       if (cleanedUpThreadIds.isNotEmpty()) {
         Log.i(TAG, "Cleaned up ${cleanedUpThreadIds.size} thread(s) with dangling notifications")
-        state = NotificationStateV2(state.conversations.filterNot { cleanedUpThreadIds.contains(it.threadId) })
+        state = state.copy(conversations = state.conversations.filterNot { cleanedUpThreadIds.contains(it.threadId) })
       }
     }
 

@@ -18,7 +18,7 @@ class PrivacySettingsRepository {
     SignalExecutors.BOUNDED.execute {
       val recipientDatabase = SignalDatabase.recipients
 
-      consumer(recipientDatabase.blocked.count)
+      consumer(recipientDatabase.getBlocked().count)
     }
   }
 

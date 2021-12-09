@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.recipients.ui.bottomsheet;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment;
@@ -53,6 +55,8 @@ import kotlin.Unit;
  * adding to contacts, etc).
  */
 public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogFragment {
+
+  public static final String TAG = Log.tag(RecipientBottomSheetDialogFragment.class);
 
   public static final int REQUEST_CODE_SYSTEM_CONTACT_SHEET = 1111;
 
@@ -247,14 +251,14 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       } else {
         addContactButton.setVisibility(View.VISIBLE);
         addContactButton.setOnClickListener(v -> {
-          startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_SYSTEM_CONTACT_SHEET);
+          openSystemContactSheet(RecipientExporter.export(recipient).asAddContactIntent());
         });
       }
 
       if (recipient.isSystemContact() && !recipient.isGroup() && !recipient.isSelf()) {
         contactDetailsButton.setVisibility(View.VISIBLE);
         contactDetailsButton.setOnClickListener(v -> {
-          startActivityForResult(new Intent(Intent.ACTION_VIEW, recipient.getContactUri()), REQUEST_CODE_SYSTEM_CONTACT_SHEET);
+          openSystemContactSheet(new Intent(Intent.ACTION_VIEW, recipient.getContactUri()));
         });
       } else {
         contactDetailsButton.setVisibility(View.GONE);
@@ -313,6 +317,15 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       removeAdminButton.setEnabled(!busy);
       removeFromGroupButton.setEnabled(!busy);
     });
+  }
+
+  private void openSystemContactSheet(@NonNull Intent intent) {
+    try {
+      startActivityForResult(intent, REQUEST_CODE_SYSTEM_CONTACT_SHEET);
+    } catch (ActivityNotFoundException e) {
+      Log.w(TAG, "No activity existed to open the contact.");
+      Toast.makeText(requireContext(), R.string.RecipientBottomSheet_unable_to_open_contacts, Toast.LENGTH_LONG).show();
+    }
   }
 
   @Override

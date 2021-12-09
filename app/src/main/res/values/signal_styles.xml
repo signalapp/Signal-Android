@@ -140,4 +140,19 @@
         <item name="buttonBarNegativeButtonStyle">@style/Signal.Widget.Button.Dialog</item>
         <item name="textColorAlertDialogListItem">@color/signal_text_secondary</item>
     </style>
+
+    <style name="Signal.Widget.TimePicker" parent="Widget.MaterialComponents.TimePicker">
+        <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
+    </style>
+
+    <style name="Signal.Widget.TimePicker.ImageButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
+        <item name="iconTint">@color/signal_icon_tint_primary</item>
+    </style>
+
+    <style name="Signal.ThemeOverlay.TimePicker" parent="@style/ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="textAppearanceOverline">@style/TextAppearance.Signal.Body2</item>
+        <item name="colorSurface">@color/signal_background_dialog</item>
+        <item name="borderlessButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="colorPrimary">@color/signal_accent_primary</item>
+    </style>
 </resources>

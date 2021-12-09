@@ -134,7 +134,7 @@ public enum AvatarColor {
     return name;
   }
 
-  public static @NonNull AvatarColor deserialize(@NonNull String name) {
+  public static @NonNull AvatarColor deserialize(@Nullable String name) {
     return Objects.requireNonNull(NAME_MAP.getOrDefault(name, A210));
   }
 }

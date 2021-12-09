@@ -27,6 +27,10 @@ class VerifyCodeWithRegistrationLockResponseProcessor(
     return super.getError()
   }
 
+  public override fun registrationLock(): Boolean {
+    return super.registrationLock()
+  }
+
   fun wrongPin(): Boolean {
     return error is KeyBackupSystemWrongPinException
   }

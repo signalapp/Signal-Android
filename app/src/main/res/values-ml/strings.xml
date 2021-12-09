@@ -297,6 +297,7 @@
   <string name="ConversationFragment_not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s -മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതുകൊണ്ടോ ഡിവൈസ് മാറിയതുകൊണ്ടോ ആവാമിത്. പുതിയ സുരക്ഷാ നമ്പർ ഉറപ്പുവരുത്താൻ \'ഉറപ്പാക്കു\' ടാപ് ചെയ്യുക. ഇത് ഓപ്ഷണൽ ആണ്.</string>
+  <!--Message shown to indicate which notification profile is on/active-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">തിരഞ്ഞെടുത്ത സംഭാഷണം ഇല്ലാതാക്കണോ?</item>
     <item quantity="other">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കണോ?</item>
@@ -318,6 +319,9 @@
   </plurals>
   <string name="ConversationListFragment_select">തിരഞ്ഞെടുക്കൂ</string>
   <string name="ConversationListFragment_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <!--Tooltip shown after you have created your first notification profile-->
+  <!--Message shown in top toast to indicate the named profile is on-->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">കീ കൈമാറ്റ സന്ദേശം</string>
   <!--ConversationListItemAction-->
@@ -1634,6 +1638,12 @@
   <string name="QuoteView_original_missing">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">താഴേക്ക് സ്ക്രോൾ ചെയ്യുക</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">ഓഫ് ആക്കുക</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">സുരക്ഷാ നമ്പർ മാറ്റങ്ങൾ</string>
   <string name="safety_number_change_dialog__accept">സ്വീകരിക്കുക</string>
@@ -2618,6 +2628,7 @@
   <string name="RecipientBottomSheet_block">തടയുക</string>
   <string name="RecipientBottomSheet_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="RecipientBottomSheet_add_to_contacts">കോൺടാക്റ്റുകളിൽ ചേർക്കൂ</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
   <string name="RecipientBottomSheet_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="RecipientBottomSheet_add_to_another_group">മറ്റൊരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="RecipientBottomSheet_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
@@ -2716,6 +2727,12 @@
   <string name="DeleteAccountFragment__failed_to_delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കുന്നതിൽ പരാജയപ്പെട്ടു. നിങ്ങൾക്ക് ഒരു നെറ്റ്‌വർക്ക് കണക്ഷൻ ഉണ്ടോ?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">പ്രാദേശിക ഡാറ്റ ഇല്ലാതാക്കാൻ പരാജയപെട്ടു. സിസ്റ്റം അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ നിങ്ങൾക്ക് ഇത് സ്വമേധയാ ഇല്ലാതാക്കാം.</string>
   <string name="DeleteAccountFragment__launch_app_settings">ആപ്പ് ക്രമീകരണങ്ങൾ തുറക്കുക</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">രാജ്യങ്ങൾ തിരയുക</string>
   <!--CreateGroupActivity-->
@@ -2907,6 +2924,12 @@
   <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
   <string name="NotificationsSettingsFragment__notify_when">എപ്പോൾ അറിയിക്കുക…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">കോൺടാക്റ്റ് Signal ചേരുന്നു</string>
+  <!--Notification preference header-->
+  <!--Notification preference option header-->
+  <!--Notification preference summary text-->
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <!--Button text to create a notification profile-->
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">തടഞ്ഞു</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d കോൺ‌ടാക്റ്റുകൾ</string>
@@ -3145,6 +3168,91 @@
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കുക</string>
+  <!--Title of create notification profile screen-->
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">പ്രൊഫൈൽ പേര്</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button once the profile is named to continue to the next create step-->
+  <string name="EditNotificationProfileFragment__next">അടുത്തത്</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">സംരക്ഷിക്കൂ</string>
+  <!--Title of edit notification profile screen-->
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">ജോലി</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <!--Description of what the user should be doing with this screen-->
+  <!--Button text that launches the contact picker to select from-->
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">ചേർക്കുക</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <!--Header shown above list of all notification profiles-->
+  <!--Button that starts the create new notification profile flow-->
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">ഓൺ</string>
+  <!--Button use to permanently delete a notification profile-->
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">തിരിച്ചാക്കുക</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">ഇല്ലാതാക്കൂ</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <!--Schedule description if all days are selected-->
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">ഓൺ</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">ഓഫ്</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s %2$s-നോട്</string>
+  <!--Section header for exceptions to the notification profile-->
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <!--Section header for showing schedule information-->
+  <!--Title for add schedule to profile in create flow-->
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">ആരംഭിക്കുക</string>
+  <!--Label for showing the end time for the schedule-->
+  <!--First letter of Sunday-->
+  <!--First letter of Monday-->
+  <!--First letter of Tuesday-->
+  <!--First letter of Wednesday-->
+  <!--First letter of Thursday-->
+  <!--First letter of Friday-->
+  <!--First letter of Saturday-->
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">സംരക്ഷിക്കൂ</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">ഒഴിവാക്കുക</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">അടുത്തത്</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <!--Title for final screen shown after completing a profile creation-->
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">ചെയ്‌തു</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">%1$s വരെ</string>
+  <!--Option to view profile details-->
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <!--Title for notification profile megaphone-->
+  <!--Description for notification profile megaphone-->
+  <!--Call to action button to create a profile from megaphone-->
+  <!--Button to dismiss notification profile megaphone-->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

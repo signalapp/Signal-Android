@@ -140,7 +140,7 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
 
   @Override
   public @NonNull DatabaseObserver provideDatabaseObserver() {
-    return null;
+    return mock(DatabaseObserver.class);
   }
 
   @Override

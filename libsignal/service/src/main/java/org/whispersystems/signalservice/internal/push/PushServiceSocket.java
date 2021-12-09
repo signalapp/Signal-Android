@@ -327,18 +327,6 @@ public class PushServiceSocket {
     makeServiceRequest(path, "GET", null, headers, new VerificationCodeResponseHandler());
   }
 
-  public ACI getOwnAci() throws IOException {
-    String         body     = makeServiceRequest(WHO_AM_I, "GET", null);
-    WhoAmIResponse response = JsonUtil.fromJson(body, WhoAmIResponse.class);
-    Optional<ACI>  aci      = ACI.parse(response.getAci());
-
-    if (aci.isPresent()) {
-      return aci.get();
-    } else {
-      throw new IOException("Invalid UUID!");
-    }
-  }
-
   public WhoAmIResponse getWhoAmI() throws IOException {
     return JsonUtil.fromJson(makeServiceRequest(WHO_AM_I, "GET", null), WhoAmIResponse.class);
   }
@@ -580,7 +568,7 @@ public class PushServiceSocket {
         signedPreKey.getKeyPair().getPublicKey(),
         signedPreKey.getSignature());
 
-    makeServiceRequest(String.format(PREKEY_PATH, ""), "PUT",
+    String response = makeServiceRequest(String.format(PREKEY_PATH, ""), "PUT",
         JsonUtil.toJson(new PreKeyState(entities, signedPreKeyEntity, identityKey)));
   }
 

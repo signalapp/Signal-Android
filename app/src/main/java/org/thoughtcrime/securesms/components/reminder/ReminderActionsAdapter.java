@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.components.reminder;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
@@ -15,10 +18,12 @@ import java.util.List;
 
 final class ReminderActionsAdapter extends RecyclerView.Adapter<ReminderActionsAdapter.ActionViewHolder> {
 
+  private final Reminder.Importance                importance;
   private final List<Reminder.Action>              actions;
   private final ReminderView.OnActionClickListener actionClickListener;
 
-  ReminderActionsAdapter(List<Reminder.Action> actions, ReminderView.OnActionClickListener actionClickListener) {
+  ReminderActionsAdapter(Reminder.Importance importance, List<Reminder.Action> actions, ReminderView.OnActionClickListener actionClickListener) {
+    this.importance          = importance;
     this.actions             = Collections.unmodifiableList(actions);
     this.actionClickListener = actionClickListener;
   }
@@ -26,7 +31,14 @@ final class ReminderActionsAdapter extends RecyclerView.Adapter<ReminderActionsA
   @NonNull
   @Override
   public ActionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    return new ActionViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.reminder_action_button, parent, false));
+    Context  context = parent.getContext();
+    TextView button  = ((TextView) LayoutInflater.from(context).inflate(R.layout.reminder_action_button, parent, false));
+
+    if (importance == Reminder.Importance.NORMAL) {
+      button.setTextColor(ContextCompat.getColor(context, R.color.signal_accent_primary));
+    }
+
+    return new ActionViewHolder(button);
   }
 
   @Override

@@ -5,12 +5,18 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/reminder_background_normal"
     android:focusable="true"
     android:nextFocusRight="@+id/cancel"
-    android:orientation="horizontal"
     android:visibility="gone"
     tools:visibility="visible">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/reminder_background_normal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/reminder_actions" />
 
     <ProgressBar
         android:id="@+id/reminder_progress"
@@ -42,7 +48,7 @@
 
     <TextView
         android:id="@+id/reminder_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
@@ -51,6 +57,7 @@
         android:textSize="20sp"
         android:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toTopOf="@id/reminder_text"
+        app:layout_constraintEnd_toStartOf="@id/cancel"
         app:layout_constraintStart_toEndOf="@id/reminder_progress"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginStart="16dp"
@@ -105,11 +112,17 @@
         android:visibility="gone"
         tools:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reminder_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:reverseLayout="true"
         tools:itemCount="2"
         tools:listitem="@layout/reminder_action_button" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/toolbar_shadow"
+        app:layout_constraintTop_toBottomOf="@id/background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

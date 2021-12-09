@@ -8,6 +8,11 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.thoughtcrime.securesms.keyvalue.AccountValues
+import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
+import org.thoughtcrime.securesms.keyvalue.KeyValueStore
+import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.libsignal.util.guava.Optional
@@ -214,6 +219,29 @@ class RecipientDatabaseTest {
     assertEquals(E164_A, existingRecipient.requireE164())
   }
 
+  /** We never want to remove the e164 of our own contact entry. So basically treat this as a low-trust case, and leave the e164 alone. */
+  @Test
+  fun getAndPossiblyMerge_e164MapsToExistingUserButAciDoesNot_e164BelongsToLocalUser_highTrust() {
+    val dataSet = KeyValueDataSet().apply {
+      putString(AccountValues.KEY_E164, E164_A)
+      putString(AccountValues.KEY_ACI, ACI_A.toString())
+    }
+    SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
+
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A, true)
+    assertNotEquals(existingId, retrievedId)
+
+    val retrievedRecipient = Recipient.resolved(retrievedId)
+    assertEquals(ACI_B, retrievedRecipient.requireAci())
+    assertFalse(retrievedRecipient.hasE164())
+
+    val existingRecipient = Recipient.resolved(existingId)
+    assertEquals(ACI_A, existingRecipient.requireAci())
+    assertEquals(E164_A, existingRecipient.requireE164())
+  }
+
   // ==============================================================
   // If both the ACI and E164 map to an existing user
   // ==============================================================
@@ -324,6 +352,30 @@ class RecipientDatabaseTest {
     assertEquals(retrievedId, recipientWithId2.id)
   }
 
+  /** We never want to remove the e164 of our own contact entry. So basically treat this as a low-trust case, and leave the e164 alone. */
+  @Test
+  fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_e164BelongsToLocalUser() {
+    val dataSet = KeyValueDataSet().apply {
+      putString(AccountValues.KEY_E164, E164_A)
+      putString(AccountValues.KEY_ACI, ACI_B.toString())
+    }
+    SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
+
+    val existingId1: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A, true)
+    val existingId2: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, null, true)
+
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+    assertEquals(existingId2, retrievedId)
+
+    val retrievedRecipient = Recipient.resolved(retrievedId)
+    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertFalse(retrievedRecipient.hasE164())
+
+    val recipientWithId1 = Recipient.resolved(existingId1)
+    assertEquals(ACI_B, recipientWithId1.requireAci())
+    assertEquals(E164_A, recipientWithId1.requireE164())
+  }
+
   // ==============================================================
   // Misc
   // ==============================================================
@@ -378,7 +430,7 @@ class RecipientDatabaseTest {
     val ACI_A = ACI.from(UUID.fromString("3436efbe-5a76-47fa-a98a-7e72c948a82e"))
     val ACI_B = ACI.from(UUID.fromString("8de7f691-0b60-4a68-9cd9-ed2f8453f9ed"))
 
-    val E164_A = "+12221234567"
-    val E164_B = "+13331234567"
+    const val E164_A = "+12221234567"
+    const val E164_B = "+13331234567"
   }
 }

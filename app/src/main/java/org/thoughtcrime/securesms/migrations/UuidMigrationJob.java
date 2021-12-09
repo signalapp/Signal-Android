@@ -71,7 +71,11 @@ public class UuidMigrationJob extends MigrationJob {
 
   private static void fetchOwnUuid(@NonNull Context context) throws IOException {
     RecipientId self      = Recipient.self().getId();
-    ACI         localUuid = ApplicationDependencies.getSignalServiceAccountManager().getOwnAci();
+    ACI         localUuid = ACI.parseOrNull(ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI().getAci());
+
+    if (localUuid == null) {
+      throw new IOException("Invalid UUID!");
+    }
 
     SignalDatabase.recipients().markRegisteredOrThrow(self, localUuid);
     SignalStore.account().setAci(localUuid);

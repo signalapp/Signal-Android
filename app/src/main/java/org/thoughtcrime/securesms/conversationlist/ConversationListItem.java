@@ -54,6 +54,8 @@ import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
+import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -95,7 +97,6 @@ public final class ConversationListItem extends ConstraintLayout
   private final static Typeface  BOLD_TYPEFACE  = Typeface.create("sans-serif-medium", Typeface.NORMAL);
   private final static Typeface  LIGHT_TYPEFACE = Typeface.create("sans-serif", Typeface.NORMAL);
 
-  private Set<Long>           selectedThreads;
   private Set<Long>           typingThreads;
   private LiveRecipient       recipient;
   private long                threadId;
@@ -162,25 +163,22 @@ public final class ConversationListItem extends ConstraintLayout
                    @NonNull GlideRequests glideRequests,
                    @NonNull Locale locale,
                    @NonNull Set<Long> typingThreads,
-                   @NonNull Set<Long> selectedThreads,
-                   boolean batchMode)
+                   @NonNull ConversationSet selectedConversations)
   {
-    bindThread(thread, glideRequests, locale, typingThreads, selectedThreads, batchMode, null);
+    bindThread(thread, glideRequests, locale, typingThreads, selectedConversations, null);
   }
 
   public void bindThread(@NonNull ThreadRecord thread,
                          @NonNull GlideRequests glideRequests,
                          @NonNull Locale locale,
                          @NonNull Set<Long> typingThreads,
-                         @NonNull Set<Long> selectedThreads,
-                         boolean batchMode,
+                         @NonNull ConversationSet selectedConversations,
                          @Nullable String highlightSubstring)
   {
     observeRecipient(thread.getRecipient().live());
     observeDisplayBody(null);
     setSubjectViewText(null);
 
-    this.selectedThreads    = selectedThreads;
     this.threadId           = thread.getThreadId();
     this.glideRequests      = glideRequests;
     this.unreadCount        = thread.getUnreadCount();
@@ -217,7 +215,7 @@ public final class ConversationListItem extends ConstraintLayout
     }
 
     setStatusIcons(thread);
-    setBatchMode(batchMode);
+    setSelectedConversations(selectedConversations);
     setBadgeFromRecipient(recipient.get());
     setUnreadIndicator(thread);
     this.contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
@@ -241,7 +239,6 @@ public final class ConversationListItem extends ConstraintLayout
     observeDisplayBody(null);
     setSubjectViewText(null);
 
-    this.selectedThreads    = Collections.emptySet();
     this.glideRequests      = glideRequests;
     this.locale             = locale;
     this.highlightSubstring = highlightSubstring;
@@ -254,7 +251,7 @@ public final class ConversationListItem extends ConstraintLayout
     deliveryStatusIndicator.setNone();
     alertView.setNone();
 
-    setBatchMode(false);
+    setSelectedConversations(new ConversationSet());
     setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
@@ -268,7 +265,6 @@ public final class ConversationListItem extends ConstraintLayout
     observeDisplayBody(null);
     setSubjectViewText(null);
 
-    this.selectedThreads    = Collections.emptySet();
     this.glideRequests      = glideRequests;
     this.locale             = locale;
     this.highlightSubstring = highlightSubstring;
@@ -281,7 +277,7 @@ public final class ConversationListItem extends ConstraintLayout
     deliveryStatusIndicator.setNone();
     alertView.setNone();
 
-    setBatchMode(false);
+    setSelectedConversations(new ConversationSet());
     setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
@@ -290,7 +286,7 @@ public final class ConversationListItem extends ConstraintLayout
   public void unbind() {
     if (this.recipient != null) {
       observeRecipient(null);
-      setBatchMode(false);
+      setSelectedConversations(new ConversationSet());
       contactPhotoImage.setAvatar(glideRequests, null, !batchMode);
     }
 
@@ -298,10 +294,10 @@ public final class ConversationListItem extends ConstraintLayout
   }
 
   @Override
-  public void setBatchMode(boolean batchMode) {
-    this.batchMode = batchMode;
+  public void setSelectedConversations(@NonNull ConversationSet conversations) {
+    this.batchMode = !conversations.isEmpty();
 
-    boolean selected = batchMode && selectedThreads.contains(thread.getThreadId());
+    boolean selected = batchMode && conversations.containsThreadId(thread.getThreadId());
     setSelected(selected);
 
     if (recipient != null) {

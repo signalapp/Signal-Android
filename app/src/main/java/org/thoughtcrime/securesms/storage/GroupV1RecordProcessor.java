@@ -67,7 +67,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
 
     Optional<RecipientId> recipientId = recipientDatabase.getByGroupId(groupId);
 
-    return recipientId.transform(recipientDatabase::getRecipientSettingsForSync)
+    return recipientId.transform(recipientDatabase::getRecordForSync)
                       .transform(StorageSyncModels::localToRemoteRecord)
                       .transform(r -> r.getGroupV1().get());
   }

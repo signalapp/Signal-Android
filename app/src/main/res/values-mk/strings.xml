@@ -297,6 +297,7 @@
   <string name="ConversationFragment_not_now">Не сега</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Вашииот сигурносен број за %s се промени </string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Вашиот сигурносен број со %s е променет, најверојатно бидејќи го има реинсталирано Signal или ги има променето уредите. Допрете „Провери“ за да го потврдите новиот сигурносен број. Ова не е задолжително.</string>
+  <!--Message shown to indicate which notification profile is on/active-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Избриши одбран разговор?</item>
     <item quantity="other">Избриши избрани разговори?</item>
@@ -358,6 +359,9 @@
     <item quantity="one">%d избран</item>
     <item quantity="other">%d избрани</item>
   </plurals>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <!--Tooltip shown after you have created your first notification profile-->
+  <!--Message shown in top toast to indicate the named profile is on-->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви</string>
   <!--ConversationListItemAction-->
@@ -1732,6 +1736,12 @@
   <string name="QuoteView_original_missing">Оригиналната порака не е пронајдена</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Оди до дното</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">Не сега</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">Исклучи</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Промени на сигурносниот број</string>
   <string name="safety_number_change_dialog__accept">Прифати </string>
@@ -2192,6 +2202,7 @@
   <string name="PaymentsHomeFragment__processing_payment">Обработка на плаќање</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Конверзија на валута не е достапна</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не може да се прикаже конверзија на валута. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Плаќањата не се достапни во Вашиот регион.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Не може да се овозможат плаќања. Обидете се повторно подоцна.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Да деактивирам плаќања?</string>
@@ -2223,6 +2234,7 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s на %2$s во %3$s</string>
   <string name="PaymentsDetailsFragment__to">До</string>
   <string name="PaymentsDetailsFragment__from">Од</string>
+  <string name="PaymentsDetailsFragment__information">Деталите за трансакцијата, вклучувајќи го износот на плаќање и времето на трансакцијата, се дел од MobileCoin регистарот.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Нема дополнителни детали за оваа трансакција</string>
   <string name="PaymentsDetailsFragment__sent_payment">Испратено плаќање</string>
   <string name="PaymentsDetailsFragment__received_payment">Примено плаќање</string>
@@ -2234,11 +2246,14 @@
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">До: Скенирајте или внесете ја адресата на паричникот</string>
   <string name="PaymentsTransferFragment__next">Следно</string>
   <string name="PaymentsTransferFragment__invalid_address">Невалидна адреса</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Проверете ја адресата на паричникот на која се обидувате да префрлите и обидете се повторно.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">За да скенира QR код, на Signal му е потребен пристап до камерата. </string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">На Signal му е потребна дозвола од камерата за да сними QR-код. Одете во поставки, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">За да скенира QR код, на Signal му е потребен пристап до камерата. </string>
   <string name="PaymentsTransferFragment__settings">Поставувања</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Скенирајте го QR кодот на адресата</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Скенирајте го QR кодот на адресата на примачот</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Барање</string>
   <string name="CreatePaymentFragment__pay">Плати</string>
@@ -2272,6 +2287,7 @@
   <string name="ConfirmPayment__payment_failed">Плаќањето не успеа</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Плаќањето ќе продолжи да се обработува</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Невалиден примач</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Оваа личност нема активирано плаќања</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s во %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2713,6 +2729,7 @@
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>
   <string name="RecipientBottomSheet_add_to_contacts">Додај во контакти</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
   <string name="RecipientBottomSheet_add_to_a_group">Додај во група</string>
   <string name="RecipientBottomSheet_add_to_another_group">Додај во друга група</string>
   <string name="RecipientBottomSheet_view_safety_number">Види сигурносен број</string>
@@ -2810,6 +2827,12 @@
   <string name="DeleteAccountFragment__failed_to_delete_account">Не успеав да ја избришам сметката. Дали сте врзани на мрежата?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Не успеав да ги избришам локалните податоци. Можете рачно да ги исчистите во системските поставувања на апликацијата.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Лансирај поставувања за апликацијата</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Пребарувај земји</string>
   <!--CreateGroupActivity-->
@@ -2897,6 +2920,7 @@
   <string name="PaymentsRecoveryPhraseFragment__next">Следно</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Не правете слики од екранот и не испраќајте по е-пошта.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да копирам на таблата со исечоци?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
@@ -2990,6 +3014,12 @@
   <string name="NotificationsSettingsFragment__calls">Повици</string>
   <string name="NotificationsSettingsFragment__notify_when">Извести кога…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Кога контакт ќе се приклучи на Signal</string>
+  <!--Notification preference header-->
+  <!--Notification preference option header-->
+  <!--Notification preference summary text-->
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <!--Button text to create a notification profile-->
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Блокирани</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d контакти</string>
@@ -3252,6 +3282,9 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
   <string name="ImageView__badge">Беџ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal е овозможен од луѓе како тебе.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддржете ја технологијата што е создадена за Вас—не за Вашите податоци—со приклучување кон заедницата што го одржува Signal.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Поддржете ја технологијата што е создадена за Вас, а не за Вашите податоци, со приклучување кон заедницата што го одржува Signal.</string>
+  <string name="SubscribeFragment__currency">Валута</string>
   <string name="SubscribeFragment__more_payment_options">Повеќе опции за плаќање</string>
   <string name="SubscribeFragment__cancel_subscription">Откажи претплата</string>
   <string name="SubscribeFragment__confirm_cancellation">Потврди откажување?</string>
@@ -3266,6 +3299,7 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, одржуван само од луѓето кои го користат и ценат. Направете месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесеш?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Можете исто така да</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Станете месечен поддржувач</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Поставете како главен беџ</string>
@@ -3304,6 +3338,92 @@
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет конекција.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <string name="NetworkFailure__retry">Пробај пак</string>
+  <!--Title of create notification profile screen-->
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">Име на профил </string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button once the profile is named to continue to the next create step-->
+  <string name="EditNotificationProfileFragment__next">Следно</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">Зачувај</string>
+  <!--Title of edit notification profile screen-->
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">Работа</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <!--Description of what the user should be doing with this screen-->
+  <!--Button text that launches the contact picker to select from-->
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">Додај…</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <!--Header shown above list of all notification profiles-->
+  <!--Button that starts the create new notification profile flow-->
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">Вклучи</string>
+  <!--Button use to permanently delete a notification profile-->
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">Врати</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">Избриши</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <!--Schedule description if all days are selected-->
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">Вклучи</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">Исклучено</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s до %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <!--Section header for showing schedule information-->
+  <!--Title for add schedule to profile in create flow-->
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Започни</string>
+  <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Крај</string>
+  <!--First letter of Sunday-->
+  <!--First letter of Monday-->
+  <!--First letter of Tuesday-->
+  <!--First letter of Wednesday-->
+  <!--First letter of Thursday-->
+  <!--First letter of Friday-->
+  <!--First letter of Saturday-->
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">Зачувај</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">Прескокни</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">Следно</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <!--Title for final screen shown after completing a profile creation-->
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">Готово</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">До %1$s</string>
+  <!--Option to view profile details-->
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <!--Title for notification profile megaphone-->
+  <!--Description for notification profile megaphone-->
+  <!--Call to action button to create a profile from megaphone-->
+  <!--Button to dismiss notification profile megaphone-->
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Не успеа да се отвори менито за избор.</string>
   <!--EOF-->

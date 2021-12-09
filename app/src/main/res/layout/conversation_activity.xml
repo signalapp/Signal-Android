@@ -239,7 +239,6 @@
             android:inflatedId="@+id/review_banner"
             android:layout="@layout/review_banner_view" />
 
-
     </LinearLayout>
 
     <View

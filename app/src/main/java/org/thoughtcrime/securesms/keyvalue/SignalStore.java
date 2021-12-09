@@ -18,28 +18,29 @@ public final class SignalStore {
 
   private KeyValueStore store;
 
-  private final AccountValues            accountValues;
-  private final KbsValues                kbsValues;
-  private final RegistrationValues       registrationValues;
-  private final PinValues                pinValues;
-  private final RemoteConfigValues       remoteConfigValues;
-  private final StorageServiceValues     storageServiceValues;
-  private final UiHints                  uiHints;
-  private final TooltipValues            tooltipValues;
-  private final MiscellaneousValues      misc;
-  private final InternalValues           internalValues;
-  private final EmojiValues              emojiValues;
-  private final SettingsValues           settingsValues;
-  private final CertificateValues        certificateValues;
-  private final PhoneNumberPrivacyValues phoneNumberPrivacyValues;
-  private final OnboardingValues         onboardingValues;
-  private final WallpaperValues          wallpaperValues;
-  private final PaymentsValues           paymentsValues;
-  private final DonationsValues          donationsValues;
-  private final ProxyValues              proxyValues;
-  private final RateLimitValues          rateLimitValues;
-  private final ChatColorsValues         chatColorsValues;
-  private final ImageEditorValues        imageEditorValues;
+  private final AccountValues             accountValues;
+  private final KbsValues                 kbsValues;
+  private final RegistrationValues        registrationValues;
+  private final PinValues                 pinValues;
+  private final RemoteConfigValues        remoteConfigValues;
+  private final StorageServiceValues      storageServiceValues;
+  private final UiHints                   uiHints;
+  private final TooltipValues             tooltipValues;
+  private final MiscellaneousValues       misc;
+  private final InternalValues            internalValues;
+  private final EmojiValues               emojiValues;
+  private final SettingsValues            settingsValues;
+  private final CertificateValues         certificateValues;
+  private final PhoneNumberPrivacyValues  phoneNumberPrivacyValues;
+  private final OnboardingValues          onboardingValues;
+  private final WallpaperValues           wallpaperValues;
+  private final PaymentsValues            paymentsValues;
+  private final DonationsValues           donationsValues;
+  private final ProxyValues               proxyValues;
+  private final RateLimitValues           rateLimitValues;
+  private final ChatColorsValues          chatColorsValues;
+  private final ImageEditorValues         imageEditorValues;
+  private final NotificationProfileValues notificationProfileValues;
 
   private static volatile SignalStore instance;
 
@@ -56,29 +57,30 @@ public final class SignalStore {
   }
 
   private SignalStore(@NonNull KeyValueStore store) {
-    this.store                    = store;
-    this.accountValues            = new AccountValues(store);
-    this.kbsValues                = new KbsValues(store);
-    this.registrationValues       = new RegistrationValues(store);
-    this.pinValues                = new PinValues(store);
-    this.remoteConfigValues       = new RemoteConfigValues(store);
-    this.storageServiceValues     = new StorageServiceValues(store);
-    this.uiHints                  = new UiHints(store);
-    this.tooltipValues            = new TooltipValues(store);
-    this.misc                     = new MiscellaneousValues(store);
-    this.internalValues           = new InternalValues(store);
-    this.emojiValues              = new EmojiValues(store);
-    this.settingsValues           = new SettingsValues(store);
-    this.certificateValues        = new CertificateValues(store);
-    this.phoneNumberPrivacyValues = new PhoneNumberPrivacyValues(store);
-    this.onboardingValues         = new OnboardingValues(store);
-    this.wallpaperValues          = new WallpaperValues(store);
-    this.paymentsValues           = new PaymentsValues(store);
-    this.donationsValues          = new DonationsValues(store);
-    this.proxyValues              = new ProxyValues(store);
-    this.rateLimitValues          = new RateLimitValues(store);
-    this.chatColorsValues         = new ChatColorsValues(store);
-    this.imageEditorValues        = new ImageEditorValues(store);
+    this.store                     = store;
+    this.accountValues             = new AccountValues(store);
+    this.kbsValues                 = new KbsValues(store);
+    this.registrationValues        = new RegistrationValues(store);
+    this.pinValues                 = new PinValues(store);
+    this.remoteConfigValues        = new RemoteConfigValues(store);
+    this.storageServiceValues      = new StorageServiceValues(store);
+    this.uiHints                   = new UiHints(store);
+    this.tooltipValues             = new TooltipValues(store);
+    this.misc                      = new MiscellaneousValues(store);
+    this.internalValues            = new InternalValues(store);
+    this.emojiValues               = new EmojiValues(store);
+    this.settingsValues            = new SettingsValues(store);
+    this.certificateValues         = new CertificateValues(store);
+    this.phoneNumberPrivacyValues  = new PhoneNumberPrivacyValues(store);
+    this.onboardingValues          = new OnboardingValues(store);
+    this.wallpaperValues           = new WallpaperValues(store);
+    this.paymentsValues            = new PaymentsValues(store);
+    this.donationsValues           = new DonationsValues(store);
+    this.proxyValues               = new ProxyValues(store);
+    this.rateLimitValues           = new RateLimitValues(store);
+    this.chatColorsValues          = new ChatColorsValues(store);
+    this.imageEditorValues         = new ImageEditorValues(store);
+    this.notificationProfileValues = new NotificationProfileValues(store);
   }
 
   public static void onFirstEverAppLaunch() {
@@ -104,6 +106,7 @@ public final class SignalStore {
     rateLimit().onFirstEverAppLaunch();
     chatColorsValues().onFirstEverAppLaunch();
     imageEditorValues().onFirstEverAppLaunch();
+    notificationProfileValues().onFirstEverAppLaunch();
   }
 
   public static List<String> getKeysToIncludeInBackup() {
@@ -130,6 +133,7 @@ public final class SignalStore {
     keys.addAll(rateLimit().getKeysToIncludeInBackup());
     keys.addAll(chatColorsValues().getKeysToIncludeInBackup());
     keys.addAll(imageEditorValues().getKeysToIncludeInBackup());
+    keys.addAll(notificationProfileValues().getKeysToIncludeInBackup());
     return keys;
   }
 
@@ -228,6 +232,10 @@ public final class SignalStore {
 
   public static @NonNull ImageEditorValues imageEditorValues() {
     return getInstance().imageEditorValues;
+  }
+
+  public static @NonNull NotificationProfileValues notificationProfileValues() {
+    return getInstance().notificationProfileValues;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {

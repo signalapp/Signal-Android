@@ -16,17 +16,15 @@ import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -44,9 +42,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   private final GlideRequests               glideRequests;
   private final OnConversationClickListener onConversationClickListener;
-  private final Map<Long, Conversation>     batchSet  = Collections.synchronizedMap(new LinkedHashMap<>());
-  private       boolean                     batchMode = false;
-  private final Set<Long>                   typingSet = new HashSet<>();
+  private       ConversationSet             selectedConversations = new ConversationSet();
+  private final Set<Long>                   typingSet             = new HashSet<>();
 
   private PagingController pagingController;
 
@@ -62,8 +59,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   @Override
   public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     if (viewType == TYPE_ACTION) {
-      ConversationViewHolder holder =  new ConversationViewHolder(LayoutInflater.from(parent.getContext())
-                                                                                .inflate(R.layout.conversation_list_item_action, parent, false));
+      ConversationViewHolder holder = new ConversationViewHolder(LayoutInflater.from(parent.getContext())
+                                                                               .inflate(R.layout.conversation_list_item_action, parent, false));
 
       holder.itemView.setOnClickListener(v -> {
         if (holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
@@ -73,8 +70,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
       return holder;
     } else if (viewType == TYPE_THREAD) {
-      ConversationViewHolder holder =  new ConversationViewHolder(CachedInflater.from(parent.getContext())
-                                                                                .inflate(R.layout.conversation_list_item_view, parent, false));
+      ConversationViewHolder holder = new ConversationViewHolder(CachedInflater.from(parent.getContext())
+                                                                               .inflate(R.layout.conversation_list_item_view, parent, false));
 
       holder.itemView.setOnClickListener(v -> {
         int position = holder.getAdapterPosition();
@@ -116,7 +113,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
           Payload payload = (Payload) payloadObject;
 
           if (payload == Payload.SELECTION) {
-            ((ConversationViewHolder) holder).getConversationListItem().setBatchMode(batchMode);
+            ((ConversationViewHolder) holder).getConversationListItem().setSelectedConversations(selectedConversations);
           } else {
             ((ConversationViewHolder) holder).getConversationListItem().updateTypingIndicator(typingSet);
           }
@@ -135,8 +132,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
                                             glideRequests,
                                             Locale.getDefault(),
                                             typingSet,
-                                            getBatchSelectionIds(),
-                                            batchMode);
+                                            selectedConversations);
     } else if (holder.getItemViewType() == TYPE_HEADER) {
       HeaderViewHolder casted       = (HeaderViewHolder) holder;
       Conversation     conversation = Objects.requireNonNull(getItem(position));
@@ -180,18 +176,9 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     notifyItemRangeChanged(0, getItemCount(), Payload.TYPING_INDICATOR);
   }
 
-  void toggleConversationInBatchSet(@NonNull Conversation conversation) {
-    if (batchSet.containsKey(conversation.getThreadRecord().getThreadId())) {
-      batchSet.remove(conversation.getThreadRecord().getThreadId());
-    } else if (conversation.getThreadRecord().getThreadId() != -1) {
-      batchSet.put(conversation.getThreadRecord().getThreadId(), conversation);
-    }
-
+  void setSelectedConversations(@NonNull ConversationSet conversations) {
+    selectedConversations = conversations;
     notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
-  }
-
-  Collection<Conversation> getBatchSelection() {
-    return batchSet.values();
   }
 
   @Override
@@ -211,27 +198,6 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
       default:
         throw new IllegalArgumentException();
     }
-  }
-
-  @NonNull Set<Long> getBatchSelectionIds() {
-    return batchSet.keySet();
-  }
-
-  void selectAllThreads() {
-    for (int i = 0; i < super.getItemCount(); i++) {
-      Conversation conversation = getItem(i);
-      if (conversation != null && conversation.getThreadRecord().getThreadId() >= 0) {
-        batchSet.put(conversation.getThreadRecord().getThreadId(), conversation);
-      }
-    }
-
-    notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
-  }
-
-  void initializeBatchMode(boolean toggle) {
-    this.batchMode = toggle;
-    batchSet.clear();
-    notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
   }
 
   static final class ConversationViewHolder extends RecyclerView.ViewHolder {

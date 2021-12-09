@@ -75,7 +75,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
           try {
             groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());
             groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
-            groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
+            groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context, device.getNetworkRoute().getLocalAdapterType()));
           } catch (CallException e) {
             Log.e(tag, e);
             throw new RuntimeException(e);
