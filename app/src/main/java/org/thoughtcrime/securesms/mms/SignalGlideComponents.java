@@ -3,16 +3,11 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.Registry;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.load.engine.cache.DiskCache;
-import com.bumptech.glide.load.engine.cache.DiskCacheAdapter;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.UnitModelLoader;
 import com.bumptech.glide.load.resource.bitmap.Downsampler;
@@ -20,7 +15,6 @@ import com.bumptech.glide.load.resource.bitmap.StreamBitmapDecoder;
 import com.bumptech.glide.load.resource.gif.ByteBufferGifDecoder;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.load.resource.gif.StreamGifDecoder;
-import com.bumptech.glide.module.AppGlideModule;
 
 import org.signal.glide.apng.decode.APNGDecoder;
 import org.thoughtcrime.securesms.badges.models.Badge;
@@ -53,18 +47,11 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-@GlideModule
-public class SignalGlideModule extends AppGlideModule {
-
-  @Override
-  public boolean isManifestParsingEnabled() {
-    return false;
-  }
-
-  @Override
-  public void applyOptions(Context context, GlideBuilder builder) {
-    builder.setLogLevel(Log.ERROR);
-  }
+/**
+ * The core logic for {@link SignalGlideModule}. This is a separate class because it uses
+ * dependencies defined in the main Gradle module.
+ */
+public class SignalGlideComponents implements RegisterGlideComponents {
 
   @Override
   public void registerComponents(@NonNull Context context, @NonNull Glide glide, @NonNull Registry registry) {
@@ -101,12 +88,5 @@ public class SignalGlideModule extends AppGlideModule {
     registry.append(BlurHash.class, BlurHash.class, new BlurHashModelLoader.Factory());
     registry.append(Badge.class, InputStream.class, BadgeLoader.createFactory());
     registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
-  }
-
-  public static class NoopDiskCacheFactory implements DiskCache.Factory {
-    @Override
-    public DiskCache build() {
-      return new DiskCacheAdapter();
-    }
   }
 }

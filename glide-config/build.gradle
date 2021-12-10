@@ -2,8 +2,8 @@ plugins {
     id 'com.android.library'
     id 'witness'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
-
 apply from: 'witness-verifications.gradle'
 
 android {
@@ -21,7 +21,6 @@ android {
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
     }
-
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -34,11 +33,12 @@ dependencyVerification {
 dependencies {
     lintChecks project(':lintchecks')
 
-    implementation project(':core-util')
-
     coreLibraryDesugaring libs.android.tools.desugar
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.annotation
     implementation libs.androidx.appcompat
+
+    implementation libs.glide.glide
+    kapt libs.glide.compiler
 }

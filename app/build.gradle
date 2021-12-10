@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'witness'
@@ -449,6 +448,7 @@ dependencies {
     implementation project(':libsignal-service')
     implementation project(':paging')
     implementation project(':core-util')
+    implementation project(':glide-config')
     implementation project(':video')
     implementation project(':device-transfer')
     implementation project(':image-editor')
@@ -475,8 +475,6 @@ dependencies {
     implementation libs.apache.httpclient.android
     implementation libs.photoview
     implementation libs.glide.glide
-    kapt libs.glide.compiler
-    kapt libs.androidx.annotation
     implementation libs.roundedimageview
     implementation libs.materialish.progress
     implementation libs.greenrobot.eventbus
