@@ -76,12 +76,11 @@ class EditNotificationProfileScheduleViewModel(
       repository.updateSchedule(schedule)
         .toSingleDefault(SaveScheduleResult.Success)
         .flatMap { r ->
-          if (createMode && schedule.enabled && schedule.coversTime(System.currentTimeMillis())) {
-            repository.manuallyToggleProfile(profileId, schedule)
+          if (schedule.enabled && schedule.coversTime(System.currentTimeMillis())) {
+            repository.manuallyEnableProfileForSchedule(profileId, schedule)
               .toSingleDefault(r)
           } else {
-            repository.updateManuallyEnabledDataIfNecessary(profileId, schedule)
-              .toSingleDefault(r)
+            Single.just(r)
           }
         }
     }
