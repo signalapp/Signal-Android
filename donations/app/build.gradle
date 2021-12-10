@@ -2,10 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'witness'
 }
-
-apply from: 'witness-verifications.gradle'
 
 android {
     compileSdk COMPILE_SDK
@@ -33,10 +30,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
-
-dependencyVerification {
-    configuration = '(debug|release)RuntimeClasspath'
 }
 
 dependencies {

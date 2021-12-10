@@ -2,10 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'androidx.navigation.safeargs'
-apply plugin: 'witness'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply from: 'translations.gradle'
-apply from: 'witness-verifications.gradle'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'app.cash.exhaustive'
 apply plugin: 'kotlin-parcelize'
@@ -551,10 +549,6 @@ dependencies {
     implementation libs.rxdogtag
 
     androidTestUtil 'androidx.test:orchestrator:1.4.0'
-}
-
-dependencyVerification {
-    configuration = '(play|website)(Prod|Staging)(Debug|Release)RuntimeClasspath'
 }
 
 def getLastCommitTimestamp() {
