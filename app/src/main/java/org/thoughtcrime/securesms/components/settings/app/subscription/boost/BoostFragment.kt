@@ -200,7 +200,9 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
               viewModel.setCustomAmount(it)
             },
             onCustomAmountFocusChanged = {
-              viewModel.setCustomAmountFocused(it)
+              if (it) {
+                viewModel.setCustomAmountFocused()
+              }
             }
           )
         )
