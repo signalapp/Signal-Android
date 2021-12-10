@@ -170,6 +170,7 @@ data class Boost(
         custom.setText("")
       }
 
+      custom.isSelected = model.isCustomAmountFocused
       custom.setOnFocusChangeListener { _, hasFocus ->
         model.onCustomAmountFocusChanged(hasFocus)
       }
