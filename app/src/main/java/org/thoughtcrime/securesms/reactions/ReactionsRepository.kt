@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.reactions
 
-import android.content.Context
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -18,8 +17,10 @@ class ReactionsRepository {
     return Observable.create { emitter: ObservableEmitter<List<ReactionDetails>> ->
       val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
 
-      val messageObserver = DatabaseObserver.MessageObserver { messageId ->
-        emitter.onNext(fetchReactionDetails(messageId))
+      val messageObserver = DatabaseObserver.MessageObserver { reactionMessageId ->
+        if (reactionMessageId == messageId) {
+          emitter.onNext(fetchReactionDetails(reactionMessageId))
+        }
       }
 
       databaseObserver.registerMessageUpdateObserver(messageObserver)
@@ -33,7 +34,6 @@ class ReactionsRepository {
   }
 
   private fun fetchReactionDetails(messageId: MessageId): List<ReactionDetails> {
-    val context: Context = ApplicationDependencies.getApplication()
     val reactions: List<ReactionRecord> = SignalDatabase.reactions.getReactions(messageId)
 
     return reactions.map { reaction ->
