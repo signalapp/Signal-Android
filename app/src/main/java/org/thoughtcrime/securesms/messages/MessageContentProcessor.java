@@ -1980,6 +1980,10 @@ public final class MessageContentProcessor {
                                      .toList());
           }
         }
+        if (message.getBody().equals("") && mmsMessage.getSharedContacts().size() == 1) {
+          String contactName = "\uD83D\uDC64" + mmsMessage.getSharedContacts().get(0).getName().getDisplayName();
+          return Optional.of(new QuoteModel(quote.get().getId(), author, contactName, false, attachments, mentions));
+        }
       }
 
       return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), false, attachments, mentions));
