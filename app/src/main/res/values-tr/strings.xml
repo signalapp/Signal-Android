@@ -3078,7 +3078,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profiller</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Bildirim profillerini ayarlayın</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Bildirim Profilleri</string>
@@ -3499,10 +3498,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NotificationProfileDetails__notify_for_all_mentions">Tüm bahsetmeleri bildir</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Zamanlama</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Tümünü gör</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Zamanlama ekle</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Bu profili otomatikleştirmek için zamanlamanızı açın ve düzenleyin.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Zamanlama</string>
   <!--Label for showing the start time for the schedule-->
@@ -3546,9 +3546,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profiliniz zamanlamanıza göre otomatik olarak açılıp kapanacaktır.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Yeni bildirim profili</string> -->
+  <string name="NotificationProfileSelection__new_profile">Yeni profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
-  <string name="NotificationProfileSelection__for_1_hour">1 saatliğine</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s tarihine kadar</string>
   <!--Option to view profile details-->

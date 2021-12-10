@@ -3274,7 +3274,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profily</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Nastavit profily oznámení</string> -->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Vytvořte si profil a přijímejte oznámení pouze od lidí a skupin, které si vyberete.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Profily oznámení</string>
@@ -3662,7 +3662,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">Řízení</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__downtime">Odstávka</string>
+  <string name="EditNotificationProfileFragment__downtime">Přestávka</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">Soustředění</string>
   <!--Error message shown when attempting to next/save without a profile name-->
@@ -3711,10 +3711,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NotificationProfileDetails__notify_for_all_mentions">Upozornit na všechny zmínky</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Plán</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Zobrazit vše</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Přidat plán</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Zapněte a upravte svůj plán pro automatizaci tohoto profilu.</string> -->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Nastavte plán pro automatické povolení tohoto profilu oznámení.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Plán</string>
   <!--Label for showing the start time for the schedule-->
@@ -3758,7 +3760,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Váš profil se automaticky zapne a vypne podle vašeho plánu.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Nový profil oznámení</string> -->
+  <string name="NotificationProfileSelection__new_profile">Nový profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">Na 1 hodinu</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->

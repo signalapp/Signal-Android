@@ -3079,7 +3079,6 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">پروفایل‌ها</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">برپایی پروفایل‌های اعلان</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">پروفایل‌های اعلان</string>
@@ -3491,10 +3490,11 @@
   <string name="NotificationProfileDetails__notify_for_all_mentions">برای همهٔ اشاره‌ها آگاه کن</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">برنامهٔ زمانی</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">مشاهدهٔ همه</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">افزودن یک برنامهٔ زمانی</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">برای خودکار کردن این پروفایل برنامهٔ زمانی خود را روشن و ویرایش کنید.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">برنامهٔ زمانی</string>
   <!--Label for showing the start time for the schedule-->
@@ -3538,9 +3538,8 @@
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">پروفایل شما مطابق با برنامهٔ زمانی شما به صورت خودکار روشن و خاموش خواهد شد.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">پروفایل اعلان جدید</string> -->
+  <string name="NotificationProfileSelection__new_profile">پروفایل جدید</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
-  <string name="NotificationProfileSelection__for_1_hour">برای ۱ ساعت</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">تا %1$s</string>
   <!--Option to view profile details-->

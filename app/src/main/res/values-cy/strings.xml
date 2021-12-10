@@ -3674,6 +3674,8 @@ Send neges heb ei ddiogelu?</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Gweld y cyfan</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->

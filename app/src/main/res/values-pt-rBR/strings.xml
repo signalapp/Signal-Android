@@ -3474,6 +3474,8 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Ver todos</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
@@ -3514,7 +3516,6 @@
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <!--Manual enable option to manually enable a profile for 1 hour-->
-  <string name="NotificationProfileSelection__for_1_hour">Durante 1 hora</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Até %1$s</string>
   <!--Option to view profile details-->

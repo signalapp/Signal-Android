@@ -3080,7 +3080,6 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Perfis</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Configurar perfis de notificações</string> -->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Perfis de notificações</string>
@@ -3505,10 +3504,11 @@
   <string name="NotificationProfileDetails__notify_for_all_mentions">Notificar-me quando eu for \'Mencionado\'</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Agenda</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Ver tudo</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Adicionar uma agenda</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Ative e edite a sua agenda para automatizar este perfil.</string> -->
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Agenda</string>
   <!--Label for showing the start time for the schedule-->
@@ -3552,9 +3552,8 @@
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">O seu perfil irá ativar e desativar automaticamente de acordo com a sua agenda.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Novo perfil de notificação</string> -->
+  <string name="NotificationProfileSelection__new_profile">Perfil novo</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
-  <string name="NotificationProfileSelection__for_1_hour">Durante 1 hora</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Até %1$s</string>
   <!--Option to view profile details-->

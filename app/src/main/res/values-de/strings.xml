@@ -3070,10 +3070,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profile</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Benachrichtigungsprofile einrichten</string> -->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Erstelle ein Profil, um Benachrichtigungen nur von ausgewählten Personen und Gruppen zu erhalten.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
-  <string name="NotificationProfilesFragment__notification_profiles">Benachrichtigungsprofile</string>
+  <string name="NotificationProfilesFragment__notification_profiles">Benachrichtigungs­profile</string>
   <!--Button text to create a notification profile-->
   <string name="NotificationProfilesFragment__create_profile">Profil erstellen</string>
   <!--PrivacySettingsFragment-->
@@ -3456,7 +3456,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Description of what the user should be doing with this screen-->
   <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Füge Personen und Gruppen hinzu, von denen du Benachrichtigungen und Anrufe empfangen möchtest, wenn dieses Profil aktiviert ist</string>
   <!--Button text that launches the contact picker to select from-->
-  <string name="AddAllowedMembers__add_people_or_groups">Pesonen oder Gruppen hinzufügen</string>
+  <string name="AddAllowedMembers__add_people_or_groups">Personen oder Gruppen hinzufügen</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Hinzufügen</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
@@ -3486,7 +3486,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Profile status on if it is not the active profile-->
   <string name="NotificationProfileDetails__off">Aus</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$s bis %2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">%1$s bis %2$s Uhr</string>
   <!--Section header for exceptions to the notification profile-->
   <string name="NotificationProfileDetails__exceptions">Ausnahmen</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
@@ -3495,10 +3495,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationProfileDetails__notify_for_all_mentions">Bei jeder Erwähnung benachrichtigen</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Zeitplan</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Alle anzeigen</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Füge einen Zeitplan hinzu</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Aktiviere und bearbeite deinen Zeitplan, um dieses Profil zu automatisieren.</string> -->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Erstelle einen Zeitplan, um dieses Benachrichtigungsprofil automatisch zu aktivieren.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Zeitplan</string>
   <!--Label for showing the start time for the schedule-->
@@ -3542,15 +3544,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Dein Profil wird sich gemäß deines Zeitplanes automatisch ein- und ausschalten.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Neues Benachrichtigungsprofil</string> -->
+  <string name="NotificationProfileSelection__new_profile">Neues Profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
-  <string name="NotificationProfileSelection__for_1_hour">Für eine Stunde</string>
+  <string name="NotificationProfileSelection__for_1_hour">Für 1 Stunde</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
-  <string name="NotificationProfileSelection__until_s">Bis %1$s</string>
+  <string name="NotificationProfileSelection__until_s">Bis %1$s Uhr</string>
   <!--Option to view profile details-->
   <string name="NotificationProfileSelection__view_settings">Einstellungen anzeigen</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
-  <string name="NotificationProfileSelection__on_until_s">Eingeschaltet bis %1$s</string>
+  <string name="NotificationProfileSelection__on_until_s">Eingeschaltet bis %1$s Uhr</string>
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">Benachrichtigungsprofile</string>
   <!--Description for notification profile megaphone-->

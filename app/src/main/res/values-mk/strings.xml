@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Вашииот сигурносен број за %s се промени </string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Вашиот сигурносен број со %s е променет, најверојатно бидејќи го има реинсталирано Signal или ги има променето уредите. Допрете „Провери“ за да го потврдите новиот сигурносен број. Ова не е задолжително.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s вклучен</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Избриши одбран разговор?</item>
     <item quantity="other">Избриши избрани разговори?</item>
@@ -360,8 +361,10 @@
     <item quantity="other">%d избрани</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Профил за известување</string>
   <!--Tooltip shown after you have created your first notification profile-->
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s вклучен</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Порака за размена на клучеви</string>
   <!--ConversationListItemAction-->
@@ -1738,6 +1741,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Оди до дното</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Балончиња се функција на Android која можете да ја исклучите за Signal разговори.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Не сега</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2829,11 +2833,17 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Не успеав да ги избришам локалните податоци. Можете рачно да ги исчистите во системските поставувања на апликацијата.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Лансирај поставувања за апликацијата</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Напуштање на групите…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Се брише сметката…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Во зависност од бројот на групи во кои сте член, ова може да потрае неколку минути</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Бришење на кориснички податоци и ресетирање на апликацијата</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Сметката не е избришана</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Настана проблем при завршувањето на процесот на бришење. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Пребарувај земји</string>
   <!--CreateGroupActivity-->
@@ -3016,11 +3026,15 @@
   <string name="NotificationsSettingsFragment__notify_when">Извести кога…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Кога контакт ќе се приклучи на Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Профили за известување</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Профили</string>
   <!--Notification preference summary text-->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Профили за известување</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Создај профил</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Блокирани</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d контакти</string>
@@ -3349,33 +3363,46 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Зачувај</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Уредете го овој профил</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Профил со ова име веќе постои</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Работа</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Спијам</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Возам</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Фокусиран/а</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Мора да има име</string>
   <!--Title for add recipients to notification profile screen in create flow-->
   <!--Description of what the user should be doing with this screen-->
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Додадете луѓе или групи</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Додај…</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Профили</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Нов профил</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Вклучи</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Избриши профил</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" отстранет.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Врати</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Трајно да се избрише профилот?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Избриши</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Секој ден</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Вклучи</string>
   <!--Profile status on if it is not the active profile-->
@@ -3383,9 +3410,13 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s до %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Исклучоци</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Дозволи ги сите повици</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Види сѐ</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
@@ -3394,14 +3425,23 @@
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Крај</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">Н</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">П</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">В</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">С</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Ч</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">П</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">С</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Постави време за почеток</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Постави време за крај</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Зачувај</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3410,20 +3450,26 @@
   <string name="EditNotificationProfileSchedule__next">Следно</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Профилот е создаден</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Готово</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Нов профил</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">За 1 час</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">До %1$s</string>
   <!--Option to view profile details-->
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Вклучен до %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Профили за известување</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Создај профил</string>
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">Не сега</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->

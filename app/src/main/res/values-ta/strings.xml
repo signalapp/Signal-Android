@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed"> %s உடனான உங்கள் பாதுகாப்பு எண் மாறிவிட்டது.</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Signal மீண்டும் நிறுவியிருப்பதாலோ அல்லது  சாதனங்கள் மாற்றப்பட்டதாலோ, உங்கள் பாதுகாப்பு எண் %s உடன்  மாற்றப்பட்டது. சரிபார்க்க என்பதை தட்டி புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்தவும். இது விருப்பத்தேர்வு.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s உள்ளது</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை அழி ?</item>
     <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை  நீக்கவா?</item>
@@ -317,11 +318,16 @@
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">முடக்கு</item>
+    <item quantity="other">முடக்கு</item>
+  </plurals>
   <string name="ConversationListFragment_select">தேர்வு</string>
   <string name="ConversationListFragment_select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <!--Tooltip shown after you have created your first notification profile-->
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s உள்ளது</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">முக்கிய பரிமாற்ற செய்தி</string>
   <!--ConversationListItemAction-->
@@ -662,6 +668,7 @@
   <string name="ManageProfileFragment_your_name">உங்கள் பெயர்</string>
   <string name="ManageProfileFragment_your_username">உங்கள் பயனர்பெயர்</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">சித்தரிப்பு அமைப்பதில் தோல்வி</string>
+  <string name="ManageProfileFragment__edit_photo">படத்தை திருத்த</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">பொதுவான குழுக்கள் எதுவும் இல்லை</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -748,6 +755,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">பகிர்</string>
   <string name="InviteActivity_share_with_contacts">தொடர்புகளுடன் பகிரவும்</string>
+  <string name="InviteActivity_share_via">பகிரும் வழி…</string>
   <string name="InviteActivity_cancel">ரத்து செய் </string>
   <string name="InviteActivity_sending">அனுப்புகிறது …</string>
   <string name="InviteActivity_invitations_sent">அழைப்புகள் அனுப்பட்டது!</string>
@@ -761,6 +769,7 @@
   <string name="InviteActivity_no_app_to_share_to">உங்களிடம் பகிர எந்த பயன்பாடுகளும் இல்லை என்று தெரிகிறது.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">மேலும் அறிக</string>
+  <string name="SpanUtil__read_more">மேலும் படிக்க</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">செய்தியைக் கண்டுபிடிக்க முடியவில்லை</string>
   <string name="LongMessageActivity_message_from_s">%1$s  இலிருந்து செய்தி</string>
@@ -822,7 +831,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
   <string name="NotificationBarManager__incoming_signal_call">உள்வரும் Signal அழைப்பு</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">உள்வரும் Signal குழு அழைப்பு</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal அழைப்பு சேவையை நிறுத்துதல்</string>
+  <string name="NotificationBarManager__decline_call">அழைப்பை நிராகரி</string>
   <string name="NotificationBarManager__answer_call">அழைப்பை எடு</string>
   <string name="NotificationBarManager__end_call">அழைப்பைத் துண்டி</string>
   <string name="NotificationBarManager__cancel_call">அழைப்பு ரத்து</string>
@@ -1029,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்படாததாக குறித்தீர்கள்</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்படாததாக வேறொரு சாதனத்திலிருந்து குறித்தீர்கள்</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">இருந்து ஒரு செய்தி %s வழங்க முடியவில்லை</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s அவர்களின் எண்ணை புதிய எண்ணுக்கு மாற்றி விட்டார்கள்</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$sகுழு அழைப்பைத் தொடங்கினார்%2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s குழு அழைப்பில் உள்ளார் %2$s</string>
@@ -1187,6 +1199,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ஐ அழைக்க, சிக்னலுக்கு உங்கள் கேமரா அனுமதி தேவை Signal Camera permission</string>
   <string name="WebRtcCallActivity__signal_s">சிக்னல் Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">அழைக்கிறது…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">எண்ணிக்கை கூடியதால் குழுவில் உள்ள அனைவரையும் அழைக்க இயலாது</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal  அழைப்பு</string>
   <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு</string>
@@ -1199,8 +1212,18 @@
   <string name="WebRtcCallView__reconnecting">மீண்டும் இணைக்கிறது …</string>
   <string name="WebRtcCallView__joining">சேர்கிறீர்கள்</string>
   <string name="WebRtcCallView__disconnected">துண்டிக்கப்பட்டது</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s ஐ அழைக்கும்</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$sஐயும் %2$sஐயும் அழைக்கும்</string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$sக்கு தெரியபடுத்தப்படும் </string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s மற்றும் %2$sக்கு தெரியபடுத்தப்படும்</string>
+  <string name="WebRtcCallView__ringing_s">%1$s அழைக்கப்படுகிறார்</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s மற்றும் %2$s அழைக்கப்படுகின்றனர்</string>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s உங்களை அழைக்கிறார்</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s உங்களையும் %2$sஐயும் அழைக்கிறார்</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s உங்களையும் %2$sஐயும் மற்றும் %3$sஐயும் அழைக்கிறார்</string>
   <string name="WebRtcCallView__no_one_else_is_here">வேறு யாரும் இங்கு இல்லை</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s இந்த அழைப்பில் இருக்கிறார்</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s இந்த அழைப்பில் உள்ளார்</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s மற்றும் %2$sஇந்த அழைப்பில் உள்ளனர்</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s அளிக்கிறது</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1211,6 +1234,7 @@
   <string name="WebRtcCallView__speaker">ஒலி பெருக்கி</string>
   <string name="WebRtcCallView__camera">புகைப்பட கருவி</string>
   <string name="WebRtcCallView__mute">முடக்கு</string>
+  <string name="WebRtcCallView__ring">அழை</string>
   <string name="WebRtcCallView__end_call">அழைப்பை முடி </string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -3209,6 +3233,8 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">அனைத்தையும் பார்</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->

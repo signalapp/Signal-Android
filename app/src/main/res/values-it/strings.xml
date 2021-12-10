@@ -3081,7 +3081,7 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profili</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Imposta i profili di notifica</string> -->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Crea un profilo per ricevere notifiche solo dalle persone e dai gruppi da te scelti.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Profili di notifica</string>
@@ -3506,10 +3506,12 @@
   <string name="NotificationProfileDetails__notify_for_all_mentions">Notifica per tutte le menzioni</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Orario</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Vedi tutti</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Aggiungi un orario</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Attiva e modifica il tuo orario per automatizzare questo profilo.</string> -->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Imposta un orario per attivare automaticamente questo profilo di notifica.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Orario</string>
   <!--Label for showing the start time for the schedule-->
@@ -3553,7 +3555,7 @@
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Il tuo profilo si attiverà e disattiverà automaticamente secondo il tuo orario.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Nuovo profilo di notifica</string> -->
+  <string name="NotificationProfileSelection__new_profile">Nuovo profilo</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">Per 1 ora</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
@@ -3565,7 +3567,7 @@
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">Profili di notifica</string>
   <!--Description for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Ricevi notifiche solo dalle persone e dai gruppi che hai scelto.</string>
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Ricevi notifiche solo dalle persone e dai gruppi da te scelti.</string>
   <!--Call to action button to create a profile from megaphone-->
   <string name="NotificationProfilesMegaphone__create_a_profile">Crea un profilo</string>
   <!--Button to dismiss notification profile megaphone-->

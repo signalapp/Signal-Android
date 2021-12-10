@@ -3076,7 +3076,7 @@ Nouvelle tentative…</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profils</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Configurez des profils de notification</string> -->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Créez un profil pour recevoir des notifications uniquement de la part des personnes et des groupes de votre choix.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Profils de notification</string>
@@ -3500,9 +3500,15 @@ Nouvelle tentative…</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <string name="NotificationProfileDetails__notify_for_all_mentions">Notifier de toutes les mentions</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Programmer</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Tout afficher</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Programmer</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Définissez des horaires pour activer automatiquement ce profil de notification.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Programmer</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Début</string>
   <!--Label for showing the end time for the schedule-->
@@ -3532,6 +3538,7 @@ Nouvelle tentative…</string>
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Suivant</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">La programmation doit comporter au moins un jour</string>
   <!--Title for final screen shown after completing a profile creation-->
   <string name="NotificationProfileCreated__profile_created">Profil créé</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
@@ -3539,9 +3546,11 @@ Nouvelle tentative…</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Vous pouvez activer ou désactiver votre profil manuellement à partir du menu de la liste des conversations.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Ajoutez des horaires dans les paramètres pour automatiser votre profil.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Votre profil s’activera et se désactivera automatiquement en fonction de vos horaires</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Nouveau profil de notification</string> -->
+  <string name="NotificationProfileSelection__new_profile">Nouveau profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">Pendant 1 heure</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->

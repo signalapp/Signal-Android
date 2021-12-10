@@ -3268,7 +3268,7 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Профили</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">Настроить профили уведомлений</string> -->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Создайте профиль, чтобы получать уведомления только от людей и групп, выбранных вами.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Профили уведомлений</string>
@@ -3705,10 +3705,12 @@
   <string name="NotificationProfileDetails__notify_for_all_mentions">Уведомлять обо всех упоминаниях</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Расписание</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Просмотреть все</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Добавить расписание</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <!-- Removed by excludeNonTranslatables <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Включите и настройте расписание, чтобы автоматизировать этот профиль.</string> -->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Настройте расписание, чтобы включать этот профиль уведомлений автоматически.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Расписание</string>
   <!--Label for showing the start time for the schedule-->
@@ -3752,7 +3754,7 @@
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Ваш профиль будет включаться и отключаться автоматически согласно вашему расписанию.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">Новый профиль уведомлений</string> -->
+  <string name="NotificationProfileSelection__new_profile">Новый профиль</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">На 1 час</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->

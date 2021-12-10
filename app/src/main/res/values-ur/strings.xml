@@ -299,6 +299,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s کے ساتھ آپ کا حفاظتی نمبر تبدیل کر دیا گیا ہے</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s کے ساتھ آپ کا حفاظتی نمبر تبدیل کر دیا گیا ہے ، ممکن ہے اس وجہ یہ ہے کہ انہوں نے Signal  کو دوبارہ انسٹال کیا ہےیا device تبدیل کردیئے۔ نئے حفاظتی نمبر کی تصدیق کے لئے تصدیق کریں پر ٹیپ کریں۔ یہ اختیاری ہے۔</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$sشروع</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">منتخب شدہ گفتگو حذف کریں؟</item>
     <item quantity="other">منتخب شدہ گفتگو حذف کریں؟</item>
@@ -321,8 +322,11 @@
   <string name="ConversationListFragment_select">منتخب کریں</string>
   <string name="ConversationListFragment_select_all">تمام منتخب کریں</string>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">اطلاعات کی پروفائل</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here"> یہاں اپنے اطلاعات کی پروفائل کو آن یا آف کریں.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$sشروع</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key تبادلہ کا پیغام</string>
   <!--ConversationListItemAction-->
@@ -662,6 +666,7 @@
   <string name="ManageProfileFragment_your_name">آپ کا نام</string>
   <string name="ManageProfileFragment_your_username">اپکا اسم رکنیت</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">اوتار سیٹ کرنے میں ناکام</string>
+  <string name="ManageProfileFragment__edit_photo">تصویر میں ترمیم  کریں</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">مشترکہ طور پر کوئی گروپ نہیں</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -760,6 +765,7 @@
   <string name="InviteActivity_no_app_to_share_to">ایسا لگتا ہے جیسے آپ کے پاس اشتراک کرنے کیلئے کوئی ایپ نہیں ہے۔</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">مزید پڑھیں</string>
+  <string name="SpanUtil__read_more">مزید پڑھیں</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">پیغام تلاش کرنے کے قابل نہیں</string>
   <string name="LongMessageActivity_message_from_s">%1$sکی طرف سے پیغامات</string>
@@ -1244,8 +1250,11 @@
   <string name="RegistrationActivity_play_services_error">گوگل پلے سروسز خرابی</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">گوگل پلے سروسز تجدید ہو رہی ہیں یا عارضی طور پر دستیاب نہیں۔ براہ کرم دوبارہ کوشش کریں۔</string>
   <string name="RegistrationActivity_terms_and_privacy">شرائط &amp;amp:رازداری کی پالیسی</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">سگنل کو آپ کے دوستوں سے رابطہ قائم کرنے اور پیغامات بھیجنے کے لیے رابطوں اور میڈیا کی اجازت کی ضرورت ہوتی ہے۔ آپ کے رابطے سگنل کی نجی رابطہ دریافت کا استعمال کرتے ہوئے اپ لوڈ کیے جاتے ہیں، جس کا مطلب ہے کہ یہ شروع سے آخر تک خفیہ ہوتے ہیں اور سگنل سروس کو کبھی نظر نہیں آتے۔</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">سگنل کو آپ کے دوستوں سے رابطہ قائم کرنے اور پیغامات بھیجنے کے لیے رابطوں  کی اجازت کی ضرورت ہوتی ہے۔ آپ کے رابطے سگنل کی نجی رابطہ دریافت کا استعمال کرتے ہوئے اپ لوڈ کیے جاتے ہیں، جس کا مطلب ہے کہ یہ شروع سے آخر تک خفیہ ہوتے ہیں اور سگنل سروس کو کبھی نظر نہیں آتے۔</string>
   <string name="RegistrationActivity_rate_limited_to_service">آپ نے اس نمبر کو رجسٹر کرنے کے لئے بہت زیادہ کوششیں کی ہیں۔ براہ کرم کچھ دیر بعد کوشش کریں.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">سروس سے رابطے کے قابل نہیں۔ براہ کرم نیٹ ورک کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+  <string name="RegistrationActivity_non_standard_number_format">غیر معیاری ہندسوں کی ترتیب</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">کسی ڈی بَگ لاگ کو شامل کرنے سے آپ %d مرحلے دور ہیں۔</item>
     <item quantity="other">کسی ڈی بَگ لاگ کو پیش کرنے کیلئے اب آپ %d مرحلے دور ہیں۔</item>
@@ -3169,6 +3178,8 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">تمام دیکھیں</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->

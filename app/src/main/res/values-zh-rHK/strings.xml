@@ -340,6 +340,7 @@
     <item quantity="other">%d 個已選取</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">通知設定檔</string>
   <!--Tooltip shown after you have created your first notification profile-->
   <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">在此開啟或關閉您的通知設定檔。</string>
   <!--Message shown in top toast to indicate the named profile is on-->
@@ -1665,6 +1666,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">捲動到最底</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">氣泡是一項 Android 功能，您可為 Signal 聊天將其關閉。</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">現在不要</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2762,6 +2764,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">正在刪除帳戶…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">視乎您所在群組的數目，這可能需時數分鐘</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">正在刪除使用者資料並重設應用程式</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
@@ -2980,7 +2983,7 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">設定檔</string>
   <!--Notification preference summary text-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationsSettingsFragment__set_up_notification_profiles">設立通知設定檔</string> -->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">建立設定檔以接收僅限您選取的人和群組的通知。</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">通知設定檔</string>
@@ -3350,6 +3353,7 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">駕駛</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">休息</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">專注</string>
   <!--Error message shown when attempting to next/save without a profile name-->
@@ -3357,10 +3361,13 @@
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">已允許通知</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">新增當啟用此設定檔時您想收到哪些人和群組的通知和通話</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">新增他人或群組</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">新增</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">建立設定檔以接收僅限您想收到的人和群組的通知和通話。</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">設定檔</string>
   <!--Button that starts the create new notification profile flow-->
@@ -3395,9 +3402,12 @@
   <string name="NotificationProfileDetails__notify_for_all_mentions">通知所有提及</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">排程</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">查看全部</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">新增排程</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">設立排程以自動啟用此通知設定檔。</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">排程</string>
   <!--Label for showing the start time for the schedule-->
@@ -3435,18 +3445,25 @@
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">完成</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">您可透過聊天清單中的功能表手動開啟或關閉您的設定檔。</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">在設定中新增排程以自動化您的設定檔。</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">您的設定檔將會按您的排程自動開啟和關閉。</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <!-- Removed by excludeNonTranslatables <string name="NotificationProfileSelection__new_notification_profile">新增通知設定檔</string> -->
+  <string name="NotificationProfileSelection__new_profile">新增設定檔</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">維持 1 小時</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">直到 %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">檢視設定</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">開啟直到 %1$s</string>
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">通知設定檔</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">僅限接收您所選的人和群組的通知。</string>
   <!--Call to action button to create a profile from megaphone-->
   <string name="NotificationProfilesMegaphone__create_a_profile">建立一個設定檔</string>
   <!--Button to dismiss notification profile megaphone-->

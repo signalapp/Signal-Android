@@ -327,6 +327,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">لقد تغير رقم أمانك مع %s</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">لقد تغير رقم أمانك مع %s، يُحتَمل أن يكون هذا الشخص قد أعاد تثبيت Signal أو أنه غيَّر جهازه. يُرجى لمس زر التحقق للتأكيد على رقم اﻷمان الجديد. إن هذا اﻹجراء اختياري.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s مشغّل</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="zero">حذف المحادثات المختارة؟</item>
     <item quantity="one">حذف المحادثة المختارة؟</item>
@@ -447,6 +448,7 @@
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <!--Tooltip shown after you have created your first notification profile-->
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s مشغّل</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ConversationListItemAction-->
@@ -3232,10 +3234,13 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">فشل حذف البيانات المحلية. يمكنك مَحْوه يدويا في إعدادات تطبيق النظام.</string>
   <string name="DeleteAccountFragment__launch_app_settings">إعدادات تشغيل التطبيق</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">يَجري مغادرة المجموعات…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">يَجري حَذفُ الحِساب…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">لم يتم حذف الحِساب</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">البحث في البلدان</string>
@@ -3875,6 +3880,8 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">مشاهدة الكل</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
@@ -3906,9 +3913,11 @@
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">لساعة واحدة</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">حتى %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">إظهار الإعدادات</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
   <!--Description for notification profile megaphone-->
