@@ -36,6 +36,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import static org.thoughtcrime.securesms.util.MediaUtil.getSaveTargetPath;
+
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
   private static final String TAG = Log.tag(SaveAttachmentTask.class);
 
@@ -138,7 +140,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       getContext().getContentResolver().update(mediaUri, updateValues, null, null);
     }
 
-    return outputUri.getLastPathSegment();
+    return fileName + ":" + contentType;
   }
 
   private @NonNull Uri getMediaStoreContentUriForType(@NonNull String contentType) {
@@ -313,8 +315,8 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
                        Toast.LENGTH_LONG).show();
         break;
       case SUCCESS:
-        String message = !TextUtils.isEmpty(result.second())  ? context.getResources().getString(R.string.SaveAttachmentTask_saved_to, result.second())
-                                                              : context.getResources().getString(R.string.SaveAttachmentTask_saved);
+        String message = !TextUtils.isEmpty(result.second()) ? context.getResources().getString(R.string.SaveAttachmentTask_saved_to, getSaveTargetPath(result.second()))
+                                                             : context.getResources().getString(R.string.SaveAttachmentTask_saved);
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         break;
       case WRITE_ACCESS_FAILURE:

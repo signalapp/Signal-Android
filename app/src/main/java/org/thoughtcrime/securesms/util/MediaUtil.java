@@ -47,6 +47,11 @@ import java.io.InputStream;
 import java.net.URLConnection;
 import java.util.concurrent.ExecutionException;
 
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+import static android.os.Environment.DIRECTORY_MOVIES;
+import static android.os.Environment.DIRECTORY_PICTURES;
+import static android.os.Environment.getExternalStoragePublicDirectory;
+
 public class MediaUtil {
 
   private static final String TAG = Log.tag(MediaUtil.class);
@@ -430,6 +435,24 @@ public class MediaUtil {
     final String[] sections = mimeType.split("/", 2);
     return sections.length > 1 ? sections[0] : null;
   }
+
+  public static String getSaveTargetPath(String fileMetadata) {
+    if (fileMetadata == null || !fileMetadata.contains(":")) {
+      return "Error processing file metadata";
+    }
+    String contentType = fileMetadata.split(":")[1];
+    String fileName    = fileMetadata.split(":")[0];
+    if(isImageType(contentType)) {
+      String imagesDefaultPath = getExternalStoragePublicDirectory(DIRECTORY_PICTURES).getPath();
+      return imagesDefaultPath + "/" + fileName;
+    } else if (isVideo(contentType)) {
+      String videoDefaultPath = getExternalStoragePublicDirectory(DIRECTORY_MOVIES).getPath();
+      return videoDefaultPath + "/" + fileName;
+    }
+    String defaultPathForOtherTypes = getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS).getPath();
+    return defaultPathForOtherTypes + "/" + fileName;
+  }
+
 
   public static class ThumbnailData implements AutoCloseable {
 
