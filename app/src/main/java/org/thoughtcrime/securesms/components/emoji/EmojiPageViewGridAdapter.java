@@ -10,9 +10,11 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.MappingAdapter;
 import org.thoughtcrime.securesms.util.MappingModel;
 import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class EmojiPageViewGridAdapter extends MappingAdapter implements PopupWindow.OnDismissListener {
 
@@ -147,6 +149,8 @@ public class EmojiPageViewGridAdapter extends MappingAdapter implements PopupWin
 
       itemView.setOnClickListener(v -> {
         emojiEventListener.onEmojiSelected(model.emoji.getValue());
+
+        new RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY).onCodePointSelected(model.emoji.getValue());
       });
 
       if (allowVariations && model.emoji.hasMultipleVariations()) {
