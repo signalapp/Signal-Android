@@ -10,11 +10,9 @@ import android.os.Build
 import android.service.notification.StatusBarNotification
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
-import io.reactivex.rxjava3.kotlin.subscribeBy
 import me.leolin.shortcutbadger.ShortcutBadger
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
 import org.thoughtcrime.securesms.database.MessageDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -52,23 +50,11 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
   @Volatile private var previousLockedStatus: Boolean = KeyCachingService.isLocked(context)
   @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
   @Volatile private var previousState: NotificationStateV2 = NotificationStateV2.EMPTY
-  @Volatile private var notificationProfile: NotificationProfile? = null
-  @Volatile private var notificationProfileInitialized: Boolean = false
 
   private val threadReminders: MutableMap<Long, Reminder> = ConcurrentHashMap()
   private val stickyThreads: MutableMap<Long, StickyThread> = mutableMapOf()
 
   private val executor = CancelableExecutor()
-
-  init {
-    NotificationProfilesRepository().getProfiles()
-      .subscribeBy(
-        onNext = {
-          notificationProfile = NotificationProfiles.getActiveProfile(it)
-          notificationProfileInitialized = true
-        }
-      )
-  }
 
   override fun setVisibleThread(threadId: Long) {
     visibleThread = threadId
@@ -141,12 +127,9 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
       stickyThreads.clear()
     }
 
-    if (!notificationProfileInitialized) {
-      notificationProfile = NotificationProfiles.getActiveProfile(SignalDatabase.notificationProfiles.getProfiles())
-      notificationProfileInitialized = true
-    }
+    val notificationProfile: NotificationProfile? = NotificationProfiles.getActiveProfile(SignalDatabase.notificationProfiles.getProfiles())
 
-    Log.internal().i(TAG, "sticky thread: $stickyThreads")
+    Log.internal().i(TAG, "sticky thread: $stickyThreads active profile: ${notificationProfile?.id ?: "none" }")
     var state: NotificationStateV2 = NotificationStateProvider.constructNotificationState(stickyThreads, notificationProfile)
     Log.internal().i(TAG, "state: $state")
 
