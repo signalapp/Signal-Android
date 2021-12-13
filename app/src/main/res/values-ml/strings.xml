@@ -3180,8 +3180,10 @@
   <string name="EditNotificationProfileFragment__profile_name">പ്രൊഫൈൽ പേര്</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">അടുത്തത്</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">സൃഷ്ടിക്കുക</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">സംരക്ഷിക്കൂ</string>
   <!--Title of edit notification profile screen-->

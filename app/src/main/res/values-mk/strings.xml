@@ -363,6 +363,7 @@
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <string name="ConversationListFragment__notification_profile">Профил за известување</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Овде вклучете или исклучете го Вашиот профил за известување.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s вклучен</string>
   <!--ConversationListItem-->
@@ -651,7 +652,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Барања од членови &amp; покани</string>
   <string name="ManageGroupActivity_add_members">Додај членови</string>
-  <string name="ManageGroupActivity_edit_group_info">Уреди инфо за група</string>
+  <string name="ManageGroupActivity_edit_group_info">Уреди информации за група</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Кој може да додава нови членови?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Кој може да ги уредува информациите за групата?</string>
   <string name="ManageGroupActivity_group_link">Групен линк</string>
@@ -693,7 +694,7 @@
   <string name="ManageGroupActivity_more">повеќе</string>
   <string name="ManageGroupActivity_add_group_description">Додадете опис на групата…</string>
   <!--GroupMentionSettingDialog-->
-  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Извести ме на спомнувања</string>
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Извести кога некој ќе ме спомне</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Дали да добиете известување кога некој ќе Ве спомне во исклучени разговори?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Извести ме секогаш</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Не ме известувај</string>
@@ -731,7 +732,7 @@
   <string name="CustomNotificationsDialogFragment__unknown">Непознато</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Групен линк за споделување</string>
-  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Менаџирај &amp; сподели</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управувај и сподели</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Групен линк</string>
   <string name="ShareableGroupLinkDialogFragment__share">Сподели</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Ресетирај линк</string>
@@ -866,7 +867,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Испратено од тебе до %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Реакции за претставување</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Допрете ја и држете врз било која порака за брзо да споделите како се чувствувате.</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Допрете и задржете било која порака за брзо да споделите како се чувствувате.</string>
   <string name="Megaphones_remind_me_later">Потсети ме подоцна</string>
   <string name="Megaphones_verify_your_signal_pin">Проверете го Вашиот Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Повремено ќе Ве прашаме да го проверите Вашиот PIN со цел да го запомните.</string>
@@ -1449,7 +1450,7 @@
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Овој запис ќе биде објавен јавно на интернет за да можат да го видат придонесувачите. Можете да го прегледате пред да го испратите.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Филтер:</string>
-  <string name="SupportEmailUtil_device_info">Инфо за уред:</string>
+  <string name="SupportEmailUtil_device_info">Информации за уред:</string>
   <string name="SupportEmailUtil_android_version">Верзија на Android:</string>
   <string name="SupportEmailUtil_signal_version">Верзија на Signal:</string>
   <string name="SupportEmailUtil_signal_package">Signal пакет:</string>
@@ -1831,7 +1832,7 @@
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Стандардната системска база нема да биде променета на ниеден начин.</string>
   <string name="database_migration_activity__skip">Прескокни</string>
   <string name="database_migration_activity__import">Увези</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ова може да потрае. Бидете стрпливи, ќе бидете известени веднаш штом заврши импортирањето.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ова може да потрае. Ве молиме бидете стрпливи, ќе бидете известени кога увозот ќе заврши.</string>
   <string name="database_migration_activity__importing">УВЕЗУВАМ</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Види целосен разговор</string>
@@ -1946,7 +1947,7 @@
   <string name="HelpFragment__whats_this">Што е ова?</string>
   <string name="HelpFragment__how_do_you_feel">Како се чувствувате? (Опционално)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Кажете ни зошто не контактирате.</string>
-  <string name="HelpFragment__support_info">Инфо за поддршка</string>
+  <string name="HelpFragment__support_info">Информации за поддршка</string>
   <string name="HelpFragment__signal_android_support_request">Барање за поддршка за Signal Android</string>
   <string name="HelpFragment__debug_log">Запис за дебагирање:</string>
   <string name="HelpFragment__could_not_upload_logs">Не успеав да ги качам записите</string>
@@ -1987,7 +1988,7 @@
   <string name="arrays__disabled">Исклучено</string>
   <string name="arrays__name_and_message">Име и порака</string>
   <string name="arrays__name_only">Само име</string>
-  <string name="arrays__no_name_or_message">Без име или порака</string>
+  <string name="arrays__no_name_or_message">Без име и порака</string>
   <string name="arrays__images">Слики</string>
   <string name="arrays__audio">Звук</string>
   <string name="arrays__video">Видео</string>
@@ -2035,7 +2036,7 @@
   <string name="preferences__sound">Звук</string>
   <string name="preferences__silent">Тивко</string>
   <string name="preferences__default">Стандардно </string>
-  <string name="preferences__repeat_alerts">Постојани аларми</string>
+  <string name="preferences__repeat_alerts">Повтори известувања</string>
   <string name="preferences__never">Никогаш</string>
   <string name="preferences__one_time">Еднаш</string>
   <string name="preferences__two_times">Два пати</string>
@@ -2138,7 +2139,7 @@
   <string name="preferences_app_protection__app_access">Пристап до апликацијата</string>
   <string name="preferences_app_protection__communication">Комуникација</string>
   <string name="preferences_chats__chats">Разговори</string>
-  <string name="preferences_data_and_storage__manage_storage">Менаџирање на склад</string>
+  <string name="preferences_data_and_storage__manage_storage">Управување со склад</string>
   <string name="preferences_data_and_storage__calls">Повици</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Користи помалку податоци за повици</string>
   <string name="preferences_data_and_storage__never">Никогаш</string>
@@ -2147,7 +2148,7 @@
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Користење на помалку податоци може да ги подобри повиците на лоши мрежи</string>
   <string name="preferences_notifications__messages">Пораки</string>
   <string name="preferences_notifications__events">Настани</string>
-  <string name="preferences_notifications__in_chat_sounds">Звуци во разговорот</string>
+  <string name="preferences_notifications__in_chat_sounds">Звуци во разговор</string>
   <string name="preferences_notifications__show">Прикажи</string>
   <string name="preferences_notifications__calls">Повици</string>
   <string name="preferences_notifications__ringtone">Звук за ѕвонење</string>
@@ -2569,7 +2570,7 @@
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Вашиот директориум за резервни копии и избришан или преместен.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Вашата резервна копија е преголема за да се складира на овој уред.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Нема доволно простор за складирање на Вашата резервна копија.</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">Допрете за менаџирање на резервни копии.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Допрете за управување со резервните копии.</string>
   <string name="ProgressPreference_d_messages_so_far">%d пораки засега</string>
   <string name="RegistrationActivity_wrong_number">Погрешен број</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Повикајте ме наместо \n (Достапно за %1$02d:%2$02d)</string>
@@ -2963,9 +2964,9 @@
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Опис на групата</string>
   <!--QualitySelectorBottomSheetDialog-->
-  <string name="QualitySelectorBottomSheetDialog__standard">Стандардно</string>
+  <string name="QualitySelectorBottomSheetDialog__standard">Стандарден</string>
   <string name="QualitySelectorBottomSheetDialog__faster_less_data">Побрзо, помалку податоци</string>
-  <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
+  <string name="QualitySelectorBottomSheetDialog__high">Висок</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">Побавно, повеќе податоци</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Квалитет на фотографија</string>
   <!--AppSettingsFragment-->
@@ -3030,6 +3031,7 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Профили</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Создајте профил за да добивате известувања само од луѓе и групи што ќе ги изберете.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Профили за известување</string>
@@ -3079,8 +3081,8 @@
   <string name="DataAndStorageSettingsFragment__media_quality">Квалитет на медија</string>
   <string name="DataAndStorageSettingsFragment__sent_media_quality">Квалитет на испратена медија</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Испраќањето на висококвалитетна медија ќе користи повеќе податоци.</string>
-  <string name="DataAndStorageSettingsFragment__high">Високо</string>
-  <string name="DataAndStorageSettingsFragment__standard">Стандардно</string>
+  <string name="DataAndStorageSettingsFragment__high">Висок</string>
+  <string name="DataAndStorageSettingsFragment__standard">Стандарден</string>
   <string name="DataAndStorageSettingsFragment__calls">Повици</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Автоматски</string>
@@ -3180,9 +3182,9 @@
   <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
   <string name="ConversationSettingsFragment__get_badges">Добијте беџ за Вашиот профил со поддршка на Signal. Допрете на беџот за да дознаете повеќе.</string>
   <!--PermissionsSettingsFragment-->
-  <string name="PermissionsSettingsFragment__add_members">Додај членови</string>
-  <string name="PermissionsSettingsFragment__edit_group_info">Уреди инфо за група</string>
-  <string name="PermissionsSettingsFragment__send_messages">Испрати пораки</string>
+  <string name="PermissionsSettingsFragment__add_members">Додавање членови</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Уредување информции за група</string>
+  <string name="PermissionsSettingsFragment__send_messages">Испраќање пораки</string>
   <string name="PermissionsSettingsFragment__all_members">Сите членови</string>
   <string name="PermissionsSettingsFragment__only_admins">Само администратори</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Кој може да додава нови членови?</string>
@@ -3311,6 +3313,8 @@
   <string name="SubscribeFragment__update">Aжурирај</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ќе ви биде наплатен целосниот износ на новата претплата денес. Вашата претплата ќе се обнови %1$s.</string>
   <string name="Subscription__s_per_month">%s/месец</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месец · Обновува %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Истекува %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, одржуван само од луѓето кои го користат и ценат. Направете месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесеш?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
@@ -3358,8 +3362,10 @@
   <string name="EditNotificationProfileFragment__profile_name">Име на профил </string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Следно</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Создај</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Зачувај</string>
   <!--Title of edit notification profile screen-->
@@ -3378,12 +3384,15 @@
   <!--Error message shown when attempting to next/save without a profile name-->
   <string name="EditNotificationProfileFragment__profile_must_have_a_name">Мора да има име</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Дозволени известувања</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Додајте луѓе и групи од кои сакате да добивате известувања и повици кога е вклучен овој профил</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">Додадете луѓе или групи</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Додај…</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Создајте профил за да примате пораки и повици само од луѓето и групите што ќе ги изберете.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">Профили</string>
   <!--Button that starts the create new notification profile flow-->
@@ -3401,6 +3410,7 @@
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Избриши</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Уредете го профилот за известување</string>
   <!--Schedule description if all days are selected-->
   <string name="NotificationProfileDetails__everyday">Секој ден</string>
   <!--Profile status on if it is the active profile-->
@@ -3414,12 +3424,17 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <string name="NotificationProfileDetails__allow_all_calls">Дозволи ги сите повици</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Извести секогаш кога некој ќе ме спомне</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Распоред</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">Види сѐ</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Додај распоред</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Поставете распоред за автоматски да се активира овој профил за известување.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Распоред</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Започни</string>
   <!--Label for showing the end time for the schedule-->

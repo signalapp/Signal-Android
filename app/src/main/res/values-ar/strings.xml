@@ -446,7 +446,9 @@
     <item quantity="other">تم تحديد %d</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">هيئة الإشعارات</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">يٌرجى تشغيل هيئة إشعارك أو تعطيلها من هنا.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s مشغّل</string>
   <!--ConversationListItem-->
@@ -2057,6 +2059,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">النزول إلى الأسفل</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">تُعد الفقاعات ميزة في أندرويد يمكنك تشغيلها أو تعطيلها بالنسبة لمحادثات Signal.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">ليس الآن</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -3127,6 +3130,7 @@
   <string name="RecipientBottomSheet_unblock">رفع الحظر</string>
   <string name="RecipientBottomSheet_add_to_contacts">أضف إلى جهات الاتصال</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">لقد تعذر إيجاد تطبيق يستطيع فتح جهات الاتصال.</string>
   <string name="RecipientBottomSheet_add_to_a_group">إضافة إلى مجموعة</string>
   <string name="RecipientBottomSheet_add_to_another_group">إضافة إلى مجموعة أخرى</string>
   <string name="RecipientBottomSheet_view_safety_number">إظهار رقم الأمان</string>
@@ -3238,10 +3242,13 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">يَجري حَذفُ الحِساب…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">قد يتطلب هذا بضع دقائق، بناءا على عدد المجموعات التي لديك عضوية فيها.</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">يجري حذف بيانات المستخدم ثم سيُعاد إعداد التطبيق.</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">لم يتم حذف الحِساب</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">لقد حدث خطأ أثناء إتمام عملية الحذف. يُرجى التحقق من اتصالك بالشبكة ثم إعادة المحاولة مرة أخرى.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">البحث في البلدان</string>
   <!--CreateGroupActivity-->
@@ -3455,11 +3462,16 @@
   <string name="NotificationsSettingsFragment__notify_when">أخبرني بـ.…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">انضمام جهة اتصال لـ Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">هيئات الإشعار</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">الهيئات</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">يُرجى إنشاء حسابك لتلقي اﻹشعارات فقط من اﻷفراد والمجموعات التي اخترت.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">هيئات الإشعار</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">إنشاء هيئة للإشعار</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">محظورة</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d جهة اتصال</string>
@@ -3834,42 +3846,63 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
   <string name="NetworkFailure__retry">إعادة المُحاولة</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">تسمية هيئة إشعارك</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">اسم الحساب</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">التالي</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">إنشاء</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">حفظ</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">تحرير هيئة إشعارك هذه</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">توجد هيئة للإشعار بهذا الاسم سلفا</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">العمل</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">فترة النوم</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">فترة السياقة</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime"> فترة توقف</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">فترة التركيز</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">إن الاسم ضروري</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">الإشعارات المسموح بها</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">يُرجى إضافة الأفراد والمجموعات المراد تلقي اﻹشعارات والمكالمات من عندها عندما تكون هيئة إشعارك مُشغَّلة</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">إضافة اﻷفراد أو المجموعات</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">إضافة</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">يُرجى إنشاء حساب لاستلام الإشعارات والمكالمات فقط من اﻷفراد والمجموعات المراد تلقي أخبار عنها.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">هيئات الإشعار</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile"> هيئة إشعار جديدة</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">مُفعَّل</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">حذف هيئة الإشعار</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">‫لقد حُذف \"%1$s\".</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">تراجع</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">أأحذف نهائيا هذه الهيئة ؟</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">حذف</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">تحرير هيئة الإشعار</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">كل يوم</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">مُفعَّل</string>
   <!--Profile status on if it is not the active profile-->
@@ -3877,27 +3910,43 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s إلى %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">الاستثناءات</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">السماح لجميع المكالمات</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">الإشعار عن كل الإشارات للأفراد</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">الجدولة</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">مشاهدة الكل</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">إضافة جدولة</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">يمكنك إضافة جدولة لتفعيل هيئة لهذا الإشعار تلقائيا.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">الجدولة</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">البدأ</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">نهاية</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">اﻷحد</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">الاثنين</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">الثلاثاء</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">اﻷربعاء</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">الخميس</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">الجمعة</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">السبت</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">ضبط وقت البدء</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">ضبط وقت الانتهاء</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">حفظ</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3905,13 +3954,19 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">التالي</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">يجب أن تدوم الفترة المُجدوَلة ليوم واحد على اﻷقل.</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">لقد أُنشئَت الهيئة</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">تمّ</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">يمكنك تشغيل هيئة إشعارك أو تعطيلها يدويا من خلال القائمة الموجودة فوق لائحة المحادثات.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">يمكنك إضافة جدولة في إعداداتك للاشتغال التلقائي لهيئة إشعارك.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">سوف تشتغل هيئة إشعارك وتتوقف تلقائيا بناءا على جدولتك.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile"> هيئة إشعار جديدة</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">لساعة واحدة</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
@@ -3919,9 +3974,13 @@
   <!--Option to view profile details-->
   <string name="NotificationProfileSelection__view_settings">إظهار الإعدادات</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">مُشغَّلة حتى %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles"> هيئات الإشعار</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">الحصول على الإشعارات من اﻷفراد والمجموعات التي اخترت فقط.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">إنشاء  هيئة للإشعار</string>
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">ليس الآن</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->

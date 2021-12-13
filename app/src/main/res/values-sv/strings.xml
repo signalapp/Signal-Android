@@ -3385,7 +3385,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ManageDonationsFragment__badges">Märken</string>
   <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om prenumeration</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få prenumeration.</string>
-  <string name="BoostFragment__give_signal_a_boost">Ge Signal ett lyft</string>
+  <string name="BoostFragment__give_signal_a_boost">Ge Signal en Boost</string>
   <string name="BoostFragment__say_thanks_and_earn">Säg \"Tack!\" och förtjäna Boost-märket i %1$d dagar.</string>
   <string name="Boost__enter_custom_amount">Ange anpassat belopp</string>
   <string name="Boost__one_time_contribution">Engångsbidrag</string>
@@ -3435,8 +3435,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="EditNotificationProfileFragment__profile_name">Profilnamn</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Nästa</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Skapa</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Spara</string>
   <!--Title of edit notification profile screen-->

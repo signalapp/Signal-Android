@@ -440,7 +440,7 @@
   <string name="RestoreBackupFragment__choose_folder">Izberite mapo</string>
   <string name="RestoreBackupFragment__not_now">Ne zdaj</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">Varnostne kopije klepetov</string>
+  <string name="BackupsPreferenceFragment__chat_backups">Varnostno kopiranje klepetov</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Varnostne kopije so zaklenjene z geslom in shranjene na vaši napravi.</string>
   <string name="BackupsPreferenceFragment__create_backup">Ustvari varnostno kopijo</string>
   <string name="BackupsPreferenceFragment__last_backup">Zadnja varnostna kopija: %1$s</string>
@@ -2336,8 +2336,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_setup_a_username">Določite uporabniško ime</string>
   <string name="preferences_proxy">Proksi</string>
   <string name="preferences_use_proxy">Uporabi proksi</string>
-  <string name="preferences_off">Izklopljena</string>
-  <string name="preferences_on">Vklopljena</string>
+  <string name="preferences_off">Izklopljeno</string>
+  <string name="preferences_on">Vklopljeno</string>
   <string name="preferences_proxy_address">Naslov proksi</string>
   <string name="preferences_only_use_a_proxy_if">Proksi uporabite samo, če se ne morete povezati na Signal preko mobilnega omrežja ali Wi-Fija.</string>
   <string name="preferences_share">Deli</string>
@@ -2736,7 +2736,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="registration_activity__transfer_or_restore_account">Prenesi ali obnovi račun</string>
   <string name="registration_activity__transfer_account">Prenos računa</string>
   <string name="registration_activity__skip">Preskoči</string>
-  <string name="preferences_chats__chat_backups">Varnostne kopije klepetov</string>
+  <string name="preferences_chats__chat_backups">Varnostno kopiranje klepetov</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Varnostna kopija klepetov bo ustvarjena na zunanjem pomnilniku</string>
   <string name="preferences_chats__transfer_account">Prenos računa</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Prenos računa na novo androidno napravo</string>
@@ -3288,7 +3288,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Nova sporočila, poslana in prejeta v novih pogovorih, ki ste jih pričeli sami, bodo izginila, ko bodo videna s strani prejemnika.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nova sporočila, poslana in prejeta v tem pogovoru bodo izginila, ko bodo videna s strani prejemnika.</string>
-  <string name="ExpireTimerSettingsFragment__off">Izklopljena</string>
+  <string name="ExpireTimerSettingsFragment__off">Izklopljen</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 tedne</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 teden</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 dan</string>
@@ -3639,8 +3639,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="EditNotificationProfileFragment__profile_name">Naziv profila</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Naprej</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Ustvari</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Shrani</string>
   <!--Title of edit notification profile screen-->
@@ -3674,7 +3676,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">Nov profil</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">Vklopljena</string>
+  <string name="NotificationProfilesFragment__on">Vklopljen</string>
   <!--Button use to permanently delete a notification profile-->
   <string name="NotificationProfileDetails__delete_profile">Izbriši profil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
@@ -3690,9 +3692,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Schedule description if all days are selected-->
   <string name="NotificationProfileDetails__everyday">Vsak dan</string>
   <!--Profile status on if it is the active profile-->
-  <string name="NotificationProfileDetails__on">Vklopljena</string>
+  <string name="NotificationProfileDetails__on">Vklopljen</string>
   <!--Profile status on if it is not the active profile-->
-  <string name="NotificationProfileDetails__off">Izklopljena</string>
+  <string name="NotificationProfileDetails__off">Izklopljen</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s do %2$s</string>
   <!--Section header for exceptions to the notification profile-->

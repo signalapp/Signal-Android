@@ -3329,8 +3329,10 @@
   <string name="EditNotificationProfileFragment__profile_name">プロファイル名</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">次へ</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">作成</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">保存</string>
   <!--Title of edit notification profile screen-->
@@ -3350,9 +3352,9 @@
   <!--Error message shown when attempting to next/save without a profile name-->
   <string name="EditNotificationProfileFragment__profile_must_have_a_name">プロファイル名は必須です</string>
   <!--Title for add recipients to notification profile screen in create flow-->
-  <string name="AddAllowedMembers__allowed_notifications">通知の許可</string>
+  <string name="AddAllowedMembers__allowed_notifications">通知許可</string>
   <!--Description of what the user should be doing with this screen-->
-  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">このプロファイルの有効時に通知や着信を希望する、人やグループを追加してください。</string>
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">このプロファイルの有効時に、通知や通話着信を受け取りたい相手やグループを選択してください。</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">人またはグループを追加</string>
   <!--Call to action button on contact picker for adding to profile-->
@@ -3384,7 +3386,7 @@
   <!--Profile status on if it is not the active profile-->
   <string name="NotificationProfileDetails__off">無効</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$sから%2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">%1$s～%2$s</string>
   <!--Section header for exceptions to the notification profile-->
   <string name="NotificationProfileDetails__exceptions">例外</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
@@ -3400,7 +3402,7 @@
   <!--Descriptor text indicating what the user can do with this screen-->
   <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">スケジュールを設定すると、通知プロファイルを自動で有効化できます。</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
-  <string name="EditNotificationProfileSchedule__schedule">スケジュールを有効にする</string>
+  <string name="EditNotificationProfileSchedule__schedule">スケジュール</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">開始</string>
   <!--Label for showing the end time for the schedule-->
@@ -3444,9 +3446,9 @@
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">新規プロファイル</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
-  <string name="NotificationProfileSelection__for_1_hour">1時間</string>
+  <string name="NotificationProfileSelection__for_1_hour">1時間有効にする</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
-  <string name="NotificationProfileSelection__until_s">%1$sまで</string>
+  <string name="NotificationProfileSelection__until_s">%1$sまで有効にする</string>
   <!--Option to view profile details-->
   <string name="NotificationProfileSelection__view_settings">設定</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->

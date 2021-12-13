@@ -3315,8 +3315,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="EditNotificationProfileFragment__profile_name">Tên hồ sơ</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Tiếp</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Tạo</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Lưu</string>
   <!--Title of edit notification profile screen-->

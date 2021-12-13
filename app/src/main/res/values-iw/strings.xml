@@ -312,6 +312,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">מספר הביטחון שלך עם %s השתנה</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">מספר הביטחון שלך עם %s השתנה, כנראה מאחר שהוא/היא התקין/ה מחדש את Signal או שינה/שינתה מכשירים. הקש וודא כדי לאשר את המספר החדש של הביטחון. זה רשותי.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s מופעל</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">למחוק שיחה נבחרת?</item>
     <item quantity="two">למחוק שיחות נבחרות?</item>
@@ -404,7 +405,9 @@
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <string name="ConversationListFragment__notification_profile">פרופיל התראות</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">הפעל או כבה את פרופיל ההתראות שלך כאן.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s מופעל</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתחות</string>
   <!--ConversationListItemAction-->
@@ -1901,6 +1904,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">גלול לתחתית</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">בועות הן מאפיין של Android שאתה יכול לכבות עבור שיחות Signal.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">לא עכשיו</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -3049,11 +3053,13 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">מוחק חשבון…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">תלוי במספר הקבוצות שאתה נמצא בהן, זה עשוי לקחת מספר דקות</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">מוחק נתוני משתמש ומאפס את היישום</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">חשבון לא נמחק</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">הייתה בעיה בהשלמת תהליך המחיקה. בדוק את חיבור הרשת שלך ונסה שוב.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">חפש מדינות</string>
   <!--CreateGroupActivity-->
@@ -3269,6 +3275,7 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">פרופילים</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">צור פרופיל כדי לקבל התראות רק מהאנשים ומהקבוצות שאתה בוחר.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">פרופילי התראות</string>
@@ -3641,8 +3648,10 @@
   <string name="EditNotificationProfileFragment__profile_name">שם פרופיל</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">הבא</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">צור</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">שמור</string>
   <!--Title of edit notification profile screen-->
@@ -3656,6 +3665,7 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">נהיגה</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">חוסר זמינות</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">מיקוד</string>
   <!--Error message shown when attempting to next/save without a profile name-->
@@ -3663,11 +3673,13 @@
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">התראות מותרות</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">הוסף אנשים וקבוצות שאתה רוצה לקבל מהם התראות ושיחות כאשר הפרופיל הזה מופעל</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">הוסף אנשים או קבוצות</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">הוסף</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">צור פרופיל כדי לקבל התראות ושיחות רק מהאנשים ומהקבוצות שאתה רוצה לשמוע מהם.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">פרופילים</string>
   <!--Button that starts the create new notification profile flow-->
@@ -3695,6 +3707,7 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s אל %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">חריגות</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
   <string name="NotificationProfileDetails__allow_all_calls">התר את כל השיחות</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
@@ -3706,6 +3719,7 @@
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">הוסף תזמון</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">הגדר תזמון כדי לאפשר את פרופיל ההתראות הזה באופן אוטומטי.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">תזמן</string>
   <!--Label for showing the start time for the schedule-->
@@ -3743,16 +3757,21 @@
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">סיים</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">אתה יכול להפעיל או לכבות את הפרופיל שלך באופן ידני באמצעות התפריט ברשימת ההתכתבויות.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">הוסף תזמון בהגדרות כדי למכן את הפרופיל שלך.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">הפרופיל שלך יופעל ויכובה באופן אוטומטי בהתאם לתזמון שלך.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">פרופיל חדש</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">למשך שעה</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">עד %1$s</string>
   <!--Option to view profile details-->
   <string name="NotificationProfileSelection__view_settings">הצג הגדרות</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">מופעל עד %1$s</string>
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">פרופילי התראות</string>
   <!--Description for notification profile megaphone-->

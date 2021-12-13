@@ -188,7 +188,7 @@
   <string name="ConversationActivity_select_contact_info">संपर्क माहिती जोडा</string>
   <string name="ConversationActivity_compose_message">संदेश लिहा</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">क्षमस्व, आपल्या संलग्न मध्ये एक त्रुटी होती.</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">प्राप्तकर्ता एक वैध SMS किंवा ईमेल पत्ता नाही!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">प्राप्तकर्ता एक वैध SMS किंवा ईमेल ऍड्रेस नाही!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">संदेश रिक्त आहे!</string>
   <string name="ConversationActivity_group_members">गट सदस्य</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">गट कॉल प्रारंभ करण्यासाठी येथे टॅप करा</string>
@@ -2015,8 +2015,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">सर्व येणाऱ्या मल्टिमिडिया संदेशांसाठी Signal वापरा</string>
   <string name="preferences__pref_enter_sends_title">प्रविष्ट करा की पाठवते</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">प्रविष्ट करा की दाबल्याने मजकूर संदेश पाठविले जातील</string>
-  <string name="preferences__pref_use_address_book_photos">पत्ता पुस्तक फोटो वापरा</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">उपलब्ध असल्यास आपल्या पत्ता पुस्तकातून संपर्क फोटो दाखवा</string>
+  <string name="preferences__pref_use_address_book_photos">अॅड्रेस बुक फोटो वापरा</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">उपलब्ध असल्यास आपल्या अॅड्रेस बुकमधून संपर्क फोटो दाखवा</string>
   <string name="preferences__generate_link_previews">लिंक पुनरावलोकन उत्पन्न करा</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">तुम्ही पाठवलेल्या संदेशांसाठी थेट कोणत्याही वेबसाइटवरून लिंक पूर्वावलोकने प्राप्त करू शकता.</string>
   <string name="preferences__choose_identity">ओळख निवडा</string>
@@ -2135,7 +2135,7 @@
   <string name="preferences_storage__custom">सानुकूलित</string>
   <string name="preferences_advanced__use_system_emoji">सिस्टिम ईमोजी वापरा</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal चे बिल्ट-इन ईमोजी समर्थन अक्षम करा</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">आपल्या संपर्काला आपला IP पत्ता कळू न देण्यासाठी सर्व कॉल Signal सर्व्हर वरून रीले करा. सक्षम केल्याने कॉल दर्जा कमी होईल.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">आपल्या संपर्काला आपला IP अॅड्रेस कळू न देण्यासाठी सर्व कॉल Signal सर्व्हर वरून रीले करा. सक्षम केल्याने कॉल दर्जा कमी होईल.</string>
   <string name="preferences_advanced__always_relay_calls">कॉल नेहमी रीले करा</string>
   <string name="preferences_app_protection__who_can">कोण करू शकतो…</string>
   <string name="preferences_app_protection__app_access">अॅप अॅक्सेस</string>
@@ -2754,6 +2754,7 @@
   <string name="RecipientBottomSheet_unblock">अनब्लॉक करा</string>
   <string name="RecipientBottomSheet_add_to_contacts">संपर्कात जोडा</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">संपर्क उघडण्यास सक्षम अॅप सापडत नाही.</string>
   <string name="RecipientBottomSheet_add_to_a_group">गटात जोडा</string>
   <string name="RecipientBottomSheet_add_to_another_group">आणखी एका गटात जोडा</string>
   <string name="RecipientBottomSheet_view_safety_number">सुरक्षितता नंबर बघा</string>
@@ -3438,8 +3439,10 @@
   <string name="EditNotificationProfileFragment__profile_name">प्रोफाइल नाव</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">पुढे</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">तयार करा</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">जतन करा</string>
   <!--Title of edit notification profile screen-->
@@ -3460,7 +3463,7 @@
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">अनुमत सूचना</string>
   <!--Description of what the user should be doing with this screen-->
-  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">हे प्रोफाईल चालू असताना ज्यांच्याकडून आपल्याला सूचना आणि कॉल हवे आहे असे लोक आणि गट जोडा</string>
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">हे प्रोफाइल चालू असताना ज्यांच्याकडून आपल्याला सूचना आणि कॉल हवे आहे असे लोक आणि गट जोडा</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">लोक किंवा गट जोडा</string>
   <!--Call to action button on contact picker for adding to profile-->

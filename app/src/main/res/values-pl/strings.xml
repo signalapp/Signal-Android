@@ -3267,7 +3267,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profile</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Utwórz profil, aby otrzymywać powiadomienia tylko od wybranych przez Ciebie osób.</string>
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Utwórz profil, aby otrzymywać powiadomienia tylko od wybranych przez Ciebie osób i grup.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Profile powiadomień</string>
@@ -3641,8 +3641,10 @@ danych, rozważ miesięczną subskrypcję.</string>
   <string name="EditNotificationProfileFragment__profile_name">Nazwa profilu</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Dalej</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Utwórz</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Zapisz</string>
   <!--Title of edit notification profile screen-->
@@ -3718,19 +3720,19 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Koniec</string>
   <!--First letter of Sunday-->
-  <string name="EditNotificationProfileSchedule__sunday_first_letter">Ndz.</string>
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">Ndz</string>
   <!--First letter of Monday-->
-  <string name="EditNotificationProfileSchedule__monday_first_letter">Pon.</string>
+  <string name="EditNotificationProfileSchedule__monday_first_letter">Pon</string>
   <!--First letter of Tuesday-->
-  <string name="EditNotificationProfileSchedule__tuesday_first_letter">Wt.</string>
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">Wt</string>
   <!--First letter of Wednesday-->
-  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Śr.</string>
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Śr</string>
   <!--First letter of Thursday-->
-  <string name="EditNotificationProfileSchedule__thursday_first_letter">Czw.</string>
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Czw</string>
   <!--First letter of Friday-->
-  <string name="EditNotificationProfileSchedule__friday_first_letter">Pt.</string>
+  <string name="EditNotificationProfileSchedule__friday_first_letter">Pt</string>
   <!--First letter of Saturday-->
-  <string name="EditNotificationProfileSchedule__saturday_first_letter">Sob.</string>
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">Sob</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
   <string name="EditNotificationProfileSchedule__set_start_time">Ustaw czas rozpoczęcia</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
