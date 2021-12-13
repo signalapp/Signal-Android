@@ -87,7 +87,7 @@ object NotificationProfileSelection {
       expansion.visible = model.isExpanded
       timeSlotB.text = context.getString(
         R.string.NotificationProfileSelection__until_s,
-        LocalTime.from(model.timeSlotB).formatHours()
+        LocalTime.from(model.timeSlotB).formatHours(context)
       )
 
       if (TOGGLE_EXPANSION in payload || UPDATE_TIMESLOT in payload) {
@@ -107,7 +107,7 @@ object NotificationProfileSelection {
 
       timeSlotB.text = context.getString(
         R.string.NotificationProfileSelection__until_s,
-        LocalTime.from(model.timeSlotB).formatHours()
+        LocalTime.from(model.timeSlotB).formatHours(context)
       )
 
       itemView.isSelected = model.isOn

@@ -234,8 +234,8 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
       return getString(R.string.NotificationProfileDetails__schedule)
     }
 
-    val startTime = startTime().formatHours()
-    val endTime = endTime().formatHours()
+    val startTime = startTime().formatHours(requireContext())
+    val endTime = endTime().formatHours(requireContext())
 
     val days = StringBuilder()
     if (daysEnabled.size == 7) {

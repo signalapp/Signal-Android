@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.util
 
+import android.content.Context
+import android.os.Build
+import android.text.format.DateFormat
 import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDateTime
@@ -51,8 +54,12 @@ fun Long.toLocalTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalTime {
 /**
  * Formats [LocalTime] as localized time. For example, "8:00 AM"
  */
-fun LocalTime.formatHours(): String {
-  return DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(this)
+fun LocalTime.formatHours(context: Context): String {
+  return if (Build.VERSION.SDK_INT >= 26 || !DateFormat.is24HourFormat(context)) {
+    DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(this)
+  } else {
+    DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault()).format(this)
+  }
 }
 
 /**

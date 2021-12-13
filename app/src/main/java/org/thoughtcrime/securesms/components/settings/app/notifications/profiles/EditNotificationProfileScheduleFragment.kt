@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -105,7 +106,7 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
     val days: Map<CheckedTextView, DayOfWeek> = listOf(day1, day2, day3, day4, day5, day6, day7).zip(Locale.getDefault().orderOfDaysInWeek()).toMap()
 
     days.forEach { (view, day) ->
-      DrawableCompat.setTintList(view.background, ContextCompat.getColorStateList(requireContext(), R.color.notification_profile_schedule_background_tint))
+      DrawableCompat.setTintList(view.background, ContextCompat.getColorStateList(view.context, R.color.notification_profile_schedule_background_tint))
       view.setOnClickListener { viewModel.toggleDay(day) }
       view.setText(DAY_TO_STARTING_LETTER[day]!!)
     }
@@ -121,11 +122,11 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
             view.isEnabled = schedule.enabled
           }
 
-          startTime.text = schedule.startTime().formatTime()
+          startTime.text = schedule.startTime().formatTime(view.context)
           startTime.setOnClickListener { showTimeSelector(true, schedule.startTime()) }
           startTime.isEnabled = schedule.enabled
 
-          endTime.text = schedule.endTime().formatTime()
+          endTime.text = schedule.endTime().formatTime(view.context)
           endTime.setOnClickListener { showTimeSelector(false, schedule.endTime()) }
           endTime.isEnabled = schedule.enabled
 
@@ -168,11 +169,11 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
   }
 }
 
-private fun LocalTime.formatTime(): SpannableString {
+private fun LocalTime.formatTime(context: Context): SpannableString {
   val amPm = DateTimeFormatter.ofPattern("a")
     .format(this)
 
-  val formattedTime: String = this.formatHours()
+  val formattedTime: String = this.formatHours(context)
 
   return SpannableString(formattedTime).apply {
     val amPmIndex = formattedTime.indexOf(string = amPm, ignoreCase = true)

@@ -52,11 +52,11 @@ object NotificationProfiles {
       if (storeValues.manuallyEnabledUntil.isForever()) {
         return context.getString(R.string.NotificationProfilesFragment__on)
       } else if (now < storeValues.manuallyEnabledUntil) {
-        return context.getString(R.string.NotificationProfileSelection__on_until_s, storeValues.manuallyEnabledUntil.toLocalTime().formatHours())
+        return context.getString(R.string.NotificationProfileSelection__on_until_s, storeValues.manuallyEnabledUntil.toLocalTime().formatHours(context))
       }
     }
 
-    return context.getString(R.string.NotificationProfileSelection__on_until_s, profile.schedule.endTime().formatHours())
+    return context.getString(R.string.NotificationProfileSelection__on_until_s, profile.schedule.endTime().formatHours(context))
   }
 
   private fun Long.isForever(): Boolean {
