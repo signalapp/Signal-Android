@@ -782,7 +782,7 @@ public final class MessageContentProcessor {
                                                     message.getTimestamp(),
                                                     null);
       database.markAsSent(messageId, true);
-      SignalDatabase.threads().update(threadId, true);
+      SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
     }
 
     return threadId;
@@ -2246,7 +2246,7 @@ public final class MessageContentProcessor {
       messageId = SignalDatabase.sms().insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
       database  = SignalDatabase.sms();
       database.markUnidentified(messageId, isUnidentified(message, recipient));
-      SignalDatabase.threads().update(threadId, true);
+      SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
     }
 
     database.markAsSent(messageId, true);

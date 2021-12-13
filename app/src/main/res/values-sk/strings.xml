@@ -2427,6 +2427,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_failed_to_connect">Pripojenie zlyhalo</string>
   <string name="preferences_enter_proxy_address">Zadajte adresu proxy servera</string>
   <string name="configurable_single_select__customize_option">Prispôsobiť nastavenie</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Všetky aktivity</string>

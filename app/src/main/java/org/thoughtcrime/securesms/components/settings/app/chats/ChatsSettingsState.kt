@@ -5,5 +5,6 @@ data class ChatsSettingsState(
   val useAddressBook: Boolean,
   val useSystemEmoji: Boolean,
   val enterKeySends: Boolean,
-  val chatBackupsEnabled: Boolean
+  val chatBackupsEnabled: Boolean,
+  val doNotMoveArchivedToInbox: Boolean
 )

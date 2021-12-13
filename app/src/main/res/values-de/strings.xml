@@ -2249,6 +2249,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_failed_to_connect">Verbindung konnte nicht hergestellt werden</string>
   <string name="preferences_enter_proxy_address">Proxyadresse eingeben</string>
   <string name="configurable_single_select__customize_option">Option anpassen</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Alle Aktivitäten</string>

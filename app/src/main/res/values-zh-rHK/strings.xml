@@ -2175,6 +2175,9 @@
   <string name="preferences_failed_to_connect">連線失敗</string>
   <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
   <string name="configurable_single_select__customize_option">自訂選項</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">所有活動</string>

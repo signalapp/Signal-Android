@@ -2624,6 +2624,8 @@
     <string name="preferences_success">Success</string>
     <string name="preferences_failed_to_connect">Failed to connect</string>
     <string name="preferences_enter_proxy_address">Enter proxy address</string>
+    <string name="preferences_chats_chat__archived">Archived</string>
+    <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
 
 
     <string name="configurable_single_select__customize_option">Customize option</string>

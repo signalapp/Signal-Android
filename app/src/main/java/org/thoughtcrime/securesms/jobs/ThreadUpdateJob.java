@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 public final class ThreadUpdateJob extends BaseJob {
 
@@ -45,7 +46,7 @@ public final class ThreadUpdateJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    SignalDatabase.threads().update(threadId, true);
+    SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
     ThreadUtil.sleep(1000);
   }
 

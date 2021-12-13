@@ -29,6 +29,7 @@ import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -194,7 +195,7 @@ public class SmsMigrator {
       }
 
       ourSmsDatabase.endTransaction(transaction);
-      SignalDatabase.threads().update(ourThreadId, true);
+      SignalDatabase.threads().update(ourThreadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
       SignalDatabase.threads().setLastScrolled(ourThreadId, 0);
       SignalDatabase.threads().notifyConversationListeners(ourThreadId);
 

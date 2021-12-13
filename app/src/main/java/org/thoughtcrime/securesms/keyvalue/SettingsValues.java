@@ -66,6 +66,7 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String UNIVERSAL_EXPIRE_TIMER                  = "settings.universal.expire.timer";
   private static final String SENT_MEDIA_QUALITY                      = "settings.sentMediaQuality";
   private static final String CENSORSHIP_CIRCUMVENTION_ENABLED        = "settings.censorshipCircumventionEnabled";
+  private static final String DO_NOT_SEND_ARCHIVED_TO_INBOX           = "settings.doNotSendArchivedToInbox";
 
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
 
@@ -109,7 +110,8 @@ public final class SettingsValues extends SignalStoreValues {
                          CALL_VIBRATE_ENABLED,
                          NOTIFY_WHEN_CONTACT_JOINS_SIGNAL,
                          UNIVERSAL_EXPIRE_TIMER,
-                         SENT_MEDIA_QUALITY);
+                         SENT_MEDIA_QUALITY,
+                         DO_NOT_SEND_ARCHIVED_TO_INBOX);
   }
 
   public @NonNull LiveData<String> getOnConfigurationSettingChanged() {
@@ -354,6 +356,10 @@ public final class SettingsValues extends SignalStoreValues {
   public void setNotifyWhenContactJoinsSignal(boolean notifyWhenContactJoinsSignal) {
     putBoolean(NOTIFY_WHEN_CONTACT_JOINS_SIGNAL, notifyWhenContactJoinsSignal);
   }
+
+  public void setDoNotSendArchivedToInbox(boolean doNotSendArchivedToInbox) { putBoolean(DO_NOT_SEND_ARCHIVED_TO_INBOX, doNotSendArchivedToInbox);}
+
+  public boolean isDoNotSendArchivedToInbox() { return getBoolean(DO_NOT_SEND_ARCHIVED_TO_INBOX, TextSecurePreferences.isDoNotSendArchivedToInbox(ApplicationDependencies.getApplication())); }
 
   /**
    * We need to keep track of when the default status changes so we can sync to storage service.

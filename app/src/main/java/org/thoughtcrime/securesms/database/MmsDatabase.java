@@ -1759,7 +1759,7 @@ public class MmsDatabase extends MessageDatabase {
     boolean isNotStoryGroupReply = retrieved.getParentStoryId() == null || !retrieved.getParentStoryId().isGroupReply();
     if (!Types.isExpirationTimerUpdate(mailbox) && !retrieved.getStoryType().isStory() && isNotStoryGroupReply) {
       SignalDatabase.threads().incrementUnread(threadId, 1);
-      SignalDatabase.threads().update(threadId, true);
+      SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
     }
 
     notifyConversationListeners(threadId);
@@ -1871,7 +1871,7 @@ public class MmsDatabase extends MessageDatabase {
       SignalDatabase.threads().incrementUnread(threadId, 1);
     }
 
-    SignalDatabase.threads().update(threadId, true);
+    SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
     TrimThreadJob.enqueueAsync(threadId);
   }
@@ -2165,7 +2165,7 @@ public class MmsDatabase extends MessageDatabase {
 
       if (updateThread) {
         SignalDatabase.threads().setLastScrolled(contentValuesThreadId, 0);
-        SignalDatabase.threads().update(threadId, true);
+        SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
       }
     }
   }

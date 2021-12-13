@@ -125,7 +125,7 @@ public class MessageSender {
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     onMessageSent();
-    SignalDatabase.threads().update(threadId, true);
+    SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
     return allocatedThreadId;
   }
@@ -215,7 +215,7 @@ public class MessageSender {
 
       sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
       onMessageSent();
-      threadDatabase.update(threadId, true);
+      threadDatabase.update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -259,7 +259,7 @@ public class MessageSender {
 
       sendMediaMessage(context, recipient, false, messageId, jobIds);
       onMessageSent();
-      threadDatabase.update(threadId, true);
+      threadDatabase.update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
       return allocatedThreadId;
     } catch (MmsException e) {

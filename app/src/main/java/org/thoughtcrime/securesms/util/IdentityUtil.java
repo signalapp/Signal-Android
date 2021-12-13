@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingIdentityDefaultMessage;
@@ -88,7 +89,7 @@ public final class IdentityUtil {
             else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
 
             SignalDatabase.sms().insertMessageOutbox(threadId, outgoing, false, time, null);
-            SignalDatabase.threads().update(threadId, true);
+            SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
           }
         }
       }
@@ -111,7 +112,7 @@ public final class IdentityUtil {
 
       Log.i(TAG, "Inserting verified outbox...");
       SignalDatabase.sms().insertMessageOutbox(threadId, outgoing, false, time, null);
-      SignalDatabase.threads().update(threadId, true);
+      SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
     }
   }
 

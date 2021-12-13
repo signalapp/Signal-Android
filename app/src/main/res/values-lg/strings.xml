@@ -659,6 +659,9 @@ gy\'olonze (%s) sintuufu.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Okuyimpaya obubaka</string> -->
   <string name="preferences_advanced__use_system_emoji">Kozesa system emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Gyako emoji support eyazimbibwa mu Signal</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

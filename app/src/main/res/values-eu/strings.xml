@@ -1981,6 +1981,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_failed_to_connect">Konexioak huts egin du</string>
   <string name="preferences_enter_proxy_address">Idatzi proxyaren helbidea</string>
   <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsAllActivityFragment__all">Denak</string>

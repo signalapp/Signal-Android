@@ -2232,6 +2232,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_failed_to_connect">Sikertelen kapcsolódás</string>
   <string name="preferences_enter_proxy_address">Proxy cím megadása</string>
   <string name="configurable_single_select__customize_option">Beállítás testreszabása</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Minden tevékenység</string>

@@ -20,7 +20,8 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
       useAddressBook = SignalStore.settings().isPreferSystemContactPhotos,
       useSystemEmoji = SignalStore.settings().isPreferSystemEmoji,
       enterKeySends = SignalStore.settings().isEnterKeySends,
-      chatBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication())
+      chatBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication()),
+      doNotMoveArchivedToInbox = SignalStore.settings().isDoNotSendArchivedToInbox
     )
   )
 
@@ -54,6 +55,11 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
     if (store.state.chatBackupsEnabled != backupsEnabled) {
       store.update { it.copy(chatBackupsEnabled = backupsEnabled) }
     }
+  }
+  
+  fun setDoNotMoveArchivedToInbox(enabled: Boolean) {
+    store.update { it.copy(doNotMoveArchivedToInbox = enabled) }
+    SignalStore.settings().isDoNotSendArchivedToInbox = enabled;
   }
 
   class Factory(private val repository: ChatsSettingsRepository) : ViewModelProvider.Factory {

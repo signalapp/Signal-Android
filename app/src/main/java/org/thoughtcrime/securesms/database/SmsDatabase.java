@@ -666,7 +666,7 @@ public class SmsDatabase extends MessageDatabase {
 
     long threadId = getThreadIdForMessage(messageId);
 
-    SignalDatabase.threads().update(threadId, true);
+    SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
     notifyConversationListeners(threadId);
 
     return new InsertResult(messageId, threadId);
@@ -750,7 +750,7 @@ public class SmsDatabase extends MessageDatabase {
         SignalDatabase.threads().incrementUnread(threadId, 1);
       }
 
-      SignalDatabase.threads().update(threadId, true);
+      SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
       db.setTransactionSuccessful();
     } finally {
@@ -827,7 +827,7 @@ public class SmsDatabase extends MessageDatabase {
         SignalDatabase.threads().incrementUnread(threadId, 1);
       }
 
-      SignalDatabase.threads().update(threadId, true);
+      SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
       db.setTransactionSuccessful();
     } finally {
@@ -899,7 +899,7 @@ public class SmsDatabase extends MessageDatabase {
       SignalDatabase.threads().incrementUnread(threadId, 1);
     }
 
-    SignalDatabase.threads().update(threadId, true);
+    SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
     notifyConversationListeners(threadId);
     TrimThreadJob.enqueueAsync(threadId);
@@ -1073,7 +1073,7 @@ public class SmsDatabase extends MessageDatabase {
                      .filter(Objects::nonNull)
                      .forEach(threadId -> {
                        TrimThreadJob.enqueueAsync(threadId);
-                       SignalDatabase.threads().update(threadId, true);
+                       SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
                        notifyConversationListeners(threadId);
                      });
   }
@@ -1200,7 +1200,7 @@ public class SmsDatabase extends MessageDatabase {
       }
 
       if (!silent) {
-        SignalDatabase.threads().update(threadId, true);
+        SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
       }
 
       if (message.getSubscriptionId() != -1) {
@@ -1243,7 +1243,7 @@ public class SmsDatabase extends MessageDatabase {
     long messageId = db.insert(TABLE_NAME, null, values);
 
     SignalDatabase.threads().incrementUnread(threadId, 1);
-    SignalDatabase.threads().update(threadId, true);
+    SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
     notifyConversationListeners(threadId);
 
@@ -1267,7 +1267,7 @@ public class SmsDatabase extends MessageDatabase {
     databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, values);
 
     SignalDatabase.threads().incrementUnread(threadId, 1);
-    SignalDatabase.threads().update(threadId, true);
+    SignalDatabase.threads().update(threadId, !SignalStore.settings().isDoNotSendArchivedToInbox());
 
     notifyConversationListeners(threadId);
 

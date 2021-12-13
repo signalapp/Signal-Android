@@ -2432,6 +2432,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_failed_to_connect">Nie udało się połączyć</string>
   <string name="preferences_enter_proxy_address">Podaj adres proxy</string>
   <string name="configurable_single_select__customize_option">Dostosuj opcję</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Wszystkie aktywności</string>

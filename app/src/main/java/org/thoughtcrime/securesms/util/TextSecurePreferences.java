@@ -191,6 +191,8 @@ public class TextSecurePreferences {
 
   private static final String ARGON2_TESTED = "argon2_tested";
 
+  public  static final String DO_NOT_SEND_ARCHIVED_TO_INBOX       = "pref_enable_do_not_send_archived_to_inbox";
+
   private static final String[] booleanPreferencesToBackup = {SCREEN_SECURITY_PREF,
                                                               INCOGNITO_KEYBORAD_PREF,
                                                               ALWAYS_RELAY_CALLS_PREF,
@@ -206,7 +208,8 @@ public class TextSecurePreferences {
                                                               NEW_CONTACTS_NOTIFICATIONS,
                                                               SHOW_INVITE_REMINDER_PREF,
                                                               SYSTEM_EMOJI_PREF,
-                                                              ENTER_SENDS_PREF};
+                                                              ENTER_SENDS_PREF,
+                                                              DO_NOT_SEND_ARCHIVED_TO_INBOX};
 
   private static final String[] stringPreferencesToBackup = {LED_COLOR_PREF,
                                                              LED_BLINK_PREF,
@@ -1088,6 +1091,10 @@ public class TextSecurePreferences {
 
   public static void setArgon2Tested(Context context, boolean tested) {
     setBooleanPreference(context, ARGON2_TESTED, tested);
+  }
+
+  public static boolean isDoNotSendArchivedToInbox(Context context) {
+    return getBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, false);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

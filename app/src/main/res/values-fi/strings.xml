@@ -2233,6 +2233,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_failed_to_connect">Yhteyden muodostaminen epäonnistui</string>
   <string name="preferences_enter_proxy_address">Syötä proxyn osoite</string>
   <string name="configurable_single_select__customize_option">Mukauta vaihtoehto</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Kaikki toiminta</string>

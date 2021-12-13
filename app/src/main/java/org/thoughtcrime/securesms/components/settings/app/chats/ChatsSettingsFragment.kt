@@ -88,6 +88,17 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_backupsPreferenceFragment)
         }
       )
+
+      sectionHeaderPref(R.string.preferences_chats_chat__archived);
+
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences_chats_chat_archived),
+        summary = DSLSettingsText.from(if (state.doNotMoveArchivedToInbox) R.string.arrays__enabled else R.string.arrays__disabled),
+        isChecked= state.doNotMoveArchivedToInbox,
+        onClick = {
+          viewModel.setDoNotMoveArchivedToInbox(!state.doNotMoveArchivedToInbox)
+        }
+      )
     }
   }
 }

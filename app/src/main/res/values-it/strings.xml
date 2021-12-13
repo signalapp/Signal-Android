@@ -2260,6 +2260,9 @@
   <string name="preferences_failed_to_connect">Connessione fallita</string>
   <string name="preferences_enter_proxy_address">Inserisci indirizzo proxy</string>
   <string name="configurable_single_select__customize_option">Personalizza opzione</string>
+  <string name="preferences_chats_chat__archived">Archived</string>
+  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
+
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Tutte le attività</string>
