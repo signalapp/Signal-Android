@@ -71,6 +71,10 @@ final class MemoryFileDescriptorProxy {
       try {
         InputStream inputStream = memoryFile.getInputStream();
         if(inputStream.skip(offset) != offset){
+          if (offset > memoryFile.length()) {
+            throw new ErrnoException("onRead", OsConstants.EIO);
+          }
+
           throw new AssertionError();
         }
         return inputStream.read(data, 0, size);

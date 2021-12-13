@@ -293,7 +293,7 @@ public class MediaUtil {
       return false;
     }
 
-    return contentType.startsWith("image/") ||
+    return (contentType.startsWith("image/") && !contentType.equals("image/svg+xml")) ||
            contentType.equals(MediaStore.Images.Media.CONTENT_TYPE);
   }
 
