@@ -1438,9 +1438,6 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Payagan ang mula sa sinuman</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">I-enable ang sealed na tagapagpadala para sa mga paparating na mensahe mula sa mga hindi kontak at tao kung kanino mo hindi pa naibabahagi ang iyong profile</string>
   <string name="preferences_communication__sealed_sender_learn_more">Matuto pa</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

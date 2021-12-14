@@ -1892,9 +1892,6 @@
   <string name="preferences_failed_to_connect">Nikaribû bê girêdan</string>
   <string name="preferences_enter_proxy_address">Navnîşana proxy bikevê</string>
   <string name="configurable_single_select__customize_option">Vebijarkê sererast bike</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsAllActivityFragment__all">Hemû</string>

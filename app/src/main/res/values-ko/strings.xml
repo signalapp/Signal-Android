@@ -2066,9 +2066,6 @@
   <string name="preferences_failed_to_connect">연결 실패함</string>
   <string name="preferences_enter_proxy_address">프록시 주소 입력하기</string>
   <string name="configurable_single_select__customize_option">옵션 설정하기</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">모든 활동</string>

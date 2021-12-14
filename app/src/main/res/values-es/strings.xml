@@ -2260,9 +2260,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_failed_to_connect">Fallo al conectar</string>
   <string name="preferences_enter_proxy_address">Introduce la dirección del proxy</string>
   <string name="configurable_single_select__customize_option">Personalizar opción</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Actividad</string>

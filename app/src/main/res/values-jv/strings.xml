@@ -1344,9 +1344,6 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Ngizinaken saking sinten mawon</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktifaken pangirim ingkang dipunsegel kangge pesen ingkang dipunkirimaken saking non-kontak lan tiyang benten ingkang mboten saged ningali profil sampeyan.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Sapepakipun</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->

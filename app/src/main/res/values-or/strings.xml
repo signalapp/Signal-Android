@@ -1990,9 +1990,6 @@
   <string name="preferences_failed_to_connect">ସଂଯୋଗ କରିବାରେ ବିଫଳ</string>
   <string name="preferences_enter_proxy_address">ପ୍ରକ୍ସି ଠିକଣା ପ୍ରବେଶ କରନ୍ତୁ</string>
   <string name="configurable_single_select__customize_option">ବିକଳ୍ପ କଷ୍ଟମାଇଜ୍ କରନ୍ତୁ</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">ସମସ୍ତ କାର୍ଯ୍ୟକଳାପ</string>

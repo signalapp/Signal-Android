@@ -2079,9 +2079,6 @@
   <string name="preferences_failed_to_connect">કનેક્ટ કરવામાં નિષ્ફળ</string>
   <string name="preferences_enter_proxy_address">પ્રોક્સી એડ્રેસ ઉમેરો</string>
   <string name="configurable_single_select__customize_option">કસ્ટમાઇઝ વિકલ્પ </string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">બધી પ્રવૃત્તિ </string>

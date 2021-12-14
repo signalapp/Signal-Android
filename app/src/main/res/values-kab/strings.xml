@@ -1992,9 +1992,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences_failed_to_connect">Tuqqna ur teddi ara</string>
   <string name="preferences_enter_proxy_address">Sekcem tansa n upṛuksi</string>
   <string name="configurable_single_select__customize_option">Taxtiṛt tudmawant</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Akk tamahilt</string>

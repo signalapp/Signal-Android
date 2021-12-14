@@ -2196,9 +2196,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="preferences_failed_to_connect">कनेक्ट करने में विफल</string>
   <string name="preferences_enter_proxy_address">प्रॉक्सी पता दर्ज करें</string>
   <string name="configurable_single_select__customize_option">अनुकूलित करने का विकल्प</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">सभी गतिविधि</string>

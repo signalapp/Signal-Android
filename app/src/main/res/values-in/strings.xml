@@ -2143,9 +2143,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_failed_to_connect">Gagal menyambungkan</string>
   <string name="preferences_enter_proxy_address">Masukkan alamat proxy</string>
   <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Semua aktivitas</string>

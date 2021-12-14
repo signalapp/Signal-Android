@@ -1959,9 +1959,6 @@
   <string name="preferences_failed_to_connect">ချိတ်ဆက်ရန်မအောင်မြင်ပါ</string>
   <string name="preferences_enter_proxy_address">ကြားခံလိပ်စာကို ထည့်ပါ</string>
   <string name="configurable_single_select__customize_option">ရွေးချယ်မှုကို စိတ်ကြိုက်ပြင်ဆင်မယ်</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">လှုပ်ရှားမှုများအားလုံး</string>

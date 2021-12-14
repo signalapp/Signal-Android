@@ -2239,9 +2239,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_failed_to_connect">Bağlanılamadı</string>
   <string name="preferences_enter_proxy_address">Vekil sunucu adresi girin</string>
   <string name="configurable_single_select__customize_option">Seçeneği düzenle</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Tüm faaliyet</string>

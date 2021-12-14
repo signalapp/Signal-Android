@@ -1000,9 +1000,6 @@ a shonrú</string>
   <string name="preferences_communication__category_sealed_sender">Seoltóir Séalaithe</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Taispeáin táscairí</string>
   <string name="preferences_communication__sealed_sender_learn_more">Foghlaim tuilleadh</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->

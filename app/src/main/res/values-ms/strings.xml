@@ -2111,9 +2111,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_failed_to_connect">Gagal untuk menyambung</string>
   <string name="preferences_enter_proxy_address">Masukkan alamat proksi</string>
   <string name="configurable_single_select__customize_option">Sesuaikan pilihan</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Semua aktiviti</string>

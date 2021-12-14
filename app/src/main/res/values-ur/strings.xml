@@ -2083,9 +2083,6 @@
   <string name="preferences_failed_to_connect">رابطہ ناکام ہوگیا</string>
   <string name="preferences_enter_proxy_address">پراکسی ایڈریس درج کریں</string>
   <string name="configurable_single_select__customize_option">آپشن کو کسٹمائز کریں</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">تمام سرگرمی</string>

@@ -2340,9 +2340,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_failed_to_connect">Conexiunea a eșuat</string>
   <string name="preferences_enter_proxy_address">Introdu adresa proxy</string>
   <string name="configurable_single_select__customize_option">Personalizează opțiunea</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Toată activitatea</string>

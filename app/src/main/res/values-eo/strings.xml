@@ -2260,9 +2260,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_failed_to_connect">Malsukcesis konekto</string>
   <string name="preferences_enter_proxy_address">Entajpi prokuran adreson</string>
   <string name="configurable_single_select__customize_option">Elekti opcion</string>
-  <string name="preferences_chats_chat__archived">Archived</string>
-  <string name="preferences_chats_chat_archived">Archived chats stay archived when new messages are received.</string>
-
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Ĉiuj aktivaĵoj</string>
