@@ -68,11 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clickable="false"
-            app:layout_constraintBottom_toBottomOf="@id/shareable_group_link_enable_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/shareable_group_link_enable_label"
-            app:layout_constraintTop_toTopOf="@id/shareable_group_link_enable_label" />
+            android:clickable="false" />
 
     </LinearLayout>
 

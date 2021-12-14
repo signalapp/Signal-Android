@@ -33,8 +33,8 @@
             <argument
                 android:name="initial_value"
                 android:defaultValue="@null"
-                app:nullable="true"
-                app:argType="java.lang.Integer" />
+                app:argType="java.lang.Integer"
+                app:nullable="true" />
         </action>
 
         <argument
@@ -89,6 +89,14 @@
 
         </action>
 
+        <action
+            android:id="@+id/action_conversationSettingsFragment_to_shareableGroupLinkFragment"
+            app:destination="@id/shareableGroupLinkFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
     </fragment>
 
     <fragment
@@ -136,6 +144,16 @@
         <argument
             android:name="recipient_id"
             app:argType="org.thoughtcrime.securesms.recipients.RecipientId" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/shareableGroupLinkFragment"
+        android:name="org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.ShareableGroupLinkFragment">
+
+        <argument
+            android:name="group_id"
+            app:argType="string" />
 
     </fragment>
 
