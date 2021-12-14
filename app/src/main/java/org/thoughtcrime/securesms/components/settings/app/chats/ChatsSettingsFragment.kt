@@ -89,6 +89,8 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
         }
       )
 
+      dividerPref()
+
       sectionHeaderPref(R.string.preferences_chats_chat__archived);
 
       switchPref(
