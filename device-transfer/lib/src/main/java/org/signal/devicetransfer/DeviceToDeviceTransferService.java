@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.PowerManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -21,6 +23,7 @@ import org.signal.core.util.logging.Log;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Foreground service to help manage interactions with the {@link DeviceTransferClient} and
@@ -44,6 +47,7 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   private PendingIntent            pendingIntent;
   private DeviceTransferServer     server;
   private DeviceTransferClient     client;
+  private PowerManager.WakeLock    wakeLock;
 
   public static void startServer(@NonNull Context context,
                                  @NonNull ServerTask serverTask,
@@ -114,6 +118,10 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
       server = null;
     }
 
+    if (wakeLock != null) {
+      wakeLock.release();
+    }
+
     super.onDestroy();
   }
 
@@ -143,6 +151,7 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
           server           = new DeviceTransferServer(getApplicationContext(),
                                                       (ServerTask) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_TASK)),
                                                       this);
+          acquireWakeLock();
           server.start();
         } else {
           Log.i(TAG, "Can't start server, already started.");
@@ -156,6 +165,7 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
           client           = new DeviceTransferClient(getApplicationContext(),
                                                       (ClientTask) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_TASK)),
                                                       this);
+          acquireWakeLock();
           client.start();
         } else {
           Log.i(TAG, "Can't start client, client already started.");
@@ -185,6 +195,19 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
       stopForeground(true);
       stopSelf();
     });
+  }
+
+  private void acquireWakeLock() {
+    if (wakeLock == null) {
+      PowerManager powerManager = ContextCompat.getSystemService(this, PowerManager.class);
+      if (powerManager != null) {
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "signal:d2dpartial");
+      }
+    }
+
+    if (!wakeLock.isHeld()) {
+      wakeLock.acquire(TimeUnit.HOURS.toMillis(2));
+    }
   }
 
   private void updateNotification(@NonNull TransferStatus transferStatus) {

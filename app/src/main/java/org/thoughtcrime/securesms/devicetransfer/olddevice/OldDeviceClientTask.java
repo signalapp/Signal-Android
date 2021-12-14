@@ -59,7 +59,7 @@ final class OldDeviceClientTask implements ClientTask {
   public void onEvent(FullBackupBase.BackupEvent event) {
     if (event.getType() == FullBackupBase.BackupEvent.Type.PROGRESS) {
       if (System.currentTimeMillis() > lastProgressUpdate + PROGRESS_UPDATE_THROTTLE) {
-        EventBus.getDefault().post(new Status(event.getCount(), false));
+        EventBus.getDefault().post(new Status(event.getCount(), event.getEstimatedTotalCount(), event.getCompletionPercentage(), false));
         lastProgressUpdate = System.currentTimeMillis();
       }
     }
@@ -68,20 +68,32 @@ final class OldDeviceClientTask implements ClientTask {
   @Override
   public void success() {
     SignalStore.misc().markOldDeviceTransferLocked();
-    EventBus.getDefault().post(new Status(0, true));
+    EventBus.getDefault().post(new Status(0, 0, 0,true));
   }
 
   public static final class Status {
     private final long    messages;
+    private final long    estimatedMessages;
+    private final double  completionPercentage;
     private final boolean done;
 
-    public Status(long messages, boolean done) {
-      this.messages = messages;
-      this.done     = done;
+    public Status(long messages, long estimatedMessages, double completionPercentage, boolean done) {
+      this.messages             = messages;
+      this.estimatedMessages    = estimatedMessages;
+      this.completionPercentage = completionPercentage;
+      this.done                 = done;
     }
 
     public long getMessageCount() {
       return messages;
+    }
+
+    public long getEstimatedMessageCount() {
+      return estimatedMessages;
+    }
+
+    public double getCompletionPercentage() {
+      return completionPercentage;
     }
 
     public boolean isDone() {

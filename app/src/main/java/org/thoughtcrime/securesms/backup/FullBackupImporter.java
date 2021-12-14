@@ -95,7 +95,7 @@ public class FullBackupImporter extends FullBackupBase {
       BackupFrame frame;
 
       while (!(frame = inputStream.readFrame()).getEnd()) {
-        if (count % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count));
+        if (count % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count, 0));
         count++;
 
         if      (frame.hasVersion())    processVersion(db, frame.getVersion());
@@ -115,7 +115,7 @@ public class FullBackupImporter extends FullBackupBase {
       keyValueDatabase.endTransaction();
     }
 
-    EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count));
+    EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count, 0));
   }
 
   private static @NonNull InputStream getInputStream(@NonNull Context context, @NonNull Uri uri) throws IOException{

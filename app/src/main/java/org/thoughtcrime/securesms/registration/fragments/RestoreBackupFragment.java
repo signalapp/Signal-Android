@@ -328,7 +328,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(@NonNull FullBackupBase.BackupEvent event) {
-    int count = event.getCount();
+    long count = event.getCount();
 
     if (count == 0) {
       restoreBackupProgress.setText(R.string.RegistrationActivity_checking);

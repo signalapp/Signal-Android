@@ -15,6 +15,9 @@ import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.devicetransfer.DeviceTransferFragment;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * Shows transfer progress on the old device. Most logic is in {@link DeviceTransferFragment}
  * and it delegates to this class for strings, navigation, and updating progress.
@@ -52,6 +55,14 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
   }
 
   private class ClientTaskListener {
+    private final NumberFormat formatter;
+
+    public ClientTaskListener() {
+      formatter = NumberFormat.getInstance();
+      formatter.setMinimumFractionDigits(1);
+      formatter.setMaximumFractionDigits(1);
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(@NonNull OldDeviceClientTask.Status event) {
       if (event.isDone()) {
@@ -61,7 +72,11 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
         DeviceToDeviceTransferService.stop(requireContext());
         NavHostFragment.findNavController(OldDeviceTransferFragment.this).navigate(R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
       } else {
-        status.setText(getString(R.string.DeviceTransfer__d_messages_so_far, event.getMessageCount()));
+        if (event.getEstimatedMessageCount() == 0) {
+          status.setText(getString(R.string.DeviceTransfer__d_messages_so_far, event.getMessageCount()));
+        } else {
+          status.setText(getString(R.string.DeviceTransfer__s_of_messages_so_far, formatter.format(event.getCompletionPercentage())));
+        }
       }
     }
   }
