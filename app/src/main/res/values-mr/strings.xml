@@ -3461,7 +3461,7 @@
   <!--Error message shown when attempting to next/save without a profile name-->
   <string name="EditNotificationProfileFragment__profile_must_have_a_name">नाव असणे आवश्यक आहे</string>
   <!--Title for add recipients to notification profile screen in create flow-->
-  <string name="AddAllowedMembers__allowed_notifications">अनुमत सूचना</string>
+  <string name="AddAllowedMembers__allowed_notifications">सूचनांची अनुमती असलेले</string>
   <!--Description of what the user should be doing with this screen-->
   <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">हे प्रोफाइल चालू असताना ज्यांच्याकडून आपल्याला सूचना आणि कॉल हवे आहे असे लोक आणि गट जोडा</string>
   <!--Button text that launches the contact picker to select from-->

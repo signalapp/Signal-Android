@@ -3664,6 +3664,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">Šoférovanie</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Odpočinok</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">Sústrediť sa</string>
   <!--Error message shown when attempting to next/save without a profile name-->
@@ -3695,7 +3696,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Odstrániť</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Upraviť profil upozornení</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Každý deň</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Zapnuté</string>
   <!--Profile status on if it is not the active profile-->
@@ -3703,14 +3706,21 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">od %1$s do %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Výnimky</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Povoliť všetky hovory</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Upozorniť na všetky zmienky</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Rozvrh</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">Pozrieť všetky</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Pridajte rozvrh</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Nastavte plán na automatické povolenie tohto profilu upozornení.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Rozvrh</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Štart</string>
   <!--Label for showing the end time for the schedule-->
@@ -3748,7 +3758,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Svoj profil môžete zapnúť, alebo vypnúť manuálne cez ponuku v zozname rozhovorov.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Pridajte plán v nastaveniach na automatizáciu svojho profilu.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Váš profil sa automaticky zapne a vypne podľa vášho plánu.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">Nový profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->

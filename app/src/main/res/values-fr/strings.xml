@@ -2919,7 +2919,7 @@
   <string name="WallpaperCropActivity__blur_photo">Rendre la photo floue</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">À propos de MobileCoin</string>
-  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin est une nouvelle monnaie numérique centrée sur protection des renseignements personnels.</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin est une nouvelle monnaie numérique centrée sur la protection des renseignements personnels.</string>
   <string name="payment_info_card_adding_funds">Ajouter des fonds</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Vous pouvez ajouter des fonds à utiliser dans Signal en envoyant des MobileCoin à l’adresse de votre portefeuille.</string>
   <string name="payment_info_card_cashing_out">Encaisser</string>

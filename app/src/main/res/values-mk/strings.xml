@@ -3358,6 +3358,7 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <string name="NetworkFailure__retry">Пробај пак</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Именувај го профилот</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Име на профил </string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3464,13 +3465,16 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Следно</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Распоредот мора да има барем еден ден</string>
   <!--Title for final screen shown after completing a profile creation-->
   <string name="NotificationProfileCreated__profile_created">Профилот е создаден</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Готово</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Додајте распоред во поставувања за да го автоматизирате Вашиот профил.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Вашиот профил автоматски ќе се вклучува и исклучува според Вашиот распоред.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">Нов профил</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
@@ -3478,11 +3482,13 @@
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">До %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Види поставувања</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Вклучен до %1$s</string>
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">Профили за известување</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Добивајте известувања само од луѓето и групите што ќе ги изберете.</string>
   <!--Call to action button to create a profile from megaphone-->
   <string name="NotificationProfilesMegaphone__create_a_profile">Создај профил</string>
   <!--Button to dismiss notification profile megaphone-->
