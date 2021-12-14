@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sessie</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="delete">Skrap</string>
+    <string name="ban">Verbod</string>
+    <string name="please_wait">Wag asseblief...</string>
+    <string name="save">Stoor</string>
+    <string name="note_to_self">Nota aan jouself</string>
+    <string name="version_s">Weergawe %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Nuwe boodskap</string>
+    <!-- AlbumThumbnailView -->
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">%d boodskap per gesprek</item>
+        <item quantity="other">%d boodskappe per gesprek</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Skrap</string>
+    <string name="ApplicationPreferencesActivity_On">Aan</string>
+    <string name="ApplicationPreferencesActivity_Off">Af</string>
+    <!-- DraftDatabase -->
+    <!-- AttachmentManager -->
+    <!-- AudioSlidePlayer -->
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Vandag</string>
+    <string name="BucketedThreadMedia_Yesterday">Gister</string>
+    <!-- CommunicationActions -->
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Groepe</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_read_more">Lees Meer</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_select_contact_info">Kies kontak besonderhede</string>
+    <string name="ConversationActivity_message">Boodskap</string>
+    <string name="ConversationActivity_leave_group">Verlaat groep?</string>
+    <!-- ConversationAdapter -->
+    <!-- ConversationFragment -->
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <!-- ConversationListItem -->
+    <!-- CreateProfileActivity -->
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_none">Geen</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_today">Vandag</string>
+    <!-- DeviceListItem -->
+    <!-- DocumentView -->
+    <!-- GiphyActivity -->
+    <!-- GiphyFragmentPageAdapter -->
+    <!-- CropImageActivity -->
+    <!-- InputPanel -->
+    <!-- LongMessageActivity -->
+    <!-- MediaOverviewActivity -->
+    <!-- NotificationMmsMessageRecord -->
+    <!-- MediaPickerActivity -->
+    <!-- MediaSendActivity -->
+    <!-- MediaRepository -->
+    <!-- MessageRecord -->
+    <!-- ExpirationDialog -->
+    <!-- PassphrasePromptActivity -->
+    <!-- RecipientPreferencesActivity -->
+    <!-- Slide -->
+    <!-- SmsMessageRecord -->
+    <!-- ThreadRecord -->
+    <!-- UpdateApkReadyListener -->
+    <!-- MessageDisplayHelper -->
+    <!-- MmsMessageRecord -->
+    <!-- MuteDialog -->
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_lock">Sluit Sessie</string>
+    <!-- MediaPreviewActivity -->
+    <!-- MessageNotifier -->
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_group_messages">Boodskappe</string>
+    <string name="NotificationChannel_missing_display_name">Onbekend</string>
+    <!-- QuickResponseService -->
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved">Gestoor</string>
+    <!-- SearchToolbar -->
+    <!-- ShortcutLauncherActivity -->
+    <!-- SingleRecipientNotificationBuilder -->
+    <!-- TransferControlView -->
+    <!-- VideoPlayer -->
+    <!-- attachment_type_selector -->
+    <!-- contact_selection_group_activity -->
+    <!-- conversation_activity -->
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__cancel">Kanselleer</string>
+    <!-- conversation_item -->
+    <!-- conversation_item_sent -->
+    <!-- conversation_item_received -->
+    <!-- audio_view -->
+    <!-- open_group_invitation_view -->
+    <string name="open_group_guidelines_read">Lees</string>
+    <!-- QuoteView -->
+    <!-- conversation_fragment -->
+    <!-- giphy_activity -->
+    <!-- giphy_fragment -->
+    <!-- load_more_header -->
+    <!-- media_overview_activity -->
+    <!-- message_recipients_list_item -->
+    <!-- recipient_preferences -->
+    <!-- message_details_header -->
+    <!-- AndroidManifest.xml -->
+    <!-- arrays.xml -->
+    <string name="arrays__small">Klein</string>
+    <string name="arrays__normal">Normaal</string>
+    <string name="arrays__large">Groot</string>
+    <!-- plurals.xml -->
+    <!-- preferences.xml -->
+    <string name="preferences__fast">Vinnig</string>
+    <string name="preferences__slow">Stadig</string>
+    <string name="preferences__light_theme">Lig</string>
+    <string name="preferences__dark_theme">Donker</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <!-- conversation_context -->
+    <!-- conversation_context_image -->
+    <!-- conversation_expiring_off -->
+    <!-- conversation_expiring_on -->
+    <!-- conversation_muted -->
+    <!-- conversation_unmuted -->
+    <!-- conversation -->
+    <!-- conversation_popup -->
+    <!-- conversation_group_options -->
+    <!-- media_preview -->
+    <!-- media_overview -->
+    <!-- media_preview_activity -->
+    <!-- Trimmer -->
+    <!-- transport_selection_list_item -->
+    <!-- Conversation activity -->
+    <!-- Session -->
+    <!-- Next round of translation -->
+    <string name="dialog_ui_mode_option_night">Nag</string>
+    <string name="dialog_send_seed_title">Waarskuwing</string>
+    <string name="dialog_send_seed_send_button_title">Stuur</string>
+</resources>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ಸೆಷನ್</string>
+    <string name="yes">ಹೌದು</string>
+    <string name="no">ಇಲ್ಲ</string>
+    <string name="delete">ಅಳಿಸಿ ಹಾಕು</string>
+    <string name="ban">ನಿಷೇಧಿಸು</string>
+    <string name="please_wait">ದಯಮಾಡಿ ನಿರೀಕ್ಷಿಸಿ...</string>
+    <string name="save">ಉಳಿಸಿ</string>
+    <string name="note_to_self">ನನಗಾಗಿ ಟಿಪ್ಪಣಿ</string>
+    <string name="version_s">%s ಆವೃತ್ತಿ</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">ಹೊಸ ಸಂದೇಶ</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ಎಲ್ಲಾ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸುವುದೇ?</string>
+    <string name="ApplicationPreferencesActivity_delete">ಅಳಿಸು</string>
+    <string name="ApplicationPreferencesActivity_On">ಆನ್</string>
+    <string name="ApplicationPreferencesActivity_Off">ಆಫ್</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(ಚಿತ್ರ)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(ಆಡಿಯೋ)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(ವೀಡಿಯೊ)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(ಜವಾಬು)</string>
+    <!-- AttachmentManager -->
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">ಆಡಿಯೊವನ್ನು ಪ್ಲೇ ಮಾಡುವುದರಲ್ಲಿ ದೋಷವುಂಟಾಗಿದೆ!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">ಇಂದು</string>
+    <string name="BucketedThreadMedia_Yesterday">ನಿನ್ನೆ</string>
+    <string name="BucketedThreadMedia_This_week">ಈ ವಾರ</string>
+    <string name="BucketedThreadMedia_This_month">ಈ ತಿಂಗಳು</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">ಯಾವುದೇ ಜಾಲತಾಣ ವೀಕ್ಷಕ ಪತ್ತೆಯಾಗಿಲ್ಲ.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">ಗುಂಪುಗಳು</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ, ಮಾಹಿತಿಗಾಗಿ ತಟ್ಟಿ ನೋಡಿ</string>
+    <string name="ConversationItem_read_more">ಹೆಚ್ಚು ಓದಿರಿ</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_message">ಸಂದೇಶ</string>
+    <string name="ConversationActivity_compose">ರಚಿಸು</string>
+    <string name="ConversationActivity_muted_forever">ಸದ್ದಡಗಿಸಿ</string>
+    <string name="ConversationActivity_open_group_guidelines">ಸಮುದಾಯ ಮಾರ್ಗಸೂಚಿಗಳು</string>
+    <string name="ConversationActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯಬೇಕೆ?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">ಈ ಗುಂಪನ್ನು ತೊರೆಯಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
+    <string name="ConversationActivity_error_leaving_group">ಗುಂಪನ್ನು ತೊರೆಯುವಲ್ಲಿ ದೋಷವಾಗಿದೆ</string>
+    <string name="ConversationActivity_invite_to_open_group">ಸದಸ್ಯರನ್ನು ಸೇರಿಸು</string>
+    <string name="ConversationActivity_join_open_group">#%s ಗೆ ಸೇರಿ</string>
+    <string name="ConversationActivity_no_results">ಯಾವುದೇ ಫಲಿತಾಂಶಗಳಿಲ್ಲ</string>
+    <!-- ConversationAdapter -->
+    <!-- ConversationFragment -->
+    <string name="ConversationFragment_pending">ಬಾಕಿ ಇದೆ...</string>
+    <string name="ConversationFragment_mms">ಎಮೆಮೆಸ್</string>
+    <string name="ConversationFragment_sms">ಎಸೆಮೆಸ್</string>
+    <string name="ConversationFragment_deleting">ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತಿದೆ</string>
+    <string name="ConversationFragment_deleting_messages">ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತಿದೆ…</string>
+    <!-- ConversationListItem -->
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">ವ್ಯಕ್ತಿಚಿತ್ರ</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_none">ಯಾವುದೂ ಇಲ್ಲ</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">ಈಗ</string>
+    <string name="DateUtils_today">ಇಂದು</string>
+    <string name="DateUtils_yesterday">ನಿನ್ನೆ</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">ಇಂದು</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">ಗೊತ್ತಿರದ ಕಡತ</string>
+    <!-- GiphyActivity -->
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIF ಗಳು</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">ಸ್ಟಿಕರ್‌‌ಗಳು</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">ಚಿತ್ರಪಟ</string>
+    <!-- InputPanel -->
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_your_message">ನಿಮ್ಮ ಸಂದೇಶ</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">ಮಾಧ್ಯಮ</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತಿದೆ</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತಿದೆ...</string>
+    <string name="MediaOverviewActivity_Documents">ದಾಖಲೆಗಳು</string>
+    <string name="MediaOverviewActivity_Select_all">ಎಲ್ಲ ಆಯ್ದುಕೊಳ್ಳಿ</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">ಮಲ್ಟಿಮೀಡಿಯಾ ಸಂದೇಶ</string>
+    <!-- MediaPickerActivity -->
+    <!-- MediaSendActivity -->
+    <!-- MediaRepository -->
+    <!-- MessageRecord -->
+    <!-- ExpirationDialog -->
+    <!-- PassphrasePromptActivity -->
+    <!-- RecipientPreferencesActivity -->
+    <!-- Slide -->
+    <!-- SmsMessageRecord -->
+    <!-- ThreadRecord -->
+    <!-- UpdateApkReadyListener -->
+    <!-- MessageDisplayHelper -->
+    <!-- MmsMessageRecord -->
+    <!-- MuteDialog -->
+    <!-- KeyCachingService -->
+    <!-- MediaPreviewActivity -->
+    <!-- MessageNotifier -->
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_calls">ಕಾಲುಗಳು</string>
+    <string name="NotificationChannel_failures">ವಿಫಲತೆಗಳು</string>
+    <string name="NotificationChannel_backups">ಬ್ಯಾಕಪ್ಪುಗಳು</string>
+    <string name="NotificationChannel_other">ಇತರೆ</string>
+    <string name="NotificationChannel_group_messages">ಸಂದೇಶಗಳು</string>
+    <string name="NotificationChannel_missing_display_name">ಗೊತ್ತಿರದ</string>
+    <!-- QuickResponseService -->
+    <!-- SaveAttachmentTask -->
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">ಹುಡುಕು</string>
+    <!-- ShortcutLauncherActivity -->
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">ಸೆಷನ್</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">ಹೊಸ ಸಂದೇಶ</string>
+    <!-- TransferControlView -->
+    <!-- VideoPlayer -->
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">ಆಡಿಯೋ</string>
+    <string name="attachment_type_selector__audio_description">ಆಡಿಯೋ</string>
+    <string name="attachment_type_selector__camera">ಕ್ಯಾಮರಾ</string>
+    <string name="attachment_type_selector__camera_description">ಕ್ಯಾಮರಾ</string>
+    <string name="attachment_type_selector__location">ಸ್ಥಳ</string>
+    <string name="attachment_type_selector__location_description">ಸ್ಥಳ</string>
+    <string name="attachment_type_selector__gif">ಗಿಫ್</string>
+    <string name="attachment_type_selector__gif_description">ಗಿಫ್</string>
+    <string name="attachment_type_selector__file_description">ಕಡತ</string>
+    <string name="attachment_type_selector__gallery">ಚಿತ್ರಶಾಲೆ</string>
+    <string name="attachment_type_selector__file">ಕಡತ</string>
+    <!-- contact_selection_group_activity -->
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">ಕಳುಹಿಸಿ</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__cancel">ರದ್ದುಪಡಿಸಿ</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">ಮೀಡಿಯಾ ಸಂದೇಶ</string>
+    <string name="conversation_item__secure_message_description">ಸುರಕ್ಷಿತ ಸಂದೇಶ</string>
+    <!-- conversation_item_sent -->
+    <!-- conversation_item_received -->
+    <!-- audio_view -->
+    <string name="audio_view__pause_accessibility_description">ವಿರಾಮ</string>
+    <string name="audio_view__download_accessibility_description">ಡೌನ್ಲೋಡ್</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">ಸೇರಿ</string>
+    <string name="open_group_guidelines_community_guidelines">ಸಮುದಾಯ ಮಾರ್ಗಸೂಚಿಗಳು</string>
+    <string name="open_group_guidelines_read">ಓದು</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">ಆಡಿಯೋ</string>
+    <string name="QuoteView_video">ವೀಡಿಯೊ</string>
+    <string name="QuoteView_photo">ಚಿತ್ರಪಟ</string>
+    <string name="QuoteView_you">ನೀವು</string>
+    <!-- conversation_fragment -->
+    <!-- giphy_activity -->
+    <!-- giphy_fragment -->
+    <!-- load_more_header -->
+    <!-- media_overview_activity -->
+    <!-- message_recipients_list_item -->
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">ತಡೆ</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__sent">ಕಳುಹಿಸಿದೆ</string>
+    <string name="message_details_header__received">ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
+    <string name="message_details_header__disappears">ಮಾಯವಾಗು</string>
+    <string name="message_details_header__to">ಗೆ:</string>
+    <string name="message_details_header__from">ಇಂದ:</string>
+    <string name="message_details_header__with">ಜೊತೆಗೆ:</string>
+    <!-- AndroidManifest.xml -->
+    <!-- arrays.xml -->
+    <string name="arrays__enabled">ಸಕ್ರಿಯಗೊಳಿಸಿದೆ</string>
+    <string name="arrays__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದೆ</string>
+    <string name="arrays__name_and_message">ಹೆಸರು ಮತ್ತು ಸಂದೇಶ</string>
+    <string name="arrays__name_only">ಹೆಸರು ಮಾತ್ರ</string>
+    <string name="arrays__images">ಚಿತ್ರಗಳು</string>
+    <string name="arrays__audio">ಆಡಿಯೋ</string>
+    <string name="arrays__video">ವೀಡಿಯೊ</string>
+    <string name="arrays__documents">ದಾಖಲೆಗಳು</string>
+    <string name="arrays__small">ಸಣ್ಣ</string>
+    <string name="arrays__normal">ಸಾಮಾನ್ಯ</string>
+    <string name="arrays__large">ದೊಡ್ಡ</string>
+    <string name="arrays__extra_large">ಅತಿ ದೊಡ್ಡ</string>
+    <string name="arrays__default">ಪೂರ್ವನಿಯೋಜಿತ</string>
+    <!-- plurals.xml -->
+    <!-- preferences.xml -->
+    <string name="preferences__screen_security">ಪರದೆಯ ಭದ್ರತೆ</string>
+    <string name="preferences__notifications">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="preferences__led_color">ಎಲಿಡಿ ಬಣ್ಣ</string>
+    <string name="preferences__led_color_unknown">ಗೊತ್ತಿರದ</string>
+    <string name="preferences__sound">ಶಬ್ಧ</string>
+    <string name="preferences__silent">ನಿಶ್ಯಬ್ದ</string>
+    <string name="preferences__one_time">ಒಮ್ಮೆ</string>
+    <string name="preferences__two_times">ಎರಡು ಬಾರಿ</string>
+    <string name="preferences__three_times">ಮೂರು ಬಾರಿ</string>
+    <string name="preferences__five_times">ಐದು ಬಾರಿ</string>
+    <string name="preferences__ten_times">ಹತ್ತು ಬಾರಿ</string>
+    <string name="preferences__vibrate">ಕಂಪಿಸು</string>
+    <string name="preferences__green">ಹಸಿರು</string>
+    <string name="preferences__red">ಕೆಂಪು</string>
+    <string name="preferences__blue">ನೀಲಿ</string>
+    <string name="preferences__orange">ಕಿತ್ತಳೆ</string>
+    <string name="preferences__magenta">ಕೆನ್ನೇರಿಳೆ</string>
+    <string name="preferences__white">ಬಿಳಿ</string>
+    <string name="preferences__none">ಯಾವುದೂ ಇಲ್ಲ</string>
+    <string name="preferences__normal">ಸಾಮಾನ್ಯ</string>
+    <string name="preferences__slow">ನಿಧಾನ</string>
+    <string name="preferences__delete_old_messages">ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಿ</string>
+    <string name="preferences__default">ಪೂರ್ವನಿಯೋಜಿತ</string>
+    <string name="preferences__light_theme">ಪ್ರಕಾಶ</string>
+    <string name="preferences__dark_theme">ಕತ್ತಲು</string>
+    <string name="preferences_notifications__messages">ಸಂದೇಶಗಳು</string>
+    <string name="preferences_notifications__show">ತೋರಿಸು</string>
+    <string name="preferences_notifications__priority">ಆದ್ಯತೆ</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">ಸಂದೇಶ ವಿವರಗಳು</string>
+    <string name="conversation_context__menu_delete_message">ಸಂದೇಶಗವನ್ನು ಅಳಿಸಿ</string>
+    <!-- conversation_context_image -->
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">ಮಾಯವಾಗುವ ಸಂದೇಶಗಳು</string>
+    <!-- conversation_expiring_on -->
+    <!-- conversation_muted -->
+    <!-- conversation_unmuted -->
+    <!-- conversation -->
+    <string name="conversation__menu_leave_group">ಗುಂಪನ್ನು ತೊರೆಯಿರಿ</string>
+    <string name="conversation__menu_view_all_media">ಎಲ್ಲ ಮಾಧ್ಯಮ</string>
+    <string name="conversation__menu_add_shortcut">ಮುಖಪುಟಕ್ಕೆ ಸೇರಿಸು</string>
+    <!-- conversation_popup -->
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">ವಿತರಣೆ</string>
+    <string name="conversation_group_options__conversation">ಸಂಭಾಷಣೆ</string>
+    <!-- media_preview -->
+    <!-- media_overview -->
+    <!-- media_preview_activity -->
+    <!-- Trimmer -->
+    <!-- transport_selection_list_item -->
+    <string name="preferences_app_protection__screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್</string>
+    <string name="AppProtectionPreferenceFragment_none">ಯಾವುದೂ ಇಲ್ಲ</string>
+    <!-- Conversation activity -->
+    <!-- Session -->
+    <string name="continue_2">ಮುಂದುವರೆಯಿರಿ</string>
+    <string name="copy">ನಕಲಿಸಿ</string>
+    <string name="invalid_url">ಅಮಾನ್ಯ URL</string>
+    <string name="next">ಮುಂದಿನ</string>
+    <string name="share">ಹಂಚು</string>
+    <string name="cancel">ರದ್ದುಪಡಿಸಿ</string>
+    <string name="activity_path_title">ದಾರಿ</string>
+    <string name="activity_path_device_row_title">ನೀವು</string>
+    <string name="activity_path_destination_row_title">ಗಮ್ಯಸ್ಥಾನ</string>
+    <string name="activity_path_learn_more_button_title">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+    <string name="activity_create_private_chat_title">ಹೊಸ ಸೆಷನ್</string>
+    <string name="activity_settings_title">ಸಂಯೋಜನೆಗಳು</string>
+    <string name="activity_settings_privacy_button_title">ಖಾಸಗಿತನ</string>
+    <string name="activity_settings_notifications_button_title">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="activity_settings_devices_button_title">ಸಾಧನಗಳು</string>
+    <string name="activity_settings_invite_button_title">ಒರ್ವ ಸ್ನೇಹಿತನನ್ನು ಆಮಂತ್ರಿಸಿ</string>
+    <string name="activity_settings_help_translate_session">ಸೆಷನ್ ಅನ್ನು ಅನುವಾದಿಸಲು ಸಹಾಯ ಮಾಡಿ</string>
+    <string name="activity_notification_settings_title">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="activity_privacy_settings_title">ಖಾಸಗಿತನ</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">ಹೆಸರು ಬದಲಾಯಿಸಿ</string>
+    <string name="dialog_clear_all_data_clear_network">ಇಡೀ ಖಾತೆ</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">QR ಕೋಡ್‌ ಸ್ಕ್ಯಾನ್‌ ಮಾಡಿ</string>
+    <string name="fragment_view_my_qr_code_share_title">QR ಸಂಕೇತವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <!-- Next round of translation -->
+    <string name="menu_done_button">ಆಗಿದೆ</string>
+    <string name="activity_edit_closed_group_edit_members">ಸದಸ್ಯರು</string>
+    <string name="activity_edit_closed_group_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸು</string>
+    <string name="dialog_ui_mode_option_day">ಹಗಲು</string>
+    <string name="dialog_ui_mode_option_night">ರಾತ್ರಿ</string>
+    <string name="details">ವಿವರಗಳು</string>
+    <string name="activity_backup_restore_select_file">ಕಡತವೊಂದನ್ನು ಆಯ್ಕೆಮಾಡು</string>
+    <string name="open">ತೆರೆ</string>
+    <string name="dialog_link_preview_enable_button_title">ಸಕ್ರಿಯಗೊಳಿಸು</string>
+    <string name="dialog_download_button_title">ಡೌನ್ಲೋಡ್</string>
+    <string name="media">ಮಾಧ್ಯಮ</string>
+    <string name="message_details_header__error">ದೋಷ</string>
+    <string name="dialog_send_seed_title">ಎಚ್ಚರಿಕೆ</string>
+    <string name="dialog_send_seed_send_button_title">ಕಳುಹಿಸಿ</string>
+    <string name="notify_type_all">ಎಲ್ಲ</string>
+    <string name="notify_type_mentions">ಉಲ್ಲೇಖಗಳು</string>
+    <string name="deleted_message">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗಿದೆ</string>
+</resources>

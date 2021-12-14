@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yes">Iawn</string>
+    <string name="no">Na</string>
+    <string name="delete">Dileu</string>
+    <string name="please_wait">Arhoswch...</string>
+    <string name="save">Cadw</string>
+    <string name="note_to_self">Nodyn i Fi Fy Hun</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Neges newydd</string>
+    <!-- AlbumThumbnailView -->
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="zero">%d neges i bob sgwrs</item>
+        <item quantity="one">%d neges i bob sgwrs</item>
+        <item quantity="two">%d neges i bob sgwrs</item>
+        <item quantity="few">%d neges i bob sgwrs</item>
+        <item quantity="many">%d neges i bob sgwrs</item>
+        <item quantity="other">%d neges i bob sgwrs</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Dileu hen negeseuon nawr?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="zero">Bydd hyn yn tocio pob sgwrs i\'r neges ddiweddaraf.</item>
+        <item quantity="one">Bydd hyn yn tocio pob sgwrs i\'r %d neges ddiweddaraf.</item>
+        <item quantity="two">Bydd hyn yn tocio pob sgwrs i\'r %d neges ddiweddaraf.</item>
+        <item quantity="few">Bydd hyn yn tocio pob sgwrs i\'r %d neges ddiweddaraf.</item>
+        <item quantity="many">Bydd hyn yn tocio pob sgwrs i\'r %d neges ddiweddaraf.</item>
+        <item quantity="other">Bydd hyn yn tocio pob sgwrs i\'r %d neges ddiweddaraf.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Dileu</string>
+    <string name="ApplicationPreferencesActivity_On">Ymlaen</string>
+    <string name="ApplicationPreferencesActivity_Off">I ffwrdd</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(llun)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(sain)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(fideo)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(ateb)</string>
+    <!-- AttachmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Methu canfod rhaglen i ddewis cyfryngau.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Mae ar Session angen caniatâd Storio er mwyn atodi lluniau, fideos neu sain, ond mae wedi\'i wrthod yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Storio\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Mae ar Session angen caniatâd Cysylltiadau er mwyn atodi gwybodaeth gyswllt, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Cysylltiadau\".</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Mae ar Session angen caniatâd Camera er mwyn atodi tynnu lluniau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Camera\".</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Gwall chwarae sain!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Heddiw</string>
+    <string name="BucketedThreadMedia_Yesterday">Ddoe</string>
+    <string name="BucketedThreadMedia_This_week">Wythnos hon</string>
+    <string name="BucketedThreadMedia_This_month">Mis yma</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">Heb ganfod porwr gwe.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Grwpiau</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Methodd yr anfon, tapiwch am fanylion</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Wedi derbyn neges cyfnewid allwedd, tapiwch i brosesu.</string>
+    <string name="ConversationItem_group_action_left">Mae %1$s wedi gadael y grŵp.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Methodd yr anfon, tapiwch am gam nôl anniogel</string>
+    <string name="ConversationItem_unable_to_open_media">Methu canfod app sy\'n gallu agor y cyfryngau hwn.</string>
+    <string name="ConversationItem_copied_text">Copïwyd %s</string>
+    <string name="ConversationItem_download_more">Llwytho Rhagor i Lawr</string>
+    <string name="ConversationItem_pending">Yn aros</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Ychwanegu atodiad</string>
+    <string name="ConversationActivity_select_contact_info">Dewis manylion cyswllt</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Mae\'n ddrwg gennym, bu gwall wrth osod eich atodiad.</string>
+    <string name="ConversationActivity_invalid_recipient">Derbynnydd annilys!</string>
+    <string name="ConversationActivity_added_to_home_screen">Ychwanegwyd at y sgrin gartref</string>
+    <string name="ConversationActivity_leave_group">Gadael y grŵp</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ydych chi\'n siŵr eich bod am adael y grŵp?</string>
+    <string name="ConversationActivity_error_leaving_group">Gwall wrth adael grŵp</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Dadrwystro\'r cyswllt hwn?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Byddwch unwaith eto yn gallu derbyn negeseuon a galwadau o\'r cyswllt hwn.</string>
+    <string name="ConversationActivity_unblock">Dadrwystro</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Mae atodiad yn fwy na therfynau maint y math o neges rydych chi\'n ei hanfon.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Methu recordio sain!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nid oes ap ar gael i drin y ddolen hon ar eich dyfais.</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">I anfon negeseuon sain, caniatewch i Session gael mynediad i\'ch meicroffon.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Mae ar Session angen caniatâd Meicroffon i anfon negeseuon sain, ond mae wed\'i atal yn barhaol. Ewch i osodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Microffon\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">I gipio lluniau a fideo, caniatewch i Session gael mynediad i\'r camera.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Mae ar Session angen caniatâd Camera er mwyn atodi tynnu lluniau neu fideos, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Camera\".</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Angen Session angen caniatâd camera i dynnu lluniau neu fideo</string>
+    <string name="ConversationActivity_search_position">%1$d o %2$d</string>
+    <string name="ConversationActivity_no_results">Dim canlyniadau</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="zero">%d neges heb ei ddarllen</item>
+        <item quantity="one">%d neges heb eu darllen</item>
+        <item quantity="two">%d neges heb eu darllen</item>
+        <item quantity="few">%d neges heb eu darllen</item>
+        <item quantity="many">%d neges heb eu darllen</item>
+        <item quantity="other">%d neges heb eu darllen</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="zero">Dileu\'r negeseuon hyn?</item>
+        <item quantity="one">Dileu\'r negeseuon hyn?</item>
+        <item quantity="two">Dileu\'r negeseuon hyn?</item>
+        <item quantity="few">Dileu\'r negeseuon hyn?</item>
+        <item quantity="many">Dileu\'r negeseuon hyn?</item>
+        <item quantity="other">Dileu\'r negeseuon hyn?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="zero">Bydd hyn yn dileu yn barhaol y sgwrs sydd wedi\'i dewis.</item>
+        <item quantity="one">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+        <item quantity="two">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+        <item quantity="few">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+        <item quantity="many">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+        <item quantity="other">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+    </plurals>
+    <string name="ConversationFragment_save_to_sd_card">Cadw i\'r storio?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="zero">Bydd cadw\'r cyfryngau hyn i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
+        <item quantity="one">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i unrhyw apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
+        <item quantity="two">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
+        <item quantity="few">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
+        <item quantity="many">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
+        <item quantity="other">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="zero">Gwall wrth gadw atodiad i\'r storio!</item>
+        <item quantity="one">Gwall wrth gadw atodiadau i\'r storio!</item>
+        <item quantity="two">Gwall wrth gadw atodiadau i\'r storio!</item>
+        <item quantity="few">Gwall wrth gadw atodiadau i\'r storio!</item>
+        <item quantity="many">Gwall wrth gadw atodiadau i\'r storio!</item>
+        <item quantity="other">Gwall wrth gadw atodiadau i\'r storio!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="zero">Cadw atodiad</item>
+        <item quantity="one">Cadw %1$d atodiad</item>
+        <item quantity="two">Cadw %1$d atodiad</item>
+        <item quantity="few">Cadw %1$d atodiad</item>
+        <item quantity="many">Cadw %1$d atodiad</item>
+        <item quantity="other">Cadw %1$d atodiad</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="zero">Cadw atodiad i\'r storfa...</item>
+        <item quantity="one">Cadw %1$d atodiad i\'r storfa</item>
+        <item quantity="two">Cadw %1$d atodiad i\'r storfa</item>
+        <item quantity="few">Cadw %1$d atodiad i\'r storfa</item>
+        <item quantity="many">Cadw %1$d atodiad i\'r storfa</item>
+        <item quantity="other">Cadw %1$d atodiad i\'r storfa</item>
+    </plurals>
+    <string name="ConversationFragment_pending">Yn aros...</string>
+    <string name="ConversationFragment_deleting">Wrthi\'n dileu</string>
+    <string name="ConversationFragment_deleting_messages">Dileu negeseuon...</string>
+    <string name="ConversationFragment_quoted_message_not_found">Heb ganfod y neges wreiddiol</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Nid yw\'r neges wreiddiol bellach ar gael</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Neges cyfnewid allwedd</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Llun proffil</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
+    <string name="CustomDefaultPreference_using_default">Defnyddio rhagosodedig: %s</string>
+    <string name="CustomDefaultPreference_none">Dim</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">Nawr</string>
+    <string name="DateUtils_minutes_ago">%d mun</string>
+    <string name="DateUtils_today">Heddiw</string>
+    <string name="DateUtils_yesterday">Ddoe</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Heddiw</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Ffeil anhysbys</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Gwall wrth estyn GIF cydraniad llawn</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIFau</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Sticeri</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Afatar</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tapio a dal i recordio neges lais, rhyddhau i\'w hanfon</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">Methu canfod neges</string>
+    <string name="LongMessageActivity_message_from_s">Neges gan %1$s</string>
+    <string name="LongMessageActivity_your_message">Eich neges</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Cyfryngau</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="zero">Dileu\'r negeseuon hyn?</item>
+        <item quantity="one">Dileu\'r negeseuon hyn?</item>
+        <item quantity="two">Dileu\'r negeseuon hyn?</item>
+        <item quantity="few">Dileu\'r negeseuon hyn?</item>
+        <item quantity="many">Dileu\'r negeseuon hyn?</item>
+        <item quantity="other">Dileu\'r negeseuon hyn?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="zero">Bydd hyn yn dileu yn barhaol y sgwrs sydd wedi\'i dewis.</item>
+        <item quantity="one">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+        <item quantity="two">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+        <item quantity="few">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+        <item quantity="many">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+        <item quantity="other">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Wrthi\'n dileu</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Dileu negeseuon...</string>
+    <string name="MediaOverviewActivity_Documents">Dogfennau</string>
+    <string name="MediaOverviewActivity_Select_all">Dewis popeth</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Casglu atodiadau...</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Neges amlgyfrwng</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">Llwytho i lawr neges MMS</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gwall wrth lawrlwytho neges MMS, tapio i geisio eto</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Anfon i %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Ychwanegu neges...</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Cafodd eitem ei thynnu gan ei bod yn fwy na\'r maint mwyaf</string>
+    <string name="MediaSendActivity_camera_unavailable">Camera ddim ar gael</string>
+    <string name="MediaSendActivity_message_to_s">Neges i %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="zero">Nid oes modd rhannu mwy na %d eitem.</item>
+        <item quantity="one">Nid oes modd rhannu mwy na %d eitem.</item>
+        <item quantity="two">Nid oes modd rhannu mwy na %d eitem.</item>
+        <item quantity="few">Nid oes modd rhannu mwy na %d eitem.</item>
+        <item quantity="many">Nid oes modd rhannu mwy na %d eitem.</item>
+        <item quantity="other">Nid oes modd rhannu mwy na %d eitem.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">Pob cyfrwng</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Wedi derbyn neges wedi\'i hamgryptio gan ddefnyddio hen fersiwn o Session nad yw bellach yn cael ei gefnogi. Gofynnwch i\'r anfonwr ddiweddaru i\'r fersiwn ddiweddaraf ac ail-anfon y neges.</string>
+    <string name="MessageRecord_left_group">Rydych wedi gadael y grŵp.</string>
+    <string name="MessageRecord_you_updated_group">Rydych chi wedi diweddaru\'r grŵp.</string>
+    <string name="MessageRecord_s_updated_group">Mae %s wedi diweddaru\'r grŵp.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Negeseuon diflanedig</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Ni fydd eich negeseuon yn dod i ben.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bydd negeseuon sy\'n cael eu anfon a\'u derbyn yn y sgwrs yn diflannu %s ar ôl iddynt gael eu gweld.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Rhoi cyfrinymadrodd</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Rhwystro\'r cysllwt hwn?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ni fyddwch bellach yn derbyn negeseuon a galwadau oddi wrth y cyswllt hwn.</string>
+    <string name="RecipientPreferenceActivity_block">Rhwystro</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Dadrwystro\'r cyswllt hwn?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Byddwch unwaith eto yn gallu derbyn negeseuon a galwadau o\'r cyswllt hwn.</string>
+    <string name="RecipientPreferenceActivity_unblock">Dadrwystro</string>
+    <!-- Slide -->
+    <string name="Slide_image">Llun</string>
+    <string name="Slide_audio">Sain</string>
+    <string name="Slide_video">Fideo</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Wedi derbyn neges cyfnewid
+                     allwedd llygredig!</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">         Wedi derbyn neges cyfnewid allwedd ar gyfer fersiwn protocol annilys.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Derbyn neges gyda rhif diogelwch newydd. Tapiwch i brosesu a dangos.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Rydych yn ailosod y sesiwn ddiogel.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s ailosod y sesiwn ddiogel.</string>
+    <string name="SmsMessageRecord_duplicate_message">Neges ddyblyg.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Grŵp wedi\'i ddiweddaru</string>
+    <string name="ThreadRecord_left_the_group">Wedi gadael y grŵp.</string>
+    <string name="ThreadRecord_secure_session_reset">Ailosod sesiwn ddiogel.</string>
+    <string name="ThreadRecord_draft">Drafft:</string>
+    <string name="ThreadRecord_called">Galwoch chi</string>
+    <string name="ThreadRecord_called_you">Wedi\'ch galw chi</string>
+    <string name="ThreadRecord_missed_call">Galwad coll</string>
+    <string name="ThreadRecord_media_message">Neges cyfryngau</string>
+    <string name="ThreadRecord_s_is_on_signal">Mae %s ar Session!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>
+    <string name="ThreadRecord_safety_number_changed">Mae\'r rhif diogelwch wedi newid</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Mae\'ch rhif diogelwch gyda %1$s wedi newid.</string>
+    <string name="ThreadRecord_you_marked_verified">Eich marcio wedi\'i wirio</string>
+    <string name="ThreadRecord_you_marked_unverified">Eich marcio heb ei wirio</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Diweddariad Session</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mae fersiwn newydd o Session ar gael. Tapiwch i ddiweddaru.</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Neges amgryptio gwael</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Neges wedi\'i hamgryptio ar gyfer sesiwn nad yw\'n bodoli</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Neges MMS amgryptio gwael</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Neges MMS wedi\'i hamgryptio ar gyfer sesiwn nad yw\'n bodoli</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Tewi hysbysiadau</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Cyffwrdd i agor.</string>
+    <string name="KeyCachingService_passphrase_cached">Mae Session wedi\'i ddatgloi</string>
+    <string name="KeyCachingService_lock">Cloi Session</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Chi</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Math o gyfrwng heb ei gynnal</string>
+    <string name="MediaPreviewActivity_draft">Drafft</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Methu cadw i storfa allanol heb ganiatâd</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Dileu neges?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Bydd hyn yn dileu yn barhaol y neges hon.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neges newydd mewn %2$d sgwrs</string>
+    <string name="MessageNotifier_most_recent_from_s">Y diweddaraf gan: %1$s</string>
+    <string name="MessageNotifier_locked_message">Neges wedi\'i chloi</string>
+    <string name="MessageNotifier_message_delivery_failed">Methodd trosglwyddo neges.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">Methu trosglwyddo neges.</string>
+    <string name="MessageNotifier_error_delivering_message">Gwall wrth drosglwyddo neges.</string>
+    <string name="MessageNotifier_mark_all_as_read">Marcio popeth wedi\'i ddarllen</string>
+    <string name="MessageNotifier_mark_read">Marcio wedi\'i ddarllen</string>
+    <string name="MessageNotifier_reply">Ymateb</string>
+    <string name="MessageNotifier_pending_signal_messages">Negeseuon Session yn aros</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">Mae gennych negeseuon Session yn aros, tapiwch i\'w hagor ac adfer</string>
+    <string name="MessageNotifier_unknown_contact_message">Cysylltiad</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Rhagosodiad</string>
+    <string name="NotificationChannel_calls">Galwadau</string>
+    <string name="NotificationChannel_failures">Methiannau</string>
+    <string name="NotificationChannel_backups">Copïau wrth gefn</string>
+    <string name="NotificationChannel_locked_status">Statws y clo</string>
+    <string name="NotificationChannel_app_updates">Diweddariadau ap</string>
+    <string name="NotificationChannel_other">Arall</string>
+    <string name="NotificationChannel_group_messages">Negeseuon</string>
+    <string name="NotificationChannel_missing_display_name">Anhysbys</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Nid yw ymateb cyflym ar gael pan fydd Session wedi\'i gloi!</string>
+    <string name="QuickResponseService_problem_sending_message">Anhawster anfon neges!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">Wedi\'i gadw i %s</string>
+    <string name="SaveAttachmentTask_saved">Wedi cadw</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Chwilio</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Llwybr byr annilys</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_new_message">Neges newydd</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="zero">%d Eitem</item>
+        <item quantity="one">%d Eitem</item>
+        <item quantity="two">%d Eitem</item>
+        <item quantity="few">%d Eitem</item>
+        <item quantity="many">%d Eitem</item>
+        <item quantity="other">%d Eitem</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Gwall wrth chwarae fideo</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Sain</string>
+    <string name="attachment_type_selector__audio_description">Sain</string>
+    <string name="attachment_type_selector__contact">Cysylltiad</string>
+    <string name="attachment_type_selector__contact_description">Cysylltiad</string>
+    <string name="attachment_type_selector__location">Lleoliad</string>
+    <string name="attachment_type_selector__location_description">Lleoliad</string>
+    <string name="attachment_type_selector__gallery_description">Delwedd neu fideo</string>
+    <string name="attachment_type_selector__file_description">Ffeil</string>
+    <string name="attachment_type_selector__gallery">Oriel</string>
+    <string name="attachment_type_selector__file">Ffeil</string>
+    <string name="attachment_type_selector__drawer_description">Newid drôr yr atodiad</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Llwytho cysylltiadau...</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Anfon</string>
+    <string name="conversation_activity__compose_description">Cyfansoddiad neges</string>
+    <string name="conversation_activity__emoji_toggle_description">Toglo bysellfwrdd gwenogluniau</string>
+    <string name="conversation_activity__attachment_thumbnail">Llun Bach Atodiad</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Newid y drôr atodiad cyflym camera</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Recordio ac anfon atodiad sain</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Cloi recordio atodiad sain</string>
+    <string name="conversation_activity__enable_signal_for_sms">Galluogi Session ar gyfer SMS</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">Llithro i ddiddymu</string>
+    <string name="conversation_input_panel__cancel">Diddymu</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Neges cyfryngau</string>
+    <string name="conversation_item__secure_message_description">Neges ddiogel</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Methwyd Anfon</string>
+    <string name="conversation_item_sent__pending_approval_description">Dan Ystyriaeth</string>
+    <string name="conversation_item_sent__delivered_description">Wedi\'i drosglwyddo</string>
+    <string name="conversation_item_sent__message_read">Neges wedi\'i ddarllen</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Llun cyswllt</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Chwarae</string>
+    <string name="audio_view__pause_accessibility_description">Oedi</string>
+    <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
+    <!-- open_group_invitation_view -->
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Sain</string>
+    <string name="QuoteView_video">Fideo</string>
+    <string name="QuoteView_photo">Llun</string>
+    <string name="QuoteView_you">Chi</string>
+    <string name="QuoteView_original_missing">Heb ganfod y neges wreiddiol</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Sgrolio i\'r gwaelod</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Chwilio GIFau a sticeri</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">Heb ganfod dim.</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Gweld y sgwrs lawn</string>
+    <string name="load_more_header__loading">Llwytho</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">Dim cyfrwng</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">AIL ANFON</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Rhwystro</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Mae angen eich sylw ar rai materion.</string>
+    <string name="message_details_header__sent">Anfonwyd</string>
+    <string name="message_details_header__received">Derbyniwyd</string>
+    <string name="message_details_header__disappears">Yn diflannu</string>
+    <string name="message_details_header__via">Drwy</string>
+    <string name="message_details_header__to">At:</string>
+    <string name="message_details_header__from">Oddi wrth:</string>
+    <string name="message_details_header__with">Gyda:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Creu cyfrinair</string>
+    <string name="AndroidManifest__select_contacts">Dewis cysylltiadau</string>
+    <string name="AndroidManifest__media_preview">Rhagolwg cyfrwng</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Defnyddio\'r rhagosodedig</string>
+    <string name="arrays__use_custom">Defnyddio cyfaddas</string>
+    <string name="arrays__mute_for_one_hour">Tewi am 1 awr</string>
+    <string name="arrays__mute_for_two_hours">Tewi am 2 awr</string>
+    <string name="arrays__mute_for_one_day">Tewi am 1 diwrnod</string>
+    <string name="arrays__mute_for_seven_days">Tewi am 7 diwrnod</string>
+    <string name="arrays__mute_for_one_year">Tewi am 1 blwyddyn</string>
+    <string name="arrays__settings_default">Rhagosodiadau\'r gosodiadau</string>
+    <string name="arrays__enabled">Galluogwyd</string>
+    <string name="arrays__disabled">Analluogwyd</string>
+    <string name="arrays__name_and_message">Enw a neges</string>
+    <string name="arrays__name_only">Enw yn unig</string>
+    <string name="arrays__no_name_or_message">Dim enw na neges</string>
+    <string name="arrays__images">Lluniau</string>
+    <string name="arrays__audio">Sain</string>
+    <string name="arrays__video">Fideo</string>
+    <string name="arrays__documents">Dogfennau</string>
+    <string name="arrays__small">Bach</string>
+    <string name="arrays__normal">Canolig</string>
+    <string name="arrays__large">Mawr</string>
+    <string name="arrays__extra_large">Mawr iawn</string>
+    <string name="arrays__default">Rhagosodedig</string>
+    <string name="arrays__high">Uchel</string>
+    <string name="arrays__max">Mwyaf</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="zero">%d awr</item>
+        <item quantity="one">%d awr</item>
+        <item quantity="two">%d awr</item>
+        <item quantity="few">%d awr</item>
+        <item quantity="many">%d awr</item>
+        <item quantity="other">%d awr</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">Pwyso Enter i anfon</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pwyso Enter i anfon negeseuon testun</string>
+    <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string>
+    <string name="preferences__previews_are_supported_for">Cefnogir rhagweld cynnwys trwy ddolenni Imgur, Instagram, Pinterest, Reddit a YouTube</string>
+    <string name="preferences__screen_security">Diogelu\'r sgrin</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Rhwystro sgrinluniau tu mewn i\'r rhaglen</string>
+    <string name="preferences__notifications">Hysbysiadau</string>
+    <string name="preferences__led_color">Lliw\'r LED</string>
+    <string name="preferences__led_color_unknown">Anhysbys</string>
+    <string name="preferences__pref_led_blink_title">Patrwm fflachio\'r LED</string>
+    <string name="preferences__sound">Sain</string>
+    <string name="preferences__silent">Tawel</string>
+    <string name="preferences__repeat_alerts">Ailadrodd rhybuddion</string>
+    <string name="preferences__never">Byth</string>
+    <string name="preferences__one_time">Unwaith</string>
+    <string name="preferences__two_times">Dwywaith</string>
+    <string name="preferences__three_times">Teirgwaith</string>
+    <string name="preferences__five_times">Pumwaith</string>
+    <string name="preferences__ten_times">Degwaith</string>
+    <string name="preferences__vibrate">Dirgrynu</string>
+    <string name="preferences__green">Gwyrdd</string>
+    <string name="preferences__red">Coch</string>
+    <string name="preferences__blue">Glas</string>
+    <string name="preferences__orange">Oren</string>
+    <string name="preferences__cyan">Gwyrddlas</string>
+    <string name="preferences__white">Gwyn</string>
+    <string name="preferences__none">Dim</string>
+    <string name="preferences__fast">Cyflym</string>
+    <string name="preferences__normal">Canolig</string>
+    <string name="preferences__slow">Araf</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Dileu negeseuon hŷn yn ddiofyn pan fydd y sgwrs yn fwy na maint penodol</string>
+    <string name="preferences__delete_old_messages">Dileu hen negeseuon</string>
+    <string name="preferences__conversation_length_limit">Maint uchaf sgyrsiau</string>
+    <string name="preferences__trim_all_conversations_now">Tocio bob sgwrs nawr</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Sganio drwy\'r holl sgyrsiau a gorfodi terfynau hyd sgwrsio</string>
+    <string name="preferences__default">Rhagosodiad</string>
+    <string name="preferences__incognito_keyboard">Bysellfwrdd dirgel</string>
+    <string name="preferences__read_receipts">Derbynebau darllen</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Os yw derbynebau darllen wedi eu hanalluogi, fyddwch chi ddim yn gallu gweld derbynebau darllen gan eraill.</string>
+    <string name="preferences__typing_indicators">Dangosyddion Teipio</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Os yw dangosyddion teipio wedi eu hanalluogi, fyddwch chi ddim yn gweld dangosyddion teipio pobl eraill.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Gofyn i\'r bysellfwrdd analluogi dysgu personol</string>
+    <string name="preferences__light_theme">Golau</string>
+    <string name="preferences__dark_theme">Tywyll</string>
+    <string name="preferences_chats__message_trimming">Tocio sgyrsiau</string>
+    <string name="preferences_advanced__use_system_emoji">Defnyddio gwenogluniau\'r system</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Analluogi cefnogaeth gwenogluniau Session</string>
+    <string name="preferences_app_protection__app_access">Mynediad i ap</string>
+    <string name="preferences_app_protection__communication">Cyfathrebu</string>
+    <string name="preferences_chats__chats">Sgyrsiau</string>
+    <string name="preferences_notifications__messages">Negeseuon</string>
+    <string name="preferences_notifications__in_chat_sounds">Seiniau wrth sgwrsio</string>
+    <string name="preferences_notifications__show">Dangos</string>
+    <string name="preferences_notifications__priority">Blaenoriaeth</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Neges newydd at...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Manylion y neges</string>
+    <string name="conversation_context__menu_copy_text">Copïo testun</string>
+    <string name="conversation_context__menu_delete_message">Dileu neges</string>
+    <string name="conversation_context__menu_resend_message">Ailanfon y neges</string>
+    <string name="conversation_context__menu_reply_to_message">Ateb neges</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Cadw atodiad</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Negeseuon diflanedig</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Neges yn dod i ben</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Dad-dewi</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Tewi hysbysiadau</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Golygu grŵp</string>
+    <string name="conversation__menu_leave_group">Gadael y grŵp</string>
+    <string name="conversation__menu_view_all_media">Pob cyfrwng</string>
+    <string name="conversation__menu_add_shortcut">Ychwanegu at y sgrin gartref</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Ehangu llamlen</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Trosglwyddo</string>
+    <string name="conversation_group_options__conversation">Sgwrs</string>
+    <string name="conversation_group_options__broadcast">Darlledu</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Cadw</string>
+    <string name="media_preview__forward_title">Ymlaen</string>
+    <string name="media_preview__all_media_title">Pob cyfrwng</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">Dim dogfennau</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Rhagolwg cyfrwng</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Wrthi\'n dileu</string>
+    <string name="trimmer__deleting_old_messages">Dileu hen negeseuon...</string>
+    <string name="trimmer__old_messages_successfully_deleted">Dilëwyd hen negeseuon yn llwyddiannus</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Angen caniatâd</string>
+    <string name="Permissions_continue">Parhau</string>
+    <string name="Permissions_not_now">Nid nawr</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Bydd copïau wrth gefn yn cael eu cadw i storfa allanol ac wedi\'u hamgryptio gyda\'r cyfrinymadrodd isod. Rhaid i chi fod â\'r cyfrinymadrodd hwn er mwyn adfer y copi wrth gefn.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Rwy wedi ysgrifennu\'r cyfrinymadrodd hwn i lawr. Hebddo, fydda i ddim yn gallu adfer copi wrth gefn.</string>
+    <string name="registration_activity__skip">Hepgor</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Methu mewnforio o fersiynau mwy diweddar o Session</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Cyfrinymadrodd wrth gefn anghywir</string>
+    <string name="BackupDialog_enable_local_backups">Galluogi copïau wrth gefn lleol?</string>
+    <string name="BackupDialog_enable_backups">Galluogi copïau wrth gefn</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Cydnabyddwch eich dealltwriaeth trwy farcio\'r blwch gwirio cadarnhau.</string>
+    <string name="BackupDialog_delete_backups">Dileu copïau wrth gefn?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Analluogi a dileu\'r copïau wrth gefn lleol?</string>
+    <string name="BackupDialog_delete_backups_statement">Dileu copïau wrth gefn</string>
+    <string name="BackupDialog_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
+    <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn ...</string>
+    <string name="ProgressPreference_d_messages_so_far">%d neges hyd yn hyn</string>
+    <string name="BackupUtil_never">Byth</string>
+    <string name="preferences_app_protection__screen_lock">Clo sgrin</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Cloi mynediad i Session gyda chlo sgrin neu ôl bysedd Android</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Amserlen segur clo sgrin</string>
+    <string name="AppProtectionPreferenceFragment_none">Dim</string>
+    <!-- Conversation activity -->
+    <!-- Session -->
+    <!-- Next round of translation -->
+</resources>

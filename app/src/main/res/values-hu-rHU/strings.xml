@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Session</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+    <string name="delete">Törlés</string>
+    <string name="ban">Kitiltás</string>
+    <string name="please_wait">Kérlek várj...</string>
+    <string name="save">Mentés</string>
+    <string name="note_to_self">Privát feljegyzés</string>
+    <string name="version_s">Verzió %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Új üzenet</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">%d üzenet beszélgetésenként</item>
+        <item quantity="other">%d üzenet beszélgetésenként</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Törlöd az összes régi üzenetet?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Ez azonnal csonkolni fogja az összes beszélgetést a legfrissebb üzenetre.</item>
+        <item quantity="other">Ezzel kitörlöd az összes beszélgetés régi üzeneteit, és csak a(z) %d legfrissebb fog megmaradni beszélgetésenként.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Törlés</string>
+    <string name="ApplicationPreferencesActivity_On">Be</string>
+    <string name="ApplicationPreferencesActivity_Off">Ki</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(kép)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(hang)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(videó)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(válasz)</string>
+    <!-- AttachmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás médiafájl kiválasztásához.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">A Session-nek szüksége van a Tárhely engedélyre, hogy fotókat, videókat vagy hangokat csatolhasson, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Tárhely\"-t.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">A Session-nek szüksége van a Névjegyek engedélyre, hogy névjegy információt csatolhasson, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Névjegyek\"-et.</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">A Session-nek szüksége van a Kamera engedélyre, hogy fotókat készíthessen, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Hiba történt a hang lejátszása során!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Ma</string>
+    <string name="BucketedThreadMedia_Yesterday">Tegnap</string>
+    <string name="BucketedThreadMedia_This_week">Ezen a héten</string>
+    <string name="BucketedThreadMedia_This_month">Ebben a hónapban</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">Nem található böngésző.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Csoportok</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Sikertelen küldés, koppints a részletekért</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Kulcs-csere üzenet érkezett, koppints a feldolgozáshoz.</string>
+    <string name="ConversationItem_group_action_left">%1$s kilépett a csoportból.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Sikertelen küldés, koppints a titkosítatlan üzenetküldéshez</string>
+    <string name="ConversationItem_unable_to_open_media">Nem található olyan alkalmazás, ami képes lenne megnyitni ezt a médiafájlt.</string>
+    <string name="ConversationItem_copied_text">%s másolva</string>
+    <string name="ConversationItem_read_more">Részletek</string>
+    <string name="ConversationItem_download_more"> További letöltése</string>
+    <string name="ConversationItem_pending"> Függőben</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Melléklet csatolása</string>
+    <string name="ConversationActivity_select_contact_info">Válassz kontakt infót</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sajnos hiba történt a melléklet csatolása során.</string>
+    <string name="ConversationActivity_message">Üzenet</string>
+    <string name="ConversationActivity_compose">Összeállít</string>
+    <string name="ConversationActivity_muted_until_date">Eddig van némítva: %1$s</string>
+    <string name="ConversationActivity_muted_forever">Némítva</string>
+    <string name="ConversationActivity_member_count">%1$d tagok</string>
+    <string name="ConversationActivity_open_group_guidelines">Közösségi irányelvek</string>
+    <string name="ConversationActivity_invalid_recipient">Érvénytelen címzett!</string>
+    <string name="ConversationActivity_added_to_home_screen">Hozzáadva a kezdőképernyőhöz</string>
+    <string name="ConversationActivity_leave_group">Kilépsz a csoportból?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Biztosan ki szeretnél lépni ebből a csoportból?</string>
+    <string name="ConversationActivity_error_leaving_group">Hiba történt a csoport elhagyásakor</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Feloldod ezt a kontakt letiltását?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Újra fogadhatsz üzeneteket és hívásokat ettől a kontakttól.</string>
+    <string name="ConversationActivity_unblock">Letiltás feloldása</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet mérete meghaladja az adott típushoz tartozó mérethatárt.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nem található eszközödön megfelelő alkalmazás a hivatkozás kezeléséhez.</string>
+    <string name="ConversationActivity_invite_to_open_group">Tagok hozzáadása</string>
+    <string name="ConversationActivity_join_open_group">%s csatlakozott</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Biztosan csatlakozni szeretne a(z) <b>%s</b> nyitott csoportban?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Hangüzenetek küldéséhez engedélyezd, hogy a Session hozzáférhessen a mikrofonhoz!</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">A Session-nak szüksége van a Mikrofon engedélyre, hogy hangüzeneteket küldhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd az \"Mikrofon\"-t.</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotók és videók készítéséhez engedélyezd a Session-nak a kamerához való hozzáférést!</string>
+    <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">A Üléshez tárhely hozzáférésre van szükség a fotók, és videók küldéséhez.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">A Session-nak szüksége van a Kamera engedélyre, hogy fotót vagy videót készíthessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">A Session-nak szüksége van Kamera engedélyekre fotók és videók készítéséhez</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+    <string name="ConversationActivity_search_position">%1$d / %2$d</string>
+    <string name="ConversationActivity_no_results">Nincs találat</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">%d olvasatlan üzenet</item>
+        <item quantity="other">%d olvasatlan üzenet</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Kiválasztott üzenet törlése?</item>
+        <item quantity="other">Törlöd a kiválasztott üzeneteket?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">Ez végelegesen törölni fogja a kiválasztott üzenetet.</item>
+        <item quantity="other">Ez véglegesen törölni fogja mind a(z) %1$d db kiválasztott üzenetet.</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Kitiltja ezt a felhasználót?</string>
+    <string name="ConversationFragment_save_to_sd_card">Mentés tárolóra?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Ez a média mentése a tárolóra lehetővé teszi bármelyik másik alkalmazásnak a készülékeden, hogy hozzáférjen.\n\nFolytatod?</item>
+        <item quantity="other">A(z) %1$d db médiafájl tárolóra mentése más alkalmazások számára is lehetővé teszi, hogy hozzájuk férjenek.\n\nFolytatod?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Hiba történt a melléklet tárolóra mentése közben!</item>
+        <item quantity="other">Hiba történt a mellékletek tárolóra mentése során!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Melléklet mentése</item>
+        <item quantity="other">%1$d db melléklet mentése</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Melléklet mentése a tárolóra...</item>
+        <item quantity="other">%1$d db melléklet mentése a tárolóra...</item>
+    </plurals>
+    <string name="ConversationFragment_pending">Függőben...</string>
+    <string name="ConversationFragment_push">Adat (Session)</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Törlés</string>
+    <string name="ConversationFragment_deleting_messages">Üzenetek törlése...</string>
+    <string name="ConversationFragment_banning">Kitiltás</string>
+    <string name="ConversationFragment_banning_user">Felhasználó kitiltása…</string>
+    <string name="ConversationFragment_quoted_message_not_found">Az eredeti üzenet nem található</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Az eredeti üzenet már nem érhető el</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Kulcs-csere üzenet</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Profilkép</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Egyéni használata: %s</string>
+    <string name="CustomDefaultPreference_using_default">Alapértelmezett használata: %s</string>
+    <string name="CustomDefaultPreference_none">Egyik sem</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">Most</string>
+    <string name="DateUtils_minutes_ago">%d perce</string>
+    <string name="DateUtils_today">Ma</string>
+    <string name="DateUtils_yesterday">Tegnap</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Ma</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Ismeretlen fájl</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Hiba történt a teljes felbontású GIF letöltése során</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIF-ek</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Matricák</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Avatar</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Koppints és tartsd lenyomva hangüzenet rögzítéséhez, elküldéshez pedig engedd el</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">Az üzenet nem található</string>
+    <string name="LongMessageActivity_message_from_s">Üzenet tőle: %1$s</string>
+    <string name="LongMessageActivity_your_message">Saját üzenet</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Média</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">Törlöd a kiválasztott üzenetet?</item>
+        <item quantity="other">Törlöd a kiválasztott üzeneteket?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">Ez véglegesen törölni fogja a kiválasztott üzenetet.</item>
+        <item quantity="other">Ez véglegesen törölni fogja mind a(z) %1$d db kiválasztott üzenetet.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Törlés</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Üzenetek törlése...</string>
+    <string name="MediaOverviewActivity_Documents">Dokumentumok</string>
+    <string name="MediaOverviewActivity_Select_all">Összes kiválasztása</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Mellékletek összegyűjtése...</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Multimédia üzenet</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS üzenet letöltése</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Hiba történt az MMS üzenet letöltése során, koppints az újrapróbálkozáshoz</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Küldés neki: %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Felirat hozzáadása...</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Egy elem el lett távolítva, mivel túllépte a megengedett mérethatárt</string>
+    <string name="MediaSendActivity_camera_unavailable">A kamera nem érhető el.</string>
+    <string name="MediaSendActivity_message_to_s">Üzenet neki: %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">Nem oszthatsz meg többet, mint %d db elem.</item>
+        <item quantity="other">Nem oszthatsz meg többet, mint %d db elem.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">Összes médiafájl</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy olyan üzenet érkezett, amely a Session egy régebbi, már nem támogatott verziójával lett titkosítva. Kérd meg a feladót, hogy frissítsen a legfrissebb verzióra, majd küldje el újra az üzenetet!</string>
+    <string name="MessageRecord_left_group">Kiléptél a csoportból.</string>
+    <string name="MessageRecord_you_updated_group">Frissítetted a csoportot.</string>
+    <string name="MessageRecord_s_updated_group">%s frissítette a csoportot.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Eltűnő üzenetek</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Üzeneteid nem fognak eltűnni.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ebben a beszélgetésben a kimenő és bejövő üzenetek el fognak tűnni a megtekintést követő %s után.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Add meg a jelmondatot</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Blokkolod ezt a kontaktot?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Többé nem kapsz üzeneteket és hívásokat ettől a kontakttól.</string>
+    <string name="RecipientPreferenceActivity_block">Blokkolás</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Feloldod a kontakt blokkolását?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Újra kaphatsz üzeneteket és hívásokat ettől a kontakttól.</string>
+    <string name="RecipientPreferenceActivity_unblock">Feloldás</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Értesítési beállítások</string>
+    <!-- Slide -->
+    <string name="Slide_image">Kép</string>
+    <string name="Slide_audio">Hang</string>
+    <string name="Slide_video">Videó</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Sérült kulcs-csere
+üzenet érkezett!
+ </string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
+ </string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Üzenet érkezett új biztonsági számmal. Koppints a feldolgozáshoz és megjelenítéshez!</string>
+    <string name="SmsMessageRecord_secure_session_reset">Újraindítottad a biztonságos munkamenetet.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s újraindította a biztonságos munkamenetet.</string>
+    <string name="SmsMessageRecord_duplicate_message">Üzenet duplikálása.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Csoport frissítve</string>
+    <string name="ThreadRecord_left_the_group">Elhagyta a csoportot</string>
+    <string name="ThreadRecord_secure_session_reset">Biztonságos munkamenet újraindítva.</string>
+    <string name="ThreadRecord_draft">Piszkozat:</string>
+    <string name="ThreadRecord_called">Te hívtad</string>
+    <string name="ThreadRecord_called_you">Hívott téged</string>
+    <string name="ThreadRecord_missed_call">Nem fogadott hívás</string>
+    <string name="ThreadRecord_media_message">Média üzenet</string>
+    <string name="ThreadRecord_s_is_on_signal">%s a Session-on van!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Eltűnő üzenetek letiltva</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s készített egy képernyőképet.</string>
+    <string name="ThreadRecord_media_saved_by_s">Média mentve ide %s.</string>
+    <string name="ThreadRecord_safety_number_changed">Megváltozott a biztonsági szám</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Megváltozott a biztonsági számod vele: %s.</string>
+    <string name="ThreadRecord_you_marked_verified">Megerősítettnek jelölted</string>
+    <string name="ThreadRecord_you_marked_unverified">Megerősítetlennek jelölted</string>
+    <string name="ThreadRecord_empty_message">Ez a beszélgetés üres</string>
+    <string name="ThreadRecord_open_group_invitation">Nyilvános csoport meghívó</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Session frissítés</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A Session egy új verziója érhető el, koppints a frissítéshez</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Hibás titkosított üzenet</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Az üzenet nem létező munkamenethez lett titkosítva</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Hibás titkosított MMS üzenet</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Az MMS üzenet nem létező munkamenethez lett titkosítva</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Értesítések némítása</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Koppints a megnyitáshoz!</string>
+    <string name="KeyCachingService_passphrase_cached">Session feloldva</string>
+    <string name="KeyCachingService_lock">Session zárolása</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Te</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Nem támogatott médiatípus</string>
+    <string name="MediaPreviewActivity_draft">Piszkozat</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">A Session- nek szüksége van fájlhozzáférési engedélyekhez, hogy menteni tudjon külső tárhelyre, de ezt az engedélyt megtagadták. Kérjük, hogy a készüléke beállításaiban engedélyezze a \"fájlok és média\" opciót a Session számára.</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nem lehet engedély nélkül menteni a külső tárolóra</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Törlöd az üzenetet?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Ez véglegesen törölni fogja ezt az üzenetet.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d új üzenet %2$d beszélgetésben</string>
+    <string name="MessageNotifier_most_recent_from_s">Legutóbb tőle: %1$s</string>
+    <string name="MessageNotifier_locked_message">Zárolt üzenet</string>
+    <string name="MessageNotifier_message_delivery_failed">Üzenet kézbesítése sikertelen.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">Nem sikerült az üzenet kézbesítése.</string>
+    <string name="MessageNotifier_error_delivering_message">Hiba történt az üzenet kézbesítése során.</string>
+    <string name="MessageNotifier_mark_all_as_read">Összes megjelölése olvasottként</string>
+    <string name="MessageNotifier_mark_read">Olvasottnak jelöl</string>
+    <string name="MessageNotifier_reply">Válasz</string>
+    <string name="MessageNotifier_pending_signal_messages">Függő Session üzenetek</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">Függő Session üzeneteid vannak, koppints a megnyitáshoz és letöltéshez</string>
+    <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Névjegy</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Alapértelmezett</string>
+    <string name="NotificationChannel_calls">Hívások</string>
+    <string name="NotificationChannel_failures">Hibák</string>
+    <string name="NotificationChannel_backups">Biztonsági mentések</string>
+    <string name="NotificationChannel_locked_status">Zár státusza</string>
+    <string name="NotificationChannel_app_updates">App frissítések</string>
+    <string name="NotificationChannel_other">Egyéb</string>
+    <string name="NotificationChannel_group_messages">Üzenetek</string>
+    <string name="NotificationChannel_missing_display_name">Ismeretlen</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A gyors válasz nem érhető el, ha a Session zárolva van!</string>
+    <string name="QuickResponseService_problem_sending_message">Probléma lépett fel az üzenet küldése során!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">Mentve ide: %s</string>
+    <string name="SaveAttachmentTask_saved">Elmentve</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Keresés</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Érvénytelen parancsikon</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Ülés</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">Új üzenet</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="one">%d db elem</item>
+        <item quantity="other">%d db elem</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Hiba történt a videó lejátszásakor</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Hang</string>
+    <string name="attachment_type_selector__audio_description">Hang</string>
+    <string name="attachment_type_selector__contact">Névjegy</string>
+    <string name="attachment_type_selector__contact_description">Névjegy</string>
+    <string name="attachment_type_selector__camera">Kamera</string>
+    <string name="attachment_type_selector__camera_description">Kamera</string>
+    <string name="attachment_type_selector__location">Hely</string>
+    <string name="attachment_type_selector__location_description">Hely</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Kép vagy videó</string>
+    <string name="attachment_type_selector__file_description">Fájl</string>
+    <string name="attachment_type_selector__gallery">Galéria</string>
+    <string name="attachment_type_selector__file">Fájl</string>
+    <string name="attachment_type_selector__drawer_description">Mellékletcsatoló kapcsoló</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Kontaktok betöltése...</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Küldés</string>
+    <string name="conversation_activity__compose_description">Üzenet írása</string>
+    <string name="conversation_activity__emoji_toggle_description">Emoji billentyűzet kapcsoló</string>
+    <string name="conversation_activity__attachment_thumbnail">Melléklet előnézet</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Gyorskamera kapcsoló</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Hang melléklet felvétele és küldése</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Hangcsatolmány rögzítésének zárolása</string>
+    <string name="conversation_activity__enable_signal_for_sms">Session engedélyezése SMS-hez</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">Megszakításhoz csúsztasd</string>
+    <string name="conversation_input_panel__cancel">Mégse</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Médiaüzenet</string>
+    <string name="conversation_item__secure_message_description">Biztonságos üzenet</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Küldés sikertelen</string>
+    <string name="conversation_item_sent__pending_approval_description">Jóváhagyás függőben</string>
+    <string name="conversation_item_sent__delivered_description">Kézbesítve</string>
+    <string name="conversation_item_sent__message_read">Üzenet elolvasva</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Kontakt fotó</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Lejátszás</string>
+    <string name="audio_view__pause_accessibility_description">Szünet</string>
+    <string name="audio_view__download_accessibility_description">Letöltés</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Csatlalkozás</string>
+    <string name="open_group_invitation_view__open_group_invitation">Nyilvános csoport meghívó</string>
+    <string name="open_group_guidelines_pinned_message">Kitűzött üzenet</string>
+    <string name="open_group_guidelines_community_guidelines">Közösségi irányelvek</string>
+    <string name="open_group_guidelines_read">Olvas</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Hang</string>
+    <string name="QuoteView_video">Videó</string>
+    <string name="QuoteView_photo">Fotó</string>
+    <string name="QuoteView_you">Te</string>
+    <string name="QuoteView_original_missing">Az eredeti üzenet nem található</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Görgetés az aljára</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIFek és matricák keresése</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">Nincs találat</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Teljes beszélgetés megtekintése</string>
+    <string name="load_more_header__loading">Betöltés</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">Nincs médiafájl</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">ÚJRAKÜLDÉS</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Blokkolás</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Néhány probléma a figyelmedet igényli.</string>
+    <string name="message_details_header__sent">Elküldve</string>
+    <string name="message_details_header__received">Érkezett</string>
+    <string name="message_details_header__disappears">Eltűnik</string>
+    <string name="message_details_header__via">Csatorna</string>
+    <string name="message_details_header__to">Címzett:</string>
+    <string name="message_details_header__from">Feladó:</string>
+    <string name="message_details_header__with">Vele:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Jelmondat létrehozása</string>
+    <string name="AndroidManifest__select_contacts">Kontaktok kiválasztása</string>
+    <string name="AndroidManifest__media_preview">Média előnézete</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Alapértelmezett használata</string>
+    <string name="arrays__use_custom">Egyéni használata</string>
+    <string name="arrays__mute_for_one_hour">Némítás 1 órára</string>
+    <string name="arrays__mute_for_two_hours">Némítás 2 órára</string>
+    <string name="arrays__mute_for_one_day">Némítás 1 napra</string>
+    <string name="arrays__mute_for_seven_days">Némítás 7 napra</string>
+    <string name="arrays__mute_for_one_year">Némítás 1 évre</string>
+    <string name="arrays__mute_forever">Némítás örökre</string>
+    <string name="arrays__settings_default">Alapértelmezett beállítások</string>
+    <string name="arrays__enabled">Engedélyezve</string>
+    <string name="arrays__disabled">Letiltva</string>
+    <string name="arrays__name_and_message">Név és üzenet</string>
+    <string name="arrays__name_only">Csak név</string>
+    <string name="arrays__no_name_or_message">Se név, se üzenet</string>
+    <string name="arrays__images">Képek</string>
+    <string name="arrays__audio">Hang</string>
+    <string name="arrays__video">Videó</string>
+    <string name="arrays__documents">Dokumentumok</string>
+    <string name="arrays__small">Kicsi</string>
+    <string name="arrays__normal">Normál</string>
+    <string name="arrays__large">Nagy</string>
+    <string name="arrays__extra_large">Extra nagy</string>
+    <string name="arrays__default">Alapértelmezett</string>
+    <string name="arrays__high">Magas</string>
+    <string name="arrays__max">Legmagasabb</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">%d óra</item>
+        <item quantity="other">%d órája</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">Küldés az Enter lenyomásával</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Az Enter billentyű megnyomása elküldi a szöveges üzeneteket</string>
+    <string name="preferences__send_link_previews">Hivatkozások előnézeti képének küldése</string>
+    <string name="preferences__previews_are_supported_for">Az előnézeti képek az Imgur, Instagram, Pinterest, Reddit és YouTube szolgáltatásokhoz érhetőek el.</string>
+    <string name="preferences__screen_security">Képernyőbiztonság</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Képernyőképek készítésének blokkolása a futó alkalmazások listájában és az alkalmazáson belül</string>
+    <string name="preferences__notifications">Értesítések</string>
+    <string name="preferences__led_color">LED színe</string>
+    <string name="preferences__led_color_unknown">Ismeretlen</string>
+    <string name="preferences__pref_led_blink_title">LED villogás mintázata</string>
+    <string name="preferences__sound">Hang</string>
+    <string name="preferences__silent">Csendes</string>
+    <string name="preferences__repeat_alerts">Figyelmeztetések ismétlése</string>
+    <string name="preferences__never">Soha</string>
+    <string name="preferences__one_time">Egyszer</string>
+    <string name="preferences__two_times">Kétszer</string>
+    <string name="preferences__three_times">Háromszor</string>
+    <string name="preferences__five_times">Ötször</string>
+    <string name="preferences__ten_times">Tízszer</string>
+    <string name="preferences__vibrate">Rezgés</string>
+    <string name="preferences__green">Zöld</string>
+    <string name="preferences__red">Vörös</string>
+    <string name="preferences__blue">Kék</string>
+    <string name="preferences__orange">Narancs</string>
+    <string name="preferences__cyan">Cián</string>
+    <string name="preferences__magenta">Bíborvörös</string>
+    <string name="preferences__white">Fehér</string>
+    <string name="preferences__none">Egyik sem</string>
+    <string name="preferences__fast">Gyors</string>
+    <string name="preferences__normal">Normál</string>
+    <string name="preferences__slow">Lassú</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Régi üzenetek automatikus törlése, amint a beszélgetés üzeneteinek száma meghaladja a beállított értéket</string>
+    <string name="preferences__delete_old_messages">Régi üzenetek törlése</string>
+    <string name="preferences__conversation_length_limit">Beszélgetés hosszának korlátja</string>
+    <string name="preferences__trim_all_conversations_now">Összes beszélgetés csonkítása most</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Az összes beszélgetés vizsgálata és a beszélgetésekre vonatkozó hosszkorlátozás érvényesítése</string>
+    <string name="preferences__default">Alapértelmezett</string>
+    <string name="preferences__incognito_keyboard">Inkognitó billentyűzet</string>
+    <string name="preferences__read_receipts">Olvasási nyugták</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ha az olvasási nyugták le vannak tiltva, te sem fogod látni mások olvasási nyugtáit.</string>
+    <string name="preferences__typing_indicators">Gépelésindikátorok</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ha a gépelés-indikátorod ki van kapcsolva, nem fogod látni mások gépelés-indikátorát sem.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása)</string>
+    <string name="preferences__light_theme">Világos</string>
+    <string name="preferences__dark_theme">Sötét</string>
+    <string name="preferences_chats__message_trimming">Üzenetek csonkítása</string>
+    <string name="preferences_advanced__use_system_emoji">Rendszer emojik használata</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">A Session beépített emoji-támogatásának letiltása</string>
+    <string name="preferences_app_protection__app_access">Alkalmazás hozzáférés</string>
+    <string name="preferences_app_protection__communication">Kommunikáció</string>
+    <string name="preferences_chats__chats">Csevegések</string>
+    <string name="preferences_notifications__messages">Üzenetek</string>
+    <string name="preferences_notifications__in_chat_sounds">Csevegésen belüli hangok</string>
+    <string name="preferences_notifications__show">Megjelenítés</string>
+    <string name="preferences_notifications__priority">Prioritás</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Új üzenet...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Üzenet részletei</string>
+    <string name="conversation_context__menu_copy_text">Szöveg másolása</string>
+    <string name="conversation_context__menu_delete_message">Üzenet törlése</string>
+    <string name="conversation_context__menu_ban_user">Felhasználó kitiltása</string>
+    <string name="conversation_context__menu_ban_and_delete_all">Tiltás és minden törlése</string>
+    <string name="conversation_context__menu_resend_message">Üzenet újraküldése</string>
+    <string name="conversation_context__menu_reply_to_message">Válasz az üzenetre</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Melléklet mentése</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Eltűnő üzenetek</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Az üzenetek lejárnak</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Némítás feloldása</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Értesítések némítása</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Csoport szerkesztése</string>
+    <string name="conversation__menu_leave_group">Kilépés a csoportból</string>
+    <string name="conversation__menu_view_all_media">Összes médiafájl</string>
+    <string name="conversation__menu_add_shortcut">Hozzáadás a kezdőképernyőhöz</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Felugró ablak nagyítása</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Kézbesítés</string>
+    <string name="conversation_group_options__conversation">Beszélgetés</string>
+    <string name="conversation_group_options__broadcast">Adás</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Mentés</string>
+    <string name="media_preview__forward_title">Továbbítás</string>
+    <string name="media_preview__all_media_title">Összes médiafájl</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">Nincs dokumentum</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Média előnézet</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Törlés</string>
+    <string name="trimmer__deleting_old_messages">Régi üzenetek törlése...</string>
+    <string name="trimmer__old_messages_successfully_deleted">A régi üzenetek törlése sikerült</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Engedély szükséges</string>
+    <string name="Permissions_continue">Folytatás</string>
+    <string name="Permissions_not_now">Most nem</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">A biztonsági mentések külső tárolóra lesznek mentve, és az alábbi jelmondattal lesznek titkosítva. Ezt a jelmondatot kell megadnod a biztonsági mentés visszaállításához.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Feljegyeztem ezt a jelmondatot. Enélkül nem leszek képes visszaállítani biztonsági mentést.</string>
+    <string name="registration_activity__skip">Kihagyás</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Nem sikerült beolvasni a Session újabb verziójából származó biztonsági mentést</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Hibás a biztonsági mentéshez tartozó jelmondat</string>
+    <string name="BackupDialog_enable_local_backups">Engedélyezed a helyi biztonsági mentéseket?</string>
+    <string name="BackupDialog_enable_backups">Biztonsági mentések bekapcsolása</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Kérlek erősítsd meg a jelölőnégyzet bejelölésével, hogy megértetted a figyelmeztetést!</string>
+    <string name="BackupDialog_delete_backups">Törlöd a biztonsági mentéseket?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Letiltod és törlöd az összes helyi biztonsági mentést?</string>
+    <string name="BackupDialog_delete_backups_statement">Biztonsági mentések törlése</string>
+    <string name="BackupDialog_copied_to_clipboard">Vágólapra másolva</string>
+    <string name="LocalBackupJob_creating_backup">Biztonsági mentés létrehozása...</string>
+    <string name="ProgressPreference_d_messages_so_far">Eddig %d db üzenet</string>
+    <string name="BackupUtil_never">Soha</string>
+    <string name="preferences_app_protection__screen_lock">Képernyőzár</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Session-hoz való hozzáférés védelme Android képernyőzárral vagy ujjlenyomattal</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Képernyő lezárása ennyi tétlenséget követően</string>
+    <string name="AppProtectionPreferenceFragment_none">Egyik sem</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Nyilvános kulcs másolása</string>
+    <!-- Session -->
+    <string name="continue_2">Folytatás</string>
+    <string name="copy">Másolás</string>
+    <string name="invalid_url">Érvénytelen URL</string>
+    <string name="copied_to_clipboard">Vágólapra másolva</string>
+    <string name="next">Következő</string>
+    <string name="share">Megosztás</string>
+    <string name="invalid_session_id">Érvénytelen Session azonosító</string>
+    <string name="cancel">Mégse</string>
+    <string name="your_session_id">Az ön Session azonosítója</string>
+    <string name="activity_landing_title_2">Az ön Session-ja itt kezdődik...</string>
+    <string name="activity_landing_register_button_title">Session azonosító létrehozása</string>
+    <string name="activity_landing_restore_button_title">Folytassa az ülését</string>
+    <string name="view_fake_chat_bubble_1">Mi az a Session?</string>
+    <string name="view_fake_chat_bubble_2">Ez egy decentralizált, titkosított üzenetküldő alkalmazás</string>
+    <string name="view_fake_chat_bubble_3">Tehát nem gyűjti a személyes adataimat vagy a beszélgetés metaadatait? Hogyan működik?</string>
+    <string name="view_fake_chat_bubble_4">Fejlett névtelen útválasztási és end-to-end titkosítási technológiák kombinációjának használata.</string>
+    <string name="view_fake_chat_bubble_5">A barátok nem engedik, hogy a barátok kompromittált hírnököket használjanak. Szívesen.</string>
+    <string name="activity_register_title">Ismerd meg a Session ID-d</string>
+    <string name="activity_register_explanation">Az üles azonosító az az egyedi cím, amelyet az emberek használhatnak, hogy kapcsolatba lépjenek Önnel az Ülés során. Mivel nincs kapcsolat a valódi személyazonosságával, az Ülés azonosító teljesen névtelen, és privát.</string>
+    <string name="activity_restore_title">Fiók visszaállítása</string>
+    <string name="activity_restore_explanation">Írja be azt a helyreállítási kifejezést, amelyet a fiók visszaállításához regisztrálásakor kapott.</string>
+    <string name="activity_restore_seed_edit_text_hint">Írja be a helyreállítási kifejezést</string>
+    <string name="activity_display_name_title_2">Válassza ki a megjelenítendő nevet</string>
+    <string name="activity_display_name_explanation">Ez lesz az ön neve, amikor használja a Session alkalmazást. Ez lehet a valódi neve, álneve, vagy bármi más, ami tetszik.</string>
+    <string name="activity_display_name_edit_text_hint">Írja be a megjelenítendő nevet</string>
+    <string name="activity_display_name_display_name_missing_error">Kérjük, válassza ki a megjelenítendő nevet</string>
+    <string name="activity_display_name_display_name_too_long_error">Válasszon rövidebb megjelenítési nevet</string>
+    <string name="activity_pn_mode_recommended_option_tag">Ajánlott</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Kérjük, válasszon egy lehetőséget</string>
+    <string name="activity_home_empty_state_message">Még nincsenek névjegyei</string>
+    <string name="activity_home_empty_state_button_title">Indítson el egy ülést</string>
+    <string name="activity_home_leave_group_dialog_message">Biztosan elhagyja ezt a csoportot?</string>
+    <string name="activity_home_leaving_group_failed_message">"Nem sikerült kilépni a csoportból"</string>
+    <string name="activity_home_delete_conversation_dialog_message">Biztosan törli ezt a beszélgetést?</string>
+    <string name="activity_home_conversation_deleted_message">A beszélgetés törölve</string>
+    <string name="activity_seed_title">A helyreállítási kifejezés</string>
+    <string name="activity_seed_title_2">Írja be a helyreállítási kifejezést</string>
+    <string name="activity_seed_explanation">A helyreállítási kifejezés a Session azonosító főkulcsa - használhatja a Session azonosító visszaállítására, ha elveszíti a hozzáférését eszközéhez. Tárolja helyreállítási mondatát biztonságos helyen, és ne adja át senkinek.</string>
+    <string name="activity_seed_reveal_button_title">Tartsa lenyomva, hogy felfedje</string>
+    <string name="view_seed_reminder_title">Már majdnem kész! 80%</string>
+    <string name="view_seed_reminder_subtitle_1">Biztosítsa fiókját a helyreállítási szöveg elmentésével</string>
+    <string name="view_seed_reminder_subtitle_3">Ügyeljen arra, hogy a helyreállítási szöveget biztonságos helyen tárolja</string>
+    <string name="activity_path_title">Útvonal</string>
+    <string name="activity_path_explanation">A Session elrejti IP címét azzal, hogy az üzeneteket a Session decentralizált hálózatának több szolgáltatási csomópontján vezeti keresztül. Ezek azok az országok, ahol a kapcsolat jelenleg átmegy:</string>
+    <string name="activity_path_device_row_title">Te</string>
+    <string name="activity_path_guard_node_row_title">Belépési csomópont</string>
+    <string name="activity_path_service_node_row_title">Szolgáltatási csomópont</string>
+    <string name="activity_path_destination_row_title">Célállomás</string>
+    <string name="activity_path_learn_more_button_title">Tudj meg többet</string>
+    <string name="activity_path_resolving_progress">Feloldás...</string>
+    <string name="activity_create_private_chat_title">Új Ülés</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Adja meg az Ülés azonosítóját</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">QR kód beolvasása</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">A beszélgetés elindításához olvassa be a felhasználó QR kódját. A QR kód a fiókbeállításokban található a QR kód ikonra koppintva.</string>
+    <string name="fragment_enter_public_key_explanation">A felhasználók megoszthatják Session azonosítójukat, ha belépnek a fiókbeállításokba, és megérintik a „Session azonosító megosztása” lehetőséget, vagy más egyéb módon átküldik QR kódjukat.</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Kamera hozzáférésre van szükség a QR kód beolvasásához</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Adjon hozzáférést a kamerához</string>
+    <string name="activity_create_closed_group_title">Új Zárt Csoport</string>
+    <string name="activity_create_closed_group_edit_text_hint">Írja be a csoport nevét</string>
+    <string name="activity_create_closed_group_empty_state_message">Még nincsenek névjegyei</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Egy munkamenet indítása</string>
+    <string name="activity_create_closed_group_group_name_missing_error">Kérjük, adja meg a csoport nevét</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">Írjon be rövidebb csoportnevet</string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Kérjük, válasszon legalább 1 csoporttagot</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">Egy zárt csoport nem lehet több 100 tagnál</string>
+    <string name="activity_join_public_chat_title">Csatlakozzon Nyitott Csoporthoz</string>
+    <string name="activity_join_public_chat_error">Nem sikerült csatlakozni a csoporthoz</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">Nyílt csoport URL</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">QR kód beolvasása</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Olvassa be annak a nyitott csoportnak a QR kódját, amelyhez csatlakozni szeretne</string>
+    <string name="activity_settings_title">Beállítások</string>
+    <string name="activity_settings_display_name_edit_text_hint">Írja be a megjelenítendő nevet</string>
+    <string name="activity_settings_display_name_missing_error">Válasszon megjelenítési nevet</string>
+    <string name="activity_settings_display_name_too_long_error">Válasszon rövidebb megjelenítési nevet</string>
+    <string name="activity_settings_privacy_button_title">Adatvédelem</string>
+    <string name="activity_settings_notifications_button_title">Értesítések</string>
+    <string name="activity_settings_chats_button_title">Beszélgetések</string>
+    <string name="activity_settings_devices_button_title">Eszközök</string>
+    <string name="activity_settings_invite_button_title">Barát meghívása</string>
+    <string name="activity_settings_faq_button_title">Gyakori kérdések</string>
+    <string name="activity_settings_recovery_phrase_button_title">Helyreállítási kódmondat</string>
+    <string name="activity_settings_clear_all_data_button_title">Adataid törlése</string>
+    <string name="activity_settings_clear_all_data_and_network_button_title">Adatok törlése, beleértve a hálózatot is</string>
+    <string name="activity_settings_help_translate_session">Segítsen nekünk a Session lefordításában</string>
+    <string name="activity_notification_settings_title">Értesítések</string>
+    <string name="activity_notification_settings_style_section_title">Értesítések stílusa</string>
+    <string name="activity_notification_settings_content_section_title">Értesítés tartalma</string>
+    <string name="activity_privacy_settings_title">Adatvédelem</string>
+    <string name="activity_chat_settings_title">Beszélgetések</string>
+    <string name="preferences_notifications_strategy_category_title">Értesítések módja</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_title">Használja a Gyors módot</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_summary">A Google értesítési szerverein keresztül megbízhatóan és azonnal értesítést kap az új üzenetekről.</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Név módosítása</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Eszköz társításának megszüntetése</string>
+    <string name="dialog_seed_title">A helyreállítási kifejezés</string>
+    <string name="dialog_seed_explanation">Ez a helyreállítási kódmondatod. Ezzel, visszaálíthatod, vagy migrálhatod a Session azonosítódat egy új eszközre.</string>
+    <string name="dialog_clear_all_data_title">Az összes adat törlése</string>
+    <string name="dialog_clear_all_data_explanation">Ez végleg törölni fogja üzeneteit, beszélgetéseit és ismerőseit.</string>
+    <string name="dialog_clear_all_data_network_explanation">Csak ezt az eszközt szeretné törölni, vagy törölni szeretné az egész fiókját?</string>
+    <string name="dialog_clear_all_data_local_only">Csak törlés</string>
+    <string name="dialog_clear_all_data_clear_network">Teljes fiók</string>
+    <string name="activity_qr_code_title">QR kód</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">Saját QR kódom</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">QR kód beolvasása</string>
+    <string name="activity_qr_code_view_scan_qr_code_explanation">Olvassa be valaki QR kódját, hogy beszélgetést kezdhessen vele</string>
+    <string name="fragment_view_my_qr_code_title">Szkennelj be</string>
+    <string name="fragment_view_my_qr_code_explanation">Ez a QR kódod. Más felhasználók beszkennelhetik, hogy egy munkamenetet indítsanak el veled.</string>
+    <string name="fragment_view_my_qr_code_share_title">QR Code megosztása</string>
+    <string name="fragment_contact_selection_contacts_title">Kapcsolatok</string>
+    <string name="fragment_contact_selection_closed_groups_title">Zárt Csoportok</string>
+    <string name="fragment_contact_selection_open_groups_title">Nyílt Csoportok</string>
+    <string name="fragment_contact_selection_empty_contacts">Még nincsenek névjegyei</string>
+    <!-- Next round of translation -->
+    <string name="menu_apply_button">Alkalmaz</string>
+    <string name="menu_done_button">Kész</string>
+    <string name="activity_edit_closed_group_title">Csoport szerkesztése</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Írjon be egy új csoportnevet</string>
+    <string name="activity_edit_closed_group_edit_members">Tagok</string>
+    <string name="activity_edit_closed_group_add_members">Tagok hozzáadása</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">A csoport neve nem lehet üres</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Írjon be rövidebb csoportnevet</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">A csoportoknak legalább 1 fősnek kell lenniük</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Felhasználó eltávolítása a csoportból</string>
+    <string name="activity_select_contacts_title">Névjegyek kiválasztása</string>
+    <string name="view_reset_secure_session_done_message">Biztonságos munkamenet visszaállítás kész</string>
+    <string name="dialog_ui_mode_title">Téma</string>
+    <string name="dialog_ui_mode_option_day">Ki</string>
+    <string name="dialog_ui_mode_option_night">Be</string>
+    <string name="dialog_ui_mode_option_system_default">Alapértelmezett</string>
+    <string name="activity_conversation_menu_copy_session_id">Az ön Session azonosító kimásolása</string>
+    <string name="attachment">Csatolmány</string>
+    <string name="attachment_type_voice_message">Hangüzenet</string>
+    <string name="details">Részletek</string>
+    <string name="dialog_backup_activation_failed">Nem sikerült aktiválni a biztonsági mentéseket. Kérjük, próbálja újra, vagy lépjen kapcsolatba az ügyfélszolgálattal.</string>
+    <string name="activity_backup_restore_title">Biztonsági mentés visszaállítása</string>
+    <string name="activity_backup_restore_select_file">Fájl kiválasztása</string>
+    <string name="activity_backup_restore_explanation_1">Válassz ki egy visszaállítási fájlt és add meg a hozzá tartozó visszaálítási kódmondatot.</string>
+    <string name="activity_backup_restore_passphrase">30-betűs kódmondat</string>
+    <string name="activity_link_device_skip_prompt">Ez eltarthat egy ideig, szeretnéd átugrani?</string>
+    <string name="activity_link_device_link_device">Eszköz társítása</string>
+    <string name="activity_link_device_recovery_phrase">Visszaállítási kódmondat</string>
+    <string name="activity_link_device_scan_qr_code">QR kód beolvasása</string>
+    <string name="activity_join_public_chat_join_rooms">Vagy csatlakozz ezekhez…</string>
+    <string name="activity_pn_mode_message_notifications">Üzenet értesítések</string>
+    <string name="activity_pn_mode_explanation">2 mód van arra, hogy a Session értesítsen téged új üzenetekről.</string>
+    <string name="activity_pn_mode_fast_mode">Gyorsított mód</string>
+    <string name="activity_pn_mode_slow_mode">Lassított mód</string>
+    <string name="activity_pn_mode_fast_mode_explanation">A Google értesítési szerverein keresztül megbízhatóan és azonnal értesítést kapsz az új üzenetekről.</string>
+    <string name="activity_pn_mode_slow_mode_explanation">A Session alkalmanként, az új üzeneteket a háttérben fogja ellenőrizni.</string>
+    <string name="fragment_recovery_phrase_title">Visszaállítási kódmondat</string>
+    <string name="activity_prompt_passphrase_session_locked">Session zárolva</string>
+    <string name="activity_prompt_passphrase_tap_to_unlock">Koppintson a feloldáshoz</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Írjon be egy becenevet</string>
+    <string name="invalid_public_key">Érvénytelen nyilvános kulcs</string>
+    <string name="document">Dokumentum</string>
+    <string name="dialog_blocked_title">%s blokkolásának feloldása?</string>
+    <string name="dialog_blocked_explanation">Biztosan szeretnéd a %s-t blokkolni?</string>
+    <string name="dialog_join_open_group_title">Csatlakozol ide: %s?</string>
+    <string name="dialog_join_open_group_explanation">Biztosan csatlakozni szeretne a(z) %s nyílt csoporthoz?</string>
+    <string name="dialog_open_url_title">Megnyitod az URL-t?</string>
+    <string name="dialog_open_url_explanation">Biztosan kilépsz a következőből: %s?</string>
+    <string name="open">Megnyit</string>
+    <string name="dialog_link_preview_title">Engedélyezi a linkelőnézeteket?</string>
+    <string name="dialog_link_preview_explanation">A linkelőnézetek engedélyezése megjeleníti az Ön által küldött és kapott linkek előnézetét. Ez hasznos lehet, de a Session így kapcsolatba fog lépni a linkelt webhelyekkel az előnézetek létrehozásához. A link előnézetét bármikor letilthatja a Session beállításaiban.</string>
+    <string name="dialog_link_preview_enable_button_title">Engedélyezés</string>
+    <string name="dialog_download_title">%s megbízható?</string>
+    <string name="dialog_download_explanation">Biztosan le szeretné tölteni %s által küldött tartalmat?</string>
+    <string name="dialog_download_button_title">Letöltés</string>
+    <string name="activity_conversation_blocked_banner_text">%s blokkolva van. Feloldja a blokkolást?</string>
+    <string name="activity_conversation_attachment_prep_failed">Nem sikerült előkészíteni a mellékletet a küldéshez.</string>
+    <string name="media">Média</string>
+    <string name="UntrustedAttachmentView_download_attachment">Kattintson %s letöltéséhez</string>
+    <string name="message_details_header__error">Hiba</string>
+    <string name="dialog_send_seed_title">Figyelmeztetés</string>
+    <string name="dialog_send_seed_explanation">Ez az Ön helyreállítási kulcsa. Ha elküldi valakinek, akkor a címzettnek teljes hozzáférése lesz az Ön fiókjához.</string>
+    <string name="dialog_send_seed_send_button_title">Küldés</string>
+    <string name="notify_type_all">Összes</string>
+    <string name="notify_type_mentions">Említések</string>
+    <string name="deleted_message">Ezt az üzenetet törölték</string>
+    <string name="delete_message_for_me">Törlés csak nálam</string>
+    <string name="delete_message_for_everyone">Törlés mindenkinél</string>
+    <string name="delete_message_for_me_and_recipient">Törlés nekem és neki: %s</string>
+</resources>

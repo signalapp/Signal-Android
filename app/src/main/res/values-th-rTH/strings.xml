@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yes">ใช่</string>
+    <string name="no">ไม่</string>
+    <string name="delete">ลบ</string>
+    <string name="please_wait">โปรดรอ...</string>
+    <string name="save">บันทึก</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">ข้อความใหม่</string>
+    <!-- AlbumThumbnailView -->
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="other">%d ข้อความต่อบทสนทนา</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ลบข้อความเก่าทั้งหมดตอนนี้หรือไม่</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="other">นี่จะตัดการสนทนาทั้งหมดให้สั้นลงเหลือแค่ %d ข้อความล่าสุดโดยทันที</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">ลบ</string>
+    <string name="ApplicationPreferencesActivity_On">เปิด</string>
+    <string name="ApplicationPreferencesActivity_Off">ปิด</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(ภาพ)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(เสียง)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(วิดีโอ)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(ตอบกลับ)</string>
+    <!-- AttachmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับสื่อที่เลือก</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียงได้ Session ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อได้ Session ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูปได้ Session ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">เกิดข้อผิดพลาดในการเล่นเสียง</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">วันนี้</string>
+    <string name="BucketedThreadMedia_Yesterday">เมื่อวานนี้</string>
+    <string name="BucketedThreadMedia_This_week">สัปดาห์นี้</string>
+    <string name="BucketedThreadMedia_This_month">เดือนนี้</string>
+    <!-- CommunicationActions -->
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">กลุ่ม</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">การส่งล้มเหลว แตะเพื่อดูรายละเอียด</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนคีย์ แตะเพื่อประมวลผล</string>
+    <string name="ConversationItem_group_action_left">%1$s ได้ออกจากกลุ่ม</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">การส่งล้มเหลว แตะเพื่อกลับไปใช้วิธีที่ไม่ปลอดภัยแทน</string>
+    <string name="ConversationItem_unable_to_open_media">ไม่พบแอปที่สามารถเปิดสื่อนี้</string>
+    <string name="ConversationItem_copied_text">คัดลอกแล้ว %s</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">เพิ่มไฟล์แนบ</string>
+    <string name="ConversationActivity_select_contact_info">เลือกข้อมูลผู้ติดต่อ</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">ขออภัย พบปัญหาในการตั้งค่าไฟล์แนบของคุณ</string>
+    <string name="ConversationActivity_invalid_recipient">ผู้รับไม่ถูกต้อง</string>
+    <string name="ConversationActivity_added_to_home_screen">เพิ่มไปยังหน้าจอหลักแล้ว</string>
+    <string name="ConversationActivity_leave_group">ออกจากกลุ่มหรือไม่</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">คุณแน่ใจหรือไหมว่าต้องการออกจากกลุ่มนี้</string>
+    <string name="ConversationActivity_error_leaving_group">เกิดข้อผิดพลาดระหว่างออกจากกลุ่ม</string>
+    <string name="ConversationActivity_unblock_this_contact_question">เลิกปิดกั้นผู้ติดต่อนี้หรือไม่</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">คุณจะกลับมารับข้อความและสายโทรเข้าจากผู้ติดต่อนี้ได้อีก</string>
+    <string name="ConversationActivity_unblock">เลิกปิดกั้น</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">ไฟล์แนบมีขนาดใหญ่เกินกำหนดสำหรับชนิดของข้อความที่คุณกำลังจะส่ง</string>
+    <string name="ConversationActivity_unable_to_record_audio">บันทึกเสียงไม่ได้</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">อุปกรณ์ของคุณไม่มีแอปที่สามารถจัดการกับลิงก์นี้ได้</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">เพื่อจะส่งข้อความเสียง ต้องอนุญาตให้ Session เข้าถึงไมโครโฟนของคุณ</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">เพื่อจะส่งข้อความเสียงได้ Session ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟน แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\"</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">อนุญาต Session ให้ใช้กล้องเพื่อถ่ายรูปและวิดีโอ</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">เพื่อที่จะถ่ายรูปหรือวิดีโอได้ Session ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session ต้องได้รับอนุญาตให้เข้าถึงกล้องเพื่อถ่ายรูปและวิดีโอ</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="other">%d ข้อความที่ยังไม่ได้อ่าน</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="other">ลบข้อความที่เลือกหรือไม่</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="other">นี่จะลบ %1$d ข้อความที่ถูกเลือกทั้งหมด อย่างถาวร</item>
+    </plurals>
+    <string name="ConversationFragment_save_to_sd_card">บันทึกลงที่เก็บข้อมูลหรือไม่</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="other">การบันทึกสื่อทั้งหมด %1$d รายการลงในที่เก็บข้อมูล จะอนุญาตให้แอปอื่นในอุปกรณ์ของคุณเข้าถึงสื่อเหล่านี้ได้ด้วย\n\nดำเนินการต่อหรือไม่</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="other">เกิดข้อผิดพลาดระหว่างบันทึกไฟล์แนบลงที่เก็บข้อมูล</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="other">บันทึกไฟล์แนบแล้ว %1$d</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="other">บันทึกไฟล์แนบไปยังที่เก็บข้อมูลแล้ว %1$d...</item>
+    </plurals>
+    <string name="ConversationFragment_pending">รอดำเนินการ...</string>
+    <string name="ConversationFragment_push">ข้อมูล (Session)</string>
+    <string name="ConversationFragment_deleting">กำลังลบ</string>
+    <string name="ConversationFragment_deleting_messages">กำลังลบข้อความ...</string>
+    <string name="ConversationFragment_quoted_message_not_found">ไม่พบข้อความดั้งเดิม</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">ข้อความดั้งเดิมไม่มีอยู่แล้ว</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนคีย์</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">รูปโปรไฟล์</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">ใช้ค่าที่กำหนดเอง: %s</string>
+    <string name="CustomDefaultPreference_using_default">ใช้ค่าเริ่มต้น: %s</string>
+    <string name="CustomDefaultPreference_none">ไม่มี</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">เดี๋ยวนี้</string>
+    <string name="DateUtils_minutes_ago">%d นาที</string>
+    <string name="DateUtils_today">วันนี้</string>
+    <string name="DateUtils_yesterday">เมื่อวานนี้</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">วันนี้</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">ไฟล์ที่ไม่รู้จัก</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">เกิดข้อผิดพลาดระหว่างการดึงภาพ GIF ความละเอียดสูง</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">สติกเกอร์</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">อวตาร</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">แตะค้างไว้เพื่อบันทึกข้อความเสียง ปล่อยเพื่อส่ง</string>
+    <!-- LongMessageActivity -->
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">สื่อ</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="other">ลบข้อความที่เลือกหรือไม่</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="other">นี่จะลบ %1$d ข้อความที่ถูกเลือกทั้งหมด อย่างถาวร</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">กำลังลบ</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">กำลังลบข้อความ...</string>
+    <string name="MediaOverviewActivity_Documents">เอกสาร</string>
+    <string name="MediaOverviewActivity_Select_all">เลือกทั้งหมด</string>
+    <string name="MediaOverviewActivity_collecting_attachments">รวบรวมสิ่งแนบ...</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">ข้อความมัลติมีเดีย</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">กำลังดาวน์โหลดข้อความ MMS</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">เกิดข้อผิดพลาดระหว่างดาวน์โหลด MMS แตะเพื่อลองใหม่</string>
+    <!-- MediaPickerActivity -->
+    <!-- MediaSendActivity -->
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">สื่อทั้งหมด</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ได้รับข้อความที่เข้ารหัสด้วย Session รุ่นเก่าที่ไม่รองรับอีกต่อไปแล้ว โปรดขอให้ผู้ส่งอัพเดตแอปเป็นเวอร์ชันล่าสุดและส่งข้อความอีกครั้ง</string>
+    <string name="MessageRecord_left_group">คุณได้ออกจากกลุ่ม</string>
+    <string name="MessageRecord_you_updated_group">คุณได้อัพเดตกลุ่ม</string>
+    <string name="MessageRecord_s_updated_group">%s ได้อัพเดตกลุ่ม</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">ข้อความที่ลบตัวเอง</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">ข้อความของคุณจะไม่หมดอายุ</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ข้อความที่ถูกส่งและได้รับในการสนทนานี้จะลบตัวเองไป %s หลังจากที่คู่สนทนาเห็นข้อความแล้ว</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">ใส่วลีรหัสผ่าน</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">ปิดกั้นผู้ติดต่อนี้หรือไม่</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">คุณจะไม่ได้รับข้อความและสายโทรเข้าจากผู้ติดต่อนี้อีกต่อไป</string>
+    <string name="RecipientPreferenceActivity_block">ปิดกั้น</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">เลิกปิดกั้นผู้ติดต่อนี้หรือไม่</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">คุณจะกลับมารับข้อความและสายโทรเข้าจากผู้ติดต่อนี้ได้อีก</string>
+    <string name="RecipientPreferenceActivity_unblock">เลิกปิดกั้น</string>
+    <!-- Slide -->
+    <string name="Slide_image">ภาพ</string>
+    <string name="Slide_audio">เสียง</string>
+    <string name="Slide_video">วิดีโอ</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">ได้รับข้อความแลกเปลี่ยน
+        คีย์ที่เสียหาย
+    </string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        ได้รับข้อความแลกเปลี่ยนคีย์ซึ่งใช้โปรโตคอลเวอร์ชันที่ไม่ถูกต้อง
+    </string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">ได้รับข้อความที่มีรหัสความปลอดภัยชุดใหม่ แตะเพื่อประมวลผลและแสดง</string>
+    <string name="SmsMessageRecord_secure_session_reset">คุณได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s ได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
+    <string name="SmsMessageRecord_duplicate_message">ข้อความซ้ำ</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">อัพเดตกลุ่มแล้ว</string>
+    <string name="ThreadRecord_left_the_group">ออกจากกลุ่มแล้ว</string>
+    <string name="ThreadRecord_secure_session_reset">เซสชันที่ปลอดภัยถูกรีเซ็ตแล้ว</string>
+    <string name="ThreadRecord_draft">ร่าง:</string>
+    <string name="ThreadRecord_called">คุณได้โทรหา</string>
+    <string name="ThreadRecord_called_you">โทรหาคุณ</string>
+    <string name="ThreadRecord_missed_call">สายที่ไม่ได้รับ</string>
+    <string name="ThreadRecord_media_message">ข้อความสื่อ</string>
+    <string name="ThreadRecord_s_is_on_signal">%s ใช้งาน Session</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">ข้อความที่ลบตัวเองถูกปิดใช้งานแล้ว</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">ตั้งเวลาข้อความที่ลบตัวเองไว้ที่ %s</string>
+    <string name="ThreadRecord_safety_number_changed">รหัสความปลอดภัยเปลี่ยนแล้ว</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">มีการเปลี่ยนแปลงรหัสความปลอดภัยระหว่างคุณกับ %s</string>
+    <string name="ThreadRecord_you_marked_verified">คุณถูกทำเครื่องหมายว่าถูกยืนยันแล้ว</string>
+    <string name="ThreadRecord_you_marked_unverified">คุณถูกทำเครื่องหมายว่ายังไม่ได้ยืนยัน</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">อัพเดต Session</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Session เวอร์ชันใหม่มาแล้ว แตะเพื่ออัพเดต</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">ข้อความที่เข้ารหัสมีความผิดปกติ</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ข้อความถูกเข้ารหัสสำหรับเซสชันที่ไม่มีอยู่</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">ข้อความ MMS ที่เข้ารหัสมีความผิดปกติ</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">ข้อความ MMS ถูกเข้ารหัสสำหรับเซสชันที่ไม่มีอยู่</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">ปิดเสียงการแจ้งเตือน</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">แตะเพื่อเปิด</string>
+    <string name="KeyCachingService_passphrase_cached">Session ถูกปลดล็อก</string>
+    <string name="KeyCachingService_lock">ล็อก Session</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">คุณ</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">ชนิดสื่อที่ไม่รองรับ</string>
+    <string name="MediaPreviewActivity_draft">ร่าง</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ไม่สามารถบันทึกลงที่เก็บข้อมูลภายนอกได้ หากไม่ได้รับอนุญาต</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">ลบข้อความหรือไม่</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">นี่จะเป็นการลบข้อความนี้โดยถาวร</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">มี %1$d ข้อความใหม่ใน %2$d การสนทนา</string>
+    <string name="MessageNotifier_most_recent_from_s">ล่าสุดจาก: %1$s</string>
+    <string name="MessageNotifier_locked_message">ข้อความที่ถูกล็อก</string>
+    <string name="MessageNotifier_message_delivery_failed">การส่งข้อความล้มเหลว</string>
+    <string name="MessageNotifier_failed_to_deliver_message">ส่งข้อความล้มเหลว</string>
+    <string name="MessageNotifier_error_delivering_message">เกิดข้อผิดพลาดระหว่างส่งข้อความ</string>
+    <string name="MessageNotifier_mark_all_as_read">ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว</string>
+    <string name="MessageNotifier_mark_read">ทำเครื่องหมายว่าอ่านแล้ว</string>
+    <string name="MessageNotifier_reply">ตอบกลับ</string>
+    <string name="MessageNotifier_pending_signal_messages">ข้อความ Session ที่รอดำเนินการ</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Session ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
+    <string name="MessageNotifier_unknown_contact_message">ผู้ติดต่อ</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">ค่าเริ่มต้น</string>
+    <string name="NotificationChannel_calls">การโทร</string>
+    <string name="NotificationChannel_failures">ล้มเหลว</string>
+    <string name="NotificationChannel_backups">การสำรองข้อมูล</string>
+    <string name="NotificationChannel_locked_status">สถานะล๊อค</string>
+    <string name="NotificationChannel_app_updates">การอัปเดตแอป</string>
+    <string name="NotificationChannel_other">ที่อื่น</string>
+    <string name="NotificationChannel_group_messages">ข้อความ</string>
+    <string name="NotificationChannel_missing_display_name">ไม่ทราบ</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Session ถูกล็อกอยู่</string>
+    <string name="QuickResponseService_problem_sending_message">เกิดปัญหาในการส่งข้อความ</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">บันทึกไปยัง %s</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">ค้นหา</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">ชอร์ตคัทใช้ไม่ได้</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_new_message">ข้อความใหม่</string>
+    <!-- TransferControlView -->
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">เกิดข้อผิดพลาดระหว่างเล่นวิดีโอ</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">เสียง</string>
+    <string name="attachment_type_selector__audio_description">เสียง</string>
+    <string name="attachment_type_selector__contact">ผู้ติดต่อ</string>
+    <string name="attachment_type_selector__contact_description">ผู้ติดต่อ</string>
+    <string name="attachment_type_selector__camera">กล้อง</string>
+    <string name="attachment_type_selector__camera_description">กล้อง</string>
+    <string name="attachment_type_selector__location">ตำแหน่งที่ตั้ง</string>
+    <string name="attachment_type_selector__location_description">ตำแหน่งที่ตั้ง</string>
+    <string name="attachment_type_selector__gallery_description">ภาพหรือวิดีโอ</string>
+    <string name="attachment_type_selector__file_description">ไฟล์</string>
+    <string name="attachment_type_selector__gallery">คลังภาพ</string>
+    <string name="attachment_type_selector__file">ไฟล์</string>
+    <string name="attachment_type_selector__drawer_description">สลับแถบเมนูไฟล์แนบ</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">กำลังโหลดผู้ติดต่อ…</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">ส่ง</string>
+    <string name="conversation_activity__compose_description">การสร้างข้อความ</string>
+    <string name="conversation_activity__emoji_toggle_description">สลับแป้นพิมพ์อีโมจิ</string>
+    <string name="conversation_activity__attachment_thumbnail">รูปย่อของไฟล์แนบ</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">สลับแถบเมนูไฟล์แนบกล้องถ่ายภาพแบบเร็ว</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">บันทึกและส่งไฟล์แนบแบบเสียง</string>
+    <string name="conversation_activity__enable_signal_for_sms">เปิดใช้งาน Session สำหรับ SMS</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__cancel">ยกเลิก</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">ข้อความสื่อ</string>
+    <string name="conversation_item__secure_message_description">ข้อความที่ปลอดภัย</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">การส่งล้มเหลว</string>
+    <string name="conversation_item_sent__pending_approval_description">รออนุมัติ</string>
+    <string name="conversation_item_sent__delivered_description">ส่งแล้ว</string>
+    <string name="conversation_item_sent__message_read">ข้อความถูกอ่านแล้ว</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">ภาพของผู้ติดต่อ</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">เล่น</string>
+    <string name="audio_view__pause_accessibility_description">หยุดชั่วคราว</string>
+    <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
+    <!-- open_group_invitation_view -->
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">เสียง</string>
+    <string name="QuoteView_video">วิดีโอ</string>
+    <string name="QuoteView_photo">รูปภาพ</string>
+    <string name="QuoteView_you">คุณ</string>
+    <string name="QuoteView_original_missing">ไม่พบข้อความดั้งเดิม</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">เลื่อนลงด้านล่างสุด</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">ค้นหาภาพ GIF และสติกเกอร์</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">ไม่พบสิ่งใด</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">ดูการสนทนาแบบเต็ม</string>
+    <string name="load_more_header__loading">กำลังโหลด</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">ไม่มีสื่อ</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">ส่งใหม่</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">ปิดกั้น</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">มีปัญหาบางประการที่ต้องการให้คุณพิจารณา</string>
+    <string name="message_details_header__sent">ส่งแล้ว</string>
+    <string name="message_details_header__received">ได้รับแล้ว</string>
+    <string name="message_details_header__disappears">ลบตัวเอง</string>
+    <string name="message_details_header__via">ผ่าน</string>
+    <string name="message_details_header__to">ถึง:</string>
+    <string name="message_details_header__from">จาก:</string>
+    <string name="message_details_header__with">กับ:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">สร้างวลีรหัสผ่าน</string>
+    <string name="AndroidManifest__select_contacts">เลือกผู้ติดต่อ</string>
+    <string name="AndroidManifest__media_preview">ดูตัวอย่างสื่อ</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">ใช้ค่าเริ่มต้น</string>
+    <string name="arrays__use_custom">ใช้ค่าที่กำหนดเอง</string>
+    <string name="arrays__mute_for_one_hour">ปิดเสียง 1 ชั่วโมง</string>
+    <string name="arrays__mute_for_two_hours">ปิดเสียง 2 ชั่วโมง</string>
+    <string name="arrays__mute_for_one_day">ปิดเสียง 1 วัน</string>
+    <string name="arrays__mute_for_seven_days">ปิดเสียง 7 วัน</string>
+    <string name="arrays__mute_for_one_year">ปิดเสียง 1 ปี</string>
+    <string name="arrays__settings_default">การตั้งค่าเริ่มต้น</string>
+    <string name="arrays__enabled">เปิดใช้งานแล้ว</string>
+    <string name="arrays__disabled">ปิดใช้งานแล้ว</string>
+    <string name="arrays__name_and_message">ชื่อและข้อความ</string>
+    <string name="arrays__name_only">ชื่อเท่านั้น</string>
+    <string name="arrays__no_name_or_message">ไม่มีชื่อหรือข้อความ</string>
+    <string name="arrays__images">ภาพ</string>
+    <string name="arrays__audio">เสียง</string>
+    <string name="arrays__video">วิดีโอ</string>
+    <string name="arrays__documents">เอกสาร</string>
+    <string name="arrays__small">เล็ก</string>
+    <string name="arrays__normal">ปกติ</string>
+    <string name="arrays__large">ใหญ่</string>
+    <string name="arrays__extra_large">ใหญ่พิเศษ</string>
+    <string name="arrays__default">ค่าเริ่มต้น</string>
+    <string name="arrays__high">สูง</string>
+    <string name="arrays__max">สูงสุด</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="other">%d ชั่วโมง</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">ป้อนคีย์เพื่อส่ง</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">การกดปุ่ม Enter จะเป็นการส่งข้อความตัวอักษร</string>
+    <string name="preferences__screen_security">ความปลอดภัยหน้าจอ</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">ปิดกั้นการจับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
+    <string name="preferences__notifications">การแจ้งเตือน</string>
+    <string name="preferences__led_color">สี LED</string>
+    <string name="preferences__led_color_unknown">ไม่ทราบ</string>
+    <string name="preferences__pref_led_blink_title">รูปแบบการกระพริบไฟ LED</string>
+    <string name="preferences__sound">เสียง</string>
+    <string name="preferences__silent">ไม่ส่งเสียง</string>
+    <string name="preferences__repeat_alerts">ทวนเสียงเตือน</string>
+    <string name="preferences__never">ไม่เลย</string>
+    <string name="preferences__one_time">หนึ่งครั้ง</string>
+    <string name="preferences__two_times">สองครั้ง</string>
+    <string name="preferences__three_times">สามครั้ง</string>
+    <string name="preferences__five_times">ห้าครั้ง</string>
+    <string name="preferences__ten_times">สิบครั้ง</string>
+    <string name="preferences__vibrate">สั่น</string>
+    <string name="preferences__green">เขียว</string>
+    <string name="preferences__red">แดง</string>
+    <string name="preferences__blue">น้ำเงิน</string>
+    <string name="preferences__orange">ส้ม</string>
+    <string name="preferences__cyan">ฟ้าอมเขียว</string>
+    <string name="preferences__magenta">แดงอมม่วง</string>
+    <string name="preferences__white">ขาว</string>
+    <string name="preferences__none">ไม่มี</string>
+    <string name="preferences__fast">เร็ว</string>
+    <string name="preferences__normal">ปกติ</string>
+    <string name="preferences__slow">ช้า</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">ลบข้อความเก่าโดยอัตโนมัติเมื่อการสนทนายาวเกินกว่าความยาวที่กำหนด</string>
+    <string name="preferences__delete_old_messages">ลบข้อความเก่า</string>
+    <string name="preferences__conversation_length_limit">ขีดจำกัดความยาวของการสนทนา</string>
+    <string name="preferences__trim_all_conversations_now">ตัดการสนทนาทั้งหมดให้สั้นลงเดี๋ยวนี้</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">ไล่ดูการสนทนาทั้งหมดและบังคับใช้ขีดจำกัดความยาวของการสนทนา</string>
+    <string name="preferences__default">ค่าเริ่มต้น</string>
+    <string name="preferences__incognito_keyboard">แป้นพิมพ์แบบลับ</string>
+    <string name="preferences__read_receipts">ใบตอบรับเมื่ออ่าน</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ถ้าใบตอบรับเมื่ออ่านถูกปิดใช้งาน คุณจะไม่เห็นใบตอบรับเมื่ออ่านที่ส่งมาจากผู้อื่น</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">ร้องขอแป้นพิมพ์ให้ปิดใช้งานการเรียนรู้การแนะนำคำ</string>
+    <string name="preferences__light_theme">สว่าง</string>
+    <string name="preferences__dark_theme">มืด</string>
+    <string name="preferences_chats__message_trimming">ตัดข้อความให้สั้นลง</string>
+    <string name="preferences_advanced__use_system_emoji">ใช้อีโมจิของระบบ</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">ปิดใช้งานการรองรับอีโมจิของ Session เอง</string>
+    <string name="preferences_app_protection__app_access">การเข้าถึงแอป</string>
+    <string name="preferences_app_protection__communication">การสื่อสาร</string>
+    <string name="preferences_chats__chats">แชต</string>
+    <string name="preferences_notifications__messages">ข้อความ</string>
+    <string name="preferences_notifications__in_chat_sounds">เสียงภายในแชต</string>
+    <string name="preferences_notifications__show">แสดง</string>
+    <string name="preferences_notifications__priority">ความสำคัญ</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">ข้อความใหม่ถึง...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">รายละเอียดข้อความ</string>
+    <string name="conversation_context__menu_copy_text">คัดลอกข้อความ</string>
+    <string name="conversation_context__menu_delete_message">ลบข้อความ</string>
+    <string name="conversation_context__menu_resend_message">ส่งข้อความอีกครั้ง</string>
+    <string name="conversation_context__menu_reply_to_message">ตอบกลับข้อความ</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">บันทึกไฟล์แนบ</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">ข้อความที่ลบตัวเอง</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">ข้อความที่กำลังหมดอายุ</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">เลิกปิดเสียง</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">ปิดเสียงการแจ้งเตือน</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">แก้ไขกลุ่ม</string>
+    <string name="conversation__menu_leave_group">ออกจากกลุ่ม</string>
+    <string name="conversation__menu_view_all_media">สื่อทั้งหมด</string>
+    <string name="conversation__menu_add_shortcut">เพิ่มไปยังหน้าจอหลัก</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">ขยายป็อปอัพ</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">ส่ง</string>
+    <string name="conversation_group_options__conversation">สนทนา</string>
+    <string name="conversation_group_options__broadcast">เผยแพร่</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">บันทึก</string>
+    <string name="media_preview__forward_title">ส่งต่อ</string>
+    <string name="media_preview__all_media_title">สื่อทั้งหมด</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">ไม่มีเอกสาร</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">ดูตัวอย่างสื่อ</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">กำลังลบ</string>
+    <string name="trimmer__deleting_old_messages">กำลังลบข้อความเก่า...</string>
+    <string name="trimmer__old_messages_successfully_deleted">ลบข้อความเก่าสำเร็จ</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">ต้องได้รับอนุญาตก่อน</string>
+    <string name="Permissions_continue">ดำเนินการต่อ</string>
+    <string name="Permissions_not_now">ไม่ใช่ตอนนี้</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">การสำรองข้อมูลจะถูกบันทึกไว้ที่ที่เก็บข้อมูลภายนอกและถูกเข้ารหัสด้วยวลีรหัสผ่านด้านล่างนี้ คุณจะต้องใช้วลีรหัสผ่านนี้เพื่อคืนค่าสำรองข้อมูล</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ฉันได้จดบันทึกวลีรหัสผ่านนี้แล้ว หากจำไม่ได้ ฉันจะไม่สามารถคืนค่าสำรองข้อมูลได้</string>
+    <string name="registration_activity__skip">ข้าม</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">วลีรหัสผ่านของการสำรองข้อมูลไม่ถูกต้อง</string>
+    <string name="BackupDialog_enable_local_backups">เปิดใช้งานการสำรองข้อมูลในเครื่องหรือไม่</string>
+    <string name="BackupDialog_enable_backups">เปิดใช้งานการสำรองข้อมูล</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">โปรดแสดงการยอมรับว่าคุณเข้าใจโดยทำเครื่องหมายที่กล่องกาเครื่องหมายการยืนยัน</string>
+    <string name="BackupDialog_delete_backups">ลบการสำรองข้อมูลหรือไม่</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">ปิดใช้งานและลบการสำรองข้อมูลในเครื่องทั้งหมดหรือไม่</string>
+    <string name="BackupDialog_delete_backups_statement">ลบการสำรองข้อมูล</string>
+    <string name="BackupDialog_copied_to_clipboard">คัดลอกไปยังคลิปบอร์ดแล้ว</string>
+    <string name="LocalBackupJob_creating_backup">กำลังสร้างการสำรองข้อมูล...</string>
+    <string name="ProgressPreference_d_messages_so_far">%d ข้อความจนถึงตอนนี้</string>
+    <string name="BackupUtil_never">ไม่เลย</string>
+    <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ล็อกการเข้าถึง Session ด้วยการล็อกหน้าจอของ Android หรือลายนิ้วมือ</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">ล็อกหน้าจอเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
+    <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>
+    <!-- Conversation activity -->
+    <!-- Session -->
+    <!-- Next round of translation -->
+</resources>

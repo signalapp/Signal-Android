@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Session</string>
+    <string name="yes">Po</string>
+    <string name="no">Jo</string>
+    <string name="delete">Fshije</string>
+    <string name="ban">Dëbim</string>
+    <string name="please_wait">Ju lutemi, pritni...</string>
+    <string name="save">Ruaje</string>
+    <string name="note_to_self">Shënim për Veten</string>
+    <string name="version_s">Versioni_%s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Mesazh i ri</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">/+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">%d mesazh për bisedë</item>
+        <item quantity="other">%d mesazhe për bisedë</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Të fshihen krejt mesazhet e vjetër tani?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Kjo do të qethë menjëherë krejt bisedat deri te mesazhi më i ri.</item>
+        <item quantity="other">Kjo do të qethë menjëherë krejt bisedat deri te %d mesazhet më të rinj.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Fshije</string>
+    <string name="ApplicationPreferencesActivity_On">Ndezur</string>
+    <string name="ApplicationPreferencesActivity_Off">Fikur</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(figurë)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(Audio)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(përgjigju)</string>
+    <!-- AttachmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">S\’gjendet dot aplikacion për përzgjedhje mediash.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Që të mund të bashkëngjisë foto, video, ose audio, Session-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Që të mund të bashkëngjisë të dhëna kontakti, Session-i lyp leje përdorimi Kontaktesh, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kontakte\".</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Që të mund të bëjë foto, Session-i lyp leje përdorimi Kamere, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerë\".</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Gabim në luajtjen e audios!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Sot</string>
+    <string name="BucketedThreadMedia_Yesterday">Dje</string>
+    <string name="BucketedThreadMedia_This_week">Këtë javë</string>
+    <string name="BucketedThreadMedia_This_month">Këtë muaj</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">S\’u gjet shfletues.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Grupe</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Dërgimi dështoi, për hollësi, prekeni</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">U mor mesazh shkëmbimi kyçesh, prekeni që të bëhet.</string>
+    <string name="ConversationItem_group_action_left">%1$s e la grupin.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, prekeni për dërgim të pasigurt</string>
+    <string name="ConversationItem_unable_to_open_media">S\’gjendet dot një aplikacion i aftë për hapjen e kësaj medie.</string>
+    <string name="ConversationItem_copied_text">U kopjua %s</string>
+    <string name="ConversationItem_read_more">Lexo me shumë</string>
+    <string name="ConversationItem_download_more">  Shkarkoni Më Tepër</string>
+    <string name="ConversationItem_pending">  Pezull</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Shtoni bashkëngjitje</string>
+    <string name="ConversationActivity_select_contact_info">Përzgjidhni të dhëna kontakti</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Na ndjeni, pati një gabim në caktimin e bashkëngjitjes tuaj.</string>
+    <string name="ConversationActivity_message">Mesazh</string>
+    <string name="ConversationActivity_compose">Shkruaj ne mesazh</string>
+    <string name="ConversationActivity_muted_until_date">Bllokuar deri %1$s</string>
+    <string name="ConversationActivity_muted_forever">Heshtur</string>
+    <string name="ConversationActivity_member_count">%1$d anëtarë</string>
+    <string name="ConversationActivity_open_group_guidelines">Udhëzimet e komunitetit</string>
+    <string name="ConversationActivity_invalid_recipient">Marrës i pavlefshëm!</string>
+    <string name="ConversationActivity_added_to_home_screen">U shtua te skena e kreut</string>
+    <string name="ConversationActivity_leave_group">Të braktiset grupi?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">A jeni i sigurt se dëshironi ta braktisni grupin?</string>
+    <string name="ConversationActivity_error_leaving_group">Gabim braktisje grupi</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Të zhbllokohet ky kontakt?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Do të jeni sërish në gjendje të merrni mesazhe dhe thirrje nga ky kontakt.</string>
+    <string name="ConversationActivity_unblock">Zhbllokoje</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Bashkëngjitja tejkalon kufij madhësie për llojin e mesazhit që po dërgoni.</string>
+    <string name="ConversationActivity_unable_to_record_audio">S\’arrihet të incizohet audio!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
+    <string name="ConversationActivity_invite_to_open_group">Shtoni anëtarë</string>
+    <string name="ConversationActivity_join_open_group">Bashkohuni%s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">A jeni i sigurt që deshironi ti bashkoheni grupit te hapur <b>%s</b> ?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanorë, lejojeni Session-in të përdorë mikrofonin tuaj.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Që të mund të dërgojë mesazhe audio, Session-i lyp leje përdorimi të Mikrofonit, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të bërë foto dhe dhe video, lejojini Session-it të përdorë kamerën.</string>
+    <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session ka nevojë për leje hyrje ne bazën e të dhënave për të dërguar foto dhe video</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Që të bëjë foto ose video, Session-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Që të bëjë foto ose video, Session-i lyp leje përdorimi të Kamerës</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+    <string name="ConversationActivity_search_position">%1$d nga %2$d</string>
+    <string name="ConversationActivity_no_results">S\’ka përfundime</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">%d mesazh i palexuar</item>
+        <item quantity="other">%d mesazhe të palexuara</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Të fshihet mesazhi i përzgjedhur?</item>
+        <item quantity="other">Të fshihen mesazhet e përzgjedhur?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">Kjo do të fshijë përgjithmonë mesazhin e përzgjedhur.</item>
+        <item quantity="other">Kjo do të fshijë përgjithmonë krejt %1$d mesazhet e përzgjedhur.</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Blloko këtë përdorues?</string>
+    <string name="ConversationFragment_save_to_sd_card">Të ruhet në depozitë?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Ruajtja e kësaj medieje në depozitë do t\’i lejojë përdorimin e tij cilitdo aplikacioni tjetër në pajisjen tuaj.\n\nTë vazhdohet?</item>
+        <item quantity="other">Ruajtja e %1$d medieve në depozitë do t\’i lejojë përdorimin e tyre cilitdo aplikacioni tjetër në pajisjen tuaj.\n\nTë vazhdohet?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Gabim gjatë ruajtjes së bashkëngjitjes në depozitë!</item>
+        <item quantity="other">Gabim gjatë ruajtjes së bashkëngjitjeve në depozitë!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Po ruhet bashkëngjitja</item>
+        <item quantity="other">Po ruhen %1$d bashkëngjitje</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Po ruhet bashkëngjitja në depozitë…</item>
+        <item quantity="other">Po ruhet %1$d në depozitë…</item>
+    </plurals>
+    <string name="ConversationFragment_pending">Pezull…</string>
+    <string name="ConversationFragment_push">Të dhëna (Session)</string>
+    <string name="ConversationFragment_mms">Mms</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Po fshihet</string>
+    <string name="ConversationFragment_deleting_messages">Po fshihen mesazhe…</string>
+    <string name="ConversationFragment_banning">Duke bllokuar</string>
+    <string name="ConversationFragment_banning_user">Duke bllokuar përdoruesin...</string>
+    <string name="ConversationFragment_quoted_message_not_found">S\’u gjet mesazhi origjinal</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Mesazhi origjinal s\’gjendet më</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Mesazh shkëmbimi kyçesh</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Foto profili</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Me përdorim të një të përshtaturi: %s</string>
+    <string name="CustomDefaultPreference_using_default">Me përdorim parazgjedhjeje: %s</string>
+    <string name="CustomDefaultPreference_none">Asnjë</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">Tani</string>
+    <string name="DateUtils_minutes_ago">%dmin</string>
+    <string name="DateUtils_today">Sot</string>
+    <string name="DateUtils_yesterday">Dje</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Sot</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Kartelë e panjohur</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Gabim gjatë marrjes së GIF-it me qartësi të plotë</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIFe</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Ngjitëse</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Avatar</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Që të incizoni një mesazh zanor, prekeni dhe mbajeni të prekur, për ta dërguar, lëshojeni</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">S\’arrihet të gjendet mesazh</string>
+    <string name="LongMessageActivity_message_from_s">Mesazh prej %1$s</string>
+    <string name="LongMessageActivity_your_message">Mesazhi Juaj</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Media</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">Të fshihet mesazhi i përzgjedhur?</item>
+        <item quantity="other">Të fshihen mesazhet e përzgjedhur?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">Kjo do të fshijë përgjithmonë mesazhin e përzgjedhur.</item>
+        <item quantity="other">Kjo do të fshijë përgjithmonë krejt %1$d mesazhet e përzgjedhur.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Po fshihet</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Po fshihen mesazhet…</string>
+    <string name="MediaOverviewActivity_Documents">Dokumente</string>
+    <string name="MediaOverviewActivity_Select_all">Përzgjidhi krejt</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Po mblidhen bashkëngjitje…</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Mesazh multimedia</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">Po shkarkohet mesazh MMS</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gabim në shkarkim mesazhi MMS, prekeni që të riprovohet</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Dërgoje te %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Shtoni një përshkrim…</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">U hoq një objekt, ngaqë tejkalonte kufirin për madhësitë</string>
+    <string name="MediaSendActivity_camera_unavailable">Kamera jo gati</string>
+    <string name="MediaSendActivity_message_to_s">Mesazh për %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">S\’mund të ndani me të tjerët më shumë se %d objekte.</item>
+        <item quantity="other">S\’mund të ndani me të tjerët më shumë se %d objekte.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">Krejt mediat</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Session-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
+    <string name="MessageRecord_left_group">E keni lënë grupin.</string>
+    <string name="MessageRecord_you_updated_group">E përditësuat grupin.</string>
+    <string name="MessageRecord_s_updated_group">%s përditësoi grupin.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Zhdukje mesazhesh</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Mesazhet tuaja nuk do të skadojnë.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesazhet e dërguara dhe të marra në këtë bisedë do të zhduken %s pasi të jenë parë.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Jepni frazëkalimin</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Të bllokohet ky kontakt?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">S\’do të merrni më mesazhe dhe thirrje nga ky kontakt.</string>
+    <string name="RecipientPreferenceActivity_block">Bllokoje</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Të zhbllokohet ky kontakt?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Do të jeni sërish në gjendje të merrni mesazhe dhe thirrje prej këtij kontakti.</string>
+    <string name="RecipientPreferenceActivity_unblock">Zhbllokoje</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Cilësimet e njoftimeve</string>
+    <!-- Slide -->
+    <string name="Slide_image">Figurë</string>
+    <string name="Slide_audio">Audio</string>
+    <string name="Slide_video">Video</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">U mor mesazh dëmtuar
+        shkëmbimi kyçesh!</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        U mor mesazh shkëmbimi kyçesh për version të pavlefshëm protokolli.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">U mor mesazh me numër të ri sigurie. Prekeni që të vazhdohet dhe shfaqet.</string>
+    <string name="SmsMessageRecord_secure_session_reset">E kthyet te parazgjedhjet sesionin e sigurt.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s e ktheu te parazgjedhjet sesionin e sigurt.</string>
+    <string name="SmsMessageRecord_duplicate_message">Mesazh i përsëdytur.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Grupi u përditësua</string>
+    <string name="ThreadRecord_left_the_group">Iku nga grupi</string>
+    <string name="ThreadRecord_secure_session_reset">Sesioni i sigurt u kthye te parazgjedhjet.</string>
+    <string name="ThreadRecord_draft">Skicë:</string>
+    <string name="ThreadRecord_called">Ju thirrët</string>
+    <string name="ThreadRecord_called_you">Ju thirri</string>
+    <string name="ThreadRecord_missed_call">Thirrje e humbur</string>
+    <string name="ThreadRecord_media_message">Mesazh media</string>
+    <string name="ThreadRecord_s_is_on_signal">%s është në Session! </string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Zhdukja e mesazheve është e çaktivizuar</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje mesazhesh është vënë %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">Bëri nje screenshot</string>
+    <string name="ThreadRecord_media_saved_by_s">Media u kursye me %s</string>
+    <string name="ThreadRecord_safety_number_changed">Numri i sigurisë ndryshoi</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>
+    <string name="ThreadRecord_you_marked_verified">E shënuat si të verifikuar</string>
+    <string name="ThreadRecord_you_marked_unverified">E shënuat si të paverifikuar</string>
+    <string name="ThreadRecord_empty_message">Kjo bisedë është bosh</string>
+    <string name="ThreadRecord_open_group_invitation">Hap ftesën në grup</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Përditësim i Session-it</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Session-it, prekeni që të përditësohet</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesazh i fshehtëzuar për sesion që s\’ekziston</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesazh MMS i fshehtëzuar keq</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mesazh MMS i fshehtëzuar për sesion që s\’ekziston</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Heshtoji njoftimet</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Prekeni për ta hapur.</string>
+    <string name="KeyCachingService_passphrase_cached">Session-i u shkyç</string>
+    <string name="KeyCachingService_lock">Kyçe Session-in</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Ju</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Lloj media i pambuluar</string>
+    <string name="MediaPreviewActivity_draft">Skicë:</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Për të ruajtur gjëra në depozitë të jashtme, Session-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">S\’bëhet dot ruajtje në depozitë të jashtme pa leje</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Të fshihet mesazhi?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Kjo do ta fshijë përgjithmonë këtë mesazh.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesazhe të reja në %2$d biseda</string>
+    <string name="MessageNotifier_most_recent_from_s">Më të rejat nga: %1$s</string>
+    <string name="MessageNotifier_locked_message">Mesazh i kyçur</string>
+    <string name="MessageNotifier_message_delivery_failed">Dërgimi i mesazhit dështoi.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">S\’u arrit të dërgohej mesazhi.</string>
+    <string name="MessageNotifier_error_delivering_message">Gabim në dërgimin e mesazhit.</string>
+    <string name="MessageNotifier_mark_all_as_read">Vëru shenjë të gjithëve si të lexuar</string>
+    <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
+    <string name="MessageNotifier_reply">Përgjigju</string>
+    <string name="MessageNotifier_pending_signal_messages">Mesazhe Session pezull</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">Keni mesazhe Session pezull, prekeni për t\’ia hapur dhe rimarrë</string>
+    <string name="MessageNotifier_contact_message">%1$s%2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Parazgjedhje</string>
+    <string name="NotificationChannel_calls">Thirrje</string>
+    <string name="NotificationChannel_failures">Dështime</string>
+    <string name="NotificationChannel_backups">Kopjeruajtje</string>
+    <string name="NotificationChannel_locked_status">Gjendje kyçjeje</string>
+    <string name="NotificationChannel_app_updates">Përditësime aplikacioni</string>
+    <string name="NotificationChannel_other">Tjetër</string>
+    <string name="NotificationChannel_group_messages">Mesazhe</string>
+    <string name="NotificationChannel_missing_display_name">I panjohur</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">S\’bëhet dot përgjigje e shpejtë, kur Session-i është i kyçur!</string>
+    <string name="QuickResponseService_problem_sending_message">Problem në dërgim mesazhi!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">U ruajt te %s</string>
+    <string name="SaveAttachmentTask_saved">U ruajt</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Kërko</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Shkurtore e pavlefshme</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">Mesazh i ri</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="one">%d Objekt</item>
+        <item quantity="other">%d Objekte</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Gabim në luajtjen e videos</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Audio</string>
+    <string name="attachment_type_selector__audio_description">Audio</string>
+    <string name="attachment_type_selector__contact">Kontakt</string>
+    <string name="attachment_type_selector__contact_description">Kontakt</string>
+    <string name="attachment_type_selector__camera">Kamera</string>
+    <string name="attachment_type_selector__camera_description">Kamera</string>
+    <string name="attachment_type_selector__location">Vendndodhje</string>
+    <string name="attachment_type_selector__location_description">Vendndodhje</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
+    <string name="attachment_type_selector__gallery_description">Figurë ose video</string>
+    <string name="attachment_type_selector__file_description">Kartelë</string>
+    <string name="attachment_type_selector__gallery">Galeri</string>
+    <string name="attachment_type_selector__file">Kartelë</string>
+    <string name="attachment_type_selector__drawer_description">Hapni/mbyllni sirtarin e bashkëngjitjeve</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Po ngarkohen kontakte…</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Dërgoje</string>
+    <string name="conversation_activity__compose_description">Hartim mesazhi</string>
+    <string name="conversation_activity__emoji_toggle_description">Shfaq/fshih tastierë emoji</string>
+    <string name="conversation_activity__attachment_thumbnail">Miniaturë Bashkëngjitjeje</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hap/mbyll sirtar të shpejtë bashkëngjitjesh nga kamera</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Incizoni dhe dërgoni bashkëngjitje zanore</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blloko incizim bashkëngjitjeje audio</string>
+    <string name="conversation_activity__enable_signal_for_sms">Aktivizo Session për SMS</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">Rrëshqiteni që të anulohet</string>
+    <string name="conversation_input_panel__cancel">Anuloje</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Mesazh media</string>
+    <string name="conversation_item__secure_message_description">Mesazh i siguruar</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Dërgimi Dështoi</string>
+    <string name="conversation_item_sent__pending_approval_description">Në Pritje të Miratimit</string>
+    <string name="conversation_item_sent__delivered_description">U dorëzua</string>
+    <string name="conversation_item_sent__message_read">Mesazhi u lexua</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Foto kontakti</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Luaje</string>
+    <string name="audio_view__pause_accessibility_description">Ndalesë</string>
+    <string name="audio_view__download_accessibility_description">Shkarkoje</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Bashkohu</string>
+    <string name="open_group_invitation_view__open_group_invitation">Hap ftesën në grup</string>
+    <string name="open_group_guidelines_pinned_message">Mesazh i fiksuar</string>
+    <string name="open_group_guidelines_community_guidelines">Udhëzimet e komunitetit</string>
+    <string name="open_group_guidelines_read">Lexo</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Audio</string>
+    <string name="QuoteView_video">Video</string>
+    <string name="QuoteView_photo">Foto</string>
+    <string name="QuoteView_you">Ju</string>
+    <string name="QuoteView_original_missing">S\’u gjet mesazhi origjinal</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rrëshqit drejt fundit</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Kërko GIF-e dhe ngjitës</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">S\’u gjet gjë</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Shihni bisedën e plotë</string>
+    <string name="load_more_header__loading">Po ngarkohet</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">S\’ka media</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">RIDËRGOJE</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Bllokoje</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Disa çështje lypin vëmendjen tuaj.</string>
+    <string name="message_details_header__sent">Dërguar më</string>
+    <string name="message_details_header__received">Marrë më</string>
+    <string name="message_details_header__disappears">Zhduket më</string>
+    <string name="message_details_header__via">Përmes</string>
+    <string name="message_details_header__to">Për:</string>
+    <string name="message_details_header__from">Nga:</string>
+    <string name="message_details_header__with">Me:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Krijo frazëkalim</string>
+    <string name="AndroidManifest__select_contacts">Përzgjidhni kontakt</string>
+    <string name="AndroidManifest__media_preview">Paraparje e medias</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Përdor parazgjedhje</string>
+    <string name="arrays__use_custom">Përdor vetjake</string>
+    <string name="arrays__mute_for_one_hour">Heshtoje për 1 orë</string>
+    <string name="arrays__mute_for_two_hours">Heshtoje për 2 orë</string>
+    <string name="arrays__mute_for_one_day">Heshtoje për 1 ditë</string>
+    <string name="arrays__mute_for_seven_days">Heshtoje për 7 ditë</string>
+    <string name="arrays__mute_for_one_year">Heshtoje për 1 vit</string>
+    <string name="arrays__mute_forever">Hesht përgjithmonë</string>
+    <string name="arrays__settings_default">Rregullime parazgjedhje</string>
+    <string name="arrays__enabled">E aktivizuar</string>
+    <string name="arrays__disabled">E çaktivizuar</string>
+    <string name="arrays__name_and_message">Emër dhe mesazh</string>
+    <string name="arrays__name_only">Vetëm emrin</string>
+    <string name="arrays__no_name_or_message">Pa emër ose mesazh</string>
+    <string name="arrays__images">Figura</string>
+    <string name="arrays__audio">Audio</string>
+    <string name="arrays__video">Video</string>
+    <string name="arrays__documents">Dokumente</string>
+    <string name="arrays__small">Të vogla</string>
+    <string name="arrays__normal">Normale</string>
+    <string name="arrays__large">Të mëdha</string>
+    <string name="arrays__extra_large">Shumë të mëdha</string>
+    <string name="arrays__default">Parazgjedhje</string>
+    <string name="arrays__high">Lartësi</string>
+    <string name="arrays__max">Maks.</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">%d orë</item>
+        <item quantity="other">%d orë</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
+    <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string>
+    <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Pinterest, Reddit, dhe YouTube.</string>
+    <string name="preferences__screen_security">Siguri ekrani</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Blloko foto ekrani te lista e të rejave dhe brenda aplikacionit.</string>
+    <string name="preferences__notifications">Njoftime</string>
+    <string name="preferences__led_color">Ngjyrë LED-i</string>
+    <string name="preferences__led_color_unknown">E panjohur</string>
+    <string name="preferences__pref_led_blink_title">Rregullsi xixëllimi LED-i</string>
+    <string name="preferences__sound">Tingull</string>
+    <string name="preferences__silent">Heshtazi</string>
+    <string name="preferences__repeat_alerts">Alarme të përsëritur</string>
+    <string name="preferences__never">Kurrë</string>
+    <string name="preferences__one_time">Një herë</string>
+    <string name="preferences__two_times">Dy herë</string>
+    <string name="preferences__three_times">Tri herë</string>
+    <string name="preferences__five_times">Pesë herë</string>
+    <string name="preferences__ten_times">Dhjetë herë</string>
+    <string name="preferences__vibrate">Dridhu</string>
+    <string name="preferences__green">E gjelbër</string>
+    <string name="preferences__red">E kuqe</string>
+    <string name="preferences__blue">E kaltër</string>
+    <string name="preferences__orange">Portokalli</string>
+    <string name="preferences__cyan">Gurkali</string>
+    <string name="preferences__magenta">E purpurt</string>
+    <string name="preferences__white">E bardhë</string>
+    <string name="preferences__none">Asnjë</string>
+    <string name="preferences__fast">I shpejtë</string>
+    <string name="preferences__normal">Normale</string>
+    <string name="preferences__slow">I ngadaltë</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Fshi vetvetiu mesazhe më të vjetër, sapo një bisedë tejkalon një gjatësi specifike.</string>
+    <string name="preferences__delete_old_messages">Fshiji mesazhet e vjetër</string>
+    <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
+    <string name="preferences__trim_all_conversations_now">Shkurtoji krejt bisedat tash</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skano krejt bisedat dhe zbato detyrimisht kufij gjatësie bisedash.</string>
+    <string name="preferences__default">Parazgjedhje</string>
+    <string name="preferences__incognito_keyboard">Tastatur e fshehtë</string>
+    <string name="preferences__read_receipts">Dëftesa leximi</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi nga të tjerët</string>
+    <string name="preferences__typing_indicators">Tregues shtypjeje</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nëse treguesit e shtypjeve janë të çaktivizuar, s\’do të jeni në gjendje të shihni tregues shtypjesh nga të tjerët</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Kërko për tastierët çaktivizim të të mësuarit të personalizuar</string>
+    <string name="preferences__light_theme">E çelët</string>
+    <string name="preferences__dark_theme">E errët</string>
+    <string name="preferences_chats__message_trimming">Shkurtim mesazhesh</string>
+    <string name="preferences_advanced__use_system_emoji">Përdor emoji të sistemit</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Çaktivizo mbulimin e brendshëm të Session-it për emoji-t</string>
+    <string name="preferences_app_protection__app_access">Hyrje aplikacioni</string>
+    <string name="preferences_app_protection__communication">Komunikim</string>
+    <string name="preferences_chats__chats">Biseda</string>
+    <string name="preferences_notifications__messages">Mesazhe</string>
+    <string name="preferences_notifications__in_chat_sounds">Tinguj në fjalosje</string>
+    <string name="preferences_notifications__show">Shfaq</string>
+    <string name="preferences_notifications__priority">Përparësi</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Mesazh i ri për…</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Hollësi mesazhi</string>
+    <string name="conversation_context__menu_copy_text">Kopjo tekstin</string>
+    <string name="conversation_context__menu_delete_message">Fshije mesazhin</string>
+    <string name="conversation_context__menu_ban_user">Dëboni përdorues</string>
+    <string name="conversation_context__menu_ban_and_delete_all">Dëbo dhe fshij të gjitha</string>
+    <string name="conversation_context__menu_resend_message">Ridërgoje mesazhin</string>
+    <string name="conversation_context__menu_reply_to_message">Përgjigjuni mesazhin</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Ruaje bashkëngjitjen</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Tretje mesazhesh</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Mesazhe me skadim</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Çheshtoji</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Heshtoji njoftimet</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Përpunoni grup</string>
+    <string name="conversation__menu_leave_group">Braktise grupin</string>
+    <string name="conversation__menu_view_all_media">Krejt mediat</string>
+    <string name="conversation__menu_add_shortcut">Shtoje te skena e kreut</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Zgjero flluskën</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Dërgim</string>
+    <string name="conversation_group_options__conversation">Bisedë</string>
+    <string name="conversation_group_options__broadcast">Transmetim</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Ruaje</string>
+    <string name="media_preview__forward_title">Përcilleni</string>
+    <string name="media_preview__all_media_title">Krejt mediat</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">S\’ka dokumenta</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Paraparje medie</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Po fshihet</string>
+    <string name="trimmer__deleting_old_messages">Po fshihen mesazhet e vjetra…</string>
+    <string name="trimmer__old_messages_successfully_deleted">Mesazhet e vjetra u fshinë me sukses</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Lyp leje</string>
+    <string name="Permissions_continue">Vazhdo</string>
+    <string name="Permissions_not_now">Jo tani</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Kopjeruajtjet do të ruhen te depozitë e jashtme dhe fshehtëzohen me frazëkalimin më poshtë. Duhet të keni këtë frazëkalim, pa të mundeni të riktheni një kopjeruajtje</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">E kam shkruar diku këtë frazëkalim. Pa të, s\’do të jem në gjendje të rikthej një kopjeruajtje</string>
+    <string name="registration_activity__skip">Anashkaloje</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">S\’mund të importohen kopjeruajtje prej versionesh më të rinj të Session-it</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
+    <string name="BackupDialog_enable_local_backups">Të aktivizohen kopjeruajtjet vendore?</string>
+    <string name="BackupDialog_enable_backups">Aktivizoji kopjeruajtjet</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ju lutemi, na bëni të ditur se e keni kuptuar, duke i vënë shenjë kutizës së ripohimit</string>
+    <string name="BackupDialog_delete_backups">Të fshihen kopjeruajtjet?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Të çaktivizohen dhe fshihen krejt kopjeruajtjet vendore?</string>
+    <string name="BackupDialog_delete_backups_statement">Fshiji kopjeruajtjet</string>
+    <string name="BackupDialog_copied_to_clipboard">U kopjua në të papastër</string>
+    <string name="LocalBackupJob_creating_backup">Po krijohet kopjeruajtje…</string>
+    <string name="ProgressPreference_d_messages_so_far">%d mesazhe deri këtu</string>
+    <string name="BackupUtil_never">Kurrë</string>
+    <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">kyçni hyrjen në Session përmes kyçje ekrani ose shenja gishtash Android</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Kohë mbarimi plogështie për kyçje ekrani</string>
+    <string name="AppProtectionPreferenceFragment_none">Asnjë</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Kopjo çelësin publik</string>
+    <!-- Session -->
+    <string name="continue_2">Vazhdo</string>
+    <string name="copy">Kopjoje</string>
+    <string name="invalid_url">URL e pavlefshme</string>
+    <string name="copied_to_clipboard">Kopjo në klipbord</string>
+    <string name="next">Tutje</string>
+    <string name="share">Shpërndaje</string>
+    <string name="invalid_session_id">Session ID e gabuar</string>
+    <string name="cancel">Anuloje</string>
+    <string name="your_session_id">Session ID e juaj</string>
+    <string name="activity_landing_title_2">Sessioni juaj fillon ketu...</string>
+    <string name="activity_landing_register_button_title">Krijo një Session ID</string>
+    <string name="activity_landing_restore_button_title">Vazhdo tek Session-i juaj</string>
+    <string name="view_fake_chat_bubble_1">Si është Sessioni juaj?</string>
+    <string name="view_fake_chat_bubble_2">Është një app për mesazhe të koduara dhe decentralizuara</string>
+    <string name="view_fake_chat_bubble_3">I bije që të dhënat personale dhe informacionet e mesazheve nuk do të grumbullohen? Si funksionon kjo?</string>
+    <string name="activity_register_title">Thuaj Tungjatjeta Session-it tuaj</string>
+    <string name="activity_register_explanation">Session ID juaj është një adresë unike që mund t\'ju kontaktojnë përmes Session. Pa ndonjë ndërlidhje me identitetin tuaj real, Session ID juaj është totalisht anonim dhe privat.</string>
+    <string name="activity_restore_title">Rikthe llogarinë tuaj</string>
+    <string name="activity_restore_explanation">Shkruanj frazen e rikthimit qe iu është gjatë regjistrimit të llogarisë.</string>
+    <!-- Next round of translation -->
+</resources>

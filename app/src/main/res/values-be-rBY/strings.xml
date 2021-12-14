@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Сэсія</string>
+    <string name="yes">Так</string>
+    <string name="no">Не</string>
+    <string name="delete">Выдаліць</string>
+    <string name="ban">Заблакаваць</string>
+    <string name="please_wait">Пачакайце, калі ласка...</string>
+    <string name="save">Захаваць</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Новыя паведамленні</string>
+    <!-- AlbumThumbnailView -->
+    <!-- ApplicationPreferencesActivity -->
+    <!-- DraftDatabase -->
+    <!-- AttachmentManager -->
+    <!-- AudioSlidePlayer -->
+    <!-- BucketedThreadMedia -->
+    <!-- CommunicationActions -->
+    <!-- ContactsCursorLoader -->
+    <!-- ConversationItem -->
+    <!-- ConversationActivity -->
+    <!-- ConversationAdapter -->
+    <!-- ConversationFragment -->
+    <!-- ConversationListItem -->
+    <!-- CreateProfileActivity -->
+    <!-- CustomDefaultPreference -->
+    <!-- DateUtils -->
+    <!-- DeviceListItem -->
+    <!-- DocumentView -->
+    <!-- GiphyActivity -->
+    <!-- GiphyFragmentPageAdapter -->
+    <!-- CropImageActivity -->
+    <!-- InputPanel -->
+    <!-- LongMessageActivity -->
+    <!-- MediaOverviewActivity -->
+    <!-- NotificationMmsMessageRecord -->
+    <!-- MediaPickerActivity -->
+    <!-- MediaSendActivity -->
+    <!-- MediaRepository -->
+    <!-- MessageRecord -->
+    <!-- ExpirationDialog -->
+    <!-- PassphrasePromptActivity -->
+    <!-- RecipientPreferencesActivity -->
+    <!-- Slide -->
+    <!-- SmsMessageRecord -->
+    <!-- ThreadRecord -->
+    <!-- UpdateApkReadyListener -->
+    <!-- MessageDisplayHelper -->
+    <!-- MmsMessageRecord -->
+    <!-- MuteDialog -->
+    <!-- KeyCachingService -->
+    <!-- MediaPreviewActivity -->
+    <!-- MessageNotifier -->
+    <!-- Notification Channels -->
+    <!-- QuickResponseService -->
+    <!-- SaveAttachmentTask -->
+    <!-- SearchToolbar -->
+    <!-- ShortcutLauncherActivity -->
+    <!-- SingleRecipientNotificationBuilder -->
+    <!-- TransferControlView -->
+    <!-- VideoPlayer -->
+    <!-- attachment_type_selector -->
+    <!-- contact_selection_group_activity -->
+    <!-- conversation_activity -->
+    <!-- conversation_input_panel -->
+    <!-- conversation_item -->
+    <!-- conversation_item_sent -->
+    <!-- conversation_item_received -->
+    <!-- audio_view -->
+    <!-- open_group_invitation_view -->
+    <!-- QuoteView -->
+    <!-- conversation_fragment -->
+    <!-- giphy_activity -->
+    <!-- giphy_fragment -->
+    <!-- load_more_header -->
+    <!-- media_overview_activity -->
+    <!-- message_recipients_list_item -->
+    <!-- recipient_preferences -->
+    <!-- message_details_header -->
+    <!-- AndroidManifest.xml -->
+    <!-- arrays.xml -->
+    <!-- plurals.xml -->
+    <!-- preferences.xml -->
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <!-- conversation_context -->
+    <!-- conversation_context_image -->
+    <!-- conversation_expiring_off -->
+    <!-- conversation_expiring_on -->
+    <!-- conversation_muted -->
+    <!-- conversation_unmuted -->
+    <!-- conversation -->
+    <!-- conversation_popup -->
+    <!-- conversation_group_options -->
+    <!-- media_preview -->
+    <!-- media_overview -->
+    <!-- media_preview_activity -->
+    <!-- Trimmer -->
+    <!-- transport_selection_list_item -->
+    <!-- Conversation activity -->
+    <!-- Session -->
+    <!-- Next round of translation -->
+</resources>

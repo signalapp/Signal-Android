@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sesio</string>
+    <string name="yes">Jes</string>
+    <string name="no">Ne</string>
+    <string name="delete">Forviŝi</string>
+    <string name="ban">Forbari</string>
+    <string name="please_wait">Bonvolu atendi...</string>
+    <string name="save">Konservi</string>
+    <string name="note_to_self">Noto al Mi mem</string>
+    <string name="version_s">Versio %s</string>
+    <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">Nova mesaĝo</string>
+    <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <!-- ApplicationPreferencesActivity -->
+    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+        <item quantity="one">Po %d mesaĝo en interparolado</item>
+        <item quantity="other">Po %d mesaĝoj en interparolo</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Ĉu nun forviŝi ĉiujn malnovajn mesaĝojn?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">Tio tuj tondetos ĉiujn konversaciojn al la plej lastatempa mesaĝo.</item>
+        <item quantity="other">Tio tuj tondetos ĉiujn interparolojn al la %d plej lastatempaj mesaĝoj.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">Forviŝi</string>
+    <string name="ApplicationPreferencesActivity_On">Ŝaltita</string>
+    <string name="ApplicationPreferencesActivity_Off">Malŝaltita</string>
+    <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">(bildo)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(sonaĵo)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(videaĵo)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(respondo)</string>
+    <!-- AttachmentManager -->
+    <string name="AttachmentManager_cant_open_media_selection">Ne eblas trovi aplikaĵon por malfermi aŭdvidaĵon.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session bezonas la Konservejo-permeson por almeti bildojn, videojn aŭ aŭdaĵojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session bezonas permeson legi kontaktojn por kunligi kontaktajn informojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Kontaktoj“.</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session bezonas la Fotilo-permeson por preni fotojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
+    <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">Eraro dum ludo de sonaĵo!</string>
+    <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">Hodiaŭ</string>
+    <string name="BucketedThreadMedia_Yesterday">Hieraŭ</string>
+    <string name="BucketedThreadMedia_This_week">Ĉi tiu semajno</string>
+    <string name="BucketedThreadMedia_This_month">Ĉi tiu monato</string>
+    <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">Neniu retumilo trovita.</string>
+    <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Grupoj</string>
+    <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">Sendado malsukcesis, tuŝetu por detaloj</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ricevis mesaĝon pri interŝanĝo de ŝlosiloj, tuŝetu por daŭrigi.</string>
+    <string name="ConversationItem_group_action_left">%1$s estas forlasinta la grupon.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Sendado malsukcesis, tuŝeti por nesekura retropaŝo</string>
+    <string name="ConversationItem_unable_to_open_media">Ne povas trovi aplikaĵon, kiu kapablas malfermi ĉi tiun aŭdvidaĵon.</string>
+    <string name="ConversationItem_copied_text">Kopiinta %s</string>
+    <string name="ConversationItem_read_more">Legi pli</string>
+    <string name="ConversationItem_download_more">   Elŝuti pli</string>
+    <string name="ConversationItem_pending">  Pritraktota</string>
+    <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Aldoni kunsendaĵon</string>
+    <string name="ConversationActivity_select_contact_info">Elekti kontaktinformon</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Bedaŭrinde estis eraro dum aldono de via kunsendaĵo.</string>
+    <string name="ConversationActivity_message">Mesaĝo</string>
+    <string name="ConversationActivity_compose">Verku</string>
+    <string name="ConversationActivity_muted_until_date">Silentigita ĝis %1$s</string>
+    <string name="ConversationActivity_muted_forever">Silentigite</string>
+    <string name="ConversationActivity_member_count">%1$d membroj</string>
+    <string name="ConversationActivity_open_group_guidelines">Komunumaj reguloj</string>
+    <string name="ConversationActivity_invalid_recipient">Nevalida ricevonto!</string>
+    <string name="ConversationActivity_added_to_home_screen">Aldonita al la ĉefekrano</string>
+    <string name="ConversationActivity_leave_group">Ĉu forlasi grupon?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ĉu vi certas, ke vi volas forlasi ĉi tiun grupon?</string>
+    <string name="ConversationActivity_error_leaving_group">Eraro dum forlaso de grupo</string>
+    <string name="ConversationActivity_unblock_this_contact_question">Ĉu malbloki ĉi tiun kontakton?</string>
+    <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vi ree ricevos mesaĝojn kaj alvokojn el ĉi tiu kontakto.</string>
+    <string name="ConversationActivity_unblock">Malbloki</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Kunsendaĵo transpasas la grandlimon por tia mesaĝo, kian vi sendas.</string>
+    <string name="ConversationActivity_unable_to_record_audio">Ne eblas registri sonaĵon!</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Estas neniu aplikaĵo disponebla por trakti ĉi tiun ligilon ĉe via aparato.</string>
+    <string name="ConversationActivity_invite_to_open_group">Aldoni membrojn</string>
+    <string name="ConversationActivity_join_open_group">Aliĝi al %s</string>
+    <string name="ConversationActivity_join_open_group_confirmation_message">Ĉu vi certas, ke vi volas aliĝi al la <b>%s</b> publika grupo?</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Por registri aŭdajn mesaĝojn, donu al Session permeson uzi vian mikrofonon.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session bezonas la Mikrofono-permeson por sendi aŭdajn mesaĝojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Mikrofono“.</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Por registri bildojn kaj videaĵojn, donu al Session aliron al la fotilo.</string>
+    <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session bezonas aliron al la memoro por sendi bildojn kaj filmetojn.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session bezonas la Fotilo-permeson por preni fotojn aŭ videojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session bezonas la Fotilo-permeson por preni fotojn aŭ videaĵojn</string>
+    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+    <string name="ConversationActivity_search_position">%1$d el %2$d</string>
+    <string name="ConversationActivity_no_results">Neniu rezulto</string>
+    <!-- ConversationAdapter -->
+    <plurals name="ConversationAdapter_n_unread_messages">
+        <item quantity="one">%d nelegita mesaĝo</item>
+        <item quantity="other">%d nelegitaj mesaĝoj</item>
+    </plurals>
+    <!-- ConversationFragment -->
+    <plurals name="ConversationFragment_delete_selected_messages">
+        <item quantity="one">Ĉu forviŝi elektitan mesaĝon?</item>
+        <item quantity="other">Ĉu forviŝi elektitajn mesaĝojn?</item>
+    </plurals>
+    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+        <item quantity="one">Tio daŭre forviŝos la elektitan mesaĝon.</item>
+        <item quantity="other">Tio daŭre forviŝos ĉiujn %1$d elektitajn mesaĝojn.</item>
+    </plurals>
+    <string name="ConversationFragment_ban_selected_user">Ĉu forbari ĉi tiun uzanton?</string>
+    <string name="ConversationFragment_save_to_sd_card">Ĉu konservi al konservejo?</string>
+    <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+        <item quantity="one">Konservi tiun aŭdvidaĵon al konservejo ebligas al iuj ajn aplikaĵoj ĉe via aparato aliri al ili.\n\nĈu daŭrigi?</item>
+        <item quantity="other">Konservi ĉiujn %1$d aŭdvidaĵojn al konservejo ebligas al iuj ajn aplikaĵoj ĉe via aparato aliri al ili.\n\nĈu daŭrigi?</item>
+    </plurals>
+    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Eraro konservante kunsendaĵon al konservejo!</item>
+        <item quantity="other">Eraro konservante kunsendaĵojn al konservejo!</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments">
+        <item quantity="one">Konservado de kunsendaĵo</item>
+        <item quantity="other">Konservado de %1$d kunsendaĵoj</item>
+    </plurals>
+    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+        <item quantity="one">Konservado de kunsendaĵo al konservejo...</item>
+        <item quantity="other">Konservado de %1$d kunsendaĵoj al konservejo...</item>
+    </plurals>
+    <string name="ConversationFragment_pending">Okazonte...</string>
+    <string name="ConversationFragment_push">Datumoj (Session)</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Forviŝante</string>
+    <string name="ConversationFragment_deleting_messages">Forviŝante mesaĝojn...</string>
+    <string name="ConversationFragment_banning">Forbarante</string>
+    <string name="ConversationFragment_banning_user">Forbarante uzanton…</string>
+    <string name="ConversationFragment_quoted_message_not_found">Origina mesaĝo ne troveblas</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Origina mesaĝo ne plu disponeblas</string>
+    <!-- ConversationListItem -->
+    <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
+    <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Profila foto</string>
+    <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_using_custom">Uzante propran: %s</string>
+    <string name="CustomDefaultPreference_using_default">Uzante defaŭltan: %s</string>
+    <string name="CustomDefaultPreference_none">Neniu</string>
+    <!-- DateUtils -->
+    <string name="DateUtils_just_now">Nun</string>
+    <string name="DateUtils_minutes_ago">%d min</string>
+    <string name="DateUtils_today">Hodiaŭ</string>
+    <string name="DateUtils_yesterday">Hieraŭ</string>
+    <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Hodiaŭ</string>
+    <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Nekonata dosiero</string>
+    <!-- GiphyActivity -->
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Eraro dum ricevo de plendifina GIF</string>
+    <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIF-oj</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Glumarkoj</string>
+    <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Avataro</string>
+    <!-- InputPanel -->
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tuŝadu por registri voĉan mesaĝon, maltuŝadu por sendi</string>
+    <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_unable_to_find_message">Ne eblas trovi mesaĝon</string>
+    <string name="LongMessageActivity_message_from_s">Mesaĝo el %1$s</string>
+    <string name="LongMessageActivity_your_message">Via mesaĝo</string>
+    <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Aŭdvidaĵo</string>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+        <item quantity="one">Ĉu forviŝi elektitan mesaĝon?</item>
+        <item quantity="other">Ĉu forigi elektitajn mesaĝojn?</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+        <item quantity="one">Tio porĉiame forviŝos la elektitan mesaĝon.</item>
+        <item quantity="other">Tio porĉiame forigos ĉiujn %1$d elektitajn mesaĝojn.</item>
+    </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Forviŝante</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Forviŝante mesaĝojn...</string>
+    <string name="MediaOverviewActivity_Documents">Dokumentoj</string>
+    <string name="MediaOverviewActivity_Select_all">Elekti ĉiujn</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Kolekto de kunsendaĵoj...</string>
+    <!-- NotificationMmsMessageRecord -->
+    <string name="NotificationMmsMessageRecord_multimedia_message">Aŭdvida mesaĝo</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">Elŝutante MMS-mesaĝon</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Eraro dum elŝuto de MMS-mesaĝo, tuŝetu por reprovi</string>
+    <!-- MediaPickerActivity -->
+    <string name="MediaPickerActivity_send_to">Sendi al %s</string>
+    <!-- MediaSendActivity -->
+    <string name="MediaSendActivity_add_a_caption">Aldoni apudskribon...</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elemento estis forigita, ĉar ĝi transpasis la grandlimon.</string>
+    <string name="MediaSendActivity_camera_unavailable">Fotilo ne disponeblas.</string>
+    <string name="MediaSendActivity_message_to_s">Mesaĝo al %s</string>
+    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+        <item quantity="one">Vi ne povas kunhavigi pli ol %d elementon.</item>
+        <item quantity="other">Vi ne povas kunhavigi pli ol %d elementojn.</item>
+    </plurals>
+    <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">Ĉiuj aŭvidaĵoj</string>
+    <!-- MessageRecord -->
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vi ricevis mesaĝon ĉifrita per malnova Session-a versio, kiu ne plu estas subtenata. Bonvolu peti la sendinton ĝisdatigi al la plej freŝa versio, kaj resendi la mesaĝon.</string>
+    <string name="MessageRecord_left_group">Vi forlasis la grupon.</string>
+    <string name="MessageRecord_you_updated_group">Vi ĝisdatigis la grupon.</string>
+    <string name="MessageRecord_s_updated_group">%s ĝisdatigis la grupon.</string>
+    <!-- ExpirationDialog -->
+    <string name="ExpirationDialog_disappearing_messages">Memviŝontaj mesaĝoj</string>
+    <string name="ExpirationDialog_your_messages_will_not_expire">Viaj mesaĝoj ne senvalidiĝos.</string>
+    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesaĝoj senditaj kaj ricevitaj en tiu ĉi interparolo malaperos %s post ilia lego.</string>
+    <!-- PassphrasePromptActivity -->
+    <string name="PassphrasePromptActivity_enter_passphrase">Entajpu pasfrazon</string>
+    <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Ĉu bloki ĉi tiun kontakton?</string>
+    <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vi ne plu ricevos mesaĝojn kaj alvokojn el tiu kontakto.</string>
+    <string name="RecipientPreferenceActivity_block">Bloki</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Ĉu malbloki ĉi tiun kontakton?</string>
+    <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vi ree ricevos mesaĝojn kaj alvokojn de ĉi tiu kontakto.</string>
+    <string name="RecipientPreferenceActivity_unblock">Malbloki</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Sciiga agordo</string>
+    <!-- Slide -->
+    <string name="Slide_image">Bildo</string>
+    <string name="Slide_audio">Sonaĵo</string>
+    <string name="Slide_video">Video</string>
+    <!-- SmsMessageRecord -->
+    <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Ricevis difektitan mesaĝon
+        pri interŝanĝo de ŝlosiloj!</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
+   </string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Ricevis mesaĝon kun nova sekuriga numero. Tuŝetu por trakti kaj montri ĝin.</string>
+    <string name="SmsMessageRecord_secure_session_reset">Vi restarigis la sekuran seancon.</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%s restarigis la sekuran seancon.</string>
+    <string name="SmsMessageRecord_duplicate_message">Duobla mesaĝo.</string>
+    <!-- ThreadRecord -->
+    <string name="ThreadRecord_group_updated">Grupo ĝisdatigita</string>
+    <string name="ThreadRecord_left_the_group">Forlasis la grupon</string>
+    <string name="ThreadRecord_secure_session_reset">Sekura seanco restarigita.</string>
+    <string name="ThreadRecord_draft">Malneto:</string>
+    <string name="ThreadRecord_called">Vi telefonis</string>
+    <string name="ThreadRecord_called_you">Telefonis vin</string>
+    <string name="ThreadRecord_missed_call">Maltrafita alvoko</string>
+    <string name="ThreadRecord_media_message">Aŭdvida mesaĝo</string>
+    <string name="ThreadRecord_s_is_on_signal">%s estas ĉe Session!</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">Memviŝontaj mesaĝoj malŝaltita</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">Daŭro de memviŝontaj mesaĝoj agordita je %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s kreis ekrankopion.</string>
+    <string name="ThreadRecord_media_saved_by_s">%s elŝutis la dosieron.</string>
+    <string name="ThreadRecord_safety_number_changed">Sekuriga numero ŝanĝiĝis</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">Via sekuriga numero kun %s ŝanĝiĝis.</string>
+    <string name="ThreadRecord_you_marked_verified">Vi markis kiel konfirmita</string>
+    <string name="ThreadRecord_you_marked_unverified">Vi markis kiel nekonfirmita</string>
+    <string name="ThreadRecord_empty_message">Ĉi tiu konversacion estas malplena</string>
+    <string name="ThreadRecord_open_group_invitation">Invito de malferma grupo</string>
+    <!-- UpdateApkReadyListener -->
+    <string name="UpdateApkReadyListener_Signal_update">Ĝisdatigo de Session</string>
+    <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova versio de Session disponeblas, tuŝetu por ĝisdatigi</string>
+    <!-- MessageDisplayHelper -->
+    <string name="MessageDisplayHelper_bad_encrypted_message">Malbone ĉifrita mesaĝo</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaĝo ĉifrita por neekzistanta seanco</string>
+    <!-- MmsMessageRecord -->
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">Malbone ĉifrita MMS-mesaĝo</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-mesaĝo ĉifrita por neekzistanta seanco</string>
+    <!-- MuteDialog -->
+    <string name="MuteDialog_mute_notifications">Silentigi sciigojn</string>
+    <!-- KeyCachingService -->
+    <string name="KeyCachingService_signal_passphrase_cached">Tuŝetu por malfermi.</string>
+    <string name="KeyCachingService_passphrase_cached">Session estas malŝlosita</string>
+    <string name="KeyCachingService_lock">Ŝlosi Session-on</string>
+    <!-- MediaPreviewActivity -->
+    <string name="MediaPreviewActivity_you">Vi</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">Nesubtenata tipo de aŭdvidaĵo</string>
+    <string name="MediaPreviewActivity_draft">Malneto</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session bezonas konservejan aliron por konservi al ekstera konservejo, sed ĝi estis porĉiame malakceptita. Bonvolu iri al la aplikaĵaj agordoj, elekti \"Permesoj\", kaj ŝalti \"Konservejo\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ne eblas konservi en la ekstera konservejo sen permesoj</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">Ĉu forviŝi mesaĝon?</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Tio daŭre forviŝos ĉi tiun mesaĝon.</string>
+    <!-- MessageNotifier -->
+    <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novaj mesaĝoj en %2$d interparoloj</string>
+    <string name="MessageNotifier_most_recent_from_s">Plej lasta de: %1$s</string>
+    <string name="MessageNotifier_locked_message">Ŝlosita mesaĝo</string>
+    <string name="MessageNotifier_message_delivery_failed">Mesaĝa livero malsukcesis.</string>
+    <string name="MessageNotifier_failed_to_deliver_message">Malsukcesis liveri mesaĝon.</string>
+    <string name="MessageNotifier_error_delivering_message">Eraro dum livero de mesaĝo.</string>
+    <string name="MessageNotifier_mark_all_as_read">Marki ĉiujn legitaj</string>
+    <string name="MessageNotifier_mark_read">Marki legita</string>
+    <string name="MessageNotifier_reply">Respondi</string>
+    <string name="MessageNotifier_pending_signal_messages">Pritraktotaj Session-aj mesaĝoj</string>
+    <string name="MessageNotifier_you_have_pending_signal_messages">Vi havas pritraktotajn Session-ajn mesaĝojn; tuŝetu por malfermi kaj ricevi ilin</string>
+    <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Kontakto</string>
+    <!-- Notification Channels -->
+    <string name="NotificationChannel_messages">Defaŭlta</string>
+    <string name="NotificationChannel_calls">Alvokoj</string>
+    <string name="NotificationChannel_failures">Malsukcesoj</string>
+    <string name="NotificationChannel_backups">Savkopioj</string>
+    <string name="NotificationChannel_locked_status">Ŝlosostato</string>
+    <string name="NotificationChannel_app_updates">Aplikaĵaj ĝisdatigoj</string>
+    <string name="NotificationChannel_other">Alia</string>
+    <string name="NotificationChannel_group_messages">Mesaĝoj</string>
+    <string name="NotificationChannel_missing_display_name">Nekonata</string>
+    <!-- QuickResponseService -->
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rapida respondo ne eblas, kiam Session estas ŝlosita!</string>
+    <string name="QuickResponseService_problem_sending_message">Problemo dum sendo de mesaĝo!</string>
+    <!-- SaveAttachmentTask -->
+    <string name="SaveAttachmentTask_saved_to">Konservita al %s</string>
+    <string name="SaveAttachmentTask_saved">Konservitaj</string>
+    <!-- SearchToolbar -->
+    <string name="SearchToolbar_search">Serĉi</string>
+    <!-- ShortcutLauncherActivity -->
+    <string name="ShortcutLauncherActivity_invalid_shortcut">Nevalida ŝparvojo</string>
+    <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Sesio</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">Nova mesaĝo</string>
+    <!-- TransferControlView -->
+    <plurals name="TransferControlView_n_items">
+        <item quantity="one">%d elemento</item>
+        <item quantity="other">%d elementoj</item>
+    </plurals>
+    <!-- VideoPlayer -->
+    <string name="VideoPlayer_error_playing_video">Eraro dum ludo de videaĵo</string>
+    <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Sonaĵo</string>
+    <string name="attachment_type_selector__audio_description">Sonaĵo</string>
+    <string name="attachment_type_selector__contact">Kontakto</string>
+    <string name="attachment_type_selector__contact_description">Kontakto</string>
+    <string name="attachment_type_selector__camera">Fotilo</string>
+    <string name="attachment_type_selector__camera_description">Fotilo</string>
+    <string name="attachment_type_selector__location">Loko</string>
+    <string name="attachment_type_selector__location_description">Loko</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">GIF</string>
+    <string name="attachment_type_selector__gallery_description">Bildo aŭ videaĵo</string>
+    <string name="attachment_type_selector__file_description">Dosiero</string>
+    <string name="attachment_type_selector__gallery">Galerio</string>
+    <string name="attachment_type_selector__file">Dosiero</string>
+    <string name="attachment_type_selector__drawer_description">Baskuligi kunsendaĵojn</string>
+    <!-- contact_selection_group_activity -->
+    <string name="contact_selection_group_activity__finding_contacts">Ŝargante kontaktojn...</string>
+    <!-- conversation_activity -->
+    <string name="conversation_activity__send">Sendi</string>
+    <string name="conversation_activity__compose_description">Mesaĝa redakto</string>
+    <string name="conversation_activity__emoji_toggle_description">Baskuligi emoĝian klavaron</string>
+    <string name="conversation_activity__attachment_thumbnail">Kunsendaĵa miniaturo</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Baskuligi kunsendaĵon el rapida fotilo</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registri kaj sendi aŭdan kunsendaĵon</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Ŝlosi registron de aŭda kunsendaĵo </string>
+    <string name="conversation_activity__enable_signal_for_sms">Mastrumi mesaĝetojn (SMS) per Session</string>
+    <!-- conversation_input_panel -->
+    <string name="conversation_input_panel__slide_to_cancel">Deŝovu por nuligi</string>
+    <string name="conversation_input_panel__cancel">Nuligi</string>
+    <!-- conversation_item -->
+    <string name="conversation_item__mms_image_description">Aŭdvida mesaĝo</string>
+    <string name="conversation_item__secure_message_description">Sekura mesaĝo</string>
+    <!-- conversation_item_sent -->
+    <string name="conversation_item_sent__send_failed_indicator_description">Sendo malsukcesis</string>
+    <string name="conversation_item_sent__pending_approval_description">Atendado de aprobo</string>
+    <string name="conversation_item_sent__delivered_description">Liverita</string>
+    <string name="conversation_item_sent__message_read">Mesaĝo legita</string>
+    <!-- conversation_item_received -->
+    <string name="conversation_item_received__contact_photo_description">Kontakta bildo</string>
+    <!-- audio_view -->
+    <string name="audio_view__play_accessibility_description">Ludi</string>
+    <string name="audio_view__pause_accessibility_description">Paŭzigi</string>
+    <string name="audio_view__download_accessibility_description">Elŝuti</string>
+    <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Aliĝi</string>
+    <string name="open_group_invitation_view__open_group_invitation">Invito de malferma grupo</string>
+    <string name="open_group_guidelines_pinned_message">Fiksita Mesaĝo</string>
+    <string name="open_group_guidelines_community_guidelines">Komunumaj Reguloj</string>
+    <string name="open_group_guidelines_read">Legita</string>
+    <!-- QuoteView -->
+    <string name="QuoteView_audio">Sonaĵo</string>
+    <string name="QuoteView_video">Videaĵo</string>
+    <string name="QuoteView_photo">Foto</string>
+    <string name="QuoteView_you">Vi</string>
+    <string name="QuoteView_original_missing">Origina mesaĝo ne troveblas</string>
+    <!-- conversation_fragment -->
+    <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
+    <!-- giphy_activity -->
+    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Serĉi GIF-ojn kaj glumarkojn</string>
+    <!-- giphy_fragment -->
+    <string name="giphy_fragment__nothing_found">Nenio trovita</string>
+    <!-- load_more_header -->
+    <string name="load_more_header__see_full_conversation">Vidi plenan konversacion</string>
+    <string name="load_more_header__loading">Ŝargante</string>
+    <!-- media_overview_activity -->
+    <string name="media_overview_activity__no_media">Neniu aŭvidaĵo</string>
+    <!-- message_recipients_list_item -->
+    <string name="message_recipients_list_item__resend">RESENDI</string>
+    <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Bloki</string>
+    <!-- message_details_header -->
+    <string name="message_details_header__issues_need_your_attention">Problemoj bezonas vian atenton.</string>
+    <string name="message_details_header__sent">Sendita</string>
+    <string name="message_details_header__received">Ricevita</string>
+    <string name="message_details_header__disappears">Malaperos je</string>
+    <string name="message_details_header__via">Per</string>
+    <string name="message_details_header__to">Al:</string>
+    <string name="message_details_header__from">El:</string>
+    <string name="message_details_header__with">Kun:</string>
+    <!-- AndroidManifest.xml -->
+    <string name="AndroidManifest__create_passphrase">Krei pasfrazon</string>
+    <string name="AndroidManifest__select_contacts">Elekti kontaktojn</string>
+    <string name="AndroidManifest__media_preview">Aŭdvida antaŭrigardo</string>
+    <!-- arrays.xml -->
+    <string name="arrays__use_default">Uzi defaŭltan</string>
+    <string name="arrays__use_custom">Uzi propran</string>
+    <string name="arrays__mute_for_one_hour">Silentigi dum 1 horo</string>
+    <string name="arrays__mute_for_two_hours">Silentigi dum 2 horoj</string>
+    <string name="arrays__mute_for_one_day">Silentigi dum 1 tago</string>
+    <string name="arrays__mute_for_seven_days">Silentigi dum 7 tagoj</string>
+    <string name="arrays__mute_for_one_year">Silentigi dum 1 jaro</string>
+    <string name="arrays__mute_forever">Silentigi por ĉiam</string>
+    <string name="arrays__settings_default">Laŭ la ĝenerala agordo</string>
+    <string name="arrays__enabled">Ŝaltita</string>
+    <string name="arrays__disabled">Malŝaltita</string>
+    <string name="arrays__name_and_message">Nomon kaj mesaĝon</string>
+    <string name="arrays__name_only">Nur nomon</string>
+    <string name="arrays__no_name_or_message">Nek nomon aŭ mesaĝon</string>
+    <string name="arrays__images">Bildoj</string>
+    <string name="arrays__audio">Sonaĵo</string>
+    <string name="arrays__video">Videaĵo</string>
+    <string name="arrays__documents">Dokumentoj</string>
+    <string name="arrays__small">Eta</string>
+    <string name="arrays__normal">Normala</string>
+    <string name="arrays__large">Granda</string>
+    <string name="arrays__extra_large">Tre granda</string>
+    <string name="arrays__default">Defaŭlta</string>
+    <string name="arrays__high">Alta</string>
+    <string name="arrays__max">Maksimuma</string>
+    <!-- plurals.xml -->
+    <plurals name="hours_ago">
+        <item quantity="one">%d horo</item>
+        <item quantity="other">%d horoj</item>
+    </plurals>
+    <!-- preferences.xml -->
+    <string name="preferences__pref_enter_sends_title">La Eniga klavo kaŭzas sendon</string>
+    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premi la Enigan klavon sendos mesaĝojn</string>
+    <string name="preferences__send_link_previews">Sendi antaŭrigardojn de ligilo</string>
+    <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Pinterest, Reddit kaj YouTube</string>
+    <string name="preferences__screen_security">Ekrana sekurigo</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Neebligi ekrankopiojn en la listo de ĵus uzitaj aplikaĵoj kaj ene de la aplikaĵo mem</string>
+    <string name="preferences__notifications">Sciigoj</string>
+    <string name="preferences__led_color">LED-a koloro</string>
+    <string name="preferences__led_color_unknown">Nekonata</string>
+    <string name="preferences__pref_led_blink_title">LED-a pulsa modelo</string>
+    <string name="preferences__sound">Sono</string>
+    <string name="preferences__silent">Silento</string>
+    <string name="preferences__repeat_alerts">Ripeti avertojn</string>
+    <string name="preferences__never">Neniam</string>
+    <string name="preferences__one_time">Unufoje</string>
+    <string name="preferences__two_times">Dufoje</string>
+    <string name="preferences__three_times">Trifoje</string>
+    <string name="preferences__five_times">Kvinfoje</string>
+    <string name="preferences__ten_times">Dekfoje</string>
+    <string name="preferences__vibrate">Vibrado</string>
+    <string name="preferences__green">Verda</string>
+    <string name="preferences__red">Ruĝa</string>
+    <string name="preferences__blue">Blua</string>
+    <string name="preferences__orange">Oranĝa</string>
+    <string name="preferences__cyan">Cejana</string>
+    <string name="preferences__magenta">Malva</string>
+    <string name="preferences__white">Blanka</string>
+    <string name="preferences__none">Neniu</string>
+    <string name="preferences__fast">Rapida</string>
+    <string name="preferences__normal">Normala</string>
+    <string name="preferences__slow">Malrapida</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Aŭtomate forigi malnovajn mesaĝojn, kiam interparolo transpasas indikitan nombron</string>
+    <string name="preferences__delete_old_messages">Forigi malnovajn mesaĝojn</string>
+    <string name="preferences__conversation_length_limit">Maksimumo de mesaĝoj en interparolo</string>
+    <string name="preferences__trim_all_conversations_now">Mallongigi ĉiujn interparolojn nun</string>
+    <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Trairi ĉiujn interparolojn por efektivigi la maksimuman nombron de mesaĝoj</string>
+    <string name="preferences__default">Defaŭlta</string>
+    <string name="preferences__incognito_keyboard">Inkognita klavaro</string>
+    <string name="preferences__read_receipts">Legokonfirmoj</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se legokonfirmoj ne estas ŝaltitaj, vi ne vidos aliulajn legokonfirmojn.</string>
+    <string name="preferences__typing_indicators">Tajp-indikiloj</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se tajp-indikiloj ne estas ŝaltitaj, vi ne vidos aliulajn tajp-indikilojn.</string>
+    <string name="preferences__request_keyboard_to_disable_personalized_learning">Peti al la klavaro malŝalti personan lernadon</string>
+    <string name="preferences__light_theme">Hela</string>
+    <string name="preferences__dark_theme">Malhela</string>
+    <string name="preferences_chats__message_trimming">Tondeto de mesaĝoj</string>
+    <string name="preferences_advanced__use_system_emoji">Uzi sisteman emoĝiaron</string>
+    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Malebligi emoĝiaron de Session</string>
+    <string name="preferences_app_protection__app_access">Aliro al aplikaĵo</string>
+    <string name="preferences_app_protection__communication">Komunikado</string>
+    <string name="preferences_chats__chats">Interparoloj</string>
+    <string name="preferences_notifications__messages">Mesaĝoj</string>
+    <string name="preferences_notifications__in_chat_sounds">Sonoj dum interparolado</string>
+    <string name="preferences_notifications__show">Montri</string>
+    <string name="preferences_notifications__priority">Prioritato</string>
+    <!-- **************************************** -->
+    <!-- menus -->
+    <!-- **************************************** -->
+    <!-- contact_selection_list -->
+    <string name="contact_selection_list__unknown_contact">Nova mesaĝo al...</string>
+    <!-- conversation_context -->
+    <string name="conversation_context__menu_message_details">Detaloj de mesaĝo</string>
+    <string name="conversation_context__menu_copy_text">Kopii tekston</string>
+    <string name="conversation_context__menu_delete_message">Forviŝi mesaĝon</string>
+    <string name="conversation_context__menu_ban_user">Forbari uzanton</string>
+    <string name="conversation_context__menu_ban_and_delete_all">Forbari kaj forviŝi ĉiujn</string>
+    <string name="conversation_context__menu_resend_message">Resendi mesaĝon</string>
+    <string name="conversation_context__menu_reply_to_message">Respondi mesaĝon</string>
+    <!-- conversation_context_image -->
+    <string name="conversation_context_image__save_attachment">Konservi kunsendaĵon</string>
+    <!-- conversation_expiring_off -->
+    <string name="conversation_expiring_off__disappearing_messages">Memviŝontaj mesaĝoj</string>
+    <!-- conversation_expiring_on -->
+    <string name="menu_conversation_expiring_on__messages_expiring">Mesaĝoj senvalidiĝos je</string>
+    <!-- conversation_muted -->
+    <string name="conversation_muted__unmute">Malsilentigi</string>
+    <!-- conversation_unmuted -->
+    <string name="conversation_unmuted__mute_notifications">Silentigi sciigojn</string>
+    <!-- conversation -->
+    <string name="conversation__menu_edit_group">Modifi grupon</string>
+    <string name="conversation__menu_leave_group">Forlasi la grupon</string>
+    <string name="conversation__menu_view_all_media">Ĉiuj aŭvidaĵoj</string>
+    <string name="conversation__menu_add_shortcut">Aldonita al la ĉefekrano</string>
+    <!-- conversation_popup -->
+    <string name="conversation_popup__menu_expand_popup">Montri spruĉmenuon</string>
+    <!-- conversation_group_options -->
+    <string name="conversation_group_options__delivery">Livero</string>
+    <string name="conversation_group_options__conversation">Interparolo</string>
+    <string name="conversation_group_options__broadcast">Dissendo</string>
+    <!-- media_preview -->
+    <string name="media_preview__save_title">Konservi</string>
+    <string name="media_preview__forward_title">Plusendi</string>
+    <string name="media_preview__all_media_title">Ĉiuj aŭvidaĵoj</string>
+    <!-- media_overview -->
+    <string name="media_overview_documents_fragment__no_documents_found">Neniu dokumento</string>
+    <!-- media_preview_activity -->
+    <string name="media_preview_activity__media_content_description">Aŭdvida antaŭrigardo</string>
+    <!-- Trimmer -->
+    <string name="trimmer__deleting">Forviŝado</string>
+    <string name="trimmer__deleting_old_messages">Forviŝante malnovajn mesaĝojn...</string>
+    <string name="trimmer__old_messages_successfully_deleted">Malnovaj mesaĝoj sukcese forviŝiĝis</string>
+    <!-- transport_selection_list_item -->
+    <string name="Permissions_permission_required">Permeso bezonata</string>
+    <string name="Permissions_continue">Daŭrigi</string>
+    <string name="Permissions_not_now">Ne nun</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Savkopioj konserviĝos al ekstera konservejo kaj ĉifriĝos per la suba pasfrazo. Vi devos havi tiun ĉi pasfrazon por restaŭri savkopion.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Mi skribis tiun ĉi pasfrazon. Sen ĝi, mi ne povos restaŭri savkopion.</string>
+    <string name="registration_activity__skip">Preterpasi</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Ne eblas importi savkopiojn el pli novaj versioj de Session</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Neĝusta savkopia pasfrazo</string>
+    <string name="BackupDialog_enable_local_backups">Ĉu ŝalti lokan savkopiadon?</string>
+    <string name="BackupDialog_enable_backups">Ŝalti savkopiadon</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Bonvolu konfirmi vian komprenon per elekto de la markobutono.</string>
+    <string name="BackupDialog_delete_backups">Ĉu forviŝi savkopiojn?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Ĉu malŝalti kaj forviŝi ĉiujn lokajn savkopiojn?</string>
+    <string name="BackupDialog_delete_backups_statement">Forviŝi savkopiojn</string>
+    <string name="BackupDialog_copied_to_clipboard">Kopiite al tondujo</string>
+    <string name="LocalBackupJob_creating_backup">Kreo de savkopio...</string>
+    <string name="ProgressPreference_d_messages_so_far">%d mesaĝoj ĝis nun</string>
+    <string name="BackupUtil_never">Neniam</string>
+    <string name="preferences_app_protection__screen_lock">Ekranŝloso</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Ŝlosi aliron al Session per Androida ekranŝloso aŭ fingropremaĵo</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">Neaktiveca eltempiĝo antaŭ ol ŝlosi la ekranon</string>
+    <string name="AppProtectionPreferenceFragment_none">Neniu</string>
+    <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Kopii publikan ŝlosilon</string>
+    <!-- Session -->
+    <string name="continue_2">Daŭrigi</string>
+    <string name="copy">Kopii</string>
+    <string name="invalid_url">Malvalida URL</string>
+    <string name="copied_to_clipboard">Kopiite al tondejo</string>
+    <string name="next">Sekva</string>
+    <string name="share">Kunhavigi</string>
+    <string name="invalid_session_id">Malvalida Session ID</string>
+    <string name="cancel">Nuligi</string>
+    <string name="your_session_id">Via Session ID</string>
+    <string name="activity_landing_title_2">Via Sesio komenci ĉi tie...</string>
+    <string name="activity_landing_register_button_title">Krei Session ID-on</string>
+    <string name="activity_landing_restore_button_title">Daŭrigi Vian Sesion</string>
+    <string name="view_fake_chat_bubble_1">Kio estas Session?</string>
+    <string name="view_fake_chat_bubble_2">Ĝi estas malcentraliza kaj ĉifrita mesaĝilo</string>
+    <string name="view_fake_chat_bubble_3">Do ĝi ne kolektas miajn personajn informojn aŭ miajn konversaciajn metadatumojn? Kiel ĝi funkcias?</string>
+    <string name="view_fake_chat_bubble_4">Uzante kombinon de progresinta anonima enkursigo kaj tutvoje ĉifraj teknologioj.</string>
+    <string name="view_fake_chat_bubble_5">Amikoj ne permesas amikojn uzi kompromititajn mesaĝilojn. Nedankinde.</string>
+    <string name="activity_register_title">Diru saluton al via Session ID</string>
+    <string name="activity_register_explanation">Via Session ID estas la unika adreso kiun homoj povas uzi por kontakti en Session. Sen ligo al via vera identeco, via Session ID estas tute anonima kaj privata per dezajno.</string>
+    <string name="activity_restore_title">Restaŭri vian konton</string>
+    <string name="activity_restore_explanation">Entajpu la riparan frazon, kiu estis donita al vi kiam vi aliĝis, por ripari vian konton.</string>
+    <string name="activity_restore_seed_edit_text_hint">Entajpu vian riparan frazon</string>
+    <string name="activity_display_name_title_2">Elektu vian vidigan nomon</string>
+    <string name="activity_display_name_explanation">Ĉi tio estos via nomo kiam vi uzas Sesion. Ĝi povas esti via vera nomo, alinomo, aŭ io ajn alia vi volas.</string>
+    <string name="activity_display_name_edit_text_hint">Entajpu vidigan nomon</string>
+    <string name="activity_display_name_display_name_missing_error">Bonvolu elekti vidigan nomon</string>
+    <string name="activity_display_name_display_name_too_long_error">Bonvolu elekti plej mallongan vidigan nomon</string>
+    <string name="activity_pn_mode_recommended_option_tag">Rekomendate</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Bonvolu Elekti Opcion</string>
+    <string name="activity_home_empty_state_message">Vi ankoraŭ ne havas kontaktojn</string>
+    <string name="activity_home_empty_state_button_title">Komenci Sesion</string>
+    <string name="activity_home_leave_group_dialog_message">Ĉu vi certas, ke vi volas forlasi ĉi tiun grupon?</string>
+    <string name="activity_home_leaving_group_failed_message">"Ne povis foriri el la grupo"</string>
+    <string name="activity_home_delete_conversation_dialog_message">Ĉu vi certas, ke vi volas forviŝi ĉi tiun konversacion?</string>
+    <string name="activity_home_conversation_deleted_message">Konversacio forviŝite</string>
+    <string name="activity_seed_title">Via Ripara Frazo</string>
+    <string name="activity_seed_title_2">Ekkonu vian riparan frazon</string>
+    <string name="activity_seed_explanation">Via ripara frazo estas la ĉefŝlosilo de via Session ID — vi povas uzi ĝin por restaŭri vian Session ID-on se vi malgajros aliron al via aparato. Konservu vian riparan frazon en sekura loko, kaj donu ĝin al neniu.</string>
+    <string name="activity_seed_reveal_button_title">Tuŝadu por malkaŝi</string>
+    <string name="view_seed_reminder_title">Vi preskaŭ estas fininta! 80%</string>
+    <string name="view_seed_reminder_subtitle_1">Sekurigi vian konton per konservi vian riparan frazon</string>
+    <string name="view_seed_reminder_subtitle_2">Tuŝadu la kaŝitajn vortojn por malkaŝi vian riparan frazon, tiam konservi ĝin sekure por sekurigi vian Session ID-on.</string>
+    <string name="view_seed_reminder_subtitle_3">Certigu konservi vian riparan frazon en sekura loko</string>
+    <string name="activity_path_title">Vojo</string>
+    <string name="activity_path_explanation">Sesio kaŝas vian IP-adreson per resaltigi viajn mesaĝojn tra multaj Servaj Nodoj en la malcentraliza reto de Sesio. Ĉi tiuj estas la landoj via konekto estas nuntempe resaltigata tra:</string>
+    <string name="activity_path_device_row_title">Vi</string>
+    <string name="activity_path_guard_node_row_title">Enira Nodo</string>
+    <string name="activity_path_service_node_row_title">Serva Nodo</string>
+    <string name="activity_path_destination_row_title">Celo</string>
+    <string name="activity_path_learn_more_button_title">Lerni pli</string>
+    <string name="activity_path_resolving_progress">Solvante…</string>
+    <string name="activity_create_private_chat_title">Nova Sesio</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Entajpu Session ID-on</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Skani QR-Kodon</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Skanu QR-kodon de uzanto por komenci sesion. QR-kodoj povas esti trovitaj per tuŝeti la QR-kodan bildeton en la konta agordo.</string>
+    <string name="fragment_enter_public_key_explanation">Uzantoj povas kunhavigi sian Session ID-on per irante en sia konta agordo kaj tuŝeti \"Kunhavigi Session ID-on\", aŭ per kunhavigi sian QR-kodon.</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Sesio bezonas fotilan aliron por skani QR-kodojn</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Permesi Fotilan Aliron</string>
+    <string name="activity_create_closed_group_title">Nova Ferma Grupo</string>
+    <string name="activity_create_closed_group_edit_text_hint">Entajpu grupnomon</string>
+    <string name="activity_create_closed_group_empty_state_message">Vi ankoraŭ ne havas kontaktojn</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Komenci Sesion</string>
+    <string name="activity_create_closed_group_group_name_missing_error">Bonvolu entajpi grupnomon</string>
+    <string name="activity_create_closed_group_group_name_too_long_error">Bonvolu entajpi plej mallongan grupnomon</string>
+    <string name="activity_create_closed_group_not_enough_group_members_error">Bonvolu elekti almenaŭ unu grupanon</string>
+    <string name="activity_create_closed_group_too_many_group_members_error">Ferma grupo ne povas havi pli ol 100 membrojn</string>
+    <string name="activity_join_public_chat_title">Aniĝi al Malferma Grupo</string>
+    <string name="activity_join_public_chat_error">Ne povis aniĝi al grupo</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">URL de Malferma Grupo</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">Skani QR-Kodon</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Skanu la QR-kodon de la malferma grupo kiu vi volas aniĝi</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">Entajpu URL-on de malferma grupo</string>
+    <string name="activity_settings_title">Agordo</string>
+    <string name="activity_settings_display_name_edit_text_hint">Entajpu vidigan nomon</string>
+    <string name="activity_settings_display_name_missing_error">Bonvolu elekti vidigan nomon</string>
+    <string name="activity_settings_display_name_too_long_error">Bonvolu elekti plej mallongan vidigan nomon</string>
+    <string name="activity_settings_privacy_button_title">Privateco</string>
+    <string name="activity_settings_notifications_button_title">Sciigoj</string>
+    <string name="activity_settings_chats_button_title">Interparoloj</string>
+    <string name="activity_settings_devices_button_title">Aparatoj</string>
+    <string name="activity_settings_invite_button_title">Inviti Amikon</string>
+    <string name="activity_settings_faq_button_title">Oftaj Demandoj</string>
+    <string name="activity_settings_recovery_phrase_button_title">Ripara Frazo</string>
+    <string name="activity_settings_clear_all_data_button_title">Viŝi Datumojn</string>
+    <string name="activity_settings_help_translate_session">Helpu nin Traduki Session</string>
+    <string name="activity_notification_settings_title">Sciigoj</string>
+    <string name="activity_notification_settings_style_section_title">Sciiga Stilo</string>
+    <string name="activity_notification_settings_content_section_title">Sciiga Enhavo</string>
+    <string name="activity_privacy_settings_title">Privateco</string>
+    <string name="activity_chat_settings_title">Interparoloj</string>
+    <string name="preferences_notifications_strategy_category_title">Sciiga Strategio</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_title">Uzi Rapidan Reĝimon</string>
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Ŝanĝi nomon</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Malligi aparaton</string>
+    <string name="dialog_seed_title">Via Ripara Frazo</string>
+    <string name="dialog_seed_explanation">Ĉi tio estas via ripara frazo. Kun ĝi, vi povas restaŭri aŭ migri vian Session ID-on al nova aparato.</string>
+    <string name="dialog_clear_all_data_title">Viŝi Tutajn Datumojn</string>
+    <string name="dialog_clear_all_data_explanation">Ĉi tio daŭre forviŝi viajn mesaĝojn, sesiojn, kaj kontaktojn.</string>
+    <string name="dialog_clear_all_data_local_only">Forviŝi Sole</string>
+    <string name="dialog_clear_all_data_clear_network">Tuta Konto</string>
+    <string name="activity_qr_code_title">QR-Kodo</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">Vidi Mian QR-Kodon</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">Skani QR-Kodon</string>
+    <string name="activity_qr_code_view_scan_qr_code_explanation">Skani ies QR-kodon por komenci konversacion kun si</string>
+    <string name="fragment_view_my_qr_code_title">Skanu Min</string>
+    <string name="fragment_view_my_qr_code_explanation">Ĉi tio estas via QR-kodo. Aliaj uzantoj povas skani ĝin por komenci sesion kun vi.</string>
+    <string name="fragment_view_my_qr_code_share_title">Kunhavigi QR-Kodon</string>
+    <string name="fragment_contact_selection_contacts_title">Kontaktoj</string>
+    <string name="fragment_contact_selection_closed_groups_title">Fermaj Grupoj</string>
+    <string name="fragment_contact_selection_open_groups_title">Malfermaj Grupoj</string>
+    <string name="fragment_contact_selection_empty_contacts">Vi ankoraŭ ne havas kontaktojn</string>
+    <!-- Next round of translation -->
+    <string name="menu_apply_button">Apliki</string>
+    <string name="menu_done_button">Farite</string>
+    <string name="activity_edit_closed_group_title">Redakti Grupon</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Entajpu novan grupnomon</string>
+    <string name="activity_edit_closed_group_edit_members">Membroj</string>
+    <string name="activity_edit_closed_group_add_members">Aldoni membrojn</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Grupnomo devas esti plenigita</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Bonvolu entajpi plej mallongan grupnomon</string>
+    <string name="activity_edit_closed_group_not_enough_group_members_error">Grupoj devas havi almenaŭ 1 grupanon</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Forigi uzanton el grupo</string>
+    <string name="activity_select_contacts_title">Elekti Kontaktojn</string>
+    <string name="view_reset_secure_session_done_message">Sekura sesia rekomencigo farite</string>
+    <string name="dialog_ui_mode_title">Etoso</string>
+    <string name="dialog_ui_mode_option_day">Tage</string>
+    <string name="dialog_ui_mode_option_night">Nokte</string>
+    <string name="dialog_ui_mode_option_system_default">Sistema defaŭlto</string>
+    <string name="activity_conversation_menu_copy_session_id">Kopii Session ID-on</string>
+    <string name="attachment">Kunsendaĵo</string>
+    <string name="attachment_type_voice_message">Voĉmesaĝo</string>
+    <string name="details">Detaloj</string>
+    <string name="dialog_backup_activation_failed">Malsukcesis aktivigi savkopiojn. Bonvolu provi denove aŭ kontaktu subtenon.</string>
+    <string name="activity_backup_restore_title">Restaŭri savkopion</string>
+    <string name="activity_backup_restore_select_file">Elekti dosieron</string>
+    <string name="activity_backup_restore_passphrase">30-cifera pasfrazo</string>
+    <string name="activity_link_device_link_device">Ligi Aparaton</string>
+    <string name="activity_link_device_recovery_phrase">Ripara Frazo</string>
+    <string name="activity_link_device_scan_qr_code">Skani QR-Kodon</string>
+    <string name="activity_join_public_chat_join_rooms">Aŭ aliĝu unu de ĉi tiuj…</string>
+    <string name="activity_pn_mode_message_notifications">Sciigoj pri Mesaĝoj</string>
+    <string name="activity_pn_mode_fast_mode">Rapida Reĝimo</string>
+    <string name="activity_pn_mode_slow_mode">Malrapida Maniero</string>
+    <string name="activity_pn_mode_slow_mode_explanation">Session foje serĉos novajn mesaĝojn en la fono.</string>
+    <string name="fragment_recovery_phrase_title">Ripara Frazo</string>
+    <string name="activity_prompt_passphrase_session_locked">Session estas Ŝlosita</string>
+    <string name="activity_prompt_passphrase_tap_to_unlock">Tuŝetu por Malŝlosi</string>
+    <string name="fragment_user_details_bottom_sheet_edit_text_hint">Entajpu alnomon</string>
+    <string name="invalid_public_key">Malvalida publika ŝlosilo</string>
+    <string name="document">Dokumento</string>
+    <string name="dialog_blocked_title">Ĉu Malbloki %s?</string>
+    <string name="dialog_blocked_explanation">Ĉu vi certas, ke vi volas malbloki %s?</string>
+    <string name="dialog_join_open_group_title">Aliĝi al %s?</string>
+    <string name="dialog_join_open_group_explanation">Ĉu vi certas, ke vi volas aliĝi al la %s publika grupo?</string>
+    <string name="dialog_open_url_title">Ĉu Malfermi Retadreson?</string>
+    <string name="dialog_open_url_explanation">Ĉu vi certas, ke vi volas malfermi %s?</string>
+    <string name="open">Malfermi</string>
+    <string name="dialog_link_preview_title">Ĉu Ŝalti Antaŭrigardojn de Ligilo?</string>
+    <string name="dialog_link_preview_enable_button_title">Ŝalti</string>
+    <string name="dialog_download_title">Ĉu konfidi %s?</string>
+    <string name="dialog_download_explanation">Ĉu vi certas ke vi volas elŝuti aŭdvidaĵon senditan de %s?</string>
+    <string name="dialog_download_button_title">Elŝuti</string>
+    <string name="activity_conversation_blocked_banner_text">%s estas blokita. Ĉu malbloki tiun?</string>
+    <string name="media">Aŭdvidaĵo</string>
+    <string name="UntrustedAttachmentView_download_attachment">Frapetu por elŝuti %s</string>
+    <string name="message_details_header__error">Eraro</string>
+    <string name="dialog_send_seed_title">Averto</string>
+    <string name="dialog_send_seed_explanation">Ĉi tio estas via ripara frazo. Se vi sendas ĝin al iu, tiam tiu havos tutan aliron al via konto.</string>
+    <string name="dialog_send_seed_send_button_title">Sendi</string>
+    <string name="notify_type_all">Tutaj</string>
+    <string name="notify_type_mentions">Mencioj</string>
+    <string name="deleted_message">Ĉi tiu mesaĝo estis forigita</string>
+    <string name="delete_message_for_me">Forigi sole por mi</string>
+    <string name="delete_message_for_everyone">Forigi por ĉiuj</string>
+    <string name="delete_message_for_me_and_recipient">Forigi por mi kaj %s</string>
+</resources>
