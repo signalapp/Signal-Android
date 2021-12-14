@@ -1094,7 +1094,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isDoNotSendArchivedToInbox(Context context) {
-    return getBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, false);
+    return getBooleanPreference(context, DO_NOT_SEND_ARCHIVED_TO_INBOX, false);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {
