@@ -185,6 +185,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseComponent.get(context).sessionJobDatabase().getMessageReceiveJob(messageReceiveJobID)
     }
 
+    override fun getGroupAvatarDownloadJob(server: String, room: String): GroupAvatarDownloadJob? {
+        return DatabaseComponent.get(context).sessionJobDatabase().getGroupAvatarDownloadJob(server, room)
+    }
+
     override fun resumeMessageSendJobIfNeeded(messageSendJobID: String) {
         val job = DatabaseComponent.get(context).sessionJobDatabase().getMessageSendJob(messageSendJobID) ?: return
         JobQueue.shared.resumePendingSendMessage(job)
@@ -466,6 +470,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun updateFormationTimestamp(groupID: String, formationTimestamp: Long) {
         DatabaseComponent.get(context).groupDatabase()
             .updateFormationTimestamp(groupID, formationTimestamp)
+    }
+
+    override fun updateTimestampUpdated(groupID: String, updatedTimestamp: Long) {
+        DatabaseComponent.get(context).groupDatabase()
+            .updateTimestampUpdated(groupID, updatedTimestamp)
     }
 
     override fun setExpirationTimer(groupID: String, duration: Int) {

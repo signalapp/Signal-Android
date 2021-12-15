@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.groups
 
 import android.content.Context
-import android.graphics.Bitmap
 import androidx.annotation.WorkerThread
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
@@ -72,18 +71,9 @@ object OpenGroupManager {
         OpenGroupAPIV2.getAuthToken(room, server).get()
         // Get group info
         val info = OpenGroupAPIV2.getInfo(room, server).get()
-        // Download the group image
-        // FIXME: Don't wait for the image to download
-        val image: Bitmap?
+        // Create the group locally if not available already
         if (threadID < 0) {
-            val profilePictureAsByteArray = try {
-                OpenGroupAPIV2.downloadOpenGroupProfilePicture(info.id, server).get()
-            } catch (e: Exception) {
-                null
-            }
-            image = BitmapUtil.fromByteArray(profilePictureAsByteArray)
-            // Create the group locally
-            threadID = GroupManager.createOpenGroup(openGroupID, context, image, info.name).threadId
+            threadID = GroupManager.createOpenGroup(openGroupID, context, null, info.name).threadId
         }
         val openGroup = OpenGroupV2(server, room, info.name, publicKey)
         threadDB.setOpenGroupChat(openGroup, threadID)

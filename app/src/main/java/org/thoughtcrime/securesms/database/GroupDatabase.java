@@ -53,6 +53,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
   private static final String TIMESTAMP           = "timestamp";
   private static final String ACTIVE              = "active";
   private static final String MMS                 = "mms";
+  private static final String UPDATED             = "updated";
 
   // Loki
   private static final String AVATAR_URL          = "avatar_url";
@@ -83,10 +84,15 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
 
   private static final String[] GROUP_PROJECTION = {
       GROUP_ID, TITLE, MEMBERS, ZOMBIE_MEMBERS, AVATAR, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
-      TIMESTAMP, ACTIVE, MMS, AVATAR_URL, ADMINS
+      TIMESTAMP, ACTIVE, MMS, AVATAR_URL, ADMINS, UPDATED
   };
 
   static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).map(columnName -> TABLE_NAME + "." + columnName).toList();
+
+  public static String getCreateUpdatedTimestampCommand() {
+    return "ALTER TABLE "+ TABLE_NAME + " " +
+            "ADD COLUMN " + UPDATED + " INTEGER DEFAULT 0;";
+  }
 
   public GroupDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -330,6 +336,13 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?", new String[] {groupId});
   }
 
+  public void updateTimestampUpdated(String groupId, Long updatedTimestamp) {
+    ContentValues contents = new ContentValues();
+    contents.put(UPDATED, updatedTimestamp);
+
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?", new String[] {groupId});
+  }
+
   public void removeMember(String groupId, Address source) {
     List<Address> currentMembers = getCurrentMembers(groupId, false);
     currentMembers.remove(source);
@@ -439,7 +452,8 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
                              cursor.getInt(cursor.getColumnIndexOrThrow(MMS)) == 1,
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_URL)),
                               cursor.getString(cursor.getColumnIndexOrThrow(ADMINS)),
-                              cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)));
+                              cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
+                              cursor.getLong(cursor.getColumnIndexOrThrow(UPDATED)));
     }
 
     @Override

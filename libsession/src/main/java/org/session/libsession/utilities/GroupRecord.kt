@@ -1,15 +1,14 @@
 package org.session.libsession.utilities
 
 import android.text.TextUtils
-import org.session.libsession.utilities.Address
 import java.io.IOException
-import java.util.*
+import java.util.LinkedList
 
 class GroupRecord(
     val encodedId: String, val title: String, members: String?, val avatar: ByteArray?,
     val avatarId: Long?, val avatarKey: ByteArray?, val avatarContentType: String?,
     val relay: String?, val isActive: Boolean, val avatarDigest: ByteArray?, val isMms: Boolean,
-    val url: String?, admins: String?, val formationTimestamp: Long
+    val url: String?, admins: String?, val formationTimestamp: Long, val updatedTimestamp: Long
 ) {
     var members: List<Address> = LinkedList<Address>()
     var admins: List<Address> = LinkedList<Address>()

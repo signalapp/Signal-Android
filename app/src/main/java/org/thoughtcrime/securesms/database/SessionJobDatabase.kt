@@ -3,13 +3,17 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import net.sqlcipher.Cursor
-import org.session.libsession.messaging.jobs.*
+import org.session.libsession.messaging.jobs.AttachmentUploadJob
+import org.session.libsession.messaging.jobs.GroupAvatarDownloadJob
+import org.session.libsession.messaging.jobs.Job
+import org.session.libsession.messaging.jobs.MessageReceiveJob
+import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.jobs.SessionJobInstantiator
+import org.session.libsession.messaging.jobs.SessionJobManagerFactories
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer
-import org.thoughtcrime.securesms.util.*
 
 class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
@@ -76,6 +80,13 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         return database.get(sessionJobTable, "$jobID = ? AND $jobType = ?", arrayOf( messageReceiveJobID, MessageReceiveJob.KEY )) { cursor ->
             jobFromCursor(cursor) as MessageReceiveJob?
         }
+    }
+
+    fun getGroupAvatarDownloadJob(server: String, room: String): GroupAvatarDownloadJob? {
+        val database = databaseHelper.readableDatabase
+        return database.getAll(sessionJobTable, "$jobType = ?", arrayOf(GroupAvatarDownloadJob.KEY)) {
+            jobFromCursor(it) as GroupAvatarDownloadJob?
+        }.filterNotNull().find { it.server == server && it.room == room }
     }
 
     fun cancelPendingMessageSendJobs(threadID: Long) {

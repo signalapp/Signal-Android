@@ -12,7 +12,8 @@ class SessionJobManagerFactories {
                 MessageSendJob.KEY to MessageSendJob.Factory(),
                 NotifyPNServerJob.KEY to NotifyPNServerJob.Factory(),
                 TrimThreadJob.KEY to TrimThreadJob.Factory(),
-                BatchMessageReceiveJob.KEY to BatchMessageReceiveJob.Factory()
+                BatchMessageReceiveJob.KEY to BatchMessageReceiveJob.Factory(),
+                GroupAvatarDownloadJob.KEY to GroupAvatarDownloadJob.Factory()
             )
         }
     }

@@ -40,6 +40,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
     fun poll(isBackgroundPoll: Boolean = false): Promise<Unit, Exception> {
         val storage = MessagingModuleConfiguration.shared.storage
         val rooms = storage.getAllV2OpenGroups().values.filter { it.server == server }.map { it.room }
+        rooms.forEach { downloadGroupAvatarIfNeeded(it) }
         return OpenGroupAPIV2.compactPoll(rooms, server).successBackground { responses ->
             responses.forEach { (room, response) ->
                 val openGroupID = "$server.$room"
@@ -50,7 +51,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                 }
             }
         }.always {
-            executorService?.schedule(this@OpenGroupPollerV2::poll, OpenGroupPollerV2.pollInterval, TimeUnit.MILLISECONDS)
+            executorService?.schedule(this@OpenGroupPollerV2::poll, pollInterval, TimeUnit.MILLISECONDS)
         }.map { }
     }
 
@@ -101,6 +102,17 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
         val latestMax = deletions.map { it.id }.maxOrNull() ?: 0L
         if (latestMax > currentMax && latestMax != 0L) {
             storage.setLastDeletionServerID(room, server, latestMax)
+        }
+    }
+
+    private fun downloadGroupAvatarIfNeeded(room: String) {
+        val storage = MessagingModuleConfiguration.shared.storage
+        if (storage.getGroupAvatarDownloadJob(server, room) != null) return
+        val groupId = GroupUtil.getEncodedOpenGroupID("$server.$room".toByteArray())
+        storage.getGroup(groupId)?.let {
+            if (System.currentTimeMillis() > it.updatedTimestamp + TimeUnit.DAYS.toMillis(7)) {
+                JobQueue.shared.add(GroupAvatarDownloadJob(room, server))
+            }
         }
     }
 }
