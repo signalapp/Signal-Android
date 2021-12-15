@@ -94,8 +94,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="72dp"
-        android:alpha="1">
+        android:layout_marginBottom="72dp">
 
         <RelativeLayout
             android:layout_width="40dp"

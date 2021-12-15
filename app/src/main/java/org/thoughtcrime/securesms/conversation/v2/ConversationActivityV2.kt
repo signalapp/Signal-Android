@@ -714,7 +714,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun handleRecyclerViewScrolled() {
-        val alpha = if (!isScrolledToBottom) 1.0f else 0.0f
         // FIXME: Checking isScrolledToBottom is a quick fix for an issue where the
         //        typing indicator overlays the recycler view when scrolled up
         val wasTypingIndicatorVisibleBefore = typingIndicatorViewContainer.isVisible
@@ -723,7 +722,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         if (isTypingIndicatorVisibleAfter != wasTypingIndicatorVisibleBefore) {
             inputBarHeightChanged(inputBar.height)
         }
-        scrollToBottomButton.alpha = alpha
+        scrollToBottomButton.isVisible = !isScrolledToBottom
         unreadCount = min(unreadCount, layoutManager.findFirstVisibleItemPosition())
         updateUnreadCountIndicator()
     }
