@@ -176,10 +176,6 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.removeRegistrationLockV1();
   }
 
-  public ACI getOwnAci() throws IOException {
-    return this.pushServiceSocket.getOwnAci();
-  }
-
   public WhoAmIResponse getWhoAmI() throws IOException {
     return this.pushServiceSocket.getWhoAmI();
   }

@@ -16,7 +16,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -192,7 +192,7 @@ public final class LiveRecipient {
   }
 
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {
-    RecipientSettings settings = recipientDatabase.getRecipientSettings(id);
+    RecipientRecord settings = recipientDatabase.getRecord(id);
     RecipientDetails  details  = settings.getGroupId() != null ? getGroupRecipientDetails(settings)
                                                                : RecipientDetails.forIndividual(context, settings);
 
@@ -202,7 +202,7 @@ public final class LiveRecipient {
   }
 
   @WorkerThread
-  private @NonNull RecipientDetails getGroupRecipientDetails(@NonNull RecipientSettings settings) {
+  private @NonNull RecipientDetails getGroupRecipientDetails(@NonNull RecipientRecord settings) {
     Optional<GroupRecord> groupRecord = groupDatabase.getGroup(settings.getId());
 
     if (groupRecord.isPresent()) {

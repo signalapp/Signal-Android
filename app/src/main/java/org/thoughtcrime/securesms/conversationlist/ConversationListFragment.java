@@ -54,17 +54,18 @@ import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.widget.ActionMenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionManager;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
@@ -88,6 +89,7 @@ import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
+import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.UnreadPaymentsView;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
@@ -102,6 +104,7 @@ import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
@@ -124,6 +127,8 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneViewBuilder;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsFragmentArgs;
 import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsParcelable;
@@ -139,6 +144,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -147,6 +153,7 @@ import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.TopToastPopup;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
@@ -171,6 +178,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static android.app.Activity.RESULT_OK;
+import static org.thoughtcrime.securesms.components.TooltipPopup.POSITION_BELOW;
 
 
 public class ConversationListFragment extends MainFragment implements ActionMode.Callback,
@@ -186,33 +194,35 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private static final int MAXIMUM_PINNED_CONVERSATIONS = 4;
 
-  private ActionMode                        actionMode;
-  private ConstraintLayout                  constraintLayout;
-  private RecyclerView                      list;
-  private Stub<ReminderView>                reminderView;
-  private Stub<UnreadPaymentsView>          paymentNotificationView;
-  private Stub<ViewGroup>                   emptyState;
-  private TextView                          searchEmptyState;
-  private PulsingFloatingActionButton       fab;
-  private PulsingFloatingActionButton       cameraFab;
-  private Stub<SearchToolbar>               searchToolbar;
-  private ImageView                         proxyStatus;
-  private ImageView                         searchAction;
-  private View                              toolbarShadow;
-  private View                              unreadPaymentsDot;
-  private ConversationListViewModel         viewModel;
-  private RecyclerView.Adapter              activeAdapter;
-  private ConversationListAdapter           defaultAdapter;
-  private ConversationListSearchAdapter     searchAdapter;
-  private StickyHeaderDecoration            searchAdapterDecoration;
-  private Stub<ViewGroup>                   megaphoneContainer;
-  private SnapToTopDataObserver             snapToTopDataObserver;
-  private Drawable                          archiveDrawable;
-  private AppForegroundObserver.Listener    appForegroundObserver;
-  private VoiceNoteMediaControllerOwner     mediaControllerOwner;
-  private Stub<FrameLayout>                 voiceNotePlayerViewStub;
-  private VoiceNotePlayerView               voiceNotePlayerView;
-  private SignalBottomActionBar             bottomActionBar;
+  private ActionMode                     actionMode;
+  private ConstraintLayout               constraintLayout;
+  private RecyclerView                   list;
+  private Stub<ReminderView>             reminderView;
+  private Stub<UnreadPaymentsView>       paymentNotificationView;
+  private Stub<ViewGroup>                emptyState;
+  private TextView                       searchEmptyState;
+  private PulsingFloatingActionButton    fab;
+  private PulsingFloatingActionButton    cameraFab;
+  private Stub<SearchToolbar>            searchToolbar;
+  private ImageView                      notificationProfileStatus;
+  private ImageView                      proxyStatus;
+  private ImageView                      searchAction;
+  private View                           toolbarShadow;
+  private View                           unreadPaymentsDot;
+  private ConversationListViewModel      viewModel;
+  private RecyclerView.Adapter           activeAdapter;
+  private ConversationListAdapter        defaultAdapter;
+  private ConversationListSearchAdapter  searchAdapter;
+  private StickyHeaderDecoration         searchAdapterDecoration;
+  private Stub<ViewGroup>                megaphoneContainer;
+  private SnapToTopDataObserver          snapToTopDataObserver;
+  private Drawable                       archiveDrawable;
+  private AppForegroundObserver.Listener appForegroundObserver;
+  private VoiceNoteMediaControllerOwner  mediaControllerOwner;
+  private Stub<FrameLayout>              voiceNotePlayerViewStub;
+  private VoiceNotePlayerView            voiceNotePlayerView;
+  private SignalBottomActionBar          bottomActionBar;
+  private TopToastPopup                  previousTopToastPopup;
 
   protected ConversationListArchiveItemDecoration archiveDecoration;
   protected ConversationListItemAnimator          itemAnimator;
@@ -247,27 +257,29 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    constraintLayout        = view.findViewById(R.id.constraint_layout);
-    list                    = view.findViewById(R.id.list);
-    fab                     = view.findViewById(R.id.fab);
-    cameraFab               = view.findViewById(R.id.camera_fab);
-    searchEmptyState        = view.findViewById(R.id.search_no_results);
-    searchAction            = view.findViewById(R.id.search_action);
-    toolbarShadow           = view.findViewById(R.id.conversation_list_toolbar_shadow);
-    proxyStatus             = view.findViewById(R.id.conversation_list_proxy_status);
-    unreadPaymentsDot       = view.findViewById(R.id.unread_payments_indicator);
-    bottomActionBar         = view.findViewById(R.id.conversation_list_bottom_action_bar);
-    reminderView            = new Stub<>(view.findViewById(R.id.reminder));
-    emptyState              = new Stub<>(view.findViewById(R.id.empty_state));
-    searchToolbar           = new Stub<>(view.findViewById(R.id.search_toolbar));
-    megaphoneContainer      = new Stub<>(view.findViewById(R.id.megaphone_container));
-    paymentNotificationView = new Stub<>(view.findViewById(R.id.payments_notification));
-    voiceNotePlayerViewStub = new Stub<>(view.findViewById(R.id.voice_note_player));
+    constraintLayout          = view.findViewById(R.id.constraint_layout);
+    list                      = view.findViewById(R.id.list);
+    fab                       = view.findViewById(R.id.fab);
+    cameraFab                 = view.findViewById(R.id.camera_fab);
+    searchEmptyState          = view.findViewById(R.id.search_no_results);
+    searchAction              = view.findViewById(R.id.search_action);
+    toolbarShadow             = view.findViewById(R.id.conversation_list_toolbar_shadow);
+    notificationProfileStatus = view.findViewById(R.id.conversation_list_notification_profile_status);
+    proxyStatus               = view.findViewById(R.id.conversation_list_proxy_status);
+    unreadPaymentsDot         = view.findViewById(R.id.unread_payments_indicator);
+    bottomActionBar           = view.findViewById(R.id.conversation_list_bottom_action_bar);
+    reminderView              = new Stub<>(view.findViewById(R.id.reminder));
+    emptyState                = new Stub<>(view.findViewById(R.id.empty_state));
+    searchToolbar             = new Stub<>(view.findViewById(R.id.search_toolbar));
+    megaphoneContainer        = new Stub<>(view.findViewById(R.id.megaphone_container));
+    paymentNotificationView   = new Stub<>(view.findViewById(R.id.payments_notification));
+    voiceNotePlayerViewStub   = new Stub<>(view.findViewById(R.id.voice_note_player));
 
     Toolbar toolbar = getToolbar(view);
     toolbar.setVisibility(View.VISIBLE);
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
 
+    notificationProfileStatus.setOnClickListener(v -> handleNotificationProfile());
     proxyStatus.setOnClickListener(v -> onProxyStatusClicked());
 
     fab.show();
@@ -307,6 +319,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
     TooltipCompat.setTooltipText(searchAction, getText(R.string.SearchToolbar_search_for_conversations_contacts_and_messages));
+  }
+
+  @Override
+  public void onDestroyView() {
+    previousTopToastPopup = null;
+    super.onDestroyView();
   }
 
   @Override
@@ -391,12 +409,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-      case R.id.menu_new_group:         handleCreateGroup();     return true;
-      case R.id.menu_settings:          handleDisplaySettings(); return true;
-      case R.id.menu_clear_passphrase:  handleClearPassphrase(); return true;
-      case R.id.menu_mark_all_read:     handleMarkAllRead();     return true;
-      case R.id.menu_invite:            handleInvite();          return true;
-      case R.id.menu_insights:          handleInsights();        return true;
+      case R.id.menu_new_group:            handleCreateGroup();         return true;
+      case R.id.menu_settings:             handleDisplaySettings();     return true;
+      case R.id.menu_clear_passphrase:     handleClearPassphrase();     return true;
+      case R.id.menu_mark_all_read:        handleMarkAllRead();         return true;
+      case R.id.menu_invite:               handleInvite();              return true;
+      case R.id.menu_insights:             handleInsights();            return true;
+      case R.id.menu_notification_profile: handleNotificationProfile(); return true;
     }
 
     return false;
@@ -654,12 +673,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeViewModel() {
-    viewModel = ViewModelProviders.of(this, new ConversationListViewModel.Factory(isArchived())).get(ConversationListViewModel.class);
+    viewModel = new ViewModelProvider(this, new ConversationListViewModel.Factory(isArchived())).get(ConversationListViewModel.class);
 
     viewModel.getSearchResult().observe(getViewLifecycleOwner(), this::onSearchResultChanged);
     viewModel.getMegaphone().observe(getViewLifecycleOwner(), this::onMegaphoneChanged);
     viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onConversationListChanged);
     viewModel.hasNoConversations().observe(getViewLifecycleOwner(), this::updateEmptyState);
+    viewModel.getNotificationProfiles().observe(getViewLifecycleOwner(), this::updateNotificationProfileStatus);
     viewModel.getPipeState().observe(getViewLifecycleOwner(), this::updateProxyStatus);
 
     appForegroundObserver = new AppForegroundObserver.Listener() {
@@ -673,6 +693,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     };
 
     viewModel.getUnreadPaymentsLiveData().observe(getViewLifecycleOwner(), this::onUnreadPaymentsChanged);
+
+    viewModel.getSelectedConversations().observe(getViewLifecycleOwner(), conversations -> {
+      defaultAdapter.setSelectedConversations(conversations);
+      updateMultiSelectState();
+    });
   }
 
   private void onConversationListChanged(@NonNull List<Conversation> conversations) {
@@ -841,6 +866,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     getNavigator().goToInsights();
   }
 
+  private void handleNotificationProfile() {
+    NotificationProfileSelectionFragment.show(getParentFragmentManager());
+  }
+
   @SuppressLint("StaticFieldLeak")
   private void handleArchive(@NonNull Collection<Long> ids, boolean showProgress) {
     Set<Long> selectedConversations = new HashSet<>(ids);
@@ -987,11 +1016,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     });
   }
 
-  private void handleSelectAllThreads() {
-    defaultAdapter.selectAllThreads();
-    updateMultiSelectState();
-  }
-
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType) {
     getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
@@ -1044,6 +1068,63 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
   }
 
+  private void updateNotificationProfileStatus(@NonNull List<NotificationProfile> notificationProfiles) {
+    NotificationProfile activeProfile = NotificationProfiles.getActiveProfile(notificationProfiles);
+
+    if (activeProfile != null) {
+      if (activeProfile.getId() != SignalStore.notificationProfileValues().getLastProfilePopup()) {
+        requireView().postDelayed(() -> {
+          SignalStore.notificationProfileValues().setLastProfilePopup(activeProfile.getId());
+          SignalStore.notificationProfileValues().setLastProfilePopupTime(System.currentTimeMillis());
+
+          if (previousTopToastPopup != null && previousTopToastPopup.isShowing()) {
+            previousTopToastPopup.dismiss();
+          }
+
+          ViewGroup view = ((ViewGroup) requireView());
+          Fragment fragment = getParentFragmentManager().findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+          if (fragment != null && fragment.isAdded() && fragment.getView() != null) {
+            view = ((ViewGroup) fragment.requireView());
+          }
+
+          try {
+            previousTopToastPopup = TopToastPopup.show(view, R.drawable.ic_moon_16, getString(R.string.ConversationListFragment__s_on, activeProfile.getName()));
+          } catch (Exception e) {
+            Log.w(TAG, "Unable to show toast popup", e);
+          }
+        }, 500L);
+      }
+
+      notificationProfileStatus.setVisibility(View.VISIBLE);
+    } else {
+      notificationProfileStatus.setVisibility(View.GONE);
+    }
+
+    if (!SignalStore.notificationProfileValues().getHasSeenTooltip() && Util.hasItems(notificationProfiles)) {
+      View target = findOverflowMenuButton(getToolbar(requireView()));
+      if (target != null) {
+        TooltipPopup.forTarget(target)
+                    .setText(R.string.ConversationListFragment__turn_your_notification_profile_on_or_off_here)
+                    .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.signal_button_primary))
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_button_primary_text))
+                    .setOnDismissListener(() -> SignalStore.notificationProfileValues().setHasSeenTooltip(true))
+                    .show(POSITION_BELOW);
+      } else {
+        Log.w(TAG, "Unable to find overflow menu to show Notification Profile tooltip");
+      }
+    }
+  }
+
+  private @Nullable View findOverflowMenuButton(@NonNull Toolbar viewGroup) {
+    for (int i = 0, count = viewGroup.getChildCount(); i < count; i++) {
+      View v = viewGroup.getChildAt(i);
+      if (v instanceof ActionMenuView) {
+        return v;
+      }
+    }
+    return null;
+  }
+
   private void updateProxyStatus(@NonNull WebSocketConnectionState state) {
     if (SignalStore.proxy().isProxyEnabled()) {
       proxyStatus.setVisibility(View.VISIBLE);
@@ -1083,9 +1164,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (actionMode == null) {
       handleCreateConversation(conversation.getThreadRecord().getThreadId(), conversation.getThreadRecord().getRecipient(), conversation.getThreadRecord().getDistributionType());
     } else {
-      defaultAdapter.toggleConversationInBatchSet(conversation);
+      viewModel.toggleConversationSelected(conversation);
 
-      if (defaultAdapter.getBatchSelectionIds().size() == 0) {
+      if (viewModel.currentSelectedConversations().isEmpty()) {
         endActionModeIfActive();
       } else {
         updateMultiSelectState();
@@ -1127,8 +1208,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select), () -> {
-      defaultAdapter.initializeBatchMode(true);
-      defaultAdapter.toggleConversationInBatchSet(conversation);
+      viewModel.startSelection(conversation);
       startActionMode();
     }));
 
@@ -1143,8 +1223,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     new SignalContextMenu.Builder(view, list)
         .offsetX(ViewUtil.dpToPx(12))
         .offsetY(ViewUtil.dpToPx(12))
-        .onDismiss(() -> view.setSelected(false))
+        .onDismiss(() -> {
+          view.setSelected(false);
+          list.suppressLayout(false);
+        })
         .show(items);
+
+    list.suppressLayout(true);
 
     return true;
   }
@@ -1168,7 +1253,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onDestroyActionMode(ActionMode mode) {
-    defaultAdapter.initializeBatchMode(false);
+    viewModel.endSelection();
 
     if (Build.VERSION.SDK_INT >= 21) {
       TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
@@ -1202,10 +1287,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void updateMultiSelectState() {
-    int     count       = defaultAdapter.getBatchSelectionIds().size();
-    boolean hasUnread   = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isRead());
-    boolean hasUnpinned = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
-    boolean hasUnmuted  = Stream.of(defaultAdapter.getBatchSelection()).anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
+    int     count       = viewModel.currentSelectedConversations().size();
+    boolean hasUnread   = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().isRead());
+    boolean hasUnpinned = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().isPinned());
+    boolean hasUnmuted  = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
     boolean canPin      = viewModel.getPinnedCount() < MAXIMUM_PINNED_CONVERSATIONS;
 
     if (actionMode != null) {
@@ -1214,34 +1299,38 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     List<ActionItem> items = new ArrayList<>();
 
+    Set<Long> selectionIds = viewModel.currentSelectedConversations()
+                                      .stream()
+                                      .map(conversation -> conversation.getThreadRecord().getThreadId())
+                                      .collect(Collectors.toSet());
+
     if (hasUnread) {
-      items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_read_24, getResources().getQuantityString(R.plurals.ConversationListFragment_read_plural, count), () -> handleMarkAsRead(selectionIds)));
     } else {
-      items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, count), () -> handleMarkAsUnread(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_unread_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unread_plural, count), () -> handleMarkAsUnread(selectionIds)));
     }
 
     if (!isArchived() && hasUnpinned && canPin) {
-      items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin_plural, count), () -> handlePin(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_pin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_pin_plural, count), () -> handlePin(viewModel.currentSelectedConversations())));
     } else if (!isArchived() && !hasUnpinned) {
-      items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin_plural, count), () -> handleUnpin(defaultAdapter.getBatchSelectionIds())));
+      items.add(new ActionItem(R.drawable.ic_unpin_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unpin_plural, count), () -> handleUnpin(selectionIds)));
     }
 
     if (isArchived()) {
-      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive_plural, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
+      items.add(new ActionItem(R.drawable.ic_unarchive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unarchive_plural, count), () -> handleArchive(selectionIds, true)));
     } else {
-      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive_plural, count), () -> handleArchive(defaultAdapter.getBatchSelectionIds(), true)));
+      items.add(new ActionItem(R.drawable.ic_archive_24, getResources().getQuantityString(R.plurals.ConversationListFragment_archive_plural, count), () -> handleArchive(selectionIds, true)));
     }
 
-    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, count), () -> handleDelete(defaultAdapter.getBatchSelectionIds())));
-
+    items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, count), () -> handleDelete(selectionIds)));
 
     if (hasUnmuted) {
-      items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute_plural, count), () -> handleMute(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute_plural, count), () -> handleMute(viewModel.currentSelectedConversations())));
     } else {
-      items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute_plural, count), () -> handleUnmute(defaultAdapter.getBatchSelection())));
+      items.add(new ActionItem(R.drawable.ic_unmute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_unmute_plural, count), () -> handleUnmute(viewModel.currentSelectedConversations())));
     }
 
-    items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select_all), this::handleSelectAllThreads));
+    items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select_all), viewModel::onSelectAllClick));
 
     bottomActionBar.setItems(items);
   }

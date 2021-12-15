@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public final class ReminderView extends FrameLayout {
   private ProgressBar           progressBar;
   private TextView              progressText;
   private ViewGroup             container;
+  private View                  background;
   private ImageButton           closeButton;
   private TextView              title;
   private TextView              text;
@@ -56,6 +58,7 @@ public final class ReminderView extends FrameLayout {
     progressBar     = findViewById(R.id.reminder_progress);
     progressText    = findViewById(R.id.reminder_progress_text);
     container       = findViewById(R.id.container);
+    background      = findViewById(R.id.background);
     closeButton     = findViewById(R.id.cancel);
     title           = findViewById(R.id.reminder_title);
     text            = findViewById(R.id.reminder_text);
@@ -79,24 +82,30 @@ public final class ReminderView extends FrameLayout {
     }
 
     text.setText(reminder.getText());
-    text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_button_primary_text));
 
     switch (reminder.getImportance()) {
       case NORMAL:
-        container.setBackgroundResource(R.drawable.reminder_background_normal);
+        background.setBackgroundResource(R.drawable.reminder_background_normal);
+        title.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
+        text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
         break;
       case ERROR:
-        container.setBackgroundResource(R.drawable.reminder_background_error);
+        background.setBackgroundResource(R.drawable.reminder_background_error);
+        title.setTextColor(ContextCompat.getColor(getContext(), R.color.core_black));
         text.setTextColor(ContextCompat.getColor(getContext(), R.color.core_black));
         break;
       case TERMINAL:
-        container.setBackgroundResource(R.drawable.reminder_background_terminal);
+        background.setBackgroundResource(R.drawable.reminder_background_terminal);
+        title.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_button_primary_text));
+        text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_button_primary_text));
         break;
       default:
         throw new IllegalStateException();
     }
 
-    setOnClickListener(reminder.getOkListener());
+    if (reminder.getOkListener() != null) {
+      setOnClickListener(reminder.getOkListener());
+    }
 
     closeButton.setVisibility(reminder.isDismissable() ? View.VISIBLE : View.GONE);
     closeButton.setOnClickListener(new OnClickListener() {
@@ -107,6 +116,10 @@ public final class ReminderView extends FrameLayout {
         if (dismissListener != null) dismissListener.onDismiss();
       }
     });
+
+    if (reminder.getImportance() == Reminder.Importance.NORMAL) {
+      closeButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
+    }
 
     int progress = reminder.getProgress();
     if (progress != -1) {
@@ -121,10 +134,12 @@ public final class ReminderView extends FrameLayout {
 
     List<Reminder.Action> actions = reminder.getActions();
     if (actions.isEmpty()) {
+      text.setPadding(0, 0, 0, ((int) DimensionUnit.DP.toPixels(16f)));
       actionsRecycler.setVisibility(GONE);
     } else {
+      text.setPadding(0, 0, 0, 0);
       actionsRecycler.setVisibility(VISIBLE);
-      actionsRecycler.setAdapter(new ReminderActionsAdapter(actions, this::handleActionClicked));
+      actionsRecycler.setAdapter(new ReminderActionsAdapter(reminder.getImportance(), actions, this::handleActionClicked));
     }
 
     container.setVisibility(View.VISIBLE);

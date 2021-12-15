@@ -9,6 +9,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleFragmentArgs
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.help.HelpFragment
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.DynamicTheme
 
 private const val START_LOCATION = "app.settings.start.location"
+private const val START_ARGUMENTS = "app.settings.start.arguments"
 private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_PREFERENCES"
 private const val STATE_WAS_CONFIGURATION_UPDATED = "app.settings.state.configuration.updated"
 
@@ -50,6 +52,11 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
         StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions()
         StartLocation.BOOST -> AppSettingsFragmentDirections.actionAppSettingsFragmentToBoostsFragment()
         StartLocation.MANAGE_SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToManageDonations()
+        StartLocation.NOTIFICATION_PROFILES -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
+        StartLocation.CREATE_NOTIFICATION_PROFILE -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()
+        StartLocation.NOTIFICATION_PROFILE_DETAILS -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
+          EditNotificationProfileScheduleFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).profileId
+        )
       }
     }
 
@@ -131,6 +138,22 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
     @JvmStatic
     fun manageSubscriptions(context: Context): Intent = getIntentForStartLocation(context, StartLocation.MANAGE_SUBSCRIPTIONS)
 
+    @JvmStatic
+    fun notificationProfiles(context: Context): Intent = getIntentForStartLocation(context, StartLocation.NOTIFICATION_PROFILES)
+
+    @JvmStatic
+    fun createNotificationProfile(context: Context): Intent = getIntentForStartLocation(context, StartLocation.CREATE_NOTIFICATION_PROFILE)
+
+    @JvmStatic
+    fun notificationProfileDetails(context: Context, profileId: Long): Intent {
+      val arguments = EditNotificationProfileScheduleFragmentArgs.Builder(profileId, false)
+        .build()
+        .toBundle()
+
+      return getIntentForStartLocation(context, StartLocation.NOTIFICATION_PROFILE_DETAILS)
+        .putExtra(START_ARGUMENTS, arguments)
+    }
+
     private fun getIntentForStartLocation(context: Context, startLocation: StartLocation): Intent {
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings)
@@ -147,7 +170,10 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
     CHANGE_NUMBER(5),
     SUBSCRIPTIONS(6),
     BOOST(7),
-    MANAGE_SUBSCRIPTIONS(8);
+    MANAGE_SUBSCRIPTIONS(8),
+    NOTIFICATION_PROFILES(9),
+    CREATE_NOTIFICATION_PROFILE(10),
+    NOTIFICATION_PROFILE_DETAILS(11);
 
     companion object {
       fun fromCode(code: Int?): StartLocation {

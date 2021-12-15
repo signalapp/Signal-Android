@@ -4,7 +4,7 @@
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/core_grey_75" />
+                    <solid android:color="@color/core_grey_60" />
                     <stroke android:width="2dp" android:color="@color/signal_background_primary" />
                 </shape>
             </item>
@@ -15,7 +15,7 @@
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/core_ultramarine_light" />
+                    <solid android:color="@color/core_ultramarine" />
                     <stroke android:width="2dp" android:color="@color/signal_background_primary" />
                 </shape>
             </item>

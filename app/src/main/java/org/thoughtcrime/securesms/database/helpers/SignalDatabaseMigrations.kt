@@ -178,8 +178,10 @@ object SignalDatabaseMigrations {
   private const val SENDER_KEY_UUID = 119
   private const val SENDER_KEY_SHARED_TIMESTAMP = 120
   private const val REACTION_REFACTOR = 121
+  private const val PNI = 122
+  private const val NOTIFICATION_PROFILES = 123
 
-  const val DATABASE_VERSION = 121
+  const val DATABASE_VERSION = 123
 
   @JvmStatic
   fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2169,6 +2171,56 @@ object SignalDatabaseMigrations {
       db.execSQL("CREATE TRIGGER reactions_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 0; END")
       db.execSQL("UPDATE sms SET reactions = NULL WHERE reactions NOT NULL")
       db.execSQL("UPDATE mms SET reactions = NULL WHERE reactions NOT NULL")
+    }
+
+    if (oldVersion < PNI) {
+      db.execSQL("ALTER TABLE recipient ADD COLUMN pni TEXT DEFAULT NULL")
+      db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS recipient_pni_index ON recipient (pni)")
+    }
+
+    if (oldVersion < NOTIFICATION_PROFILES) {
+      db.execSQL(
+        // language=sql
+        """
+          CREATE TABLE notification_profile (
+            _id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            name TEXT NOT NULL UNIQUE,
+            emoji TEXT NOT NULL,
+            color TEXT NOT NULL,
+            created_at INTEGER NOT NULL,
+            allow_all_calls INTEGER NOT NULL DEFAULT 0,
+            allow_all_mentions INTEGER NOT NULL DEFAULT 0
+          )
+        """.trimIndent()
+      )
+
+      db.execSQL(
+        // language=sql
+        """
+          CREATE TABLE notification_profile_schedule (
+            _id INTEGER PRIMARY KEY AUTOINCREMENT,
+            notification_profile_id INTEGER NOT NULL REFERENCES notification_profile (_id) ON DELETE CASCADE,
+            enabled INTEGER NOT NULL DEFAULT 0,
+            start INTEGER NOT NULL,
+            end INTEGER NOT NULL,
+            days_enabled TEXT NOT NULL
+          )
+        """.trimIndent()
+      )
+
+      db.execSQL(
+        // language=sql
+        """
+          CREATE TABLE notification_profile_allowed_members (
+            _id INTEGER PRIMARY KEY AUTOINCREMENT,
+            notification_profile_id INTEGER NOT NULL REFERENCES notification_profile (_id) ON DELETE CASCADE,
+            recipient_id INTEGER NOT NULL,
+            UNIQUE(notification_profile_id, recipient_id) ON CONFLICT REPLACE)
+        """.trimIndent()
+      )
+
+      db.execSQL("CREATE INDEX notification_profile_schedule_profile_index ON notification_profile_schedule (notification_profile_id)")
+      db.execSQL("CREATE INDEX notification_profile_allowed_members_profile_index ON notification_profile_allowed_members (notification_profile_id)")
     }
   }
 

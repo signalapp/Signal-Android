@@ -245,7 +245,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
   private void notifyProgressEventHandler() {
-    if (progressEventHandler == null) {
+    if (progressEventHandler == null && activity != null) {
       progressEventHandler = new ProgressEventHandler(getMediaController(), voiceNotePlaybackState);
       progressEventHandler.sendEmptyMessage(0);
     }

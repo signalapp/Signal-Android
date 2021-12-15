@@ -42,7 +42,7 @@ dependencyVerification {
         ['org.threeten:threetenbp:1.3.6',
          'f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7'],
 
-        ['org.whispersystems:signal-client-java:0.10.0',
-         'e32606dfab66f9c4a1356da988ae51f55e52a30669621da94ae4032d7e5c5528'],
+        ['org.whispersystems:signal-client-java:0.11.0',
+         '7bd19ccfbfc9c0f98c80aafc44bedc18706ab2e142e257e91f592bf9cbbd070a'],
     ]
 }

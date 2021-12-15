@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.EdgeEffect
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
@@ -24,9 +25,10 @@ abstract class DSLSettingsFragment(
   val layoutManagerProducer: (Context) -> RecyclerView.LayoutManager = { context -> LinearLayoutManager(context) }
 ) : Fragment(layoutId) {
 
-  private lateinit var recyclerView: RecyclerView
-  private lateinit var scrollAnimationHelper: OnScrollAnimationHelper
+  private var recyclerView: RecyclerView? = null
+  private var scrollAnimationHelper: OnScrollAnimationHelper? = null
 
+  @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val toolbar: Toolbar = view.findViewById(R.id.toolbar)
     val toolbarShadow: View = view.findViewById(R.id.toolbar_shadow)
@@ -44,16 +46,23 @@ abstract class DSLSettingsFragment(
       toolbar.setOnMenuItemClickListener { onOptionsItemSelected(it) }
     }
 
-    recyclerView = view.findViewById(R.id.recycler)
-    recyclerView.edgeEffectFactory = EdgeEffectFactory()
     scrollAnimationHelper = getOnScrollAnimationHelper(toolbarShadow)
-    val adapter = DSLSettingsAdapter()
+    val settingsAdapter = DSLSettingsAdapter()
 
-    recyclerView.layoutManager = layoutManagerProducer(requireContext())
-    recyclerView.adapter = adapter
-    recyclerView.addOnScrollListener(scrollAnimationHelper)
+    recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
+      edgeEffectFactory = EdgeEffectFactory()
+      layoutManager = layoutManagerProducer(requireContext())
+      adapter = settingsAdapter
+      addOnScrollListener(scrollAnimationHelper!!)
+    }
 
-    bindAdapter(adapter)
+    bindAdapter(settingsAdapter)
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    recyclerView = null
+    scrollAnimationHelper = null
   }
 
   protected open fun getOnScrollAnimationHelper(toolbarShadow: View): OnScrollAnimationHelper {

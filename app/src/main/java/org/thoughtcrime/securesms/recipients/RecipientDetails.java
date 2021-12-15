@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.PNI;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -32,6 +33,7 @@ import java.util.List;
 public class RecipientDetails {
 
   final ACI                        aci;
+  final PNI                        pni;
   final String                     username;
   final String                     e164;
   final String                     email;
@@ -88,59 +90,60 @@ public class RecipientDetails {
                           boolean systemContact,
                           boolean isSelf,
                           @NonNull RegisteredState registeredState,
-                          @NonNull RecipientSettings settings,
+                          @NonNull RecipientRecord record,
                           @Nullable List<Recipient> participants)
   {
     this.groupAvatarId               = groupAvatarId;
-    this.systemContactPhoto          = Util.uri(settings.getSystemContactPhotoUri());
-    this.customLabel                 = settings.getSystemPhoneLabel();
-    this.contactUri                  = Util.uri(settings.getSystemContactUri());
-    this.aci                         = settings.getAci();
-    this.username                    = settings.getUsername();
-    this.e164                        = settings.getE164();
-    this.email                       = settings.getEmail();
-    this.groupId                     = settings.getGroupId();
-    this.messageRingtone             = settings.getMessageRingtone();
-    this.callRingtone                = settings.getCallRingtone();
-    this.mutedUntil                  = settings.getMuteUntil();
-    this.messageVibrateState         = settings.getMessageVibrateState();
-    this.callVibrateState            = settings.getCallVibrateState();
-    this.blocked                     = settings.isBlocked();
-    this.expireMessages              = settings.getExpireMessages();
+    this.systemContactPhoto          = Util.uri(record.getSystemContactPhotoUri());
+    this.customLabel                 = record.getSystemPhoneLabel();
+    this.contactUri                  = Util.uri(record.getSystemContactUri());
+    this.aci                         = record.getAci();
+    this.pni                         = record.getPni();
+    this.username                    = record.getUsername();
+    this.e164                        = record.getE164();
+    this.email                       = record.getEmail();
+    this.groupId                     = record.getGroupId();
+    this.messageRingtone             = record.getMessageRingtone();
+    this.callRingtone                = record.getCallRingtone();
+    this.mutedUntil                  = record.getMuteUntil();
+    this.messageVibrateState         = record.getMessageVibrateState();
+    this.callVibrateState            = record.getCallVibrateState();
+    this.blocked                     = record.isBlocked();
+    this.expireMessages              = record.getExpireMessages();
     this.participants                = participants == null ? new LinkedList<>() : participants;
-    this.profileName                 = settings.getProfileName();
-    this.defaultSubscriptionId       = settings.getDefaultSubscriptionId();
+    this.profileName                 = record.getProfileName();
+    this.defaultSubscriptionId       = record.getDefaultSubscriptionId();
     this.registered                  = registeredState;
-    this.profileKey                  = settings.getProfileKey();
-    this.profileKeyCredential        = settings.getProfileKeyCredential();
-    this.profileAvatar               = settings.getProfileAvatar();
-    this.hasProfileImage             = settings.hasProfileImage();
-    this.profileSharing              = settings.isProfileSharing();
-    this.lastProfileFetch            = settings.getLastProfileFetch();
+    this.profileKey                  = record.getProfileKey();
+    this.profileKeyCredential        = record.getProfileKeyCredential();
+    this.profileAvatar               = record.getProfileAvatar();
+    this.hasProfileImage             = record.hasProfileImage();
+    this.profileSharing              = record.isProfileSharing();
+    this.lastProfileFetch            = record.getLastProfileFetch();
     this.systemContact               = systemContact;
     this.isSelf                      = isSelf;
-    this.notificationChannel         = settings.getNotificationChannel();
-    this.unidentifiedAccessMode      = settings.getUnidentifiedAccessMode();
-    this.forceSmsSelection           = settings.isForceSmsSelection();
-    this.groupsV2Capability          = settings.getGroupsV2Capability();
-    this.groupsV1MigrationCapability = settings.getGroupsV1MigrationCapability();
-    this.senderKeyCapability         = settings.getSenderKeyCapability();
-    this.announcementGroupCapability = settings.getAnnouncementGroupCapability();
-    this.changeNumberCapability      = settings.getChangeNumberCapability();
-    this.insightsBannerTier          = settings.getInsightsBannerTier();
-    this.storageId                   = settings.getStorageId();
-    this.mentionSetting              = settings.getMentionSetting();
-    this.wallpaper                   = settings.getWallpaper();
-    this.chatColors                  = settings.getChatColors();
-    this.avatarColor                 = settings.getAvatarColor();
-    this.about                       = settings.getAbout();
-    this.aboutEmoji                  = settings.getAboutEmoji();
-    this.systemProfileName           = settings.getSystemProfileName();
+    this.notificationChannel         = record.getNotificationChannel();
+    this.unidentifiedAccessMode      = record.getUnidentifiedAccessMode();
+    this.forceSmsSelection           = record.isForceSmsSelection();
+    this.groupsV2Capability          = record.getGroupsV2Capability();
+    this.groupsV1MigrationCapability = record.getGroupsV1MigrationCapability();
+    this.senderKeyCapability         = record.getSenderKeyCapability();
+    this.announcementGroupCapability = record.getAnnouncementGroupCapability();
+    this.changeNumberCapability      = record.getChangeNumberCapability();
+    this.insightsBannerTier          = record.getInsightsBannerTier();
+    this.storageId                   = record.getStorageId();
+    this.mentionSetting              = record.getMentionSetting();
+    this.wallpaper                   = record.getWallpaper();
+    this.chatColors                  = record.getChatColors();
+    this.avatarColor                 = record.getAvatarColor();
+    this.about                       = record.getAbout();
+    this.aboutEmoji                  = record.getAboutEmoji();
+    this.systemProfileName           = record.getSystemProfileName();
     this.groupName                   = groupName;
     this.systemContactName           = systemContactName;
-    this.extras                      = Optional.fromNullable(settings.getExtras());
-    this.hasGroupsInCommon           = settings.hasGroupsInCommon();
-    this.badges                      = settings.getBadges();
+    this.extras                      = Optional.fromNullable(record.getExtras());
+    this.hasGroupsInCommon           = record.hasGroupsInCommon();
+    this.badges                      = record.getBadges();
   }
 
   /**
@@ -150,9 +153,10 @@ public class RecipientDetails {
     this.groupAvatarId               = null;
     this.systemContactPhoto          = null;
     this.customLabel                 = null;
-    this.contactUri = null;
-    this.aci        = null;
-    this.username   = null;
+    this.contactUri                  = null;
+    this.aci                         = null;
+    this.pni                         = null;
+    this.username                    = null;
     this.e164                        = null;
     this.email                       = null;
     this.groupId                     = null;
@@ -199,7 +203,7 @@ public class RecipientDetails {
     this.badges                      = Collections.emptyList();
   }
 
-  public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {
+  public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientRecord settings) {
     boolean systemContact = !settings.getSystemProfileName().isEmpty();
     boolean isSelf        = (settings.getE164() != null && settings.getE164().equals(SignalStore.account().getE164())) ||
                             (settings.getAci() != null && settings.getAci().equals(SignalStore.account().getAci()));

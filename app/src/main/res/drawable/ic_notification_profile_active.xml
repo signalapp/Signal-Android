@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/signal_background_tertiary"/>
+            <corners android:radius="39dp" />
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/ic_moon_16" android:left="13dp" android:right="13dp" android:top="5dp" android:bottom="5dp" />
+
+</layer-list>

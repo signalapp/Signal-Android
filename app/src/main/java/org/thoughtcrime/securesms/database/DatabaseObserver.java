@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
@@ -20,7 +21,7 @@ import java.util.concurrent.Executor;
  *
  * A replacement for the observer system in {@link Database}. We should move to this over time.
  */
-public final class DatabaseObserver {
+public class DatabaseObserver {
 
   private final Application application;
   private final Executor    executor;
@@ -36,6 +37,7 @@ public final class DatabaseObserver {
   private final Set<Observer>                   attachmentObservers;
   private final Set<MessageObserver>            messageUpdateObservers;
   private final Map<Long, Set<MessageObserver>> messageInsertObservers;
+  private final Set<Observer>                   notificationProfileObservers;
 
   public DatabaseObserver(Application application) {
     this.application                  = application;
@@ -51,6 +53,7 @@ public final class DatabaseObserver {
     this.attachmentObservers          = new HashSet<>();
     this.messageUpdateObservers       = new HashSet<>();
     this.messageInsertObservers       = new HashMap<>();
+    this.notificationProfileObservers = new HashSet<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -119,6 +122,12 @@ public final class DatabaseObserver {
     });
   }
 
+  public void registerNotificationProfileObserver(@NotNull Observer listener) {
+    executor.execute(() -> {
+      notificationProfileObservers.add(listener);
+    });
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
@@ -129,6 +138,7 @@ public final class DatabaseObserver {
       stickerObservers.remove(listener);
       stickerPackObservers.remove(listener);
       attachmentObservers.remove(listener);
+      notificationProfileObservers.remove(listener);
     });
   }
 
@@ -228,6 +238,12 @@ public final class DatabaseObserver {
       if (listeners != null) {
         listeners.stream().forEach(l -> l.onMessageChanged(messageId));
       }
+    });
+  }
+
+  public void notifyNotificationProfileObservers() {
+    executor.execute(() -> {
+      notifySet(notificationProfileObservers);
     });
   }
 

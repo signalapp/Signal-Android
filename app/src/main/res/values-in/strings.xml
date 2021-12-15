@@ -290,6 +290,8 @@
   <string name="ConversationFragment_not_now">Nanti saja</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Nomor keamanan Anda dengan %s berubah</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Nomor keamanan Anda dengan %s berubah, mungkin karena mereka memasang ulang Signal atau mengganti perangkat. Ketuk Verifikasi untuk mengonfirmasi nomor keamanan barunya. Ini bersifat opsional.</string>
+  <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s nyala</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">Hapus percakapan terpilih?</item>
   </plurals>
@@ -337,6 +339,10 @@
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="other">%d dipilih</item>
   </plurals>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <!--Tooltip shown after you have created your first notification profile-->
+  <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s nyala</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci</string>
   <!--ConversationListItemAction-->
@@ -1224,11 +1230,11 @@
   <string name="WebRtcCallView__end_call">Akhiri panggilan</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-    <item quantity="other">Di panggilan ini .%1$d  orang</item>
+    <item quantity="other">Di panggilan ini · %1$d orang</item>
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s diblokir</string>
-  <string name="CallParticipantView__more_info">Info lebih lanjut</string>
+  <string name="CallParticipantView__more_info">Info Lebih Lanjut</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Anda tidak akan bisa menerima panggilan suara atau video dan mereka tidak bisa menerima panggilan Anda.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Tidak dapat menerima audio &amp; video dari %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Tidak dapat menerima audio dan video dari %1$s</string>
@@ -1273,7 +1279,7 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_non_standard_number_format">Format nomor tidak umum</string>
   <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Nomor yang Anda masukkan (%1$s) terlihat bukan format nomor yang umum.\n\nApakah maksud Anda %2$s?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Format Nomor Telepon</string>
-  <string name="RegistrationActivity_call_requested">Panggilan dimintakan</string>
+  <string name="RegistrationActivity_call_requested">Panggilan diminta</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Kamu memiliki %d langkah lagi untuk mengirimkan catatan awakutu.</item>
   </plurals>
@@ -1323,7 +1329,7 @@ isikan (%s) tidak valid.
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Kami akan mengingatkan Anda lagi dalam beberapa hari.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Kami akan mengingatkan Anda lagi dalam seminggu.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Kami akan mengingatkan Anda lagi dalam beberapa minggu.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Kami akan mengingatkan Anda lagi sebulan ini.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Kami akan mengingatkan Anda sebulan lagi.</string>
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_sticker">Stiker</string>
@@ -1341,7 +1347,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SmsMessageRecord_secure_session_reset_s">%s mengatur ulang sesi aman.</string>
   <string name="SmsMessageRecord_duplicate_message">Pesan Duplikat</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Pesan ini tidak dapat diproses karena dikirim dari versi Signal yang lebih baru. Anda dapat meminta kontak anda untuk mengirim pesan ini lagi setelah Anda melakukan pembaruan.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Kesalahan dalam penanganan pesan baru.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Kesalahan dalam penanganan pesan masuk.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stiker</string>
   <!--StickerManagementAdapter-->
@@ -1365,12 +1371,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Ketuk pecakapan untuk menghapus</string>
   <string name="SubmitDebugLogActivity_submit">Kirimkan</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Gagal mengirimkan catatan</string>
-  <string name="SubmitDebugLogActivity_success">Sukses!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan kirimkan ke email support <b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_success">Berhasil!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan tambahkan ke laporan masalah Anda atau kirimkan ke surel dukungan:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Bagikan</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Catatan ini akan dipasang secara daring kepada publik untuk dilihat oleh kontributor. Anda dapat memeriksa dan menyuntingnya sebelum mengunggah.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Catatan ini akan dipasang secara daring kepada publik untuk dilihat oleh kontributor. Anda dapat memeriksanya sebelum mengunggah.</string>
   <!--SupportEmailUtil-->
-  <string name="SupportEmailUtil_filter">Filter:</string>
+  <string name="SupportEmailUtil_filter">Saring:</string>
   <string name="SupportEmailUtil_device_info">Informasi perangkat:</string>
   <string name="SupportEmailUtil_android_version">Versi Android:</string>
   <string name="SupportEmailUtil_signal_version">Versi Signal:</string>
@@ -1548,7 +1554,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Untuk menjawab panggilan dari %s, berikan Signal akses ke mikrofon Anda.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal memerlukan izin Mikrofon dan Kamera untuk menerima atau melakukan panggilan, tetapi saat ini izin ditolak secara permanen. Mohon lanjutkan ke pengatuaran aplikasi, pilih \"Izin\" lalu aktifkan \"Mikrofon\" serta \"Kamera\". </string>
-  <string name="WebRtcCallActivity__answered_on_a_linked_device">Jawab di perangkat terkait</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Jawab di perangkat terhubung.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Tolak di perangkat terkait</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Sibuk di perangkat tersambung.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Seseorang telah bergabung dalam panggilan ini dengan nomor keamanan yang berubah.</string>
@@ -1633,7 +1639,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Memuat</string>
   <string name="ConversationUpdateItem_learn_more">Pelajari lebih lanjut</string>
-  <string name="ConversationUpdateItem_join_call">Bergabung Panggilan</string>
+  <string name="ConversationUpdateItem_join_call">Bergabung panggilan</string>
   <string name="ConversationUpdateItem_return_to_call">Kembali ke panggilan</string>
   <string name="ConversationUpdateItem_call_is_full">Panggilan penuh</string>
   <string name="ConversationUpdateItem_invite_friends">Undang teman</string>
@@ -1657,13 +1663,19 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QuoteView_original_missing">Pesan asli tidak ditemukan</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Gulir ke bawah</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">Nanti saja</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">Matikan</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Nomor Keamanan Berubah</string>
   <string name="safety_number_change_dialog__accept">Terima</string>
   <string name="safety_number_change_dialog__send_anyway">Tetap kirim</string>
   <string name="safety_number_change_dialog__call_anyway">Tetap panggil</string>
-  <string name="safety_number_change_dialog__join_call">Bergabung Panggilan</string>
-  <string name="safety_number_change_dialog__continue_call">Teruskan panggilan</string>
+  <string name="safety_number_change_dialog__join_call">Bergabung panggilan</string>
+  <string name="safety_number_change_dialog__continue_call">Lanjutkan panggilan</string>
   <string name="safety_number_change_dialog__leave_call">Tinggalkan panggilan</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Orang-orang berikut mungkin telah memasang ulang atau mengganti perangkat. Verifikasi nomor keamanan Anda dengan mereka untuk memastikan privasi.</string>
   <string name="safety_number_change_dialog__view">Lihat</string>
@@ -1776,15 +1788,15 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="EditAboutFragment_encrypted">Terenkripsi</string>
   <string name="EditAboutFragment_be_kind">Ramah</string>
   <string name="EditAboutFragment_coffee_lover">Penyuka kopi</string>
-  <string name="EditAboutFragment_free_to_chat">Seggang untuk mengobrol</string>
+  <string name="EditAboutFragment_free_to_chat">Bebas untuk mengobrol</string>
   <string name="EditAboutFragment_taking_a_break">Istirahat</string>
   <string name="EditAboutFragment_working_on_something_new">Sedang mengerjakan sesuatu yang baru</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group">Ubah grup</string>
+  <string name="EditProfileFragment__edit_group">Sunting grup</string>
   <string name="EditProfileFragment__group_name">Nama grup</string>
   <string name="EditProfileFragment__group_description">Deskripsi grup</string>
   <!--EditProfileNameFragment-->
-  <string name="EditProfileNameFragment_your_name">Nama anda</string>
+  <string name="EditProfileNameFragment_your_name">Nama Anda</string>
   <string name="EditProfileNameFragment_first_name">Nama depan</string>
   <string name="EditProfileNameFragment_last_name_optional">Nama belakang (opsional)</string>
   <string name="EditProfileNameFragment_save">Simpan</string>
@@ -1794,7 +1806,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Masukkan nama atau nomor</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Untuk memverifikasi keamanan enkripsi end-to-end Anda dengan %s, bandingkan nomor di atas dengan yang ada di perangkat mereka. Anda juga dapat memindai kodenya di ponsel mereka. <a href="https://signal.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Untuk memverifikasi keamanan enkripsi ujung-ke-ujung Anda dengan %s, bandingkan nomor di atas dengan yang ada di perangkat mereka. Anda juga dapat memindai kodenya di ponsel mereka. <a href="https://signal.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
   <string name="verify_display_fragment__successful_match">Pencocokan berhasil</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Gagal memverifikasi nomor keamanan</string>
@@ -1804,7 +1816,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bagikan nomor keamanan</string>
   <!--verity_scan_fragment-->
-  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Pindai kode QR pada perangkat kontak Anda</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Pindai kode QR pada perangkat kontak Anda.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Geser ke atas untuk menjawab</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Geser ke bawah untuk menolak panggilan</string>
@@ -1812,11 +1824,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="message_details_header__issues_need_your_attention">Beberapa masalah memerlukan perhatian Anda.</string>
   <string name="message_details_header__sent">Terkirim:</string>
   <string name="message_details_header__received">Diterima:</string>
-  <string name="message_details_header__disappears">Hilang:</string>
+  <string name="message_details_header__disappears">Menghilang:</string>
   <string name="message_details_header__via">Melalui:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Tertunda</string>
-  <string name="message_details_recipient_header__sent_to">Kirim ke</string>
+  <string name="message_details_recipient_header__sent_to">Terkirim ke</string>
   <string name="message_details_recipient_header__sent_from">Dikirim dari</string>
   <string name="message_details_recipient_header__delivered_to">Terkirim ke</string>
   <string name="message_details_recipient_header__read_by">Dibaca oleh</string>
@@ -1839,22 +1851,22 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AndroidManifest_remove_photo">Buang foto</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Undangan percakapan</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Pengguna dapat menerima percakapan baru. Nama profil digunakan untuk mengidentifikasi pengirim pesan dalam percakapan.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Pengguna sekarang dapat memilih untuk menerima percakapan baru. Nama profil memungkinkan orang mengetahui siapa yang mengirmkan mereka pesan.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Tambahkan nama profil</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">Sudahkah Anda membaca FAQ?</string>
   <string name="HelpFragment__next">Berikutnya</string>
   <string name="HelpFragment__contact_us">Hubungi kami</string>
-  <string name="HelpFragment__tell_us_whats_going_on">Sebutkan galat yang terjadi</string>
-  <string name="HelpFragment__include_debug_log">Cantumkan catatan debug</string>
-  <string name="HelpFragment__whats_this">Penjelasan bantuan</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Beritahu kami apa yang terjadi</string>
+  <string name="HelpFragment__include_debug_log">Sertakan catatan awakutu.</string>
+  <string name="HelpFragment__whats_this">Apakah ini?</string>
   <string name="HelpFragment__how_do_you_feel">Saran dan kesan (opsional)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Beritahu mengapa Anda menghubungi kami.</string>
-  <string name="HelpFragment__support_info">Informasi support</string>
-  <string name="HelpFragment__signal_android_support_request">Support Signal pada Android</string>
-  <string name="HelpFragment__debug_log">Catatan debug:</string>
+  <string name="HelpFragment__support_info">Informasi Bantuan</string>
+  <string name="HelpFragment__signal_android_support_request">Permintaan Bantuan Signal Android</string>
+  <string name="HelpFragment__debug_log">Catatan Awakutu:</string>
   <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
-  <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan sedeskriptif mungkin untuk membantu kami memahami permasalahannya.</string>
   <string-array name="HelpFragment__categories_3">
     <item>\-\- Mohon pilih sebuah opsi \-\-</item>
     <item>Sesuatu Tidak Berfungsi</item>
@@ -1917,9 +1929,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
   <string name="preferences__pref_use_address_book_photos">Gunakan foto dari kontak</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Tampilkan foto dari buku kontak jika tersedia</string>
-  <string name="preferences__generate_link_previews">Buat tinjauan tautan</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Mengambil pratinjau dari tautan secara langsung dari situs web untuk pesan yang dikirimkan.</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Tampilkan foto dari kontak jika tersedia</string>
+  <string name="preferences__generate_link_previews">Buat pratinjau tautan</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Mengambil pratinjau dari tautan secara langsung dari situs web untuk pesan yang Anda kirimkan.</string>
   <string name="preferences__choose_identity">Pilih identitas</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Pilih kontak anda dari daftar kontak yang ada.</string>
   <string name="preferences__change_passphrase">Ganti frasa sandi</string>
@@ -1962,7 +1974,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__donate_to_signal">Berdonasi ke Signal</string>
   <string name="preferences__subscription">Berlangganan</string>
   <string name="preferences__become_a_signal_sustainer">Menjadi Penyokong Signal</string>
-  <string name="preferences__signal_boost">Signal Boost</string>
+  <string name="preferences__signal_boost">Penguat Signal</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">User Agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Pengaturan Manual MMS</string>
@@ -2019,13 +2031,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_storage__files">Berkas</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Tinjau penyimpanan</string>
-  <string name="preferences_storage__delete_older_messages">Hapus pesan lama?</string>
+  <string name="preferences_storage__delete_older_messages">Hapus pesan-pesan lama?</string>
   <string name="preferences_storage__clear_message_history">Hapus riwayat pesan?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus semua riwayat pesan dan media dari perangkat Anda yang lebih lama dari%1$s.</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan menghapus secara permanen semua riwayat pesan dan media dari perangkat Anda yang lebih lama dari %1$s.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ini akan secara permanen memotong semua percakapan ke %1$s pesan-pesan terbaru.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan menghapus semua riwayat pesan dan media selamanya dari perangkat Anda.</string>
-  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Anda yakin menghapus semua riwayat pesan?</string>
-  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus selamanya. Ini tidak dapat dibatalkan.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan menghapus semua riwayat pesan dan media secara permanen dari perangkat Anda.</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Apakah Anda yakin ingin menghapus semua riwayat pesan?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua riwayat pesan akan dihapus selamanya. Tindakan ini tidak dapat dibatalkan.</string>
   <string name="preferences_storage__delete_all_now">Hapus semua sekarang</string>
   <string name="preferences_storage__forever">Selamanya</string>
   <string name="preferences_storage__one_year">1 tahun</string>
@@ -2038,13 +2050,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Nonaktifkan dukungan emoji Signal bawaan</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Sampaikan semua panggilan melalui peladen Signal untuk menghindari pengungkapan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
   <string name="preferences_advanced__always_relay_calls">Selalu relay panggilan</string>
-  <string name="preferences_app_protection__who_can">Siapa yang mampu</string>
+  <string name="preferences_app_protection__who_can">Siapa yang dapat…</string>
   <string name="preferences_app_protection__app_access">Akses aplikasi</string>
   <string name="preferences_app_protection__communication">Komunikasi</string>
   <string name="preferences_chats__chats">Obrolan</string>
-  <string name="preferences_data_and_storage__manage_storage">Atur penyimpanan</string>
+  <string name="preferences_data_and_storage__manage_storage">Kelola penyimpanan</string>
   <string name="preferences_data_and_storage__calls">Panggilan</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">Kurangi penggunaan data panggilan</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Kurangi penggunaan data untuk panggilan</string>
   <string name="preferences_data_and_storage__never">Tidak pernah</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi dan data seluler</string>
   <string name="preferences_data_and_storage__mobile_data_only">Data seluler saja</string>
@@ -2070,7 +2082,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_proxy">Proksi</string>
   <string name="preferences_use_proxy">Gunakan proksi</string>
   <string name="preferences_off">Mati</string>
-  <string name="preferences_on">Aktif</string>
+  <string name="preferences_on">Nyala</string>
   <string name="preferences_proxy_address">Alamat proksi</string>
   <string name="preferences_only_use_a_proxy_if">Gunakan proksi hanya ketika Anda tidak dapat tersambung ke Signal menggunakan data seluler atau Wi-Fi.</string>
   <string name="preferences_share">Bagikan</string>
@@ -2647,6 +2659,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RecipientBottomSheet_block">Blokir</string>
   <string name="RecipientBottomSheet_unblock">Buka blokir</string>
   <string name="RecipientBottomSheet_add_to_contacts">Tambah ke kontak</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Tidak ada aplikasi yang dapat membuka kontak.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Tambahkan ke grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Tambahkan ke grup lain</string>
   <string name="RecipientBottomSheet_view_safety_number">Lihat nomor keamanan</string>
@@ -2743,6 +2757,18 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="DeleteAccountFragment__failed_to_delete_account">Gagal menghapus akun, apa kamu memiliki koneksi internet?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Gagal menghapus data lokal, kamu bisa menghapusnya secara manual melalui pengaturan applikasi.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Buka pengaturan applikasi</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Meninggalkan grup…</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Menghapus akun…</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Tergantung dari berapa jumlah grup yang Anda ikuti, ini mungkin memakan waktu beberapa menit</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Menghapus data pengguna dan mengatur ulang aplikasi</string>
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Akun Tidak Dihapus</string>
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Terjadi masalah menyelesaikan proses penghapusan. Periksa koneksi jaringan Anda dan coba lagi.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Cari negara</string>
   <!--CreateGroupActivity-->
@@ -2950,6 +2976,14 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NotificationsSettingsFragment__calls">Panggilan</string>
   <string name="NotificationsSettingsFragment__notify_when">Beritahukan ketika…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontak bergabung di Signal</string>
+  <!--Notification preference header-->
+  <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profil</string>
+  <!--Notification preference summary text-->
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Buat profil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Terblokir</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontak</string>
@@ -3293,6 +3327,136 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Perangkat Anda tidak mendukung Google Pay, sehingga Anda tidak dapat berlangganan untuk memperoleh sebuah lencana. Anda tetap dapat mendukung Signal dengan berdonasi melalui situsweb kami.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Galat jaringan. Periksa koneksi Anda dan coba lagi.</string>
   <string name="NetworkFailure__retry">Coba lagi</string>
+  <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Beri nama profil Anda</string>
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">Nama profil</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button to continue to the next step-->
+  <string name="EditNotificationProfileFragment__next">Berikutnya</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Buat</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">Simpan</string>
+  <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Sunting profil ini</string>
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profil dengan nama ini sudah ada</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">Kantor</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Tidur</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Berkendara</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Fokus</string>
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Harus memiliki nama</string>
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Izinkan notifikasi</string>
+  <!--Description of what the user should be doing with this screen-->
+  <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Tambahkan orang atau grup</string>
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">Tambahkan</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Buat sebuah profil untuk menerima notifikasi dan panggilan hanya dari orang dan grup yang Anda inginkan.</string>
+  <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profil</string>
+  <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Profil baru</string>
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">Nyala</string>
+  <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Hapus profil</string>
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" dikeluarkan.</string>
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">Urungkan</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Hapus profil secara permanen?</string>
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">Hapus</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Setiap hari</string>
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">Nyala</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">Mati</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s hingga %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Pengecualian</string>
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Izinkan semua panggilan</string>
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Jadwal</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Lihat semua</string>
+  <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Tambahkan jadwal</string>
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Jadwal</string>
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Mulai</string>
+  <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Akhiri</string>
+  <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">M</string>
+  <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">S</string>
+  <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">S</string>
+  <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">R</string>
+  <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">K</string>
+  <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">J</string>
+  <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Atur waktu mulai</string>
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Atur waktu selesai</string>
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">Simpan</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">Lewati</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">Berikutnya</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profil dibuat</string>
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">Selesai</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Anda dapat menyalakan dan mematikan profil Anda secara manual melalui menu pada daftar percakapan.</string>
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Tambahkan jadwal di pengaturan untuk mengotomasi profil Anda.</string>
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profil Anda akan dinyalakan dan dimatikan secara otomatis berdasarkan jadwal.</string>
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Profil baru</string>
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">Sampai %1$s</string>
+  <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Lihat pengaturan</string>
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Nyalakan sampai %1$s</string>
+  <!--Title for notification profile megaphone-->
+  <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Dapatkan notifikasi hanya dari orang dan grup yang Anda pilih.</string>
+  <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Buat profil</string>
+  <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Nanti saja</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal membuka pemilih dering.</string>
   <!--EOF-->

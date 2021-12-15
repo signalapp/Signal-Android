@@ -86,9 +86,24 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/conversation_list_proxy_status"
+                app:layout_constraintEnd_toStartOf="@id/conversation_list_notification_profile_status"
                 app:layout_constraintStart_toEndOf="@id/toolbar_icon"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/conversation_list_notification_profile_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackgroundBorderless"
+                android:paddingHorizontal="3dp"
+                android:paddingVertical="11dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/conversation_list_proxy_status"
+                app:layout_constraintStart_toEndOf="@id/conversation_list_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_notification_profile_active"
+                tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/conversation_list_proxy_status"
@@ -99,7 +114,7 @@
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/search_action"
-                app:layout_constraintStart_toEndOf="@id/conversation_list_title"
+                app:layout_constraintStart_toEndOf="@id/conversation_list_notification_profile_status"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_proxy_connected_24"
                 tools:visibility="visible" />

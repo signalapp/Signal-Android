@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -78,6 +79,7 @@ public class Recipient {
   private final RecipientId            id;
   private final boolean                resolving;
   private final ACI                    aci;
+  private final PNI                    pni;
   private final String                 username;
   private final String                 e164;
   private final String                 email;
@@ -329,9 +331,10 @@ public class Recipient {
 
   Recipient(@NonNull RecipientId id) {
     this.id                          = id;
-    this.resolving = true;
-    this.aci       = null;
-    this.username  = null;
+    this.resolving                   = true;
+    this.aci                         = null;
+    this.pni                         = null;
+    this.username                    = null;
     this.e164                        = null;
     this.email                       = null;
     this.groupId                     = null;
@@ -385,6 +388,7 @@ public class Recipient {
     this.id                          = id;
     this.resolving                   = !resolved;
     this.aci                         = details.aci;
+    this.pni                         = details.pni;
     this.username                    = details.username;
     this.e164                        = details.e164;
     this.email                       = details.email;
@@ -605,6 +609,10 @@ public class Recipient {
 
   public @NonNull Optional<ACI> getAci() {
     return Optional.fromNullable(aci);
+  }
+
+  public @NonNull Optional<PNI> getPni() {
+    return Optional.fromNullable(pni);
   }
 
   public @NonNull Optional<String> getUsername() {

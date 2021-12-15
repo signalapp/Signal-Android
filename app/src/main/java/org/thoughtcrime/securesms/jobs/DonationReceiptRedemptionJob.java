@@ -123,6 +123,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       throw new RetryableException();
     }
 
+    Log.i(TAG, "Successfully redeemed token with response code " + response.getStatus() + "... isForSubscription: " + isForSubscription(), true);
+
     if (isForSubscription()) {
       Log.d(TAG, "Clearing subscription failure", true);
       SignalStore.donationsValues().clearSubscriptionRedemptionFailed();

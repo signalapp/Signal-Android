@@ -54,7 +54,6 @@ import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -113,7 +112,7 @@ public class DirectoryHelper {
 
     for (Recipient recipient : recipients) {
       if (recipient.hasAci() && !recipient.hasE164()) {
-        if (isAciRegistered(context, recipient)) {
+        if (ApplicationDependencies.getSignalServiceAccountManager().isIdentifierRegistered(recipient.requireAci())) {
           recipientDatabase.markRegistered(recipient.getId(), recipient.requireAci());
         } else {
           recipientDatabase.markUnregistered(recipient.getId());
@@ -137,8 +136,8 @@ public class DirectoryHelper {
     RegisteredState   newRegisteredState;
 
     if (recipient.hasAci() && !recipient.hasE164()) {
-      boolean isRegistered = isAciRegistered(context, recipient);
-      stopwatch.split("uuid-network");
+      boolean isRegistered = ApplicationDependencies.getSignalServiceAccountManager().isIdentifierRegistered(recipient.requireAci());
+      stopwatch.split("aci-network");
       if (isRegistered) {
         boolean idChanged = recipientDatabase.markRegistered(recipient.getId(), recipient.requireAci());
         if (idChanged) {
@@ -148,14 +147,14 @@ public class DirectoryHelper {
         recipientDatabase.markUnregistered(recipient.getId());
       }
 
-      stopwatch.split("uuid-disk");
+      stopwatch.split("aci-disk");
       stopwatch.stop(TAG);
 
       return isRegistered ? RegisteredState.REGISTERED : RegisteredState.NOT_REGISTERED;
     }
 
     if (!recipient.getE164().isPresent()) {
-      Log.w(TAG, "No UUID or E164?");
+      Log.w(TAG, "No ACI or E164?");
       return RegisteredState.NOT_REGISTERED;
     }
 
@@ -176,10 +175,10 @@ public class DirectoryHelper {
           recipient = Recipient.resolved(recipientDatabase.getByAci(aci).get());
         }
       } else {
-        Log.w(TAG, "Registered number set had a null UUID!");
+        Log.w(TAG, "Registered number set had a null ACI!");
       }
     } else if (recipient.hasAci() && recipient.isRegistered() && hasCommunicatedWith(context, recipient)) {
-      if (isAciRegistered(context, recipient)) {
+      if (ApplicationDependencies.getSignalServiceAccountManager().isIdentifierRegistered(recipient.requireAci())) {
         recipientDatabase.markRegistered(recipient.getId(), recipient.requireAci());
       } else {
         recipientDatabase.markUnregistered(recipient.getId());
@@ -295,16 +294,6 @@ public class DirectoryHelper {
     }
 
     stopwatch.stop(TAG);
-  }
-
-
-  private static boolean isAciRegistered(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
-    try {
-      ProfileUtil.retrieveProfileSync(context, recipient, SignalServiceProfile.RequestType.PROFILE);
-      return true;
-    } catch (NotFoundException e) {
-      return false;
-    }
   }
 
   private static void updateContactsDatabase(@NonNull Context context,

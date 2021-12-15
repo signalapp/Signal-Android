@@ -38,6 +38,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
@@ -130,6 +131,7 @@ public final class RegistrationRepository {
     SenderKeyUtil.clearAllState(context);
 
     ACI     aci    = ACI.parseOrThrow(response.getUuid());
+    PNI     pni    = PNI.parseOrThrow(response.getPni());
     boolean hasPin = response.isStorageCapable();
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(context);
@@ -148,9 +150,11 @@ public final class RegistrationRepository {
 
     recipientDatabase.setProfileSharing(selfId, true);
     recipientDatabase.markRegisteredOrThrow(selfId, aci);
+    recipientDatabase.setPni(selfId, pni);
 
     SignalStore.account().setE164(registrationData.getE164());
     SignalStore.account().setAci(aci);
+    SignalStore.account().setPni(pni);
     recipientDatabase.setProfileKey(selfId, registrationData.getProfileKey());
     ApplicationDependencies.getRecipientCache().clearSelf();
 

@@ -958,6 +958,14 @@ private static final String[] GROUP_PROJECTION = {
       return getCurrent();
     }
 
+    public int getCount() {
+      if (cursor == null) {
+        return 0;
+      } else {
+        return cursor.getCount();
+      }
+    }
+
     public @Nullable GroupRecord getCurrent() {
       if (cursor == null || cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)) == null || cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)) == 0) {
         return null;

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -320,6 +321,19 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             }
           )
         }
+
+      sectionHeaderPref(R.string.preferences__internal_audio)
+
+      radioListPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_audio_processing_method),
+        listItems = CallManager.AudioProcessingMethod.values().map { it.name }.toTypedArray(),
+        selected = CallManager.AudioProcessingMethod.values().indexOf(state.audioProcessingMethod),
+        onSelected = {
+          viewModel.setInternalAudioProcessingMethod(CallManager.AudioProcessingMethod.values()[it])
+        }
+      )
+
+      dividerPref()
 
       if (FeatureFlags.donorBadges() && SignalStore.donationsValues().getSubscriber() != null) {
         sectionHeaderPref(R.string.preferences__internal_badges)

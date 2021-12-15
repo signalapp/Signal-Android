@@ -179,8 +179,10 @@ class BoostViewModel(
     store.update { it.copy(stage = BoostState.Stage.TOKEN_REQUEST) }
 
     val boost = if (snapshot.isCustomAmountFocused) {
+      Log.d(TAG, "Boosting with custom amount ${snapshot.customAmount}")
       Boost(snapshot.customAmount)
     } else {
+      Log.d(TAG, "Boosting with preset amount ${snapshot.selectedBoost.price}")
       snapshot.selectedBoost
     }
 
@@ -215,8 +217,8 @@ class BoostViewModel(
     store.update { it.copy(customAmount = FiatMoney(bigDecimalAmount, it.customAmount.currency)) }
   }
 
-  fun setCustomAmountFocused(isFocused: Boolean) {
-    store.update { it.copy(isCustomAmountFocused = isFocused) }
+  fun setCustomAmountFocused() {
+    store.update { it.copy(isCustomAmountFocused = true) }
   }
 
   private data class BoostInfo(val boosts: List<Boost>, val defaultBoost: Boost?, val boostBadge: Badge, val supportedCurrencies: Set<Currency>)
