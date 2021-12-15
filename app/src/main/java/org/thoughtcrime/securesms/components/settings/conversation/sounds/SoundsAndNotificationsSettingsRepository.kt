@@ -10,6 +10,15 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 
 class SoundsAndNotificationsSettingsRepository(private val context: Context) {
 
+  fun ensureCustomChannelConsistency(complete: () -> Unit) {
+    SignalExecutors.BOUNDED.execute {
+      if (NotificationChannels.supported()) {
+        NotificationChannels.ensureCustomChannelConsistency(context)
+      }
+      complete()
+    }
+  }
+
   fun setMuteUntil(recipientId: RecipientId, muteUntil: Long) {
     SignalExecutors.BOUNDED.execute {
       SignalDatabase.recipients.setMuted(recipientId, muteUntil)

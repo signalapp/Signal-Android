@@ -32,9 +32,14 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
     }
   )
 
+  override fun onResume() {
+    super.onResume()
+    viewModel.channelConsistencyCheck()
+  }
+
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     viewModel.state.observe(viewLifecycleOwner) { state ->
-      if (state.recipientId != Recipient.UNKNOWN.id) {
+      if (state.channelConsistencyCheckComplete && state.recipientId != Recipient.UNKNOWN.id) {
         adapter.submitList(getConfiguration(state).toMappingModelList())
       }
     }
