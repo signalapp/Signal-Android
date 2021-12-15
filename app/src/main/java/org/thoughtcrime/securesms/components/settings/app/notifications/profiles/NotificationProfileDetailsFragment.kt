@@ -86,7 +86,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
           adapter.submitList(getConfiguration(state).toMappingModelList())
         }
         NotificationProfileDetailsViewModel.State.NotLoaded -> Unit
-        NotificationProfileDetailsViewModel.State.Invalid -> findNavController().navigateUp()
+        NotificationProfileDetailsViewModel.State.Invalid -> requireActivity().onBackPressed()
       }
     }
   }
