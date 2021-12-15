@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
+import java.io.IOException
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
@@ -101,6 +102,8 @@ class VerifyAccountRepository(private val context: Application) {
       } catch (e: KeyBackupSystemWrongPinException) {
         ServiceResponse.forExecutionError(e)
       } catch (e: KeyBackupSystemNoDataException) {
+        ServiceResponse.forExecutionError(e)
+      } catch (e: IOException) {
         ServiceResponse.forExecutionError(e)
       }
     }.subscribeOn(Schedulers.io())
