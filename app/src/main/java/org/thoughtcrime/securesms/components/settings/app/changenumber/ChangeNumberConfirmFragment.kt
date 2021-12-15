@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ChangeNumberConfirmFragment : LoggingFragment(R.layout.fragment_change_number_confirm) {
   private lateinit var viewModel: ChangeNumberViewModel
@@ -28,6 +29,6 @@ class ChangeNumberConfirmFragment : LoggingFragment(R.layout.fragment_change_num
     editNumber.setOnClickListener { findNavController().navigateUp() }
 
     val changeNumber: View = view.findViewById(R.id.change_number_confirm_change_number)
-    changeNumber.setOnClickListener { findNavController().navigate(R.id.action_changePhoneNumberConfirmFragment_to_changePhoneNumberVerifyFragment) }
+    changeNumber.setOnClickListener { findNavController().safeNavigate(R.id.action_changePhoneNumberConfirmFragment_to_changePhoneNumberVerifyFragment) }
   }
 }

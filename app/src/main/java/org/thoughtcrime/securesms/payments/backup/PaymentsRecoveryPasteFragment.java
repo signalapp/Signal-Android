@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
 
@@ -47,7 +48,7 @@ public class PaymentsRecoveryPasteFragment extends Fragment {
         return;
       }
 
-      Navigation.findNavController(v).navigate(PaymentsRecoveryPasteFragmentDirections.actionPaymentsRecoveryEntryToPaymentsRecoveryPhrase(false).setWords(words));
+      SafeNavigation.safeNavigate(Navigation.findNavController(v), PaymentsRecoveryPasteFragmentDirections.actionPaymentsRecoveryEntryToPaymentsRecoveryPhrase(false).setWords(words));
     });
   }
 

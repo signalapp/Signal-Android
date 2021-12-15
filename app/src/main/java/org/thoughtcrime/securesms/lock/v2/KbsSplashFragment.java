@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.PinOptOutDialog;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public final class KbsSplashFragment extends Fragment {
 
@@ -117,7 +118,7 @@ public final class KbsSplashFragment extends Fragment {
 
     action.setIsPinChange(SignalStore.kbsValues().hasPin());
 
-    Navigation.findNavController(requireView()).navigate(action);
+    SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), action);
   }
 
   private void onLearnMore() {

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ChatColorSelectionFragment : Fragment(R.layout.chat_color_selection_fragment) {
 
@@ -102,7 +103,7 @@ class ChatColorSelectionFragment : Fragment(R.layout.chat_color_selection_fragme
         .actionChatColorSelectionFragmentToCustomChatColorCreatorFragment(args.recipientId, startPage)
         .setChatColorId(chatColors.id.longValue)
 
-      Navigation.findNavController(view).navigate(directions)
+      Navigation.findNavController(view).safeNavigate(directions)
     }
 
     override fun onDuplicate(chatColors: ChatColors) {
@@ -115,7 +116,7 @@ class ChatColorSelectionFragment : Fragment(R.layout.chat_color_selection_fragme
 
     override fun onAdd() {
       val directions = ChatColorSelectionFragmentDirections.actionChatColorSelectionFragmentToCustomChatColorCreatorFragment(args.recipientId, 0)
-      Navigation.findNavController(view).navigate(directions)
+      Navigation.findNavController(view).safeNavigate(directions)
     }
   }
 }

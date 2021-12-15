@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MediaSelectionNavigator(
   private val toCamera: Int = -1,
@@ -19,13 +20,13 @@ class MediaSelectionNavigator(
   fun goToCamera(view: View) {
     if (toCamera == -1) return
 
-    Navigation.findNavController(view).navigate(toCamera)
+    Navigation.findNavController(view).safeNavigate(toCamera)
   }
 
   fun goToGallery(view: View) {
     if (toGallery == -1) return
 
-    Navigation.findNavController(view).navigate(toGallery)
+    Navigation.findNavController(view).safeNavigate(toGallery)
   }
 
   companion object {

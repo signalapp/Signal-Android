@@ -14,6 +14,7 @@ import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 /**
  * Provides instructions for the old device on how to start a device-to-device transfer.
@@ -34,16 +35,15 @@ public final class OldDeviceTransferInstructionsFragment extends LoggingFragment
     });
 
     view.findViewById(R.id.old_device_transfer_instructions_fragment_continue)
-        .setOnClickListener(v -> Navigation.findNavController(v)
-                                           .navigate(R.id.action_oldDeviceTransferInstructions_to_oldDeviceTransferSetup));
+        .setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_oldDeviceTransferInstructions_to_oldDeviceTransferSetup));
   }
 
   @Override
   public void onResume() {
     super.onResume();
     if (EventBus.getDefault().getStickyEvent(TransferStatus.class) != null) {
-      NavHostFragment.findNavController(this)
-                     .navigate(R.id.action_oldDeviceTransferInstructions_to_oldDeviceTransferSetup);
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                  R.id.action_oldDeviceTransferInstructions_to_oldDeviceTransferSetup);
     } else {
       DeviceToDeviceTransferService.stop(requireContext());
     }

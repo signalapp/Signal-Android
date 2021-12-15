@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +39,7 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
 
   @Override
   protected void navigateToAccountLocked() {
-    Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionAccountLocked());
+    SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), RegistrationLockFragmentDirections.actionAccountLocked());
   }
 
   @Override
@@ -68,7 +69,7 @@ public final class RegistrationLockFragment extends BaseRegistrationLockFragment
       return null;
     }, none -> {
       cancelSpinning(pinButton);
-      Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionSuccessfulRegistration());
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), RegistrationLockFragmentDirections.actionSuccessfulRegistration());
     });
   }
 

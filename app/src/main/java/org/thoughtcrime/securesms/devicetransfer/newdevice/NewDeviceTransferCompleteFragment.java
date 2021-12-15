@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 /**
  * Shown after the new device successfully completes receiving a backup from the old device.
@@ -22,8 +23,8 @@ public final class NewDeviceTransferCompleteFragment extends LoggingFragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     view.findViewById(R.id.new_device_transfer_complete_fragment_continue_registration)
-        .setOnClickListener(v -> NavHostFragment.findNavController(this)
-                                                .navigate(R.id.action_newDeviceTransferComplete_to_enterPhoneNumberFragment));
+        .setOnClickListener(v -> SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                                             R.id.action_newDeviceTransferComplete_to_enterPhoneNumberFragment));
   }
 
   @Override

@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity
@@ -330,7 +331,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             recipient = state.recipient,
             onInternalDetailsClicked = {
               val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToInternalDetailsSettingsFragment(state.recipient.id)
-              navController.navigate(action)
+              navController.safeNavigate(action)
             }
           )
         )
@@ -403,7 +404,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             .setRecipientId(state.recipient.id)
             .setForResultMode(false)
 
-          navController.navigate(action)
+          navController.safeNavigate(action)
         }
       )
 
@@ -422,7 +423,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           onClick = {
             val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToSoundsAndNotificationsSettingsFragment(state.recipient.id)
 
-            navController.navigate(action)
+            navController.safeNavigate(action)
           }
         )
       }
@@ -614,7 +615,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             summary = DSLSettingsText.from(if (groupState.groupLinkEnabled) R.string.preferences_on else R.string.preferences_off),
             icon = DSLSettingsIcon.from(R.drawable.ic_link_16),
             onClick = {
-              navController.navigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToShareableGroupLinkFragment(groupState.groupId.requireV2().toString()))
+              navController.safeNavigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToShareableGroupLinkFragment(groupState.groupId.requireV2().toString()))
             }
           )
 
@@ -632,7 +633,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               icon = DSLSettingsIcon.from(R.drawable.ic_lock_24),
               onClick = {
                 val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToPermissionsSettingsFragment(ParcelableGroupId.from(groupState.groupId))
-                navController.navigate(action)
+                navController.safeNavigate(action)
               }
             )
           }

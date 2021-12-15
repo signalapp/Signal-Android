@@ -12,6 +12,7 @@ import androidx.navigation.Navigation;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 /**
  * Simple jumping off menu to starts a device-to-device transfer or restore a backup.
@@ -25,11 +26,11 @@ public final class TransferOrRestoreFragment extends LoggingFragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     view.findViewById(R.id.transfer_or_restore_fragment_transfer)
-        .setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_new_device_transfer_instructions));
+        .setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_new_device_transfer_instructions));
 
     View restoreBackup = view.findViewById(R.id.transfer_or_restore_fragment_restore);
     if (Build.VERSION.SDK_INT >= 21) {
-      restoreBackup.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_choose_backup));
+      restoreBackup.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_choose_backup));
     } else {
       restoreBackup.setVisibility(View.GONE);
     }

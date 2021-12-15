@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val START_LOCATION = "app.settings.start.location"
 private const val START_ARGUMENTS = "app.settings.start.arguments"
@@ -65,7 +66,7 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
     }
 
     startingAction?.let {
-      navController.navigate(it)
+      navController.safeNavigate(it)
     }
 
     SignalStore.settings().onConfigurationSettingChanged.observe(this) { key ->

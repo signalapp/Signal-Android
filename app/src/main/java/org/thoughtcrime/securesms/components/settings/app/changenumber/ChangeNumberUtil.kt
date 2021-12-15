@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registration.fragments.CaptchaFragment
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Helpers for various aspects of the change number flow.
@@ -35,7 +36,7 @@ object ChangeNumberUtil {
   }
 
   fun Fragment.changeNumberSuccess() {
-    findNavController().navigate(R.id.action_pop_app_settings_change_number)
+    findNavController().safeNavigate(R.id.action_pop_app_settings_change_number)
     Toast.makeText(requireContext(), R.string.ChangeNumber__your_phone_number_has_been_changed, Toast.LENGTH_SHORT).show()
   }
 }

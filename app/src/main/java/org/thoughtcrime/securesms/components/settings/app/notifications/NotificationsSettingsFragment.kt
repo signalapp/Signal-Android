@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.RingtoneUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val MESSAGE_SOUND_SELECT: Int = 1
 private const val CALL_RINGTONE_SELECT: Int = 2
@@ -225,7 +226,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
         title = DSLSettingsText.from(R.string.NotificationsSettingsFragment__profiles),
         summary = DSLSettingsText.from(R.string.NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose),
         onClick = {
-          findNavController().navigate(R.id.action_notificationsSettingsFragment_to_notificationProfilesFragment)
+          findNavController().safeNavigate(R.id.action_notificationsSettingsFragment_to_notificationProfilesFragment)
         }
       )
 

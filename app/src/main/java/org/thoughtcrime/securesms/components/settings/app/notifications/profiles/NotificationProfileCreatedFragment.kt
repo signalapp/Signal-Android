@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Shown at the end of the profile create flow.
@@ -28,7 +29,7 @@ class NotificationProfileCreatedFragment : LoggingFragment(R.layout.fragment_not
     val bottomText: TextView = view.findViewById(R.id.notification_profile_created_bottom_text)
 
     view.findViewById<View>(R.id.notification_profile_created_done).setOnClickListener {
-      findNavController().navigate(NotificationProfileCreatedFragmentDirections.actionNotificationProfileCreatedFragmentToNotificationProfileDetailsFragment(profileId))
+      findNavController().safeNavigate(NotificationProfileCreatedFragmentDirections.actionNotificationProfileCreatedFragmentToNotificationProfileDetailsFragment(profileId))
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)

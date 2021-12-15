@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
   titleId = R.string.ConversationSettingsFragment__sounds_and_notifications
@@ -116,7 +117,7 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
         summary = DSLSettingsText.from(customSoundSummary),
         onClick = {
           val action = SoundsAndNotificationsSettingsFragmentDirections.actionSoundsAndNotificationsSettingsFragmentToCustomNotificationsSettingsFragment(state.recipientId)
-          Navigation.findNavController(requireView()).navigate(action)
+          Navigation.findNavController(requireView()).safeNavigate(action)
         }
       )
     }
