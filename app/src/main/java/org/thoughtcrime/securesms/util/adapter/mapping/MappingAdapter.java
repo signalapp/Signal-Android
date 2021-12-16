@@ -44,9 +44,9 @@ import kotlin.jvm.functions.Function1;
  */
 public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHolder<?>> {
 
-  private final Map<Integer, Factory<?>> factories;
-  private final Map<Class<?>, Integer>   itemTypes;
-  private       int                      typeCount;
+  final Map<Integer, Factory<?>> factories;
+  final Map<Class<?>, Integer>   itemTypes;
+        int                      typeCount;
 
   public MappingAdapter() {
     super(new MappingDiffCallback());
