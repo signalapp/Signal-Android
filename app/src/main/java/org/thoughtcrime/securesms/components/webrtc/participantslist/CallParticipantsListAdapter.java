@@ -1,7 +1,8 @@
 package org.thoughtcrime.securesms.components.webrtc.participantslist;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.MappingAdapter;
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
 
 public class CallParticipantsListAdapter extends MappingAdapter {
 

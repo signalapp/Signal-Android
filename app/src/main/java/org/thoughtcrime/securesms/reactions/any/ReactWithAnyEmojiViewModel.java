@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappin
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.reactions.ReactionsRepository;
-import org.thoughtcrime.securesms.util.MappingModelList;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;

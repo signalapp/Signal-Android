@@ -1,18 +1,15 @@
-package org.thoughtcrime.securesms.util;
+package org.thoughtcrime.securesms.util.adapter.mapping;
 
-import android.annotation.SuppressLint;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.thoughtcrime.securesms.util.NoCrossfadeChangeDefaultAnimator;
 import org.whispersystems.libsignal.util.guava.Function;
 
 import java.util.HashMap;
@@ -128,55 +125,5 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
       return Optional.ofNullable(currentList.get(index));
     }
     return Optional.empty();
-  }
-
-  private static class MappingDiffCallback extends DiffUtil.ItemCallback<MappingModel<?>> {
-    @Override
-    public boolean areItemsTheSame(@NonNull MappingModel oldItem, @NonNull MappingModel newItem) {
-      if (oldItem.getClass() == newItem.getClass()) {
-        //noinspection unchecked
-        return oldItem.areItemsTheSame(newItem);
-      }
-      return false;
-    }
-
-    @SuppressLint("DiffUtilEquals")
-    @Override
-    public boolean areContentsTheSame(@NonNull MappingModel oldItem, @NonNull MappingModel newItem) {
-      if (oldItem.getClass() == newItem.getClass()) {
-        //noinspection unchecked
-        return oldItem.areContentsTheSame(newItem);
-      }
-      return false;
-    }
-
-    @Override
-    public @Nullable Object getChangePayload(@NonNull MappingModel oldItem, @NonNull MappingModel newItem) {
-      if (oldItem.getClass() == newItem.getClass()) {
-        //noinspection unchecked
-        return oldItem.getChangePayload(newItem);
-      }
-
-      return null;
-    }
-  }
-
-  public interface Factory<T extends MappingModel<T>> {
-    @NonNull MappingViewHolder<T> createViewHolder(@NonNull ViewGroup parent);
-  }
-
-  public static class LayoutFactory<T extends MappingModel<T>> implements Factory<T> {
-    private       Function<View, MappingViewHolder<T>> creator;
-    private final int                                  layout;
-
-    public LayoutFactory(@NonNull Function<View, MappingViewHolder<T>> creator, @LayoutRes int layout) {
-      this.creator = creator;
-      this.layout  = layout;
-    }
-
-    @Override
-    public @NonNull MappingViewHolder<T> createViewHolder(@NonNull ViewGroup parent) {
-      return creator.apply(LayoutInflater.from(parent.getContext()).inflate(layout, parent, false));
-    }
   }
 }

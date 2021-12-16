@@ -18,7 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsHomeAdapter;
 import org.thoughtcrime.securesms.payments.preferences.model.InfoCard;
-import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
 public class InfoCardViewHolder extends MappingViewHolder<InfoCard> {
 

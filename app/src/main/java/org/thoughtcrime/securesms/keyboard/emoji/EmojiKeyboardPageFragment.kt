@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader
 import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import java.util.Optional
 
 private val DELETE_KEY_EVENT: KeyEvent = KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL)

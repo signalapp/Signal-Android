@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.thoughtcrime.securesms.util.adapter.mapping;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

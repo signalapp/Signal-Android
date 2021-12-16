@@ -27,8 +27,8 @@ import org.thoughtcrime.securesms.components.BoldSelectionTabItem
 import org.thoughtcrime.securesms.components.ControllableTabLayout
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
-import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**
  * Fragment to create an avatar based off of a Vector or Text (via a pager)

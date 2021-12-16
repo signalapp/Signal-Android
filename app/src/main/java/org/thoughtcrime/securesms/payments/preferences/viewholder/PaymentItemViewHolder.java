@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsHomeAdapter;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
-import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.viewholders.RecipientMappingModel.RecipientIdMappingModel;
 import org.thoughtcrime.securesms.util.viewholders.RecipientViewHolder;

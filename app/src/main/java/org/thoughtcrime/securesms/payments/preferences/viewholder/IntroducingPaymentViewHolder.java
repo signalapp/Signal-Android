@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsHomeAdapter;
 import org.thoughtcrime.securesms.payments.preferences.model.IntroducingPayments;
-import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
 public class IntroducingPaymentViewHolder extends MappingViewHolder<IntroducingPayments> {

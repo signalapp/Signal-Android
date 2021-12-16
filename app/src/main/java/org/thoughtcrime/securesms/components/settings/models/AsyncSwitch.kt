@@ -7,7 +7,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
-import org.thoughtcrime.securesms.util.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**
  * Switch that will perform a long-running async operation (normally network) that requires a
@@ -16,7 +17,7 @@ import org.thoughtcrime.securesms.util.MappingAdapter
 object AsyncSwitch {
 
   fun register(adapter: MappingAdapter) {
-    adapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory(AsyncSwitch::ViewHolder, R.layout.dsl_async_switch_preference_item))
+    adapter.registerFactory(Model::class.java, LayoutFactory(AsyncSwitch::ViewHolder, R.layout.dsl_async_switch_preference_item))
   }
 
   class Model(

@@ -7,8 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Group;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.MappingModel;
-import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
 import java.util.Objects;
 

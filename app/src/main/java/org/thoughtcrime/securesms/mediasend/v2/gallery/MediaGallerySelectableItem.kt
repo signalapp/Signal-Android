@@ -15,10 +15,11 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaFolder
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingModel
-import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
 
 typealias OnMediaFolderClicked = (MediaFolder) -> Unit
@@ -34,8 +35,8 @@ object MediaGallerySelectableItem {
     onMediaClicked: OnMediaClicked,
     isMultiselectEnabled: Boolean
   ) {
-    mappingAdapter.registerFactory(FolderModel::class.java, MappingAdapter.LayoutFactory({ FolderViewHolder(it, onMediaFolderClicked) }, R.layout.v2_media_gallery_folder_item))
-    mappingAdapter.registerFactory(FileModel::class.java, MappingAdapter.LayoutFactory({ FileViewHolder(it, onMediaClicked) }, if (isMultiselectEnabled) R.layout.v2_media_gallery_item else R.layout.v2_media_gallery_item_no_check))
+    mappingAdapter.registerFactory(FolderModel::class.java, LayoutFactory({ FolderViewHolder(it, onMediaFolderClicked) }, R.layout.v2_media_gallery_folder_item))
+    mappingAdapter.registerFactory(FileModel::class.java, LayoutFactory({ FileViewHolder(it, onMediaClicked) }, if (isMultiselectEnabled) R.layout.v2_media_gallery_item else R.layout.v2_media_gallery_item_no_check))
   }
 
   class FolderModel(val mediaFolder: MediaFolder) : MappingModel<FolderModel> {

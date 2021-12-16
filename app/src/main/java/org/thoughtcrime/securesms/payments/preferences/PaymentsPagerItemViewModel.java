@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
-import org.thoughtcrime.securesms.util.MappingModelList;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;

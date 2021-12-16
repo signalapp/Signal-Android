@@ -6,16 +6,17 @@ import android.widget.TextView
 import androidx.annotation.StringRes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingModel
-import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 /**
  * DSL custom preference for showing default emoji/name combos for create/edit profile.
  */
 object NotificationProfileNamePreset {
   fun register(adapter: MappingAdapter) {
-    adapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it) }, R.layout.about_preset_item))
+    adapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.about_preset_item))
   }
 
   class Model(val emoji: String, @StringRes val bodyResource: Int, val onClick: (Model) -> Unit) : MappingModel<Model> {

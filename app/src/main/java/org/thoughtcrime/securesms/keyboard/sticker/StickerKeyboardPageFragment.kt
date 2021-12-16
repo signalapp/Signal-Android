@@ -22,9 +22,9 @@ import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener.RolloverStickerRetriever
 import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.InsetItemDecoration
-import org.thoughtcrime.securesms.util.MappingModel
-import org.thoughtcrime.securesms.util.MappingModelList
 import org.thoughtcrime.securesms.util.Throttler
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 import org.whispersystems.libsignal.util.Pair
 import java.util.Optional
 import kotlin.math.abs
