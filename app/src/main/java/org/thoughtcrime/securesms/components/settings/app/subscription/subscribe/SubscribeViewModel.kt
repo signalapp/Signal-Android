@@ -188,6 +188,7 @@ class SubscribeViewModel(
         SignalStore.donationsValues().markUserManuallyCancelled()
         refreshActiveSubscription()
         MultiDeviceSubscriptionSyncRequestJob.enqueue()
+        donationPaymentRepository.scheduleSyncForAccountRecordChange()
         store.update { it.copy(stage = SubscribeState.Stage.READY) }
       },
       onError = { throwable ->

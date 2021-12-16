@@ -134,6 +134,7 @@ public final class StorageSyncHelper {
                                                          .setDefaultReactions(SignalStore.emojiValues().getReactions())
                                                          .setSubscriber(StorageSyncModels.localToRemoteSubscriber(SignalStore.donationsValues().getSubscriber()))
                                                          .setDisplayBadgesOnProfile(SignalStore.donationsValues().getDisplayBadgesOnProfile())
+                                                         .setSubscriptionManuallyCancelled(SignalStore.donationsValues().isUserManuallyCancelled())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -158,6 +159,12 @@ public final class StorageSyncHelper {
     SignalStore.settings().setUniversalExpireTimer(update.getNew().getUniversalExpireTimer());
     SignalStore.emojiValues().setReactions(update.getNew().getDefaultReactions());
     SignalStore.donationsValues().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
+
+    if (update.getNew().isSubscriptionManuallyCancelled()) {
+      SignalStore.donationsValues().markUserManuallyCancelled();
+    } else {
+      SignalStore.donationsValues().clearUserManuallyCancelled();
+    }
 
     Subscriber subscriber = StorageSyncModels.remoteToLocalSubscriber(update.getNew().getSubscriber());
     if (subscriber != null) {
