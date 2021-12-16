@@ -87,7 +87,7 @@ import javax.xml.transform.stream.StreamResult;
  *
  * @author  @anlaji
  * @version 1.0
- * @since   2021-11-27
+ * @since   2021-12-16
  */
 
 public class ChatFormatter {
@@ -104,7 +104,6 @@ public class ChatFormatter {
     private       Document              dom;
     private final Cursor                conversation;
     private final MmsSmsDatabase.Reader reader;
-    private final MmsSmsDatabase        db;
     private final String                timePeriod;
 
     ChatFormatter (@NonNull Context context, long threadId, Date fromDate, Date untilDate) {
@@ -112,7 +111,7 @@ public class ChatFormatter {
         this.threadId = threadId;
         this.selectedMedia = new HashMap<> ();
         this.otherFiles = new HashMap<> ();
-        this.db = SignalDatabase.mmsSms();
+        MmsSmsDatabase db = SignalDatabase.mmsSms();
         timePeriod =  DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, atStartOfDay (fromDate).getTime ()) + " - " + DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, atEndOfDay (untilDate).getTime ());
         int countBeforeStartDate = db.getConversationCount (threadId, atStartOfDay (fromDate).getTime ());
         int countBeforeEndDate = db.getConversationCount (threadId, atEndOfDay (untilDate).getTime ());
@@ -184,10 +183,9 @@ public class ChatFormatter {
         RecipientDatabase recipientDatabase = SignalDatabase.recipients();
         Recipient recipient = threadDatabase.getRecipientForThreadId (threadId);
         assert recipient != null;
-        RecipientDatabase.RecipientSettings settings = recipientDatabase.getRecipientSettings(recipient.getId ());
 
         Element members = addElement (conv, "members");
-        if (settings.getGroupId() != null && recipient.isGroup ()) {
+        if (recipient.getGroupId() != null && recipient.isGroup ()) {
             Recipient groupRecipient = Recipient.resolved (recipient.getId ());
             GroupId groupId = groupRecipient.requireGroupId ();
             List<Recipient> registeredMembers = RecipientUtil.getEligibleForSending (groupRecipient.getParticipants ());
@@ -199,15 +197,15 @@ public class ChatFormatter {
             addElement (group, "number_of_members", String.valueOf (registeredMembers.size ()));
 
             for (Recipient r : registeredMembers)
-                createPersonElem (group, r, settings);
+                createPersonElem (group, r);
 
         } else {
-            createPersonElem (members, recipient, settings);
-            createPersonElem (members, Recipient.self (), settings);
+            createPersonElem (members, recipient);
+            createPersonElem (members, Recipient.self ());
         }
     }
 
-    private void createPersonElem (Element parent, @NonNull Recipient recipient, RecipientDatabase.RecipientSettings settings) {
+    private void createPersonElem (Element parent, @NonNull Recipient recipient) {
         Element contact = addElement (parent, "contact");
 
         addAttribute (contact, "id", recipient.getId ().toString ());
@@ -234,18 +232,6 @@ public class ChatFormatter {
             addElement (contact, "email", recipient.getEmail ().get ());
         if (recipient.hasSmsAddress ())
             addElement (contact, "phone", PhoneNumberFormatter.prettyPrint(recipient.getSmsAddress ().get ()));
-
-        Uri systemContactPhoto          = Util.uri(settings.getSystemContactPhotoUri());
-        Uri systemContact =      Util.uri(settings.getSystemContactUri ());
-        if(systemContactPhoto!=null){
-            addElement (contact, "contact_photo_uri", systemContactPhoto.getPath ());
-            if(settings.getProfileKey()!=null)
-            otherFiles.put (new String(settings.getProfileKey ()), systemContactPhoto);
-        }if(systemContact!=null){
-            addElement (contact, "contact_uri", systemContact.getPath ());
-            if(settings.getProfileKey()!=null)
-                otherFiles.put (new String(settings.getProfileKey ()), systemContact);
-        }
     }
 
     private void createConversationElem (Element conv) {
