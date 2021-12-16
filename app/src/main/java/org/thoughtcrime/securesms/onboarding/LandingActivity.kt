@@ -23,8 +23,6 @@ class LandingActivity : BaseActionBarActivity() {
         findViewById<View>(R.id.linkButton).setOnClickListener { link() }
         IdentityKeyUtil.generateIdentityKeyPair(this)
         TextSecurePreferences.setPasswordDisabled(this, true)
-        TextSecurePreferences.setReadReceiptsEnabled(this, true)
-        TextSecurePreferences.setTypingIndicatorsEnabled(this, true)
         // AC: This is a temporary workaround to trick the old code that the screen is unlocked.
         KeyCachingService.setMasterSecret(applicationContext, Object())
     }
