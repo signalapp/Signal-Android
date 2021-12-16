@@ -77,7 +77,6 @@ object ConversationMenuHelper {
             } else {
                 inflater.inflate(R.menu.menu_conversation_block, menu)
             }
-            inflater.inflate(R.menu.menu_conversation_copy_session_id, menu)
         }
         // Closed group menu (options that should only be present in closed groups)
         if (thread.isClosedGroupRecipient) {

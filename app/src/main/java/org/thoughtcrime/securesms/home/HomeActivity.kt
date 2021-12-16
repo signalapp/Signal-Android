@@ -12,6 +12,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -250,8 +251,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         bottomSheet.onViewDetailsTapped = {
             bottomSheet.dismiss()
             val userDetailsBottomSheet = UserDetailsBottomSheet()
-            val bundle = Bundle()
-            bundle.putString("publicKey", thread.recipient.address.toString())
+            val bundle = bundleOf(
+                    UserDetailsBottomSheet.ARGUMENT_PUBLIC_KEY to thread.recipient.address.toString(),
+                    UserDetailsBottomSheet.ARGUMENT_THREAD_ID to thread.threadId
+            )
             userDetailsBottomSheet.arguments = bundle
             userDetailsBottomSheet.show(supportFragmentManager, userDetailsBottomSheet.tag)
         }

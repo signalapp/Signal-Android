@@ -12,7 +12,10 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_user_details_bottom_sheet.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.MessagingModuleConfiguration
@@ -20,11 +23,21 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.UiModeUtilities
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class UserDetailsBottomSheet : BottomSheetDialogFragment() {
+
+    @Inject lateinit var threadDb: ThreadDatabase
+
+    companion object {
+        const val ARGUMENT_PUBLIC_KEY = "publicKey"
+        const val ARGUMENT_THREAD_ID = "threadId"
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_user_details_bottom_sheet, container, false)
@@ -32,8 +45,10 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val publicKey = arguments?.getString("publicKey") ?: return dismiss()
+        val publicKey = arguments?.getString(ARGUMENT_PUBLIC_KEY) ?: return dismiss()
+        val threadID = arguments?.getLong(ARGUMENT_THREAD_ID) ?: return dismiss()
         val recipient = Recipient.from(requireContext(), Address.fromSerialized(publicKey), false)
+        val threadRecipient = threadDb.getRecipientForThreadId(threadID) ?: return dismiss()
         profilePictureView.publicKey = publicKey
         profilePictureView.glide = GlideApp.with(this)
         profilePictureView.isLarge = true
@@ -65,6 +80,9 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
             }
         }
         nameTextView.text = recipient.name ?: publicKey // Uses the Contact API internally
+
+        publicKeyTextView.isVisible = !threadRecipient.isOpenGroupRecipient
+        messageButton.isVisible = !threadRecipient.isOpenGroupRecipient
         publicKeyTextView.text = publicKey
         publicKeyTextView.setOnLongClickListener {
             val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
