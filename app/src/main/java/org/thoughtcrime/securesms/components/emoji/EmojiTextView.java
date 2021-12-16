@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Annotation;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
@@ -155,6 +156,8 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    widthMeasureSpec = applyWidthMeasureRoundingFix(widthMeasureSpec);
+
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     CharSequence text = getText();
     if (getLayout() == null || !measureLastLine || text == null || text.length() == 0) {
@@ -173,6 +176,32 @@ public class EmojiTextView extends AppCompatTextView {
         lastLineWidth = (int) getPaint().measureText(text, start, text.length());
       }
     }
+  }
+
+  /**
+   * Starting from API 30, there can be a rounding error in text layout when a non-default font
+   * scale is used. This causes a line break to be inserted where there shouldn't be one. Force the
+   * width to be larger to work around this problem.
+   * https://issuetracker.google.com/issues/173574230
+   *
+   * @param widthMeasureSpec the original measure spec passed to {@link #onMeasure(int, int)}
+   * @return the measure spec with the workaround, or the original one.
+   */
+  private int applyWidthMeasureRoundingFix(int widthMeasureSpec) {
+    if (Build.VERSION.SDK_INT >= 30 && Math.abs(getResources().getConfiguration().fontScale - 1f) > 0.01f) {
+      CharSequence text = getText();
+      if (text != null) {
+        int widthSpecMode     = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSpecSize     = MeasureSpec.getSize(widthMeasureSpec);
+        int measuredTextWidth = (int) getPaint().measureText(text, 0, text.length());
+        int desiredWidth      = measuredTextWidth + getPaddingLeft() + getPaddingRight();
+        if (widthSpecMode == MeasureSpec.AT_MOST && desiredWidth < widthSpecSize) {
+          return MeasureSpec.makeMeasureSpec(desiredWidth + 1, MeasureSpec.EXACTLY);
+        }
+      }
+    }
+
+    return widthMeasureSpec;
   }
 
   public int getLastLineWidth() {
