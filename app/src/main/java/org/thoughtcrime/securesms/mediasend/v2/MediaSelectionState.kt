@@ -30,6 +30,8 @@ data class MediaSelectionState(
     MediaSendConstants.MAX_PUSH
   }
 
+  val canSend = !isSent && selectedMedia.isNotEmpty()
+
   enum class ViewOnceToggleState(val code: Int) {
     INFINITE(0),
     ONCE(1);
