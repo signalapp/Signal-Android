@@ -85,16 +85,18 @@ class WebRtcCallParticipantsPage {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    WebRtcCallParticipantsPage that = (WebRtcCallParticipantsPage) o;
+    final WebRtcCallParticipantsPage that = (WebRtcCallParticipantsPage) o;
     return isSpeaker == that.isSpeaker &&
            isRenderInPip == that.isRenderInPip &&
-           focusedParticipant.equals(that.focusedParticipant) &&
+           isPortrait == that.isPortrait &&
+           isLandscapeEnabled == that.isLandscapeEnabled &&
+           isIncomingRing == that.isIncomingRing &&
            callParticipants.equals(that.callParticipants) &&
-           isPortrait == that.isPortrait;
+           focusedParticipant.equals(that.focusedParticipant);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(callParticipants, isSpeaker, focusedParticipant, isRenderInPip, isPortrait);
+    return Objects.hash(callParticipants, focusedParticipant, isSpeaker, isRenderInPip, isPortrait, isLandscapeEnabled, isIncomingRing);
   }
 }

@@ -226,6 +226,7 @@ public class WebRtcCallView extends ConstraintLayout {
     incomingCallViews.add(decline);
     incomingCallViews.add(declineLabel);
     incomingCallViews.add(footerGradient);
+    incomingCallViews.add(incomingRingStatus);
 
     adjustableMarginsSet.add(micToggle);
     adjustableMarginsSet.add(cameraDirectionToggle);
@@ -589,8 +590,7 @@ public class WebRtcCallView extends ConstraintLayout {
     if (webRtcControls.displayIncomingCallButtons()) {
       visibleViewSet.addAll(incomingCallViews);
 
-      incomingRingStatus.setVisibility(VISIBLE);
-      incomingRingStatus.setText(R.string.WebRtcCallView__signal_call);
+      incomingRingStatus.setText(webRtcControls.displayAnswerWithAudio() ? R.string.WebRtcCallView__signal_call : R.string.WebRtcCallView__signal_video_call);
 
       answer.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer));
     }
@@ -598,9 +598,6 @@ public class WebRtcCallView extends ConstraintLayout {
     if (webRtcControls.displayAnswerWithAudio()) {
       visibleViewSet.add(answerWithAudio);
       visibleViewSet.add(answerWithAudioLabel);
-
-      incomingRingStatus.setVisibility(VISIBLE);
-      incomingRingStatus.setText(R.string.WebRtcCallView__signal_video_call);
 
       answer.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer_with_video));
     }
@@ -934,8 +931,10 @@ public class WebRtcCallView extends ConstraintLayout {
     constraintSet.applyTo(parent);
 
     if (showSmallHeader) {
+      smallHeaderConstraints.setVisibility(incomingRingStatus.getId(), visibleViewSet.contains(incomingRingStatus) ? View.VISIBLE : View.GONE);
       smallHeaderConstraints.applyTo(toolbar);
     } else {
+      largeHeaderConstraints.setVisibility(incomingRingStatus.getId(), visibleViewSet.contains(incomingRingStatus) ? View.VISIBLE : View.GONE);
       largeHeaderConstraints.applyTo(toolbar);
     }
   }
