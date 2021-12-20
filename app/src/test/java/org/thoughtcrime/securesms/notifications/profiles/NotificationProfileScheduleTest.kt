@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.notifications.profiles
 
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.`is`
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.BeforeClass
@@ -15,6 +17,7 @@ class NotificationProfileScheduleTest {
   private val sunday0am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 0, 0, 0)
   private val sunday1am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 1, 0, 0)
   private val sunday9am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 9, 0, 0)
+  private val sunday930am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 9, 30, 0)
   private val sunday10pm: LocalDateTime = LocalDateTime.of(2021, 7, 4, 22, 0, 0)
 
   private val monday0am: LocalDateTime = sunday0am.plusDays(1)
@@ -138,5 +141,11 @@ class NotificationProfileScheduleTest {
     assertFalse(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC)))
     assertFalse(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC)))
     assertFalse(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC)))
+  }
+
+  @Test
+  fun `when end time is midnight return midnight of next day from now`() {
+    val schedule = NotificationProfileSchedule(id = 1L, enabled = false, start = 0, end = 2400, daysEnabled = DayOfWeek.values().toSet())
+    assertThat(schedule.endDateTime(sunday930am), `is`(monday0am))
   }
 }

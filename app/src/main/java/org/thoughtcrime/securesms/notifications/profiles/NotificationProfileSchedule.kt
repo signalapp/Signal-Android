@@ -56,7 +56,8 @@ data class NotificationProfileSchedule(
   }
 
   fun endTime(): LocalTime {
-    return LocalTime.of(end / 100, end % 100)
+    val adjustedEnd = if (end == 2400) 0 else end
+    return LocalTime.of(adjustedEnd / 100, adjustedEnd % 100)
   }
 
   fun endDateTime(localNow: LocalDateTime): LocalDateTime {
@@ -73,8 +74,8 @@ data class NotificationProfileSchedule(
 
 fun Int.toLocalDateTime(now: LocalDateTime): LocalDateTime {
   if (this == 2400) {
-    return now.plusDays(1).withHour(0)
+    return now.plusDays(1).withHour(0).withMinute(0).withSecond(0)
   }
 
-  return now.withHour(this / 100).withMinute(this % 100)
+  return now.withHour(this / 100).withMinute(this % 100).withSecond(0)
 }

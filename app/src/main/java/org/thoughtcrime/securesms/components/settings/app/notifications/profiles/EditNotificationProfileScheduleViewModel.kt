@@ -60,7 +60,8 @@ class EditNotificationProfileScheduleViewModel(
   }
 
   fun setEndTime(hour: Int, minute: Int) {
-    scheduleSubject.onNext(schedule.copy(end = hour * 100 + minute))
+    val adjustedEndHour = if (hour == 0) 24 else hour
+    scheduleSubject.onNext(schedule.copy(end = adjustedEndHour * 100 + minute))
   }
 
   fun setEnabled(enabled: Boolean) {
