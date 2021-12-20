@@ -2509,7 +2509,7 @@
   <string name="BackupDialog_verify">تایید </string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">تاسې په بریا سره خپل د بک اپ پټ عبارت دننه کړ</string>
   <string name="BackupDialog_passphrase_was_not_correct">پټ عبارت سم نه و</string>
-  <string name="LocalBackupJob_creating_backup">بک اپ د رامنځته کولو په حال کې ده…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">بک اپ د رامنځته کولو په حال کې ده…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">بک اپ تر سره نشو</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ستاسې د بک اپ ډایریکټوري له منځه تللي یا هم انتقال شوې ده.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ستاسې د بک اپ فایل ډېر زیات ستر دی چې په دې حجم کې یې زیرمه کړو.</string>

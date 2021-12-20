@@ -2398,7 +2398,7 @@
   <string name="BackupDialog_verify">Валидиране</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно въведена парола за архива</string>
   <string name="BackupDialog_passphrase_was_not_correct">Паролата не беше правилна</string>
-  <string name="LocalBackupJob_creating_backup">Създаване на архив…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Създаване на архив…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Архивирането не бе успешно</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Вашата резервна директория е изтрита или преместена.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Вашият архивен файл е твърде голям, за да се съхранява на този том.</string>

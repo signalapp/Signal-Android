@@ -2319,7 +2319,7 @@
   <string name="BackupDialog_verify">ଯାଞ୍ଚ କରନ୍ତୁ</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">ଆପଣ ସଫଳତାର ସହିତ ଆପଣଙ୍କର ବ୍ୟାକଅପ୍ ପାସଫ୍ରେଜ୍ ପ୍ରବେଶ କରିଛନ୍ତି</string>
   <string name="BackupDialog_passphrase_was_not_correct">ପାସଫ୍ରେଜ୍ ସଠିକ୍ ନୁହେଁ</string>
-  <string name="LocalBackupJob_creating_backup">ବ୍ୟାକଅପ୍ ସୃଷ୍ଟି କରୁଛି…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">ବ୍ୟାକଅପ୍ ସୃଷ୍ଟି କରୁଛି…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">ବ୍ୟାକଅପ୍ ବିଫଳ ହେଲା</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ଆପଣଙ୍କର ବ୍ୟାକଅପ୍ ନିର୍ଦ୍ଦେଶକ ବିଲୋପ ହୋଇଛି କିମ୍ବା ଘୁଞ୍ଚିଯାଇଛି</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ତୁମର ବ୍ୟାକଅପ୍ ଫାଇଲ୍ ଏହି ଭଲ୍ୟୁମରେ ଗଚ୍ଛିତ ରଖିବା ପାଇଁ ବହୁତ ବଡ ଅଟେ</string>

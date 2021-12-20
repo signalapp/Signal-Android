@@ -1954,7 +1954,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signalត្រូវការសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកខាងក្រៅដើម្បីបង្កើតការស្តារឡើងវិញ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\"។ </string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">បម្រុងទុកលើលចុងក្រោយ៖ %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">កំពុងដំណើរការ</string> -->
-  <string name="LocalBackupJob_creating_backup">កំពុងបង្កើតការបម្រុងទុក…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">កំពុងបង្កើតការបម្រុងទុក…</string> -->
   <string name="ProgressPreference_d_messages_so_far">ឥឡូវនេះសារ%d</string>
   <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">សូមបញ្ចូលលេខកូដផ្ទៀងផ្ទាត់ដែលបានផ្ញើទៅកាន់ %s។</string> -->
   <string name="RegistrationActivity_wrong_number">ខុសលេខ</string>

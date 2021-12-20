@@ -1710,7 +1710,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Kailangan ng Signal ng pahintulot sa paggamit ng panlabas na storage upang makalikha ng mga backup, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Pahintulot\", at i-enable ang \"Storage\". </string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">Huling backup: %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">Isinasagawa</string> -->
-  <string name="LocalBackupJob_creating_backup">Lumilikha ng backup…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Lumilikha ng backup…</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d mensahe sa ngayon</string>
   <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Pakilagay ang verification code na ipinadala kay %s.</string> -->
   <string name="RegistrationActivity_wrong_number">Mali ang numero</string>

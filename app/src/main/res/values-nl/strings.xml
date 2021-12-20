@@ -1261,7 +1261,7 @@
   <string name="WebRtcCallView__view_participants_list">Deelnemers weergeven</string>
   <string name="WebRtcCallView__your_video_is_off">Je camera staat uit</string>
   <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden …</string>
-  <string name="WebRtcCallView__joining">Verbinden met groep aan het maken …</string>
+  <string name="WebRtcCallView__joining">Verbinden met de groep aan het maken …</string>
   <string name="WebRtcCallView__disconnected">Verbinding verbroken</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal zal %1$s bellen</string>
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zal %1$s en %2$s bellen</string>
@@ -2588,7 +2588,7 @@
   <string name="BackupDialog_verify">Verifiëren</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-upwachtwoord ingevoerd</string>
   <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-upwachtwoord ingevoerd.</string>
-  <string name="LocalBackupJob_creating_backup">Back-upbestand aan het maken …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Back-upbestand aan het maken …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>

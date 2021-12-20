@@ -2477,7 +2477,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="BackupDialog_verify">Sahkan</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Anda berjaya memasukkan frasa laluan sandaran anda</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frasa laluan tidak betul</string>
-  <string name="LocalBackupJob_creating_backup">Mencipta sandaran…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Mencipta sandaran…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sandaran gagal</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori sandaran anda telah dipadamkan atau telah dipindah.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fail sandaran anda terlalu besar untuk disimpan pada volum ini.</string>

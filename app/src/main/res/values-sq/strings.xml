@@ -2593,7 +2593,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BackupDialog_verify">Verifikoje</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">E dhatë me sukses frazëkalimin tuaj të kopjeruajtjes</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frazëkalimi s\’qe i saktë</string>
-  <string name="LocalBackupJob_creating_backup">Po krijohet kopjeruajtje…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Po krijohet kopjeruajtje…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Kopjeruajtja dështoi</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Drejtoria juaj e kopjeruajtjeve është fshirë ose lëvizur.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Kartela e kopjeruajtjes tuaj është shumë e madhe për t\’u depozituar në këtë vëllim.</string>

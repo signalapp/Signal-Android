@@ -2679,7 +2679,7 @@
   <string name="BackupDialog_verify">Verifikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli svoju lozinku za rezervne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lozinka nije tačna</string>
-  <string name="LocalBackupJob_creating_backup">Kreiram rezervnu kopiju…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Kreiram rezervnu kopiju…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Neuspjelo kreiranje rezervne kopije</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktorij sa rezervnim kopijama izbrisan je ili premješten.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Vaša rezervna kopija prevelika je za pohranjivanje na ovoj lokaciji.</string>

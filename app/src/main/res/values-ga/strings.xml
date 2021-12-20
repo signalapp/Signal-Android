@@ -1125,7 +1125,7 @@ a shonrú</string>
   <string name="BackupDialog_copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">An cúltaca deireanach: %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">Ar siúil</string> -->
-  <string name="LocalBackupJob_creating_backup">Ag cruthú cúltaca…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Ag cruthú cúltaca…</string> -->
   <string name="ProgressPreference_d_messages_so_far">%d dteachtaireacht go nuige seo</string>
   <string name="RegistrationActivity_wrong_number">Uimhir mhícheart</string>
   <string name="BackupUtil_never">Choíche</string>

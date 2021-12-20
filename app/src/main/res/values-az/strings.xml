@@ -2585,7 +2585,7 @@
   <string name="BackupDialog_verify">Təsdiqlə</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Nüsxə parolunuzu uğurla daxil etdiniz</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parol doğru deyil</string>
-  <string name="LocalBackupJob_creating_backup">Nüsxə yaradılır…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Nüsxə yaradılır…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Nüsxələnmədi</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Nüsxə kataloqunuz silindi və ya köçürüldü.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Nüsxə faylınız bu sürücüdə saxlanılmaq üçün çox böyükdür.</string>

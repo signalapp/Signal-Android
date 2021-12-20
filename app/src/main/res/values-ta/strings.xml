@@ -2489,7 +2489,7 @@
   <string name="BackupDialog_verify">சரிபார்க்கவும்</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரை வெற்றிகரமாக உள்ளிட்டுள்ளீர்கள்</string>
   <string name="BackupDialog_passphrase_was_not_correct">கடவுச்சொல் சரியாக இல்லை</string>
-  <string name="LocalBackupJob_creating_backup">காப்புப்பதிவு பயனர் தரவு உருவாக்குகிறது …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">காப்புப்பதிவு பயனர் தரவு உருவாக்குகிறது …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">மறுபிரதி தோல்வியுற்றது</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">உங்கள் மறுபிரதி கோப்புறை நீக்கப்பட்டது அல்லது வேறு இடத்திற்கு நகர்த்தப்பட்டது.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">உங்கள் மறுபிரதி கோப்பின் அளவு இந்த தொகுதியில் சேமிக்க முடியாத அளவுக்கு பெரியது.</string>

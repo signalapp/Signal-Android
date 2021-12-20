@@ -2764,7 +2764,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="BackupDialog_verify">Potrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspešno ste vnesli geslo svoje varnostne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Geslo ni bilo pravilno</string>
-  <string name="LocalBackupJob_creating_backup">Ustvarjanje varnostne kopije …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Ustvarjanje varnostne kopije …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Izdelava varnostne kopije ni uspela</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mapa za varnostne kopije je bila izbrisana ali premaknjena.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Vaša varnostna kopija je prevelika za to shrambo.</string>

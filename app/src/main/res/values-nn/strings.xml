@@ -2592,7 +2592,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="BackupDialog_verify">Stadfest</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du skreiv inn rett passordfrase for reservekopiane dine</string>
   <string name="BackupDialog_passphrase_was_not_correct">Feil passordfrase</string>
-  <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Reservekopiering feila</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mappa for reservekopiar er sletta eller flytta.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Reservekopi-fila er for stor til å lagra på denne plasseringa.</string>

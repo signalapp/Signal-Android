@@ -2573,7 +2573,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="BackupDialog_verify">सत्यापित करें</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">आप अपना बैकअप पासफ्रेज दर्ज करने में सफल रहे हैं </string>
   <string name="BackupDialog_passphrase_was_not_correct">पासफ्रेज गलत </string>
-  <string name="LocalBackupJob_creating_backup">बैकअप बनाया जा रहा है</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">बैकअप बनाया जा रहा है</string> -->
   <string name="LocalBackupJobApi29_backup_failed">बैकअप विफल</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">आपकी बैकअप डायरेक्टरी या तो मिटा दी गयी है या यहाँ से कहीं और हटा दी गयी है.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">इस वॉल्यूम में आपकी बैकअप फाइल को संगृहीत करने के लिए पर्याप्त जगह नहीं है।  </string>
@@ -2846,7 +2846,9 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">आप जितने ग्रुपों में हैं, उसके आधार पर इसमें कुछ समय लग सकता है</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">यूज़र का डेटा हटाया जा रहा है और ऐप को रीसेट किया जा रहा है </string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
@@ -3063,6 +3065,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">प्रोफ़ाइल बनाएं </string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ब्लॉक</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d संपर्क</string>
@@ -3425,6 +3428,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="EditNotificationProfileFragment__save">सेव करें</string>
   <!--Title of edit notification profile screen-->
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">इस नाम से एक प्रोफाइल पहले से उपयोग में है </string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">कार्यालय</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
@@ -3447,6 +3451,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">पूर्ववत</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">प्रोफ़ाइल को स्थायी रूप से हटाएं?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">डिलीट करें</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->

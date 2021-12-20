@@ -2466,7 +2466,7 @@
   <string name="BackupDialog_verify">Kinnita</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Sisestasid varukoopia salasõna edukalt</string>
   <string name="BackupDialog_passphrase_was_not_correct">Salasõna ei olnud õige</string>
-  <string name="LocalBackupJob_creating_backup">Varukoopia loomine…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Varukoopia loomine…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Varundamine ebaõnnestus</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sinu varukoopiate kataloog on kustutatud või teisaldatud.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Sinu varukoopia fail on sellele kettale salvestamiseks liiga suur.</string>

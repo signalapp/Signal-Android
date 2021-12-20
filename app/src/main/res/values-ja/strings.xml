@@ -2481,7 +2481,7 @@
   <string name="BackupDialog_verify">確認する</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">正しいバックアップ用パスフレーズが入力されました</string>
   <string name="BackupDialog_passphrase_was_not_correct">パスフレーズが違います</string>
-  <string name="LocalBackupJob_creating_backup">バックアップを作成しています…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">バックアップを作成しています…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">バックアップに失敗しました</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは削除または移動されています。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">あなたのバックアップファイルは、このボリュームに保存するには大きすぎます。</string>
@@ -3354,7 +3354,7 @@
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">通知許可</string>
   <!--Description of what the user should be doing with this screen-->
-  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">このプロファイルの有効時に、通知や通話着信を受け取りたい相手やグループを選択してください。</string>
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">このプロファイルの有効時に通知や通話着信を受け取りたい、人やグループを選択してください。</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">人またはグループを追加</string>
   <!--Call to action button on contact picker for adding to profile-->

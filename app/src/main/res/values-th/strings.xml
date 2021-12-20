@@ -2383,7 +2383,7 @@
   <string name="BackupDialog_verify">ตรวจยืนยัน</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">คุณได้ป้อนวลีรหัสผ่านสำหรับข้อมูลสำรองของคุณเสร็จแล้ว</string>
   <string name="BackupDialog_passphrase_was_not_correct">วลีรหัสผ่านไม่ถูกต้อง</string>
-  <string name="LocalBackupJob_creating_backup">กำลังสร้างข้อมูลสำรอง…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">กำลังสร้างข้อมูลสำรอง…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">สำรองข้อมูลไม่สำเร็จ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ไดเรกทอรีสำหรับข้อมูลสำรองของคุณได้ถูกย้ายหรือลบ</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">แฟ้มสำรองของคุณใหญ่เกินที่จะจัดเก็บไว้ในนี้ได้</string>

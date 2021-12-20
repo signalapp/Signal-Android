@@ -2564,7 +2564,7 @@
   <string name="BackupDialog_verify">যাচাই করুন</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">আপনি সফলভাবে আপনার ব্যাকআপ পাসফ্রেজটি প্রবেশ করিয়েছেন</string>
   <string name="BackupDialog_passphrase_was_not_correct">পাসফ্রেজ সঠিক ছিলোনা।</string>
-  <string name="LocalBackupJob_creating_backup">ব্যাকআপ তৈরি করা হচ্ছে …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">ব্যাকআপ তৈরি করা হচ্ছে …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">ব্যাকআপ ব্যর্থ হয়েছে</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">আপনার ব্যাকআপ ডিরেক্টরি মুছে ফেলা হয়েছে বা সরানো হয়েছে।</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">আপনার ব্যাকআপ ফাইলটি এই স্থানে সংরক্ষণ করার জন্য খুব বড়।</string>

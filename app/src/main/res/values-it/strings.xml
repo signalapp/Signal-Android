@@ -2585,7 +2585,7 @@
   <string name="BackupDialog_verify">Verifica</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Hai inserito correttamente la passphrase del tuo backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">La passphrase non è corretta</string>
-  <string name="LocalBackupJob_creating_backup">Creazione backup…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Creazione backup…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Backup fallito</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">La cartella di backup è stata eliminata o spostata.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Il tuo file di backup è troppo grande per essere memorizzato su questo volume.</string>

@@ -2587,7 +2587,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BackupDialog_verify">Hitelesítés</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">A biztonsági mentés jelmondat megadása sikeres volt</string>
   <string name="BackupDialog_passphrase_was_not_correct">A jelmondat nem megfelelő</string>
-  <string name="LocalBackupJob_creating_backup">Biztonsági mentés létrehozása…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Biztonsági mentés létrehozása…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sikertelen biztonsági mentés</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">A biztonsági mentéseket tartalmazó könyvtár törölve lett, vagy át lett helyezve.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">A biztonsági mentés mérete túl nagy ahhoz, hogy itt legyen létrehozva.</string>

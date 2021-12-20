@@ -2582,7 +2582,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="BackupDialog_verify">Sannreyna</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Þér tókst að setja inn aðgangskóða öryggisafritsins</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lykilorðið var ekki rétt</string>
-  <string name="LocalBackupJob_creating_backup">Útbý öryggisafrit…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Útbý öryggisafrit…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Öryggisafritun mistókst</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Öryggisafritunarmöppunni þinni hefur verið eytt eða hún færð.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Öryggisafritunarskráin er of stór til að geyma á þessari gagnageymslu.</string>

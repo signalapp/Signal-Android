@@ -2538,7 +2538,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="BackupDialog_verify">Verificēt</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sekmīgi ievadījāt rezerves ieejas paroli</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parole nav pareiza</string>
-  <string name="LocalBackupJob_creating_backup">Tiek veidota rezerves kopija…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Tiek veidota rezerves kopija…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Dublēšana neizdevās</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsu dublējumu direktorijs ir dzēsts vai pārvietots.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsu dublējuma fails ir pārāk liels saglabāšanai šajā apjomā.</string>

@@ -2773,7 +2773,7 @@
   <string name="BackupDialog_verify">Patvirtinti</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sėkmingai įvedėte savo atsarginės kopijos slaptafrazę</string>
   <string name="BackupDialog_passphrase_was_not_correct">Slaptafrazė buvo neteisinga</string>
-  <string name="LocalBackupJob_creating_backup">Daroma atsarginė kopija…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Daroma atsarginė kopija…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Atsarginė kopija nepavyko</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsų atsarginių kopijų katalogas buvo ištrintas ar perkeltas.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsų atsarginės kopijos failas yra per didelis, kad jį galima būtų laikyti šiame tome.</string>

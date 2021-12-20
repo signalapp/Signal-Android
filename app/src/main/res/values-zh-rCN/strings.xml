@@ -2374,7 +2374,7 @@
   <string name="BackupDialog_verify">验证</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">已成功输入备份密码</string>
   <string name="BackupDialog_passphrase_was_not_correct">密码错误</string>
-  <string name="LocalBackupJob_creating_backup">正在创建备份…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">正在创建备份…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">备份失败</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">备份目录已删除或移动。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您的备份文件太大，无法保存到此位置。</string>

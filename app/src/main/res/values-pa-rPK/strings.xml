@@ -1635,7 +1635,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">بیک اپس بنان لئی Signal نوں بیرونی اسٹوریج دی اجازت دی لوڑھ ہندی ہ اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\" چنو، تے \"اسٹوریج\" فعال کرو۔</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">آخری بیک اپ: %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">جاری اے</string> -->
-  <string name="LocalBackupJob_creating_backup">بیک اپ بنا رئیا اے…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">بیک اپ بنا رئیا اے…</string> -->
   <string name="ProgressPreference_d_messages_so_far">ہن تیکر%d سنیہے </string>
   <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">مہربانی کر کے%s نوں گھلیا گیا توثیقی کوڈ درج کرو۔</string> -->
   <string name="RegistrationActivity_wrong_number">غلط نمبر</string>

@@ -2413,7 +2413,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BackupDialog_verify">Bekreft</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har bekreftet passordfrasen for sikkerhetskopi</string>
   <string name="BackupDialog_passphrase_was_not_correct">Passordfrasen stemmer ikke overens</string>
-  <string name="LocalBackupJob_creating_backup">Tar sikkerhetskopi …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Tar sikkerhetskopi …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sikkerhetskopi feilet</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din sikkerhetskopikatalog har blitt slettet eller flyttet.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Sikkerhetskopien din er for stor til å lagres på dette volumet.</string>

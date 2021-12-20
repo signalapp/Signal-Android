@@ -2457,7 +2457,7 @@
   <string name="BackupDialog_verify">تصدیق کریں</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">آپ نے کامیابی کے ساتھ اپنا بیک اپ پاس فریز درج کیا</string>
   <string name="BackupDialog_passphrase_was_not_correct">پاسفریز صحیح نہیں تھا</string>
-  <string name="LocalBackupJob_creating_backup">بیک اپ بن رہا ہے۔۔۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">بیک اپ بن رہا ہے۔۔۔</string> -->
   <string name="LocalBackupJobApi29_backup_failed">بیک اپ ناکام ہوگیا</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آپ کی بیک اپ ڈائرکٹری کو حذف یا منتقل کردیا گیا ہے۔</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">اس حجم پر آپ کی بیک اپ فائل ذخیرہ کرنے کیلئے بہت بڑی ہے۔</string>

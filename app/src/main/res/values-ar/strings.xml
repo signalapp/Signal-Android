@@ -2958,7 +2958,7 @@
   <string name="BackupDialog_verify">تحقق</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">لقد أدخلت العبارة السرية للنسخة الاحتياطية بنجاح</string>
   <string name="BackupDialog_passphrase_was_not_correct">العبارة السرية غير صحيحة</string>
-  <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">فشل النسخ الاحتياطي</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">حُذف أو نُقل مجلد نسخك الاحتياطية.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">لا يمكن حفظ ملف النسخة الاحتياطية في وحدة التخزين هذه لأنه كبير جدا.</string>

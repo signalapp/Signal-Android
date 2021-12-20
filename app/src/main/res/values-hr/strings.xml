@@ -2541,7 +2541,7 @@ broj telefona</string>
   <string name="BackupDialog_verify">Potvrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli lozinku sigurnosne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lozinka nije točna</string>
-  <string name="LocalBackupJob_creating_backup">Stvaranje sigurnosne kopije…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Stvaranje sigurnosne kopije…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sigurnosno kopiranje nije uspjelo</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Vaša mapa sigurnosnih kopija je izbrisana ili premještena.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Datoteka vaše sigurnosne kopije prevelika je za pohranu na ovom volumenu.</string>

@@ -2462,7 +2462,7 @@
   <string name="BackupDialog_verify">പരിശോധിക്കുക</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">നിങ്ങൾ ബാക്കപ്പിന്റെ രഹസ്യവാചകം വിജയകരമായി നൽകി</string>
   <string name="BackupDialog_passphrase_was_not_correct">രഹസ്യവാചകം ശരിയായിരുന്നില്ല</string>
-  <string name="LocalBackupJob_creating_backup"> ബാക്കപ്പ് സൃഷ്‌ടിക്കുന്നു…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup"> ബാക്കപ്പ് സൃഷ്‌ടിക്കുന്നു…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">ബാക്കപ്പ്  പരാജയപ്പെട്ടു </string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">നിങ്ങളുടെ ബാക്കപ്പ് ഡയറക്ടറി ഇല്ലാതാക്കി അല്ലെങ്കിൽ നീക്കി.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ഈ വോളിയത്തിൽ സംഭരിക്കാനുംമാത്രം നിങ്ങളുടെ ബാക്കപ്പ് ഫയൽ വളരെ വലുതാണ്.</string>

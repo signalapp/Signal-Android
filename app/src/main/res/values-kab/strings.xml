@@ -2342,7 +2342,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="BackupDialog_verify">Senqed</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Teskecmeḍ tafyirt-ik·im tuffirt n uḥraz akken iwata</string>
   <string name="BackupDialog_passphrase_was_not_correct">Tafyirt tuffirt d tarameɣtut</string>
-  <string name="LocalBackupJob_creating_backup">Timerna n uḥraz…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Timerna n uḥraz…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Aḥraz ur yeddi ara</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Akaram-inek·inem n uḥraz yettwakkes neɣ yettusenkez.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Afaylu-ik·im n uḥraz meqqar aṭas i wakken ad yettukles ɣef ubleɣ-a.</string>

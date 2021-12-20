@@ -2328,7 +2328,7 @@
   <string name="BackupDialog_verify">စစ်ဆေးအတည်ပြုသည်</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">သင်၏အရန်ကူးထားသောစကားဝှက်ကို အောင်မြင်စွာထည့်ပြီးပါပြီ</string>
   <string name="BackupDialog_passphrase_was_not_correct">စကားဝှက်သည်မမှန်ပါ</string>
-  <string name="LocalBackupJob_creating_backup">အရန်သိမ်းဆည်းမှုများ ဖန်တီးနေပါသည်…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">အရန်သိမ်းဆည်းမှုများ ဖန်တီးနေပါသည်…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">အရန်သိမ်းဆည်းမှုများ မအောင်မြင်ပါ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">သင်၏ အရန်သိမ်းဆည်းမှုများ၏ လမ်းညွှန်အား ဖျက်ထားသည် သို့မဟုတ် ပြောင်းရွှေ့သွားသည်</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">သင်၏ အရန်သိမ်းဆည်းထားသောဖိုင်ကို သိမ်းဆည်းရန် အလွန်ကြီးမားသည်</string>

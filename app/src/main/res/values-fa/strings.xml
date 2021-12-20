@@ -2583,7 +2583,7 @@
   <string name="BackupDialog_verify">وارسی</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">گذرواژهٔ پشتیبان با موفقیت وارد شد</string>
   <string name="BackupDialog_passphrase_was_not_correct">گذرواژه نادرست بود</string>
-  <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری ناموفق بود</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس ذخیره‌سازی پشتیبان شما حذف شده یا به جای دیگری انتقال یافته است.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">حجم فایل پشتیبان شما برای نگهداری در این محل زیاد است.</string>
@@ -3079,6 +3079,7 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">پروفایل‌ها</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">یک پروفایل برای دریافت اعلان‌ها فقط از افراد و گروه‌هایی که انتخاب می‌کنید بسازید.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">پروفایل‌های اعلان</string>
@@ -3364,24 +3365,33 @@
   <string name="SubscribeFragment__update_subscription_question">به‌روزرسانی اشتراک؟</string>
   <string name="SubscribeFragment__update">به‌روزرسانی</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">مبلغ کامل اشتراک جدید امروز از شما کسر خواهد شد. اشتراک شما در %1$s به‌روزرسانی خواهد شد. </string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">از شما امروز کل مبلغ (%1$s) هزینهٔ اشتراک کسر خواهد شد. اشتراک شما به صورت ماهانه تمدید خواهد شد.</string>
   <string name="Subscription__s_per_month">%s/ماه</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/ماه · در %2$s تمدید می‌شود</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/ماه · در %2$s منقضی می‌شود</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">سیگنال یک سازمان غیر-انتفاعی بدون تبلیغ‌کنندگان و سرمایه‌گذاران است، که تنها از سوی افرادی که از آن استفاده می‌کنند و برایش ارزش قائل هستند حمایت می‌شود. یک کمک اهدایی ماهیانه انجام دهید و یک نشان پروفایل برای به اشتراک گذاشتن حمایت خود با دیگران دریافت کنید.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">چرا کمک کنیم؟</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">سیگنال به توسعهٔ فناوری متن‌باز حریم خصوصی که از آزادی بیان حفاظت و ارتباطات جهانی را ممکن می‌کند متعهد است.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">کمک شما به این انگیزه نیرو می‌بخشد و به پرداخت هزینه‌های توسعه و عملیات برنامه‌ای کمک می‌کند که مورد استفادهٔ میلیون‌ها نفر در سراسر دنیا برای ارتباط خصوصی است. بدون آگهی. بدون ردیابی. بدون شوخی.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ممنون از پشتیبانی شما!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ممنون بابت تقویت!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">شما نشان %s بدست آوردید! به سیگنال با نمایش این نشان روی پروفایل‌تان برای ایجاد آگاهی کمک کنید.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">شما یک نشان تقویت بدست آوردید! به سیگنال با نمایش این نشان روی پروفایل‌تان برای ایجاد آگاهی کمک کنید.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">شما همچنین می‌توانید</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">به یک حامی ماهیانه تبدیل شوید.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">نمایش روی پروفایل</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">تبدیل به نشان مورد استفاده</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">تمام</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">هنگامی که شما بیش از یک نشان دارید، می‌توانید یکی را برای نمایش روی پروفایل‌تان انتخاب کنید تا دیگران ببینند.</string>
   <string name="BecomeASustainerFragment__get_badges">نشان‌هایی برای پروفایل خود از طریق پشتیبانی سیگنال دریافت کنید.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">سیگنال یک سازمان غیرانتفاعی بدون تبلیغ‌کنندگان و سرمایه‌گذاران است که از سوی افرادی مانند شما حمایت می‌شود.</string>
   <string name="ManageDonationsFragment__my_support">پشتیبانی من</string>
   <string name="ManageDonationsFragment__manage_subscription">مدیریت اشتراک</string>
   <string name="ManageDonationsFragment__badges">نشان‌ها</string>
   <string name="ManageDonationsFragment__subscription_faq">پرسش‌های متداول اشتراک</string>
   <string name="ManageDonationsFragment__error_getting_subscription">خطا در دریافت اشتراک.</string>
   <string name="BoostFragment__give_signal_a_boost">سیگنال را تقویت کنید</string>
+  <string name="BoostFragment__say_thanks_and_earn">«تشکر» کنید و نشان تقویت را برای %1$d روز بدست آورید.</string>
   <string name="Boost__enter_custom_amount">مبلغ دلخواه را وارد کنید</string>
   <string name="Boost__one_time_contribution">کمک اهدایی یک‌-باره</string>
   <string name="MySupportPreference__add_a_signal_boost">یک تقویت سیگنال اضافه کنید</string>
@@ -3411,8 +3421,12 @@
   <string name="DonationsErrors__error_processing_payment">خطا در پردازش پرداخت</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__error_processing_payment_s">خطا در پردازش پرداخت. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">نشان شما نمی‌تواند به حساب کاربری شما اضافه شود، اما ممکن است از شما هزینه‌ای کسر شده باشد. لطفاً با پشتیبانی تماس بگیرید.</string>
+  <string name="DonationsErrors__your_payment">پردازش پرداخت شما امکان‌پذیر نبود و از شما هزینه‌ای کسر نشد. لطفاً دوباره امتحان کنید.</string>
   <string name="DonationsErrors__still_processing">هنوز در حال پردازش</string>
   <string name="DonationsErrors__couldnt_add_badge">امکان افزودن نشان وجود نداشت</string>
+  <string name="DonationsErrors__your_badge_could_not">نشان شما نمی‌تواند به حساب کاربری شما اضافه شود، اما ممکن است از شما هزینه‌ای کسر شده باشد. لطفاً با پشتیبانی تماس بگیرید.</string>
+  <string name="DonationsErrors__your_payment_is_still">پرداخت شما هنوز در حال پردازش است. این فرآیند بسته به اتصال اینترنت شما ممکن است چند دقیقه به طول بیانجامد.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay در دسترس نیست</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">شما باید Google Pay را تنظیم کنید تا بتوانید به صورت درون‌-برنامه‌ای حمایت کنید.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">لغو اشتراک ناموفق بود</string>
@@ -3497,6 +3511,7 @@
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">افزودن یک برنامهٔ زمانی</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">یک برنامهٔ زمانی تنظیم کنید تا این پروفایل اعلان به صورت خودکار فعال شود.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">برنامهٔ زمانی</string>
   <!--Label for showing the start time for the schedule-->
@@ -3542,6 +3557,7 @@
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">پروفایل جدید</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">برای ۱ ساعت</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">تا %1$s</string>
   <!--Option to view profile details-->

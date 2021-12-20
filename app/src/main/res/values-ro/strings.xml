@@ -2675,7 +2675,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_verify">Verifică</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ai introdus cu succes parola de backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parola nu a fost corectă</string>
-  <string name="LocalBackupJob_creating_backup">Se creează backup-ul…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Se creează backup-ul…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Backup-ul a eșuat</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Directorul tău de backup a fost șters sau mutat.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fișierul de backup este prea mare pentru a fi stocat pe acest volum.</string>

@@ -2584,7 +2584,7 @@
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Introduziu com sucesso a sua frase-chave de segurança</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frase-chave incorreta</string>
-  <string name="LocalBackupJob_creating_backup">A criar cópia de segurança…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">A criar cópia de segurança…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Falha ao fazer cópia de segurança</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">A sua diretoria da cópia de segurança foi eliminada ou movida.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">O seu ficheiro de cópia de segurança é demasiado grande para ser guardada neste volume.</string>

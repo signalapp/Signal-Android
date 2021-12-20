@@ -2575,7 +2575,7 @@
   <string name="BackupDialog_verify">Επιβεβαίωση</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Εισάγατε το συνθηματικό αντιγράφου ασφαλείας με επιτυχία</string>
   <string name="BackupDialog_passphrase_was_not_correct">Το συνθηματικό δεν ήταν σωστό</string>
-  <string name="LocalBackupJob_creating_backup">Το αντίγραφο ασφαλείας δημιουργείται…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Το αντίγραφο ασφαλείας δημιουργείται…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Ή δημιουργία αντίγραφου ασφαλείας απέτυχε</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ο φάκελος αντίγραφων ασφαλείας έχει διαγραφεί ή μετακινηθεί.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Το αρχείο - αντίγραφο ασφαλείας είναι πολύ μεγάλο για να αποθηκευτεί σε αυτή τη συσκευή.</string>

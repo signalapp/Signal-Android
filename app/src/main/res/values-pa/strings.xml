@@ -2476,7 +2476,7 @@
   <string name="BackupDialog_verify">ਤਸਦੀਕ ਕਰੋ</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">ਤੁਸੀਂ ਆਪਣਾ ਬੈਕਅੱਪ ਪਾਸਫ਼੍ਰੇਜ਼ ਕਾਮਯਾਬੀ ਨਾਲ ਭਰਿਆ ਹੈ</string>
   <string name="BackupDialog_passphrase_was_not_correct">ਪਾਸਫ਼੍ਰੇਜ਼ ਸਹੀ ਨਹੀਂ ਹੈ</string>
-  <string name="LocalBackupJob_creating_backup">ਬੈਕਅਪ ਬਣਾ ਰਿਹਾ ਹੈ …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">ਬੈਕਅਪ ਬਣਾ ਰਿਹਾ ਹੈ …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">ਬੈਕਅੱਪ ਅਸਫ਼ਲ ਹੈ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ਤੁਹਾਡੀ ਬੈਕਅੱਪ ਡਾਇਰੈਕਟਰੀ ਜਾਂ ਤਾਂ ਹਟਾਈ ਗਈ ਜਾਂ ਹਿਲਾਈ ਗਈ ਹੈ।</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ਤੁਹਾਡੀ ਬੈਕਅੱਪ ਫਾਇਲ ਇਸ ਵਾਲੀਅਮ ਉੱਤੇ ਸੰਭਾਲਣ ਲਈ ਬਹੁਤ ਵੱਡੀ ਹੈ।</string>
