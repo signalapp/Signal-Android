@@ -1,10 +1,9 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
 import android.Manifest
-import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.navigation.NavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -13,20 +12,20 @@ class MediaSelectionNavigator(
   private val toCamera: Int = -1,
   private val toGallery: Int = -1
 ) {
-  fun goToReview(view: View) {
-    Navigation.findNavController(view).popBackStack(R.id.mediaReviewFragment, false)
+  fun goToReview(navController: NavController) {
+    navController.popBackStack(R.id.mediaReviewFragment, false)
   }
 
-  fun goToCamera(view: View) {
+  fun goToCamera(navController: NavController) {
     if (toCamera == -1) return
 
-    Navigation.findNavController(view).safeNavigate(toCamera)
+    navController.safeNavigate(toCamera)
   }
 
-  fun goToGallery(view: View) {
+  fun goToGallery(navController: NavController) {
     if (toGallery == -1) return
 
-    Navigation.findNavController(view).safeNavigate(toGallery)
+    navController.safeNavigate(toGallery)
   }
 
   companion object {

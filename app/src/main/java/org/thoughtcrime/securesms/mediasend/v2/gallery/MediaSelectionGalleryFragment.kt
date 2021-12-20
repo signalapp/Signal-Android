@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import app.cash.exhaustive.Exhaustive
 import org.thoughtcrime.securesms.R
@@ -100,17 +101,18 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
 
   override fun onSelectedMediaClicked(media: Media) {
     sharedViewModel.setFocusedMedia(media)
-    navigator.goToReview(requireView())
+    navigator.goToReview(findNavController())
   }
 
   override fun onNavigateToCamera() {
+    val controller = findNavController()
     requestPermissionsForCamera {
-      navigator.goToCamera(requireView())
+      navigator.goToCamera(controller)
     }
   }
 
   override fun onSubmit() {
-    navigator.goToReview(requireView())
+    navigator.goToReview(findNavController())
   }
 
   override fun onToolbarNavigationClicked() {
