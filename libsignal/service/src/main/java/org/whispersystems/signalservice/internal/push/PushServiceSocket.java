@@ -592,6 +592,8 @@ public class PushServiceSocket {
 
       String path = String.format(PREKEY_DEVICE_PATH, destination.getIdentifier(), deviceId);
 
+      Log.d(TAG, "Fetching prekeys for " + destination.getIdentifier() + "." + deviceId + ", i.e. GET " + path);
+
       String             responseText = makeServiceRequest(path, "GET", null, NO_HEADERS, unidentifiedAccess);
       PreKeyResponse     response     = JsonUtil.fromJson(responseText, PreKeyResponse.class);
       List<PreKeyBundle> bundles      = new LinkedList<>();
