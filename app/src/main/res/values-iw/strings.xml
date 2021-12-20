@@ -2773,7 +2773,7 @@
   <string name="BackupDialog_verify">וודא</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">הכנסת בהצלחה את משפט־סיסמת הגיבוי שלך</string>
   <string name="BackupDialog_passphrase_was_not_correct">משפט־הסיסמה לא היה נכון</string>
-  <string name="LocalBackupJob_creating_backup">יוצר גיבוי…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">יוצר גיבוי…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">גיבוי נכשל</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">תיקיית הגיבוי שלך נמחקה או הועברה.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">קובץ הגיבוי שלך גדול מדי לאחסון בכרך זה.</string>

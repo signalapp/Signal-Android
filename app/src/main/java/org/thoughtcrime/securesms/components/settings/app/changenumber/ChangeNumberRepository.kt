@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
+import java.io.IOException
 
 private val TAG: String = Log.tag(ChangeNumberRepository::class.java)
 
@@ -46,6 +47,8 @@ class ChangeNumberRepository(private val context: Context) {
       } catch (e: KeyBackupSystemWrongPinException) {
         ServiceResponse.forExecutionError(e)
       } catch (e: KeyBackupSystemNoDataException) {
+        ServiceResponse.forExecutionError(e)
+      } catch (e: IOException) {
         ServiceResponse.forExecutionError(e)
       }
     }.subscribeOn(Schedulers.io())

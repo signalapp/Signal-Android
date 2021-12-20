@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'witness'
-apply from: 'witness-verifications.gradle'
 
 repositories {
     mavenCentral()
@@ -19,10 +17,6 @@ android {
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
     }
-}
-
-dependencyVerification {
-    configuration = '(debug|release)RuntimeClasspath'
 }
 
 dependencies {

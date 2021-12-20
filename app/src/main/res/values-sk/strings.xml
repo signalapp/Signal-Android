@@ -2772,7 +2772,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BackupDialog_verify">Overiť</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Úspešne ste zadali svoje heslo pre zálohy</string>
   <string name="BackupDialog_passphrase_was_not_correct">Heslo nebolo správne</string>
-  <string name="LocalBackupJob_creating_backup">Vytváranie zálohy…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Vytváranie zálohy…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Zálohovanie zlyhalo</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Váš priečinok na zálohy bol vymazaný alebo premiestnený.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Súbor s vašou zálohou je príliš veľký na uloženie v tejto jednotke.</string>

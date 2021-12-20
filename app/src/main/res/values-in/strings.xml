@@ -340,7 +340,9 @@
     <item quantity="other">%d dipilih</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Profil Pemberitahuan</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Aktifkan atau nonaktifkan profil pemberitahuan Anda di sini.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s nyala</string>
   <!--ConversationListItem-->
@@ -1665,6 +1667,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Gulir ke bawah</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Gelembung adalah fitur Android yang dapat Anda matikan untuk obrolan Signal.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Nanti saja</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2488,7 +2491,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="BackupDialog_verify">Memeriksa</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Anda sukses memasukkan frasa sandi cadangan</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frasa sandi salah</string>
-  <string name="LocalBackupJob_creating_backup">Membuat cadangan…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Membuat cadangan…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Cadangan gagal</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori berkas cadangan telah terhapus atau dipindahkan.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Berkas cadangan kamu terlalu besar untuk disimpan pada lokasi ini.</string>
@@ -2977,11 +2980,14 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NotificationsSettingsFragment__notify_when">Beritahukan ketika…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontak bergabung di Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Profil-profil Pemberitahuan</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profil</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Buat profil untuk menerima notifikasi hanya dari orang dan grup yang Anda pilih.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Profil-profil Pemberitahuan</string>
   <!--Button text to create a notification profile-->
   <string name="NotificationProfilesFragment__create_profile">Buat profil</string>
   <!--PrivacySettingsFragment-->
@@ -3350,6 +3356,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">Berkendara</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Waktu henti</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">Fokus</string>
   <!--Error message shown when attempting to next/save without a profile name-->
@@ -3357,6 +3364,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">Izinkan notifikasi</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Tambahkan orang dan grup yang Anda ingin dapatkan notifikasi dan panggilannya saat profil ini aktif</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">Tambahkan orang atau grup</string>
   <!--Call to action button on contact picker for adding to profile-->
@@ -3380,6 +3388,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Hapus</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Sunting profil pemberitahuan</string>
   <!--Schedule description if all days are selected-->
   <string name="NotificationProfileDetails__everyday">Setiap hari</string>
   <!--Profile status on if it is the active profile-->
@@ -3400,6 +3409,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Tambahkan jadwal</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Atur jadwal untuk mengaktifkan profil pemberitahuan ini secara otomatis.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Jadwal</string>
   <!--Label for showing the start time for the schedule-->
@@ -3431,6 +3441,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Berikutnya</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Jadwal harus memiliki setidaknya satu hari</string>
   <!--Title for final screen shown after completing a profile creation-->
   <string name="NotificationProfileCreated__profile_created">Profil dibuat</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
@@ -3444,6 +3455,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">Profil baru</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Untuk 1 Jam</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Sampai %1$s</string>
   <!--Option to view profile details-->
@@ -3451,6 +3463,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <string name="NotificationProfileSelection__on_until_s">Nyalakan sampai %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Profil-profil Pemberitahuan</string>
   <!--Description for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Dapatkan notifikasi hanya dari orang dan grup yang Anda pilih.</string>
   <!--Call to action button to create a profile from megaphone-->

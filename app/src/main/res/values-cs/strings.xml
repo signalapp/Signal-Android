@@ -2772,7 +2772,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="BackupDialog_verify">Ověřit</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Úspěšně jste zadali přístupovou frázi pro vaši zálohu</string>
   <string name="BackupDialog_passphrase_was_not_correct">Přístupová fráze nebyla správná</string>
-  <string name="LocalBackupJob_creating_backup">Vytvářím zálohu…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Vytvářím zálohu…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Zálohování selhalo</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Adresář pro vaše zálohy byl smazán nebo přesunut.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Soubor s vaší zálohou je příliš velký pro uložení na tento disk.</string>

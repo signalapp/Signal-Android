@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.formatHours
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.orderOfDaysInWeek
 import java.time.DayOfWeek
 import java.time.format.TextStyle
@@ -77,7 +78,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
           toolbar?.title = state.profile.name
           toolbar?.setOnMenuItemClickListener { item ->
             if (item.itemId == R.id.action_edit) {
-              findNavController().navigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(state.profile.id))
+              findNavController().safeNavigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(state.profile.id))
               true
             } else {
               false
@@ -86,7 +87,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
           adapter.submitList(getConfiguration(state).toMappingModelList())
         }
         NotificationProfileDetailsViewModel.State.NotLoaded -> Unit
-        NotificationProfileDetailsViewModel.State.Invalid -> findNavController().navigateUp()
+        NotificationProfileDetailsViewModel.State.Invalid -> requireActivity().onBackPressed()
       }
     }
   }
@@ -117,7 +118,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
       customPref(
         NotificationProfileAddMembers.Model(
           onClick = { id, currentSelection ->
-            findNavController().navigate(
+            findNavController().safeNavigate(
               NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToSelectRecipientsFragment(id)
                 .setCurrentSelection(currentSelection.toTypedArray())
             )
@@ -174,7 +175,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
         summary = DSLSettingsText.from(if (profile.schedule.enabled) R.string.NotificationProfileDetails__on else R.string.NotificationProfileDetails__off),
         icon = DSLSettingsIcon.from(R.drawable.ic_recent_20, NO_TINT),
         onClick = {
-          findNavController().navigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileScheduleFragment(profile.id, false))
+          findNavController().safeNavigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileScheduleFragment(profile.id, false))
         }
       )
 

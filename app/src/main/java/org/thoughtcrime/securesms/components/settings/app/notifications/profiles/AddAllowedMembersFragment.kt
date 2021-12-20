@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Show and allow addition of recipients to a profile during the create flow.
@@ -38,7 +39,7 @@ class AddAllowedMembersFragment : DSLSettingsFragment(layoutId = R.layout.fragme
 
     view.findViewById<CircularProgressButton>(R.id.add_allowed_members_profile_next).apply {
       setOnClickListener {
-        findNavController().navigate(AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToEditNotificationProfileScheduleFragment(profileId, true))
+        findNavController().safeNavigate(AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToEditNotificationProfileScheduleFragment(profileId, true))
       }
     }
   }
@@ -62,7 +63,7 @@ class AddAllowedMembersFragment : DSLSettingsFragment(layoutId = R.layout.fragme
       customPref(
         NotificationProfileAddMembers.Model(
           onClick = { id, currentSelection ->
-            findNavController().navigate(
+            findNavController().safeNavigate(
               AddAllowedMembersFragmentDirections.actionAddAllowedMembersFragmentToSelectRecipientsFragment(id)
                 .setCurrentSelection(currentSelection.toTypedArray())
             )

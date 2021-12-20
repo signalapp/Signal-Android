@@ -1,11 +1,7 @@
 plugins {
     id 'com.android.library'
-    id 'witness'
     id 'kotlin-android'
-    id 'kotlin-kapt'
 }
-
-apply from: 'witness-verifications.gradle'
 
 android {
     buildToolsVersion BUILD_TOOL_VERSION
@@ -28,10 +24,6 @@ android {
     }
 }
 
-dependencyVerification {
-    configuration = '(debug|release)RuntimeClasspath'
-}
-
 dependencies {
     lintChecks project(':lintchecks')
 
@@ -42,6 +34,4 @@ dependencies {
     implementation libs.androidx.core.ktx
     implementation libs.androidx.annotation
     implementation libs.androidx.appcompat
-
-    kapt libs.androidx.annotation
 }

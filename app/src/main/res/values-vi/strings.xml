@@ -1964,7 +1964,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__help">Hỗ trợ</string>
   <string name="preferences__advanced">Nâng cao</string>
   <string name="preferences__donate_to_signal">Ủng hộ Signal</string>
-  <string name="preferences__subscription">Số tiền đống góp</string>
+  <string name="preferences__subscription">Đăng ký</string>
   <string name="preferences__become_a_signal_sustainer">Trở thành người quyên góp cho Signal</string>
   <string name="preferences__signal_boost">Tăng trưởng Signal</string>
   <string name="preferences__privacy">Riêng tư</string>
@@ -2480,7 +2480,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="BackupDialog_verify">Kiểm chứng</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Bạn đã điền mật khẩu sao lưu thành công</string>
   <string name="BackupDialog_passphrase_was_not_correct">Mật khẩu không chính xác</string>
-  <string name="LocalBackupJob_creating_backup">Đang sao lưu…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Đang sao lưu…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sao lưu thất bại.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Thư mục sao lưu của bạn đã bị xoá hoặc dời đi.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Tập tin sao lưu của bạn quá lớn để có thể được lưu trữ trên ổ này.</string>
@@ -2912,7 +2912,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="AccountSettingsFragment__require_your_signal_pin">Yêu cầu mã PIN Signal của bạn để đăng ký lại số điện thoại của bạn với Signal</string>
   <string name="AccountSettingsFragment__change_phone_number">Thay đổi số điện thoại</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Dùng để thay đổi số điện thoại hiện tại của bạn sang một số khác. Bạn không thể khôi phục thay đổi này. /n/n trước khi tiếp tục, hãy chắc chắn rằng số điện thoại mới của bạn đang hoạt động bình thường.</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Dùng để thay đổi số điện thoại hiện tại của bạn sang một số khác. Bạn không thể khôi phục thay đổi này. /n/n Trước khi tiếp tục, hãy chắc chắn rằng số điện thoại mới của bạn đang hoạt động bình thường.</string>
   <string name="ChangeNumberFragment__continue">Tiếp tục</string>
   <string name="ChangeNumber__your_phone_number_has_been_changed">Số điện thoại của bạn đã thay đổi.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -2941,7 +2941,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Mã PIN của số điện thoại mới của bạn không giống với mã PIN của số điện thoại cũ. Bạn có muốn giữ nguyên mã PIN cũ hay thay thế bằng mã PIN mới?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Giữ nguyên mã PIN cũ</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Cập nhật mã PIN</string>
-  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">bạn có chắc muôn giữ mã PIN?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Bạn có chắc muôn giữ mã PIN?</string>
   <!--ChangeNumberLockActivity-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Có vẻ như bạn đã thay đổi số điện thoại nhưng chúng tôi chưa thể xác nhận thao tác của bạn đã thành công hay chưa.n/n/ kiểm tra lại ngay…</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">Xác nhận thay đổi trạng thái</string>
@@ -3061,7 +3061,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Trở thành người quyên góp</string>
   <string name="BecomeASustainerMegaphone__signal_is_powered">Signal đang ngày càng phát triển nhờ những đống góp của bạn. Hãy cùng nhau đống góp cho sự phát triển của Signal và nhận về những huy hiệu từ chúng tôi.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Không, cảm ơn</string>
-  <string name="BecomeASustainerMegaphone__contribute">Đống góp</string>
+  <string name="BecomeASustainerMegaphone__contribute">Đóng góp</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Mở tìm kiếm emoji</string>
@@ -3110,7 +3110,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConversationSettingsFragment__conversation_muted_forever">Cuộc trò chuyện tắt tiếng vĩnh viễn</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Đã sao chép số điện thoại vào bảng kẹp.</string>
   <string name="ConversationSettingsFragment__phone_number">Số điện thoại</string>
-  <string name="ConversationSettingsFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal. Bấm vào \"huy hiệu\" để biết thêm chi tiết.</string>
+  <string name="ConversationSettingsFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal. Bấm vào huy hiệu để biết thêm chi tiết.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Thêm thành viên</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Sửa thông tin nhóm</string>
@@ -3212,10 +3212,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MediaReviewSelectedItem__tap_to_remove">Nhấn để xóa</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Nhấn để chọn</string>
   <string name="MediaReviewImagePageFragment__discard">Bỏ</string>
-  <string name="MediaReviewImagePageFragment__discard_changes">bạn có muốn hũy bỏ các thay đổi không?</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Bạn có muốn hủy bỏ các thay đổi không?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Bạn sẽ mất tất cả những thay đổi bạn đã làm trên bức ảnh này.</string>
   <string name="CameraFragment__failed_to_open_camera">Không mở được camera</string>
-  <string name="BadgesOverviewFragment__my_badges">Huy hiểu của tôi</string>
+  <string name="BadgesOverviewFragment__my_badges">Huy hiệu của tôi</string>
   <string name="BadgesOverviewFragment__featured_badge">Huy hiệu mặc định</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">Hiển thị huy hiệu trên hồ sơ cá nhân</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">Không thể cập nhật hồ sơ cá nhân</string>
@@ -3249,8 +3249,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Vì sao phải Quyên góp?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal cam kết phát triển công nghệ bảo mật mã nguồn mở, đề cao tính tự do ngôn luận và hướng đến một môi trường giao tiếp toàn cầu an toàn.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Sự quyên góp của bạn đang góp phần không nhỏ vào sự phát triển và duy trì hoạt động của ứng dùng liên lạc bảo mật và riêng tư được cả triệu người sử dụng trên toàn thế giới. Không quảng cáo, không lấy thông tin riêng tư, và luôn đáng tin cậy.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Cảm ơn bạn đã đống góp!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Cảm ơn bạn đã quyên góp</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Cảm ơn bạn đã đóng góp!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Cảm ơn bạn đã quyên góp!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Bạn đã nhận được huy hiệu %s! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Bạn đã nhận được huy hiệu quyên góp! Hãy giúp Signal gửi thông điệp đến mọi người bằng cách đính huy hiệu này lên hồ sơ của bạn.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Bạn cũng có thể</string>
@@ -3273,7 +3273,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MySupportPreference__add_a_signal_boost">Thêm vào một phần quyên góp cho Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/tháng</string>
   <string name="MySupportPreference__renews_s">Làm mới %1$s</string>
-  <string name="MySupportPreference__processing_transaction">Đang xử lý Giao dịch…</string>
+  <string name="MySupportPreference__processing_transaction">Đang xử lý giao dịch…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Không thể thêm huy hiệu. %1$s</string>
   <string name="MySupportPreference__please_contact_support">Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
@@ -3297,7 +3297,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="DonationsErrors__error_processing_payment">Lỗi xữ lý thanh toán</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__error_processing_payment_s">Lỗi xữ lý thanh toán. %1$s</string>
-  <string name="DonationsErrors__your_badge_could_not_be_added">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hỗ trợ.</string>
   <string name="DonationsErrors__your_payment">Thanh toán của bạn đã không thành công và bạn vẫn chưa bị tính phí. Vui lòng thử lại.</string>
   <string name="DonationsErrors__still_processing">Vẫn đang xữ lý</string>
   <string name="DonationsErrors__couldnt_add_badge">Không thể thêm huy hiệu</string>

@@ -2,7 +2,8 @@ package org.thoughtcrime.securesms.keyboard.emoji
 
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyboard.KeyboardPageCategoryIconViewHolder
-import org.thoughtcrime.securesms.util.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import java.util.function.Consumer
 
 class EmojiKeyboardPageCategoriesAdapter(private val onPageSelected: Consumer<String>) : MappingAdapter() {

@@ -39,10 +39,11 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.lang.Integer.max
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -69,7 +70,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    adapter.registerFactory(ValueClickPreference::class.java, MappingAdapter.LayoutFactory(::ValueClickPreferenceViewHolder, R.layout.value_click_preference_item))
+    adapter.registerFactory(ValueClickPreference::class.java, LayoutFactory(::ValueClickPreferenceViewHolder, R.layout.value_click_preference_item))
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val repository = PrivacySettingsRepository()
@@ -88,7 +89,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         summary = DSLSettingsText.from(getString(R.string.PrivacySettingsFragment__d_contacts, state.blockedCount)),
         onClick = {
           Navigation.findNavController(requireView())
-            .navigate(R.id.action_privacySettingsFragment_to_blockedUsersActivity)
+            .safeNavigate(R.id.action_privacySettingsFragment_to_blockedUsersActivity)
         }
       )
 
@@ -147,7 +148,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
             title = DSLSettingsText.from(R.string.PrivacySettingsFragment__default_timer_for_new_changes),
             summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you),
             onClick = {
-              NavHostFragment.findNavController(this@PrivacySettingsFragment).navigate(R.id.action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment)
+              NavHostFragment.findNavController(this@PrivacySettingsFragment).safeNavigate(R.id.action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment)
             }
           )
         )
@@ -293,7 +294,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         title = DSLSettingsText.from(R.string.preferences__advanced),
         summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__signal_message_and_calls),
         onClick = {
-          Navigation.findNavController(requireView()).navigate(R.id.action_privacySettingsFragment_to_advancedPrivacySettingsFragment)
+          Navigation.findNavController(requireView()).safeNavigate(R.id.action_privacySettingsFragment_to_advancedPrivacySettingsFragment)
         }
       )
     }

@@ -15,8 +15,8 @@ import org.thoughtcrime.securesms.avatar.AvatarBundler
 import org.thoughtcrime.securesms.avatar.AvatarColorItem
 import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
-import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**
  * Fragment to create an avatar based off a default vector.

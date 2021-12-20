@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree
 import org.thoughtcrime.securesms.emoji.EmojiCategory
 import org.thoughtcrime.securesms.emoji.EmojiSource
-import org.thoughtcrime.securesms.util.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
 fun EmojiPageModel.toMappingModels(): List<MappingModel<*>> {
   val emojiTree: EmojiTree = EmojiSource.latest.emojiTree

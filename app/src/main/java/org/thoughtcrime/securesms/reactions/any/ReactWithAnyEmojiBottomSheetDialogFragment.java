@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappin
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
 import org.thoughtcrime.securesms.reactions.edit.EditReactionsActivity;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
-import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 

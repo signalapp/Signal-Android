@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 
 class ChatWallpaperSelectionMappingModel implements MappingModel<ChatWallpaperSelectionMappingModel> {
 

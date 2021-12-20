@@ -3,7 +3,8 @@ package org.thoughtcrime.securesms.components.settings;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.MappingAdapter;
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
 
 /**
  * Reusable adapter for generic settings list.

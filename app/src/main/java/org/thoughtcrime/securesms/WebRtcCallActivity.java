@@ -256,7 +256,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private void processIntent(@NonNull Intent intent) {
     if (ANSWER_ACTION.equals(intent.getAction())) {
-      viewModel.setRecipient(EventBus.getDefault().getStickyEvent(WebRtcViewModel.class).getRecipient());
       handleAnswerWithAudio();
     } else if (DENY_ACTION.equals(intent.getAction())) {
       handleDenyCall();
@@ -403,24 +402,19 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void handleAnswerWithAudio() {
-    Recipient recipient = viewModel.getRecipient().get();
+    Permissions.with(this)
+               .request(Manifest.permission.RECORD_AUDIO)
+               .ifNecessary()
+               .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone),
+                                    R.drawable.ic_mic_solid_24)
+               .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
+               .onAllGranted(() -> {
+                 callScreen.setStatus(getString(R.string.RedPhone_answering));
 
-    if (!recipient.equals(Recipient.UNKNOWN)) {
-      Permissions.with(this)
-                 .request(Manifest.permission.RECORD_AUDIO)
-                 .ifNecessary()
-                 .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone, recipient.getDisplayName(this)),
-                                      R.drawable.ic_mic_solid_24)
-                 .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
-                 .onAllGranted(() -> {
-                   callScreen.setRecipient(recipient);
-                   callScreen.setStatus(getString(R.string.RedPhone_answering));
-
-                   ApplicationDependencies.getSignalCallManager().acceptCall(false);
-                 })
-                 .onAnyDenied(this::handleDenyCall)
-                 .execute();
-    }
+                 ApplicationDependencies.getSignalCallManager().acceptCall(false);
+               })
+               .onAnyDenied(this::handleDenyCall)
+               .execute();
   }
 
   private void handleAnswerWithVideo() {

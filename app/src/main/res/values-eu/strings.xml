@@ -2286,7 +2286,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="BackupDialog_verify">Baieztatu</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ondo sartu duzu zure babeskopiaren pasaesaldia</string>
   <string name="BackupDialog_passphrase_was_not_correct">Pasaesaldi ez da zuzena</string>
-  <string name="LocalBackupJob_creating_backup">Babeskopia sortzen…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Babeskopia sortzen…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Babeskopiak huts egin du</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Babeskopiak gordetzeko karpeta ezabatu edo mugitu da.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Zure babeskopia duen fitxategia handiegia da bolumen honetan gordetzeko.</string>

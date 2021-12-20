@@ -2428,7 +2428,7 @@
   <string name="BackupDialog_verify">확인</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">백업 암호가 성공적으로 입력됨</string>
   <string name="BackupDialog_passphrase_was_not_correct">암호가 올바르지 않음</string>
-  <string name="LocalBackupJob_creating_backup">백업 생성 중…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">백업 생성 중…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">백업을 실패했습니다.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">백업 경로가 삭제되었거나 이동했습니다.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">백업 파일이 너무 커서 이 볼륨에 저장할 수 없습니다.</string>

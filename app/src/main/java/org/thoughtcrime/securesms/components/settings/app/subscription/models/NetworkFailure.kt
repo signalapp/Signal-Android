@@ -4,8 +4,9 @@ import android.view.View
 import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 /**
  * NetworkFailure will display a "card" to the user informing them that there
@@ -29,6 +30,6 @@ object NetworkFailure {
   }
 
   fun register(mappingAdapter: MappingAdapter) {
-    mappingAdapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it) }, R.layout.network_failure_pref))
+    mappingAdapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.network_failure_pref))
   }
 }

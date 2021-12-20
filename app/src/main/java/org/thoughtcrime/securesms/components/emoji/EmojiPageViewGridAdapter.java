@@ -10,9 +10,10 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.MappingAdapter;
-import org.thoughtcrime.securesms.util.MappingModel;
-import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
 public class EmojiPageViewGridAdapter extends MappingAdapter implements PopupWindow.OnDismissListener {
 

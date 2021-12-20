@@ -2330,7 +2330,7 @@
   <string name="BackupDialog_verify">నిర్ధారించబడిన</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">మీరు మీ ప్రత్యామ్నాయములు పాస్‌ఫ్రేజ్‌ని విజయవంతంగా నమోదు చేశారు</string>
   <string name="BackupDialog_passphrase_was_not_correct">పాస్‌ఫ్రేజ్ సరైనది కాదు</string>
-  <string name="LocalBackupJob_creating_backup">ప్రత్యామ్నాయను సృష్టిస్తోంది …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">ప్రత్యామ్నాయను సృష్టిస్తోంది …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">ప్రత్యామ్నాయ విఫలమైంది</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">మీ చాట్ బ్యాకప్ తొలగించబడినధి లేదా తరలించబడినవి</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">మీ ప్రత్యామ్నాయములు ఫైల్ ఈ వాల్యూమ్‌లో నిల్వ చేయడానికి చాలా పెద్దది.</string>

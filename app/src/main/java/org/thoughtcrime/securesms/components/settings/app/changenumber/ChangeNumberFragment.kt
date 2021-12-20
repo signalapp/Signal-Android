@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ChangeNumberFragment : LoggingFragment(R.layout.fragment_change_phone_number) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -13,7 +14,7 @@ class ChangeNumberFragment : LoggingFragment(R.layout.fragment_change_phone_numb
     toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
     view.findViewById<View>(R.id.change_phone_number_continue).setOnClickListener {
-      findNavController().navigate(R.id.action_changePhoneNumberFragment_to_enterPhoneNumberChangeFragment)
+      findNavController().safeNavigate(R.id.action_changePhoneNumberFragment_to_enterPhoneNumberChangeFragment)
     }
   }
 }

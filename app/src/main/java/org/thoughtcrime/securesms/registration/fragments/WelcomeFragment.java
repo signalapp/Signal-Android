@@ -1,9 +1,5 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -43,7 +39,12 @@ import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.whispersystems.libsignal.util.guava.Optional;
+
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
 
 public final class WelcomeFragment extends LoggingFragment {
 
@@ -101,8 +102,8 @@ public final class WelcomeFragment extends LoggingFragment {
 
       Log.i(TAG, "Skipping restore because this is a reregistration.");
       viewModel.setWelcomeSkippedOnRestore();
-      Navigation.findNavController(view)
-                .navigate(WelcomeFragmentDirections.actionSkipRestore());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  WelcomeFragmentDirections.actionSkipRestore());
     } else {
 
       setDebugLogSubmitMultiTapView(view.findViewById(R.id.image));
@@ -133,7 +134,7 @@ public final class WelcomeFragment extends LoggingFragment {
     super.onResume();
     if (EventBus.getDefault().getStickyEvent(TransferStatus.class) != null) {
       Log.i(TAG, "Found existing transferStatus, redirect to transfer flow");
-      NavHostFragment.findNavController(this).navigate(R.id.action_welcomeFragment_to_deviceTransferSetup);
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_welcomeFragment_to_deviceTransferSetup);
     } else {
       DeviceToDeviceTransferService.stop(requireContext());
     }
@@ -179,11 +180,11 @@ public final class WelcomeFragment extends LoggingFragment {
 
       if (backup == null) {
         Log.i(TAG, "Skipping backup. No backup found, or no permission to look.");
-        Navigation.findNavController(view)
-                  .navigate(WelcomeFragmentDirections.actionSkipRestore());
+        SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                    WelcomeFragmentDirections.actionSkipRestore());
       } else {
-        Navigation.findNavController(view)
-                  .navigate(WelcomeFragmentDirections.actionRestore());
+        SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                    WelcomeFragmentDirections.actionRestore());
       }
     });
   }
@@ -193,8 +194,8 @@ public final class WelcomeFragment extends LoggingFragment {
 
     initializeNumber();
 
-    Navigation.findNavController(view)
-              .navigate(WelcomeFragmentDirections.actionTransferOrRestore());
+    SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                WelcomeFragmentDirections.actionTransferOrRestore());
   }
 
   @SuppressLint("MissingPermission")

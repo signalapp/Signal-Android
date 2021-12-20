@@ -180,8 +180,9 @@ object SignalDatabaseMigrations {
   private const val REACTION_REFACTOR = 121
   private const val PNI = 122
   private const val NOTIFICATION_PROFILES = 123
+  private const val NOTIFICATION_PROFILES_END_FIX = 124
 
-  const val DATABASE_VERSION = 123
+  const val DATABASE_VERSION = 124
 
   @JvmStatic
   fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2221,6 +2222,15 @@ object SignalDatabaseMigrations {
 
       db.execSQL("CREATE INDEX notification_profile_schedule_profile_index ON notification_profile_schedule (notification_profile_id)")
       db.execSQL("CREATE INDEX notification_profile_allowed_members_profile_index ON notification_profile_allowed_members (notification_profile_id)")
+    }
+
+    if (oldVersion < NOTIFICATION_PROFILES_END_FIX) {
+      db.execSQL(
+        // language=sql
+        """
+          UPDATE notification_profile_schedule SET end = 2400 WHERE end = 0
+        """.trimIndent()
+      )
     }
   }
 

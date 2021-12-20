@@ -1574,7 +1574,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal betah izin penyimpenan njawi kangge ndamel serep, nanging izin kesebat sampun dipuntolak sacara permanen. Bikak panatanan aplikasi, pileh \"Izin\", lajeng aktifaken \"Penyimpenan\".</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">Serep paling dangu: %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">Taksih dipuntumindakaken</string> -->
-  <string name="LocalBackupJob_creating_backup">Taksih ndamel serep…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Taksih ndamel serep…</string> -->
   <string name="ProgressPreference_d_messages_so_far">Sakmenika enten %d pesen mawon</string>
   <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Lebetaken kode verifikasi ingkang dikirimaken kangge %s.</string> -->
   <string name="RegistrationActivity_wrong_number">Nomer klintu</string>

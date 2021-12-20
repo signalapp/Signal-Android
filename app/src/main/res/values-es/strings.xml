@@ -383,7 +383,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fallo al establecer la foto de perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema al crear el perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil también está cifrado de extremo a extremo. Solo tus contactos, las personas con las que inicias o aceptas un chat, y quienes participan en los grupos a los que te unes podrán verlo. Nadie más, ni siquiera la gente de Signal.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de extremo a extremo. Solo tus contactos, las personas con las que inicias o aceptas un chat, y quienes participan en los grupos a los que te unes podrán verlo. Nadie más, ni siquiera la gente de Signal.</string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">¿Restaurar desde copia de seguridad?</string>
@@ -2585,7 +2585,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">La clave es correcta</string>
   <string name="BackupDialog_passphrase_was_not_correct">La clave es incorrecta</string>
-  <string name="LocalBackupJob_creating_backup">Creando copia de seguridad …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Creando copia de seguridad …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Fallo en la copia</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Parece que tu carpeta de copias de seguridad se ha eliminado o movido.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">La copia de seguridad es demasiado grande para guardarla en este dispositivo.</string>
@@ -3354,8 +3354,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ImageView__badge">Distintivo</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal depende de gente como tú.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Incentiva la tecnología que desarrollamos para ti (no para tus datos) y únete a la comunidad que la sostiene.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Sostén la tecnología desarrollada para ti, no para tus datos y únete a la comunidad que sostiene Signal.</string>
-  <string name="SubscribeFragment__currency">Moneda</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Sostén la tecnología desarrollada para ti (no para tus datos) y únete a la comunidad que la sostiene.</string>
+  <string name="SubscribeFragment__currency">Fijar moneda</string>
   <string name="SubscribeFragment__more_payment_options">Más opciones de pago</string>
   <string name="SubscribeFragment__cancel_subscription">Cancelar suscripción</string>
   <string name="SubscribeFragment__confirm_cancellation">¿Confirmar cancelación?</string>
@@ -3417,7 +3417,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renovar suscripción</string>
   <string name="Subscription__please_contact_support_for_more_information">Por favor, contacta con el soporte técnico para más información.</string>
   <string name="Subscription__contact_support">Contactar con el soporte técnico</string>
-  <string name="Subscription__earn_a_s_badge">%1$s ha conseguido un distintivo</string>
+  <string name="Subscription__earn_a_s_badge">Consigue el distintivo «%1$s» </string>
   <string name="SubscribeFragment__processing_payment">Procesando pago …</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">Fallo al procesar el pago</string>

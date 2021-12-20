@@ -9,5 +9,6 @@ data class SoundsAndNotificationsSettingsState(
   val muteUntil: Long = 0L,
   val mentionSetting: RecipientDatabase.MentionSetting = RecipientDatabase.MentionSetting.DO_NOT_NOTIFY,
   val hasCustomNotificationSettings: Boolean = false,
-  val hasMentionsSupport: Boolean = false
+  val hasMentionsSupport: Boolean = false,
+  val channelConsistencyCheckComplete: Boolean = false
 )

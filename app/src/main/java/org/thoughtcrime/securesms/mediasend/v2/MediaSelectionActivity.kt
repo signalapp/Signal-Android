@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MediaSelectionActivity :
   PassphraseRequiredActivity(),
@@ -122,7 +123,7 @@ class MediaSelectionActivity :
 
     val startDestination: Int = intent.getIntExtra(START_ACTION, -1)
     return if (startDestination > 0) {
-      hostFragment.navController.navigate(
+      hostFragment.navController.safeNavigate(
         startDestination,
         Bundle().apply {
           putBoolean("first", true)

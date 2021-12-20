@@ -14,6 +14,9 @@ import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.devicetransfer.DeviceTransferFragment;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
+
+import java.text.NumberFormat;
 
 /**
  * Shows transfer progress on the old device. Most logic is in {@link DeviceTransferFragment}
@@ -37,7 +40,7 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
 
   @Override
   protected void navigateToRestartTransfer() {
-    NavHostFragment.findNavController(this).navigate(R.id.action_directly_to_oldDeviceTransferInstructions);
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_directly_to_oldDeviceTransferInstructions);
   }
 
   @Override
@@ -48,10 +51,18 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
 
   @Override
   protected void navigateToTransferComplete() {
-    NavHostFragment.findNavController(this).navigate(R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
   }
 
   private class ClientTaskListener {
+    private final NumberFormat formatter;
+
+    public ClientTaskListener() {
+      formatter = NumberFormat.getInstance();
+      formatter.setMinimumFractionDigits(1);
+      formatter.setMaximumFractionDigits(1);
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(@NonNull OldDeviceClientTask.Status event) {
       if (event.isDone()) {
@@ -59,9 +70,13 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
         ignoreTransferStatusEvents();
         EventBus.getDefault().removeStickyEvent(TransferStatus.class);
         DeviceToDeviceTransferService.stop(requireContext());
-        NavHostFragment.findNavController(OldDeviceTransferFragment.this).navigate(R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
+        SafeNavigation.safeNavigate(NavHostFragment.findNavController(OldDeviceTransferFragment.this), R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
       } else {
-        status.setText(getString(R.string.DeviceTransfer__d_messages_so_far, event.getMessageCount()));
+        if (event.getEstimatedMessageCount() == 0) {
+          status.setText(getString(R.string.DeviceTransfer__d_messages_so_far, event.getMessageCount()));
+        } else {
+          status.setText(getString(R.string.DeviceTransfer__s_of_messages_so_far, formatter.format(event.getCompletionPercentage())));
+        }
       }
     }
   }

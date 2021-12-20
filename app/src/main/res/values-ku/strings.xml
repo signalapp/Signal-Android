@@ -2163,7 +2163,7 @@
   <string name="BackupDialog_verify">Piştrast bike</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Te pêborîna xwe rast nivîsî</string>
   <string name="BackupDialog_passphrase_was_not_correct">Pêborîna te ne rast e</string>
-  <string name="LocalBackupJob_creating_backup">Yedek tê çêkirin…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Yedek tê çêkirin…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Yedekkirin bi ser neket</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Peldanka te ya yedekkirinê hate jêbirin an jî veguhastin.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Dosyeya yedeka te pir mezin e li ser vê dîskê nayê hilanîn.</string>

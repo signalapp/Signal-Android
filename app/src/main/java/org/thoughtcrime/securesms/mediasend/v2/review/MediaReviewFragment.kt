@@ -36,8 +36,8 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
 
@@ -199,7 +199,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       presentImageQualityToggle(state.quality)
 
       viewOnceButton.displayedChild = if (state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE) 1 else 0
-      sendButton.isEnabled = !state.isSent && state.selectedMedia.isNotEmpty()
 
       computeViewStateAndAnimate(state)
     }
@@ -396,11 +395,11 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
     return slideIn + if (state.isTouchEnabled) {
       listOf(
-        MediaReviewAnimatorController.getFadeInAnimator(sendButton),
+        MediaReviewAnimatorController.getFadeInAnimator(sendButton, state.canSend),
       )
     } else {
       listOf(
-        MediaReviewAnimatorController.getFadeOutAnimator(sendButton),
+        MediaReviewAnimatorController.getFadeOutAnimator(sendButton, state.canSend),
       )
     }
   }

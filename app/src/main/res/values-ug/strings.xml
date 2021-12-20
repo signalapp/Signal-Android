@@ -2506,7 +2506,7 @@
   <string name="BackupDialog_verify">دەلىللەش</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">زاپاسلاش ئىم ئىبارىسىنى توغرا كىرگۈزدىڭىز</string>
   <string name="BackupDialog_passphrase_was_not_correct">ئىم ئىبارىسى توغرا ئەمەس</string>
-  <string name="LocalBackupJob_creating_backup">زاپاسلىنىۋاتىدۇ…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">زاپاسلىنىۋاتىدۇ…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">زاپاسلاش مەغلۇپ بولدى</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">زاپاسلاش مۇندەرىجىڭىز ئۆچۈرۈلگەن ياكى يۆتكىۋېتىلگەن.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">زاپاس ھۆججىتىڭىز بەك چوڭ بولغاچقا بۇ جىلدقا سىغمىدى.</string>

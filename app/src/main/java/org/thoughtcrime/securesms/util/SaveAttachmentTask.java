@@ -94,12 +94,8 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
   private @Nullable String saveAttachment(Context context, Attachment attachment) throws IOException
   {
-    String      contentType = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType));
-    String         fileName = attachment.fileName;
-
-    if (fileName == null) fileName = generateOutputFileName(contentType, attachment.date);
-    fileName = sanitizeOutputFileName(fileName);
-
+    String        contentType  = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType));
+    String        fileName     = generateOutputFileName(contentType, attachment.date);
     Uri           outputUri    = getMediaStoreContentUriForType(contentType);
     Uri           mediaUri     = createOutputUri(outputUri, contentType, fileName);
     ContentValues updateValues = new ContentValues();
@@ -212,10 +208,6 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     if (extension == null) extension = "attach";
 
     return base + "." + extension;
-  }
-
-  private String sanitizeOutputFileName(@NonNull String fileName) {
-    return new File(fileName).getName();
   }
 
   private @Nullable Uri createOutputUri(@NonNull Uri outputUri, @NonNull String contentType, @NonNull String fileName)

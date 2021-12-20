@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StorageUtil;
@@ -534,7 +535,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   }
 
   public static boolean isContentTypeSupported(final String contentType) {
-    return contentType != null && (contentType.startsWith("image/") || contentType.startsWith("video/"));
+    return MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType);
   }
 
   @Override

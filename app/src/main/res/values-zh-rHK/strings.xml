@@ -1915,8 +1915,8 @@
   <string name="arrays__large">大</string>
   <string name="arrays__extra_large">超大</string>
   <string name="arrays__default">預設值</string>
-  <string name="arrays__high">高品質</string>
-  <string name="arrays__max">最大</string>
+  <string name="arrays__high">高</string>
+  <string name="arrays__max">最高</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%d 小時前</item>
@@ -2490,7 +2490,7 @@
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">您已成功輸入您的備份密碼</string>
   <string name="BackupDialog_passphrase_was_not_correct">密碼不正確</string>
-  <string name="LocalBackupJob_creating_backup">正在建立備份…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">正在建立備份…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">備份失敗</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">您的備份目錄已被刪除或移動。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您的備份檔太大，無法在此磁碟機中儲存。</string>

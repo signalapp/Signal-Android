@@ -18,6 +18,7 @@ import androidx.navigation.Navigation;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.MoneyView;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
 public class DeactivateWalletFragment extends Fragment {
@@ -49,7 +50,7 @@ public class DeactivateWalletFragment extends Fragment {
       }
     });
 
-    transferRemainingBalance.setOnClickListener(v -> Navigation.findNavController(requireView()).navigate(R.id.action_deactivateWallet_to_paymentsTransfer));
+    transferRemainingBalance.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_deactivateWallet_to_paymentsTransfer));
 
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(requireView()).popBackStack());
 

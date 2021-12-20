@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.devicetransfer.SetupStep;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 /**
  * Most responsibility is in {@link DeviceTransferSetupFragment} and delegates here
@@ -41,7 +42,7 @@ public final class OldDeviceTransferSetupFragment extends DeviceTransferSetupFra
 
   @Override
   protected void navigateToTransferConnected() {
-    NavHostFragment.findNavController(this).navigate(R.id.action_oldDeviceTransferSetup_to_oldDeviceTransfer);
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_oldDeviceTransferSetup_to_oldDeviceTransfer);
   }
 
   @Override

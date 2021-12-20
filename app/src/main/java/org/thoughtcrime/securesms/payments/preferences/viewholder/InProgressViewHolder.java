@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.payments.preferences.model.InProgress;
-import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
 public class InProgressViewHolder extends MappingViewHolder<InProgress> {
 

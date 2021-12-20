@@ -2775,7 +2775,7 @@
   <string name="BackupDialog_verify">Підтвердження</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ви успішно ввели фразу-пароль своєї резервної копії </string>
   <string name="BackupDialog_passphrase_was_not_correct">Фраза-пароль була неправильна</string>
-  <string name="LocalBackupJob_creating_backup">Створення резервної копії…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Створення резервної копії…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Створення резервної копії не вдалось</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша папка для резервних копій була видалена або переміщена.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Ваш файл резервної копії занадто великий для зберігання на цьому носії. </string>

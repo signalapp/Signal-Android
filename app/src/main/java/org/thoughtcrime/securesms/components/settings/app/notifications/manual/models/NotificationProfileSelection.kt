@@ -9,8 +9,9 @@ import org.thoughtcrime.securesms.components.emoji.EmojiImageView
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.visible
 import java.time.LocalDateTime
@@ -25,8 +26,8 @@ object NotificationProfileSelection {
   private const val UPDATE_TIMESLOT = 1
 
   fun register(adapter: MappingAdapter) {
-    adapter.registerFactory(New::class.java, MappingAdapter.LayoutFactory(::NewViewHolder, R.layout.new_notification_profile_pref))
-    adapter.registerFactory(Entry::class.java, MappingAdapter.LayoutFactory(::EntryViewHolder, R.layout.notification_profile_entry_pref))
+    adapter.registerFactory(New::class.java, LayoutFactory(::NewViewHolder, R.layout.new_notification_profile_pref))
+    adapter.registerFactory(Entry::class.java, LayoutFactory(::EntryViewHolder, R.layout.notification_profile_entry_pref))
   }
 
   class Entry(

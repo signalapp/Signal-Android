@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.formatHours
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.orderOfDaysInWeek
 import org.thoughtcrime.securesms.util.visible
 import java.time.DayOfWeek
@@ -82,7 +83,7 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
             when (result) {
               SaveScheduleResult.Success -> {
                 if (createMode) {
-                  findNavController().navigate(EditNotificationProfileScheduleFragmentDirections.actionEditNotificationProfileScheduleFragmentToNotificationProfileCreatedFragment(profileId))
+                  findNavController().safeNavigate(EditNotificationProfileScheduleFragmentDirections.actionEditNotificationProfileScheduleFragmentToNotificationProfileCreatedFragment(profileId))
                 } else {
                   findNavController().navigateUp()
                 }

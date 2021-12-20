@@ -5,10 +5,14 @@ import android.Manifest;
 
 import androidx.annotation.NonNull;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupFileIOError;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
+import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
@@ -85,11 +89,14 @@ public final class LocalBackupJob extends BaseJob {
       throw new IOException("No external storage permission!");
     }
 
+    ProgressUpdater updater = new ProgressUpdater();
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
-                                                                     context.getString(R.string.LocalBackupJob_creating_backup),
+                                                                     context.getString(R.string.LocalBackupJob_creating_signal_backup),
                                                                      NotificationChannels.BACKUPS,
                                                                      R.drawable.ic_signal_backup))
     {
+      updater.setNotification(notification);
+      EventBus.getDefault().register(updater);
       notification.setIndeterminateProgress();
 
       String backupPassword  = BackupPassphrase.get(context);
@@ -139,6 +146,9 @@ public final class LocalBackupJob extends BaseJob {
       }
 
       BackupUtil.deleteOldBackups();
+    } finally {
+      EventBus.getDefault().unregister(updater);
+      updater.setNotification(null);
     }
   }
 
@@ -164,6 +174,29 @@ public final class LocalBackupJob extends BaseJob {
 
   @Override
   public void onFailure() {
+  }
+
+  private static class ProgressUpdater {
+    private NotificationController notification;
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onEvent(FullBackupBase.BackupEvent event) {
+      if (notification == null) {
+        return;
+      }
+
+      if (event.getType() == FullBackupBase.BackupEvent.Type.PROGRESS) {
+        if (event.getEstimatedTotalCount() == 0) {
+          notification.setIndeterminateProgress();
+        } else {
+          notification.setProgress(100, (int) event.getCompletionPercentage());
+        }
+      }
+    }
+
+    public void setNotification(NotificationController notification) {
+      this.notification = notification;
+    }
   }
 
   public static class Factory implements Job.Factory<LocalBackupJob> {

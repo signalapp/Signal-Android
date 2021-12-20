@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.payments.preferences.viewholder.IntroducingPay
 import org.thoughtcrime.securesms.payments.preferences.viewholder.NoRecentActivityViewHolder;
 import org.thoughtcrime.securesms.payments.preferences.viewholder.PaymentItemViewHolder;
 import org.thoughtcrime.securesms.payments.preferences.viewholder.SeeAllViewHolder;
-import org.thoughtcrime.securesms.util.MappingAdapter;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
 
 public class PaymentsHomeAdapter extends MappingAdapter {
 

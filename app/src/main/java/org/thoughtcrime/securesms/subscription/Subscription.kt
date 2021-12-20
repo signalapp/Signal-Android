@@ -15,8 +15,9 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
 import java.util.Currency
 import java.util.Locale
@@ -34,8 +35,8 @@ data class Subscription(
 
   companion object {
     fun register(adapter: MappingAdapter) {
-      adapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it) }, R.layout.subscription_preference))
-      adapter.registerFactory(LoaderModel::class.java, MappingAdapter.LayoutFactory({ LoaderViewHolder(it) }, R.layout.subscription_preference_loader))
+      adapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.subscription_preference))
+      adapter.registerFactory(LoaderModel::class.java, LayoutFactory({ LoaderViewHolder(it) }, R.layout.subscription_preference_loader))
     }
   }
 

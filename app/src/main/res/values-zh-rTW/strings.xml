@@ -1874,7 +1874,7 @@
     <item>回報</item>
     <item>其他</item>
     <item>付款(行動貨幣)</item>
-    <item>定期贊助人 &amp; Signal 單次贊助</item>
+    <item>贊助人 &amp; Signal 加油支持</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
@@ -1973,7 +1973,7 @@
   <string name="preferences__donate_to_signal">贊助 Signal</string>
   <string name="preferences__subscription">訂閱</string>
   <string name="preferences__become_a_signal_sustainer">成為Signal 支持者</string>
-  <string name="preferences__signal_boost">Signal 單次贊助</string>
+  <string name="preferences__signal_boost">Signal 加油支持</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">手動多媒體設定</string>
@@ -2340,11 +2340,11 @@
   <string name="InsightsDashboardFragment__cancel">取消</string>
   <string name="InsightsDashboardFragment__send">傳送</string>
   <string name="InsightsModalFragment__title">介紹 統計</string>
-  <string name="InsightsModalFragment__description">找出安全傳送的訊息數量，然後迅速邀請新聯絡人提高單次贊助 Signal 比例。</string>
+  <string name="InsightsModalFragment__description">找出安全傳送的訊息數量，然後迅速邀請新聯絡人提高加油支持 Signal 比例。</string>
   <string name="InsightsModalFragment__view_insights">檢視 統計</string>
   <string name="FirstInviteReminder__title">邀請至 Signal</string>
   <string name="FirstInviteReminder__description">你傳送的加密訊息數量可以增加多達 %1$d%%</string>
-  <string name="SecondInviteReminder__title">單次贊助你的 Signal</string>
+  <string name="SecondInviteReminder__title">加油支持你的 Signal</string>
   <string name="SecondInviteReminder__description">邀請 %1$s</string>
   <string name="InsightsReminder__view_insights">檢視 統計</string>
   <string name="InsightsReminder__invite">邀請</string>
@@ -2487,7 +2487,7 @@
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">你已成功的輸入你的備份碼</string>
   <string name="BackupDialog_passphrase_was_not_correct">備份碼錯誤</string>
-  <string name="LocalBackupJob_creating_backup">建立備份中…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">建立備份中…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">備份失敗</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">你的備份目錄已被刪除或移動。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">你的備份檔案太大，無法儲存在該空間上。</string>
@@ -3271,7 +3271,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">謝謝你的支援!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的贊助!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">你贏得了%s徽章！ 透過在你的個人資料上顯示此徽章，幫助 Signal 建立知名度。</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">你已獲得單次贊助徽章！ 透過在你的個人資料上展示此徽章，並幫助 Signal 建立知名度。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">你已獲得加油支持徽章！ 透過在你的個人資料上展示此徽章，並幫助 Signal 建立知名度。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">你也可以做到</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為每月定期的贊助人。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資訊中展示</string>
@@ -3285,11 +3285,11 @@
   <string name="ManageDonationsFragment__badges">徽章</string>
   <string name="ManageDonationsFragment__subscription_faq">訂閱 問與答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">取得訂閱時發生錯誤</string>
-  <string name="BoostFragment__give_signal_a_boost">單次贊助 Signal</string>
+  <string name="BoostFragment__give_signal_a_boost">加油支持 Signal</string>
   <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得單次贊助徽章並展示在個人資料中 %1$d 天。</string>
   <string name="Boost__enter_custom_amount">輸入自定義金額</string>
   <string name="Boost__one_time_contribution">一次性捐款</string>
-  <string name="MySupportPreference__add_a_signal_boost">增加 Signal 單次贊助次數</string>
+  <string name="MySupportPreference__add_a_signal_boost">增加 Signal 加油支持次數</string>
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">續約 %1$s</string>
   <string name="MySupportPreference__processing_transaction">處理交易中…</string>

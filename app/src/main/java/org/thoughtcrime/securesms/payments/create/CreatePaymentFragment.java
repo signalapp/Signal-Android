@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.payments.preferences.RecipientHasNotEnabledPay
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
 import org.whispersystems.signalservice.api.payments.Money;
 
@@ -113,13 +114,13 @@ public class CreatePaymentFragment extends LoggingFragment {
 
     initializeInfoIcon();
 
-    note.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_createPaymentFragment_to_editPaymentNoteFragment));
-    addNote.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_createPaymentFragment_to_editPaymentNoteFragment));
+    note.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_createPaymentFragment_to_editPaymentNoteFragment));
+    addNote.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_createPaymentFragment_to_editPaymentNoteFragment));
 
     pay.setOnClickListener(v -> {
       NavDirections directions = CreatePaymentFragmentDirections.actionCreatePaymentFragmentToConfirmPaymentFragment(viewModel.getCreatePaymentDetails())
                                                                 .setFinishOnConfirm(arguments.getFinishOnConfirm());
-      Navigation.findNavController(v).navigate(directions);
+      SafeNavigation.safeNavigate(Navigation.findNavController(v), directions);
     });
 
     toggle.setOnClickListener(v -> viewModel.toggleMoneyInputTarget());

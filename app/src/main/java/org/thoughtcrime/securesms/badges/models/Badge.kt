@@ -14,9 +14,10 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.ThemeUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import java.security.MessageDigest
 
 typealias OnBadgeClicked = (Badge, Boolean, Boolean) -> Unit
@@ -165,8 +166,8 @@ data class Badge(
     private val SELECTION_CHANGED = Any()
 
     fun register(mappingAdapter: MappingAdapter, onBadgeClicked: OnBadgeClicked) {
-      mappingAdapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it, onBadgeClicked) }, R.layout.badge_preference_view))
-      mappingAdapter.registerFactory(EmptyModel::class.java, MappingAdapter.LayoutFactory({ EmptyViewHolder(it) }, R.layout.badge_preference_view))
+      mappingAdapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it, onBadgeClicked) }, R.layout.badge_preference_view))
+      mappingAdapter.registerFactory(EmptyModel::class.java, LayoutFactory({ EmptyViewHolder(it) }, R.layout.badge_preference_view))
     }
   }
 }

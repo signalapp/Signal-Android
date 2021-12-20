@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewMod
 import org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layout.fragment_change_number_registration_lock) {
 
@@ -38,7 +39,7 @@ class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layo
   }
 
   override fun navigateToAccountLocked() {
-    findNavController().navigate(ChangeNumberRegistrationLockFragmentDirections.actionChangeNumberRegistrationLockToChangeNumberAccountLocked())
+    findNavController().safeNavigate(ChangeNumberRegistrationLockFragmentDirections.actionChangeNumberRegistrationLockToChangeNumberAccountLocked())
   }
 
   override fun handleSuccessfulPinEntry(pin: String) {
@@ -47,7 +48,7 @@ class ChangeNumberRegistrationLockFragment : BaseRegistrationLockFragment(R.layo
     cancelSpinning(pinButton)
 
     if (pinsDiffer) {
-      findNavController().navigate(ChangeNumberRegistrationLockFragmentDirections.actionChangeNumberRegistrationLockToChangeNumberPinDiffers())
+      findNavController().safeNavigate(ChangeNumberRegistrationLockFragmentDirections.actionChangeNumberRegistrationLockToChangeNumberPinDiffers())
     } else {
       changeNumberSuccess()
     }

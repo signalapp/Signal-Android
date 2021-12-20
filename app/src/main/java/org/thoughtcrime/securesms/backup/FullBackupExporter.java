@@ -75,6 +75,11 @@ public class FullBackupExporter extends FullBackupBase {
 
   private static final String TAG = Log.tag(FullBackupExporter.class);
 
+  private static final long DATABASE_VERSION_RECORD_COUNT = 1L;
+  private static final long TABLE_RECORD_COUNT_MULTIPLIER = 3L;
+  private static final long IDENTITY_KEY_BACKUP_RECORD_COUNT = 2L;
+  private static final long FINAL_MESSAGE_COUNT = 1L;
+
   private static final Set<String> BLACKLISTED_TABLES = SetUtil.newHashSet(
     SignedPreKeyDatabase.TABLE_NAME,
     OneTimePreKeyDatabase.TABLE_NAME,
@@ -134,58 +139,62 @@ public class FullBackupExporter extends FullBackupBase {
                                      @NonNull BackupCancellationSignal cancellationSignal)
       throws IOException
   {
-    BackupFrameOutputStream outputStream = new BackupFrameOutputStream(fileOutputStream, passphrase);
-    int                     count        = 0;
+    BackupFrameOutputStream outputStream          = new BackupFrameOutputStream(fileOutputStream, passphrase);
+    int                     count                 = 0;
+    long                    estimatedCountOutside = 0L;
 
     try {
       outputStream.writeDatabaseVersion(input.getVersion());
       count++;
 
       List<String> tables = exportSchema(input, outputStream);
-      count += tables.size() * 3;
+      count += tables.size() * TABLE_RECORD_COUNT_MULTIPLIER;
+
+      final long estimatedCount = calculateCount(context, input, tables);
+      estimatedCountOutside = estimatedCount;
 
       Stopwatch stopwatch = new Stopwatch("Backup");
 
       for (String table : tables) {
         throwIfCanceled(cancellationSignal);
         if (table.equals(MmsDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, FullBackupExporter::isNonExpiringMmsMessage, null, count, cancellationSignal);
+          count = exportTable(table, input, outputStream, FullBackupExporter::isNonExpiringMmsMessage, null, count, estimatedCount, cancellationSignal);
         } else if (table.equals(SmsDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, FullBackupExporter::isNonExpiringSmsMessage, null, count, cancellationSignal);
+          count = exportTable(table, input, outputStream, FullBackupExporter::isNonExpiringSmsMessage, null, count, estimatedCount, cancellationSignal);
         } else if (table.equals(GroupReceiptDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count, estimatedCount, cancellationSignal);
         } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), (cursor, innerCount) -> exportAttachment(attachmentSecret, cursor, outputStream, innerCount), count, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), (cursor, innerCount) -> exportAttachment(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
         } else if (table.equals(StickerDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> true, (cursor, innerCount) -> exportSticker(attachmentSecret, cursor, outputStream, innerCount), count, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> true, (cursor, innerCount) -> exportSticker(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
         } else if (!BLACKLISTED_TABLES.contains(table) && !table.startsWith("sqlite_")) {
-          count = exportTable(table, input, outputStream, null, null, count, cancellationSignal);
+          count = exportTable(table, input, outputStream, null, null, count, estimatedCount, cancellationSignal);
         }
         stopwatch.split("table::" + table);
       }
 
       for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
         throwIfCanceled(cancellationSignal);
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
         outputStream.write(preference);
       }
-      
+
       for (BackupProtos.SharedPreference preference : TextSecurePreferences.getPreferencesToSaveToBackup(context)) {
         throwIfCanceled(cancellationSignal);
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
         outputStream.write(preference);
       }
 
       stopwatch.split("prefs");
 
-      count = exportKeyValues(outputStream, SignalStore.getKeysToIncludeInBackup(), count, cancellationSignal);
+      count = exportKeyValues(outputStream, SignalStore.getKeysToIncludeInBackup(), count, estimatedCount, cancellationSignal);
 
       stopwatch.split("key_values");
 
       for (AvatarHelper.Avatar avatar : AvatarHelper.getAvatars(context)) {
         throwIfCanceled(cancellationSignal);
         if (avatar != null) {
-          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
           outputStream.write(avatar.getFilename(), avatar.getInputStream(), avatar.getLength());
         }
       }
@@ -198,7 +207,49 @@ public class FullBackupExporter extends FullBackupBase {
       if (closeOutputStream) {
         outputStream.close();
       }
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, ++count));
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, ++count, estimatedCountOutside));
+    }
+  }
+
+  private static long calculateCount(@NonNull Context context, @NonNull SQLiteDatabase input, List<String> tables) {
+    long count = DATABASE_VERSION_RECORD_COUNT + TABLE_RECORD_COUNT_MULTIPLIER * tables.size();
+
+    for (String table : tables) {
+      if (table.equals(MmsDatabase.TABLE_NAME)) {
+        count += getCount(input, BackupCountQueries.mmsCount);
+      } else if (table.equals(SmsDatabase.TABLE_NAME)) {
+        count += getCount(input, BackupCountQueries.smsCount);
+      } else if (table.equals(GroupReceiptDatabase.TABLE_NAME)) {
+        count += getCount(input, BackupCountQueries.getGroupReceiptCount());
+      } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
+        count += getCount(input, BackupCountQueries.getAttachmentCount());
+      } else if (table.equals(StickerDatabase.TABLE_NAME)) {
+        count += getCount(input, "SELECT COUNT(*) FROM " + table);
+      } else if (!BLACKLISTED_TABLES.contains(table) && !table.startsWith("sqlite_")) {
+        count += getCount(input, "SELECT COUNT(*) FROM " + table);
+      }
+    }
+
+    count += IDENTITY_KEY_BACKUP_RECORD_COUNT;
+
+    count += TextSecurePreferences.getPreferencesToSaveToBackupCount(context);
+
+    KeyValueDataSet dataSet = KeyValueDatabase.getInstance(ApplicationDependencies.getApplication())
+                                              .getDataSet();
+    for (String key : SignalStore.getKeysToIncludeInBackup()) {
+      if (dataSet.containsKey(key)) {
+        count++;
+      }
+    }
+
+    count += AvatarHelper.getAvatarCount(context);
+
+    return count + FINAL_MESSAGE_COUNT;
+  }
+
+  private static long getCount(@NonNull SQLiteDatabase input, @NonNull String query) {
+    try (Cursor cursor = input.rawQuery(query)) {
+      return cursor.moveToFirst() ? cursor.getLong(0) : 0;
     }
   }
 
@@ -244,6 +295,7 @@ public class FullBackupExporter extends FullBackupBase {
                                  @Nullable Predicate<Cursor> predicate,
                                  @Nullable PostProcessor postProcess,
                                  int count,
+                                 long estimatedCount,
                                  @NonNull BackupCancellationSignal cancellationSignal)
       throws IOException
   {
@@ -283,7 +335,7 @@ public class FullBackupExporter extends FullBackupBase {
 
           statement.append(')');
 
-          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
           outputStream.write(statementBuilder.setStatement(statement.toString()).build());
 
           if (postProcess != null) {
@@ -296,7 +348,7 @@ public class FullBackupExporter extends FullBackupBase {
     return count;
   }
 
-  private static int exportAttachment(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count) {
+  private static int exportAttachment(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount) {
     try {
       long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID));
       long uniqueId = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID));
@@ -321,7 +373,7 @@ public class FullBackupExporter extends FullBackupBase {
         if (random != null && random.length == 32) inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
         else                                       inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
 
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
         outputStream.write(new AttachmentId(rowId, uniqueId), inputStream, size);
       }
     } catch (IOException e) {
@@ -331,7 +383,7 @@ public class FullBackupExporter extends FullBackupBase {
     return count;
   }
 
-  private static int exportSticker(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count) {
+  private static int exportSticker(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount) {
     try {
       long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID));
       long size     = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH));
@@ -340,7 +392,7 @@ public class FullBackupExporter extends FullBackupBase {
       byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM));
 
       if (!TextUtils.isEmpty(data) && size > 0) {
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
         InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
         outputStream.writeSticker(rowId, inputStream, size);
       }
@@ -371,6 +423,7 @@ public class FullBackupExporter extends FullBackupBase {
   private static int exportKeyValues(@NonNull BackupFrameOutputStream outputStream,
                                      @NonNull List<String> keysToIncludeInBackup,
                                      int count,
+                                     long estimatedCount,
                                      BackupCancellationSignal cancellationSignal) throws IOException
   {
     KeyValueDataSet dataSet = KeyValueDatabase.getInstance(ApplicationDependencies.getApplication())
@@ -401,7 +454,7 @@ public class FullBackupExporter extends FullBackupBase {
         throw new AssertionError("Unknown type: " + type);
       }
 
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
       outputStream.write(builder.build());
     }
 

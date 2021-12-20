@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.qr.ScanningThread;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public final class PaymentsTransferQrScanFragment extends LoggingFragment {
 
@@ -56,7 +57,7 @@ public final class PaymentsTransferQrScanFragment extends LoggingFragment {
     scanningThread.setScanListener(data -> ThreadUtil.runOnMain(() -> {
       try {
         viewModel.postQrData(MobileCoinPublicAddress.fromQr(data).getPaymentAddressBase58());
-        Navigation.findNavController(requireView()).navigate(R.id.action_paymentsScanQr_pop);
+        SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_paymentsScanQr_pop);
       } catch (MobileCoinPublicAddress.AddressException e) {
         Log.e(TAG, "Not a valid address");
       }

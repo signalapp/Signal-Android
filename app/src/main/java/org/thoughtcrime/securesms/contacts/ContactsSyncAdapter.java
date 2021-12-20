@@ -41,6 +41,11 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
     Context context = getContext();
 
+    if (SignalStore.account().getE164() == null) {
+      Log.i(TAG, "No local number set, skipping all sync operations.");
+      return;
+    }
+
     if (!SignalStore.account().isRegistered()) {
       Log.i(TAG, "Not push registered. Just syncing contact info.");
       DirectoryHelper.syncRecipientInfoWithSystemContacts(context);

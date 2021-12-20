@@ -162,6 +162,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("DisplayBadgesOnProfile");
       }
 
+      if (!Objects.equals(this.isSubscriptionManuallyCancelled(), that.isSubscriptionManuallyCancelled())) {
+        diff.add("SubscriptionManuallyCancelled");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -258,6 +262,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public boolean isDisplayBadgesOnProfile() {
     return proto.getDisplayBadgesOnProfile();
+  }
+
+  public boolean isSubscriptionManuallyCancelled() {
+    return proto.getSubscriptionManuallyCancelled();
   }
 
   AccountRecord toProto() {
@@ -585,6 +593,11 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setDisplayBadgesOnProfile(boolean displayBadgesOnProfile) {
       builder.setDisplayBadgesOnProfile(displayBadgesOnProfile);
+      return this;
+    }
+
+    public Builder setSubscriptionManuallyCancelled(boolean subscriptionManuallyCancelled) {
+      builder.setSubscriptionManuallyCancelled(subscriptionManuallyCancelled);
       return this;
     }
 

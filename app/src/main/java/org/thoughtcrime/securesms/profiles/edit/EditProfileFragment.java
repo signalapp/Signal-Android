@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
@@ -290,9 +291,9 @@ public class EditProfileFragment extends LoggingFragment {
   private void startAvatarSelection() {
     if (viewModel.isGroup()) {
       Parcelable groupId = ParcelableGroupId.from(viewModel.getGroupId());
-      Navigation.findNavController(requireView()).navigate(EditProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker((ParcelableGroupId) groupId, viewModel.getAvatarMedia()));
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), EditProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker((ParcelableGroupId) groupId, viewModel.getAvatarMedia()));
     } else {
-      Navigation.findNavController(requireView()).navigate(EditProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker(null, null));
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), EditProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker(null, null));
     }
   }
 

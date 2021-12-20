@@ -5,8 +5,9 @@ import androidx.annotation.Px
 import androidx.core.view.updateLayoutParams
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 /**
  * Adds extra space between elements in a DSL fragment
@@ -17,7 +18,7 @@ data class Space(
 
   companion object {
     fun register(mappingAdapter: MappingAdapter) {
-      mappingAdapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it) }, R.layout.dsl_space_preference))
+      mappingAdapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_space_preference))
     }
   }
 

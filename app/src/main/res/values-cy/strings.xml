@@ -314,6 +314,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Newidiodd eich rhif diogelwch gyda %s</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Newidiodd eich rhif diogelwch gyda %s, yn debygol oherwydd eu bod wedi ailosod Signal neu newid dyfeisiau. Tapiwch Dilysu i gadarnhau’r rhif diogelwch newydd. Mae hyn yn ddewisol.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s ymlaen</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Dileu\'r sgwrs hon?</item>
     <item quantity="two">Dileu\'r sgyrsiau hyn?</item>
@@ -404,8 +405,11 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">%d wedi\'u dewis</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Proffil hysbysu</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Trowch eich proffil hysbysu ymlaen neu i ffwrdd yma.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s ymlaen</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Neges cyfnewid allwedd</string>
   <!--ConversationListItemAction-->
@@ -1902,6 +1906,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Sgrolio i\'r gwaelod</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Mae swigod yn nodwedd Android y gallwch ei diffodd ar gyfer sgyrsiau Signal.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Nid nawr</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2770,7 +2775,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupDialog_verify">Dilysu</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Rydych wedi cyflwyno eich cyfrinymadrodd wrth gefn yn llwyddiannus</string>
   <string name="BackupDialog_passphrase_was_not_correct">Nid oedd y cyfrinymadrodd yn gywir</string>
-  <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Methodd y copïo wrth gefn</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mae eich cyfeiriadur wrth gefn wedi\'i ddileu neu ei symud.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Mae\'ch ffeil wrth gefn yn rhy fawr i\'w storio ar y gyfrol hon.</string>
@@ -2942,6 +2947,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_unblock">Dadrwystro</string>
   <string name="RecipientBottomSheet_add_to_contacts">Ychwanegu at gysylltiadau</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Methu dod o hyd i ap sy\'n gallu agor cysylltiadau.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Ychwanegu i grŵp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Ychwanegu i grŵp arall</string>
   <string name="RecipientBottomSheet_view_safety_number">Gweld rhif diogelwch</string>
@@ -3045,11 +3051,17 @@ Send neges heb ei ddiogelu?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Wedi methu dileu data lleol. Gallwch ei glirio â llaw yn y gosodiadau rhaglenni system.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Agor Gosodiadau\'r Ap</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Yn gadael grwpiau…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Yn dileu cyfrif…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Yn dibynnu ar nifer y grwpiau rydych chi ynddyn nhw, gall hyn gymryd rhai munudau</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Yn dileu data defnyddwyr ac yn ailosod yr ap</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Cyfrif Heb ei Ddileu</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Roedd problem wrth gwblhau\'r broses ddileu. Gwiriwch eich cysylltiad rhwydwaith a rhoi cynnig arall arni.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Chwilio Gwledydd</string>
   <!--CreateGroupActivity-->
@@ -3261,11 +3273,16 @@ Send neges heb ei ddiogelu?</string>
   <string name="NotificationsSettingsFragment__notify_when">Rhoi gwybod pan…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Mae\'r cyswllt yn ymuno â Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Proffiliau hysbysu</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Proffiliau</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Crëwch broffil i dderbyn hysbysiadau dim ond gan bobl a grwpiau rydych chi\'n eu dewis.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Proffiliau hysbysu</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Creu proffil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Wedi\'u Rhwystro</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d cyswllt</string>
@@ -3628,6 +3645,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gwall rhwydwaith. Gwiriwch eich cysylltiad a cheisio eto.</string>
   <string name="NetworkFailure__retry">Ailgynnig</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Enwch eich proffil</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Enw proffilEnw proffil</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3639,33 +3657,51 @@ Send neges heb ei ddiogelu?</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Cadw</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Golygu\'r proffil hwn</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Mae proffil gyda\'r enw hwn eisoes yn bodoli</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Gwaith</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Cysgu</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Yn gyrru</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Amser segur</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Canolbwynt</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Rhaid cael enw</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Hysbysiadau sy\'n cael eu caniatáu</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Ychwanegwch bobl a grwpiau rydych chi eisiau hysbysiadau a galwadau ganddynt pan fydd y proffil hwn ymlaen</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Ychwanegu bobl neu grwpiau</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Ychwanegu</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Crëwch broffil i dderbyn hysbysiadau a galwadau dim ond gan y bobl a\'r grwpiau rydych chi am glywed ganddynt.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Proffiliau</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Proffil newydd</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Ymlaen</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Dileu proffil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">Tynnwyd \"%1$s\".</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Dadwneud</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Dileu\'r proffil yn barhaol?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Dileu</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Golygu proffil hysbysu</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Pob dydd</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Ymlaen</string>
   <!--Profile status on if it is not the active profile-->
@@ -3673,26 +3709,43 @@ Send neges heb ei ddiogelu?</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s i %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Eithriadau</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Caniatáu pob galwad</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Hysbysu am bob crybwylliad</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Amserlen</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">Gweld y cyfan</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Ychwanegwch amserlen</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Creu amserlen i alluogi\'r proffil hysbysu hwn yn awtomatig.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Amserlen</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Cychwyn</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Diwedd</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">S</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">L</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">M</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">M</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">I</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">G</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Gosod amser cychwyn</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Gosod amser gorffen</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Cadw</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3700,21 +3753,33 @@ Send neges heb ei ddiogelu?</string>
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Nesaf</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Rhaid i\'r amserlen gael o leiaf un diwrnod</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Proffil wedi\'i greu</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Wedi Gorffen</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Gallwch droi eich proffil ymlaen neu i ffwrdd â llaw trwy\'r ddewislen ar y rhestr sgwrsio.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Ychwanegwch amserlen mewn lleoliadau i awtomeiddio\'ch proffil.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Bydd eich proffil yn troi ymlaen ac i ffwrdd yn awtomatig yn ôl eich amserlen.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Proffil newydd</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Am 1 awr</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Tan %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Gweld y gosodiadau</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Ymlaen tan %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Proffiliau hysbysu</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Dim ond cael hysbysiadau gan y bobl a\'r grwpiau rydych chi\'n eu dewis.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Creu proffil</string>
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">Nid nawr</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->

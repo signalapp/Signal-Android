@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'witness'
-apply from: 'witness-verifications.gradle'
 
 android {
     buildToolsVersion BUILD_TOOL_VERSION
@@ -15,10 +13,6 @@ android {
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
     }
-}
-
-dependencyVerification {
-    configuration = '(debug|release)RuntimeClasspath'
 }
 
 dependencies {

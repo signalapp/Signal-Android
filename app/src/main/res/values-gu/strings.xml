@@ -2454,7 +2454,7 @@
   <string name="BackupDialog_verify">ચકાસો</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">તમે સફળતાપૂર્વક તમારો બૅકઅપ પાસફ્રેઝ દાખલ કર્યો</string>
   <string name="BackupDialog_passphrase_was_not_correct">પાસફ્રેઝ સાચો ન હતો</string>
-  <string name="LocalBackupJob_creating_backup">બૅકઅપ બનાવી રહ્યા છે…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">બૅકઅપ બનાવી રહ્યા છે…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">બૅકઅપ નિષ્ફળ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">તમારી બૅકઅપ ડિરેક્ટરી કાઢી નાખવામાં આવી છે અથવા ખસેડવામાં આવી છે.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">આ વોલ્યુમ પર સ્ટોર કરવા માટે તમારી બૅકઅપ ફાઇલ ખૂબ મોટી છે.</string>
