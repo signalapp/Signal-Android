@@ -31,19 +31,23 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MessageDatabase.ThreadUpdate;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -489,6 +493,56 @@ public class MmsSmsDatabase extends Database {
     return threadUpdates;
   }
 
+
+  public void setTimestampRead(@NonNull Recipient senderRecipient, @NonNull List<ReadMessage> readMessages, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
+    SQLiteDatabase db = getWritableDatabase();
+
+    List<Pair<Long, Long>> expiringText   = new LinkedList<>();
+    List<Pair<Long, Long>> expiringMedia  = new LinkedList<>();
+    Set<Long>              updatedThreads = new HashSet<>();
+
+    db.beginTransaction();
+    try {
+      for (ReadMessage readMessage : readMessages) {
+        TimestampReadResult textResult  = SignalDatabase.sms().setTimestampRead(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()),
+                                                                                proposedExpireStarted,
+                                                                                threadToLatestRead);
+        TimestampReadResult mediaResult = SignalDatabase.mms().setTimestampRead(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()),
+                                                                                proposedExpireStarted,
+                                                                                threadToLatestRead);
+
+        expiringText.addAll(textResult.expiring);
+        expiringMedia.addAll(mediaResult.expiring);
+
+        updatedThreads.addAll(textResult.threads);
+        updatedThreads.addAll(mediaResult.threads);
+      }
+
+      for (long threadId : updatedThreads) {
+        SignalDatabase.threads().updateReadState(threadId);
+        SignalDatabase.threads().setLastSeen(threadId);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    for (Pair<Long, Long> expiringMessage : expiringText) {
+      ApplicationDependencies.getExpiringMessageManager()
+                             .scheduleDeletion(expiringMessage.first(), false, proposedExpireStarted, expiringMessage.second());
+    }
+
+    for (Pair<Long, Long> expiringMessage : expiringMedia) {
+      ApplicationDependencies.getExpiringMessageManager()
+                             .scheduleDeletion(expiringMessage.first(), true, proposedExpireStarted, expiringMessage.second());
+    }
+
+    for (long threadId : updatedThreads) {
+      notifyConversationListeners(threadId);
+    }
+  }
+
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
@@ -860,6 +914,16 @@ public class MmsSmsDatabase extends Database {
     @Override
     public void close() {
       cursor.close();
+    }
+  }
+
+  static final class TimestampReadResult {
+    final List<Pair<Long, Long>> expiring;
+    final List<Long> threads;
+
+    TimestampReadResult(@NonNull List<Pair<Long, Long>> expiring, @NonNull List<Long> threads) {
+      this.expiring = expiring;
+      this.threads  = threads;
     }
   }
 }

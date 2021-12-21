@@ -121,7 +121,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -1199,29 +1198,14 @@ public final class MessageContentProcessor {
 
   private void handleSynchronizeReadMessage(@NonNull List<ReadMessage> readMessages, long envelopeTimestamp, @NonNull Recipient senderRecipient)
   {
-    log(envelopeTimestamp, "Synchronize read message.");
+    log(envelopeTimestamp, "Synchronize read message. Count: " + readMessages.size());
 
     Map<Long, Long> threadToLatestRead = new HashMap<>();
-    for (ReadMessage readMessage : readMessages) {
-      List<Pair<Long, Long>> expiringText  = SignalDatabase.sms().setTimestampRead(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()),
-                                                                                                     envelopeTimestamp,
-                                                                                                     threadToLatestRead);
-      List<Pair<Long, Long>> expiringMedia = SignalDatabase.mms().setTimestampRead(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()),
-                                                                                                     envelopeTimestamp,
-                                                                                                     threadToLatestRead);
 
-      for (Pair<Long, Long> expiringMessage : expiringText) {
-        ApplicationDependencies.getExpiringMessageManager()
-                               .scheduleDeletion(expiringMessage.first(), false, envelopeTimestamp, expiringMessage.second());
-      }
-
-      for (Pair<Long, Long> expiringMessage : expiringMedia) {
-        ApplicationDependencies.getExpiringMessageManager()
-                               .scheduleDeletion(expiringMessage.first(), true, envelopeTimestamp, expiringMessage.second());
-      }
-    }
+    SignalDatabase.mmsSms().setTimestampRead(senderRecipient, readMessages, envelopeTimestamp, threadToLatestRead);
 
     List<MessageDatabase.MarkedMessageInfo> markedMessages = SignalDatabase.threads().setReadSince(threadToLatestRead, false);
+
     if (Util.hasItems(markedMessages)) {
       Log.i(TAG, "Updating past messages: " + markedMessages.size());
       MarkReadReceiver.process(context, markedMessages);
@@ -1234,7 +1218,7 @@ public final class MessageContentProcessor {
   }
 
   private void handleSynchronizeViewedMessage(@NonNull List<ViewedMessage> viewedMessages, long envelopeTimestamp) {
-    log(envelopeTimestamp, "Synchronize viewed message.");
+    log(envelopeTimestamp, "Synchronize viewed message. Count: " + viewedMessages.size());
 
     List<Long> toMarkViewed = Stream.of(viewedMessages)
                                     .map(message -> {
