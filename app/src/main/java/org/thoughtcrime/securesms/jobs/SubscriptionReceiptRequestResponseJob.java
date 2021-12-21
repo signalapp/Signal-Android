@@ -39,16 +39,18 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   public static final String KEY = "SubscriptionReceiptCredentialsSubmissionJob";
 
-  private static final String DATA_REQUEST_BYTES   = "data.request.bytes";
-  private static final String DATA_SUBSCRIBER_ID   = "data.subscriber.id";
+  private static final String DATA_REQUEST_BYTES     = "data.request.bytes";
+  private static final String DATA_SUBSCRIBER_ID     = "data.subscriber.id";
+  private static final String DATA_IS_FOR_KEEP_ALIVE = "data.is.for.keep.alive";
 
   public static final Object MUTEX = new Object();
 
   private ReceiptCredentialRequestContext requestContext;
 
   private final SubscriberId subscriberId;
+  private final boolean      isForKeepAlive;
 
-  static SubscriptionReceiptRequestResponseJob createJob(SubscriberId subscriberId) {
+  private static SubscriptionReceiptRequestResponseJob createJob(SubscriberId subscriberId, boolean isForKeepAlive) {
     return new SubscriptionReceiptRequestResponseJob(
         new Parameters
             .Builder()
@@ -59,13 +61,18 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
-        subscriberId
+        subscriberId,
+        isForKeepAlive
     );
   }
 
   public static JobManager.Chain createSubscriptionContinuationJobChain() {
+    return createSubscriptionContinuationJobChain(false);
+  }
+
+  public static JobManager.Chain createSubscriptionContinuationJobChain(boolean isForKeepAlive) {
     Subscriber                            subscriber           = SignalStore.donationsValues().requireSubscriber();
-    SubscriptionReceiptRequestResponseJob requestReceiptJob    = createJob(subscriber.getSubscriberId());
+    SubscriptionReceiptRequestResponseJob requestReceiptJob    = createJob(subscriber.getSubscriberId(), isForKeepAlive);
     DonationReceiptRedemptionJob          redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForSubscription();
     RefreshOwnProfileJob                  refreshOwnProfileJob = RefreshOwnProfileJob.forSubscription();
 
@@ -77,16 +84,19 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   private SubscriptionReceiptRequestResponseJob(@NonNull Parameters parameters,
                                                 @Nullable ReceiptCredentialRequestContext requestContext,
-                                                @NonNull SubscriberId subscriberId)
+                                                @NonNull SubscriberId subscriberId,
+                                                boolean isForKeepAlive)
   {
     super(parameters);
     this.requestContext = requestContext;
     this.subscriberId   = subscriberId;
+    this.isForKeepAlive = isForKeepAlive;
   }
 
   @Override
   public @NonNull Data serialize() {
-    Data.Builder builder = new Data.Builder().putBlobAsString(DATA_SUBSCRIBER_ID, subscriberId.getBytes());
+    Data.Builder builder = new Data.Builder().putBlobAsString(DATA_SUBSCRIBER_ID, subscriberId.getBytes())
+                                             .putBoolean(DATA_IS_FOR_KEEP_ALIVE, isForKeepAlive);
 
     if (requestContext != null) {
       builder.putBlobAsString(DATA_REQUEST_BYTES, requestContext.serialize());
@@ -102,9 +112,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
-    SignalStore.donationsValues().markSubscriptionRedemptionFailed();
-    MultiDeviceSubscriptionSyncRequestJob.enqueue();
   }
 
   @Override
@@ -231,8 +238,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         Log.w(TAG, "SubscriberId not found or misformed.", response.getApplicationError().get(), true);
         throw new Exception(response.getApplicationError().get());
       case 409:
-        Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
-        throw new Exception(response.getApplicationError().get());
+        onAlreadyRedeemed(response);
+        break;
       default:
         Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get(), true);
         throw new RetryableException();
@@ -243,6 +250,16 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
     setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_PAYMENT_FAILURE, true).build());
     MultiDeviceSubscriptionSyncRequestJob.enqueue();
+  }
+
+  private void onAlreadyRedeemed(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
+    if (isForKeepAlive) {
+      Log.i(TAG, "KeepAlive: Latest paid receipt on subscription already redeemed with a different request credential, ignoring.", response.getApplicationError().get(), true);
+      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_KEEP_ALIVE_409, true).build());
+    } else {
+      Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
+      throw new Exception(response.getApplicationError().get());
+    }
   }
 
   /**
@@ -282,16 +299,17 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   public static class Factory implements Job.Factory<SubscriptionReceiptRequestResponseJob> {
     @Override
     public @NonNull SubscriptionReceiptRequestResponseJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      SubscriberId subscriberId = SubscriberId.fromBytes(data.getStringAsBlob(DATA_SUBSCRIBER_ID));
+      SubscriberId subscriberId   = SubscriberId.fromBytes(data.getStringAsBlob(DATA_SUBSCRIBER_ID));
+      boolean      isForKeepAlive = data.getBooleanOrDefault(DATA_IS_FOR_KEEP_ALIVE, false);
 
       try {
         if (data.hasString(DATA_REQUEST_BYTES)) {
           byte[]                          blob           = data.getStringAsBlob(DATA_REQUEST_BYTES);
           ReceiptCredentialRequestContext requestContext = new ReceiptCredentialRequestContext(blob);
 
-          return new SubscriptionReceiptRequestResponseJob(parameters, requestContext, subscriberId);
+          return new SubscriptionReceiptRequestResponseJob(parameters, requestContext, subscriberId, isForKeepAlive);
         } else {
-          return new SubscriptionReceiptRequestResponseJob(parameters, null, subscriberId);
+          return new SubscriptionReceiptRequestResponseJob(parameters, null, subscriberId, isForKeepAlive);
         }
       } catch (InvalidInputException e) {
         throw new IllegalStateException(e);

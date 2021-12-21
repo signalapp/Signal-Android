@@ -15,6 +15,7 @@ import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -95,8 +96,14 @@ public class SubscriptionKeepAliveJob extends BaseJob {
     }
 
     if (activeSubscription.getActiveSubscription().getEndOfCurrentPeriod() > SignalStore.donationsValues().getLastEndOfPeriod()) {
-      Log.i(TAG, "Last end of period change. Requesting receipt refresh.", true);
-      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue();
+      Log.i(TAG,
+            String.format(Locale.US,
+                          "Last end of period change. Requesting receipt refresh. (old: %d to new: %d)",
+                          SignalStore.donationsValues().getLastEndOfPeriod(),
+                          activeSubscription.getActiveSubscription().getEndOfCurrentPeriod()),
+            true);
+
+      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true).enqueue();
     }
   }
 
