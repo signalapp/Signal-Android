@@ -411,6 +411,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Més informació</string>
   <string name="BackupsPreferenceFragment__in_progress">En curs…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d fins ara…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">El Signal necessita el permís de l\'emmagatzematge extern per tal de crear còpies de seguretat. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi l\'emmagatzematge.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Ús de la personalització: %s</string>
@@ -2579,7 +2580,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="BackupDialog_verify">Verificació</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Heu escrit correctament la contrasenya de còpia de seguretat.</string>
   <string name="BackupDialog_passphrase_was_not_correct">La contrasenya no és correcta.</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Es crea una còpia de seguretat…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Ha fallat la còpia de seguretat.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">El directori de còpia de seguretat s\'ha suprimit o s\'ha canviat de lloc.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">El fitxer de còpia de seguretat és massa gros per desar-lo en aquest volum.</string>
@@ -2701,6 +2701,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="DeviceTransfer__transferring_data">Es transfereixen dades</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantingueu els dos dispositius a prop l’un de l’altre. No els apagueu i mantingueu el Signal obert. Les transferències estan encriptades d\'extrem a extrem.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d missatges fins ara…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Cancel·la</string>
   <string name="DeviceTransfer__try_again">Torna a provar-ho</string>
   <string name="DeviceTransfer__stop_transfer_question">Aturo la transferència?</string>

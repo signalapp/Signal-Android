@@ -453,6 +453,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Izvedite več</string>
   <string name="BackupsPreferenceFragment__in_progress">V teku …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d do zdaj …</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% do zdaj …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Dovoljenja za dostop do zunanjega pomnilnika, ki ga aplikacija Signal potrebuje za varnostno kopiranje, je bilo trajno odvzeto. Prosimo, pojdite v sistemski meni z nastavitvami za aplikacije, izberite \"Dovoljenja\" in označite polje \"Zunanja shramba\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uporabljam izbirno: %s</string>
@@ -1776,6 +1778,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UnauthorizedReminder_device_no_longer_registered">Naprava ni več registrirana</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Najbrž ste registrirali vašo telefonsko številko na drugi napravi. Tapnite za ponovno registracijo.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Za prevzem klica omogočite aplikaciji Signal dostop do mikrofona naprave.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Za prevzem klica uporabnika/ce %somogočite aplikaciji Signal dostop do mikrofona naprave.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Dostop do mikrofona in kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do mikrofona in kamere za klicanje. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenji pod postavkama \"Mikrofon\" in \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Odgovorjeno na povezani napravi.</string>
@@ -2764,7 +2767,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="BackupDialog_verify">Potrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspešno ste vnesli geslo svoje varnostne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Geslo ni bilo pravilno</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Ustvarjanje varnostne kopije …</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">Ustvarjanje varnostne kopije Signal …</string>
   <string name="LocalBackupJobApi29_backup_failed">Izdelava varnostne kopije ni uspela</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mapa za varnostne kopije je bila izbrisana ali premaknjena.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Vaša varnostna kopija je prevelika za to shrambo.</string>
@@ -2886,6 +2889,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="DeviceTransfer__transferring_data">Poteka prenos podatkov</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Napravi naj bosta v neposredni bližini. Ne izklapljajte naprav in pustite Signal odprt. Prenos je med obema napravama je šifriran od-konca-do-konca.</string>
   <string name="DeviceTransfer__d_messages_so_far">Prenešenih %1$d sporočil …</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% sporočil do zdaj …</string>
   <string name="DeviceTransfer__cancel">Prekliči</string>
   <string name="DeviceTransfer__try_again">Poskusi znova</string>
   <string name="DeviceTransfer__stop_transfer_question">Želite prekiniti proces?</string>

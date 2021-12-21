@@ -453,6 +453,8 @@
   <string name="BackupsPreferenceFragment__learn_more">למד עוד</string>
   <string name="BackupsPreferenceFragment__in_progress">בתהליך…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d עד כה…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% עד כה…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal דורש הרשאת אחסון חיצוני על מנת ליצור גיבויים, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">משתמש בהתאמה אישית: %s</string>
@@ -1785,6 +1787,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">המכשיר אינו רשום יותר</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">זה קרוב לוודאי מאחר שרשמת את מספר הטלפון שלך עם Signal על מכשיר שונה. הקש כדי להירשם מחדש.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">כדי לענות אל השיחה, תן אל Signal גישה אל המיקרופון שלך.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">כדי לענות אל השיחה מאת %s, תן אל Signal גישה אל המיקרופון שלך.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal דורש את ההרשאות של המיקרופון והמצלמה על מנת לבצע שיחות ולענות לשיחות, אבל הן נדחו לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקרופון\" ואת \"מצלמה\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">נענתה על מכשיר מקושר.</string>
@@ -2773,7 +2776,7 @@
   <string name="BackupDialog_verify">וודא</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">הכנסת בהצלחה את משפט־סיסמת הגיבוי שלך</string>
   <string name="BackupDialog_passphrase_was_not_correct">משפט־הסיסמה לא היה נכון</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">יוצר גיבוי…</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">יוצר גיבוי Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">גיבוי נכשל</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">תיקיית הגיבוי שלך נמחקה או הועברה.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">קובץ הגיבוי שלך גדול מדי לאחסון בכרך זה.</string>
@@ -2895,6 +2898,8 @@
   <string name="DeviceTransfer__transferring_data">מעביר נתונים</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">השאר את שני המכשירים קרובים אחד לשני. אל תכבה את המכשירים והשאר את Signal פתוח. העברות מוצפנות מקצה־אל־קצה.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d הודעות עד כה…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% מההודעות עד כה…</string>
   <string name="DeviceTransfer__cancel">בטל</string>
   <string name="DeviceTransfer__try_again">נסה שוב</string>
   <string name="DeviceTransfer__stop_transfer_question">להפסיק העברה?</string>

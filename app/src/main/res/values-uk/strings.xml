@@ -453,6 +453,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Дізнатись більше</string>
   <string name="BackupsPreferenceFragment__in_progress">В процесі…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d на цей час…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal потребує дозволу \"Зберігання\", щоб створювати резервні копії, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Зберігання\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Використання власного: %s</string>
@@ -2775,7 +2776,6 @@
   <string name="BackupDialog_verify">Підтвердження</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ви успішно ввели фразу-пароль своєї резервної копії </string>
   <string name="BackupDialog_passphrase_was_not_correct">Фраза-пароль була неправильна</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Створення резервної копії…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Створення резервної копії не вдалось</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша папка для резервних копій була видалена або переміщена.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Ваш файл резервної копії занадто великий для зберігання на цьому носії. </string>
@@ -2897,6 +2897,7 @@
   <string name="DeviceTransfer__transferring_data">Передача даних</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Тримайте обидва пристрої поруч один з одним. Не вимикайте ні один з пристроїв і залишайте Signal відкритим. Перекази захищені наскрізним шифруванням.</string>
   <string name="DeviceTransfer__d_messages_so_far">Залишилось %1$d повідомлень…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Скасувати</string>
   <string name="DeviceTransfer__try_again">Спробувати знову</string>
   <string name="DeviceTransfer__stop_transfer_question">Зупинити переказ?</string>

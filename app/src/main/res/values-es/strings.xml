@@ -411,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Saber más</string>
   <string name="BackupsPreferenceFragment__in_progress">En curso …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d por el momento …</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s de %% de momento …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesita acceso al almacenamiento para crear copias de seguridad. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar personalizado: %s</string>
@@ -1631,6 +1633,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UnauthorizedReminder_device_no_longer_registered">El dispositivo ya no está registrado</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probablemente se debe a que se registró el número en Signal con un dispositivo distinto. Toca para volver a registrar.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Para atender la llamada, permite a Signal el acceso al micrófono.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para atender la llamada de %s, permite a Signal el acceso al micrófono.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal necesita acceso al micrófono y cámara para hacer o atender llamadas. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Micrófono» y «Cámara».</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendida en dispositivo enlazado.</string>
@@ -2585,7 +2588,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">La clave es correcta</string>
   <string name="BackupDialog_passphrase_was_not_correct">La clave es incorrecta</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Creando copia de seguridad …</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">Creando copia de seguridad …</string>
   <string name="LocalBackupJobApi29_backup_failed">Fallo en la copia</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Parece que tu carpeta de copias de seguridad se ha eliminado o movido.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">La copia de seguridad es demasiado grande para guardarla en este dispositivo.</string>
@@ -2707,6 +2710,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DeviceTransfer__transferring_data">Transfiriendo datos</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantén próximos ambos dispositivos. Conéctalos a su cargador y mantén Signal abierto. La transferencia entre ambos dispositivos está cifrada de extremo a extremo.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mensajes de momento …</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s de %% mensajes de momento …</string>
   <string name="DeviceTransfer__cancel">Cancelar</string>
   <string name="DeviceTransfer__try_again">Inténtalo de nuevo</string>
   <string name="DeviceTransfer__stop_transfer_question">¿Detener transferencia?</string>
@@ -3382,7 +3387,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">También puedes</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">contribuir mensualmente.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Crear distintivo especial</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Distintivo a mostrar</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Hecho</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si tienes más de un distintivo, puedes seleccionar cuál mostrar en tu perfil a otras personas.</string>
   <string name="BecomeASustainerFragment__get_badges">conseguir distintivos para tu perfil al sostener Signal.</string>
@@ -3406,13 +3411,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Tu distintivo ha caducado</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Distintivo caducado</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Suscripción cancelada</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Tu distintivo de impulso ha caducado y ya no es visible para otr@s en tu perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Tu distintivo de impulso ha caducado y ya no es visible en tu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Puedes reactivar tu distintivo de impulso por otros 30 días al hacer otra contribución.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Para continuar apoyando la tecnología desarrollada para ti, considera una suscripción mensual.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sostén Signal</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Danos un impulso</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ahora no</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Tu suscripción mensual se ha cancelado automáticamente por cuenta inactiva. Tu distintivo %1$s ya no es visible en tu perfil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Tu suscripción mensual se ha cancelado automáticamente por cuenta inactiva. Tu distintivo «%1$s» ya no es visible en tu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puedes continuar usando la aplicación, pero para apoyar a Signal, reactiva tu distintivo. Renuévalo ahora.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renovar suscripción</string>
   <string name="Subscription__please_contact_support_for_more_information">Por favor, contacta con el soporte técnico para más información.</string>

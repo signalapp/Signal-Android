@@ -390,6 +390,8 @@
   <string name="BackupsPreferenceFragment__learn_more">講多啲畀我聽</string>
   <string name="BackupsPreferenceFragment__in_progress">幫緊您幫緊您…</string>
   <string name="BackupsPreferenceFragment__d_so_far">暫時去到 %1$d…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">暫時去到 %1$s%%…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 要攞外部儲存裝置權限，先可以建立備份，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「儲存裝置」。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">用緊自訂：%s</string>
@@ -1554,6 +1556,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">部機嘅註冊已失效</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">通常係因為您用咗另一部機嚟喺 Signal 度註冊您個電話冧把。撳一下去重新註冊。</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">如果要接聽通話，請允許 Signal 存取您部機個咪。</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">如果要接聽 %s 打嚟嘅通話，請允許 Signal 存取您部機個咪。</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 要攞「麥克風」同「相機」權限，先可以撥打同接聽通話，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「麥克風」同「相機」。</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">已用連結咗嘅機接聽。</string>
@@ -2491,7 +2494,7 @@
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">您輸入嘅備份密碼正確無誤</string>
   <string name="BackupDialog_passphrase_was_not_correct">密碼有誤</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">建立緊備份…</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">建立緊 Signal 備份…</string>
   <string name="LocalBackupJobApi29_backup_failed">備份唔到</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">您嘅備份目錄已經刪除或移動咗。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您個備份檔案大得滯，裝唔落呢一度喎。</string>
@@ -2613,6 +2616,8 @@
   <string name="DeviceTransfer__transferring_data">轉移緊資料</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">將兩部機保持靠近。唔好熄機，並且開住 Signal。轉移係經端對端加密。</string>
   <string name="DeviceTransfer__d_messages_so_far">目前為止 %1$d 個訊息…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">啲訊息暫時整咗 %1$s%%…</string>
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">再試一次</string>
   <string name="DeviceTransfer__stop_transfer_question">係咪要停止轉移？</string>

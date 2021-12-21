@@ -378,6 +378,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Lasīt vairāk</string>
   <string name="BackupsPreferenceFragment__in_progress">Progresā</string>
   <string name="BackupsPreferenceFragment__d_so_far">pagaidām %1$d …</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Lai izveidotu dublikātus (rezerves kopijas), Signālam nepieciešama pieeja ārējai datu noliktavai,  bet tā tiek pastāvīgi liegta. Lūdzu, dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Noiktava\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Lieto pielāgojamu: %s</string>
@@ -2538,7 +2539,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="BackupDialog_verify">Verificēt</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sekmīgi ievadījāt rezerves ieejas paroli</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parole nav pareiza</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Tiek veidota rezerves kopija…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Dublēšana neizdevās</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsu dublējumu direktorijs ir dzēsts vai pārvietots.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsu dublējuma fails ir pārāk liels saglabāšanai šajā apjomā.</string>
@@ -2660,6 +2660,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="DeviceTransfer__transferring_data">Notiek datu pārsūtīšana</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Turiet abas ierīces tuvu vienu otrai. Neslēdziet ārā nevienu no ierīcēm un neaizveriet lietotni Signal. Pārsūtīšana ir pilnībā šifrēta.</string>
   <string name="DeviceTransfer__d_messages_so_far">Pagaidām %1$d ziņas…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Atcelt</string>
   <string name="DeviceTransfer__try_again">Mēģiniet vēlreiz</string>
   <string name="DeviceTransfer__stop_transfer_question">Vai pārtraukt nosūtīšanu?</string>

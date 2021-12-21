@@ -407,6 +407,7 @@
   <string name="BackupsPreferenceFragment__learn_more">अधिक जानें</string>
   <string name="BackupsPreferenceFragment__in_progress">प्रगति में</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d अब तक</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बैकअप बनाने के लिए Signal को बाहरी संग्रहण अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स को जारी रखें, \"अनुमतियां\" चुनें और \"संग्रहण\" सक्षम करें।</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">कस्टम इस्तेमाल: %s</string>
@@ -2573,7 +2574,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="BackupDialog_verify">सत्यापित करें</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">आप अपना बैकअप पासफ्रेज दर्ज करने में सफल रहे हैं </string>
   <string name="BackupDialog_passphrase_was_not_correct">पासफ्रेज गलत </string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">बैकअप बनाया जा रहा है</string> -->
   <string name="LocalBackupJobApi29_backup_failed">बैकअप विफल</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">आपकी बैकअप डायरेक्टरी या तो मिटा दी गयी है या यहाँ से कहीं और हटा दी गयी है.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">इस वॉल्यूम में आपकी बैकअप फाइल को संगृहीत करने के लिए पर्याप्त जगह नहीं है।  </string>
@@ -2695,6 +2695,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="DeviceTransfer__transferring_data">डेटा ट्रांसफ़र हो रहा है</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">दोनों डिवाइस एक-दूसरे के पास रखें। डिवाइस बंद ना करें और Signal खुला रखें। ट्रांसफ़र एंड-टू-एंड एन्क्रिप्टेड होते हैं।</string>
   <string name="DeviceTransfer__d_messages_so_far">अब तक %1$d संदेश…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">रद्द करें</string>
   <string name="DeviceTransfer__try_again">फिर से कोशिश करो</string>
   <string name="DeviceTransfer__stop_transfer_question">ट्रांसफ़र रोकें?</string>

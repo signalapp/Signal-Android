@@ -390,6 +390,8 @@
   <string name="BackupsPreferenceFragment__learn_more">了解更多</string>
   <string name="BackupsPreferenceFragment__in_progress">正在進行中…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d到目前為止…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">目前進度%1$s%%…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">為了要建立備份，Signal 需要外部空間的權限，但是已被永久拒絕。請到應用程式設定，選擇「權限」及開啟「儲存」。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用自訂：%s</string>
@@ -1550,6 +1552,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">此裝置已被取消註冊</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">這似乎是你將 Signal 的電話號碼註冊在其他的裝置上。觸碰這裡來重新註冊。</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">若要接聽通話，請允許 Signal 存取你的麥克風。</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">要接聽來自%s的電話，請允許 Signal 使用你的麥克風。</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要\"麥克風\"及\"相機\"的權限以接聽來電，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"麥克風\"及\"相機\"的權限。</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">在已連結的裝置回答。</string>
@@ -2344,7 +2347,7 @@
   <string name="InsightsModalFragment__view_insights">檢視 統計</string>
   <string name="FirstInviteReminder__title">邀請至 Signal</string>
   <string name="FirstInviteReminder__description">你傳送的加密訊息數量可以增加多達 %1$d%%</string>
-  <string name="SecondInviteReminder__title">加油支持你的 Signal</string>
+  <string name="SecondInviteReminder__title">支持推廣你的 Signal</string>
   <string name="SecondInviteReminder__description">邀請 %1$s</string>
   <string name="InsightsReminder__view_insights">檢視 統計</string>
   <string name="InsightsReminder__invite">邀請</string>
@@ -2487,7 +2490,7 @@
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">你已成功的輸入你的備份碼</string>
   <string name="BackupDialog_passphrase_was_not_correct">備份碼錯誤</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">建立備份中…</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">建立 Signal 備份…</string>
   <string name="LocalBackupJobApi29_backup_failed">備份失敗</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">你的備份目錄已被刪除或移動。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">你的備份檔案太大，無法儲存在該空間上。</string>
@@ -2609,6 +2612,8 @@
   <string name="DeviceTransfer__transferring_data">移轉資料</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">使兩個裝置彼此靠近。 請勿關閉裝置並保持Signal開啟。 傳輸是點對點加密的。</string>
   <string name="DeviceTransfer__d_messages_so_far">到目前為止 %1$d 則訊息…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">訊息目前進度 %1$s%%…</string>
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">再試一次</string>
   <string name="DeviceTransfer__stop_transfer_question">停止轉移?</string>
@@ -3269,7 +3274,7 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal 致力於開發開源隱私技術，以保護言論自由並實現安全的全球通訊。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">你的貢獻推動了這一事業，並為數百萬人用於私人通訊的應用程式的開發和運營支付了費用。 沒有廣告。 沒有追踪器。 這不是開玩笑的。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">謝謝你的支援!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的贊助!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的加油!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">你贏得了%s徽章！ 透過在你的個人資料上顯示此徽章，幫助 Signal 建立知名度。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">你已獲得加油支持徽章！ 透過在你的個人資料上展示此徽章，並幫助 Signal 建立知名度。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">你也可以做到</string>
@@ -3286,7 +3291,7 @@
   <string name="ManageDonationsFragment__subscription_faq">訂閱 問與答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">取得訂閱時發生錯誤</string>
   <string name="BoostFragment__give_signal_a_boost">加油支持 Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得單次贊助徽章並展示在個人資料中 %1$d 天。</string>
+  <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得\"加油支持\"徽章並展示在個人資料中 %1$d 天。</string>
   <string name="Boost__enter_custom_amount">輸入自定義金額</string>
   <string name="Boost__one_time_contribution">一次性捐款</string>
   <string name="MySupportPreference__add_a_signal_boost">增加 Signal 加油支持次數</string>
@@ -3299,11 +3304,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">訂閱已取消</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">你的單次贊助徽章已過期，你的個人資料中的其他人將看不到了。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">你可以透過一次性捐款將你的單次贊助徽章再啟用 30 天。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">你的\"加油支持\"徽章已過期，你的個人資料中的其他人將看不到了。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">你可以透過一次性捐款將你的\"加油支持\"徽章再展示 30 天。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">要繼續支援專為你打造的技術，請考慮成為每月贊助人。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為定期贊助人</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">新增一次單次贊助</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">增加一次加油支持</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">你的贊助訂閱已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以繼續使用 Signal，但要支援該應用程式並重新啟動你的徽章，請立即續約。</string>

@@ -411,6 +411,7 @@
   <string name="BackupsPreferenceFragment__learn_more">अधिक जाणा</string>
   <string name="BackupsPreferenceFragment__in_progress">प्रगतीपथावर…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d आतापर्यंत…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बॅकअप तयार करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
@@ -2582,7 +2583,6 @@
   <string name="BackupDialog_verify">सत्यापित करा</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">आपण आपला बॅकअप पासफ्रेझ यशस्वीरीत्या प्रविष्ट केला आहे</string>
   <string name="BackupDialog_passphrase_was_not_correct">पासफ्रेझ बरोबर नव्हता</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">बॅकअप तयार करत आहे…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">बॅकअप अयशस्वी</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">आपली बॅकअप डिरेक्टरी हटवली किंवा हलवली गेली आहे.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">या व्हॉल्यूमवर स्टोअर करण्यासाठी आपली बॅकअप फाईल खूप मोठी आहे.</string>
@@ -2704,6 +2704,7 @@
   <string name="DeviceTransfer__transferring_data">डेटा स्थानांतरित करत आहे</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">दोन्ही डिव्हाइस ऐकमेकांजवळ ठेवा. डिव्हाइस बंद करू नका आणि Signal चालू ठेवा. स्थानांतरण एंड-टू-एंड एन्क्रिप्टेड आहेत.</string>
   <string name="DeviceTransfer__d_messages_so_far">आतापर्यंत %1$d संदेश…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">रद्द करा</string>
   <string name="DeviceTransfer__try_again">पुन्हा प्रयत्न करा</string>
   <string name="DeviceTransfer__stop_transfer_question">स्थानांतरण थांबवायचे?</string>

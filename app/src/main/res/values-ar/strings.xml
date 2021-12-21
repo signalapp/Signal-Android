@@ -496,6 +496,7 @@
   <string name="BackupsPreferenceFragment__learn_more">لمعرفة المزيد</string>
   <string name="BackupsPreferenceFragment__in_progress">يجري الآن…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d حتى الآن…‏</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج Signal إلى إذن الوصول إلى سعة التخزين الخارجية لإنشاء نسخ احتياطية، ولكن رُفض الإذن على نحو دائم. الرجاء الاطلاع على إعدادات التطبيق ثم اختيار \"الصلاحيات\"، ثم تفعيل \"سعة التخزين\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
@@ -2958,7 +2959,6 @@
   <string name="BackupDialog_verify">تحقق</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">لقد أدخلت العبارة السرية للنسخة الاحتياطية بنجاح</string>
   <string name="BackupDialog_passphrase_was_not_correct">العبارة السرية غير صحيحة</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">فشل النسخ الاحتياطي</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">حُذف أو نُقل مجلد نسخك الاحتياطية.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">لا يمكن حفظ ملف النسخة الاحتياطية في وحدة التخزين هذه لأنه كبير جدا.</string>
@@ -3080,6 +3080,7 @@
   <string name="DeviceTransfer__transferring_data">ينقل البيانات</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">يُرجى إبقاء الجهازين بالقرب من بعضهما البعض. يجب عدم إيقاف تشغيل أي منهما مع المحافظة على Signal مفتوحا. إن عمليات النقل مُعمَّاة من طرف لطرف.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d رسالة حتى الآن…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">إلغاء</string>
   <string name="DeviceTransfer__try_again">حاول مجدداً</string>
   <string name="DeviceTransfer__stop_transfer_question">إيقاف النقل ؟</string>

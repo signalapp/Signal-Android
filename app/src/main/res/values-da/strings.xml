@@ -411,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Læs mere</string>
   <string name="BackupsPreferenceFragment__in_progress">I gang…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d indtil videre…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% indtil videre…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal kræver tilladelse til at tilgå ekstern lagerplads for at oprette sikkerhedskopier, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Lagerplads\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
@@ -1630,6 +1632,7 @@ nummer (%s) er ugyldigt</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Enhed ikke længere registreret</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Det skyldes sandsynligvis, at du har registreret dit telefonnummer hos Signal på en anden enhed. Tryk for at genregistrere.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Hvis du vil besvare opkaldet, skal du give Signal adgang til din mikrofon.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">For at besvare opkald fra %s skal Signal gives adgang til din mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal kræver tilladelse til at tilgå mikrofon og kamera, for at kunne modtage og foretage opkald, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvaret på en forbundet enhed.</string>
@@ -2584,7 +2587,7 @@ nummer (%s) er ugyldigt</string>
   <string name="BackupDialog_verify">Verificér</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du indtastede den korrekte adgangssætning til sikkerhedskopi</string>
   <string name="BackupDialog_passphrase_was_not_correct">Forkert adgangssætning</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Opretter sikkerhedskopi…</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">Opretter Signal-sikkerhedskopi…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sikkerhedskopiering mislykkedes</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mappe med sikkerhedskopier er blevet slettet eller flyttet.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din sikkerhedskopifil er for stor til at kunne gemmes på denne lagerenhed.</string>
@@ -2706,6 +2709,8 @@ nummer (%s) er ugyldigt</string>
   <string name="DeviceTransfer__transferring_data">Overfører data</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Hold begge enheder tæt ved hinanden. Sluk ikke for enhederne, og hold Signal åbent. Overførsler er end-to-end krypteret</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d beskeder indtil videre…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% af beskeder indtil videre…</string>
   <string name="DeviceTransfer__cancel">Annullér</string>
   <string name="DeviceTransfer__try_again">Prøv igen</string>
   <string name="DeviceTransfer__stop_transfer_question">Stop overførslen?</string>

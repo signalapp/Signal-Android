@@ -412,6 +412,8 @@
   <string name="BackupsPreferenceFragment__learn_more">További információ</string>
   <string name="BackupsPreferenceFragment__in_progress">Folyamatban…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d eddig…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% eddig…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">A Signal-nak külső tárhely engedélyre van szüksége ahhoz, hogy biztonsági mentést hozzon létre, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazás-beállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Tárhely\"-t.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Egyéni használata: %s</string>
@@ -936,7 +938,7 @@
   <string name="MessageRecord_missed_video_call_date">Nem fogadott videóhívás · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s frissítette a csoportot.</string>
   <string name="MessageRecord_s_called_you_date">%1$s hívott téged · %2$s</string>
-  <string name="MessageRecord_s_joined_signal">%s a Signal-on van!</string>
+  <string name="MessageRecord_s_joined_signal">%s elérhető a Signalon!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Letiltottad az eltűnő üzeneteket.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s letiltotta az eltűnő üzeneteket.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Beállítottad, hogy az üzenetek ennyi idő után tűnjenek el: %1$s.</string>
@@ -1478,7 +1480,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_view_once_media">Egyszer megjelenő médiafájl</string>
   <string name="ThreadRecord_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
   <string name="ThreadRecord_you_deleted_this_message">Általad törölt üzenet.</string>
-  <string name="ThreadRecord_s_is_on_signal">%s a Signal-on van!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s elérhető a Signalon!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Eltűnő üzenetek letiltva</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
   <string name="ThreadRecord_safety_number_changed">Megváltozott a biztonsági szám</string>
@@ -1633,6 +1635,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UnauthorizedReminder_device_no_longer_registered">Az eszköz már nincs regisztrálva</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ez valószínűleg azért van, mert a Signal-hoz tartozó telefonszámodat egy másik eszközön is regisztráltad. Koppints az újraregisztráláshoz!</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">A hívás fogadásához engedélyezd, hogy a Signal hozzáférhessen a mikrofonhoz!</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Hogy felvedd a tőle érkező hívást: %s, adj engedélyt a Signal-nak mikrofonod eléréséhez!</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">A Signal-nak szüksége van a Mikrofon és Kamera engedélyekre, hogy képes legyen hívások indítására és fogadására, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Mikrofon\"-t és a \"Kamera\"-t.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Fogadva egy társított eszközön.</string>
@@ -2587,7 +2590,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BackupDialog_verify">Hitelesítés</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">A biztonsági mentés jelmondat megadása sikeres volt</string>
   <string name="BackupDialog_passphrase_was_not_correct">A jelmondat nem megfelelő</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Biztonsági mentés létrehozása…</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">Signal biztonsági mentés létrehozása…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sikertelen biztonsági mentés</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">A biztonsági mentéseket tartalmazó könyvtár törölve lett, vagy át lett helyezve.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">A biztonsági mentés mérete túl nagy ahhoz, hogy itt legyen létrehozva.</string>
@@ -2666,9 +2669,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Váratlan hiba történt a régi Android eszközödhöz történő csatlakozás során.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Az új Android eszköz keresése…</string>
-  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">A Signal-nak helymeghatározás engedélyre van szüksége, hogy felderíthesse és csatlakozhasson új Android eszközödhöz.</string>
-  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">A Signal-nak helymeghatározás engedélyre van szüksége, hogy felderíthesse és csatlakozhasson új  Android eszközödhöz.</string>
-  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">A Signal-nak Wi-Fi-re van szüksége, hogy felderíthesse és csatlakozhasson új Android eszközödhöz. A Wi-Finek bekapcsolt állapotban kell lennie, de nem muszáj hálózathoz csatlakoznia.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">A Signal-nak helymeghatározás engedélyre van szüksége ahhoz, hogy felderíthesse új Android eszközödet, és csatlakozhasson hozzá.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">A Signal-nak a helymeghatározás szolgáltatásra van szüksége ahhoz, hogy felderíthesse új Android eszközödet, és csatlakozhasson hozzá.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">A Signal-nak Wi-Fi-re van szüksége, hogy felderíthesse új Android eszközödet és csatlakozhasson hozzá. A Wi-Finek bekapcsolt állapotban kell lennie, de nem muszáj hálózathoz csatlakoznia.</string>
   <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sajnáljuk, de úgy tűnik, hogy ez az eszköz nem támogatja a Wi-Fi Directet. A Signal Wi-Fi Directet használ, hogy felderítse és csatlakozzon új Android eszközödhöz. Továbbra is használhatod a biztonsági mentés által létrehozott fájlokat, hogy a fiókodat áthozd új Android eszközödre.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Biztonsági mentés létrehozása</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Váratlan hiba történt az új Android eszközödhöz történő csatlakozás során.</string>
@@ -2709,6 +2712,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="DeviceTransfer__transferring_data">Adat áttöltése</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Tartsd a két eszközt egymás közelében. Ne kapcsold ki egyik eszközt sem, és tartsd a Signal-t nyitva. Az adatvitel végpontok közti titkosítással védett.</string>
   <string name="DeviceTransfer__d_messages_so_far">Eddig %1$d db üzenet…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">Eddig %1$s%% üzenet…</string>
   <string name="DeviceTransfer__cancel">Mégsem</string>
   <string name="DeviceTransfer__try_again">Újra</string>
   <string name="DeviceTransfer__stop_transfer_question">Átvitel megszakítása?</string>
@@ -2717,14 +2722,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="DeviceTransfer__transfer_failed">Átvitel sikertelen</string>
   <string name="DeviceTransfer__unable_to_transfer">Sikertelen az átvitel</string>
   <!--OldDeviceTransferInstructionsFragment-->
-  <string name="OldDeviceTransferInstructions__transfer_account">Fiók átmozgatása</string>
+  <string name="OldDeviceTransferInstructions__transfer_account">Fiók átvitele</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Átviheted a Signal fiókod, miután telepítetted a Signal-t egy új Android eszközre. Mielőtt folytatnád:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Töltsd le a Signal-t az új Android eszközödre</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Töltsd le a Signalt új Android eszközödre</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Koppints a \"Fiók átvitele vagy helyreállítása\" opcióra!</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Válaszd az  \"Átvitel Andorid eszközről\" majd a \"Folytatás\" opciókat! Tartsd az eszközöket egymáshoz közel.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Válaszd az  \"Átvitel Android eszközről\" majd a \"Folytatás\" opciókat! Tartsd az eszközöket közel egymáshoz.</string>
   <string name="OldDeviceTransferInstructions__continue">Folytatás</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Átvitel kész</string>

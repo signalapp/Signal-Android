@@ -407,6 +407,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Μάθε περισσότερα</string>
   <string name="BackupsPreferenceFragment__in_progress">Σε εξέλιξη…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d μέχρι τώρα…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Το Signal χρειάζεται τα δικαιώματα πρόσβασης εξωτερικής μνήμης για τη δημιουργία αντιγράφων ασφαλείας, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Αποθηκευτικός Χώρος\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Χρησιμοποιείται το προσαρμοσμένο: %s</string>
@@ -2575,7 +2576,6 @@
   <string name="BackupDialog_verify">Επιβεβαίωση</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Εισάγατε το συνθηματικό αντιγράφου ασφαλείας με επιτυχία</string>
   <string name="BackupDialog_passphrase_was_not_correct">Το συνθηματικό δεν ήταν σωστό</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Το αντίγραφο ασφαλείας δημιουργείται…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Ή δημιουργία αντίγραφου ασφαλείας απέτυχε</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ο φάκελος αντίγραφων ασφαλείας έχει διαγραφεί ή μετακινηθεί.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Το αρχείο - αντίγραφο ασφαλείας είναι πολύ μεγάλο για να αποθηκευτεί σε αυτή τη συσκευή.</string>
@@ -2697,6 +2697,7 @@
   <string name="DeviceTransfer__transferring_data">Μεταφορά δεδομένων</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Κράτα και τις δύο συσκευές κοντά τη μια στην άλλη. Μην απενεργοποιήσεις τις συσκευές και άφησε το Signal ανοιχτό. Οι μεταφορές είναι κρυπτογραφημένες από άκρο σε άκρο.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d μηνύματα μέχρι τώρα…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Ακύρωση</string>
   <string name="DeviceTransfer__try_again">Ξαναπροσπάθησε</string>
   <string name="DeviceTransfer__stop_transfer_question">Ακύρωση μεταφοράς;</string>

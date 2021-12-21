@@ -455,6 +455,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupsPreferenceFragment__learn_more">Dysgu rhagor</string>
   <string name="BackupsPreferenceFragment__in_progress">Cynnydd…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hyd yn hyn…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Signal angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe’i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau’r ap, dewis "Caniatâd", a galluogi "Storio".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
@@ -2775,7 +2776,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupDialog_verify">Dilysu</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Rydych wedi cyflwyno eich cyfrinymadrodd wrth gefn yn llwyddiannus</string>
   <string name="BackupDialog_passphrase_was_not_correct">Nid oedd y cyfrinymadrodd yn gywir</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Methodd y copïo wrth gefn</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mae eich cyfeiriadur wrth gefn wedi\'i ddileu neu ei symud.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Mae\'ch ffeil wrth gefn yn rhy fawr i\'w storio ar y gyfrol hon.</string>
@@ -2897,6 +2897,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="DeviceTransfer__transferring_data">Yn trosglwyddo data</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Cadwch y ddwy ddyfais yn agos at ei gilydd. Peidiwch â diffodd y dyfeisiau a chadwch Signal ar agor. Mae trosglwyddiadau wedi\'u hamgryptio o\'r dechrau i\'r diwedd.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d neges hyd yma…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Canslo</string>
   <string name="DeviceTransfer__try_again">Ceisio eto</string>
   <string name="DeviceTransfer__stop_transfer_question">Stopio\'r trosglwyddo?</string>

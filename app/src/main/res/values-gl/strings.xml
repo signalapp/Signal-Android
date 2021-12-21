@@ -359,6 +359,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Saber máis</string>
   <string name="BackupsPreferenceFragment__in_progress">En progreso…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d por agora…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal require permiso de almacenamento para poder crear copias de seguranza, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uso personalizado: %s</string>
@@ -2337,7 +2338,6 @@
   <string name="BackupDialog_verify">Comprobar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Inseriches satisfactoriamente a túa frase de acceso</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frase de acceso incorrecta</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Creando copia de seguranza…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Erro na copia de seguranza</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">O directorio da túa copia de seguranza foi eliminado ou movido.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">O ficheiro da túa copia de seguranza é demasiado grande para almacenalo neste volume.</string>
@@ -2458,6 +2458,7 @@
   <string name="DeviceTransfer__transferring_data">Transferindo datos</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantén ambos dispositivos preto un do outro. Non apagues os dispositivos e mantén Signal aberta. As transferencias están cifradas de extremo-a-extremo.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d das mensaxes ata agora…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Cancelar</string>
   <string name="DeviceTransfer__try_again">Volver tentar</string>
   <string name="DeviceTransfer__stop_transfer_question">Deter transferencia?</string>

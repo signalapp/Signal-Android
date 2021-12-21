@@ -378,6 +378,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Saznajte više</string>
   <string name="BackupsPreferenceFragment__in_progress">U tijeku…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d za sada…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal zahtijeva dopuštenje za vanjski prostor za pohranu kako bi stvorio sigurnosne kopije, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Prostor za pohranu\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
@@ -2541,7 +2542,6 @@ broj telefona</string>
   <string name="BackupDialog_verify">Potvrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli lozinku sigurnosne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lozinka nije točna</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Stvaranje sigurnosne kopije…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sigurnosno kopiranje nije uspjelo</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Vaša mapa sigurnosnih kopija je izbrisana ili premještena.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Datoteka vaše sigurnosne kopije prevelika je za pohranu na ovom volumenu.</string>
@@ -2662,6 +2662,7 @@ broj telefona</string>
   <string name="DeviceTransfer__transferring_data">Prijenos podataka</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Držite oba uređaja blizu jedan drugog. Ne isključujte nijedan uređaj i držite Signal otvorenim. Prijenosi su end-to-end šifrirani.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d poruka do sada…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Poništi</string>
   <string name="DeviceTransfer__try_again">Pokušajte ponovo</string>
   <string name="DeviceTransfer__stop_transfer_question">Zaustavi prijenos?</string>

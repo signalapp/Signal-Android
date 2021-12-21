@@ -432,6 +432,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Află mai multe</string>
   <string name="BackupsPreferenceFragment__in_progress">În curs de desfășurare…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d până acum…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Te rugăm continuă la setări aplicație, selectează \"Permisiuni\" și activează \"Stocare\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
@@ -2675,7 +2676,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_verify">Verifică</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ai introdus cu succes parola de backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parola nu a fost corectă</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Se creează backup-ul…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Backup-ul a eșuat</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Directorul tău de backup a fost șters sau mutat.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fișierul de backup este prea mare pentru a fi stocat pe acest volum.</string>
@@ -2797,6 +2797,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeviceTransfer__transferring_data">Se transmit datele</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Ține ambele dispozitive unul lângă altul. Nu opri dispozitivele și menține Signal deschis. Transferurile sunt criptate integral.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mesaje până acum…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Anulare</string>
   <string name="DeviceTransfer__try_again">Încearcă din nou</string>
   <string name="DeviceTransfer__stop_transfer_question">Oprești transferul?</string>

@@ -392,6 +392,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Rohkem infot</string>
   <string name="BackupsPreferenceFragment__in_progress">Töötamine…</string>
   <string name="BackupsPreferenceFragment__d_so_far">Siiani %1$d…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal vajab varukoopiate loomiseks välismälu õigust, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ning luba \"Mäluruum\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kasutan kohandatud: %s</string>
@@ -2466,7 +2467,6 @@
   <string name="BackupDialog_verify">Kinnita</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Sisestasid varukoopia salasõna edukalt</string>
   <string name="BackupDialog_passphrase_was_not_correct">Salasõna ei olnud õige</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Varukoopia loomine…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Varundamine ebaõnnestus</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sinu varukoopiate kataloog on kustutatud või teisaldatud.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Sinu varukoopia fail on sellele kettale salvestamiseks liiga suur.</string>
@@ -2575,6 +2575,7 @@
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Andmete ülekandmine</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d sõnumit siiani…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Loobu</string>
   <string name="DeviceTransfer__try_again">Proovi uuesti</string>
   <string name="DeviceTransfer__stop_transfer_question">Kas peatada ülekanne?</string>

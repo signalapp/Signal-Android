@@ -432,6 +432,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Сазнај више</string>
   <string name="BackupsPreferenceFragment__in_progress">У току…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d досад…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Апликација Signal захтева дозволу спољној меморији да би правила резервне копије, али је трајно одбијено. Наставите до подешавања апликације, одаберите „Дозволе“ и омогућите ставку „Меморија“.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користим посебно: %s</string>
@@ -2676,7 +2677,6 @@
   <string name="BackupDialog_verify">Овери</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно сте унели фразу за резервну копију</string>
   <string name="BackupDialog_passphrase_was_not_correct">Фраза није тачна</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Прављење бекапа…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Резервна копија није успела</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша фасцикла за резервне копије је избрисана или премештена.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Датотека ваше резервне копије је превелика за чување на овом волумену.</string>
@@ -2799,6 +2799,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Keep both devices near each other. Do not turn off the devices and keep Signal open. Transfers are end-to-end encrypted.
 Држите оба уређаја близу једни другима. Не искључујте уређаје и одржавајте Signal отворен. Преноси су потпуно енкриптовани.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d порука до сад…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Поништи</string>
   <string name="DeviceTransfer__try_again">Покушај поново</string>
   <string name="DeviceTransfer__stop_transfer_question">Заустави пренос?</string>

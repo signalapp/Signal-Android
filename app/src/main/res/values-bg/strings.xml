@@ -364,6 +364,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Научете повече</string>
   <string name="BackupsPreferenceFragment__in_progress">Архивира се…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d архивирани до тук…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal изискава разрешение за достъп до външните хранлища, за да може да създаде архиви, но този достъп е парманентно отказан. Моля, продължете до настройки на приложенията и изберете \"Разрешения\" и активирайте \"Хранилище\"</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Използване на специален:  %s</string>
@@ -2398,7 +2399,6 @@
   <string name="BackupDialog_verify">Валидиране</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно въведена парола за архива</string>
   <string name="BackupDialog_passphrase_was_not_correct">Паролата не беше правилна</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Създаване на архив…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Архивирането не бе успешно</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Вашата резервна директория е изтрита или преместена.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Вашият архивен файл е твърде голям, за да се съхранява на този том.</string>
@@ -2517,6 +2517,7 @@
   <string name="DeviceTransfer__transferring_data">Прехвърляне на данни</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Дръжте двете устройства близо едно до друго. Не ги изключвайте и дръжте Signal отворен. Прехвърлянията са криптирани от край до край.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d съобщения досега…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Отказ</string>
   <string name="DeviceTransfer__try_again">Опитай отново</string>
   <string name="DeviceTransfer__stop_transfer_question">Прекрати прехвърляне?</string>

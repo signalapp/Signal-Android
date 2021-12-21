@@ -369,6 +369,7 @@
   <string name="BackupsPreferenceFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="BackupsPreferenceFragment__in_progress">ಪ್ರಗತಿಯಲ್ಲಿದೆ…</string>
   <string name="BackupsPreferenceFragment__d_so_far">ಇಲ್ಲಿಯವರೆಗು %1$d…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups"> ಬ್ಯಾಕಪ್ ಗಳನ್ನು ರಚಿಸಲು Signal ಗೆ ಬಾಹ್ಯ ಸ್ಟೋರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಸ್ಟೋರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">ಕಸ್ಟಂ ಬಳಸಲಾಗುತ್ತಿದೆ: %s</string>
@@ -2459,7 +2460,6 @@
   <string name="BackupDialog_verify">ದೃಢೀಕರಿಸಿ</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">ನೀವು ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನಮೂದಿಸಿದ್ದೀರಿ</string>
   <string name="BackupDialog_passphrase_was_not_correct">ಪಾಸ್‌ಫ್ರೇಸ್ ಸರಿಯಾಗಿರಲಿಲ್ಲ</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">ಬ್ಯಾಕಪ್ ರಚಿಸಲಾಗುತ್ತಿದೆ…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">ಬ್ಯಾಕಪ್ ವಿಫಲವಾಗಿದೆ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ಅಳಿಸಲಾಗಿದೆ ಅಥವಾ ಸರಿಸಲಾಗಿದೆ.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಫೈಲ್ ಈ ಪ್ರಮಾಣದಲ್ಲಿ ಸಂಗ್ರಹಿಸಲು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ.</string>
@@ -2580,6 +2580,7 @@
   <string name="DeviceTransfer__transferring_data">ಡೇಟಾ ವರ್ಗಾವಣೆ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">ಎರಡೂ ಸಾಧನಗಳನ್ನು ಪರಸ್ಪರ ಹತ್ತಿರ ಇರಿಸಿ. ಸಾಧನಗಳನ್ನು ಆಫ್ ಮಾಡಬೇಡಿ ಮತ್ತು Signal ಅನ್ನು ತೆರೆದೇ ಇರಿಸಿ. ವರ್ಗಾವಣೆಗಳು ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್‌ ಆಗಿರುತ್ತವೆ.</string>
   <string name="DeviceTransfer__d_messages_so_far">ಇಲ್ಲಿಯವರೆಗೆ %1$d ಸಂದೇಶಗಳು…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">ರದ್ದುಗೊಳಿಸಿ</string>
   <string name="DeviceTransfer__try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="DeviceTransfer__stop_transfer_question">ವರ್ಗಾವಣೆಯನ್ನು ನಿಲ್ಲಿಸುವುದೇ?</string>

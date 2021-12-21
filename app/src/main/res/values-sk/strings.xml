@@ -453,6 +453,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Dozvedieť sa viac</string>
   <string name="BackupsPreferenceFragment__in_progress">Prebieha…</string>
   <string name="BackupsPreferenceFragment__d_so_far">Zatiaľ %1$d…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">Zatiaľ %1$s%% …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal potrebuje prístup k úložisku aby mohol vytvárať zálohy, ale prístup bol natrvalo zakázaný. Prosím, v nastaveniach aplikácií zvoľte \"Oprávnenia\" a povoľte \"Úložisko\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používa sa vlastné: %s</string>
@@ -1784,6 +1786,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="UnauthorizedReminder_device_no_longer_registered">Zariadenie už nie je registrované</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dôvodom je pravdepodobne to, že ste Vaše telefónne číslo zaregistrovali v Signalu na inom zariadení.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Ak chcete prijať hovor, poskytnite Signal prístup k mikrofónu.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pre prijatie hovoru od %s musíte povoliť Signalu prístup k mikrofónu.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal potrebuje prístup k mikrofónu a fotoaparátu aby mohol volať alebo prijímať hovory, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\" a \"Fotoaparát\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Prijaté na pripojenom zariadení.</string>
@@ -2235,7 +2238,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__help">Pomocník</string>
   <string name="preferences__advanced">Rozšírené</string>
   <string name="preferences__donate_to_signal">Prispieť na Signal</string>
-  <string name="preferences__subscription">Predplatné</string>
+  <string name="preferences__subscription">Prispievanie</string>
   <string name="preferences__become_a_signal_sustainer">Staňte sa podporovateľom Signal</string>
   <string name="preferences__signal_boost">Podporiť Signal</string>
   <string name="preferences__privacy">Súkromie</string>
@@ -2772,7 +2775,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BackupDialog_verify">Overiť</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Úspešne ste zadali svoje heslo pre zálohy</string>
   <string name="BackupDialog_passphrase_was_not_correct">Heslo nebolo správne</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Vytváranie zálohy…</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">Vytvára sa záloha Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Zálohovanie zlyhalo</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Váš priečinok na zálohy bol vymazaný alebo premiestnený.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Súbor s vašou zálohou je príliš veľký na uloženie v tejto jednotke.</string>
@@ -2894,6 +2897,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DeviceTransfer__transferring_data">Prenášajú sa dáta</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Ponechajte obe zariadenia blízko seba. Nevypínajte zariadenia a nechajte Signal otvorený. Prenosy sú zabezpečené prostredníctvom koncového šifrovania.</string>
   <string name="DeviceTransfer__d_messages_so_far">Zatiaľ %1$d správ…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">Zatiaľ %1$s%% správ…</string>
   <string name="DeviceTransfer__cancel">Zrušiť</string>
   <string name="DeviceTransfer__try_again">Skúsiť znova</string>
   <string name="DeviceTransfer__stop_transfer_question">Zastaviť prenos?</string>
@@ -3562,17 +3567,17 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podporte technológiu, ktorá je vytvorená pre vás, nie pre vaše dáta, tým, že sa pripojíte ku komunite, ktorá podporuje Signal.</string>
   <string name="SubscribeFragment__currency">Mena</string>
   <string name="SubscribeFragment__more_payment_options">Viac platobných možností</string>
-  <string name="SubscribeFragment__cancel_subscription">Zrušiť predplatné</string>
+  <string name="SubscribeFragment__cancel_subscription">Zrušiť prispievanie</string>
   <string name="SubscribeFragment__confirm_cancellation">Potvrdiť zrušenie?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Už vám nebudeme účtovať žiadne poplatky. Na konci fakturačného obdobia bude váš odznak odstránený z vášho profilu.</string>
   <string name="SubscribeFragment__not_now">Teraz nie</string>
   <string name="SubscribeFragment__confirm">Potvrdiť</string>
-  <string name="SubscribeFragment__update_subscription">Aktualizovať predplatné</string>
-  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše predplatné bolo zrušené.</string>
-  <string name="SubscribeFragment__update_subscription_question">Aktualizovať odber?</string>
+  <string name="SubscribeFragment__update_subscription">Aktualizovať prispievanie</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše prispievanie bolo zrušené.</string>
+  <string name="SubscribeFragment__update_subscription_question">Aktualizovať prispievanie?</string>
   <string name="SubscribeFragment__update">Aktualizovať</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dnes vám bude účtovaná plná suma novej ceny predplatného. Vaše predplatné sa obnoví %1$s.</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dnes vám bude účtovaná celá suma (%1$s) novej ceny predplatného. Vaše predplatné sa bude obnovovať mesačne.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Dnes vám bude účtovaná plná suma novej ceny príspevkov. Vaše prispievanie sa obnoví %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dnes vám bude účtovaná celá suma (%1$s) novej ceny príspevkov. Vaše prispievanie sa bude obnovovať mesačne.</string>
   <string name="Subscription__s_per_month">%s/mesiac</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/mesiac · Obnovenie %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/mesiac · Vyprší %2$s</string>
@@ -3593,10 +3598,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BecomeASustainerFragment__get_badges">Podporou Signal získate odznaky pre svoj profil.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizácia bez inzerentov a investorov, ktorú podporujú iba ľudia ako vy.</string>
   <string name="ManageDonationsFragment__my_support">Moja podpora</string>
-  <string name="ManageDonationsFragment__manage_subscription">Spravovať predplatné</string>
+  <string name="ManageDonationsFragment__manage_subscription">Spravovať prispievanie</string>
   <string name="ManageDonationsFragment__badges">Odznaky</string>
-  <string name="ManageDonationsFragment__subscription_faq">Časté otázky o predplatnom</string>
-  <string name="ManageDonationsFragment__error_getting_subscription">Chyba pri získavaní predplatného.</string>
+  <string name="ManageDonationsFragment__subscription_faq">Časté otázky o prispievaním</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Chyba pri získavaní prispievania.</string>
   <string name="BoostFragment__give_signal_a_boost">Začať podporovať Signal</string>
   <string name="BoostFragment__say_thanks_and_earn">Povedz \"ďakujem!\" a získajte odznak Podpora %1$d dní.</string>
   <string name="Boost__enter_custom_amount">Zadajte vlastnú čiastku</string>
@@ -3610,16 +3615,16 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MySupportPreference__please_contact_support">Prosím, kontaktujte podporu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Platnosť odznaku vypršala</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Platnosť odznaku vypršala</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Predplatné bolo zrušené</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prispievanie bolo zrušené</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Platnosť vášho odznaku podporovateľa vypršala a ostatní ho už vo vašom profile nevidia.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Svoj odznak podporovateľa môžete znova aktivovať na ďalších 30 dní jednorazovým príspevkom.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás, zvážte, či sa nestanete mesačným podporovateľom.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte sa Sustainerom</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pridajte podporu</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teraz nie</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše predplatné podporovateľa bolo automaticky zrušené, pretože ste boli príliš dlho neaktívni. Váš odznak %1$s sa už vo vašom profile nezobrazuje.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaše prispievanie podporovateľa bolo automaticky zrušené, pretože ste boli príliš dlho neaktívni. Váš odznak %1$s sa už vo vašom profile nezobrazuje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal môžete naďalej používať, ale ak chcete podporiť aplikáciu a znova aktivovať svoj odznak, obnovte ho teraz.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnoviť predplatné</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnoviť prispievanie</string>
   <string name="Subscription__please_contact_support_for_more_information">Pre viac informácií kontaktujte podporu.</string>
   <string name="Subscription__contact_support">Kontaktovať zákaznícku podporu</string>
   <string name="Subscription__earn_a_s_badge">Získajte odznak %1$s</string>
@@ -3636,8 +3641,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DonationsErrors__your_payment_is_still">Vaša platba sa stále spracováva. V závislosti od vášho pripojenia to môže trvať niekoľko minút.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay je nedostupný</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Ak chcete prispieť v aplikácii, musíte si nastaviť službu Google Pay.</string>
-  <string name="DonationsErrors__failed_to_cancel_subscription">Predplatné sa nepodarilo zrušiť</string>
-  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušenie predplatného vyžaduje internetové pripojenie.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Prispievanie sa nepodarilo zrušiť</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušenie prispievania vyžaduje internetové pripojenie.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zariadenie nepodporuje Google Pay, takže sa nemôžete prihlásiť na odber a získať odznak. Signal môžete stále podporiť príspevkom na našej webovej stránke.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba siete. Skontrolujte pripojenie a skúste to znova.</string>
   <string name="NetworkFailure__retry">Skúsiť znovu</string>
