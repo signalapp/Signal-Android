@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import org.signal.core.util.MapUtil;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -32,8 +33,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
@@ -46,6 +51,8 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   private final WeakReference<Context>      contextReference;
 
   private final int attachmentCount;
+
+  private final Map<Uri, Set<String>> batchOperationNameCache = new HashMap<>();
 
   public SaveAttachmentTask(Context context) {
     this(context, 1);
@@ -94,8 +101,15 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
   private @Nullable String saveAttachment(Context context, Attachment attachment) throws IOException
   {
-    String        contentType  = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType));
-    String        fileName     = generateOutputFileName(contentType, attachment.date);
+    String      contentType = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType));
+    String      fileName    = attachment.fileName;
+
+    if (fileName == null) {
+      fileName = generateOutputFileName(contentType, attachment.date);
+    }
+
+    fileName = sanitizeOutputFileName(fileName);
+
     Uri           outputUri    = getMediaStoreContentUriForType(contentType);
     Uri           mediaUri     = createOutputUri(outputUri, contentType, fileName);
     ContentValues updateValues = new ContentValues();
@@ -210,6 +224,10 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     return base + "." + extension;
   }
 
+  private String sanitizeOutputFileName(@NonNull String fileName) {
+    return new File(fileName).getName();
+  }
+
   private @Nullable Uri createOutputUri(@NonNull Uri outputUri, @NonNull String contentType, @NonNull String fileName)
       throws IOException
   {
@@ -236,7 +254,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       File outputFile      = new File(outputDirectory, base + "." + extension);
 
       int i = 0;
-      while (outputFile.exists()) {
+      while (pathInCache(outputUri, outputFile.getPath()) || outputFile.exists()) {
         outputFile = new File(outputDirectory, base + "-" + (++i) + "." + extension);
       }
 
@@ -244,6 +262,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
         throw new IOException("Specified name would not be visible");
       }
 
+      putInCache(outputUri, outputFile.getPath());
       return Uri.fromFile(outputFile);
     } else {
       String dir = getExternalPathForType(contentType);
@@ -254,15 +273,34 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       String outputFileName = fileName;
       String dataPath       = String.format("%s/%s", dir, outputFileName);
       int    i              = 0;
-      while (pathTaken(outputUri, dataPath)) {
+      while (pathInCache(outputUri, dataPath) || pathTaken(outputUri, dataPath)) {
         Log.d(TAG, "The content exists. Rename and check again.");
         outputFileName = base + "-" + (++i) + "." + extension;
         dataPath       = String.format("%s/%s", dir, outputFileName);
       }
+      putInCache(outputUri, outputFileName);
       contentValues.put(MediaStore.MediaColumns.DATA, dataPath);
     }
 
     return getContext().getContentResolver().insert(outputUri, contentValues);
+  }
+
+  private void putInCache(@NonNull Uri outputUri, @NonNull String dataPath) {
+    Set<String> pathSet = MapUtil.getOrDefault(batchOperationNameCache, outputUri, new HashSet<>());
+    if (!pathSet.add(dataPath)) {
+      throw new IllegalStateException("Path already used in data set.");
+    }
+
+    batchOperationNameCache.put(outputUri, pathSet);
+  }
+
+  private boolean pathInCache(@NonNull Uri outputUri, @NonNull String dataPath) {
+    Set<String> pathSet = batchOperationNameCache.get(outputUri);
+    if (pathSet == null) {
+      return false;
+    }
+
+    return pathSet.contains(dataPath);
   }
 
   private boolean pathTaken(@NonNull Uri outputUri, @NonNull String dataPath) throws IOException {
