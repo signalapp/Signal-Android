@@ -97,7 +97,7 @@
                  android:supportsRtl="true"
                  tools:replace="android:allowBackup"
                  android:resizeableActivity="true"
-                 android:allowBackup="false"
+                 android:allowBackup="true"
                  android:theme="@style/TextSecure.LightTheme"
                  android:largeHeap="true">
 
