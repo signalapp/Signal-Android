@@ -412,6 +412,7 @@
   <string name="BackupsPreferenceFragment__in_progress">Davam edir…</string>
   <string name="BackupsPreferenceFragment__d_so_far">İndiyə qədər %1$d….</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">İndiyə qədər %1$s%%…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal, nüsxələri yaratmaq üçün xarici anbar icazəsi tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Anbar\"ı fəallaşdırın.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Özəl %s istifadə olunur</string>
@@ -1632,6 +1633,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz artıq qeydiyyatlı deyil</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Böyük ehtimalla, telefon nömrəniz fərqli bir cihazdakı Signal hesabı üçün qeydiyyata alınıb. Yenidən qeydiyyatdan keçmək üçün toxunun.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Zəngi cavablandırmaq üçün Signal-ın mikrofonunuza müraciətinə icazə verin.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Signal-ın, %s edən gələn zəngi cavablandırmaq üçün mikrofonunuza müraciət etməsinə icazə verin.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal, zəng etmək və ya almaq üçün Mikrofon və Kamera icazələrini tələb edir, ancaq bu icazələr birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Əlaqə yaradılmış cihazda cavablandı.</string>
@@ -2586,6 +2588,7 @@
   <string name="BackupDialog_verify">Təsdiqlə</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Nüsxə parolunuzu uğurla daxil etdiniz</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parol doğru deyil</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signal nüsxəsi yaradılır…</string>
   <string name="LocalBackupJobApi29_backup_failed">Nüsxələnmədi</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Nüsxə kataloqunuz silindi və ya köçürüldü.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Nüsxə faylınız bu sürücüdə saxlanılmaq üçün çox böyükdür.</string>
@@ -2708,6 +2711,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Hər iki cihazı bir-birinə yaxın saxlayın. Cihazları söndürməyin və Signal-ı açıq saxlayın. Köçürmə, bir ucdan digərinə kimi şifrəlidir.</string>
   <string name="DeviceTransfer__d_messages_so_far">İndiyə qədər %1$d mesaj…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">İndiyə qədər mesajların %1$s%%-i…</string>
   <string name="DeviceTransfer__cancel">İmtina</string>
   <string name="DeviceTransfer__try_again">Yenidən sına</string>
   <string name="DeviceTransfer__stop_transfer_question">Köçürmə dayandırılsın?</string>

@@ -3381,7 +3381,7 @@
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">新揀單</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">用緊</string>
+  <string name="NotificationProfilesFragment__on">濟渡中</string>
   <!--Button use to permanently delete a notification profile-->
   <string name="NotificationProfileDetails__delete_profile">刪除吾揀單</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
