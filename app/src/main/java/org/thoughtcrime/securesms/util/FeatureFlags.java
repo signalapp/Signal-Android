@@ -87,6 +87,7 @@ public final class FeatureFlags {
   private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
+  private static final String VOICE_NOTE_RECORDING_V2           = "android.voiceNoteRecordingV2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -127,7 +128,8 @@ public final class FeatureFlags {
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES,
       DONOR_BADGES_DISPLAY,
-      CHANGE_NUMBER_ENABLED
+      CHANGE_NUMBER_ENABLED,
+      VOICE_NOTE_RECORDING_V2
   );
 
   @VisibleForTesting
@@ -181,7 +183,8 @@ public final class FeatureFlags {
       CDSH,
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES_DISPLAY,
-      DONATE_MEGAPHONE
+      DONATE_MEGAPHONE,
+      VOICE_NOTE_RECORDING_V2
   );
 
   /**
@@ -425,6 +428,11 @@ public final class FeatureFlags {
 
   public static boolean cdsh() {
     return Environment.IS_STAGING && getBoolean(CDSH, false);
+  }
+
+  /** Whether or not to use the new voice note recorder backed by MediaRecorder. */
+  public static boolean voiceNoteRecordingV2() {
+    return getBoolean(VOICE_NOTE_RECORDING_V2, true);
   }
 
   /** Only for rendering debug info. */
