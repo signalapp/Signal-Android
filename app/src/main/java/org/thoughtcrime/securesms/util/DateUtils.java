@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.R;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -207,7 +206,7 @@ public class DateUtils extends android.text.format.DateUtils {
   private static @NonNull SimpleDateFormat setLowercaseAmPmStrings(@NonNull SimpleDateFormat format, @NonNull Locale locale) {
     DateFormatSymbols symbols = new DateFormatSymbols(locale);
 
-    symbols.setAmPmStrings(Arrays.stream(symbols.getAmPmStrings()).map(s -> s.toLowerCase(locale)).toArray(String[]::new));
+    symbols.setAmPmStrings(new String[] { "am", "pm"});
     format.setDateFormatSymbols(symbols);
 
     return format;
