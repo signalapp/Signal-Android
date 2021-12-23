@@ -121,7 +121,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -297,16 +296,16 @@ public final class MessageContentProcessor {
         SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
 
         if      (syncMessage.getSent().isPresent())                   handleSynchronizeSentMessage(content, syncMessage.getSent().get(), senderRecipient);
-        else if (syncMessage.getRequest().isPresent())                handleSynchronizeRequestMessage(syncMessage.getRequest().get());
+        else if (syncMessage.getRequest().isPresent())                handleSynchronizeRequestMessage(syncMessage.getRequest().get(), content.getTimestamp());
         else if (syncMessage.getRead().isPresent())                   handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp(), senderRecipient);
         else if (syncMessage.getViewed().isPresent())                 handleSynchronizeViewedMessage(syncMessage.getViewed().get(), content.getTimestamp());
         else if (syncMessage.getViewOnceOpen().isPresent())           handleSynchronizeViewOnceOpenMessage(syncMessage.getViewOnceOpen().get(), content.getTimestamp());
         else if (syncMessage.getVerified().isPresent())               handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
-        else if (syncMessage.getStickerPackOperations().isPresent())  handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
-        else if (syncMessage.getConfiguration().isPresent())          handleSynchronizeConfigurationMessage(syncMessage.getConfiguration().get());
+        else if (syncMessage.getStickerPackOperations().isPresent())  handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get(), content.getTimestamp());
+        else if (syncMessage.getConfiguration().isPresent())          handleSynchronizeConfigurationMessage(syncMessage.getConfiguration().get(), content.getTimestamp());
         else if (syncMessage.getBlockedList().isPresent())            handleSynchronizeBlockedListMessage(syncMessage.getBlockedList().get());
-        else if (syncMessage.getFetchType().isPresent())              handleSynchronizeFetchMessage(syncMessage.getFetchType().get());
-        else if (syncMessage.getMessageRequestResponse().isPresent()) handleSynchronizeMessageRequestResponse(syncMessage.getMessageRequestResponse().get());
+        else if (syncMessage.getFetchType().isPresent())              handleSynchronizeFetchMessage(syncMessage.getFetchType().get(), content.getTimestamp());
+        else if (syncMessage.getMessageRequestResponse().isPresent()) handleSynchronizeMessageRequestResponse(syncMessage.getMessageRequestResponse().get(), content.getTimestamp());
         else if (syncMessage.getOutgoingPaymentMessage().isPresent()) handleSynchronizeOutgoingPayment(content, syncMessage.getOutgoingPaymentMessage().get());
         else                                                          warn(String.valueOf(content.getTimestamp()), "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
@@ -383,6 +382,8 @@ public final class MessageContentProcessor {
   }
 
   private void handlePayment(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) {
+    log(content.getTimestamp(), "Payment message.");
+
     if (!message.getPayment().isPresent()) {
       throw new AssertionError();
     }
@@ -651,6 +652,8 @@ public final class MessageContentProcessor {
                                             @NonNull Optional<GroupId> groupId,
                                             @NonNull Recipient senderRecipient)
   {
+    log(content.getTimestamp(), "Group call update message.");
+
     if (!groupId.isPresent() || !groupId.get().isV2()) {
       Log.w(TAG, "Invalid group for group call update message");
       return;
@@ -670,6 +673,8 @@ public final class MessageContentProcessor {
                                                       @NonNull Optional<Long> smsMessageId,
                                                       @NonNull Recipient senderRecipient)
   {
+    log(content.getTimestamp(), "End session message.");
+
     MessageDatabase     smsDatabase         = SignalDatabase.sms();
     IncomingTextMessage incomingTextMessage = new IncomingTextMessage(senderRecipient.getId(),
                                                                       content.getSenderDevice(),
@@ -705,9 +710,11 @@ public final class MessageContentProcessor {
     }
   }
 
-  private long handleSynchronizeSentEndSessionMessage(@NonNull SentTranscriptMessage message)
+  private long handleSynchronizeSentEndSessionMessage(@NonNull SentTranscriptMessage message, long envelopeTimestamp)
       throws BadGroupIdException
   {
+    log(envelopeTimestamp, "Synchronize end session message.");
+
     MessageDatabase           database                  = SignalDatabase.sms();
     Recipient                 recipient                 = getSyncMessageDestination(message);
     OutgoingTextMessage outgoingTextMessage       = new OutgoingTextMessage(recipient, "", -1);
@@ -741,6 +748,8 @@ public final class MessageContentProcessor {
                                     long receivedTime)
       throws StorageFailedException, BadGroupIdException
   {
+    log(content.getTimestamp(), "GroupV1 message.");
+
     GroupV1MessageProcessor.process(context, content, message, false);
 
     if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != threadRecipient.getExpiresInSeconds()) {
@@ -757,6 +766,8 @@ public final class MessageContentProcessor {
                                          @NonNull Recipient senderRecipient)
       throws BadGroupIdException
   {
+    log(content.getTimestamp(), "Unknown group message.");
+
     if (group.getGroupV1().isPresent()) {
       SignalServiceGroup groupV1 = group.getGroupV1().get();
       if (groupV1.getType() != SignalServiceGroup.Type.REQUEST_INFO) {
@@ -781,6 +792,8 @@ public final class MessageContentProcessor {
                                                      long receivedTime)
       throws StorageFailedException
   {
+    log(content.getTimestamp(), "Expiration update.");
+
     if (groupId.isPresent() && groupId.get().isV2()) {
       warn(String.valueOf(content.getTimestamp()), "Expiration update received for GV2. Ignoring.");
       return null;
@@ -834,6 +847,8 @@ public final class MessageContentProcessor {
   }
 
   private @Nullable MessageId handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) {
+    log(content.getTimestamp(), "Handle reaction for message " + message.getReaction().get().getTargetSentTimestamp());
+
     SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
 
     if (!EmojiUtil.isEmoji(reaction.getEmoji())) {
@@ -889,6 +904,8 @@ public final class MessageContentProcessor {
   }
 
   private @Nullable MessageId handleRemoteDelete(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) {
+    log(content.getTimestamp(), "Remote delete for message " + message.getRemoteDelete().get().getTargetSentTimestamp());
+
     SignalServiceDataMessage.RemoteDelete delete = message.getRemoteDelete().get();
 
     MessageRecord targetMessage = SignalDatabase.mmsSms().getMessageFor(delete.getTargetSentTimestamp(), senderRecipient.getId());
@@ -910,10 +927,13 @@ public final class MessageContentProcessor {
   }
 
   private void handleSynchronizeVerifiedMessage(@NonNull VerifiedMessage verifiedMessage) {
+    log(verifiedMessage.getTimestamp(), "Synchronize verified message.");
     IdentityUtil.processVerifiedMessage(context, verifiedMessage);
   }
 
-  private void handleSynchronizeStickerPackOperation(@NonNull List<StickerPackOperationMessage> stickerPackOperations) {
+  private void handleSynchronizeStickerPackOperation(@NonNull List<StickerPackOperationMessage> stickerPackOperations, long envelopeTimestamp) {
+    log(envelopeTimestamp, "Synchronize sticker pack operation.");
+
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
     for (StickerPackOperationMessage operation : stickerPackOperations) {
@@ -935,7 +955,9 @@ public final class MessageContentProcessor {
     }
   }
 
-  private void handleSynchronizeConfigurationMessage(@NonNull ConfigurationMessage configurationMessage) {
+  private void handleSynchronizeConfigurationMessage(@NonNull ConfigurationMessage configurationMessage, long envelopeTimestamp) {
+    log(envelopeTimestamp, "Synchronize configuration message.");
+
     if (configurationMessage.getReadReceipts().isPresent()) {
       TextSecurePreferences.setReadReceiptsEnabled(context, configurationMessage.getReadReceipts().get());
     }
@@ -957,8 +979,8 @@ public final class MessageContentProcessor {
     SignalDatabase.recipients().applyBlockedUpdate(blockMessage.getAddresses(), blockMessage.getGroupIds());
   }
 
-  private void handleSynchronizeFetchMessage(@NonNull SignalServiceSyncMessage.FetchType fetchType) {
-    log("Received fetch request with type: " + fetchType);
+  private void handleSynchronizeFetchMessage(@NonNull SignalServiceSyncMessage.FetchType fetchType, long envelopeTimestamp) {
+    log(envelopeTimestamp, "Received fetch request with type: " + fetchType);
 
     switch (fetchType) {
       case LOCAL_PROFILE:
@@ -975,9 +997,11 @@ public final class MessageContentProcessor {
     }
   }
 
-  private void handleSynchronizeMessageRequestResponse(@NonNull MessageRequestResponseMessage response)
+  private void handleSynchronizeMessageRequestResponse(@NonNull MessageRequestResponseMessage response, long envelopeTimestamp)
       throws BadGroupIdException
   {
+    log(envelopeTimestamp, "Synchronize message request response.");
+
     RecipientDatabase recipientDatabase = SignalDatabase.recipients();
     ThreadDatabase    threadDatabase    = SignalDatabase.threads();
 
@@ -1075,9 +1099,9 @@ public final class MessageContentProcessor {
       long threadId = -1;
 
       if (message.isRecipientUpdate()) {
-        handleGroupRecipientUpdate(message);
+        handleGroupRecipientUpdate(message, content.getTimestamp());
       } else if (message.getMessage().isEndSession()) {
-        threadId = handleSynchronizeSentEndSessionMessage(message);
+        threadId = handleSynchronizeSentEndSessionMessage(message, content.getTimestamp());
       } else if (message.getMessage().isGroupV1Update()) {
         Long gv1ThreadId = GroupV1MessageProcessor.process(context, content, message.getMessage(), true);
         threadId = gv1ThreadId == null ? -1 : gv1ThreadId;
@@ -1096,9 +1120,9 @@ public final class MessageContentProcessor {
       } else if (message.getMessage().getRemoteDelete().isPresent()) {
         handleRemoteDelete(content, message.getMessage(), senderRecipient);
       } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent() || message.getMessage().getSticker().isPresent() || message.getMessage().isViewOnce() || message.getMessage().getMentions().isPresent()) {
-        threadId = handleSynchronizeSentMediaMessage(message);
+        threadId = handleSynchronizeSentMediaMessage(message, content.getTimestamp());
       } else {
-        threadId = handleSynchronizeSentTextMessage(message);
+        threadId = handleSynchronizeSentTextMessage(message, content.getTimestamp());
       }
 
       if (message.getMessage().getGroupContext().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.idFromGroupContext(message.getMessage().getGroupContext().get()))) {
@@ -1133,6 +1157,8 @@ public final class MessageContentProcessor {
                                               @NonNull SentTranscriptMessage message)
       throws IOException, GroupChangeBusyException
   {
+    log(content.getTimestamp(), "Synchronize sent GV2 update for message with timestamp " + message.getTimestamp());
+
     SignalServiceGroupV2 signalServiceGroupV2 = message.getMessage().getGroupContext().get().getGroupV2().get();
     GroupId.V2           groupIdV2            = GroupId.v2(signalServiceGroupV2.getMasterKey());
 
@@ -1141,8 +1167,10 @@ public final class MessageContentProcessor {
     }
   }
 
-  private void handleSynchronizeRequestMessage(@NonNull RequestMessage message)
+  private void handleSynchronizeRequestMessage(@NonNull RequestMessage message, long envelopeTimestamp)
   {
+    log(envelopeTimestamp, "Synchronize request message.");
+
     if (message.isContactsRequest()) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
     }
@@ -1170,27 +1198,14 @@ public final class MessageContentProcessor {
 
   private void handleSynchronizeReadMessage(@NonNull List<ReadMessage> readMessages, long envelopeTimestamp, @NonNull Recipient senderRecipient)
   {
+    log(envelopeTimestamp, "Synchronize read message. Count: " + readMessages.size());
+
     Map<Long, Long> threadToLatestRead = new HashMap<>();
-    for (ReadMessage readMessage : readMessages) {
-      List<Pair<Long, Long>> expiringText  = SignalDatabase.sms().setTimestampRead(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()),
-                                                                                                     envelopeTimestamp,
-                                                                                                     threadToLatestRead);
-      List<Pair<Long, Long>> expiringMedia = SignalDatabase.mms().setTimestampRead(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()),
-                                                                                                     envelopeTimestamp,
-                                                                                                     threadToLatestRead);
 
-      for (Pair<Long, Long> expiringMessage : expiringText) {
-        ApplicationDependencies.getExpiringMessageManager()
-                               .scheduleDeletion(expiringMessage.first(), false, envelopeTimestamp, expiringMessage.second());
-      }
-
-      for (Pair<Long, Long> expiringMessage : expiringMedia) {
-        ApplicationDependencies.getExpiringMessageManager()
-                               .scheduleDeletion(expiringMessage.first(), true, envelopeTimestamp, expiringMessage.second());
-      }
-    }
+    SignalDatabase.mmsSms().setTimestampRead(senderRecipient, readMessages, envelopeTimestamp, threadToLatestRead);
 
     List<MessageDatabase.MarkedMessageInfo> markedMessages = SignalDatabase.threads().setReadSince(threadToLatestRead, false);
+
     if (Util.hasItems(markedMessages)) {
       Log.i(TAG, "Updating past messages: " + markedMessages.size());
       MarkReadReceiver.process(context, markedMessages);
@@ -1203,6 +1218,8 @@ public final class MessageContentProcessor {
   }
 
   private void handleSynchronizeViewedMessage(@NonNull List<ViewedMessage> viewedMessages, long envelopeTimestamp) {
+    log(envelopeTimestamp, "Synchronize viewed message. Count: " + viewedMessages.size());
+
     List<Long> toMarkViewed = Stream.of(viewedMessages)
                                     .map(message -> {
                                       RecipientId author = Recipient.externalPush(context, message.getSender()).getId();
@@ -1221,7 +1238,7 @@ public final class MessageContentProcessor {
   }
 
   private void handleSynchronizeViewOnceOpenMessage(@NonNull ViewOnceOpenMessage openMessage, long envelopeTimestamp) {
-    log(String.valueOf(envelopeTimestamp), "Handling a view-once open for message: " + openMessage.getTimestamp());
+    log(envelopeTimestamp, "Handling a view-once open for message: " + openMessage.getTimestamp());
 
     RecipientId   author    = Recipient.externalPush(context, openMessage.getSender()).getId();
     long          timestamp = openMessage.getTimestamp();
@@ -1247,6 +1264,8 @@ public final class MessageContentProcessor {
                                                 long receivedTime)
       throws StorageFailedException
   {
+    log(message.getTimestamp(), "Media message.");
+
     notifyTypingStoppedFromIncomingMessage(senderRecipient, threadRecipient, content.getSenderDevice());
 
     Optional<InsertResult> insertResult;
@@ -1322,6 +1341,8 @@ public final class MessageContentProcessor {
   private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message)
       throws MmsException, BadGroupIdException
   {
+    log(message.getTimestamp(), "Synchronize sent expiration update.");
+
     MessageDatabase database   = SignalDatabase.mms();
     Recipient       recipient  = getSyncMessageDestination(message);
 
@@ -1339,9 +1360,11 @@ public final class MessageContentProcessor {
     return threadId;
   }
 
-  private long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message)
+  private long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message, long envelopeTimestamp)
       throws MmsException, BadGroupIdException
   {
+    log(envelopeTimestamp, "Synchronize sent media message for " + message.getTimestamp());
+
     MessageDatabase             database        = SignalDatabase.mms();
     Recipient                   recipients      = getSyncMessageDestination(message);
     Optional<QuoteModel>        quote           = getValidatedQuote(message.getMessage().getQuote());
@@ -1426,9 +1449,11 @@ public final class MessageContentProcessor {
     return threadId;
   }
 
-  private void handleGroupRecipientUpdate(@NonNull SentTranscriptMessage message)
+  private void handleGroupRecipientUpdate(@NonNull SentTranscriptMessage message, long envelopeTimestamp)
       throws BadGroupIdException
   {
+    log(envelopeTimestamp, "Group recipient update.");
+
     Recipient recipient = getSyncMessageDestination(message);
 
     if (!recipient.isGroup()) {
@@ -1483,6 +1508,7 @@ public final class MessageContentProcessor {
                                                 long receivedTime)
       throws StorageFailedException
   {
+    log(message.getTimestamp(), "Text message.");
     MessageDatabase database = SignalDatabase.sms();
     String          body     = message.getBody().isPresent() ? message.getBody().get() : "";
 
@@ -1522,9 +1548,11 @@ public final class MessageContentProcessor {
     }
   }
 
-  private long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)
+  private long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message, long envelopeTimestamp)
       throws MmsException, BadGroupIdException
   {
+    log(envelopeTimestamp, "Synchronize sent text message for " + message.getTimestamp());
+
     Recipient recipient       = getSyncMessageDestination(message);
     String    body            = message.getMessage().getBody().or("");
     long      expiresInMillis = TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds());
@@ -1587,6 +1615,8 @@ public final class MessageContentProcessor {
   private void handleInvalidVersionMessage(@NonNull String sender, int senderDevice, long timestamp,
                                            @NonNull Optional<Long> smsMessageId)
   {
+    log(timestamp, "Invalid version message.");
+
     MessageDatabase smsDatabase = SignalDatabase.sms();
 
     if (!smsMessageId.isPresent()) {
@@ -1604,6 +1634,8 @@ public final class MessageContentProcessor {
   private void handleCorruptMessage(@NonNull String sender, int senderDevice, long timestamp,
                                     @NonNull Optional<Long> smsMessageId)
   {
+    log(timestamp, "Corrupt message.");
+
     MessageDatabase smsDatabase = SignalDatabase.sms();
 
     if (!smsMessageId.isPresent()) {
@@ -1624,6 +1656,8 @@ public final class MessageContentProcessor {
                                             long timestamp,
                                             @NonNull Optional<Long> smsMessageId)
   {
+    log(timestamp, "Unsupported data message.");
+
     MessageDatabase smsDatabase = SignalDatabase.sms();
 
     if (!smsMessageId.isPresent()) {
@@ -1644,6 +1678,8 @@ public final class MessageContentProcessor {
                                     long timestamp,
                                     @NonNull Optional<Long> smsMessageId)
   {
+    log(timestamp, "Invalid message.");
+
     MessageDatabase smsDatabase = SignalDatabase.sms();
 
     if (!smsMessageId.isPresent()) {
@@ -1661,6 +1697,8 @@ public final class MessageContentProcessor {
   private void handleLegacyMessage(@NonNull String sender, int senderDevice, long timestamp,
                                    @NonNull Optional<Long> smsMessageId)
   {
+    log(timestamp, "Legacy message.");
+
     MessageDatabase smsDatabase = SignalDatabase.sms();
 
     if (!smsMessageId.isPresent()) {
@@ -1679,6 +1717,8 @@ public final class MessageContentProcessor {
                                 @NonNull byte[] messageProfileKeyBytes,
                                 @NonNull Recipient senderRecipient)
   {
+    log(content.getTimestamp(), "Profile key.");
+
     RecipientDatabase database          = SignalDatabase.recipients();
     ProfileKey        messageProfileKey = ProfileKeyUtil.profileKeyOrNull(messageProfileKeyBytes);
 

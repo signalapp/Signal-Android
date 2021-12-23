@@ -411,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Saiba mais</string>
   <string name="BackupsPreferenceFragment__in_progress">Em andamento…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d até agora…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% até agora…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal precisa da permissão ao armazenamento externo para fazer backup, mas ela foi permanentemente negada. Por favor, vá ao menu de configurações de aplicativos, selecione \"Permissões\", e habilite \"Armazenamento\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
@@ -1631,6 +1633,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispositivo não mais registrado</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Isso provavelmente aconteceu porque você registrou seu número de telefone no Signal usando um outro dispositivo. Toque para registrar novamente.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Para atender a chamada, conceda ao Signal acesso ao seu microfone.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para atender a chamada de %s, dê ao Signal acesso ao microfone.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">O Signal precisa das permissões Microfone e Câmera para fazer ou receber chamadas, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendido em um dispositivo vinculado.</string>
@@ -2585,7 +2588,7 @@
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Você digitou com sucesso sua senha de backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">A senha está incorreta</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Criando backup…</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">Criando backup do Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Backup falhou</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sua pasta de backup foi excluída ou movida.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Seu arquivo de backup é muito grande para ser armazenado neste local.</string>
@@ -2707,6 +2710,8 @@
   <string name="DeviceTransfer__transferring_data">Transferindo dados</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantenha os dois aparelhos próximos um do outro. Não desligue os aparelhos e mantenha o Signal aberto. Transferências são criptografadas de ponta a ponta.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mensagens até agora…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% das mensagens até agora…</string>
   <string name="DeviceTransfer__cancel">Cancelar</string>
   <string name="DeviceTransfer__try_again">Tentar novamente</string>
   <string name="DeviceTransfer__stop_transfer_question">Cancelar a transferência?</string>

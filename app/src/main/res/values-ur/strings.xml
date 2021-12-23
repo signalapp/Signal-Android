@@ -372,6 +372,7 @@
   <string name="BackupsPreferenceFragment__learn_more">مزید پڑھیں</string>
   <string name="BackupsPreferenceFragment__in_progress">کام جاری ہے…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d اب تک…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">بیک اپ بنانے کیلئے Signal کو بیرونی اسٹوریج کی اجازت درکار ہوتی ہے ، لیکن مستقل طور پر اس کی تردید کردی گئی ہے۔ براہ کرم ایپ کی ترتیبات جاری رکھیں ، \"اجازت\" منتخب کریں اور \"اسٹوریج\" کو فعال کریں۔</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">اپنی مرضی سے استعمال کریں؛%s</string>
@@ -2457,7 +2458,6 @@
   <string name="BackupDialog_verify">تصدیق کریں</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">آپ نے کامیابی کے ساتھ اپنا بیک اپ پاس فریز درج کیا</string>
   <string name="BackupDialog_passphrase_was_not_correct">پاسفریز صحیح نہیں تھا</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">بیک اپ بن رہا ہے۔۔۔</string> -->
   <string name="LocalBackupJobApi29_backup_failed">بیک اپ ناکام ہوگیا</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آپ کی بیک اپ ڈائرکٹری کو حذف یا منتقل کردیا گیا ہے۔</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">اس حجم پر آپ کی بیک اپ فائل ذخیرہ کرنے کیلئے بہت بڑی ہے۔</string>
@@ -2578,6 +2578,7 @@
   <string name="DeviceTransfer__transferring_data">ڈیٹا کی منتقلی</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">دونوں آلات ایک دوسرے کے قریب رکھیں۔ آلات بند نہ کریں اور Signal کو کھلا رکھیں۔ منتقلی اختتام سے آخر تک انکرپٹ ہوتی ہیں۔</string>
   <string name="DeviceTransfer__d_messages_so_far">اب تک %1$d پیغامات…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">منسوخ کریں</string>
   <string name="DeviceTransfer__try_again">دوبارہ کوشش کریں</string>
   <string name="DeviceTransfer__stop_transfer_question">منتقلی بند کرو؟</string>

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.audio;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +12,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class AudioRecorder {
 
   private static final String TAG = Log.tag(AudioRecorder.class);
@@ -29,8 +28,8 @@ public class AudioRecorder {
 
   private final Context context;
 
-  private AudioCodec audioCodec;
-  private Uri        captureUri;
+  private Recorder recorder;
+  private Uri      captureUri;
 
   public AudioRecorder(@NonNull Context context) {
     this.context = context;
@@ -42,7 +41,7 @@ public class AudioRecorder {
     executor.execute(() -> {
       Log.i(TAG, "Running startRecording() + " + Thread.currentThread().getId());
       try {
-        if (audioCodec != null) {
+        if (recorder != null) {
           throw new AssertionError("We can only record once at a time.");
         }
 
@@ -52,9 +51,9 @@ public class AudioRecorder {
                                  .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
                                  .withMimeType(MediaUtil.AUDIO_AAC)
                                  .createForDraftAttachmentAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
-        audioCodec = new AudioCodec();
 
-        audioCodec.start(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));
+        recorder = Build.VERSION.SDK_INT >= 26 && FeatureFlags.voiceNoteRecordingV2() ? new MediaRecorderWrapper() : new AudioCodec();
+        recorder.start(fds[1]);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -67,12 +66,12 @@ public class AudioRecorder {
     final SettableFuture<VoiceNoteDraft> future = new SettableFuture<>();
 
     executor.execute(() -> {
-      if (audioCodec == null) {
+      if (recorder == null) {
         sendToFuture(future, new IOException("MediaRecorder was never initialized successfully!"));
         return;
       }
 
-      audioCodec.stop();
+      recorder.stop();
 
       try {
         long size = MediaUtil.getMediaSize(context, captureUri);
@@ -82,7 +81,7 @@ public class AudioRecorder {
         sendToFuture(future, ioe);
       }
 
-      audioCodec = null;
+      recorder   = null;
       captureUri = null;
     });
 

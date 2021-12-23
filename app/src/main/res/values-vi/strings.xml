@@ -386,6 +386,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Tìm hiểu thêm</string>
   <string name="BackupsPreferenceFragment__in_progress">Đang thực hiện…</string>
   <string name="BackupsPreferenceFragment__d_so_far">Đã được %1$d…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal cần quyền truy cập bộ nhớ để tạo bản sao lưu, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Bộ nhớ\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
@@ -2480,7 +2481,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="BackupDialog_verify">Kiểm chứng</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Bạn đã điền mật khẩu sao lưu thành công</string>
   <string name="BackupDialog_passphrase_was_not_correct">Mật khẩu không chính xác</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Đang sao lưu…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sao lưu thất bại.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Thư mục sao lưu của bạn đã bị xoá hoặc dời đi.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Tập tin sao lưu của bạn quá lớn để có thể được lưu trữ trên ổ này.</string>
@@ -2602,6 +2602,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="DeviceTransfer__transferring_data">Đang truyền tải dữ liệu</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Giữ cả hai thiết bị gần nhau. Không tắt các thiết bị và để mở Signal. Việc truyền tải được bảo mật hai chiều.</string>
   <string name="DeviceTransfer__d_messages_so_far">Đã được %1$d tin nhắn…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Hủy</string>
   <string name="DeviceTransfer__try_again">Thử lại</string>
   <string name="DeviceTransfer__stop_transfer_question">Ngưng truyền tải?</string>

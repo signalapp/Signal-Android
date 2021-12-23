@@ -386,6 +386,7 @@
   <string name="BackupsPreferenceFragment__learn_more">더 알아보기</string>
   <string name="BackupsPreferenceFragment__in_progress">진행 중…</string>
   <string name="BackupsPreferenceFragment__d_so_far">지금까지 %1$d명…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal에서 백업을 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">맞춤형 값 사용: %s</string>
@@ -2428,7 +2429,6 @@
   <string name="BackupDialog_verify">확인</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">백업 암호가 성공적으로 입력됨</string>
   <string name="BackupDialog_passphrase_was_not_correct">암호가 올바르지 않음</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">백업 생성 중…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">백업을 실패했습니다.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">백업 경로가 삭제되었거나 이동했습니다.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">백업 파일이 너무 커서 이 볼륨에 저장할 수 없습니다.</string>
@@ -2549,6 +2549,7 @@
   <string name="DeviceTransfer__transferring_data">데이터 전송 중</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">두 장치를 서로 가까이 두세요. 장치를 끄지 말고 Signal을 켜두세요. 전송은 종단 간 암호화됩니다.</string>
   <string name="DeviceTransfer__d_messages_so_far">지금까지 %1$d개의 메시지…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">취소</string>
   <string name="DeviceTransfer__try_again">다시 시도해 주세요.</string>
   <string name="DeviceTransfer__stop_transfer_question">전송을 중지하시겠습니까?</string>

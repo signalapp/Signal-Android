@@ -412,6 +412,8 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="BackupsPreferenceFragment__learn_more">Lær meir</string>
   <string name="BackupsPreferenceFragment__in_progress">I gang …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d så langt …</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% så langt …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal treng tilgang til ekstern lagring for å laga reservekopiar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bruker sjølvvald: %s</string>
@@ -1637,6 +1639,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Eininga er ikkje lenger registrert</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette er sannsynlegvis fordi du registrerte telefonnummeret ditt med Signal på ei anna eining. Trykk for å omregistrera.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Gi Signal tilgang til mikrofonen for å ta imot oppringinga.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Gi Signal tilgang til mikrofonen for å ta imot oppringinga frå %s.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal treng tilgang til mikrofon og kamera for å ringa eller ta imot samtalar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon» og «Kamera».</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Svarte på ei tilkopla eining.</string>
@@ -2592,7 +2595,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="BackupDialog_verify">Stadfest</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du skreiv inn rett passordfrase for reservekopiane dine</string>
   <string name="BackupDialog_passphrase_was_not_correct">Feil passordfrase</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Opprettar reservekopi …</string> -->
+  <string name="LocalBackupJob_creating_signal_backup">Opprettar Signal-reservekopi …</string>
   <string name="LocalBackupJobApi29_backup_failed">Reservekopiering feila</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mappa for reservekopiar er sletta eller flytta.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Reservekopi-fila er for stor til å lagra på denne plasseringa.</string>
@@ -2715,6 +2718,8 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="DeviceTransfer__transferring_data">Overfører data</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Hald einingane nær kvarandre. Ikkje skru av einingane, men la Signal stå open. Overføringa er ende-til-ende-kryptert.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d meldingar så langt …</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% meldingar så langt …</string>
   <string name="DeviceTransfer__cancel">Avbryt</string>
   <string name="DeviceTransfer__try_again">Prøv igjen</string>
   <string name="DeviceTransfer__stop_transfer_question">Stopp overføringa?</string>

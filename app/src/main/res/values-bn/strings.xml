@@ -407,6 +407,7 @@
   <string name="BackupsPreferenceFragment__learn_more">আরও জানুন</string>
   <string name="BackupsPreferenceFragment__in_progress">চলমান…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d এখন অব্দি…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ব্যাকআপগুলি তৈরি করতে Signal এর জন্য বাহ্যিক স্টোরেজ অনুমতি প্রয়োজন, তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংস যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"স্টোরেজ\" সক্ষম করুন।</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">প্রথা ব্যবহৃত : %s</string>
@@ -2564,7 +2565,6 @@
   <string name="BackupDialog_verify">যাচাই করুন</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">আপনি সফলভাবে আপনার ব্যাকআপ পাসফ্রেজটি প্রবেশ করিয়েছেন</string>
   <string name="BackupDialog_passphrase_was_not_correct">পাসফ্রেজ সঠিক ছিলোনা।</string>
-  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">ব্যাকআপ তৈরি করা হচ্ছে …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">ব্যাকআপ ব্যর্থ হয়েছে</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">আপনার ব্যাকআপ ডিরেক্টরি মুছে ফেলা হয়েছে বা সরানো হয়েছে।</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">আপনার ব্যাকআপ ফাইলটি এই স্থানে সংরক্ষণ করার জন্য খুব বড়।</string>
@@ -2686,6 +2686,7 @@
   <string name="DeviceTransfer__transferring_data">তথ্য স্থানান্তর করা হচ্ছে</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">উভয় ডিভাইসকে একে অপরের কাছাকাছি রাখুন। ডিভাইসগুলো বন্ধ করবেন না এবং Signal চালু রাখুন। ট্রান্সফারগুলো এক প্রান্ত থেকে অপর প্রান্তে এনক্রিপ্ট করা অবস্থায় থাকে।</string>
   <string name="DeviceTransfer__d_messages_so_far">এখন পর্যন্ত %1$dটি মেসেজ…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">বাতিল</string>
   <string name="DeviceTransfer__try_again">আবারো চেষ্টা করুন</string>
   <string name="DeviceTransfer__stop_transfer_question">স্থানান্তর বন্ধ করবেন?</string>

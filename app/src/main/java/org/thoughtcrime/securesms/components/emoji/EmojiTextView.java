@@ -13,6 +13,7 @@ import android.text.TextDirectionHeuristic;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.text.method.TransformationMethod;
+import android.text.style.MetricAffectingSpan;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -191,10 +192,12 @@ public class EmojiTextView extends AppCompatTextView {
     if (Build.VERSION.SDK_INT >= 30 && Math.abs(getResources().getConfiguration().fontScale - 1f) > 0.01f) {
       CharSequence text = getText();
       if (text != null) {
-        int widthSpecMode     = MeasureSpec.getMode(widthMeasureSpec);
-        int widthSpecSize     = MeasureSpec.getSize(widthMeasureSpec);
-        int measuredTextWidth = (int) getPaint().measureText(text, 0, text.length());
-        int desiredWidth      = measuredTextWidth + getPaddingLeft() + getPaddingRight();
+        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+
+        float measuredTextWidth = hasMetricAffectingSpan(text) ? Layout.getDesiredWidth(text, getPaint()) : getPaint().measureText(text, 0, text.length());
+        int   desiredWidth      = (int) measuredTextWidth + getPaddingLeft() + getPaddingRight();
+
         if (widthSpecMode == MeasureSpec.AT_MOST && desiredWidth < widthSpecSize) {
           return MeasureSpec.makeMeasureSpec(desiredWidth + 1, MeasureSpec.EXACTLY);
         }
@@ -202,6 +205,14 @@ public class EmojiTextView extends AppCompatTextView {
     }
 
     return widthMeasureSpec;
+  }
+
+  private boolean hasMetricAffectingSpan(@NonNull CharSequence text) {
+    if (!(text instanceof Spanned)) {
+      return false;
+    }
+
+    return ((Spanned) text).nextSpanTransition(-1, text.length(), MetricAffectingSpan.class) != text.length();
   }
 
   public int getLastLineWidth() {
