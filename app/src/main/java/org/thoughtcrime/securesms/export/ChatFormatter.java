@@ -87,7 +87,7 @@ import javax.xml.transform.stream.StreamResult;
  *
  * @author  @anlaji
  * @version 1.0
- * @since   2021-12-16
+ * @since   2021-12-24
  */
 
 public class ChatFormatter {
@@ -135,37 +135,36 @@ public class ChatFormatter {
         String finalstring = "";
 
         try {
-            if(conversation.getCount () > 0 && reader.getCurrent () != null)
-            {
-            // use factory to get an instance of document builder
-            DocumentBuilder db = dbf.newDocumentBuilder ();
-            // create instance of DOM
-            dom = db.newDocument ();
+            if(conversation.getCount () > 0 && reader.getCurrent () != null){
+                // use factory to get an instance of document builder
+                DocumentBuilder db = dbf.newDocumentBuilder ();
+                // create instance of DOM
+                dom = db.newDocument ();
 
-            // create the root element
-            Element rootEle = dom.createElement ("chatexport");
-            dom.appendChild (dom.createProcessingInstruction (StreamResult.PI_DISABLE_OUTPUT_ESCAPING, "")); // <=== ADD THIS LINE for reading emojis
-            dom.appendChild (rootEle);
-            dom.appendChild (dom.createProcessingInstruction (StreamResult.PI_ENABLE_OUTPUT_ESCAPING, "")); // <=== ADD THIS LINE
+                // create the root element
+                Element rootEle = dom.createElement ("chatexport");
+                dom.appendChild (dom.createProcessingInstruction (StreamResult.PI_DISABLE_OUTPUT_ESCAPING, "")); // <=== ADD THIS LINE for reading emojis
+                dom.appendChild (rootEle);
+                dom.appendChild (dom.createProcessingInstruction (StreamResult.PI_ENABLE_OUTPUT_ESCAPING, "")); // <=== ADD THIS LINE
 
-                // create data elements and place them under root
-            createMembersElem (rootEle);
-            createConversationElem (rootEle);
-             //write the content into xml file
-             TransformerFactory transformerFactory = TransformerFactory.newInstance ();
-             Transformer transformer = transformerFactory.newTransformer ();
-             transformer.setOutputProperty (OutputKeys.INDENT, "yes");
-             transformer.setOutputProperty (OutputKeys.METHOD, "xml");
-             transformer.setOutputProperty (OutputKeys.ENCODING, "UTF-8");
-             transformer.setOutputProperty ("{http://xml.apache.org/xslt}indent-amount", "4");
-             DOMSource source = new DOMSource (dom);
+                 // create data elements and place them under root
+                 createMembersElem (rootEle);
+                 createConversationElem (rootEle);
+                 //write the content into xml file
+                 TransformerFactory transformerFactory = TransformerFactory.newInstance ();
+                 Transformer transformer = transformerFactory.newTransformer ();
+                 transformer.setOutputProperty (OutputKeys.INDENT, "yes");
+                 transformer.setOutputProperty (OutputKeys.METHOD, "xml");
+                 transformer.setOutputProperty (OutputKeys.ENCODING, "UTF-8");
+                 transformer.setOutputProperty ("{http://xml.apache.org/xslt}indent-amount", "4");
+                 DOMSource source = new DOMSource (dom);
 
 
-             StringWriter outWriter = new StringWriter ();
-             StreamResult result = new StreamResult (outWriter);
-             transformer.transform (source, result);
-             StringBuffer sb = outWriter.getBuffer ();
-             finalstring = sb.toString ();
+                 StringWriter outWriter = new StringWriter ();
+                 StreamResult result = new StreamResult (outWriter);
+                 transformer.transform (source, result);
+                 StringBuffer sb = outWriter.getBuffer ();
+                 finalstring = sb.toString ();
             }
 
         } catch (ParserConfigurationException | TransformerConfigurationException pce) {
@@ -207,36 +206,22 @@ public class ChatFormatter {
 
     private void createPersonElem (Element parent, @NonNull Recipient recipient) {
         Element contact = addElement (parent, "contact");
-
         addAttribute (contact, "id", recipient.getId ().toString ());
-
         addAttribute (contact, "name", recipient.getDisplayName (context));
         if(recipient.hasAUserSetDisplayName (context)) addElement (contact, "profile_name", recipient.getProfileName ().toString ());
-        if(recipient.isSelf()){
-            addElement (contact, "relation", "self");
-        }
-        else if(recipient.isSystemContact ()){
-            addElement (contact, "relation", "system_contact");
-        }
-        else if(recipient.isBlocked ()){
-            addElement (contact, "relation", "blocked");
-        }
-        if(recipient.getGroupId ().isPresent()){
-            addElement (contact, "teamid", recipient.getGroupId().get().toString());
-        }
-        if(recipient.getDefaultSubscriptionId().isPresent()){
-            addElement (contact, "trackingid", recipient.getDefaultSubscriptionId().asSet().toString());
-        }
+        if(recipient.isSelf()) addElement (contact, "relation", "self");
+        else if(recipient.isSystemContact ()) addElement (contact, "relation", "system_contact");
+        else if(recipient.isBlocked ()) addElement (contact, "relation", "blocked");
+        if(recipient.getGroupId ().isPresent()) addElement (contact, "teamid", recipient.getGroupId().get().toString());
+        if(recipient.getDefaultSubscriptionId().isPresent()) addElement (contact, "trackingid", recipient.getDefaultSubscriptionId().asSet().toString());
         if(recipient.getCombinedAboutAndEmoji ()!=null) addElement (contact, "about", recipient.getCombinedAboutAndEmoji ());
-        if (recipient.getEmail ().isPresent ())
-            addElement (contact, "email", recipient.getEmail ().get ());
-        if (recipient.hasSmsAddress ())
-            addElement (contact, "phone", PhoneNumberFormatter.prettyPrint(recipient.getSmsAddress ().get ()));
+        if (recipient.getEmail ().isPresent ()) addElement (contact, "email", recipient.getEmail ().get ());
+        if (recipient.hasSmsAddress ()) addElement (contact, "phone", PhoneNumberFormatter.prettyPrint(recipient.getSmsAddress ().get ()));
     }
 
     private void createConversationElem (Element conv) {
-
         MessageRecord record = reader.getCurrent ();
+
         Element records = addElement (conv, "chat_records");
         addAttribute (records, "threadid", String.valueOf(threadId));
         addAttribute (conv, "selected_time_period", timePeriod);
@@ -244,6 +229,7 @@ public class ChatFormatter {
         Date date, old_date = null;
         String date_, old_date_ = "";
         Element date_log = null;
+
         do {
             if (!record.isViewOnce ()) {
                 date = new Date (record.getDateSent ());
@@ -259,44 +245,50 @@ public class ChatFormatter {
                 }
 
                 try {
-                    Element turn = addElement (date_log, "turn");
-                    Recipient author;
-                    if (record.isOutgoing ()) {
-                        author = Recipient.self ();
-                    } else {
-                        author = record.getIndividualRecipient ();
-                    }
-                    addAttribute (turn, "author", author.getProfileName ().getGivenName ());
-                    addAttribute (turn, "authorid", author.getId ().toString());
-
-                    Element message = addElement (turn, "message");
-                    addAttribute (message, MmsSmsColumns.ID, String.valueOf (record.getId ()));
                     long expires_in = record.getExpiresIn ();
-                    if(record.isRemoteDelete ()) addAttribute (message, "is_deleted", String.valueOf (record.isRemoteDelete ()));
-                    else if (expires_in > 0) addAttribute (message, MmsSmsColumns.EXPIRES_IN, String.valueOf ((int) (record.getExpiresIn () / 1000)));
-                    else if (record.hasNetworkFailures()) addAttribute (message, "networkfailure", "yes");
-
-                    else {
-                        String timestamp_ =  new SimpleDateFormat ("HH:mm", Resources.getSystem ().getConfiguration ().locale).format (new Date (record.getDateSent ()));
-
-                        addAttribute (message, "time", timestamp_);
-                        addElement (message, "local_time", DateUtils.formatDate(Locale.getDefault(), record.getTimestamp()));
-                        if (record.isOutgoing ())
-                            addAttribute (message, "status", getStatusFor (record));
-                        Element body = addElement (message, "body");
-                        createBodyElem (body, record);
-                        if (!record.getReactions ().isEmpty ()) createReactionsElem (body, record);
-                        if (!record.getIdentityKeyMismatches ().isEmpty ())
-                            addAttribute (message, MmsSmsColumns.MISMATCHED_IDENTITIES, IdentityKeyMismatch.class.getName ());
+                    if (expires_in > 0){
+                        if (record.isExpirationTimerUpdate()) {
+                            Element message = createHeadElem (addElement (date_log, "turn"), record);
+                            addAttribute (message, "DISAPPERING_MESSAGES_TIMER_ON", String.valueOf ((int) (record.getExpiresIn () / 1000)));
+                        }
+                    }
+                    else{
+                        Element message = createHeadElem (addElement (date_log, "turn"), record);
+                        if(record.isRemoteDelete ()) addAttribute (message, "is_deleted", String.valueOf (record.isRemoteDelete ()));
+                        else if (record.hasNetworkFailures()) addAttribute (message, "networkfailure", "yes");
+                        else {
+                            String timestamp_ =  new SimpleDateFormat ("HH:mm", Resources.getSystem ().getConfiguration ().locale).format (new Date (record.getDateSent ()));
+                            addAttribute (message, "time", timestamp_);
+                            addElement (message, "local_time", DateUtils.formatDate(Locale.getDefault(), record.getTimestamp()));
+                            if (record.isOutgoing ())
+                                addAttribute (message, "status", getStatusFor (record));
+                            Element body = addElement (message, "body");
+                            createBodyElem (body, record);
+                            if (!record.getReactions ().isEmpty ()) createReactionsElem (body, record);
+                            if (!record.getIdentityKeyMismatches ().isEmpty ())
+                                addAttribute (message, MmsSmsColumns.MISMATCHED_IDENTITIES, IdentityKeyMismatch.class.getName ());
+                    }
                     }
                 } catch (Exception e) {
-                    System.out.println ("ANGELA XML error by accesing message details: " + e.getMessage () + " " + e.toString ());
                     e.printStackTrace ();
                 }
             }
         }
         while ((record = reader.getPrevious ()) != null);
         conversation.close ();
+    }
+    private Element createHeadElem (Element turn, MessageRecord record) {
+        Recipient author;
+        if (record.isOutgoing ()) {
+            author = Recipient.self ();
+        } else {
+            author = record.getIndividualRecipient ();
+        }
+        addAttribute (turn, "author", author.getProfileName ().getGivenName ());
+        addAttribute (turn, "authorid", author.getId ().toString());
+        Element message = addElement (turn, "message");
+        addAttribute (message, MmsSmsColumns.ID, String.valueOf (record.getId ()));
+        return message;
     }
 
     private void createBodyElem (Element body, MessageRecord record) {
