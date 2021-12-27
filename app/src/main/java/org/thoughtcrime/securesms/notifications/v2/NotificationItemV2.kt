@@ -267,9 +267,6 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
         }
       }
 
-      if (text.endsWith(EMOJI_REPLACEMENT_STRING)) {
-        builder.append(reaction.emoji)
-      }
       builder
     }
   }
