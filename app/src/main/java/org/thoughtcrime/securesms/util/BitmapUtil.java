@@ -244,16 +244,19 @@ public class BitmapUtil {
     return options;
   }
 
+  public static int getExifOrientation(ExifInterface exif) {
+    return exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+  }
+
   @Nullable
-  public static Pair<Integer, Integer> getExifDimensions(InputStream inputStream) throws IOException {
-    ExifInterface exif   = new ExifInterface(inputStream);
-    int           width  = exif.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH, 0);
-    int           height = exif.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH, 0);
+  public static Pair<Integer, Integer> getExifDimensions(ExifInterface exif) {
+    int width  = exif.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH, 0);
+    int height = exif.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH, 0);
     if (width == 0 || height == 0) {
       return null;
     }
 
-    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0);
+    int orientation = getExifOrientation(exif);
     if (orientation == ExifInterface.ORIENTATION_ROTATE_90  ||
         orientation == ExifInterface.ORIENTATION_ROTATE_270 ||
         orientation == ExifInterface.ORIENTATION_TRANSVERSE ||
