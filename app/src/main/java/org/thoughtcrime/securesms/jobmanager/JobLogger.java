@@ -22,7 +22,7 @@ public class JobLogger {
     String lifespan            = job.getParameters().getLifespan() == Job.Parameters.IMMORTAL ? "Immortal"
                                                                                               : String.valueOf(job.getParameters().getLifespan()) + " ms";
     return String.format(Locale.US,
-                         "[%s][%s]%s %s (Time Since Submission: %d ms, Lifespan: %s, Run Attempt: %d/%s)",
-                         "JOB::" + id, job.getClass().getSimpleName(), tag, event, timeSinceSubmission, lifespan, runAttempt, maxAttempts);
+                         "[%s][%s]%s %s (Time Since Submission: %d ms, Lifespan: %s, Run Attempt: %d/%s, Queue: %s)",
+                         "JOB::" + id, job.getClass().getSimpleName(), tag, event, timeSinceSubmission, lifespan, runAttempt, maxAttempts, job.getParameters().getQueue());
   }
 }
