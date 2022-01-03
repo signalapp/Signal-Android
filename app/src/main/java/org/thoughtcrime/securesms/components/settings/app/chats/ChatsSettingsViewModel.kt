@@ -52,6 +52,13 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
     SignalStore.settings().isEnterKeySends = enabled
   }
 
+  fun refresh() {
+    val backupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication())
+    if (store.state.chatBackupsEnabled != backupsEnabled) {
+      store.update { it.copy(chatBackupsEnabled = backupsEnabled) }
+    }
+  }
+
   class Factory(private val repository: ChatsSettingsRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return requireNotNull(modelClass.cast(ChatsSettingsViewModel(repository)))
