@@ -482,7 +482,7 @@ object SignalDatabaseMigrations {
     }
 
     if (oldVersion < SELF_ATTACHMENT_CLEANUP) {
-      val localNumber = SignalStore.account().e164
+      val localNumber = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_local_number", null)
       if (!TextUtils.isEmpty(localNumber)) {
         db.rawQuery("SELECT _id FROM thread WHERE recipient_ids = ?", arrayOf(localNumber)).use { threadCursor ->
           if (threadCursor != null && threadCursor.moveToFirst()) {
@@ -594,7 +594,7 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < RECIPIENT_SEARCH) {
       db.execSQL("ALTER TABLE recipient ADD COLUMN system_phone_type INTEGER DEFAULT -1")
-      val localNumber = SignalStore.account().e164
+      val localNumber = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_local_number", null)
       if (!TextUtils.isEmpty(localNumber)) {
         db.query("recipient", null, "phone = ?", arrayOf(localNumber), null, null, null).use { cursor ->
           if (cursor == null || !cursor.moveToFirst()) {
@@ -794,7 +794,7 @@ object SignalDatabaseMigrations {
     }
 
     if (oldVersion < PROFILE_KEY_TO_DB) {
-      val localNumber = SignalStore.account().e164
+      val localNumber = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_local_number", null)
       if (!TextUtils.isEmpty(localNumber)) {
         val encodedProfileKey = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_key", null)
         val profileKey = if (encodedProfileKey != null) Base64.decodeOrThrow(encodedProfileKey) else Util.getSecretBytes(32)
@@ -855,7 +855,7 @@ object SignalDatabaseMigrations {
     }
 
     if (oldVersion < PROFILE_DATA_MIGRATION) {
-      val localNumber = SignalStore.account().e164
+      val localNumber = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_local_number", null)
       if (localNumber != null) {
         val encodedProfileName = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_name", null)
         val profileName = ProfileName.fromSerialized(encodedProfileName)
