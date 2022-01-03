@@ -468,6 +468,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         activeFooter.getLayoutParams().width = availableWidth;
         needsMeasure = true;
       }
+
+      int desiredWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
+      if (bodyBubble.getMeasuredWidth() != desiredWidth) {
+        bodyBubble.getLayoutParams().width = desiredWidth;
+        needsMeasure = true;
+      }
     }
 
     if (needsMeasure) {
