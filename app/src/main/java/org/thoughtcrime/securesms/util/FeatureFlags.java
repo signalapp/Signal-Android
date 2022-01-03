@@ -87,7 +87,7 @@ public final class FeatureFlags {
   private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
-  private static final String VOICE_NOTE_RECORDING_V2           = "android.voiceNoteRecordingV2";
+  private static final String VOICE_NOTE_RECORDING_V2           = "android.voiceNoteRecordingV2.2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -432,7 +432,7 @@ public final class FeatureFlags {
 
   /** Whether or not to use the new voice note recorder backed by MediaRecorder. */
   public static boolean voiceNoteRecordingV2() {
-    return getBoolean(VOICE_NOTE_RECORDING_V2, true);
+    return getBoolean(VOICE_NOTE_RECORDING_V2, false);
   }
 
   /** Only for rendering debug info. */

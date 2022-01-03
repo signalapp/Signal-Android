@@ -37,8 +37,17 @@ public class MediaRecorderWrapper implements Recorder {
 
   @Override
   public void stop() {
-    recorder.stop();
-    recorder.release();
-    recorder = null;
+    try {
+      recorder.stop();
+    } catch (RuntimeException e) {
+      if (e.getClass() != RuntimeException.class) {
+        throw e;
+      } else {
+        Log.d(TAG, "Recording stopped with no data captured.");
+      }
+    } finally {
+      recorder.release();
+      recorder = null;
+    }
   }
 }
