@@ -204,6 +204,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private int     defaultBubbleColorForWallpaper;
   private int     measureCalls;
   private boolean updatingFooter;
+  private boolean canCollapseFooter;
 
   private final PassthroughClickListener        passthroughClickListener     = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener        = new AttachmentDownloadClickListener();
@@ -310,6 +311,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.canPlayContent         = false;
     this.mediaItem              = null;
     this.colorizer              = colorizer;
+    this.canCollapseFooter      = true;
 
     this.recipient.observeForever(this);
     this.conversationRecipient.observeForever(this);
@@ -404,8 +406,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int defaultBottomMargin   = readDimen(R.dimen.message_bubble_bottom_padding);
     int collapsedBottomMargin = readDimen(R.dimen.message_bubble_collapsed_bottom_padding);
 
-    if (!updatingFooter                                                &&
-        getActiveFooter(messageRecord) == footer                       &&
+    if (getActiveFooter(messageRecord) == footer                       &&
         !hasAudio(messageRecord)                                       &&
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
         !bodyText.isJumbomoji()                                        &&
@@ -416,29 +417,37 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       int      availableWidth     = getAvailableMessageBubbleWidth(bodyText);
       int      collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
 
-      if (bodyText.isSingleLine() && !messageRecord.isFailed()) {
-        int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
-        int bodyMargins     = ViewUtil.getLeftMargin(bodyText) + ViewUtil.getRightMargin(bodyText);
-        int sizeWithMargins = bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins;
-        int minSize         = Math.min(maxBubbleWidth, Math.max(bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins, bodyBubble.getMeasuredWidth()));
+      if (!updatingFooter) {
+        if (bodyText.isSingleLine() && !messageRecord.isFailed()) {
+          int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
+          int bodyMargins     = ViewUtil.getLeftMargin(bodyText) + ViewUtil.getRightMargin(bodyText);
+          int sizeWithMargins = bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins;
+          int minSize         = Math.min(maxBubbleWidth, Math.max(bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins, bodyBubble.getMeasuredWidth()));
 
-        if (hasQuote(messageRecord) && sizeWithMargins < availableWidth) {
-          ViewUtil.setTopMargin(footer, collapsedTopMargin);
-          ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
-          needsMeasure   = true;
-          updatingFooter = true;
-        } else if (sizeWithMargins != bodyText.getMeasuredWidth() && sizeWithMargins <= minSize) {
-          bodyBubble.getLayoutParams().width = minSize;
-          ViewUtil.setTopMargin(footer, collapsedTopMargin);
-          ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
-          needsMeasure   = true;
-          updatingFooter = true;
+          if (hasQuote(messageRecord) && sizeWithMargins < availableWidth) {
+            ViewUtil.setTopMargin(footer, collapsedTopMargin);
+            ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
+            needsMeasure   = true;
+            updatingFooter = true;
+          } else if (sizeWithMargins != bodyText.getMeasuredWidth() && sizeWithMargins <= minSize) {
+            bodyBubble.getLayoutParams().width = minSize;
+            ViewUtil.setTopMargin(footer, collapsedTopMargin);
+            ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
+            needsMeasure   = true;
+            updatingFooter = true;
+          }
         }
       }
 
-      if (!updatingFooter && !messageRecord.isFailed() && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
-        ViewUtil.setTopMargin(footer, collapsedTopMargin);
-        ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
+      if (!messageRecord.isFailed() && canCollapseFooter) {
+        if (bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
+          ViewUtil.setTopMargin(footer, collapsedTopMargin);
+          ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
+        } else {
+          ViewUtil.setTopMargin(footer, defaultTopMargin);
+          ViewUtil.setBottomMargin(footer, defaultBottomMargin);
+          canCollapseFooter = false;
+        }
         updatingFooter = true;
         needsMeasure   = true;
       }
