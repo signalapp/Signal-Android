@@ -120,7 +120,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markDownloadState(long messageId, long state);
   public abstract void markIncomingNotificationReceived(long threadId);
 
-  public abstract Set<ThreadUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType);
+  public abstract Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType);
   abstract @NonNull MmsSmsDatabase.TimestampReadResult setTimestampRead(SyncMessageId messageId, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead);
   public abstract List<MarkedMessageInfo> setEntireThreadRead(long threadId);
   public abstract List<MarkedMessageInfo> setMessagesReadSince(long threadId, long timestamp);
@@ -647,35 +647,34 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     }
   }
 
-  static class ThreadUpdate {
-    private final long    threadId;
-    private final boolean verbose;
+  static class MessageUpdate {
+    private final long      threadId;
+    private final MessageId messageId;
 
-    ThreadUpdate(long threadId, boolean verbose) {
-      this.threadId = threadId;
-      this.verbose  = verbose;
+    MessageUpdate(long threadId, @NonNull MessageId messageId) {
+      this.threadId  = threadId;
+      this.messageId = messageId;
     }
 
     public long getThreadId() {
       return threadId;
     }
 
-    public boolean isVerbose() {
-      return verbose;
+    public @NonNull MessageId getMessageId() {
+      return messageId;
     }
 
     @Override
     public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
-      ThreadUpdate that = (ThreadUpdate) o;
-      return threadId == that.threadId &&
-             verbose  == that.verbose;
+      final MessageUpdate that = (MessageUpdate) o;
+      return threadId == that.threadId && messageId.equals(that.messageId);
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(threadId, verbose);
+      return Objects.hash(threadId, messageId);
     }
   }
 

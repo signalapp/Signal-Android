@@ -51,10 +51,6 @@ public abstract class Database {
     ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(threadIds);
   }
 
-  protected void notifyVerboseConversationListeners(long threadId) {
-    ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(threadId);
-  }
-
   protected void notifyConversationListListeners() {
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }

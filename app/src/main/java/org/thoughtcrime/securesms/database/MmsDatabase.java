@@ -607,9 +607,9 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Set<ThreadUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
-    SQLiteDatabase    database      = databaseHelper.getSignalWritableDatabase();
-    Set<ThreadUpdate> threadUpdates = new HashSet<>();
+  public Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+    SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
+    Set<MessageUpdate> messageUpdates = new HashSet<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName(), RECEIPT_TIMESTAMP},
                                         DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
@@ -637,16 +637,16 @@ public class MmsDatabase extends MessageDatabase {
 
             SignalDatabase.groupReceipts().update(ourRecipientId, id, status, timestamp);
 
-            threadUpdates.add(new ThreadUpdate(threadId, !isFirstIncrement));
+            messageUpdates.add(new MessageUpdate(threadId, new MessageId(id, true)));
           }
         }
       }
 
-      if (threadUpdates.size() > 0 && receiptType == ReceiptType.DELIVERY) {
+      if (messageUpdates.size() > 0 && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId(), timestamp);
       }
 
-      return threadUpdates;
+      return messageUpdates;
     }
   }
 

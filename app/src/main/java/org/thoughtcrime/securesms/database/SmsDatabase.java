@@ -481,18 +481,18 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Set<ThreadUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+  public @NonNull Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
     if (receiptType == ReceiptType.VIEWED) {
       return Collections.emptySet();
     }
 
-    SQLiteDatabase    database      = databaseHelper.getSignalWritableDatabase();
-    Set<ThreadUpdate> threadUpdates = new HashSet<>();
+    SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
+    Set<MessageUpdate> messageUpdates = new HashSet<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, RECEIPT_TIMESTAMP},
-                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
-                              null, null, null, null)) {
-
+                                        DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
+                                        null, null, null, null))
+    {
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(CursorUtil.requireLong(cursor, TYPE))) {
           RecipientId theirRecipientId = messageId.getRecipientId();
@@ -512,16 +512,16 @@ public class SmsDatabase extends MessageDatabase {
                              ID + " = ?",
                              SqlUtil.buildArgs(updatedTimestamp, id));
 
-            threadUpdates.add(new ThreadUpdate(threadId, !isFirstIncrement));
+            messageUpdates.add(new MessageUpdate(threadId, new MessageId(id, false)));
           }
         }
       }
 
-      if (threadUpdates.isEmpty() && receiptType == ReceiptType.DELIVERY) {
+      if (messageUpdates.isEmpty() && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId(), timestamp);
       }
 
-      return threadUpdates;
+      return messageUpdates;
     }
   }
 
