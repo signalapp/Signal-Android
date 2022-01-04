@@ -39,8 +39,9 @@
         android:clickable="false"
         android:focusable="false"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
-        app:layout_constraintEnd_toEndOf="@+id/recipient_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:checked="true" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -102,10 +103,12 @@
         android:id="@+id/popupMenuProgressContainer"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/recipient_selected"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginEnd="0dp"
         tools:visibility="visible">
 
         <org.thoughtcrime.securesms.groups.ui.PopupMenuView
