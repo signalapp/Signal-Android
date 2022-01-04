@@ -2067,7 +2067,7 @@
   <string name="preferences__donate_to_signal">Signal-a ianə verin</string>
   <string name="preferences__subscription">Abunəlik</string>
   <string name="preferences__become_a_signal_sustainer">Signal Dəstəkçisi olun</string>
-  <string name="preferences__signal_boost">Signal gücləndirmə</string>
+  <string name="preferences__signal_boost">Signal Gücləndirmə</string>
   <string name="preferences__privacy">Gizlilik</string>
   <string name="preferences__mms_user_agent">MMS İstifadəçi Agenti</string>
   <string name="preferences__advanced_mms_access_point_names">Manual MMS tənzimləmələri</string>
@@ -2934,7 +2934,7 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">MobileCoin haqqında</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin, gizliliyə fokuslanmış yeni bir rəqəmsal pul vahididir.</string>
-  <string name="payment_info_card_adding_funds">Pul əlavə edilir</string>
+  <string name="payment_info_card_adding_funds">Pul əlavə etmə</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">MobileCoin-i pulqabı ünvanınıza göndərərək Signal-da istifadə etmək üçün pul əlavə edə bilərsiniz.</string>
   <string name="payment_info_card_cashing_out">Nağdlaşdırma</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin dəstəkləyən bir birjada istənilən vaxt MobileCoin-i nağdlaşdıra bilərsiniz. Sadəcə həmin birjadakı hesabınıza bir köçürmə edin.</string>

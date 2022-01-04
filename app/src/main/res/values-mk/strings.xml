@@ -58,7 +58,7 @@
   <string name="AttachmentKeyboard_file">Датотека</string>
   <string name="AttachmentKeyboard_contact">Контакт</string>
   <string name="AttachmentKeyboard_location">Локација</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal треба дозвола за да ги прикаже Вашите фотографии и видеа.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal бара дозвола за да ги прикаже Вашите фотографии и видеа.</string>
   <string name="AttachmentKeyboard_give_access">Дозволи пристап</string>
   <string name="AttachmentKeyboard_payment">Плаќање</string>
   <!--AttachmentManager-->
@@ -83,7 +83,7 @@
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Дали сакате да го одблокирате \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Одблокирај</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">Да блокирам и напуштам %1$s?</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">Да ја блокирам и напуштам %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Блокирај го/ја %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Повеќе нема да добивате пораки од оваа група и членовите нема да можат да Ве додадат во оваа група повторно.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Членовите на групата нема да бидат во можност да Ве додадат во групата повторно.</string>
@@ -99,9 +99,9 @@
   <string name="BucketedThreadMedia_Yesterday">Вчера</string>
   <string name="BucketedThreadMedia_This_week">Оваа недела</string>
   <string name="BucketedThreadMedia_This_month">Овој месец</string>
-  <string name="BucketedThreadMedia_Large">Големина</string>
-  <string name="BucketedThreadMedia_Medium">Средно</string>
-  <string name="BucketedThreadMedia_Small">Мала</string>
+  <string name="BucketedThreadMedia_Large">Големи</string>
+  <string name="BucketedThreadMedia_Medium">Средни</string>
+  <string name="BucketedThreadMedia_Small">Мали</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Допрете за фотографија, држете за видео</string>
   <string name="CameraXFragment_capture_description">Сними</string>
@@ -213,12 +213,12 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Не постои апликација на Вашиот уред која што може да се справи со линкот.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Вашето барање за да се приклучите е испратено до администраторот на групата. Ќе бидете известени штом превземат нешто околу тоа.</string>
   <string name="ConversationActivity_cancel_request">Откажи барање</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">За да испраќате аудио повици, дозволете му на Signal пристап кон вашиот микрофон.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">За да испраќате аудио пораки, дозволете му на Signal пристап до Вашиот микрофон.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal има потреба од дозвола за микрофонот за да може да испраќа аудио пораки. Ова е трајно одбиено. Ве молиме продолжете до поставувањата, изберете „Дозволи“ и вклучете го „Микрофон“.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal има потреба од дозвола за микрофонот и камерата за да може да воспостави повик со %s. И двете се трајно одбиени. Ве молиме продолжете до поставувањата, изберете „Дозволи“ и вклучете ги „Микрофон“ и „Камера“.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">За да снимате фотографии и видеа, дозволете му на Signal да има пристап кон камерата.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">За да снимате фотографии и видеа, дозволете му на Signal пристап до камерата.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">На Signal му треба дозвола за SMS за да може да испраќа SMS. Ова е трајно одбиено. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера”. </string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">На Signal му е потреба дозвола до камерата за да прави слики и видеа</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">На Signal му е потребна дозвола до камерата за да прави слики и видеа</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Вклучете дозвола за микрофонот за да дозволите снимање на видеа со звук.</string>
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal има потреба од дозвола за микрофонот за да може да снима видеа. Ова е одбиено трајно. Ве молиме продолжете до поставувањата, изберете „Дозволи“ и вклучете ги „Микрофон“ и „Камера“.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">На Signal му е потребна дозвола за микрофонот за да снима видеа.</string>
@@ -237,7 +237,7 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Ќе ја напуштите оваа група и таа ќе биде избришана од сите Ваши уреди.</string>
   <string name="ConversationActivity_delete">Избриши</string>
   <string name="ConversationActivity_delete_and_leave">Избриши и напушти</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">За да го/ја повикате %1$s, на Signal му треба дозвола до микрофонот</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">За да го/ја повикате %1$s, на Signal му треба пристап до микрофонот</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Повеќе опции во „Групни поставувања“</string>
   <string name="ConversationActivity_join">Приклучи сѐ</string>
   <string name="ConversationActivity_full">Полно е</string>
@@ -250,8 +250,8 @@
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="one">Избриши одбрана порака?</item>
-    <item quantity="other">Избриши одберени пораки?</item>
+    <item quantity="one">Да ја избришам избраната порака?</item>
+    <item quantity="other">Да ги избришам избраните пораки?</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Да снимам во склад?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -300,8 +300,8 @@
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s вклучен</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
-    <item quantity="one">Избриши одбран разговор?</item>
-    <item quantity="other">Избриши избрани разговори?</item>
+    <item quantity="one">Да го избришам избраниот разговор?</item>
+    <item quantity="other">Да ги избришам избраните разговори?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Ова трајно ќе ги отстрани избраните разговори.</item>
@@ -400,7 +400,7 @@
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Резервни копии на разговори</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервните копии се шифрираат со лозинка и се складираат на Вашиот уред.</string>
-  <string name="BackupsPreferenceFragment__create_backup">Направи резервна копија</string>
+  <string name="BackupsPreferenceFragment__create_backup">Создај резервна копија</string>
   <string name="BackupsPreferenceFragment__last_backup">Последна резервна копија: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Папка за резервна копија</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Провери лозинка за резервна копија</string>
@@ -410,12 +410,13 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">За да вратите резервна копија, инсталирајте нова копија на Signal. Отворете ја апликацијата и допрете „Врати резервна копија“, потоа лоцирајте ја датотеката со резервната копија. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Дознајте повеќе</string>
   <string name="BackupsPreferenceFragment__in_progress">Во тек…</string>
-  <string name="BackupsPreferenceFragment__d_so_far">%1$d досега…</string>
+  <string name="BackupsPreferenceFragment__d_so_far">%1$d до сега…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% до сега…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal има потреба од дозвола до надворешен склад за да може да создава резервни копии. Ова е трајно одбиено. Ве молиме продолжете до поставувањата, изберете „Дозволи“ и вклучете го „Склад“.</string>
   <!--CustomDefaultPreference-->
-  <string name="CustomDefaultPreference_using_custom">Користејќи прилагодено: %s</string>
-  <string name="CustomDefaultPreference_using_default">Користејќи стандардно: %s</string>
+  <string name="CustomDefaultPreference_using_custom">Користите прилагодено: %s</string>
+  <string name="CustomDefaultPreference_using_default">Користите стандардно: %s</string>
   <string name="CustomDefaultPreference_none">Нема</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Одбери слика</string>
@@ -434,7 +435,7 @@
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal користи шифрирање од-крај-до-крај и можно е да има потреба да ги освежи Вашите разговори понекогаш. Ова нема никаков ефект на безбедноста на разговорите, но може да се случи да пропуштите порака од овој контакт. Затоа можете да го прашате да ја препрати.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Да го одврзам \'%s\'?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ако од одврзете овој уред истиот повеќе нема да може да праќа и прима пораки.</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ако го одврзете овој уред истиот повеќе нема да може да праќа и прима пораки.</string>
   <string name="DeviceListActivity_network_connection_failed">Мрежната врска е неуспешна</string>
   <string name="DeviceListActivity_try_again">Обиди се повторно </string>
   <string name="DeviceListActivity_unlinking_device">Одврзувам уред…</string>
@@ -1208,7 +1209,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Внесете нумерички PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Направете го вашиот PIN</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Пробавте да го погодите PIN кодот премногу пати, но сѐ уште можете да пробате да и пристапите на Вашата Signal сметка преку создавање на нов PIN. Поради Вашата приватност и безбедност Вашата сметка ќе биде вратена без информациите и поставувањата од зачуваниот профил.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Пробавте да го погодите PIN кодот премногу пати, но сѐ уште можете да пристапите до Вашата Signal сметка преку создавање на нов PIN. Поради Вашата приватност и безбедност Вашата сметка ќе биде вратена без информациите и поставувањата од зачуваниот профил.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Создади нов PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Предупредување</string>
@@ -1347,12 +1348,12 @@
   <string name="RegistrationActivity_play_services_error">Грешка со Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services се ажурира или моментално е недостапна. Ве молиме обидетете се повторно.</string>
   <string name="RegistrationActivity_terms_and_privacy">Услови &amp; Политика на приватност</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се прикачуваат со користење на приватно откривање контакти на Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти за да ви помогне да се поврзете со пријателите. Вашите контакти се прикачуваат со користење на приватно откривање контакти на Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да Ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се качуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти за да Ви помогне да се поврзете со пријателите. Вашите контакти се качуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Направивте премногу обиди за регистрација на овој број. Ве молиме обидете се повторно подоцна.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не може да се поврзе со услугата. Ве молиме проверете ја Вашата интернет конекција и обидете се повторно.</string>
   <string name="RegistrationActivity_non_standard_number_format">Нестандарден формат на број</string>
-  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Бројот што го внесовте (%1$s) се чини дека е нестандарден формат.\n\nДали мислевте на %2$s?</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Бројот што го внесовте (%1$s) изгледа дека е нестандарден формат.\n\nДали мислевте на %2$s?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Формат на телефонски број</string>
   <string name="RegistrationActivity_call_requested">Повикот е побаран</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1628,7 +1629,8 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Уредот повеќе не е регистриран</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ова е најверојатно бидејќи го регистриравте Вашиот телефон на Signal со друг уред. Допрете за да се регистрирате повторно.</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">За да се јавите на повикот од %s,  дозволете му на Signal пристап на вашиот микрофон.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">За да одговорите на повикот, дозволете му на Signal пристап до Вашиот микрофон.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">За да одговорите на повикот од %s, дозволете му на Signal пристап до Вашиот микрофонот.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal има потреба од дозвола до микрофонот и камерата за да може да воспоставува повици. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете ги „Микрофон“ и „Камера“.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Одговорено на поврзаниот уред.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Одбиено на поврзаниот уред.</string>
@@ -1898,7 +1900,7 @@
   <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на сигурносниот број</string>
   <string name="verify_display_fragment__loading">Вчитувам…</string>
   <string name="verify_display_fragment__mark_as_verified">Означи како проверено</string>
-  <string name="verify_display_fragment__clear_verification">Исчисти проверка</string>
+  <string name="verify_display_fragment__clear_verification">Отстрани проверка</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Сподели сигурносен број</string>
   <!--verity_scan_fragment-->
@@ -2061,6 +2063,7 @@
   <string name="preferences__donate_to_signal">Донирајте на Signal</string>
   <string name="preferences__subscription">Претплатa</string>
   <string name="preferences__become_a_signal_sustainer">Станете поддржувач на Signal</string>
+  <string name="preferences__signal_boost">Signal поттик</string>
   <string name="preferences__privacy">Приватност</string>
   <string name="preferences__mms_user_agent">MMS кориснички агент</string>
   <string name="preferences__advanced_mms_access_point_names">Рачни MMS поставувања</string>
@@ -2088,7 +2091,7 @@
   <string name="preferences__disable_pin">Исклучи PIN</string>
   <string name="preferences__enable_pin">Вклучи PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистрирате на Signal, освен ако рачно не направите резервна копија и ги вратите податоците. Не можете да вклучите „Заклучување на регистрација“ додека PIN-от е исклучен.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе го реинсталирате Signal. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
   <string name="preferences__system_default">Стандардно</string>
   <string name="preferences__language">Јазик</string>
   <string name="preferences__signal_messages_and_calls">Signal пораки и повици</string>
@@ -2188,6 +2191,7 @@
   <string name="PaymentsAllActivityFragment__all">Сите</string>
   <string name="PaymentsAllActivityFragment__sent">Испратено</string>
   <string name="PaymentsAllActivityFragment__received">Примено</string>
+  <string name="PaymentsHomeFragment__introducing_payments">Ви претставуваме плаќања (Бета)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Користете го Signal за испраќање и примање на MobileCoin, нова дигитална валута фокусирана на приватност. Активирајте за да започнете.</string>
   <string name="PaymentsHomeFragment__activate_payments">Активираj плаќања</string>
   <string name="PaymentsHomeFragment__activating_payments">Активирање на плаќања…</string>
@@ -2200,15 +2204,18 @@
   <string name="PaymentsHomeFragment__send">Испрати</string>
   <string name="PaymentsHomeFragment__sent_s">Испратено %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Примено %1$s</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Префрлање на берза</string>
   <string name="PaymentsHomeFragment__currency_conversion">Конверзија на валута</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Деактивирај плаќања</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">Резервна фраза</string>
   <string name="PaymentsHomeFragment__help">Помош</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Надоместок за чистење на монети</string>
   <string name="PaymentsHomeFragment__sent_payment">Испратени плаќања</string>
   <string name="PaymentsHomeFragment__received_payment">Примени плаќања</string>
   <string name="PaymentsHomeFragment__processing_payment">Обработка на плаќање</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Конверзија на валута не е достапна</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не може да се прикаже конверзија на валута. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не може да се прикаже конверзија на валута. Проверете ја Вашата интернет врска и обидете се повторно.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Плаќањата не се достапни во Вашиот регион.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Не може да се овозможат плаќања. Обидете се повторно подоцна.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Да деактивирам плаќања?</string>
@@ -2219,17 +2226,20 @@
   <string name="PaymentsHomeFragment__payments_deactivated">Плаќањата се деактивирани.</string>
   <string name="PaymentsHomeFragment__payment_failed">Плаќањето не успеа</string>
   <string name="PaymentsHomeFragment__details">Детали</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Можете да го користите Signal за испраќање и примање MobileCoin. Сите плаќања се предмет на Условите за користење на MobileCoins и MobileCoin паричник. Ова е beta функција, така што може да наидете на некои проблеми и плаќањата или достапните средства што може да ги изгубите не може да се вратат.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Можете да го користите Signal за испраќање и примање MobileCoin. Сите плаќања се предмет на Условите за користење на MobileCoins и MobileCoin паричник. Ова е бета функција, така што може да наидете на некои проблеми и плаќањата или достапните средства што може да ги изгубите не може да се вратат.</string>
   <string name="PaymentsHomeFragment__activate">Активирај</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледни ги условите за употреба на MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Плаќањата во Signal не се повеќе достапни. Сѐ уште можете да префрлате средства за менување но не можете да испраќате и примате или пак додавате средства.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Додај средства</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Адреса на Вашиот паричник</string>
   <string name="PaymentsAddMoneyFragment__copy">Копирај</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Ископирано на таблата со исечоци</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">За да додадете средства, испратете MobileCoin на адресата на Вашиот паричник. Започнете трансакција од Вашата сметка на берза која што поддржува MobileCoin, потоа скенирајте го QR кодот или ископирајте ја адресата на Вашиот паричник.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Детали</string>
   <string name="PaymentsDetailsFragment__status">Статус</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Испраќам плаќање…</string>
   <string name="PaymentsDetailsFragment__processing_payment">Плаќањето се обработува…</string>
   <string name="PaymentsDetailsFragment__payment_complete">Плаќањето е завршено</string>
   <string name="PaymentsDetailsFragment__payment_failed">Плаќањето не успеа</string>
@@ -2241,6 +2251,8 @@
   <string name="PaymentsDetailsFragment__to">До</string>
   <string name="PaymentsDetailsFragment__from">Од</string>
   <string name="PaymentsDetailsFragment__information">Деталите за трансакцијата, вклучувајќи го износот на плаќање и времето на трансакцијата, се дел од MobileCoin регистарот.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Надоместок за чистење на монети</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">„Сума за чистење на монети“ се наплаќа кога монетите кои што ги поседувате не можат да се искомбинираат за да се направи трансакција. Чистењето ќе Ви овозможи да продолжите да испраќате плаќања.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Нема дополнителни детали за оваа трансакција</string>
   <string name="PaymentsDetailsFragment__sent_payment">Испратено плаќање</string>
   <string name="PaymentsDetailsFragment__received_payment">Примено плаќање</string>
@@ -2250,9 +2262,11 @@
   <string name="PaymentsTransferFragment__transfer">Трансфер</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Скенирајте го QR кодот</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">До: Скенирајте или внесете ја адресата на паричникот</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Можете да префрлате MobileCoin трансакција на адресата на паричникот што Ви е даден од берзата. Адресата на паричникот е низа од броеви и букви кои најчесто се наоѓаат под QR кодот.</string>
   <string name="PaymentsTransferFragment__next">Следно</string>
   <string name="PaymentsTransferFragment__invalid_address">Невалидна адреса</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Проверете ја адресата на паричникот на која се обидувате да префрлите и обидете се повторно.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Не можете да префрлате на адресата на Вашиот Signal паричник. Внесете адреса на паричник од Вашата сметка на поддржана берза.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">За да скенира QR код, на Signal му е потребен пристап до камерата. </string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">На Signal му е потребна дозвола од камерата за да сними QR-код. Одете во поставки, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">За да скенира QR код, на Signal му е потребен пристап до камерата. </string>
@@ -2264,6 +2278,7 @@
   <string name="CreatePaymentFragment__request">Барање</string>
   <string name="CreatePaymentFragment__pay">Плати</string>
   <string name="CreatePaymentFragment__available_balance_s">Расположливо салдо: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Смени</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2284,16 +2299,19 @@
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Потврдете го плаќањето</string>
   <string name="ConfirmPayment__network_fee">Мрежна такса</string>
+  <string name="ConfirmPayment__error_getting_fee">Грешка при примање на сумата</string>
   <string name="ConfirmPayment__estimated_s">Проценето %1$s</string>
   <string name="ConfirmPayment__to">До</string>
   <string name="ConfirmPayment__total_amount">Вкупен износ</string>
   <string name="ConfirmPayment__balance_s">Салдо: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">Испраќам плаќање…</string>
   <string name="ConfirmPayment__processing_payment">Плаќањето се обработува…</string>
   <string name="ConfirmPayment__payment_complete">Плаќањето е завршено</string>
   <string name="ConfirmPayment__payment_failed">Плаќањето не успеа</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Плаќањето ќе продолжи да се обработува</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Невалиден примач</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Оваа личност нема активирано плаќања</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Не успеав да ја побарам сумата за мрежата. За да продолжите со плаќањето допрете „Океј“ за повторен обид.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s во %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2434,10 +2452,10 @@
     <item quantity="one">PIN-от мора да се состои од најмалку %1$d бројка</item>
     <item quantity="other">PIN-от мора да се состои од најмалку %1$d бројки</item>
   </plurals>
-  <string name="CreateKbsPinFragment__create_a_new_pin">Направи нов PIN</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Создај нов PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Можете да го промените Вашиот PIN се додека овој уред е регистриран.</string>
-  <string name="CreateKbsPinFragment__create_your_pin">Направете го Вашиот PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Создајте го Вашиот PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе го реинсталирате Signal. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Изберете покомплексен PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN кодовите не се совпаѓаат. Обидете се повторно.</string>
@@ -2449,7 +2467,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Создавање на PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ви претставуваме PIN кодови</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе го реинсталирате Signal. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
   <string name="KbsSplashFragment__learn_more">Дознајте повеќе</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Заклучување на регистрација = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Заклучувањето на регистрацијата сега се вика PIN, и прави повеќе. Ажурирајте сега.</string>
@@ -2547,7 +2565,7 @@
   <string name="RegistrationActivity_backup_failure_downgrade">Не може да се внесат резервни копии од понови верзии на Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Погрешна лозинка на резервна копија</string>
   <string name="RegistrationActivity_checking">Проверувам…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d пораки досега…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d пораки до сега…</string>
   <string name="RegistrationActivity_restore_from_backup">Врати од резервна копија?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Вратете ги Вашите пораки и медија од локалната резервна копија. Ако не ги вратите сега, нема да можете да го сторите тоа подоцна.</string>
   <string name="RegistrationActivity_backup_size_s">Големина на резервна копија: %s</string>
@@ -2566,12 +2584,13 @@
   <string name="BackupDialog_verify">Провери</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно ја внесовте лозинката за резервна копија</string>
   <string name="BackupDialog_passphrase_was_not_correct">Лозинката не е точна</string>
+  <string name="LocalBackupJob_creating_signal_backup">Создавам резервна копија од Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Создавањето на резервна копија не успеа</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Вашиот директориум за резервни копии и избришан или преместен.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Вашата резервна копија е преголема за да се складира на овој уред.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Нема доволно простор за складирање на Вашата резервна копија.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Допрете за управување со резервните копии.</string>
-  <string name="ProgressPreference_d_messages_so_far">%d пораки засега</string>
+  <string name="ProgressPreference_d_messages_so_far">%d пораки до сега</string>
   <string name="RegistrationActivity_wrong_number">Погрешен број</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Повикајте ме наместо \n (Достапно за %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Контактирај Signal Поддршка</string>
@@ -2593,7 +2612,7 @@
   <string name="preferences_app_protection__create_a_pin">Создадете PIN</string>
   <string name="preferences_app_protection__change_your_pin">Сменете го Вашиот PIN</string>
   <string name="preferences_app_protection__pin_reminders">Потсетувања за PIN</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани со Signal шифрирани така што само Вие можете да им пристапите. Вашиот профил, поставувањата и контактите ќе се повратат кога ќе го реинсталирате Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе го реинсталирате Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Зголемете ја безбедноста преку повторно барање на Signal PIN код за регистрација на Вашиот телефон со Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Потсетниците помагаат да го запомните Вашиот PIN бидејќи истиот не може да биде повратен ако го изгубите. Со тек на време ќе бидете прашувани поретко.</string>
   <string name="preferences_app_protection__turn_off">Исклучи</string>
@@ -2648,7 +2667,7 @@
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">На Signal му е потребно да се вклучени локациските сервиси за да го открие и да се поврзе со Вашиот нов Android уред.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal има потреба од Wi-Fi за да открие и да се поврзе со Вашиот нов Android уред. Wi-Fi мора да биде вклучено, но не мора да биде поврзано со Wi-Fi мрежа.</string>
   <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извинете, изгледа дека овој уред не поддржува Wi-Fi Direct. Signal користи Wi-Fi Direct за откривање и поврзување со Вашиот нов Android уред. Сѐ уште можете да креирате резервна копија на податоците за да ја префрлите Вашата сметка на Вашиот нов Android уред.</string>
-  <string name="OldDeviceTransferSetup__create_a_backup">Креирај резервна копија</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Создај резервна копија</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Се случи неочекувана грешка при обидот за поврзување со Вашиот нов Android уред.</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Не можам да ги отворам поставувањата за Wi-Fi. Ве молиме вклучете Wi-Fi рачно.</string>
@@ -2686,8 +2705,9 @@
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Префрлување податоци</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Држете ги двата уреди еден до друг. Не ги исклучувајте уредите и задржете го Signal отворен. Преносот на податоци е шифриран од-крај-до-крај.</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$d пораки досега…</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d пораки до сега…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% пораки до сега…</string>
   <string name="DeviceTransfer__cancel">Откажи</string>
   <string name="DeviceTransfer__try_again">Обиди сѐ повторно </string>
   <string name="DeviceTransfer__stop_transfer_question">Да го сопрам трансферот?</string>
@@ -2729,6 +2749,8 @@
   <string name="OldDeviceTransferLockedDialog__done">Готово</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Откажи и активирај го овој уред</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Да ја префрлам состојбата на MOB?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Вашата состојба е %1$s. Ако не ги префрлите Вашите средства на друга адреса за паричник пред да ја избришете Вашата сметка, ќе ги изгубите средствата засекогаш.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Не префрлувај</string>
   <string name="AdvancedPreferenceFragment__transfer">Трансфер</string>
   <!--RecipientBottomSheet-->
@@ -2826,6 +2848,7 @@
   <string name="DeleteAccountFragment__delete_account">Избриши сметка</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ги избрише информациите за Вашата сметка и профилна слика</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Ги избрише сите Ваши пораки</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Избришете %1$s од Вашата сметка за плаќања</string>
   <string name="DeleteAccountFragment__no_country_code">Не е внесен код на земја</string>
   <string name="DeleteAccountFragment__no_number">Не е внесен број</string>
   <string name="DeleteAccountFragment__the_phone_number">Бројот што го внесовте не се совпаѓа со Вашите сметки.</string>
@@ -2835,9 +2858,9 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Не успеав да ги избришам локалните податоци. Можете рачно да ги исчистите во системските поставувања на апликацијата.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Лансирај поставувања за апликацијата</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
-  <string name="DeleteAccountFragment__leaving_groups">Напуштање на групите…</string>
+  <string name="DeleteAccountFragment__leaving_groups">Напуштам групи…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_account">Се брише сметката…</string>
+  <string name="DeleteAccountFragment__deleting_account">Ја бришам сметката…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Во зависност од бројот на групи во кои сте член, ова може да потрае неколку минути</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -2845,7 +2868,7 @@
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">Сметката не е избришана</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
-  <string name="DeleteAccountFragment__there_was_a_problem">Настана проблем при завршувањето на процесот на бришење. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
+  <string name="DeleteAccountFragment__there_was_a_problem">Настана проблем при завршувањето на процесот на бришење. Проверете ја Вашата интернет врска и обидете се повторно.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Пребарувај земји</string>
   <!--CreateGroupActivity-->
@@ -2909,38 +2932,64 @@
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin е нова дигитална валута фокусирана на приватност.</string>
   <string name="payment_info_card_adding_funds">Додавање на средства</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Можете да додадете средства за користење во Signal со испраќање MobileCoin на адресата на Вашиот паричник.</string>
+  <string name="payment_info_card_cashing_out">Исплата</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Можете да си ги исплатите MobileCoin било кога на берза што поддржува MobileCoin. Само направете трансакциска сметка на таа берза.</string>
   <string name="payment_info_card_hide_this_card">Да ја сокријам оваа картичка?</string>
   <string name="payment_info_card_hide">Сокриј</string>
+  <string name="payment_info_card_record_recovery_phrase">Сними резервна фраза</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Вашата резервна фраза Ви овозможува друг начин за да ја повратите Вашата сметка за плаќање.</string>
   <string name="payment_info_card_record_your_phrase">Снимете ја Вашата фраза</string>
   <string name="payment_info_card_update_your_pin">Ажурирајте го Вашиот PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Со висок баланс, можеби ќе сакате да надградите на алфанумерички PIN за да додадете повеќе заштита на Вашата сметка.</string>
   <string name="payment_info_card_update_pin">Ажурирај PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирај го паричникот</string>
   <string name="DeactivateWalletFragment__your_balance">Вашиот баланс</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Препорачливо е да ги префрлите Вашите средства на адресата на друг паричник пред да ги деактивирате плаќањата. Ако изберете да не ги префлите Вашите средства сега, тие ќе останат на Вашиот паричник врзан со Signal, во случај да ги реактивирате плаќањата пак.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Префли го преостанатиот баланс</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивирај без пренос</string>
   <string name="DeactivateWalletFragment__deactivate">Деактивирај</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Да деактивирам без пренос?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Вашата состјоба ќе остане на Вашиот паричник врзан со Signal ако одберете да ги реактивирате плаќањата.</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка при деактивирање на паричникот.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">Резервна фраза</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Види резервна фраза</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Внеси резервна фраза</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Вашата состојба на сметка автоматски ќе се поврати кога ќе го реинсталирате Signal и го потврдите Вашиот Signal PIN. Исто така можете да ја вратите Вашата состојба со употреба на резервната фраза која што е составена од %1$d зборови и уникатна за Вас. Запишете ја и складирајте ја на сигурно место.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Вашата резервна фраза е фраза со %1$d зборови уникатна за Вас. Употребете ја оваа фраза за да си ја повратите состојбата на сметката.</string>
   <string name="PaymentsRecoveryStartFragment__start">Започни</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Внеси рачно</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Залепи од таблата со исечоци</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Залепи резервна фраза</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Резервна фраза</string>
   <string name="PaymentsRecoveryPasteFragment__next">Следно</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Невалидна резервна фраза</string>
   <string name="PaymentsRecoveryPasteFragment__make_sure">Проверете дали сте внеле %1$d зборови и обидете се повторно.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Следно</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Вашата резервна фраза</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Запишете ги следниве %1$d зборови во истиот редослед. Складирајте ја листата на безбедно место.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Осигурајте се дека сте ја внеле фразата точно.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Не правете слики од екранот и не испраќајте по е-пошта.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Невалидна резервна фраза</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Осигурајте се дека сте ја внеле фразата точно и пробајте пак.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да копирам на таблата со исечоци?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ако одберете да ја складирате резервната фраза дигитално, осигурајте се дека сте 100% сигурни дека е складирана на безбедно место.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Потврди резервна фраза</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Внесете ги следните зборови од Вашата резервна фраза</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Збор %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Види фраза повторно</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Готово</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Резервната фраза е потврдена</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Внеси резервна фраза</string>
   <string name="PaymentsRecoveryEntryFragment__enter_word_d"> Внесете збор %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Збор %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Следно</string>
@@ -2954,6 +3003,7 @@
   <string name="UnreadPayments__d_new_payment_notifications">%1$d нови известувања за плаќање</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Не можам да го испратам плаќањето</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">За да испратите плаќање на овој корисник, прво тие мора да го прифатат барањето за порака од Вас. Испратете им порака за да креирате барање за порака.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Испрати порака</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Немате заеднички групи со оваа личност. Прегледувајте ги барањата внимателно за да избегнете несакани пораки.</string>
@@ -3180,10 +3230,10 @@
   <string name="ConversationSettingsFragment__add_as_a_contact">Додај како контакт</string>
   <string name="ConversationSettingsFragment__unmute">Вклучи известувања</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Разговорот исклучен до %1$s</string>
-  <string name="ConversationSettingsFragment__conversation_muted_forever">Разговорот исклучен засекогаш</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Известувањата се исклучени засекогаш</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонски број копиран на таблата со исечоци.</string>
   <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
-  <string name="ConversationSettingsFragment__get_badges">Добијте беџ за Вашиот профил со поддршка на Signal. Допрете на беџот за да дознаете повеќе.</string>
+  <string name="ConversationSettingsFragment__get_badges">Добијте беџ за Вашиот профил за поддршка на Signal. Допрете на беџот за да дознаете повеќе.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додавање членови</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Уредување информции за група</string>
@@ -3282,7 +3332,9 @@
   <string name="ImageEditorHud__done_editing">Заврши со уредување</string>
   <string name="ImageEditorHud__clear_all">Исчисте сѐ</string>
   <string name="ImageEditorHud__undo">Врати</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Промена помеѓу маркер и означувач</string>
   <string name="ImageEditorHud__delete">Избриши</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Промена на стилот на текст</string>
   <string name="MediaCountIndicatorButton__send">Испрати</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Допрете за да отстраните</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Допри за да одбереш</string>
@@ -3302,67 +3354,91 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
   <string name="ImageView__badge">Беџ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal е овозможен од луѓе како тебе.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддржете ја технологијата што е создадена за Вас—не за Вашите податоци—со приклучување кон заедницата што го одржува Signal.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Поддржете ја технологијата што е создадена за Вас, а не за Вашите податоци, со приклучување кон заедницата што го одржува Signal.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддржете ја технологијата што е создадена за Вас—не за Вашите податоци—со приклучување кон заедницата што го оддржува Signal.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Поддржете ја технологијата што е создадена за Вас, а не за Вашите податоци, со приклучување кон заедницата што го оддржува Signal.</string>
   <string name="SubscribeFragment__currency">Валута</string>
   <string name="SubscribeFragment__more_payment_options">Повеќе опции за плаќање</string>
   <string name="SubscribeFragment__cancel_subscription">Откажи претплата</string>
   <string name="SubscribeFragment__confirm_cancellation">Потврди откажување?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Нема да Ви биде наплатено повторно. Вашиот беџ ќе биде отстранет од Вашиот профил на крајот од Вашиот претплатнички период.</string>
   <string name="SubscribeFragment__not_now">Не сега</string>
   <string name="SubscribeFragment__confirm">Потврди</string>
   <string name="SubscribeFragment__update_subscription">Ажурирај претплата</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Вашата претплата е откажана.</string>
-  <string name="SubscribeFragment__update_subscription_question">Ажурирање на претплата?</string>
+  <string name="SubscribeFragment__update_subscription_question">Да ја ажурирам претплатата?</string>
   <string name="SubscribeFragment__update">Aжурирај</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ќе ви биде наплатен целосниот износ на новата претплата денес. Вашата претплата ќе се обнови %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Ќе Ви биде наплатен целосниот износ на новата претплата денес. Вашата претплата ќе се обнови на %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Ќе ви биде наплатена целата сума (%1$s) од цената за новата претплата денес. Вашата претплата ќе се обновува секој месец.</string>
   <string name="Subscription__s_per_month">%s/месец</string>
-  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месец · Обновува %2$s</string>
-  <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Истекува %2$s</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, одржуван само од луѓето кои го користат и ценат. Направете месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесеш?</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месец · Се обновува на %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/месец · Истекува на %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal е непрофитна организација без огласувачи и инвеститори, оддржуван само од луѓето кои го користат и ценат. Започнете со месечен придонес и добијте беџ на профилот за да ја споделите Вашата поддршка.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Зошто да придонесете?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal е посветен на развивање технологија за приватност со отворен код која го штити слободното изразување и овозможува сигурна глобална комуникација.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Вашите придонеси ја подгреваат каузата и плаќаат за развојот и операциите околу апликацијата која што се користи од милиони за приватна комуникација. Без реклами. Без тракери. Сериозно.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ви благодариме за Вашата поддршка!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Благодариме за поттикот!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Заработивте %s беџ! Помогнете му на Signal да изгради свест преку прикажување на овој беџ на Вашиот профил.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Заработивте беџ за поттик! Помогнете му на Signal да изгради свест преку прикажување на овој беџ на Вашиот профил.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Можете исто така да</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Станете месечен поддржувач</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Прикажи на профил</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Поставете како главен беџ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Постави како главен беџ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Кога имате повеќе од еден беџ, можете да изберете еден главен беџ за другите да го видат на Вашиот профил.</string>
   <string name="BecomeASustainerFragment__get_badges">Добијте беџ за Вашиот профил со поддршка на Signal.</string>
-  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal е непрофитна организација без реклами и инвеститори, поддржана само од луѓе како вас.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal е непрофитна организација без реклами и инвеститори, поддржана само од луѓе како Вас.</string>
   <string name="ManageDonationsFragment__my_support">Моја поддршка</string>
-  <string name="ManageDonationsFragment__manage_subscription">Управување со претплата</string>
+  <string name="ManageDonationsFragment__manage_subscription">Управување со претплатата</string>
   <string name="ManageDonationsFragment__badges">Беџови</string>
   <string name="ManageDonationsFragment__subscription_faq">ЧПП за претплата</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Грешка при добивање на претплата.</string>
+  <string name="BoostFragment__give_signal_a_boost">Дајте му поттик на Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Кажете „Благодарам!“ и добијте го беџот за поттик на%1$d дена.</string>
   <string name="Boost__enter_custom_amount">Внесете износ</string>
   <string name="Boost__one_time_contribution">Еднократен придонес</string>
+  <string name="MySupportPreference__add_a_signal_boost">Додај поттик за Signal</string>
   <string name="MySupportPreference__s_per_month">%1$s/месец</string>
+  <string name="MySupportPreference__renews_s">Се обновува на %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Трансакцијата се обработува…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Не може да се додаде значка. %1$s</string>
-  <string name="MySupportPreference__please_contact_support">Ве молиме контактирајте со поддршката.</string>
+  <string name="MySupportPreference__please_contact_support">Ве молиме контактирајте со тимот за поддршка.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Вашиот беџ е истечен</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Беџот е истечен</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Претплатата е откажана</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Вашиот беџ за поттик истече и повеќе не е видлив на други на Вашиот профил.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Можете да го реактивирате Вашиот беџ за поттик за уште 30 дена со еднократен надомест.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">За да продолжите да ја поддржувате технологијата што е создадена за Вас, размислете да станете месечен поддржувач.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Станете поддржувач</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Додај поттик</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Вашата претплата за поддршка беше автоматски откажана затоа што бевте неактивни премногу долго. Вашиот беџ %1$s повеќе не е видлив на Вашиот профил.</string>
-  <string name="Subscription__please_contact_support_for_more_information">Ве молиме контактирајте со поддршка за повеќе информации.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Можете да продолжите да го користите Signal, но за да ја поддржите апликацијата реактивирајте го беџот, обновете сега.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Обнови претплата</string>
+  <string name="Subscription__please_contact_support_for_more_information">Ве молиме контактирајте со тимот за поддршка за повеќе информации.</string>
   <string name="Subscription__contact_support">Контакт за поддршка</string>
   <string name="Subscription__earn_a_s_badge">Заработете %1$s беџ</string>
   <string name="SubscribeFragment__processing_payment">Плаќањето се обработува…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Грешка при обработка на плаќањето</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
-  <string name="DonationsErrors__your_badge_could_not_be_added">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со поддршката.</string>
+  <string name="DonationsErrors__error_processing_payment_s">Грешка при обработката. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со тимот за поддршка.</string>
+  <string name="DonationsErrors__your_payment">Вашето плаќање не можеше да се обработи и не Ви е наплатено. Ве молиме пробајте пак.</string>
+  <string name="DonationsErrors__still_processing">Сѐ уште се обработува</string>
   <string name="DonationsErrors__couldnt_add_badge">Не може да се додаде беџ</string>
-  <string name="DonationsErrors__your_badge_could_not">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со поддршката.</string>
+  <string name="DonationsErrors__your_badge_could_not">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со тимот за поддршка.</string>
+  <string name="DonationsErrors__your_payment_is_still">Вашето плаќање сѐ уште се обработува. Ова може да потрае неколку минути, во зависност од Вашата врска.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недостапен</string>
-  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Мора да поставите Google Pay за да донирате во апликацијата.</string>
-  <string name="DonationsErrors__failed_to_cancel_subscription">Не успеа да се откажете претплатата</string>
-  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет конекција.</string>
-  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Мора да го поставите Google Pay за да донирате во апликацијата.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Не успеав да ја откажам претплатата</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">За откажување на претплата потребна е интернет врска.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Вашиот уред не поддржува Google Pay, затоа не можете да се претплатите за да добиете беџ. Сѐ уште можете да го поддржите Signal преку донација на нашиот веб сајт.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет врска и обидете се повторно.</string>
   <string name="NetworkFailure__retry">Пробај пак</string>
   <!--Title of create notification profile screen-->
-  <string name="EditNotificationProfileFragment__name_your_profile">Именувај го профилот</string>
+  <string name="EditNotificationProfileFragment__name_your_profile">Именувајте го профилот</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Име на профил </string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3384,6 +3460,7 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">Возам</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Одмор</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">Фокусиран/а</string>
   <!--Error message shown when attempting to next/save without a profile name-->
@@ -3393,7 +3470,7 @@
   <!--Description of what the user should be doing with this screen-->
   <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Додајте луѓе и групи од кои сакате да добивате известувања и повици кога е вклучен овој профил</string>
   <!--Button text that launches the contact picker to select from-->
-  <string name="AddAllowedMembers__add_people_or_groups">Додадете луѓе или групи</string>
+  <string name="AddAllowedMembers__add_people_or_groups">Додајте луѓе или групи</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Додај…</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
@@ -3407,15 +3484,15 @@
   <!--Button use to permanently delete a notification profile-->
   <string name="NotificationProfileDetails__delete_profile">Избриши профил</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
-  <string name="NotificationProfileDetails__s_removed">\"%1$s\" отстранет.</string>
+  <string name="NotificationProfileDetails__s_removed">„%1$s“ отстранет.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Врати</string>
   <!--Dialog message shown to confirm deleting a profile-->
-  <string name="NotificationProfileDetails__permanently_delete_profile">Трајно да се избрише профилот?</string>
+  <string name="NotificationProfileDetails__permanently_delete_profile">Трајно да го избришам профилот?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Избриши</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
-  <string name="NotificationProfileDetails__edit_notification_profile">Уредете го профилот за известување</string>
+  <string name="NotificationProfileDetails__edit_notification_profile">Уреди профил за известување</string>
   <!--Schedule description if all days are selected-->
   <string name="NotificationProfileDetails__everyday">Секој ден</string>
   <!--Profile status on if it is the active profile-->
@@ -3437,7 +3514,7 @@
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Додај распоред</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Поставете распоред за автоматски да се активира овој профил за известување.</string>
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Постави распоред за автоматски да се активира овој профил за известување.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Распоред</string>
   <!--Label for showing the start time for the schedule-->
@@ -3475,6 +3552,7 @@
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Готово</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Можете да го вклучите Вашиот профил рачно преку менито во листата за разговори.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Додајте распоред во поставувања за да го автоматизирате Вашиот профил.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->

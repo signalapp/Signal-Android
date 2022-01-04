@@ -433,6 +433,7 @@
   <string name="BackupsPreferenceFragment__in_progress">În curs de desfășurare…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d până acum…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% până acum…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Te rugăm continuă la setări aplicație, selectează \"Permisiuni\" și activează \"Stocare\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
@@ -1705,6 +1706,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispozitivul nu mai este înregistrat</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Acest fapt este posibil pentru că ai înregistrat numărul tău de telefon la Signal de pe un dispozitiv diferit. Apasă pentru a te înregistra din nou.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Pentru a răspunde, permite lui Signal accesul la microfon.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pentru a răspunde apelului de la %s, oferă-i Signal acces la microfonul tău.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea primi apeluri dar i-a fost refuzat accesul permanent. Te rugăm mergi în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Microfon\" și \"Cameră\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Răspuns de pe un dispozitiv asociat.</string>
@@ -2676,6 +2678,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_verify">Verifică</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ai introdus cu succes parola de backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parola nu a fost corectă</string>
+  <string name="LocalBackupJob_creating_signal_backup">Se creează backup-ul…</string>
   <string name="LocalBackupJobApi29_backup_failed">Backup-ul a eșuat</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Directorul tău de backup a fost șters sau mutat.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fișierul de backup este prea mare pentru a fi stocat pe acest volum.</string>
@@ -2798,6 +2801,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Ține ambele dispozitive unul lângă altul. Nu opri dispozitivele și menține Signal deschis. Transferurile sunt criptate integral.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mesaje până acum…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% din mesaje până acum…</string>
   <string name="DeviceTransfer__cancel">Anulare</string>
   <string name="DeviceTransfer__try_again">Încearcă din nou</string>
   <string name="DeviceTransfer__stop_transfer_question">Oprești transferul?</string>

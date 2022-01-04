@@ -3403,7 +3403,7 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">由 %1$s 到 %2$s</string>
   <!--Section header for exceptions to the notification profile-->
-  <string name="NotificationProfileDetails__exceptions">唔係清一色</string>
+  <string name="NotificationProfileDetails__exceptions">吾系青一色</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
   <string name="NotificationProfileDetails__allow_all_calls">批准所有通話入閘</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->

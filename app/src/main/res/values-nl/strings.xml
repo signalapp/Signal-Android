@@ -1636,6 +1636,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je vanaf een ander apparaat je telefoonnummer bij Signal hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Je moet Signal toestaan om de microfoon te gebruiken voor je de oproep kunt beantwoorden.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Beantwoord vanaf een gekoppeld apparaat.</string>
@@ -2590,6 +2591,7 @@
   <string name="BackupDialog_verify">Verifiëren</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-upwachtwoord ingevoerd</string>
   <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-upwachtwoord ingevoerd.</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signal backupbestand aan het maken …</string>
   <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>
@@ -2712,6 +2714,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Houd de apparaten bij elkaar in de buurt. Schakel ze niet uit, en laat houd de Signal-app open. Het overzetten is goed beveiligd, want dit gebeurd altijd over een eind-tot-eind-versleutelde verbinding.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d berichten tot nu toe …</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% van de berichten tot nu toe …</string>
   <string name="DeviceTransfer__cancel">Annuleren</string>
   <string name="DeviceTransfer__try_again">Opnieuw proberen</string>
   <string name="DeviceTransfer__stop_transfer_question">Overzetten annuleren?</string>

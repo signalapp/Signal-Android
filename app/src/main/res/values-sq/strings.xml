@@ -412,6 +412,7 @@
   <string name="BackupsPreferenceFragment__in_progress">Në ecuri e sipër…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d deri këtu…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% deri këtu…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Që të mund të krijohen kopjeruajtje, Signal-i lyp leje mbi depozitë të jashtme, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"Depozitim\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Me përdorim të një të përshtaturi: %s</string>
@@ -1636,6 +1637,7 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="UnauthorizedReminder_device_no_longer_registered">Pajisje jo më e regjistruar</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ka gjasa që kjo të rrjedhë ngaqë numrin tuaj të telefonit e regjistruat me Signal-in në një pajisje tjetër. Prekeni që të riregjistrohet.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Që t’i përgjigjeni thirrjes, jepini Signal-it leje të përdorë mikrofonin tuaj.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Për t\’iu përgjigjur thirrjes prej %s, lejojini Signal-it të përdorë mikrofonin tuaj.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Që të bëjë ose pranojë thirrje, Signal-i lyp leje mbi Mikrofonin dhe Kamerën, por këto i janë mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">U përgjigj në një pajisje të lidhur.</string>
@@ -2594,6 +2596,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BackupDialog_verify">Verifikoje</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">E dhatë me sukses frazëkalimin tuaj të kopjeruajtjes</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frazëkalimi s\’qe i saktë</string>
+  <string name="LocalBackupJob_creating_signal_backup">Po krijohet kopjeruajtje Signal-i…</string>
   <string name="LocalBackupJobApi29_backup_failed">Kopjeruajtja dështoi</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Drejtoria juaj e kopjeruajtjeve është fshirë ose lëvizur.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Kartela e kopjeruajtjes tuaj është shumë e madhe për t\’u depozituar në këtë vëllim.</string>
@@ -2716,6 +2719,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Mbajini të dyja pajisjet afër njëra-tjetrës. Mos fikni pajisjet dhe mbajeni hapur Signal-in. Shpërnguljet janë të fshehtëzuara skaj-më-skaj.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mesazhe deri këtu…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% mesazhe deri këtu…</string>
   <string name="DeviceTransfer__cancel">Anuloje</string>
   <string name="DeviceTransfer__try_again">Riprovo</string>
   <string name="DeviceTransfer__stop_transfer_question">Të ndalet shpërngulja?</string>

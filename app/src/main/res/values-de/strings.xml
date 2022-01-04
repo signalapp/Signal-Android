@@ -363,7 +363,7 @@
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <string name="ConversationListFragment__notification_profile">Benachrichtigungsprofil</string>
   <!--Tooltip shown after you have created your first notification profile-->
-  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Aktiviere oder deaktviere hier dein Benachrichtigungsprofil.</string>
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Aktiviere oder deaktiviere hier dein Benachrichtigungsprofil.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s aktiv</string>
   <!--ConversationListItem-->
@@ -2413,7 +2413,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal hat automatisch %1$d %% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Nutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
-  <string name="InsightsDashboardFragment__spread_the_word">Verbreite die Nachricht</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Die Nachricht verbreiten</string>
   <string name="InsightsDashboardFragment__not_enough_data">Zu wenige Daten</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Deine Statistik berücksichtigt alle ausgehenden Nachrichten der letzten %1$d Tage, die nicht verschwunden sind oder gelöscht wurden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
@@ -3075,7 +3075,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profile</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Erstelle ein Profil, um Benachrichtigungen nur von ausgewählten Personen und Gruppen zu erhalten.</string>
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Ein Profil erstellen, um Benachrichtigungen nur von ausgewählten Personen und Gruppen zu erhalten.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Benachrichtigungs­profile</string>
@@ -3461,13 +3461,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">Erlaubte Benachrichtigungen</string>
   <!--Description of what the user should be doing with this screen-->
-  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Füge Personen und Gruppen hinzu, von denen du Benachrichtigungen und Anrufe empfangen möchtest, wenn dieses Profil aktiviert ist</string>
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Personen und Gruppen hinzufügen, von denen du Benachrichtigungen und Anrufe empfangen möchtest, wenn dieses Profil aktiviert ist</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">Personen oder Gruppen hinzufügen</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Hinzufügen</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
-  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Erstelle ein Profil, um Benachrichtigungen und Anrufe nur von ausgewählten Personen und Gruppen zu empfangen.</string>
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Ein Profil erstellen, um Benachrichtigungen und Anrufe nur von ausgewählten Personen und Gruppen zu empfangen.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">Profile</string>
   <!--Button that starts the create new notification profile flow-->

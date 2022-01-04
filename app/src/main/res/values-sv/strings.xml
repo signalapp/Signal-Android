@@ -412,6 +412,7 @@
   <string name="BackupsPreferenceFragment__in_progress">Pågående…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hittills…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% hittills…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal behöver behörigheten Lagring för att skapa säkerhetskopior men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
@@ -1625,6 +1626,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Enhet inte längre registreread</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Detta är troligen på grund av att du registrerade ditt mobilnummer hos Signal på en annan enhet. Tryck för att återregistrera dig.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">För att svara på samtalet, ge Signal åtkomst till din mikrofon.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %s, ge Signal åtkomst till din mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvarades på en länkad enhet.</string>
@@ -2579,6 +2581,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BackupDialog_verify">Verifiera</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har angett ditt lösenord för säkerhetskopian</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lösenordet var inte korrekt</string>
+  <string name="LocalBackupJob_creating_signal_backup">Skapar Signal-säkerhetskopia…</string>
   <string name="LocalBackupJobApi29_backup_failed">Säkerhetskopieringen misslyckades</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mapp för säkerhetskopior har tagits bort eller flyttats.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din säkerhetskopieringsfil är för stor för att lagras på denna volym.</string>
@@ -2701,6 +2704,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Håll båda enheterna nära varandra. Stäng inte av enheterna och håll Signal öppen. Överföringarna är ände-till-ände-krypterade.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d meddelanden hittills…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% av meddelanden hittills…</string>
   <string name="DeviceTransfer__cancel">Avbryt</string>
   <string name="DeviceTransfer__try_again">Försök igen</string>
   <string name="DeviceTransfer__stop_transfer_question">Stoppa överföringen?</string>
@@ -3515,13 +3519,21 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Slutet</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">S</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">M</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">O</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">T</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">F</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">L</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Ställ in starttid</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
   <string name="EditNotificationProfileSchedule__set_end_time">Ställ in sluttid</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->

@@ -433,6 +433,7 @@
   <string name="BackupsPreferenceFragment__in_progress">U toku…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d do sada…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% do sada…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signalu je potrebno dopuštenje da pristupi memoriji uređaja kako bi mogao kreirati rezervne kopije, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Prostor za pohranu\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći vlastitu: %s</string>
@@ -1709,6 +1710,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Uređaj više nije registrovan</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Razlog je vjerovatno taj što ste svoj broj telefona registrovali sa Signalom na drugom uređaju. Pritisnite za ponovnu registraciju.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Da biste odgovorili na poziv, dozvolite Signalu pristup Vašem mikrofonu.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Da biste odgovorili na poziv %s, dozvolite Signalu pristup Vašem mikrofonu.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signalu je potrebno dopuštenje da pristupi mikrofonu i kameri kako bi mogao slati i primati pozive, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavke \"Mikrofon\" i \"Kamera\". </string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Odgovoreno na povezanom uređaju.</string>
@@ -2680,6 +2682,7 @@
   <string name="BackupDialog_verify">Verifikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli svoju lozinku za rezervne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lozinka nije tačna</string>
+  <string name="LocalBackupJob_creating_signal_backup">Kreiram rezervnu kopiju Signalovih podataka…</string>
   <string name="LocalBackupJobApi29_backup_failed">Neuspjelo kreiranje rezervne kopije</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktorij sa rezervnim kopijama izbrisan je ili premješten.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Vaša rezervna kopija prevelika je za pohranjivanje na ovoj lokaciji.</string>
@@ -2807,6 +2810,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Držite oba uređaja u blizini. Ne isključujte uređaje i držite Signal otvorenim. Prenos podataka je šifriran.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d poruka do sada…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% poruka do sada…</string>
   <string name="DeviceTransfer__cancel">Prekini</string>
   <string name="DeviceTransfer__try_again">Pokušajte ponovo</string>
   <string name="DeviceTransfer__stop_transfer_question">Prekinuti prenos?</string>
