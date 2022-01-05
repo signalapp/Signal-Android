@@ -529,6 +529,7 @@ public final class SignalServiceContent {
     SignalServiceDataMessage.Reaction        reaction         = createReaction(content);
     SignalServiceDataMessage.RemoteDelete    remoteDelete     = createRemoteDelete(content);
     SignalServiceDataMessage.GroupCallUpdate groupCallUpdate  = createGroupCallUpdate(content);
+    SignalServiceDataMessage.StoryContext    storyContext     = createStoryContext(content);
 
     if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE) {
       throw new UnsupportedDataMessageProtocolVersionException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE,
@@ -577,7 +578,8 @@ public final class SignalServiceContent {
                                         reaction,
                                         remoteDelete,
                                         groupCallUpdate,
-                                        payment);
+                                        payment,
+                                        storyContext);
   }
 
   private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata,
@@ -1034,6 +1036,20 @@ public final class SignalServiceContent {
       case NOTIFICATION: return new SignalServiceDataMessage.Payment(createPaymentNotification(payment));
       default          : throw new InvalidMessageStructureException("Unknown payment item");
     }
+  }
+
+  private static SignalServiceDataMessage.StoryContext createStoryContext(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
+    if (!content.hasStoryContext()) {
+      return null;
+    }
+
+    ACI aci = ACI.parseOrNull(content.getStoryContext().getAuthorUuid());
+
+    if (aci == null) {
+      throw new InvalidMessageStructureException("Invalid author ACI!");
+    }
+
+    return new SignalServiceDataMessage.StoryContext(aci, content.getStoryContext().getSentTimestamp());
   }
 
   private static SignalServiceDataMessage.PaymentNotification createPaymentNotification(SignalServiceProtos.DataMessage.Payment content)

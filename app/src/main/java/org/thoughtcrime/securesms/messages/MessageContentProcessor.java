@@ -259,6 +259,7 @@ public final class MessageContentProcessor {
         else if (message.getReaction().isPresent())                                       messageId = handleReaction(content, message, senderRecipient);
         else if (message.getRemoteDelete().isPresent())                                   messageId = handleRemoteDelete(content, message, senderRecipient);
         else if (message.getPayment().isPresent())                                        handlePayment(content, message, senderRecipient);
+        else if (message.getStoryContext().isPresent())                                   handleStoryMessage(content);
         else if (isMediaMessage)                                                          messageId = handleMediaMessage(content, message, smsMessageId, senderRecipient, threadRecipient, receivedTime);
         else if (message.getBody().isPresent())                                           messageId = handleTextMessage(content, message, smsMessageId, groupId, senderRecipient, threadRecipient, receivedTime);
         else if (Build.VERSION.SDK_INT > 19 && message.getGroupCallUpdate().isPresent())  handleGroupCallUpdateMessage(content, message, groupId, senderRecipient);
@@ -1254,6 +1255,10 @@ public final class MessageContentProcessor {
     messageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
     messageNotifier.cancelDelayedNotifications();
     messageNotifier.updateNotification(context);
+  }
+
+  private void handleStoryMessage(SignalServiceContent content) {
+    warn(content.getTimestamp(), "Detected a story reply. We do not support this yet. Dropping.");
   }
 
   private @Nullable MessageId handleMediaMessage(@NonNull SignalServiceContent content,

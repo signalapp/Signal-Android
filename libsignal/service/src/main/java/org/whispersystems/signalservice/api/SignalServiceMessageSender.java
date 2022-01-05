@@ -901,6 +901,14 @@ public class SignalServiceMessageSender {
       }
     }
 
+    if (message.getStoryContext().isPresent()) {
+      SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
+
+      builder.setStoryContext(DataMessage.StoryContext.newBuilder()
+                                                      .setAuthorUuid(storyContext.getAuthorAci().toString())
+                                                      .setSentTimestamp(storyContext.getSentTimestamp()));
+    }
+
     builder.setTimestamp(message.getTimestamp());
 
     return enforceMaxContentSize(container.setDataMessage(builder).build());
