@@ -170,7 +170,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
                                                                             SignalStore.internalValues().groupCallingServer(),
                                                                             new byte[0],
-                                                                            SignalStore.internalValues().audioProcessingMethod(),
+                                                                            AudioProcessingMethodSelector.get(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
     try {
