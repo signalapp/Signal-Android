@@ -88,6 +88,7 @@ public final class FeatureFlags {
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
   private static final String VOICE_NOTE_RECORDING_V2           = "android.voiceNoteRecordingV2.2";
+  private static final String GROUPS_V2_UPDATE_PAGING           = "android.groupsv2.updatePaging";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -129,7 +130,8 @@ public final class FeatureFlags {
       DONOR_BADGES,
       DONOR_BADGES_DISPLAY,
       CHANGE_NUMBER_ENABLED,
-      VOICE_NOTE_RECORDING_V2
+      VOICE_NOTE_RECORDING_V2,
+      GROUPS_V2_UPDATE_PAGING
   );
 
   @VisibleForTesting
@@ -184,7 +186,8 @@ public final class FeatureFlags {
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES_DISPLAY,
       DONATE_MEGAPHONE,
-      VOICE_NOTE_RECORDING_V2
+      VOICE_NOTE_RECORDING_V2,
+      GROUPS_V2_UPDATE_PAGING
   );
 
   /**
@@ -433,6 +436,11 @@ public final class FeatureFlags {
   /** Whether or not to use the new voice note recorder backed by MediaRecorder. */
   public static boolean voiceNoteRecordingV2() {
     return getBoolean(VOICE_NOTE_RECORDING_V2, false);
+  }
+
+  /** Whether or not to use the proper paging when updating group state. */
+  public static boolean groupsV2UpdatePaging() {
+    return getBoolean(GROUPS_V2_UPDATE_PAGING, false);
   }
 
   /** Only for rendering debug info. */

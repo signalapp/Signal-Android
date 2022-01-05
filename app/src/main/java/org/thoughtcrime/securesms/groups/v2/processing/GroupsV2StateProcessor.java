@@ -194,7 +194,7 @@ public final class GroupsV2StateProcessor {
 
       if (inputGroupState == null) {
         try {
-          if (FeatureFlags.internalUser()) {
+          if (FeatureFlags.groupsV2UpdatePaging()) {
             return updateLocalGroupFromServerPaged(revision, localState, timestamp);
           } else {
             boolean latestRevisionOnly = revision == LATEST && (localState == null || localState.getRevision() == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION);
