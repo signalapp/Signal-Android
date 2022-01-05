@@ -76,6 +76,9 @@ public class ShareViewModel extends ViewModel {
           if (record.isPresent() && record.get().isAnnouncementGroup() && !record.get().isAdmin(Recipient.self())) {
             return ContactSelectResult.FALSE_AND_SHOW_PERMISSION_TOAST;
           }
+        } else if (SmsShareRestriction.DISALLOW_SMS_CONTACTS.equals(smsShareRestriction.getValue()) &&
+                   (!recipient.isRegistered() || recipient.isForceSmsSelection())) {
+          return ContactSelectResult.FALSE_AND_SHOW_SMS_MULTISELECT_TOAST;
         }
       }
 
@@ -165,7 +168,7 @@ public class ShareViewModel extends ViewModel {
   }
 
   enum ContactSelectResult {
-    TRUE, FALSE, FALSE_AND_SHOW_PERMISSION_TOAST
+    TRUE, FALSE, FALSE_AND_SHOW_PERMISSION_TOAST, FALSE_AND_SHOW_SMS_MULTISELECT_TOAST
   }
 
   enum SmsShareRestriction {

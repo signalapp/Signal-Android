@@ -208,6 +208,10 @@ public class ShareActivity extends PassphraseRequiredActivity
                                      Toast.makeText(this, R.string.ShareActivity_you_do_not_have_permission_to_send_to_this_group, Toast.LENGTH_SHORT).show();
                                      callback.accept(false);
                                      break;
+                                   case FALSE_AND_SHOW_SMS_MULTISELECT_TOAST:
+                                     Toast.makeText(this, R.string.ShareActivity__sharing_to_multiple_chats_is, Toast.LENGTH_LONG).show();
+                                     callback.accept(false);
+                                     break;
                                  }
                                }));
     }
