@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SetUtil;
@@ -53,7 +54,7 @@ final class MockAppDataInitializer {
     String mainSql     = StreamUtil.readFullyAsString(new FileInputStream(new File(sqlDirectory, "signal.sql")));
     String keyValueSql = StreamUtil.readFullyAsString(new FileInputStream(new File(sqlDirectory, "signal-key-value.sql")));
 
-    initializeDatabase(DatabaseFactory.getInstance(application).getRawDatabase(), mainSql);
+    initializeDatabase(SignalDatabase.getRawDatabase(), mainSql);
     initializeDatabase(KeyValueDatabase.getInstance(application).getSqlCipherDatabase(), keyValueSql);
 
     initializePreferences(application, localE164);
@@ -98,8 +99,8 @@ final class MockAppDataInitializer {
     IdentityKeyUtil.generateIdentityKeys(context);
 
     TextSecurePreferences.setPromptedPushRegistration(context, true);
-    TextSecurePreferences.setLocalNumber(context, localE164);
-    TextSecurePreferences.setLocalAci(context, Recipient.external(context, localE164).requireAci());
-    TextSecurePreferences.setPushRegistered(context, true);
+    SignalStore.account().setE164(localE164);
+    SignalStore.account().setAci(Recipient.external(context, localE164).requireAci());
+    SignalStore.account().setRegistered(true);
   }
 }
