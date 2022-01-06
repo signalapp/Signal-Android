@@ -57,6 +57,7 @@ public class EmojiTextView extends AppCompatTextView {
   private int                    lastLineWidth = -1;
   private TextDirectionHeuristic textDirection;
   private boolean                isJumbomoji;
+  private boolean                forceJumboEmoji;
 
   private MentionRendererDelegate mentionRendererDelegate;
 
@@ -77,6 +78,7 @@ public class EmojiTextView extends AppCompatTextView {
     forceCustom     = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
     renderMentions  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
     measureLastLine = a.getBoolean(R.styleable.EmojiTextView_measureLastLine, false);
+    forceJumboEmoji = a.getBoolean(R.styleable.EmojiTextView_emoji_forceJumbo, false);
     a.recycle();
 
     a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.textSize});
@@ -112,10 +114,10 @@ public class EmojiTextView extends AppCompatTextView {
       int   emojis = candidates.size();
       float scale  = 1.0f;
 
-      if (emojis <= 8) scale += 0.25f;
-      if (emojis <= 6) scale += 0.25f;
-      if (emojis <= 4) scale += 0.25f;
-      if (emojis <= 2) scale += 0.25f;
+      if (emojis <= 8) scale += 0.75f;
+      if (emojis <= 6) scale += 0.75f;
+      if (emojis <= 4) scale += 0.75f;
+      if (emojis <= 2) scale += 0.75f;
 
       isJumbomoji = scale > 1.0f;
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize * scale);
@@ -137,7 +139,7 @@ public class EmojiTextView extends AppCompatTextView {
     if (useSystemEmoji || candidates == null || candidates.size() == 0) {
       super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")), BufferType.SPANNABLE);
     } else {
-      CharSequence emojified = EmojiProvider.emojify(candidates, text, this);
+      CharSequence emojified = EmojiProvider.emojify(candidates, text, this, isJumbomoji || forceJumboEmoji);
       super.setText(new SpannableStringBuilder(emojified), BufferType.SPANNABLE);
     }
 
@@ -261,7 +263,7 @@ public class EmojiTextView extends AppCompatTextView {
       if (useSystemEmoji || newCandidates == null || newCandidates.size() == 0) {
         super.setText(newContent, BufferType.SPANNABLE);
       } else {
-        CharSequence emojified = EmojiProvider.emojify(newCandidates, newContent, this);
+        CharSequence emojified = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
         super.setText(emojified, BufferType.SPANNABLE);
       }
     }
@@ -292,7 +294,7 @@ public class EmojiTextView extends AppCompatTextView {
                   .append(Optional.fromNullable(overflowText).or(""));
 
         EmojiParser.CandidateList newCandidates = isInEditMode() ? null : EmojiProvider.getCandidates(newContent);
-        CharSequence              emojified     = EmojiProvider.emojify(newCandidates, newContent, this);
+        CharSequence              emojified     = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);
 
         super.setText(emojified, BufferType.SPANNABLE);
       }

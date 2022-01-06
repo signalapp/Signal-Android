@@ -31,7 +31,7 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
       val newText = if (newCandidates == null || newCandidates.size() == 0) {
         text
       } else {
-        EmojiProvider.emojify(newCandidates, text, this)
+        EmojiProvider.emojify(newCandidates, text, this, false)
       }
 
       val newContent = if (width == 0 || maxLines == -1) {

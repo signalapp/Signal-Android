@@ -75,7 +75,7 @@ object EmojiPageCache {
     val bitmapOptions = BitmapFactory.Options()
     bitmapOptions.inSampleSize = emojiPageRequest.inSampleSize
 
-    return BitmapFactory.decodeStream(inputStream, null, bitmapOptions)
+    return inputStream.use { BitmapFactory.decodeStream(it, null, bitmapOptions) }
   }
 
   private data class EmojiPageRequest(val emojiPage: EmojiPage, val inSampleSize: Int)

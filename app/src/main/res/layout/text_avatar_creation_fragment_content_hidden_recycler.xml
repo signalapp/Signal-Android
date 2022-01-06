@@ -35,6 +35,7 @@
             android:gravity="center"
             android:imeOptions="actionNext"
             android:inputType="textCapCharacters"
+            app:emoji_forceJumbo="true"
             app:layout_constraintBottom_toBottomOf="@id/avatar_picker_item_image"
             app:layout_constraintEnd_toEndOf="@id/avatar_picker_item_image"
             app:layout_constraintStart_toStartOf="@id/avatar_picker_item_image"

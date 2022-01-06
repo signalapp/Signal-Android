@@ -63,7 +63,7 @@ class EmojiSource(
       .forEach { page ->
         val emojiPage = emojiPageFactory(page.spriteUri!!)
         page.emoji.forEachIndexed { idx, emoji ->
-          tree.add(emoji, EmojiDrawInfo(emojiPage, idx))
+          tree.add(emoji, EmojiDrawInfo(emojiPage, idx, emoji))
         }
       }
 
