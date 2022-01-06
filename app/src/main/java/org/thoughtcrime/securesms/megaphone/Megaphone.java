@@ -215,12 +215,6 @@ public class Megaphone {
   }
 
   enum Style {
-    /** Specialized style for announcing reactions. */
-    REACTIONS,
-
-    /** Specialized style for announcing link previews. */
-    LINK_PREVIEWS,
-
     /** Specialized style for onboarding. */
     ONBOARDING,
 

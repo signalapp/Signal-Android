@@ -516,10 +516,6 @@
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Unnamed file</string>
 
-    <!-- GroupCallingMegaphone -->
-    <string name="GroupCallingMegaphone__introducing_group_calls">Introducing Group Calls</string>
-    <string name="GroupCallingMegaphone__open_a_new_group_to_start">Open a New Group to start a free encrypted group call</string>
-
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
     <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Play Services. Tap to disable system battery optimizations that prevent Signal from retrieving messages while inactive.</string>
@@ -663,11 +659,6 @@
     <string name="LeaveGroupDialog_choose_new_admin">Choose new admin</string>
     <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Before you leave, you must choose at least one new admin for this group.</string>
     <string name="LeaveGroupDialog_choose_admin">Choose admin</string>
-
-    <!-- LinkPreviewsMegaphone -->
-    <string name="LinkPreviewsMegaphone_disable">Disable</string>
-    <string name="LinkPreviewsMegaphone_preview_any_link">Preview any link</string>
-    <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">You can now retrieve link previews directly from any website for messages you send.</string>
 
     <!-- LinkPreviewView -->
     <string name="LinkPreviewView_no_link_preview_available">No link preview available</string>
@@ -1007,8 +998,6 @@
     <string name="MediaOverviewActivity_sent_by_you_to_s">Sent by you to %1$s</string>
 
     <!-- Megaphones -->
-    <string name="Megaphones_introducing_reactions">Introducing Reactions</string>
-    <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tap and hold any message to quickly share how you feel.</string>
     <string name="Megaphones_remind_me_later">Remind me later</string>
     <string name="Megaphones_verify_your_signal_pin">Verify your Signal PIN</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">We\'ll occasionally ask you to verify your PIN so that you remember it.</string>
@@ -3025,18 +3014,6 @@
     <string name="KbsMegaphone__create_a_pin">Create a PIN</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs keep information that’s stored with Signal encrypted.</string>
     <string name="KbsMegaphone__create_pin">Create PIN</string>
-
-    <!-- Research Megaphone -->
-    <string name="ResearchMegaphone_tell_signal_what_you_think">Tell Signal what you think</string>
-    <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">To make Signal the best messaging app on the planet, we\'d love to hear your feedback.</string>
-    <string name="ResearchMegaphone_learn_more">Learn more</string>
-    <string name="ResearchMegaphone_dismiss">Dismiss</string>
-
-    <string name="ResearchMegaphoneDialog_signal_research">Signal Research</string>
-    <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We believe in privacy.</b></p><p>Signal doesn\'t track you or collect your data. To improve Signal for everyone, we rely on user feedback, <b>and we\'d love yours.</b></p><p>We\'re running a survey to understand how you use Signal. Our survey doesn\'t collect any data that will identify you. If you’re interested in sharing additional feedback, you\'ll have the option to provide contact information.</p><p>If you have a few minutes and feedback to offer, we\'d love to hear from you.</p>]]></string>
-    <string name="ResearchMegaphoneDialog_take_the_survey">Take the survey</string>
-    <string name="ResearchMegaphoneDialog_no_thanks">No thanks</string>
-    <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">The survey is hosted by Alchemer at the secure domain surveys.signalusers.org</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
