@@ -1199,7 +1199,7 @@ public final class MessageContentProcessor {
 
   private void handleSynchronizeReadMessage(@NonNull List<ReadMessage> readMessages, long envelopeTimestamp, @NonNull Recipient senderRecipient)
   {
-    log(envelopeTimestamp, "Synchronize read message. Count: " + readMessages.size());
+    log(envelopeTimestamp, "Synchronize read message. Count: " + readMessages.size() + ", Timestamps: " + readMessages.stream().map(ReadMessage::getTimestamp));
 
     Map<Long, Long> threadToLatestRead = new HashMap<>();
 
@@ -1219,7 +1219,7 @@ public final class MessageContentProcessor {
   }
 
   private void handleSynchronizeViewedMessage(@NonNull List<ViewedMessage> viewedMessages, long envelopeTimestamp) {
-    log(envelopeTimestamp, "Synchronize viewed message. Count: " + viewedMessages.size());
+    log(envelopeTimestamp, "Synchronize view message. Count: " + viewedMessages.size() + ", Timestamps: " + viewedMessages.stream().map(ViewedMessage::getTimestamp));
 
     List<Long> toMarkViewed = Stream.of(viewedMessages)
                                     .map(message -> {
