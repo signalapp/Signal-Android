@@ -311,6 +311,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.canPlayContent         = false;
     this.mediaItem              = null;
     this.colorizer              = colorizer;
+    this.measureCalls           = 0;
+    this.updatingFooter         = false;
     this.canCollapseFooter      = true;
 
     this.recipient.observeForever(this);
@@ -439,7 +441,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         }
       }
 
-      if (!messageRecord.isFailed() && canCollapseFooter) {
+      if (!messageRecord.isFailed() && canCollapseFooter && !bodyText.isSingleLine()) {
         if (bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
           ViewUtil.setTopMargin(footer, collapsedTopMargin);
           ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
