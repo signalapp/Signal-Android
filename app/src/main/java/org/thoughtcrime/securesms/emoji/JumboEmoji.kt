@@ -21,6 +21,8 @@ private val TAG = Log.tag(JumboEmoji::class.java)
  */
 object JumboEmoji {
 
+  const val MAX_JUMBOJI_COUNT = 5
+
   private val cache: MutableMap<String, Bitmap> = SoftHashMap(16)
   private val tasks: MutableMap<String, ListenableFutureTask<Bitmap>> = hashMapOf()
   private val versionToFormat: MutableMap<UUID, String?> = hashMapOf()

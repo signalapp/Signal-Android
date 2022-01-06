@@ -43,7 +43,7 @@ fun MessageRecord.isBorderless(context: Context): Boolean {
 }
 
 fun MessageRecord.hasNoBubble(context: Context): Boolean =
-  hasSticker() || isBorderless(context)
+  hasSticker() || isBorderless(context) || (isTextOnly(context) && isJumbomoji(context))
 
 fun MessageRecord.hasOnlyThumbnail(context: Context): Boolean {
   return hasThumbnail() &&
