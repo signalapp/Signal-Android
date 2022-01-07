@@ -391,8 +391,8 @@
   <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Dohaintza egin</string> -->
   <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ez eskerrik asko</string> -->
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Talde-deiei buruz</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ireki Talde Berria zifratutako talde-dei bat egiteko</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Talde-deiei buruz</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ireki Talde Berria zifratutako talde-dei bat egiteko</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizatu Google Play-ren zerbitzuetarko</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Gailu honek ez dauka Play Services erabiltzerik. Signal irekita ez dagoenean, sistemaren bateria optimizazioek galarazten diote mezuak jasotzea. Ukitu sistemaren bateria optimizazioak desaktibatzeko.</string>
@@ -510,9 +510,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Taldea utzi baino lehenago, gutxienez administratzaile berri bat aukeratu behar duzu talde honetarako.</string>
   <string name="LeaveGroupDialog_choose_admin">Hautatu administratzailea</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Desaktibatu</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Aurreikusi edozein esteka</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Orain webguneen aurrebistak txerta ditzakezu bidaltzen dituzun mezuetan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Desaktibatu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Aurreikusi edozein esteka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Orain webguneen aurrebistak txerta ditzakezu bidaltzen dituzun mezuetan.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Ez dago estekaren aurrebistarik</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Talde esteka hau ez dago indarrean</string>
@@ -792,8 +792,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s -k %2$s (r)i bidalia</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Zuk %1$s (r)i bidalia</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Erreakzioak Aurkezten</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ukitu eta eutsi edozein mezutan nola sentitzen zaren berehala partzekatzeko.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Erreakzioak Aurkezten</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ukitu eta eutsi edozein mezutan nola sentitzen zaren berehala partzekatzeko.</string> -->
   <string name="Megaphones_remind_me_later">Gogorarazi iezadazu beranduago</string>
   <string name="Megaphones_verify_your_signal_pin">Zure Signal PINa egiaztatu</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Noizean behin eskatuko dizugu zure PINa egiaztatzeko, gogora dezazun.</string>
@@ -2230,15 +2230,15 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-ek Signalekin batera gordetako informazioa enkriptatuta mantentzen dute.</string>
   <string name="KbsMegaphone__create_pin">PINa sortu</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Esan Signali pentsatzen duzuna</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal munduko mezularitza aplikaziorik onena bilakatzeko, zure iritzia entzutea gustatuko litzaiguke.</string>
-  <string name="ResearchMegaphone_learn_more">Gehiago jakin</string>
-  <string name="ResearchMegaphone_dismiss">Baztertu</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal Ikerketa</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Pribatutasunean sinesten dugu</b></p><p>Signalek ez du jarraitzen egiten duzuna edo zure datuak bildu. Signal guztiontzat hobetzeko, erabiltzaileen iruzkinetan oinarritzen gara, <b>eta zurea edukitzea gustatuko litzaiguke. </b></p><p> Inkesta bat egiten ari gara Signal nola erabiltzen duzun ulertzeko. Gure inkestak identifika zaitzakeen daturik ez du biltzen. Informazio gehiago partekatu nahi baduzu, kontakturako informazioa emateko aukera izango duzu. </p><p> Minutu batzuk eta iruzkinak egiteko baduzu, gustatuko litzaiguke zure iritzia entzutea. </p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Inkesta egin</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Ez, eskerrik asko</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Inkesta Alchemer zerbitzuan dago ostatuta, surveys.signalusers.org domeinuan</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Esan Signali pentsatzen duzuna</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal munduko mezularitza aplikaziorik onena bilakatzeko, zure iritzia entzutea gustatuko litzaiguke.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Gehiago jakin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Baztertu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal Ikerketa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Pribatutasunean sinesten dugu</b></p><p>Signalek ez du jarraitzen egiten duzuna edo zure datuak bildu. Signal guztiontzat hobetzeko, erabiltzaileen iruzkinetan oinarritzen gara, <b>eta zurea edukitzea gustatuko litzaiguke. </b></p><p> Inkesta bat egiten ari gara Signal nola erabiltzen duzun ulertzeko. Gure inkestak identifika zaitzakeen daturik ez du biltzen. Informazio gehiago partekatu nahi baduzu, kontakturako informazioa emateko aukera izango duzu. </p><p> Minutu batzuk eta iruzkinak egiteko baduzu, gustatuko litzaiguke zure iritzia entzutea. </p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Inkesta egin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Ez, eskerrik asko</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Inkesta Alchemer zerbitzuan dago ostatuta, surveys.signalusers.org domeinuan</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>

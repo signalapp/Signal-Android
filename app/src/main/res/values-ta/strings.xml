@@ -410,8 +410,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">பெயரிடப்படாத கோப்பு</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">அறிமுகப்படுத்துகிறது குழு அழைப்புகள்</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">திற a புதிய குழு இலவசமாக தொடங்க மறையாக்கப்பட்ட குழு அழைப்பு</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">அறிமுகப்படுத்துகிறது குழு அழைப்புகள்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">திற a புதிய குழு இலவசமாக தொடங்க மறையாக்கப்பட்ட குழு அழைப்பு</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">காணாமல் போன விளையாட்டு சேவைகளை மேம்படுத்தவும்</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>
@@ -530,9 +530,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">நீங்கள் வெளியேறுவதற்கு முன், இந்த குழுவிற்கு குறைந்தபட்சம் ஒரு புதிய new admin நிர்வாகியையாவது தேர்வு செய்ய வேண்டும்.</string>
   <string name="LeaveGroupDialog_choose_admin">நிர்வாகியைத் admin தேர்வுசெய்க</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">முடக்கு</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">எந்த இணைப்பையும் முன்னோட்டமிடுங்கள்</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">நீங்கள் அனுப்பும் செய்திகளுக்கு எந்தவொரு வலைத்தளத்திலிருந்தும் இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கலாம்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">முடக்கு</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">எந்த இணைப்பையும் முன்னோட்டமிடுங்கள்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">நீங்கள் அனுப்பும் செய்திகளுக்கு எந்தவொரு வலைத்தளத்திலிருந்தும் இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கலாம்.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">இணைப்பு முன்னோட்டம் எதுவும் கிடைக்கவில்லை</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">இந்த குழு இணைப்பு செயலில் இல்லை</string>
@@ -816,8 +816,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">அனுப்பியது %1$s க்கு%2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">%1$sக்கு நீங்கள் அனுப்பியது </string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">எதிர்வினைகளை அறிமுகப்படுத்துகிறது</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">நீங்கள் எப்படி உணர்கிறீர்கள் என்பதை விரைவாகப் பகிர எந்த செய்தியையும் தட்டிப் பிடிக்கவும்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">எதிர்வினைகளை அறிமுகப்படுத்துகிறது</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">நீங்கள் எப்படி உணர்கிறீர்கள் என்பதை விரைவாகப் பகிர எந்த செய்தியையும் தட்டிப் பிடிக்கவும்.</string> -->
   <string name="Megaphones_remind_me_later">பிறகு என்னிடம் ஞாபகபடுத்து</string>
   <string name="Megaphones_verify_your_signal_pin">உங்கள் Signal PIN-ஐ சரிபார்க்கவும்</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">உங்கள் PIN-ஐ நினைவில் வைத்துக் கொள்ளும்படி நாங்கள் எப்போதாவது உங்களிடம் கேட்போம்.</string>
@@ -2432,15 +2432,15 @@
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும்.</string>
   <string name="KbsMegaphone__create_pin">பின் உருவாக்கவும்</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">நீங்கள் என்ன நினைக்கிறீர்கள் என்று Signal லிடம் சொல்லுங்கள்</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">சிக்னலை உலகின் சிறந்த செய்தியிடல் பயன்பாடாக மாற்ற, உங்கள் கருத்தைக் கேட்க நாங்கள் விரும்புகிறோம்.</string>
-  <string name="ResearchMegaphone_learn_more">மேலும் அறிக</string>
-  <string name="ResearchMegaphone_dismiss">நிராகரி</string>
-  <string name="ResearchMegaphoneDialog_signal_research">சிக்னல் ஆராய்ச்சி</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy">&lt;p&gt;&lt;b&gt;நாங்கள் தனியுரிமையை நம்புகிறோம்.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;சிக்னல் உங்கள் செயல்பாட்டைக் கண்காணிக்காது அல்லது உங்கள் தரவை சேகரிக்காது. அனைவருக்கும் சிக்னலை மேம்படுத்த, பயனர் கருத்தை நாங்கள் நம்புகிறோம்&lt;b&gt; உங்கள் கருத்தை நாங்கள் விரும்புகிறோம்! &lt;/b&gt;&lt;/p&gt;&lt;p&gt;நீங்கள் சிக்னலை எவ்வாறு பயன்படுத்துகிறீர்கள் என்பதைப் புரிந்துகொள்ள நாங்கள் ஒரு கணக்கெடுப்பை நடத்துகிறோம். உங்களை அடையாளம் காணும் எந்த தரவையும் எங்கள் கணக்கெடுப்பு சேகரிக்கவில்லை. கூடுதல் கருத்துகளைப் பகிர ஆர்வமாக இருந்தால், உங்கள் தொடர்பு தகவலை வழங்கவும்.&lt;/p&gt;&lt;p&gt;உங்களிடமிருந்து கருத்துக்களைக் கேட்க நாங்கள் விரும்புகிறோம்.</string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">கணக்கெடுப்பில் பங்கேற்கவும்</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">தேவையில்லை,நன்றி</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">surveys.signalusers.org என்ற பாதுகாப்பான களத்தில் கணக்கெடுப்பை ஆல்கமீர் வழங்கியுள்ளது</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">நீங்கள் என்ன நினைக்கிறீர்கள் என்று Signal லிடம் சொல்லுங்கள்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">சிக்னலை உலகின் சிறந்த செய்தியிடல் பயன்பாடாக மாற்ற, உங்கள் கருத்தைக் கேட்க நாங்கள் விரும்புகிறோம்.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">மேலும் அறிக</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">நிராகரி</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">சிக்னல் ஆராய்ச்சி</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy">&lt;p&gt;&lt;b&gt;நாங்கள் தனியுரிமையை நம்புகிறோம்.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;சிக்னல் உங்கள் செயல்பாட்டைக் கண்காணிக்காது அல்லது உங்கள் தரவை சேகரிக்காது. அனைவருக்கும் சிக்னலை மேம்படுத்த, பயனர் கருத்தை நாங்கள் நம்புகிறோம்&lt;b&gt; உங்கள் கருத்தை நாங்கள் விரும்புகிறோம்! &lt;/b&gt;&lt;/p&gt;&lt;p&gt;நீங்கள் சிக்னலை எவ்வாறு பயன்படுத்துகிறீர்கள் என்பதைப் புரிந்துகொள்ள நாங்கள் ஒரு கணக்கெடுப்பை நடத்துகிறோம். உங்களை அடையாளம் காணும் எந்த தரவையும் எங்கள் கணக்கெடுப்பு சேகரிக்கவில்லை. கூடுதல் கருத்துகளைப் பகிர ஆர்வமாக இருந்தால், உங்கள் தொடர்பு தகவலை வழங்கவும்.&lt;/p&gt;&lt;p&gt;உங்களிடமிருந்து கருத்துக்களைக் கேட்க நாங்கள் விரும்புகிறோம்.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">கணக்கெடுப்பில் பங்கேற்கவும்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">தேவையில்லை,நன்றி</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">surveys.signalusers.org என்ற பாதுகாப்பான களத்தில் கணக்கெடுப்பை ஆல்கமீர் வழங்கியுள்ளது</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>

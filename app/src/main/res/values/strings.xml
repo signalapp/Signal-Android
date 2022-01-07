@@ -2777,7 +2777,7 @@
     <!-- conversation_context -->
     <!-- Button to view detailed information for a message -->
     <string name="conversation_context__menu_message_details">Info</string>
-    <!-- Button to copy a message's text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard -->
     <string name="conversation_context__menu_copy_text">Copy</string>
     <!-- Button to delete a message -->
     <string name="conversation_context__menu_delete_message">Delete</string>

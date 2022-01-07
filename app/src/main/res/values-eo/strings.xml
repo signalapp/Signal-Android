@@ -449,8 +449,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Jen la grupalvokoj</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Kreu novtipan grupon por komenci senpagan ĉifritan grupalvokon</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Jen la grupalvokoj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Kreu novtipan grupon por komenci senpagan ĉifritan grupalvokon</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumigi por mankantaj „Play Services“</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tiu aparato ne subtenas „Play Services“. Tuŝetu por malebligi baterian optimumigon, kiu alie malhelpus al Signal ricevi mesaĝojn dum neaktiva.</string>
@@ -569,9 +569,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antaŭ ol foriri, vi devas elekti almenaŭ unu novan administraton por tiu ĉi grupo.</string>
   <string name="LeaveGroupDialog_choose_admin">Elektu administranton</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Malŝalti</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Antaŭrigardi ajnan ligilon</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Vi nun povas rekte antaŭrigardi ligilojn de iu retejo por mesaĝoj, kiujn vi sendas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Malŝalti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Antaŭrigardi ajnan ligilon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Vi nun povas rekte antaŭrigardi ligilojn de iu retejo por mesaĝoj, kiujn vi sendas.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Neniu antaŭrigardo de ligilo disponeblas</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">La grupligilo ne estas aktiva</string>
@@ -868,8 +868,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendita de %1$s al %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sendita de vi al %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Jen la reagoj</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tuŝadu iun mesaĝon por rapide esprimi viajn sentojn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Jen la reagoj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tuŝadu iun mesaĝon por rapide esprimi viajn sentojn.</string> -->
   <string name="Megaphones_remind_me_later">Memorigi min poste</string>
   <string name="Megaphones_verify_your_signal_pin">Kontrolu vian Signal-PIN-on</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Tempaltempe ni petos vin kontroli vian PIN, por ke vi rememoru ĝin.</string>
@@ -2530,15 +2530,15 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">La informoj konservitaj ĉe Signal estas  ĉifritaj danke al PIN.</string>
   <string name="KbsMegaphone__create_pin">Krei  PIN-on</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Diru al Signal tion, kion vi opinias</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Por ke Signal estu la plej bona mesaĝ-aplikaĵo en la planedo, ni ŝatus havi vian opinion.</string>
-  <string name="ResearchMegaphone_learn_more">Scii pli</string>
-  <string name="ResearchMegaphone_dismiss">Ignori</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal-esplorado</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Ni kredas je privateco.</b></p><p>Signal ne spuras vin aŭ ne kolektas viajn datumojn. Por plibonigi Signal-on por ĉiuj, ni uzas la komentojn de la uzantoj, <b>kaj ni ŝatus havi viajn.</b></p><p>Ni faras enketon por kompreni, kiel vi uzas Signal-on. Nia enketo ne kolektas iujn datumojn, kiuj povos identigi vin. Se vi interesiĝas pri dono de pliaj komentoj, vi povos enmeti kontaktinformon.</p><p>Se vi havas kelkajn minutojn kaj komentojn farotajn, ni ŝatus aŭskulti vin.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Partorpeni la enketon</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Ne, dankon</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">La enketon gastigas „Alchemer“ ĉe la sekura domajno surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Diru al Signal tion, kion vi opinias</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Por ke Signal estu la plej bona mesaĝ-aplikaĵo en la planedo, ni ŝatus havi vian opinion.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Scii pli</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Ignori</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal-esplorado</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Ni kredas je privateco.</b></p><p>Signal ne spuras vin aŭ ne kolektas viajn datumojn. Por plibonigi Signal-on por ĉiuj, ni uzas la komentojn de la uzantoj, <b>kaj ni ŝatus havi viajn.</b></p><p>Ni faras enketon por kompreni, kiel vi uzas Signal-on. Nia enketo ne kolektas iujn datumojn, kiuj povos identigi vin. Se vi interesiĝas pri dono de pliaj komentoj, vi povos enmeti kontaktinformon.</p><p>Se vi havas kelkajn minutojn kaj komentojn farotajn, ni ŝatus aŭskulti vin.</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Partorpeni la enketon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Ne, dankon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">La enketon gastigas „Alchemer“ ĉe la sekura domajno surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>

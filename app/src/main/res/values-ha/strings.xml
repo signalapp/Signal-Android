@@ -470,7 +470,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s"> %1$s ne ya tura zuwa %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sako daga kai/ke zuwa %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Gabatarwa da martani</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Gabatarwa da martani</string> -->
   <string name="Megaphones_remind_me_later">Tuna min anjima</string>
   <string name="Megaphones_verify_your_signal_pin">Tabbatar da lambobin sirri Signal dinka/ki</string>
   <string name="Megaphones_verify_pin">Tabbatar da lambobin sirri</string>

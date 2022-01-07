@@ -393,8 +393,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">แฟ้มที่ไม่มีชื่อ</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">แนะนำการโทรแบบกลุ่ม</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">เปิดกลุ่มแบบใหม่เพื่อเริ่มการโทรแบบกลุ่มที่เข้ารหัสลับ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">แนะนำการโทรแบบกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">เปิดกลุ่มแบบใหม่เพื่อเริ่มการโทรแบบกลุ่มที่เข้ารหัสลับ</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ปรับปรุงการทำงานให้รับกับการไม่มี Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">อุปกรณ์นี้ไม่รองรับ Play Services แตะเพื่อปิดใช้งานการปรับประสิทธิภาพแบตเตอรีซึ่งจะทำให้ Signal ไม่สามารถรับข้อความได้ในขณะที่ไม่ได้เปิดแอปบนหน้าจอ</string>
@@ -500,9 +500,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">ก่อนออกจากกลุ่ม คุณต้องเลือกผู้ดูแลกลุ่มคนใหม่อย่างน้อยหนึ่งคน</string>
   <string name="LeaveGroupDialog_choose_admin">เลือกผู้ดูแล</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">หยุดใช้</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">แสดงภาพตัวอย่างทุกลิงก์</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">ตอนนี้คุณสามารถเรียกภาพตัวอย่างลิงก์จากเว็บไซต์สำหรับข้อความที่คุณส่ง</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">หยุดใช้</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">แสดงภาพตัวอย่างทุกลิงก์</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">ตอนนี้คุณสามารถเรียกภาพตัวอย่างลิงก์จากเว็บไซต์สำหรับข้อความที่คุณส่ง</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">ไม่มีภาพตัวอย่างลิงก์ให้ดู</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">ลิงก์นี้ไม่ได้เปิดให้ใช้ในตอนนี้</string>
@@ -766,8 +766,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">ส่งโดย %1$s ถึง %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">ส่งโดยคุณถึง %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">รู้จักกับการตอบสนอง</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">แตะและกดค้างข้อความใดๆ เพื่อบอกอย่างรวดเร็วว่าคุณรู้สึกอย่างไร</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">รู้จักกับการตอบสนอง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">แตะและกดค้างข้อความใดๆ เพื่อบอกอย่างรวดเร็วว่าคุณรู้สึกอย่างไร</string> -->
   <string name="Megaphones_remind_me_later">เตือนฉันทีหลัง</string>
   <string name="Megaphones_verify_your_signal_pin">ตรวจยืนยันรหัส PIN ของ Signal ของคุณ</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">เราจะถามให้คุณตรวจยืนยันรหัส PIN ของคุณเป็นระยะ เพื่อให้คุณจำมันได้</string>
@@ -2326,15 +2326,15 @@
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ได้เข้ารหัสไว้</string>
   <string name="KbsMegaphone__create_pin">สร้างรหัส PIN</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">บอกความคิดเห็นของคุณกับ Signal</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">เราอยากได้ยินข้อเสนอแนะของคุณ เพื่อให้ Signal ได้กลายเป็นแอปส่งข้อความที่ดีที่สุดบนโลกนี้</string>
-  <string name="ResearchMegaphone_learn_more">เรียนรู้เพิ่มเติม</string>
-  <string name="ResearchMegaphone_dismiss">เลิกกัน</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal Research</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>เราเชื่อมั่นในความเป็นส่วนตัว</b></p><p>Signal จะไม่ติดตามหรือเก็บรวบรวมข้อมูลของคุณ พวกเราหวังพึ่งข้อเสนอแนะของผู้ใช้งานเพื่อพัฒนา Signal ให้แก่ทุกท่าน<b>และเรายินดียิ่งที่จะรับฟังข้อเสนอแนะของคุณ</b></p><p>เราได้เปิดแบบสำรวจเพื่อให้ได้เข้าใจแนวทางการใช้ Signal ของคุณ แบบสำรวจของเราจะไม่รวบรวมข้อมูลอันจะนำมาซึ่งการเปิดเผยตัวตนคุณ หากคุณสนใจที่จะแบ่งปันข้อเสนอแนะเพิ่มเติม คุณจะมีตัวเลือกให้เพิ่มข้อมูลการติดต่อของคุณ</p><p>หากคุณสะดวกและมีข้อเสนอแนะจะนำเสนอ เรายินดียิ่งที่จะรับฟังคุณ</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">ทำแบบสำรวจ</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">ไม่ ขอบคุณ</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">แบบสำรวจนี้จัดทำโดย Alchemer บนโดเมนปลอดภัยที่ surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">บอกความคิดเห็นของคุณกับ Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">เราอยากได้ยินข้อเสนอแนะของคุณ เพื่อให้ Signal ได้กลายเป็นแอปส่งข้อความที่ดีที่สุดบนโลกนี้</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">เรียนรู้เพิ่มเติม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">เลิกกัน</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal Research</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>เราเชื่อมั่นในความเป็นส่วนตัว</b></p><p>Signal จะไม่ติดตามหรือเก็บรวบรวมข้อมูลของคุณ พวกเราหวังพึ่งข้อเสนอแนะของผู้ใช้งานเพื่อพัฒนา Signal ให้แก่ทุกท่าน<b>และเรายินดียิ่งที่จะรับฟังข้อเสนอแนะของคุณ</b></p><p>เราได้เปิดแบบสำรวจเพื่อให้ได้เข้าใจแนวทางการใช้ Signal ของคุณ แบบสำรวจของเราจะไม่รวบรวมข้อมูลอันจะนำมาซึ่งการเปิดเผยตัวตนคุณ หากคุณสนใจที่จะแบ่งปันข้อเสนอแนะเพิ่มเติม คุณจะมีตัวเลือกให้เพิ่มข้อมูลการติดต่อของคุณ</p><p>หากคุณสะดวกและมีข้อเสนอแนะจะนำเสนอ เรายินดียิ่งที่จะรับฟังคุณ</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">ทำแบบสำรวจ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">ไม่ ขอบคุณ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">แบบสำรวจนี้จัดทำโดย Alchemer บนโดเมนปลอดภัยที่ surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ไอคอนขนส่ง</string>
   <string name="ConversationListFragment_loading">กำลังโหลด…</string>

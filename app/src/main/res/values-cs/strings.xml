@@ -491,8 +491,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nepojmenovaný soubor</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Představujeme skupinové hovory</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Zahájit bezplatné skupinové hovory lze po otevření nové skupiny.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Představujeme skupinové hovory</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Zahájit bezplatné skupinové hovory lze po otevření nové skupiny.</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimlizovat pro chybějící Google Play službu</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Klepnutím zakážete systémové optimalizace baterie, které způsobují nemožnost aplikaci Signal přijímat zprávy v době nečinnosti.</string>
@@ -637,9 +637,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Než opustíte skupinu, musíte vybrat alespoň jednoho nového správce.</string>
   <string name="LeaveGroupDialog_choose_admin">Vyberte správce</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Deaktivovat</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Náhled každého odkazu</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Nyní můžete u zpráv, které odesíláte, získat náhledy odkazů přímo z jakéhokoli webu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Deaktivovat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Náhled každého odkazu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Nyní můžete u zpráv, které odesíláte, získat náhledy odkazů přímo z jakéhokoli webu.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Není dostupný žádný náhled odkazu</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Tento odkaz na skupinu není aktivní</string>
@@ -974,8 +974,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Odesláno od %1$s pro %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Odesláno vámi pro %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Představujeme reakce</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Klepněte a podržte jakoukoli zprávu pro rychlé sdílení toho, jak se cítíte.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Představujeme reakce</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Klepněte a podržte jakoukoli zprávu pro rychlé sdílení toho, jak se cítíte.</string> -->
   <string name="Megaphones_remind_me_later">Připomenout později</string>
   <string name="Megaphones_verify_your_signal_pin">Ověřit váš Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Budeme vás příležitostně žádat o ověření vašeho PIN, abyste si jej zapamatovali.</string>
@@ -2717,15 +2717,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN uchovává informace uložené v Signal zašifrované.</string>
   <string name="KbsMegaphone__create_pin">Vytvořit PIN</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Řekněte Signal, co si myslíte</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Aby byl Signal nejlepší aplikací pro zasílání zpráv na planetě, rádi bychom získali vaši zpětnou vazbu.</string>
-  <string name="ResearchMegaphone_learn_more">Zjistit více</string>
-  <string name="ResearchMegaphone_dismiss">Zavřít</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Průzkum Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Věříme v soukromí.</b></p><p>Signal vás nesleduje ani nesbírá vaše data. Abychom Signal vylepšili pro všechny, spoléháme na zpětnou vazbu uživatelů, <b>a rádi bychom ji od vás získali.</b></p><p>Pořádáme anketu, abychom porozuměli, jak Signal používáte. Naše anketa neshromažďuje žádná data, která by vás identifikovala. Pokud byste měli zájem sdílet další zpětnou vazbu, budete mít možnost poskytnout kontaktní informace.</p><p>Jestli máte pár minut a zpětnou vazbu, kterou můžete nabídnout, rádi ji od vás získáme.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Zúčastnit se ankety</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Ne, díky</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu hostuje Alchemer na zabezpečené doméně surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Řekněte Signal, co si myslíte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Aby byl Signal nejlepší aplikací pro zasílání zpráv na planetě, rádi bychom získali vaši zpětnou vazbu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Zjistit více</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Zavřít</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Průzkum Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Věříme v soukromí.</b></p><p>Signal vás nesleduje ani nesbírá vaše data. Abychom Signal vylepšili pro všechny, spoléháme na zpětnou vazbu uživatelů, <b>a rádi bychom ji od vás získali.</b></p><p>Pořádáme anketu, abychom porozuměli, jak Signal používáte. Naše anketa neshromažďuje žádná data, která by vás identifikovala. Pokud byste měli zájem sdílet další zpětnou vazbu, budete mít možnost poskytnout kontaktní informace.</p><p>Jestli máte pár minut a zpětnou vazbu, kterou můžete nabídnout, rádi ji od vás získáme.</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Zúčastnit se ankety</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Ne, díky</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu hostuje Alchemer na zabezpečené doméně surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <string name="ConversationListFragment_loading">Načítání…</string>

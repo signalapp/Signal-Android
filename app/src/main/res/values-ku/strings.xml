@@ -385,8 +385,8 @@
   <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Bexş bike</string> -->
   <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Na, spas</string> -->
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Danasîna Gerînên Komî</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ji bo tu dest bi gerîna komî ya şîfrekirî û belaş bikî, Komeke Nû vekî.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Danasîna Gerînên Komî</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ji bo tu dest bi gerîna komî ya şîfrekirî û belaş bikî, Komeke Nû vekî.</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Ji bo Xizmetên Google Playê yên kêm, optîmîze bike</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ev cîhaz piştgiriya Xizmetên Google Playê nake. Dema ku Signal neçalak be ji bo optîmîzasyonên bateryaya sîstemê stendina peyaman asteng neke, lê bitikîne.</string>
@@ -494,9 +494,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Berî ku tu derkevî, divê tu herî kêm rêveberekî nû ji bo vê komê hilbijêrî.</string>
   <string name="LeaveGroupDialog_choose_admin">Rêveberekî hilbijêre</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Neçalak bike</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Hemû lînkan pêş bibîne</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Hûn niha dikarin pêşdîtinên lînka ji bo peyamên we şandine rasterast ji her malperê şûndebînin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Neçalak bike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Hemû lînkan pêş bibîne</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Hûn niha dikarin pêşdîtinên lînka ji bo peyamên we şandine rasterast ji her malperê şûndebînin.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Pêşdîtina lînkê ne mewcûd e</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Girêdana komê ne çalak e</string>
@@ -771,7 +771,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Yên ku %1$s, ji %2$s re şandine</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Yên ku te ji %1$s re şandine</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Danasîna Bertekan</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Danasîna Bertekan</string> -->
   <string name="Megaphones_remind_me_later">Piştre bîne bîra min</string>
   <string name="Megaphones_verify_your_signal_pin">PIN\'a xwe ya Signalê bipejirîne</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ji bo tu PIN\'a xwe ji bîr nekî, em ê carinan ji te bixwazin tu wê piştrast bikî.</string>
@@ -2109,15 +2109,15 @@
   <string name="KbsMegaphone__create_a_pin">PIN\'ê biafiîne</string>
   <string name="KbsMegaphone__create_pin">PIN\'ê biafiîne</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Tu çi difikirî ka ji Signalê re bibêjî</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Ji bo ku Signal ê bikin sepana peyam-avîtinê ya li seranserê erdê a herî baş, em dixwazin ramanên we bibihîzin.</string>
-  <string name="ResearchMegaphone_learn_more">Zêdetir bizane</string>
-  <string name="ResearchMegaphone_dismiss">Bigire</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Lêkolîna Signalê</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Baweriya me bi nihêniyê heye.</b></p><p>Signal te naşopîne an jî daneyên te berhev nake. Ji bo ku em Signalê ji bo her kesî baştir bikin, bala me li ser paşragihandinên bikarhêneran e, <b>û em a te jî pir dixwazin.</b></p><p>Ji bo em zanibin bê tu Signalê çawa bi kar tînî, em anketekê çêdikin. Anketa me ti daneyeke têkildarî nasnameya te berhev nake. Heke tu bi paşragihandinên zêdetir re eleqedar î, vebijarka te heye ku agahiyên xwe yên têkiliyê peyda bikî.</p><p>Heke çend deqe û paşragihandinên te hebin, em dixwazin li te guhdarî bikin.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Anketê dagire</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Na, spas</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anket ji aliyê Alchemer ve li ser navpera(domain) parastî surveys.signalusers.org\'ê tê hewandin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Tu çi difikirî ka ji Signalê re bibêjî</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Ji bo ku Signal ê bikin sepana peyam-avîtinê ya li seranserê erdê a herî baş, em dixwazin ramanên we bibihîzin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Zêdetir bizane</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Bigire</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Lêkolîna Signalê</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Baweriya me bi nihêniyê heye.</b></p><p>Signal te naşopîne an jî daneyên te berhev nake. Ji bo ku em Signalê ji bo her kesî baştir bikin, bala me li ser paşragihandinên bikarhêneran e, <b>û em a te jî pir dixwazin.</b></p><p>Ji bo em zanibin bê tu Signalê çawa bi kar tînî, em anketekê çêdikin. Anketa me ti daneyeke têkildarî nasnameya te berhev nake. Heke tu bi paşragihandinên zêdetir re eleqedar î, vebijarka te heye ku agahiyên xwe yên têkiliyê peyda bikî.</p><p>Heke çend deqe û paşragihandinên te hebin, em dixwazin li te guhdarî bikin.</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Anketê dagire</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Na, spas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anket ji aliyê Alchemer ve li ser navpera(domain) parastî surveys.signalusers.org\'ê tê hewandin.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Îkona veguhastinê</string>
   <string name="ConversationListFragment_loading">Tê barkirin…</string>

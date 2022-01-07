@@ -428,8 +428,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Tệp không tên</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Giới thiệu Cuộc gọi Nhóm</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Mở một Nhóm Mới để bắt đầu một cuộc gọi nhóm bảo mật</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Giới thiệu Cuộc gọi Nhóm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Mở một Nhóm Mới để bắt đầu một cuộc gọi nhóm bảo mật</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Tối ưu hóa khi không có dịch vụ Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Thiết bị này không hỗ trợ dịch vụ Google Play. Nhấn để tắt tính năng tối ưu hóa pin khiến Signal không thể nhận tin nhắn duới nền.</string>
@@ -535,9 +535,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Trước khi rời nhóm, bạn phải chọn ít nhất một quản trị viên mới cho nhóm này.</string>
   <string name="LeaveGroupDialog_choose_admin">Chọn quản trị viên</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Tắt</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Xem trước tất cả liên kết</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Từ giờ bạn có thể thêm xem trước liên kết từ bất cứ trang web nào vào những tin nhắn bạn gửi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Tắt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Xem trước tất cả liên kết</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Từ giờ bạn có thể thêm xem trước liên kết từ bất cứ trang web nào vào những tin nhắn bạn gửi.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Xem trước liên kết không khả dụng</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Đường dẫn nhóm không khả dụng</string>
@@ -815,8 +815,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Được gửi từ %1$s tới %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Được gửi từ bạn tới %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Xin giới thiệu tính năng Bày tỏ cảm xúc</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Nhấn giữ một tin nhắn để bày tỏ cảm xúc.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Xin giới thiệu tính năng Bày tỏ cảm xúc</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Nhấn giữ một tin nhắn để bày tỏ cảm xúc.</string> -->
   <string name="Megaphones_remind_me_later">Nhắc tôi sau</string>
   <string name="Megaphones_verify_your_signal_pin">Xác minh mã PIN Signal của bạn</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Thỉnh thoảng chúng tôi sẽ yêu cầu bạn nhập lại mã PIN để giúp bạn ghi nhớ.</string>
@@ -2430,15 +2430,15 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Mã PIN giúp dữ liệu lưu trữ với Signal được bảo mật.</string>
   <string name="KbsMegaphone__create_pin">Tạo mã PIN</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Nói với Signal cảm nghĩ của bạn</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Để biến Signal thành ứng dụng nhắn tin tốt nhất hành tinh, chúng tôi rất muốn nghe phản hồi của bạn.</string>
-  <string name="ResearchMegaphone_learn_more">Tìm hiểu thêm</string>
-  <string name="ResearchMegaphone_dismiss">Bỏ qua</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Nghiên cứu Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Chúng tôi tin vào sự riêng tư.</b></p><p>Signal không theo dõi bạn hoặc thu thập dữ liệu của bạn. Để cải thiện Signal cho mọi người, chúng tôi dựa trên phản hồi người dùng, <b>và chúng tôi rất muốn nghe phản hồi của bạn.</b></p><p>Chúng tôi đang thu thập khảo sát để hiểu cách bạn sử dụng Signal. Khảo sát của chúng tôi không thu thập bất kì dữ liệu nào mà sẽ xác định danh tính của bạn. Nếu bạn muốn chia sẻ thêm phản hồi, bạn sẽ có lựa chọn để cung cấp thông tin liên lạc.</p><p>Nếu bạn có một vài phút và có phản hồi, chúng tôi rất mong sẽ được nghe từ bạn.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Thực hiện khảo sát</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Xin miễn</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Khảo sát được tổ chức bởi Alchemer ở tên miền bảo mật surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Nói với Signal cảm nghĩ của bạn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Để biến Signal thành ứng dụng nhắn tin tốt nhất hành tinh, chúng tôi rất muốn nghe phản hồi của bạn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Tìm hiểu thêm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Bỏ qua</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Nghiên cứu Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Chúng tôi tin vào sự riêng tư.</b></p><p>Signal không theo dõi bạn hoặc thu thập dữ liệu của bạn. Để cải thiện Signal cho mọi người, chúng tôi dựa trên phản hồi người dùng, <b>và chúng tôi rất muốn nghe phản hồi của bạn.</b></p><p>Chúng tôi đang thu thập khảo sát để hiểu cách bạn sử dụng Signal. Khảo sát của chúng tôi không thu thập bất kì dữ liệu nào mà sẽ xác định danh tính của bạn. Nếu bạn muốn chia sẻ thêm phản hồi, bạn sẽ có lựa chọn để cung cấp thông tin liên lạc.</p><p>Nếu bạn có một vài phút và có phản hồi, chúng tôi rất mong sẽ được nghe từ bạn.</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Thực hiện khảo sát</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Xin miễn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Khảo sát được tổ chức bởi Alchemer ở tên miền bảo mật surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
   <string name="ConversationListFragment_loading">Đang tải…</string>

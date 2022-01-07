@@ -461,7 +461,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dikirimaken dening %1$s kangge %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dikirimaken dening sampeyan kangge %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Nepangaken Tanggepan</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Nepangaken Tanggepan</string> -->
   <string name="Megaphones_remind_me_later">Elingaken malih mangke</string>
   <string name="Megaphones_verify_your_signal_pin">Verifikasi PIN Signal sampeyan</string>
   <string name="Megaphones_verify_pin">Verifikasi PIN</string>

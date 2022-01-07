@@ -371,7 +371,7 @@
   <!--GV2 invites sent-->
   <!-- Removed by excludeNonTranslatables <string name="GroupManagement_learn_more">Matuto pa</string> -->
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Huwag Paganahin</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Huwag Paganahin</string> -->
   <!--LinkPreviewView-->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Mga taong iyong inimbitahan</string>
@@ -501,8 +501,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Ipinadala ni %1$s kay %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Ipinadala mo kay %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Ipinakikilala ang Mga Reaksyon</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">I-tap at huwag bitiwan ang anumang mensahe upang mabilis na maibahagi ang iyong nadarama.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Ipinakikilala ang Mga Reaksyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">I-tap at huwag bitiwan ang anumang mensahe upang mabilis na maibahagi ang iyong nadarama.</string> -->
   <string name="Megaphones_remind_me_later">Paalalahanan ako sa ibang pagkakataon</string>
   <string name="Megaphones_verify_your_signal_pin">Beripikahin ang PIN ng iyong Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Paminsan-minsa\'y hihingin namin sa iyong beripikahin ang iyong PIN upang matandaan mo ito.</string>

@@ -405,8 +405,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">പേരിടാത്ത ഫയൽ</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">ഗ്രൂപ്പ് കോളുകൾ അവതരിപ്പിക്കുന്നു</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ, ഒരു പുതിയ ഗ്രൂപ്പ് ചാറ്റ് തുറക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">ഗ്രൂപ്പ് കോളുകൾ അവതരിപ്പിക്കുന്നു</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ, ഒരു പുതിയ ഗ്രൂപ്പ് ചാറ്റ് തുറക്കുക</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Play Services ഇല്ലാത്തതിനാൽ ഡിവൈസ് ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ഈ ഉപകരണം Play Services പിന്തുണയ്ക്കുന്നില്ല. നിഷ്‌ക്രിയമായിരിക്കുമ്പോൾ സന്ദേശങ്ങൾ വീണ്ടെടുക്കുന്നതിൽ നിന്ന് Signal നെ തടയുന്ന സിസ്റ്റം ബാറ്ററി ഒപ്റ്റിമൈസേഷനുകൾ പ്രവർത്തനരഹിതമാക്കാൻ ടാപ്പുചെയ്യുക.</string>
@@ -525,9 +525,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">നിങ്ങൾ പോകുന്നതിനുമുമ്പ്, ഈ ഗ്രൂപ്പിനായി ഒരു പുതിയ അഡ്‌മിനെയെങ്കിലും തിരഞ്ഞെടുക്കണം.</string>
   <string name="LeaveGroupDialog_choose_admin">അഡ്‌മിനെ തിരഞ്ഞെടുക്കുക</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">ഏതെങ്കിലും ലിങ്ക് പ്രിവ്യൂ ചെയ്യുക</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശങ്ങൾക്കായി ഏത് വെബ്‌സൈറ്റിൽ നിന്നും നേരിട്ട് ലിങ്ക് പ്രിവ്യൂകൾ വീണ്ടെടുക്കാൻ നിങ്ങൾക്ക് ഇപ്പോള്‍ കഴിയും.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">പ്രവർത്തനരഹിതമാക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">ഏതെങ്കിലും ലിങ്ക് പ്രിവ്യൂ ചെയ്യുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശങ്ങൾക്കായി ഏത് വെബ്‌സൈറ്റിൽ നിന്നും നേരിട്ട് ലിങ്ക് പ്രിവ്യൂകൾ വീണ്ടെടുക്കാൻ നിങ്ങൾക്ക് ഇപ്പോള്‍ കഴിയും.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available"> ലിങ്ക് പ്രിവ്യൂ ലഭ്യമല്ല </string>
   <string name="LinkPreviewView_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
@@ -810,8 +810,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s %2$s-ന് അയച്ചത്.</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">നിങ്ങൾ %1$s-ന് അയച്ചത്.</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">അവതരിപ്പിക്കുന്നു റീയാക്ഷനുകൾ</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">നിങ്ങൾക്ക് എന്തുതോന്നുന്നുവെന്ന് വേഗത്തിൽ പങ്കിടാൻ ഏത് സന്ദേശവും ടാപ്പുചെയ്ത് പിടിക്കുക.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">അവതരിപ്പിക്കുന്നു റീയാക്ഷനുകൾ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">നിങ്ങൾക്ക് എന്തുതോന്നുന്നുവെന്ന് വേഗത്തിൽ പങ്കിടാൻ ഏത് സന്ദേശവും ടാപ്പുചെയ്ത് പിടിക്കുക.</string> -->
   <string name="Megaphones_remind_me_later">പിന്നീട് എന്നെ ഓർമ്മിപ്പിക്കുക</string>
   <string name="Megaphones_verify_your_signal_pin">നിങ്ങളുടെ Signal PIN പരിശോധിക്കുക</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">നിങ്ങളുടെ PIN സ്ഥിരീകരിക്കാൻ ഞങ്ങൾ ഇടയ്ക്കിടെ നിങ്ങളോട് ആവശ്യപ്പെടുന്നതിനാൽ നിങ്ങൾ അത് ഓർക്കും.</string>
@@ -2405,15 +2405,15 @@
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal എൻ‌ക്രിപ്റ്റ് ചെയ്തുകൊണ്ട് സംഭരിച്ചിരിക്കുന്ന വിവരങ്ങൾ PIN-കൾ സൂക്ഷിക്കുന്നു.</string>
   <string name="KbsMegaphone__create_pin">PIN സൃഷ്ടിക്കുക</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">നിങ്ങളുടെ അഭിപ്രായം Signal-മായി പങ്കിടുക</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">ഭൂമിയിലെ മികച്ച സന്ദേശ വിനിമയ അപ്ലിക്കേഷനായി Signal-നെ മാറ്റുന്നതിന്, നിങ്ങളുടെ ഫീഡ്‌ബാക്ക് കേൾക്കാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു.</string>
-  <string name="ResearchMegaphone_learn_more">കൂടുതൽ അറിയുക</string>
-  <string name="ResearchMegaphone_dismiss">ഒഴിവാക്കുക</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal ഗവേഷണം</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ഞങ്ങൾ സ്വകാര്യതയിൽ വിശ്വസിക്കുന്നു.</b></p><p>Signal  നിങ്ങളെ ട്രാക്കുചെയ്യുകയോ നിങ്ങളുടെ ഡാറ്റ ശേഖരിക്കുകയോ ചെയ്യുന്നില്ല. എല്ലാവർക്കുമായി Signal മെച്ചപെടുത്താൻ, ഞങ്ങൾ ഉപയോക്തൃ ഫീഡ്‌ബാക്കിനെ ആശ്രയിക്കുന്നു, <b>നിങ്ങളുടെ ഫീഡ്‌ബാക്ക് ലഭിക്കാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു.</b></p><p> നിങ്ങൾ Signal എങ്ങനെ ഉപയോഗിക്കുന്നുവെന്ന് മനസിലാക്കാൻ ഞങ്ങൾ ഒരു സർവേ നടത്തുന്നുണ്ട് . നിങ്ങളെ തിരിച്ചറിയുന്ന ഒരു ഡാറ്റയും ഞങ്ങളുടെ സർവേ ശേഖരിക്കില്ല. അധിക ഫീഡ്‌ബാക്ക് പങ്കിടാൻ നിങ്ങൾക്ക് താൽപ്പര്യമുണ്ടെങ്കിൽ, നിങ്ങളെ ബന്ധപ്പെടാനുള്ള കോൺടാക്ട് വിവരങ്ങൾ നൽകാനുള്ള ഓപ്‌ഷൻ നിങ്ങൾക്ക് ലഭിക്കും.</p><p>നിങ്ങൾക്ക് കുറച്ച് സമയവും ഫീഡ്‌ബാക്കും വാഗ്ദാനം ചെയ്യാൻ ഉണ്ടെങ്കിൽ, അത് നിങ്ങളിൽ നിന്ന് കേൾക്കാൻ ഞങ്ങൾ സന്തോഷത്തോടെ ആഗ്രഹിക്കുന്നു.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">സർവേ എടുക്കുക</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">വേണ്ട, നന്ദി</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">സുരക്ഷിത ഡൊമെയ്ൻ ആയ surveys.signalusers.org-ൽ Alchemer ഹോസ്റ്റ് ചെയ്തതാണ് ഈ സർവേ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">നിങ്ങളുടെ അഭിപ്രായം Signal-മായി പങ്കിടുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">ഭൂമിയിലെ മികച്ച സന്ദേശ വിനിമയ അപ്ലിക്കേഷനായി Signal-നെ മാറ്റുന്നതിന്, നിങ്ങളുടെ ഫീഡ്‌ബാക്ക് കേൾക്കാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">കൂടുതൽ അറിയുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">ഒഴിവാക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal ഗവേഷണം</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ഞങ്ങൾ സ്വകാര്യതയിൽ വിശ്വസിക്കുന്നു.</b></p><p>Signal  നിങ്ങളെ ട്രാക്കുചെയ്യുകയോ നിങ്ങളുടെ ഡാറ്റ ശേഖരിക്കുകയോ ചെയ്യുന്നില്ല. എല്ലാവർക്കുമായി Signal മെച്ചപെടുത്താൻ, ഞങ്ങൾ ഉപയോക്തൃ ഫീഡ്‌ബാക്കിനെ ആശ്രയിക്കുന്നു, <b>നിങ്ങളുടെ ഫീഡ്‌ബാക്ക് ലഭിക്കാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു.</b></p><p> നിങ്ങൾ Signal എങ്ങനെ ഉപയോഗിക്കുന്നുവെന്ന് മനസിലാക്കാൻ ഞങ്ങൾ ഒരു സർവേ നടത്തുന്നുണ്ട് . നിങ്ങളെ തിരിച്ചറിയുന്ന ഒരു ഡാറ്റയും ഞങ്ങളുടെ സർവേ ശേഖരിക്കില്ല. അധിക ഫീഡ്‌ബാക്ക് പങ്കിടാൻ നിങ്ങൾക്ക് താൽപ്പര്യമുണ്ടെങ്കിൽ, നിങ്ങളെ ബന്ധപ്പെടാനുള്ള കോൺടാക്ട് വിവരങ്ങൾ നൽകാനുള്ള ഓപ്‌ഷൻ നിങ്ങൾക്ക് ലഭിക്കും.</p><p>നിങ്ങൾക്ക് കുറച്ച് സമയവും ഫീഡ്‌ബാക്കും വാഗ്ദാനം ചെയ്യാൻ ഉണ്ടെങ്കിൽ, അത് നിങ്ങളിൽ നിന്ന് കേൾക്കാൻ ഞങ്ങൾ സന്തോഷത്തോടെ ആഗ്രഹിക്കുന്നു.</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">സർവേ എടുക്കുക</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">വേണ്ട, നന്ദി</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">സുരക്ഷിത ഡൊമെയ്ൻ ആയ surveys.signalusers.org-ൽ Alchemer ഹോസ്റ്റ് ചെയ്തതാണ് ഈ സർവേ</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ട്രാൻസ്‌പോർട് ഐക്കൺ</string>
   <string name="ConversationListFragment_loading">ലഭ്യമാക്കുന്നു…</string>

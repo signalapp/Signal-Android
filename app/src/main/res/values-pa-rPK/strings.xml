@@ -481,8 +481,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s دی طرفوں %2$s نوں گھلیا</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">تہاڈی طرفوں %1$s نوں گھلیا</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">ری ایکشنز متعارف کرا رئیا اے</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">فورن دسن لئی کہ تسیں کیہہ محسوس کر رئے او، کسے سنیہے نوں ٹیپ کرو تے پھڑ کے رکھو</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">ری ایکشنز متعارف کرا رئیا اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">فورن دسن لئی کہ تسیں کیہہ محسوس کر رئے او، کسے سنیہے نوں ٹیپ کرو تے پھڑ کے رکھو</string> -->
   <string name="Megaphones_remind_me_later">مینوں بعد اچ چیتا کراؤ</string>
   <string name="Megaphones_verify_your_signal_pin">اپنی Signal پن دی توثیق کرو</string>
   <string name="Megaphones_verify_pin">پن دی توثیق کرو</string>

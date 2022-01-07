@@ -428,8 +428,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名のファイル</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">グループ通話のご紹介</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">新しいグループで暗号化されたグループ通話を始めましょう</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">グループ通話のご紹介</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">新しいグループで暗号化されたグループ通話を始めましょう</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Google Play開発者サービスの不在に対応する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。Signalがいつでもメッセージを受信できるよう、タップしてバッテリー最適化機能を無効にしてください。</string>
@@ -535,9 +535,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">グループから抜ける前に、新しい管理者を1人以上選択する必要があります。</string>
   <string name="LeaveGroupDialog_choose_admin">管理者を選択する</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">無効にする</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">どんなリンクもプレビュー</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">送信メッセージにて、どのウェヴサイトからでも直接リンクプレビューを取得できるようになりました。</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">無効にする</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">どんなリンクもプレビュー</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">送信メッセージにて、どのウェヴサイトからでも直接リンクプレビューを取得できるようになりました。</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">リンクプレビューは使用できません</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">このグループリンクは利用できません</string>
@@ -815,8 +815,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s が %2$s に送信</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">あなたが %1$s に送信</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">リアクションのご紹介</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">メッセージを長押しして、手軽にリアクションできます。</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">リアクションのご紹介</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">メッセージを長押しして、手軽にリアクションできます。</string> -->
   <string name="Megaphones_remind_me_later">あとで通知</string>
   <string name="Megaphones_verify_your_signal_pin">Signal PINの確認</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PINを忘れないよう、確認をお願いします。</string>
@@ -2426,15 +2426,15 @@
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signalで保管される情報はPINで暗号化されます。</string>
   <string name="KbsMegaphone__create_pin">PINを作成</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Signalへご意見ください</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signalを地上最高のメッセージアプリにするため、皆様からのフィードバックをお待ちしています。</string>
-  <string name="ResearchMegaphone_learn_more">詳しく見る</string>
-  <string name="ResearchMegaphone_dismiss">キャンセル</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signalリサーチ</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザーの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法についてアンケート調査を行っています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">アンケートに参加する</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">このアンケートは、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Signalへご意見ください</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signalを地上最高のメッセージアプリにするため、皆様からのフィードバックをお待ちしています。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">詳しく見る</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">キャンセル</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signalリサーチ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザーの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法についてアンケート調査を行っています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">アンケートに参加する</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">このアンケートは、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>

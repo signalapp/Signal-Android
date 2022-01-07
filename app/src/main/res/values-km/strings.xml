@@ -446,9 +446,9 @@
   <string name="LeaveGroupDialog_choose_new_admin">ជ្រើសរើសអ្នកគ្រប់គ្រងថ្មី</string>
   <string name="LeaveGroupDialog_choose_admin">ជ្រើសរើសអ្នកគ្រប់គ្រង</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">បិទ</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">មើលមុនតំណណាមួយ</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">អ្នកឥឡូវអាចទាញយកតំណមើលមុនដោយផ្ទាល់ពីគេហទំព័រណាមួយ សម្រាប់សារដែលអ្នកផ្ញើ។</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">បិទ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">មើលមុនតំណណាមួយ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">អ្នកឥឡូវអាចទាញយកតំណមើលមុនដោយផ្ទាល់ពីគេហទំព័រណាមួយ សម្រាប់សារដែលអ្នកផ្ញើ។</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">មិនមានតំណមើលមុនទេ</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">តំណក្រុមនេះមិនសកម្មទេ</string>
@@ -674,8 +674,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">បានផ្ញើដោយ %1$s ទៅ %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">បានផ្ញើដោយអ្នកទៅ %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">ការណែនាំ ប្រតិកម្ម</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">ចុច និងសង្កត់សារណាមួយដើម្បីចែករំលែករហ័សពីអារម្មណ៍របស់អ្នក។</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">ការណែនាំ ប្រតិកម្ម</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">ចុច និងសង្កត់សារណាមួយដើម្បីចែករំលែករហ័សពីអារម្មណ៍របស់អ្នក។</string> -->
   <string name="Megaphones_remind_me_later">រំលឹកខ្ញុំពេលក្រោយ</string>
   <string name="Megaphones_verify_your_signal_pin">ផ្ទៀងផ្ទាត់លេខPIN Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">យើងនឹងសាកសួរអ្នកម្តងម្កាល ដើម្បីផ្ទៀងផ្ទាត់លេខកូដ PIN ថាអ្នកពិតជាចងចាំវា។</string>
@@ -1902,9 +1902,9 @@
   <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបង្កើតលេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string> -->
   <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបញ្ជាក់លេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string> -->
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_learn_more">សិក្សាបន្ថែម</string>
-  <string name="ResearchMegaphone_dismiss">ច្រានចោល</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">ទេ អរគុណ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">សិក្សាបន្ថែម</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">ច្រានចោល</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">ទេ អរគុណ</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
   <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>

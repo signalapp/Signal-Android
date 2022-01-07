@@ -415,8 +415,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bezimena datoteka</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo grupne pozive</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otvorite Novu grupu da biste započeli besplatni šifrirani grupni poziv</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo grupne pozive</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otvorite Novu grupu da biste započeli besplatni šifrirani grupni poziv</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za nedostatak Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite kako biste onemogućili sistemsku optimizaciju baterije koja spriječava Signal da dohvaća poruke dok je uređaj neaktivan.</string>
@@ -548,9 +548,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prije nego što napustite, morate odabrati novog administratora za ovu grupu.</string>
   <string name="LeaveGroupDialog_choose_admin">Odaberite administratora</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Onemogući</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Pregledajte bilo koju poveznicu</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sada možete preuzeti preglede poveznica izravno s bilo koje web stranice za poruke koje šaljete.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Onemogući</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Pregledajte bilo koju poveznicu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sada možete preuzeti preglede poveznica izravno s bilo koje web stranice za poruke koje šaljete.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nema dostupnog pregleda poveznice</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Poveznica grupe nije aktivna</string>
@@ -847,8 +847,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Poslao/la %1$s za %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Poslali ste vi za %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Predstavljamo reakcije</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Dodirnite i držite bilo koju poruku da brzo podijelite kako se osjećate.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Predstavljamo reakcije</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Dodirnite i držite bilo koju poruku da brzo podijelite kako se osjećate.</string> -->
   <string name="Megaphones_remind_me_later">Podsjeti me kasnije</string>
   <string name="Megaphones_verify_your_signal_pin">Potvrdite svoj Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Povremeno ćemo zatražiti da potvrdite svoj PIN kako biste ga zapamtili.</string>
@@ -2484,15 +2484,15 @@ broj telefona</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN omogućava da vaši podaci koji su pohranjeni na Signalu budu šifrirani</string>
   <string name="KbsMegaphone__create_pin">Stvori PIN</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Recite što mislite o Signalu</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Kako bi Signal bio najbolja aplikacija za razmjenu poruka na planetu, voljeli bismo čuti vaše povratne informacije.</string>
-  <string name="ResearchMegaphone_learn_more">Saznajte više</string>
-  <string name="ResearchMegaphone_dismiss">Odbaci</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal istraživanja</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vjerujemo u privatnost.</b></p><p>Signal vas ne prati niti prikuplja vaše podatke. Da bismo poboljšali Signal za sve, oslanjamo se na povratne informacije korisnika i <b>voljeli bismo vaše.</b></p><p>Provodimo anketu kako bismo shvatili kako koristite Signal. Naša anketa ne prikuplja podatke koji će vas identificirati. Ako ste zainteresirani za dijeljenje dodatnih povratnih informacija, imat ćete mogućnost pružanja podataka za kontakt.</p><p>Ako imate nekoliko minuta i želite poslati povratne informacije, voljeli bismo čuti vaše mišljenje.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Ispunite anketu</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu održava Alchemer na sigurnoj domeni o surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Recite što mislite o Signalu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Kako bi Signal bio najbolja aplikacija za razmjenu poruka na planetu, voljeli bismo čuti vaše povratne informacije.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Saznajte više</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Odbaci</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal istraživanja</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vjerujemo u privatnost.</b></p><p>Signal vas ne prati niti prikuplja vaše podatke. Da bismo poboljšali Signal za sve, oslanjamo se na povratne informacije korisnika i <b>voljeli bismo vaše.</b></p><p>Provodimo anketu kako bismo shvatili kako koristite Signal. Naša anketa ne prikuplja podatke koji će vas identificirati. Ako ste zainteresirani za dijeljenje dodatnih povratnih informacija, imat ćete mogućnost pružanja podataka za kontakt.</p><p>Ako imate nekoliko minuta i želite poslati povratne informacije, voljeli bismo čuti vaše mišljenje.</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Ispunite anketu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu održava Alchemer na sigurnoj domeni o surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>

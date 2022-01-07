@@ -441,8 +441,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ਬੇਨਾਮ ਫ਼ਾਈਲ</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">ਪੇਸ਼ ਹਨ ਗਰੁੱਪ ਕਾਲਾਂ</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">ਮੁਫਤ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਗਰੁੱਪ ਕਾਲ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਇੱਕ ਨਵਾਂ ਗਰੁੱਪ ਖੋਲ੍ਹੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">ਪੇਸ਼ ਹਨ ਗਰੁੱਪ ਕਾਲਾਂ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">ਮੁਫਤ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਗਰੁੱਪ ਕਾਲ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਇੱਕ ਨਵਾਂ ਗਰੁੱਪ ਖੋਲ੍ਹੋ</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ਗਾਇਬ ਪਲੇਅ ਸੇਵਾਵਾਂ ਲਈ ਅਨੁਕੂਲ ਬਣਾਓ</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ਇਹ ਡਿਵਾਈਸ ਪਲੇਅ ਸੇਵਾਵਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ। ਸਿਸਟਮ ਬੈਟਰੀ ਅਨੁਕੂਲਤਾ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਟੈਪ ਕਰੋ ਤਾਂ ਜੋ Signal ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਹੋਣ ਵੇਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਤੋਂ ਰੋਕਿਆ ਜਾ ਸਕੇ।</string>
@@ -561,9 +561,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">ਗਰੁੱਪ ਨੂੰ ਛੱਡਣ ਤੋਂ ਪਹਿਲਾਂ, ਤੁਹਾਨੂੰ ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਲਈ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਨਵਾਂ ਐਡਮਿਨ ਚੁਣਨਾ ਪਵੇਗਾ।</string>
   <string name="LeaveGroupDialog_choose_admin">ਐਡਮਿਨ ਚੁਣੋ</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">ਅਸਮਰੱਥ ਕਰੋ</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">ਕਿਸੇ ਲਿੰਕ ਦੀ ਝਲਕ ਵੇਖੋ</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">ਤੁਸੀਂ ਹੁਣ ਤੁਹਾਡੇ ਦੁਆਰਾ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਲਈ ਸਿੱਧੇ ਕਿਸੇ ਵੀ ਵੈੱਬਸਾਈਟ ਤੋਂ ਲਿੰਕ ਝਲਕ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦੇ ਹੋ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">ਅਸਮਰੱਥ ਕਰੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">ਕਿਸੇ ਲਿੰਕ ਦੀ ਝਲਕ ਵੇਖੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">ਤੁਸੀਂ ਹੁਣ ਤੁਹਾਡੇ ਦੁਆਰਾ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਲਈ ਸਿੱਧੇ ਕਿਸੇ ਵੀ ਵੈੱਬਸਾਈਟ ਤੋਂ ਲਿੰਕ ਝਲਕ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦੇ ਹੋ।</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">ਕੋਈ ਲਿੰਕ ਝਲਕ ਉਪਲਬਧ ਨਹੀਂ</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">ਇਹ ਗਰੁੱਪ ਲਿੰਕ ਕਿਰਿਆਸ਼ੀਲ ਨਹੀਂ ਹੈ</string>
@@ -856,8 +856,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ਦੁਆਰਾ %2$s ਨੂੰ ਭੇਜਿਆ</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">ਤੁਹਾਡੇ ਦੁਆਰਾ %1$s ਨੂੰ ਭੇਜਿਆ</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">ਪੇਸ਼ ਕਰਦੇ ਹਾਂ ਪ੍ਰਤਿਕਿਰਿਆਵਾਂ</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">ਜਲਦੀ ਨਾਲ ਇਹ ਜਵਾਬ ਦੇਣ ਲਈ ਕਿ ਤੁਸੀਂ ਕਿਸ ਤਰ੍ਹਾਂ ਮਹਿਸੂਸ ਕਰਦੇ ਹੋ, ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ \'ਤੇ ਟੈਪ ਕਰਕੇ ਉਸ ਨੂੰ ਦਬਾਈ ਰੱਖੋ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">ਪੇਸ਼ ਕਰਦੇ ਹਾਂ ਪ੍ਰਤਿਕਿਰਿਆਵਾਂ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">ਜਲਦੀ ਨਾਲ ਇਹ ਜਵਾਬ ਦੇਣ ਲਈ ਕਿ ਤੁਸੀਂ ਕਿਸ ਤਰ੍ਹਾਂ ਮਹਿਸੂਸ ਕਰਦੇ ਹੋ, ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ \'ਤੇ ਟੈਪ ਕਰਕੇ ਉਸ ਨੂੰ ਦਬਾਈ ਰੱਖੋ।</string> -->
   <string name="Megaphones_remind_me_later">ਮੈਨੂੰ ਬਾਅਦ ਵਿੱਚ ਯਾਦ ਕਰਾਓ</string>
   <string name="Megaphones_verify_your_signal_pin">ਆਪਣੇ Signal ਦੇ PIN ਨੂੰ ਤਸਦੀਕ ਕਰੋ</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕਦੇ-ਕਦਾਈਂ ਤੁਹਾਡਾ PIN ਤਸਦੀਕ ਕਰਨ ਲਈ ਕਹਾਂਗੇ ਤਾਂ ਜੋ ਤੁਹਾਨੂੰ ਇਹ ਯਾਦ ਰਹੇ।</string>
@@ -2489,15 +2489,15 @@
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN Signal ਨਾਲ ਸਟੋਰ ਕੀਤੀ ਸਮੱਗਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ।</string>
   <string name="KbsMegaphone__create_pin">PIN ਬਣਾਓ</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Signal ਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸੋਚਦੇ ਹੋ</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">ਸੰਸਾਰ ਵਿੱਚ Signal ਨੂੰ ਸਭ ਤੋਂ ਵਧੀਆ ਸੁਨੇਹੇ ਭੇਜਣ/ਲੈਣ ਵਾਲੀ ਐਪ ਬਣਾਉਣ ਵਾਸਤੇ ਅਸੀਂ ਤੁਹਾਡੇ ਤੋਂ ਸੁਝਾਅ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹਾਂ।</string>
-  <string name="ResearchMegaphone_learn_more">ਹੋਰ ਜਾਣੋ</string>
-  <string name="ResearchMegaphone_dismiss">ਖਾਰਜ ਕਰੋ</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal ਖੋਜ</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ਅਸੀਂ ਪਰਦੇਦਾਰੀ ਵਿੱਚ ਭਰੋਸਾ ਕਰਦੇ ਹਾਂ।</b></p><p>Signal ਤੁਹਾਨੂੰ ਟਰੈਕ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਨਾ ਹੀ ਤੁਹਾਡਾ ਡਾਟਾ ਇਕੱਤਰ ਕਰਦਾ ਹੈ। ਹਰ ਕਿਸੇ ਲਈ Signal ਵਿੱਚ ਸੁਧਾਰ ਵਾਸਤੇ ਅਸੀਂ ਵਰਤੋਂਕਾਰਾਂ ਦੇ ਸੁਝਾਅ ਉੱਤੇ ਨਿਰਭਰ ਕਰਦੇ ਹਾਂ, <b>ਅਤੇ ਸਾਨੂੰ ਤੁਹਾਡੇ ਸੁਝਾਅ ਵੀ ਚਾਹੀਦੇ ਹਨ।</b></p><p>ਅਸੀਂ ਸਰਵੇਖ ਕਰ ਰਹੇ ਹਾਂ ਕਿ ਸਮਝ ਸਕੀਏ ਕਿ ਤੁਸੀਂ Signal ਨੂੰ ਕਿਵੇਂ ਵਰਤ ਰਹੇ ਹੋ। ਸਾਰੇ ਸਰਵੇਖਣ ਵਿੱਚ ਕੋਈ ਵੀ ਅਜਿਹਾ ਡਾਟਾ ਇਕੱਤਰ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਸ ਤੋਂ ਤੁਹਾਡੀ ਪਛਾਣ ਹੋ ਸਕੇ। ਜੇ ਤੁਸੀਂ ਵਧੀਕ ਸੁਝਾਅ ਦੇਣ ਵਿੱਚ ਦਿਲਚਸਪੀ ਰੱਖਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡੇ ਕੋਲ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਦੇਣ ਦੀ ਚੋਣ ਹੋਵੇਗੀ।</p><p>ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਕੁਝ ਮਿੰਟ ਹੋਣ ਅਤੇ ਸੁਝਾਅ ਦੇਣਾ ਚਾਹੋ ਤਾਂ ਅਸੀਂ ਤੁਹਾਡੇ ਕੋਲੋ ਜਾਣ ਕੇ ਖੁਸ਼ ਹੋਵਾਂਗੇ।</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">ਸਰਵੇਖਣ \'ਚ ਹਿੱਸਾ ਲਵੋ</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">ਸਰਵੇਖਣ Alchemer ਵਲੋਂ ਸੁਰੱਖਿਅਤ ਡੋਮੇਨ surveys.signalusers.org ਉੱਤੇ ਹੋਸਟ ਕੀਤਾ ਹੈ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Signal ਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸੋਚਦੇ ਹੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">ਸੰਸਾਰ ਵਿੱਚ Signal ਨੂੰ ਸਭ ਤੋਂ ਵਧੀਆ ਸੁਨੇਹੇ ਭੇਜਣ/ਲੈਣ ਵਾਲੀ ਐਪ ਬਣਾਉਣ ਵਾਸਤੇ ਅਸੀਂ ਤੁਹਾਡੇ ਤੋਂ ਸੁਝਾਅ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹਾਂ।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">ਹੋਰ ਜਾਣੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">ਖਾਰਜ ਕਰੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal ਖੋਜ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ਅਸੀਂ ਪਰਦੇਦਾਰੀ ਵਿੱਚ ਭਰੋਸਾ ਕਰਦੇ ਹਾਂ।</b></p><p>Signal ਤੁਹਾਨੂੰ ਟਰੈਕ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਨਾ ਹੀ ਤੁਹਾਡਾ ਡਾਟਾ ਇਕੱਤਰ ਕਰਦਾ ਹੈ। ਹਰ ਕਿਸੇ ਲਈ Signal ਵਿੱਚ ਸੁਧਾਰ ਵਾਸਤੇ ਅਸੀਂ ਵਰਤੋਂਕਾਰਾਂ ਦੇ ਸੁਝਾਅ ਉੱਤੇ ਨਿਰਭਰ ਕਰਦੇ ਹਾਂ, <b>ਅਤੇ ਸਾਨੂੰ ਤੁਹਾਡੇ ਸੁਝਾਅ ਵੀ ਚਾਹੀਦੇ ਹਨ।</b></p><p>ਅਸੀਂ ਸਰਵੇਖ ਕਰ ਰਹੇ ਹਾਂ ਕਿ ਸਮਝ ਸਕੀਏ ਕਿ ਤੁਸੀਂ Signal ਨੂੰ ਕਿਵੇਂ ਵਰਤ ਰਹੇ ਹੋ। ਸਾਰੇ ਸਰਵੇਖਣ ਵਿੱਚ ਕੋਈ ਵੀ ਅਜਿਹਾ ਡਾਟਾ ਇਕੱਤਰ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਸ ਤੋਂ ਤੁਹਾਡੀ ਪਛਾਣ ਹੋ ਸਕੇ। ਜੇ ਤੁਸੀਂ ਵਧੀਕ ਸੁਝਾਅ ਦੇਣ ਵਿੱਚ ਦਿਲਚਸਪੀ ਰੱਖਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡੇ ਕੋਲ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਦੇਣ ਦੀ ਚੋਣ ਹੋਵੇਗੀ।</p><p>ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਕੁਝ ਮਿੰਟ ਹੋਣ ਅਤੇ ਸੁਝਾਅ ਦੇਣਾ ਚਾਹੋ ਤਾਂ ਅਸੀਂ ਤੁਹਾਡੇ ਕੋਲੋ ਜਾਣ ਕੇ ਖੁਸ਼ ਹੋਵਾਂਗੇ।</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">ਸਰਵੇਖਣ \'ਚ ਹਿੱਸਾ ਲਵੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">ਸਰਵੇਖਣ Alchemer ਵਲੋਂ ਸੁਰੱਖਿਅਤ ਡੋਮੇਨ surveys.signalusers.org ਉੱਤੇ ਹੋਸਟ ਕੀਤਾ ਹੈ</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ਆਵਾਜਾਈ ਆਈਕਨ</string>
   <string name="ConversationListFragment_loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>

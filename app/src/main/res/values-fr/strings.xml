@@ -449,8 +449,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Nous présentons les appels de groupe</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ouvrez un Nouveau groupe pour lancer un appel de groupe chiffré gratuit</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Nous présentons les appels de groupe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ouvrez un Nouveau groupe pour lancer un appel de groupe chiffré gratuit</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiser pour palier l’absence des Services Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas les Services Google Play en charge. Touchez pour désactiver les optimisations système de la batterie qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>
@@ -569,9 +569,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Avant de quitter le groupe, vous devez choisir au moins un nouvel administrateur pour ce groupe.</string>
   <string name="LeaveGroupDialog_choose_admin">Choisir un administrateur</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Désactiver</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Prévisualiser n’importe quel lien</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Pour les messages que vous envoyez, vous pouvez désormais récupérer des aperçus de lien directement de n’importe quel site Web.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Désactiver</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Prévisualiser n’importe quel lien</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Pour les messages que vous envoyez, vous pouvez désormais récupérer des aperçus de lien directement de n’importe quel site Web.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Aucun aperçu du lien n’est proposé</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Ce lien de groupe est inactif</string>
@@ -868,8 +868,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Envoyé par %1$s à %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Envoyé par vous à %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Nous présentons les réactions</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Touchez et maintenez n’importe quel message pour partager rapidement ce que vous ressentez.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Nous présentons les réactions</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Touchez et maintenez n’importe quel message pour partager rapidement ce que vous ressentez.</string> -->
   <string name="Megaphones_remind_me_later">Me le rappeler plus tard</string>
   <string name="Megaphones_verify_your_signal_pin">Confirmer votre NIP Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Nous vous demanderons de temps en temps de confirmer votre NIP afin que vous vous en souveniez.</string>
@@ -1723,7 +1723,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Aucun groupe en commun. Examinez les demandes avec attention.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Aucun contact dans ce groupe. Examinez les demandes avec attention.</string>
   <string name="ConversationUpdateItem_view">Afficher</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">La minuterie des messages éphémères sera définie sur %1$s quand vous échanger des messages avec eux.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">La minuterie des messages éphémères sera définie sur %1$s quand vous échangez des messages avec cette personne.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lecture … Mettre en pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
@@ -2521,15 +2521,15 @@
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal.</string>
   <string name="KbsMegaphone__create_pin">Créer un NIP</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Dites à Signal ce que vous pensez</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Pour faire de Signal la meilleure appli de messagerie au monde, nous aimerions avoir votre avis.</string>
-  <string name="ResearchMegaphone_learn_more">En apprendre davantage</string>
-  <string name="ResearchMegaphone_dismiss">Fermer</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Recherche Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Nous croyons en la protection des renseignements personnels.</b></p><p>Signal ne vous suit pas à la trace ni ne recueille vos données. Afin d’améliorer Signal pour tous, nous comptons sur la rétroaction des utilisateurs <b>et nous aimerions connaître la vôtre.</b></p><p> Nous effectuons un sondage afin de comprendre comment vous utilisez Signal. Notre sondage ne recueille aucune donnée qui permettrait de vous identifier. Si vous souhaitez nous faire part d’autres commentaires, la possibilité de nous indiquer vos coordonnées vous sera offerte.</p><p>Si vous avez quelques minutes à nous consacrer et une rétroaction à nous communiquer, nous serions ravis de vous lire.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Répondre au sondage</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Non merci</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Le sondage est hébergé par Alchemer sur le domaine sécurisé surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Dites à Signal ce que vous pensez</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Pour faire de Signal la meilleure appli de messagerie au monde, nous aimerions avoir votre avis.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">En apprendre davantage</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Fermer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Recherche Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Nous croyons en la protection des renseignements personnels.</b></p><p>Signal ne vous suit pas à la trace ni ne recueille vos données. Afin d’améliorer Signal pour tous, nous comptons sur la rétroaction des utilisateurs <b>et nous aimerions connaître la vôtre.</b></p><p> Nous effectuons un sondage afin de comprendre comment vous utilisez Signal. Notre sondage ne recueille aucune donnée qui permettrait de vous identifier. Si vous souhaitez nous faire part d’autres commentaires, la possibilité de nous indiquer vos coordonnées vous sera offerte.</p><p>Si vous avez quelques minutes à nous consacrer et une rétroaction à nous communiquer, nous serions ravis de vous lire.</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Répondre au sondage</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Non merci</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Le sondage est hébergé par Alchemer sur le domaine sécurisé surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>
@@ -3374,7 +3374,7 @@ Nouvelle tentative…</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par les gens qui l’utilisent et l’apprécient. Faites un don mensuel récurrent et recevez un macaron de profil pour afficher votre soutien.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Pourquoi contribuer ?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal s\'engage à développer une technologie de protection de la vie privée à code source ouvert qui protège la libre expression et permet une communication mondiale sécurisée.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Votre contribution alimente cette cause et permet de financer le développement et le fonctionnement d\'une application utilisée par des millions de personnes pour la communication privée. Pas de publicité. Pas de traceurs. Sans blague.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Votre contribution alimente cette cause et permet de financer le développement et le fonctionnement d’une appli utilisée par des millions de personnes pour des communications confidentielles et protégées. Aucune publicité, aucun traqueur, vraiment.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Merci pour le coup de pouce !</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Vous avez obtenu le macaron %s ! Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>

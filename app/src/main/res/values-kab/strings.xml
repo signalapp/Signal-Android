@@ -393,8 +393,8 @@
   <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_donate">Mudd tawsa</string> -->
   <!-- Removed by excludeNonTranslatables <string name="DonateMegaphone_no_thanks">Ala tanemmirt</string> -->
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Asidef n yisawalen n ugraw</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ldi Agraw Amaynut i beddu n usiwel n ugraw yettwawgelhen aṭel</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Asidef n yisawalen n ugraw</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ldi Agraw Amaynut i beddu n usiwel n ugraw yettwawgelhen aṭel</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Sefrer imeẓla n Play i ixuṣṣen</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ibenk-a ur isefrak ara imeẓla n Play. Sit i wakken ad tsenseḍ isefrar n uẓru n unagraw ara yeǧǧen Signal ad d-yerr iznan mi ara yili d arurmid.</string>
@@ -512,9 +512,9 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Send ad teǧǧeḍ Signal, ilaq ad tferneḍ ma drus yiwen unedbal amaynut i ugraw-a.</string>
   <string name="LeaveGroupDialog_choose_admin">Fren anedbal</string>
   <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Sens</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Taskant n yiwen seg yiseɣwan</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Tzemreḍ tura ad d-terreḍ tiskanin n yiseɣwan srid seg yismal web i yiznan i tuzneḍ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Sens</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Taskant n yiwen seg yiseɣwan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Tzemreḍ tura ad d-terreḍ tiskanin n yiseɣwan srid seg yismal web i yiznan i tuzneḍ.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Ulac taskant n useɣwan yellan</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Aseɣwen-a n ugraw ur yermid ara</string>
@@ -790,8 +790,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Yettwazen-d sɣur %1$s i %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Yettwazen-d sɣur-k·m i %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Aseddu n yisedmar</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Sit syen ffer yal izen i usezreb n beṭṭu n wayen tettḥulfuḍ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Aseddu n yisedmar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Sit syen ffer yal izen i usezreb n beṭṭu n wayen tettḥulfuḍ.</string> -->
   <string name="Megaphones_remind_me_later">Smektid ticki</string>
   <string name="Megaphones_verify_your_signal_pin">Senqed tangalt PIN n Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Sya ɣer da ad d-tettusutreḍ ad tesneqdeḍ tangalt-ik·im PIN i wakken ad as-tecfuḍ.</string>
@@ -2284,15 +2284,15 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Tingalin PIN ḥerrzent talɣut i yettukelsen s Signal yettwawgelhen.</string>
   <string name="KbsMegaphone__create_pin">Snulfu-d PIN</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Ini-yas i Signal d acu tettxemmimeḍ</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">I wakken ad yili Signal d asnas n tirawt ifazen deg ddunit, nebɣa aṭas ad nẓer tamawt-ik·im.</string>
-  <string name="ResearchMegaphone_learn_more">Issin ugar</string>
-  <string name="ResearchMegaphone_dismiss">Zgel</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Anadi n Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Nettamen s tbaḍnit.</b></p><p>Signal ur ak·akem-iṭṭafr ara, ur ileqqeḍ ara isefka-inek·inem. I usnerni n Signal i yal yiwen, nettkal ɣef tamawt n yiseqdac, <b>daɣen nebɣa aṭas tamawt-ik·im.</b></p><p>Nselkam tasestant i wakken ad nefhem amek tseqdaceḍ Signal. Tasestant-nneɣ ur tleqqeḍ ara ula d yiwen usefku ara ak·akem-id-ibegnen. Ma yella twalaḍ tebɣiḍ ad tebḍuḍ tamawt-nniḍen, ad tesεuḍ taxtiṛt ma yella ad tmuddeḍ talɣut n unermis.</p><p>Ma yella tesεiḍ kra n tesdatin d tamawt ara tmuddeḍ, nebɣa ad as-nsel sɣur-k·m.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Ttekki deg tsestant</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Uhu tanemmirt</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Tasestant tettusezdeɣ s Alchemer deg talɣut taɣellsant surveys.signalusers.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Ini-yas i Signal d acu tettxemmimeḍ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">I wakken ad yili Signal d asnas n tirawt ifazen deg ddunit, nebɣa aṭas ad nẓer tamawt-ik·im.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Issin ugar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Zgel</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Anadi n Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Nettamen s tbaḍnit.</b></p><p>Signal ur ak·akem-iṭṭafr ara, ur ileqqeḍ ara isefka-inek·inem. I usnerni n Signal i yal yiwen, nettkal ɣef tamawt n yiseqdac, <b>daɣen nebɣa aṭas tamawt-ik·im.</b></p><p>Nselkam tasestant i wakken ad nefhem amek tseqdaceḍ Signal. Tasestant-nneɣ ur tleqqeḍ ara ula d yiwen usefku ara ak·akem-id-ibegnen. Ma yella twalaḍ tebɣiḍ ad tebḍuḍ tamawt-nniḍen, ad tesεuḍ taxtiṛt ma yella ad tmuddeḍ talɣut n unermis.</p><p>Ma yella tesεiḍ kra n tesdatin d tamawt ara tmuddeḍ, nebɣa ad as-nsel sɣur-k·m.</p>]]></string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Ttekki deg tsestant</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Uhu tanemmirt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Tasestant tettusezdeɣ s Alchemer deg talɣut taɣellsant surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tignit n usiweḍ</string>
   <string name="ConversationListFragment_loading">Asali…</string>
