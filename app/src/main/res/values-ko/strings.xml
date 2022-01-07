@@ -422,9 +422,6 @@
   <string name="DeviceListItem_today">오늘</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">이름 없는 파일</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">그룹 통화 소개</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">새 그룹을 열어 무료 암호화 그룹 통화를 시작하세요.</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">누락된 Play Services에 최적화</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">기기에서는 Play Services를 지원하지 않습니다. 탭하여 시스템 배터리 최적화 기능을 사용하지 않을 수 있습니다. 해당 기능은 Signal이 비활성화된 동안에 메시지를 검색하지 못하게 합니다.</string>
@@ -529,10 +526,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">새 관리자 선택</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">나가기 전에 이 그룹에 대해 새 관리자를 한 명 이상 선택해야 합니다.</string>
   <string name="LeaveGroupDialog_choose_admin">관리자를 선택하십시오.</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">비활성화</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">링크 미리 보기</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">이제 보내는 메시지에 대해 웹 사이트에서 직접 링크 미리 보기를 검색할 수 있습니다.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">사용 가능한 링크 미리 보기가 없습니다.</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
@@ -805,8 +798,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s 님이 %2$s에게 보냄</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">내가 %1$s에게 보냄</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">리액션을 소개합니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">아무 메시지나 길게 탭하여 내 기분을 빠르게 공유해 보세요.</string> -->
   <string name="Megaphones_remind_me_later">나중에 알림</string>
   <string name="Megaphones_verify_your_signal_pin">Signal 번호 인증</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">저희는 사용자가 번호를 기억하실 수 있도록 가끔 번호 인증을 요청합니다.</string>
@@ -2183,16 +2174,27 @@
   <string name="conversation_callable_secure__menu_call">Signal 전화</string>
   <string name="conversation_callable_secure__menu_video">Signal 영상 통화</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">메시지 세부 정보</string>
-  <string name="conversation_context__menu_copy_text">텍스트 복사</string>
-  <string name="conversation_context__menu_delete_message">메시지 삭제</string>
-  <string name="conversation_context__menu_forward_message">메시지 전달</string>
+  <!--Button to view detailed information for a message-->
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">복사</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">삭제</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">전달</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">메시지 다시 보내기</string>
-  <string name="conversation_context__menu_reply_to_message">메시지 답장</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">답장</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">여러 개 선택</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="other">%d개 선택됨</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">첨부 파일 저장</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">저장</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">사라지는 메시지</string>
   <!--conversation_expiring_on-->
@@ -2370,16 +2372,6 @@
   <string name="KbsMegaphone__create_a_pin">번호 생성</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN은 Signal에 저장된 정보를 암호화하여 보관합니다.</string>
   <string name="KbsMegaphone__create_pin">번호 생성</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">당신이 생각한 것을 시그널에 말해주세요.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal을 전 세계 최고의 메시지 앱으로 만들기 위해 여러분의 의견을 듣고 싶습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">더 알아보기</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">취소</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal 검색</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>저희는 개인정보를 진지하게 생각합니다.</b></p><p>Signal은 사용자를 추적하거나 데이터를 수집하지 않습니다. 저희는 모든 사람을 위해 Signal을 개선하기 위해 사용자 피드백에 의존하고 있으며 <b>귀하의 의견을 기다립니다.</b></p><p>Signal 사용 방식을 이해하기 위해 설문 조사를 진행하고 있습니다. 설문 조사는 귀하를 식별할 수 있는 데이터를 수집하지 않습니다. 추가 피드백 공유에 관심이 있는 경우 연락처 정보를 제공할 수 있습니다.</p><p>잠시 시간과 피드백을 제공할 수 있으시다면 알려주세요.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">설문조사하기</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">아니요</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">설문 조사는 보안 도메인 surveys.signalusers.org에서 Alchemer가 호스팅하여 진행됩니다.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">아이콘 전송</string>
   <string name="ConversationListFragment_loading">로드 중…</string>

@@ -428,9 +428,6 @@
   <string name="DeviceListItem_today">Täna</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nimetu fail</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Tutvustame grupikõnesid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Uue krüptitud grupikõne alustamiseks vajuta \\"Uus grupp\\"</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
@@ -547,10 +544,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Vali uus administraator</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Enne lahkumist pead valima sellele grupile vähemalt ühe uue administraatori.</string>
   <string name="LeaveGroupDialog_choose_admin">Vali administraator</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Keela</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Iga lingi eelvaade</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sa saad nüüd hankida lingieelvaated otse mistahes saidilt, mida sõnumina saadad.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Lingieelvaade puudub</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">See grupilink ei ole aktiivne</string>
@@ -840,8 +833,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Saadetud %1$s poolt kontaktile %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Saadetud sinu poolt kontaktile %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Tutvustame reaktsioone</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Koputa ja hoia mistahes sõnumit, et kiirelt oma emotsiooni jagada.</string> -->
   <string name="Megaphones_remind_me_later">Tuleta hiljem meelde</string>
   <string name="Megaphones_verify_your_signal_pin">Kinnita Signali PIN-kood</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Palume aeg-ajalt sul PIN-koodi kinnitada, et see sulle meelde jääks.</string>
@@ -2214,16 +2205,29 @@
   <string name="conversation_callable_secure__menu_call">Signali kõne</string>
   <string name="conversation_callable_secure__menu_video">Signali videokõne</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Sõnumi andmed</string>
-  <string name="conversation_context__menu_copy_text">Kopeeri tekst</string>
-  <string name="conversation_context__menu_delete_message">Kustuta sõnum</string>
-  <string name="conversation_context__menu_forward_message">Edasta sõnum</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Teave</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopeeri</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Kustuta</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Edasta</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Saada sõnum uuesti</string>
-  <string name="conversation_context__menu_reply_to_message">Vasta sõnumile</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Vasta</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Vali mitu</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d valitud</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Salvesta manus</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Salvesta</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Kaduvad sõnumid</string>
   <!--conversation_expiring_on-->
@@ -2408,16 +2412,6 @@
   <string name="KbsMegaphone__create_a_pin">Loo PIN-kood</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koodid hoiavad Signalis salvestatud teabe krüptituna</string>
   <string name="KbsMegaphone__create_pin">Loo PIN-kood</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Räägi Signalile, mida sa arvad</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Tahame kuulda sinult tagasisidet, et teha Signal planeedi parimaks suhtlusrakenduseks.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Rohkem infot</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Tühista</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signali uurimus</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Me usume privaatsusse.</b></p><p>Signal ei jälita sind ega kogu sinu andmeid. Signali täiustamisel kõigi jaoks sõltume kasutaja tagasisidest <b>ja ootame seda ka sinult.</b></p><p>Teostame küsitlust, et saada aru, kuidas sa Signalit kasutad. Meie küsitlus ei kogu sind identifitseerivaid andmeid. Kui oled huvitatud lisaks tagasiside andmisest, siis on sul võimalus sisestada kontaktinfo.</p><p>Kui sul on paar minutit aega ja tagasisidet, mida jagada, siis sooviksime seda sinult kuulda.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Osale küsitluses</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Tänan, ei</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Seda küsitlust teostab Alchemer turvalises domeenis surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine…</string>

@@ -446,9 +446,6 @@
   <string name="DeviceListItem_today">Bugün</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">İsimsiz dosya</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Karşınızda Grup Aramaları</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Ücretsiz ve şifreli grup araması başlatmak için yeni bir Grup açın.</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Eksik Google Play Hizmetleri için optimize et</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Hizmetlerini desteklemiyor. Signal etkin değilken ileti almasını engelleyebilecek pil iyileştirmelerini devre dışı bırakmak için dokunun.</string>
@@ -566,10 +563,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Yeni yönetici seç</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Ayrılmadan önce, bu gruba yeni bir yönetici seçmek zorundasınız.</string>
   <string name="LeaveGroupDialog_choose_admin">Yönetici seçin</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Devre dışı bırak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Tüm bağlantıları önizle</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Şimdi, gönderdiğiniz iletiler için doğrudan web sitelerinden bağlantı önizlemelerini alabilirsiniz.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Bağlantı önizlemesi mevcut değil</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
@@ -866,8 +859,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s tarafından --&gt; %2$s </string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s kişisine gönderdikleriniz</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Karşınızda Karşılıklar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Nasıl hissettiğinizi hızlıca paylaşmak için herhangi bir iletinin üzerine dokunup basılı tutun.</string> -->
   <string name="Megaphones_remind_me_later">Daha sonra hatırlat</string>
   <string name="Megaphones_verify_your_signal_pin">Signal PIN\'inizi doğrulayın</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PIN\'inizi hatırlamanız için arada sırada doğrulamanızı isteyeceğiz.</string>
@@ -2329,16 +2320,29 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_callable_secure__menu_call">Signal araması</string>
   <string name="conversation_callable_secure__menu_video">Görüntülü Signal araması</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">İleti ayrıntıları</string>
-  <string name="conversation_context__menu_copy_text">Metni kopyala</string>
-  <string name="conversation_context__menu_delete_message">İletiyi sil</string>
-  <string name="conversation_context__menu_forward_message">İletiyi yönlendir</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Bilgi</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopyala</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Sil</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Yönlendir</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">İletiyi tekrar gönder</string>
-  <string name="conversation_context__menu_reply_to_message">İletiyi yanıtla</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Cevapla</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Çoklu seçim</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d seçili</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Eklentiyi kaydet</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Kaydet</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Kaybolan iletiler</string>
   <!--conversation_expiring_on-->
@@ -2524,16 +2528,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="KbsMegaphone__create_a_pin">PIN oluştur</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar.</string>
   <string name="KbsMegaphone__create_pin">PIN oluştur</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Signal\'e ne düşündüğünüzü söyleyin</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal\'i gezegendeki en iyi ileti uygulaması yapmak için geri bildiriminizi duymaktan memnuniyet duyarız.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Dahasını öğrenin</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Kapat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal Araştırması</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Gizliliğe inanıyoruz.</b></p><p>Signal sizi takip etmez veya verilerinizi toplamaz. Signal\'i herkes için geliştirmek için, kullanıcı geri bildirimlerine güveniyoruz, <b>ve sizinkini çok isteriz.</b></p><p>Signal\'i nasıl kullandığınızı anlamak için bir anket yapıyoruz.  Anketimiz sizi tanımlayacak herhangi bir veri toplamaz. Daha fazla geri bildirim paylaşmakla ilgileniyorsanız, iletişim bilgilerinizi sağlama seçeneğiniz vardır.</p><p>Birkaç dakikanız ve geri bildiriminiz varsa, sizden haber almaktan memnuniyet duyarız.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Anketi doldur</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Hayır teşekkürler</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anket, Alchemer tarafından güvenli bir alan adı olan surveys.signalusers.org adresinde barındırılmaktadır.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>

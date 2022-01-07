@@ -490,9 +490,6 @@
   <string name="DeviceListItem_today">היום</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">קובץ ללא שם</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">היכרות עם שיחה קבוצתית</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">פתח קבוצה חדשה כדי להתחיל שיחה קבוצתית חינמית מוצפנת</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">מטב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ־Signal לאחזר הודעות בעת אי־פעילות.</string>
@@ -636,10 +633,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">בחר מנהלן חדש</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">לפני שאתה עוזב, אתה חייב לבחור לפחות מנהלן חדש אחד עבור קבוצה זו.</string>
   <string name="LeaveGroupDialog_choose_admin">בחר מנהלן</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">השבת</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">הצג מראש כל קישור שהוא</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">אתה יכול כעת לאחזר תצוגות מקדימות של קישורים ישירות מכל אתר עבור הודעות שאתה שולח.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">תצוגה מקדימה של קישור אינה זמינה</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">קישור קבוצה זה אינו פעיל</string>
@@ -974,8 +967,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">נשלח על ידי %1$s אל %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">נשלח על ידך אל %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">היכרות עם תגובות</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">הקש והחזק הודעה כלשהי כדי לשתף בזריזות איך אתה מרגיש.</string> -->
   <string name="Megaphones_remind_me_later">הזכר לי מאוחר יותר</string>
   <string name="Megaphones_verify_your_signal_pin">וודא את Signal PIN שלך</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">נבקש ממך מדי פעם לוודא את ה־PIN שלך כך שתזכור אותו.</string>
@@ -2508,16 +2499,31 @@
   <string name="conversation_callable_secure__menu_call">שיחת Signal</string>
   <string name="conversation_callable_secure__menu_video">שיחת וידאו של Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">פרטי הודעה</string>
-  <string name="conversation_context__menu_copy_text">העתק טקסט</string>
-  <string name="conversation_context__menu_delete_message">מחק הודעה</string>
-  <string name="conversation_context__menu_forward_message">העבר הלאה הודעה</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">מידע</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">העתק</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">מחק</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">העבר הלאה</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">שלח מחדש הודעה</string>
-  <string name="conversation_context__menu_reply_to_message">השב אל הודעה</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">השב</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">בחר רבים</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="two"></item>
+    <item quantity="many"></item>
+    <item quantity="other">%d נבחרו</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">שמור צרופה</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">שמור</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">הודעות נעלמות</string>
   <!--conversation_expiring_on-->
@@ -2717,16 +2723,6 @@
   <string name="KbsMegaphone__create_a_pin">צור PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">קודי PIN שומרים על מידע שמאוחסן עם Signal מוצפן.</string>
   <string name="KbsMegaphone__create_pin">צור PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">אמור אל Signal מה אתה חושב</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">כדי להפוך את Signal ליישום ההתכתבות הטוב ביותר ביקום, נשמח לשמוע את המשוב שלך.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">למד עוד</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">בטל</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">מחקר Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>אנחנו מאמינים בפרטיות.</b></p><p>Signal אינו עוקב אחריך או אוסף את הנתונים שלך. כדי לשפר את Signal עבור כולם, אנחנו מסתמכים על משוב משתמשים, <b>ונשמח לקבל את שלך.</b></p><p>אנחנו מפעילים סקר כדי להבין כיצד אתה משתמש ב־Signal. הסקר שלנו אינו אוסף נתונים כלשהם שיזהו אותך. אם אתה מעוניין בשיתוף של משוב נוסף, תהיה לך אפשרות לספק מידע ליצירת קשר.</p><p>אם יש לך כמה דקות ומשוב להציע, נשמח לשמוע ממך.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">ענה על הסקר</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">לא תודה</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">הסקר מאורח על ידי Alchemer בתחום המאובטח surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">איקון תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>

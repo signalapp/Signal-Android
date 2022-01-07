@@ -490,9 +490,6 @@
   <string name="DeviceListItem_today">Danes</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Datoteka brez imena</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo vam skupinske klice</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Za šifriran skupinski klic odprite Novo skupino</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za manjkajočo aplikacijo Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Naprava ne podpira storitev Play Services. Tapnite za izklop optimizacije baterije, ki aplikaciji Signal preprečuje povezavo v času neaktivnosti naprave.</string>
@@ -636,10 +633,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Določi novega skrbnika/co</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Pred odhodom iz skupine morate določiti vsaj enega skrbnika/co skupine.</string>
   <string name="LeaveGroupDialog_choose_admin">Določi skrbnika/co</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Izklopi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Predogled za vse spletne strani</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Odslej lahko neposredno v sporočilu ustvarite predogled za vsako spletno stran, ki jo delite.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Predogled ni na voljo</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Povezava do skupine ni aktivna</string>
@@ -974,8 +967,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Poslano od uporabnika/ce %1$s za uporabnika/co %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Poslano od vas za uporabnika/co %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Predstavljamo vam Odzive</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Za hiter odziv tapnite in držite prst na katerem koli sporočilu.</string> -->
   <string name="Megaphones_remind_me_later">Spomni me kasneje</string>
   <string name="Megaphones_verify_your_signal_pin">Potrdite svoj Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Občasno vas bomo opozorili na vnos PINa, da si ga boste lažje zapomnili.</string>
@@ -2499,16 +2490,31 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_callable_secure__menu_call">Klic Signal</string>
   <string name="conversation_callable_secure__menu_video">Video klic Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Podrobnosti sporočila</string>
-  <string name="conversation_context__menu_copy_text">Kopiraj besedilo</string>
-  <string name="conversation_context__menu_delete_message">Izbriši sporočilo</string>
-  <string name="conversation_context__menu_forward_message">Posreduj sporočilo</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopiraj</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Izbriši</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Posreduj</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Ponovno pošlji sporočilo</string>
-  <string name="conversation_context__menu_reply_to_message">Odgovor na sporočilo</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Odgovori</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Izberi več</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="two"></item>
+    <item quantity="few"></item>
+    <item quantity="other">%d izbranih</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Shrani priponko</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Shrani</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Izginjajoča sporočila</string>
   <!--conversation_expiring_on-->
@@ -2708,16 +2714,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsMegaphone__create_a_pin">Ustvari PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN zavaruje informacije shranjene na Signalu z uporabo šifriranja.</string>
   <string name="KbsMegaphone__create_pin">Ustvari PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Sporočite Signalu svoje mnenje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Da bi bil Signal najboljša aplikacije za sporočanje v vesolju, pa tudi širše, bi radi slišali vaše mnenje.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Izvedite več</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Prekini</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Raziskava Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Verjamemo v zasebno komunikacijo.</b></p><p>Signal vam ne sledi in ne zbira vaših podatkov. Za izboljšave aplikacije se zanašamo na vaše povratne informacije, <b>ki jih zelo cenimo.</b></p><p>Zato delamo raziskavo, da bi ugotovili, kako uporabljate aplikacijo Signal. Raziskava ne zahteva od vas nobenih podatkov, po katerih bi vas lahko prepoznali. Če pa bi radi z nami delili dodatne informacije, nam lahko tudi posredujete svoj kontakt.</p><p>Če imate nekaj minut časa in izdelano mnenje o nas, vam bomo z veseljem prisluhnili.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Izpolnite anketo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketa gostuje pri Surveygizmo na varni domeni surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalaganje …</string>

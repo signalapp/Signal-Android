@@ -427,9 +427,6 @@
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">未命名檔案</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">群組通話登場</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">開啟一個新版群組以開展免費的加密群組通話</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">針對缺少 Play 服務的優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">此裝置不支援 Play 服務。輕觸以停用系統電量優化，以免干擾 Signal 閒置時擷取訊息。</string>
@@ -534,10 +531,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">請選擇新的管理員</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">在退出之前，您必須先為此群組選擇至少一個新的管理員。</string>
   <string name="LeaveGroupDialog_choose_admin">請選擇管理員</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">停用</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">預覽任何連結</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">您現已可以為傳送的訊息直接從任何網站擷取連結預覽。</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">連結預覽欠奉</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">此群組連結不在使用中</string>
@@ -815,8 +808,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 傳送給 %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">由您傳送給 %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">心情反應登場</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">輕觸並按住任何訊息，以快速分享您的心情。</string> -->
   <string name="Megaphones_remind_me_later">稍後再提醒我</string>
   <string name="Megaphones_verify_your_signal_pin">驗證您的 Signal PIN 碼</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">每隔一段時間，我們會請您驗證一下您的 PIN 碼，確保您能記住它。</string>
@@ -2246,16 +2237,28 @@
   <string name="conversation_callable_secure__menu_call">Signal 通話</string>
   <string name="conversation_callable_secure__menu_video">Signal 視像通話</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">訊息詳情</string>
-  <string name="conversation_context__menu_copy_text">複製文字</string>
-  <string name="conversation_context__menu_delete_message">刪除訊息</string>
-  <string name="conversation_context__menu_forward_message">轉寄訊息</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">資訊</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">複製</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">刪除</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">轉發</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">重新傳送訊息</string>
-  <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">回覆</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">選取多個項目</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="other">%d 個已選取</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">儲存附件</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">儲存</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">限時訊息</string>
   <!--conversation_expiring_on-->
@@ -2434,16 +2437,6 @@
   <string name="KbsMegaphone__create_a_pin">建立一個 PIN 碼</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN 碼讓在 Signal 中的資訊得以加密保存。</string>
   <string name="KbsMegaphone__create_pin">建立 PIN 碼</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">告訴 Signal 您的看法</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">為求讓 Signal 成為地表上最佳的通訊應用程式，我們希望聽到您的意見回饋。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">了解更多</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">關閉</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal 意見調查</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>我們深信私隱。</b></p><p>Signal 不會追蹤您或蒐集您的資料。為改進 Signal 造福每一個人，我們依賴使用者的意見回饋，<b>您的意見尤關重要。</b></p><p>我們正進行一項意見調查，以便了解您如何使用 Signal。我們的意見調查不會蒐集任何識別您的資料。若您有興趣分享額外的意見回饋，您將可選擇提供聯絡資訊。</p><p>若您有數分鐘時間、希望反映意見，我們期待聽見您的聲音。</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">參與問卷</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">不用了，謝謝</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">是次意見調查由 Alchemer 於安全網域 surveys.signalusers.org 架構</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">運輸圖示</string>
   <string name="ConversationListFragment_loading">正在載入…</string>

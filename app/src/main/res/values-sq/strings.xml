@@ -448,9 +448,6 @@
   <string name="DeviceListItem_today">Sot</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Kartelë e paemërtuar</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Ju paraqesim Thirrje Grupi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Që të nisni një thirrje të lirë, të fshehtëzuar, në grup, hapni një Grup të Ri</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizoje për Shërbime Play që mungojnë</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Signal-in të marrë mesazhe teksa është joaktiv.</string>
@@ -569,10 +566,6 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="LeaveGroupDialog_choose_new_admin">Zgjidhni përgjegjës të ri</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Përpara se të largoheni, duhet të zgjidhni të paktën një përgjegjës të ri për këtë grup.</string>
   <string name="LeaveGroupDialog_choose_admin">Zgjidhni përgjegjës</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Çaktivizoje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Bëni paraparje të çfarëdo lidhjeje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Tanimë, për mesazhet që dërgoni, mund të bëni paraparje lidhjesh drejt e nga çfarëdo sajti.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">S\’ka lidhje për paraparje</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Kjo lidhje grupi s\’është aktive</string>
@@ -872,8 +865,6 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dërguar nga %1$s për %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dërguar nga ju për %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Ju Prezantojmë Reagimet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Prekeni dhe mbajeni të prekur cilindo mesazh që të ndani me të tjerët se si ndjeheni prej tij.</string> -->
   <string name="Megaphones_remind_me_later">Kujtomë më vonë</string>
   <string name="Megaphones_verify_your_signal_pin">Verifikoni PIN-in tuaj të Signal-it</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Me raste, do t\’ju kërkojmë të verifikoni PIN-in tuaj, që kështu të mund ta mbani mend.</string>
@@ -2340,16 +2331,29 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation_callable_secure__menu_call">Thirrje përmes Signal-i</string>
   <string name="conversation_callable_secure__menu_video">Thirrje video Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Hollësi mesazhi</string>
-  <string name="conversation_context__menu_copy_text">Kopjo tekstin</string>
-  <string name="conversation_context__menu_delete_message">Fshije mesazhin</string>
-  <string name="conversation_context__menu_forward_message">Përcille mesazhin</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopjoje</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Fshiji</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Përcjellje</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Ridërgoje mesazhin</string>
-  <string name="conversation_context__menu_reply_to_message">Përgjigjuni mesazhin</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Përgjigju</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Përzgjidhni disa</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d të përzgjedhur</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Ruaje bashkëngjitjen</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Ruaji</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Tretje mesazhesh</string>
   <!--conversation_expiring_on-->
@@ -2537,16 +2541,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="KbsMegaphone__create_a_pin">Krijoni PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-et i mbajnë të fshehtëzuara të dhënat që depozitohen me Signal-in.</string>
   <string name="KbsMegaphone__create_pin">Krijoni PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Tregojini Signal-it se çfarë mendoni</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Për ta bërë Signal-in aplikacionin më të mirë në planet për shkëmbim mesazhesh, do të na pëlqente fort të dëgjonim mendimin tuaj.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Mësoni më tepër</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Hidhe tej</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Kërkime rreth Signal-it</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Besojmë në privatësinë.</b></p><p>Signal-i nuk ju ndjek, as grumbullon të dhëna tuajat. Që Signal-i të përmirësohet për këdo, bazohemi në mendimet e përdoruesve, <b>dhe do ta donim edhe tuajin.</b></p><p>Po kryejmë një pyetësor për të kuptuar se si e përdorni Signal-in. Pyetësori ynë s\’grumbullon ndonjë të dhënë që lejon identifikimin tuaj. Nëse ju intereson të jepni përshtypje shtesë, keni mundësinë të jepni të dhëna kontakti.</p><p>Nëse keni ndoca minuta dhe përshtypje për të dhënë, do të donim fort t\’i dëgjonim.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Plotësoni pyetësorin</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Jo, faleminderit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Pyetësori strehohet nga Alchemer, në përkatësinë e sigurt surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>

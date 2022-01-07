@@ -403,9 +403,6 @@
   <string name="DeviceListItem_today">نن ورځ</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">بې نومه فایل</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">د ګروپي زنګ وهلو پیژندنه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">یو نوی ګروپ پرانیزئ تر څو وړیا انکریپټ شوی ګروپی زنګ پیل کړئ</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">د له لاسه ورکړل شوي Play Services مطلوب ګرځول</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">دغه وسیله د Play له خدماتو نه ملاتړ نه کوي. د سیستم د بطري د مطلوبیت د غیر فعالولو لپاره کلیک وکړئ کوم چې کله هغه غیرفعال وي نو Signal نه پریږدي چې پیغامونه راولي.</string>
@@ -523,10 +520,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">د نوي اډمین ټاکنه</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">وړاندې تر دې چې ولاړ شئ، نو باید کم تر کمه یو کس د دې ګروپ د اډمین په توګه وټاکئ.</string>
   <string name="LeaveGroupDialog_choose_admin">د اډمین ټاکنه</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">غیرفعالول</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">له وړاندې نه د هر لینک کتل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">اوس تاسې کولای شئ له هرې وېب پاڼې څخه د لیږل شویو پیغامونو د لینک له وړاندې لیدل مستقیماً تر لاسه کړئ.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">هېڅ ډول د لینک له وړاندې کتل نشته</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">د دغه ګروپ لینک فعال نه دی</string>
@@ -809,8 +802,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">د %1$s له خوا %2$s ته لیږل شوی</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">ستاسې له خوا %1$s ته لیږل شوی</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">د غبرګونونو پیژندنه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">پر هر پیغام باندې کلیک وکړئ او ویې نیسئ تر څو خپل احساس په چټکۍ سره شریک کړئ.</string> -->
   <string name="Megaphones_remind_me_later">وروسته یې را په یاد کړه</string>
   <string name="Megaphones_verify_your_signal_pin">د Signal اړوند PIN تایید کړئ</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">موږ به کله نا کله له تاسې دا وغواړو چې خپل PIN مو تایید کړئ تر څو مو په یاد پاتې شی.</string>
@@ -2257,16 +2248,25 @@
   <string name="conversation_callable_secure__menu_call">د Signal ټلیفوني اړیکه</string>
   <string name="conversation_callable_secure__menu_video">د Signal ویډیويي اړیکه</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">د پیغام جزئیات</string>
-  <string name="conversation_context__menu_copy_text">د متن کاپي کول</string>
-  <string name="conversation_context__menu_delete_message">د پیغام پاکول</string>
-  <string name="conversation_context__menu_forward_message">د پیغام فاروارډ کول</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">معلومات</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">کاپي کول</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">پاکول</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">فاروارډ</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">د پیغام بیالیږل</string>
-  <string name="conversation_context__menu_reply_to_message">پیغام ته ځواب ورکول</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">بیا پلي کول</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">د ګڼ شمېر مواردو ټاکل</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">د ضمیمې ثبت</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">ثبت</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">ورک کېدونکې پیغامونه</string>
   <!--conversation_expiring_on-->
@@ -2451,16 +2451,6 @@
   <string name="KbsMegaphone__create_a_pin">د PIN جوړول</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs هغه معلومات ساتي کوم چې له Signal سره په انکریپټ ډول زیرمه شوي دي.</string>
   <string name="KbsMegaphone__create_pin">د PIN جوړول</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">دا چې تاسې څه فکر کوئ نو Signal ته ووایاست</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">د دې لپاه چې Signal په نړۍ کې د پیغام لیږلو لپاره غوره اپلیکیشن وګرځوو، نو موږ ستاسې نظریات په ورین تندي منو.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">لا زیات زده کړئ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">مرخص کول</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">د Signal څېړنه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>موږ پر محرمیت باندې باور لرو. </b></p><p>Signal تاسې نه تعقیبوي نه هم ستاسې ډیټا را ټولوي. د هر چا لپاره د Signal د ښه والي په خاطر، موږ د کارن پر فیډبک باندې تکیه کوو، <b> او هغو سره مینه کوو. </b></p><p> موږ داسې یوه سروې پر لاره اچولې تر څو پوه شو چې تاسې له Signal څخه څرنګه کار اخلئ. زموږ سروې ستاسې داسې کومه ډیټا نه را ټولوي چې له کبله یې تاسې وپیژندل شئ. که چیرته د اضافي فیډبک له شریکولو سره لېواله یاست، نو تاسې به دا غوراوی ولری چې د اړیکو معلومات وړاندې کړئ. </p><p> که چیرته تاسې څو دقیقې وخت او کوم فیډبک ولری، نو موږ به یې په مینه له تاسې واورو.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">سروې واخلئ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">نه مننه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">د دغې سروې کوربه توب د Alchemer له خوا په خوندي ډومین کې کېږي surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">د لېږد ایکن</string>
   <string name="ConversationListFragment_loading">را ښکته کېږي…</string>

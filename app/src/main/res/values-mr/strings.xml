@@ -447,9 +447,6 @@
   <string name="DeviceListItem_today">आज</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">अनामित फाईल</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">सादर करत आहे गट कॉल</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">विनामूल्य एन्क्रिप्टेड गट कॉल चालू करण्यासाठी नवीन गट उघडा</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">नसलेल्या प्ले सेवांकरिता ऑप्टीमाईझ करा</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">हा डिव्हाईस प्ले सेवांचे समर्थन करत नाही. निष्क्रिय असल्यावर संदेश पुनर्प्राप्त करताना अवरोधित करणारे सिस्टिम बॅटरी ऑप्टीमाईझेशन अक्षम करण्यासाठी टॅप करा.</string>
@@ -567,10 +564,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">नवीन प्रशासक निवडा</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">आपण सोडण्यापूर्वी, आपण या गटासाठी कमीत कमी एक नवीन प्रशासक निवडणे आवश्यक आहे.</string>
   <string name="LeaveGroupDialog_choose_admin">प्रशासक निवडा</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">अक्षम करा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">कुठलीपण लिंकचे पुनरावलोकन करा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">तुम्ही पाठवलेल्या संदेशांसाठी आता तुम्ही थेट कोणत्याही वेबसाइटवरून लिंक पूर्वावलोकने पुनर्प्राप्त करू शकता.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">कुठलेही लिंक पुनरावलोकन उपलब्ध नाही</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">ही गट लिंक सक्रिय नाही</string>
@@ -867,8 +860,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ने %2$s ला पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s"> आपन %1$s ला पाठवले</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">सादर करत आहे प्रतिक्रिया</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">आपल्याला कसे वाटते त्यासोबत जलद शेअर करण्यासाठी कुठल्याही संदेशावर टॅप करा आणि धरून ठेवा.</string> -->
   <string name="Megaphones_remind_me_later">मला नंतर आठवण करून द्या</string>
   <string name="Megaphones_verify_your_signal_pin">आपला Signal PIN सत्यापित करा.</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">आम्ही आपल्याला मधून मधून PIN सत्यापित करण्यास विचारू जेणेकरून आपल्याला तो लक्षात राहील.</string>
@@ -2329,16 +2320,29 @@
   <string name="conversation_callable_secure__menu_call">Signal कॉल</string>
   <string name="conversation_callable_secure__menu_video">Signal व्हिडिओ कॉल</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">संदेश तपशील</string>
-  <string name="conversation_context__menu_copy_text">मजकूर कॉपी करा</string>
-  <string name="conversation_context__menu_delete_message">संदेश हटवा</string>
-  <string name="conversation_context__menu_forward_message">संदेश फॉर्वर्ड करा</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">माहिती</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">कॉपी करा</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">हटवा</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">फॉर्वर्ड करा</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">संदेश पुन्हा पाठवा</string>
-  <string name="conversation_context__menu_reply_to_message">संदेशाला प्रत्युत्तर द्या</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">प्रत्युत्तर द्या</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">अनेक निवडा</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d निवडले</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">संलग्न जतन करा</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">जतन करा</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">हरवणारे संदेश</string>
   <!--conversation_expiring_on-->
@@ -2524,16 +2528,6 @@
   <string name="KbsMegaphone__create_a_pin">PIN तयार करा.</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात.</string>
   <string name="KbsMegaphone__create_pin">PIN तयार करा</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">आपल्याला काय वाटते ते Signal ला सांगा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">या ग्रहावरील Signal ला सर्वोत्कृष्ट संदेशन अॅप बनवण्यासाठी, आम्हाला आपला अभिप्राय ऐकायला आवडेल.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">अधिक जाणा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">रद्द करा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal संशोधन</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>आम्ही गोपनीयतेमध्ये विश्वास ठेवतो.</b></p><p>Signal आपल्याला ट्रॅक किंवा आपला डेटा गोळा करत नाही. सर्वांसाठी Signal सुधारित करण्यासाठी, आम्ही वापरकर्त्याच्या अभिप्रायावर अवलंबून असतो,<b> आणि आम्हाला आपण तो दिलेला आवडेल.</b></p><p>आपण Signal चा वापर कसा करता हे समजून घेण्यासाठी आम्ही एक सर्वेक्षण करतो आहे. आपण ओळखले जाल असा कुठलाही डेटा आमचे सर्वेक्षण गोळा करत नाही. आपण अतिरिक्त अभिप्राय शेअर करण्यास इच्छुक असल्यास, आपल्याकडे संपर्क माहिती पुरवण्याचा पर्याय असेल.</p><p>आपल्याकडे देण्यासाठी काही मिनिटे आणि अभिप्राय असल्यास, आम्हाला तो आपल्याकडून ऐकायला आवडेल.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">सर्वेक्षण घ्या</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">नाही धन्यवाद</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">सर्वेक्षण Alchemer द्वारा सुरक्षित डोमेन surveys.signalusers.org वर होस्ट केलेले आहे</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
   <string name="ConversationListFragment_loading">लोड होत आहे…</string>

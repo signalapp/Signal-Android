@@ -422,9 +422,6 @@
   <string name="DeviceListItem_today">Hari ini</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fail tidak dinamakan</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Memperkenalkan Panggilan Berkumpulan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Buka Kumpulan Baharu untuk memulakan panggilan kumpulan disulitkan percuma</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumkan untuk ketiadaan Perkhidmatan Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Peranti ini tidak menyokong Perkhidmatan Play. Ketik untuk menyahdayakan pengoptimuman bateri sistem yang menghalang Signal daripada mengambil mesej semasa tidak aktif.
@@ -530,10 +527,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Pilih pentadbir baru</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Sebelum anda pergi, anda mesti memilih sekurang-kurangnya satu pentadbir baharu untuk kumpulan ini.</string>
   <string name="LeaveGroupDialog_choose_admin">Pilih admin</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Nyahdayakan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Preview apa-apa link</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Anda kini boleh mendapatkan pratonton pautan terus daripada mana-mana laman web untuk mesej yang anda hantar.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Pratonton pautan tidak tersedia</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Pautan kumpulan ini tidak aktif</string>
@@ -811,8 +804,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dihantar oleh %1$s kepada %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dihantar oleh anda kepada %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Memperkenalkan Reaksi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ketik dan tahan mana-mana mesej untuk kongsikan perasaan anda dengan cepat.</string> -->
   <string name="Megaphones_remind_me_later">Ingatkan saya kemudian</string>
   <string name="Megaphones_verify_your_signal_pin">Sahkan PIN Signal anda</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Kami akan meminta anda untuk mengesahkan PIN anda sekali-sekala supaya anda mengingatinya.</string>
@@ -2231,16 +2222,28 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="conversation_callable_secure__menu_call">Panggilan Signal</string>
   <string name="conversation_callable_secure__menu_video">Panggilan video Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Butiran mesej</string>
-  <string name="conversation_context__menu_copy_text">Salin teks</string>
-  <string name="conversation_context__menu_delete_message">Padam mesej</string>
-  <string name="conversation_context__menu_forward_message">Hantar mesej</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Maklumat</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Salin</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Padam</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Hantar</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Hantar semula mesej</string>
-  <string name="conversation_context__menu_reply_to_message">Balas mesej</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Balas</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Pilih berbilang</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="other">%d dipilih</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Simpan lampiran</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Simpan</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Mesej hilang</string>
   <!--conversation_expiring_on-->
@@ -2419,16 +2422,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="KbsMegaphone__create_a_pin">Cipta PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN memastikan maklumat yang disimpan dengan Signal disulitkan.</string>
   <string name="KbsMegaphone__create_pin">Cipta PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Beritahu Signal perkara yang anda fikirkan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Untuk menjadikan Signal aplikasi pemesejan terbaik di planet ini, kami ingin mendengar maklum balas anda.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Ketahui lebih lanjut</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Tolak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Kaji Selidik Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Kami mempercayai privasi.</b></p><p>Signal tidak menjejaki anda atau mengumpulkan data anda. Untuk menambahbaik Signal bagi semua orang, kami bergantung pada maklum balas pengguna, <b>dan kami inginkan maklum balas anda.</b></p><p>Kami sedang menjalankan tinjauan untuk memahami cara anda menggunakan Signal. Tinjauan kami tidak mengumpul mana-mana data yang akan mengenal pasti anda. Sekiranya anda berminat untuk berkongsi maklum balas tambahan, anda mempunyai pilihan untuk memberikan maklumat hubungan.</p><p>Sekiranya anda mempunyai beberapa minit dan maklum balas untuk ditawarkan, kami ingin mendengar pendapat anda.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Sertai tinjauan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Tidak, terima kasih</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Tinjauan ini dihoskan oleh Alchemer di domain yang selamat di surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindah ikon</string>
   <string name="ConversationListFragment_loading">Memuatkan…</string>

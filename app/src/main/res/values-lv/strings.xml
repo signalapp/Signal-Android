@@ -414,9 +414,6 @@
   <string name="DeviceListItem_today">Šodien</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bezvārda fails</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Iepazīstināšana ar grupu zvaniem</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Atveriet/izveidojiet jaunu grupu, lai sāktu bezmaksas šifrētu grupas zvanu</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizē situācijai, kurā iztrūkst proprietārie Google Play pakalpojumi</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Par laimi šajā ierīcē nav Google Play pakalpojumi. Pieskaries, lai atspējotu sistēmas baterijas optimizāciju, kas traucē Signālam saņemt ziņas, kamēr tas ir neaktīvs (darbojas fonā).</string>
@@ -547,10 +544,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Izvēlēties jaunu administratoru</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Pirms aiziešanas šai grupai jāizvēlas vismaz viens jauns administrators.</string>
   <string name="LeaveGroupDialog_choose_admin">Izvēlieties adminu</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Atspējot</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Priekšskatīt jebkuru saiti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Tagad jūs varat izgūt saišu priekšskatījumus tieši no jebkuras vietnes nosūtītajām ziņām.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Saites priekšskatījums nav pieejams</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Šī grupas saite nav aktīva.</string>
@@ -846,8 +839,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s nosūtīja %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Jūs nosūtījāt %1$s </string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Iepazīstinām ar reakcijām</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Pieskarieties un turiet jebkuru ziņojumu, lai ātri kopīgotu savas domas.</string> -->
   <string name="Megaphones_remind_me_later">Atgādināt vēlāk</string>
   <string name="Megaphones_verify_your_signal_pin">Signal PIN verificēšana</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Dažreiz mēs Jums pieprasīsim pārbaudīt jūsu PIN, lai Jūs to atcerētos.</string>
@@ -2279,16 +2270,25 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="conversation_callable_secure__menu_call">Signāla audiozvans</string>
   <string name="conversation_callable_secure__menu_video">Signāla videozvans</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Ziņas rekvizīti</string>
-  <string name="conversation_context__menu_copy_text">Kopēt tekstu</string>
-  <string name="conversation_context__menu_delete_message">Izdzēst ziņu</string>
-  <string name="conversation_context__menu_forward_message">Pārsūtīt ziņu</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Informācija</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopēt</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Dzēst</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Uz priekšu</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Atkārtoti sūtīt ziņu</string>
-  <string name="conversation_context__menu_reply_to_message">Atbildēt uz ziņu</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Atbildēt</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Atzīmējiet vairākus</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Saglabāt pielikumu</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Saglabāt</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Gaistošās ziņas</string>
   <!--conversation_expiring_on-->
@@ -2480,16 +2480,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="KbsMegaphone__create_a_pin">Izveidot PINu</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN noglabā Signal informāciju šifrētā veidā.</string>
   <string name="KbsMegaphone__create_pin">Izveidot PINu</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Paudiet savu viedokli par Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Lai padarītu Signal par labāko ziņapmaiņas lietotni uz planētas, mēs ar prieku uzklausīsim jūsu atsauksmes.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Lasīt vairāk</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Nerādīt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal izpēte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Mēs ticam privātumam.</b></p><p>Lietotne Signal jūs neizseko un neapkopo jūsu datus. Lai uzlabotu Signal atbilstoši katra lietotāja vēlmēm, mēs ņemam vērā lietotāju atsauksmes, <b>un mēs labprāt uzklausīsim arī jūsu viedokli un ieteikumus.</b></p><p>Mēs veicam aptauju, lai noskaidrotu, kā lietotni Signal izmantojat jūs. Mūsu aptaujā netiek apkopoti dati, pēc kuriem jūs varētu identificēt. Ja vēlaties sniegt papildu atsauksmes, jums ir iespēja norādīt savu kontaktinformāciju.</p><p>Ja jums ir dažas minūtes laika un viedoklis, ko paust, mēs labprāt to uzklausīsim.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Piekrist aptaujai</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Nē, paldies</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Šo aptauju rīko uzņēmums Alchemer drošā domēnā surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
   <string name="ConversationListFragment_loading">Notiek ielāde…</string>

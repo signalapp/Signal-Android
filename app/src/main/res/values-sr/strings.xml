@@ -469,9 +469,6 @@
   <string name="DeviceListItem_today">Данас</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Датотека без имена</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Представљамо групне позиве</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворите нову групу да бисте започели бесплатан шифровани групни позив</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизуј за недостајуће Плеј сервисе</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овај уређај не подржава Плеј сервисе. Тапните да искључите системску оптимизацију потрошње батерије која спречава добављање порука док је Signal неактиван.</string>
@@ -602,10 +599,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Изабери новог администратора</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Пре него што напустите, морате да изаберете барем једног администратора за ову групу.</string>
   <string name="LeaveGroupDialog_choose_admin">Изаберите администратора</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Онемогући</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Прикажи било коју везу</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Сада можете да видите преглед линка са сваког веб сајта у порукама које шаљете.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Преглед веза није доступан</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Веза до групе није активна</string>
@@ -921,8 +914,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Послао %1$s за %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">ви сте послали за %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Представљамо реакције</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Пипните и држите било коју поруку за брзо дељење шта мислите о томе.</string> -->
   <string name="Megaphones_remind_me_later">Подсети ме касније</string>
   <string name="Megaphones_verify_your_signal_pin">Проверите ваш Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Повремено ћемо вас питати да унесете ваш PIN, како бисте га запамтили.</string>
@@ -2420,16 +2411,30 @@
   <string name="conversation_callable_secure__menu_call">Позови Signalом</string>
   <string name="conversation_callable_secure__menu_video">Signal видео позив</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Детаљи поруке</string>
-  <string name="conversation_context__menu_copy_text">Копирај текст</string>
-  <string name="conversation_context__menu_delete_message">Обриши поруку</string>
-  <string name="conversation_context__menu_forward_message">Проследи поруку</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Инфо</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Копирај</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Избриши</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Проследи</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Понови слање</string>
-  <string name="conversation_context__menu_reply_to_message">Одговори на поруку</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Одговори</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Изабери више</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="few"></item>
+    <item quantity="other">Изабрано: %d</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Сачувај прилог</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Сачувај</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Нестајуће поруке</string>
   <!--conversation_expiring_on-->
@@ -2622,16 +2627,6 @@
   <string name="KbsMegaphone__create_a_pin">Направите PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Употребом PIN-а се подаци које Signal складишти енкриптују</string>
   <string name="KbsMegaphone__create_pin">Направите PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Реците Signal-у шта мислите</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Да бисмо Signal учинили најбољом апликацијом за размену порука на планети, волели бисмо да чујемо ваше повратне информације.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Сазнај више</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Одбаци</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal Истраживање</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Верујемо у приватност.</b></p><p>Signal вас не прати нити прикупља ваше податке. Да бисмо побољшали Signal за све, ослањамо се на повратне информације корисника, <b>и ми бисмо волели Ваше.</b></p><p>Водимо анкету како бисмо разумели како користите Signal. Наша анкета не прикупља податке који ће вас идентификовати. Ако сте заинтересовани за дељење повратних информација, имаћете могућност да наведете контакт информације.</p><p>Ако имате неколико минута и повратне информације да поделите, желели бисмо да нам пишете.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Попуните анкету</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Не, хвала</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Домаћин анкете је Alchemer на сигурносном домену surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона преноса</string>
   <string name="ConversationListFragment_loading">Учитавање…</string>

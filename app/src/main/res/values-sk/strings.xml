@@ -490,9 +490,6 @@
   <string name="DeviceListItem_today">Dnes</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nepomenovaný súbor</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Predstavujeme skupinové hovory</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Založte Novú skupinu pre zahájenie bezplatného šifrovaného skupinového hovoru</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizovať pre chýbajúce služby Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zariadenie nepodporuje služby Google Play. Ťuknite pre vypnutie systémovej optimalizácie batérie, ktorá zabraňuje Signalu prijímať správy v neaktívnom stave.</string>
@@ -636,10 +633,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Vybrať nového admina</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Pred tým, než opustíte túto skupinu, musíte pre ňu vybrať aspoň jedného nového administrátora.</string>
   <string name="LeaveGroupDialog_choose_admin">Vybrať admina</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Zrušiť</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Pozrite si predbežne akýkoľvek odkaz</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Teraz môžete získavať ukážky stránok priamo z webových prepojení pre správy, ktoré odošlete.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Náhľad odkazu nedostupný</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Tento odkaz do skupiny nie je aktívny</string>
@@ -974,8 +967,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Odoslal/a %1$s adresátovi %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Vami odoslané adresátovi %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Predstavujeme reakcie</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ťuknutím a podržaním akejkoľvek správy rýchlo zdieľajte, ako sa cítite.</string> -->
   <string name="Megaphones_remind_me_later">Pripomenúť neskôr</string>
   <string name="Megaphones_verify_your_signal_pin">Overte svoj PIN pre Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Občas vás požiadame o overenie PINu, aby ste ho nezabudli.</string>
@@ -2507,16 +2498,31 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_callable_secure__menu_call">Signal hovor</string>
   <string name="conversation_callable_secure__menu_video">Videohovor Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Podrobnosti správy</string>
-  <string name="conversation_context__menu_copy_text">Kopírovať text</string>
-  <string name="conversation_context__menu_delete_message">Zmazať správu</string>
-  <string name="conversation_context__menu_forward_message">Preposlať správu</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopírovať</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Odstrániť</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Preposlať</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Odoslať správu znovu</string>
-  <string name="conversation_context__menu_reply_to_message">Odpovedať na správu</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Odpovedať</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Vyberte viaceré</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="few"></item>
+    <item quantity="many"></item>
+    <item quantity="other">%d vybraných</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Uložiť prílohu </string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Uložiť</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Miznúce správy</string>
   <!--conversation_expiring_on-->
@@ -2716,16 +2722,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="KbsMegaphone__create_a_pin">Vytvoriť PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN kódy udržiavajú informácie uložené v Signale zašifrované.</string>
   <string name="KbsMegaphone__create_pin">Vytvoriť PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Povedzte Signalu, čo si myslíte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Aby sme zo Signalu mohli spraviť najlepšiu aplikáciu na posielanie správ na planéte, radi by sme počuli vašu spätnú väzbu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Dozvedieť sa viac</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Zrušiť</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Prieskum Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Veríme v súkromie.</b></p><p>Signal vás nesleduje a nezhromažďuje vaše údaje. Aby sme Signal vylepšili pre každého, spoliehame sa na spätnú väzbu našich používateľov <b> a tešíme sa aj na vašu.</b></p><p>Spustili sme anketu, aby sme zistili, ako Signal používate. Naša anketa nezhromažďuje žiadne údaje, na základe ktorých by vás bolo možné identifikovať. Ak nám budete chcieť poslať dodatočnú odozvu, budete mať možnosť poskytnúť kontaktné údaje.</p><p>Ak máte pár minút a vedeli by ste nám ponúknuť spätnú väzbu, boli by sme radi, keby ste sa nám ozvali.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Zapojiť sa do ankety</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Nie, ďakujem</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu sprostredkúva Alchemer na zabezpečenej doméne surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
   <string name="ConversationListFragment_loading">Načítava sa…</string>

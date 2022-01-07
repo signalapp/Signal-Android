@@ -389,9 +389,6 @@
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">未命名文件</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">隆重推出“群语音通话”功能</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">打开一个新版群组来开始一次免费的加密群语音通话</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">缺失 Google Play 服务时优化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">该设备不支持 Google Play 服务。点击禁用系统电池优化，防止 Signal 非活动时无法获取新消息。</string>
@@ -495,10 +492,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">选择新的管理员。</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">在离开群组之前，必须选择至少一位新的管理员。</string>
   <string name="LeaveGroupDialog_choose_admin">选择管理员</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">关闭</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">预览任意链接</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">您可直接从您发送的链接网站中生成预览。</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">没有预览链接可用</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">此群组链接未激活</string>
@@ -760,8 +753,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 发送至 %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">由您发送至 %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">新推出“回应”功能</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">长按任何消息，即刻分享感受。</string> -->
   <string name="Megaphones_remind_me_later">稍后提醒</string>
   <string name="Megaphones_verify_your_signal_pin">验证 Signal PIN 码</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">为了方便记住 PIN 密码，将偶尔提示验证。</string>
@@ -2129,16 +2120,25 @@
   <string name="conversation_callable_secure__menu_call">Signal 呼叫</string>
   <string name="conversation_callable_secure__menu_video">Signal 视频通话</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">消息详情</string>
-  <string name="conversation_context__menu_copy_text">复制文本</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">信息</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">复制</string>
+  <!--Button to delete a message-->
   <string name="conversation_context__menu_delete_message">删除</string>
-  <string name="conversation_context__menu_forward_message">转发消息</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">转发</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">重新发送信息</string>
-  <string name="conversation_context__menu_reply_to_message">回复消息</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">回复</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">多选</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">保存附件</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">保存</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">阅后即焚</string>
   <!--conversation_expiring_on-->
@@ -2316,16 +2316,6 @@
   <string name="KbsMegaphone__create_a_pin">创建 PIN 码</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal 储存的信息使用你的 PIN 码来加密。</string>
   <string name="KbsMegaphone__create_pin">创建 PIN 码</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">发表您的 Signal 的感想</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">您的意见将成为 Signal 称霸即时通信界的基础，我们期待您的反馈！</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">了解更多</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">清除</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal 搜索</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>我们尊重隐私。</b></p><p>Signal 不会跟踪或搜集您的数据。我们需要用户反馈来改进 Signal ，<b>你的宝贵意见不可或缺。</b></p><p>我们正在做一份关于您使用 Signal 的调研。此调研不会搜集任何泄漏您身份的信息。若有兴趣分享更多反馈，您可以选择性提供联系方式。</p><p>如果您能抽出几分钟完成调研，我们将翘首以待。</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">参与调研</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">不，谢谢。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">该调查使用 Alchemer 并托管在安全域名 surveys.signalusers.org 上</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">正在加载…</string>

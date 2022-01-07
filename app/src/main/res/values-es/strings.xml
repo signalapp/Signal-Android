@@ -448,9 +448,6 @@
   <string name="DeviceListItem_today">Hoy</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Archivo sin nombre</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">¡Las llamadas en grupo están aquí!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Entra en un grupo del nuevo sistema para iniciar una llamada en grupo cifrada</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizar sin servicios de Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no dispone de los servicios de Google Play. Toca para desactivar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
@@ -568,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Selecciona nuev@ admin</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de abandonar, selecciona un@ nuev@ admin para este grupo.</string>
   <string name="LeaveGroupDialog_choose_admin">Seleccionar admin</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Desactivar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Envía enlaces con vista previa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Ahora se puede adjuntar la imagen para la vista previa de enlaces en los mensajes que envíes, trasmitida directamente desde la propia página web.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Vista previa no disponible</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">El enlace al grupo no está disponible</string>
@@ -868,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Enviado por %1$s a %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Enviado por ti a %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Las reacciones a mensajes han llegado</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Mantén pulsado un mensaje para mostrar cómo te sientes.</string> -->
   <string name="Megaphones_remind_me_later">Recordar más tarde</string>
   <string name="Megaphones_verify_your_signal_pin">Verifica tu PIN de Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Te preguntaremos ocasionalmente verificar tu PIN para que así lo puedas recordar.</string>
@@ -2334,16 +2325,29 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_callable_secure__menu_call">Llamada de Signal</string>
   <string name="conversation_callable_secure__menu_video">Videollamada de Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Detalles del mensaje</string>
-  <string name="conversation_context__menu_copy_text">Copiar texto</string>
-  <string name="conversation_context__menu_delete_message">Eliminar mensaje</string>
-  <string name="conversation_context__menu_forward_message">Reenviar mensaje</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Información</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Copiar</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Eliminar</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Reenviar</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
-  <string name="conversation_context__menu_reply_to_message">Responder al mensaje</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Responder</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Selección múltiple</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d seleccionados</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Guardar archivo adjunto</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Guardar</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Desaparición de mensajes</string>
   <!--conversation_expiring_on-->
@@ -2529,16 +2533,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KbsMegaphone__create_a_pin">Crear PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">El PIN permite activar el bloqueo de registro de tu número y almacena tu cuenta cifrada en el servidor de Signal de forma que solo tú puedes acceder a ella. Ni siquiera la gente de Signal tiene acceso.</string>
   <string name="KbsMegaphone__create_pin">Crea tu PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Cuéntanos qué piensas de Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Para hacer de Signal la mejor aplicación de chat del mundo, nos gustaría saber tu opinión (encuesta en inglés).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Saber más</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Ignorar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Encuesta de uso de Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Creemos en la privacidad.</b></p><p>Signal no analiza el uso que le das, ni recopila tus datos. Para mejorar Signal para tod@s, necesitamos la opinión de l@s usuari@s <b>y especialmente la tuya.</b></p><p>Hemos preparado una encuesta en inglés para entender mejor cómo usas Signal. Nuestra encuesta no recopila ningún detalle que te pueda identificar. Si te interesa incluir información adicional (en inglés), tienes la opción de dejar tus datos de contacto.</p><p>Si tienes unos pocos minutos para ofrecernos tu opinión (en inglés), nos encantaría escucharla.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Hacer la encuesta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">No gracias</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">La encuesta en inglés está alojada en Alchemer en el dominio seguro surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando …</string>

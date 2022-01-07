@@ -490,9 +490,6 @@
   <string name="DeviceListItem_today">Dzisiaj</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Plik bez nazwy</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Przedstawiamy rozmowy grupowe</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otwórz Nową grupę, aby rozpocząć darmowe, zaszyfrowane połączenie grupowe</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optymalizacja dla brakujących Usług Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Urządzenie nie wspiera Usług Play. Dotknij, aby wyłączyć systemową optymalizację baterii uniemożliwiającą odbieranie wiadomości w czasie braku aktywności.</string>
@@ -636,10 +633,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Wybierz nowego administratora</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Przed opuszczeniem tej grupy musisz wybrać co najmniej jednego nowego administratora.</string>
   <string name="LeaveGroupDialog_choose_admin">Wybierz administratora</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Wyłączone</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Podgląd każdego linku</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Teraz możesz pobierać podglądy linków w wysyłanych wiadomościach bezpośrednio z dowolnej strony internetowej.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Brak dostępnego podglądu linku</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Link do tej grupy jest nieaktywny</string>
@@ -974,8 +967,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Wysłano przez %1$s do %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Wysłano przez Ciebie do %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Przedstawiamy reakcje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Stuknij i przytrzymaj wiadomość, aby szybko pokazać co czujesz. </string> -->
   <string name="Megaphones_remind_me_later">Przypomnij później</string>
   <string name="Megaphones_verify_your_signal_pin">Zweryfikuj swój PIN Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Co jakiś czas będziemy prosić Cię o weryfikację PIN-u, abyś go zapamiętał(a).</string>
@@ -2500,16 +2491,31 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_callable_secure__menu_call">Połączenie Signal</string>
   <string name="conversation_callable_secure__menu_video">Połączenie wideo Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Szczegóły wiadomości</string>
-  <string name="conversation_context__menu_copy_text">Kopiuj tekst</string>
-  <string name="conversation_context__menu_delete_message">Usuń wiadomość</string>
-  <string name="conversation_context__menu_forward_message">Przekaż wiadomość</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Informacje</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopiuj</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Usuń</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Przekaż dalej</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Wyślij ponownie wiadomość</string>
-  <string name="conversation_context__menu_reply_to_message">Odpowiedz na wiadomość</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Odpowiedz</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Wybierz wiele</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="few"></item>
+    <item quantity="many"></item>
+    <item quantity="other">%d wybrane</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Zapisz załącznik</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Zapisz</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Znikające wiadomości</string>
   <!--conversation_expiring_on-->
@@ -2709,16 +2715,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KbsMegaphone__create_a_pin">Utwórz PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane.</string>
   <string name="KbsMegaphone__create_pin">Utwórz PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Przekaż Signal swoją opinię</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Chcemy poznać Twoją opinię, aby uczynić Signal najlepszym komunikatorem na świecie.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Dowiedz się więcej</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Odrzuć</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Badanie Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Wierzymy w prawo do prywatności.</b></p><p>Signal nie śledzi Cię, ani nie gromadzi Twoich danych. Przy ulepszaniu aplikacji Signal polegamy na opiniach naszych użytkowników i  <b>pragniemy poznać również Twoją.</b></p><p>Przeprowadzamy ankietę, aby zrozumie jak korzystasz z Signal. Nasza ankieta nie zbiera żadnych informacji, które mogą Cię zidentyfikować. Jeśli chcesz podzielić się dodatkowymi informacjami, będziesz mieć możliwość podania informacji kontaktowych.</p><p>Jeśli masz kilka minut i jakieś uwagi, chcielibyśmy je poznać.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Wypełnij ankietę</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Nie, dzięki</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Ta ankieta jest hostowana przez Alchemer na zabezpieczonej domenie surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
   <string name="ConversationListFragment_loading">Wczytywanie…</string>

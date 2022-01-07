@@ -490,9 +490,6 @@
   <string name="DeviceListItem_today">Сьогодні</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Безіменний файл</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Представляємо Групові дзвінки</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Створіть Нову групу, щоб розпочати безкоштовний і захищений груповий дзвінок</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимізувати для випадку відсутності служб Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Цей пристрій не підтримує служби Google Play. Торкніться, щоб вимкнути режим ощадливого споживання енергії Signal і отримувати повідомлення коли Signal працює у фоні.</string>
@@ -636,10 +633,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Виберіть нового адміністратора</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Перш ніж покинути цю групу, необхідно обрати щонайменше одного нового адміністратора для цієї групи.</string>
   <string name="LeaveGroupDialog_choose_admin">Вибрати адміністратора </string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Вимкнути</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Попередній будь-якого посилання</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Тепер ви можете додавати в свої повідомлення перегляду посилань, які будуть завантажуватись безпосередньо з будь-якого сайту. </string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Немає попереднього перегляду посилання</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Посилання групи неактивне</string>
@@ -974,8 +967,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Надіслано %1$s до %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Надіслано вами до %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Представляємо Реакції</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Натисніть і утримуйте будь-яке повідомлення, щоб швидко відповісти вашими почуттями.</string> -->
   <string name="Megaphones_remind_me_later">Нагадати пізніше</string>
   <string name="Megaphones_verify_your_signal_pin">Підтвердіть свій PIN-код Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Іноді ми будемо просити вас підтвердити PIN-код, щоб ви його не забували.</string>
@@ -2508,16 +2499,31 @@
   <string name="conversation_callable_secure__menu_call">Виклик через Signal </string>
   <string name="conversation_callable_secure__menu_video">Відеодзвінок Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Деталі повідомлення</string>
-  <string name="conversation_context__menu_copy_text">Скопіювати текст</string>
-  <string name="conversation_context__menu_delete_message">Видалити повідомлення</string>
-  <string name="conversation_context__menu_forward_message">Переслати повідомлення</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Інформація</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Копіювати</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Видалити</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Переслати</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Переслати повідомлення</string>
-  <string name="conversation_context__menu_reply_to_message">Відповісти на повідомлення</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Відповісти</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Вибрати декілька</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="few"></item>
+    <item quantity="many"></item>
+    <item quantity="other">%d обрано</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Зберегти вкладення</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Зберегти</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Зникнення повідомлень</string>
   <!--conversation_expiring_on-->
@@ -2719,16 +2725,6 @@
   <string name="KbsMegaphone__create_a_pin">Створіть PIN-код</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-коди зберігають інформацію в сервісі Signal зашифровано.</string>
   <string name="KbsMegaphone__create_pin">Створити PIN-код</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Поділиться думкою з Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Щоб зробити Signal найкращим застосунком для листування на планеті, ми б хотіли почути ваш відгук.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Дізнатись більше</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Відхилити</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Дослідження Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Ми віримо у приватність.</b></p><p>Signal не слідкує за вами та не збирає ваші дані. Щоб покращити Signal для усіх, ми покладаємось на відгуки користувачів,<b>та хотіли б з радістю отримати й ваш.</b></p><p>Ми проводимо опитування задля розуміння, як ви використовуєте Signal. Наше опитування не збирає будь-яких даних, які б могли вас ідентифікувати. Якщо вам цікаво поділитись додатковим відгуком, ви матимете можливість надати вашу контактну інформацію.</p><p>Якщо ви маєте декілька хвилин на відгук, ми залюбки до нього прислухаємось.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Пройти опитування</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Ні, дякую</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Опитування проводиться сайтом Alchemer на захищеному домені surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Логотип типу зв\'язку</string>
   <string name="ConversationListFragment_loading">Завантаження…</string>

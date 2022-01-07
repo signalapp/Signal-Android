@@ -185,7 +185,7 @@
   <string name="ConversationItem_you_deleted_this_message">Ја избришавте оваа порака.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_add_attachment">Прикачи датотека</string>
-  <string name="ConversationActivity_select_contact_info">Изберете контакт инфо</string>
+  <string name="ConversationActivity_select_contact_info">Изберете информации за контакт</string>
   <string name="ConversationActivity_compose_message">Напишете порака</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извинете, се појави грешка при прикачување на датотеката.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адресата не е валидна SMS или e-mail адреса!</string>
@@ -448,9 +448,6 @@
   <string name="DeviceListItem_today">Денес</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Неименувана датотека</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Ви претставуваме групни повици</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Отворете нова група за да започнете бесплатен шифриран групен повик</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизација за недостапни Play сервиси</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овој уред не поддржува Play сервиси. Допрете за да ги исклучите оптимизациите за батеријата кои што го спредчуваат Signal да прима пораки при неактивност.</string>
@@ -568,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Избери нов администратор</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Пред да ја напуштите групата мора да одберете барем еден администратор за оваа група.</string>
   <string name="LeaveGroupDialog_choose_admin">Избери администратор</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Исклучи</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Преглед на било кој линк</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Сега можете да преземате прегледи на линкови директно од било која веб страница за испратените пораки.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Не е достапен преглед за линкот</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Групниот линк не е активен</string>
@@ -868,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Испратено од %1$s до %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Испратено од тебе до %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Реакции за претставување</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Допрете и задржете било која порака за брзо да споделите како се чувствувате.</string> -->
   <string name="Megaphones_remind_me_later">Потсети ме подоцна</string>
   <string name="Megaphones_verify_your_signal_pin">Проверете го Вашиот Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Повремено ќе Ве прашаме да го проверите Вашиот PIN со цел да го запомните.</string>
@@ -2330,16 +2321,29 @@
   <string name="conversation_callable_secure__menu_call">Signal повик </string>
   <string name="conversation_callable_secure__menu_video">Signal видео повик</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Детали за пораката</string>
-  <string name="conversation_context__menu_copy_text">Копирај текст</string>
-  <string name="conversation_context__menu_delete_message">Избриши порака</string>
-  <string name="conversation_context__menu_forward_message">Проследи порака</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Информации</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Копирај</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Избриши</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Препрати</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Препрати порака</string>
-  <string name="conversation_context__menu_reply_to_message">Одговори на порака</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Одговори</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Изберете повеќе</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d избрана</item>
+    <item quantity="other">%d избрани</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Зачувај додаток</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Зачувај</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Пораки што исчезнуваат</string>
   <!--conversation_expiring_on-->
@@ -2525,16 +2529,6 @@
   <string name="KbsMegaphone__create_a_pin">Создадете PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN кодовите ги чуваат шифрирани информациите складирани во Signal.</string>
   <string name="KbsMegaphone__create_pin">Создадете PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Кажете ни што мислите за Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Би сакале да го чуеме Вашето мислење за да ја направиме Signal најдобрата апликација за пораки на планетата.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Дознајте повеќе</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Откажи</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal истражувања</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Веруваме во приватност.</b></p><p>Signal не ги следи или собира Вашите податоци. За да го подобриме Signal за сите, се потпираме на повратни информации од корисниците <b>и баш би сакале да дознаеме што мислите.</b></p><p>Во моментов имаме отворена анкета за да дознаеме како го користите Signal. Нашата анкета не собира никакви податоци кои што би Ве идентификувале. Ако сте заинтересирани да споделите повратни информации, можете да оставите информации за контакт.</p><p>Ако имате неколку минути и би сакале да го споделите Вашето искуство, ние би сакале да слушнеме повеќе.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Направете ја анкетата</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Не, благодарам</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Анкетата е хостирана од Alchemer на безбедниот домен surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Симбол за транспорт</string>
   <string name="ConversationListFragment_loading">Се вчитува…</string>

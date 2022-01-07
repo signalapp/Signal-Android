@@ -448,9 +448,6 @@
   <string name="DeviceListItem_today">Idag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Namnlös fil</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Vi presenterar gruppsamtal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öppna en Ny grupp för att starta ett fritt krypterat gruppsamtal</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheten stöder inte Play-tjänster. Tryck för att inaktivera systembatterioptimeringar som hindrar Signal från att hämta meddelanden vid inaktivitet.</string>
@@ -568,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Välj ny administratör</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Innan du lämnar måste du välja minst en ny administratör för denna grupp.</string>
   <string name="LeaveGroupDialog_choose_admin">Välj administratör</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Inaktivera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Förhandsgranska vilken länk som helst</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Du kan nu hämta länkförhandsgranskningar direkt från valfri webbplats för meddelanden du skickar.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Ingen länkförhandsvisning tillgänglig</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
@@ -868,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Skickad av %1$s till %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Skickad av dig till %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Introducerar Reaktioner</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tryck och håll ett meddelande för att snabbt dela hur du känner.</string> -->
   <string name="Megaphones_remind_me_later">Påminn mig senare</string>
   <string name="Megaphones_verify_your_signal_pin">Verifiera din Signal PIN-kod</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Vi ber dig ibland att verifiera din PIN-kod så att du kommer ihåg den.</string>
@@ -2327,16 +2318,29 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_callable_secure__menu_call">Signal-samtal</string>
   <string name="conversation_callable_secure__menu_video">Signal-videosamtal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Meddelandedetaljer</string>
-  <string name="conversation_context__menu_copy_text">Kopiera text</string>
-  <string name="conversation_context__menu_delete_message">Ta bort meddelande</string>
-  <string name="conversation_context__menu_forward_message">Vidarebefordra meddelande</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopiera</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Ta bort</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Vidarebefordra</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Skicka meddelande igen</string>
-  <string name="conversation_context__menu_reply_to_message">Svara på meddelande</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Svara</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Välj flera</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d valda</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Spara bilaga</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Spara</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Försvinnande meddelanden</string>
   <!--conversation_expiring_on-->
@@ -2522,16 +2526,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsMegaphone__create_a_pin">Skapa en PIN-kod</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koder håller information som lagras hos Signal krypterad.</string>
   <string name="KbsMegaphone__create_pin">Skapa PIN-kod</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Berätta för Signal vad du tycker</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">För att göra Signal till den bästa meddelande-appen på planeten, skulle vi gärna höra din åsikt.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Läs mer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Avfärda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal-forskning</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi tror på integritet.</b></p><p>Signal spårar inte dig och samlar inte in dina uppgifter. För att förbättra Signal för alla förlitar vi oss på användarrespons, <b>och vi skulle vilja få din.</b></p><p>Vi genomför en undersökning för att förstå hur du använder Signal. Vår undersökning samlar inte in några uppgifter som kommer att identifiera dig. Om du är intresserad av att dela ytterligare åsikter har du möjlighet att ge kontaktinformation.</p><p>Om du har några minuter och respons att erbjuda skulle vi gärna höra från dig.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Ta undersökningen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Nej tack</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Undersökningen anordnas av Alchemer på den säkra domänen surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>

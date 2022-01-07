@@ -447,9 +447,6 @@
   <string name="DeviceListItem_today">امروز</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">فایل بدون نام</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">معرفی تماس‌های گروهی</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">برای شروع تماس گروهی رایگان و رمزگذاری شده یک گروه جدید باز کنید</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">بهینه‌سازی به علت ناموجود بودن خدمات Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">این دستگاه از خدمات Play پشتیبانی نمی‌کند. برای غیرفعال کردن بهینه‌سازی باتری سیستم که از دریافت پیام‌ها هنگامی که سیگنال غیرفعال است ممانعت می‌کند، ضربه بزنید.</string>
@@ -567,10 +564,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">انتخاب مدیر جدید</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">قبل از ترک کردن، باید حداقل یک مدیر جدید برای این گروه انتخاب کنید.</string>
   <string name="LeaveGroupDialog_choose_admin">انتخاب مدیر</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">غیرفعال کردن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">پیش‌نمایش هر پیوند</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">شما حالا می‌توانید پیش‌نمایش‌ پیوندها را به صورت مستقیم از هر وب‌سایتی برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">هیچ پیش‌نمایش پیوند‌ی در دسترس نیست</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
@@ -867,8 +860,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">ارسال شد از %1$s به %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">ارسال شد از شما به %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">معرفی واکنش‌ها</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">با نگاه داشتن دست خود بر روی هر پیام‌ احساستان را به‌ اشتراک بگذارید.</string> -->
   <string name="Megaphones_remind_me_later">بعداً به من یادآوری کن</string>
   <string name="Megaphones_verify_your_signal_pin">پین سیگنال خود را وارسی کنید</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">هرازچندگاهی از شما می‌خواهیم که پین خود را وارسی کنید تا آن را بخاطر داشته باشید.</string>
@@ -2330,16 +2321,29 @@
   <string name="conversation_callable_secure__menu_call">تماس سیگنال</string>
   <string name="conversation_callable_secure__menu_video">تماس تصویری سیگنال</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">جزئیات پیام</string>
-  <string name="conversation_context__menu_copy_text">کپی متن</string>
-  <string name="conversation_context__menu_delete_message">حذف پیام</string>
-  <string name="conversation_context__menu_forward_message">بازارسال پیام</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">اطلاعات</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">کپی</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">حذف</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">بازارسال</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">ارسال مجدد پیام</string>
-  <string name="conversation_context__menu_reply_to_message">پاسخ به پیام</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">پاسخ</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">انتخاب چندگانه</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d انتخاب شد</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">ذخیره‌سازی پیوست</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">ذخیره</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">پیام‌های ناپدید شونده</string>
   <!--conversation_expiring_on-->
@@ -2525,16 +2529,6 @@
   <string name="KbsMegaphone__create_a_pin">یک پین جدید ایجاد کنید</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">پین‌ها اطلاعات ذخیره شده در سیگنال را رمزگذاری می‌کنند.</string>
   <string name="KbsMegaphone__create_pin">ایجاد پین</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">به سیگنال بگویید چه فکر می‌کنید</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">برای تبدیل سیگنال به بهترین برنامه‌ٔ پیام‌رسانی بر روی سیاره، دوست داریم تا بازخورد شما را بشنویم.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">بیشتر یاد بگیرید</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">نادیده گرفتن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">تحقیقات سیگنال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ما به حریم خصوصی باور داریم.</b></p><p>سیگنال شما را دنبال و اطلاعات شما را جمع‌آوری نمی‌کند. برای بهبود سیگنال برای همه، ما به بازخورد کاربران متکی هستیم، <b>و دوست داریم بازخورد شما را داشته باشیم.</b></p><p>ما در حال انجام یک نظرسنجی برای فهمیدن اینکه شما چگونه از سیگنال استفاده می‌کنید هستیم. نظرسنجی ما هیچ‌گونه اطلاعاتی را که موجب شناسایی شما بشود، جمع‌آوری نمی‌کند. اگر مایل به اشتراک بازخورد بیشتری هستید، گزینهٔ افزودن اطلاعات تماس خود را خواهید داشت.</p><p>اگر چند دقیقه فرصت و بازخوردی برای ارائه دارید، ما دوست داریم که از شما بشنویم.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">شرکت در نظرسنجی</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">نه ممنون</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">این نظرسنجی بوسیلهٔ Alchemer در دامنهٔ امن surveys.signalusers.org ‌میزبانی می‌شود.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">آیکون انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>

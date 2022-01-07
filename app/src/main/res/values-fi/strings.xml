@@ -447,9 +447,6 @@
   <string name="DeviceListItem_today">tänään</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nimeämätön tiedosto</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Esittelyssä ryhmäpuhelut</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Avaa uuden tyylin ryhmä aloittaaksesi ilmaisen ja salatun ryhmäpuhelun</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Korjaa Play-palvelujen puuttuminen</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Laite ei tue Play-palveluita. Virransäästöominaisuudet estävät viestien hakemisen taustalla, ota toiminto pois käytöstä napauttamalla.</string>
@@ -567,10 +564,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Valitse uusi ylläpitäjä</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Ennen kuin lähdet, sinun on valittava vähintään yksi uusi ylläpitäjä tälle ryhmälle.</string>
   <string name="LeaveGroupDialog_choose_admin">Valitse ylläpitäjä</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Ota pois käytöstä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Esikatsele kaikkia linkkejä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Voit nyt hakea linkkien esikatselut suoraan mistä tahansa verkkosivustosta ja liittää ne lähettämiisi viesteihin.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Linkin esikatselu ei ole saatavilla</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Tämä ryhmälinkki ei ole aktiivinen</string>
@@ -867,8 +860,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s lähettämä henkilölle %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sinun lähettämäsi henkilölle %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Esittelyssä reaktiot</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Napauta ja paina mitä tahansa viestiä jakaaksesi nopeasti tunteesi.</string> -->
   <string name="Megaphones_remind_me_later">Muistuta minua myöhemmin</string>
   <string name="Megaphones_verify_your_signal_pin">Varmenna Signalin tunnusluku</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Tulemme toisinaan pyytämään sinua varmentamaan tunnuslukusi, jotta muistat sen.</string>
@@ -2326,16 +2317,29 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_callable_secure__menu_call">Signal-puhelu</string>
   <string name="conversation_callable_secure__menu_video">Signal-videopuhelu</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Viestin tiedot</string>
-  <string name="conversation_context__menu_copy_text">Kopioi teksti</string>
-  <string name="conversation_context__menu_delete_message">Poista viesti</string>
-  <string name="conversation_context__menu_forward_message">Välitä viesti</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Tietoja</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopioi</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Poista</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Välittäminen</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Lähetä viesti uudelleen</string>
-  <string name="conversation_context__menu_reply_to_message">Vastaa viestiin</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Vastaa</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Valitse useita</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d valittu</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Tallenna liite</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Tallenna</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Katoavat viestit</string>
   <!--conversation_expiring_on-->
@@ -2521,16 +2525,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KbsMegaphone__create_a_pin">Luo tunnusluku</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Tunnusluvut pitävät Signaliin tallennetut tiedot salattuina</string>
   <string name="KbsMegaphone__create_pin">Luo tunnusluku</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Kerro Signalille mielipiteesi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Jotta Signalista tulisi planeetan paras viestintäsovellus, haluaisimme kuulla mielipiteesi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Lue lisää</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Selvä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Signal-tutkimus</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Uskomme yksityisyyteen.</b></p><p>Signal ei seuraa sinua tai kerää tietojasi. Signalin kehitystyössä olemme riippuvaisia käyttäjien palautteesta ja <b>haluaisimme kuulla myös sinun mielipiteesi</b>.</p> <p>Haluamme ymmärtää kuinka käytät Signalia. Kyselyssä ei kerätä tietoja, joista sinut voisi tunnistaa. Jos haluat jakaa yksityiskohtaisempaa palautetta, sinulla on mahdollisuus antaa yhteystietosi.</p><p>Jos sinulla on palautetta ja muutama minuutti aikaa, haluaisimme kuulla mielipiteesi.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Vastaa kyselyyn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Ei kiitos</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Kysely on saatavilla Surveygizmo-palvelussa suojatussa verkkotunnuksessa surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
   <string name="ConversationListFragment_loading">Ladataan…</string>

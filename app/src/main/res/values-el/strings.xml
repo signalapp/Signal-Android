@@ -443,9 +443,6 @@
   <string name="DeviceListItem_today">Σήμερα</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ανώνυμο αρχείο</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Ήρθαν οι Ομαδικές κλήσεις</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Δημιούργησε μια Ομάδα νέου τύπου για να κάνεις μια ελεύθερη, κρυπτογραφημένη ομαδική κλήση.</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Βελτιστοποίηση για τις υπηρεσίες Play που λείπουν</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Αυτή η συσκευή δεν υποστηρίζει τις υπηρεσίες Play. Πάτα για απενεργοποίηση των βελτιστοποιήσεων μπαταρίας του συστήματος που εμποδίζουν το Signal από το να λαμβάνει μηνύματα όταν είναι ανενεργό.</string>
@@ -563,10 +560,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Επιλογή νέου διαχειριστή</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Πριν αποχωρήσεις, θα πρέπει να επιλέξεις τουλάχιστον έναν νέο διαχειριστή ή διαχειρίστρια για την ομάδα.</string>
   <string name="LeaveGroupDialog_choose_admin">Επιλογή διαχειριστή</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Απενεργοποίηση</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Προεπισκόπηση κάθε συνδέσμου</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Μπορείς πλέον να λάβεις προεπισκόπεις συνδέσμων απ\' ευθείας από οποιαδήποτε σελίδα για τα μηνύματα που στέλνεις.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Δεν υπάρχει διαθέσιμη προεπισκόπιση συνδέσμου</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Ο σύνδεσμος της ομάδας δεν είναι ενεργός</string>
@@ -863,8 +856,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Στάλθηκε από τον/την %1$s προς τον/την %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Στάλθηκε από εσένα προς τον/την %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Υποδέξου τις Αντιδράσεις</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Πάτα παρατεταμένα οποιοδήποτε μήνυμα για να μοιραστείς γρήγορα το πως νιώθεις.</string> -->
   <string name="Megaphones_remind_me_later">Θύμισέ μου αργότερα</string>
   <string name="Megaphones_verify_your_signal_pin">Επιβεβαίωσε το PIN του Signal σου</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Θα σου ζητάμε κάθε τόσο να επιβεβαιώσεις το PIN σου, για να το θυμάσαι.</string>
@@ -2322,16 +2313,29 @@
   <string name="conversation_callable_secure__menu_call">Κλήση Signal</string>
   <string name="conversation_callable_secure__menu_video">Βιντεοκλήση Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Στοιχεία μηνύματος</string>
-  <string name="conversation_context__menu_copy_text">Αντιγραφή κειμένου</string>
-  <string name="conversation_context__menu_delete_message">Διαγραφή μηνύματος</string>
-  <string name="conversation_context__menu_forward_message">Προώθηση μηνύματος</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Πληροφορίες</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Αντιγραφή</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Διαγραφή</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Προώθηση</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Αποστολή ξανά</string>
-  <string name="conversation_context__menu_reply_to_message">Απάντηση στο μήνυμα</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Απάντηση</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Επιλογή πολλαπλών</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d επιλεγμένα</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Αποθήκευση συνημμένου</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Αποθήκευση</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Μηνύματα που εξαφανίζονται</string>
   <!--conversation_expiring_on-->
@@ -2517,16 +2521,6 @@
   <string name="KbsMegaphone__create_a_pin">Δημιούργησε ένα PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες.</string>
   <string name="KbsMegaphone__create_pin">Δημιουργία PIN</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Πες στο Signal τη γνώμη σου</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Για να κάνουμε το Signal τη καλύτερη εφαρμογή επικοινωνίας στο κόσμο, θα εκτιμούσαμε πραγματικά να ακούσουμε τη γνώμη σου.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Μάθε περισσότερα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Απόρριψη</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Έρευνα Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Πιστεύουμε στην ιδιωτικότητα.</b></p><p>Το Signal δεν σε παρακολουθεί ούτε συλλέγει τα δεδομένα σου. Για να βελτιώσουμε το Signal για όλους, βασιζόμαστε στα σχόλια των χρηστών <b>και θα εκτιμούσαμε πολύ να ακούσουμε τα δικά σου.</b></p><p>Κάνουμε μαι έρευνα που θα μας βοηθήσει να καταλάβουμε πως χρησιμοποιείς το Signal. Η έρευνά μας δεν συλλέγει δεδομένα που θα μπορούσαν να αποκαλύψουν την ταυτότητά σου. Αν ενδιαφέρεσαι να μας βοηθήσεις με περαιτέρω πληροφορίες και σχόλια, μπορείς να μας δώσεις στοιχεία επικοινωνίας.</p><p>Αν έχεις μερικά λεπτά διαθέσιμα, και έχεις κάτι να σχολιάσεις, με χαρά θα θέλαμε να το ακούσουμε.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Πάρε μέρος στην έρευνα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Όχι, ευχαριστώ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Αυτή η έρευνα φιλοξενείται από το Alchemer στον ασφαλή σύνδεσμο surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
   <string name="ConversationListFragment_loading">Φόρτωση…</string>

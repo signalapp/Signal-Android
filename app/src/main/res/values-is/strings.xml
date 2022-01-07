@@ -448,9 +448,6 @@
   <string name="DeviceListItem_today">Í dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Nafnlaus skrá</string>
-  <!--GroupCallingMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__introducing_group_calls">Kynning á hópsímtölum</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupCallingMegaphone__open_a_new_group_to_start">Opnaðu nýjan hóp til að byrja ókeypis dulritað hópsímtal</string> -->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Besta kerfið fyrir Play-þjónustur sem vantar</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Þetta tæki styður ekki Play-þjónustur. Ýttu til að gera óvirkar rafhlöðustillingar sem koma í veg fyrir að Signal geti náð í skilaboð þótt það sé í dvala.</string>
@@ -568,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Velja nýjan stjórnanda</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Áður en þú ferð þarftu að velja a.m.k. einn stjórnanda fyrir þennan hóp.</string>
   <string name="LeaveGroupDialog_choose_admin">Velja stjórnanda</string>
-  <!--LinkPreviewsMegaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_disable">Gera óvirkt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_preview_any_link">Forskoða hvaða tengil sem er</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Nú geturðu náð í forskoðanir tengla beint frá vefsvæðum í skilaboðum sem þú sendir.</string> -->
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Engin forskoðun tiltæk fyrir tengil</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Þessi hóptengill er ekki virkur</string>
@@ -868,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sent af %1$s til %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sent af þér til %1$s</string>
   <!--Megaphones-->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Kynning á viðbrögðum</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ýttu og haltu niðri til að deila í skyndi hvernig þér líður.</string> -->
   <string name="Megaphones_remind_me_later">Áminna mig síðar</string>
   <string name="Megaphones_verify_your_signal_pin">Staðfestu PIN-númer Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Til að auðvelda þér að muna PIN-númerið munum við biðja þig öðru hvoru um að staðfesta það.</string>
@@ -2333,16 +2324,29 @@
   <string name="conversation_callable_secure__menu_call">Signal-símtal</string>
   <string name="conversation_callable_secure__menu_video">Signal-myndsímtal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Nánar um skilaboð</string>
-  <string name="conversation_context__menu_copy_text">Afrita texta</string>
-  <string name="conversation_context__menu_delete_message">Eyða skilaboðum</string>
-  <string name="conversation_context__menu_forward_message">Áframsenda skeyti</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Upplýsingar</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Afrita</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Eyða</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Áfram</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Endursenda skilaboð</string>
-  <string name="conversation_context__menu_reply_to_message">Svara skilaboðum</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Svara</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Velja mörg</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
+    <item quantity="one"></item>
+    <item quantity="other">%d valin</item>
+  </plurals> -->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Vista viðhengi</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Vista</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Sjálfeyðandi skilaboð</string>
   <!--conversation_expiring_on-->
@@ -2531,16 +2535,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="KbsMegaphone__create_a_pin">Útbúðu PIN-númer</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-númer halda upplýsingum geymdum í Signal dulrituðum.</string>
   <string name="KbsMegaphone__create_pin">Útbúðu PIN-númer</string>
-  <!--Research Megaphone-->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_tell_signal_what_you_think">Segðu Signal hvað þér finnst</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Til að gera Signal að besta samskiptaforritinu á plánetunni, þiggjum við með þökkum að þú gefir okkur umsögn.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_learn_more">Kanna nánar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphone_dismiss">Hafna</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_signal_research">Könnun á Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Við trúum á verndun persónulegra gagna.</b></p><p>Signal fylgist ekki með þér eða safnar neinum gögnum. Til að bæta Signal fyrir alla reiðum við okkur á umsagnir notendanna <b>og við myndum gjarnan vilja heyra frá þér.</b></p><p>Við erum með könnun í gangi til að reyna að skilja hvernig þú notar Signal. Könnunin safnar engum persónugreinanlegum gögnum. Ef þú ert til í að deila með okkur ýmsum viðbótarupplýsingum, geturðu líka gefið okkur upplýsingar um hvernig hægt sé að ná í þig.</p><p>Ef þú hefur nokkrar mínútur aflögu og ert til í að gefa okkur umsögn, væri gaman að sjá eitthvað frá þér.</p>]]></string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_take_the_survey">Taka þátt í könnun</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_no_thanks">Nei, takk</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Könnunin er hýst hjá Alchemer á örugga léninu surveys.signalusers.org</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tákn fyrir flutning</string>
   <string name="ConversationListFragment_loading">Hleð inn…</string>
