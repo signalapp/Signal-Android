@@ -3776,11 +3776,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   @Override
-  public void onBottomActionBarVisibilityChanged(int visibility) {
-    inputPanel.setHideForSelection(visibility == View.VISIBLE);
-  }
-
-  @Override
   public void onForwardClicked()  {
     inputPanel.clearQuote();
   }

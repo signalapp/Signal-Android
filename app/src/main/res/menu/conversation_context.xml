@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/conversation_context__menu_message_details"
+          android:id="@+id/menu_context_details"
+          android:icon="@drawable/ic_info_white_24"
+          app:iconTint="@color/signal_icon_tint_primary"
+          app:showAsAction="always" />
+
+    <item android:title="@string/conversation_context__menu_delete_message"
+        android:id="@+id/menu_context_delete_message"
+        android:icon="@drawable/ic_trash_24"
+        app:iconTint="@color/signal_icon_tint_primary"
+        app:showAsAction="always" />
+
+    <item android:title="@string/conversation_context__menu_copy_text"
+          android:id="@+id/menu_context_copy"
+          android:icon="@drawable/ic_copy_24"
+          app:iconTint="@color/signal_icon_tint_primary"
+          app:showAsAction="always" />
+
+    <item android:title="@string/conversation_context__menu_reply_to_message"
+        android:id="@+id/menu_context_reply"
+        android:visible="true"
+        android:icon="@drawable/ic_reply_24"
+        app:iconTint="@color/signal_icon_tint_primary"
+        app:showAsAction="always" />
+
+    <item android:title="@string/conversation_context__menu_resend_message"
+          android:id="@+id/menu_context_resend"
+          android:visible="false"
+          app:showAsAction="never" />
+
+    <item android:title="@string/conversation_context_image__save_attachment"
+          android:id="@+id/menu_context_save_attachment"
+          android:visible="false"
+          android:icon="@drawable/ic_save_24"
+          app:iconTint="@color/signal_icon_tint_primary"
+          app:showAsAction="always" />
+
+    <item android:title="@string/conversation_context__menu_forward_message"
+        android:id="@+id/menu_context_forward"
+        android:icon="@drawable/ic_forward_24"
+        app:iconTint="@color/signal_icon_tint_primary"
+        app:showAsAction="always" />
+
+</menu>
