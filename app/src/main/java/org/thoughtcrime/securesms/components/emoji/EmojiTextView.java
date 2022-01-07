@@ -158,16 +158,9 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    int originalWidthMode = MeasureSpec.getMode(widthMeasureSpec);
     widthMeasureSpec = applyWidthMeasureRoundingFix(widthMeasureSpec);
 
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-    widthMeasureSpec = getPreciseWidthForMaxLines(originalWidthMode);
-    if (widthMeasureSpec != 0) {
-      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
     CharSequence text = getText();
     if (getLayout() == null || !measureLastLine || text == null || text.length() == 0) {
       lastLineWidth = -1;
@@ -213,29 +206,6 @@ public class EmojiTextView extends AppCompatTextView {
     }
 
     return widthMeasureSpec;
-  }
-
-  /**
-   * Determines the width to use for this view based on the lines of text that will be shown, as
-   * opposed to the default behavior which will consider lines after the max lines constraint.
-   *
-   * @param originalWidthMode the original mode passed for the width measure spec in {@link #onMeasure(int, int)}
-   * @return the new measure spec to use for the width. 0 if the existing measurement should be used.
-   */
-  private int getPreciseWidthForMaxLines(int originalWidthMode) {
-    if (originalWidthMode != MeasureSpec.EXACTLY && getLineCount() > getMaxLines() && getLayout() != null) {
-      float maxWidth = 0;
-      for (int i = 0; i < getMaxLines(); i++) {
-        maxWidth = Math.max(maxWidth, getLayout().getLineWidth(i));
-      }
-
-      double desiredWidth = Math.ceil(maxWidth);
-      if (desiredWidth < getMeasuredWidth()) {
-        return MeasureSpec.makeMeasureSpec((int) desiredWidth, MeasureSpec.AT_MOST);
-      }
-    }
-
-    return 0;
   }
 
   private boolean hasMetricAffectingSpan(@NonNull CharSequence text) {
