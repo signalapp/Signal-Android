@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -68,6 +69,13 @@ public abstract class MmsMessageRecord extends MessageRecord {
   @Override
   public boolean isMediaPending() {
     for (Slide slide : getSlideDeck().getSlides()) {
+      if (slide.isInProgress() || slide.isPendingDownload()) {
+        return true;
+      }
+    }
+
+    for (LinkPreview linkPreview : getLinkPreviews()) {
+      Slide slide = new ImageSlide(null, linkPreview.getThumbnail().get());
       if (slide.isInProgress() || slide.isPendingDownload()) {
         return true;
       }

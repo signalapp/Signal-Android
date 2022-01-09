@@ -99,9 +99,10 @@ final class MenuState {
         }
       } else {
         mediaIsSelected = true;
-        if (messageRecord.isMediaPending()) {
-          hasPendingMedia = true;
-        }
+      }
+
+      if (messageRecord.isMediaPending()) {
+        hasPendingMedia = true;
       }
 
       if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {

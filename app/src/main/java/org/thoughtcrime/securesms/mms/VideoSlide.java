@@ -38,15 +38,15 @@ public class VideoSlide extends Slide {
   }
 
   public VideoSlide(Context context, Uri uri, long dataSize, boolean gif, @Nullable String caption, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
+    super(constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
   }
 
   public VideoSlide(Context context, Uri uri, long dataSize, boolean gif, int width, int height, @Nullable String caption, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, width, height, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
+    super(constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, width, height, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
   }
 
   public VideoSlide(Context context, Attachment attachment) {
-    super(context, attachment);
+    super(attachment);
   }
 
   @Override
@@ -74,8 +74,8 @@ public class VideoSlide extends Slide {
     return true;
   }
 
-  @NonNull @Override
-  public String getContentDescription() {
+  @Override
+  public @NonNull String getContentDescription(@NonNull Context context) {
     return context.getString(R.string.Slide_video);
   }
 }

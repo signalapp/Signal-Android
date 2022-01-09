@@ -15,7 +15,7 @@ public class MmsSlide extends ImageSlide {
 
   @NonNull
   @Override
-  public String getContentDescription() {
+  public String getContentDescription(@NonNull Context context) {
     return "MMS";
   }
 
