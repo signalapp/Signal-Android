@@ -136,7 +136,9 @@ public class EditProfileNameFragment extends Fragment {
     text.setEnabled(enabled);
     text.setFocusable(enabled);
     if (enabled) {
-      text.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME);
+      if (text.getInputType() != EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME) {
+        text.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME);
+      }
     } else {
       text.clearFocus();
       text.setInputType(EditorInfo.TYPE_NULL);
