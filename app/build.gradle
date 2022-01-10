@@ -226,7 +226,7 @@ android {
                 signingConfig signingConfigs.debug
             }
             isDefault true
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard/proguard-firebase-messaging.pro',
                     'proguard/proguard-google-play-services.pro',
@@ -267,6 +267,7 @@ android {
             initWith debug
             isDefault false
             debuggable false
+            minifyEnabled true
             matchingFallbacks = ['debug']
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Perf\""
         }
