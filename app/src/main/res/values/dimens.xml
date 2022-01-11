@@ -69,6 +69,7 @@
 
     <dimen name="thumbnail_default_radius">4dp</dimen>
 
+    <dimen name="conversation_bottom_padding">2dp</dimen>
     <dimen name="conversation_compose_height">40dp</dimen>
     <dimen name="conversation_individual_right_gutter">16dp</dimen>
     <dimen name="conversation_individual_left_gutter">16dp</dimen>
