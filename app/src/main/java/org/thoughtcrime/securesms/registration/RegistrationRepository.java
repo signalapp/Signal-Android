@@ -39,7 +39,7 @@ import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
-import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 
@@ -138,7 +138,7 @@ public final class RegistrationRepository {
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(context);
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(context, identityKey, true);
 
-    SignalServiceAccountManager accountManager = AccountManagerFactory.createAuthenticated(context, aci, registrationData.getE164(), registrationData.getPassword());
+    SignalServiceAccountManager accountManager = AccountManagerFactory.createAuthenticated(context, aci, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
     accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKey, records);
 
     if (registrationData.isFcm()) {

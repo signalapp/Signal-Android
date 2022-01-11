@@ -47,13 +47,12 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemo
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
+import org.whispersystems.signalservice.api.messages.multidevice.VerifyDeviceResponse;
 import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.AccountIdentifier;
-import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
@@ -352,7 +351,7 @@ public class PushServiceSocket {
                                                  boolean discoverableByPhoneNumber)
       throws IOException
   {
-    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities, discoverableByPhoneNumber);
+    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities, discoverableByPhoneNumber, null);
     String            requestBody        = JsonUtil.toJson(signalingKeyEntity);
     String            responseBody       = makeServiceRequest(String.format(VERIFY_ACCOUNT_CODE_PATH, verificationCode), "PUT", requestBody);
 
@@ -369,26 +368,38 @@ public class PushServiceSocket {
     return new VerifyAccountResponse();
   }
 
-  public void setAccountAttributes(String signalingKey, int registrationId, boolean fetchesMessages,
-                                   String pin, String registrationLock,
-                                   byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
+  public void setAccountAttributes(String signalingKey,
+                                   int registrationId,
+                                   boolean fetchesMessages,
+                                   String pin,
+                                   String registrationLock,
+                                   byte[] unidentifiedAccessKey,
+                                   boolean unrestrictedUnidentifiedAccess,
                                    AccountAttributes.Capabilities capabilities,
-                                   boolean discoverableByPhoneNumber)
+                                   boolean discoverableByPhoneNumber,
+                                   byte[] encryptedDeviceName)
       throws IOException
   {
     if (registrationLock != null && pin != null) {
       throw new AssertionError("Pin should be null if registrationLock is set.");
     }
 
+    String name = (encryptedDeviceName == null) ? null :  Base64.encodeBytes(encryptedDeviceName);
+
     AccountAttributes accountAttributes = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock,
                                                                 unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities,
-                                                                discoverableByPhoneNumber);
+                                                                discoverableByPhoneNumber, name);
     makeServiceRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
   }
 
   public String getNewDeviceVerificationCode() throws IOException {
     String responseText = makeServiceRequest(PROVISIONING_CODE_PATH, "GET", null);
     return JsonUtil.fromJson(responseText, DeviceCode.class).getVerificationCode();
+  }
+
+  public VerifyDeviceResponse verifySecondaryDevice(String verificationCode, AccountAttributes accountAttributes) throws IOException {
+    String responseText = makeServiceRequest(String.format(DEVICE_PATH, verificationCode), "PUT", JsonUtil.toJson(accountAttributes));
+    return JsonUtil.fromJson(responseText, VerifyDeviceResponse.class);
   }
 
   public List<DeviceInfo> getDevices() throws IOException {
@@ -2113,6 +2124,9 @@ public class PushServiceSocket {
   private String getAuthorizationHeader(CredentialsProvider credentialsProvider) {
     try {
       String identifier = credentialsProvider.getAci() != null ? credentialsProvider.getAci().toString() : credentialsProvider.getE164();
+      if (credentialsProvider.getDeviceId() != SignalServiceAddress.DEFAULT_DEVICE_ID) {
+        identifier += "." + credentialsProvider.getDeviceId();
+      }
       return "Basic " + Base64.encodeBytes((identifier + ":" + credentialsProvider.getPassword()).getBytes("UTF-8"));
     } catch (UnsupportedEncodingException e) {
       throw new AssertionError(e);

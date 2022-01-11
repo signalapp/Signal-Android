@@ -13,11 +13,13 @@ public class StaticCredentialsProvider implements CredentialsProvider {
 
   private final ACI    aci;
   private final String e164;
+  private final int   deviceId;
   private final String password;
 
-  public StaticCredentialsProvider(ACI aci, String e164, String password) {
+  public StaticCredentialsProvider(ACI aci, String e164, int deviceId, String password) {
     this.aci      = aci;
     this.e164     = e164;
+    this.deviceId = deviceId;
     this.password = password;
   }
 
@@ -29,6 +31,11 @@ public class StaticCredentialsProvider implements CredentialsProvider {
   @Override
   public String getE164() {
     return e164;
+  }
+
+  @Override
+  public int getDeviceId() {
+    return deviceId;
   }
 
   @Override

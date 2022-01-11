@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
 
 internal class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
@@ -23,6 +24,8 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_FCM_TOKEN = "account.fcm_token"
     private const val KEY_FCM_TOKEN_VERSION = "account.fcm_token_version"
     private const val KEY_FCM_TOKEN_LAST_SET_TIME = "account.fcm_token_last_set_time"
+    private const val KEY_DEVICE_NAME = "account.device_name"
+    private const val KEY_DEVICE_ID = "account.device_id"
 
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
@@ -130,6 +133,21 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
       clearLocalCredentials(ApplicationDependencies.getApplication())
     }
   }
+
+  val deviceName: String?
+    get() = getString(KEY_DEVICE_NAME, null)
+
+  fun setDeviceName(deviceName: String) {
+    putString(KEY_DEVICE_NAME, deviceName)
+  }
+
+  var deviceId: Int by integerValue(KEY_DEVICE_ID, SignalServiceAddress.DEFAULT_DEVICE_ID)
+
+  val isPrimaryDevice: Boolean
+    get() = deviceId == SignalServiceAddress.DEFAULT_DEVICE_ID
+
+  val isLinkedDevice: Boolean
+    get() = !isPrimaryDevice
 
   private fun clearLocalCredentials(context: Context) {
     putString(KEY_SERVICE_PASSWORD, Util.getSecret(18))

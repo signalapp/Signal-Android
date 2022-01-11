@@ -367,5 +367,10 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     public String getPassword() {
       return SignalStore.account().getServicePassword();
     }
+
+    @Override
+    public int getDeviceId() {
+      return SignalStore.account().getDeviceId();
+    }
   }
 }

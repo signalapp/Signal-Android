@@ -29,12 +29,12 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
+import org.whispersystems.signalservice.api.messages.multidevice.VerifyDeviceResponse;
 import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.AccountIdentifier;
-import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -59,7 +59,7 @@ import org.whispersystems.signalservice.internal.contacts.crypto.Unauthenticated
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
-import org.whispersystems.signalservice.internal.crypto.ProvisioningCipher;
+import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.CdshAuthResponse;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
@@ -133,12 +133,13 @@ public class SignalServiceAccountManager {
   public SignalServiceAccountManager(SignalServiceConfiguration configuration,
                                      ACI aci,
                                      String e164,
+                                     int deviceId,
                                      String password,
                                      String signalAgent,
                                      boolean automaticNetworkRetry)
   {
     this(configuration,
-         new StaticCredentialsProvider(aci, e164, password),
+         new StaticCredentialsProvider(aci, e164, deviceId, password),
          signalAgent,
          new GroupsV2Operations(ClientZkOperations.create(configuration)),
          automaticNetworkRetry);
@@ -327,6 +328,32 @@ public class SignalServiceAccountManager {
     }
   }
 
+  public VerifyDeviceResponse verifySecondaryDevice(String verificationCode,
+                                                    int signalProtocolRegistrationId,
+                                                    boolean fetchesMessages,
+                                                    byte[] unidentifiedAccessKey,
+                                                    boolean unrestrictedUnidentifiedAccess,
+                                                    AccountAttributes.Capabilities capabilities,
+                                                    boolean discoverableByPhoneNumber,
+                                                    byte[] encryptedDeviceName)
+      throws IOException
+  {
+    AccountAttributes accountAttributes = new AccountAttributes(
+        null,
+        signalProtocolRegistrationId,
+        fetchesMessages,
+        null,
+        null,
+        unidentifiedAccessKey,
+        unrestrictedUnidentifiedAccess,
+        capabilities,
+        discoverableByPhoneNumber,
+        Base64.encodeBytes(encryptedDeviceName)
+    );
+
+    return this.pushServiceSocket.verifySecondaryDevice(verificationCode, accountAttributes);
+  }
+
   public ServiceResponse<VerifyAccountResponse> changeNumber(String code, String e164NewNumber, String registrationLock) {
     try {
       VerifyAccountResponse response = this.pushServiceSocket.changeNumber(code, e164NewNumber, registrationLock);
@@ -349,18 +376,30 @@ public class SignalServiceAccountManager {
    *
    * @throws IOException
    */
-  public void setAccountAttributes(String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
-                                   String pin, String registrationLock,
-                                   byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
+  public void setAccountAttributes(String signalingKey,
+                                   int signalProtocolRegistrationId,
+                                   boolean fetchesMessages,
+                                   String pin,
+                                   String registrationLock,
+                                   byte[] unidentifiedAccessKey,
+                                   boolean unrestrictedUnidentifiedAccess,
                                    AccountAttributes.Capabilities capabilities,
-                                   boolean discoverableByPhoneNumber)
+                                   boolean discoverableByPhoneNumber,
+                                   byte[] encryptedDeviceName)
       throws IOException
   {
-    this.pushServiceSocket.setAccountAttributes(signalingKey, signalProtocolRegistrationId, fetchesMessages,
-                                                pin, registrationLock,
-                                                unidentifiedAccessKey, unrestrictedUnidentifiedAccess,
-                                                capabilities,
-                                                discoverableByPhoneNumber);
+    this.pushServiceSocket.setAccountAttributes(
+        signalingKey,
+        signalProtocolRegistrationId,
+        fetchesMessages,
+        pin,
+        registrationLock,
+        unidentifiedAccessKey,
+        unrestrictedUnidentifiedAccess,
+        capabilities,
+        discoverableByPhoneNumber,
+        encryptedDeviceName
+    );
   }
 
   /**
@@ -661,7 +700,7 @@ public class SignalServiceAccountManager {
                         String code)
       throws InvalidKeyException, IOException
   {
-    ProvisioningCipher       cipher  = new ProvisioningCipher(deviceKey);
+    PrimaryProvisioningCipher cipher = new PrimaryProvisioningCipher(deviceKey);
     ProvisionMessage.Builder message = ProvisionMessage.newBuilder()
                                                        .setIdentityKeyPublic(ByteString.copyFrom(identityKeyPair.getPublicKey().serialize()))
                                                        .setIdentityKeyPrivate(ByteString.copyFrom(identityKeyPair.getPrivateKey().serialize()))

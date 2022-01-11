@@ -158,26 +158,6 @@ public class IncomingTextMessage implements Parcelable {
     this.serverGuid              = fragments.get(0).getServerGuid();
   }
 
-  protected IncomingTextMessage(@NonNull RecipientId sender, @Nullable GroupId groupId)
-  {
-    this.message                 = "";
-    this.sender                  = sender;
-    this.senderDeviceId          = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    this.protocol                = 31338;
-    this.serviceCenterAddress    = "Outgoing";
-    this.replyPathPresent        = true;
-    this.pseudoSubject           = "";
-    this.sentTimestampMillis     = System.currentTimeMillis();
-    this.serverTimestampMillis   = sentTimestampMillis;
-    this.receivedTimestampMillis = sentTimestampMillis;
-    this.groupId                 = groupId;
-    this.push                    = true;
-    this.subscriptionId          = -1;
-    this.expiresInMillis         = 0;
-    this.unidentified            = false;
-    this.serverGuid              = null;
-  }
-
   public int getSubscriptionId() {
     return subscriptionId;
   }

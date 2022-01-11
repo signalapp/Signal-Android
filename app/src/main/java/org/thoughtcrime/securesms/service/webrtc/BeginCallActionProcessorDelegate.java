@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -59,7 +60,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
     CallManager.CallMediaType callMediaType = WebRtcUtil.getCallMediaTypeFromOfferType(offerType);
 
     try {
-      webRtcInteractor.getCallManager().call(remotePeer, callMediaType, 1);
+      webRtcInteractor.getCallManager().call(remotePeer, callMediaType, SignalStore.account().getDeviceId());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to create outgoing call: ", e);
     }

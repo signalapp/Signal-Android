@@ -12,7 +12,7 @@ import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECKeyPair;
 import org.whispersystems.libsignal.ecc.ECPublicKey;
-import org.whispersystems.libsignal.kdf.HKDFv3;
+import org.whispersystems.libsignal.kdf.HKDF;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.security.NoSuchAlgorithmException;
@@ -28,20 +28,20 @@ import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.
 import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisionMessage;
 
 
-public class ProvisioningCipher {
+public class PrimaryProvisioningCipher {
 
-  private static final String TAG = ProvisioningCipher.class.getSimpleName();
+  public static final String PROVISIONING_MESSAGE = "TextSecure Provisioning Message";
 
   private final ECPublicKey theirPublicKey;
 
-  public ProvisioningCipher(ECPublicKey theirPublicKey) {
+  public PrimaryProvisioningCipher(ECPublicKey theirPublicKey) {
     this.theirPublicKey = theirPublicKey;
   }
 
   public byte[] encrypt(ProvisionMessage message) throws InvalidKeyException {
     ECKeyPair ourKeyPair    = Curve.generateKeyPair();
     byte[]    sharedSecret  = Curve.calculateAgreement(theirPublicKey, ourKeyPair.getPrivateKey());
-    byte[]    derivedSecret = new HKDFv3().deriveSecrets(sharedSecret, "TextSecure Provisioning Message".getBytes(), 64);
+    byte[]    derivedSecret = HKDF.deriveSecrets(sharedSecret, PROVISIONING_MESSAGE.getBytes(), 64);
     byte[][]  parts         = Util.split(derivedSecret, 32, 32);
 
     byte[] version    = {0x01};

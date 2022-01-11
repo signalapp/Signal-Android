@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
@@ -152,7 +153,7 @@ public final class SignalProxyUtil {
   private static boolean testWebsocketConnectionUnregistered(long timeout) {
     CountDownLatch              latch          = new CountDownLatch(1);
     AtomicBoolean               success        = new AtomicBoolean(false);
-    SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(ApplicationDependencies.getApplication(), "", "");
+    SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(ApplicationDependencies.getApplication(), "", SignalServiceAddress.DEFAULT_DEVICE_ID, "");
 
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {

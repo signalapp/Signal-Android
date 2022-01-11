@@ -316,8 +316,8 @@ public final class MessageContentProcessor {
         SignalServiceCallMessage message             = content.getCallMessage().get();
         Optional<Integer>        destinationDeviceId = message.getDestinationDeviceId();
 
-        if (destinationDeviceId.isPresent() && destinationDeviceId.get() != 1) {
-          log(String.valueOf(content.getTimestamp()), String.format(Locale.US, "Ignoring call message that is not for this device! intended: %d, this: %d", destinationDeviceId.get(), 1));
+        if (destinationDeviceId.isPresent() && destinationDeviceId.get() != SignalStore.account().getDeviceId()) {
+          log(String.valueOf(content.getTimestamp()), String.format(Locale.US, "Ignoring call message that is not for this device! intended: %d, this: %d", destinationDeviceId.get(), SignalStore.account().getDeviceId()));
           return;
         }
 
@@ -1852,6 +1852,11 @@ public final class MessageContentProcessor {
       return;
     }
 
+    if (decryptionErrorMessage.getDeviceId() != SignalStore.account().getDeviceId()) {
+      log(String.valueOf(content.getTimestamp()), "[RetryReceipt] Received a DecryptionErrorMessage targeting a linked device. Ignoring.");
+      return;
+    }
+
     long sentTimestamp = decryptionErrorMessage.getTimestamp();
 
     warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + formatSender(senderRecipient, content) + " for message with timestamp " + sentTimestamp + ".");
@@ -1932,8 +1937,7 @@ public final class MessageContentProcessor {
   private void handleIndividualRetryReceipt(@NonNull Recipient requester, @Nullable MessageLogEntry messageLogEntry, @NonNull SignalServiceContent content, @NonNull DecryptionErrorMessage decryptionErrorMessage) {
     boolean archivedSession = false;
 
-    if (decryptionErrorMessage.getDeviceId() == SignalServiceAddress.DEFAULT_DEVICE_ID &&
-        decryptionErrorMessage.getRatchetKey().isPresent()                             &&
+    if (decryptionErrorMessage.getRatchetKey().isPresent()                             &&
         SessionUtil.ratchetKeyMatches(requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
     {
       warn(content.getTimestamp(), "[RetryReceipt-I] Ratchet key matches. Archiving the session.");

@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.SendRetryReceiptJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.ExceptionMetadata;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.MessageState;
@@ -42,7 +43,6 @@ import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
@@ -79,7 +79,7 @@ public final class MessageDecryptionUtil {
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
     SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
     SignalServiceAddress localAddress = new SignalServiceAddress(Recipient.self().requireAci(), Recipient.self().requireE164());
-    SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, axolotlStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
+    SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, SignalStore.account().getDeviceId(), axolotlStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
     List<Job>            jobs         = new LinkedList<>();
 
     if (envelope.isPreKeySignalMessage()) {

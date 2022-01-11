@@ -12,8 +12,16 @@ public class RequestMessage {
 
   private final Request request;
 
+  public static RequestMessage forType(Request.Type type) {
+    return new RequestMessage(Request.newBuilder().setType(type).build());
+  }
+
   public RequestMessage(Request request) {
     this.request = request;
+  }
+
+  public Request getRequest() {
+    return request;
   }
 
   public boolean isContactsRequest() {

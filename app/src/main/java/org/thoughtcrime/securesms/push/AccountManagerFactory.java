@@ -21,6 +21,7 @@ public class AccountManagerFactory {
   public static @NonNull SignalServiceAccountManager createAuthenticated(@NonNull Context context,
                                                                          @NonNull ACI aci,
                                                                          @NonNull String number,
+                                                                         int deviceId,
                                                                          @NonNull String password)
   {
     if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(number)) {
@@ -36,6 +37,7 @@ public class AccountManagerFactory {
     return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
                                            aci,
                                            number,
+                                           deviceId,
                                            password,
                                            BuildConfig.SIGNAL_AGENT,
                                            FeatureFlags.okHttpAutomaticRetry());
@@ -46,6 +48,7 @@ public class AccountManagerFactory {
    */
   public static @NonNull SignalServiceAccountManager createUnauthenticated(@NonNull Context context,
                                                                            @NonNull String number,
+                                                                           int deviceId,
                                                                            @NonNull String password)
   {
     if (new SignalServiceNetworkAccess(context).isCensored(number)) {
@@ -59,7 +62,7 @@ public class AccountManagerFactory {
     }
 
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
-                                           null, number, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
+                                           null, number, deviceId, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
   }
 
 }

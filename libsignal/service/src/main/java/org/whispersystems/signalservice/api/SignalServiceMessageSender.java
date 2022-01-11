@@ -55,6 +55,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOperationMessage;
@@ -149,6 +150,7 @@ public class SignalServiceMessageSender {
   private final SignalServiceDataStore  store;
   private final SignalSessionLock       sessionLock;
   private final SignalServiceAddress    localAddress;
+  private final int                     localDeviceId;
   private final Optional<EventListener> eventListener;
 
   private final AttachmentService attachmentService;
@@ -173,6 +175,7 @@ public class SignalServiceMessageSender {
     this.store             = store;
     this.sessionLock       = sessionLock;
     this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
+    this.localDeviceId     = credentialsProvider.getDeviceId();
     this.attachmentService = new AttachmentService(signalWebSocket);
     this.messagingService  = new MessagingService(signalWebSocket);
     this.eventListener     = eventListener;
@@ -353,7 +356,7 @@ public class SignalServiceMessageSender {
    * Will create a sender key session for the provided DistributionId if one doesn't exist.
    */
   public SenderKeyDistributionMessage getOrCreateNewGroupSession(DistributionId distributionId) {
-    SignalProtocolAddress self = new SignalProtocolAddress(localAddress.getIdentifier(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+    SignalProtocolAddress self = new SignalProtocolAddress(localAddress.getIdentifier(), localDeviceId);
     return new SignalGroupSessionBuilder(sessionLock, new GroupSessionBuilder(store)).create(self, distributionId.asUuid());
   }
 
@@ -516,6 +519,8 @@ public class SignalServiceMessageSender {
       content = createMultiDeviceSyncKeysContent(message.getKeys().get());
     } else if (message.getVerified().isPresent()) {
       return sendVerifiedMessage(message.getVerified().get(), unidentifiedAccess);
+    } else if (message.getRequest().isPresent()) {
+      content = createRequestContent(message.getRequest().get().getRequest());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -1348,6 +1353,17 @@ public class SignalServiceMessageSender {
     return container.setSyncMessage(syncMessage).build();
   }
 
+  private Content createRequestContent(SyncMessage.Request request) throws IOException {
+    if (localDeviceId == SignalServiceAddress.DEFAULT_DEVICE_ID) {
+      throw new IOException("Sync requests should only be sent from a linked device");
+    }
+
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = SyncMessage.newBuilder().setRequest(request);
+
+    return container.setSyncMessage(builder).build();
+  }
+
   private SyncMessage.Builder createSyncMessageBuilder() {
     SecureRandom random  = new SecureRandom();
     byte[]       padding = Util.getRandomLengthBytes(512);
@@ -1766,7 +1782,7 @@ public class SignalServiceMessageSender {
 
       sendEvents.onSenderKeyShared();
 
-      SignalServiceCipher cipher            = new SignalServiceCipher(localAddress, store, sessionLock, null);
+      SignalServiceCipher cipher            = new SignalServiceCipher(localAddress, localDeviceId, store, sessionLock, null);
       SenderCertificate   senderCertificate = unidentifiedAccess.get(0).getUnidentifiedCertificate();
 
       byte[] ciphertext;
@@ -1970,7 +1986,8 @@ public class SignalServiceMessageSender {
   {
     List<OutgoingPushMessage> messages = new LinkedList<>();
 
-    if (!recipient.matches(localAddress) || unidentifiedAccess.isPresent()) {
+    boolean isLocalPrimaryDevice = recipient.matches(localAddress) && localDeviceId == SignalServiceAddress.DEFAULT_DEVICE_ID;
+    if (!isLocalPrimaryDevice || unidentifiedAccess.isPresent()) {
       messages.add(getEncryptedMessage(socket, recipient, unidentifiedAccess, SignalServiceAddress.DEFAULT_DEVICE_ID, plaintext));
     }
 
@@ -1991,9 +2008,10 @@ public class SignalServiceMessageSender {
       throws IOException, InvalidKeyException, UntrustedIdentityException
   {
     SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(recipient.getIdentifier(), deviceId);
-    SignalServiceCipher   cipher                = new SignalServiceCipher(localAddress, store, sessionLock, null);
+    SignalServiceCipher   cipher                = new SignalServiceCipher(localAddress, localDeviceId, store, sessionLock, null);
 
-    if (!store.containsSession(signalProtocolAddress)) {
+    boolean isLocalDevice = recipient.matches(localAddress) && deviceId == localDeviceId;
+    if (!store.containsSession(signalProtocolAddress) && !isLocalDevice) {
       try {
         List<PreKeyBundle> preKeys = socket.getPreKeys(recipient, unidentifiedAccess, deviceId);
 
