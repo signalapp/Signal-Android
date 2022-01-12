@@ -398,152 +398,76 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   fun getAndPossiblyMerge(aci: ACI?, e164: String?, highTrust: Boolean, changeSelf: Boolean): RecipientId {
     require(!(aci == null && e164 == null)) { "Must provide an ACI or E164!" }
 
-    var recipientNeedingRefresh: RecipientId? = null
-    var remapped: Pair<RecipientId, RecipientId>? = null
-    var recipientChangedNumber: RecipientId? = null
-    var transactionSuccessful = false
     val db = writableDatabase
+
+    var transactionSuccessful = false
+    var remapped: Pair<RecipientId, RecipientId>? = null
+    var recipientsNeedingRefresh: List<RecipientId> = listOf()
+    var recipientChangedNumber: RecipientId? = null
 
     db.beginTransaction()
     try {
-      val byE164 = e164?.let { getByE164(it) } ?: Optional.absent()
-      val byAci = aci?.let { getByAci(it) } ?: Optional.absent()
-      val finalId: RecipientId
+      val fetch: RecipientFetch = fetchRecipient(aci, e164, highTrust, changeSelf)
 
-      if (!byE164.isPresent && !byAci.isPresent) {
-        Log.i(TAG, "Discovered a completely new user. Inserting.", true)
-        finalId = if (highTrust) {
-          val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(e164, aci))
+      if (fetch.logBundle != null) {
+        Log.w(TAG, fetch.toString())
+      }
+
+      val resolvedId: RecipientId = when (fetch) {
+        is RecipientFetch.Match -> {
+          fetch.id
+        }
+        is RecipientFetch.MatchAndUpdateE164 -> {
+          setPhoneNumber(fetch.id, fetch.e164)
+          recipientsNeedingRefresh = listOf(fetch.id)
+          recipientChangedNumber = fetch.changedNumber
+          fetch.id
+        }
+        is RecipientFetch.MatchAndReassignE164 -> {
+          removePhoneNumber(fetch.e164Id, db)
+          setPhoneNumber(fetch.id, fetch.e164)
+          recipientsNeedingRefresh = listOf(fetch.id, fetch.e164Id)
+          recipientChangedNumber = fetch.changedNumber
+          fetch.id
+        }
+        is RecipientFetch.MatchAndUpdateAci -> {
+          markRegistered(fetch.id, fetch.aci)
+          recipientsNeedingRefresh = listOf(fetch.id)
+          fetch.id
+        }
+        is RecipientFetch.MatchAndInsertAci -> {
+          val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, fetch.aci))
           RecipientId.from(id)
-        } else {
-          val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(if (aci == null) e164 else null, aci))
+        }
+        is RecipientFetch.MatchAndMerge -> {
+          remapped = Pair(fetch.e164Id, fetch.aciId)
+          val mergedId: RecipientId = merge(fetch.aciId, fetch.e164Id)
+          recipientsNeedingRefresh = listOf(mergedId)
+          recipientChangedNumber = fetch.changedNumber
+          mergedId
+        }
+        is RecipientFetch.Insert -> {
+          val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(fetch.e164, fetch.aci))
           RecipientId.from(id)
         }
-      } else if (byE164.isPresent && !byAci.isPresent) {
-        if (aci != null) {
-          val e164Record: RecipientRecord = getRecord(byE164.get())
-          if (e164Record.aci != null) {
-            if (highTrust && e164Record.aci != SignalStore.account().aci) {
-              Log.w(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}), but that user already has an ACI (${e164Record.aci}). Likely a case of re-registration. High-trust, so stripping the E164 ($e164) from the existing account and assigning it to a new entry.", true)
-              removePhoneNumber(byE164.get(), db)
-              recipientNeedingRefresh = byE164.get()
-
-              val insertValues = buildContentValuesForNewUser(e164, aci)
-              insertValues.put(BLOCKED, if (e164Record.isBlocked) 1 else 0)
-
-              val id = db.insert(TABLE_NAME, null, insertValues)
-              finalId = RecipientId.from(id)
-            } else {
-              if (e164Record.aci == SignalStore.account().aci) {
-                Log.w(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}), but that user is us! Likely a case where we changed our number, but the old owner is sending sealed sender messages. Keeping the E164 ($e164) for ourselves and making a new user for the ACI.", true)
-              } else {
-                Log.w(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}), but that user already has an ACI (${e164Record.aci}). Likely a case of re-registration. Low-trust, so making a new user for the ACI.", true)
-              }
-              val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, aci))
-              finalId = RecipientId.from(id)
-            }
-          } else {
-            finalId = if (highTrust) {
-              Log.i(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}). High-trust, so updating.", true)
-              markRegisteredOrThrow(byE164.get(), aci)
-              byE164.get()
-            } else {
-              Log.i(TAG, "Found out about an ACI ($aci) for a known E164 user (${byE164.get()}). Low-trust, so making a new user for the ACI.", true)
-              val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, aci))
-              RecipientId.from(id)
-            }
-          }
-        } else {
-          finalId = byE164.get()
-        }
-      } else if (!byE164.isPresent && byAci.isPresent) {
-        if (e164 != null) {
-          if (highTrust) {
-            if (aci == SignalStore.account().aci && !changeSelf) {
-              Log.w(TAG, "Found out about an E164 ($e164) for our own ACI user (${byAci.get()}). High-trust but not change self, doing nothing.", true)
-              finalId = byAci.get()
-            } else {
-              Log.i(TAG, "Found out about an E164 ($e164) for a known ACI user (${byAci.get()}). High-trust, so updating.", true)
-              val aciRecord: RecipientRecord = getRecord(byAci.get())
-              setPhoneNumberOrThrow(byAci.get(), e164)
-              finalId = byAci.get()
-
-              if (!Util.isEmpty(aciRecord.e164) && aciRecord.e164 != e164) {
-                recipientChangedNumber = finalId
-              }
-            }
-          } else {
-            Log.i(TAG, "Found out about an E164 ($e164) for a known ACI user (${byAci.get()}). Low-trust, so doing nothing.", true)
-            finalId = byAci.get()
-          }
-        } else {
-          finalId = byAci.get()
-        }
-      } else {
-        if (byE164 == byAci) {
-          finalId = byAci.get()
-        } else {
-          Log.w(TAG, "Hit a conflict between ${byE164.get()} (E164 of $e164) and ${byAci.get()} (ACI $aci). They map to different recipients.", Throwable(), true)
-          val e164Record: RecipientRecord = getRecord(byE164.get())
-          if (e164Record.aci != null) {
-            if (highTrust && e164Record.aci != SignalStore.account().aci) {
-              Log.w(TAG, "The E164 contact (${byE164.get()}) has a different ACI ($aci). Likely a case of re-registration. High-trust, so stripping the E164 ($e164) from the existing account and assigning it to the ACI entry.", true)
-              removePhoneNumber(byE164.get(), db)
-
-              recipientNeedingRefresh = byE164.get()
-              val aciRecord: RecipientRecord = getRecord(byAci.get())
-              setPhoneNumberOrThrow(byAci.get(), e164!!)
-              finalId = byAci.get()
-
-              if (!Util.isEmpty(aciRecord.e164) && aciRecord.e164 != e164) {
-                recipientChangedNumber = finalId
-              }
-            } else {
-              if (e164Record.aci == SignalStore.account().aci) {
-                Log.w(TAG, "The E164 contact (${byE164.get()}) has a different ACI ($aci), but the E164 contact is us! Likely a case where we changed our number, but the old owner is sending sealed sender messages. Keeping the E164 ($e164) for ourselves.", true)
-              } else {
-                Log.w(TAG, "The E164 contact (${byE164.get()}) has a different ACI ($aci). Likely a case of re-registration. Low-trust, so doing nothing.", true)
-              }
-              finalId = byAci.get()
-            }
-          } else {
-            val aciRecord: RecipientRecord = getRecord(byAci.get())
-            if (aciRecord.e164 != null) {
-              if (highTrust) {
-                Log.w(TAG, "We have one contact with just an E164, and another with both an ACI and a different E164. High-trust, so merging the two rows together. The E164 has also effectively changed for the ACI contact.", true)
-                finalId = merge(byAci.get(), byE164.get())
-                recipientNeedingRefresh = byAci.get()
-                remapped = Pair(byE164.get(), byAci.get())
-                recipientChangedNumber = finalId
-              } else {
-                Log.w(TAG, "We have one contact with just an E164, and another with both an ACI and a different E164. Low-trust, so doing nothing.", true)
-                finalId = byAci.get()
-              }
-            } else {
-              if (highTrust) {
-                Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. High-trust, so merging the two rows together.", true)
-                finalId = merge(byAci.get(), byE164.get())
-                recipientNeedingRefresh = byAci.get()
-                remapped = Pair(byE164.get(), byAci.get())
-              } else {
-                Log.w(TAG, "We have one contact with just an E164, and another with just an ACI. Low-trust, so doing nothing.", true)
-                finalId = byAci.get()
-              }
-            }
-          }
+        is RecipientFetch.InsertAndReassignE164 -> {
+          removePhoneNumber(fetch.e164Id, db)
+          recipientsNeedingRefresh = listOf(fetch.e164Id)
+          val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(fetch.e164, fetch.aci))
+          RecipientId.from(id)
         }
       }
 
-      db.setTransactionSuccessful()
       transactionSuccessful = true
-      return finalId
+      db.setTransactionSuccessful()
+      return resolvedId
     } finally {
       db.endTransaction()
 
       if (transactionSuccessful) {
-        if (recipientNeedingRefresh != null) {
-          Recipient.live(recipientNeedingRefresh).refresh()
-          RetrieveProfileJob.enqueue(recipientNeedingRefresh)
+        if (recipientsNeedingRefresh.isNotEmpty()) {
+          recipientsNeedingRefresh.forEach { Recipient.live(it).refresh() }
+          RetrieveProfileJob.enqueue(recipientsNeedingRefresh.toSet())
         }
 
         if (remapped != null) {
@@ -551,7 +475,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           ApplicationDependencies.getRecipientCache().remap(remapped.first(), remapped.second())
         }
 
-        if (recipientNeedingRefresh != null || remapped != null) {
+        if (recipientsNeedingRefresh.isNotEmpty() || remapped != null) {
           StorageSyncHelper.scheduleSyncForDataChange()
           RecipientId.clearCache()
         }
@@ -559,6 +483,83 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         if (recipientChangedNumber != null) {
           ApplicationDependencies.getJobManager().add(RecipientChangedNumberJob(recipientChangedNumber))
         }
+      }
+    }
+  }
+
+  private fun fetchRecipient(aci: ACI?, e164: String?, highTrust: Boolean, changeSelf: Boolean): RecipientFetch {
+    val byE164 = e164?.let { getByE164(it) } ?: Optional.absent()
+    val byAci = aci?.let { getByAci(it) } ?: Optional.absent()
+
+    var logs = LogBundle(
+      byAci = byAci.transform { id -> RecipientLogDetails(id = id) }.orNull(),
+      byE164 = byE164.transform { id -> RecipientLogDetails(id = id) }.orNull(),
+      label = "L0"
+    )
+
+    if (byAci.isPresent && byE164.isPresent && byAci.get() == byE164.get()) {
+      return RecipientFetch.Match(byAci.get(), null)
+    }
+
+    if (byAci.isPresent && byE164.isAbsent()) {
+      val aciRecord: RecipientRecord = getRecord(byAci.get())
+      logs = logs.copy(byAci = aciRecord.toLogDetails())
+
+      if (highTrust && e164 != null && (changeSelf || aci != SignalStore.account().aci)) {
+        val changedNumber: RecipientId? = if (aciRecord.e164 != null && aciRecord.e164 != e164) aciRecord.id else null
+        return RecipientFetch.MatchAndUpdateE164(byAci.get(), e164, changedNumber, logs.label("L1"))
+      } else if (e164 == null) {
+        return RecipientFetch.Match(byAci.get(), null)
+      } else {
+        return RecipientFetch.Match(byAci.get(), logs.label("L2"))
+      }
+    }
+
+    if (byAci.isAbsent() && byE164.isPresent) {
+      val e164Record: RecipientRecord = getRecord(byE164.get())
+      logs = logs.copy(byE164 = e164Record.toLogDetails())
+
+      if (highTrust && aci != null && e164Record.aci == null) {
+        return RecipientFetch.MatchAndUpdateAci(byE164.get(), aci, logs.label("L3"))
+      } else if (highTrust && aci != null && e164Record.aci != SignalStore.account().aci) {
+        return RecipientFetch.InsertAndReassignE164(aci, e164, byE164.get(), logs.label("L4"))
+      } else if (aci != null) {
+        return RecipientFetch.Insert(aci, null, logs.label("L5"))
+      } else {
+        return RecipientFetch.Match(byE164.get(), null)
+      }
+    }
+
+    if (byAci.isAbsent() && byE164.isAbsent()) {
+      if (highTrust) {
+        return RecipientFetch.Insert(aci, e164, logs.label("L6"))
+      } else if (aci != null) {
+        return RecipientFetch.Insert(aci, null, logs.label("L7"))
+      } else {
+        return RecipientFetch.Insert(null, e164, logs.label("L8"))
+      }
+    }
+
+    require(byAci.isPresent && byE164.isPresent && byAci.get() != byE164.get()) { "Assumed conditions at this point." }
+
+    val aciRecord: RecipientRecord = getRecord(byAci.get())
+    val e164Record: RecipientRecord = getRecord(byE164.get())
+
+    logs = logs.copy(byAci = aciRecord.toLogDetails(), byE164 = e164Record.toLogDetails())
+
+    if (e164Record.aci == null) {
+      if (highTrust) {
+        val changedNumber: RecipientId? = if (aciRecord.e164 != null) aciRecord.id else null
+        return RecipientFetch.MatchAndMerge(aciId = byAci.get(), e164Id = byE164.get(), changedNumber = changedNumber, logs.label("L9"))
+      } else {
+        return RecipientFetch.Match(byAci.get(), logs.label("L10"))
+      }
+    } else {
+      if (highTrust && e164Record.aci != SignalStore.account().aci) {
+        val changedNumber: RecipientId? = if (aciRecord.e164 != null) aciRecord.id else null
+        return RecipientFetch.MatchAndReassignE164(id = byAci.get(), e164Id = byE164.get(), e164 = e164!!, changedNumber = changedNumber, logs.label("L11"))
+      } else {
+        return RecipientFetch.Match(byAci.get(), logs.label("L12"))
       }
     }
   }
@@ -2985,6 +2986,18 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return "CASE WHEN $column GLOB '[0-9]*' THEN 1 ELSE 0 END, $column"
   }
 
+  private fun <T> Optional<T>.isAbsent(): Boolean {
+    return !this.isPresent
+  }
+
+  private fun RecipientRecord.toLogDetails(): RecipientLogDetails {
+    return RecipientLogDetails(
+      id = this.id,
+      aci = this.aci,
+      e164 = this.e164
+    )
+  }
+
   inner class BulkOperationsHandle internal constructor(private val database: SQLiteDatabase) {
     private val pendingRecipients: MutableSet<RecipientId> = mutableSetOf()
 
@@ -3272,4 +3285,70 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
     }
   }
+
+  private sealed class RecipientFetch(val logBundle: LogBundle?) {
+    /**
+     * We have a matching recipient, and no writes need to occur.
+     */
+    data class Match(val id: RecipientId, val bundle: LogBundle?) : RecipientFetch(bundle)
+
+    /**
+     * We found a matching recipient and can update them with a new E164.
+     */
+    data class MatchAndUpdateE164(val id: RecipientId, val e164: String, val changedNumber: RecipientId?, val bundle: LogBundle) : RecipientFetch(bundle)
+
+    /**
+     * We found a matching recipient and can give them an E164 that used to belong to someone else.
+     */
+    data class MatchAndReassignE164(val id: RecipientId, val e164Id: RecipientId, val e164: String, val changedNumber: RecipientId?, val bundle: LogBundle) : RecipientFetch(bundle)
+
+    /**
+     * We found a matching recipient and can update them with a new ACI.
+     */
+    data class MatchAndUpdateAci(val id: RecipientId, val aci: ACI, val bundle: LogBundle) : RecipientFetch(bundle)
+
+    /**
+     * We found a matching recipient and can insert an ACI as a *new user*.
+     */
+    data class MatchAndInsertAci(val id: RecipientId, val aci: ACI, val bundle: LogBundle) : RecipientFetch(bundle)
+
+    /**
+     * The ACI maps to ACI-only recipient, and the E164 maps to a different E164-only recipient. We need to merge the two together.
+     */
+    data class MatchAndMerge(val aciId: RecipientId, val e164Id: RecipientId, val changedNumber: RecipientId?, val bundle: LogBundle) : RecipientFetch(bundle)
+
+    /**
+     * We don't have a matching recipient, so we need to insert one.
+     */
+    data class Insert(val aci: ACI?, val e164: String?, val bundle: LogBundle) : RecipientFetch(bundle)
+
+    /**
+     * We need to create a new recipient and give it the E164 of an existing recipient.
+     */
+    data class InsertAndReassignE164(val aci: ACI?, val e164: String?, val e164Id: RecipientId, val bundle: LogBundle) : RecipientFetch(bundle)
+  }
+
+  /**
+   * Simple class for [fetchRecipient] to pass back info that can be logged.
+   */
+  private data class LogBundle(
+    val label: String,
+    val aci: ACI? = null,
+    val e164: String? = null,
+    val byAci: RecipientLogDetails? = null,
+    val byE164: RecipientLogDetails? = null
+  ) {
+    fun label(label: String): LogBundle {
+      return this.copy(label = label)
+    }
+  }
+
+  /**
+   * Minimal info about a recipient that we'd want to log. Used in [fetchRecipient].
+   */
+  private data class RecipientLogDetails(
+    val id: RecipientId,
+    val aci: ACI? = null,
+    val e164: String? = null
+  )
 }
