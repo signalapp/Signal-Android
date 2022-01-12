@@ -26,7 +26,8 @@ import java.util.concurrent.TimeUnit
 class LocalMetricsDatabase private constructor(
   application: Application,
   databaseSecret: DatabaseSecret
-) : SQLiteOpenHelper(
+) :
+  SQLiteOpenHelper(
     application,
     DATABASE_NAME,
     databaseSecret.asString(),

@@ -25,7 +25,7 @@ buildscript {
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.17'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.0.0"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.2.1"
         classpath 'app.cash.exhaustive:exhaustive-gradle:0.1.1'
     }
 }

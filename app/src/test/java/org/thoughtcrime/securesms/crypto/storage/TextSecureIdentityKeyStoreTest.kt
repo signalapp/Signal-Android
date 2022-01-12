@@ -4,10 +4,10 @@ import android.content.Context
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when`
 import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord
 import org.whispersystems.libsignal.IdentityKey
