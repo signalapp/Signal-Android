@@ -51,8 +51,15 @@ data class NotificationProfileSchedule(
     return LocalTime.of(start / 100, start % 100)
   }
 
-  fun startDateTime(now: LocalDateTime): LocalDateTime {
-    return start.toLocalDateTime(now)
+  fun startDateTime(localNow: LocalDateTime): LocalDateTime {
+    val localStart: LocalDateTime = start.toLocalDateTime(localNow)
+    val localEnd: LocalDateTime = end.toLocalDateTime(localNow)
+
+    return if (end < start && (daysEnabled.contains(localStart.dayOfWeek.minus(1)) && localNow.isBetween(localStart.minusDays(1), localEnd))) {
+      localStart.minusDays(1)
+    } else {
+      localStart
+    }
   }
 
   fun endTime(): LocalTime {
