@@ -67,6 +67,8 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet) : Line
       return
     }
 
+    val wasLayoutRequested = isLayoutRequested
+
     val widthDp: Float = ViewUtil.pxToDp(width.toFloat())
     val minButtonWidthDp = 80
     val maxButtons: Int = (widthDp / minButtonWidthDp).toInt()
@@ -102,6 +104,12 @@ class SignalBottomActionBar(context: Context, attributeSet: AttributeSet) : Line
           }
         )
       )
+    }
+
+    if (wasLayoutRequested) {
+      post {
+        requestLayout()
+      }
     }
   }
 
