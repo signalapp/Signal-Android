@@ -45,6 +45,10 @@ public class MediaRecorderWrapper implements Recorder {
 
   @Override
   public void stop() {
+    if (recorder == null) {
+      return;
+    }
+
     try {
       recorder.stop();
     } catch (RuntimeException e) {
