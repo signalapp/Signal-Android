@@ -390,7 +390,7 @@
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Állítsd vissza elmentett üzeneteid és médiafájljaid egy helyi biztonsági mentésből. Ha most nem állítod vissza, később már nem lesz rá lehetőség.</string>
   <string name="ChooseBackupFragment__icon_content_description">\"Visszaállítás biztonsági mentésből\" ikonja</string>
   <string name="ChooseBackupFragment__choose_backup">Válassz biztonsági mentést!</string>
-  <string name="ChooseBackupFragment__learn_more">További információ</string>
+  <string name="ChooseBackupFragment__learn_more">Tudj meg többet!</string>
   <string name="ChooseBackupFragment__no_file_browser_available">Nincs elérhető fájlkezelő</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Visszaállítás kész</string>
@@ -408,7 +408,7 @@
   <string name="BackupsPreferenceFragment__turn_on">Bekapcsolás</string>
   <string name="BackupsPreferenceFragment__turn_off">Kikapcsolás</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Egy biztonsági mentés visszaállításához először is telepítsd a Signalt! Nyisd meg az alkalmazást, koppints a \"Biztonsági mentés visszaállítása\" feliratra, majd keresd ki a biztonsági mentést tartalmazó fájlt! %1$s</string>
-  <string name="BackupsPreferenceFragment__learn_more">További információ</string>
+  <string name="BackupsPreferenceFragment__learn_more">Tudj meg többet!</string>
   <string name="BackupsPreferenceFragment__in_progress">Folyamatban…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d eddig…</string>
   <!--Show percentage of completion of backup-->
@@ -802,7 +802,7 @@
   <string name="InviteActivity_lets_switch_to_signal">Váltsunk Signalra: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Úgy néz ki, hogy egy alkalmazásod sincs a megosztás kezeléséhez.</string>
   <!--LearnMoreTextView-->
-  <string name="LearnMoreTextView_learn_more">További információ</string>
+  <string name="LearnMoreTextView_learn_more">Tudj meg többet!</string>
   <string name="SpanUtil__read_more">További információk</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Az üzenet nem található</string>
@@ -1714,7 +1714,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_item_received__contact_photo_description">Kontakt fotó</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Betöltés</string>
-  <string name="ConversationUpdateItem_learn_more">További információ</string>
+  <string name="ConversationUpdateItem_learn_more">Tudj meg többet!</string>
   <string name="ConversationUpdateItem_join_call">Belépés a hívásba</string>
   <string name="ConversationUpdateItem_return_to_call">Vissza a híváshoz</string>
   <string name="ConversationUpdateItem_call_is_full">A hívás betelt</string>
@@ -1890,7 +1890,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Adj meg egy nevet vagy telefonszámot</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosítás sértetlenségét %s nevű partnereddel, hasonlítsd össze a fenti számot az ő készülékén megjelenő számmal. Alternatív megoldásként beszkennelheted a kódot telefonja kijelzőjéről <a href="https://signal.org/redirect/safety-numbers">További információ</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ha szeretnéd ellenőrizni a titkosítás sértetlenségét %s nevű partnereddel, hasonlítsd össze a fenti számot az ő készülékén megjelenő számmal. Alternatív megoldásként beszkennelheted a kódot telefonja kijelzőjéről <a href="https://signal.org/redirect/safety-numbers">Tudj meg többet!</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Koppints a szkenneléshez</string>
   <string name="verify_display_fragment__successful_match">Sikeres egyezés</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Biztonsági azonosító ellenőrzése sikertelen</string>
@@ -2162,7 +2162,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_communication__sealed_sender_display_indicators_description">Jelenítsen meg egy státuszikont a rejtett feladóval kézbesített üzenetek \"Üzenet részletei\" menüpontjában.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Engedélyezés mindenkitől</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Rejtett feladóval érkező üzenetek engedélyezése olyan nem-kontaktoktól és személyektől is, akikkel nem osztottad meg a profilodat.</string>
-  <string name="preferences_communication__sealed_sender_learn_more">További információ</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Tudj meg többet!</string>
   <string name="preferences_setup_a_username">Felhasználónév beállítása</string>
   <string name="preferences_proxy">Proxy</string>
   <string name="preferences_use_proxy">Proxy használata</string>
@@ -2336,19 +2336,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_context__menu_forward_message">Továbbítás</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Üzenet újraküldése</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Válasz</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">Válasz az üzenetre</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Több kiválasztása</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="other">%d kiválasztva</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">Mentés</string>
+  <string name="conversation_context_image__save_attachment">Melléklet mentése</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Eltűnő üzenetek</string>
   <!--conversation_expiring_on-->
@@ -2477,7 +2469,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">A PIN kódok bemutatása</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">A PIN-nek köszönhetően a Signal által tárolt információk titkosítva lesznek, így csak te férhetsz hozzájuk. Újratelepítés esetén profilod, beállításaid és kontaktjaid visszaállításra kerülnek. Az alkalmazás megnyitásához nincs szükség a PIN kódra.</string>
-  <string name="KbsSplashFragment__learn_more">Tudj meg többet</string>
+  <string name="KbsSplashFragment__learn_more">Tudj meg többet!</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Regisztrációs kód = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">A regisztrációs zárat mostantól PIN kódnak hívják, és többet tud. Frissítsd most!</string>
   <string name="KbsSplashFragment__update_pin">PIN kód frissítése</string>
@@ -2495,7 +2487,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="AccountLockedFragment__account_locked">Fiók zárolva</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Biztonságod és személyes adataid védelme érdekében fiókodat zároltuk. %1$d nap inaktivitást követően újraregisztrálhatod ezt a telefonszámot a PIN kód használata nélkül. Az összes adat törlésre kerül.</string>
   <string name="AccountLockedFragment__next">Tovább</string>
-  <string name="AccountLockedFragment__learn_more">Tudj meg többet</string>
+  <string name="AccountLockedFragment__learn_more">Tudj meg többet!</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Add meg PIN kódodat</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Gépeld be a fiókodhoz létrehozott PIN kódodat. Ez nem azonos az SMS-ben regisztrációkor kapott ellenőrző kóddal.</string>

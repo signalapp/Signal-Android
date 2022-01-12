@@ -2511,21 +2511,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_context__menu_forward_message">Ymlaen</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Ailanfon y neges</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Ymateb</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">Ateb neges</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Dewis nifer</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="two"></item>
-    <item quantity="many"></item>
-    <item quantity="other">%d wedi\'u dewis</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">Cadw</string>
+  <string name="conversation_context_image__save_attachment">Cadw atodiad</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Negeseuon byrhoedlog</string>
   <!--conversation_expiring_on-->

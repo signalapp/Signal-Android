@@ -412,6 +412,7 @@
   <string name="BackupsPreferenceFragment__in_progress">در حال پیشرفت…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d تا بحال…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% تا کنون…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">سیگنال برای پشتیبان‌گیری نیاز به مجوز حافظه دارد، اما اجازه آن داده نشده است. لطفاً به تنظیمات برنامه رفته، «مجوزها» را انتخاب کنید و «ذخیره‌سازی» را فعال کنید.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
@@ -1621,6 +1622,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">این دستگاه دیگر ثبت‌نام شده نیست</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">این احتمالاً به این خاطر است که شما ثبت‌نام شماره‌تلفن خود را با دستگاهی دیگر در سیگنال انجام داده‌اید. برای ثبت‌نام دوباره ضربه بزنید.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">برای پاسخ به تماس، به سیگنال دسترسی به میکروفون خود را بدهید.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">برای پاسخ به تماس %s، به سیگنال اجازهٔ دسترسی به میکروفون خود را بدهید.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">سیگنال برای برقراری و دریافت تماس نیاز مجوزها‌ی میکروفون و دوربین دارد، اما دسترسی به آن‌ها به طور دائم رد شده است. لطفاً به تنظیمات برنامه رفته، در قسمت «مجوزها»، «میکروفون» و «دوربین» را فعال کنید.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">برروی دستگاه پیوند داده شده پاسخ داده شد.</string>
@@ -2331,19 +2333,11 @@
   <string name="conversation_context__menu_forward_message">بازارسال</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">ارسال مجدد پیام</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">پاسخ</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">پاسخ به پیام</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">انتخاب چندگانه</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="other">%d انتخاب شد</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">ذخیره</string>
+  <string name="conversation_context_image__save_attachment">ذخیره‌سازی پیوست</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">پیام‌های ناپدید شونده</string>
   <!--conversation_expiring_on-->
@@ -2578,6 +2572,7 @@
   <string name="BackupDialog_verify">وارسی</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">گذرواژهٔ پشتیبان با موفقیت وارد شد</string>
   <string name="BackupDialog_passphrase_was_not_correct">گذرواژه نادرست بود</string>
+  <string name="LocalBackupJob_creating_signal_backup">در حال ایجاد پشتیبان سیگنال…</string>
   <string name="LocalBackupJobApi29_backup_failed">پشتیبان‌گیری ناموفق بود</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آدرس ذخیره‌سازی پشتیبان شما حذف شده یا به جای دیگری انتقال یافته است.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">حجم فایل پشتیبان شما برای نگهداری در این محل زیاد است.</string>
@@ -2700,6 +2695,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">هر دو دستگاه را نزدیک به یکدیگر نگه دارید. دستگاه‌ها را خاموش نکنید و سیگنال را باز نگه دارید. انتقال‌ها سرتاسر رمزگذاری شده هستند.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d پیام تا کنون…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% از پیام‌ها تا کنون…</string>
   <string name="DeviceTransfer__cancel">لغو</string>
   <string name="DeviceTransfer__try_again">دوباره امتحان کنید</string>
   <string name="DeviceTransfer__stop_transfer_question">توقف انتقال؟</string>

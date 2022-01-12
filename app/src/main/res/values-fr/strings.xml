@@ -450,7 +450,7 @@
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiser pour palier l’absence des Services Play</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas les Services Google Play en charge. Touchez pour désactiver les optimisations système de la batterie qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas les Services Google Play en charge. Touchez pour désactiver les optimisations système de la batterie/pile qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Votre version de Signal est expirée. Mettez-la à jour maintenant afin d’échanger des messages.</string>
   <string name="ExpiredBuildReminder_update_now">Mettre Signal à jour maintenant</string>
@@ -1754,11 +1754,11 @@
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Tout semble en ordre maintenant !</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, touchez ici et activez l’option « Afficher les notifications ».</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Pour recevoir les notifications d\'appel, touchez ici, activez les notifications et assurez-vous que le son et les fenêtres surgissantes sont activées.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez ici et activez l’activité d’arrière-plan dans la section « Batterie » des paramètres.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez ici et activez l’activité d’arrière-plan dans la section « Batterie/Pile » des paramètres.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Paramètres</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, touchez Réglages et activez l’option « Afficher les notifications ».</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Pour recevoir les notifications d\'appel, touchez Paramètres, activez les notifications et assurez-vous que le son et les fenêtres surgissantes sont activées.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez Paramètres et activez l’activité d’arrière-plan dans la section « Batterie » des paramètres.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Pour recevoir les notifications d’appel, touchez Paramètres et activez l’activité d’arrière-plan dans la section « Batterie/Pile » des paramètres.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays…</string>
   <string name="country_selection_fragment__search">Chercher</string>
@@ -2317,7 +2317,7 @@
   <string name="conversation_callable_secure__menu_video">Appel vidéo Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Infos</string>
+  <string name="conversation_context__menu_message_details">Renseignements</string>
   <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_context__menu_copy_text">Copier</string>
   <!--Button to delete a message-->
@@ -2326,19 +2326,11 @@
   <string name="conversation_context__menu_forward_message">Transférer</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Renvoyer le message</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Répondre</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">Répondre au message</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Sélection multiple</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="other">%d sélectionnées</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">Enregistrer</string>
+  <string name="conversation_context_image__save_attachment">Enregistrer le fichier joint</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Messages éphémères</string>
   <!--conversation_expiring_on-->

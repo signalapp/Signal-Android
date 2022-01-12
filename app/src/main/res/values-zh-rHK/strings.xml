@@ -2247,18 +2247,11 @@
   <string name="conversation_context__menu_forward_message">轉發</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">重新傳送訊息</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">回覆</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">選取多個項目</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="other">%d 個已選取</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">儲存</string>
+  <string name="conversation_context_image__save_attachment">儲存附件</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">限時訊息</string>
   <!--conversation_expiring_on-->

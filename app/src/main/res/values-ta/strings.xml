@@ -2237,15 +2237,11 @@
   <string name="conversation_context__menu_forward_message">முன்னனுப்புக</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">செய்தியை மீண்டும் அனுப்பு</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">பதில்</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">செய்திக்கு பதில்</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">பலவற்றை தேர்வு செய்க</string>
-  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">சேமி</string>
+  <string name="conversation_context_image__save_attachment">இணைப்பைச் சேமி</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
   <!--conversation_expiring_on-->

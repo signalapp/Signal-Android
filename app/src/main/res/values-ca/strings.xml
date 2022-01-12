@@ -789,7 +789,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Comparteix</string>
   <string name="InviteActivity_share_with_contacts">Comparteix amb els contactes</string>
-  <string name="InviteActivity_share_via">Comparteix via…</string>
+  <string name="InviteActivity_share_via">Comparteix mitjançant…</string>
   <string name="InviteActivity_cancel">Cancel·la</string>
   <string name="InviteActivity_sending">S\'envia…</string>
   <string name="InviteActivity_invitations_sent">Invitacions enviades!</string>
@@ -1267,18 +1267,18 @@
     <item quantity="one">%1$s, %2$s i %3$d més rebran una notificació</item>
     <item quantity="other">%1$s, %2$s i %3$d més rebran una notificació</item>
   </plurals>
-  <string name="WebRtcCallView__ringing_s">S\'està trucant a %1$s</string>
-  <string name="WebRtcCallView__ringing_s_and_s">S\'està trucant a %1$s i %2$s</string>
+  <string name="WebRtcCallView__ringing_s">Es truca a %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Es truca a %1$s i %2$s</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-    <item quantity="one">S\'està trucant a %1$s, %2$s i %3$d més</item>
-    <item quantity="other">S\'està trucant a %1$s, %2$s i %3$d més</item>
+    <item quantity="one">Es truca a %1$s, %2$s i %3$d més</item>
+    <item quantity="other">Es truca a %1$s, %2$s i %3$d més</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s us està trucant</string>
-  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$sus està trucat a vós i a %2$s</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s us està trucant a vòs, %2$s i %3$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$sus truca a vós i a %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s us truca a vós, %2$s i %3$s</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-    <item quantity="one">%1$s us està trucant a vós, a %2$s, a %3$s i a %4$d més</item>
-    <item quantity="other">%1$s us està trucant a vós, a %2$s, a %3$s i a %4$d més</item>
+    <item quantity="one">%1$s us truca a vós, a %2$s, a %3$s i a %4$d més</item>
+    <item quantity="other">%1$s us truca a vós, a %2$s, a %3$s i a %4$d més</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Aquí no hi ha ningú més.</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s és en aquesta trucada.</string>
@@ -1771,7 +1771,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Enllaça un dispositiu</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">No hi ha cap dispositiu enllaçat</string>
+  <string name="device_list_fragment__no_devices_linked">No hi ha cap dispositiu enllaçat.</string>
   <string name="device_list_fragment__link_new_device">Enllaça un dispositiu nou</string>
   <!--expiration-->
   <string name="expiration_off">Inactiu</string>
@@ -1818,7 +1818,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs">Cerca de GIF</string>
   <!--giphy_fragment-->
-  <string name="giphy_fragment__nothing_found">No s\'ha trobat res</string>
+  <string name="giphy_fragment__nothing_found">No s\'ha trobat res.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voleu importar els missatges de text existents a la base de dades encriptada del Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de dades predeterminada del sistema no es modificarà ni  s\'alterarà de cap manera.</string>
@@ -2329,19 +2329,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_context__menu_forward_message">Reenvia</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Torna a enviar el missatge</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Respon</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">Respon el missatge</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Selecció múltiple</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="other">%d de seleccionats</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">Desats</string>
+  <string name="conversation_context_image__save_attachment">Desa l\'adjunt</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Missatges efímers</string>
   <!--conversation_expiring_on-->

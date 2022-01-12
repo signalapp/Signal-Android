@@ -2233,23 +2233,16 @@
   <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_context__menu_copy_text">コピー</string>
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">削除する</string>
+  <string name="conversation_context__menu_delete_message">削除</string>
   <!--Button to forward a message to another person or group chat-->
   <string name="conversation_context__menu_forward_message">転送</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">メッセージの再送信</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">返信</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">メッセージに返信</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">複数を選択</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="other">%d件選択済み</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">保存</string>
+  <string name="conversation_context_image__save_attachment">添付ファイルを保存</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">消えるメッセージ</string>
   <!--conversation_expiring_on-->

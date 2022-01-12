@@ -2508,21 +2508,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="conversation_context__menu_forward_message">Přeposlat</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Znovu poslat zprávu</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Odpověď</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">Odpovědět na zprávu</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Vícenásobný výběr</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="few"></item>
-    <item quantity="many"></item>
-    <item quantity="other">%d vybráno</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">Uložit</string>
+  <string name="conversation_context_image__save_attachment">Uložit přílohu</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Mizející zprávy</string>
   <!--conversation_expiring_on-->

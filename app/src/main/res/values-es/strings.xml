@@ -2335,19 +2335,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_context__menu_forward_message">Reenviar</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Responder</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">Responder al mensaje</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Selección múltiple</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="other">%d seleccionados</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">Guardar</string>
+  <string name="conversation_context_image__save_attachment">Guardar archivo adjunto</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Desaparición de mensajes</string>
   <!--conversation_expiring_on-->

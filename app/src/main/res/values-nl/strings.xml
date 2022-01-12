@@ -253,10 +253,10 @@
     <item quantity="one">Geselecteerd bericht wissen?</item>
     <item quantity="other">Geselecteerde berichten wissen?</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Opslaan naar telefoonopslag?</string>
+  <string name="ConversationFragment_save_to_sd_card">Onversleuteld opslaan?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Als je dit bestand opslaat op de telefoonopslag wordt het niet versleuteld opgeslagen en hebben alle andere apps op je apparaat toegang tot dit bestand.\n\nDoorgaan?</item>
-    <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze niet versleuteld en hebben alle andere apps op je apparaat ook toegang tot deze bestanden.\n\nDoorgaan?</item>
+    <item quantity="one">Als je dit bestand opslaat op de telefoonopslag wordt het onversleuteld opgeslagen waardoor alle apps op je apparaat toegang krijgen tot dit bestand.\n\nToch doorgaan?</item>
+    <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze onversleuteld opgeslagen waardoor alle apps op je apparaat toegang krijgen tot deze bestanden.\n\nToch doorgaan?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Fout tijdens het opslaan van de bijlage op de telefoonopslag!</item>
@@ -2329,28 +2329,20 @@
   <string name="conversation_callable_secure__menu_video">Signal-video-oproep</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Info</string>
+  <string name="conversation_context__menu_message_details">Berichtdetails</string>
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopiëren</string>
+  <string name="conversation_context__menu_copy_text">Tekst kopiëren</string>
   <!--Button to delete a message-->
   <string name="conversation_context__menu_delete_message">Wissen</string>
   <!--Button to forward a message to another person or group chat-->
   <string name="conversation_context__menu_forward_message">Doorsturen</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Bericht opnieuw verzenden</string>
-  <!--Button to reply to a message-->
   <string name="conversation_context__menu_reply_to_message">Reageren</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Meerdere selecteren</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="other">%d geselecteerd</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">Onversleuteld opslaan</string>
+  <string name="conversation_context_image__save_attachment">Bijlage opslaan</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Verlopende berichten</string>
   <!--conversation_expiring_on-->
@@ -3358,7 +3350,7 @@
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Ondersteun technologie die is gemaakt voor jou, niet voor het verzamelen van je gegevens, door één van de donateurs te worden die Signal mogelijk maken.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
-  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties</string>
+  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties (Let op: je kunt de badge alleen krijgen als je via Google Pay doneert)</string>
   <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie annuleren</string>
   <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donatie annuleren?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>

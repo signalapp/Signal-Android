@@ -2509,21 +2509,11 @@
   <string name="conversation_context__menu_forward_message">העבר הלאה</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">שלח מחדש הודעה</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">השב</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">השב אל הודעה</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">בחר רבים</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="two"></item>
-    <item quantity="many"></item>
-    <item quantity="other">%d נבחרו</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">שמור</string>
+  <string name="conversation_context_image__save_attachment">שמור צרופה</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">הודעות נעלמות</string>
   <!--conversation_expiring_on-->

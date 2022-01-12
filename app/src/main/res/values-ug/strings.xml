@@ -2255,15 +2255,11 @@
   <string name="conversation_context__menu_forward_message">ئۇلاپ يوللا</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">ئۇچۇرنى قايتا يوللا</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">جاۋاب</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">ئۇچۇرغا جاۋاب</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">كۆپ تاللا</string>
-  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">ساقلا</string>
+  <string name="conversation_context_image__save_attachment">قوشۇمچە ساقلا</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">غايىب ئۇچۇرلار</string>
   <!--conversation_expiring_on-->

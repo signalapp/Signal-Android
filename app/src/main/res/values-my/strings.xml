@@ -2084,15 +2084,11 @@
   <string name="conversation_context__menu_forward_message">ထပ်ဆင့် ပေးပို့မယ်</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">မက်ဆေ့ချ် ပြန်ပို့မယ်</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">စာပြန်မည်</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">မက်ဆေ့ချ်ကို ပြန်ကြားမယ်</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">မျိုးစုံရွေးချယ်မယ်</string>
-  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">သိမ်းမယ်</string>
+  <string name="conversation_context_image__save_attachment">ပူးတွဲဖိုင်ကို သိမ်းမယ်</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
   <!--conversation_expiring_on-->

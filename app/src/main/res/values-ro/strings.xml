@@ -1207,7 +1207,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Introdu parola nouă!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Asociez acest dispozitiv?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Asociezi acest dispozitiv?</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUĂ</string>
   <string name="DeviceProvisioningActivity_content_intro">Va putea</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1413,7 +1413,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviciile Google Play se actualizează sau sunt temporar indisponibile. Te rugăm încearcă din nou.</string>
   <string name="RegistrationActivity_terms_and_privacy">Termeni &amp; Politica de confidențialitate</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal are nevoie de permisiunea pentru contacte și media să te ajute să iei legătura cu prietenii și să trimiți mesaje. Contactele tale sunt încărcate utilizând descoperirea privată a contactelor de la Signal, ceea ce înseamnă că sunt criptate integral și nu sunt niciodată vizibile pentru serviciul Signal.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal are nevoie de permisiunea pentru contacte să te ajute să iei legătura cu prietenii.  Contactele tale sunt încărcate utilizând descoperirea privată a contactelor de la Signal, ceea ce înseamnă că sunt criptate integral și nu sunt niciodată vizibile pentru serviciul Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal are nevoie de permisiunea pentru contacte să te ajute să iei legătura cu prietenii. Contactele tale sunt încărcate utilizând descoperirea privată a contactelor de la Signal, ceea ce înseamnă că sunt criptate integral și nu sunt niciodată vizibile pentru serviciul Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Ai făcut prea multe încercări de înregistrare a acestui număr. Te rugăm să încerci din nou mai târziu.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rugăm verifică conexiunea la rețea și încearcă din nou.</string>
   <string name="RegistrationActivity_non_standard_number_format">Număr cu format non-standard</string>
@@ -2418,20 +2418,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_context__menu_forward_message">Redirecționează</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Retrimite mesajul</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Răspunde</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">Răspunde la mesaj</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Selectează mai multe</string>
-  <!--Heading which shows how many messages are currently selected-->
-  <!-- Removed by excludeNonTranslatables <plurals name="conversation_context__s_selected">
-    <item quantity="one"></item>
-    <item quantity="few"></item>
-    <item quantity="other">%d selectate</item>
-  </plurals> -->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">Salvează</string>
+  <string name="conversation_context_image__save_attachment">Salvează atașamentul</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Dispariție mesaje</string>
   <!--conversation_expiring_on-->
@@ -3512,7 +3503,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Adaugă un Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Abonamentul tău de Susținător a fost anulat automat deoarece ai fost inactiv pentru o perioadă prea lungă de timp. Insigna ta %1$s nu mai este vizibilă pe profilul tău.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru ați reactiva insigna, reînnoiește acum.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru a-ți reactiva insigna, reînnoiește acum.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reînnoiește abonamentul</string>
   <string name="Subscription__please_contact_support_for_more_information">Te rugăm să contactezi suportul pentru mai multe informații.</string>
   <string name="Subscription__contact_support">Contactează suportul</string>

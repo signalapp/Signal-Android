@@ -2205,15 +2205,11 @@
   <string name="conversation_context__menu_forward_message">آگے</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">پیغام دوبارہ بھیجیں</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">جواب دیں</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_context__menu_reply_to_message">پیغام کا جواب دیں</string>
+  <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">متعدد منتخب کریں</string>
-  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <!--Button to save a message attachment (image, file etc.)-->
-  <string name="conversation_context_image__save_attachment">محفوظ کریں</string>
+  <string name="conversation_context_image__save_attachment">منسلک چیزیں محفوظ کریں</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
   <!--conversation_expiring_on-->
