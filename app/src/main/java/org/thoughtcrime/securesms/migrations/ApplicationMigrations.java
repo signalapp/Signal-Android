@@ -92,9 +92,10 @@ public class ApplicationMigrations {
     static final int DB_REACTIONS_MIGRATION        = 48;
     //static final int CHANGE_NUMBER_CAPABILITY_3  = 49;
     static final int PNI                           = 50;
+    static final int FIX_DEPRECATION               = 51; // Only used to trigger clearing the 'client deprecated' flag
   }
 
-  public static final int CURRENT_VERSION = 50;
+  public static final int CURRENT_VERSION = 51;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
