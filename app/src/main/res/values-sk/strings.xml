@@ -2508,11 +2508,15 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_context__menu_forward_message">Preposlať</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Odoslať správu znovu</string>
-  <string name="conversation_context__menu_reply_to_message">Odpovedať na správu</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Odpovedať</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Vyberte viaceré</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Uložiť prílohu </string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Uložiť</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Miznúce správy</string>
   <!--conversation_expiring_on-->

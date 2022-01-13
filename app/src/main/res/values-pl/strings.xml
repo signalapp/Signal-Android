@@ -2501,11 +2501,21 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_context__menu_forward_message">Przekaż</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Wyślij ponownie wiadomość</string>
-  <string name="conversation_context__menu_reply_to_message">Odpowiedz na wiadomość</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Odpowiedz</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Wybierz wiele</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d wybrana</item>
+    <item quantity="few">%d wybrane</item>
+    <item quantity="many">%d wybranych</item>
+    <item quantity="other">%d wybrane</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Zapisz załącznik</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Zapisz</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Znikające wiadomości</string>
   <!--conversation_expiring_on-->

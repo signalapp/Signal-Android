@@ -2509,11 +2509,15 @@
   <string name="conversation_context__menu_forward_message">Persiųsti</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Iš naujo siųsti žinutę</string>
-  <string name="conversation_context__menu_reply_to_message">Atsakyti į žinutę</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Atsakyti</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Pasirinkti kelis</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Įrašyti priedą</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Įrašyti</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Išnykstančios žinutės</string>
   <!--conversation_expiring_on-->

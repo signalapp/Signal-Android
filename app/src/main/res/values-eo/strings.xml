@@ -2335,11 +2335,19 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_context__menu_forward_message">Plusendi</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Resendi mesaĝon</string>
-  <string name="conversation_context__menu_reply_to_message">Respondi mesaĝon</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Respondi</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Elekti plurajn</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d elektita</item>
+    <item quantity="other">%d elektitaj</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Konservi kunsendaĵon</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Konservi</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Memviŝontaj mesaĝoj</string>
   <!--conversation_expiring_on-->

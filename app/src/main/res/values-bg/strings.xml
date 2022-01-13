@@ -2150,11 +2150,15 @@
   <string name="conversation_context__menu_forward_message">Препращане</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Повторно изпращане</string>
-  <string name="conversation_context__menu_reply_to_message">Отговор на съобщение</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Отговори</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Изберете няколко</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Запази прикачения файл</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Запази</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Изчезващи съобщения</string>
   <!--conversation_expiring_on-->

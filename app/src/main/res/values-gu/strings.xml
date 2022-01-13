@@ -2202,11 +2202,15 @@
   <string name="conversation_context__menu_forward_message">ફોરવર્ડ</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">મેસેજ ફરીથી મોકલો</string>
-  <string name="conversation_context__menu_reply_to_message">મેસેજ નો જવાબ આપો</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">જવાબ</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">વધારે પસંદ કરો</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">જોડાણ સેવ કરો</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">સેવ કરો</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string>
   <!--conversation_expiring_on-->

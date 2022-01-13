@@ -2502,11 +2502,21 @@
   <string name="conversation_context__menu_forward_message">Переслать</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Отправить заново</string>
-  <string name="conversation_context__menu_reply_to_message">Ответить на сообщение</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Ответить</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Выбрать несколько</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">Выбрано: %d</item>
+    <item quantity="few">Выбрано: %d</item>
+    <item quantity="many">Выбрано: %d</item>
+    <item quantity="other">Выбрано: %d</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Сохранить вложение</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Сохранить</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Исчезающие сообщения</string>
   <!--conversation_expiring_on-->

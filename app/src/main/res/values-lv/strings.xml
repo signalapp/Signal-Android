@@ -2280,11 +2280,15 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="conversation_context__menu_forward_message">Uz priekšu</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Atkārtoti sūtīt ziņu</string>
-  <string name="conversation_context__menu_reply_to_message">Atbildēt uz ziņu</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Atbildēt</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Atzīmējiet vairākus</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Saglabāt pielikumu</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Saglabāt</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Gaistošās ziņas</string>
   <!--conversation_expiring_on-->

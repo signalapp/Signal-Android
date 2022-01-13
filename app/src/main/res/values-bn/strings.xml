@@ -2312,11 +2312,15 @@
   <string name="conversation_context__menu_forward_message">ফরওয়ার্ড</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">বার্তা পুনরায় পাঠান</string>
-  <string name="conversation_context__menu_reply_to_message">বার্তার জবাব দিন</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">প্রত্যুত্তর</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">একাধিক নির্বাচন করুন</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">সংযুক্তি সংরক্ষন করুন</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">সংরক্ষণ করুন</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">অদৃশ্য বার্তা</string>
   <!--conversation_expiring_on-->

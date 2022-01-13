@@ -2209,11 +2209,15 @@
   <string name="conversation_context__menu_forward_message">ഫോർവേഡ് ചെയ്യുക</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">സന്ദേശം വീണ്ടും അയയ്‌ക്കുക</string>
-  <string name="conversation_context__menu_reply_to_message">സന്ദേശത്തിന് മറുപടി നൽകുക</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">മറുപടി</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">ഒന്നിലധികം തിരഞ്ഞെടുക്കുക</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">അറ്റാച്ചുമെന്റ് സംരക്ഷിക്കൂ</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">സംരക്ഷിക്കൂ</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <!--conversation_expiring_on-->

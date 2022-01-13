@@ -2418,11 +2418,20 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_context__menu_forward_message">Redirecționează</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Retrimite mesajul</string>
-  <string name="conversation_context__menu_reply_to_message">Răspunde la mesaj</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Răspunde</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Selectează mai multe</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d selectat</item>
+    <item quantity="few">%d selectate</item>
+    <item quantity="other">%d selectate</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Salvează atașamentul</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Salvează</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Dispariție mesaje</string>
   <!--conversation_expiring_on-->

@@ -2330,11 +2330,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_context__menu_forward_message">Yönlendir</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">İletiyi tekrar gönder</string>
-  <string name="conversation_context__menu_reply_to_message">İletiyi yanıtla</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Cevapla</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Çoklu seçim</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Eklentiyi kaydet</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Kaydet</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Kaybolan iletiler</string>
   <!--conversation_expiring_on-->

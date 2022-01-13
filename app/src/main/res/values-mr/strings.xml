@@ -2330,11 +2330,15 @@
   <string name="conversation_context__menu_forward_message">फॉर्वर्ड करा</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">संदेश पुन्हा पाठवा</string>
-  <string name="conversation_context__menu_reply_to_message">संदेशाला प्रत्युत्तर द्या</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">प्रत्युत्तर द्या</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">अनेक निवडा</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">संलग्न जतन करा</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">जतन करा</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">हरवणारे संदेश</string>
   <!--conversation_expiring_on-->

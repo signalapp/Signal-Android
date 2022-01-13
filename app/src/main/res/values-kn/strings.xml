@@ -2207,11 +2207,15 @@
   <string name="conversation_context__menu_forward_message">ಫಾರ್ವರ್ಡ್</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">ಸಂದೇಶ ಪುನಃ ಕಳುಹಿಸಿ</string>
-  <string name="conversation_context__menu_reply_to_message">ಸಂದೇಶಕ್ಕೆ ಉತ್ತರಿಸಿ</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">ಉತ್ತರಿಸಿ</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">ಬಹು ಆಯ್ಕೆ ಮಾಡಿ </string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">ಲಗತ್ತು ಉಳಿಸು</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">ಉಳಿಸಿ</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <!--conversation_expiring_on-->

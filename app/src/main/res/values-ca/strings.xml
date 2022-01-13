@@ -2329,11 +2329,19 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_context__menu_forward_message">Reenvia</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Torna a enviar el missatge</string>
-  <string name="conversation_context__menu_reply_to_message">Respon el missatge</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Respon</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Selecció múltiple</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d de seleccionat</item>
+    <item quantity="other">%d de seleccionats</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Desa l\'adjunt</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Desats</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Missatges efímers</string>
   <!--conversation_expiring_on-->

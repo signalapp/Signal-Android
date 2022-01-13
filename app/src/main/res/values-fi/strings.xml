@@ -2327,11 +2327,15 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_context__menu_forward_message">Välittäminen</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Lähetä viesti uudelleen</string>
-  <string name="conversation_context__menu_reply_to_message">Vastaa viestiin</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Vastaa</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Valitse useita</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Tallenna liite</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Tallenna</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Katoavat viestit</string>
   <!--conversation_expiring_on-->

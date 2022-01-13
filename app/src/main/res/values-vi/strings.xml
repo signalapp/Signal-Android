@@ -2242,11 +2242,15 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="conversation_context__menu_forward_message">Chuyển tiếp</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Gửi lại tin nhắn</string>
-  <string name="conversation_context__menu_reply_to_message">Trả lời tin nhắn</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Trả lời</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Chọn nhiều</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Lưu tệp đính kèm</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Lưu</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Tin nhắn tự hủy</string>
   <!--conversation_expiring_on-->

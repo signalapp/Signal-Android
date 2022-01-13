@@ -2500,11 +2500,21 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_context__menu_forward_message">Posreduj</string>
   <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Ponovno pošlji sporočilo</string>
-  <string name="conversation_context__menu_reply_to_message">Odgovori na sporočilo</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Odgovori</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Izberi več</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d izbran</item>
+    <item quantity="two">%d izbrana</item>
+    <item quantity="few">%d izbrani</item>
+    <item quantity="other">%d izbranih</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Shrani priponko</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Shrani</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Izginjajoča sporočila</string>
   <!--conversation_expiring_on-->
