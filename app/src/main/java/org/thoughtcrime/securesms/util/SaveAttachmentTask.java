@@ -248,7 +248,15 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     contentValues.put(MediaStore.MediaColumns.DATE_MODIFIED, TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
 
     if (Build.VERSION.SDK_INT > 28) {
+      int i = 0;
+      String displayName = fileName;
+      while (pathInCache(outputUri, displayName) || displayNameTaken(outputUri, displayName)) {
+        displayName = base + "-" + (++i) + "." + extension;
+      }
+
+      contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName);
       contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1);
+      putInCache(outputUri, displayName);
     } else if (Objects.equals(outputUri.getScheme(), ContentResolver.SCHEME_FILE)) {
       File outputDirectory = new File(outputUri.getPath());
       File outputFile      = new File(outputDirectory, base + "." + extension);
@@ -313,6 +321,21 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
       if (cursor == null) {
         throw new IOException("Something is wrong with the filename to save");
       }
+      return cursor.moveToFirst();
+    }
+  }
+
+  private boolean displayNameTaken(@NonNull Uri outputUri, @NonNull String displayName) throws IOException {
+    try (Cursor cursor = getContext().getContentResolver().query(outputUri,
+                                                                 new String[] { MediaStore.MediaColumns.DISPLAY_NAME },
+                                                                 MediaStore.MediaColumns.DISPLAY_NAME + " = ?",
+                                                                 new String[] { displayName },
+                                                                 null))
+    {
+      if (cursor == null) {
+        throw new IOException("Something is wrong with the displayName to save");
+      }
+
       return cursor.moveToFirst();
     }
   }
