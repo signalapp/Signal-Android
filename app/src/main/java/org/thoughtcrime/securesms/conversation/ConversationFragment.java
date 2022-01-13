@@ -182,6 +182,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends LoggingFragment implements MultiselectForwardFragment.Callback {
@@ -762,7 +763,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     List<ActionItem> items = new ArrayList<>();
 
     if (menuState.shouldShowReplyAction()) {
-      items.add(new ActionItem(R.drawable.ic_reply_24_tinted, getResources().getString(R.string.conversation_context__menu_reply_to_message), () -> {
+      items.add(new ActionItem(R.drawable.ic_reply_24_tinted, getResources().getString(R.string.conversation_selection__menu_reply), () -> {
         maybeShowSwipeToReplyTooltip();
         handleReplyMessage(getSelectedConversationMessage());
         actionMode.finish();
@@ -770,32 +771,32 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     if (menuState.shouldShowForwardAction()) {
-      items.add(new ActionItem(R.drawable.ic_forward_24_tinted, getResources().getString(R.string.conversation_context__menu_forward_message), () -> handleForwardMessageParts(selectedParts)));
+      items.add(new ActionItem(R.drawable.ic_forward_24_tinted, getResources().getString(R.string.conversation_selection__menu_forward), () -> handleForwardMessageParts(selectedParts)));
     }
 
     if (menuState.shouldShowSaveAttachmentAction()) {
-      items.add(new ActionItem(R.drawable.ic_save_24, getResources().getString(R.string.conversation_context_image__save_attachment), () -> {
+      items.add(new ActionItem(R.drawable.ic_save_24, getResources().getString(R.string.conversation_selection__menu_save), () -> {
         handleSaveAttachment((MediaMmsMessageRecord) getSelectedConversationMessage().getMessageRecord());
         actionMode.finish();
       }));
     }
 
     if (menuState.shouldShowCopyAction()) {
-      items.add(new ActionItem(R.drawable.ic_copy_24_tinted, getResources().getString(R.string.conversation_context__menu_copy_text), () -> {
+      items.add(new ActionItem(R.drawable.ic_copy_24_tinted, getResources().getString(R.string.conversation_selection__menu_copy), () -> {
         handleCopyMessage(selectedParts);
         actionMode.finish();
       }));
     }
 
     if (menuState.shouldShowDetailsAction()) {
-      items.add(new ActionItem(R.drawable.ic_info_tinted_24, getResources().getString(R.string.conversation_context__menu_message_details), () -> {
+      items.add(new ActionItem(R.drawable.ic_info_tinted_24, getResources().getString(R.string.conversation_selection__menu_message_details), () -> {
         handleDisplayDetails(getSelectedConversationMessage());
         actionMode.finish();
       }));
     }
 
     if (menuState.shouldShowDeleteAction()) {
-      items.add(new ActionItem(R.drawable.ic_delete_tinted_24, getResources().getString(R.string.conversation_context__menu_delete_message), () -> {
+      items.add(new ActionItem(R.drawable.ic_delete_tinted_24, getResources().getString(R.string.conversation_selection__menu_delete), () -> {
         handleDeleteMessages(selectedParts);
         actionMode.finish();
       }));
@@ -810,18 +811,32 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       return;
     }
 
-    int scrollOffset = (int) DimensionUnit.DP.toPixels(34);
+    int additionalScrollOffset = (int) DimensionUnit.DP.toPixels(54);
 
     if (isVisible) {
       ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
       listener.onBottomActionBarVisibilityChanged(View.VISIBLE);
 
-      list.setPadding(list.getPaddingLeft(), list.getPaddingTop(), list.getPaddingRight(), (int) DimensionUnit.DP.toPixels(88));
-      list.scrollBy(0, -scrollOffset);
+      ViewKt.doOnPreDraw(bottomActionBar, new Function1<View, Unit>() {
+        @Override public Unit invoke(View view) {
+          if (view.getHeight() == 0 && view.getVisibility() == View.VISIBLE) {
+            ViewKt.doOnPreDraw(bottomActionBar, this);
+            return Unit.INSTANCE;
+          }
+
+          int bottomPadding = view.getHeight() + (int) DimensionUnit.DP.toPixels(18);
+          list.setPadding(list.getPaddingLeft(), list.getPaddingTop(), list.getPaddingRight(), bottomPadding);
+
+          list.scrollBy(0, -(bottomPadding - additionalScrollOffset));
+
+          return Unit.INSTANCE;
+        }
+      });
     } else {
       ViewUtil.animateOut(bottomActionBar, bottomActionBar.getExitAnimation())
               .addListener(new ListenableFuture.Listener<Boolean>() {
                 @Override public void onSuccess(Boolean result) {
+                  int scrollOffset = list.getPaddingBottom() - additionalScrollOffset;
                   listener.onBottomActionBarVisibilityChanged(View.GONE);
                   list.setPadding(list.getPaddingLeft(), list.getPaddingTop(), list.getPaddingRight(), getResources().getDimensionPixelSize(R.dimen.conversation_bottom_padding));
 
