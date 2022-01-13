@@ -212,4 +212,6 @@
     <dimen name="verify_identity_vertical_margin">16dp</dimen>
 
     <dimen name="signal_context_menu_corner_radius">18dp</dimen>
+
+    <dimen name="webrtc_button_size">48dp</dimen>
 </resources>

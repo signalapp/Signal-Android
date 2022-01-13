@@ -210,8 +210,8 @@
 
         <org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutputToggleButton
             android:id="@+id/call_screen_speaker_toggle"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="@dimen/webrtc_button_size"
+            android:layout_height="@dimen/webrtc_button_size"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
@@ -248,8 +248,8 @@
 
         <ImageView
             android:id="@+id/call_screen_camera_direction_toggle"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="@dimen/webrtc_button_size"
+            android:layout_height="@dimen/webrtc_button_size"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
@@ -369,8 +369,7 @@
             app:layout_constraintBottom_toTopOf="@id/call_screen_button_labels_barrier"
             app:layout_constraintEnd_toStartOf="@id/call_screen_end_call"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/call_screen_audio_mic_toggle"
-            tools:visibility="visible" />
+            app:layout_constraintStart_toEndOf="@id/call_screen_audio_mic_toggle" />
 
         <TextView
             android:id="@+id/call_screen_audio_ring_toggle_label"
@@ -390,13 +389,12 @@
             app:layout_constraintEnd_toEndOf="@id/call_screen_audio_ring_toggle"
             app:layout_constraintStart_toStartOf="@id/call_screen_audio_ring_toggle"
             app:layout_constraintTop_toBottomOf="@id/call_screen_audio_ring_toggle"
-            app:layout_constraintVertical_bias="0"
-            tools:visibility="visible" />
+            app:layout_constraintVertical_bias="0" />
 
         <ImageView
             android:id="@+id/call_screen_end_call"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="@dimen/webrtc_button_size"
+            android:layout_height="@dimen/webrtc_button_size"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"

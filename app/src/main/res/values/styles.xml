@@ -308,8 +308,8 @@
     </style>
 
     <style name="WebRtcCallV2CompoundButton">
-        <item name="android:layout_height">56dp</item>
-        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">@dimen/webrtc_button_size</item>
+        <item name="android:layout_width">@dimen/webrtc_button_size</item>
         <item name="android:textOn">@null</item>
         <item name="android:textOff">@null</item>
     </style>
