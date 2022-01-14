@@ -19,7 +19,7 @@ class MultiselectRecyclerView @JvmOverloads constructor(
 ) : RecyclerView(context, attrs) {
 
   override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
-    val child: View? = children.firstOrNull { it is Multiselectable }
+    val child: View? = children.firstOrNull { it is Multiselectable && e.y.toInt() in it.top..it.bottom }
     if (child != null) {
       child.getHitRect(rect)
 
