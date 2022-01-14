@@ -16,6 +16,7 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
@@ -50,7 +51,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   private static final String TAG = Log.tag(VoiceNoteMediaController.class);
 
   private MediaBrowserCompat                            mediaBrowser;
-  private AppCompatActivity                             activity;
+  private FragmentActivity                              activity;
   private ProgressEventHandler                          progressEventHandler;
   private MutableLiveData<VoiceNotePlaybackState>       voiceNotePlaybackState = new MutableLiveData<>(VoiceNotePlaybackState.NONE);
   private LiveData<Optional<VoiceNotePlayerView.State>> voiceNotePlayerViewState;
@@ -58,7 +59,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
   private final MediaControllerCompatCallback mediaControllerCompatCallback = new MediaControllerCompatCallback();
 
-  public VoiceNoteMediaController(@NonNull AppCompatActivity activity) {
+  public VoiceNoteMediaController(@NonNull FragmentActivity activity) {
     this.activity     = activity;
     this.mediaBrowser = new MediaBrowserCompat(activity,
                                                new ComponentName(activity, VoiceNotePlaybackService.class),

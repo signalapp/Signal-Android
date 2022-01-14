@@ -58,6 +58,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewKt;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -253,7 +254,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    this.locale = (Locale) getArguments().getSerializable(PassphraseRequiredActivity.LOCALE_EXTRA);
+    this.locale = Locale.getDefault();
     startupStopwatch = new Stopwatch("conversation-open");
     SignalLocalMetrics.ConversationOpen.start();
   }
@@ -323,9 +324,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     giphyMp4ProjectionRecycler = initializeGiphyMp4();
 
-    this.groupViewModel         = ViewModelProviders.of(requireActivity(), new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
-    this.messageCountsViewModel = ViewModelProviders.of(requireActivity()).get(MessageCountsViewModel.class);
-    this.conversationViewModel  = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
+    this.groupViewModel         = new ViewModelProvider(getParentFragment(), new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
+    this.messageCountsViewModel = new ViewModelProvider(getParentFragment()).get(MessageCountsViewModel.class);
+    this.conversationViewModel  = new ViewModelProvider(getParentFragment(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
     conversationViewModel.getChatColors().observe(getViewLifecycleOwner(), recyclerViewColorizer::setChatColors);
     conversationViewModel.getMessages().observe(getViewLifecycleOwner(), messages -> {
@@ -381,6 +382,13 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     conversationViewModel.getActiveNotificationProfile().observe(getViewLifecycleOwner(), this::updateNotificationProfileStatus);
 
+    initializeScrollButtonAnimations();
+    initializeResources();
+    initializeMessageRequestViewModel();
+    initializeListAdapter();
+
+    // TODO [alex] LargeScreenSupport -- conversationViewModel.getSearchQuery().observe(getViewLifecycleOwner(), this::onSearchQueryUpdated);
+
     return view;
   }
 
@@ -414,21 +422,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   @Override
-  public void onActivityCreated(Bundle bundle) {
-    super.onActivityCreated(bundle);
-
-    Log.d(TAG, "[onActivityCreated]");
-
-    initializeScrollButtonAnimations();
-    initializeResources();
-    initializeMessageRequestViewModel();
-    initializeListAdapter();
-  }
-
-  @Override
-  public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    this.listener = (ConversationFragmentListener)activity;
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    this.listener = (ConversationFragmentListener) getParentFragment();
   }
 
   @Override
@@ -525,7 +521,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private void initializeMessageRequestViewModel() {
     MessageRequestViewModel.Factory factory = new MessageRequestViewModel.Factory(requireContext());
 
-    messageRequestViewModel = ViewModelProviders.of(requireActivity(), factory).get(MessageRequestViewModel.class);
+    messageRequestViewModel = new ViewModelProvider(requireParentFragment(), factory).get(MessageRequestViewModel.class);
     messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
 
     listener.onMessageRequest(messageRequestViewModel);

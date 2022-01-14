@@ -161,14 +161,14 @@
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/conversation_toolbar_color"
-        android:theme="?attr/actionBarStyle"
-        app:contentInsetStartWithNavigation="0dp"
-        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
-        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
-        app:layout_constraintTop_toTopOf="@id/status_bar_guideline"
-        app:contentInsetStart="46dp"
+        android:clipChildren="false"
         android:clipToPadding="false"
-        android:clipChildren="false">
+        android:theme="?attr/actionBarStyle"
+        app:contentInsetStart="46dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintTop_toTopOf="@id/status_bar_guideline">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityOptionsCompat;
 
 import org.signal.core.util.logging.Log;
@@ -48,14 +49,14 @@ public class ConversationPopupActivity extends ConversationActivity {
 
     super.onCreate(bundle, ready);
 
-    titleView.setOnClickListener(null);
+    getTitleView().setOnClickListener(null);
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    composeText.requestFocus();
-    quickAttachmentToggle.disable();
+    getComposeText().requestFocus();
+    getQuickAttachmentToggle().disable();
   }
 
   @Override
@@ -101,21 +102,20 @@ public class ConversationPopupActivity extends ConversationActivity {
   }
 
   @Override
-  protected void initializeActionBar() {
-    super.initializeActionBar();
-    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+  public void onInitializeToolbar(Toolbar toolbar) {
   }
 
   @Override
-  protected void sendComplete(long threadId) {
-    super.sendComplete(threadId);
+  public void onSendComplete(long threadId) {
     finish();
   }
 
   @Override
-  protected void updateReminders() {
-    if (reminderView.resolved()) {
-      reminderView.get().setVisibility(View.GONE);
+  public boolean onUpdateReminders() {
+    if (getReminderView().resolved()) {
+      getReminderView().get().setVisibility(View.GONE);
     }
+
+    return false;
   }
 }

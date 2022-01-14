@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.conversation.ConversationParentFragment
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel
@@ -107,7 +107,7 @@ class GifKeyboardPageFragment : LoggingFragment(R.layout.gif_keyboard_page_fragm
   }
 
   private fun openGifSearch() {
-    AttachmentManager.selectGif(requireActivity(), ConversationActivity.PICK_GIF, host.isMms())
+    AttachmentManager.selectGif(requireActivity(), ConversationParentFragment.PICK_GIF, host.isMms())
   }
 
   interface Host {
