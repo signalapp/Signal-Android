@@ -59,7 +59,7 @@ The form and manner of this distribution makes it eligible for export under the 
 
 ## License
 
-Copyright 2013-2021 Signal
+Copyright 2013-2022 Signal
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
 
