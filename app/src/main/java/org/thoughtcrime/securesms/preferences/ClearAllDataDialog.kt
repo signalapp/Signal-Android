@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import kotlinx.android.synthetic.main.dialog_clear_all_data.*
-import kotlinx.android.synthetic.main.dialog_clear_all_data.view.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import network.loki.messenger.R
+import network.loki.messenger.databinding.DialogClearAllDataBinding
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.ApplicationContext
@@ -15,6 +17,7 @@ import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 
 class ClearAllDataDialog : BaseDialog() {
+    private lateinit var binding: DialogClearAllDataBinding
 
     enum class Steps {
         INFO_PROMPT,
@@ -34,15 +37,15 @@ class ClearAllDataDialog : BaseDialog() {
         }
 
     override fun setContentView(builder: AlertDialog.Builder) {
-        val contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_clear_all_data, null)
-        contentView.cancelButton.setOnClickListener {
+        binding = DialogClearAllDataBinding.inflate(LayoutInflater.from(requireContext()))
+        binding.cancelButton.setOnClickListener {
             if (step == Steps.NETWORK_PROMPT) {
                 clearAllData(false)
             } else if (step != Steps.DELETING) {
                 dismiss()
             }
         }
-        contentView.clearAllDataButton.setOnClickListener {
+        binding.clearAllDataButton.setOnClickListener {
             when(step) {
                 Steps.INFO_PROMPT -> step = Steps.NETWORK_PROMPT
                 Steps.NETWORK_PROMPT -> {
@@ -51,36 +54,33 @@ class ClearAllDataDialog : BaseDialog() {
                 Steps.DELETING -> { /* do nothing intentionally */ }
             }
         }
-        builder.setView(contentView)
+        builder.setView(binding.root)
         builder.setCancelable(false)
     }
 
     private fun updateUI() {
-
-        dialog?.let { view ->
-
+        dialog?.let {
             val isLoading = step == Steps.DELETING
 
             when (step) {
                 Steps.INFO_PROMPT -> {
-                    view.dialogDescriptionText.setText(R.string.dialog_clear_all_data_explanation)
-                    view.cancelButton.setText(R.string.cancel)
-                    view.clearAllDataButton.setText(R.string.delete)
+                    binding.dialogDescriptionText.setText(R.string.dialog_clear_all_data_explanation)
+                    binding.cancelButton.setText(R.string.cancel)
+                    binding.clearAllDataButton.setText(R.string.delete)
                 }
                 else -> {
-                    view.dialogDescriptionText.setText(R.string.dialog_clear_all_data_network_explanation)
-                    view.cancelButton.setText(R.string.dialog_clear_all_data_local_only)
-                    view.clearAllDataButton.setText(R.string.dialog_clear_all_data_clear_network)
+                    binding.dialogDescriptionText.setText(R.string.dialog_clear_all_data_network_explanation)
+                    binding.cancelButton.setText(R.string.dialog_clear_all_data_local_only)
+                    binding.clearAllDataButton.setText(R.string.dialog_clear_all_data_clear_network)
                 }
             }
 
-            view.cancelButton.isVisible = !isLoading
-            view.clearAllDataButton.isVisible = !isLoading
-            view.progressBar.isVisible = isLoading
+            binding.cancelButton.isVisible = !isLoading
+            binding.clearAllDataButton.isVisible = !isLoading
+            binding.progressBar.isVisible = isLoading
 
-            view.setCanceledOnTouchOutside(!isLoading)
+            it.setCanceledOnTouchOutside(!isLoading)
             isCancelable = !isLoading
-
         }
     }
 

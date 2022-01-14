@@ -14,10 +14,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_user_details_bottom_sheet.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.FragmentUserDetailsBottomSheetBinding
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.Address
@@ -34,13 +33,15 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
 
     @Inject lateinit var threadDb: ThreadDatabase
 
+    private lateinit var binding: FragmentUserDetailsBottomSheetBinding
     companion object {
         const val ARGUMENT_PUBLIC_KEY = "publicKey"
         const val ARGUMENT_THREAD_ID = "threadId"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_user_details_bottom_sheet, container, false)
+        binding = FragmentUserDetailsBottomSheetBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,58 +50,62 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
         val threadID = arguments?.getLong(ARGUMENT_THREAD_ID) ?: return dismiss()
         val recipient = Recipient.from(requireContext(), Address.fromSerialized(publicKey), false)
         val threadRecipient = threadDb.getRecipientForThreadId(threadID) ?: return dismiss()
-        profilePictureView.publicKey = publicKey
-        profilePictureView.glide = GlideApp.with(this)
-        profilePictureView.isLarge = true
-        profilePictureView.update(recipient, -1)
-        nameTextViewContainer.visibility = View.VISIBLE
-        nameTextViewContainer.setOnClickListener {
-            nameTextViewContainer.visibility = View.INVISIBLE
-            nameEditTextContainer.visibility = View.VISIBLE
-            nicknameEditText.text = null
-            nicknameEditText.requestFocus()
-            showSoftKeyboard()
-        }
-        cancelNicknameEditingButton.setOnClickListener {
-            nicknameEditText.clearFocus()
-            hideSoftKeyboard()
+        with(binding) {
+            profilePictureView.publicKey = publicKey
+            profilePictureView.glide = GlideApp.with(this@UserDetailsBottomSheet)
+            profilePictureView.isLarge = true
+            profilePictureView.update(recipient)
             nameTextViewContainer.visibility = View.VISIBLE
-            nameEditTextContainer.visibility = View.INVISIBLE
-        }
-        saveNicknameButton.setOnClickListener {
-            saveNickName(recipient)
-        }
-        nicknameEditText.setOnEditorActionListener { _, actionId, _ ->
-            when (actionId) {
-                EditorInfo.IME_ACTION_DONE -> {
-                    saveNickName(recipient)
-                    return@setOnEditorActionListener true
-                }
-                else -> return@setOnEditorActionListener false
+            nameTextViewContainer.setOnClickListener {
+                nameTextViewContainer.visibility = View.INVISIBLE
+                nameEditTextContainer.visibility = View.VISIBLE
+                nicknameEditText.text = null
+                nicknameEditText.requestFocus()
+                showSoftKeyboard()
             }
-        }
-        nameTextView.text = recipient.name ?: publicKey // Uses the Contact API internally
+            cancelNicknameEditingButton.setOnClickListener {
+                nicknameEditText.clearFocus()
+                hideSoftKeyboard()
+                nameTextViewContainer.visibility = View.VISIBLE
+                nameEditTextContainer.visibility = View.INVISIBLE
+            }
+            saveNicknameButton.setOnClickListener {
+                saveNickName(recipient)
+            }
+            nicknameEditText.setOnEditorActionListener { _, actionId, _ ->
+                when (actionId) {
+                    EditorInfo.IME_ACTION_DONE -> {
+                        saveNickName(recipient)
+                        return@setOnEditorActionListener true
+                    }
+                    else -> return@setOnEditorActionListener false
+                }
+            }
+            nameTextView.text = recipient.name ?: publicKey // Uses the Contact API internally
 
-        publicKeyTextView.isVisible = !threadRecipient.isOpenGroupRecipient
-        messageButton.isVisible = !threadRecipient.isOpenGroupRecipient
-        publicKeyTextView.text = publicKey
-        publicKeyTextView.setOnLongClickListener {
-            val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("Session ID", publicKey)
-            clipboard.setPrimaryClip(clip)
-            Toast.makeText(requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
-            true
-        }
-        messageButton.setOnClickListener {
-            val threadId = MessagingModuleConfiguration.shared.storage.getThreadId(recipient)
-            val intent = Intent(
-                context,
-                ConversationActivityV2::class.java
-            )
-            intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
-            intent.putExtra(ConversationActivityV2.THREAD_ID, threadId ?: -1)
-            startActivity(intent)
-            dismiss()
+            publicKeyTextView.isVisible = !threadRecipient.isOpenGroupRecipient
+            messageButton.isVisible = !threadRecipient.isOpenGroupRecipient
+            publicKeyTextView.text = publicKey
+            publicKeyTextView.setOnLongClickListener {
+                val clipboard =
+                    requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("Session ID", publicKey)
+                clipboard.setPrimaryClip(clip)
+                Toast.makeText(requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT)
+                    .show()
+                true
+            }
+            messageButton.setOnClickListener {
+                val threadId = MessagingModuleConfiguration.shared.storage.getThreadId(recipient)
+                val intent = Intent(
+                    context,
+                    ConversationActivityV2::class.java
+                )
+                intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
+                intent.putExtra(ConversationActivityV2.THREAD_ID, threadId ?: -1)
+                startActivity(intent)
+                dismiss()
+            }
         }
     }
 
@@ -111,7 +116,7 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
         window.setDimAmount(if (isLightMode) 0.1f else 0.75f)
     }
 
-    fun saveNickName(recipient: Recipient) {
+    fun saveNickName(recipient: Recipient) = with(binding) {
         nicknameEditText.clearFocus()
         hideSoftKeyboard()
         nameTextViewContainer.visibility = View.VISIBLE
@@ -131,11 +136,11 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
     @SuppressLint("ServiceCast")
     fun showSoftKeyboard() {
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.showSoftInput(nicknameEditText, 0)
+        imm?.showSoftInput(binding.nicknameEditText, 0)
     }
 
     fun hideSoftKeyboard() {
         val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.hideSoftInputFromWindow(nicknameEditText.windowToken, 0)
+        imm?.hideSoftInputFromWindow(binding.nicknameEditText.windowToken, 0)
     }
 }

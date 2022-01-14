@@ -9,8 +9,8 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.view_voice_message.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ViewVoiceMessageBinding
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer
 import org.thoughtcrime.securesms.components.CornerMask
@@ -26,6 +26,7 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
 
     @Inject lateinit var attachmentDb: AttachmentDatabase
 
+    private lateinit var binding: ViewVoiceMessageBinding
     private val cornerMask by lazy { CornerMask(this) }
     private var isPlaying = false
     set(value) {
@@ -44,8 +45,8 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
     private fun initialize() {
-        LayoutInflater.from(context).inflate(R.layout.view_voice_message, this)
-        voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
+        binding = ViewVoiceMessageBinding.inflate(LayoutInflater.from(context), this, true)
+        binding.voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
             TimeUnit.MILLISECONDS.toMinutes(0),
             TimeUnit.MILLISECONDS.toSeconds(0))
     }
@@ -54,7 +55,7 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     // region Updating
     fun bind(message: MmsMessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
         val audio = message.slideDeck.audioSlide!!
-        voiceMessageViewLoader.isVisible = audio.isInProgress
+        binding.voiceMessageViewLoader.isVisible = audio.isInProgress
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])
         cornerMask.setTopRightRadius(cornerRadii[1])
@@ -74,8 +75,8 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
             attachmentDb.getAttachmentAudioExtras(attachment.attachmentId)?.let { audioExtras ->
                 if (audioExtras.durationMs > 0) {
                     duration = audioExtras.durationMs
-                    voiceMessageViewDurationTextView.visibility = View.VISIBLE
-                    voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
+                    binding.voiceMessageViewDurationTextView.visibility = View.VISIBLE
+                    binding.voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
                             TimeUnit.MILLISECONDS.toMinutes(audioExtras.durationMs),
                             TimeUnit.MILLISECONDS.toSeconds(audioExtras.durationMs))
                 }
@@ -99,12 +100,12 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
 
     private fun handleProgressChanged(progress: Double) {
         this.progress = progress
-        voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
+        binding.voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
             TimeUnit.MILLISECONDS.toMinutes(duration - (progress * duration.toDouble()).roundToLong()),
             TimeUnit.MILLISECONDS.toSeconds(duration - (progress * duration.toDouble()).roundToLong()))
-        val layoutParams = progressView.layoutParams as RelativeLayout.LayoutParams
+        val layoutParams = binding.progressView.layoutParams as RelativeLayout.LayoutParams
         layoutParams.width = (width.toFloat() * progress.toFloat()).roundToInt()
-        progressView.layoutParams = layoutParams
+        binding.progressView.layoutParams = layoutParams
     }
 
     override fun onPlayerStop(player: AudioSlidePlayer) {
@@ -118,7 +119,7 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
 
     private fun renderIcon() {
         val iconID = if (isPlaying) R.drawable.exo_icon_pause else R.drawable.exo_icon_play
-        voiceMessagePlaybackImageView.setImageResource(iconID)
+        binding.voiceMessagePlaybackImageView.setImageResource(iconID)
     }
 
     // endregion

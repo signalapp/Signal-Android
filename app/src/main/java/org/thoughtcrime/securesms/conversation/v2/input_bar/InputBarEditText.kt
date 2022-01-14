@@ -45,8 +45,8 @@ class InputBarEditText : AppCompatEditText {
         delegate?.inputBarEditTextHeightChanged(constrainedHeight.roundToInt())
     }
 
-    override fun onCreateInputConnection(editorInfo: EditorInfo): InputConnection {
-        val ic: InputConnection = super.onCreateInputConnection(editorInfo)
+    override fun onCreateInputConnection(editorInfo: EditorInfo): InputConnection? {
+        val ic = super.onCreateInputConnection(editorInfo) ?: return null
         EditorInfoCompat.setContentMimeTypes(editorInfo, arrayOf("image/png", "image/gif", "image/jpg"))
 
         val callback =

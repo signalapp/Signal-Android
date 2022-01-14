@@ -1,16 +1,16 @@
 package org.thoughtcrime.securesms.groups
 
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_open_group_guidelines.*
-import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityOpenGroupGuidelinesBinding
 import org.thoughtcrime.securesms.BaseActionBarActivity
 
 class OpenGroupGuidelinesActivity : BaseActionBarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_open_group_guidelines)
-        communityGuidelinesTextView.text = """
+        val binding = ActivityOpenGroupGuidelinesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.communityGuidelinesTextView.text = """
         Welcome to Oxen.
 
         Oxen believes privacy is an important part of our future. People have been safeguarding the right to privacy since the dawn of humanity, but the digital world has turned privacy into a privilege. Enough is enough. We're taking it back. For you. For us. For everyone.

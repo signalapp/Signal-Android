@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_delete_message_bottom_sheet.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.FragmentDeleteMessageBottomSheetBinding
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.database.SessionContactDatabase
@@ -22,6 +22,7 @@ class DeleteOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListen
     lateinit var contactDatabase: SessionContactDatabase
 
     lateinit var recipient: Recipient
+    private lateinit var binding: FragmentDeleteMessageBottomSheetBinding
     val contact by lazy {
         val senderId = recipient.address.serialize()
         // this dialog won't show for open group contacts
@@ -37,15 +38,16 @@ class DeleteOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListen
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_delete_message_bottom_sheet, container, false)
+    ): View {
+        binding = FragmentDeleteMessageBottomSheetBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            deleteForMeTextView -> onDeleteForMeTapped?.invoke()
-            deleteForEveryoneTextView -> onDeleteForEveryoneTapped?.invoke()
-            cancelTextView -> onCancelTapped?.invoke()
+            binding.deleteForMeTextView -> onDeleteForMeTapped?.invoke()
+            binding.deleteForEveryoneTextView -> onDeleteForEveryoneTapped?.invoke()
+            binding.cancelTextView -> onCancelTapped?.invoke()
         }
     }
 
@@ -55,13 +57,13 @@ class DeleteOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListen
             return dismiss()
         }
         if (!recipient.isGroupRecipient && !contact.isNullOrEmpty()) {
-            deleteForEveryoneTextView.text =
+            binding.deleteForEveryoneTextView.text =
                 resources.getString(R.string.delete_message_for_me_and_recipient, contact)
         }
-        deleteForEveryoneTextView.isVisible = !recipient.isClosedGroupRecipient
-        deleteForMeTextView.setOnClickListener(this)
-        deleteForEveryoneTextView.setOnClickListener(this)
-        cancelTextView.setOnClickListener(this)
+        binding.deleteForEveryoneTextView.isVisible = !recipient.isClosedGroupRecipient
+        binding.deleteForMeTextView.setOnClickListener(this)
+        binding.deleteForEveryoneTextView.setOnClickListener(this)
+        binding.cancelTextView.setOnClickListener(this)
     }
 
     override fun onStart() {

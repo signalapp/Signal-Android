@@ -9,16 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
-import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
-import kotlinx.android.synthetic.main.activity_select_contacts.*
-import kotlinx.android.synthetic.main.activity_select_contacts.recyclerView
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivitySelectContactsBinding
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.mms.GlideApp
 
-//TODO Refactor to avoid using kotlinx.android.synthetic
 class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
+    private lateinit var binding: ActivitySelectContactsBinding
     private var members = listOf<String>()
         set(value) { field = value; selectContactsAdapter.members = value }
     private lateinit var usersToExclude: Set<String>
@@ -36,18 +33,18 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderMana
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-
-        setContentView(R.layout.activity_select_contacts)
+        binding = ActivitySelectContactsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar!!.title = resources.getString(R.string.activity_select_contacts_title)
 
         usersToExclude = intent.getStringArrayExtra(usersToExcludeKey)?.toSet() ?: setOf()
         val emptyStateText = intent.getStringExtra(emptyStateTextKey)
         if (emptyStateText != null) {
-            emptyStateMessageTextView.text = emptyStateText
+            binding.emptyStateMessageTextView.text = emptyStateText
         }
 
-        recyclerView.adapter = selectContactsAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = selectContactsAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
@@ -73,8 +70,8 @@ class SelectContactsActivity : PassphraseRequiredActionBarActivity(), LoaderMana
 
     private fun update(members: List<String>) {
         this.members = members
-        mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
-        emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
+        binding.mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
+        binding.emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
         invalidateOptionsMenu()
     }
     // endregion

@@ -9,16 +9,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.util.TypedValue
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import kotlinx.android.synthetic.main.activity_create_private_chat.*
-import kotlinx.android.synthetic.main.fragment_enter_public_key.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityCreatePrivateChatBinding
+import network.loki.messenger.databinding.FragmentEnterPublicKeyBinding
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.snode.SnodeAPI
@@ -27,13 +29,13 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.PublicKeyValidation
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragmentDelegate
 
 class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
+    private lateinit var binding: ActivityCreatePrivateChatBinding
     private val adapter = CreatePrivateChatActivityAdapter(this)
     private var isKeyboardShowing = false
         set(value) {
@@ -47,37 +49,36 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+        binding = ActivityCreatePrivateChatBinding.inflate(layoutInflater)
         // Set content view
-        setContentView(R.layout.activity_create_private_chat)
+        setContentView(binding.root)
         // Set title
         supportActionBar!!.title = resources.getString(R.string.activity_create_private_chat_title)
         // Set up view pager
-        viewPager.adapter = adapter
-        tabLayout.setupWithViewPager(viewPager)
-        rootLayout.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-
-            override fun onGlobalLayout() {
-                val diff = rootLayout.rootView.height - rootLayout.height
-                val displayMetrics = this@CreatePrivateChatActivity.resources.displayMetrics
-                val estimatedKeyboardHeight = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200.0f, displayMetrics)
-                this@CreatePrivateChatActivity.isKeyboardShowing = (diff > estimatedKeyboardHeight)
-            }
-        })
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.rootLayout.viewTreeObserver.addOnGlobalLayoutListener {
+            val diff = binding.rootLayout.rootView.height - binding.rootLayout.height
+            val displayMetrics = this@CreatePrivateChatActivity.resources.displayMetrics
+            val estimatedKeyboardHeight =
+                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200.0f, displayMetrics)
+            this@CreatePrivateChatActivity.isKeyboardShowing = (diff > estimatedKeyboardHeight)
+        }
     }
     // endregion
 
     // region Updating
     private fun showLoader() {
-        loader.visibility = View.VISIBLE
-        loader.animate().setDuration(150).alpha(1.0f).start()
+        binding.loader.visibility = View.VISIBLE
+        binding.loader.animate().setDuration(150).alpha(1.0f).start()
     }
 
     private fun hideLoader() {
-        loader.animate().setDuration(150).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
+        binding.loader.animate().setDuration(150).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
 
             override fun onAnimationEnd(animation: Animator?) {
                 super.onAnimationEnd(animation)
-                loader.visibility = View.GONE
+                binding.loader.visibility = View.GONE
             }
         })
     }
@@ -156,6 +157,8 @@ private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatAc
 
 // region Enter Public Key Fragment
 class EnterPublicKeyFragment : Fragment() {
+    private lateinit var binding: FragmentEnterPublicKeyBinding
+
     var isKeyboardShowing = false
         set(value) { field = value; handleIsKeyboardShowingChanged() }
 
@@ -165,32 +168,34 @@ class EnterPublicKeyFragment : Fragment() {
         }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_enter_public_key, container, false)
+        binding = FragmentEnterPublicKeyBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        publicKeyEditText.imeOptions = EditorInfo.IME_ACTION_DONE or 16777216 // Always use incognito keyboard
-        publicKeyEditText.setRawInputType(InputType.TYPE_CLASS_TEXT)
-        publicKeyEditText.setOnEditorActionListener { v, actionID, _ ->
-            if (actionID == EditorInfo.IME_ACTION_DONE) {
-                val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(v.windowToken, 0)
-                createPrivateChatIfPossible()
-                true
-            } else {
-                false
+        with(binding) {
+            publicKeyEditText.imeOptions = EditorInfo.IME_ACTION_DONE or 16777216 // Always use incognito keyboard
+            publicKeyEditText.setRawInputType(InputType.TYPE_CLASS_TEXT)
+            publicKeyEditText.setOnEditorActionListener { v, actionID, _ ->
+                if (actionID == EditorInfo.IME_ACTION_DONE) {
+                    val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.windowToken, 0)
+                    createPrivateChatIfPossible()
+                    true
+                } else {
+                    false
+                }
             }
+            publicKeyTextView.text = hexEncodedPublicKey
+            copyButton.setOnClickListener { copyPublicKey() }
+            shareButton.setOnClickListener { sharePublicKey() }
+            createPrivateChatButton.setOnClickListener { createPrivateChatIfPossible() }
         }
-        publicKeyTextView.text = hexEncodedPublicKey
-        copyButton.setOnClickListener { copyPublicKey() }
-        shareButton.setOnClickListener { sharePublicKey() }
-        createPrivateChatButton.setOnClickListener { createPrivateChatIfPossible() }
     }
 
     private fun handleIsKeyboardShowingChanged() {
-        val optionalContentContainer = optionalContentContainer ?: return
-        optionalContentContainer.isVisible = !isKeyboardShowing
+        binding.optionalContentContainer.isVisible = !isKeyboardShowing
     }
 
     private fun copyPublicKey() {
@@ -209,7 +214,7 @@ class EnterPublicKeyFragment : Fragment() {
     }
 
     private fun createPrivateChatIfPossible() {
-        val hexEncodedPublicKey = publicKeyEditText.text?.trim().toString()
+        val hexEncodedPublicKey = binding.publicKeyEditText.text?.trim().toString()
         val activity = requireActivity() as CreatePrivateChatActivity
         activity.createPrivateChatIfPossible(hexEncodedPublicKey)
     }

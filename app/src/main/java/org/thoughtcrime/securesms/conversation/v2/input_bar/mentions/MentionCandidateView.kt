@@ -4,33 +4,29 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
-import kotlinx.android.synthetic.main.view_mention_candidate.view.*
-import network.loki.messenger.R
+import network.loki.messenger.databinding.ViewMentionCandidateV2Binding
 import org.session.libsession.messaging.mentions.Mention
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.thoughtcrime.securesms.mms.GlideRequests
 
-class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : RelativeLayout(context, attrs, defStyleAttr) {
+class MentionCandidateView : RelativeLayout {
+    private lateinit var binding: ViewMentionCandidateV2Binding
     var candidate = Mention("", "")
         set(newValue) { field = newValue; update() }
     var glide: GlideRequests? = null
     var openGroupServer: String? = null
     var openGroupRoom: String? = null
 
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context) : this(context, null)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
-    companion object {
-
-        fun inflate(layoutInflater: LayoutInflater, parent: ViewGroup): MentionCandidateView {
-            return layoutInflater.inflate(R.layout.view_mention_candidate_v2, parent, false) as MentionCandidateView
-        }
+    private fun initialize() {
+        binding = ViewMentionCandidateV2Binding.inflate(LayoutInflater.from(context), this, true)
     }
 
-    private fun update() {
+    private fun update() = with(binding) {
         mentionCandidateNameTextView.text = candidate.displayName
         profilePictureView.publicKey = candidate.publicKey
         profilePictureView.displayName = candidate.displayName

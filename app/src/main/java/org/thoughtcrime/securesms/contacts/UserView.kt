@@ -5,9 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
-import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ViewUserBinding
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities
@@ -15,6 +14,7 @@ import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.mms.GlideRequests
 
 class UserView : LinearLayout {
+    private lateinit var binding: ViewUserBinding
     var openGroupThreadID: Long = -1 // FIXME: This is a bit ugly
 
     enum class ActionIndicator {
@@ -41,9 +41,7 @@ class UserView : LinearLayout {
     }
 
     private fun setUpViewHierarchy() {
-        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val contentView = inflater.inflate(R.layout.view_user, null)
-        addView(contentView)
+        binding = ViewUserBinding.inflate(LayoutInflater.from(context), this, true)
     }
     // endregion
 
@@ -56,28 +54,32 @@ class UserView : LinearLayout {
         val threadID = DatabaseComponent.get(context).threadDatabase().getOrCreateThreadIdFor(user)
         MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, context) // FIXME: This is a bad place to do this
         val address = user.address.serialize()
-        profilePictureView.glide = glide
-        profilePictureView.update(user, threadID)
-        actionIndicatorImageView.setImageResource(R.drawable.ic_baseline_edit_24)
-        nameTextView.text = if (user.isGroupRecipient) user.name else getUserDisplayName(address)
+        binding.profilePictureView.glide = glide
+        binding.profilePictureView.update(user)
+        binding.actionIndicatorImageView.setImageResource(R.drawable.ic_baseline_edit_24)
+        binding.nameTextView.text = if (user.isGroupRecipient) user.name else getUserDisplayName(address)
         when (actionIndicator) {
             ActionIndicator.None -> {
-                actionIndicatorImageView.visibility = View.GONE
+                binding.actionIndicatorImageView.visibility = View.GONE
             }
             ActionIndicator.Menu -> {
-                actionIndicatorImageView.visibility = View.VISIBLE
-                actionIndicatorImageView.setImageResource(R.drawable.ic_more_horiz_white)
+                binding.actionIndicatorImageView.visibility = View.VISIBLE
+                binding.actionIndicatorImageView.setImageResource(R.drawable.ic_more_horiz_white)
             }
             ActionIndicator.Tick -> {
-                actionIndicatorImageView.visibility = View.VISIBLE
-                actionIndicatorImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+                binding.actionIndicatorImageView.visibility = View.VISIBLE
+                binding.actionIndicatorImageView.setImageResource(
+                    if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle
+                )
             }
         }
     }
 
     fun toggleCheckbox(isSelected: Boolean = false) {
-        actionIndicatorImageView.visibility = View.VISIBLE
-        actionIndicatorImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
+        binding.actionIndicatorImageView.visibility = View.VISIBLE
+        binding.actionIndicatorImageView.setImageResource(
+            if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle
+        )
     }
 
     fun unbind() {

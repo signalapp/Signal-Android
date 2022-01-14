@@ -4,9 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import android.view.MotionEvent
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import kotlinx.android.synthetic.main.view_visible_message.view.*
 import org.thoughtcrime.securesms.conversation.v2.messages.ControlMessageView
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
@@ -49,15 +47,9 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
     override fun onCreateItemViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         @Suppress("NAME_SHADOWING")
         val viewType = ViewType.allValues[viewType]
-        when (viewType) {
-            ViewType.Visible -> {
-                val view = VisibleMessageView(context)
-                return VisibleMessageViewHolder(view)
-            }
-            ViewType.Control -> {
-                val view = ControlMessageView(context)
-                return ControlMessageViewHolder(view)
-            }
+        return when (viewType) {
+            ViewType.Visible -> VisibleMessageViewHolder(VisibleMessageView(context))
+            ViewType.Control -> ControlMessageViewHolder(ControlMessageView(context))
             else -> throw IllegalStateException("Unexpected view type: $viewType.")
         }
     }
@@ -71,7 +63,6 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 val view = viewHolder.view
                 val isSelected = selectedItems.contains(message)
                 view.snIsSelected = isSelected
-                view.messageTimestampTextView.isVisible = isSelected
                 view.indexInAdapter = position
                 view.bind(message, messageBefore, getMessageAfter(position, cursor), glide, searchQuery)
                 if (!message.isDeleted) {

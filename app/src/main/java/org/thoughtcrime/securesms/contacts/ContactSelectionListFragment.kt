@@ -1,23 +1,21 @@
 package org.thoughtcrime.securesms.contacts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.Loader
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.contact_selection_list_fragment.*
-import network.loki.messenger.R
+import androidx.fragment.app.Fragment
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
+import network.loki.messenger.databinding.ContactSelectionListFragmentBinding
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.mms.GlideApp
-import org.session.libsession.utilities.recipients.Recipient
-import org.thoughtcrime.securesms.contacts.ContactSelectionListItem
-import org.thoughtcrime.securesms.contacts.ContactSelectionListLoader
 
 class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<List<ContactSelectionListItem>>, ContactClickListener {
+    private lateinit var binding: ContactSelectionListFragmentBinding
     private var cursorFilter: String? = null
     var onContactSelectedListener: OnContactSelectedListener? = null
 
@@ -46,20 +44,21 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
         fun onContactDeselected(number: String?)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = listAdapter
-        swipeRefreshLayout.isEnabled = requireActivity().intent.getBooleanExtra(REFRESHABLE, true)
-    }
-
     override fun onStart() {
         super.onStart()
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.contact_selection_list_fragment, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = ContactSelectionListFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerView.adapter = listAdapter
+        binding.swipeRefreshLayout.isEnabled = requireActivity().intent.getBooleanExtra(REFRESHABLE, true)
     }
 
     override fun onStop() {
@@ -74,15 +73,15 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
 
     fun resetQueryFilter() {
         setQueryFilter(null)
-        swipeRefreshLayout.isRefreshing = false
+        binding.swipeRefreshLayout.isRefreshing = false
     }
 
     fun setRefreshing(refreshing: Boolean) {
-        swipeRefreshLayout.isRefreshing = refreshing
+        binding.swipeRefreshLayout.isRefreshing = refreshing
     }
 
     fun setOnRefreshListener(onRefreshListener: OnRefreshListener?) {
-        swipeRefreshLayout.setOnRefreshListener(onRefreshListener)
+        binding.swipeRefreshLayout.setOnRefreshListener(onRefreshListener)
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<List<ContactSelectionListItem>> {
@@ -107,8 +106,8 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
             return
         }
         listAdapter.items = items
-        mainContentContainer.visibility = if (items.isEmpty()) View.GONE else View.VISIBLE
-        emptyStateContainer.visibility = if (items.isEmpty()) View.VISIBLE else View.GONE
+        binding.mainContentContainer.visibility = if (items.isEmpty()) View.GONE else View.VISIBLE
+        binding.emptyStateContainer.visibility = if (items.isEmpty()) View.VISIBLE else View.GONE
     }
 
     override fun onContactClick(contact: Recipient) {

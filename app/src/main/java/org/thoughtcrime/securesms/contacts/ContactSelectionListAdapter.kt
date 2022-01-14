@@ -1,15 +1,12 @@
 package org.thoughtcrime.securesms.contacts
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.contact_selection_list_divider.view.*
-import network.loki.messenger.R
-import org.thoughtcrime.securesms.contacts.UserView
-import org.thoughtcrime.securesms.mms.GlideRequests
+import androidx.recyclerview.widget.RecyclerView
+import network.loki.messenger.databinding.ContactSelectionListDividerBinding
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.mms.GlideRequests
 
 class ContactSelectionListAdapter(private val context: Context, private val multiSelect: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     lateinit var glide: GlideRequests
@@ -24,7 +21,15 @@ class ContactSelectionListAdapter(private val context: Context, private val mult
     }
 
     class UserViewHolder(val view: UserView) : RecyclerView.ViewHolder(view)
-    class DividerViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class DividerViewHolder(
+        private val binding: ContactSelectionListDividerBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: ContactSelectionListItem.Header) {
+            with(binding){
+                label.text = item.name
+            }
+        }
+    }
 
     override fun getItemCount(): Int {
         return items.size
@@ -41,8 +46,9 @@ class ContactSelectionListAdapter(private val context: Context, private val mult
         return if (viewType == ViewType.Contact) {
           UserViewHolder(UserView(context))
         } else {
-            val view = LayoutInflater.from(context).inflate(R.layout.contact_selection_list_divider, parent, false)
-          DividerViewHolder(view)
+          DividerViewHolder(
+              ContactSelectionListDividerBinding.inflate(LayoutInflater.from(context), parent, false)
+          )
         }
     }
 
@@ -58,8 +64,7 @@ class ContactSelectionListAdapter(private val context: Context, private val mult
                     if (multiSelect) UserView.ActionIndicator.Tick else UserView.ActionIndicator.None,
                     isSelected)
         } else if (viewHolder is DividerViewHolder) {
-            item as ContactSelectionListItem.Header
-            viewHolder.view.label.text = item.name
+            viewHolder.bind(item as ContactSelectionListItem.Header)
         }
     }
 

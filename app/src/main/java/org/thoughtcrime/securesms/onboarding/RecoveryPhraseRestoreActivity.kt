@@ -11,8 +11,8 @@ import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_recovery_phrase_restore.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityRecoveryPhraseRestoreBinding
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.Hex
@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
 
 class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
-
+    private lateinit var binding: ActivityRecoveryPhraseRestoreBinding
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +36,10 @@ class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
             setRestorationTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
             setLastProfileUpdateTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
         }
-        setContentView(R.layout.activity_recovery_phrase_restore)
-        mnemonicEditText.imeOptions = mnemonicEditText.imeOptions or 16777216 // Always use incognito keyboard
-        restoreButton.setOnClickListener { restore() }
+        binding = ActivityRecoveryPhraseRestoreBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.mnemonicEditText.imeOptions = binding.mnemonicEditText.imeOptions or 16777216 // Always use incognito keyboard
+        binding.restoreButton.setOnClickListener { restore() }
         val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms of Service and Privacy Policy")
         termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 40, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsExplanation.setSpan(object : ClickableSpan() {
@@ -54,14 +55,14 @@ class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
                 openURL("https://getsession.org/privacy-policy/")
             }
         }, 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        termsTextView.movementMethod = LinkMovementMethod.getInstance()
-        termsTextView.text = termsExplanation
+        binding.termsTextView.movementMethod = LinkMovementMethod.getInstance()
+        binding.termsTextView.text = termsExplanation
     }
     // endregion
 
     // region Interaction
     private fun restore() {
-        val mnemonic = mnemonicEditText.text.toString()
+        val mnemonic = binding.mnemonicEditText.text.toString()
         try {
             val loadFileContents: (String) -> String = { fileName ->
                 MnemonicUtilities.loadFileContents(this, fileName)

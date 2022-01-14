@@ -7,8 +7,8 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_display_name.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityDisplayNameBinding
 import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.util.push
@@ -16,28 +16,32 @@ import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
 import org.session.libsession.utilities.TextSecurePreferences
 
 class DisplayNameActivity : BaseActionBarActivity() {
+    private lateinit var binding: ActivityDisplayNameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
-        setContentView(R.layout.activity_display_name)
-        displayNameEditText.imeOptions = displayNameEditText.imeOptions or 16777216 // Always use incognito keyboard
-        displayNameEditText.setOnEditorActionListener(
-                OnEditorActionListener { _, actionID, event ->
-                    if (actionID == EditorInfo.IME_ACTION_SEARCH ||
-                        actionID == EditorInfo.IME_ACTION_DONE ||
-                       (event.action == KeyEvent.ACTION_DOWN &&
-                        event.keyCode == KeyEvent.KEYCODE_ENTER)) {
-                        this.register()
-                        return@OnEditorActionListener true
-                    }
-                    false
-                })
-        registerButton.setOnClickListener { register() }
+        binding = ActivityDisplayNameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        with(binding) {
+            displayNameEditText.imeOptions = displayNameEditText.imeOptions or 16777216 // Always use incognito keyboard
+            displayNameEditText.setOnEditorActionListener(
+                    OnEditorActionListener { _, actionID, event ->
+                        if (actionID == EditorInfo.IME_ACTION_SEARCH ||
+                            actionID == EditorInfo.IME_ACTION_DONE ||
+                           (event.action == KeyEvent.ACTION_DOWN &&
+                            event.keyCode == KeyEvent.KEYCODE_ENTER)) {
+                            register()
+                            return@OnEditorActionListener true
+                        }
+                        false
+                    })
+            registerButton.setOnClickListener { register() }
+        }
     }
 
     private fun register() {
-        val displayName = displayNameEditText.text.toString().trim()
+        val displayName = binding.displayNameEditText.text.toString().trim()
         if (displayName.isEmpty()) {
             return Toast.makeText(this, R.string.activity_display_name_display_name_missing_error, Toast.LENGTH_SHORT).show()
         }
@@ -45,7 +49,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
             return Toast.makeText(this, R.string.activity_display_name_display_name_too_long_error, Toast.LENGTH_SHORT).show()
         }
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(displayNameEditText.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.displayNameEditText.windowToken, 0)
         TextSecurePreferences.setProfileName(this, displayName)
         val intent = Intent(this, PNModeActivity::class.java)
         push(intent)

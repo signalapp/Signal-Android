@@ -1,11 +1,18 @@
 package org.session.libsession.messaging.jobs
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsignal.utilities.Log
-import java.util.*
+import java.util.Timer
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
@@ -25,7 +32,10 @@ class JobQueue : JobDelegate {
 
     val timer = Timer()
 
-    private fun CoroutineScope.processWithDispatcher(channel: Channel<Job>, dispatcher: CoroutineDispatcher) = launch(dispatcher) {
+    private fun CoroutineScope.processWithDispatcher(
+        channel: Channel<Job>,
+        dispatcher: CoroutineDispatcher
+    ) = launch(dispatcher) {
         for (job in channel) {
             if (!isActive) break
             job.delegate = this@JobQueue
@@ -74,7 +84,7 @@ class JobQueue : JobDelegate {
 
     fun add(job: Job) {
         addWithoutExecuting(job)
-        queue.offer(job) // offer always called on unlimited capacity
+        queue.trySend(job) // offer always called on unlimited capacity
     }
 
     private fun addWithoutExecuting(job: Job) {
@@ -97,7 +107,7 @@ class JobQueue : JobDelegate {
             Log.e("Loki","tried to re-queue pending/in-progress job")
             return
         }
-        queue.offer(job)
+        queue.trySend(job)
         Log.d("Loki", "resumed pending send message $id")
     }
 
@@ -114,7 +124,7 @@ class JobQueue : JobDelegate {
         }
         pendingJobs.sortedBy { it.id }.forEach { job ->
             Log.i("Loki", "Resuming pending job of type: ${job::class.simpleName}.")
-            queue.offer(job) // Offer always called on unlimited capacity
+            queue.trySend(job) // Offer always called on unlimited capacity
         }
     }
 
@@ -170,7 +180,7 @@ class JobQueue : JobDelegate {
             Log.i("Loki", "${job::class.simpleName} failed; scheduling retry (failure count is ${job.failureCount}).")
             timer.schedule(delay = retryInterval) {
                 Log.i("Loki", "Retrying ${job::class.simpleName}.")
-                queue.offer(job)
+                queue.trySend(job)
             }
         }
     }

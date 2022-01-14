@@ -11,8 +11,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.view_link_preview.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ViewLinkPreviewBinding
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.ModalUrlBottomSheet
 import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.util.UiModeUtilities
 
 class LinkPreviewView : LinearLayout {
+    private lateinit var binding: ViewLinkPreviewBinding
     private val cornerMask by lazy { CornerMask(this) }
     private var url: String? = null
     lateinit var bodyTextView: TextView
@@ -33,7 +34,7 @@ class LinkPreviewView : LinearLayout {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
     private fun initialize() {
-        LayoutInflater.from(context).inflate(R.layout.view_link_preview, this)
+        binding = ViewLinkPreviewBinding.inflate(LayoutInflater.from(context), this, true)
     }
     // endregion
 
@@ -44,20 +45,20 @@ class LinkPreviewView : LinearLayout {
         // Thumbnail
         if (linkPreview.getThumbnail().isPresent) {
             // This internally fetches the thumbnail
-            thumbnailImageView.setImageResource(glide, ImageSlide(context, linkPreview.getThumbnail().get()), isPreview = false, message)
-            thumbnailImageView.loadIndicator.isVisible = false
+            binding.thumbnailImageView.setImageResource(glide, ImageSlide(context, linkPreview.getThumbnail().get()), isPreview = false, message)
+            binding.thumbnailImageView.loadIndicator.isVisible = false
         }
         // Title
-        titleTextView.text = linkPreview.title
+        binding.titleTextView.text = linkPreview.title
         val textColorID = if (message.isOutgoing && UiModeUtilities.isDayUiMode(context)) {
             R.color.white
         } else {
             if (UiModeUtilities.isDayUiMode(context)) R.color.black else R.color.white
         }
-        titleTextView.setTextColor(ResourcesCompat.getColor(resources, textColorID, context.theme))
+        binding.titleTextView.setTextColor(ResourcesCompat.getColor(resources, textColorID, context.theme))
         // Body
         bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
-        mainLinkPreviewContainer.addView(bodyTextView)
+        binding.mainLinkPreviewContainer.addView(bodyTextView)
         // Corner radii
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])
@@ -78,7 +79,7 @@ class LinkPreviewView : LinearLayout {
         val rawYInt = event.rawY.toInt()
         val hitRect = Rect(rawXInt, rawYInt, rawXInt, rawYInt)
         val previewRect = Rect()
-        mainLinkPreviewParent.getGlobalVisibleRect(previewRect)
+        binding.mainLinkPreviewParent.getGlobalVisibleRect(previewRect)
         if (previewRect.contains(hitRect)) {
             openURL()
             return

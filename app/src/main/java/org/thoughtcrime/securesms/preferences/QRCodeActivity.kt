@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import kotlinx.android.synthetic.main.activity_qr_code.*
-import kotlinx.android.synthetic.main.fragment_view_my_qr_code.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityQrCodeBinding
+import network.loki.messenger.databinding.FragmentViewMyQrCodeBinding
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
@@ -20,23 +20,29 @@ import org.session.libsignal.utilities.PublicKeyValidation
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
-import org.thoughtcrime.securesms.util.*
+import org.thoughtcrime.securesms.util.FileProviderUtil
+import org.thoughtcrime.securesms.util.QRCodeUtilities
+import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragment
+import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.util.toPx
 import java.io.File
 import java.io.FileOutputStream
 
 class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
+    private lateinit var binding: ActivityQrCodeBinding
     private val adapter = QRCodeActivityAdapter(this)
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+        binding = ActivityQrCodeBinding.inflate(layoutInflater)
         // Set content view
-        setContentView(R.layout.activity_qr_code)
+        setContentView(binding.root)
         // Set title
         supportActionBar!!.title = resources.getString(R.string.activity_qr_code_title)
         // Set up view pager
-        viewPager.adapter = adapter
-        tabLayout.setupWithViewPager(viewPager)
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
     // endregion
 
@@ -91,6 +97,7 @@ private class QRCodeActivityAdapter(val activity: QRCodeActivity) : FragmentPage
 
 // region View My QR Code Fragment
 class ViewMyQRCodeFragment : Fragment() {
+    private lateinit var binding: FragmentViewMyQrCodeBinding
 
     private val hexEncodedPublicKey: String
         get() {
@@ -98,18 +105,19 @@ class ViewMyQRCodeFragment : Fragment() {
         }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_view_my_qr_code, container, false)
+        binding = FragmentViewMyQrCodeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val size = toPx(280, resources)
         val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false, false)
-        qrCodeImageView.setImageBitmap(qrCode)
+        binding.qrCodeImageView.setImageBitmap(qrCode)
 //        val explanation = SpannableStringBuilder("This is your unique public QR code. Other users can scan this to start a conversation with you.")
 //        explanation.setSpan(StyleSpan(Typeface.BOLD), 8, 34, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        explanationTextView.text = resources.getString(R.string.fragment_view_my_qr_code_explanation)
-        shareButton.setOnClickListener { shareQRCode() }
+        binding.explanationTextView.text = resources.getString(R.string.fragment_view_my_qr_code_explanation)
+        binding.shareButton.setOnClickListener { shareQRCode() }
     }
 
     private fun shareQRCode() {

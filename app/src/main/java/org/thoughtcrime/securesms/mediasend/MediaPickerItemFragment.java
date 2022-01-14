@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -66,7 +66,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
     bucketId     = getArguments().getString(KEY_BUCKET_ID);
     folderTitle  = getArguments().getString(KEY_FOLDER_TITLE);
     maxSelection = getArguments().getInt(KEY_MAX_SELECTION);
-    viewModel    = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
+    viewModel    = new ViewModelProvider(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
 
   @Override

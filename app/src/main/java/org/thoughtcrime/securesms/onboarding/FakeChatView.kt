@@ -3,19 +3,17 @@ package org.thoughtcrime.securesms.onboarding
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
-import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.ScrollView
-import kotlinx.android.synthetic.main.view_fake_chat.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ViewFakeChatBinding
 import org.thoughtcrime.securesms.util.disableClipping
 
 class FakeChatView : ScrollView {
-
+    private lateinit var binding: ViewFakeChatBinding
     // region Settings
     private val spacing = context.resources.getDimension(R.dimen.medium_spacing)
     private val startDelay: Long = 1000
@@ -41,17 +39,15 @@ class FakeChatView : ScrollView {
     }
 
     private fun setUpViewHierarchy() {
-        val inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val contentView = inflater.inflate(R.layout.view_fake_chat, null) as LinearLayout
-        contentView.disableClipping()
-        addView(contentView)
+        binding = ViewFakeChatBinding.inflate(LayoutInflater.from(context), this, true)
+        binding.root.disableClipping()
         isVerticalScrollBarEnabled = false
     }
     // endregion
 
     // region Animation
     fun startAnimating() {
-        listOf( bubble1, bubble2, bubble3, bubble4, bubble5 ).forEach { it.alpha = 0.0f }
+        listOf( binding.bubble1, binding.bubble2, binding.bubble3, binding.bubble4, binding.bubble5 ).forEach { it.alpha = 0.0f }
         fun show(bubble: View) {
             val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
             animation.duration = animationDuration
@@ -61,18 +57,18 @@ class FakeChatView : ScrollView {
             animation.start()
         }
         Handler().postDelayed({
-            show(bubble1)
+            show(binding.bubble1)
             Handler().postDelayed({
-                show(bubble2)
+                show(binding.bubble2)
                 Handler().postDelayed({
-                    show(bubble3)
-                    smoothScrollTo(0, (bubble1.height + spacing).toInt())
+                    show(binding.bubble3)
+                    smoothScrollTo(0, (binding.bubble1.height + spacing).toInt())
                     Handler().postDelayed({
-                        show(bubble4)
-                        smoothScrollTo(0, (bubble1.height + spacing).toInt() + (bubble2.height + spacing).toInt())
+                        show(binding.bubble4)
+                        smoothScrollTo(0, (binding.bubble1.height + spacing).toInt() + (binding.bubble2.height + spacing).toInt())
                         Handler().postDelayed({
-                            show(bubble5)
-                            smoothScrollTo(0, (bubble1.height + spacing).toInt() + (bubble2.height + spacing).toInt() + (bubble3.height + spacing).toInt())
+                            show(binding.bubble5)
+                            smoothScrollTo(0, (binding.bubble1.height + spacing).toInt() + (binding.bubble2.height + spacing).toInt() + (binding.bubble3.height + spacing).toInt())
                         }, delayBetweenMessages)
                     }, delayBetweenMessages)
                 }, delayBetweenMessages)

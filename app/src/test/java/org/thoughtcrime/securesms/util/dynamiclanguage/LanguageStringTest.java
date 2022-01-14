@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util.dynamiclanguage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.session.libsession.utilities.dynamiclanguage.LanguageString;
 
 import java.util.Arrays;
 import java.util.Collection;

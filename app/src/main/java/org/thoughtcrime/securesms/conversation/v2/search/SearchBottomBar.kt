@@ -5,11 +5,12 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.view_search_bottom_bar.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ViewSearchBottomBarBinding
 
 
 class SearchBottomBar : LinearLayout {
+    private lateinit var binding: ViewSearchBottomBarBinding
     private var eventListener: EventListener? = null
 
     // region Lifecycle
@@ -18,10 +19,10 @@ class SearchBottomBar : LinearLayout {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
     fun initialize() {
-        LayoutInflater.from(context).inflate(R.layout.view_search_bottom_bar, this)
+        binding = ViewSearchBottomBarBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
-    fun setData(position: Int, count: Int) {
+    fun setData(position: Int, count: Int) = with(binding) {
         searchProgressWheel.visibility = GONE
         searchUp.setOnClickListener { v: View? ->
             if (eventListener != null) {
@@ -43,7 +44,7 @@ class SearchBottomBar : LinearLayout {
     }
 
     fun showLoading() {
-        searchProgressWheel.visibility = VISIBLE
+        binding.searchProgressWheel.visibility = VISIBLE
     }
 
     private fun setViewEnabled(view: View, enabled: Boolean) {
