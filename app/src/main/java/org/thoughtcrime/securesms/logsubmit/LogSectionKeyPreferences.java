@@ -22,7 +22,7 @@ final class LogSectionKeyPreferences implements LogSection {
     return new StringBuilder().append("Screen Lock          : ").append(TextSecurePreferences.isScreenLockEnabled(context)).append("\n")
                               .append("Screen Lock Timeout  : ").append(TextSecurePreferences.getScreenLockTimeout(context)).append("\n")
                               .append("Password Disabled    : ").append(TextSecurePreferences.isPasswordDisabled(context)).append("\n")
-                              .append("WiFi SMS             : ").append(TextSecurePreferences.isWifiSmsEnabled(context)).append("\n")
+                              .append("WiFi SMS             : ").append(SignalStore.settings().isWifiCallingCompatibilityModeEnabled()).append("\n")
                               .append("Default SMS          : ").append(Util.isDefaultSmsProvider(context)).append("\n")
                               .append("Prefer Contact Photos: ").append(SignalStore.settings().isPreferSystemContactPhotos()).append("\n")
                               .append("Call Bandwidth Mode  : ").append(SignalStore.settings().getCallBandwidthMode()).append("\n")
