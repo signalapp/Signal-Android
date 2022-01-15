@@ -6,7 +6,7 @@ import android.app.job.JobInfo;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 public class NetworkOrCellServiceConstraint implements Constraint {
 
@@ -28,7 +28,7 @@ public class NetworkOrCellServiceConstraint implements Constraint {
 
   @Override
   public boolean isMet() {
-    if (TextSecurePreferences.isWifiSmsEnabled(application)) {
+    if (SignalStore.settings().isWifiCallingCompatibilityModeEnabled()) {
       return networkConstraint.isMet() || hasCellService(application);
     } else {
       return hasCellService(application);
