@@ -124,7 +124,6 @@ import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.VideoSlide
-import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.ActivityDispatcher
 import org.thoughtcrime.securesms.util.DateUtils
@@ -310,7 +309,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun onResume() {
         super.onResume()
         ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(viewModel.threadId)
-        markAllAsRead()
+        threadDb.markAllAsRead(viewModel.threadId, viewModel.recipient.isOpenGroupRecipient)
     }
 
     override fun onPause() {
@@ -553,18 +552,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         } else {
             binding.inputBar.showInput = true
         }
-    }
-
-    private fun markAllAsRead() {
-        val messages = threadDb.setRead(viewModel.threadId, true)
-        if (viewModel.recipient.isGroupRecipient) {
-            for (message in messages) {
-                MarkReadReceiver.scheduleDeletion(this, message.expirationInfo)
-            }
-        } else {
-            MarkReadReceiver.process(this, messages)
-        }
-        ApplicationContext.getInstance(this).messageNotifier.updateNotification(this, false, 0)
     }
 
     override fun inputBarHeightChanged(newValue: Int) {

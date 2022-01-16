@@ -24,6 +24,7 @@ class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClick
     var onBlockTapped: (() -> Unit)? = null
     var onUnblockTapped: (() -> Unit)? = null
     var onDeleteTapped: (() -> Unit)? = null
+    var onMarkAllAsReadTapped: (() -> Unit)? = null
     var onNotificationTapped: (() -> Unit)? = null
     var onSetMuteTapped: ((Boolean) -> Unit)? = null
 
@@ -40,6 +41,7 @@ class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClick
             binding.blockTextView -> onBlockTapped?.invoke()
             binding.unblockTextView -> onUnblockTapped?.invoke()
             binding.deleteTextView -> onDeleteTapped?.invoke()
+            binding.markAllAsReadTextView -> onMarkAllAsReadTapped?.invoke()
             binding.notificationsTextView -> onNotificationTapped?.invoke()
             binding.unMuteNotificationsTextView -> onSetMuteTapped?.invoke(false)
             binding.muteNotificationsTextView -> onSetMuteTapped?.invoke(true)
@@ -67,6 +69,8 @@ class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClick
         binding.notificationsTextView.isVisible = recipient.isGroupRecipient && !recipient.isMuted
         binding.notificationsTextView.setOnClickListener(this)
         binding.deleteTextView.setOnClickListener(this)
+        binding.markAllAsReadTextView.isVisible = thread.unreadCount > 0
+        binding.markAllAsReadTextView.setOnClickListener(this)
         binding.pinTextView.isVisible = !thread.isPinned
         binding.unpinTextView.isVisible = thread.isPinned
         binding.pinTextView.setOnClickListener(this)

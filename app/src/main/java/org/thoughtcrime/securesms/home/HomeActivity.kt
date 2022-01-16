@@ -34,6 +34,7 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.ProfilePictureModifiedEvent
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.MuteDialog
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.groups.JoinPublicChatActivity
 import org.thoughtcrime.securesms.groups.OpenGroupManager
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.onboarding.SeedActivity
 import org.thoughtcrime.securesms.onboarding.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.preferences.SettingsActivity
@@ -296,6 +298,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             bottomSheet.dismiss()
             setConversationPinned(thread.threadId, false)
         }
+        bottomSheet.onMarkAllAsReadTapped = {
+            bottomSheet.dismiss()
+            markAllAsRead(thread)
+        }
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
     }
 
@@ -366,6 +372,12 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             withContext(Dispatchers.Main) {
                 LoaderManager.getInstance(this@HomeActivity).restartLoader(0, null, this@HomeActivity)
             }
+        }
+    }
+
+    private fun markAllAsRead(thread: ThreadRecord) {
+        ThreadUtils.queue {
+            threadDb.markAllAsRead(thread.threadId, thread.recipient.isOpenGroupRecipient)
         }
     }
 

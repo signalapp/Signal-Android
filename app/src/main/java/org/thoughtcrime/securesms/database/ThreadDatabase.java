@@ -45,6 +45,7 @@ import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.Pair;
 import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -55,6 +56,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 
 import java.io.Closeable;
@@ -591,6 +593,18 @@ public class ThreadDatabase extends Database {
             new String[] {String.valueOf(threadId)});
 
     notifyConversationListeners(threadId);
+  }
+
+  public void markAllAsRead(long threadId, boolean isGroupRecipient) {
+    List<MarkedMessageInfo> messages = setRead(threadId, true);
+    if (isGroupRecipient) {
+      for (MarkedMessageInfo message: messages) {
+        MarkReadReceiver.scheduleDeletion(context, message.getExpirationInfo());
+      }
+    } else {
+      MarkReadReceiver.process(context, messages);
+    }
+    ApplicationContext.getInstance(context).messageNotifier.updateNotification(context, false, 0);
   }
 
   private boolean deleteThreadOnEmpty(long threadId) {
