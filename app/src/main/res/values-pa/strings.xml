@@ -2300,11 +2300,28 @@
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">ਕਈ ਚੁਣੋ</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d ਚੁਣਿਆ</item>
+    <item quantity="other">%d ਚੁਣੇ</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">ਸੰਭਾਲੋ</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">ਜਾਣਕਾਰੀ</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">ਕਾਪੀ ਕਰੋ</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">ਹਟਾਓ</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">ਅੱਗੇ ਭੇਜੋ </string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">ਜਵਾਬ ਦਿਓ</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">ਸੰਭਾਲੋ</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ਸੱਦਾ</string>
@@ -2318,7 +2335,7 @@
   <string name="conversation_list_batch__menu_mark_as_read">ਪੜ੍ਹੇ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਓ</string>
   <string name="conversation_list_batch__menu_mark_as_unread">ਨਾ-ਪੜ੍ਹੇ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਓ</string>
   <!--conversation_list-->
-  <string name="conversation_list_settings_shortcut">ਸੈਟਿੰਗਜ਼ ਸ਼ੌਰਟਕਟ</string>
+  <string name="conversation_list_settings_shortcut">ਸੈਟਿੰਗਾਂ ਸ਼ੌਰਟਕਟ</string>
   <string name="conversation_list_search_description">ਖੋਜ</string>
   <string name="conversation_list__pinned">ਟੰਗਿਆ</string>
   <string name="conversation_list__chats">ਗੱਲਬਾਤ</string>
@@ -2340,7 +2357,7 @@
   <string name="conversation__menu_group_settings">ਗਰੁੱਪ ਸੈਟਿੰਗਾਂ</string>
   <string name="conversation__menu_leave_group">ਗਰੁੱਪ ਛੱਡੋ</string>
   <string name="conversation__menu_view_all_media">ਸਾਰੇ ਮੀਡੀਆ</string>
-  <string name="conversation__menu_conversation_settings">ਗੱਲਬਾਤ ਸੈਟਿੰਗਜ਼</string>
+  <string name="conversation__menu_conversation_settings">ਗੱਲਬਾਤ ਸੈਟਿੰਗਾਂ</string>
   <string name="conversation__menu_add_shortcut">ਹੋਮ ਸਕਰੀਨ ਤੇ ਜੋੜੋ </string>
   <string name="conversation__menu_create_bubble">ਬੁਲਬੁਲਾ ਬਣਾਓ</string>
   <!--conversation_popup-->

@@ -1425,7 +1425,7 @@ furnizat (%s) este invalid.</string>
     <item quantity="few">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
     <item quantity="other">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Trebuie să verificăm că ești om.</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Trebuie să verificăm dacă ești om.</string>
   <string name="RegistrationActivity_next">Următorul</string>
   <string name="RegistrationActivity_continue">Continuare</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ia-ți intimitatea cu tine.\nFii tu însuți în fiecare mesaj.</string>
@@ -2434,6 +2434,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_context_image__save_attachment">Salvează</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Dispariție mesaje</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Informații</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Copiere</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Șterge</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Redirecționează</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Răspunde</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Salvează</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Invită</string>

@@ -2515,11 +2515,30 @@
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Pasirinkti kelis</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">Pažymėta %d</item>
+    <item quantity="few">Pažymėtos %d</item>
+    <item quantity="many">Pažymėta %d</item>
+    <item quantity="other">Pažymėta %d</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Įrašyti</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Išnykstančios žinutės</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Informacija</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopijuoti</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Ištrinti</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Persiųsti</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Atsakyti</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Įrašyti</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pakviesti</string>

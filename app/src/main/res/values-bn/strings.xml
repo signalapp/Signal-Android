@@ -2323,6 +2323,19 @@
   <string name="conversation_context_image__save_attachment">সংরক্ষণ করুন</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">অদৃশ্য বার্তা</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">তথ্য</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">কপি করুন</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">মুছুন</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">ফরওয়ার্ড</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">প্রত্যুত্তর</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">সংরক্ষণ করুন</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">আমন্ত্রণ</string>

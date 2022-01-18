@@ -314,7 +314,31 @@
     <item quantity="one">Преместен разговор във входяща кутия</item>
     <item quantity="other">Преместени %d разговора във входящата кутия</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Прочетено</item>
+    <item quantity="other">Прочетено</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Непрочитане</item>
+    <item quantity="other">Непрочитане</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Заглуши</item>
+    <item quantity="other">Заглуши</item>
+  </plurals>
   <string name="ConversationListFragment_select">Изберете</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Архивиране</item>
+    <item quantity="other">Архивиране</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Разархивиране</item>
+    <item quantity="other">Разархивиране</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Изтриване</item>
+    <item quantity="other">Изтриване</item>
+  </plurals>
   <string name="ConversationListFragment_select_all">Избери всичко</string>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <!--Tooltip shown after you have created your first notification profile-->
@@ -653,6 +677,7 @@
   <string name="ManageProfileFragment_your_name">Името ти</string>
   <string name="ManageProfileFragment_your_username">Твойто Потребителско име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Неуспешно задаване на аватар</string>
+  <string name="ManageProfileFragment__edit_photo">Редактирай снимка</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Няма общи групи</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -2109,6 +2134,7 @@
   <string name="PaymentsDetailsFragment__details">Подробности</string>
   <string name="PaymentsDetailsFragment__status">Статус</string>
   <string name="PaymentsDetailsFragment__payment_failed">Грешка при плащане</string>
+  <string name="PaymentsDetailsFragment__sent_by">Изпратено от</string>
   <string name="PaymentsDetailsFragment__to">До</string>
   <string name="PaymentsDetailsFragment__from">От</string>
   <string name="PaymentsDetailsFragment__sent_payment">Плащането беше изпратено</string>
@@ -2117,10 +2143,12 @@
   <string name="PaymentsTransferFragment__transfer">Прехвърли</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Сканирай QR Код</string>
   <string name="PaymentsTransferFragment__next">Напред</string>
+  <string name="PaymentsTransferFragment__invalid_address">Невалиден адрес</string>
   <string name="PaymentsTransferFragment__settings">Настройки</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Искай</string>
+  <string name="CreatePaymentFragment__pay">Плати</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">До</string>
@@ -2161,6 +2189,19 @@
   <string name="conversation_context_image__save_attachment">Запази</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Изчезващи съобщения</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Информация</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Копирай</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Изтрий</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Препращане</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Отговори</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Запази</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Покани</string>
@@ -3084,6 +3125,7 @@
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">До %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Покажи настройки</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
   <!--Description for notification profile megaphone-->

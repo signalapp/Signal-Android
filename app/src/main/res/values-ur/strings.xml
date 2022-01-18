@@ -2216,6 +2216,18 @@
   <string name="conversation_context_image__save_attachment">محفوظ کریں</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">کاپی کریں</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">حذف کریں</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">آگے</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">جواب دیں</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">محفوظ کریں</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">مدعو کریں</string>

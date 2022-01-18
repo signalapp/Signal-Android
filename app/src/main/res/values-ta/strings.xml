@@ -1645,7 +1645,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">இல்லை குழுக்கள்பொதுவாக. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">இல்லை இதில் தொடர்புகள் குழு. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
   <string name="ConversationUpdateItem_view">காண்க</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">தி மறைந்து வரும் செய்தி நேரம் இருக்கும் அமை க்கு %1$s நீங்கள் அவர்களுக்கு செய்தி அனுப்பும்போது.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">நீங்கள் அவர்களுக்கு செய்தி அனுப்பும் போது காணாமல் போகும் செய்திகள் நேரம் %1$s ஆக அமைக்கப்படும்.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">விளையாடு … இடைநிறுத்து</string>
   <string name="audio_view__download_accessibility_description">பதிவிறக்க</string>
@@ -2248,6 +2248,19 @@
   <string name="conversation_context_image__save_attachment">சேமி</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">தகவல்</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">நகல்</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">நீக்கு</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">முன்னனுப்புக</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">பதில்</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">சேமி</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">அழை</string>
@@ -2952,7 +2965,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">அண்மை பட்டியல் மற்றும் மென்பொருளுக்கு உள்ளே திரையை படம் எடுப்பதை தடுக்கவும்</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal செய்திகள் மற்றும் அழைப்புகள், எப்போதும் ரிலே அழைப்புகள் மற்றும் சீல் அனுப்பியவர்</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">இயல்புநிலை நேரக்குறிப்பான் புதிய அரட்டைகளுக்கு</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">அமை இயல்புநிலை மறைந்து வரும் செய்தி டைமர் நீங்கள் தொடங்கிய அனைத்து புதிய அரட்டைகளுக்கும்.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">நீங்கள் தொடங்கும் அனைத்து புதிய அரட்டைகளுக்கும் இயல்புநிலை காணாமல் போகும் செய்திகள் நேரக்குறிப்பானை அமைக்கவும்.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">நிலை ஐகானைக் காட்டு</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">செய்தியில் ஒரு ஐகானைக் காட்டு விவரங்கள் அவை பயன்படுத்தி வழங்கப்பட்டபோது சீல் அனுப்பியவர்.</string>

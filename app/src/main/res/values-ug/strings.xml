@@ -2266,6 +2266,19 @@
   <string name="conversation_context_image__save_attachment">ساقلا</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">غايىب ئۇچۇرلار</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">ئۇچۇر</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">كۆچۈر</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">ئۆچۈر</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">ئۇلاپ يوللا</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">جاۋاب</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">ساقلا</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">تەكلىپ</string>

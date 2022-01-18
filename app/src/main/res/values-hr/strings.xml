@@ -2294,6 +2294,19 @@ broj telefona</string>
   <string name="conversation_context_image__save_attachment">Spremi</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Poruke koje nestaju</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Detalji</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopiraj</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Izbriši</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Proslijedi</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Odgovori</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Spremi</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozovi</string>

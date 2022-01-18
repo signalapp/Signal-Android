@@ -412,6 +412,7 @@
   <string name="BackupsPreferenceFragment__in_progress">Käsitellään…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d tähän mennessä…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tähän mennessä…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa varmuuskopioiden luomista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
@@ -1617,6 +1618,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UnauthorizedReminder_device_no_longer_registered">Tämä laite ei ole enää rekisteröity</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Todennäköisesti olet rekisteröitynyt Signaliin toisella laitteella. Rekisteröidy uudelleen napauttamalla.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Jotta voit vastata puheluun, anna Signalille lupa käyttää mikrofonia.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Jotta voit vastata kontaktin %s puheluun, anna Signalille lupa käyttää mikrofonia.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal tarvitsee lupaa käyttää mikrofonia ja kameraa puheluiden soittamista ja vastaanottamista varten, mutta nämä käyttöoikeudet ovat pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Vastattu yhdistetyllä laitteella.</string>
@@ -2333,11 +2335,28 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Valitse useita</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d valittu</item>
+    <item quantity="other">%d valittu</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Tallenna</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Katoavat viestit</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Tietoja</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopioi</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Poista</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Välittäminen</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Vastaa</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Tallenna</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Kutsu</string>
@@ -2570,6 +2589,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="BackupDialog_verify">Varmenna</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Varmuuskopion salalauseen syöttö onnistui</string>
   <string name="BackupDialog_passphrase_was_not_correct">Salalause ei ollut oikea</string>
+  <string name="LocalBackupJob_creating_signal_backup">Luodaan Signal-varmuuskopiota…</string>
   <string name="LocalBackupJobApi29_backup_failed">Varmuuskopio epäonnistui</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Varmuuskopiohakemisto on poistettu tai siirretty.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Varmuuskopiotiedosto on liian suuri tallennettavaksi tälle levylle.</string>
@@ -2692,6 +2712,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Pidä laitteet lähekkäin. Älä sammuta niitä ja pidä Signal päällä. Siirto on päästä päähän salattu.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d viestiä tähän mennessä…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% viestiä tähän mennessä…</string>
   <string name="DeviceTransfer__cancel">Peruuta</string>
   <string name="DeviceTransfer__try_again">Yritä uudelleen</string>
   <string name="DeviceTransfer__stop_transfer_question">Pysäytä siirto?</string>

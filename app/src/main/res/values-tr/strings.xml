@@ -361,6 +361,7 @@
     <item quantity="other">%d seçili</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Bildirim profili</string>
   <!--Tooltip shown after you have created your first notification profile-->
   <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Bildirim profilinizi buradan açın veya kapatın.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
@@ -1620,6 +1621,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz artık kayıtlı değil</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Bunun nedeni büyük olasılıkla telefon numaranızın farklı bir cihazda Signal\'e kaydedilmiş olmasıdır. Tekrar kaydetmek için dokunun.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Aramayı yanıtlamak için Signal\'e mikrofon erişim izni verin.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s tarafından gelen aramayı yanıtlamak için, Signal\'in mikrofonunuza erişmesine izin verin.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal, arama yapmak ve almak için Mikrofon ve Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, \"Mikrofon\" ve \"Kamera\"yı etkinleştirin.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Bağlı cihazdan yanıtlandı.</string>
@@ -2341,6 +2343,19 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_context_image__save_attachment">Kaydet</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Kaybolan iletiler</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Bilgi</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopyala</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Sil</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Yönlendir</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Cevapla</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Kaydet</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Davet et</string>
@@ -2573,6 +2588,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="BackupDialog_verify">Doğrula</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Yedek parolanızı doğru girdiniz</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parolanız doğru değil</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signal yedeği yaratılıyor…</string>
   <string name="LocalBackupJobApi29_backup_failed">Yedekleme başarısız oldu</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Yedekleme dizininiz silindi veya taşındı.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Yedek dosyası bu sürücüde saklanmak için çok büyük.</string>
@@ -3069,6 +3085,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profiller</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Sadece seçtiğiniz kişi ve gruplardan bildirim almak için bir profil yaratın.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Bildirim Profilleri</string>
@@ -3445,8 +3462,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="EditNotificationProfileFragment__sleep">uyku</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Dinlenme süresi</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Odaklan</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Bir ad olmalı</string>
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">İzin verilen bildirimler</string>
   <!--Description of what the user should be doing with this screen-->
@@ -3496,6 +3516,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Zamanlama ekle</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Bu bildirim profilini otomatik olarak aktifleştirmek için bir program kurun.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Zamanlama</string>
   <!--Label for showing the start time for the schedule-->
@@ -3541,6 +3562,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">Yeni profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">1 saatliğine</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s tarihine kadar</string>
   <!--Option to view profile details-->

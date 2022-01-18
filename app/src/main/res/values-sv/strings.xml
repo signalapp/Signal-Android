@@ -5,7 +5,7 @@
   <string name="delete">Ta bort</string>
   <string name="please_wait">Vänligen vänta…</string>
   <string name="save">Spara</string>
-  <string name="note_to_self">Notering till mig själv</string>
+  <string name="note_to_self">Egen anteckning</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nytt meddelande</string>
   <!--AlbumThumbnailView-->
@@ -2334,11 +2334,28 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Välj flera</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d vald</item>
+    <item quantity="other">%d valda</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Spara</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Försvinnande meddelanden</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopiera</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Ta bort</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Vidarebefordra</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Svara</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Spara</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Bjud in</string>

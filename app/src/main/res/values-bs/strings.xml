@@ -2428,11 +2428,29 @@
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Označi nekoliko</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d označeno</item>
+    <item quantity="few">%d označeno</item>
+    <item quantity="other">%d označeno</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Pohrani</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Nestajuće poruke</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Informacije</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopiraj</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Izbriši</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Proslijedi</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Odgovori</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Pohrani</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozovi</string>

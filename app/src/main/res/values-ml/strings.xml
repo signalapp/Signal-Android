@@ -2220,6 +2220,19 @@
   <string name="conversation_context_image__save_attachment">സംരക്ഷിക്കൂ</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">വിവരം</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">പകർത്തുക</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">ഇല്ലാതാക്കൂ</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">ഫോർവേഡ് ചെയ്യുക</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">മറുപടി</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">സംരക്ഷിക്കൂ</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ക്ഷണിക്കുക</string>

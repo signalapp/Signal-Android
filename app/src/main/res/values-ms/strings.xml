@@ -2243,6 +2243,19 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="conversation_context_image__save_attachment">Simpan</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Mesej hilang</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Maklumat</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Salin</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Padam</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Hantar</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Balas</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Simpan</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Jemput</string>

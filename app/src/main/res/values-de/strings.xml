@@ -1539,7 +1539,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dies wird diese Nachricht unwiderruflich löschen.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s an %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Medieninhalte nicht mehr verfügbar.</string>
-  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Keine App gefunden, die diesen Medieninhalt teilen kann.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Keine App zum Teilen dieser Medieninhalte gefunden.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
@@ -2339,6 +2339,19 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_context_image__save_attachment">Speichern</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Verschwindende Nachrichten</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopieren</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Löschen</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Weiter­leiten</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Antworten</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Speichern</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Einladen</string>
@@ -2417,7 +2430,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal hat automatisch %1$d %% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Nutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
-  <string name="InsightsDashboardFragment__spread_the_word">Die Nachricht verbreiten</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Verbreite die Botschaft</string>
   <string name="InsightsDashboardFragment__not_enough_data">Zu wenige Daten</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Deine Statistik berücksichtigt alle ausgehenden Nachrichten der letzten %1$d Tage, die nicht verschwunden sind oder gelöscht wurden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
@@ -3069,7 +3082,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profile</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Ein Profil erstellen, um Benachrichtigungen nur von ausgewählten Personen und Gruppen zu erhalten.</string>
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Erstelle ein Profil, um Benachrichtigungen nur von ausgewählten Personen und Gruppen zu erhalten.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Benachrichtigungs­profile</string>
@@ -3451,17 +3464,17 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">Konzentration</string>
   <!--Error message shown when attempting to next/save without a profile name-->
-  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Profil muss einen Namen haben</string>
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Profil muss einen Namen besitzen</string>
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">Erlaubte Benachrichtigungen</string>
   <!--Description of what the user should be doing with this screen-->
-  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Personen und Gruppen hinzufügen, von denen du Benachrichtigungen und Anrufe empfangen möchtest, wenn dieses Profil aktiviert ist</string>
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Füge Personen und Gruppen hinzu, von denen du Benachrichtigungen und Anrufe empfangen möchtest, wenn dieses Profil aktiviert ist</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">Personen oder Gruppen hinzufügen</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Hinzufügen</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
-  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Ein Profil erstellen, um Benachrichtigungen und Anrufe nur von ausgewählten Personen und Gruppen zu empfangen.</string>
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Erstelle ein Profil, um Benachrichtigungen und Anrufe nur von ausgewählten Personen und Gruppen zu empfangen.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">Profile</string>
   <!--Button that starts the create new notification profile flow-->
@@ -3505,7 +3518,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Zeitplan</string>
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">Beginn</string>
+  <string name="EditNotificationProfileSchedule__start">Start</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Ende</string>
   <!--First letter of Sunday-->
@@ -3543,7 +3556,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Füge einen Zeitplan in den Einstellungen hinzu, um dein Profil zu automatisieren.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
-  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Dein Profil wird sich gemäß deines Zeitplanes automatisch ein- und ausschalten.</string>
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Dein Profil wird sich gemäß deines Zeitplans automatisch ein- und ausschalten.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">Neues Profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->

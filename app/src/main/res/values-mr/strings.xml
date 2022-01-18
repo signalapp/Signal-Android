@@ -412,6 +412,7 @@
   <string name="BackupsPreferenceFragment__in_progress">प्रगतीपथावर…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d आतापर्यंत…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% आतापर्यंत…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बॅकअप तयार करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
@@ -1620,6 +1621,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">डिव्हाईस आता नोंदवलेला नाही</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">हे असे असू शकते कारण आपण आपला Signal सोबतचा फोन नंबर वेगळ्या डिव्हाईस वरून नोंदवला आहे. पुन्हा नोंदणी करण्यासाठी टॅप करा.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">कॉलला उत्तर देण्यासाठी, Signal ला तुमच्या मायक्रोफोनचा अॅक्सेस द्या.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s कडून कॉलला उत्तर देण्यासाठी, Signal ला आपला मायक्रोफोन अॅक्सेस द्या.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">कॉल करण्यासाठी किंवा प्राप्त करण्यासाठी Signal ला मायक्रोफोन आणि कॅमेरा परवानग्यांची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"मायक्रोफोन\" आणि \"कॅमेरा\" सक्षम करा.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">लिंक केलेल्या डिव्हाईसवर उत्तर दिले.</string>
@@ -2336,11 +2338,28 @@
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">अनेक निवडा</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d निवडला</item>
+    <item quantity="other">%d निवडले</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">जतन करा</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">हरवणारे संदेश</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">माहिती</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">कॉपी करा</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">हटवा</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">फॉर्वर्ड करा</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">प्रत्युत्तर द्या</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">जतन करा</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">आमंत्रित करा</string>
@@ -2696,6 +2715,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">दोन्ही डिव्हाइस ऐकमेकांजवळ ठेवा. डिव्हाइस बंद करू नका आणि Signal चालू ठेवा. स्थानांतरण एंड-टू-एंड एन्क्रिप्टेड आहेत.</string>
   <string name="DeviceTransfer__d_messages_so_far">आतापर्यंत %1$d संदेश…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% संदेश आतापर्यंत…</string>
   <string name="DeviceTransfer__cancel">रद्द करा</string>
   <string name="DeviceTransfer__try_again">पुन्हा प्रयत्न करा</string>
   <string name="DeviceTransfer__stop_transfer_question">स्थानांतरण थांबवायचे?</string>
@@ -3448,6 +3468,7 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">ड्रायव्हिंग</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">डाउनटाइम</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">एकाग्र</string>
   <!--Error message shown when attempting to next/save without a profile name-->

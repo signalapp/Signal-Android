@@ -391,6 +391,7 @@
   <string name="BackupsPreferenceFragment__in_progress">Sedang berjalan…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d sejauh ini…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% sejauh ini…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan izin penyimpanan eksternal untuk membuat cadangan, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Gunakan pilihan khusus: %s</string>
@@ -1546,6 +1547,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="UnauthorizedReminder_device_no_longer_registered">Perangkat tidak lagi terdaftar</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hal ini mungkin karena Anda telah mendaftarkan nomor telepon Anda untuk Signal pada perangkat yang berbeda. Ketuk untuk mendaftar ulang.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Untuk menjawab panggilan, berikan Signal akses ke mikrofon Anda.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Untuk menjawab panggilan dari %s, berikan Signal akses ke mikrofon Anda.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal memerlukan izin Mikrofon dan Kamera untuk menerima atau melakukan panggilan, tetapi saat ini izin ditolak secara permanen. Mohon lanjutkan ke pengatuaran aplikasi, pilih \"Izin\" lalu aktifkan \"Mikrofon\" serta \"Kamera\". </string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Jawab di perangkat terhubung.</string>
@@ -2252,11 +2254,27 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Pilih beberapa</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="other">%d dipilih</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Simpan</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Penghilangan pesan</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Salin</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Hapus</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Teruskan</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Balas</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Simpan</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Undang</string>
@@ -2482,6 +2500,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="BackupDialog_verify">Memeriksa</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Anda sukses memasukkan frasa sandi cadangan</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frasa sandi salah</string>
+  <string name="LocalBackupJob_creating_signal_backup">Membuat cadangan Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Cadangan gagal</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori berkas cadangan telah terhapus atau dipindahkan.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Berkas cadangan kamu terlalu besar untuk disimpan pada lokasi ini.</string>
@@ -2604,6 +2623,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Letakkan kedua perangkat berdekatan satu sama lain. Jangan matikan perangkat dan biarkan Signal terbuka. Proses transfer dienkripsi ujung-ke-ujung.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d pesan sejauh ini…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% pesan sejauh ini…</string>
   <string name="DeviceTransfer__cancel">Batal</string>
   <string name="DeviceTransfer__try_again">Coba Lagi</string>
   <string name="DeviceTransfer__stop_transfer_question">Hentikan transfer?</string>
@@ -3393,6 +3413,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Profile exception to allow all calls through the profile restrictions-->
   <string name="NotificationProfileDetails__allow_all_calls">Izinkan semua panggilan</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Beritahukan seluruh penyebutan</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Jadwal</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->

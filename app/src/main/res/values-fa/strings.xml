@@ -209,7 +209,7 @@
   <string name="ConversationActivity_admins">مدیران</string>
   <string name="ConversationActivity_message_an_admin">به یک مدیر پیام دهید</string>
   <string name="ConversationActivity_cant_start_group_call">امکان آغاز تماس گروهی وجود ندارد</string>
-  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">فقط مدیران این گروه می‌توانند یک تماس آغاز کنند.</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">فقط مدیران این گروه می‌توانند یک تماس شروع کنند.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">درخواست شما برای پیوستن به مدیر گروه ارسال شد. هنگامی که اقدامی انجام دهند مطلع خواهید شد.</string>
   <string name="ConversationActivity_cancel_request">لغو درخواست</string>
@@ -951,7 +951,7 @@
   <string name="MessageRecord_changed_their_profile">%1$s پروفایل خود را تغییر داد.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه را ایجاد کردید.</string>
-  <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
+  <string name="MessageRecord_group_updated">گروه به‌روزرسانی شد.</string>
   <string name="MessageRecord_invite_friends_to_this_group">دوستان را به این گروه از طریق یک پیوند گروه دعوت کنید</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">شما %1$s را اضافه کردید.</string>
@@ -2339,11 +2339,28 @@
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">انتخاب چندگانه</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d انتخاب شد</item>
+    <item quantity="other">%d انتخاب شد</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">ذخیره</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">پیام‌های ناپدید شونده</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">اطلاعات</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">کپی</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">حذف</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">بازارسال</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">پاسخ</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">ذخیره</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">دعوت</string>
@@ -2368,7 +2385,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">مکالمهٔ جدید</string>
   <string name="conversation_list_fragment__open_camera_description">باز کردن دوربین</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">هنوز هیچ گفتگویی وجود ندارد.\n با پیام دادن به یک دوست آغاز کنید.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">هنوز هیچ گفتگویی وجود ندارد.\n با پیام دادن به یک دوست شروع کنید.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">بازنشانی نشست امن</string>
   <!--conversation_muted-->
@@ -2587,7 +2604,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">در عوض با من تماس بگیر \n (موجود در %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">تماس با پشتیبانی سیگنال</string>
   <string name="RegistrationActivity_code_support_subject">ثبت‌نام سیگنال - کد وارسی برای اندروید</string>
-  <string name="RegistrationActivity_incorrect_code">پیش‌شماره نادرست</string>
+  <string name="RegistrationActivity_incorrect_code">کد نادرست</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
   <string name="preferences_app_protection__see_my_phone_number">دیدن شماره‌تلفن من</string>
@@ -2923,7 +2940,7 @@
   <string name="payment_info_card_about_mobilecoin">دربارهٔ MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin یک ارز دیجیتال متمرکز بر حریم خصوصی است.</string>
   <string name="payment_info_card_adding_funds">افزودن اعتبار</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">شما می‌توانید با ارسال MobileCoin به نشانی کیف پول خود اعتبار برای استفاده در سیگنال اضافه کنید.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">شما با ارسال MobileCoin به نشانی کیف پول خود، می‌توانید اعتبار برای استفاده در سیگنال اضافه کنید.</string>
   <string name="payment_info_card_cashing_out">نقدینه کردن</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">می‌توانید MobileCoin را هر زمانی در یک صرافی که از MobileCoin پشتیبانی می‌کند، نقدینه کنید. فقط یک انتقال به حساب خود در آن صرافی انجام دهید.</string>
   <string name="payment_info_card_hide_this_card">پنهان کردن این کارت؟</string>
@@ -3354,7 +3371,7 @@
   <string name="SubscribeFragment__confirm_cancellation">تأیید لغو اشتراک؟</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">از شما دیگر هزینه‌ای کسر نخواهد شد. نشان شما از پروفایل شما در انتهای دورهٔ پرداخت شما حذف خواهد شد.</string>
   <string name="SubscribeFragment__not_now">حالا نه</string>
-  <string name="SubscribeFragment__confirm">تأیید کنید</string>
+  <string name="SubscribeFragment__confirm">تأیید</string>
   <string name="SubscribeFragment__update_subscription">به‌روزرسانی اشتراک</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">اشتراک شما لغو شد.</string>
   <string name="SubscribeFragment__update_subscription_question">به‌روزرسانی اشتراک؟</string>
@@ -3512,7 +3529,7 @@
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">شروع</string>
   <!--Label for showing the end time for the schedule-->
-  <string name="EditNotificationProfileSchedule__end">قطع تماس</string>
+  <string name="EditNotificationProfileSchedule__end">قطع</string>
   <!--First letter of Sunday-->
   <string name="EditNotificationProfileSchedule__sunday_first_letter">ی</string>
   <!--First letter of Monday-->
