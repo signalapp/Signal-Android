@@ -47,11 +47,10 @@ class QuoteView : LinearLayout {
     enum class Mode { Regular, Draft }
 
     // region Lifecycle
-    constructor(context: Context) : super(context) { throw IllegalAccessError("Use QuoteView(context:mode:) instead.") }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { throw IllegalAccessError("Use QuoteView(context:mode:) instead.") }
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { throw IllegalAccessError("Use QuoteView(context:mode:) instead.") }
+    constructor(context: Context) : this(context, Mode.Regular)
+    constructor(context: Context, attrs: AttributeSet) : this(context,  Mode.Regular, attrs)
 
-    constructor(context: Context, mode: Mode) : super(context) {
+    constructor(context: Context, mode: Mode, attrs: AttributeSet? = null) : super(context, attrs) {
         this.mode = mode
         binding = ViewQuoteBinding.inflate(LayoutInflater.from(context), this, true)
         // Add padding here (not on binding.mainQuoteViewContainer) to get a bit of a top inset while avoiding
@@ -65,7 +64,7 @@ class QuoteView : LinearLayout {
                 val quoteViewMainContentContainerLayoutParams = binding.quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams
                 // Since we're not showing the cancel button we can shorten the end margin
                 quoteViewMainContentContainerLayoutParams.marginEnd = resources.getDimension(R.dimen.medium_spacing).roundToInt()
-                binding.quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams
+                // binding.quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams
             }
         }
     }
@@ -135,7 +134,7 @@ class QuoteView : LinearLayout {
         if (!hasAttachments) {
             val accentLineLayoutParams = binding.quoteViewAccentLine.layoutParams as RelativeLayout.LayoutParams
             accentLineLayoutParams.height = getIntrinsicContentHeight(maxContentWidth) // Match the intrinsic * content * height
-            binding.quoteViewAccentLine.layoutParams = accentLineLayoutParams
+            // binding.quoteViewAccentLine.layoutParams = accentLineLayoutParams
             binding.quoteViewAccentLine.setBackgroundColor(getLineColor(isOutgoingMessage))
         } else if (attachments != null) {
             binding.quoteViewAttachmentPreviewImageView.imageTintList = ColorStateList.valueOf(ResourcesCompat.getColor(resources, R.color.white, context.theme))
@@ -165,11 +164,11 @@ class QuoteView : LinearLayout {
                 }
             }
         }
-        binding.mainQuoteViewContainer.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, getIntrinsicHeight(maxContentWidth))
-        val quoteViewMainContentContainerLayoutParams = binding.quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams
+        //mainQuoteViewContainer.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, getIntrinsicHeight(maxContentWidth))
+//        val quoteViewMainContentContainerLayoutParams = quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams
         // The start margin is different if we just show the accent line vs if we show an attachment thumbnail
-        quoteViewMainContentContainerLayoutParams.marginStart = if (!hasAttachments) toPx(16, resources) else toPx(48, resources)
-        binding.quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams
+//        quoteViewMainContentContainerLayoutParams.marginStart = if (!hasAttachments) toPx(16, resources) else toPx(48, resources)
+//        quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams
     }
     // endregion
 

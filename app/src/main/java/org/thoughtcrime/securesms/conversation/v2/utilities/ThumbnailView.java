@@ -1,18 +1,18 @@
 package org.thoughtcrime.securesms.conversation.v2.utilities;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import android.util.AttributeSet;
-
-import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
-import org.session.libsignal.utilities.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -22,8 +22,13 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
-import network.loki.messenger.R;
-
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
+import org.session.libsignal.utilities.ListenableFuture;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.SettableFuture;
+import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget;
 import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget;
 import org.thoughtcrime.securesms.components.TransferControlView;
@@ -33,17 +38,11 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
-import org.session.libsignal.utilities.guava.Optional;
-
-import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.ViewUtil;
-import org.session.libsignal.utilities.ListenableFuture;
-import org.session.libsignal.utilities.SettableFuture;
 
 import java.util.Collections;
 import java.util.Locale;
 
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+import network.loki.messenger.R;
 
 public class ThumbnailView extends FrameLayout {
 
@@ -287,7 +286,7 @@ public class ThumbnailView extends FrameLayout {
     } else if (slide.hasPlaceholder()) {
       buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(image, result));
     } else {
-      glideRequests.clear(image);
+      glideRequests.load(R.drawable.ic_image_white_24dp).centerInside().into(image);
       result.set(false);
     }
 

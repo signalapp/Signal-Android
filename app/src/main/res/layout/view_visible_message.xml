@@ -75,8 +75,9 @@
                 android:maxLines="1"
                 android:ellipsize="end" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/expirationTimerViewContainer"
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -89,9 +90,9 @@
                     android:id="@+id/expirationTimerView"
                     android:layout_width="12dp"
                     android:layout_height="12dp"
-                    android:layout_centerVertical="true" />
+                    android:layout_gravity="center_vertical" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -100,12 +101,12 @@
                 <TextView
                     android:id="@+id/messageTimestampTextView"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="2dp"
                     android:maxLines="1"
-                    android:textSize="10dp" />
+                    android:textSize="11sp" />
 
                 <ImageView
                     android:id="@+id/messageStatusImageView"

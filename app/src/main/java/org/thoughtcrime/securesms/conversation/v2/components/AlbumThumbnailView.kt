@@ -17,22 +17,17 @@ import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
-import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.MediaPreviewActivity
 import org.thoughtcrime.securesms.components.CornerMask
-import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentView
 import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
-import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.longmessage.LongMessageActivity
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.util.ActivityDispatcher
-import kotlin.math.roundToInt
 
 class AlbumThumbnailView : FrameLayout {
-    
+
     private lateinit var binding: AlbumThumbnailViewBinding
 
     companion object {
@@ -72,24 +67,7 @@ class AlbumThumbnailView : FrameLayout {
         val rawXInt = event.rawX.toInt()
         val rawYInt = event.rawY.toInt()
         val eventRect = Rect(rawXInt, rawYInt, rawXInt, rawYInt)
-        // Z-check in specific order
         val testRect = Rect()
-        // test "Read More"
-        binding.albumCellBodyTextReadMore.getGlobalVisibleRect(testRect)
-        if (testRect.contains(eventRect)) {
-            // dispatch to activity view
-            ActivityDispatcher.get(context)?.dispatchIntent { context ->
-                LongMessageActivity.getIntent(context, mms.recipient.address, mms.getId(), true)
-            }
-            return
-        }
-        val intersectedSpans = binding.albumCellBodyText.getIntersectedModalSpans(eventRect)
-        if (intersectedSpans.isNotEmpty()) {
-            intersectedSpans.forEach { span ->
-                span.onClick(binding.albumCellBodyText)
-            }
-            return
-        }
         // test each album child
         binding.albumCellContainer.findViewById<ViewGroup>(R.id.album_thumbnail_root)?.children?.forEachIndexed { index, child ->
             child.getGlobalVisibleRect(testRect)
@@ -111,6 +89,11 @@ class AlbumThumbnailView : FrameLayout {
                 }
             }
         }
+    }
+
+    fun clearViews() {
+        binding.albumCellContainer.removeAllViews()
+        slideSize = -1
     }
 
     fun bind(glideRequests: GlideRequests, message: MmsMessageRecord,
@@ -138,19 +121,6 @@ class AlbumThumbnailView : FrameLayout {
         slides.take(5).forEachIndexed { position, slide ->
             val thumbnailView = getThumbnailView(position)
             thumbnailView.setImageResource(glideRequests, slide, isPreview = false, mms = message)
-        }
-        binding.albumCellBodyParent.isVisible = message.body.isNotEmpty()
-        val body = VisibleMessageContentView.getBodySpans(context, message, null)
-        binding.albumCellBodyText.text = body
-        post {
-            // post to await layout of text
-            binding.albumCellBodyText.layout?.let { layout ->
-                val maxEllipsis = (0 until layout.lineCount).maxByOrNull { lineNum -> layout.getEllipsisCount(lineNum) }
-                        ?: 0
-                // show read more text if at least one line is ellipsized
-                ViewUtil.setPaddingTop(binding.albumCellBodyTextParent, if (maxEllipsis > 0) resources.getDimension(R.dimen.small_spacing).roundToInt() else resources.getDimension(R.dimen.medium_spacing).roundToInt())
-                binding.albumCellBodyTextReadMore.isVisible = maxEllipsis > 0
-            }
         }
     }
 

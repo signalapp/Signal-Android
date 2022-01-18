@@ -15,7 +15,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -181,7 +180,7 @@ class VisibleMessageView : LinearLayout {
         if (binding.profilePictureContainer.visibility != View.GONE) { maxWidth -= binding.profilePictureContainer.width }
         // Populate content view
         binding.messageContentView.indexInAdapter = indexInAdapter
-        binding.messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery, isGroupThread || (contact?.isTrusted ?: false))
+        binding.messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery, message.isOutgoing || isGroupThread || (contact?.isTrusted ?: false))
         binding.messageContentView.delegate = contentViewDelegate
         onDoubleTap = { binding.messageContentView.onContentDoubleTap?.invoke() }
     }
@@ -224,11 +223,13 @@ class VisibleMessageView : LinearLayout {
     }
 
     private fun updateExpirationTimer(message: MessageRecord) {
-        val expirationTimerViewLayoutParams = binding.expirationTimerView.layoutParams as RelativeLayout.LayoutParams
-        val ruleToAdd = if (message.isOutgoing) RelativeLayout.ALIGN_START else RelativeLayout.ALIGN_END
-        val ruleToRemove = if (message.isOutgoing) RelativeLayout.ALIGN_END else RelativeLayout.ALIGN_START
-        expirationTimerViewLayoutParams.removeRule(ruleToRemove)
-        expirationTimerViewLayoutParams.addRule(ruleToAdd, R.id.messageContentView)
+        val expirationTimerViewLayoutParams = binding.expirationTimerView.layoutParams as MarginLayoutParams
+        val container = binding.expirationTimerViewContainer
+        val content = binding.messageContentView
+        val expiration = binding.expirationTimerView
+        container.removeAllViewsInLayout()
+        container.addView(if (message.isOutgoing) expiration else content)
+        container.addView(if (message.isOutgoing) content else expiration)
         val expirationTimerViewSize = toPx(12, resources)
         val smallSpacing = resources.getDimension(R.dimen.small_spacing).roundToInt()
         expirationTimerViewLayoutParams.marginStart = if (message.isOutgoing) -(smallSpacing + expirationTimerViewSize) else 0
@@ -261,6 +262,7 @@ class VisibleMessageView : LinearLayout {
         } else {
             binding.expirationTimerView.isVisible = false
         }
+        container.requestLayout()
     }
 
     private fun handleIsSelectedChanged() {
@@ -388,7 +390,7 @@ class VisibleMessageView : LinearLayout {
     }
 
     fun onContentClick(event: MotionEvent) {
-        binding.messageContentView.onContentClick?.invoke(event)
+        binding.messageContentView.onContentClick.forEach { clickHandler -> clickHandler.invoke(event) }
     }
 
     private fun onPress(event: MotionEvent) {
