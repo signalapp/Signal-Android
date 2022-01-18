@@ -213,9 +213,11 @@ public final class PushGroupSendJob extends PushSendJob {
       }
 
       existingNetworkFailures.removeAll(resolvedNetworkFailures);
+      existingNetworkFailures.addAll(networkFailures);
       database.setNetworkFailures(messageId, existingNetworkFailures);
 
       existingIdentityMismatches.removeAll(resolvedIdentityFailures);
+      existingIdentityMismatches.addAll(identityMismatches);
       database.setMismatchedIdentities(messageId, existingIdentityMismatches);
 
       SignalDatabase.groupReceipts().setUnidentified(successUnidentifiedStatus, messageId);
