@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.RingtoneUtil
-import java.lang.NullPointerException
 
 private val TAG = Log.tag(CustomNotificationsSettingsFragment::class.java)
 
@@ -147,6 +146,9 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
         return try {
           tone.getTitle(context)
         } catch (e: NullPointerException) {
+          Log.w(TAG, "Could not get correct title for ringtone.", e)
+          context.getString(R.string.CustomNotificationsDialogFragment__unknown)
+        } catch (e: SecurityException) {
           Log.w(TAG, "Could not get correct title for ringtone.", e)
           context.getString(R.string.CustomNotificationsDialogFragment__unknown)
         }
