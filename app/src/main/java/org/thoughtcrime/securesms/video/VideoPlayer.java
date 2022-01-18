@@ -244,6 +244,9 @@ public class VideoPlayer extends FrameLayout {
 
   public void setWindow(@Nullable Window window) {
     this.window = window;
+    if (exoPlayerListener != null) {
+      exoPlayerListener.setWindow(window);
+    }
   }
 
   public void setPlayerStateCallbacks(@Nullable PlayerStateCallback playerStateCallback) {
@@ -272,7 +275,7 @@ public class VideoPlayer extends FrameLayout {
 
   private static class ExoPlayerListener implements Player.Listener {
     private final VideoPlayer                         videoPlayer;
-    private final Window                              window;
+    private       Window                              window;
     private final PlayerStateCallback                 playerStateCallback;
     private final PlayerPositionDiscontinuityCallback playerPositionDiscontinuityCallback;
 
@@ -295,6 +298,10 @@ public class VideoPlayer extends FrameLayout {
     @Override
     public void onPlaybackStateChanged(int playbackState) {
       onPlaybackStateChanged(videoPlayer.exoPlayer.getPlayWhenReady(), playbackState);
+    }
+
+    public void setWindow(Window window) {
+      this.window = window;
     }
 
     private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
