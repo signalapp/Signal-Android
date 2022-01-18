@@ -181,8 +181,9 @@ object SignalDatabaseMigrations {
   private const val PNI = 122
   private const val NOTIFICATION_PROFILES = 123
   private const val NOTIFICATION_PROFILES_END_FIX = 124
+  private const val REACTION_BACKUP_CLEANUP = 125
 
-  const val DATABASE_VERSION = 124
+  const val DATABASE_VERSION = 125
 
   @JvmStatic
   fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2229,6 +2230,19 @@ object SignalDatabaseMigrations {
         // language=sql
         """
           UPDATE notification_profile_schedule SET end = 2400 WHERE end = 0
+        """.trimIndent()
+      )
+    }
+
+    if (oldVersion < REACTION_BACKUP_CLEANUP) {
+      db.execSQL(
+        // language=sql
+        """
+          DELETE FROM reaction
+          WHERE
+            (is_mms = 0 AND message_id NOT IN (SELECT _id FROM sms))
+            OR
+            (is_mms = 1 AND message_id NOT IN (SELECT _id FROM mms))
         """.trimIndent()
       )
     }

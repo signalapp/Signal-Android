@@ -16,11 +16,11 @@ import org.thoughtcrime.securesms.util.SqlUtil
 class ReactionDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
 
   companion object {
-    private const val TABLE_NAME = "reaction"
+    const val TABLE_NAME = "reaction"
 
     private const val ID = "_id"
-    private const val MESSAGE_ID = "message_id"
-    private const val IS_MMS = "is_mms"
+    const val MESSAGE_ID = "message_id"
+    const val IS_MMS = "is_mms"
     private const val AUTHOR_ID = "author_id"
     private const val EMOJI = "emoji"
     private const val DATE_SENT = "date_sent"
@@ -194,5 +194,15 @@ class ReactionDatabase(context: Context, databaseHelper: SignalDatabase) : Datab
     }
 
     databaseHelper.signalWritableDatabase.update(TABLE_NAME, values, query, args)
+  }
+
+  fun deleteAbandonedReactions() {
+    val query = """
+      ($IS_MMS = 0 AND $MESSAGE_ID NOT IN (SELECT ${SmsDatabase.ID} FROM ${SmsDatabase.TABLE_NAME}))
+      OR
+      ($IS_MMS = 1 AND $MESSAGE_ID NOT IN (SELECT ${MmsDatabase.ID} FROM ${MmsDatabase.TABLE_NAME}))
+    """.trimIndent()
+
+    writableDatabase.delete(TABLE_NAME, query, null)
   }
 }
