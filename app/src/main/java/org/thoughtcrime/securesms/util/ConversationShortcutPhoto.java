@@ -80,10 +80,6 @@ public final class ConversationShortcutPhoto implements Key {
   }
 
   private long getFileLastModified() {
-    if (!recipient.isSelf()) {
-      return 0;
-    }
-
     return AvatarHelper.getLastModified(ApplicationDependencies.getApplication(), recipient.getId());
   }
 

@@ -31,6 +31,8 @@ import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
@@ -45,6 +47,8 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.storage.StorageKey;
+import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
@@ -813,6 +817,16 @@ public final class SignalServiceContent {
       }
     }
 
+    if (content.hasKeys() && content.getKeys().hasStorageService()) {
+      byte[] storageKey = content.getKeys().getStorageService().toByteArray();
+
+      return SignalServiceSyncMessage.forKeys(new KeysMessage(Optional.of(new StorageKey(storageKey))));
+    }
+
+    if (content.hasContacts()) {
+      return SignalServiceSyncMessage.forContacts(new ContactsMessage(createAttachmentPointer(content.getContacts().getBlob()), content.getContacts().getComplete()));
+    }
+
     return SignalServiceSyncMessage.empty();
   }
 
@@ -1162,21 +1176,7 @@ public final class SignalServiceContent {
   }
 
   private static SignalServiceAttachmentPointer createAttachmentPointer(SignalServiceProtos.AttachmentPointer pointer) throws InvalidMessageStructureException {
-    return new SignalServiceAttachmentPointer(pointer.getCdnNumber(),
-                                              SignalServiceAttachmentRemoteId.from(pointer),
-                                              pointer.getContentType(),
-                                              pointer.getKey().toByteArray(),
-                                              pointer.hasSize() ? Optional.of(pointer.getSize()) : Optional.<Integer>absent(),
-                                              pointer.hasThumbnail() ? Optional.of(pointer.getThumbnail().toByteArray()): Optional.<byte[]>absent(),
-                                              pointer.getWidth(), pointer.getHeight(),
-                                              pointer.hasDigest() ? Optional.of(pointer.getDigest().toByteArray()) : Optional.<byte[]>absent(),
-                                              pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.<String>absent(),
-                                              (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE)) != 0,
-                                              (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.BORDERLESS_VALUE)) != 0,
-                                              (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.GIF_VALUE)) != 0,
-                                              pointer.hasCaption() ? Optional.of(pointer.getCaption()) : Optional.<String>absent(),
-                                              pointer.hasBlurHash() ? Optional.of(pointer.getBlurHash()) : Optional.<String>absent(),
-                                              pointer.hasUploadTimestamp() ? pointer.getUploadTimestamp() : 0);
+    return AttachmentPointerUtil.createSignalAttachmentPointer(pointer);
 
   }
 

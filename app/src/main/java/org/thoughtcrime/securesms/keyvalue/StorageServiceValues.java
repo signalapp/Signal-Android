@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 
@@ -14,6 +15,7 @@ public class StorageServiceValues extends SignalStoreValues {
   private static final String LAST_SYNC_TIME        = "storage.last_sync_time";
   private static final String NEEDS_ACCOUNT_RESTORE = "storage.needs_account_restore";
   private static final String MANIFEST              = "storage.manifest";
+  private static final String SYNC_STORAGE_KEY      = "storage.syncStorageKey";
 
   StorageServiceValues(@NonNull KeyValueStore store) {
     super(store);
@@ -29,6 +31,9 @@ public class StorageServiceValues extends SignalStoreValues {
   }
 
   public synchronized StorageKey getOrCreateStorageKey() {
+    if (getStore().containsKey(SYNC_STORAGE_KEY)) {
+      return new StorageKey(getBlob(SYNC_STORAGE_KEY, null));
+    }
     return SignalStore.kbsValues().getOrCreateMasterKey().deriveStorageServiceKey();
   }
 
@@ -60,5 +65,15 @@ public class StorageServiceValues extends SignalStoreValues {
     } else {
       return SignalStorageManifest.EMPTY;
     }
+  }
+
+  public synchronized void setStorageKeyFromPrimary(@NonNull StorageKey storageKey) {
+    Preconditions.checkState(SignalStore.account().isLinkedDevice(), "Can only set storage key directly on linked devices");
+    putBlob(SYNC_STORAGE_KEY, storageKey.serialize());
+  }
+
+  public void clearStorageKeyFromPrimary() {
+    Preconditions.checkState(SignalStore.account().isLinkedDevice(), "Can only clear storage key directly on linked devices");
+    remove(SYNC_STORAGE_KEY);
   }
 }

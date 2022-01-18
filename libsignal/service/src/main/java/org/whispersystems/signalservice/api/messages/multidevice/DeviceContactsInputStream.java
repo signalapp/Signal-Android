@@ -16,7 +16,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -32,8 +31,12 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
   }
 
   public DeviceContact read() throws IOException {
-    long   detailsLength     = readRawVarint32();
-    byte[] detailsSerialized = new byte[(int)detailsLength];
+    int detailsLength = (int) readRawVarint32();
+    if (detailsLength == -1) {
+      return null;
+    }
+
+    byte[] detailsSerialized = new byte[(int) detailsLength];
     Util.readFully(in, detailsSerialized);
 
     SignalServiceProtos.ContactDetails details = SignalServiceProtos.ContactDetails.parseFrom(detailsSerialized);

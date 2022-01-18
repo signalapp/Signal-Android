@@ -1524,6 +1524,15 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
+  fun setSystemContactName(id: RecipientId, systemContactName: String) {
+    val values = ContentValues().apply {
+      put(SYSTEM_JOINED_NAME, systemContactName)
+    }
+    if (update(id, values)) {
+      Recipient.live(id).refresh()
+    }
+  }
+
   fun setProfileName(id: RecipientId, profileName: ProfileName) {
     val contentValues = ContentValues(1).apply {
       put(PROFILE_GIVEN_NAME, profileName.givenName)

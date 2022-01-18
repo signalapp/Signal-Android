@@ -55,7 +55,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOperationMessage;
@@ -75,6 +74,7 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.services.AttachmentService;
 import org.whispersystems.signalservice.api.services.MessagingService;
+import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Uint64RangeException;
 import org.whispersystems.signalservice.api.util.Uint64Util;
@@ -506,7 +506,7 @@ public class SignalServiceMessageSender {
     } else if (message.getConfiguration().isPresent()) {
       content = createMultiDeviceConfigurationContent(message.getConfiguration().get());
     } else if (message.getSent().isPresent()) {
-      content = createMultiDeviceSentTranscriptContent(message.getSent().get(), unidentifiedAccess);
+      content = createMultiDeviceSentTranscriptContent(message.getSent().get(), unidentifiedAccess.isPresent());
     } else if (message.getStickerPackOperations().isPresent()) {
       content = createMultiDeviceStickerPackOperationContent(message.getStickerPackOperations().get());
     } else if (message.getFetchType().isPresent()) {
@@ -518,7 +518,7 @@ public class SignalServiceMessageSender {
     } else if (message.getKeys().isPresent()) {
       content = createMultiDeviceSyncKeysContent(message.getKeys().get());
     } else if (message.getVerified().isPresent()) {
-      return sendVerifiedMessage(message.getVerified().get(), unidentifiedAccess);
+      return sendVerifiedSyncMessage(message.getVerified().get());
     } else if (message.getRequest().isPresent()) {
       content = createRequestContent(message.getRequest().get().getRequest());
     } else {
@@ -640,7 +640,7 @@ public class SignalServiceMessageSender {
                                               attachment.getUploadTimestamp());
   }
 
-  private SendMessageResult sendVerifiedMessage(VerifiedMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
+  private SendMessageResult sendVerifiedSyncMessage(VerifiedMessage message)
       throws IOException, UntrustedIdentityException
   {
     byte[] nullMessageBody = DataMessage.newBuilder()
@@ -658,7 +658,7 @@ public class SignalServiceMessageSender {
 
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.absent());
 
-    SendMessageResult result = sendMessage(message.getDestination(), getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), envelopeContent, false, null);
+    SendMessageResult result = sendMessage(message.getDestination(), Optional.absent(), message.getTimestamp(), envelopeContent, false, null);
 
     if (result.getSuccess().isNeedsSync()) {
       Content         syncMessage        = createMultiDeviceVerifiedContent(message, nullMessage.toByteArray());
@@ -1026,10 +1026,10 @@ public class SignalServiceMessageSender {
     return container.setSyncMessage(builder).build();
   }
 
-  private Content createMultiDeviceSentTranscriptContent(SentTranscriptMessage transcript, Optional<UnidentifiedAccessPair> unidentifiedAccess) throws IOException {
+  private Content createMultiDeviceSentTranscriptContent(SentTranscriptMessage transcript, boolean unidentifiedAccess) throws IOException {
     SignalServiceAddress address = transcript.getDestination().get();
     Content              content = createMessageContent(transcript.getMessage());
-    SendMessageResult    result  = SendMessageResult.success(address, Collections.emptyList(), unidentifiedAccess.isPresent(), true, -1, Optional.of(content));
+    SendMessageResult    result  = SendMessageResult.success(address, Collections.emptyList(), unidentifiedAccess, true, -1, Optional.of(content));
 
     return createMultiDeviceSentTranscriptContent(content,
                                                   Optional.of(address),
@@ -1910,63 +1910,7 @@ public class SignalServiceMessageSender {
   }
 
   private AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {
-    AttachmentPointer.Builder builder = AttachmentPointer.newBuilder()
-                                                         .setCdnNumber(attachment.getCdnNumber())
-                                                         .setContentType(attachment.getContentType())
-                                                         .setKey(ByteString.copyFrom(attachment.getKey()))
-                                                         .setDigest(ByteString.copyFrom(attachment.getDigest().get()))
-                                                         .setSize(attachment.getSize().get())
-                                                         .setUploadTimestamp(attachment.getUploadTimestamp());
-
-    if (attachment.getRemoteId().getV2().isPresent()) {
-      builder.setCdnId(attachment.getRemoteId().getV2().get());
-    }
-
-    if (attachment.getRemoteId().getV3().isPresent()) {
-      builder.setCdnKey(attachment.getRemoteId().getV3().get());
-    }
-
-    if (attachment.getFileName().isPresent()) {
-      builder.setFileName(attachment.getFileName().get());
-    }
-
-    if (attachment.getPreview().isPresent()) {
-      builder.setThumbnail(ByteString.copyFrom(attachment.getPreview().get()));
-    }
-
-    if (attachment.getWidth() > 0) {
-      builder.setWidth(attachment.getWidth());
-    }
-
-    if (attachment.getHeight() > 0) {
-      builder.setHeight(attachment.getHeight());
-    }
-
-    int flags = 0;
-
-    if (attachment.getVoiceNote()) {
-      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.VOICE_MESSAGE_VALUE);
-    }
-
-    if (attachment.isBorderless()) {
-      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.BORDERLESS_VALUE);
-    }
-
-    if (attachment.isGif()) {
-      flags |= FlagUtil.toBinaryFlag(AttachmentPointer.Flags.GIF_VALUE);
-    }
-
-    builder.setFlags(flags);
-
-    if (attachment.getCaption().isPresent()) {
-      builder.setCaption(attachment.getCaption().get());
-    }
-
-    if (attachment.getBlurHash().isPresent()) {
-      builder.setBlurHash(attachment.getBlurHash().get());
-    }
-
-    return builder.build();
+    return AttachmentPointerUtil.createAttachmentPointer(attachment);
   }
 
   private AttachmentPointer createAttachmentPointer(SignalServiceAttachmentStream attachment)
@@ -1986,12 +1930,17 @@ public class SignalServiceMessageSender {
   {
     List<OutgoingPushMessage> messages = new LinkedList<>();
 
-    boolean isLocalPrimaryDevice = recipient.matches(localAddress) && localDeviceId == SignalServiceAddress.DEFAULT_DEVICE_ID;
-    if (!isLocalPrimaryDevice || unidentifiedAccess.isPresent()) {
-      messages.add(getEncryptedMessage(socket, recipient, unidentifiedAccess, SignalServiceAddress.DEFAULT_DEVICE_ID, plaintext));
+    List<Integer> subDevices = store.getSubDeviceSessions(recipient.getIdentifier());
+
+    List<Integer> deviceIds = new ArrayList<>(subDevices.size() + 1);
+    deviceIds.add(SignalServiceAddress.DEFAULT_DEVICE_ID);
+    deviceIds.addAll(subDevices);
+
+    if (recipient.matches(localAddress)) {
+      deviceIds.remove(Integer.valueOf(localDeviceId));
     }
 
-    for (int deviceId : store.getSubDeviceSessions(recipient.getIdentifier())) {
+    for (int deviceId : deviceIds) {
       if (store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
         messages.add(getEncryptedMessage(socket, recipient, unidentifiedAccess, deviceId, plaintext));
       }
@@ -2010,8 +1959,7 @@ public class SignalServiceMessageSender {
     SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(recipient.getIdentifier(), deviceId);
     SignalServiceCipher   cipher                = new SignalServiceCipher(localAddress, localDeviceId, store, sessionLock, null);
 
-    boolean isLocalDevice = recipient.matches(localAddress) && deviceId == localDeviceId;
-    if (!store.containsSession(signalProtocolAddress) && !isLocalDevice) {
+    if (!store.containsSession(signalProtocolAddress)) {
       try {
         List<PreKeyBundle> preKeys = socket.getPreKeys(recipient, unidentifiedAccess, deviceId);
 

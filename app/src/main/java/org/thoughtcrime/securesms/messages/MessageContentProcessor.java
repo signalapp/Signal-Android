@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.jobs.GroupCallPeekJob;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactSyncJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
@@ -123,6 +124,7 @@ import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
@@ -139,6 +141,8 @@ import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
@@ -309,6 +313,8 @@ public final class MessageContentProcessor {
         else if (syncMessage.getFetchType().isPresent())              handleSynchronizeFetchMessage(syncMessage.getFetchType().get(), content.getTimestamp());
         else if (syncMessage.getMessageRequestResponse().isPresent()) handleSynchronizeMessageRequestResponse(syncMessage.getMessageRequestResponse().get(), content.getTimestamp());
         else if (syncMessage.getOutgoingPaymentMessage().isPresent()) handleSynchronizeOutgoingPayment(content, syncMessage.getOutgoingPaymentMessage().get());
+        else if (syncMessage.getKeys().isPresent())                   handleSynchronizeKeys(syncMessage.getKeys().get(), content.getTimestamp());
+        else if (syncMessage.getContacts().isPresent())               handleSynchronizeContacts(syncMessage.getContacts().get(), content.getTimestamp());
         else                                                          warn(String.valueOf(content.getTimestamp()), "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         log(String.valueOf(content.getTimestamp()), "Got call message...");
@@ -1081,6 +1087,35 @@ public final class MessageContentProcessor {
     log("Inserted synchronized payment " + uuid);
   }
 
+  private void handleSynchronizeKeys(@NonNull KeysMessage keysMessage, long envelopeTimestamp) {
+    if (SignalStore.account().isLinkedDevice()) {
+      log(envelopeTimestamp, "Synchronize keys.");
+    } else {
+      log(envelopeTimestamp, "Primary device ignores synchronize keys.");
+      return;
+    }
+
+    SignalStore.storageService().setStorageKeyFromPrimary(keysMessage.getStorageService().get());
+  }
+
+  private void handleSynchronizeContacts(@NonNull ContactsMessage contactsMessage, long envelopeTimestamp) throws IOException {
+    if (SignalStore.account().isLinkedDevice()) {
+      log(envelopeTimestamp, "Synchronize contacts.");
+    } else {
+      log(envelopeTimestamp, "Primary device ignores synchronize contacts.");
+      return;
+    }
+
+    if (!(contactsMessage.getContactsStream() instanceof SignalServiceAttachmentPointer)) {
+      warn(envelopeTimestamp, "No contact stream available.");
+      return;
+    }
+
+    SignalServiceAttachmentPointer contactsAttachment = (SignalServiceAttachmentPointer) contactsMessage.getContactsStream();
+
+    ApplicationDependencies.getJobManager().add(new MultiDeviceContactSyncJob(contactsAttachment));
+  }
+
   private void handleSynchronizeSentMessage(@NonNull SignalServiceContent content,
                                             @NonNull SentTranscriptMessage message,
                                             @NonNull Recipient senderRecipient)
@@ -1171,7 +1206,12 @@ public final class MessageContentProcessor {
 
   private void handleSynchronizeRequestMessage(@NonNull RequestMessage message, long envelopeTimestamp)
   {
-    log(envelopeTimestamp, "Synchronize request message.");
+    if (SignalStore.account().isPrimaryDevice()) {
+      log(envelopeTimestamp, "Synchronize request message.");
+    } else {
+      log(envelopeTimestamp, "Linked device ignoring synchronize request message.");
+      return;
+    }
 
     if (message.isContactsRequest()) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
