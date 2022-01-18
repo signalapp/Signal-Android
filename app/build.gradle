@@ -86,8 +86,6 @@ def selectableVariants = [
         'playStagingFlipper',
         'playStagingPerf',
         'playStagingRelease',
-        'studyProdMock',
-        'studyProdPerf',
         'websiteProdFlipper',
         'websiteProdRelease',
 ]
@@ -271,13 +269,6 @@ android {
             matchingFallbacks = ['debug']
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Perf\""
         }
-        mock {
-            initWith debug
-            isDefault false
-            minifyEnabled false
-            matchingFallbacks = ['debug']
-            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Mock\""
-        }
     }
 
     productFlavors {
@@ -305,16 +296,6 @@ android {
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
             buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\""
-        }
-
-        study {
-            dimension 'distribution'
-
-            applicationIdSuffix ".study"
-            ext.websiteUpdateUrl = "null"
-            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
-            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
-            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"study\""
         }
 
         prod {
