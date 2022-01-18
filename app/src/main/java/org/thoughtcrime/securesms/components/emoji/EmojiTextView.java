@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewKt;
 import androidx.core.widget.TextViewCompat;
 
 import org.thoughtcrime.securesms.R;
@@ -34,6 +35,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
+
+import kotlin.Unit;
 
 
 public class EmojiTextView extends AppCompatTextView {
@@ -269,12 +272,7 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   private void ellipsizeEmojiTextForMaxLines() {
-    post(() -> {
-      if (getLayout() == null) {
-        ellipsizeEmojiTextForMaxLines();
-        return;
-      }
-
+    Runnable ellipsize = () -> {
       int maxLines = TextViewCompat.getMaxLines(EmojiTextView.this);
       if (maxLines <= 0 && maxLength < 0) {
         return;
@@ -282,10 +280,10 @@ public class EmojiTextView extends AppCompatTextView {
 
       int lineCount = getLineCount();
       if (lineCount > maxLines) {
-        int overflowStart = getLayout().getLineStart(maxLines - 1);
-        CharSequence overflow = getText().subSequence(overflowStart, getText().length());
-        float adjust = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
-        CharSequence ellipsized = TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END);
+        int          overflowStart = getLayout().getLineStart(maxLines - 1);
+        CharSequence overflow      = getText().subSequence(overflowStart, getText().length());
+        float        adjust        = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
+        CharSequence ellipsized    = TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END);
 
         SpannableStringBuilder newContent = new SpannableStringBuilder();
         newContent.append(getText().subSequence(0, overflowStart))
@@ -297,7 +295,16 @@ public class EmojiTextView extends AppCompatTextView {
 
         super.setText(emojified, BufferType.SPANNABLE);
       }
-    });
+    };
+
+    if (getLayout() != null) {
+      ellipsize.run();
+    } else {
+      ViewKt.doOnNextLayout(this, view -> {
+        ellipsize.run();
+        return Unit.INSTANCE;
+      });
+    }
   }
 
   private boolean unchanged(CharSequence text, CharSequence overflowText, BufferType bufferType) {
