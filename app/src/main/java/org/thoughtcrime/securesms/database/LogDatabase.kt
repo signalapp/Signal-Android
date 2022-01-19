@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.database
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
  * This is it's own separate physical database, so it cannot do joins or queries with any other tables.
  */
 class LogDatabase private constructor(
-  application: Application,
+  application: Context,
   databaseSecret: DatabaseSecret
 ) :
   SQLiteOpenHelper(
@@ -78,7 +78,7 @@ class LogDatabase private constructor(
     private var instance: LogDatabase? = null
 
     @JvmStatic
-    fun getInstance(context: Application): LogDatabase {
+    fun getInstance(context: Context): LogDatabase {
       if (instance == null) {
         synchronized(LogDatabase::class.java) {
           if (instance == null) {

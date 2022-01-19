@@ -1,13 +1,11 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
-import android.app.Application;
 import android.app.job.JobInfo;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
@@ -16,9 +14,9 @@ public class NetworkConstraint implements Constraint {
 
   public static final String KEY = "NetworkConstraint";
 
-  private final Application application;
+  private final Context application;
 
-  private NetworkConstraint(@NonNull Application application) {
+  private NetworkConstraint(@NonNull Context application) {
     this.application = application;
   }
 
@@ -53,9 +51,9 @@ public class NetworkConstraint implements Constraint {
 
   public static final class Factory implements Constraint.Factory<NetworkConstraint> {
 
-    private final Application application;
+    private final Context application;
 
-    public Factory(@NonNull Application application) {
+    public Factory(@NonNull Context application) {
       this.application = application;
     }
 

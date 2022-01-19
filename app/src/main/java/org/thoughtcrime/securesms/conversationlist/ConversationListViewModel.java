@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.conversationlist;
 
-import android.app.Application;
+import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -79,7 +79,7 @@ class ConversationListViewModel extends ViewModel {
   private SearchResult activeSearchResult;
   private int          pinnedCount;
 
-  private ConversationListViewModel(@NonNull Application application, @NonNull SearchRepository searchRepository, boolean isArchived) {
+  private ConversationListViewModel(@NonNull Context application, @NonNull SearchRepository searchRepository, boolean isArchived) {
     this.megaphone                      = new MutableLiveData<>();
     this.searchResult                   = new MutableLiveData<>();
     this.internalSelection              = new HashSet<>();

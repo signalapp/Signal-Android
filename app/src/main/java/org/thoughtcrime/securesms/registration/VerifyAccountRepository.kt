@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.registration
 
-import android.app.Application
+import android.content.Context
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Request SMS/Phone verification codes to help prove ownership of a phone number.
  */
-class VerifyAccountRepository(private val context: Application) {
+class VerifyAccountRepository(private val context: Context) {
 
   fun requestVerificationCode(
     e164: String,

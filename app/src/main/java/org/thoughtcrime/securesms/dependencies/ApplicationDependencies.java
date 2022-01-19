@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -42,8 +43,9 @@ import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IasKeyStore;
-import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
+import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
+import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -69,7 +71,7 @@ public class ApplicationDependencies {
   private static final Object FRAME_RATE_TRACKER_LOCK = new Object();
   private static final Object JOB_MANAGER_LOCK        = new Object();
 
-  private static Application           application;
+  private static Context               application;
   private static Provider              provider;
   private static AppForegroundObserver appForegroundObserver;
 
@@ -132,8 +134,12 @@ public class ApplicationDependencies {
     return ApplicationDependencies.application != null;
   }
 
-  public static @NonNull Application getApplication() {
+  public static @NonNull Context getApplication() {
     return application;
+  }
+
+  public static void updateApplicationLanguage() {
+    application = DynamicLanguageContextWrapper.getUpdatedApplicationContext(application);
   }
 
   public static @NonNull SignalServiceAccountManager getSignalServiceAccountManager() {

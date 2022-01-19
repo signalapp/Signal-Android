@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
-import android.app.Application;
 import android.app.job.JobInfo;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 
@@ -13,10 +13,10 @@ public class NetworkOrCellServiceConstraint implements Constraint {
   public static final String KEY        = "NetworkOrCellServiceConstraint";
   public static final String LEGACY_KEY = "CellServiceConstraint";
 
-  private final Application       application;
+  private final Context           application;
   private final NetworkConstraint networkConstraint;
 
-  private NetworkOrCellServiceConstraint(@NonNull Application application) {
+  private NetworkOrCellServiceConstraint(@NonNull Context application) {
     this.application       = application;
     this.networkConstraint = new NetworkConstraint.Factory(application).create();
   }
@@ -39,15 +39,15 @@ public class NetworkOrCellServiceConstraint implements Constraint {
   public void applyToJobInfo(@NonNull JobInfo.Builder jobInfoBuilder) {
   }
 
-  private static boolean hasCellService(@NonNull Application application) {
+  private static boolean hasCellService(@NonNull Context application) {
     return CellServiceConstraintObserver.getInstance(application).hasService();
   }
 
   public static class Factory implements Constraint.Factory<NetworkOrCellServiceConstraint> {
 
-    private final Application application;
+    private final Context application;
 
-    public Factory(@NonNull Application application) {
+    public Factory(@NonNull Context application) {
       this.application = application;
     }
 

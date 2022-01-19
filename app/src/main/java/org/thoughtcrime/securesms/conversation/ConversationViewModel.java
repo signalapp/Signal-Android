@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
-import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -66,7 +66,7 @@ public class ConversationViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ConversationViewModel.class);
 
-  private final Application                         context;
+  private final Context                             context;
   private final MediaRepository                     mediaRepository;
   private final ConversationRepository              conversationRepository;
   private final MutableLiveData<List<Media>>        recentMedia;

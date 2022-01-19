@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
-import android.app.Application;
 import android.content.Context;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
@@ -21,7 +20,7 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
 
   private static volatile CellServiceConstraintObserver instance;
 
-  public static CellServiceConstraintObserver getInstance(@NonNull Application application) {
+  public static CellServiceConstraintObserver getInstance(@NonNull Context application) {
     if (instance == null) {
       synchronized (CellServiceConstraintObserver.class) {
         if (instance == null) {
@@ -32,7 +31,7 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
     return instance;
   }
 
-  private CellServiceConstraintObserver(@NonNull Application application) {
+  private CellServiceConstraintObserver(@NonNull Context application) {
     TelephonyManager     telephonyManager     = (TelephonyManager) application.getSystemService(Context.TELEPHONY_SERVICE);
     ServiceStateListener serviceStateListener = new ServiceStateListener();
 

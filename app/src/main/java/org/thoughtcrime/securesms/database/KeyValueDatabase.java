@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database;
 
 import android.app.Application;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
@@ -46,9 +47,9 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
 
   private static volatile KeyValueDatabase instance;
 
-  private final Application application;
+  private final Context application;
 
-  public static @NonNull KeyValueDatabase getInstance(@NonNull Application context) {
+  public static @NonNull KeyValueDatabase getInstance(@NonNull Context context) {
     if (instance == null) {
       synchronized (KeyValueDatabase.class) {
         if (instance == null) {
@@ -60,7 +61,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     return instance;
   }
 
-  private KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
+  private KeyValueDatabase(@NonNull Context application, @NonNull DatabaseSecret databaseSecret) {
     super(application, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0,new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
 
     this.application = application;

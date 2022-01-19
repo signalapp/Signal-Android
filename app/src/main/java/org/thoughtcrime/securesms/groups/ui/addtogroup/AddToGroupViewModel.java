@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.groups.ui.addtogroup;
 
-import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public final class AddToGroupViewModel extends ViewModel {
 
-  private final Application            context;
+  private final Context                context;
   private final AddToGroupRepository   repository;
   private final RecipientId            recipientId;
   private final SingleLiveEvent<Event> events      = new SingleLiveEvent<>();

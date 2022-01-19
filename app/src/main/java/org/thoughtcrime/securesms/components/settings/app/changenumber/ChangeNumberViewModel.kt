@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
-import android.app.Application
+import android.content.Context
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.LiveData
@@ -165,7 +165,7 @@ class ChangeNumberViewModel(
   class Factory(owner: SavedStateRegistryOwner) : AbstractSavedStateViewModelFactory(owner, null) {
 
     override fun <T : ViewModel?> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
-      val context: Application = ApplicationDependencies.getApplication()
+      val context: Context = ApplicationDependencies.getApplication()
       val localNumber: String = SignalStore.account().e164!!
       val password: String = SignalStore.account().servicePassword!!
 
