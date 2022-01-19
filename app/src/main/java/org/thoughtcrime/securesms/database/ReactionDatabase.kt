@@ -168,6 +168,10 @@ class ReactionDatabase(context: Context, databaseHelper: SignalDatabase) : Datab
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageId)
   }
 
+  fun deleteReactions(messageId: MessageId) {
+    writableDatabase.delete(TABLE_NAME, "$MESSAGE_ID = ? AND $IS_MMS = ?", SqlUtil.buildArgs(messageId.id, if (messageId.mms) 1 else 0))
+  }
+
   fun hasReaction(messageId: MessageId, reaction: ReactionRecord): Boolean {
     val query = "$MESSAGE_ID = ? AND $IS_MMS = ? AND $AUTHOR_ID = ? AND $EMOJI = ?"
     val args = SqlUtil.buildArgs(messageId.id, if (messageId.mms) 1 else 0, reaction.author, reaction.emoji)

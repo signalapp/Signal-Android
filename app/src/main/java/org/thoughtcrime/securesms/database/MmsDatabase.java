@@ -850,9 +850,11 @@ public class MmsDatabase extends MessageDatabase {
       deletedAttachments = SignalDatabase.attachments().deleteAttachmentsForMessage(messageId);
       SignalDatabase.mentions().deleteMentionsForMessage(messageId);
       SignalDatabase.messageLog().deleteAllRelatedToMessage(messageId, true);
+      SignalDatabase.reactions().deleteReactions(new MessageId(messageId, true));
 
       threadId = getThreadIdForMessage(messageId);
       SignalDatabase.threads().update(threadId, false);
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();

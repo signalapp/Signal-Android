@@ -392,6 +392,7 @@ public class SmsDatabase extends MessageDatabase {
 
       threadId = getThreadIdForMessage(id);
 
+      SignalDatabase.reactions().deleteReactions(new MessageId(id, false));
       SignalDatabase.threads().update(threadId, false);
       SignalDatabase.messageLog().deleteAllRelatedToMessage(id, false);
 
