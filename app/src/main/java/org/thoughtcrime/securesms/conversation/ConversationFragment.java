@@ -1582,16 +1582,16 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onReactionClicked(@NonNull MultiselectPart multiselectPart, long messageId, boolean isMms) {
-      if (getContext() == null) return;
+      if (getParentFragment() == null) return;
 
-      ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(requireFragmentManager(), null);
+      ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(getParentFragmentManager(), null);
     }
 
     @Override
     public void onGroupMemberClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId) {
-      if (getContext() == null) return;
+      if (getParentFragment() == null) return;
 
-      RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(requireFragmentManager(), "BOTTOM");
+      RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(getParentFragmentManager(), "BOTTOM");
     }
 
     @Override
@@ -1647,7 +1647,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onGroupMigrationLearnMoreClicked(@NonNull GroupMigrationMembershipChange membershipChange) {
-      GroupsV1MigrationInfoBottomSheetDialogFragment.show(requireFragmentManager(), membershipChange);
+      if (getParentFragment() == null) {
+        return;
+      }
+
+      GroupsV1MigrationInfoBottomSheetDialogFragment.show(getParentFragmentManager(), membershipChange);
     }
 
     @Override

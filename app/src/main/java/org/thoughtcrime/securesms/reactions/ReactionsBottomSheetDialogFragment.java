@@ -57,7 +57,13 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
 
-    callback = (Callback) context;
+    if (context instanceof Callback) {
+      callback = (Callback) context;
+    } else if (getParentFragment() instanceof Callback) {
+      callback = (Callback) getParentFragment();
+    } else {
+      throw new IllegalStateException("Parent component does not implement Callback");
+    }
   }
 
   @Override
