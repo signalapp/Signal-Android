@@ -492,6 +492,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     }
   }
 
+  @Override 
+  public void onAudioLevels(Remote remote, int capturedLevel, int receivedLevel) {
+    // TODO: Implement audio level handling for direct calls.
+  }
+
   @Override
   public void onCallConcluded(@Nullable Remote remote) {
     if (!(remote instanceof RemotePeer)) {
@@ -751,6 +756,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   public void onLocalDeviceStateChanged(@NonNull GroupCall groupCall) {
     Log.i(TAG, "onLocalDeviceStateChanged: localAdapterType: " + groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType());
     process((s, p) -> p.handleGroupLocalDeviceStateChanged(s));
+  }
+
+  @Override
+  public void onAudioLevels(@NonNull GroupCall groupCall) {
+    // TODO: Implement audio level handling for group calls.
   }
 
   @Override
