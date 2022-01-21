@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.registration;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -57,9 +58,9 @@ public final class RegistrationRepository {
 
   private static final String TAG = Log.tag(RegistrationRepository.class);
 
-  private final Context context;
+  private final Application context;
 
-  public RegistrationRepository(@NonNull Context context) {
+  public RegistrationRepository(@NonNull Application context) {
     this.context = context;
   }
 

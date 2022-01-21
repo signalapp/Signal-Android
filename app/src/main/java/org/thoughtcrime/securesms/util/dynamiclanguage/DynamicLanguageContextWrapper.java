@@ -28,14 +28,7 @@ public final class DynamicLanguageContextWrapper {
     return LocaleParser.findBestMatchingLocaleForLanguage(language);
   }
 
-  public static @NonNull Context getUpdatedApplicationContext(@NonNull Context base) {
-    updateContext(base);
-
-    Configuration configuration = base.getResources().getConfiguration();
-    return base.createConfigurationContext(configuration);
-  }
-
-  private static void updateContext(@NonNull Context base) {
+  public static void updateContext(@NonNull Context base) {
     Configuration config = base.getResources().getConfiguration();
 
     prepareOverrideConfiguration(base, config);

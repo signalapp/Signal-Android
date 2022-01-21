@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 
@@ -227,7 +226,7 @@ public final class JobManagerFactories {
     }};
   }
 
-  public static Map<String, Constraint.Factory> getConstraintFactories(@NonNull Context application) {
+  public static Map<String, Constraint.Factory> getConstraintFactories(@NonNull Application application) {
     return new HashMap<String, Constraint.Factory>() {{
       put(AutoDownloadEmojiConstraint.KEY,           new AutoDownloadEmojiConstraint.Factory(application));
       put(ChargingConstraint.KEY,                    new ChargingConstraint.Factory());

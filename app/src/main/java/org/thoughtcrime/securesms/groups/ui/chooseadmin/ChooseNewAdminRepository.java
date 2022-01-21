@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.groups.ui.chooseadmin;
 
-import android.content.Context;
+import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.util.List;
 
 public final class ChooseNewAdminRepository {
-  private final Context context;
+  private final Application context;
 
-  ChooseNewAdminRepository(@NonNull Context context) {
+  ChooseNewAdminRepository(@NonNull Application context) {
     this.context = context;
   }
 

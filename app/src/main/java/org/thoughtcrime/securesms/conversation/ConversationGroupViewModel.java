@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
-import android.content.Context;
+import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -117,7 +117,7 @@ final class ConversationGroupViewModel extends ViewModel {
 
   private static @Nullable GroupRecord getGroupRecordForRecipient(@Nullable Recipient recipient) {
     if (recipient != null && recipient.isGroup()) {
-      Context       context       = ApplicationDependencies.getApplication();
+      Application context         = ApplicationDependencies.getApplication();
       GroupDatabase groupDatabase = SignalDatabase.groups();
       return groupDatabase.getGroup(recipient.getId()).orNull();
     } else {

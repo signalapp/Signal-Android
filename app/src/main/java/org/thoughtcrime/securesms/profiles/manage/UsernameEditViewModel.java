@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
-import android.content.Context;
+import android.app.Application;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -22,7 +22,7 @@ class UsernameEditViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(UsernameEditViewModel.class);
 
-  private final Context                application;
+  private final Application            application;
   private final MutableLiveData<State> uiState;
   private final SingleLiveEvent<Event> events;
   private final UsernameEditRepository repo;

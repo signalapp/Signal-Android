@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.logsubmit
 
-import android.content.Context
+import android.app.Application
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber
@@ -13,7 +13,7 @@ import java.lang.UnsupportedOperationException
  * @param untilTime Only show logs before this time. This is our way of making sure the set of logs we show on this screen doesn't grow.
  */
 class LogDataSource(
-  application: Context,
+  application: Application,
   private val prefixLines: List<LogLine>,
   private val untilTime: Long
 ) :

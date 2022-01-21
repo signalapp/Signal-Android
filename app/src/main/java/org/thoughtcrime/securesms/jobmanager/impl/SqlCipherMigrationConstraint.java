@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
+import android.app.Application;
 import android.app.job.JobInfo;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 
@@ -12,9 +12,9 @@ public class SqlCipherMigrationConstraint implements Constraint {
 
   public static final String KEY = "SqlCipherMigrationConstraint";
 
-  private final Context application;
+  private final Application application;
 
-  private SqlCipherMigrationConstraint(@NonNull Context application) {
+  private SqlCipherMigrationConstraint(@NonNull Application application) {
     this.application = application;
   }
 
@@ -35,9 +35,9 @@ public class SqlCipherMigrationConstraint implements Constraint {
 
   public static final class Factory implements Constraint.Factory<SqlCipherMigrationConstraint> {
 
-    private final Context application;
+    private final Application application;
 
-    public Factory(@NonNull Context application) {
+    public Factory(@NonNull Application application) {
       this.application = application;
     }
 

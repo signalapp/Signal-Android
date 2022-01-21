@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,7 @@ public class MessageCountsViewModel extends ViewModel {
 
   private static final Executor EXECUTOR = new SerialMonoLifoExecutor(SignalExecutors.BOUNDED);
 
-  private final Context                          context;
+  private final Application                      context;
   private final MutableLiveData<Long>            threadId = new MutableLiveData<>(-1L);
   private final LiveData<Pair<Integer, Integer>> unreadCounts;
 

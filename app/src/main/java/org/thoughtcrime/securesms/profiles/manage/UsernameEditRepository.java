@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
-import android.content.Context;
+import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
@@ -21,7 +21,7 @@ class UsernameEditRepository {
 
   private static final String TAG = Log.tag(UsernameEditRepository.class);
 
-  private final Context                     application;
+  private final Application                 application;
   private final SignalServiceAccountManager accountManager;
   private final Executor                    executor;
 

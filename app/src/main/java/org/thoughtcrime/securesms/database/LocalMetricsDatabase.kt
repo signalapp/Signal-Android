@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.database
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.ContentValues
-import android.content.Context
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.logging.Log
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * This is it's own separate physical database, so it cannot do joins or queries with any other tables.
  */
 class LocalMetricsDatabase private constructor(
-  application: Context,
+  application: Application,
   databaseSecret: DatabaseSecret
 ) :
   SQLiteOpenHelper(
@@ -77,7 +77,7 @@ class LocalMetricsDatabase private constructor(
     private var instance: LocalMetricsDatabase? = null
 
     @JvmStatic
-    fun getInstance(context: Context): LocalMetricsDatabase {
+    fun getInstance(context: Application): LocalMetricsDatabase {
       if (instance == null) {
         synchronized(LocalMetricsDatabase::class.java) {
           if (instance == null) {

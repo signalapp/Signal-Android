@@ -203,7 +203,6 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setLanguage(@NonNull String language) {
     TextSecurePreferences.setLanguage(ApplicationDependencies.getApplication(), language);
-    ApplicationDependencies.updateApplicationLanguage();
     onConfigurationSettingChanged.postValue(LANGUAGE);
   }
 
