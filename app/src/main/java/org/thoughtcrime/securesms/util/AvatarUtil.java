@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
@@ -29,6 +30,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.concurrent.ExecutionException;
 
 public final class AvatarUtil {
+
+  private static final String TAG = Log.tag(AvatarUtil.class);
 
   public static final int UNDEFINED_SIZE = -1;
 
@@ -113,7 +116,13 @@ public final class AvatarUtil {
       }
       return IconCompat.createWithAdaptiveBitmap(glideRequest.submit().get());
     } catch (ExecutionException | InterruptedException e) {
-      throw new AssertionError("This call should not fail.", e);
+      Log.w(TAG, "Failed to generate shortcut icon for recipient " + recipient.getId() + ". Generating fallback.", e);
+
+      Drawable fallbackDrawable = getFallback(context, recipient, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE);
+      Bitmap   fallbackBitmap   = DrawableUtil.toBitmap(fallbackDrawable, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE, DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE);
+      Bitmap   wrappedBitmap    = DrawableUtil.wrapBitmapForShortcutInfo(fallbackBitmap);
+
+      return IconCompat.createWithAdaptiveBitmap(wrappedBitmap);
     }
   }
 
