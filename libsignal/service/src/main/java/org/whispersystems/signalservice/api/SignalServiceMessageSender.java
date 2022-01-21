@@ -1745,12 +1745,12 @@ public class SignalServiceMessageSender {
                                                         .filter(r -> !r.isSuccess())
                                                         .collect(Collectors.toList());
 
-          Set<SignalServiceAddress> failedAddresses = trueFailures.stream()
-                                                                  .map(SendMessageResult::getAddress)
-                                                                  .collect(Collectors.toSet());
+          Set<ACI> failedAddresses = trueFailures.stream()
+                                                 .map(result -> result.getAddress().getAci())
+                                                 .collect(Collectors.toSet());
 
           List<SendMessageResult> fakeNetworkFailures = recipients.stream()
-                                                                  .filter(r -> !failedAddresses.contains(r))
+                                                                  .filter(r -> !failedAddresses.contains(r.getAci()))
                                                                   .map(SendMessageResult::networkFailure)
                                                                   .collect(Collectors.toList());
 

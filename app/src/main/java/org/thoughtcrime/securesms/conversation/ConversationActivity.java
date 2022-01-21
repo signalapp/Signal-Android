@@ -3646,14 +3646,14 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord) {
-    if (messageRecord.hasFailedWithNetworkFailures()) {
+    if (messageRecord.isIdentityMismatchFailure()) {
+      SafetyNumberChangeDialog.show(this, messageRecord);
+    } else if (messageRecord.hasFailedWithNetworkFailures()) {
       new AlertDialog.Builder(this)
                      .setMessage(R.string.conversation_activity__message_could_not_be_sent)
                      .setNegativeButton(android.R.string.cancel, null)
                      .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> MessageSender.resend(this, messageRecord))
                      .show();
-    } else if (messageRecord.isIdentityMismatchFailure()) {
-      SafetyNumberChangeDialog.show(this, messageRecord);
     } else {
       startActivity(MessageDetailsActivity.getIntentForMessageDetails(this, messageRecord, messageRecord.getRecipient().getId(), messageRecord.getThreadId()));
     }
