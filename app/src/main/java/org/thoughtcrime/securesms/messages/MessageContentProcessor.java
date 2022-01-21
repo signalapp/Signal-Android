@@ -285,7 +285,8 @@ public final class MessageContentProcessor {
                                                      .enqueue();
             } else if (!threadRecipient.isGroup()) {
               Log.i(TAG, "Message was to a 1:1. Ensuring this user has our profile key.");
-              ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob(false))
+              ApplicationDependencies.getJobManager()
+                                     .startChain(new RefreshAttributesJob(false))
                                      .then(ProfileKeySendJob.create(context, SignalDatabase.threads().getOrCreateThreadIdFor(threadRecipient), true))
                                      .enqueue();
             }
@@ -1722,13 +1723,12 @@ public final class MessageContentProcessor {
                                 @NonNull byte[] messageProfileKeyBytes,
                                 @NonNull Recipient senderRecipient)
   {
-    log(content.getTimestamp(), "Profile key.");
-
     RecipientDatabase database          = SignalDatabase.recipients();
     ProfileKey        messageProfileKey = ProfileKeyUtil.profileKeyOrNull(messageProfileKeyBytes);
 
     if (messageProfileKey != null) {
       if (database.setProfileKey(senderRecipient.getId(), messageProfileKey)) {
+        log(content.getTimestamp(), "Profile key on message from " + senderRecipient.getId() + " didn't match our local store. It has been updated.");
         ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(senderRecipient.getId()));
       }
     } else {

@@ -125,7 +125,7 @@ public final class ProfileService {
     }
 
     @Override
-    public ServiceResponse<ProfileAndCredential> map(int status, String body, Function<String, String> getHeader)
+    public ServiceResponse<ProfileAndCredential> map(int status, String body, Function<String, String> getHeader, boolean unidentified)
         throws MalformedResponseException
     {
       try {

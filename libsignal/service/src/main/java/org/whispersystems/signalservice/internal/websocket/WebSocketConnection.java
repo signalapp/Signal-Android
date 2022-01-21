@@ -266,7 +266,8 @@ public class WebSocketConnection extends WebSocketListener {
         if (listener != null) {
           listener.onSuccess(new WebsocketResponse(message.getResponse().getStatus(),
                                                    new String(message.getResponse().getBody().toByteArray()),
-                                                   message.getResponse().getHeadersList()));
+                                                   message.getResponse().getHeadersList(),
+                                                   !credentialsProvider.isPresent()));
           if (message.getResponse().getStatus() >= 400) {
             healthMonitor.onMessageError(message.getResponse().getStatus(), credentialsProvider.isPresent());
           }

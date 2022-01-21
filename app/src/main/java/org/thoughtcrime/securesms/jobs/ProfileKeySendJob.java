@@ -65,16 +65,17 @@ public class ProfileKeySendJob extends BaseJob {
 
     if (queueLimits) {
       return new ProfileKeySendJob(new Parameters.Builder()
-                                                 .setQueue(conversationRecipient.getId().toQueueKey())
+                                                 .setQueue("ProfileKeySendJob_" + conversationRecipient.getId().toQueueKey())
+                                                 .setMaxInstancesForQueue(1)
                                                  .addConstraint(NetworkConstraint.KEY)
+                                                 .addConstraint(DecryptionsDrainedConstraint.KEY)
                                                  .setLifespan(TimeUnit.DAYS.toMillis(1))
                                                  .setMaxAttempts(Parameters.UNLIMITED)
                                                  .build(), threadId, recipients);
     } else {
       return new ProfileKeySendJob(new Parameters.Builder()
-                                                 .setQueue("ProfileKeySendJob_" + conversationRecipient.getId().toQueueKey())
+                                                 .setQueue(conversationRecipient.getId().toQueueKey())
                                                  .addConstraint(NetworkConstraint.KEY)
-                                                 .addConstraint(DecryptionsDrainedConstraint.KEY)
                                                  .setLifespan(TimeUnit.DAYS.toMillis(1))
                                                  .setMaxAttempts(Parameters.UNLIMITED)
                                                  .build(), threadId, recipients);
