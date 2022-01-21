@@ -233,8 +233,8 @@
   <string name="ConversationActivity_cancel">Annuleren</string>
   <string name="ConversationActivity_delete_conversation">Gesprek verwijderen?</string>
   <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
-  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Dit gesprek zal worden gewist van al je apparaten.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal van al je apparaten worden gewist.</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Dit gesprek zal op al je eigen apparaten worden gewist.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal op al je eigen apparaten worden gewist.</string>
   <string name="ConversationActivity_delete">Verwijderen</string>
   <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
@@ -1550,7 +1550,7 @@
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslag nodig om iets op te slaan op de externe opslag, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, tik op ‘App-machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
-  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk gewist worden, maar dus niet voor je gesprekspartner(s).</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk worden gewist, maar dus niet voor je gesprekspartner(s).</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media niet langer beschikbaar.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Geen app gevonden waarmee dit bestand met anderen gedeeld kan worden.</string>

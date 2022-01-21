@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Marcou como não verificado o seu número de segurança com %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Marcou como não verificado o seu número de segurança com %s a partir de outro dispositivo</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Não pode ser entregue uma mensagem de %s</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s alterou o número de telemóvel para um novo número.</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s alterou o número de telemóvel para um número novo.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou uma chamada em grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada de grupo · %2$s</string>

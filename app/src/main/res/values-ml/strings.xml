@@ -317,6 +317,14 @@
     <item quantity="one">സംഭാഷണം ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
     <item quantity="other">%d സംഭാഷണങ്ങൾ ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
   </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">വായിച്ചില്ല</item>
+    <item quantity="other">വായിച്ചില്ല</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">പിൻ</item>
+    <item quantity="other">പിൻ</item>
+  </plurals>
   <string name="ConversationListFragment_select">തിരഞ്ഞെടുക്കൂ</string>
   <string name="ConversationListFragment_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
@@ -818,6 +826,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal കോൾ സ്ഥാപിക്കുന്നു</string>
   <string name="NotificationBarManager__incoming_signal_call">ഇൻകമിംഗ് സിഗ്നൽ കോൾ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal കോൾ സേവനം നിർത്തുന്നു</string>
+  <string name="NotificationBarManager__decline_call">കോൾ നിരസിക്കുക</string>
   <string name="NotificationBarManager__answer_call">കോൾ സ്വീകരിക്കുക</string>
   <string name="NotificationBarManager__end_call">കോൾ അവസാനിപ്പിക്കുക</string>
   <string name="NotificationBarManager__cancel_call">കോൾ റദ്ദാക്കുക</string>
@@ -3103,6 +3112,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">പുതിയ പേയ്മെന്റ്</string>
@@ -3268,6 +3278,7 @@
   <!--Title for notification profile megaphone-->
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">ഒരു പ്രൊഫൈൽ സൃഷ്ടിക്കുക</string>
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->

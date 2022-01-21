@@ -2427,6 +2427,11 @@
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Изабери више</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">Одабрано %d </item>
+    <item quantity="few">Одабрано %d</item>
+    <item quantity="other">Одабрано %d</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Сачувај</string>

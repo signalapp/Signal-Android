@@ -903,7 +903,7 @@
   <string name="MediaSendActivity_message_to_s">Besked til %s</string>
   <string name="MediaSendActivity_message">Besked</string>
   <string name="MediaSendActivity_select_recipients">Vælg modtagere</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal kræver tilladelse til at tilgå dine kontakter for at kunne vise dem.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal har brug for tilladelse til at tilgå dine kontakter for at kunne vise dem.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dine kontakter, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan ikke dele flere end %d fil.</item>

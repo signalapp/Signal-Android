@@ -2806,7 +2806,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nu se poate transfera dintr-o versiune mai nouă de Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Se transmit datele</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">Ține ambele dispozitive unul lângă altul. Nu opri dispozitivele și menține Signal deschis. Transferurile sunt criptate integral.</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Ține ambele dispozitive unul lângă celălalt. Nu opri dispozitivele și menține Signal deschis. Transferul este criptat integral.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mesaje până acum…</string>
   <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% din mesaje până acum…</string>
@@ -2833,7 +2833,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Datele tale Signal au fost transferate pe noul dispozitiv. Pentru a finaliza procesul de transfer, trebuie să continui înregistrarea pe noul dispozitiv.</string>
   <string name="OldDeviceTransferComplete__close">Închide</string>
   <!--NewDeviceTransferComplete-->
-  <string name="NewDeviceTransferComplete__transfer_successful">Transferul a fost făcut cu succes</string>
+  <string name="NewDeviceTransferComplete__transfer_successful">Transferul a reușit</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Pentru a finaliza procesul de transfer, trebuie să continui înregistrarea.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Continuă înregistrarea</string>
@@ -3153,7 +3153,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha este necesară</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Schimbă Numărul</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Urmează să îți schimbi numărul de telefon din %1$s în %2$s.\n\nÎnainte de a continua, te rugăm să te asiguri că numărul de mai jos este corect.</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Urmează să îți schimbi numărul de telefon din %1$s în %2$s.\n\nÎnainte de a continua, te rugăm să verifici dacă numărul de mai jos este corect.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Editează număr</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Schimbare Număr Signal - Am nevoie de asistență pentru PIN Android (v2 PIN)</string>

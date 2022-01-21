@@ -412,6 +412,7 @@
   <string name="BackupsPreferenceFragment__in_progress">Devam ediyor…</string>
   <string name="BackupsPreferenceFragment__d_so_far">Şu ana kadar %1$d…</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">Şu ana kadar %1$s%% …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal, yedek oluşturabilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Özelleştirilmiş \'%s\' kullanılıyor</string>
@@ -2338,6 +2339,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Çoklu seçim</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d seçili</item>
+    <item quantity="other">%d seçili</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Kaydet</string>
@@ -2711,6 +2716,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Her iki aygıtı birbirine yakın tutun. Aygıtları kapatmayın ve Signal\'i açık tutun. Aktarımlar uçtan uça şifrelidir.</string>
   <string name="DeviceTransfer__d_messages_so_far">Şimdiye kadar %1$d ileti…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">Şu ana kadar %1$s%% ileti…</string>
   <string name="DeviceTransfer__cancel">İptal</string>
   <string name="DeviceTransfer__try_again">Tekrar dene</string>
   <string name="DeviceTransfer__stop_transfer_question">Aktarımı durdur?</string>
@@ -3427,7 +3433,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DonationsErrors__error_processing_payment">Ödemenin işlenmesinde hata</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__error_processing_payment_s">Ödemenin işlenmesinde hata. %1$s</string>
-  <string name="DonationsErrors__your_badge_could_not_be_added">Rozetin hesabına eklenemedi ama ödediğin ücret alınmış olabilir. Lütfen destek ekibiyle iletişime geç.</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Rozetiniz hesabınıza eklenemedi fakat ücret ödenmiş olabilir. Lütfen destek ekibiyle iletişime geçin.</string>
   <string name="DonationsErrors__your_payment">Ödemeniz işlenemedi ve sizden ödeme alınmadı. Lütfen tekrar deneyin.</string>
   <string name="DonationsErrors__still_processing">İşlem sürüyor</string>
   <string name="DonationsErrors__couldnt_add_badge">Rozet eklenemedi</string>
@@ -3438,10 +3444,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Abonelik iptal edilemedi</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abonelik iptali için internet bağlantısı gerekir.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Cihazın Google Pay\'i desteklemiyor, bu yüzden abone olup rozet kazanamazsın. Yine de websitemizden bağışta bulunarak Signal\'ı destekleyebilirsin.</string>
-  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ağ hatası. Bağlantını kontrol edip tekrar dene.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ağ hatası. Bağlantınızı kontrol edip tekrar deneyin.</string>
   <string name="NetworkFailure__retry">Tekrar dene</string>
   <!--Title of create notification profile screen-->
-  <string name="EditNotificationProfileFragment__name_your_profile">Profilinizi isimlendirin</string>
+  <string name="EditNotificationProfileFragment__name_your_profile">Profilinizi adlandırın</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profil adı</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3455,16 +3461,17 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Title of edit notification profile screen-->
   <string name="EditNotificationProfileFragment__edit_this_profile">Profili düzenleyin</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
-  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Bu isimle bir profil mevcut</string>
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Bu ada sahip bir profil zaten mevcut</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">İş</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__sleep">uyku</string>
+  <string name="EditNotificationProfileFragment__sleep">Uyku</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Araç sürme</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__downtime">Dinlenme süresi</string>
+  <string name="EditNotificationProfileFragment__downtime">Dinlenme</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__focus">Odaklan</string>
+  <string name="EditNotificationProfileFragment__focus">Odaklanma</string>
   <!--Error message shown when attempting to next/save without a profile name-->
   <string name="EditNotificationProfileFragment__profile_must_have_a_name">Bir ad olmalı</string>
   <!--Title for add recipients to notification profile screen in create flow-->
@@ -3486,7 +3493,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Button use to permanently delete a notification profile-->
   <string name="NotificationProfileDetails__delete_profile">Profili sil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
-  <string name="NotificationProfileDetails__s_removed">\"%1$s\" kaldırıldı.</string>
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" çıkarıldı.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Geri al</string>
   <!--Dialog message shown to confirm deleting a profile-->
@@ -3510,19 +3517,19 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <string name="NotificationProfileDetails__notify_for_all_mentions">Tüm bahsetmeleri bildir</string>
   <!--Section header for showing schedule information-->
-  <string name="NotificationProfileDetails__schedule">Zamanlama</string>
+  <string name="NotificationProfileDetails__schedule">Zamanlayıcı</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">Tümünü gör</string>
   <!--Title for add schedule to profile in create flow-->
-  <string name="EditNotificationProfileSchedule__add_a_schedule">Zamanlama ekle</string>
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Zamanlayıcı ekle</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Bu bildirim profilini otomatik olarak aktifleştirmek için bir program kurun.</string>
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Bu bildirim profilini otomatik olarak etkinleştirmek için zamanlayıcı ayarlayın</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
-  <string name="EditNotificationProfileSchedule__schedule">Zamanlama</string>
+  <string name="EditNotificationProfileSchedule__schedule">Zamanlayıcı</string>
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">Başlat</string>
+  <string name="EditNotificationProfileSchedule__start">Başlangıç</string>
   <!--Label for showing the end time for the schedule-->
-  <string name="EditNotificationProfileSchedule__end">Son</string>
+  <string name="EditNotificationProfileSchedule__end">Bitiş</string>
   <!--First letter of Sunday-->
   <string name="EditNotificationProfileSchedule__sunday_first_letter">P</string>
   <!--First letter of Monday-->
@@ -3564,7 +3571,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">1 saatliğine</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
-  <string name="NotificationProfileSelection__until_s">%1$s tarihine kadar</string>
+  <string name="NotificationProfileSelection__until_s">Saat %1$s olana kadar</string>
   <!--Option to view profile details-->
   <string name="NotificationProfileSelection__view_settings">Ayarları görüntüle</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->

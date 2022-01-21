@@ -778,6 +778,7 @@
   <string name="InviteActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да сподялите.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Научете повече</string>
+  <string name="SpanUtil__read_more">Прочети повече</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Съобщението не е намерено</string>
   <string name="LongMessageActivity_message_from_s">Съобщение от %1$s</string>
@@ -1046,6 +1047,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Отбелязахте числото си за сигурност с %s като непотвърдени</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Отбелязахте числот си за сугорност с %s като непотвърдени от друго устройство</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Съобщение от %s не успя да бъде доставено</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s смени номера си с нов номер.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групово разговор · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е в групов разговор · %2$s</string>
@@ -1301,6 +1303,7 @@
   <string name="RegistrationActivity_terms_and_privacy">Условия и Политика за поверителност</string>
   <string name="RegistrationActivity_rate_limited_to_service">Направихте прекалено много опити за регистриране на този номер. Моля, опитайте отново по-късно.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Неуспешно свързване с услугата. Моля, проверете мрежовата връзка и опитайте отново.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Нестандартен формат на номера</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Сега сте %d стъпка от изпращането на дебъг лога.</item>
     <item quantity="other">Сега сте на %d стъпки от изпращането на дебъг лог.</item>
@@ -1841,6 +1844,9 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Приплъзнете надолу, за да отговорите</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Няколко проблема изискват вашето внимание.</string>
+  <string name="message_details_header__sent">Изпратено:</string>
+  <string name="message_details_header__received">Получено:</string>
+  <string name="message_details_header__via">Чрез:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">В очакване</string>
   <string name="message_details_recipient_header__sent_to">Изпрати на</string>
@@ -2821,6 +2827,7 @@
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Промени Номер</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Промени номер</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Редакция на номер</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
@@ -3021,7 +3028,13 @@
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="MultiselectForwardFragment__add_a_message">Добави съобщение</string>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Съобщението е изпратено</item>
+    <item quantity="other">Съобщенията са изпратени</item>
+  </plurals>
   <!--Media V2-->
+  <string name="MediaReviewFragment__add_a_message">Добави съобщение</string>
   <string name="ImageEditorHud__cancel">Отказ</string>
   <string name="ImageEditorHud__blur">Мъгли</string>
   <string name="ImageEditorHud__undo">Върни</string>
