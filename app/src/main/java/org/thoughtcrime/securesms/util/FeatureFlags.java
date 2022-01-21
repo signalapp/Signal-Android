@@ -84,7 +84,7 @@ public final class FeatureFlags {
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
-  private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber";
+  private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber.2";
   private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
@@ -218,7 +218,6 @@ public final class FeatureFlags {
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
     put(SENDER_KEY, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
-    put(CHANGE_NUMBER_ENABLED, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
