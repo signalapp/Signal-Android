@@ -65,6 +65,11 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
       return;
     }
 
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Not primary device, aborting...");
+      return;
+    }
+
     SignalServiceMessageSender messageSender     = ApplicationDependencies.getSignalServiceMessageSender();
     StorageKey                 storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 

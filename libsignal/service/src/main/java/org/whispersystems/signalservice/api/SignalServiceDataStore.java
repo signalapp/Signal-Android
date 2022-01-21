@@ -10,7 +10,7 @@ import java.io.Closeable;
  */
 public interface SignalServiceDataStore extends SignalProtocolStore, SignalServiceSessionStore, SignalServiceSenderKeyStore {
   /**
-   * @return True if the active account has linked devices, otherwise false.
+   * @return True if the active account has or is a linked device, otherwise false.
    */
   boolean isMultiDevice();
 

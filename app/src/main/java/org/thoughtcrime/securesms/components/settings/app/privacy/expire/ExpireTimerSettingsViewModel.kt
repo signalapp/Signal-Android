@@ -45,8 +45,9 @@ class ExpireTimerSettingsViewModel(val config: Config, private val repository: E
     } else if (config.forResultMode) {
       store.update { it.copy(saveState = ProcessState.Success(userSetTimer)) }
     } else {
-      SignalStore.settings().universalExpireTimer = userSetTimer
-      store.update { it.copy(saveState = ProcessState.Success(userSetTimer)) }
+      repository.setUniversalExpireTimerSeconds(userSetTimer) {
+        store.update { it.copy(saveState = ProcessState.Success(userSetTimer)) }
+      }
     }
   }
 

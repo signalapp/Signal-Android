@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -79,6 +80,11 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
+      return;
+    }
+
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Not primary device, aborting...");
       return;
     }
 

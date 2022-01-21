@@ -50,7 +50,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
     }
 
     if (SignalStore.account().isPrimaryDevice) {
-      Log.i(TAG, "Sync jobs are for linked devices only")
+      Log.i(TAG, "Not linked device, aborting...")
       return
     }
 

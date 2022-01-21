@@ -9,6 +9,7 @@ import com.annimon.stream.Stream;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -37,6 +38,9 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -47,6 +51,7 @@ import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.storage.StorageKey;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
 import java.io.IOException;
@@ -160,7 +165,7 @@ public class StorageSyncJob extends BaseJob {
   }
 
   @Override
-  protected void onRun() throws IOException, RetryLaterException {
+  protected void onRun() throws IOException, RetryLaterException, UntrustedIdentityException {
     if (!SignalStore.kbsValues().hasPin() && !SignalStore.kbsValues().hasOptedOut()) {
       Log.i(TAG, "Doesn't have a PIN. Skipping.");
       return;
@@ -185,12 +190,18 @@ public class StorageSyncJob extends BaseJob {
 
       SignalStore.storageService().onSyncCompleted();
     } catch (InvalidKeyException e) {
-      Log.w(TAG, "Failed to decrypt remote storage! Force-pushing and syncing the storage key to linked devices.", e);
+      if (SignalStore.account().isPrimaryDevice()) {
+        Log.w(TAG, "Failed to decrypt remote storage! Force-pushing and syncing the storage key to linked devices.", e);
 
-      ApplicationDependencies.getJobManager().startChain(new MultiDeviceKeysUpdateJob())
-                                             .then(new StorageForcePushJob())
-                                             .then(new MultiDeviceStorageSyncRequestJob())
-                                             .enqueue();
+        ApplicationDependencies.getJobManager().startChain(new MultiDeviceKeysUpdateJob())
+                               .then(new StorageForcePushJob())
+                               .then(new MultiDeviceStorageSyncRequestJob())
+                               .enqueue();
+      } else {
+        Log.w(TAG, "Failed to decrypt remote storage! Requesting new keys from primary.", e);
+        SignalStore.storageService().clearStorageKeyFromPrimary();
+        ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forRequest(RequestMessage.forType(SignalServiceProtos.SyncMessage.Request.Type.KEYS)), UnidentifiedAccessUtil.getAccessForSync(context));
+      }
     }
   }
 
@@ -233,7 +244,7 @@ public class StorageSyncJob extends BaseJob {
       List<StorageId>    localStorageIdsBeforeMerge = getAllLocalStorageIds(context, self);
       IdDifferenceResult idDifference               = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIdsBeforeMerge);
 
-      if (idDifference.hasTypeMismatches()) {
+      if (idDifference.hasTypeMismatches() && SignalStore.account().isPrimaryDevice()) {
         Log.w(TAG, "[Remote Sync] Found type mismatches in the ID sets! Scheduling a force push after this sync completes.");
         needsForcePush = true;
       }
@@ -361,7 +372,7 @@ public class StorageSyncJob extends BaseJob {
       Log.i(TAG, "No remote writes needed. Still at version: " + remoteManifest.getVersion());
     }
 
-    if (needsForcePush) {
+    if (needsForcePush && SignalStore.account().isPrimaryDevice()) {
       Log.w(TAG, "Scheduling a force push.");
       ApplicationDependencies.getJobManager().add(new StorageForcePushJob());
     }
