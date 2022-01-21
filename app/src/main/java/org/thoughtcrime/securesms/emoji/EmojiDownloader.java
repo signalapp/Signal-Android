@@ -4,10 +4,12 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.util.Consumer;
 
 import com.mobilecoin.lib.util.Hex;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.UUID;
@@ -42,6 +44,16 @@ public class EmojiDownloader {
                                        version,
                                        () -> EmojiRemote.getObject(new EmojiImageRequest(version.getVersion(), bucket, imagePath, format)),
                                        () -> new EmojiFiles.Name(imagePath, UUID.randomUUID()));
+  }
+
+  public static void streamFileFromRemote(@NonNull EmojiFiles.Version version,
+                                          @NonNull String bucket,
+                                          @NonNull String path,
+                                          @NonNull Consumer<InputStream> streamConsumer)
+      throws IOException
+  {
+    streamFromRemote(() -> EmojiRemote.getObject(new EmojiFileRequest(version.getVersion(), bucket, path)),
+                     streamConsumer);
   }
 
   private static @NonNull EmojiFiles.Name downloadAndVerifyFromRemote(@NonNull Context context,
@@ -87,6 +99,23 @@ public class EmojiDownloader {
       }
 
       return name;
+    }
+  }
+
+  private static void streamFromRemote(@NonNull Producer<Response> responseProducer,
+                                       @NonNull Consumer<InputStream> streamConsumer) throws IOException
+  {
+    try (Response response = responseProducer.produce()) {
+      if (!response.isSuccessful()) {
+        throw new IOException("Unsuccessful response " + response.code());
+      }
+
+      ResponseBody responseBody = response.body();
+      if (responseBody == null) {
+        throw new IOException("No response body");
+      }
+
+      streamConsumer.accept(Okio.buffer(responseBody.source()).inputStream());
     }
   }
 

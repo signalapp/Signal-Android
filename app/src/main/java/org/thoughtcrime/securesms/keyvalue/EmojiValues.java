@@ -11,7 +11,9 @@ import org.thoughtcrime.securesms.util.Util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EmojiValues extends SignalStoreValues {
 
@@ -28,6 +30,7 @@ public class EmojiValues extends SignalStoreValues {
   private static final String SEARCH_VERSION       = PREFIX + "search_version";
   private static final String SEARCH_LANGUAGE      = PREFIX + "search_language";
   private static final String LAST_SEARCH_CHECK    = PREFIX + "last_search_check";
+  private static final String JUMBO_EMOJI_DOWNLOAD = PREFIX + "jumbo_emoji_v";
 
   public static final String NO_LANGUAGE = "NO_LANGUAGE";
 
@@ -130,5 +133,23 @@ public class EmojiValues extends SignalStoreValues {
 
   public void setLastSearchIndexCheck(long time) {
     putLong(LAST_SEARCH_CHECK, time);
+  }
+
+  public void addJumboEmojiSheet(int version, String sheet) {
+    Set<String> sheets = getJumboEmojiSheets(version);
+    sheets.add(sheet);
+    getStore().beginWrite()
+              .putString(JUMBO_EMOJI_DOWNLOAD + version, Util.join(sheets, ","))
+              .apply();
+  }
+
+  public HashSet<String> getJumboEmojiSheets(int version) {
+    return new HashSet<>(Arrays.asList(getStore().getString(JUMBO_EMOJI_DOWNLOAD + version, "").split(",")));
+  }
+
+  public void clearJumboEmojiSheets(int version) {
+    getStore().beginWrite()
+              .remove(JUMBO_EMOJI_DOWNLOAD + version)
+              .apply();
   }
 }

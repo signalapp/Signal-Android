@@ -149,8 +149,8 @@ public class EmojiProvider {
       throw new IllegalStateException("Unexpected subclass " + loadResult.getClass());
     }
 
-    if (jumboEmoji) {
-      JumboEmoji.LoadResult result = JumboEmoji.loadJumboEmoji(context, drawInfo.getRawEmoji());
+    if (jumboEmoji && drawInfo.getJumboSheet() != null) {
+      JumboEmoji.LoadResult result = JumboEmoji.loadJumboEmoji(context, drawInfo);
       if (result instanceof JumboEmoji.LoadResult.Immediate) {
         ThreadUtil.runOnMain(() -> {
           jumboLoaded.set(true);
@@ -171,7 +171,11 @@ public class EmojiProvider {
 
           @Override
           public void onFailure(ExecutionException exception) {
-            Log.d(TAG, "Failed to load jumbo emoji bitmap resource", exception);
+            if (exception.getCause() instanceof JumboEmoji.CannotAutoDownload) {
+              Log.i(TAG, "Download restrictions are preventing jumbomoji use");
+            } else {
+              Log.d(TAG, "Failed to load jumbo emoji bitmap resource", exception);
+            }
           }
         });
       }
@@ -200,15 +204,19 @@ public class EmojiProvider {
 
     Bitmap bitmap = null;
 
-    if (jumboEmoji) {
-      JumboEmoji.LoadResult result = JumboEmoji.loadJumboEmoji(context, drawInfo.getRawEmoji());
+    if (jumboEmoji && drawInfo.getJumboSheet() != null) {
+      JumboEmoji.LoadResult result = JumboEmoji.loadJumboEmoji(context, drawInfo);
       if (result instanceof JumboEmoji.LoadResult.Immediate) {
         bitmap = ((JumboEmoji.LoadResult.Immediate) result).getBitmap();
       } else if (result instanceof JumboEmoji.LoadResult.Async) {
         try {
           bitmap = ((JumboEmoji.LoadResult.Async) result).getTask().get(10, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException exception) {
-          Log.d(TAG, "Failed to load jumbo emoji bitmap resource", exception);
+          if (exception.getCause() instanceof JumboEmoji.CannotAutoDownload) {
+            Log.i(TAG, "Download restrictions are preventing jumbomoji use");
+          } else {
+            Log.d(TAG, "Failed to load jumbo emoji bitmap resource", exception);
+          }
         }
       }
 

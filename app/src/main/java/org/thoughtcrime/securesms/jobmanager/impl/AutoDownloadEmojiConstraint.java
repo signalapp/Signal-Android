@@ -54,11 +54,15 @@ public class AutoDownloadEmojiConstraint implements Constraint {
   }
 
   public static boolean canAutoDownloadEmoji(@NonNull Context context) {
-    return getAllowedAutoDownloadTypes(context).contains(IMAGE_TYPE);
+    return getAllowedAutoDownloadTypes(context, true).contains(IMAGE_TYPE);
   }
 
-  private static @NonNull Set<String> getAllowedAutoDownloadTypes(@NonNull Context context) {
-    if      (NetworkUtil.isConnectedWifi(context))    return Collections.singleton(IMAGE_TYPE);
+  public static boolean canAutoDownloadJumboEmoji(@NonNull Context context) {
+    return getAllowedAutoDownloadTypes(context, false).contains(IMAGE_TYPE);
+  }
+
+  private static @NonNull Set<String> getAllowedAutoDownloadTypes(@NonNull Context context, boolean forceWifi) {
+    if      (NetworkUtil.isConnectedWifi(context))    return forceWifi ? Collections.singleton(IMAGE_TYPE) : TextSecurePreferences.getWifiMediaDownloadAllowed(context);
     else if (NetworkUtil.isConnectedRoaming(context)) return TextSecurePreferences.getRoamingMediaDownloadAllowed(context);
     else if (NetworkUtil.isConnectedMobile(context))  return TextSecurePreferences.getMobileMediaDownloadAllowed(context);
     else                                              return Collections.emptySet();

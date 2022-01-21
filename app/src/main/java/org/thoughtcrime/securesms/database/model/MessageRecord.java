@@ -612,7 +612,7 @@ public abstract class MessageRecord extends DisplayRecord {
     if (isJumboji == null) {
       if (getBody().length() <= EmojiSource.getLatest().getMaxEmojiLength() * JumboEmoji.MAX_JUMBOJI_COUNT) {
         EmojiParser.CandidateList candidates = EmojiProvider.getCandidates(getDisplayBody(context));
-        isJumboji = candidates != null && candidates.allEmojis && candidates.size() <= JumboEmoji.MAX_JUMBOJI_COUNT;
+        isJumboji = candidates != null && candidates.allEmojis && candidates.size() <= JumboEmoji.MAX_JUMBOJI_COUNT && (candidates.hasJumboForAll() || JumboEmoji.canDownloadJumbo(context));
       } else {
         isJumboji = false;
       }

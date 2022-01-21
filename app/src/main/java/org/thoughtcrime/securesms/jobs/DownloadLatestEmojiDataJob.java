@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.emoji.EmojiJsonRequest;
 import org.thoughtcrime.securesms.emoji.EmojiPageCache;
 import org.thoughtcrime.securesms.emoji.EmojiRemote;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
+import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.AutoDownloadEmojiConstraint;
@@ -158,6 +159,7 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
       clearOldEmojiData(context, targetVersion);
       markComplete(targetVersion);
       EmojiSource.refresh();
+      JumboEmoji.updateCurrentVersion(context);
     } else {
       Log.d(TAG, "Server has an older version than we do. Skipping.");
     }
@@ -359,6 +361,10 @@ public class DownloadLatestEmojiDataJob extends BaseJob {
           .forEach(FileUtils::deleteDirectory);
 
     EmojiPageCache.INSTANCE.clear();
+
+    if (version != null) {
+      SignalStore.emojiValues().clearJumboEmojiSheets(version.getVersion());
+    }
   }
 
   public static final class Factory implements Job.Factory<DownloadLatestEmojiDataJob> {
