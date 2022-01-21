@@ -850,10 +850,8 @@ final class GroupManagerV2 {
       } else if (requestToJoin) {
         Log.i(TAG, "Requested to join, cannot send update");
 
-        RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, new GroupMutation(null, decryptedChange, decryptedGroup), signedGroupChange);
-
         return new GroupManager.GroupActionResult(groupRecipient,
-                                                  recipientAndThread.threadId,
+                                                  SignalDatabase.threads().getThreadIdIfExistsFor(groupRecipientId),
                                                   0,
                                                   Collections.emptyList());
       } else {
@@ -1073,8 +1071,6 @@ final class GroupManagerV2 {
         DecryptedGroup       newGroup        = DecryptedGroupUtil.applyWithoutRevisionCheck(decryptedGroup, decryptedChange);
 
         groupDatabase.update(groupId, resetRevision(newGroup, decryptedGroup.getRevision()));
-
-        sendGroupUpdate(groupMasterKey, new GroupMutation(decryptedGroup, decryptedChange, newGroup), signedGroupChange);
       } catch (VerificationFailedException | InvalidGroupStateException | NotAbleToApplyGroupV2ChangeException e) {
         throw new GroupChangeFailedException(e);
       }
