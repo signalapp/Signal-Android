@@ -1661,10 +1661,10 @@ public class SignalServiceMessageSender {
           throw afe;
         }
       } catch (MismatchedDevicesException mde) {
-        Log.w(TAG, mde);
+        Log.w(TAG, "[sendMessage][" + timestamp + "] Handling mismatched devices. (" + mde.getMessage() + ")");
         handleMismatchedDevices(socket, recipient, mde.getMismatchedDevices());
       } catch (StaleDevicesException ste) {
-        Log.w(TAG, ste);
+        Log.w(TAG, "[sendMessage][" + timestamp + "] Handling stale devices. (" + ste.getMessage() + ")");
         handleStaleDevices(recipient, ste.getStaleDevices());
       }
     }
@@ -1796,13 +1796,13 @@ public class SignalServiceMessageSender {
         SendGroupMessageResponse response = socket.sendGroupMessage(ciphertext, joinedUnidentifiedAccess, timestamp, online);
         return transformGroupResponseToMessageResults(targetInfo.devices, response, content);
       } catch (GroupMismatchedDevicesException e) {
-        Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices.", e);
+        Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices. (" + e.getMessage() + ")");
         for (GroupMismatchedDevices mismatched : e.getMismatchedDevices()) {
           SignalServiceAddress address = new SignalServiceAddress(ACI.parseOrThrow(mismatched.getUuid()), Optional.absent());
           handleMismatchedDevices(socket, address, mismatched.getDevices());
         }
       } catch (GroupStaleDevicesException e) {
-        Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling stale devices.", e);
+        Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling stale devices. (" + e.getMessage() + ")");
         for (GroupStaleDevices stale : e.getStaleDevices()) {
           SignalServiceAddress address = new SignalServiceAddress(ACI.parseOrThrow(stale.getUuid()), Optional.absent());
           handleStaleDevices(address, stale.getDevices());
