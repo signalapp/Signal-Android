@@ -42,7 +42,12 @@ public class DefaultResponseMapper<Response> implements ResponseMapper<Response>
 
   @Override
   public ServiceResponse<Response> map(int status, String body, Function<String, String> getHeader, boolean unidentified) {
-    Throwable applicationError = errorMapper.parseError(status, body, getHeader);
+    Throwable applicationError;
+    try {
+      applicationError = errorMapper.parseError(status, body, getHeader);
+    } catch (MalformedResponseException e) {
+      applicationError = e;
+    }
     if (applicationError == null) {
       try {
         if (customResponseMapper != null) {

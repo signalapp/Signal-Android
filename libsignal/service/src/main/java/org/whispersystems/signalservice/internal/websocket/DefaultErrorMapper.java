@@ -66,7 +66,11 @@ public final class DefaultErrorMapper implements ErrorMapper {
   @Override
   public Throwable parseError(int status, String body, Function<String, String> getHeader) {
     if (customErrorMappers.containsKey(status)) {
-      return customErrorMappers.get(status).parseError(status, body, getHeader);
+      try {
+        return customErrorMappers.get(status).parseError(status, body, getHeader);
+      } catch (MalformedResponseException e) {
+        return e;
+      }
     }
 
     switch (status) {
