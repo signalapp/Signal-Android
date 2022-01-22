@@ -79,7 +79,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     RecipientDatabase database   = DatabaseComponent.get(context).recipientDatabase();
     byte[]            profileKey = recipient.resolve().getProfileKey();
 
-    if (profileKey == null) {
+    if (profileKey == null || (profileKey.length != 32 && profileKey.length != 16)) {
       Log.w(TAG, "Recipient profile key is gone!");
       return;
     }
