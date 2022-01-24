@@ -4,6 +4,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
 import java.lang.IllegalArgumentException
 import java.util.UUID
 
@@ -192,17 +194,21 @@ class RecipientDatabaseTest {
   @Test
   fun getAndPossiblyMerge_e164MapsToExistingUserButAciDoesNot_aciAndE164_2_highTrust() {
     val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+    recipientDatabase.setPni(existingId, PNI_A)
 
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A, true)
+    recipientDatabase.setPni(retrievedId, PNI_A)
     assertNotEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
     assertEquals(ACI_B, retrievedRecipient.requireAci())
     assertEquals(E164_A, retrievedRecipient.requireE164())
+    assertEquals(PNI_A, retrievedRecipient.pni.get())
 
     val existingRecipient = Recipient.resolved(existingId)
     assertEquals(ACI_A, existingRecipient.requireAci())
     assertFalse(existingRecipient.hasE164())
+    assertNull(existingRecipient.pni.orNull())
   }
 
   /** We never change the ACI of an existing row. New ACI = new person, regardless of trust. And low trust means we can’t take the e164. */
@@ -541,6 +547,9 @@ class RecipientDatabaseTest {
   companion object {
     val ACI_A = ACI.from(UUID.fromString("3436efbe-5a76-47fa-a98a-7e72c948a82e"))
     val ACI_B = ACI.from(UUID.fromString("8de7f691-0b60-4a68-9cd9-ed2f8453f9ed"))
+
+    val PNI_A = PNI.from(UUID.fromString("154b8d92-c960-4f6c-8385-671ad2ffb999"))
+    val PNI_B = PNI.from(UUID.fromString("ba92b1fb-cd55-40bf-adda-c35a85375533"))
 
     const val E164_A = "+12221234567"
     const val E164_B = "+13331234567"

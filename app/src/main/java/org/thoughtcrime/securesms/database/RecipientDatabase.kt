@@ -1747,6 +1747,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   private fun removePhoneNumber(recipientId: RecipientId, db: SQLiteDatabase) {
     val values = ContentValues().apply {
       putNull(PHONE)
+      putNull(PNI_COLUMN)
     }
     db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
   }
