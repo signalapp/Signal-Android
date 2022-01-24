@@ -101,7 +101,7 @@ public final class KbsRepository {
     if (pin == null) return null;
 
     if (basicStorageCredentials == null) {
-      throw new AssertionError("Cannot restore KBS key, no storage credentials supplied");
+      throw new AssertionError("Cannot restore KBS key, no storage credentials supplied. Enclave: " + enclave.getEnclaveName());
     }
 
     Log.i(TAG, "Preparing to restore from " + enclave.getEnclaveName());
