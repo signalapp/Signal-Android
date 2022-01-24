@@ -621,6 +621,10 @@ final class GroupManagerV2 {
       final DecryptedGroup                  decryptedGroupState;
       final DecryptedGroup                  previousGroupState;
 
+      if (Recipient.externalGroupExact(context, groupId).isBlocked()) {
+        throw new GroupChangeFailedException("Group is blocked.");
+      }
+
       try {
         previousGroupState  = v2GroupProperties.getDecryptedGroup();
         decryptedChange     = groupOperations.decryptChange(changeActions, selfAci.uuid());

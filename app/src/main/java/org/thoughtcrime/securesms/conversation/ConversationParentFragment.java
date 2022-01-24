@@ -624,7 +624,7 @@ public class ConversationParentFragment extends Fragment
     setBlockedUserState(recipientSnapshot, isSecureText, isDefaultSms);
     calculateCharactersRemaining();
 
-    if (recipientSnapshot.getGroupId().isPresent() && recipientSnapshot.getGroupId().get().isV2()) {
+    if (recipientSnapshot.getGroupId().isPresent() && recipientSnapshot.getGroupId().get().isV2() && !recipientSnapshot.isBlocked()) {
       GroupId.V2 groupId = recipientSnapshot.getGroupId().get().requireV2();
 
       ApplicationDependencies.getJobManager()

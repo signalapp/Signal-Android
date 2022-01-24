@@ -84,6 +84,11 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
       return;
     }
 
+    if (Recipient.externalGroupExact(context, groupId).isBlocked()) {
+      Log.i(TAG, "Not fetching group info for blocked group " + groupId);
+      return;
+    }
+
     GroupManager.updateGroupFromServer(context, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis(), null);
   }
 
