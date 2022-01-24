@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.api.services;
 
 import com.google.protobuf.ByteString;
 
+import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -52,9 +53,11 @@ public class MessagingService {
                                                                     .build();
 
     ResponseMapper<SendMessageResponse> responseMapper = DefaultResponseMapper.extend(SendMessageResponse.class)
-                                                                              .withResponseMapper((status, body, getHeader) -> {
-                                                                                SendMessageResponse sendMessageResponse = Util.isEmpty(body) ? new SendMessageResponse(false)
+                                                                              .withResponseMapper((status, body, getHeader, unidentified) -> {
+                                                                                SendMessageResponse sendMessageResponse = Util.isEmpty(body) ? new SendMessageResponse(false, unidentified)
                                                                                                                                              : JsonUtil.fromJsonResponse(body, SendMessageResponse.class);
+                                                                                sendMessageResponse.setSentUnidentfied(unidentified);
+
                                                                                 return ServiceResponse.forResult(sendMessageResponse, status, body);
                                                                               })
                                                                               .withCustomError(404, (status, body, getHeader) -> new UnregisteredUserException(list.getDestination(), new NotFoundException("not found")))

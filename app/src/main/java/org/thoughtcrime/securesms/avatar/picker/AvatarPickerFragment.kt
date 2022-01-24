@@ -28,8 +28,9 @@ import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -198,18 +199,18 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   private fun openPhotoEditor(photo: Avatar.Photo) {
     Navigation.findNavController(requireView())
-      .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToAvatarPhotoEditorFragment(AvatarBundler.bundlePhoto(photo)))
+      .safeNavigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToAvatarPhotoEditorFragment(AvatarBundler.bundlePhoto(photo)))
   }
 
   private fun openVectorEditor(vector: Avatar.Vector) {
     Navigation.findNavController(requireView())
-      .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToVectorAvatarCreationFragment(AvatarBundler.bundleVector(vector)))
+      .safeNavigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToVectorAvatarCreationFragment(AvatarBundler.bundleVector(vector)))
   }
 
   private fun openTextEditor(text: Avatar.Text?) {
     val bundle = if (text != null) AvatarBundler.bundleText(text) else null
     Navigation.findNavController(requireView())
-      .navigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToTextAvatarCreationFragment(bundle))
+      .safeNavigate(AvatarPickerFragmentDirections.actionAvatarPickerFragmentToTextAvatarCreationFragment(bundle))
   }
 
   @Suppress("DEPRECATION")

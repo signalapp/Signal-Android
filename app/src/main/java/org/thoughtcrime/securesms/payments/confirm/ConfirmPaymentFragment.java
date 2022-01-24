@@ -33,8 +33,9 @@ import org.thoughtcrime.securesms.payments.Payee;
 import org.thoughtcrime.securesms.payments.preferences.RecipientHasNotEnabledPaymentsDialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.MappingModelList;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
 
 import java.util.concurrent.TimeUnit;
@@ -49,7 +50,7 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
       requireActivity().setResult(Activity.RESULT_OK);
       requireActivity().finish();
     } else {
-      NavHostFragment.findNavController(this).navigate(R.id.action_directly_to_paymentsHome);
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_directly_to_paymentsHome);
     }
   };
 

@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfilePreference
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfileRecipient
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.conversation.preferences.LargeIconClickPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
@@ -32,11 +33,13 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.formatHours
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.orderOfDaysInWeek
 import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.util.Locale
 
-private val DAY_ORDER: List<DayOfWeek> = listOf(DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY)
+private const val MEMBER_COUNT_TO_SHOW_EXPAND: Int = 5
 
 class NotificationProfileDetailsFragment : DSLSettingsFragment() {
 
@@ -67,30 +70,31 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
     NotificationProfilePreference.register(adapter)
     NotificationProfileAddMembers.register(adapter)
     NotificationProfileRecipient.register(adapter)
+    LargeIconClickPreference.register(adapter)
 
-    lifecycleDisposable += viewModel.getProfile()
-      .subscribeBy(
-        onNext = { state ->
-          when (state) {
-            is NotificationProfileDetailsViewModel.State.Valid -> {
-              toolbar?.title = state.profile.name
-              toolbar?.setOnMenuItemClickListener { item ->
-                if (item.itemId == R.id.action_edit) {
-                  findNavController().navigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(state.profile.id))
-                  true
-                } else {
-                  false
-                }
-              }
-              adapter.submitList(getConfiguration(state.profile, state.recipients, state.isOn).toMappingModelList())
+    viewModel.state.observe(viewLifecycleOwner) { state ->
+      when (state) {
+        is NotificationProfileDetailsViewModel.State.Valid -> {
+          toolbar?.title = state.profile.name
+          toolbar?.setOnMenuItemClickListener { item ->
+            if (item.itemId == R.id.action_edit) {
+              findNavController().safeNavigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileFragment().setProfileId(state.profile.id))
+              true
+            } else {
+              false
             }
-            NotificationProfileDetailsViewModel.State.Invalid -> findNavController().navigateUp()
           }
+          adapter.submitList(getConfiguration(state).toMappingModelList())
         }
-      )
+        NotificationProfileDetailsViewModel.State.NotLoaded -> Unit
+        NotificationProfileDetailsViewModel.State.Invalid -> requireActivity().onBackPressed()
+      }
+    }
   }
 
-  private fun getConfiguration(profile: NotificationProfile, recipients: List<Recipient>, isOn: Boolean): DSLConfiguration {
+  private fun getConfiguration(state: NotificationProfileDetailsViewModel.State.Valid): DSLConfiguration {
+    val (profile: NotificationProfile, recipients: List<Recipient>, isOn: Boolean, expanded: Boolean) = state
+
     return configure {
 
       customPref(
@@ -114,7 +118,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
       customPref(
         NotificationProfileAddMembers.Model(
           onClick = { id, currentSelection ->
-            findNavController().navigate(
+            findNavController().safeNavigate(
               NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToSelectRecipientsFragment(id)
                 .setCurrentSelection(currentSelection.toTypedArray())
             )
@@ -123,7 +127,14 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
           currentSelection = profile.allowedMembers
         )
       )
-      for (member in recipients) {
+
+      val membersToShow = if (expanded || recipients.size <= MEMBER_COUNT_TO_SHOW_EXPAND) {
+        recipients
+      } else {
+        recipients.slice(0 until MEMBER_COUNT_TO_SHOW_EXPAND)
+      }
+
+      for (member in membersToShow) {
         customPref(
           NotificationProfileRecipient.Model(
             recipientModel = RecipientPreference.Model(
@@ -147,6 +158,16 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
         )
       }
 
+      if (!expanded && membersToShow != recipients) {
+        customPref(
+          LargeIconClickPreference.Model(
+            title = DSLSettingsText.from(R.string.NotificationProfileDetails__see_all),
+            icon = DSLSettingsIcon.from(R.drawable.show_more, NO_TINT),
+            onClick = viewModel::showAllMembers
+          )
+        )
+      }
+
       dividerPref()
       sectionHeaderPref(R.string.NotificationProfileDetails__schedule)
       clickPref(
@@ -154,7 +175,7 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
         summary = DSLSettingsText.from(if (profile.schedule.enabled) R.string.NotificationProfileDetails__on else R.string.NotificationProfileDetails__off),
         icon = DSLSettingsIcon.from(R.drawable.ic_recent_20, NO_TINT),
         onClick = {
-          findNavController().navigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileScheduleFragment(profile.id, false))
+          findNavController().safeNavigate(NotificationProfileDetailsFragmentDirections.actionNotificationProfileDetailsFragmentToEditNotificationProfileScheduleFragment(profile.id, false))
         }
       )
 
@@ -214,14 +235,14 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
       return getString(R.string.NotificationProfileDetails__schedule)
     }
 
-    val startTime = startTime().formatHours()
-    val endTime = endTime().formatHours()
+    val startTime = startTime().formatHours(requireContext())
+    val endTime = endTime().formatHours(requireContext())
 
     val days = StringBuilder()
     if (daysEnabled.size == 7) {
       days.append(getString(R.string.NotificationProfileDetails__everyday))
     } else {
-      for (day in DAY_ORDER) {
+      for (day: DayOfWeek in Locale.getDefault().orderOfDaysInWeek()) {
         if (daysEnabled.contains(day)) {
           if (days.isNotEmpty()) {
             days.append(", ")

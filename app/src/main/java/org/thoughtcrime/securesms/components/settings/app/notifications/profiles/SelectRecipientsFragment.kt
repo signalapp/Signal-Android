@@ -50,11 +50,11 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
       fragment.arguments = Bundle().apply {
         putInt(ContactSelectionListFragment.DISPLAY_MODE, getDefaultDisplayMode())
         putBoolean(ContactSelectionListFragment.REFRESHABLE, false)
-        putBoolean(ContactSelectionListFragment.RECENTS, false)
+        putBoolean(ContactSelectionListFragment.RECENTS, true)
         putParcelable(ContactSelectionListFragment.SELECTION_LIMITS, SelectionLimits.NO_LIMITS)
         putParcelableArrayList(ContactSelectionListFragment.CURRENT_SELECTION, selectionList)
         putBoolean(ContactSelectionListFragment.HIDE_COUNT, true)
-        putBoolean(ContactSelectionListFragment.DISPLAY_CHIPS, false)
+        putBoolean(ContactSelectionListFragment.DISPLAY_CHIPS, true)
         putBoolean(ContactSelectionListFragment.CAN_SELECT_SELF, false)
         putBoolean(ContactSelectionListFragment.RV_CLIP, false)
         putInt(ContactSelectionListFragment.RV_PADDING_BOTTOM, ViewUtil.dpToPx(60))
@@ -103,7 +103,8 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
     var mode = ContactsCursorLoader.DisplayMode.FLAG_PUSH or
       ContactsCursorLoader.DisplayMode.FLAG_ACTIVE_GROUPS or
       ContactsCursorLoader.DisplayMode.FLAG_HIDE_NEW or
-      ContactsCursorLoader.DisplayMode.FLAG_HIDE_RECENT_HEADER
+      ContactsCursorLoader.DisplayMode.FLAG_HIDE_RECENT_HEADER or
+      ContactsCursorLoader.DisplayMode.FLAG_GROUPS_AFTER_CONTACTS
 
     if (Util.isDefaultSmsProvider(requireContext())) {
       mode = mode or ContactsCursorLoader.DisplayMode.FLAG_SMS
@@ -112,7 +113,7 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
     return mode or ContactsCursorLoader.DisplayMode.FLAG_HIDE_GROUPS_V1
   }
 
-  override fun onBeforeContactSelected(recipientId: Optional<RecipientId>, number: String, callback: Consumer<Boolean>) {
+  override fun onBeforeContactSelected(recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {
     if (recipientId.isPresent) {
       viewModel.select(recipientId.get())
       callback.accept(true)
@@ -122,7 +123,7 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
     }
   }
 
-  override fun onContactDeselected(recipientId: Optional<RecipientId>, number: String) {
+  override fun onContactDeselected(recipientId: Optional<RecipientId>, number: String?) {
     if (recipientId.isPresent) {
       viewModel.deselect(recipientId.get())
       updateAddToProfile()

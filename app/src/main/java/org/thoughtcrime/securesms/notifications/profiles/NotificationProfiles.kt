@@ -24,22 +24,22 @@ object NotificationProfiles {
     val storeValues: NotificationProfileValues = SignalStore.notificationProfileValues()
     val localNow: LocalDateTime = now.toLocalDateTime(zoneId)
 
-    val manualProfile: NotificationProfile? = profiles.firstOrNull { it.id == storeValues.manuallyEnabledProfile }
+    val manualProfile: NotificationProfile? = if (now < storeValues.manuallyEnabledUntil) {
+      profiles.firstOrNull { it.id == storeValues.manuallyEnabledProfile }
+    } else {
+      null
+    }
 
     val scheduledProfile: NotificationProfile? = profiles.sortedDescending().filter { it.schedule.isCurrentlyActive(now, zoneId) }.firstOrNull { profile ->
       profile.schedule.startDateTime(localNow).toMillis(zoneId.toOffset()) > storeValues.manuallyDisabledAt
     }
 
     if (manualProfile == null || scheduledProfile == null) {
-      return (if (now < storeValues.manuallyEnabledUntil) manualProfile else null) ?: scheduledProfile
+      return manualProfile ?: scheduledProfile
     }
 
     return if (manualProfile == scheduledProfile) {
-      if (storeValues.manuallyEnabledUntil == Long.MAX_VALUE || now < storeValues.manuallyEnabledUntil) {
-        manualProfile
-      } else {
-        null
-      }
+      manualProfile
     } else {
       scheduledProfile
     }
@@ -52,11 +52,11 @@ object NotificationProfiles {
       if (storeValues.manuallyEnabledUntil.isForever()) {
         return context.getString(R.string.NotificationProfilesFragment__on)
       } else if (now < storeValues.manuallyEnabledUntil) {
-        return context.getString(R.string.NotificationProfileSelection__on_until_s, storeValues.manuallyEnabledUntil.toLocalTime().formatHours())
+        return context.getString(R.string.NotificationProfileSelection__on_until_s, storeValues.manuallyEnabledUntil.toLocalTime().formatHours(context))
       }
     }
 
-    return context.getString(R.string.NotificationProfileSelection__on_until_s, profile.schedule.endTime().formatHours())
+    return context.getString(R.string.NotificationProfileSelection__on_until_s, profile.schedule.endTime().formatHours(context))
   }
 
   private fun Long.isForever(): Boolean {

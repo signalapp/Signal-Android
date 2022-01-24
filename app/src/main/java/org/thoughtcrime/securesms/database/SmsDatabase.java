@@ -392,6 +392,7 @@ public class SmsDatabase extends MessageDatabase {
 
       threadId = getThreadIdForMessage(id);
 
+      SignalDatabase.reactions().deleteReactions(new MessageId(id, false));
       SignalDatabase.threads().update(threadId, false);
       SignalDatabase.messageLog().deleteAllRelatedToMessage(id, false);
 
@@ -481,18 +482,18 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull Set<ThreadUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
+  public @NonNull Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType) {
     if (receiptType == ReceiptType.VIEWED) {
       return Collections.emptySet();
     }
 
-    SQLiteDatabase    database      = databaseHelper.getSignalWritableDatabase();
-    Set<ThreadUpdate> threadUpdates = new HashSet<>();
+    SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
+    Set<MessageUpdate> messageUpdates = new HashSet<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, RECEIPT_TIMESTAMP},
-                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
-                              null, null, null, null)) {
-
+                                        DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
+                                        null, null, null, null))
+    {
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(CursorUtil.requireLong(cursor, TYPE))) {
           RecipientId theirRecipientId = messageId.getRecipientId();
@@ -512,30 +513,29 @@ public class SmsDatabase extends MessageDatabase {
                              ID + " = ?",
                              SqlUtil.buildArgs(updatedTimestamp, id));
 
-            threadUpdates.add(new ThreadUpdate(threadId, !isFirstIncrement));
+            messageUpdates.add(new MessageUpdate(threadId, new MessageId(id, false)));
           }
         }
       }
 
-      if (threadUpdates.isEmpty() && receiptType == ReceiptType.DELIVERY) {
+      if (messageUpdates.isEmpty() && receiptType == ReceiptType.DELIVERY) {
         earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId(), timestamp);
       }
 
-      return threadUpdates;
+      return messageUpdates;
     }
   }
 
   @Override
-  public List<Pair<Long, Long>> setTimestampRead(SyncMessageId messageId, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
-    SQLiteDatabase         database = databaseHelper.getSignalWritableDatabase();
-    List<Pair<Long, Long>> expiring = new LinkedList<>();
-    Cursor                 cursor   = null;
+  @NonNull MmsSmsDatabase.TimestampReadResult setTimestampRead(SyncMessageId messageId, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
+    SQLiteDatabase         database   = databaseHelper.getSignalWritableDatabase();
+    List<Pair<Long, Long>> expiring   = new LinkedList<>();
+    String[]               projection = new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, EXPIRES_IN, EXPIRE_STARTED};
+    String                 query      = DATE_SENT + " = ?";
+    String[]               args       = SqlUtil.buildArgs(messageId.getTimetamp());
+    List<Long>             threads    = new LinkedList<>();
 
-    try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, EXPIRES_IN, EXPIRE_STARTED},
-                              DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
-                              null, null, null, null);
-
+    try (Cursor cursor = database.query(TABLE_NAME, projection, query, args, null, null, null)) {
       while (cursor.moveToNext()) {
         RecipientId theirRecipientId = messageId.getRecipientId();
         RecipientId outRecipientId   = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
@@ -558,21 +558,17 @@ public class SmsDatabase extends MessageDatabase {
             expiring.add(new Pair<>(id, expiresIn));
           }
 
-          database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {cursor.getLong(cursor.getColumnIndexOrThrow(ID)) + ""});
+          database.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(id));
 
-          SignalDatabase.threads().updateReadState(threadId);
-          SignalDatabase.threads().setLastSeen(threadId);
-          notifyConversationListeners(threadId);
+          threads.add(threadId);
 
           Long latest = threadToLatestRead.get(threadId);
           threadToLatestRead.put(threadId, (latest != null) ? Math.max(latest, messageId.getTimetamp()) : messageId.getTimetamp());
         }
       }
-    } finally {
-      if (cursor != null) cursor.close();
     }
 
-    return expiring;
+    return new MmsSmsDatabase.TimestampReadResult(expiring, threads);
   }
 
   @Override

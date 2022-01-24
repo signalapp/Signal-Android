@@ -19,15 +19,17 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
+import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.emoji.EmojiPageCache;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
+import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class EmojiProvider {
 
@@ -39,23 +41,24 @@ public class EmojiProvider {
     return new EmojiParser(EmojiSource.getLatest().getEmojiTree()).findCandidates(text);
   }
 
-  static  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
+  static  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv, boolean jumboEmoji) {
     if (tv.isInEditMode()) {
       return null;
     } else {
-      return emojify(getCandidates(text), text, tv);
+      return emojify(getCandidates(text), text, tv, jumboEmoji);
     }
   }
 
   static @Nullable Spannable emojify(@Nullable EmojiParser.CandidateList matches,
                                      @Nullable CharSequence text,
-                                     @NonNull TextView tv)
+                                     @NonNull TextView tv,
+                                     boolean jumboEmoji)
   {
     if (matches == null || text == null || tv.isInEditMode()) return null;
     SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
     for (EmojiParser.Candidate candidate : matches) {
-      Drawable drawable = getEmojiDrawable(tv.getContext(), candidate.getDrawInfo(), tv::requestLayout);
+      Drawable drawable = getEmojiDrawable(tv.getContext(), candidate.getDrawInfo(), tv::requestLayout, jumboEmoji);
 
       if (drawable != null) {
         builder.setSpan(new EmojiSpan(drawable, tv), candidate.getStartIndex(), candidate.getEndIndex(),
@@ -70,7 +73,8 @@ public class EmojiProvider {
                                             @Nullable EmojiParser.CandidateList matches,
                                             @Nullable CharSequence text,
                                             @NonNull Paint paint,
-                                            boolean synchronous)
+                                            boolean synchronous,
+                                            boolean jumboEmoji)
   {
     if (matches == null || text == null) return null;
     SpannableStringBuilder builder = new SpannableStringBuilder(text);
@@ -78,9 +82,9 @@ public class EmojiProvider {
     for (EmojiParser.Candidate candidate : matches) {
       Drawable drawable;
       if (synchronous) {
-        drawable = getEmojiDrawableSync(context, candidate.getDrawInfo());
+        drawable = getEmojiDrawableSync(context, candidate.getDrawInfo(), jumboEmoji);
       } else {
-        drawable = getEmojiDrawable(context, candidate.getDrawInfo(), null);
+        drawable = getEmojiDrawable(context, candidate.getDrawInfo(), null, jumboEmoji);
       }
 
       if (drawable != null) {
@@ -93,8 +97,12 @@ public class EmojiProvider {
   }
 
   static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable CharSequence emoji) {
+    return getEmojiDrawable(context, emoji, false);
+  }
+
+  static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable CharSequence emoji, boolean jumboEmoji) {
     EmojiDrawInfo drawInfo = EmojiSource.getLatest().getEmojiTree().getEmoji(emoji, 0, emoji.length());
-    return getEmojiDrawable(context, drawInfo, null);
+    return getEmojiDrawable(context, drawInfo, null, jumboEmoji);
   }
 
   /**
@@ -104,7 +112,7 @@ public class EmojiProvider {
    * @param drawInfo        Information about the emoji being displayed
    * @param onEmojiLoaded   Runnable which will trigger when an emoji is loaded from disk
    */
-  private static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo, @Nullable Runnable onEmojiLoaded) {
+  private static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo, @Nullable Runnable onEmojiLoaded, boolean jumboEmoji) {
     if (drawInfo == null) {
       return null;
     }
@@ -112,6 +120,7 @@ public class EmojiProvider {
     final int           lowMemoryDecodeScale = DeviceProperties.isLowMemoryDevice(context) ? 2 : 1;
     final EmojiSource   source               = EmojiSource.getLatest();
     final EmojiDrawable drawable             = new EmojiDrawable(source, drawInfo, lowMemoryDecodeScale);
+    final AtomicBoolean jumboLoaded          = new AtomicBoolean(false);
 
     EmojiPageCache.LoadResult loadResult = EmojiPageCache.INSTANCE.load(context, drawInfo.getPage(), lowMemoryDecodeScale);
 
@@ -122,9 +131,11 @@ public class EmojiProvider {
         @Override
         public void onSuccess(Bitmap result) {
           ThreadUtil.runOnMain(() -> {
-            drawable.setBitmap(result);
-            if (onEmojiLoaded != null) {
-              onEmojiLoaded.run();
+            if (!jumboLoaded.get()) {
+              drawable.setBitmap(result);
+              if (onEmojiLoaded != null) {
+                onEmojiLoaded.run();
+              }
             }
           });
         }
@@ -138,6 +149,40 @@ public class EmojiProvider {
       throw new IllegalStateException("Unexpected subclass " + loadResult.getClass());
     }
 
+    if (jumboEmoji && drawInfo.getJumboSheet() != null) {
+      JumboEmoji.LoadResult result = JumboEmoji.loadJumboEmoji(context, drawInfo);
+      if (result instanceof JumboEmoji.LoadResult.Immediate) {
+        ThreadUtil.runOnMain(() -> {
+          jumboLoaded.set(true);
+          drawable.setSingleBitmap(((JumboEmoji.LoadResult.Immediate) result).getBitmap());
+        });
+      } else if (result instanceof JumboEmoji.LoadResult.Async) {
+        ((JumboEmoji.LoadResult.Async) result).getTask().addListener(new FutureTaskListener<Bitmap>() {
+          @Override
+          public void onSuccess(Bitmap result) {
+            ThreadUtil.runOnMain(() -> {
+              jumboLoaded.set(true);
+              drawable.setSingleBitmap(result);
+              if (onEmojiLoaded != null) {
+                onEmojiLoaded.run();
+              }
+            });
+          }
+
+          @Override
+          public void onFailure(ExecutionException exception) {
+            if (exception.getCause() instanceof JumboEmoji.CannotAutoDownload) {
+              Log.i(TAG, "Download restrictions are preventing jumbomoji use");
+            } else {
+              Log.d(TAG, "Failed to load jumbo emoji bitmap resource", exception);
+            }
+          }
+        });
+      }
+
+      return drawable;
+    }
+
     return drawable;
   }
 
@@ -147,7 +192,7 @@ public class EmojiProvider {
    * @param context         Context object used in reading and writing from disk
    * @param drawInfo        Information about the emoji being displayed
    */
-  private static @Nullable Drawable getEmojiDrawableSync(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo) {
+  private static @Nullable Drawable getEmojiDrawableSync(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo, boolean jumboEmoji) {
     ThreadUtil.assertNotMainThread();
     if (drawInfo == null) {
       return null;
@@ -157,24 +202,49 @@ public class EmojiProvider {
     final EmojiSource   source               = EmojiSource.getLatest();
     final EmojiDrawable drawable             = new EmojiDrawable(source, drawInfo, lowMemoryDecodeScale);
 
-    EmojiPageCache.LoadResult loadResult = EmojiPageCache.INSTANCE.load(context, drawInfo.getPage(), lowMemoryDecodeScale);
-    Bitmap                    bitmap     = null;
+    Bitmap bitmap = null;
 
-    if (loadResult instanceof EmojiPageCache.LoadResult.Immediate) {
-      Log.d(TAG, "Cached emoji page: " + drawInfo.getPage().getUri().toString());
-      bitmap = ((EmojiPageCache.LoadResult.Immediate) loadResult).getBitmap();
-    } else if (loadResult instanceof EmojiPageCache.LoadResult.Async) {
-      Log.d(TAG, "Loading emoji page: " + drawInfo.getPage().getUri().toString());
-      try {
-        bitmap = ((EmojiPageCache.LoadResult.Async) loadResult).getTask().get(2, TimeUnit.SECONDS);
-      } catch (InterruptedException | ExecutionException | TimeoutException exception) {
-        Log.d(TAG, "Failed to load emoji bitmap resource", exception);
+    if (jumboEmoji && drawInfo.getJumboSheet() != null) {
+      JumboEmoji.LoadResult result = JumboEmoji.loadJumboEmoji(context, drawInfo);
+      if (result instanceof JumboEmoji.LoadResult.Immediate) {
+        bitmap = ((JumboEmoji.LoadResult.Immediate) result).getBitmap();
+      } else if (result instanceof JumboEmoji.LoadResult.Async) {
+        try {
+          bitmap = ((JumboEmoji.LoadResult.Async) result).getTask().get(10, TimeUnit.SECONDS);
+        } catch (InterruptedException | ExecutionException | TimeoutException exception) {
+          if (exception.getCause() instanceof JumboEmoji.CannotAutoDownload) {
+            Log.i(TAG, "Download restrictions are preventing jumbomoji use");
+          } else {
+            Log.d(TAG, "Failed to load jumbo emoji bitmap resource", exception);
+          }
+        }
       }
-    } else {
-      throw new IllegalStateException("Unexpected subclass " + loadResult.getClass());
+
+      if (bitmap != null) {
+        drawable.setSingleBitmap(bitmap);
+      }
     }
 
-    drawable.setBitmap(bitmap);
+    if (!jumboEmoji || bitmap == null) {
+      EmojiPageCache.LoadResult loadResult = EmojiPageCache.INSTANCE.load(context, drawInfo.getPage(), lowMemoryDecodeScale);
+
+      if (loadResult instanceof EmojiPageCache.LoadResult.Immediate) {
+        Log.d(TAG, "Cached emoji page: " + drawInfo.getPage().getUri().toString());
+        bitmap = ((EmojiPageCache.LoadResult.Immediate) loadResult).getBitmap();
+      } else if (loadResult instanceof EmojiPageCache.LoadResult.Async) {
+        Log.d(TAG, "Loading emoji page: " + drawInfo.getPage().getUri().toString());
+        try {
+          bitmap = ((EmojiPageCache.LoadResult.Async) loadResult).getTask().get(2, TimeUnit.SECONDS);
+        } catch (InterruptedException | ExecutionException | TimeoutException exception) {
+          Log.d(TAG, "Failed to load emoji bitmap resource", exception);
+        }
+      } else {
+        throw new IllegalStateException("Unexpected subclass " + loadResult.getClass());
+      }
+
+      drawable.setBitmap(bitmap);
+    }
+
     return drawable;
   }
 
@@ -183,7 +253,8 @@ public class EmojiProvider {
     private final float intrinsicHeight;
     private final Rect  emojiBounds;
 
-    private Bitmap bmp;
+    private Bitmap  bmp;
+    private boolean isSingleBitmap;
 
     @Override
     public int getIntrinsicWidth() {
@@ -219,12 +290,21 @@ public class EmojiProvider {
       }
 
       canvas.drawBitmap(bmp,
-                        emojiBounds,
+                        isSingleBitmap ? null : emojiBounds,
                         getBounds(),
                         PAINT);
     }
 
     public void setBitmap(Bitmap bitmap) {
+      setBitmap(bitmap, false);
+    }
+
+    public void setSingleBitmap(Bitmap bitmap) {
+      setBitmap(bitmap, true);
+    }
+
+    private void setBitmap(Bitmap bitmap, boolean isSingleBitmap) {
+      this.isSingleBitmap = isSingleBitmap;
       if (bmp == null || !bmp.sameAs(bitmap)) {
         bmp = bitmap;
         invalidateSelf();

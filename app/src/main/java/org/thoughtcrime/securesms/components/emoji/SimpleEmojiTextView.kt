@@ -27,20 +27,20 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
       val endDrawableSize: Int = compoundDrawables[1]?.let { it.intrinsicWidth + compoundDrawablePadding } ?: 0
       val adjustedWidth: Int = width - startDrawableSize - endDrawableSize
 
-      val newContent = if (width == 0 || maxLines == -1) {
+      val newCandidates = if (isInEditMode) null else EmojiProvider.getCandidates(text)
+      val newText = if (newCandidates == null || newCandidates.size() == 0) {
         text
       } else {
-        TextUtils.ellipsize(text, paint, (adjustedWidth * maxLines).toFloat(), TextUtils.TruncateAt.END, false, null)
+        EmojiProvider.emojify(newCandidates, text, this, false)
       }
 
-      val newCandidates = if (isInEditMode) null else EmojiProvider.getCandidates(newContent)
-      val newText = if (newCandidates == null || newCandidates.size() == 0) {
-        newContent
+      val newContent = if (width == 0 || maxLines == -1) {
+        newText
       } else {
-        EmojiProvider.emojify(newCandidates, newContent, this)
+        TextUtils.ellipsize(newText, paint, (adjustedWidth * maxLines).toFloat(), TextUtils.TruncateAt.END, false, null)
       }
       bufferType = BufferType.SPANNABLE
-      super.setText(newText, type)
+      super.setText(newContent, type)
     }
   }
 

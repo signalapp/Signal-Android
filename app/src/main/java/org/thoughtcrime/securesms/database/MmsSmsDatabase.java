@@ -29,21 +29,25 @@ import net.zetetic.database.sqlcipher.SQLiteQueryBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.MessageDatabase.ThreadUpdate;
+import org.thoughtcrime.securesms.database.MessageDatabase.MessageUpdate;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -401,32 +405,28 @@ public class MmsSmsDatabase extends Database {
    * @return Whether or not some thread was updated.
    */
   private boolean incrementReceiptCount(SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
-    SQLiteDatabase    db             = databaseHelper.getSignalWritableDatabase();
-    ThreadDatabase    threadDatabase = SignalDatabase.threads();
-    Set<ThreadUpdate> threadUpdates  = new HashSet<>();
+    SQLiteDatabase     db             = databaseHelper.getSignalWritableDatabase();
+    ThreadDatabase     threadDatabase = SignalDatabase.threads();
+    Set<MessageUpdate> messageUpdates = new HashSet<>();
 
     db.beginTransaction();
     try {
-      threadUpdates = incrementReceiptCountInternal(syncMessageId, timestamp, receiptType);
+      messageUpdates = incrementReceiptCountInternal(syncMessageId, timestamp, receiptType);
 
-      for (ThreadUpdate threadUpdate : threadUpdates) {
-        threadDatabase.update(threadUpdate.getThreadId(), false);
+      for (MessageUpdate messageUpdate : messageUpdates) {
+        threadDatabase.update(messageUpdate.getThreadId(), false);
       }
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
 
-      for (ThreadUpdate threadUpdate : threadUpdates) {
-        if (threadUpdate.isVerbose()) {
-          notifyVerboseConversationListeners(threadUpdate.getThreadId());
-        } else {
-          notifyConversationListeners(threadUpdate.getThreadId());
-        }
+      for (MessageUpdate threadUpdate : messageUpdates) {
+        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(threadUpdate.getMessageId());
       }
     }
 
-    return threadUpdates.size() > 0;
+    return messageUpdates.size() > 0;
   }
 
   /**
@@ -437,22 +437,22 @@ public class MmsSmsDatabase extends Database {
   private @NonNull Collection<SyncMessageId> incrementReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
     SQLiteDatabase            db             = databaseHelper.getSignalWritableDatabase();
     ThreadDatabase            threadDatabase = SignalDatabase.threads();
-    Set<ThreadUpdate>         threadUpdates  = new HashSet<>();
+    Set<MessageUpdate>        messageUpdates  = new HashSet<>();
     Collection<SyncMessageId> unhandled      = new HashSet<>();
 
     db.beginTransaction();
     try {
       for (SyncMessageId id : syncMessageIds) {
-        Set<ThreadUpdate> updates = incrementReceiptCountInternal(id, timestamp, receiptType);
+        Set<MessageUpdate> updates = incrementReceiptCountInternal(id, timestamp, receiptType);
 
         if (updates.size() > 0) {
-          threadUpdates.addAll(updates);
+          messageUpdates.addAll(updates);
         } else {
           unhandled.add(id);
         }
       }
 
-      for (ThreadUpdate update : threadUpdates) {
+      for (MessageUpdate update : messageUpdates) {
         threadDatabase.updateSilently(update.getThreadId(), false);
       }
 
@@ -460,15 +460,11 @@ public class MmsSmsDatabase extends Database {
     } finally {
       db.endTransaction();
 
-      for (ThreadUpdate threadUpdate : threadUpdates) {
-        if (threadUpdate.isVerbose()) {
-          notifyVerboseConversationListeners(threadUpdate.getThreadId());
-        } else {
-          notifyConversationListeners(threadUpdate.getThreadId());
-        }
+      for (MessageUpdate messageUpdate : messageUpdates) {
+        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageUpdate.getMessageId());
       }
 
-      if (threadUpdates.size() > 0) {
+      if (messageUpdates.size() > 0) {
         notifyConversationListListeners();
       }
     }
@@ -480,13 +476,63 @@ public class MmsSmsDatabase extends Database {
   /**
    * Doesn't do any transactions or updates, so we can re-use the method safely.
    */
-  private @NonNull Set<ThreadUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageDatabase.ReceiptType receiptType) {
-    Set<ThreadUpdate> threadUpdates = new HashSet<>();
+  private @NonNull Set<MessageUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageDatabase.ReceiptType receiptType) {
+    Set<MessageUpdate> messageUpdates = new HashSet<>();
 
-    threadUpdates.addAll(SignalDatabase.sms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
-    threadUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
+    messageUpdates.addAll(SignalDatabase.sms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
+    messageUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType));
 
-    return threadUpdates;
+    return messageUpdates;
+  }
+
+
+  public void setTimestampRead(@NonNull Recipient senderRecipient, @NonNull List<ReadMessage> readMessages, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
+    SQLiteDatabase db = getWritableDatabase();
+
+    List<Pair<Long, Long>> expiringText   = new LinkedList<>();
+    List<Pair<Long, Long>> expiringMedia  = new LinkedList<>();
+    Set<Long>              updatedThreads = new HashSet<>();
+
+    db.beginTransaction();
+    try {
+      for (ReadMessage readMessage : readMessages) {
+        TimestampReadResult textResult  = SignalDatabase.sms().setTimestampRead(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()),
+                                                                                proposedExpireStarted,
+                                                                                threadToLatestRead);
+        TimestampReadResult mediaResult = SignalDatabase.mms().setTimestampRead(new SyncMessageId(senderRecipient.getId(), readMessage.getTimestamp()),
+                                                                                proposedExpireStarted,
+                                                                                threadToLatestRead);
+
+        expiringText.addAll(textResult.expiring);
+        expiringMedia.addAll(mediaResult.expiring);
+
+        updatedThreads.addAll(textResult.threads);
+        updatedThreads.addAll(mediaResult.threads);
+      }
+
+      for (long threadId : updatedThreads) {
+        SignalDatabase.threads().updateReadState(threadId);
+        SignalDatabase.threads().setLastSeen(threadId);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    for (Pair<Long, Long> expiringMessage : expiringText) {
+      ApplicationDependencies.getExpiringMessageManager()
+                             .scheduleDeletion(expiringMessage.first(), false, proposedExpireStarted, expiringMessage.second());
+    }
+
+    for (Pair<Long, Long> expiringMessage : expiringMedia) {
+      ApplicationDependencies.getExpiringMessageManager()
+                             .scheduleDeletion(expiringMessage.first(), true, proposedExpireStarted, expiringMessage.second());
+    }
+
+    for (long threadId : updatedThreads) {
+      notifyConversationListeners(threadId);
+    }
   }
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
@@ -860,6 +906,16 @@ public class MmsSmsDatabase extends Database {
     @Override
     public void close() {
       cursor.close();
+    }
+  }
+
+  static final class TimestampReadResult {
+    final List<Pair<Long, Long>> expiring;
+    final List<Long> threads;
+
+    TimestampReadResult(@NonNull List<Pair<Long, Long>> expiring, @NonNull List<Long> threads) {
+      this.expiring = expiring;
+      this.threads  = threads;
     }
   }
 }

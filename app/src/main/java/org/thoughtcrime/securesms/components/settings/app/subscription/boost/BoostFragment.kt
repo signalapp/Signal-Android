@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * UX to allow users to donate ephemerally.
@@ -167,7 +168,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
           selectedCurrency = state.currencySelection,
           isEnabled = state.stage == BoostState.Stage.READY,
           onClick = {
-            findNavController().navigate(BoostFragmentDirections.actionBoostFragmentToSetDonationCurrencyFragment(true, viewModel.getSupportedCurrencyCodes().toTypedArray()))
+            findNavController().safeNavigate(BoostFragmentDirections.actionBoostFragmentToSetDonationCurrencyFragment(true, viewModel.getSupportedCurrencyCodes().toTypedArray()))
           }
         )
       )
@@ -200,7 +201,9 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
               viewModel.setCustomAmount(it)
             },
             onCustomAmountFocusChanged = {
-              viewModel.setCustomAmountFocused(it)
+              if (it) {
+                viewModel.setCustomAmountFocused()
+              }
             }
           )
         )
@@ -230,7 +233,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
   }
 
   private fun onPaymentConfirmed(boostBadge: Badge) {
-    findNavController().navigate(
+    findNavController().safeNavigate(
       BoostFragmentDirections.actionBoostFragmentToBoostThanksForYourSupportBottomSheetDialog(boostBadge).setIsBoost(true),
       NavOptions.Builder().setPopUpTo(R.id.boostFragment, true).build()
     )

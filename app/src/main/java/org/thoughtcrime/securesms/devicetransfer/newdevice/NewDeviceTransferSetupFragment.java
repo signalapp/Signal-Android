@@ -10,10 +10,11 @@ import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.DeviceToDeviceTransferService.TransferNotificationData;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.devicetransfer.SetupStep;
 import org.thoughtcrime.securesms.devicetransfer.DeviceTransferSetupFragment;
+import org.thoughtcrime.securesms.devicetransfer.SetupStep;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 /**
  * Most responsibility is in {@link DeviceTransferSetupFragment} and delegates here
@@ -25,13 +26,12 @@ public final class NewDeviceTransferSetupFragment extends DeviceTransferSetupFra
 
   @Override
   protected void navigateAwayFromTransfer() {
-    NavHostFragment.findNavController(this)
-                   .navigate(R.id.action_deviceTransferSetup_to_transferOrRestore);
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_deviceTransferSetup_to_transferOrRestore);
   }
 
   @Override
   protected void navigateToTransferConnected() {
-    NavHostFragment.findNavController(this).navigate(R.id.action_new_device_transfer);
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_new_device_transfer);
   }
 
   @Override
@@ -77,8 +77,7 @@ public final class NewDeviceTransferSetupFragment extends DeviceTransferSetupFra
 
   @Override
   protected void navigateWhenWifiDirectUnavailable() {
-    NavHostFragment.findNavController(this)
-                   .navigate(R.id.action_deviceTransferSetup_to_transferOrRestore);
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_deviceTransferSetup_to_transferOrRestore);
   }
 
   @Override

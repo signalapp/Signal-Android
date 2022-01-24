@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Calendar
 import java.util.Currency
 import java.util.concurrent.TimeUnit
@@ -54,7 +55,7 @@ class SubscribeFragment : DSLSettingsFragment(
       .append(" ")
       .append(
         SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_button_secondary_text)) {
-          findNavController().navigate(SubscribeFragmentDirections.actionSubscribeFragmentToSubscribeLearnMoreBottomSheetDialog())
+          findNavController().safeNavigate(SubscribeFragmentDirections.actionSubscribeFragmentToSubscribeLearnMoreBottomSheetDialog())
         }
       )
   }
@@ -147,7 +148,7 @@ class SubscribeFragment : DSLSettingsFragment(
           onClick = {
             val selectableCurrencies = viewModel.getSelectableCurrencyCodes()
             if (selectableCurrencies != null) {
-              findNavController().navigate(SubscribeFragmentDirections.actionSubscribeFragmentToSetDonationCurrencyFragment(false, selectableCurrencies.toTypedArray()))
+              findNavController().safeNavigate(SubscribeFragmentDirections.actionSubscribeFragmentToSetDonationCurrencyFragment(false, selectableCurrencies.toTypedArray()))
             }
           }
         )
@@ -270,7 +271,7 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   private fun onPaymentConfirmed(badge: Badge) {
-    findNavController().navigate(
+    findNavController().safeNavigate(
       SubscribeFragmentDirections.actionSubscribeFragmentToSubscribeThanksForYourSupportBottomSheetDialog(badge).setIsBoost(false),
     )
   }

@@ -43,7 +43,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
                 android:gravity="center"
-                android:text="@string/EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile"
+                android:text="@string/EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +128,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                app:constraint_referenced_ids="edit_notification_profile_schedule_sunday,edit_notification_profile_schedule_monday,edit_notification_profile_schedule_tuesday,edit_notification_profile_schedule_wednesday,edit_notification_profile_schedule_thursday,edit_notification_profile_schedule_friday,edit_notification_profile_schedule_saturday"
+                app:constraint_referenced_ids="edit_notification_profile_schedule_day_1,edit_notification_profile_schedule_day_2,edit_notification_profile_schedule_day_3,edit_notification_profile_schedule_day_4,edit_notification_profile_schedule_day_5,edit_notification_profile_schedule_day_6,edit_notification_profile_schedule_day_7"
                 app:flow_horizontalStyle="spread_inside"
                 app:flow_wrapMode="aligned"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -136,102 +136,102 @@
                 app:layout_constraintTop_toBottomOf="@+id/edit_notification_profile_schedule_start_time" />
 
             <CheckedTextView
-                android:id="@+id/edit_notification_profile_schedule_sunday"
+                android:id="@+id/edit_notification_profile_schedule_day_1"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/circle_tintable_padded"
+                android:background="@drawable/notification_profile_day_background"
                 android:enabled="false"
                 android:foreground="?selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="@string/EditNotificationProfileSchedule__sunday_first_letter"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
-                android:textColor="@color/notification_profile_schedule_text_selector" />
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__sunday_first_letter" />
 
             <CheckedTextView
-                android:id="@+id/edit_notification_profile_schedule_monday"
+                android:id="@+id/edit_notification_profile_schedule_day_2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/circle_tintable_padded"
+                android:background="@drawable/notification_profile_day_background"
                 android:enabled="false"
                 android:foreground="?selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="@string/EditNotificationProfileSchedule__monday_first_letter"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
-                android:textColor="@color/notification_profile_schedule_text_selector" />
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__monday_first_letter" />
 
             <CheckedTextView
-                android:id="@+id/edit_notification_profile_schedule_tuesday"
+                android:id="@+id/edit_notification_profile_schedule_day_3"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/circle_tintable_padded"
+                android:background="@drawable/notification_profile_day_background"
                 android:enabled="false"
                 android:foreground="?selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="@string/EditNotificationProfileSchedule__tuesday_first_letter"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
-                android:textColor="@color/notification_profile_schedule_text_selector" />
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__tuesday_first_letter" />
 
             <CheckedTextView
-                android:id="@+id/edit_notification_profile_schedule_wednesday"
+                android:id="@+id/edit_notification_profile_schedule_day_4"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/circle_tintable_padded"
+                android:background="@drawable/notification_profile_day_background"
                 android:enabled="false"
                 android:foreground="?selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="@string/EditNotificationProfileSchedule__wednesday_first_letter"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
-                android:textColor="@color/notification_profile_schedule_text_selector" />
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__wednesday_first_letter" />
 
             <CheckedTextView
-                android:id="@+id/edit_notification_profile_schedule_thursday"
+                android:id="@+id/edit_notification_profile_schedule_day_5"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/circle_tintable_padded"
+                android:background="@drawable/notification_profile_day_background"
                 android:enabled="false"
                 android:foreground="?selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="@string/EditNotificationProfileSchedule__thursday_first_letter"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
-                android:textColor="@color/notification_profile_schedule_text_selector" />
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__thursday_first_letter" />
 
             <CheckedTextView
-                android:id="@+id/edit_notification_profile_schedule_friday"
+                android:id="@+id/edit_notification_profile_schedule_day_6"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/circle_tintable_padded"
+                android:background="@drawable/notification_profile_day_background"
                 android:enabled="false"
                 android:foreground="?selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="@string/EditNotificationProfileSchedule__friday_first_letter"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
-                android:textColor="@color/notification_profile_schedule_text_selector" />
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__friday_first_letter" />
 
             <CheckedTextView
-                android:id="@+id/edit_notification_profile_schedule_saturday"
+                android:id="@+id/edit_notification_profile_schedule_day_7"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:background="@drawable/circle_tintable_padded"
+                android:background="@drawable/notification_profile_day_background"
                 android:enabled="false"
                 android:foreground="?selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="@string/EditNotificationProfileSchedule__saturday_first_letter"
                 android:textAlignment="gravity"
                 android:textAppearance="@style/TextAppearance.Signal.Body1"
-                android:textColor="@color/notification_profile_schedule_text_selector" />
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__saturday_first_letter" />
 
             <com.dd.CircularProgressButton
                 android:id="@+id/edit_notification_profile_schedule__next"

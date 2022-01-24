@@ -28,6 +28,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   public static final String KEY                                   = "DonationReceiptRedemptionJob";
   public static final String INPUT_RECEIPT_CREDENTIAL_PRESENTATION = "data.receipt.credential.presentation";
   public static final String INPUT_PAYMENT_FAILURE                 = "data.payment.failure";
+  public static final String INPUT_KEEP_ALIVE_409                  = "data.keep.alive.409";
 
   public static DonationReceiptRedemptionJob createJobForSubscription() {
     return new DonationReceiptRedemptionJob(
@@ -72,6 +73,9 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
     if (inputData != null && inputData.getBooleanOrDefault(INPUT_PAYMENT_FAILURE, false)) {
       DonorBadgeNotifications.PaymentFailed.INSTANCE.show(context);
+    } else if (inputData != null && inputData.getBooleanOrDefault(INPUT_KEEP_ALIVE_409, false)) {
+      Log.i(TAG, "Skipping redemption due to 409 error during keep-alive.");
+      return;
     } else {
       DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
     }
@@ -79,6 +83,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     if (isForSubscription()) {
       Log.d(TAG, "Marking subscription failure", true);
       SignalStore.donationsValues().markSubscriptionRedemptionFailed();
+      MultiDeviceSubscriptionSyncRequestJob.enqueue();
     }
   }
 
@@ -122,6 +127,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       Log.w(TAG, "Encountered a retryable exception", response.getExecutionError().get(), true);
       throw new RetryableException();
     }
+
+    Log.i(TAG, "Successfully redeemed token with response code " + response.getStatus() + "... isForSubscription: " + isForSubscription(), true);
 
     if (isForSubscription()) {
       Log.d(TAG, "Clearing subscription failure", true);

@@ -17,15 +17,15 @@ object MediaReviewAnimatorController {
     return ObjectAnimator.ofFloat(view, "translationY", view.translationX, ViewUtil.dpToPx(48).toFloat())
   }
 
-  fun getFadeInAnimator(view: View): Animator {
+  fun getFadeInAnimator(view: View, isEnabled: Boolean = true): Animator {
     view.visible = true
-    view.isEnabled = true
+    view.isEnabled = isEnabled
 
     return ObjectAnimator.ofFloat(view, "alpha", view.alpha, 1f)
   }
 
-  fun getFadeOutAnimator(view: View): Animator {
-    view.isEnabled = false
+  fun getFadeOutAnimator(view: View, isEnabled: Boolean = false): Animator {
+    view.isEnabled = isEnabled
 
     val animator = ObjectAnimator.ofFloat(view, "alpha", view.alpha, 0f)
 

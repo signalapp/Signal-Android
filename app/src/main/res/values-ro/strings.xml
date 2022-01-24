@@ -175,7 +175,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Revii la SMS ne-criptat ca soluție de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Revii la MMS ne-criptat ca soluție de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> va fi criptat pentru că destinatarul nu mai este un utilizator Signal.\n\nTrimiți mesaj nesecurizat?</string>
-  <string name="ConversationItem_unable_to_open_media">Nu a fost găsită nici o aplicație pentru a deschide acest tip media.</string>
+  <string name="ConversationItem_unable_to_open_media">Nu pot găsi o aplicație pentru a deschide acest tip media.</string>
   <string name="ConversationItem_copied_text">Copiat %s</string>
   <string name="ConversationItem_from_s">de la %s</string>
   <string name="ConversationItem_to_s">către %s</string>
@@ -290,7 +290,7 @@
   <string name="ConversationFragment_quoted_message_not_found">Mesajul original nu a fost găsit</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesajul original nu mai este disponibil</string>
   <string name="ConversationFragment_failed_to_open_message">Mesajul nu a putut fi deschis</string>
-  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Poți sări la dreapta pe orice mesaj pentru a răspunde rapid</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Poți glisa la dreapta pe orice mesaj pentru a răspunde rapid</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Poți glisa la stânga pe orice mesaj pentru a răspunde rapid</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fișierele trimise de tip media vizibile o singură dată sunt eliminate automat după ce sunt trimise</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ai văzut deja acest mesaj</string>
@@ -305,6 +305,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Numărul tău de siguranță pentru %s s-a schimbat</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Numărul tău de siguranță pentru %s s-a schimbat, probabil pentru că au reinstalat Signal sau au schimbat dispozitivele. Atinge Verificare pentru a confirma noul număr de siguranță. Acest lucru este opțional.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s activ</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Șterg conversația selectată?</item>
     <item quantity="few">Șterg conversațiile selectate?</item>
@@ -381,8 +382,11 @@
     <item quantity="other">%d selectate</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Profil notificări</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Activează sau dezactivează profilul tău de aici</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s activ</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimbul de chei</string>
   <!--ConversationListItemAction-->
@@ -428,6 +432,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Află mai multe</string>
   <string name="BackupsPreferenceFragment__in_progress">În curs de desfășurare…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d până acum…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% până acum…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Te rugăm continuă la setări aplicație, selectează \"Permisiuni\" și activează \"Stocare\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
@@ -463,9 +469,6 @@
   <string name="DeviceListItem_today">Azi</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fișier fără nume</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Îți prezentăm apelurile de grup</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Deschide un grup nou pentru a începe un apel gratuit de grup criptat</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesaje cât timp este inactiv.</string>
@@ -596,10 +599,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Alege un nou administrator</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Înainte de a pleca, trebuie să alegi cel puțin un nou administrator pentru acest grup.</string>
   <string name="LeaveGroupDialog_choose_admin">Alege un administrator</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Dezactivează</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Previzualizează orice link</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Acum poți prelua previzualizările linkurilor direct de pe orice site web pentru mesajele pe care le trimiți.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Previzualizarea linkului nu este disponibilă</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Acest link de grup nu este activ</string>
@@ -915,8 +914,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Trimis de %1$s către %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de time către %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Îți prezentăm \'Reacții\'</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Atinge lung orice mesaj pentru a distribui rapid cum te simți.</string>
   <string name="Megaphones_remind_me_later">Amintește-mi mai târziu</string>
   <string name="Megaphones_verify_your_signal_pin">Verifică PIN-ul tău Signal.</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocazional îți vom solicita să îți confirmi codul PIN pentru a-l reține mai ușor.</string>
@@ -1210,7 +1207,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Parola veche este incorectă!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Introdu parola nouă!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Asociez acest dispozitiv?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Asociezi acest dispozitiv?</string>
   <string name="DeviceProvisioningActivity_continue">CONTINUĂ</string>
   <string name="DeviceProvisioningActivity_content_intro">Va putea</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1416,7 +1413,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviciile Google Play se actualizează sau sunt temporar indisponibile. Te rugăm încearcă din nou.</string>
   <string name="RegistrationActivity_terms_and_privacy">Termeni &amp; Politica de confidențialitate</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal are nevoie de permisiunea pentru contacte și media să te ajute să iei legătura cu prietenii și să trimiți mesaje. Contactele tale sunt încărcate utilizând descoperirea privată a contactelor de la Signal, ceea ce înseamnă că sunt criptate integral și nu sunt niciodată vizibile pentru serviciul Signal.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal are nevoie de permisiunea pentru contacte să te ajute să iei legătura cu prietenii.  Contactele tale sunt încărcate utilizând descoperirea privată a contactelor de la Signal, ceea ce înseamnă că sunt criptate integral și nu sunt niciodată vizibile pentru serviciul Signal.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal are nevoie de permisiunea pentru contacte să te ajute să iei legătura cu prietenii. Contactele tale sunt încărcate utilizând descoperirea privată a contactelor de la Signal, ceea ce înseamnă că sunt criptate integral și nu sunt niciodată vizibile pentru serviciul Signal.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Ai făcut prea multe încercări de înregistrare a acestui număr. Te rugăm să încerci din nou mai târziu.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rugăm verifică conexiunea la rețea și încearcă din nou.</string>
   <string name="RegistrationActivity_non_standard_number_format">Număr cu format non-standard</string>
@@ -1428,7 +1425,7 @@ furnizat (%s) este invalid.</string>
     <item quantity="few">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
     <item quantity="other">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Trebuie să verificăm că ești om.</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Trebuie să verificăm dacă ești om.</string>
   <string name="RegistrationActivity_next">Următorul</string>
   <string name="RegistrationActivity_continue">Continuare</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ia-ți intimitatea cu tine.\nFii tu însuți în fiecare mesaj.</string>
@@ -1625,7 +1622,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s la %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media nu mai este disponibilă.</string>
-  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nu a fost găsită nicio aplicație pentru a distribui acest tip media.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nu pot găsi o aplicație pentru a distribui acest tip media.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesaje noi în %2$d conversații</string>
   <string name="MessageNotifier_most_recent_from_s">Cel mai recent de la: %1$s</string>
@@ -1700,6 +1697,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispozitivul nu mai este înregistrat</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Acest fapt este posibil pentru că ai înregistrat numărul tău de telefon la Signal de pe un dispozitiv diferit. Apasă pentru a te înregistra din nou.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Pentru a răspunde, permite lui Signal accesul la microfon.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pentru a răspunde apelului de la %s, oferă-i Signal acces la microfonul tău.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea primi apeluri dar i-a fost refuzat accesul permanent. Te rugăm mergi în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Microfon\" și \"Cameră\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Răspuns de pe un dispozitiv asociat.</string>
@@ -1817,6 +1815,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Derulează până jos</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Bulele sunt o caracteristică Android pe care o poți opri pentru conversațiile Signal.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Nu acum</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2409,18 +2408,45 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_callable_secure__menu_call">Apel Signal</string>
   <string name="conversation_callable_secure__menu_video">Apel video Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Detalii mesaj</string>
-  <string name="conversation_context__menu_copy_text">Copiază textul</string>
-  <string name="conversation_context__menu_delete_message">Șterge mesajul</string>
-  <string name="conversation_context__menu_forward_message">Redirecționează mesajul</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Informații</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Copiere</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Șterge</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Redirecționează</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Retrimite mesajul</string>
-  <string name="conversation_context__menu_reply_to_message">Răspunde la mesaj</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Răspunde</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Selectează mai multe</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d selectat</item>
+    <item quantity="few">%d selectate</item>
+    <item quantity="other">%d selectate</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Salvează atașamentul</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Salvează</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Dispariție mesaje</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Informații</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Copiere</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Șterge</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Redirecționează</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Răspunde</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Salvează</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Invită</string>
@@ -2611,16 +2637,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KbsMegaphone__create_a_pin">Creează un PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-urile păstrează informațiile stocate în Signal criptate.</string>
   <string name="KbsMegaphone__create_pin">Creează PIN</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Spune-ne ce părere ai</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Pentru a putea să facem din Signal cea mai bună aplicație de mesagerie de pe planetă, ne-ar plăcea să-ți auzim părerea. </string>
-  <string name="ResearchMegaphone_learn_more">Află mai multe</string>
-  <string name="ResearchMegaphone_dismiss">Revocare</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Cercetare Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Credem în confidențialitate.</b></p><p>Signal nu te urmărește și nu îți colectează informațiile. Pentru a îmbunătăți aplicația pentru toată lumea, ne bazăm pe opiniile utilizatorilor noștri, <b>și ne-ar plăcea să o auzim pe a ta</b></p><p>Derulăm un sondaj pentru a înțelege mai bine cum folosești Signal. Studiul nostru nu colectează informații care te-ar putea identifica. Dacă ești interesat în a împărtăși păreri suplimentare cu noi, vei avea opțiunea să ne furnizezi informații de contact.</p><p>Dacă ai câteva minute la dispoziție și păreri de oferit, ne-ar plăcea să aflăm de la tine.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Completează studiul</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Nu, mulțumesc</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Acest studiu este găzduit de Alchemer pe domeniul securizat surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -2670,7 +2686,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_verify">Verifică</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ai introdus cu succes parola de backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parola nu a fost corectă</string>
-  <string name="LocalBackupJob_creating_backup">Se creează backup-ul…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Se creează backup-ul…</string>
   <string name="LocalBackupJobApi29_backup_failed">Backup-ul a eșuat</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Directorul tău de backup a fost șters sau mutat.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fișierul de backup este prea mare pentru a fi stocat pe acest volum.</string>
@@ -2790,8 +2806,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nu se poate transfera dintr-o versiune mai nouă de Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Se transmit datele</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">Ține ambele dispozitive unul lângă altul. Nu opri dispozitivele și menține Signal deschis. Transferurile sunt criptate integral.</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Ține ambele dispozitive unul lângă celălalt. Nu opri dispozitivele și menține Signal deschis. Transferul este criptat integral.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mesaje până acum…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% din mesaje până acum…</string>
   <string name="DeviceTransfer__cancel">Anulare</string>
   <string name="DeviceTransfer__try_again">Încearcă din nou</string>
   <string name="DeviceTransfer__stop_transfer_question">Oprești transferul?</string>
@@ -2815,7 +2833,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Datele tale Signal au fost transferate pe noul dispozitiv. Pentru a finaliza procesul de transfer, trebuie să continui înregistrarea pe noul dispozitiv.</string>
   <string name="OldDeviceTransferComplete__close">Închide</string>
   <!--NewDeviceTransferComplete-->
-  <string name="NewDeviceTransferComplete__transfer_successful">Transferul a fost făcut cu succes</string>
+  <string name="NewDeviceTransferComplete__transfer_successful">Transferul a reușit</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Pentru a finaliza procesul de transfer, trebuie să continui înregistrarea.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Continuă înregistrarea</string>
@@ -2842,6 +2860,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_unblock">Deblochează</string>
   <string name="RecipientBottomSheet_add_to_contacts">Adaugă la contacte</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Nu pot găsi o aplicație pentru a deschide contactele.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Adaugă la un grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Adaugă la alt grup</string>
   <string name="RecipientBottomSheet_view_safety_number">Afișează numărul de siguranță</string>
@@ -2943,11 +2962,17 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Ștergerea datelor locale nu a reușit. Le poți șterge manual din setările de sistem pentru aplicație.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Deschide setările aplicației</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Se părăsesc grupurile…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Se șterge contul…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">În funcție de numărul de grupuri în care te afli, acest lucru poate dura câteva minute</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Se șterg datele de utilizator și se resetează aplicația</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Contul nu a fost șters</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Procesul de ștergere a întâmpinat o problemă. Verifică-ți conexiunea la rețea și încearcă din nou.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Căutare țări</string>
   <!--CreateGroupActivity-->
@@ -3128,7 +3153,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha este necesară</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Schimbă Numărul</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Urmează să îți schimbi numărul de telefon din %1$s în %2$s.\n\nÎnainte de a continua, te rugăm să te asiguri că numărul de mai jos este corect.</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Urmează să îți schimbi numărul de telefon din %1$s în %2$s.\n\nÎnainte de a continua, te rugăm să verifici dacă numărul de mai jos este corect.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Editează număr</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Schimbare Număr Signal - Am nevoie de asistență pentru PIN Android (v2 PIN)</string>
@@ -3158,11 +3183,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NotificationsSettingsFragment__notify_when">Anunță-mă când…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Un contact se alătură la Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Profiluri de notificare</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profiluri</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Creează un profil pentru a primi notificări numai de la persoanele și grupurile selectate.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Profiluri de notificare</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Creează profil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blocat</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d contacte</string>
@@ -3184,7 +3214,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpireTimerSettingsFragment__1_week">1 săptămână</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 zi</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 ore</string>
-  <string name="ExpireTimerSettingsFragment__1_hour">o oră</string>
+  <string name="ExpireTimerSettingsFragment__1_hour">1 oră</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 minute</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 secunde</string>
   <string name="ExpireTimerSettingsFragment__custom_time">Timp personalizat</string>
@@ -3495,7 +3525,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Adaugă un Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Abonamentul tău de Susținător a fost anulat automat deoarece ai fost inactiv pentru o perioadă prea lungă de timp. Insigna ta %1$s nu mai este vizibilă pe profilul tău.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru ați reactiva insigna, reînnoiește acum.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru a-ți reactiva insigna, reînnoiește acum.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reînnoiește abonamentul</string>
   <string name="Subscription__please_contact_support_for_more_information">Te rugăm să contactezi suportul pentru mai multe informații.</string>
   <string name="Subscription__contact_support">Contactează suportul</string>
@@ -3519,42 +3549,63 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eroare de rețea. Verifică-ți conexiunea și încearcă din nou.</string>
   <string name="NetworkFailure__retry">Încearcă din nou</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Denumește profilul</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Nume profil</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Următorul</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Creează</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Salvează</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Editează profilul</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Există deja un profil cu acest nume</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Serviciu</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Somn</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Condus</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Relaxare</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Concentrare</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Trebuie să aibă un nume</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Notificări permise</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Adaugă persoane și grupuri de la care vrei să primești notificări și apeluri atunci când profilul este activ</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Adaugă persoane sau grupuri</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Adaugă</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Creează un profil pentru a primi notificări și apeluri numai de la persoanele și grupurile de care vrei să fi contactat.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profiluri</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Profil nou</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Activat</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Șterge profilul</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">S-a eliminat \"%1$s\"</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Anulează</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Ștergi permanent profilul?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Șterge</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Editează profilul de notificare</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Zilnic</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Activat</string>
   <!--Profile status on if it is not the active profile-->
@@ -3562,25 +3613,43 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s la %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Excepții</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Permite toate apelurile</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Notifică pentru toate mențiunile</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Program</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Vezi tot</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Adaugă un program</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Setează un program pentru activa automat acest profil de notificare.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Program</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Start</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Sfârşit</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">D</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">L</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">M</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">M</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">J</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">V</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Setează ora de începere</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Setează ora de sfârșit</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Salvează</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3588,22 +3657,35 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Următorul</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Programul trebuie să aibă cel puțin o zi</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profil creat</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Gata</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Poți activa sau dezactiva manual profilul folosind meniul din lista de conversații.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Adaugă un program în setări pentru ați automatiza profilul.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profilul tău se va activa și dezactiva automat în funcție de programul setat.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Profil nou</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Pentru 1 oră</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Până la %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Afișează setările</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Activ până la %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Profiluri de notificare</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Primește notificări numai de la persoanele și grupurile alese.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Creează un profil</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Nu acum</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nu s-a putut deschide selectorul.</string>
   <!--EOF-->

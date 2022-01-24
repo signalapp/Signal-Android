@@ -13,10 +13,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingModel
-import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.Factory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 /**
  * A custom context menu that will show next to an anchor view and display several options. Basically a PopupMenu with custom UI and positioning rules.
@@ -174,7 +175,7 @@ class SignalContextMenu private constructor(
     }
   }
 
-  private inner class ItemViewHolderFactory : MappingAdapter.Factory<DisplayItem> {
+  private inner class ItemViewHolderFactory : Factory<DisplayItem> {
     override fun createViewHolder(parent: ViewGroup): MappingViewHolder<DisplayItem> {
       return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.signal_context_menu_item, parent, false))
     }

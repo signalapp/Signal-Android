@@ -312,7 +312,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Twój numer bezpieczeństwa dla %s zmienił się</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Twój numer bezpieczeństwa dla %s zmienił się. Ten kontakt prawdopodobnie ponownie zainstalował Signal lub zmienił urządzenie. Stuknij Zweryfikuj, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</string>
   <!--Message shown to indicate which notification profile is on/active-->
-  <string name="ConversationFragment__s_on">%1$s wł.</string>
+  <string name="ConversationFragment__s_on">%1$s włączony</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Usunąć wybraną rozmowę?</item>
     <item quantity="few">Usunąć wybrane rozmowy?</item>
@@ -407,7 +407,7 @@
   <!--Tooltip shown after you have created your first notification profile-->
   <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Tu włączysz lub wyłączysz swój profil powiadomień.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
-  <string name="ConversationListFragment__s_on">%1$s wł.</string>
+  <string name="ConversationListFragment__s_on">%1$s włączony</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
   <!--ConversationListItemAction-->
@@ -453,6 +453,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Dowiedz się więcej</string>
   <string name="BackupsPreferenceFragment__in_progress">W trakcie…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d wiadomości…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% wiadomości…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal wymaga dostępu do pamięci zewnętrznej urządzenia, aby móc tworzyć kopie zapasowe, ale uprawnienia zostały na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Pamięć\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Używa własnych: %s</string>
@@ -488,9 +490,6 @@
   <string name="DeviceListItem_today">Dzisiaj</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Plik bez nazwy</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Przedstawiamy rozmowy grupowe</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otwórz Nową grupę, aby rozpocząć darmowe, zaszyfrowane połączenie grupowe</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optymalizacja dla brakujących Usług Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Urządzenie nie wspiera Usług Play. Dotknij, aby wyłączyć systemową optymalizację baterii uniemożliwiającą odbieranie wiadomości w czasie braku aktywności.</string>
@@ -634,10 +633,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Wybierz nowego administratora</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Przed opuszczeniem tej grupy musisz wybrać co najmniej jednego nowego administratora.</string>
   <string name="LeaveGroupDialog_choose_admin">Wybierz administratora</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Wyłączone</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Podgląd każdego linku</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Teraz możesz pobierać podglądy linków w wysyłanych wiadomościach bezpośrednio z dowolnej strony internetowej.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Brak dostępnego podglądu linku</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Link do tej grupy jest nieaktywny</string>
@@ -972,8 +967,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Wysłano przez %1$s do %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Wysłano przez Ciebie do %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Przedstawiamy reakcje</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Stuknij i przytrzymaj wiadomość, aby szybko pokazać co czujesz. </string>
   <string name="Megaphones_remind_me_later">Przypomnij później</string>
   <string name="Megaphones_verify_your_signal_pin">Zweryfikuj swój PIN Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Co jakiś czas będziemy prosić Cię o weryfikację PIN-u, abyś go zapamiętał(a).</string>
@@ -1777,6 +1770,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Urządzenie nie jest już zarejestrowane</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Jest tak prawdopodobnie dlatego, że zarejestrowałeś swój numer telefonu w aplikacji Signal na innym urządzeniu. Dotknij, aby ponownie zarejestrować.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Aby odebrać połączenie, zezwól Signal na dostęp do mikrofonu.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Aby odebrać połączenie od %s, przyznaj aplikacji Signal dostęp do Twojego mikrofonu.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal wymaga pozwolenia na dostęp do mikrofonu i aparatu w celu odbierania oraz wykonywania połączeń, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Mikrofon\" oraz \"Aparat\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Odebrane na połączonym urządzeniu.</string>
@@ -2497,18 +2491,46 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_callable_secure__menu_call">Połączenie Signal</string>
   <string name="conversation_callable_secure__menu_video">Połączenie wideo Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Szczegóły wiadomości</string>
-  <string name="conversation_context__menu_copy_text">Kopiuj tekst</string>
-  <string name="conversation_context__menu_delete_message">Usuń wiadomość</string>
-  <string name="conversation_context__menu_forward_message">Przekaż wiadomość</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Informacje</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopiuj</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Usuń</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Przekaż</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Wyślij ponownie wiadomość</string>
-  <string name="conversation_context__menu_reply_to_message">Odpowiedz na wiadomość</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Odpowiedz</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Wybierz wiele</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d wybrana</item>
+    <item quantity="few">%d wybrane</item>
+    <item quantity="many">%d wybranych</item>
+    <item quantity="other">%d wybrane</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Zapisz załącznik</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Zapisz</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Znikające wiadomości</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Informacje</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopiuj</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Usuń</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Przekaż</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Odpowiedz</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Zapisz</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Zaproś</string>
@@ -2706,16 +2728,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KbsMegaphone__create_a_pin">Utwórz PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane.</string>
   <string name="KbsMegaphone__create_pin">Utwórz PIN</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Przekaż Signal swoją opinię</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Chcemy poznać Twoją opinię, aby uczynić Signal najlepszym komunikatorem na świecie.</string>
-  <string name="ResearchMegaphone_learn_more">Dowiedz się więcej</string>
-  <string name="ResearchMegaphone_dismiss">Odrzuć</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Badanie Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Wierzymy w prawo do prywatności.</b></p><p>Signal nie śledzi Cię, ani nie gromadzi Twoich danych. Przy ulepszaniu aplikacji Signal polegamy na opiniach naszych użytkowników i  <b>pragniemy poznać również Twoją.</b></p><p>Przeprowadzamy ankietę, aby zrozumie jak korzystasz z Signal. Nasza ankieta nie zbiera żadnych informacji, które mogą Cię zidentyfikować. Jeśli chcesz podzielić się dodatkowymi informacjami, będziesz mieć możliwość podania informacji kontaktowych.</p><p>Jeśli masz kilka minut i jakieś uwagi, chcielibyśmy je poznać.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Wypełnij ankietę</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Nie, dzięki</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Ta ankieta jest hostowana przez Alchemer na zabezpieczonej domenie surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
   <string name="ConversationListFragment_loading">Wczytywanie…</string>
@@ -2765,7 +2777,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="BackupDialog_verify">Zweryfikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Podałeś(aś) poprawne hasło kopii zapasowej</string>
   <string name="BackupDialog_passphrase_was_not_correct">Hasło jest nieprawidłowe</string>
-  <string name="LocalBackupJob_creating_backup">Tworzenie kopii zapasowej…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Tworzenie kopii zapasowej Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Zapisywanie kopii zapasowej nie powiodło się</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Twój folder kopii zapasowej został usunięty lub przeniesiony.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Twój plik kopii zapasowej jest zbyt duży, aby przechować go na tym wolumenie.</string>
@@ -2887,6 +2899,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DeviceTransfer__transferring_data">Przenoszenie danych</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Urządzenia muszą znajdować się blisko siebie. Nie wyłączaj żadnego z urządzeń i nie zamykaj Signal. Przenoszenie jest szyfrowane metodą end-to-end.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d wiadomości…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% wiadomości…</string>
   <string name="DeviceTransfer__cancel">Anuluj</string>
   <string name="DeviceTransfer__try_again">Spróbuj ponownie</string>
   <string name="DeviceTransfer__stop_transfer_question">Zatrzymać przenoszenie?</string>
@@ -3267,7 +3281,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profile</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__set_up_notification_profiles">Skonfiguruj profile powiadomień</string>
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Utwórz profil, aby otrzymywać powiadomienia tylko od wybranych przez Ciebie osób i grup.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Profile powiadomień</string>
@@ -3641,8 +3655,10 @@ danych, rozważ miesięczną subskrypcję.</string>
   <string name="EditNotificationProfileFragment__profile_name">Nazwa profilu</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Dalej</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Utwórz</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Zapisz</string>
   <!--Title of edit notification profile screen-->
@@ -3705,10 +3721,12 @@ danych, rozważ miesięczną subskrypcję.</string>
   <string name="NotificationProfileDetails__notify_for_all_mentions">Powiadamiaj o wszystkich wzmiankach</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Harmonogram</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Zobacz wszystko</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Dodaj harmonogram</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Włącz i edytuj harmonogram, aby zautomatyzować ten profil.</string>
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Ustaw harmonogram, aby automatycznie włączyć ten profil powiadomień.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Harmonogram</string>
   <!--Label for showing the start time for the schedule-->
@@ -3716,19 +3734,19 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Koniec</string>
   <!--First letter of Sunday-->
-  <string name="EditNotificationProfileSchedule__sunday_first_letter">N</string>
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">Ndz</string>
   <!--First letter of Monday-->
-  <string name="EditNotificationProfileSchedule__monday_first_letter">P</string>
+  <string name="EditNotificationProfileSchedule__monday_first_letter">Pon</string>
   <!--First letter of Tuesday-->
-  <string name="EditNotificationProfileSchedule__tuesday_first_letter">W</string>
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">Wt</string>
   <!--First letter of Wednesday-->
-  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Ś</string>
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Śr</string>
   <!--First letter of Thursday-->
-  <string name="EditNotificationProfileSchedule__thursday_first_letter">C</string>
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Czw</string>
   <!--First letter of Friday-->
-  <string name="EditNotificationProfileSchedule__friday_first_letter">Pt.</string>
+  <string name="EditNotificationProfileSchedule__friday_first_letter">Pt</string>
   <!--First letter of Saturday-->
-  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">Sob</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
   <string name="EditNotificationProfileSchedule__set_start_time">Ustaw czas rozpoczęcia</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
@@ -3752,7 +3770,7 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Twój profil będzie automatycznie włączać się i wyłączać zgodnie z harmonogramem.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <string name="NotificationProfileSelection__new_notification_profile">Nowy profil powiadomień</string>
+  <string name="NotificationProfileSelection__new_profile">Nowy profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">Na 1 godzinę</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->

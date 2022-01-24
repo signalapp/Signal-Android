@@ -22,7 +22,7 @@
         android:cacheColorHint="@color/signal_background_primary"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="2dp"
+        android:paddingBottom="@dimen/conversation_bottom_padding"
         android:scrollbars="vertical"
         android:overScrollMode="ifContentScrolls"
         app:layout_constraintTop_toTopOf="parent" />
@@ -87,5 +87,16 @@
         app:cstv_scroll_button_src="@drawable/ic_chevron_down_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
+        android:id="@+id/conversation_bottom_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

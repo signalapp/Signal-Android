@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Primary entry point for Notification Profiles. When user has no profiles, shows empty state, otherwise shows
@@ -75,7 +76,7 @@ class NotificationProfilesFragment : DSLSettingsFragment() {
       if (profiles.isEmpty()) {
         customPref(
           NoNotificationProfiles.Model(
-            onClick = { findNavController().navigate(R.id.action_notificationProfilesFragment_to_editNotificationProfileFragment) }
+            onClick = { findNavController().safeNavigate(R.id.action_notificationProfilesFragment_to_editNotificationProfileFragment) }
           )
         )
       } else {
@@ -85,12 +86,12 @@ class NotificationProfilesFragment : DSLSettingsFragment() {
           LargeIconClickPreference.Model(
             title = DSLSettingsText.from(R.string.NotificationProfilesFragment__new_profile),
             icon = DSLSettingsIcon.from(R.drawable.add_to_a_group, NO_TINT),
-            onClick = { findNavController().navigate(R.id.action_notificationProfilesFragment_to_editNotificationProfileFragment) }
+            onClick = { findNavController().safeNavigate(R.id.action_notificationProfilesFragment_to_editNotificationProfileFragment) }
           )
         )
 
         val activeProfile: NotificationProfile? = NotificationProfiles.getActiveProfile(profiles)
-        for (profile: NotificationProfile in profiles) {
+        profiles.sortedDescending().forEach { profile ->
           customPref(
             NotificationProfilePreference.Model(
               title = DSLSettingsText.from(profile.name),
@@ -98,7 +99,7 @@ class NotificationProfilesFragment : DSLSettingsFragment() {
               icon = if (profile.emoji.isNotEmpty()) EmojiUtil.convertToDrawable(requireContext(), profile.emoji)?.let { DSLSettingsIcon.from(it) } else DSLSettingsIcon.from(R.drawable.ic_moon_24, NO_TINT),
               color = profile.color,
               onClick = {
-                findNavController().navigate(NotificationProfilesFragmentDirections.actionNotificationProfilesFragmentToNotificationProfileDetailsFragment(profile.id))
+                findNavController().safeNavigate(NotificationProfilesFragmentDirections.actionNotificationProfilesFragmentToNotificationProfileDetailsFragment(profile.id))
               }
             )
           )

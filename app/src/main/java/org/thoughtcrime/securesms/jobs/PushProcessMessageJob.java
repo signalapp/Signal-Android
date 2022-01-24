@@ -142,6 +142,8 @@ public final class PushProcessMessageJob extends BaseJob {
         } catch (BadGroupIdException e) {
           Log.w(TAG, "Bad groupId! Using default queue. ID: " + content.getTimestamp());
         }
+      } else if (content.getSyncMessage().isPresent() && content.getSyncMessage().get().getSent().isPresent() && content.getSyncMessage().get().getSent().get().getDestination().isPresent()) {
+        queueName = getQueueName(RecipientId.fromHighTrust(content.getSyncMessage().get().getSent().get().getDestination().get()));
       } else {
         queueName = getQueueName(RecipientId.fromHighTrust(content.getSender()));
       }

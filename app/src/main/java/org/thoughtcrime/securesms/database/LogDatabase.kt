@@ -28,7 +28,8 @@ import java.util.concurrent.TimeUnit
 class LogDatabase private constructor(
   application: Application,
   databaseSecret: DatabaseSecret
-) : SQLiteOpenHelper(
+) :
+  SQLiteOpenHelper(
     application,
     DATABASE_NAME,
     databaseSecret.asString(),

@@ -506,7 +506,7 @@ public class PushServiceSocket {
     try {
       String responseText = makeServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
 
-      if (responseText == null) return new SendMessageResponse(false);
+      if (responseText == null) return new SendMessageResponse(false, unidentifiedAccess.isPresent());
       else                      return JsonUtil.fromJson(responseText, SendMessageResponse.class);
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(bundle.getDestination(), nfe);
@@ -517,7 +517,7 @@ public class PushServiceSocket {
     ListenableFuture<String> response = submitServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
 
     return FutureTransformers.map(response, body -> {
-      return body == null ? new SendMessageResponse(false)
+      return body == null ? new SendMessageResponse(false, unidentifiedAccess.isPresent())
           : JsonUtil.fromJson(body, SendMessageResponse.class);
     });
   }
@@ -591,6 +591,8 @@ public class PushServiceSocket {
         deviceId = "*";
 
       String path = String.format(PREKEY_DEVICE_PATH, destination.getIdentifier(), deviceId);
+
+      Log.d(TAG, "Fetching prekeys for " + destination.getIdentifier() + "." + deviceId + ", i.e. GET " + path);
 
       String             responseText = makeServiceRequest(path, "GET", null, NO_HEADERS, unidentifiedAccess);
       PreKeyResponse     response     = JsonUtil.fromJson(responseText, PreKeyResponse.class);

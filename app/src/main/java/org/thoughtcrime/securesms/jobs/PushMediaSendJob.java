@@ -63,8 +63,8 @@ public class PushMediaSendJob extends PushSendJob {
 
   private long messageId;
 
-  public PushMediaSendJob(long messageId, @NonNull Recipient recipient) {
-    this(constructParameters(recipient, true), messageId);
+  public PushMediaSendJob(long messageId, @NonNull Recipient recipient, boolean hasMedia) {
+    this(constructParameters(recipient, hasMedia), messageId);
   }
 
   private PushMediaSendJob(Job.Parameters parameters, long messageId) {
@@ -83,7 +83,7 @@ public class PushMediaSendJob extends PushSendJob {
       OutgoingMediaMessage message             = database.getOutgoingMessage(messageId);
       Set<String>          attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      jobManager.add(new PushMediaSendJob(messageId, recipient), attachmentUploadIds, recipient.getId().toQueueKey());
+      jobManager.add(new PushMediaSendJob(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);

@@ -7,8 +7,8 @@ import org.thoughtcrime.securesms.components.settings.models.AsyncSwitch
 import org.thoughtcrime.securesms.components.settings.models.Button
 import org.thoughtcrime.securesms.components.settings.models.Space
 import org.thoughtcrime.securesms.components.settings.models.Text
-import org.thoughtcrime.securesms.util.MappingModel
-import org.thoughtcrime.securesms.util.MappingModelList
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 
 fun configure(init: DSLConfiguration.() -> Unit): DSLConfiguration {
   val configuration = DSLConfiguration()

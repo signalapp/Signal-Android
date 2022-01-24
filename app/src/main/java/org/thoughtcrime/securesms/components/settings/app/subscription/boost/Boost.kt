@@ -19,10 +19,11 @@ import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.StringUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import java.lang.Integer.min
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
@@ -170,6 +171,7 @@ data class Boost(
         custom.setText("")
       }
 
+      custom.isSelected = model.isCustomAmountFocused
       custom.setOnFocusChangeListener { _, hasFocus ->
         model.onCustomAmountFocusChanged(hasFocus)
       }
@@ -309,9 +311,9 @@ data class Boost(
 
   companion object {
     fun register(adapter: MappingAdapter) {
-      adapter.registerFactory(SelectionModel::class.java, MappingAdapter.LayoutFactory({ SelectionViewHolder(it) }, R.layout.boost_preference))
-      adapter.registerFactory(HeadingModel::class.java, MappingAdapter.LayoutFactory({ HeadingViewHolder(it) }, R.layout.boost_preview_preference))
-      adapter.registerFactory(LoadingModel::class.java, MappingAdapter.LayoutFactory({ LoadingViewHolder(it) }, R.layout.boost_loading_preference))
+      adapter.registerFactory(SelectionModel::class.java, LayoutFactory({ SelectionViewHolder(it) }, R.layout.boost_preference))
+      adapter.registerFactory(HeadingModel::class.java, LayoutFactory({ HeadingViewHolder(it) }, R.layout.boost_preview_preference))
+      adapter.registerFactory(LoadingModel::class.java, LayoutFactory({ LoadingViewHolder(it) }, R.layout.boost_loading_preference))
     }
   }
 }

@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -97,16 +98,16 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
     skipRestoreButton.setOnClickListener((v) -> {
                        Log.i(TAG, "User skipped backup restore.");
-                       Navigation.findNavController(view)
-                                 .navigate(RestoreBackupFragmentDirections.actionSkip());
+                       SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                                   RestoreBackupFragmentDirections.actionSkip());
                      });
 
     viewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
 
     if (viewModel.isReregister()) {
       Log.i(TAG, "Skipping backup restore during re-register.");
-      Navigation.findNavController(view)
-                .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  RestoreBackupFragmentDirections.actionSkipNoReturn());
       return;
     }
 
@@ -117,8 +118,8 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
     if (SignalStore.settings().isBackupEnabled()) {
       Log.i(TAG, "Backups enabled, so a backup must have been previously restored.");
-      Navigation.findNavController(view)
-                .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  RestoreBackupFragmentDirections.actionSkipNoReturn());
       return;
     }
 
@@ -134,8 +135,8 @@ public final class RestoreBackupFragment extends LoggingFragment {
       initializeBackupDetection(view);
     } else {
       Log.i(TAG, "Skipping backup detection. We don't have the permission.");
-      Navigation.findNavController(view)
-                .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  RestoreBackupFragmentDirections.actionSkipNoReturn());
     }
   }
 
@@ -152,8 +153,8 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
       enableBackups(requireContext());
 
-      Navigation.findNavController(requireView())
-                .navigate(RestoreBackupFragmentDirections.actionBackupRestored());
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()),
+                                  RestoreBackupFragmentDirections.actionBackupRestored());
     }
   }
 
@@ -175,8 +176,8 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
     if (backup == null) {
       Log.i(TAG, "Skipping backup detection. No backup found, or permission revoked since.");
-      Navigation.findNavController(view)
-                .navigate(RestoreBackupFragmentDirections.actionNoBackupFound());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  RestoreBackupFragmentDirections.actionNoBackupFound());
     } else {
       restoreBackupSize.setText(getString(R.string.RegistrationActivity_backup_size_s, Util.getPrettyFileSize(backup.getSize())));
       restoreBackupTime.setText(getString(R.string.RegistrationActivity_backup_timestamp_s, DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), backup.getTimestamp())));
@@ -328,7 +329,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(@NonNull FullBackupBase.BackupEvent event) {
-    int count = event.getCount();
+    long count = event.getCount();
 
     if (count == 0) {
       restoreBackupProgress.setText(R.string.RegistrationActivity_checking);
@@ -348,8 +349,8 @@ public final class RestoreBackupFragment extends LoggingFragment {
     if (BackupUtil.isUserSelectionRequired(requireContext()) && !BackupUtil.canUserAccessBackupDirectory(requireContext())) {
       displayConfirmationDialog(requireContext());
     } else {
-      Navigation.findNavController(requireView())
-                .navigate(RestoreBackupFragmentDirections.actionBackupRestored());
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()),
+                                  RestoreBackupFragmentDirections.actionBackupRestored());
     }
   }
 
@@ -379,8 +380,8 @@ public final class RestoreBackupFragment extends LoggingFragment {
                      BackupPassphrase.set(context, null);
                      dialog.dismiss();
 
-                     Navigation.findNavController(requireView())
-                               .navigate(RestoreBackupFragmentDirections.actionBackupRestored());
+                     SafeNavigation.safeNavigate(Navigation.findNavController(requireView()),
+                                                 RestoreBackupFragmentDirections.actionBackupRestored());
                    })
                    .setCancelable(false)
                    .show();

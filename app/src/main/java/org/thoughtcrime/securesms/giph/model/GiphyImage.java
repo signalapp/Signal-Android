@@ -9,8 +9,9 @@ import androidx.annotation.Nullable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.util.ByteUnit;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 
-public class GiphyImage {
+public class GiphyImage implements MappingModel<GiphyImage> {
 
   private static final int MAX_SIZE = (int) ByteUnit.MEGABYTES.toBytes(2);
 
@@ -19,6 +20,16 @@ public class GiphyImage {
 
   @JsonProperty("is_sticker")
   private boolean isSticker;
+
+  @Override
+  public boolean areItemsTheSame(@NonNull GiphyImage newItem) {
+    return getMp4Url().equals(newItem.getMp4Url());
+  }
+
+  @Override
+  public boolean areContentsTheSame(@NonNull GiphyImage newItem) {
+    return areItemsTheSame(newItem);
+  }
 
   public boolean isSticker() {
     return isSticker;

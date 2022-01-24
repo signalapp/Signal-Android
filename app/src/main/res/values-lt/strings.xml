@@ -201,7 +201,7 @@
   <string name="ConversationActivity_transport_insecure_sms">Nesaugi SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesaugi MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Persijunkime į Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Bendraukime per Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Pasirinkite adresatą</string>
   <string name="ConversationActivity_unblock">Atblokuoti</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
@@ -312,6 +312,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Jūsų saugumo numeris su %s pasikeitė</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Jūsų saugumo numeris su %s pasikeitė, greičiausiai, dėl to, kad adresatas iš naujo įdiegė Signal arba pasikeitė įrenginį. Norėdami patvirtinti naują saugumo numerį, bakstelėkite „Patvirtinti“. Tai nėra privaloma.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s įjungtas</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Ištrinti pasirinktą pokalbį?</item>
     <item quantity="few">Ištrinti pasirinktus pokalbius?</item>
@@ -402,8 +403,11 @@
     <item quantity="other">Pažymėta: %d</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Pranešimų profilis</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Čia galite įjungti ar išjungti pranešimų profilį.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s įjungtas</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
   <!--ConversationListItemAction-->
@@ -449,6 +453,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Sužinoti daugiau</string>
   <string name="BackupsPreferenceFragment__in_progress">Vykdoma…</string>
   <string name="BackupsPreferenceFragment__d_so_far">Jau %1$d…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">Jau %1$s%%…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Norint daryti atsargines kopijas, Signal reikia išorinės saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Saugyklą“.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Naudojamas tinkintas: %s</string>
@@ -484,9 +490,6 @@
   <string name="DeviceListItem_today">Šiandien</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bevardis failas</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Pristatome grupės skambučius</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Atverkite naująją grupę norėdami pradėti nemokamą šifruotą grupės skambutį</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuoti trūkstamoms „Play“ paslaugoms</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Šis įrenginys nepalaiko „Play“ paslaugų. Bakstelėkite, norėdami išjungti sistemos baterijos optimizavimus, kurie neleidžia Signal gauti žinučių tol, kol įrenginys yra neaktyvus.</string>
@@ -630,10 +633,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Pasirinkti naują administratorių</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prieš išeidami, privalote pasirinkti šiai grupei bent vieną naują administratorių.</string>
   <string name="LeaveGroupDialog_choose_admin">Pasirinkite administratorių</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Išjungti</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Peržiūrėkite bet kurią nuorodą</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Nuo šiol savo siunčiamoms žinutėms galite gauti nuorodų peržiūras tiesiogiai iš bet kurios internetinės svetainės.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nuorodos peržiūra neprieinama</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Šios grupės nuoroda nėra aktyvi</string>
@@ -896,7 +895,7 @@
     <item quantity="many">Siųsti %d SMS pakvietimų?</item>
     <item quantity="other">Siųsti %d SMS pakvietimų?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Persijunkime į Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Bendraukime per Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis bendrinti.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sužinoti daugiau</string>
@@ -968,8 +967,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s išsiuntė naudotojui ar grupei %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Jūs išsiuntėte naudotojui %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Pristatome reakcijas</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Bakstelėkite ir palaikykite ant bet kurios žinutės, norėdami greitai pasidalinti tuo, ką jaučiate.</string>
   <string name="Megaphones_remind_me_later">Priminti vėliau</string>
   <string name="Megaphones_verify_your_signal_pin">Patvirtinkite savo Signal PIN kodą</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Retkarčiais, tam kad prisimintumėte savo PIN kodą, prašysime jūsų jį patvirtinti.</string>
@@ -1781,6 +1778,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Įrenginys daugiau nebėra registruotas</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Tai yra tikėtina, nes registravote savo telefono numerį su Signal kitame įrenginyje. Bakstelėkite, norėdami registruoti iš naujo.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Norėdami atsiliepti, suteikite Signal prieigą prie mikrofono.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Norėdami atsiliepti į skambutį nuo %s, suteikite Signal prieigą prie mikrofono.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Norint skambinti ar gauti skambučius, Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“ ir „Kamerą“.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atsiliepta susietame įrenginyje.</string>
@@ -1900,6 +1898,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Burbulai yra „Android“ ypatybė, kurią Signal pokalbiams galite išjungti.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Ne dabar</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2362,7 +2361,7 @@
   <string name="PaymentsAllActivityFragment__sent">Išsiųsta</string>
   <string name="PaymentsAllActivityFragment__received">Gauta</string>
   <string name="PaymentsHomeFragment__introducing_payments">Pristatome mokėjimus (Beta)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Naudoti Signal „MobileCoin“, naujos į privatumą sutelktos skaitmeninės valiutos, siuntimui ir gavimui. Aktyvuokite, norėdami pradėti.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Naudokite Signal naujos į privatumą sutelktos skaitmeninės valiutos „MobileCoin“ siuntimui ir gavimui. Aktyvuokite, norėdami pradėti.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktyvuoti mokėjimus</string>
   <string name="PaymentsHomeFragment__activating_payments">Aktyvuojami mokėjimai…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Atkurti mokėjimų paskyrą</string>
@@ -2500,18 +2499,46 @@
   <string name="conversation_callable_secure__menu_call">Signal skambutis</string>
   <string name="conversation_callable_secure__menu_video">Signal vaizdo skambutis</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Žinutės informacija</string>
-  <string name="conversation_context__menu_copy_text">Kopijuoti tekstą</string>
-  <string name="conversation_context__menu_delete_message">Ištrinti žinutę</string>
-  <string name="conversation_context__menu_forward_message">Persiųsti žinutę</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Informacija</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopijuoti</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Ištrinti</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Persiųsti</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Iš naujo siųsti žinutę</string>
-  <string name="conversation_context__menu_reply_to_message">Atsakyti į žinutę</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Atsakyti</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Pasirinkti kelis</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">Pažymėta %d</item>
+    <item quantity="few">Pažymėtos %d</item>
+    <item quantity="many">Pažymėta %d</item>
+    <item quantity="other">Pažymėta %d</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Įrašyti priedą</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Įrašyti</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Išnykstančios žinutės</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Informacija</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopijuoti</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Ištrinti</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Persiųsti</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Atsakyti</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Įrašyti</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pakviesti</string>
@@ -2709,16 +2736,6 @@
   <string name="KbsMegaphone__create_a_pin">Susikurkite PIN kodą</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal.</string>
   <string name="KbsMegaphone__create_pin">Susikurti PIN kodą</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Pasakykite Signal ką galvojate</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Norėdami padaryti Signal geriausia susirašinėjimo programėle pasaulyje, norėtume išgirsti jūsų atsiliepimus.</string>
-  <string name="ResearchMegaphone_learn_more">Sužinoti daugiau</string>
-  <string name="ResearchMegaphone_dismiss">Atmesti</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal tyrimas</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Mes tikime privatumu.</b></p><p>Signal neseka jūsų ir nerenka jokių jūsų duomenų. Norėdami visiems patobulinti Signal, remiamės naudotojų atsiliepimais, <b>ir norėtume išgirsti jūsų atsiliepimą.</b></p><p>Mes vykdome apklausą, kad suprastume kaip naudojatės Signal. Apklausoje mes nerenkame jokių duomenų, galinčių jus identifikuoti. Jei pageidaujate pateikti papildomą atsiliepimą, turėsite galimybę pateikti kontaktinę informaciją.</p><p>Jei turite kelias minutes ir norėtumėte pateikti atsiliepimą, mes su malonumu jus išklausysime.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Dalyvauti apklausoje</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Ne, ačiū</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Apklausą talpina Alchemer, saugioje srityje surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>
@@ -2768,7 +2785,7 @@
   <string name="BackupDialog_verify">Patvirtinti</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sėkmingai įvedėte savo atsarginės kopijos slaptafrazę</string>
   <string name="BackupDialog_passphrase_was_not_correct">Slaptafrazė buvo neteisinga</string>
-  <string name="LocalBackupJob_creating_backup">Daroma atsarginė kopija…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Daroma Signal atsarginė kopija…</string>
   <string name="LocalBackupJobApi29_backup_failed">Atsarginė kopija nepavyko</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jūsų atsarginių kopijų katalogas buvo ištrintas ar perkeltas.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jūsų atsarginės kopijos failas yra per didelis, kad jį galima būtų laikyti šiame tome.</string>
@@ -2890,6 +2907,8 @@
   <string name="DeviceTransfer__transferring_data">Duomenų perkėlimas</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Laikykite įrenginius vieną šalia kito. Neišjunkite įrenginių ir palikite Signal atvertą. Perkėlimai yra šifruoti ištisiniu būdu.</string>
   <string name="DeviceTransfer__d_messages_so_far">Jau %1$d žinučių…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">Jau %1$s%% žinučių…</string>
   <string name="DeviceTransfer__cancel">Atsisakyti</string>
   <string name="DeviceTransfer__try_again">Bandykite dar kartą</string>
   <string name="DeviceTransfer__stop_transfer_question">Stabdyti perkėlimą?</string>
@@ -2940,6 +2959,7 @@
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>
   <string name="RecipientBottomSheet_add_to_contacts">Įtraukti į adresatus</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Nepavyksta rasti programėlės, galinčios atverti adresatus.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Pridėti į grupę</string>
   <string name="RecipientBottomSheet_add_to_another_group">Pridėti į kitą grupę</string>
   <string name="RecipientBottomSheet_view_safety_number">Rodyti saugumo numerį</string>
@@ -3043,11 +3063,17 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepavyko ištrinti vietinių duomenų. Galite rankiniu būdu juos ištrinti sisteminiuose programėlės nustatymuose.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Paleisti programėlės nustatymus</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Išeinama iš grupių…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Ištrinama paskyra…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Tai, priklausomai nuo to, kelių grupių narys esate, gali užimti kelias minutes</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Ištrinami naudotojo duomenys ir atstatoma programėlė</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Paskyra neištrinta</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Užbaigiant ištrynimo procesą, atsirado problema. Patikrinkite tinklo ryšį ir bandykite dar kartą.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ieškoti šalių</string>
   <!--CreateGroupActivity-->
@@ -3259,11 +3285,16 @@
   <string name="NotificationsSettingsFragment__notify_when">Pranešti, kai…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Adresatas prisijungia prie Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Pranešimų profiliai</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profiliai</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Sukurkite profilį, kad gautumėte pranešimus tik iš jūsų pasirinktų žmonių ir grupių</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Pranešimų profiliai</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Sukurti profilį</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Užblokuotas</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d adresatų</string>
@@ -3626,68 +3657,107 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="NetworkFailure__retry">Bandyti dar kartą</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Suteikite profiliui pavadinimą</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profilio pavadinimas</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Kitas</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Sukurti</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Įrašyti</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Taisyti šį profilį</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profilis tokiu pavadinimu jau yra</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__work">Darbo</string>
+  <string name="EditNotificationProfileFragment__work">Darbas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Miegas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Vairavimas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Laisvas laikas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Susikaupimo laikas</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Privalo turėti pavadinimą</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Leidžiami pranešimai</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Pridėkite žmones ir grupes iš kurių, įjungus šį profilį, norite gauti pranešimus ir skambučius</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Pridėti žmones ar grupes</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Pridėti</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Sukurkite profilį, kad gautumėte pranešimus bei skambučius tik iš pageidaujamų pasirinktų žmonių ir grupių.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profiliai</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Naujas profilis</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">Įjungta</string>
+  <string name="NotificationProfilesFragment__on">Įjungtas</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Ištrinti profilį</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">„%1$s“ pašalinta(s).</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Atšaukti</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Ištrinti profilį visam laikui?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Ištrinti</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Taisyti pranešimų profilį</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Kasdien</string>
   <!--Profile status on if it is the active profile-->
-  <string name="NotificationProfileDetails__on">Įjungta</string>
+  <string name="NotificationProfileDetails__on">Įjungtas</string>
   <!--Profile status on if it is not the active profile-->
-  <string name="NotificationProfileDetails__off">Išjungta</string>
+  <string name="NotificationProfileDetails__off">Išjungtas</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$s naudotojui %2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">Nuo %1$s iki %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Išimtys</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Leisti visus skambučius</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Pranešti apie visus paminėjimus</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Tvarkaraštis</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Rodyti visus</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Pridėkite tvarkaraštį</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Nusistatykite tvarkaraštį, kad šis pranešimų profilis būtų įjungiamas automatiškai.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Tvarkaraštis</string>
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">Pradėti</string>
+  <string name="EditNotificationProfileSchedule__start">Pradžia</string>
   <!--Label for showing the end time for the schedule-->
-  <string name="EditNotificationProfileSchedule__end">Baigti</string>
+  <string name="EditNotificationProfileSchedule__end">Pabaiga</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">Sk</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">Pr</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">An</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Tr</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Kt</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">Pn</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">Št</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Nustatykite pradžios laiką</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Nustatykite pabaigos laiką</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Įrašyti</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3695,22 +3765,35 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Kitas</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Tvarkaraštyje privalo būti bent viena diena</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profilis sukurtas</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Atlikta</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Galite įjungti ar išjungti profilį rankiniu būdu, pokalbių sąraše naudodamiesi meniu.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Norėdami automatizuoti profilį, pridėkite jo nustatymuose tvarkaraštį.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Jūsų profilis automatiškai įsijungs ir išsijungs remiantis jūsų nustatytu tvarkaraščiu.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Naujas profilis</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">1 valandai</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Iki %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Rodyti nustatymus</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Įjungtas iki %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Pranešimų profiliai</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Gaukite pranešimus tik iš pasirinktų žmonių ir grupių.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Sukurti profilį</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ne dabar</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nepavyko atverti parinkiklio.</string>
   <!--EOF-->

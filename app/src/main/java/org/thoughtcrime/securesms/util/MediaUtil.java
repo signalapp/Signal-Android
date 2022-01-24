@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
+import androidx.exifinterface.media.ExifInterface;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
@@ -189,7 +190,7 @@ public class MediaUtil {
       try {
         if (MediaUtil.isJpegType(contentType)) {
           attachmentStream = PartAuthority.getAttachmentStream(context, uri);
-          dimens = BitmapUtil.getExifDimensions(attachmentStream);
+          dimens = BitmapUtil.getExifDimensions(new ExifInterface(attachmentStream));
           attachmentStream.close();
           attachmentStream = null;
         }
@@ -293,7 +294,7 @@ public class MediaUtil {
       return false;
     }
 
-    return contentType.startsWith("image/") ||
+    return (contentType.startsWith("image/") && !contentType.equals("image/svg+xml")) ||
            contentType.equals(MediaStore.Images.Media.CONTENT_TYPE);
   }
 

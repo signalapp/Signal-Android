@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -24,11 +23,12 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
 /**
  * Holds a view which will either play back an MP4 gif or show its still.
  */
-final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable {
+final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements GiphyMp4Playable {
 
   private static final Projection.Corners CORNERS = new Projection.Corners(ViewUtil.dpToPx(8));
 
@@ -52,7 +52,8 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyM
     container.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH);
   }
 
-  void onBind(@NonNull GiphyImage giphyImage) {
+  @Override
+  public void bind(@NonNull GiphyImage giphyImage) {
     aspectRatio = giphyImage.getGifAspectRatio();
     mediaItem   = MediaItem.fromUri(Uri.parse(giphyImage.getMp4PreviewUrl()));
 

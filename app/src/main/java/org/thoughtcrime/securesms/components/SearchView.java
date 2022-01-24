@@ -50,7 +50,7 @@ public class SearchView extends androidx.appcompat.widget.SearchView {
       result = new InputFilter[1];
     }
 
-    result[0] = new EmojiFilter(view);
+    result[0] = new EmojiFilter(view, false);
 
     return result;
   }

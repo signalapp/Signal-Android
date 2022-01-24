@@ -24,6 +24,7 @@ class NotificationProfilesTest {
   private val sunday830am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 8, 30, 0)
   private val sunday9am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 9, 0, 0)
   private val sunday930am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 9, 30, 0)
+  private val monday830am: LocalDateTime = sunday830am.plusDays(1)
   private val utc: ZoneId = ZoneId.of("UTC")
 
   private val first = NotificationProfile(
@@ -138,5 +139,27 @@ class NotificationProfilesTest {
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, end = 1000, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule))
     assertThat("active profile is null", NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), nullValue())
+  }
+
+  @Test
+  fun `when profile is manually enabled yesterday and is scheduled also for today then return profile`() {
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_PROFILE, first.id)
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, sunday9am.toMillis(ZoneOffset.UTC))
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis(ZoneOffset.UTC))
+
+    val schedule = NotificationProfileSchedule(id = 3L, enabled = true, start = 700, end = 900, daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.MONDAY))
+    val profiles = listOf(first.copy(schedule = schedule))
+    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, monday830am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
+  }
+
+  @Test
+  fun `when profile is manually disabled and schedule is on but with start after end and now is before end then return null`() {
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_PROFILE, 0)
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_ENABLED_UNTIL, 0)
+    signalStore.dataSet.putLong(NotificationProfileValues.KEY_MANUALLY_DISABLED_AT, sunday830am.toMillis(ZoneOffset.UTC))
+
+    val schedule = NotificationProfileSchedule(id = 3L, enabled = true, start = 2200, end = 1000, daysEnabled = DayOfWeek.values().toSet())
+    val profiles = listOf(first.copy(schedule = schedule))
+    assertThat("active profile is null", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), nullValue())
   }
 }

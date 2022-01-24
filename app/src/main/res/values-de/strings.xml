@@ -160,7 +160,7 @@
   <!--ContactShareEditActivity-->
   <string name="ContactShareEditActivity_type_home">Privat</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
-  <string name="ContactShareEditActivity_type_work">Geschäftlich</string>
+  <string name="ContactShareEditActivity_type_work">Arbeit</string>
   <string name="ContactShareEditActivity_type_missing">Sonstige</string>
   <string name="ContactShareEditActivity_invalid_contact">Ausgewählter Kontakt ungültig</string>
   <!--ConversationItem-->
@@ -363,7 +363,7 @@
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
   <string name="ConversationListFragment__notification_profile">Benachrichtigungsprofil</string>
   <!--Tooltip shown after you have created your first notification profile-->
-  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Aktiviere oder deaktviere hier dein Benachrichtigungsprofil.</string>
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Aktiviere oder deaktiviere hier dein Benachrichtigungsprofil.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s aktiv</string>
   <!--ConversationListItem-->
@@ -411,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Mehr erfahren</string>
   <string name="BackupsPreferenceFragment__in_progress">In Bearbeitung …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d bisher …</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% bisher …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal benötigt zum Erstellen von Datensicherungen die Berechtigung »Speicher«, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalisiert: %s</string>
@@ -446,9 +448,6 @@
   <string name="DeviceListItem_today">Heute</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Unbenannte Datei</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Neu: Gruppenanrufe</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öffne eine Gruppe neuen Typs, um einen kostenlosen und verschlüsselten Gruppenanruf zu starten</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für Betrieb ohne Google-Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungen zu deaktivieren, die Signal daran hindern, Nachrichten im Hintergrund zu empfangen.</string>
@@ -566,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Neuen Admin wählen</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Wähle vor Verlassen der Gruppe mindestens einen neuen Gruppen-Admin.</string>
   <string name="LeaveGroupDialog_choose_admin">Admin wählen</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Deaktivieren</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Vorschau für jeden Link</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Für zu versendende Nachrichten kannst du jetzt Link-Vorschauen direkt von jeder Webseite abrufen.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Keine Link-Vorschau verfügbar</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Dieser Gruppen-Link ist nicht aktiv</string>
@@ -866,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Von %1$s an %2$s gesendet</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Von dir an %1$s gesendet</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Neu: Reaktionen</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tippe länger auf eine Nachricht, um schnell deine Reaktion mitzuteilen.</string>
   <string name="Megaphones_remind_me_later">Später erinnern</string>
   <string name="Megaphones_verify_your_signal_pin">Überprüfung deiner Signal-PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Wir fragen dich gelegentlich nach deiner PIN, damit du sie nicht vergisst.</string>
@@ -1546,7 +1539,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dies wird diese Nachricht unwiderruflich löschen.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s an %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Medieninhalte nicht mehr verfügbar.</string>
-  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Keine App gefunden, die diesen Medieninhalt teilen kann.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Keine App zum Teilen dieser Medieninhalte gefunden.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
@@ -1620,6 +1613,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UnauthorizedReminder_device_no_longer_registered">Gerät nicht mehr registriert</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Wahrscheinlich hast du deine Rufnummer mit Signal auf einem anderen Gerät registriert. Zum erneuten Registrieren antippen.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Um den Anruf anzunehmen, erlaube Signal Zugriff auf dein Mikrofon.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Um den Anruf von %s anzunehmen, erlaube Signal Zugriff auf dein Mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal benötigt für Anrufe die Berechtigungen »Mikrofon« und »Kamera«, diese wurden jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon« und »Kamera«.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Auf einem gekoppelten Gerät angenommen.</string>
@@ -1735,7 +1729,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Zum Ende scrollen</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
-  <string name="BubbleOptOutTooltip__description">Blasen-Benachrichtigungen sind eine Android-Funktion, die du für Signal-Unterhaltungen deaktivieren kannst.</string>
+  <string name="BubbleOptOutTooltip__description">Bubbles sind eine Android-Funktion, die du für Signal-Unterhaltungen deaktivieren kannst.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Jetzt nicht</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2052,7 +2046,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__advanced">Erweiterte Einstellungen</string>
   <string name="preferences__donate_to_signal">An Signal spenden</string>
   <string name="preferences__subscription">Regelmäßige Spende</string>
-  <string name="preferences__become_a_signal_sustainer">Werde Signal-Unterstützer</string>
+  <string name="preferences__become_a_signal_sustainer">Signal-Unterstützer werden</string>
   <string name="preferences__signal_boost">Signal-Boost</string>
   <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
@@ -2320,18 +2314,44 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_callable_secure__menu_call">Signal-Anruf</string>
   <string name="conversation_callable_secure__menu_video">Signal-Videoanruf</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Nachrichtendetails</string>
-  <string name="conversation_context__menu_copy_text">Text kopieren</string>
-  <string name="conversation_context__menu_delete_message">Nachricht löschen</string>
-  <string name="conversation_context__menu_forward_message">Nachricht weiterleiten</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopieren</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Löschen</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Weiter­leiten</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Nachricht erneut senden</string>
-  <string name="conversation_context__menu_reply_to_message">Auf Nachricht antworten</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Antworten</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Mehrere auswählen</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d ausgewählt</item>
+    <item quantity="other">%d ausgewählt</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Anhang speichern</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Speichern</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Verschwindende Nachrichten</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopieren</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Löschen</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Weiter­leiten</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Antworten</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Speichern</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Einladen</string>
@@ -2410,7 +2430,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal hat automatisch %1$d %% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Nutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
-  <string name="InsightsDashboardFragment__spread_the_word">Verbreite die Nachricht</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Verbreite die Botschaft</string>
   <string name="InsightsDashboardFragment__not_enough_data">Zu wenige Daten</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Deine Statistik berücksichtigt alle ausgehenden Nachrichten der letzten %1$d Tage, die nicht verschwunden sind oder gelöscht wurden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
@@ -2515,16 +2535,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KbsMegaphone__create_a_pin">Erstelle eine PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt.</string>
   <string name="KbsMegaphone__create_pin">PIN erstellen</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Sag Signal, was du denkst</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Damit Signal die beste Messaging-App der Welt wird, möchten wir gerne deine Meinung hören.</string>
-  <string name="ResearchMegaphone_learn_more">Mehr erfahren</string>
-  <string name="ResearchMegaphone_dismiss">Verwerfen</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal-Forschung</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Wir glauben an Datenschutz.</b></p><p>Signal verfolgt dich nicht und sammelt auch nicht deine Daten. Um Signal für alle zu verbessern, stützen wir uns auf Rückmeldungen der Nutzer, <b>und wir wären sehr an deinen interessiert.</b></p><p>Zum besseren Verständnis darüber, wie du Signal nutzt, führen wir eine Umfrage durch. Unsere Umfrage sammelt keinerlei Daten, die Rückschlüsse auf deine Identität erlauben. Falls du weiteres Feedback geben möchtest, kannst du optional deine Kontaktinformationen hinterlassen.</p><p>Wenn du einige Minuten erübrigen kannst, würden wir sehr gerne von dir hören.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">An Umfrage teilnehmen</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Nein, danke</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Diese Umfrage wird bei »Alchemer« auf der sicheren Domain »surveys.signalusers.org« gehostet.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
   <string name="ConversationListFragment_loading">Wird geladen …</string>
@@ -2574,7 +2584,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupDialog_verify">Bestätigen</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du hast deine Sicherungspassphrase richtig eingegeben</string>
   <string name="BackupDialog_passphrase_was_not_correct">Sicherungspassphrase war falsch</string>
-  <string name="LocalBackupJob_creating_backup">Sicherung wird erstellt …</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signal-Sicherung wird erstellt …</string>
   <string name="LocalBackupJobApi29_backup_failed">Sicherung gescheitert</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dein Verzeichnis für die Datensicherung wurde gelöscht oder verschoben.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Deine Sicherungsdatei ist zu groß, um auf diesem Laufwerk gespeichert zu werden.</string>
@@ -2696,6 +2706,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DeviceTransfer__transferring_data">Datenübertragung</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Positioniere beide Geräte nahe beieinander. Schalte keines davon aus und lass Signal geöffnet. Übertragungen sind Ende-zu-Ende-verschlüsselt.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d Nachrichten bisher …</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% Nachrichten bisher …</string>
   <string name="DeviceTransfer__cancel">Abbrechen</string>
   <string name="DeviceTransfer__try_again">Erneut versuchen</string>
   <string name="DeviceTransfer__stop_transfer_question">Übertragung abbrechen?</string>
@@ -2846,13 +2858,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Die lokalen Daten konnten nicht gelöscht werden. In Androids App-Einstellungen kannst du sie manuell löschen.</string>
   <string name="DeleteAccountFragment__launch_app_settings">App-Einstellungen öffnen</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
-  <string name="DeleteAccountFragment__leaving_groups">Gruppen werden verlassen…</string>
+  <string name="DeleteAccountFragment__leaving_groups">Gruppen werden verlassen …</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Konto wird gelöscht …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Je nachdem, in wie vielen Gruppen du bist, kann es einige Minuten dauern</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Löschen von Benutzerdaten und Zurücksetzen der Ap</string>
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Löschen von Nutzerdaten und Zurücksetzen der App</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">Konto wurde nicht gelöscht</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
@@ -3070,10 +3082,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profile</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__set_up_notification_profiles">Benachrichtigungsprofile einrichten</string>
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Erstelle ein Profil, um Benachrichtigungen nur von ausgewählten Personen und Gruppen zu erhalten.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
-  <string name="NotificationProfilesFragment__notification_profiles">Benachrichtigungsprofile</string>
+  <string name="NotificationProfilesFragment__notification_profiles">Benachrichtigungs­profile</string>
   <!--Button text to create a notification profile-->
   <string name="NotificationProfilesFragment__create_profile">Profil erstellen</string>
   <!--PrivacySettingsFragment-->
@@ -3431,8 +3443,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="EditNotificationProfileFragment__profile_name">Profilname</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Weiter</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Erstellen</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Speichern</string>
   <!--Title of edit notification profile screen-->
@@ -3448,15 +3462,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__downtime">Pause</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__focus">Fokussiert</string>
+  <string name="EditNotificationProfileFragment__focus">Konzentration</string>
   <!--Error message shown when attempting to next/save without a profile name-->
-  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Profil muss einen Namen haben</string>
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Profil muss einen Namen besitzen</string>
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">Erlaubte Benachrichtigungen</string>
   <!--Description of what the user should be doing with this screen-->
   <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Füge Personen und Gruppen hinzu, von denen du Benachrichtigungen und Anrufe empfangen möchtest, wenn dieses Profil aktiviert ist</string>
   <!--Button text that launches the contact picker to select from-->
-  <string name="AddAllowedMembers__add_people_or_groups">Pesonen oder Gruppen hinzufügen</string>
+  <string name="AddAllowedMembers__add_people_or_groups">Personen oder Gruppen hinzufügen</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Hinzufügen</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
@@ -3486,7 +3500,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Profile status on if it is not the active profile-->
   <string name="NotificationProfileDetails__off">Aus</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$s bis %2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">%1$s bis %2$s Uhr</string>
   <!--Section header for exceptions to the notification profile-->
   <string name="NotificationProfileDetails__exceptions">Ausnahmen</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
@@ -3495,14 +3509,16 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationProfileDetails__notify_for_all_mentions">Bei jeder Erwähnung benachrichtigen</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Zeitplan</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Alle anzeigen</string>
   <!--Title for add schedule to profile in create flow-->
-  <string name="EditNotificationProfileSchedule__add_a_schedule">Einen Zeitplan hinzufügen</string>
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Füge einen Zeitplan hinzu</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Aktiviere und bearbeite deinen Zeitplan, um dieses Profil zu automatisieren.</string>
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Erstelle einen Zeitplan, um dieses Benachrichtigungsprofil automatisch zu aktivieren.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Zeitplan</string>
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">Beginn</string>
+  <string name="EditNotificationProfileSchedule__start">Start</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Ende</string>
   <!--First letter of Sunday-->
@@ -3536,27 +3552,27 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Fertig</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
-  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kannst dein Profil manuell über das Menü in der Unterhaltungsliste ein- und ausschalten.</string>
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kannst dein Profil über das Menü in der Unterhaltungsliste manuell ein- und ausschalten.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Füge einen Zeitplan in den Einstellungen hinzu, um dein Profil zu automatisieren.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
-  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Dein Profil wird sich gemäß deines Zeitplanes automatisch ein- und ausschalten.</string>
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Dein Profil wird sich gemäß deines Zeitplans automatisch ein- und ausschalten.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <string name="NotificationProfileSelection__new_notification_profile">Neues Benachrichtigungsprofil</string>
+  <string name="NotificationProfileSelection__new_profile">Neues Profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
-  <string name="NotificationProfileSelection__for_1_hour">Für eine Stunde</string>
+  <string name="NotificationProfileSelection__for_1_hour">Für 1 Stunde</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
-  <string name="NotificationProfileSelection__until_s">Bis %1$s</string>
+  <string name="NotificationProfileSelection__until_s">Bis %1$s Uhr</string>
   <!--Option to view profile details-->
   <string name="NotificationProfileSelection__view_settings">Einstellungen anzeigen</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
-  <string name="NotificationProfileSelection__on_until_s">Eingeschaltet bis %1$s</string>
+  <string name="NotificationProfileSelection__on_until_s">Eingeschaltet bis %1$s Uhr</string>
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">Benachrichtigungsprofile</string>
   <!--Description for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Erhalte Benachrichtigungen nur von ausgewählten Personen und Gruppen.</string>
   <!--Call to action button to create a profile from megaphone-->
-  <string name="NotificationProfilesMegaphone__create_a_profile">Ein Profil erstellen</string>
+  <string name="NotificationProfilesMegaphone__create_a_profile">Profil erstellen</string>
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">Jetzt nicht</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->

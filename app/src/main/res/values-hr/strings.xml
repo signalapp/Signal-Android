@@ -378,6 +378,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Saznajte više</string>
   <string name="BackupsPreferenceFragment__in_progress">U tijeku…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d za sada…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal zahtijeva dopuštenje za vanjski prostor za pohranu kako bi stvorio sigurnosne kopije, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Prostor za pohranu\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
@@ -413,9 +414,6 @@
   <string name="DeviceListItem_today">Danas</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Bezimena datoteka</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Predstavljamo grupne pozive</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Otvorite Novu grupu da biste započeli besplatni šifrirani grupni poziv</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za nedostatak Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite kako biste onemogućili sistemsku optimizaciju baterije koja spriječava Signal da dohvaća poruke dok je uređaj neaktivan.</string>
@@ -546,10 +544,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Odaberi novog administratora</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prije nego što napustite, morate odabrati novog administratora za ovu grupu.</string>
   <string name="LeaveGroupDialog_choose_admin">Odaberite administratora</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Onemogući</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Pregledajte bilo koju poveznicu</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Sada možete preuzeti preglede poveznica izravno s bilo koje web stranice za poruke koje šaljete.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nema dostupnog pregleda poveznice</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Poveznica grupe nije aktivna</string>
@@ -846,8 +840,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Poslao/la %1$s za %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Poslali ste vi za %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Predstavljamo reakcije</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Dodirnite i držite bilo koju poruku da brzo podijelite kako se osjećate.</string>
   <string name="Megaphones_remind_me_later">Podsjeti me kasnije</string>
   <string name="Megaphones_verify_your_signal_pin">Potvrdite svoj Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Povremeno ćemo zatražiti da potvrdite svoj PIN kako biste ga zapamtili.</string>
@@ -2281,18 +2273,40 @@ broj telefona</string>
   <string name="conversation_callable_secure__menu_call">Signal poziv</string>
   <string name="conversation_callable_secure__menu_video">Signal video poziv</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Detalji o poruci</string>
-  <string name="conversation_context__menu_copy_text">Kopiraj tekst</string>
-  <string name="conversation_context__menu_delete_message">Izbriši poruku</string>
-  <string name="conversation_context__menu_forward_message">Proslijedi poruku</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Detalji</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopiraj</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Izbriši</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Proslijedi</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Ponovno pošalji poruku</string>
-  <string name="conversation_context__menu_reply_to_message">Odgovori na poruku</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Odgovori</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Odaberi više</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Spremi privitak</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Spremi</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Poruke koje nestaju</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Detalji</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopiraj</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Izbriši</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Proslijedi</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Odgovori</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Spremi</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozovi</string>
@@ -2482,16 +2496,6 @@ broj telefona</string>
   <string name="KbsMegaphone__create_a_pin">Stvorite PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN omogućava da vaši podaci koji su pohranjeni na Signalu budu šifrirani</string>
   <string name="KbsMegaphone__create_pin">Stvori PIN</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Recite što mislite o Signalu</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Kako bi Signal bio najbolja aplikacija za razmjenu poruka na planetu, voljeli bismo čuti vaše povratne informacije.</string>
-  <string name="ResearchMegaphone_learn_more">Saznajte više</string>
-  <string name="ResearchMegaphone_dismiss">Odbaci</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal istraživanja</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vjerujemo u privatnost.</b></p><p>Signal vas ne prati niti prikuplja vaše podatke. Da bismo poboljšali Signal za sve, oslanjamo se na povratne informacije korisnika i <b>voljeli bismo vaše.</b></p><p>Provodimo anketu kako bismo shvatili kako koristite Signal. Naša anketa ne prikuplja podatke koji će vas identificirati. Ako ste zainteresirani za dijeljenje dodatnih povratnih informacija, imat ćete mogućnost pružanja podataka za kontakt.</p><p>Ako imate nekoliko minuta i želite poslati povratne informacije, voljeli bismo čuti vaše mišljenje.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Ispunite anketu</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Ne, hvala</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Anketu održava Alchemer na sigurnoj domeni o surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>
@@ -2541,7 +2545,6 @@ broj telefona</string>
   <string name="BackupDialog_verify">Potvrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli lozinku sigurnosne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lozinka nije točna</string>
-  <string name="LocalBackupJob_creating_backup">Stvaranje sigurnosne kopije…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sigurnosno kopiranje nije uspjelo</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Vaša mapa sigurnosnih kopija je izbrisana ili premještena.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Datoteka vaše sigurnosne kopije prevelika je za pohranu na ovom volumenu.</string>
@@ -2662,6 +2665,7 @@ broj telefona</string>
   <string name="DeviceTransfer__transferring_data">Prijenos podataka</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Držite oba uređaja blizu jedan drugog. Ne isključujte nijedan uređaj i držite Signal otvorenim. Prijenosi su end-to-end šifrirani.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d poruka do sada…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Poništi</string>
   <string name="DeviceTransfer__try_again">Pokušajte ponovo</string>
   <string name="DeviceTransfer__stop_transfer_question">Zaustavi prijenos?</string>
@@ -3254,8 +3258,10 @@ broj telefona</string>
   <string name="EditNotificationProfileFragment__profile_name">Ime profila</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Sljedeće</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Stvori</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Spremi</string>
   <!--Title of edit notification profile screen-->
@@ -3296,6 +3302,8 @@ broj telefona</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Prikaži sve</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
@@ -3335,6 +3343,7 @@ broj telefona</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ne sada</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

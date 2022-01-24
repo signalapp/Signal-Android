@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public class PaymentsActivity extends PassphraseRequiredActivity {
 
@@ -31,7 +32,7 @@ public class PaymentsActivity extends PassphraseRequiredActivity {
 
     int startingAction = getIntent().getIntExtra(EXTRA_PAYMENTS_STARTING_ACTION, R.id.paymentsHome);
     if (startingAction != R.id.paymentsHome) {
-      controller.navigate(startingAction, getIntent().getBundleExtra(EXTRA_STARTING_ARGUMENTS));
+      SafeNavigation.safeNavigate(controller, startingAction, getIntent().getBundleExtra(EXTRA_STARTING_ARGUMENTS));
     }
   }
 

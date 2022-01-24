@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.Mnemonic;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 public class PaymentsRecoveryEntryFragment extends Fragment {
@@ -54,8 +55,8 @@ public class PaymentsRecoveryEntryFragment extends Fragment {
 
     viewModel.getEvents().observe(getViewLifecycleOwner(), event -> {
       if (event == PaymentsRecoveryEntryViewModel.Events.GO_TO_CONFIRM) {
-        Navigation.findNavController(view).navigate(PaymentsRecoveryEntryFragmentDirections.actionPaymentsRecoveryEntryToPaymentsRecoveryPhrase(false)
-                                                                                           .setWords(viewModel.getWords()));
+        SafeNavigation.safeNavigate(Navigation.findNavController(view), PaymentsRecoveryEntryFragmentDirections.actionPaymentsRecoveryEntryToPaymentsRecoveryPhrase(false)
+                                                                                                               .setWords(viewModel.getWords()));
       }
     });
 

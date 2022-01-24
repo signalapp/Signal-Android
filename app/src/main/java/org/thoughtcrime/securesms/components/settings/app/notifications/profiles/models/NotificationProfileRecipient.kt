@@ -5,8 +5,9 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 /**
  * DSL custom preference for showing recipients in a profile. Delegates most work to [RecipientPreference].
@@ -14,7 +15,7 @@ import org.thoughtcrime.securesms.util.MappingViewHolder
 object NotificationProfileRecipient {
 
   fun register(adapter: MappingAdapter) {
-    adapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it) }, R.layout.notification_profile_recipient_list_item))
+    adapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.notification_profile_recipient_list_item))
   }
 
   class Model(val recipientModel: RecipientPreference.Model, val onRemoveClick: (RecipientId) -> Unit) : PreferenceModel<Model>() {

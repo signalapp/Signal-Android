@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
@@ -87,6 +88,10 @@ public final class FeatureFlags {
   private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
+  private static final String VOICE_NOTE_RECORDING_V2           = "android.voiceNoteRecordingV2.2";
+  private static final String GROUPS_V2_UPDATE_PAGING           = "android.groupsv2.updatePaging";
+  private static final String HARDWARE_AEC_MODELS               = "android.calling.hardwareAecModels";
+  private static final String FORCE_DEFAULT_AEC                 = "android.calling.forceDefaultAec";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -127,7 +132,11 @@ public final class FeatureFlags {
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES,
       DONOR_BADGES_DISPLAY,
-      CHANGE_NUMBER_ENABLED
+      CHANGE_NUMBER_ENABLED,
+      VOICE_NOTE_RECORDING_V2,
+      GROUPS_V2_UPDATE_PAGING,
+      HARDWARE_AEC_MODELS,
+      FORCE_DEFAULT_AEC
   );
 
   @VisibleForTesting
@@ -181,7 +190,10 @@ public final class FeatureFlags {
       CDSH,
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES_DISPLAY,
-      DONATE_MEGAPHONE
+      DONATE_MEGAPHONE,
+      VOICE_NOTE_RECORDING_V2,
+      GROUPS_V2_UPDATE_PAGING,
+      FORCE_DEFAULT_AEC
   );
 
   /**
@@ -425,6 +437,26 @@ public final class FeatureFlags {
 
   public static boolean cdsh() {
     return Environment.IS_STAGING && getBoolean(CDSH, false);
+  }
+
+  /** Whether or not to use the new voice note recorder backed by MediaRecorder. */
+  public static boolean voiceNoteRecordingV2() {
+    return getBoolean(VOICE_NOTE_RECORDING_V2, false);
+  }
+
+  /** Whether or not to use the proper paging when updating group state. */
+  public static boolean groupsV2UpdatePaging() {
+    return getBoolean(GROUPS_V2_UPDATE_PAGING, false);
+  }
+
+  /** A comma-separated list of models that should use hardware AEC for calling. */
+  public static @NonNull String hardwareAecModels() {
+    return getString(HARDWARE_AEC_MODELS, "");
+  }
+
+  /** Whether or not all devices should be forced into using default AEC for calling. */
+  public static boolean forceDefaultAec() {
+    return getBoolean(FORCE_DEFAULT_AEC, false);
   }
 
   /** Only for rendering debug info. */

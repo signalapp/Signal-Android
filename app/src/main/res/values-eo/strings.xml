@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Via sekuriga numero kun %s ŝanĝiĝis</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Via sekuriga numero kun %s ŝanĝiĝis, probable ĉar ŝi aŭ li reinstalis Signal-on aŭ ŝanĝis sian aparaton. Tuŝetu „Kontroli“ por konfirmi la novan sekurigan numeron. Tio estas malnepra.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s elektita</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Ĉu forviŝi elektitan interparolon?</item>
     <item quantity="other">Ĉu forviŝi la elektitajn interparolojn?</item>
@@ -360,8 +361,11 @@
     <item quantity="other">%d elektitaj</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Sciigo-profilo</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Ŝalto aŭ malŝaltu vian sciigo-profilon ĉi tie.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s elektita</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
@@ -407,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Scii pli</string>
   <string name="BackupsPreferenceFragment__in_progress">Savkopiado…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ĝis nun…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s %% ĝis nun…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal bezonas la permeson aliri al ekstera konservejo por krei sekurkopiojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uzante propran: %s</string>
@@ -442,9 +448,6 @@
   <string name="DeviceListItem_today">Hodiaŭ</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Jen la grupalvokoj</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Kreu novtipan grupon por komenci senpagan ĉifritan grupalvokon</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumigi por mankantaj „Play Services“</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tiu aparato ne subtenas „Play Services“. Tuŝetu por malebligi baterian optimumigon, kiu alie malhelpus al Signal ricevi mesaĝojn dum neaktiva.</string>
@@ -562,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Elekti novan administranton</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antaŭ ol foriri, vi devas elekti almenaŭ unu novan administraton por tiu ĉi grupo.</string>
   <string name="LeaveGroupDialog_choose_admin">Elektu administranton</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Malŝalti</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Antaŭrigardi ajnan ligilon</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Vi nun povas rekte antaŭrigardi ligilojn de iu retejo por mesaĝoj, kiujn vi sendas.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Neniu antaŭrigardo de ligilo disponeblas</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">La grupligilo ne estas aktiva</string>
@@ -862,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendita de %1$s al %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sendita de vi al %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Jen la reagoj</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tuŝadu iun mesaĝon por rapide esprimi viajn sentojn.</string>
   <string name="Megaphones_remind_me_later">Memorigi min poste</string>
   <string name="Megaphones_verify_your_signal_pin">Kontrolu vian Signal-PIN-on</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Tempaltempe ni petos vin kontroli vian PIN, por ke vi rememoru ĝin.</string>
@@ -1627,6 +1624,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UnauthorizedReminder_device_no_longer_registered">Aparato ne plu registrita</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Vi verŝajne registris vian telefonnumeron al Signal ĉe alia aparato. Tuŝetu por re-registri ĝin.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Por respondi al la alvoko, donu al Signal la aliron al via mikrofono.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Por respondi al la alvoko el %s, donu al Signal aliron al via mikrofono.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal bezonas permesojn uzi la mikrofonon kaj fotilon por fari aŭ ricevi alvokojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Mikrofono“ kaj „Fotilo“.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Respondita per ligita aparato.</string>
@@ -1742,6 +1740,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Vezikoj estas ebleco de Android, kiun vi povas malŝalti por Signal-interparoloj.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Ne nun</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2326,18 +2325,44 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_callable_secure__menu_call">Signal-alvoko</string>
   <string name="conversation_callable_secure__menu_video">Signal-vidalvoko</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Detaloj de la mesaĝo</string>
-  <string name="conversation_context__menu_copy_text">Kopii la tekston</string>
-  <string name="conversation_context__menu_delete_message">Forviŝi mesaĝon</string>
-  <string name="conversation_context__menu_forward_message">Plusendi mesaĝon</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Informo</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopii</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Forigi</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Plusendi</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Resendi mesaĝon</string>
-  <string name="conversation_context__menu_reply_to_message">Respondi mesaĝon</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Respondi</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Elekti plurajn</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d elektita</item>
+    <item quantity="other">%d elektitaj</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Konservi kunsendaĵon</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Konservi</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Memviŝontaj mesaĝoj</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Informo</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopii</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Forigi</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Plusendi</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Respondi</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Konservi</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Inviti</string>
@@ -2521,16 +2546,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KbsMegaphone__create_a_pin">Krei  PIN-on</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">La informoj konservitaj ĉe Signal estas  ĉifritaj danke al PIN.</string>
   <string name="KbsMegaphone__create_pin">Krei  PIN-on</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Diru al Signal tion, kion vi opinias</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Por ke Signal estu la plej bona mesaĝ-aplikaĵo en la planedo, ni ŝatus havi vian opinion.</string>
-  <string name="ResearchMegaphone_learn_more">Scii pli</string>
-  <string name="ResearchMegaphone_dismiss">Ignori</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal-esplorado</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Ni kredas je privateco.</b></p><p>Signal ne spuras vin aŭ ne kolektas viajn datumojn. Por plibonigi Signal-on por ĉiuj, ni uzas la komentojn de la uzantoj, <b>kaj ni ŝatus havi viajn.</b></p><p>Ni faras enketon por kompreni, kiel vi uzas Signal-on. Nia enketo ne kolektas iujn datumojn, kiuj povos identigi vin. Se vi interesiĝas pri dono de pliaj komentoj, vi povos enmeti kontaktinformon.</p><p>Se vi havas kelkajn minutojn kaj komentojn farotajn, ni ŝatus aŭskulti vin.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Partorpeni la enketon</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Ne, dankon</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">La enketon gastigas „Alchemer“ ĉe la sekura domajno surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>
@@ -2580,7 +2595,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="BackupDialog_verify">Kontroli</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Vi sukcese entajpis vian savkopian pasfrazon</string>
   <string name="BackupDialog_passphrase_was_not_correct">La pasfrazo malĝustas</string>
-  <string name="LocalBackupJob_creating_backup">Kreo de savkopio…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Kreo de Signal-savkopio…</string>
   <string name="LocalBackupJobApi29_backup_failed">Savkopiado malsukcesis</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Via savkopia dosierujo foriĝis aŭ moviĝis.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Via savkopi-dosiero tro grandas por konserviĝi en tiun portilon.</string>
@@ -2702,6 +2717,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeviceTransfer__transferring_data">Transigo de datumoj</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Tenu ambaŭ aparatojn apude. Ne malŝaltu la aparatojn, kaj lasu Signal-on malfermita. Transigo estas tutvoje ĉifrita.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mesaĝoj ĝis nun…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s %% da mesaĝoj ĝis nun…</string>
   <string name="DeviceTransfer__cancel">Nuligi</string>
   <string name="DeviceTransfer__try_again">Provi denove</string>
   <string name="DeviceTransfer__stop_transfer_question">Ĉu haltigi la transigon?</string>
@@ -2752,6 +2769,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_unblock">Malbloki</string>
   <string name="RecipientBottomSheet_add_to_contacts">Aldoni al kontaktoj</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Ne eblas trovi aplikaĵon por malfermi kontaktojn.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Aldoni al grupo</string>
   <string name="RecipientBottomSheet_add_to_another_group">Aldoni al plia grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Montri sekurigan numeron</string>
@@ -2851,11 +2869,17 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Malsukcesis forviŝado de lokaj datumoj. Vi povas mane forviŝi lokajn datumojn en la sistemaj agordoj pri la aplikaĵo.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Malfermi la aplikaĵajn agordojn</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Forlasado de grupoj…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Forigi de la konto…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Laŭ la nombro de viaj grupoj, tio povas daŭri kelkajn minutojn</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Forigado de la uzant-datumoj kaj restarigo de la aplikaĵo</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">La konto ne foriĝis</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Problemo okazis dum la forigado. Kontrolu vian retaliron, kaj reprovu.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Serĉi landojn</string>
   <!--CreateGroupActivity-->
@@ -3065,11 +3089,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NotificationsSettingsFragment__notify_when">Sciigi al mi kiam…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakto aliĝas al Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Sciigo-profiloj</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profiloj</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Krei profilon por ricevi sciigojn nur de homoj kaj grupoj elektitaj de vi.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Sciigo-profiloj</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Krei profilon</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokita</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontaktoj</string>
@@ -3420,42 +3449,63 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eraro de retkonekto. Kontrolu vian konekton kaj reprovu.</string>
   <string name="NetworkFailure__retry">Reprovi</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Nomi vian profilon</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profila nomo</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Sekva</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Krei</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Konservi</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Modifi tiun profilon</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Samnoma profilo jam ekzistas</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Laboro</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Dormo</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Veturigo</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Paŭzo</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Sinkoncentro</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">La nomo nepras</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Permesitaj sciigoj</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Aldoni homojn kaj grupojn de kiuj vi volas ricevi sciigojn kaj alvokojn, kiam vi elektas tiun profilon</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Aldoni homojn aŭ grupojn</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Aldoni</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Krei profilon por ricevi sciigojn kaj alvokojn nur de homoj kaj grupoj elektitaj de vi.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profiloj</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Nova profilo</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Ŝaltita</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Forigi profilon</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">„%1$s“ forigita.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Malfari</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Ĉu porĉiame forigi la profilon?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Forigi</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Modifi sciigo-profilon</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Ĉiutage</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Ŝaltita</string>
   <!--Profile status on if it is not the active profile-->
@@ -3463,24 +3513,43 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s al %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Esceptoj</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Permesi ĉiujn alvokojn</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Sciigi pri ĉiuj mencioj</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Plani</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Vidu ĉiujn</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Aldoni tempoplanon</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Starigu tempoplanon por ebligi tiun sciigo-profilon aŭtomate.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Plani</string>
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">Komenci</string>
+  <string name="EditNotificationProfileSchedule__start">Ek</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Fino</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">D</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">L</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">M</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">M</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Ĵ</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">V</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Elekti komencan horon</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Elekti finan horon</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Konservi</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3488,22 +3557,35 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Sekva</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Tempoplano entenu almenaŭ unu tagon</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profilo kreita</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Farita</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Vi povas ŝalti aŭ malŝalti vian profilon mane per la menuo de la interparolo-listo.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Aldonu tempoplanon en la agordoj por aŭtomatigi vian profilon.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Via profilo ŝaltos kaj malŝaltos aŭtomate laŭ via tempoplano.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Nova profilo</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Dum 1 horo</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Ĝis %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Vidi agordojn</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Ŝaltita ĝis %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Sciigo-profiloj</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Ricevu sciigojn nur de homoj kaj grupoj elektitaj de vi.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Krei profilon</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ne nun</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Malsukceso malfermi la elektilon.</string>
   <!--EOF-->

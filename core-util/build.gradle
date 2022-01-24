@@ -1,11 +1,9 @@
 plugins {
     id 'com.android.library'
     id 'com.google.protobuf'
-    id 'witness'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
-apply from: 'witness-verifications.gradle'
 
 android {
     buildToolsVersion BUILD_TOOL_VERSION
@@ -27,13 +25,9 @@ android {
     }
 }
 
-dependencyVerification {
-    configuration = '(debug|release)RuntimeClasspath'
-}
-
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.10.0'
+        artifact = 'com.google.protobuf:protoc:3.18.0'
     }
     generateProtoTasks {
         all().each { task ->

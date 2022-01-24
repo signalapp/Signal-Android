@@ -6,14 +6,15 @@ import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.MappingAdapter
-import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 object BadgePreview {
 
   fun register(mappingAdapter: MappingAdapter) {
-    mappingAdapter.registerFactory(Model::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it) }, R.layout.featured_badge_preview_preference))
-    mappingAdapter.registerFactory(SubscriptionModel::class.java, MappingAdapter.LayoutFactory({ ViewHolder(it) }, R.layout.subscription_flow_badge_preview_preference))
+    mappingAdapter.registerFactory(Model::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.featured_badge_preview_preference))
+    mappingAdapter.registerFactory(SubscriptionModel::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.subscription_flow_badge_preview_preference))
   }
 
   abstract class BadgeModel<T : BadgeModel<T>> : PreferenceModel<T>() {

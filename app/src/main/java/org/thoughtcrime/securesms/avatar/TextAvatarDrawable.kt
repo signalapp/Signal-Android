@@ -34,14 +34,13 @@ class TextAvatarDrawable(
     val textSize = Avatars.getTextSizeForLength(context, avatar.text, size * 0.8f, size * 0.45f)
     val width = bounds.width()
     val candidates = EmojiProvider.getCandidates(avatar.text)
-    var hasEmoji = false
 
     textPaint.textSize = textSize
 
     val newText = if (candidates == null || candidates.size() == 0) {
       SpannableString(avatar.text)
     } else {
-      EmojiProvider.emojify(context, candidates, avatar.text, textPaint, synchronous)
+      EmojiProvider.emojify(context, candidates, avatar.text, textPaint, synchronous, true)
     }
 
     if (newText == null) return

@@ -41,12 +41,12 @@ public class DefaultResponseMapper<Response> implements ResponseMapper<Response>
   }
 
   @Override
-  public ServiceResponse<Response> map(int status, String body, Function<String, String> getHeader) {
+  public ServiceResponse<Response> map(int status, String body, Function<String, String> getHeader, boolean unidentified) {
     Throwable applicationError = errorMapper.parseError(status, body, getHeader);
     if (applicationError == null) {
       try {
         if (customResponseMapper != null) {
-          return Objects.requireNonNull(customResponseMapper.map(status, body, getHeader));
+          return Objects.requireNonNull(customResponseMapper.map(status, body, getHeader, unidentified));
         }
         return ServiceResponse.forResult(JsonUtil.fromJsonResponse(body, clazz), status, body);
       } catch (MalformedResponseException e) {
@@ -81,6 +81,6 @@ public class DefaultResponseMapper<Response> implements ResponseMapper<Response>
   }
 
   public interface CustomResponseMapper<T> {
-    ServiceResponse<T> map(int status, String body, Function<String, String> getHeader) throws MalformedResponseException;
+    ServiceResponse<T> map(int status, String body, Function<String, String> getHeader, boolean unidentified) throws MalformedResponseException;
   }
 }

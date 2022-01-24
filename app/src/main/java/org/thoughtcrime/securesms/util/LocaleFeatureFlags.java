@@ -31,13 +31,6 @@ public final class LocaleFeatureFlags {
   private static final int    NOT_FOUND        = -1;
 
   /**
-   * In research megaphone group for given country code
-   */
-  public static boolean isInResearchMegaphone() {
-    return false;
-  }
-
-  /**
    * In donate megaphone group for given country code
    */
   public static boolean isInDonateMegaphone() {

@@ -359,6 +359,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Saber máis</string>
   <string name="BackupsPreferenceFragment__in_progress">En progreso…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d por agora…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal require permiso de almacenamento para poder crear copias de seguranza, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uso personalizado: %s</string>
@@ -394,9 +395,6 @@
   <string name="DeviceListItem_today">Hoxe</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Ficheiro sen nome</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Presentando as Chamadas en Grupo</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Abre un Novo Grupo para iniciar unha chamada en grupo cifrada</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizar cando falte Servizos Play.</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo non é compatible con Servizos Play. Toca para desactivar as optimizacións da batería do sistema que evitan que Signal recupere mensaxes mentres está inactivo.</string>
@@ -513,10 +511,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Escolle novo admin</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de saír, debes escoller polo menos un novo administrador para o grupo.</string>
   <string name="LeaveGroupDialog_choose_admin">Escolle admin</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Desactivar</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Vista previa de ligazóns</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Podes obter directamente vistas previas das ligazóns a sitios web para as mensaxes que envías.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Vista previa non dispoñible</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">A ligazón deste grupo non está activa</string>
@@ -795,8 +789,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Enviado por%1$s a %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Enviado por ti a %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Introdución ás Reaccións</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Toque longo sobre calquera mensaxe para compartir o que che inspira.</string>
   <string name="Megaphones_remind_me_later">Lembrarmo máis tarde</string>
   <string name="Megaphones_verify_your_signal_pin">Verifica o teu PIN Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocasionalmente pedirémosche que verifiques o PIN para axudarche a memorizalo.</string>
@@ -2084,18 +2076,40 @@
   <string name="conversation_callable_secure__menu_call">Chamada de Signal</string>
   <string name="conversation_callable_secure__menu_video">Videochamada Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Detalles da mensaxe</string>
-  <string name="conversation_context__menu_copy_text">Copiar texto</string>
-  <string name="conversation_context__menu_delete_message">Borrar mensaxe</string>
-  <string name="conversation_context__menu_forward_message">Reenviar mensaxe</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Información</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Copiar</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Eliminar</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Reenviar</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Reenviar mensaxe</string>
-  <string name="conversation_context__menu_reply_to_message">Responder a mensaxe</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Responder</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Selección múltiple</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Gardar anexo</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Gardar</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Desaparición das mensaxes</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Información</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Copiar</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Eliminar</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Reenviar</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Responder</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Gardar</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convidar</string>
@@ -2278,16 +2292,6 @@
   <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Os números PIN cifran a información que gardas con Signal.</string>
   <string name="KbsMegaphone__create_pin">Crear PIN</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Di que che parece Signal</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Para facer de Signal a mellor aplicación de mensaxaría encántanos escoitar as túas suxestións.</string>
-  <string name="ResearchMegaphone_learn_more">Saber máis</string>
-  <string name="ResearchMegaphone_dismiss">Rexeitar</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Investigación en Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Cremos na privacidade.</b></p><p>Signal non rastrexa nin recompila os teus datos. Para mellorar Signal, confiamos nas suxestións dos nosos usuarios; <b>encántanos escoitarvos.</b></p><p>Preparamos unha enquisa para entender como usades Signal que tampouco recolle ningún dato identificativo. Se tes interese en compartir ideas ou suxestións adicionais, tes a opción de facilitarnos información de contacto.</p><p>Se tes uns minutiños e ideas que achegar, gustaríanos moito escoitalas.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Fai a enquisa</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Non, grazas</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">A enquisa está aloxada en Alchemer, no dominio seguro surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>
@@ -2337,7 +2341,6 @@
   <string name="BackupDialog_verify">Comprobar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Inseriches satisfactoriamente a túa frase de acceso</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frase de acceso incorrecta</string>
-  <string name="LocalBackupJob_creating_backup">Creando copia de seguranza…</string>
   <string name="LocalBackupJobApi29_backup_failed">Erro na copia de seguranza</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">O directorio da túa copia de seguranza foi eliminado ou movido.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">O ficheiro da túa copia de seguranza é demasiado grande para almacenalo neste volume.</string>
@@ -2458,6 +2461,7 @@
   <string name="DeviceTransfer__transferring_data">Transferindo datos</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantén ambos dispositivos preto un do outro. Non apagues os dispositivos e mantén Signal aberta. As transferencias están cifradas de extremo-a-extremo.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d das mensaxes ata agora…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Cancelar</string>
   <string name="DeviceTransfer__try_again">Volver tentar</string>
   <string name="DeviceTransfer__stop_transfer_question">Deter transferencia?</string>
@@ -2884,8 +2888,10 @@
   <string name="EditNotificationProfileFragment__profile_name">Nome do perfil</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Seguinte</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Crear</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Gardar</string>
   <!--Title of edit notification profile screen-->
@@ -2926,6 +2932,8 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Ver todo</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
@@ -2964,6 +2972,7 @@
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Agora non</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

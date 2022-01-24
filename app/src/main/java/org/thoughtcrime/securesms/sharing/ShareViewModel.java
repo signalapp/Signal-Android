@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.MappingModelList;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
@@ -76,6 +76,9 @@ public class ShareViewModel extends ViewModel {
           if (record.isPresent() && record.get().isAnnouncementGroup() && !record.get().isAdmin(Recipient.self())) {
             return ContactSelectResult.FALSE_AND_SHOW_PERMISSION_TOAST;
           }
+        } else if (SmsShareRestriction.DISALLOW_SMS_CONTACTS.equals(smsShareRestriction.getValue()) &&
+                   (!recipient.isRegistered() || recipient.isForceSmsSelection())) {
+          return ContactSelectResult.FALSE_AND_SHOW_SMS_MULTISELECT_TOAST;
         }
       }
 
@@ -147,12 +150,17 @@ public class ShareViewModel extends ViewModel {
       return SmsShareRestriction.NO_RESTRICTIONS;
     } else if (shareContacts.size() == 1) {
       ShareContact shareContact = shareContacts.iterator().next();
-      Recipient    recipient    = Recipient.live(shareContact.getRecipientId().get()).get();
 
-      if (!recipient.isRegistered() || recipient.isForceSmsSelection()) {
-        return SmsShareRestriction.DISALLOW_MULTI_SHARE;
+      if (shareContact.getRecipientId().isPresent()) {
+        Recipient recipient = Recipient.live(shareContact.getRecipientId().get()).get();
+
+        if (!recipient.isRegistered() || recipient.isForceSmsSelection()) {
+          return SmsShareRestriction.DISALLOW_MULTI_SHARE;
+        } else {
+          return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
+        }
       } else {
-        return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
+        return SmsShareRestriction.DISALLOW_MULTI_SHARE;
       }
     } else {
       return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
@@ -160,7 +168,7 @@ public class ShareViewModel extends ViewModel {
   }
 
   enum ContactSelectResult {
-    TRUE, FALSE, FALSE_AND_SHOW_PERMISSION_TOAST
+    TRUE, FALSE, FALSE_AND_SHOW_PERMISSION_TOAST, FALSE_AND_SHOW_SMS_MULTISELECT_TOAST
   }
 
   enum SmsShareRestriction {

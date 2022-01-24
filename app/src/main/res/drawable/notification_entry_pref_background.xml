@@ -3,13 +3,13 @@
     <item android:state_pressed="true" android:state_selected="true">
         <shape android:shape="rectangle">
             <solid android:color="@color/signal_background_dialog_secondary" />
-            <stroke android:color="@color/signal_inverse_primary" android:width="1.5dp" />
+            <stroke android:color="@color/signal_accent_primary" android:width="1.5dp" />
             <corners android:radius="18dp" />
         </shape>
     </item>
     <item android:state_selected="true">
         <shape android:shape="rectangle">
-            <stroke android:color="@color/signal_inverse_primary" android:width="1.5dp" />
+            <stroke android:color="@color/signal_accent_primary" android:width="1.5dp" />
             <corners android:radius="18dp" />
         </shape>
     </item>

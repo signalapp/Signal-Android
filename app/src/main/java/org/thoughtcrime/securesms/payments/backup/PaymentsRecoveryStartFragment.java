@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
 
@@ -37,15 +38,15 @@ public class PaymentsRecoveryStartFragment extends Fragment {
       title.setText(R.string.PaymentsRecoveryStartFragment__enter_recovery_phrase);
       message.setText(getString(R.string.PaymentsRecoveryStartFragment__your_recovery_phrase_is_a, PaymentsConstants.MNEMONIC_LENGTH));
       message.setLink(getString(R.string.PaymentsRecoveryStartFragment__learn_more__restore));
-      startButton.setOnClickListener(v -> Navigation.findNavController(requireView()).navigate(PaymentsRecoveryStartFragmentDirections.actionPaymentsRecoveryStartToPaymentsRecoveryEntry()));
+      startButton.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), PaymentsRecoveryStartFragmentDirections.actionPaymentsRecoveryStartToPaymentsRecoveryEntry()));
       startButton.setText(R.string.PaymentsRecoveryStartFragment__enter_manually);
       pasteButton.setVisibility(View.VISIBLE);
-      pasteButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(PaymentsRecoveryStartFragmentDirections.actionPaymentsRecoveryStartToPaymentsRecoveryPaste()));
+      pasteButton.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), PaymentsRecoveryStartFragmentDirections.actionPaymentsRecoveryStartToPaymentsRecoveryPaste()));
     } else {
       title.setText(R.string.PaymentsRecoveryStartFragment__view_recovery_phrase);
       message.setText(getString(R.string.PaymentsRecoveryStartFragment__your_balance_will_automatically_restore, PaymentsConstants.MNEMONIC_LENGTH));
       message.setLink(getString(R.string.PaymentsRecoveryStartFragment__learn_more__view));
-      startButton.setOnClickListener(v -> Navigation.findNavController(requireView()).navigate(PaymentsRecoveryStartFragmentDirections.actionPaymentsRecoveryStartToPaymentsRecoveryPhrase(args.getFinishOnConfirm())));
+      startButton.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), PaymentsRecoveryStartFragmentDirections.actionPaymentsRecoveryStartToPaymentsRecoveryPhrase(args.getFinishOnConfirm())));
       startButton.setText(R.string.PaymentsRecoveryStartFragment__start);
       pasteButton.setVisibility(View.GONE);
     }

@@ -411,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Læs mere</string>
   <string name="BackupsPreferenceFragment__in_progress">I gang…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d indtil videre…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% indtil videre…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal kræver tilladelse til at tilgå ekstern lagerplads for at oprette sikkerhedskopier, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Lagerplads\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
@@ -446,9 +448,6 @@
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Unavngivet fil</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Nu introduceres gruppeopkald</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Åbn en ny gruppe for at starte et krypteret gruppeopkald</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheden understøtter ikke Play Services. Tryk for at slå batterioptimering fra, som forhindrer Signal i at modtage beskeder i baggrunden.</string>
@@ -566,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Vælg ny administrator</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Før du forlader gruppen, skal du vælge mindst én ny administrator.</string>
   <string name="LeaveGroupDialog_choose_admin">Vælg administrator</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Deaktiver</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Forhåndsvis ethvert link</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Du kan nu hente forhåndsvisning af links direkte fra ethvert websted til beskeder, som du sender.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Ingen forhåndsvisning af link tilgængelig</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Dette gruppelink er ikke aktivt</string>
@@ -866,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendt af %1$s til %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sendt fra dig til %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Nu introduceres reaktioner </string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tryk og hold på enhver besked for hurtigt at vise hvad du føler.</string>
   <string name="Megaphones_remind_me_later">Påmind mig senere</string>
   <string name="Megaphones_verify_your_signal_pin">Verificer din Signal-pinkode</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Vi vil indimellem bede dig om at verificere din pinkode, så du ikke glemmer den.</string>
@@ -910,7 +903,7 @@
   <string name="MediaSendActivity_message_to_s">Besked til %s</string>
   <string name="MediaSendActivity_message">Besked</string>
   <string name="MediaSendActivity_select_recipients">Vælg modtagere</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal kræver tilladelse til at tilgå dine kontakter for at kunne vise dem.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal har brug for tilladelse til at tilgå dine kontakter for at kunne vise dem.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dine kontakter, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan ikke dele flere end %d fil.</item>
@@ -1630,6 +1623,7 @@ nummer (%s) er ugyldigt</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Enhed ikke længere registreret</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Det skyldes sandsynligvis, at du har registreret dit telefonnummer hos Signal på en anden enhed. Tryk for at genregistrere.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Hvis du vil besvare opkaldet, skal du give Signal adgang til din mikrofon.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">For at besvare opkald fra %s skal Signal gives adgang til din mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal kræver tilladelse til at tilgå mikrofon og kamera, for at kunne modtage og foretage opkald, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvaret på en forbundet enhed.</string>
@@ -2330,18 +2324,44 @@ nummer (%s) er ugyldigt</string>
   <string name="conversation_callable_secure__menu_call">Signal-opkald</string>
   <string name="conversation_callable_secure__menu_video">Signal-videoopkald</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Beskeddetaljer</string>
-  <string name="conversation_context__menu_copy_text">Kopiér tekst</string>
-  <string name="conversation_context__menu_delete_message">Slet besked</string>
-  <string name="conversation_context__menu_forward_message">Videresend besked</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Information</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopiér</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Slet</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Videresend</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Send beskeden igen</string>
-  <string name="conversation_context__menu_reply_to_message">Svar på besked</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Besvar</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Vælg flere</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d valgt</item>
+    <item quantity="other">%d valgte</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Gem vedhæftet fil</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Gem</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Forsvindende beskeder</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Information</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopiér</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Slet</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Videresend</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Besvar</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Gem</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Inviter</string>
@@ -2525,16 +2545,6 @@ nummer (%s) er ugyldigt</string>
   <string name="KbsMegaphone__create_a_pin">Opret en pinkode</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Pinkoder krypterer oplysninger, som er lagret hos Signal.</string>
   <string name="KbsMegaphone__create_pin">Opret pinkode</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Fortæl Signal hvad du synes</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Vi vil gerne høre dit feedback for at gøre Signal til den bedste besked-app på planeten.</string>
-  <string name="ResearchMegaphone_learn_more">Læs mere</string>
-  <string name="ResearchMegaphone_dismiss">Afvis</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal-forskning</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi tror på fortrolighed.</b></p><p>Signal sporer dig ikke eller indsamler dine data. For at forbedre Signal for alle er vi afhængige af feedback fra brugerne, <b>og vi vil meget gerne høre din.</b></p><p>Vi laver en undersøgelse for at forstå, hvordan du bruger Signal. Vores undersøgelse indsamler ingen data der identificerer dig. Hvis du er interesseret i at dele yderligere feedback, har du mulighed for at afgive dine kontaktoplysninger.</p><p>Hvis du har et par minutter og noget feedback at tilbyde, vil vi meget gerne høre fra dig.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Deltag i undersøgelsen</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Nej tak</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Undersøgelsen udbydes af Alchemer, via det sikre domæne surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Henter…</string>
@@ -2584,7 +2594,7 @@ nummer (%s) er ugyldigt</string>
   <string name="BackupDialog_verify">Verificér</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du indtastede den korrekte adgangssætning til sikkerhedskopi</string>
   <string name="BackupDialog_passphrase_was_not_correct">Forkert adgangssætning</string>
-  <string name="LocalBackupJob_creating_backup">Opretter sikkerhedskopi…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Opretter Signal-sikkerhedskopi…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sikkerhedskopiering mislykkedes</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mappe med sikkerhedskopier er blevet slettet eller flyttet.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din sikkerhedskopifil er for stor til at kunne gemmes på denne lagerenhed.</string>
@@ -2706,6 +2716,8 @@ nummer (%s) er ugyldigt</string>
   <string name="DeviceTransfer__transferring_data">Overfører data</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Hold begge enheder tæt ved hinanden. Sluk ikke for enhederne, og hold Signal åbent. Overførsler er end-to-end krypteret</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d beskeder indtil videre…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% af beskeder indtil videre…</string>
   <string name="DeviceTransfer__cancel">Annullér</string>
   <string name="DeviceTransfer__try_again">Prøv igen</string>
   <string name="DeviceTransfer__stop_transfer_question">Stop overførslen?</string>
@@ -3080,7 +3092,7 @@ nummer (%s) er ugyldigt</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Profiler</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__set_up_notification_profiles">Indstil notifikationsprofiler</string>
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Opret en profil for kun at modtage notifikationer fra personer og grupper, du vælger.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Notifikationsprofiler</string>
@@ -3407,7 +3419,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnement annulleret</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dit Boost-emblem er udløbet og er ikke længere synligt for andre på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan genaktivere dit Boost-emblem i yderligere 30 dage med et engangsbidrag.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overvej at blive månedlig bidragsyder for fortsat at støtte teknologi, der er bygget til dig.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overvej gerne at blive en månedlig bidragsyder for fortsat at støtte teknologi, der er bygget til dig.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bliv bidragsyder</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tilføj et Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nu</string>
@@ -3441,8 +3453,10 @@ nummer (%s) er ugyldigt</string>
   <string name="EditNotificationProfileFragment__profile_name">Profilnavn</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Næste</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Opret</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Gem</string>
   <!--Title of edit notification profile screen-->
@@ -3505,10 +3519,12 @@ nummer (%s) er ugyldigt</string>
   <string name="NotificationProfileDetails__notify_for_all_mentions">Underret ved alle omtaler</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">Tidsplan</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Se alle</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Tilføj en tidsplan</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Aktiver eller rediger din tidsplan for at automatisere denne profil.</string>
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Sæt en tidsplan for automatisk aktivering af denne notifikationsprofil.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Tidsplan</string>
   <!--Label for showing the start time for the schedule-->
@@ -3546,13 +3562,13 @@ nummer (%s) er ugyldigt</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Udført</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
-  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kan slå din profil til eller fra manuelt via menuen på samtalelisten.</string>
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kan manuelt slå din profil til eller fra via menuen på samtalelisten.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Tilføj en tidsplan i indstillinger for at automatisere din profil.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
-  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Din profil vil blive slået til eller fra automatisk i overensstemmelse med din tidsplan.</string>
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Din profil vil automatisk blive slået til eller fra i overensstemmelse med din tidsplan.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <string name="NotificationProfileSelection__new_notification_profile">Ny notifikationsprofil</string>
+  <string name="NotificationProfileSelection__new_profile">Ny profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">I 1 time</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->

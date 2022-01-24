@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutionException;
 import io.reactivex.rxjava3.core.Single;
 
 /**
- * Encapsulates a parsed APi response regardless of where it came from (WebSocket or REST). Not only
+ * Encapsulates a parsed API response regardless of where it came from (WebSocket or REST). Not only
  * includes the success result but also any application errors encountered (404s, parsing, etc.) or
  * execution errors encountered (IOException, etc.).
  */

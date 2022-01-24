@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyboard.sticker.KeyboardStickerPackListAdapter.StickerPack
-import org.thoughtcrime.securesms.util.MappingModelList
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 
 private const val NO_SELECTED_PAGE = "no_selected_page"

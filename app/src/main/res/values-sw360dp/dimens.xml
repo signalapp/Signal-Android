@@ -32,4 +32,6 @@
     <dimen name="toolbar_avatar_margin">34dp</dimen>
 
     <dimen name="verify_identity_vertical_margin">32dp</dimen>
+
+    <dimen name="webrtc_button_size">56dp</dimen>
 </resources>

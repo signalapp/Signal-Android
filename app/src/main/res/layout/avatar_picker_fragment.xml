@@ -38,6 +38,7 @@
                 app:layout_constraintStart_toStartOf="@id/avatar_picker_item_image"
                 app:layout_constraintTop_toTopOf="@id/avatar_picker_item_image"
                 app:emoji_forceCustom="true"
+                app:emoji_forceJumbo="true"
                 tools:ignore="SpUsage"
                 tools:text="AF" />
 

@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CircularProgressButtonUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.text.AfterTextChanged
 
 /**
@@ -104,7 +105,7 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
               is SaveNotificationProfileResult.Success -> {
                 ViewUtil.hideKeyboard(requireContext(), nameView)
                 if (saveResult.createMode) {
-                  findNavController().navigate(EditNotificationProfileFragmentDirections.actionEditNotificationProfileFragmentToAddAllowedMembersFragment(saveResult.profile.id))
+                  findNavController().safeNavigate(EditNotificationProfileFragmentDirections.actionEditNotificationProfileFragmentToAddAllowedMembersFragment(saveResult.profile.id))
                 } else {
                   findNavController().navigateUp()
                 }
@@ -121,7 +122,7 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
       .subscribeBy(
         onSuccess = { initial ->
           if (initial.createMode) {
-            saveButton.text = getString(R.string.EditNotificationProfileFragment__next)
+            saveButton.text = getString(R.string.EditNotificationProfileFragment__create)
             title.setText(R.string.EditNotificationProfileFragment__name_your_profile)
           } else {
             saveButton.text = getString(R.string.EditNotificationProfileFragment__save)

@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 public class EmojiFilter implements InputFilter {
   private TextView view;
+  private boolean  jumboEmoji;
 
-  public EmojiFilter(TextView view) {
-    this.view = view;
+  public EmojiFilter(TextView view, boolean jumboEmoji) {
+    this.view       = view;
+    this.jumboEmoji = jumboEmoji;
   }
 
   @Override
@@ -19,7 +21,7 @@ public class EmojiFilter implements InputFilter {
     char[] v = new char[end - start];
     TextUtils.getChars(source, start, end, v, 0);
 
-    Spannable emojified = EmojiProvider.emojify(new String(v), view);
+    Spannable emojified = EmojiProvider.emojify(new String(v), view, jumboEmoji);
 
     if (source instanceof Spanned && emojified != null) {
       TextUtils.copySpansFrom((Spanned) source, start, end, null, emojified, 0);

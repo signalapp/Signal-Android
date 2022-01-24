@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public final class PaymentsTransferFragment extends LoggingFragment {
 
@@ -77,7 +78,7 @@ public final class PaymentsTransferFragment extends LoggingFragment {
       NavDirections action = PaymentsTransferFragmentDirections.actionPaymentsTransferToCreatePayment(new PayeeParcelable(publicAddress))
                                                                .setFinishOnConfirm(PaymentsTransferFragmentArgs.fromBundle(requireArguments()).getFinishOnConfirm());
 
-      Navigation.findNavController(requireView()).navigate(action);
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), action);
       return true;
     } catch (MobileCoinPublicAddress.AddressException e) {
       Log.w(TAG, "Address is not valid", e);
@@ -96,7 +97,7 @@ public final class PaymentsTransferFragment extends LoggingFragment {
                .ifNecessary()
                .withRationaleDialog(getString(R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs), R.drawable.ic_camera_24)
                .onAnyPermanentlyDenied(this::onCameraPermissionPermanentlyDenied)
-               .onAllGranted(() -> Navigation.findNavController(requireView()).navigate(R.id.action_paymentsTransfer_to_paymentsScanQr))
+               .onAllGranted(() -> SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_paymentsTransfer_to_paymentsScanQr))
                .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera, Toast.LENGTH_LONG).show())
                .execute();
   }

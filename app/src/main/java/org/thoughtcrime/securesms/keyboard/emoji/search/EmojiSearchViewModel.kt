@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.keyboard.emoji.toMappingModels
-import org.thoughtcrime.securesms.util.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 
 class EmojiSearchViewModel(private val repository: EmojiSearchRepository) : ViewModel() {

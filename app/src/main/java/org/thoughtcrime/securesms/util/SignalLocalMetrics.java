@@ -116,62 +116,62 @@ public final class SignalLocalMetrics {
     public static void onInsertedIntoDatabase(long messageId, String id) {
       if (id != null) {
         ID_MAP.put(messageId, id);
-        LocalMetrics.getInstance().split(requireId(messageId), SPLIT_DB_INSERT);
+        split(messageId, SPLIT_DB_INSERT);
       }
     }
 
     public static void onJobStarted(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_ENQUEUE);
+      split(messageId, SPLIT_JOB_ENQUEUE);
     }
 
     public static void onDeliveryStarted(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_PRE_NETWORK);
+      split(messageId, SPLIT_JOB_PRE_NETWORK);
     }
 
     public static void onMessageEncrypted(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_ENCRYPT);
+      split(messageId, SPLIT_ENCRYPT);
     }
 
     public static void onMessageSent(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_MAIN);
+      split(messageId, SPLIT_NETWORK_MAIN);
     }
 
     public static void onSyncMessageSent(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_SYNC);
+      split(messageId, SPLIT_NETWORK_SYNC);
     }
 
     public static void onJobFinished(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_POST_NETWORK);
+      split(messageId, SPLIT_JOB_POST_NETWORK);
     }
 
     public static void onUiUpdated(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_UI_UPDATE);
-      LocalMetrics.getInstance().end(requireId(messageId));
+      split(messageId, SPLIT_UI_UPDATE);
+      end(messageId);
 
       ID_MAP.remove(messageId);
     }
 
-    public static void cancel(@Nullable String id) {
-      if (id != null) {
-        LocalMetrics.getInstance().cancel(id);
+    public static void cancel(long messageId) {
+      String splitId = ID_MAP.get(messageId);
+      if (splitId != null) {
+        LocalMetrics.getInstance().cancel(splitId);
+      }
+
+      ID_MAP.remove(messageId);
+    }
+
+    private static void split(long messageId, @NonNull String event) {
+      String splitId = ID_MAP.get(messageId);
+      if (splitId != null) {
+        LocalMetrics.getInstance().split(splitId, event);
       }
     }
 
-    public static void cancel(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().cancel(requireId(messageId));
-    }
-
-
-    private static @NonNull String requireId(long messageId) {
-      return Objects.requireNonNull(ID_MAP.get(messageId));
+    private static void end(long messageId) {
+      String splitId = ID_MAP.get(messageId);
+      if (splitId != null) {
+        LocalMetrics.getInstance().end(splitId);
+      }
     }
   }
 
@@ -202,64 +202,53 @@ public final class SignalLocalMetrics {
     public static void onInsertedIntoDatabase(long messageId, String id) {
       if (id != null) {
         ID_MAP.put(messageId, id);
-        LocalMetrics.getInstance().split(requireId(messageId), SPLIT_DB_INSERT);
+        split(messageId, SPLIT_DB_INSERT);
       }
     }
 
     public static void onJobStarted(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_ENQUEUE);
+      split(messageId, SPLIT_JOB_ENQUEUE);
     }
 
     public static void onSenderKeyStarted(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_PRE_NETWORK);
+      split(messageId, SPLIT_JOB_PRE_NETWORK);
     }
 
     public static void onSenderKeyShared(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_SENDER_KEY_SHARED);
+      split(messageId, SPLIT_SENDER_KEY_SHARED);
     }
 
     public static void onSenderKeyEncrypted(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_ENCRYPTION);
+      split(messageId, SPLIT_ENCRYPTION);
     }
 
     public static void onSenderKeyMessageSent(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_SENDER_KEY);
+      split(messageId, SPLIT_NETWORK_SENDER_KEY);
     }
 
     public static void onSenderKeySyncSent(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_SENDER_KEY_SYNC);
+      split(messageId, SPLIT_NETWORK_SENDER_KEY_SYNC);
     }
 
     public static void onSenderKeyMslInserted(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_MSL_SENDER_KEY);
+      split(messageId, SPLIT_MSL_SENDER_KEY);
     }
 
     public static void onLegacyMessageSent(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_LEGACY);
+      split(messageId, SPLIT_NETWORK_LEGACY);
     }
 
     public static void onLegacySyncFinished(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_LEGACY_SYNC);
+      split(messageId, SPLIT_NETWORK_LEGACY_SYNC);
     }
 
     public static void onJobFinished(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_POST_NETWORK);
+      split(messageId, SPLIT_JOB_POST_NETWORK);
     }
 
     public static void onUiUpdated(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_UI_UPDATE);
-      LocalMetrics.getInstance().end(requireId(messageId));
+      split(messageId, SPLIT_UI_UPDATE);
+      end(messageId);
 
       ID_MAP.remove(messageId);
     }
@@ -271,13 +260,26 @@ public final class SignalLocalMetrics {
     }
 
     public static void cancel(long messageId) {
-      if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().cancel(requireId(messageId));
+      String splitId = ID_MAP.get(messageId);
+      if (splitId != null) {
+        LocalMetrics.getInstance().cancel(splitId);
+      }
+
+      ID_MAP.remove(messageId);
     }
 
+    private static void split(long messageId, @NonNull String event) {
+      String splitId = ID_MAP.get(messageId);
+      if (splitId != null) {
+        LocalMetrics.getInstance().split(splitId, event);
+      }
+    }
 
-    private static @NonNull String requireId(long messageId) {
-      return Objects.requireNonNull(ID_MAP.get(messageId));
+    private static void end(long messageId) {
+      String splitId = ID_MAP.get(messageId);
+      if (splitId != null) {
+        LocalMetrics.getInstance().end(splitId);
+      }
     }
   }
 }

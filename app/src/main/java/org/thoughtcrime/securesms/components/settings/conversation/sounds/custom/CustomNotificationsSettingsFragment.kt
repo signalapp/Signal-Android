@@ -42,6 +42,11 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
     return CustomNotificationsSettingsViewModel.Factory(recipientId, repository)
   }
 
+  override fun onResume() {
+    super.onResume()
+    viewModel.channelConsistencyCheck()
+  }
+
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     messageSoundResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
       handleResult(result, viewModel::setMessageSound)

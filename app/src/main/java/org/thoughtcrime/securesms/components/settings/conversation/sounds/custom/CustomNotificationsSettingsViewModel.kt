@@ -22,15 +22,6 @@ class CustomNotificationsSettingsViewModel(
   val state: LiveData<CustomNotificationsSettingsState> = store.stateLiveData
 
   init {
-    repository.initialize(recipientId) {
-      store.update {
-        it.copy(
-          isInitialLoadComplete = true,
-          controlsEnabled = (!NotificationChannels.supported() || it.hasCustomNotifications)
-        )
-      }
-    }
-
     store.update(Recipient.live(recipientId).liveData) { recipient, state ->
       val recipientHasCustomNotifications = NotificationChannels.supported() && recipient.notificationChannel != null
       state.copy(
@@ -68,6 +59,18 @@ class CustomNotificationsSettingsViewModel(
 
   fun setCallSound(uri: Uri?) {
     repository.setCallSound(recipientId, uri)
+  }
+
+  fun channelConsistencyCheck() {
+    store.update { it.copy(isInitialLoadComplete = false) }
+    repository.ensureCustomChannelConsistency(recipientId) {
+      store.update {
+        it.copy(
+          isInitialLoadComplete = true,
+          controlsEnabled = (!NotificationChannels.supported() || it.hasCustomNotifications)
+        )
+      }
+    }
   }
 
   class Factory(

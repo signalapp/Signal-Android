@@ -367,6 +367,7 @@
   <string name="BackupsPreferenceFragment__learn_more">لا زیات زده کړئ </string>
   <string name="BackupsPreferenceFragment__in_progress">د پرمختګ په حال کې ده…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d تر اوسه پورې…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">د بک اپونو د رامنځته کولو لپاره Signal د بهرنۍ زیرمې اجازې ته اړتیا لري، خو هغه د تل لپاره رد شوې ده.، نو مهرباني وکړئ د اپلیکیشن تنظیماتو ته ورشئ، \"اجازې\" وټاکئ او \"زیرمه\" فعاله کړئ.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">د سفارشي حالت کارولو لپاره: %s</string>
@@ -402,9 +403,6 @@
   <string name="DeviceListItem_today">نن ورځ</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">بې نومه فایل</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">د ګروپي زنګ وهلو پیژندنه</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">یو نوی ګروپ پرانیزئ تر څو وړیا انکریپټ شوی ګروپی زنګ پیل کړئ</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">د له لاسه ورکړل شوي Play Services مطلوب ګرځول</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">دغه وسیله د Play له خدماتو نه ملاتړ نه کوي. د سیستم د بطري د مطلوبیت د غیر فعالولو لپاره کلیک وکړئ کوم چې کله هغه غیرفعال وي نو Signal نه پریږدي چې پیغامونه راولي.</string>
@@ -522,10 +520,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">د نوي اډمین ټاکنه</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">وړاندې تر دې چې ولاړ شئ، نو باید کم تر کمه یو کس د دې ګروپ د اډمین په توګه وټاکئ.</string>
   <string name="LeaveGroupDialog_choose_admin">د اډمین ټاکنه</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">غیرفعالول</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">له وړاندې نه د هر لینک کتل</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">اوس تاسې کولای شئ له هرې وېب پاڼې څخه د لیږل شویو پیغامونو د لینک له وړاندې لیدل مستقیماً تر لاسه کړئ.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">هېڅ ډول د لینک له وړاندې کتل نشته</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">د دغه ګروپ لینک فعال نه دی</string>
@@ -808,8 +802,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">د %1$s له خوا %2$s ته لیږل شوی</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">ستاسې له خوا %1$s ته لیږل شوی</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">د غبرګونونو پیژندنه</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">پر هر پیغام باندې کلیک وکړئ او ویې نیسئ تر څو خپل احساس په چټکۍ سره شریک کړئ.</string>
   <string name="Megaphones_remind_me_later">وروسته یې را په یاد کړه</string>
   <string name="Megaphones_verify_your_signal_pin">د Signal اړوند PIN تایید کړئ</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">موږ به کله نا کله له تاسې دا وغواړو چې خپل PIN مو تایید کړئ تر څو مو په یاد پاتې شی.</string>
@@ -2256,18 +2248,40 @@
   <string name="conversation_callable_secure__menu_call">د Signal ټلیفوني اړیکه</string>
   <string name="conversation_callable_secure__menu_video">د Signal ویډیويي اړیکه</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">د پیغام جزئیات</string>
-  <string name="conversation_context__menu_copy_text">د متن کاپي کول</string>
-  <string name="conversation_context__menu_delete_message">د پیغام پاکول</string>
-  <string name="conversation_context__menu_forward_message">د پیغام فاروارډ کول</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">معلومات</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">کاپي کول</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">پاکول</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">فاروارډ</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">د پیغام بیالیږل</string>
-  <string name="conversation_context__menu_reply_to_message">پیغام ته ځواب ورکول</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">بیا پلي کول</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">د ګڼ شمېر مواردو ټاکل</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">د ضمیمې ثبت</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">ثبت</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">ورک کېدونکې پیغامونه</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">معلومات</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">کاپي کول</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">پاکول</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">فاروارډ</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">بیا پلي کول</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">ثبت</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">بلنه</string>
@@ -2450,16 +2464,6 @@
   <string name="KbsMegaphone__create_a_pin">د PIN جوړول</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs هغه معلومات ساتي کوم چې له Signal سره په انکریپټ ډول زیرمه شوي دي.</string>
   <string name="KbsMegaphone__create_pin">د PIN جوړول</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">دا چې تاسې څه فکر کوئ نو Signal ته ووایاست</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">د دې لپاه چې Signal په نړۍ کې د پیغام لیږلو لپاره غوره اپلیکیشن وګرځوو، نو موږ ستاسې نظریات په ورین تندي منو.</string>
-  <string name="ResearchMegaphone_learn_more">لا زیات زده کړئ</string>
-  <string name="ResearchMegaphone_dismiss">مرخص کول</string>
-  <string name="ResearchMegaphoneDialog_signal_research">د Signal څېړنه</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>موږ پر محرمیت باندې باور لرو. </b></p><p>Signal تاسې نه تعقیبوي نه هم ستاسې ډیټا را ټولوي. د هر چا لپاره د Signal د ښه والي په خاطر، موږ د کارن پر فیډبک باندې تکیه کوو، <b> او هغو سره مینه کوو. </b></p><p> موږ داسې یوه سروې پر لاره اچولې تر څو پوه شو چې تاسې له Signal څخه څرنګه کار اخلئ. زموږ سروې ستاسې داسې کومه ډیټا نه را ټولوي چې له کبله یې تاسې وپیژندل شئ. که چیرته د اضافي فیډبک له شریکولو سره لېواله یاست، نو تاسې به دا غوراوی ولری چې د اړیکو معلومات وړاندې کړئ. </p><p> که چیرته تاسې څو دقیقې وخت او کوم فیډبک ولری، نو موږ به یې په مینه له تاسې واورو.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">سروې واخلئ</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">نه مننه</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">د دغې سروې کوربه توب د Alchemer له خوا په خوندي ډومین کې کېږي surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">د لېږد ایکن</string>
   <string name="ConversationListFragment_loading">را ښکته کېږي…</string>
@@ -2509,7 +2513,6 @@
   <string name="BackupDialog_verify">تایید </string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">تاسې په بریا سره خپل د بک اپ پټ عبارت دننه کړ</string>
   <string name="BackupDialog_passphrase_was_not_correct">پټ عبارت سم نه و</string>
-  <string name="LocalBackupJob_creating_backup">بک اپ د رامنځته کولو په حال کې ده…</string>
   <string name="LocalBackupJobApi29_backup_failed">بک اپ تر سره نشو</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ستاسې د بک اپ ډایریکټوري له منځه تللي یا هم انتقال شوې ده.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ستاسې د بک اپ فایل ډېر زیات ستر دی چې په دې حجم کې یې زیرمه کړو.</string>
@@ -2631,6 +2634,7 @@
   <string name="DeviceTransfer__transferring_data">د ډیټا لیږل</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">دواړه وسیلې د یوه بل تر څنګ کېږدئ. هېڅ یوه وسیله بنده نه کړئ او په دواړو کې Signal خلاص پریږدئ. دا لیږد په سرتاسري ډول سره انکریپټ دی.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d پیغامونه تر اوسه پورې…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">لغوه کول</string>
   <string name="DeviceTransfer__try_again">بیا هڅه وکړئ</string>
   <string name="DeviceTransfer__stop_transfer_question">غواړئ لیږد ودروئ؟</string>
@@ -3305,8 +3309,10 @@
   <string name="EditNotificationProfileFragment__profile_name">د پروفایل نوم</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">بل</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">رامنځته کول</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">ثبت</string>
   <!--Title of edit notification profile screen-->
@@ -3347,6 +3353,8 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">د ټولو لیدل</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
@@ -3385,6 +3393,7 @@
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">اوس نه</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

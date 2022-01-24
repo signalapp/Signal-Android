@@ -142,20 +142,28 @@ public class PhoneNumberFormatter {
       return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
     } catch (NumberParseException e) {
       Log.w(TAG, e);
-      if (bareNumber.charAt(0) == '+')
+      if (bareNumber.charAt(0) == '+') {
         return bareNumber;
+      }
 
-      String localNumberImprecise = localNumber.isPresent() ? localNumber.get().getE164Number() : "";
+      if (localNumber.isPresent()) {
+        String localNumberImprecise = localNumber.get().getE164Number();
 
-      if (localNumberImprecise.charAt(0) == '+')
-        localNumberImprecise = localNumberImprecise.substring(1);
+        if (localNumberImprecise.charAt(0) == '+') {
+          localNumberImprecise = localNumberImprecise.substring(1);
+        }
 
-      if (localNumberImprecise.length() == bareNumber.length() || bareNumber.length() > localNumberImprecise.length())
-        return "+" + number;
+        if (localNumberImprecise.length() == bareNumber.length() || bareNumber.length() > localNumberImprecise.length()) {
+          return "+" + number;
+        }
 
-      int difference = localNumberImprecise.length() - bareNumber.length();
+        int difference = localNumberImprecise.length() - bareNumber.length();
 
-      return "+" + localNumberImprecise.substring(0, difference) + bareNumber;
+        return "+" + localNumberImprecise.substring(0, difference) + bareNumber;
+      } else {
+        String countryCode = String.valueOf(phoneNumberUtil.getCountryCodeForRegion(localCountryCode));
+        return "+" + (bareNumber.startsWith(countryCode) ? bareNumber : countryCode + bareNumber);
+      }
     }
   }
 

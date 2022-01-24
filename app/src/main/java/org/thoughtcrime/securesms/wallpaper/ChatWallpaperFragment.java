@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.util.DisplayMetricsUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.util.Collections;
 
@@ -101,10 +102,10 @@ public class ChatWallpaperFragment extends Fragment {
     });
 
     chatWallpaperPreview.setOnClickListener(unused -> setWallpaper.performClick());
-    setWallpaper.setOnClickListener(unused -> Navigation.findNavController(view)
-                                                        .navigate(R.id.action_chatWallpaperFragment_to_chatWallpaperSelectionFragment));
-    setChatColor.setOnClickListener(unused -> Navigation.findNavController(view)
-                                                        .navigate(ChatWallpaperFragmentDirections.actionChatWallpaperFragmentToChatColorSelectionFragment(viewModel.getRecipientId())));
+    setWallpaper.setOnClickListener(unused -> SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                                                          R.id.action_chatWallpaperFragment_to_chatWallpaperSelectionFragment));
+    setChatColor.setOnClickListener(unused -> SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                                                          ChatWallpaperFragmentDirections.actionChatWallpaperFragmentToChatColorSelectionFragment(viewModel.getRecipientId())));
 
     if (viewModel.isGlobal()) {
       resetAllWallpaper.setOnClickListener(unused -> {

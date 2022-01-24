@@ -353,6 +353,7 @@
   <string name="BackupsPreferenceFragment__learn_more">了解更多</string>
   <string name="BackupsPreferenceFragment__in_progress">正在进行…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d 到目前为止…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 需外部存储权限，来创建备份，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定制：%s</string>
@@ -388,9 +389,6 @@
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">未命名文件</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">隆重推出“群语音通话”功能</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">打开一个新版群组来开始一次免费的加密群语音通话</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">缺失 Google Play 服务时优化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">该设备不支持 Google Play 服务。点击禁用系统电池优化，防止 Signal 非活动时无法获取新消息。</string>
@@ -494,10 +492,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">选择新的管理员。</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">在离开群组之前，必须选择至少一位新的管理员。</string>
   <string name="LeaveGroupDialog_choose_admin">选择管理员</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">关闭</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">预览任意链接</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">您可直接从您发送的链接网站中生成预览。</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">没有预览链接可用</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">此群组链接未激活</string>
@@ -759,8 +753,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 发送至 %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">由您发送至 %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">新推出“回应”功能</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">长按任何消息，即刻分享感受。</string>
   <string name="Megaphones_remind_me_later">稍后提醒</string>
   <string name="Megaphones_verify_your_signal_pin">验证 Signal PIN 码</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">为了方便记住 PIN 密码，将偶尔提示验证。</string>
@@ -2128,18 +2120,40 @@
   <string name="conversation_callable_secure__menu_call">Signal 呼叫</string>
   <string name="conversation_callable_secure__menu_video">Signal 视频通话</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">消息详情</string>
-  <string name="conversation_context__menu_copy_text">复制文本</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">信息</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">复制</string>
+  <!--Button to delete a message-->
   <string name="conversation_context__menu_delete_message">删除</string>
-  <string name="conversation_context__menu_forward_message">转发消息</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">转发</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">重新发送信息</string>
-  <string name="conversation_context__menu_reply_to_message">回复消息</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">回复</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">多选</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">保存附件</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">保存</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">阅后即焚</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">信息</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">复制</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">删除</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">转发</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">回复</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">保存</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀请</string>
@@ -2315,16 +2329,6 @@
   <string name="KbsMegaphone__create_a_pin">创建 PIN 码</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal 储存的信息使用你的 PIN 码来加密。</string>
   <string name="KbsMegaphone__create_pin">创建 PIN 码</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">发表您的 Signal 的感想</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">您的意见将成为 Signal 称霸即时通信界的基础，我们期待您的反馈！</string>
-  <string name="ResearchMegaphone_learn_more">了解更多</string>
-  <string name="ResearchMegaphone_dismiss">清除</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal 搜索</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>我们尊重隐私。</b></p><p>Signal 不会跟踪或搜集您的数据。我们需要用户反馈来改进 Signal ，<b>你的宝贵意见不可或缺。</b></p><p>我们正在做一份关于您使用 Signal 的调研。此调研不会搜集任何泄漏您身份的信息。若有兴趣分享更多反馈，您可以选择性提供联系方式。</p><p>如果您能抽出几分钟完成调研，我们将翘首以待。</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">参与调研</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">不，谢谢。</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">该调查使用 Alchemer 并托管在安全域名 surveys.signalusers.org 上</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">正在加载…</string>
@@ -2374,7 +2378,6 @@
   <string name="BackupDialog_verify">验证</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">已成功输入备份密码</string>
   <string name="BackupDialog_passphrase_was_not_correct">密码错误</string>
-  <string name="LocalBackupJob_creating_backup">正在创建备份…</string>
   <string name="LocalBackupJobApi29_backup_failed">备份失败</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">备份目录已删除或移动。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您的备份文件太大，无法保存到此位置。</string>
@@ -2496,6 +2499,7 @@
   <string name="DeviceTransfer__transferring_data">正在转移数据</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">请确保两个设备互相贴近。不要关闭设备，并保持 Signal 运行。转移是端对端加密的。</string>
   <string name="DeviceTransfer__d_messages_so_far">目前 %1$d 消息…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">重试</string>
   <string name="DeviceTransfer__stop_transfer_question">停止转移？</string>
@@ -3043,8 +3047,10 @@
   <string name="EditNotificationProfileFragment__profile_name">个人资料名称</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">下一步</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">创建</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">保存</string>
   <!--Title of edit notification profile screen-->
@@ -3085,6 +3091,8 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">查看全部</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
@@ -3124,6 +3132,7 @@
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">稍后再说</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
 </resources>

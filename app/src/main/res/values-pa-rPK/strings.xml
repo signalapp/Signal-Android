@@ -481,8 +481,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s دی طرفوں %2$s نوں گھلیا</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">تہاڈی طرفوں %1$s نوں گھلیا</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">ری ایکشنز متعارف کرا رئیا اے</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">فورن دسن لئی کہ تسیں کیہہ محسوس کر رئے او، کسے سنیہے نوں ٹیپ کرو تے پھڑ کے رکھو</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">ری ایکشنز متعارف کرا رئیا اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">فورن دسن لئی کہ تسیں کیہہ محسوس کر رئے او، کسے سنیہے نوں ٹیپ کرو تے پھڑ کے رکھو</string> -->
   <string name="Megaphones_remind_me_later">مینوں بعد اچ چیتا کراؤ</string>
   <string name="Megaphones_verify_your_signal_pin">اپنی Signal پن دی توثیق کرو</string>
   <string name="Megaphones_verify_pin">پن دی توثیق کرو</string>
@@ -1635,7 +1635,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">بیک اپس بنان لئی Signal نوں بیرونی اسٹوریج دی اجازت دی لوڑھ ہندی ہ اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\" چنو، تے \"اسٹوریج\" فعال کرو۔</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">آخری بیک اپ: %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">جاری اے</string> -->
-  <string name="LocalBackupJob_creating_backup">بیک اپ بنا رئیا اے…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">بیک اپ بنا رئیا اے…</string> -->
   <string name="ProgressPreference_d_messages_so_far">ہن تیکر%d سنیہے </string>
   <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">مہربانی کر کے%s نوں گھلیا گیا توثیقی کوڈ درج کرو۔</string> -->
   <string name="RegistrationActivity_wrong_number">غلط نمبر</string>

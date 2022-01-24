@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Currency
 import java.util.concurrent.TimeUnit
 
@@ -101,7 +102,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
                 price = FiatMoney(activeAmount, activeCurrency),
                 subscription = subscription,
                 onAddBoostClick = {
-                  findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToBoosts())
+                  findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToBoosts())
                 },
                 renewalTimestamp = TimeUnit.SECONDS.toMillis(activeSubscription.endOfCurrentPeriod),
                 redemptionState = state.getRedemptionState(),
@@ -129,7 +130,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
         icon = DSLSettingsIcon.from(R.drawable.ic_person_white_24dp),
         isEnabled = state.getRedemptionState() != ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS,
         onClick = {
-          findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment())
+          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment())
         }
       )
 
@@ -137,7 +138,7 @@ class ManageDonationsFragment : DSLSettingsFragment() {
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__badges),
         icon = DSLSettingsIcon.from(R.drawable.ic_badge_24),
         onClick = {
-          findNavController().navigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToManageBadges())
+          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToManageBadges())
         }
       )
 

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -25,10 +26,23 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.formatHours
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.orderOfDaysInWeek
 import org.thoughtcrime.securesms.util.visible
 import java.time.DayOfWeek
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import java.util.Locale
+
+private val DAY_TO_STARTING_LETTER: Map<DayOfWeek, Int> = mapOf(
+  DayOfWeek.SUNDAY to R.string.EditNotificationProfileSchedule__sunday_first_letter,
+  DayOfWeek.MONDAY to R.string.EditNotificationProfileSchedule__monday_first_letter,
+  DayOfWeek.TUESDAY to R.string.EditNotificationProfileSchedule__tuesday_first_letter,
+  DayOfWeek.WEDNESDAY to R.string.EditNotificationProfileSchedule__wednesday_first_letter,
+  DayOfWeek.THURSDAY to R.string.EditNotificationProfileSchedule__thursday_first_letter,
+  DayOfWeek.FRIDAY to R.string.EditNotificationProfileSchedule__friday_first_letter,
+  DayOfWeek.SATURDAY to R.string.EditNotificationProfileSchedule__saturday_first_letter,
+)
 
 /**
  * Can edit existing or use during create flow to setup a profile schedule.
@@ -69,7 +83,7 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
             when (result) {
               SaveScheduleResult.Success -> {
                 if (createMode) {
-                  findNavController().navigate(EditNotificationProfileScheduleFragmentDirections.actionEditNotificationProfileScheduleFragmentToNotificationProfileCreatedFragment(profileId))
+                  findNavController().safeNavigate(EditNotificationProfileScheduleFragmentDirections.actionEditNotificationProfileScheduleFragmentToNotificationProfileCreatedFragment(profileId))
                 } else {
                   findNavController().navigateUp()
                 }
@@ -82,27 +96,20 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
         )
     }
 
-    val sunday: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_sunday)
-    val monday: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_monday)
-    val tuesday: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_tuesday)
-    val wednesday: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_wednesday)
-    val thursday: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_thursday)
-    val friday: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_friday)
-    val saturday: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_saturday)
+    val day1: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_day_1)
+    val day2: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_day_2)
+    val day3: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_day_3)
+    val day4: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_day_4)
+    val day5: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_day_5)
+    val day6: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_day_6)
+    val day7: CheckedTextView = view.findViewById(R.id.edit_notification_profile_schedule_day_7)
 
-    val days: Map<CheckedTextView, DayOfWeek> = mapOf(
-      sunday to DayOfWeek.SUNDAY,
-      monday to DayOfWeek.MONDAY,
-      tuesday to DayOfWeek.TUESDAY,
-      wednesday to DayOfWeek.WEDNESDAY,
-      thursday to DayOfWeek.THURSDAY,
-      friday to DayOfWeek.FRIDAY,
-      saturday to DayOfWeek.SATURDAY
-    )
+    val days: Map<CheckedTextView, DayOfWeek> = listOf(day1, day2, day3, day4, day5, day6, day7).zip(Locale.getDefault().orderOfDaysInWeek()).toMap()
 
     days.forEach { (view, day) ->
-      DrawableCompat.setTintList(view.background, ContextCompat.getColorStateList(requireContext(), R.color.notification_profile_schedule_background_tint))
+      DrawableCompat.setTintList(view.background, ContextCompat.getColorStateList(view.context, R.color.notification_profile_schedule_background_tint))
       view.setOnClickListener { viewModel.toggleDay(day) }
+      view.setText(DAY_TO_STARTING_LETTER[day]!!)
     }
 
     lifecycleDisposable += viewModel.schedule()
@@ -116,11 +123,11 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
             view.isEnabled = schedule.enabled
           }
 
-          startTime.text = schedule.startTime().formatTime()
+          startTime.text = schedule.startTime().formatTime(view.context)
           startTime.setOnClickListener { showTimeSelector(true, schedule.startTime()) }
           startTime.isEnabled = schedule.enabled
 
-          endTime.text = schedule.endTime().formatTime()
+          endTime.text = schedule.endTime().formatTime(view.context)
           endTime.setOnClickListener { showTimeSelector(false, schedule.endTime()) }
           endTime.isEnabled = schedule.enabled
 
@@ -163,11 +170,11 @@ class EditNotificationProfileScheduleFragment : LoggingFragment(R.layout.fragmen
   }
 }
 
-private fun LocalTime.formatTime(): SpannableString {
+private fun LocalTime.formatTime(context: Context): SpannableString {
   val amPm = DateTimeFormatter.ofPattern("a")
     .format(this)
 
-  val formattedTime: String = this.formatHours()
+  val formattedTime: String = this.formatHours(context)
 
   return SpannableString(formattedTime).apply {
     val amPmIndex = formattedTime.indexOf(string = amPm, ignoreCase = true)

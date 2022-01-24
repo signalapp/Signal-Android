@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.thoughtcrime.securesms.subscription.DonorBadgeNotifications;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -39,16 +39,17 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   public static final String KEY = "SubscriptionReceiptCredentialsSubmissionJob";
 
-  private static final String DATA_REQUEST_BYTES   = "data.request.bytes";
-  private static final String DATA_SUBSCRIBER_ID   = "data.subscriber.id";
+  private static final String DATA_REQUEST_BYTES     = "data.request.bytes";
+  private static final String DATA_SUBSCRIBER_ID     = "data.subscriber.id";
+  private static final String DATA_IS_FOR_KEEP_ALIVE = "data.is.for.keep.alive";
 
   public static final Object MUTEX = new Object();
 
-  private ReceiptCredentialRequestContext requestContext;
+  private final ReceiptCredentialRequestContext requestContext;
+  private final SubscriberId                    subscriberId;
+  private final boolean                         isForKeepAlive;
 
-  private final SubscriberId subscriberId;
-
-  static SubscriptionReceiptRequestResponseJob createJob(SubscriberId subscriberId) {
+  private static SubscriptionReceiptRequestResponseJob createJob(SubscriberId subscriberId, boolean isForKeepAlive) {
     return new SubscriptionReceiptRequestResponseJob(
         new Parameters
             .Builder()
@@ -58,14 +59,35 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             .setLifespan(TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
-        null,
-        subscriberId
+        generateRequestContext(),
+        subscriberId,
+        isForKeepAlive
     );
   }
 
+  private static ReceiptCredentialRequestContext generateRequestContext() {
+    Log.d(TAG, "Generating request credentials context for token redemption...", true);
+    SecureRandom secureRandom = new SecureRandom();
+    byte[]       randomBytes  = Util.getSecretBytes(ReceiptSerial.SIZE);
+
+    try {
+      ReceiptSerial             receiptSerial = new ReceiptSerial(randomBytes);
+      ClientZkReceiptOperations operations    = ApplicationDependencies.getClientZkReceiptOperations();
+
+      return operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial);
+    } catch (InvalidInputException | VerificationFailedException e) {
+      Log.e(TAG, "Failed to create credential.", e);
+      throw new AssertionError(e);
+    }
+  }
+
   public static JobManager.Chain createSubscriptionContinuationJobChain() {
+    return createSubscriptionContinuationJobChain(false);
+  }
+
+  public static JobManager.Chain createSubscriptionContinuationJobChain(boolean isForKeepAlive) {
     Subscriber                            subscriber           = SignalStore.donationsValues().requireSubscriber();
-    SubscriptionReceiptRequestResponseJob requestReceiptJob    = createJob(subscriber.getSubscriberId());
+    SubscriptionReceiptRequestResponseJob requestReceiptJob    = createJob(subscriber.getSubscriberId(), isForKeepAlive);
     DonationReceiptRedemptionJob          redeemReceiptJob     = DonationReceiptRedemptionJob.createJobForSubscription();
     RefreshOwnProfileJob                  refreshOwnProfileJob = RefreshOwnProfileJob.forSubscription();
 
@@ -76,21 +98,21 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
   }
 
   private SubscriptionReceiptRequestResponseJob(@NonNull Parameters parameters,
-                                                @Nullable ReceiptCredentialRequestContext requestContext,
-                                                @NonNull SubscriberId subscriberId)
+                                                @NonNull ReceiptCredentialRequestContext requestContext,
+                                                @NonNull SubscriberId subscriberId,
+                                                boolean isForKeepAlive)
   {
     super(parameters);
     this.requestContext = requestContext;
     this.subscriberId   = subscriberId;
+    this.isForKeepAlive = isForKeepAlive;
   }
 
   @Override
   public @NonNull Data serialize() {
-    Data.Builder builder = new Data.Builder().putBlobAsString(DATA_SUBSCRIBER_ID, subscriberId.getBytes());
-
-    if (requestContext != null) {
-      builder.putBlobAsString(DATA_REQUEST_BYTES, requestContext.serialize());
-    }
+    Data.Builder builder = new Data.Builder().putBlobAsString(DATA_SUBSCRIBER_ID, subscriberId.getBytes())
+                                             .putBoolean(DATA_IS_FOR_KEEP_ALIVE, isForKeepAlive)
+                                             .putBlobAsString(DATA_REQUEST_BYTES, requestContext.serialize());
 
     return builder.build();
   }
@@ -102,9 +124,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
-    SignalStore.donationsValues().markSubscriptionRedemptionFailed();
-    MultiDeviceSubscriptionSyncRequestJob.enqueue();
   }
 
   @Override
@@ -130,21 +149,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       Log.i(TAG, "Recording end of period from active subscription.", true);
       SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
-    }
-
-    if (requestContext == null) {
-      Log.d(TAG, "Generating request credentials context for token redemption...", true);
-      SecureRandom secureRandom = new SecureRandom();
-      byte[]       randomBytes  = new byte[ReceiptSerial.SIZE];
-
-      secureRandom.nextBytes(randomBytes);
-
-      ReceiptSerial             receiptSerial = new ReceiptSerial(randomBytes);
-      ClientZkReceiptOperations operations    = ApplicationDependencies.getClientZkReceiptOperations();
-
-      requestContext = operations.createReceiptCredentialRequestContext(secureRandom, receiptSerial);
-    } else {
-      Log.d(TAG, "Already have credentials generated for this request. Retrying web service call...", true);
     }
 
     Log.d(TAG, "Submitting receipt credential request.");
@@ -194,7 +198,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       return operations.createReceiptCredentialPresentation(receiptCredential);
     } catch (VerificationFailedException e) {
       Log.w(TAG, "getReceiptCredentialPresentation: encountered a verification failure in zk", e, true);
-      requestContext = null;
       throw new RetryableException();
     }
   }
@@ -206,7 +209,6 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       return operations.receiveReceiptCredential(requestContext, response);
     } catch (VerificationFailedException e) {
       Log.w(TAG, "getReceiptCredential: encountered a verification failure in zk", e, true);
-      requestContext = null;
       throw new RetryableException();
     }
   }
@@ -231,8 +233,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         Log.w(TAG, "SubscriberId not found or misformed.", response.getApplicationError().get(), true);
         throw new Exception(response.getApplicationError().get());
       case 409:
-        Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
-        throw new Exception(response.getApplicationError().get());
+        onAlreadyRedeemed(response);
+        break;
       default:
         Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get(), true);
         throw new RetryableException();
@@ -245,6 +247,16 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     MultiDeviceSubscriptionSyncRequestJob.enqueue();
   }
 
+  private void onAlreadyRedeemed(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
+    if (isForKeepAlive) {
+      Log.i(TAG, "KeepAlive: Latest paid receipt on subscription already redeemed with a different request credential, ignoring.", response.getApplicationError().get(), true);
+      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_KEEP_ALIVE_409, true).build());
+    } else {
+      Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
+      throw new Exception(response.getApplicationError().get());
+    }
+  }
+
   /**
    * Checks that the generated Receipt Credential has the following characteristics
    * - level should match the current subscription level and be the same level you signed up for at the time the subscription was last updated
@@ -252,7 +264,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
    * - expiration_time mod 86400 == 0
    * - expiration_time is between now and 60 days from now
    */
-  private boolean isCredentialValid(@NonNull ActiveSubscription.Subscription subscription, @NonNull ReceiptCredential receiptCredential) {
+  private static boolean isCredentialValid(@NonNull ActiveSubscription.Subscription subscription, @NonNull ReceiptCredential receiptCredential) {
     long    now                     = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
     long    maxExpirationTime       = now + TimeUnit.DAYS.toSeconds(60);
     boolean isSameLevel             = subscription.getLevel() == receiptCredential.getReceiptLevel();
@@ -275,27 +287,30 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     return e instanceof RetryableException;
   }
 
-  @VisibleForTesting
-  final static class RetryableException extends Exception {
+  @VisibleForTesting final static class RetryableException extends Exception {
   }
 
   public static class Factory implements Job.Factory<SubscriptionReceiptRequestResponseJob> {
     @Override
     public @NonNull SubscriptionReceiptRequestResponseJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      SubscriberId subscriberId = SubscriberId.fromBytes(data.getStringAsBlob(DATA_SUBSCRIBER_ID));
+      SubscriberId subscriberId        = SubscriberId.fromBytes(data.getStringAsBlob(DATA_SUBSCRIBER_ID));
+      boolean      isForKeepAlive      = data.getBooleanOrDefault(DATA_IS_FOR_KEEP_ALIVE, false);
+      byte[]       requestContextBytes = data.getStringAsBlob(DATA_REQUEST_BYTES);
 
-      try {
-        if (data.hasString(DATA_REQUEST_BYTES)) {
-          byte[]                          blob           = data.getStringAsBlob(DATA_REQUEST_BYTES);
-          ReceiptCredentialRequestContext requestContext = new ReceiptCredentialRequestContext(blob);
-
-          return new SubscriptionReceiptRequestResponseJob(parameters, requestContext, subscriberId);
-        } else {
-          return new SubscriptionReceiptRequestResponseJob(parameters, null, subscriberId);
+      ReceiptCredentialRequestContext requestContext;
+      if (requestContextBytes == null) {
+        Log.i(TAG, "Generating a request context for a legacy instance of SubscriptionReceiptRequestResponseJob", true);
+        requestContext = generateRequestContext();
+      } else {
+        try {
+          requestContext = new ReceiptCredentialRequestContext(requestContextBytes);
+        } catch (InvalidInputException e) {
+          Log.e(TAG, "Failed to generate request context from bytes", e);
+          throw new AssertionError(e);
         }
-      } catch (InvalidInputException e) {
-        throw new IllegalStateException(e);
       }
+
+      return new SubscriptionReceiptRequestResponseJob(parameters, requestContext, subscriberId, isForKeepAlive);
     }
   }
 }

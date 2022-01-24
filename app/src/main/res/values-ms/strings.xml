@@ -386,6 +386,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Ketahui lebih lanjut</string>
   <string name="BackupsPreferenceFragment__in_progress">Dalam progres…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d setakat ini…</string>
+  <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan kebenaran storan luaran untuk mencipta sandaran, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Storan\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Menggunakan tersuai: %s</string>
@@ -421,9 +422,6 @@
   <string name="DeviceListItem_today">Hari ini</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Fail tidak dinamakan</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Memperkenalkan Panggilan Berkumpulan</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Buka Kumpulan Baharu untuk memulakan panggilan kumpulan disulitkan percuma</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumkan untuk ketiadaan Perkhidmatan Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Peranti ini tidak menyokong Perkhidmatan Play. Ketik untuk menyahdayakan pengoptimuman bateri sistem yang menghalang Signal daripada mengambil mesej semasa tidak aktif.
@@ -529,10 +527,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Pilih pentadbir baru</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Sebelum anda pergi, anda mesti memilih sekurang-kurangnya satu pentadbir baharu untuk kumpulan ini.</string>
   <string name="LeaveGroupDialog_choose_admin">Pilih admin</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Nyahdayakan</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Preview apa-apa link</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Anda kini boleh mendapatkan pratonton pautan terus daripada mana-mana laman web untuk mesej yang anda hantar.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Pratonton pautan tidak tersedia</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Pautan kumpulan ini tidak aktif</string>
@@ -810,8 +804,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dihantar oleh %1$s kepada %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dihantar oleh anda kepada %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Memperkenalkan Reaksi</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ketik dan tahan mana-mana mesej untuk kongsikan perasaan anda dengan cepat.</string>
   <string name="Megaphones_remind_me_later">Ingatkan saya kemudian</string>
   <string name="Megaphones_verify_your_signal_pin">Sahkan PIN Signal anda</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Kami akan meminta anda untuk mengesahkan PIN anda sekali-sekala supaya anda mengingatinya.</string>
@@ -2230,18 +2222,40 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="conversation_callable_secure__menu_call">Panggilan Signal</string>
   <string name="conversation_callable_secure__menu_video">Panggilan video Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Butiran mesej</string>
-  <string name="conversation_context__menu_copy_text">Salin teks</string>
-  <string name="conversation_context__menu_delete_message">Padam mesej</string>
-  <string name="conversation_context__menu_forward_message">Hantar mesej</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Maklumat</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Salin</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Padam</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Hantar</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Hantar semula mesej</string>
-  <string name="conversation_context__menu_reply_to_message">Balas mesej</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Balas</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Pilih berbilang</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Simpan lampiran</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Simpan</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Mesej hilang</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Maklumat</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Salin</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Padam</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Hantar</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Balas</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Simpan</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Jemput</string>
@@ -2418,16 +2432,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="KbsMegaphone__create_a_pin">Cipta PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN memastikan maklumat yang disimpan dengan Signal disulitkan.</string>
   <string name="KbsMegaphone__create_pin">Cipta PIN</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Beritahu Signal perkara yang anda fikirkan</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Untuk menjadikan Signal aplikasi pemesejan terbaik di planet ini, kami ingin mendengar maklum balas anda.</string>
-  <string name="ResearchMegaphone_learn_more">Ketahui lebih lanjut</string>
-  <string name="ResearchMegaphone_dismiss">Tolak</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Kaji Selidik Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Kami mempercayai privasi.</b></p><p>Signal tidak menjejaki anda atau mengumpulkan data anda. Untuk menambahbaik Signal bagi semua orang, kami bergantung pada maklum balas pengguna, <b>dan kami inginkan maklum balas anda.</b></p><p>Kami sedang menjalankan tinjauan untuk memahami cara anda menggunakan Signal. Tinjauan kami tidak mengumpul mana-mana data yang akan mengenal pasti anda. Sekiranya anda berminat untuk berkongsi maklum balas tambahan, anda mempunyai pilihan untuk memberikan maklumat hubungan.</p><p>Sekiranya anda mempunyai beberapa minit dan maklum balas untuk ditawarkan, kami ingin mendengar pendapat anda.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Sertai tinjauan</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Tidak, terima kasih</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Tinjauan ini dihoskan oleh Alchemer di domain yang selamat di surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindah ikon</string>
   <string name="ConversationListFragment_loading">Memuatkan…</string>
@@ -2477,7 +2481,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="BackupDialog_verify">Sahkan</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Anda berjaya memasukkan frasa laluan sandaran anda</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frasa laluan tidak betul</string>
-  <string name="LocalBackupJob_creating_backup">Mencipta sandaran…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sandaran gagal</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktori sandaran anda telah dipadamkan atau telah dipindah.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fail sandaran anda terlalu besar untuk disimpan pada volum ini.</string>
@@ -2599,6 +2602,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="DeviceTransfer__transferring_data">Memindahkan data</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Pastikan kedua-dua peranti dekat antara satu sama lain. Jangan matikan peranti dan pastikan Signal dibuka. Pemindahan disulitkan dari hujung ke hujung.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mesej setakat ini…</string>
+  <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__cancel">Batal</string>
   <string name="DeviceTransfer__try_again">Cuba lagi</string>
   <string name="DeviceTransfer__stop_transfer_question">Hentikan pemindahan?</string>
@@ -3311,8 +3315,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="EditNotificationProfileFragment__profile_name">Nama profil</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Seterusnya</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Cipta</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Simpan</string>
   <!--Title of edit notification profile screen-->
@@ -3353,6 +3359,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Lihat semua</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
@@ -3391,6 +3399,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Bukan sekarang</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal untuk membuka pemilih.</string>
   <!--EOF-->

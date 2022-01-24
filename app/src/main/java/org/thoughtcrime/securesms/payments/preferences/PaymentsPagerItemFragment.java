@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PaymentPreferencesDirections;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public class PaymentsPagerItemFragment extends LoggingFragment {
 
@@ -62,8 +63,8 @@ public class PaymentsPagerItemFragment extends LoggingFragment {
   private class Callbacks implements PaymentsHomeAdapter.Callbacks {
     @Override
     public void onPaymentItem(@NonNull PaymentItem model) {
-      NavHostFragment.findNavController(PaymentsPagerItemFragment.this)
-                     .navigate(PaymentPreferencesDirections.actionDirectlyToPaymentDetails(model.getPaymentDetailsParcelable()));
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(PaymentsPagerItemFragment.this),
+                                  PaymentPreferencesDirections.actionDirectlyToPaymentDetails(model.getPaymentDetailsParcelable()));
     }
   }
 }

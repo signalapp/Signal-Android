@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.conversation.colors.ui
 
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
-import org.thoughtcrime.securesms.util.MappingModelList
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 
 data class ChatColorSelectionState(

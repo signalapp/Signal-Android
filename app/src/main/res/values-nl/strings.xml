@@ -233,8 +233,8 @@
   <string name="ConversationActivity_cancel">Annuleren</string>
   <string name="ConversationActivity_delete_conversation">Gesprek verwijderen?</string>
   <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
-  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Dit gesprek zal worden gewist van al je apparaten.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal van al je apparaten worden gewist.</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Dit gesprek zal op al je eigen apparaten worden gewist.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal op al je eigen apparaten worden gewist.</string>
   <string name="ConversationActivity_delete">Verwijderen</string>
   <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
@@ -253,10 +253,10 @@
     <item quantity="one">Geselecteerd bericht wissen?</item>
     <item quantity="other">Geselecteerde berichten wissen?</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Opslaan naar telefoonopslag?</string>
+  <string name="ConversationFragment_save_to_sd_card">Onversleuteld opslaan?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Als je dit bestand opslaat op de telefoonopslag wordt het niet versleuteld opgeslagen en hebben alle andere apps op je apparaat toegang tot dit bestand.\n\nDoorgaan?</item>
-    <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze niet versleuteld en hebben alle andere apps op je apparaat ook toegang tot deze bestanden.\n\nDoorgaan?</item>
+    <item quantity="one">Als je dit bestand opslaat op de telefoonopslag wordt het onversleuteld opgeslagen waardoor alle apps op je apparaat toegang krijgen tot dit bestand.\n\nToch doorgaan?</item>
+    <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze onversleuteld opgeslagen waardoor alle apps op je apparaat toegang krijgen tot deze bestanden.\n\nToch doorgaan?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Fout tijdens het opslaan van de bijlage op de telefoonopslag!</item>
@@ -316,7 +316,7 @@
   <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Gesprek naar postvak IN verplaatst</item>
-    <item quantity="other"> %d gesprekken naar postvak IN verplaatst</item>
+    <item quantity="other">%d gesprekken naar postvak IN verplaatst</item>
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
     <item quantity="one">Gelezen</item>
@@ -411,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Meer leren hierover</string>
   <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd …</string>
   <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tot nu toe …</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de opslagruimte om back-upbestanden te kunnen maken, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Zelf ingesteld: %s</string>
@@ -446,9 +448,6 @@
   <string name="DeviceListItem_today">Vandaag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Onbenoemd bestand</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Signal ondersteunt vanaf nu groepsoproepen</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Je vindt de knop om een eind-tot-eind-versleutelde groepsoproep te starten rechts bovenin in een groepsgesprek</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
@@ -566,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Kies een nieuwe beheerder</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Voor je de groep verlaat moet je tenminste één beheerder aanwijzen voor deze groep.</string>
   <string name="LeaveGroupDialog_choose_admin">Beheerder kiezen</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Uitschakelen</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Voor elke website voorbeeldafbeeldingen</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Vanaf nu kun je voor elke website een voorbeeldafbeelding bijvoegen, maar wanneer je dat doet zouden die websites kunnen zien dat je hen vermeldt.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Geen voorbeeldafbeelding beschikbaar</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
@@ -595,8 +590,7 @@
     <item quantity="other">%1$d uitnodigingen intrekken</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
-    <item quantity="one">Fout bij het intrekken van een uitnodiging
-</item>
+    <item quantity="one">Fout bij het intrekken van een uitnodiging</item>
     <item quantity="other">Fout bij het intrekken van uitnodigingen</item>
   </plurals>
   <!--RequestingMembersFragment-->
@@ -708,7 +702,7 @@
   <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
   <string name="ManageProfileFragment_badges">Badges</string>
-  <string name="ManageProfileFragment__edit_photo">Foto aanpassen</string>
+  <string name="ManageProfileFragment__edit_photo">Profielfoto aanpassen</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -846,8 +840,7 @@
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
   <string name="MediaOverviewActivity_select_all">Alles selecteren</string>
   <plurals name="MediaOverviewActivity_save_plural">
-    <item quantity="one">Onversleuteld opslaan
-</item>
+    <item quantity="one">Onversleuteld opslaan</item>
     <item quantity="other">Onversleuteld opslaan</item>
   </plurals>
   <plurals name="MediaOverviewActivity_delete_plural">
@@ -868,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Door %1$s naar %2$s verzonden</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Door jou naar %1$s verzonden</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">We introduceren ‘reacties’</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Je kunt vanaf nu een bericht aantikken en vasthouden om snel en gemakkelijk te laten weten hoe je je er over voelt.</string>
   <string name="Megaphones_remind_me_later">Herinner me later</string>
   <string name="Megaphones_verify_your_signal_pin">Weet je je Signal-pincode nog?</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe of je je pincode nog weet, zodat je je pincode goed onthoudt.</string>
@@ -1263,7 +1254,7 @@
   <string name="WebRtcCallView__view_participants_list">Deelnemers weergeven</string>
   <string name="WebRtcCallView__your_video_is_off">Je camera staat uit</string>
   <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden …</string>
-  <string name="WebRtcCallView__joining">Verbinden met groep aan het maken …</string>
+  <string name="WebRtcCallView__joining">Verbinden met de groep aan het maken …</string>
   <string name="WebRtcCallView__disconnected">Verbinding verbroken</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal zal %1$s bellen</string>
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zal %1$s en %2$s bellen</string>
@@ -1296,8 +1287,8 @@
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Gesprek met %1$s en %2$s</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s laat zijn of haar scherm zien</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig.</item>
-    <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig.</item>
+    <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig</item>
+    <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig</item>
   </plurals>
   <string name="WebRtcCallView__flip">Omdraaien</string>
   <string name="WebRtcCallView__speaker">Luidspreker</string>
@@ -1559,7 +1550,7 @@
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslag nodig om iets op te slaan op de externe opslag, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, tik op ‘App-machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
-  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk gewist worden, maar dus niet voor je gesprekspartner(s).</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk worden gewist, maar dus niet voor je gesprekspartner(s).</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media niet langer beschikbaar.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Geen app gevonden waarmee dit bestand met anderen gedeeld kan worden.</string>
@@ -1636,6 +1627,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je vanaf een ander apparaat je telefoonnummer bij Signal hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Je moet Signal toestaan om de microfoon te gebruiken voor je de oproep kunt beantwoorden.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Beantwoord vanaf een gekoppeld apparaat.</string>
@@ -2336,18 +2328,44 @@
   <string name="conversation_callable_secure__menu_call">Signal-oproep</string>
   <string name="conversation_callable_secure__menu_video">Signal-video-oproep</string>
   <!--conversation_context-->
+  <!--Button to view detailed information for a message-->
   <string name="conversation_context__menu_message_details">Berichtdetails</string>
+  <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_context__menu_copy_text">Tekst kopiëren</string>
-  <string name="conversation_context__menu_delete_message">Bericht wissen</string>
-  <string name="conversation_context__menu_forward_message">Bericht doorsturen</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Wissen</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Doorsturen</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Bericht opnieuw verzenden</string>
+  <!--Button to reply to a message-->
   <string name="conversation_context__menu_reply_to_message">Reageren</string>
-  <!--conversation_context_reacction-->
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Meerdere selecteren</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d geselecteerd</item>
+    <item quantity="other">%d geselecteerd</item>
+  </plurals>
   <!--conversation_context_image-->
+  <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Bijlage opslaan</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Verlopende berichten</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Berichtdetails</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Tekst kopiëren</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Wissen</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Doorsturen</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Reageren</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Bijlage opslaan</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Uitnodigen</string>
@@ -2531,16 +2549,6 @@
   <string name="KbsMegaphone__create_a_pin">Een pincode aanmaken</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Met een pincode wordt informatie versleuteld voor die wordt opgeslagen op Signals servers. Zelfs Signals ontwikkelaars kunnen je informatie niet inzien.</string>
   <string name="KbsMegaphone__create_pin">Pincode aanmaken</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Vertel Signal-organisatie wat je van de Signal app vindt</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Om Signal de beste berichtenapp op deze planeet te maken, horen we graag ook van jou wat je van Signal vindt.</string>
-  <string name="ResearchMegaphone_learn_more">Meer leren hierover</string>
-  <string name="ResearchMegaphone_dismiss">Sluiten</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal-onderzoek</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We geloven in privacy.</b></p><p>Signal volgt je gedrag niet en verzamelt je gegevens niet. Om Signal zonder die gegevens toch voor iedereen beter te maken zijn we afhankelijk van terugkoppeling van gebruikers, <b>en we zouden ook graag van je horen wat je van Signal vindt</b>.</p><p>We organiseren een enquête om te begrijpen op welke manier en waarvoor jij Signal gebruikt. Onze enquête verzamelt geen gegevens waarmee jij geïdentificeerd kan worden. Als je graag meer terugkoppeling geeft, dan kun je gebruikmaken van de vrijblijvende optie om je contactgegevens in te vullen.</p><p>Als je een aantal minuten tijd vrij hebt, en als je iets hebt om terug te koppelen, dan horen we graag van je.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">De enquête invullen</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Nee bedankt</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">De enquête wordt georganiseerd door Alchemer op het beveiligde domein surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden …</string>
@@ -2590,7 +2598,7 @@
   <string name="BackupDialog_verify">Verifiëren</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-upwachtwoord ingevoerd</string>
   <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-upwachtwoord ingevoerd.</string>
-  <string name="LocalBackupJob_creating_backup">Back-upbestand aan het maken …</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signal backupbestand aan het maken …</string>
   <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>
@@ -2712,6 +2720,8 @@
   <string name="DeviceTransfer__transferring_data">Gegevens aan het overzetten</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Houd de apparaten bij elkaar in de buurt. Schakel ze niet uit, en laat houd de Signal-app open. Het overzetten is goed beveiligd, want dit gebeurd altijd over een eind-tot-eind-versleutelde verbinding.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d berichten tot nu toe …</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% van de berichten tot nu toe …</string>
   <string name="DeviceTransfer__cancel">Annuleren</string>
   <string name="DeviceTransfer__try_again">Opnieuw proberen</string>
   <string name="DeviceTransfer__stop_transfer_question">Overzetten annuleren?</string>
@@ -2866,7 +2876,7 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Gegevens aan het wissen …</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
-  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Afhankelijk van het aantal groepen waarvan je lid bent kan dit wat langer duren</string>
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Afhankelijk van het aantal groepen waarvan je lid bent kan dit een aantal minuten duren</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Gebruikersgegevens worden gewist</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
@@ -3084,9 +3094,9 @@
   <!--Notification preference header-->
   <string name="NotificationsSettingsFragment__notification_profiles">Meldingsprofielen</string>
   <!--Notification preference option header-->
-  <string name="NotificationsSettingsFragment__profiles">Meldingsprofielen</string>
+  <string name="NotificationsSettingsFragment__profiles">Meldingsprofielen instellen</string>
   <!--Notification preference summary text-->
-  <string name="NotificationsSettingsFragment__set_up_notification_profiles">Maak een meldingsprofiel aan waardoor je meldingen van bepaalde personen of groepen alleen krijgt op momenten dat jij daar zin in hebt</string>
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Maak een meldingsprofiel aan waardoor je meldingen van bepaalde personen of groepen alleen krijgt op momenten dat jij daar zin in hebt</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Meldingsprofielen</string>
@@ -3361,7 +3371,7 @@
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Ondersteun technologie die is gemaakt voor jou, niet voor het verzamelen van je gegevens, door één van de donateurs te worden die Signal mogelijk maken.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
-  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties</string>
+  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties (Let op: je kunt de badge alleen krijgen als je via Google Pay doneert)</string>
   <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie annuleren</string>
   <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donatie annuleren?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>
@@ -3447,10 +3457,12 @@
   <string name="EditNotificationProfileFragment__profile_name">Profielnaam</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Volgende</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Aanmaken</string>
   <!--Call to action button once the profile name is edited-->
-  <string name="EditNotificationProfileFragment__save">Onversleuteld opslaan</string>
+  <string name="EditNotificationProfileFragment__save">Opslaan</string>
   <!--Title of edit notification profile screen-->
   <string name="EditNotificationProfileFragment__edit_this_profile">Dit meldingsprofiel aanpassen</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
@@ -3482,7 +3494,7 @@
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">Nieuw meldingsprofiel aanmaken</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">Aan</string>
+  <string name="NotificationProfilesFragment__on">Ingeschakeld</string>
   <!--Button use to permanently delete a notification profile-->
   <string name="NotificationProfileDetails__delete_profile">Meldingsprofiel wissen</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
@@ -3498,9 +3510,9 @@
   <!--Schedule description if all days are selected-->
   <string name="NotificationProfileDetails__everyday">Elke dag</string>
   <!--Profile status on if it is the active profile-->
-  <string name="NotificationProfileDetails__on">Aan</string>
+  <string name="NotificationProfileDetails__on">Ingeschakeld</string>
   <!--Profile status on if it is not the active profile-->
-  <string name="NotificationProfileDetails__off">Uit</string>
+  <string name="NotificationProfileDetails__off">Uitgeschakeld</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s naar %2$s</string>
   <!--Section header for exceptions to the notification profile-->
@@ -3510,13 +3522,15 @@
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <string name="NotificationProfileDetails__notify_for_all_mentions">Alle vermeldingen melden</string>
   <!--Section header for showing schedule information-->
-  <string name="NotificationProfileDetails__schedule">Planning</string>
+  <string name="NotificationProfileDetails__schedule">Tijdsplanning</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Alle personen en groepen weergeven</string>
   <!--Title for add schedule to profile in create flow-->
-  <string name="EditNotificationProfileSchedule__add_a_schedule">Planning toevoegen</string>
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Tijdsplanning toevoegen</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__turn_on_and_edit_your_schedule_to_automate_this_profile">Je kunt nu het meldingsprofiel inschakelen en een planning toevoegen, zodat het profiel automatisch actief wordt op bepaalde momenten.</string>
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Stel eventueel een tijdsplanning in zodat dit meldingsprofiel automatisch op bepaalde momenten wordt geactiveerd en gedeactiveerd.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
-  <string name="EditNotificationProfileSchedule__schedule">Planning</string>
+  <string name="EditNotificationProfileSchedule__schedule">Tijdsplanning</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Beginnen</string>
   <!--Label for showing the end time for the schedule-->
@@ -3554,11 +3568,11 @@
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Je kunt een meldingsprofiel handmatig in- en uitschakelen via het menu in de gesprekkenlijst.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
-  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Voeg een planning toe om dit meldingsprofiel automatisch op bepaalde momenten te activeren en te deactiveren.</string>
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Voeg eventueel een tijdsplanning toe aan dit meldingsprofiel om het automatisch op bepaalde momenten te activeren en te deactiveren.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
-  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Je meldingsprofiel wordt automatisch geactiveerd en gedeactiveerd volgens je planning.</string>
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Je meldingsprofiel wordt automatisch geactiveerd en gedeactiveerd volgens je tijdsplanning.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
-  <string name="NotificationProfileSelection__new_notification_profile">Nieuw meldingsprofiel</string>
+  <string name="NotificationProfileSelection__new_profile">Nieuw meldingsprofiel aanmaken</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <string name="NotificationProfileSelection__for_1_hour">Een uur lang</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->

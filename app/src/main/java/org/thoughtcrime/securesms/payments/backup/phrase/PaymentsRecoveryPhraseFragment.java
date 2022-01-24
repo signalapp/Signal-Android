@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.Mnemonic;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -125,7 +126,7 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
                                @NonNull PaymentsRecoveryPhraseFragmentArgs args)
   {
     message.setText(getString(R.string.PaymentsRecoveryPhraseFragment__write_down_the_following_d_words, words.size()));
-    next.setOnClickListener(v -> Navigation.findNavController(v).navigate(PaymentsRecoveryPhraseFragmentDirections.actionPaymentsRecoveryPhraseToPaymentsRecoveryPhraseConfirm(args.getFinishOnConfirm())));
+    next.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), PaymentsRecoveryPhraseFragmentDirections.actionPaymentsRecoveryPhraseToPaymentsRecoveryPhraseConfirm(args.getFinishOnConfirm())));
     edit.setVisibility(View.GONE);
     copy.setVisibility(View.VISIBLE);
     copy.setOnClickListener(v -> confirmCopy(words));

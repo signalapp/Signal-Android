@@ -18,15 +18,16 @@ import java.util.concurrent.TimeUnit
  *
  * These metrics are only ever included in debug logs in an aggregate fashion (i.e. p50, p90, p99) and are never automatically uploaded anywhere.
  *
- * The performance of insertions is important, but given insertions frequency isn't crazy-high, we can also optimize for retrieval performance.
- * SQLite isn't amazing at statistical analysis, so having indices that speeds those operations up is encouraged.
+ * The performance of insertions is important, but given insertion frequency isn't crazy-high, we can also optimize for retrieval performance.
+ * SQLite isn't amazing at statistical analysis, so having indices that speed up those operations is encouraged.
  *
  * This is it's own separate physical database, so it cannot do joins or queries with any other tables.
  */
 class LocalMetricsDatabase private constructor(
   application: Application,
   databaseSecret: DatabaseSecret
-) : SQLiteOpenHelper(
+) :
+  SQLiteOpenHelper(
     application,
     DATABASE_NAME,
     databaseSecret.asString(),

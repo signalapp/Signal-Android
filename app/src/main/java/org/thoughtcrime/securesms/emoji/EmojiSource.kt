@@ -62,8 +62,13 @@ class EmojiSource(
       .filter { it.spriteUri != null }
       .forEach { page ->
         val emojiPage = emojiPageFactory(page.spriteUri!!)
-        page.emoji.forEachIndexed { idx, emoji ->
-          tree.add(emoji, EmojiDrawInfo(emojiPage, idx))
+
+        var overallIndex = 0
+        page.displayEmoji.forEach { emoji: Emoji ->
+          emoji.variations.forEachIndexed { variationIndex, variation ->
+            val raw = emoji.getRawVariation(variationIndex)
+            tree.add(variation, EmojiDrawInfo(emojiPage, overallIndex++, variation, raw, jumboPages[raw]))
+          }
         }
       }
 
@@ -142,6 +147,7 @@ interface EmojiData {
   val format: String
   val displayPages: List<EmojiPageModel>
   val dataPages: List<EmojiPageModel>
+  val jumboPages: Map<String, String>
   val obsolete: List<ObsoleteEmoji>
 }
 

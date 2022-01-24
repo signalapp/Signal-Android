@@ -291,6 +291,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">您同 %s 之間嘅安全碼已經郁動過</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">您同 %s 之間嘅安全碼已經郁動過，好可能係佢重新裝過 Signal 或者換咗部機。可以撳一下 [驗證] 去確認新嘅安全碼，如果您想嘅話。</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s 揀揀單單</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">係咪要刪除揀選嘅對話？</item>
   </plurals>
@@ -339,8 +340,11 @@
     <item quantity="other">揀選咗 %d 個</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">通知吾揀單</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">通知揀單唔揀單，可以喺呢處搞。</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s 揀揀單單</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
@@ -386,6 +390,8 @@
   <string name="BackupsPreferenceFragment__learn_more">講多啲畀我聽</string>
   <string name="BackupsPreferenceFragment__in_progress">幫緊您幫緊您…</string>
   <string name="BackupsPreferenceFragment__d_so_far">暫時去到 %1$d…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">暫時去到 %1$s%%…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 要攞外部儲存裝置權限，先可以建立備份，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「儲存裝置」。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">用緊自訂：%s</string>
@@ -421,9 +427,6 @@
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名嘅檔案</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">同您介紹成谷通話</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">開一個新版嘅谷，開始免費嘅加密成谷通話</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">針對無 Play 服務嘅優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">呢部機唔支援 Play 服務。撳一下以停用系統嘅電量優化，以免 Signal 喺部機閒置嘅時候冇得去攞訊息。</string>
@@ -528,10 +531,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">揀選新嘅話事人</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">您退谷之前，必須為呢個谷揀定至少一個新嘅話事人接您手。</string>
   <string name="LeaveGroupDialog_choose_admin">揀選話事人</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">停用</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">連結而家有預覽喇</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">而家您傳送嘅訊息如果有條拎，可以幫您直接喺網站度攞嗰條拎嘅預覽。</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">條拎未有預覽</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">呢條谷拎未有生效</string>
@@ -809,8 +808,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 傳送畀 %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">由您傳送畀 %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">推介心情</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">撳住任何訊息可快速分享您嘅心情。</string>
   <string name="Megaphones_remind_me_later">遲啲先提醒我</string>
   <string name="Megaphones_verify_your_signal_pin">驗證您嘅 Signal PIN 碼</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">我哋間唔中會問下您個 PIN 碼，等您唔使唔記得。</string>
@@ -1155,7 +1152,7 @@
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">驗證完先再繼續發訊息</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">為協助 Signal 打擊垃圾訊息，請先完成驗證。</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">驗證完之後，您就可以繼續發訊息。先前 hold 住嘅訊息會自動發送返出去。</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">驗證完之後，您就可以繼續發訊息。先前閘住嘅訊息會自動發送返出去。</string>
   <!--Recipient-->
   <string name="Recipient_you">您</string>
   <!--RecipientPreferencesActivity-->
@@ -1550,6 +1547,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">部機嘅註冊已失效</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">通常係因為您用咗另一部機嚟喺 Signal 度註冊您個電話冧把。撳一下去重新註冊。</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">如果要接聽通話，請允許 Signal 存取您部機個咪。</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">如果要接聽 %s 打嚟嘅通話，請允許 Signal 存取您部機個咪。</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 要攞「麥克風」同「相機」權限，先可以撥打同接聽通話，但權限已被永久拒絕。請到呢個 app 嘅應用程式設定，揀選「權限」，然後啟用「麥克風」同「相機」。</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">已用連結咗嘅機接聽。</string>
@@ -1561,7 +1559,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">唔接</string>
   <string name="WebRtcCallScreen__answer">接聽</string>
-  <string name="WebRtcCallScreen__answer_without_video">接聽，但唔 show 樣</string>
+  <string name="WebRtcCallScreen__answer_without_video">接聽，但唔騷我個樣</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">音訊輸出</string>
   <string name="WebRtcAudioOutputToggle__phone_earpiece">耳機</string>
@@ -1663,6 +1661,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">拉到落最底</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">氣泡係一項 Android 功能，Signal 傾偈用唔用氣泡就由得您揀。</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">遲啲先啦</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2239,18 +2238,43 @@
   <string name="conversation_callable_secure__menu_call">Signal 通話</string>
   <string name="conversation_callable_secure__menu_video">Signal 視像通話</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">訊息詳情</string>
-  <string name="conversation_context__menu_copy_text">複製文字</string>
-  <string name="conversation_context__menu_delete_message">刪除訊息</string>
-  <string name="conversation_context__menu_forward_message">轉寄訊息</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">資訊</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">複製</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">刪除</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">轉寄</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">重新傳送訊息</string>
-  <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">回覆</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">揀選多個</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="other">揀選咗 %d 個</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">儲存附件</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">儲存</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">過眼雲煙訊息</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">資訊</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">複製</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">刪除</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">轉寄</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">回覆</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">儲存</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀請</string>
@@ -2427,16 +2451,6 @@
   <string name="KbsMegaphone__create_a_pin">建立一個 PIN 碼</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">有 PIN 碼，儲存喺 Signal 嘅資訊就安心加密。</string>
   <string name="KbsMegaphone__create_pin">建立 PIN 碼</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">您點諗，同 Signal 有得 say</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">抱歉我要話你知，Signal 想做宇宙最強嘅通訊軟件。所以想想你都講我聽，聽聽您嘅意見反映。</string>
-  <string name="ResearchMegaphone_learn_more">講多啲畀我聽</string>
-  <string name="ResearchMegaphone_dismiss">收到</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal 問卷調查</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>我哋篤信私隱。</b></p><p>Signal 唔會追蹤您或者收集您嘅資料。為咗改進 Signal 造福人群，我哋依賴使用者嘅意見反映，<b>因此想想您都講我聽。</b></p><p>我哋而家做緊一項問卷調查，想了解下您係點樣使用 Signal。我哋嘅問卷調查唔會收集任何識別您嘅資料。若果您有興趣反映進一步嘅意見，喺之後可以揀留低您嘅聯絡資訊。</p><p>假如您有幾分鐘嘅時間，亦都有意見想反映，當我哋徹夜去諗，想想您都講我哋聽。</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">做問卷</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">唔使住喇</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">是次問卷調查，係由 Alchemer 喺安全網域 surveys.signalusers.org 架構</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">物流公仔</string>
   <string name="ConversationListFragment_loading">載入緊…</string>
@@ -2486,7 +2500,7 @@
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">您輸入嘅備份密碼正確無誤</string>
   <string name="BackupDialog_passphrase_was_not_correct">密碼有誤</string>
-  <string name="LocalBackupJob_creating_backup">建立緊備份…</string>
+  <string name="LocalBackupJob_creating_signal_backup">建立緊 Signal 備份…</string>
   <string name="LocalBackupJobApi29_backup_failed">備份唔到</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">您嘅備份目錄已經刪除或移動咗。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您個備份檔案大得滯，裝唔落呢一度喎。</string>
@@ -2608,6 +2622,8 @@
   <string name="DeviceTransfer__transferring_data">轉移緊資料</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">將兩部機保持靠近。唔好熄機，並且開住 Signal。轉移係經端對端加密。</string>
   <string name="DeviceTransfer__d_messages_so_far">目前為止 %1$d 個訊息…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">啲訊息暫時整咗 %1$s%%…</string>
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">再試一次</string>
   <string name="DeviceTransfer__stop_transfer_question">係咪要停止轉移？</string>
@@ -2658,6 +2674,7 @@
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>
   <string name="RecipientBottomSheet_add_to_contacts">加入去聯絡人</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">搵唔到個 app 可以開到聯絡人。</string>
   <string name="RecipientBottomSheet_add_to_a_group">加入去一個谷度</string>
   <string name="RecipientBottomSheet_add_to_another_group">加入去另一個谷度</string>
   <string name="RecipientBottomSheet_view_safety_number">睇下安全碼</string>
@@ -2755,11 +2772,17 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">刪除唔到本機資料。您可以喺系統嘅應用程式設定入面自己清除。</string>
   <string name="DeleteAccountFragment__launch_app_settings">啟動 App 設定</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">退緊啲谷…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">刪除緊帳戶…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">視乎您有幾多個谷啦，可能要幾分鐘時間</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">刪除緊使用者資料，同埋重設緊個 app</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">未剷走個帳戶</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">完成刪除程序嘅時候發生問題。請檢查您嘅網絡連線，然後再試下啦。</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">搵下國家</string>
   <!--CreateGroupActivity-->
@@ -2968,11 +2991,16 @@
   <string name="NotificationsSettingsFragment__notify_when">通知我…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">聯絡人開咗 Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">通知吾揀單</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">揀單</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">搞搞新揀單，淨係接收您揀選嘅人同谷嘅通知，好圓善五光十色嘅通知濟渡。</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">通知吾揀單</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">搞搞新揀單</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">封鎖咗</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d 位仁兄</string>
@@ -3317,67 +3345,107 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡有問題。請檢查您嘅連線，然後再試下啦。</string>
   <string name="NetworkFailure__retry">再試一次</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">改名吾揀單</string>
   <!--Hint text for create/edit notification profile name-->
-  <string name="EditNotificationProfileFragment__profile_name">個人資料名稱</string>
+  <string name="EditNotificationProfileFragment__profile_name">揀單名稱</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">下一步</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">建立</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">儲存</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">圓善吾揀單</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">撞名吾揀單</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__work">公司</string>
+  <string name="EditNotificationProfileFragment__work">返工</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">瞓覺</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">揸車</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">攤唞</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">專心</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">要有個名先得</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">欽准嘅通知</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">呢壇吾揀單濟渡落實嘅時候，您想收到邊啲人同埋谷嘅通知，就喺度圓善入閘</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">加人或者谷</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">加入去</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">搞搞新揀單，淨係接收您想收到嘅人同谷嘅通知同通話，好圓善五光十色嘅通知濟渡。</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">揀單</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">新揀單</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">用緊</string>
+  <string name="NotificationProfilesFragment__on">濟渡中</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">刪除吾揀單</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">剷走咗「%1$s」。</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">復原</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">係咪要永久刪除揀單？</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">刪除</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">圓善通知吾揀單</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">每日</string>
   <!--Profile status on if it is the active profile-->
-  <string name="NotificationProfileDetails__on">用緊</string>
+  <string name="NotificationProfileDetails__on">濟渡中</string>
   <!--Profile status on if it is not the active profile-->
-  <string name="NotificationProfileDetails__off">唔用</string>
+  <string name="NotificationProfileDetails__off">未濟渡</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$s 畀 %2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">由 %1$s 到 %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">吾系青一色</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">批准所有通話入閘</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">點名講嘅時候點都要通知</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">時間表</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">全部睇晒</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">加時間表</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">設定時間表，等呢壇通知吾揀單定時定候自動濟渡。</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">時間表</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">開始</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">結束</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">日</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">一</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">二</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">三</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">四</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">五</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">六</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">設定開始時間</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">設定結束時間</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">儲存</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3385,22 +3453,35 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">下一步</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">時間表至少要有一日</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">整咗壇吾揀單</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">搞掂</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">您可以喺傾偈清單嘅功能表度，親自開關您嘅揀單濟渡。</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">喺設定度加時間表，定時定候落實吾揀單濟渡。</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">將按照時間表自動開關吾揀單濟渡。</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">新揀單</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">濟渡 1 個鐘</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">直至 %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">睇下設定</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">濟渡直至 %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">通知吾揀單</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">淨係接收您揀選嘅人同谷嘅通知，好圓善五光十色嘅通知濟渡。</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">整壇吾揀單</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">遲啲先啦</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">開唔到揀選工具。</string>
   <!--EOF-->

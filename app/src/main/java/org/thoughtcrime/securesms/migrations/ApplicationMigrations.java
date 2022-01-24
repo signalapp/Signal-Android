@@ -92,9 +92,11 @@ public class ApplicationMigrations {
     static final int DB_REACTIONS_MIGRATION        = 48;
     //static final int CHANGE_NUMBER_CAPABILITY_3  = 49;
     static final int PNI                           = 50;
+    static final int FIX_DEPRECATION               = 51; // Only used to trigger clearing the 'client deprecated' flag
+    static final int JUMBOMOJI_DOWNLOAD            = 52;
   }
 
-  public static final int CURRENT_VERSION = 50;
+  public static final int CURRENT_VERSION = 52;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -398,6 +400,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.PNI) {
       jobs.put(Version.PNI, new PniMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.JUMBOMOJI_DOWNLOAD) {
+      jobs.put(Version.JUMBOMOJI_DOWNLOAD, new EmojiDownloadMigrationJob());
     }
 
     return jobs;

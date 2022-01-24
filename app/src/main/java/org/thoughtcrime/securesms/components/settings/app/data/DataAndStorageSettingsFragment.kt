@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode
 import kotlin.math.abs
 
@@ -47,7 +48,7 @@ class DataAndStorageSettingsFragment : DSLSettingsFragment(R.string.preferences_
         title = DSLSettingsText.from(R.string.preferences_data_and_storage__manage_storage),
         summary = DSLSettingsText.from(Util.getPrettyFileSize(state.totalStorageUse)),
         onClick = {
-          Navigation.findNavController(requireView()).navigate(R.id.action_dataAndStorageSettingsFragment_to_storagePreferenceFragment)
+          Navigation.findNavController(requireView()).safeNavigate(R.id.action_dataAndStorageSettingsFragment_to_storagePreferenceFragment)
         }
       )
 
@@ -125,7 +126,7 @@ class DataAndStorageSettingsFragment : DSLSettingsFragment(R.string.preferences_
         title = DSLSettingsText.from(R.string.preferences_use_proxy),
         summary = DSLSettingsText.from(if (state.isProxyEnabled) R.string.preferences_on else R.string.preferences_off),
         onClick = {
-          Navigation.findNavController(requireView()).navigate(R.id.action_dataAndStorageSettingsFragment_to_editProxyFragment)
+          Navigation.findNavController(requireView()).safeNavigate(R.id.action_dataAndStorageSettingsFragment_to_editProxyFragment)
         }
       )
     }

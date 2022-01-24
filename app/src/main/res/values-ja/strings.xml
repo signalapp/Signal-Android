@@ -291,6 +291,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s に対する安全番号が変わりました</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">相手がSignalを再インストールしたか端末を変更したため、%s に対する安全番号が変わりました。タップして新しい安全番号を検証してください。これは任意です。</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s 有効</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">選択したチャットを削除しますか？</item>
   </plurals>
@@ -339,8 +340,11 @@
     <item quantity="other">%d件選択済み</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">通知プロファイル</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">ここで通知プロファイルを有効化・無効化してください。</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s 有効</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
@@ -386,6 +390,8 @@
   <string name="BackupsPreferenceFragment__learn_more">詳しく見る</string>
   <string name="BackupsPreferenceFragment__in_progress">実行しています…</string>
   <string name="BackupsPreferenceFragment__d_so_far">これまで %1$d…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%%完了</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">バックアップを作成するには、Signalに外部ストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「ストレージ」を有効にしてください。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">カスタマイズ: %s</string>
@@ -421,9 +427,6 @@
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名のファイル</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">グループ通話のご紹介</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">新しいグループで暗号化されたグループ通話を始めましょう</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Google Play開発者サービスの不在に対応する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。Signalがいつでもメッセージを受信できるよう、タップしてバッテリー最適化機能を無効にしてください。</string>
@@ -528,10 +531,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">新しい管理者を選択してください</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">グループから抜ける前に、新しい管理者を1人以上選択する必要があります。</string>
   <string name="LeaveGroupDialog_choose_admin">管理者を選択する</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">無効にする</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">どんなリンクもプレビュー</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">送信メッセージにて、どのウェヴサイトからでも直接リンクプレビューを取得できるようになりました。</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">リンクプレビューは使用できません</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">このグループリンクは利用できません</string>
@@ -809,8 +808,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s が %2$s に送信</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">あなたが %1$s に送信</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">リアクションのご紹介</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">メッセージを長押しして、手軽にリアクションできます。</string>
   <string name="Megaphones_remind_me_later">あとで通知</string>
   <string name="Megaphones_verify_your_signal_pin">Signal PINの確認</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PINを忘れないよう、確認をお願いします。</string>
@@ -1540,6 +1537,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">この端末はもう登録されていません</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">これはおそらく別の端末でSignalに登録されたことが原因です。タップして再登録します。</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">着信に出るには、Signalにマイクへのアクセスを許可してください。</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s からの着信に出るには、Signalにマイクへのアクセスを許可してください。</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">通話するには、Signalにマイクとカメラへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「マイク」と「カメラ」を有効にしてください。</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">リンクした端末で応答しました。</string>
@@ -1653,8 +1651,9 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">一番下までスクロール</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">バブルはAndroidの機能で、Signalのチャットでは無効にできます。</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
-  <string name="BubbleOptOutTooltip__not_now">あとで</string>
+  <string name="BubbleOptOutTooltip__not_now">今はしない</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
   <string name="BubbleOptOutTooltip__turn_off">無効にする</string>
   <!--safety_number_change_dialog-->
@@ -2229,18 +2228,43 @@
   <string name="conversation_callable_secure__menu_call">Signal通話</string>
   <string name="conversation_callable_secure__menu_video">Signalビデオ通話</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">メッセージの詳細</string>
-  <string name="conversation_context__menu_copy_text">テキストをコピー</string>
-  <string name="conversation_context__menu_delete_message">メッセージの削除</string>
-  <string name="conversation_context__menu_forward_message">メッセージの転送</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">詳細</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">コピー</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">削除</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">転送</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">メッセージの再送信</string>
-  <string name="conversation_context__menu_reply_to_message">メッセージに返信</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">返信</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">複数を選択</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="other">%d件選択済み</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">添付ファイルを保存</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">保存</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">消えるメッセージ</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">詳細</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">コピー</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">削除</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">転送</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">返信</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">保存</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">招待</string>
@@ -2417,16 +2441,6 @@
   <string name="KbsMegaphone__create_a_pin">PINを作成</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signalで保管される情報はPINで暗号化されます。</string>
   <string name="KbsMegaphone__create_pin">PINを作成</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Signalへご意見ください</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signalを地上最高のメッセージアプリにするため、皆様からのフィードバックをお待ちしています。</string>
-  <string name="ResearchMegaphone_learn_more">詳しく見る</string>
-  <string name="ResearchMegaphone_dismiss">キャンセル</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signalリサーチ</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザーの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法についてアンケート調査を行っています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">アンケートに参加する</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">このアンケートは、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>
@@ -2476,7 +2490,7 @@
   <string name="BackupDialog_verify">確認する</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">正しいバックアップ用パスフレーズが入力されました</string>
   <string name="BackupDialog_passphrase_was_not_correct">パスフレーズが違います</string>
-  <string name="LocalBackupJob_creating_backup">バックアップを作成しています…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signalのバックアップを作成しています…</string>
   <string name="LocalBackupJobApi29_backup_failed">バックアップに失敗しました</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは削除または移動されています。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">あなたのバックアップファイルは、このボリュームに保存するには大きすぎます。</string>
@@ -2598,6 +2612,8 @@
   <string name="DeviceTransfer__transferring_data">データを移行しています</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">端末同士を近づけてください。どちらの端末も電源を切らず、Signalを開いたままにしてください。転送はエンドツーエンドで暗号化されます。</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d件のメッセージ…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%%転送完了</string>
   <string name="DeviceTransfer__cancel">キャンセル</string>
   <string name="DeviceTransfer__try_again">もう一度試す</string>
   <string name="DeviceTransfer__stop_transfer_question">移行を停止しますか？</string>
@@ -2648,6 +2664,7 @@
   <string name="RecipientBottomSheet_unblock">ブロック解除</string>
   <string name="RecipientBottomSheet_add_to_contacts">連絡先に追加</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">連絡先を開くためのアプリが見つかりません。</string>
   <string name="RecipientBottomSheet_add_to_a_group">グループへ追加</string>
   <string name="RecipientBottomSheet_add_to_another_group">他のグループに追加</string>
   <string name="RecipientBottomSheet_view_safety_number">安全番号の検証</string>
@@ -2745,11 +2762,17 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">ローカルデータの削除に失敗しました。これはシステムのアプリ設定にて、手動で削除できます。</string>
   <string name="DeleteAccountFragment__launch_app_settings">アプリ設定を開く</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">グループから抜けています…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">アカウントを削除しています…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">参加しているグループ数によっては数分かかることがあります</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">ユーザーデータの削除とアプリのリセットを行っています</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">アカウントを削除できません</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">削除の処理中にエラーが発生しました。インターネット接続を確認して、再度試してください。</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">国を検索します</string>
   <!--CreateGroupActivity-->
@@ -2958,11 +2981,16 @@
   <string name="NotificationsSettingsFragment__notify_when">その他の通知</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">連絡先のSignal参加時</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">通知プロファイル</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">プロファイル</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">プロファイルを作成すると、通知を受け取りたい相手やグループを限定できます。</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">通知プロファイル</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">プロファイルを作成</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ブロック中のユーザー</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d件</string>
@@ -3307,67 +3335,107 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ネットワークエラー。インターネット接続を確認して再度試してください。</string>
   <string name="NetworkFailure__retry">再試行</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">プロファイル名の選択</string>
   <!--Hint text for create/edit notification profile name-->
-  <string name="EditNotificationProfileFragment__profile_name">プロフィール名</string>
+  <string name="EditNotificationProfileFragment__profile_name">プロファイル名</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">次へ</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">作成</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">保存</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">プロファイルの編集</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">このプロファイル名はすでに存在します</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__work">職場</string>
+  <string name="EditNotificationProfileFragment__work">仕事</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">睡眠</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">運転</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">休憩</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">集中</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">プロファイル名は必須です</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">通知許可</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">このプロファイルの有効時に通知や通話着信を受け取りたい、人やグループを選択してください。</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">人またはグループを追加</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">追加する</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">プロファイルを作成すると、通知や通話着信を受け取りたい相手やグループを限定できます。</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">プロファイル</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">新規プロファイル</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">オン</string>
+  <string name="NotificationProfilesFragment__on">有効</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">プロファイルを削除</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" を削除しました</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">元に戻す</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">プロファイルを削除しますか？</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">削除する</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">通知プロファイルの編集</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">毎日</string>
   <!--Profile status on if it is the active profile-->
-  <string name="NotificationProfileDetails__on">オン</string>
+  <string name="NotificationProfileDetails__on">有効</string>
   <!--Profile status on if it is not the active profile-->
-  <string name="NotificationProfileDetails__off">オフ</string>
+  <string name="NotificationProfileDetails__off">無効</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$s から %2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">%1$s～%2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">例外</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">すべての通話を通知する</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">すべてのメンションを通知する</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">スケジュール</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">すべて表示</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">スケジュールの追加</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">スケジュールを設定すると、通知プロファイルを自動で有効化できます。</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">スケジュール</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">開始</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">終了</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">日</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">月</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">火</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">水</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">木</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">金</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">土</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">開始時刻の設定</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">終了時刻の設定</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">保存</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3375,22 +3443,35 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">次へ</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">曜日を1つ以上選択してください</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">プロファイルを作成しました</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">完了</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">プロファイルの有効化・無効化は、チャットリストのメニューから行ってください。</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">設定でプロファイルのスケジュールを追加できます。</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">プロファイルは、スケジュールに従って自動で有効化・無効化されます。</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">新規プロファイル</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">1時間有効にする</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
-  <string name="NotificationProfileSelection__until_s">%1$sまで</string>
+  <string name="NotificationProfileSelection__until_s">%1$sまで有効にする</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">設定</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">%1$sまで有効</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">通知プロファイル</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">通知を受け取りたい相手やグループを限定できます。</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">プロファイルを作成</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">今はしない</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">ファイルピッカーを開けませんでした</string>
   <!--EOF-->

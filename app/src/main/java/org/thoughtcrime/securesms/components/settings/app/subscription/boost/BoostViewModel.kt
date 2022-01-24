@@ -217,8 +217,8 @@ class BoostViewModel(
     store.update { it.copy(customAmount = FiatMoney(bigDecimalAmount, it.customAmount.currency)) }
   }
 
-  fun setCustomAmountFocused(isFocused: Boolean) {
-    store.update { it.copy(isCustomAmountFocused = isFocused) }
+  fun setCustomAmountFocused() {
+    store.update { it.copy(isCustomAmountFocused = true) }
   }
 
   private data class BoostInfo(val boosts: List<Boost>, val defaultBoost: Boost?, val boostBadge: Badge, val supportedCurrencies: Set<Currency>)

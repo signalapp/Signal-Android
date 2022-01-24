@@ -1069,24 +1069,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void updateNotificationProfileStatus(@NonNull List<NotificationProfile> notificationProfiles) {
-    if (notificationProfiles.isEmpty()) {
-      return;
-    }
-
-    if (!SignalStore.notificationProfileValues().getHasSeenTooltip()) {
-      View target = findOverflowMenuButton(getToolbar(requireView()));
-      if (target != null) {
-        TooltipPopup.forTarget(target)
-                    .setText(R.string.ConversationListFragment__turn_your_notification_profile_on_or_off_here)
-                    .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.signal_button_primary))
-                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_button_primary_text))
-                    .setOnDismissListener(() -> SignalStore.notificationProfileValues().setHasSeenTooltip(true))
-                    .show(POSITION_BELOW);
-      } else {
-        Log.w(TAG, "Unable to find overflow menu to show Notification Profile tooltip");
-      }
-    }
-
     NotificationProfile activeProfile = NotificationProfiles.getActiveProfile(notificationProfiles);
 
     if (activeProfile != null) {
@@ -1116,6 +1098,20 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       notificationProfileStatus.setVisibility(View.VISIBLE);
     } else {
       notificationProfileStatus.setVisibility(View.GONE);
+    }
+
+    if (!SignalStore.notificationProfileValues().getHasSeenTooltip() && Util.hasItems(notificationProfiles)) {
+      View target = findOverflowMenuButton(getToolbar(requireView()));
+      if (target != null) {
+        TooltipPopup.forTarget(target)
+                    .setText(R.string.ConversationListFragment__turn_your_notification_profile_on_or_off_here)
+                    .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.signal_button_primary))
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_button_primary_text))
+                    .setOnDismissListener(() -> SignalStore.notificationProfileValues().setHasSeenTooltip(true))
+                    .show(POSITION_BELOW);
+      } else {
+        Log.w(TAG, "Unable to find overflow menu to show Notification Profile tooltip");
+      }
     }
   }
 
@@ -1328,7 +1324,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     items.add(new ActionItem(R.drawable.ic_delete_24, getResources().getQuantityString(R.plurals.ConversationListFragment_delete_plural, count), () -> handleDelete(selectionIds)));
 
-
     if (hasUnmuted) {
       items.add(new ActionItem(R.drawable.ic_mute_24, getResources().getQuantityString(R.plurals.ConversationListFragment_mute_plural, count), () -> handleMute(viewModel.currentSelectedConversations())));
     } else {
@@ -1337,7 +1332,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     items.add(new ActionItem(R.drawable.ic_select_24, getString(R.string.ConversationListFragment_select_all), viewModel::onSelectAllClick));
 
-//    bottomActionBar.setItems(items);
+    bottomActionBar.setItems(items);
   }
 
   protected Toolbar getToolbar(@NonNull View rootView) {

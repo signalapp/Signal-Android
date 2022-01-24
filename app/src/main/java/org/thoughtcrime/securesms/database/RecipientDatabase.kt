@@ -2295,7 +2295,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val select =
       """
         SELECT r.$ID FROM $TABLE_NAME AS r 
-        INNER JOIN ${ThreadDatabase.TABLE_NAME} AS t ON t.${ThreadDatabase.RECIPIENT_ID} = r.ID 
+        INNER JOIN ${ThreadDatabase.TABLE_NAME} AS t ON t.${ThreadDatabase.RECIPIENT_ID} = r.$ID
         WHERE
           r.$PROFILE_SHARING = 0 AND (
             EXISTS(SELECT 1 FROM ${SmsDatabase.TABLE_NAME} WHERE ${SmsDatabase.THREAD_ID} = t.${ThreadDatabase.ID} AND ${SmsDatabase.DATE_RECEIVED} < ?) OR
@@ -3185,7 +3185,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"
-      const val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_URI + NOT NULL AND ($PHONE NOT NULL OR $EMAIL NOT NULL)"
+      const val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_URI NOT NULL AND ($PHONE NOT NULL OR $EMAIL NOT NULL)"
       const val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($PHONE GLOB ? OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
       const val SIGNAL_CONTACT = "$REGISTERED = ? AND (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
       const val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($PHONE GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"

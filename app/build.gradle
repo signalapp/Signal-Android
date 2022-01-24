@@ -1,12 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'androidx.navigation.safeargs'
-apply plugin: 'witness'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply from: 'translations.gradle'
-apply from: 'witness-verifications.gradle'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'app.cash.exhaustive'
 apply plugin: 'kotlin-parcelize'
@@ -47,7 +44,7 @@ repositories {
 
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.11.4'
+        artifact = 'com.google.protobuf:protoc:3.18.0'
     }
     generateProtoTasks {
         all().each { task ->
@@ -60,8 +57,13 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 974
-def canonicalVersionName = "5.28.1"
+ktlint {
+    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
+    version = "0.43.2"
+}
+
+def canonicalVersionCode = 989
+def canonicalVersionName = "5.29.5"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -381,6 +383,7 @@ android {
     }
 
     lintOptions {
+        checkReleaseBuilds false
         abortOnError true
         baseline file("lint-baseline.xml")
         disable "LintError"
@@ -442,6 +445,7 @@ dependencies {
     implementation project(':libsignal-service')
     implementation project(':paging')
     implementation project(':core-util')
+    implementation project(':glide-config')
     implementation project(':video')
     implementation project(':device-transfer')
     implementation project(':image-editor')
@@ -468,8 +472,6 @@ dependencies {
     implementation libs.apache.httpclient.android
     implementation libs.photoview
     implementation libs.glide.glide
-    kapt libs.glide.compiler
-    kapt libs.androidx.annotation
     implementation libs.roundedimageview
     implementation libs.materialish.progress
     implementation libs.greenrobot.eventbus
@@ -546,10 +548,6 @@ dependencies {
     implementation libs.rxdogtag
 
     androidTestUtil 'androidx.test:orchestrator:1.4.0'
-}
-
-dependencyVerification {
-    configuration = '(play|website)(Prod|Staging)(Debug|Release)RuntimeClasspath'
 }
 
 def getLastCommitTimestamp() {

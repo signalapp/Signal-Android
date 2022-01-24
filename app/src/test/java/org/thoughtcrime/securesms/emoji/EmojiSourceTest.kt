@@ -10,7 +10,7 @@ class EmojiSourceTest {
 
   @Test
   fun `Given a bunch of data pages with max value 100100, when I get the maxEmojiLength, then I expect 6`() {
-    val emojiDataFake = ParsedEmojiData(EmojiMetrics(-1, -1, -1), listOf(), "png", listOf(), dataPages = generatePages(), listOf())
+    val emojiDataFake = ParsedEmojiData(EmojiMetrics(-1, -1, -1), listOf(), "png", listOf(), dataPages = generatePages(), emptyMap(), listOf())
     val testSubject = EmojiSource(0f, emojiDataFake) { uri -> EmojiPage.Disk(uri) }
 
     Assert.assertEquals(6, testSubject.maxEmojiLength)

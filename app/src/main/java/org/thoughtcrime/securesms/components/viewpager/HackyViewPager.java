@@ -42,4 +42,14 @@ public class HackyViewPager extends ViewPager {
       return false;
     }
   }
+
+  @Override
+  public boolean onTouchEvent(MotionEvent ev) {
+    try {
+      return super.onTouchEvent(ev);
+    } catch (IndexOutOfBoundsException | NullPointerException e) {
+      Log.w(TAG, e);
+      return true;
+    }
+  }
 }

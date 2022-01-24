@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Seu número de segurança com %s mudou</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Seu número de segurança com %s mudou, provavelmente porque ela/ele reinstalou o Signal ou mudou de aparelho. Toque em Verificar para confirmar o novo número de segurança. Isso é opcional.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s está ligado</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Excluir conversa selecionada?</item>
     <item quantity="other">Excluir conversas selecionadas?</item>
@@ -360,8 +361,11 @@
     <item quantity="other">%d selecionadas</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Perfil de notificações</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Ative ou desative o seu perfil de notificações aqui.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s está ligado</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves</string>
   <!--ConversationListItemAction-->
@@ -407,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Saiba mais</string>
   <string name="BackupsPreferenceFragment__in_progress">Em andamento…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d até agora…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% até agora…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal precisa da permissão ao armazenamento externo para fazer backup, mas ela foi permanentemente negada. Por favor, vá ao menu de configurações de aplicativos, selecione \"Permissões\", e habilite \"Armazenamento\". </string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
@@ -442,9 +448,6 @@
   <string name="DeviceListItem_today">Hoje</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Arquivo sem nome</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Apresentamos as chamadas em grupo</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Abra um Novo Grupo para começar uma chamada em grupo criptografada e gratuita</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para ausência do Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não tem suporte para o Play Services. Clique para desabilitar as otimizações de bateria do sistema que impedem o Signal de receber mensagens enquanto está inativo.</string>
@@ -562,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Escolha novo admin</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Antes de sair, você deve escolher pelo menos um novo admin para este grupo.</string>
   <string name="LeaveGroupDialog_choose_admin">Escolha admin</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Desabilitar</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Pré-visualizar qualquer link</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Agora você pode carregar pré-visualizações dos links diretamente de qualquer site nas mensagens que você envia.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nenhuma pré-visualização disponível para o link</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">O link deste grupo não está ativo</string>
@@ -862,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Enviado por %1$s para %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Enviado por você para %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Apresentando as Reações</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Toque e segure qualquer mensagem para compartilhar rapidamente sua reação ou como você se sente.</string>
   <string name="Megaphones_remind_me_later">Me lembre mais tarde</string>
   <string name="Megaphones_verify_your_signal_pin">Confirme seu PIN do Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocasionalmente, solicitaremos que você confirme seu PIN, para te ajudar a não esquecê-lo.</string>
@@ -1627,6 +1624,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispositivo não mais registrado</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Isso provavelmente aconteceu porque você registrou seu número de telefone no Signal usando um outro dispositivo. Toque para registrar novamente.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Para atender a chamada, conceda ao Signal acesso ao seu microfone.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para atender a chamada de %s, dê ao Signal acesso ao microfone.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">O Signal precisa das permissões Microfone e Câmera para fazer ou receber chamadas, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Atendido em um dispositivo vinculado.</string>
@@ -1742,6 +1740,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rolar para o final</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Bolhas são um recurso do Android que você pode desativar para conversas que ocorrem no Signal.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Agora não</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2326,18 +2325,40 @@
   <string name="conversation_callable_secure__menu_call">Chamada do Signal</string>
   <string name="conversation_callable_secure__menu_video">Vídeo chamada do Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Detalhes da mensagem</string>
-  <string name="conversation_context__menu_copy_text">Copiar texto</string>
-  <string name="conversation_context__menu_delete_message">Excluir mensagem</string>
-  <string name="conversation_context__menu_forward_message">Encaminhar mensagem</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Copiar</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Excluir</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Encaminhar</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Reenviar mensagem</string>
-  <string name="conversation_context__menu_reply_to_message">Responder à mensagem</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Responder</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Selecionar várias</string>
+  <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Salvar anexo</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Salvar</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Mensagens efêmeras</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Copiar</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Excluir</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Encaminhar</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Responder</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Salvar</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convidar</string>
@@ -2521,16 +2542,6 @@
   <string name="KbsMegaphone__create_a_pin">Crie um PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">O PIN mantém criptografadas as informações armazenadas no Signal.</string>
   <string name="KbsMegaphone__create_pin">Crie um PIN</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Diga ao Signal o que você pensa</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Para fazer do Signal o melhor aplicativo de mensagens do planeta, gostaríamos de receber seu feedback.</string>
-  <string name="ResearchMegaphone_learn_more">Saiba mais</string>
-  <string name="ResearchMegaphone_dismiss">Ignorar</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Pesquisa do Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Acreditamos na privacidade.</b></p><p>O Signal não o rastreia nem coleta seus dados. Para melhorar o Signal para todos, contamos com um feedback, <b>e nós adoraríamos o seu.</b></p><p>Estamos fazendo pesquisas para compreender como vocês utilizam o Signal. A nossa pesquisa não coleta nenhum dado que o pode identificar. Se estiver interessado em compartilhar um feedback adicional, terá a opção de fornecer informações de contato.</p><p>Se tiver alguns minutos e um feedback para oferecer, gostaríamos de ouvi-lo.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Participar da pesquisa</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Não, obrigado</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">A pesquisa é hospedada pelo Alchemer no domínio seguro: surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
   <string name="ConversationListFragment_loading">Carregando…</string>
@@ -2580,7 +2591,7 @@
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Você digitou com sucesso sua senha de backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">A senha está incorreta</string>
-  <string name="LocalBackupJob_creating_backup">Criando backup…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Criando backup do Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Backup falhou</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Sua pasta de backup foi excluída ou movida.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Seu arquivo de backup é muito grande para ser armazenado neste local.</string>
@@ -2702,6 +2713,8 @@
   <string name="DeviceTransfer__transferring_data">Transferindo dados</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Mantenha os dois aparelhos próximos um do outro. Não desligue os aparelhos e mantenha o Signal aberto. Transferências são criptografadas de ponta a ponta.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d mensagens até agora…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% das mensagens até agora…</string>
   <string name="DeviceTransfer__cancel">Cancelar</string>
   <string name="DeviceTransfer__try_again">Tentar novamente</string>
   <string name="DeviceTransfer__stop_transfer_question">Cancelar a transferência?</string>
@@ -2752,6 +2765,7 @@
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>
   <string name="RecipientBottomSheet_add_to_contacts">Adicionar aos contatos</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Não foi possível encontrar um aplicativo capaz de abrir contatos.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Adicionar a um grupo</string>
   <string name="RecipientBottomSheet_add_to_another_group">Adicionar a outro grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver número de segurança</string>
@@ -2851,11 +2865,17 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Falha ao excluir os dados locais. Você pode limpá-los manualmente nas configurações do aplicativo no sistema.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Acessar as configurações do aplicativo</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Saindo dos grupos…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Excluindo a conta…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Dependendo do número de grupos em que você participa, a exclusão pode demorar alguns minutos</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Excluindo os seus dados e retornando o aplicativo ao estado original</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Conta não excluída</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Ocorreu um problema ao concluir o processo de exclusão. Verifique a sua conexão à rede e tente novamente.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Pesquisar países</string>
   <!--CreateGroupActivity-->
@@ -3065,11 +3085,16 @@
   <string name="NotificationsSettingsFragment__notify_when">Notifique-me quando…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">O contato entrou no Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Perfis de notificações</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Perfis</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Crie um perfil para receber notificações apenas das pessoas e grupos que você escolher.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Perfis de notificações</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Criar perfil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Bloqueada</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d contatos</string>
@@ -3420,68 +3445,107 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua conexão e tente novamente.</string>
   <string name="NetworkFailure__retry">Tentar novamente</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Nomeie este perfil de notificações</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Nome do perfil</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Próximo</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Criar</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Salvar</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Editar este perfil</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Já existe um perfil com este nome</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Trabalho</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Sono</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Dirigindo</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Ausente</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Concentração</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Precisa ter um nome</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Notificações permitidas</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Adicione pessoas e grupos dos quais você deseja receber notificações e ligações quando este perfil estiver ativado</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Adicionar pessoas ou grupos</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Adicionar</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Crie um perfil para receber notificações e ligações apenas das pessoas e grupos que você escolher.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Perfis</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Novo perfil</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Ligado</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Excluir perfil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" foi removida(o).</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Desfazer</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Excluir permanentemente este perfil?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Excluir</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Editar perfil de notificação</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Diariamente</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Ligado</string>
   <!--Profile status on if it is not the active profile-->
   <string name="NotificationProfileDetails__off">Desligado</string>
   <!--Description of hours for schedule (start to end) times-->
-  <string name="NotificationProfileDetails__s_to_s">%1$s para %2$s</string>
+  <string name="NotificationProfileDetails__s_to_s">%1$s até %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Exceções</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Permitir todas as chamadas</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Notifique-me quando eu for mencionada(o)</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Agenda</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Ver todos</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Adicionar uma agenda</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Defina um horário para ativar automaticamente este perfil de notificação.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Agenda</string>
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">Começar</string>
+  <string name="EditNotificationProfileSchedule__start">Início</string>
   <!--Label for showing the end time for the schedule-->
-  <string name="EditNotificationProfileSchedule__end">Encerrar</string>
+  <string name="EditNotificationProfileSchedule__end">Término</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">D</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">S</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">Q</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Q</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">S</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Definir a hora de início</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Definir a hora de término</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Salvar</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3489,22 +3553,35 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Próximo</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">A agenda deve ter pelo menos um dia</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Perfil criado</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Pronto</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Você pode ativar ou desativar o seu perfil de notificação por meio do menu na lista de conversas.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Adicione uma agenda em configurações para automatizar seu perfil.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Seu perfil será automaticamente ligado e desligado de acordo com a sua agenda.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Novo perfil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Por 1 hora</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Até %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Mostrar configurações</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Ligado até %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Perfis de notificações</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Receba notificações apenas das pessoas e grupos que você escolher.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Criar um perfil</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Agora não</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Falha ao abrir o selecionador de toques.</string>
   <!--EOF-->

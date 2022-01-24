@@ -17,6 +17,7 @@ import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public final class GiphyMp4ViewModel extends ViewModel {
 
   private final GiphyMp4Repository                             repository;
   private final MutableLiveData<PagedData<String, GiphyImage>> pagedData;
-  private final LiveData<List<GiphyImage>>                     images;
+  private final LiveData<MappingModelList>                     images;
   private final LiveData<PagingController<String>>             pagingController;
   private final SingleLiveEvent<GiphyMp4SaveResult>            saveResultEvents;
   private final boolean                                        isForMms;
@@ -49,7 +50,7 @@ public final class GiphyMp4ViewModel extends ViewModel {
                                                                                                                 .filterNot(g -> TextUtils.isEmpty(isForMms ? g.getGifMmsUrl() : g.getGifUrl()))
                                                                                                                 .filterNot(g -> TextUtils.isEmpty(g.getMp4PreviewUrl()))
                                                                                                                 .filterNot(g -> TextUtils.isEmpty(g.getStillUrl()))
-                                                                                                                .toList()));
+                                                                                                                .collect(MappingModelList.toMappingModelList())));
   }
 
   LiveData<PagedData<String, GiphyImage>> getPagedData() {
@@ -73,7 +74,7 @@ public final class GiphyMp4ViewModel extends ViewModel {
     return saveResultEvents;
   }
 
-  public @NonNull LiveData<List<GiphyImage>> getImages() {
+  public @NonNull LiveData<MappingModelList> getImages() {
     return images;
   }
 

@@ -268,7 +268,6 @@ public class RetrieveProfileJob extends BaseJob {
                                                 ProfileService.ProfileResponseProcessor processor = new ProfileService.ProfileResponseProcessor(pair.second());
                                                 if (processor.hasResult()) {
                                                   state.profiles.add(processor.getResult(recipient));
-                                                  process(recipient, processor.getResult());
                                                 } else if (processor.notFound()) {
                                                   Log.w(TAG, "Failed to find a profile for " + recipient.getId());
                                                   if (recipient.isRegistered()) {
@@ -284,7 +283,13 @@ public class RetrieveProfileJob extends BaseJob {
                                               .lastOrError()
                                               .blockingGet();
 
-    stopwatch.split("network-process");
+    stopwatch.split("responses");
+
+    for (Pair<Recipient, ProfileAndCredential> profile : operationState.profiles) {
+      process(profile.first(), profile.second());
+    }
+
+    stopwatch.split("process");
 
     Set<RecipientId> success = SetUtil.difference(recipientIds, operationState.retries);
     recipientDatabase.markProfilesFetched(success, System.currentTimeMillis());

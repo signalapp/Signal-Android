@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Fragment to allow user to manage options related to the badges they've unlocked.
@@ -37,7 +38,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     Badge.register(adapter) { badge, _, isFaded ->
       if (badge.isExpired() || isFaded) {
-        findNavController().navigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToExpiredBadgeDialog(badge))
+        findNavController().safeNavigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToExpiredBadgeDialog(badge))
       } else {
         ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, Recipient.self().id, badge)
       }
@@ -83,7 +84,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
         summary = state.featuredBadge?.name?.let { DSLSettingsText.from(it) },
         isEnabled = state.stage == BadgesOverviewState.Stage.READY && state.hasUnexpiredBadges && state.hasInternet,
         onClick = {
-          findNavController().navigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToFeaturedBadgeFragment())
+          findNavController().safeNavigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToFeaturedBadgeFragment())
         }
       )
     }

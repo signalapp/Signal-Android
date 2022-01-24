@@ -5,7 +5,7 @@
   <string name="delete">Ta bort</string>
   <string name="please_wait">Vänligen vänta…</string>
   <string name="save">Spara</string>
-  <string name="note_to_self">Notering till mig själv</string>
+  <string name="note_to_self">Egen anteckning</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nytt meddelande</string>
   <!--AlbumThumbnailView-->
@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">Ditt säkerhetsnummer med %s har ändrats</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ditt säkerhetsnummer med %s har ändrats, troligtvis för att de installerade om Signal eller bytte enheter. Tryck på Verifiera för att bekräfta det nya säkerhetsnumret. Detta är valfritt.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s på</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Radera markerad konversation?</item>
     <item quantity="other">Ta bort markerade konversationer?</item>
@@ -360,8 +361,11 @@
     <item quantity="other">%d valda</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Aviseringsprofil</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Slå på eller av din aviseringsprofil här.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s på</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
   <!--ConversationListItemAction-->
@@ -407,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">Läs mer</string>
   <string name="BackupsPreferenceFragment__in_progress">Pågående…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hittills…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% hittills…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal behöver behörigheten Lagring för att skapa säkerhetskopior men den har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
@@ -442,9 +448,6 @@
   <string name="DeviceListItem_today">Idag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Namnlös fil</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Vi presenterar gruppsamtal</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öppna en Ny grupp för att starta ett fritt krypterat gruppsamtal</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheten stöder inte Play-tjänster. Tryck för att inaktivera systembatterioptimeringar som hindrar Signal från att hämta meddelanden vid inaktivitet.</string>
@@ -562,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">Välj ny administratör</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Innan du lämnar måste du välja minst en ny administratör för denna grupp.</string>
   <string name="LeaveGroupDialog_choose_admin">Välj administratör</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">Inaktivera</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">Förhandsgranska vilken länk som helst</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Du kan nu hämta länkförhandsgranskningar direkt från valfri webbplats för meddelanden du skickar.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Ingen länkförhandsvisning tillgänglig</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
@@ -862,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Skickad av %1$s till %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Skickad av dig till %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Introducerar Reaktioner</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tryck och håll ett meddelande för att snabbt dela hur du känner.</string>
   <string name="Megaphones_remind_me_later">Påminn mig senare</string>
   <string name="Megaphones_verify_your_signal_pin">Verifiera din Signal PIN-kod</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Vi ber dig ibland att verifiera din PIN-kod så att du kommer ihåg den.</string>
@@ -1620,6 +1617,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UnauthorizedReminder_device_no_longer_registered">Enhet inte längre registreread</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Detta är troligen på grund av att du registrerade ditt mobilnummer hos Signal på en annan enhet. Tryck för att återregistrera dig.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">För att svara på samtalet, ge Signal åtkomst till din mikrofon.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">För att svara på samtalet från %s, ge Signal åtkomst till din mikrofon.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal behöver behörigheterna Mikrofon och Kamera för att ringa och ta emot samtal, men de har avfärdats permanent. Vänligen fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Mikrofon\" och \"Kamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvarades på en länkad enhet.</string>
@@ -1735,6 +1733,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Bläddra till botten</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Bubblor är en Android-funktion som du kan stänga av för Signal-chattar.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Inte nu</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2050,7 +2049,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__help">Hjälp</string>
   <string name="preferences__advanced">Avancerat</string>
   <string name="preferences__donate_to_signal">Donera till Signal</string>
-  <string name="preferences__subscription">Prenumeration</string>
+  <string name="preferences__subscription">Abonnemang</string>
   <string name="preferences__become_a_signal_sustainer">Bli en Signal-upprätthållare</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Integritet</string>
@@ -2319,18 +2318,44 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_callable_secure__menu_call">Signal-samtal</string>
   <string name="conversation_callable_secure__menu_video">Signal-videosamtal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Meddelandedetaljer</string>
-  <string name="conversation_context__menu_copy_text">Kopiera text</string>
-  <string name="conversation_context__menu_delete_message">Ta bort meddelande</string>
-  <string name="conversation_context__menu_forward_message">Vidarebefordra meddelande</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">Kopiera</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">Ta bort</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">Vidarebefordra</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">Skicka meddelande igen</string>
-  <string name="conversation_context__menu_reply_to_message">Svara på meddelande</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">Svara</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">Välj flera</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d vald</item>
+    <item quantity="other">%d valda</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Spara bilaga</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">Spara</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Försvinnande meddelanden</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">Info</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">Kopiera</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">Ta bort</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">Vidarebefordra</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">Svara</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">Spara</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Bjud in</string>
@@ -2514,16 +2539,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsMegaphone__create_a_pin">Skapa en PIN-kod</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koder håller information som lagras hos Signal krypterad.</string>
   <string name="KbsMegaphone__create_pin">Skapa PIN-kod</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Berätta för Signal vad du tycker</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">För att göra Signal till den bästa meddelande-appen på planeten, skulle vi gärna höra din åsikt.</string>
-  <string name="ResearchMegaphone_learn_more">Läs mer</string>
-  <string name="ResearchMegaphone_dismiss">Avfärda</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal-forskning</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi tror på integritet.</b></p><p>Signal spårar inte dig och samlar inte in dina uppgifter. För att förbättra Signal för alla förlitar vi oss på användarrespons, <b>och vi skulle vilja få din.</b></p><p>Vi genomför en undersökning för att förstå hur du använder Signal. Vår undersökning samlar inte in några uppgifter som kommer att identifiera dig. Om du är intresserad av att dela ytterligare åsikter har du möjlighet att ge kontaktinformation.</p><p>Om du har några minuter och respons att erbjuda skulle vi gärna höra från dig.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">Ta undersökningen</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">Nej tack</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Undersökningen anordnas av Alchemer på den säkra domänen surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>
@@ -2573,7 +2588,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BackupDialog_verify">Verifiera</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har angett ditt lösenord för säkerhetskopian</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lösenordet var inte korrekt</string>
-  <string name="LocalBackupJob_creating_backup">Skapar säkerhetskopia…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Skapar Signal-säkerhetskopia…</string>
   <string name="LocalBackupJobApi29_backup_failed">Säkerhetskopieringen misslyckades</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mapp för säkerhetskopior har tagits bort eller flyttats.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din säkerhetskopieringsfil är för stor för att lagras på denna volym.</string>
@@ -2695,6 +2710,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DeviceTransfer__transferring_data">Överför data</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Håll båda enheterna nära varandra. Stäng inte av enheterna och håll Signal öppen. Överföringarna är ände-till-ände-krypterade.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d meddelanden hittills…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% av meddelanden hittills…</string>
   <string name="DeviceTransfer__cancel">Avbryt</string>
   <string name="DeviceTransfer__try_again">Försök igen</string>
   <string name="DeviceTransfer__stop_transfer_question">Stoppa överföringen?</string>
@@ -2745,6 +2762,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_unblock">Avblockera</string>
   <string name="RecipientBottomSheet_add_to_contacts">Lägg till som kontakt</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Det går inte att hitta en app som kan öppna kontakter.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Lägg till i en grupp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lägg till i en annan grupp</string>
   <string name="RecipientBottomSheet_view_safety_number">Visa säkerhetsnummer</string>
@@ -2844,11 +2862,17 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Det gick inte att ta bort lokala data. Du kan rensa det manuellt i systemapplikationsinställningarna.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Starta appinställningar</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Lämnar grupper…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Tar bort konto…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Beroende på antalet grupper du är med i kan detta ta några minuter</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Ta bort användardata och återställa appen</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Kontot inte borttaget</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Det uppstod ett problem med att slutföra borttagningsprocessen. Kontrollera din nätverksanslutning och försök igen.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Sök länder</string>
   <!--CreateGroupActivity-->
@@ -3058,11 +3082,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="NotificationsSettingsFragment__notify_when">Meddela när…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt ansluter sig till Signal</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Aviseringsprofiler</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profiler</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Skapa en profil för att bara få aviseringar från personer och grupper du väljer.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Aviseringsprofiler</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Skapa profil</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blockerade</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakter</string>
@@ -3333,17 +3362,17 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Stöd teknik som är byggd för dig, inte för din data, genom att gå med i gemenskapen som upprätthåller Signal.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Fler betalningsalternativ</string>
-  <string name="SubscribeFragment__cancel_subscription">Avbryt prenumeration</string>
+  <string name="SubscribeFragment__cancel_subscription">Avbryt abonnemang</string>
   <string name="SubscribeFragment__confirm_cancellation">Bekräfta annullering?</string>
   <string name="SubscribeFragment__you_wont_be_charged_again">Du kommer inte att debiteras igen. Ditt märke tas bort från din profil i slutet av din faktureringsperiod.</string>
   <string name="SubscribeFragment__not_now">Inte nu</string>
   <string name="SubscribeFragment__confirm">Bekräfta</string>
-  <string name="SubscribeFragment__update_subscription">Uppdatera prenumeration</string>
-  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Din prenumeration har avslutats.</string>
-  <string name="SubscribeFragment__update_subscription_question">Uppdatera prenumeration?</string>
+  <string name="SubscribeFragment__update_subscription">Uppdatera abonnemang</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ditt abonnemang har avslutats.</string>
+  <string name="SubscribeFragment__update_subscription_question">Uppdatera abonnemang?</string>
   <string name="SubscribeFragment__update">Uppdatera</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du kommer att debiteras hela beloppet för det nya prenumerationspriset idag. Din prenumeration förnyas %1$s.</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Du kommer att debiteras hela beloppet (%1$s) för det nya prenumerationspriset idag. Din prenumeration förnyas varje månad.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Du kommer att debiteras hela beloppet för det nya abonnemangspriset idag. Ditt abonnemang förnyas %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Du kommer att debiteras hela beloppet (%1$s) för det nya abonnemangspriset idag. Ditt abonnemang förnyas varje månad.</string>
   <string name="Subscription__s_per_month">%s/månad</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/månad · Förnyar %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/månad · Upphör %2$s</string>
@@ -3364,11 +3393,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BecomeASustainerFragment__get_badges">Få märken för din profil genom att stöda Signal.</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal är en ideell organisation utan annonsörer eller investerare, som endast stöds av personer som du.</string>
   <string name="ManageDonationsFragment__my_support">Mitt stöd</string>
-  <string name="ManageDonationsFragment__manage_subscription">Hantera prenumeration</string>
+  <string name="ManageDonationsFragment__manage_subscription">Hantera abonnemang</string>
   <string name="ManageDonationsFragment__badges">Märken</string>
-  <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om prenumeration</string>
-  <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få prenumeration.</string>
-  <string name="BoostFragment__give_signal_a_boost">Ge Signal ett lyft</string>
+  <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om abonnemang</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få abonnemang.</string>
+  <string name="BoostFragment__give_signal_a_boost">Ge Signal en Boost</string>
   <string name="BoostFragment__say_thanks_and_earn">Säg \"Tack!\" och förtjäna Boost-märket i %1$d dagar.</string>
   <string name="Boost__enter_custom_amount">Ange anpassat belopp</string>
   <string name="Boost__one_time_contribution">Engångsbidrag</string>
@@ -3381,16 +3410,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MySupportPreference__please_contact_support">Vänligen kontakta supporten.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ditt märke har upphört att gälla</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märket har upphört att gälla</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerationen uppsagd</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Abonnemang uppsagt</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ditt Boost-märke har upphört att gälla och är inte längre synligt för andra på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan återaktivera ditt Boost-märke för ytterligare 30 dagar med ett engångsbidrag.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">För att fortsätta stöda teknik som är byggd för dig, överväg att bli en månatlig upprätthållare.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lägg till en Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Din upprätthållarprenumeration avslutades automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke är inte längre synligt på din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Ditt upprätthållarabonnemang avslutades automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke är inte längre synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya prenumeration</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya abonnemang</string>
   <string name="Subscription__please_contact_support_for_more_information">Vänligen kontakta supporten för mer information.</string>
   <string name="Subscription__contact_support">Kontakta support</string>
   <string name="Subscription__earn_a_s_badge">Tjäna ett %1$s-märke</string>
@@ -3407,48 +3436,69 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DonationsErrors__your_payment_is_still">Din betalning behandlas fortfarande. Detta kan ta några minuter beroende på din anslutning.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay är inte tillgängligt</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du måste konfigurera Google Pay för att donera i appen.</string>
-  <string name="DonationsErrors__failed_to_cancel_subscription">Det gick inte att säga upp prenumerationen</string>
-  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Avbokning av prenumeration kräver en internetanslutning.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Det gick inte att säga upp abonnemang</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Uppsägning av abonnemang kräver en internetanslutning.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Din enhet stöder inte Google Pay, så du kan inte prenumerera för att få ett märke. Du kan fortfarande stöda Signal genom att göra en donation på vår webbplats.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nätverksfel. Kontrollera din anslutning och försök igen.</string>
   <string name="NetworkFailure__retry">Försök igen</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Namnge din profil</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profilnamn</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">Nästa</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Skapa</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Spara</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Redigera denna profil</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">En profil med detta namn finns redan</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Arbete</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Sov</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Drift</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Driftstopp</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Fokus</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Måste ha ett namn</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Tillåtna aviseringar</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Lägg till personer och grupper du vill ha aviseringar och samtal från när denna profil är på</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Lägg till personer eller grupper</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Lägg till</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Skapa en profil för att bara ta emot aviseringar och samtal från de personer och grupper du vill höra från.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profiler</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Ny profil</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">På</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Ta bort profil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" togs bort.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Ångra</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Vill du ta bort profilen permanent?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Ta bort</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Redigera aviseringsprofil</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Varje dag</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">På</string>
   <!--Profile status on if it is not the active profile-->
@@ -3456,24 +3506,43 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s till %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Undantag</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Tillåt alla samtal</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Meddela för alla omnämnanden</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Schema</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Se alla</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Lägg till ett schema</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Ställ in ett schema för att aktivera denna aviseringsprofil automatiskt.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Schema</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Starta</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Slutet</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">S</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">M</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">O</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">T</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">F</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">L</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Ställ in starttid</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Ställ in sluttid</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Spara</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3481,22 +3550,36 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Nästa</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Schema måste ha minst en dag</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profil skapad</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Klar</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Du kan slå på eller av din profil manuellt via menyn på chattlistan.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Lägg till ett schema i inställningarna för att automatisera din profil.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Din profil slås på och av automatiskt enligt ditt schema.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Ny profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">I 1 timme</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Fram tills %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Visa inställningar</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">På till %1$s</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Aviseringsprofiler</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Få bara aviseringar från de personer och grupper du väljer.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Skapa en profil</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Inte nu</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Det gick inte att öppna väljaren.</string>
   <!--EOF-->
 </resources>

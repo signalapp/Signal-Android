@@ -3,9 +3,7 @@ apply plugin: 'java-test-fixtures'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
-apply plugin: 'witness'
 apply plugin: 'idea'
-apply from: 'witness-verifications.gradle'
 
 sourceCompatibility = 1.8
 archivesBaseName    = "signal-service-java"
@@ -52,10 +50,6 @@ dependencies {
     testFixturesImplementation testLibs.junit.junit
 }
 
-dependencyVerification {
-    configuration = '(runtime|compile)Classpath'
-}
-
 tasks.whenTaskAdded { task ->
     if (task.name.equals("lint")) {
         task.enabled = false
@@ -64,7 +58,7 @@ tasks.whenTaskAdded { task ->
 
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.10.0'
+        artifact = 'com.google.protobuf:protoc:3.18.0'
     }
     generateProtoTasks {
         all().each { task ->

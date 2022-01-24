@@ -157,14 +157,13 @@ public final class InternalValues extends SignalStoreValues {
   }
 
   /**
-   * The selected audio processing method to use (for AEC/NS).
-   * <p>
-   * The user must be an internal user otherwise the default method will be returned. For
-   * evaluation, internal users will use software processing by default unless the setting
-   * is changed in storage.
+   * Setting to override the default handling of hardware/software AEC.
    */
   public synchronized CallManager.AudioProcessingMethod audioProcessingMethod() {
-    return FeatureFlags.internalUser() ? CallManager.AudioProcessingMethod.values()[getInteger(AUDIO_PROCESSING_METHOD, CallManager.AudioProcessingMethod.ForceSoftware.ordinal())]
-                                       : CallManager.AudioProcessingMethod.Default;
+    if (FeatureFlags.internalUser()) {
+      return CallManager.AudioProcessingMethod.values()[getInteger(AUDIO_PROCESSING_METHOD, CallManager.AudioProcessingMethod.Default.ordinal())];
+    } else {
+      return CallManager.AudioProcessingMethod.Default;
+    }
   }
 }

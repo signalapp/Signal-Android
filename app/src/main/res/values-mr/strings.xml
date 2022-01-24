@@ -188,7 +188,7 @@
   <string name="ConversationActivity_select_contact_info">संपर्क माहिती जोडा</string>
   <string name="ConversationActivity_compose_message">संदेश लिहा</string>
   <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">क्षमस्व, आपल्या संलग्न मध्ये एक त्रुटी होती.</string>
-  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">प्राप्तकर्ता एक वैध SMS किंवा ईमेल पत्ता नाही!</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">प्राप्तकर्ता एक वैध SMS किंवा ईमेल ऍड्रेस नाही!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">संदेश रिक्त आहे!</string>
   <string name="ConversationActivity_group_members">गट सदस्य</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">गट कॉल प्रारंभ करण्यासाठी येथे टॅप करा</string>
@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s सोबतचा आपला सुरक्षितता नंबर बदलला आहे.</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">आपला %s सोबतचा सुरक्षितता नंबर बदलला, कारण कदाचित त्यांनी Signal पुन्हा स्थापित केले किंवा उपकरण बदलले. नवीन सुरक्षितता नंबर पुष्टी करण्यासाठी सत्यापित करा वर टॅप करा. हे पर्यायी आहे.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s चालू</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">निवडलेले संभाषण हटवायचे?</item>
     <item quantity="other">निवडलेले संभाषणे हटवायचे?</item>
@@ -360,8 +361,11 @@
     <item quantity="other">%d निवडले</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">सूचना प्रोफाइल</string>
   <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">आपली सूचना प्रोफाइल येथे चालू किंवा बंद करा.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s चालू केले</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय संदेश</string>
   <!--ConversationListItemAction-->
@@ -407,6 +411,8 @@
   <string name="BackupsPreferenceFragment__learn_more">अधिक जाणा</string>
   <string name="BackupsPreferenceFragment__in_progress">प्रगतीपथावर…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d आतापर्यंत…</string>
+  <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% आतापर्यंत…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बॅकअप तयार करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
@@ -442,9 +448,6 @@
   <string name="DeviceListItem_today">आज</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">अनामित फाईल</string>
-  <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">सादर करत आहे गट कॉल</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">विनामूल्य एन्क्रिप्टेड गट कॉल चालू करण्यासाठी नवीन गट उघडा</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">नसलेल्या प्ले सेवांकरिता ऑप्टीमाईझ करा</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">हा डिव्हाईस प्ले सेवांचे समर्थन करत नाही. निष्क्रिय असल्यावर संदेश पुनर्प्राप्त करताना अवरोधित करणारे सिस्टिम बॅटरी ऑप्टीमाईझेशन अक्षम करण्यासाठी टॅप करा.</string>
@@ -562,10 +565,6 @@
   <string name="LeaveGroupDialog_choose_new_admin">नवीन प्रशासक निवडा</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">आपण सोडण्यापूर्वी, आपण या गटासाठी कमीत कमी एक नवीन प्रशासक निवडणे आवश्यक आहे.</string>
   <string name="LeaveGroupDialog_choose_admin">प्रशासक निवडा</string>
-  <!--LinkPreviewsMegaphone-->
-  <string name="LinkPreviewsMegaphone_disable">अक्षम करा</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">कुठलीपण लिंकचे पुनरावलोकन करा</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">तुम्ही पाठवलेल्या संदेशांसाठी आता तुम्ही थेट कोणत्याही वेबसाइटवरून लिंक पूर्वावलोकने पुनर्प्राप्त करू शकता.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">कुठलेही लिंक पुनरावलोकन उपलब्ध नाही</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">ही गट लिंक सक्रिय नाही</string>
@@ -862,8 +861,6 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ने %2$s ला पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s"> आपन %1$s ला पाठवले</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">सादर करत आहे प्रतिक्रिया</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">आपल्याला कसे वाटते त्यासोबत जलद शेअर करण्यासाठी कुठल्याही संदेशावर टॅप करा आणि धरून ठेवा.</string>
   <string name="Megaphones_remind_me_later">मला नंतर आठवण करून द्या</string>
   <string name="Megaphones_verify_your_signal_pin">आपला Signal PIN सत्यापित करा.</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">आम्ही आपल्याला मधून मधून PIN सत्यापित करण्यास विचारू जेणेकरून आपल्याला तो लक्षात राहील.</string>
@@ -1624,6 +1621,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">डिव्हाईस आता नोंदवलेला नाही</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">हे असे असू शकते कारण आपण आपला Signal सोबतचा फोन नंबर वेगळ्या डिव्हाईस वरून नोंदवला आहे. पुन्हा नोंदणी करण्यासाठी टॅप करा.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">कॉलला उत्तर देण्यासाठी, Signal ला तुमच्या मायक्रोफोनचा अॅक्सेस द्या.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s कडून कॉलला उत्तर देण्यासाठी, Signal ला आपला मायक्रोफोन अॅक्सेस द्या.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">कॉल करण्यासाठी किंवा प्राप्त करण्यासाठी Signal ला मायक्रोफोन आणि कॅमेरा परवानग्यांची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"मायक्रोफोन\" आणि \"कॅमेरा\" सक्षम करा.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">लिंक केलेल्या डिव्हाईसवर उत्तर दिले.</string>
@@ -1739,6 +1737,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">खालपर्यंत स्क्रोल करा</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">बबल्स हे एक Android वैशिष्ट्य आहे जे आपन Signal चॅटसाठी बंद करू शकता.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">आता नाही</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2010,8 +2009,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">सर्व येणाऱ्या मल्टिमिडिया संदेशांसाठी Signal वापरा</string>
   <string name="preferences__pref_enter_sends_title">प्रविष्ट करा की पाठवते</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">प्रविष्ट करा की दाबल्याने मजकूर संदेश पाठविले जातील</string>
-  <string name="preferences__pref_use_address_book_photos">पत्ता पुस्तक फोटो वापरा</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">उपलब्ध असल्यास आपल्या पत्ता पुस्तकातून संपर्क फोटो दाखवा</string>
+  <string name="preferences__pref_use_address_book_photos">अॅड्रेस बुक फोटो वापरा</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">उपलब्ध असल्यास आपल्या अॅड्रेस बुकमधून संपर्क फोटो दाखवा</string>
   <string name="preferences__generate_link_previews">लिंक पुनरावलोकन उत्पन्न करा</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">तुम्ही पाठवलेल्या संदेशांसाठी थेट कोणत्याही वेबसाइटवरून लिंक पूर्वावलोकने प्राप्त करू शकता.</string>
   <string name="preferences__choose_identity">ओळख निवडा</string>
@@ -2130,7 +2129,7 @@
   <string name="preferences_storage__custom">सानुकूलित</string>
   <string name="preferences_advanced__use_system_emoji">सिस्टिम ईमोजी वापरा</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal चे बिल्ट-इन ईमोजी समर्थन अक्षम करा</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">आपल्या संपर्काला आपला IP पत्ता कळू न देण्यासाठी सर्व कॉल Signal सर्व्हर वरून रीले करा. सक्षम केल्याने कॉल दर्जा कमी होईल.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">आपल्या संपर्काला आपला IP अॅड्रेस कळू न देण्यासाठी सर्व कॉल Signal सर्व्हर वरून रीले करा. सक्षम केल्याने कॉल दर्जा कमी होईल.</string>
   <string name="preferences_advanced__always_relay_calls">कॉल नेहमी रीले करा</string>
   <string name="preferences_app_protection__who_can">कोण करू शकतो…</string>
   <string name="preferences_app_protection__app_access">अॅप अॅक्सेस</string>
@@ -2323,18 +2322,44 @@
   <string name="conversation_callable_secure__menu_call">Signal कॉल</string>
   <string name="conversation_callable_secure__menu_video">Signal व्हिडिओ कॉल</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">संदेश तपशील</string>
-  <string name="conversation_context__menu_copy_text">मजकूर कॉपी करा</string>
-  <string name="conversation_context__menu_delete_message">संदेश हटवा</string>
-  <string name="conversation_context__menu_forward_message">संदेश फॉर्वर्ड करा</string>
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_context__menu_message_details">माहिती</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_context__menu_copy_text">कॉपी करा</string>
+  <!--Button to delete a message-->
+  <string name="conversation_context__menu_delete_message">हटवा</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_context__menu_forward_message">फॉर्वर्ड करा</string>
+  <!--Button to retry sending a message-->
   <string name="conversation_context__menu_resend_message">संदेश पुन्हा पाठवा</string>
-  <string name="conversation_context__menu_reply_to_message">संदेशाला प्रत्युत्तर द्या</string>
-  <!--conversation_context_reacction-->
+  <!--Button to reply to a message-->
+  <string name="conversation_context__menu_reply_to_message">प्रत्युत्तर द्या</string>
+  <!--conversation_context_reaction-->
+  <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">अनेक निवडा</string>
+  <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d निवडला</item>
+    <item quantity="other">%d निवडले</item>
+  </plurals>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">संलग्न जतन करा</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_context_image__save_attachment">जतन करा</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">हरवणारे संदेश</string>
+  <!--conversation_selection-->
+  <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">माहिती</string>
+  <!--Button to copy a message\'s text to the clipboard-->
+  <string name="conversation_selection__menu_copy">कॉपी करा</string>
+  <!--Button to delete a message-->
+  <string name="conversation_selection__menu_delete">हटवा</string>
+  <!--Button to forward a message to another person or group chat-->
+  <string name="conversation_selection__menu_forward">फॉर्वर्ड करा</string>
+  <!--Button to reply to a message-->
+  <string name="conversation_selection__menu_reply">प्रत्युत्तर द्या</string>
+  <!--Button to save a message attachment (image, file etc.)-->
+  <string name="conversation_selection__menu_save">जतन करा</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">आमंत्रित करा</string>
@@ -2518,16 +2543,6 @@
   <string name="KbsMegaphone__create_a_pin">PIN तयार करा.</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात.</string>
   <string name="KbsMegaphone__create_pin">PIN तयार करा</string>
-  <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">आपल्याला काय वाटते ते Signal ला सांगा</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">या ग्रहावरील Signal ला सर्वोत्कृष्ट संदेशन अॅप बनवण्यासाठी, आम्हाला आपला अभिप्राय ऐकायला आवडेल.</string>
-  <string name="ResearchMegaphone_learn_more">अधिक जाणा</string>
-  <string name="ResearchMegaphone_dismiss">रद्द करा</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal संशोधन</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>आम्ही गोपनीयतेमध्ये विश्वास ठेवतो.</b></p><p>Signal आपल्याला ट्रॅक किंवा आपला डेटा गोळा करत नाही. सर्वांसाठी Signal सुधारित करण्यासाठी, आम्ही वापरकर्त्याच्या अभिप्रायावर अवलंबून असतो,<b> आणि आम्हाला आपण तो दिलेला आवडेल.</b></p><p>आपण Signal चा वापर कसा करता हे समजून घेण्यासाठी आम्ही एक सर्वेक्षण करतो आहे. आपण ओळखले जाल असा कुठलाही डेटा आमचे सर्वेक्षण गोळा करत नाही. आपण अतिरिक्त अभिप्राय शेअर करण्यास इच्छुक असल्यास, आपल्याकडे संपर्क माहिती पुरवण्याचा पर्याय असेल.</p><p>आपल्याकडे देण्यासाठी काही मिनिटे आणि अभिप्राय असल्यास, आम्हाला तो आपल्याकडून ऐकायला आवडेल.</p>]]></string>
-  <string name="ResearchMegaphoneDialog_take_the_survey">सर्वेक्षण घ्या</string>
-  <string name="ResearchMegaphoneDialog_no_thanks">नाही धन्यवाद</string>
-  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">सर्वेक्षण Alchemer द्वारा सुरक्षित डोमेन surveys.signalusers.org वर होस्ट केलेले आहे</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
   <string name="ConversationListFragment_loading">लोड होत आहे…</string>
@@ -2577,7 +2592,7 @@
   <string name="BackupDialog_verify">सत्यापित करा</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">आपण आपला बॅकअप पासफ्रेझ यशस्वीरीत्या प्रविष्ट केला आहे</string>
   <string name="BackupDialog_passphrase_was_not_correct">पासफ्रेझ बरोबर नव्हता</string>
-  <string name="LocalBackupJob_creating_backup">बॅकअप तयार करत आहे…</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signal चा बॅकअप तयार करत आहे…</string>
   <string name="LocalBackupJobApi29_backup_failed">बॅकअप अयशस्वी</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">आपली बॅकअप डिरेक्टरी हटवली किंवा हलवली गेली आहे.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">या व्हॉल्यूमवर स्टोअर करण्यासाठी आपली बॅकअप फाईल खूप मोठी आहे.</string>
@@ -2699,6 +2714,8 @@
   <string name="DeviceTransfer__transferring_data">डेटा स्थानांतरित करत आहे</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">दोन्ही डिव्हाइस ऐकमेकांजवळ ठेवा. डिव्हाइस बंद करू नका आणि Signal चालू ठेवा. स्थानांतरण एंड-टू-एंड एन्क्रिप्टेड आहेत.</string>
   <string name="DeviceTransfer__d_messages_so_far">आतापर्यंत %1$d संदेश…</string>
+  <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% संदेश आतापर्यंत…</string>
   <string name="DeviceTransfer__cancel">रद्द करा</string>
   <string name="DeviceTransfer__try_again">पुन्हा प्रयत्न करा</string>
   <string name="DeviceTransfer__stop_transfer_question">स्थानांतरण थांबवायचे?</string>
@@ -2749,6 +2766,7 @@
   <string name="RecipientBottomSheet_unblock">अनब्लॉक करा</string>
   <string name="RecipientBottomSheet_add_to_contacts">संपर्कात जोडा</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">संपर्क उघडण्यास सक्षम अॅप सापडत नाही.</string>
   <string name="RecipientBottomSheet_add_to_a_group">गटात जोडा</string>
   <string name="RecipientBottomSheet_add_to_another_group">आणखी एका गटात जोडा</string>
   <string name="RecipientBottomSheet_view_safety_number">सुरक्षितता नंबर बघा</string>
@@ -2848,11 +2866,17 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानिक डेटा हटवण्यात अयशस्वी. आपण त्यास सिस्टिम अॅपलिकेशन सेटिंग मधून व्यक्तीचलितपणे साफ करू शकता.</string>
   <string name="DeleteAccountFragment__launch_app_settings">अॅप सेटिंग लाँच करा</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">गट सोडत आहे…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">खाते हटवत आहे…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">आपन किती गटांमध्ये आहात यावर अवलंबून, यास काही मिनिटे लागू शकतात</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">वापरकर्ता डेटा हटवत आहे आणि अॅप रीसेट करत आहे</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">खाते हटवले नाही</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">हटवण्याची प्रक्रिया पूर्ण करताना समस्या आली. आपले नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">देश शोधा</string>
   <!--CreateGroupActivity-->
@@ -3062,11 +3086,16 @@
   <string name="NotificationsSettingsFragment__notify_when">तेव्हा सूचित करा…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">संपर्क Signal मध्ये सामील होतो</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">सूचना प्रोफाइल्स</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">प्रोफाइल्स</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">केवळ आपन निवडलेल्या लोकांकडून आणि गटांकडून सूचना प्राप्त करण्यासाठी प्रोफाइल तयार करा.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">सूचना प्रोफाइल</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">प्रोफाइल तयार करा</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">अवरोधित केले</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d संपर्क</string>
@@ -3417,42 +3446,63 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">आपल्या प्रोफाइलला नाव द्या</string>
   <!--Hint text for create/edit notification profile name-->
-  <string name="EditNotificationProfileFragment__profile_name">प्रोफाईल नाव</string>
+  <string name="EditNotificationProfileFragment__profile_name">प्रोफाइल नाव</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
-  <!--Call to action button once the profile is named to continue to the next create step-->
+  <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">पुढे</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">तयार करा</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">जतन करा</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">हे प्रोफाइल संपादित करा</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">या नावाचे प्रोफाइल आधीपासून अस्तित्वात आहे</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">कार्य</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">झोप</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">ड्रायव्हिंग</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">डाउनटाइम</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">एकाग्र</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">नाव असणे आवश्यक आहे</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">सूचनांची अनुमती असलेले</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">हे प्रोफाइल चालू असताना ज्यांच्याकडून आपल्याला सूचना आणि कॉल हवे आहे असे लोक आणि गट जोडा</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">लोक किंवा गट जोडा</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">जोडा</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">आपल्याला ज्या लोकांकडून आणि गटांकडून ऐकायचे आहे त्यांच्याकडून सूचना आणि कॉल प्राप्त करण्यासाठी प्रोफाइल तयार करा.</string>
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">प्रोफाइल्स</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">नवीन प्रोफाइल</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">चालू</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">प्रोफाइल हटवा</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" ला काढले</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">अनडू करा</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">प्रोफाइल कायमचे हटवायचे?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">हटवा</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">सूचना प्रोफाइल संपादित करा</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">दररोज</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">चालू</string>
   <!--Profile status on if it is not the active profile-->
@@ -3460,24 +3510,43 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s ते %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">अपवाद</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">सर्व कॉल्सना परवानगी द्या</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">सर्व उल्लेखांसाठी सूचित करा</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">शेड्यूल</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">सर्व पहा</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">शेड्यूल जोडा</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">ही सूचना प्रोफाइल स्वयंचलितपणे चालू करण्यासाठी एक शेड्यूल सेट करा.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">शेड्यूल</string>
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">चालू करा</string>
+  <string name="EditNotificationProfileSchedule__start">प्रारंभ</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">समाप्त</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">र</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">सो</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">मं</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">बु</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">गु</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">शु</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">श</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">प्रारंभ वेळ सेट करा</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">समाप्त वेळ सेट करा</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">जतन करा</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3485,22 +3554,35 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">पुढे</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">शेड्युलमध्ये किमान एक दिवस असणे आवश्यक आहे</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">प्रोफाइल तयार केले</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">ठीक</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">चॅट सूचीवरील मेनूद्वारे आपन आपले प्रोफाइल स्वहस्ते चालू किंवा बंद करू शकता</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">आपले प्रोफाइल स्वयंचलित करण्यासाठी सेटिंग्जमध्ये शेड्यूल जोडा.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">आपल्या शेड्युलनुसार आपले प्रोफाइल आपोआप चालू आणि बंद होईल.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">नवीन प्रोफाइल</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">१ तासासाठी</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s पर्यंत</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">सेटिंग्ज दाखवा</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">%1$s पर्यंत चालू राहील</string>
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">सूचना प्रोफाइल</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">फक्त आपन निवडलेल्या लोकांकडून आणि गटांकडून सूचना मिळवा.</string>
   <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">प्रोफाइल तयार करा</string>
   <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">आता नाही</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर उघडण्यात अयशस्वी.</string>
   <!--EOF-->

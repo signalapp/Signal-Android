@@ -46,7 +46,7 @@ class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
                                                                             SignalStore.internalValues().groupCallingServer(),
                                                                             new byte[0],
-                                                                            SignalStore.internalValues().audioProcessingMethod(),
+                                                                            AudioProcessingMethodSelector.get(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
     return currentState.builder()

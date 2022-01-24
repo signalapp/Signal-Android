@@ -11,8 +11,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.MappingAdapter;
-import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.adapter.mapping.Factory;
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
 public class RecipientViewHolder<T extends RecipientMappingModel<T>> extends MappingViewHolder<T> {
 
@@ -57,8 +58,8 @@ public class RecipientViewHolder<T extends RecipientMappingModel<T>> extends Map
     }
   }
 
-  public static @NonNull <T extends RecipientMappingModel<T>> MappingAdapter.Factory<T> createFactory(@LayoutRes int layout, @Nullable EventListener<T> listener) {
-    return new MappingAdapter.LayoutFactory<>(view -> new RecipientViewHolder<>(view, listener), layout);
+  public static @NonNull <T extends RecipientMappingModel<T>> Factory<T> createFactory(@LayoutRes int layout, @Nullable EventListener<T> listener) {
+    return new LayoutFactory<>(view -> new RecipientViewHolder<>(view, listener), layout);
   }
 
   public interface EventListener<T extends RecipientMappingModel<T>> {

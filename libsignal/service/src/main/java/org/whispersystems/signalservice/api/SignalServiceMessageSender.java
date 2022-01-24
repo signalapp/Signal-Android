@@ -901,6 +901,14 @@ public class SignalServiceMessageSender {
       }
     }
 
+    if (message.getStoryContext().isPresent()) {
+      SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
+
+      builder.setStoryContext(DataMessage.StoryContext.newBuilder()
+                                                      .setAuthorUuid(storyContext.getAuthorAci().toString())
+                                                      .setSentTimestamp(storyContext.getSentTimestamp()));
+    }
+
     builder.setTimestamp(message.getTimestamp());
 
     return enforceMaxContentSize(container.setDataMessage(builder).build());
@@ -1615,7 +1623,7 @@ public class SignalServiceMessageSender {
         if (!unidentifiedAccess.isPresent()) {
           try {
             SendMessageResponse response = new MessagingService.SendResponseProcessor<>(messagingService.send(messages, Optional.absent()).blockingGet()).getResultOrThrow();
-            return SendMessageResult.success(recipient, messages.getDevices(), false, response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
+            return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
           } catch (WebSocketUnavailableException e) {
             Log.i(TAG, "[sendMessage][" + timestamp + "] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
           } catch (IOException e) {
@@ -1625,7 +1633,7 @@ public class SignalServiceMessageSender {
         } else if (unidentifiedAccess.isPresent()) {
           try {
             SendMessageResponse response = new MessagingService.SendResponseProcessor<>(messagingService.send(messages, unidentifiedAccess).blockingGet()).getResultOrThrow();
-            return SendMessageResult.success(recipient, messages.getDevices(), true, response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
+            return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
           } catch (WebSocketUnavailableException e) {
             Log.i(TAG, "[sendMessage][" + timestamp + "] Unidentified pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
           } catch (IOException e) {
@@ -1640,7 +1648,7 @@ public class SignalServiceMessageSender {
 
         SendMessageResponse response = socket.sendMessage(messages, unidentifiedAccess);
 
-        return SendMessageResult.success(recipient, messages.getDevices(), unidentifiedAccess.isPresent(), response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
+        return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
 
       } catch (InvalidKeyException ike) {
         Log.w(TAG, ike);
@@ -1737,12 +1745,12 @@ public class SignalServiceMessageSender {
                                                         .filter(r -> !r.isSuccess())
                                                         .collect(Collectors.toList());
 
-          Set<SignalServiceAddress> failedAddresses = trueFailures.stream()
-                                                                  .map(SendMessageResult::getAddress)
-                                                                  .collect(Collectors.toSet());
+          Set<ACI> failedAddresses = trueFailures.stream()
+                                                 .map(result -> result.getAddress().getAci())
+                                                 .collect(Collectors.toSet());
 
           List<SendMessageResult> fakeNetworkFailures = recipients.stream()
-                                                                  .filter(r -> !failedAddresses.contains(r))
+                                                                  .filter(r -> !failedAddresses.contains(r.getAci()))
                                                                   .map(SendMessageResult::networkFailure)
                                                                   .collect(Collectors.toList());
 

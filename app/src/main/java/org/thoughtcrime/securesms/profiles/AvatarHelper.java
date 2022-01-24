@@ -34,6 +34,13 @@ public class AvatarHelper {
 
   private static final String AVATAR_DIRECTORY = "avatars";
 
+  public static long getAvatarCount(@NonNull Context context) {
+    File     avatarDirectory = context.getDir(AVATAR_DIRECTORY, Context.MODE_PRIVATE);
+    String[] results         = avatarDirectory.list();
+
+    return results == null ? 0 : results.length;
+  }
+
   /**
    * Retrieves an iterable set of avatars. Only intended to be used during backup.
    */

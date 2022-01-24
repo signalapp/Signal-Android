@@ -91,26 +91,27 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
       subscriber = local.getSubscriber();
     }
 
-    byte[]                               unknownFields          = remote.serializeUnknownFields();
-    String                               avatarUrlPath          = remote.getAvatarUrlPath().or(local.getAvatarUrlPath()).or("");
-    byte[]                               profileKey             = remote.getProfileKey().or(local.getProfileKey()).orNull();
-    boolean                              noteToSelfArchived     = remote.isNoteToSelfArchived();
-    boolean                              noteToSelfForcedUnread = remote.isNoteToSelfForcedUnread();
-    boolean                              readReceipts           = remote.isReadReceiptsEnabled();
-    boolean                              typingIndicators       = remote.isTypingIndicatorsEnabled();
-    boolean                              sealedSenderIndicators = remote.isSealedSenderIndicatorsEnabled();
-    boolean                              linkPreviews           = remote.isLinkPreviewsEnabled();
-    boolean                              unlisted               = remote.isPhoneNumberUnlisted();
-    List<PinnedConversation>             pinnedConversations    = remote.getPinnedConversations();
-    AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode = remote.getPhoneNumberSharingMode();
-    boolean                              preferContactAvatars   = remote.isPreferContactAvatars();
-    int                                  universalExpireTimer   = remote.getUniversalExpireTimer();
-    boolean                              primarySendsSms        = local.isPrimarySendsSms();
-    String                               e164                   = local.getE164();
-    List<String>                         defaultReactions       = remote.getDefaultReactions().size() > 0 ? remote.getDefaultReactions() : local.getDefaultReactions();
-    boolean                              displayBadgesOnProfile = remote.isDisplayBadgesOnProfile();
-    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile);
-    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile);
+    byte[]                               unknownFields                 = remote.serializeUnknownFields();
+    String                               avatarUrlPath                 = remote.getAvatarUrlPath().or(local.getAvatarUrlPath()).or("");
+    byte[]                               profileKey                    = remote.getProfileKey().or(local.getProfileKey()).orNull();
+    boolean                              noteToSelfArchived            = remote.isNoteToSelfArchived();
+    boolean                              noteToSelfForcedUnread        = remote.isNoteToSelfForcedUnread();
+    boolean                              readReceipts                  = remote.isReadReceiptsEnabled();
+    boolean                              typingIndicators              = remote.isTypingIndicatorsEnabled();
+    boolean                              sealedSenderIndicators        = remote.isSealedSenderIndicatorsEnabled();
+    boolean                              linkPreviews                  = remote.isLinkPreviewsEnabled();
+    boolean                              unlisted                      = remote.isPhoneNumberUnlisted();
+    List<PinnedConversation>             pinnedConversations           = remote.getPinnedConversations();
+    AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode        = remote.getPhoneNumberSharingMode();
+    boolean                              preferContactAvatars          = remote.isPreferContactAvatars();
+    int                                  universalExpireTimer          = remote.getUniversalExpireTimer();
+    boolean                              primarySendsSms               = local.isPrimarySendsSms();
+    String                               e164                          = local.getE164();
+    List<String>                         defaultReactions              = remote.getDefaultReactions().size() > 0 ? remote.getDefaultReactions() : local.getDefaultReactions();
+    boolean                              displayBadgesOnProfile        = remote.isDisplayBadgesOnProfile();
+    boolean                              subscriptionManuallyCancelled = remote.isSubscriptionManuallyCancelled();
+    boolean                              matchesRemote                 = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile, subscriptionManuallyCancelled);
+    boolean                              matchesLocal                  = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars, payments, universalExpireTimer, primarySendsSms, e164, defaultReactions, subscriber, displayBadgesOnProfile, subscriptionManuallyCancelled);
 
     if (matchesRemote) {
       return remote;
@@ -141,6 +142,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setDefaultReactions(defaultReactions)
                                     .setSubscriber(subscriber)
                                     .setDisplayBadgesOnProfile(displayBadgesOnProfile)
+                                    .setSubscriptionManuallyCancelled(subscriptionManuallyCancelled)
                                     .build();
     }
   }
@@ -182,7 +184,8 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        String e164,
                                        @NonNull List <String> defaultReactions,
                                        @NonNull SignalAccountRecord.Subscriber subscriber,
-                                       boolean displayBadgesOnProfile)
+                                       boolean displayBadgesOnProfile,
+                                       boolean subscriptionManuallyCancelled)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)        &&
            Objects.equals(contact.getGivenName().or(""), givenName)              &&
@@ -205,6 +208,7 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.isPrimarySendsSms() == primarySendsSms                        &&
            Objects.equals(contact.getPinnedConversations(), pinnedConversations) &&
            Objects.equals(contact.getSubscriber(), subscriber)                   &&
-           contact.isDisplayBadgesOnProfile() == displayBadgesOnProfile;
+           contact.isDisplayBadgesOnProfile() == displayBadgesOnProfile          &&
+           contact.isSubscriptionManuallyCancelled() == subscriptionManuallyCancelled;
   }
 }
