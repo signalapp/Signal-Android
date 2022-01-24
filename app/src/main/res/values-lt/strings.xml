@@ -413,7 +413,7 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archyvuoti pokalbiai (%d)</string>
   <!--ConversationTitleView-->
-  <string name="ConversationTitleView_verified">Patvirtinta(-s)</string>
+  <string name="ConversationTitleView_verified">Patvirtinta(s)</string>
   <string name="ConversationTitleView_you">Jūs</string>
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
@@ -1913,7 +1913,7 @@
   <string name="safety_number_change_dialog__leave_call">Išeiti iš skambučio</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Gali būti, kad šie žmonės iš naujo įdiegė programėlę ar pakeitė įrenginį. Patvirtinkite savo saugumo numerį su kiekvienu iš jų, kad užtikrintumėte privatumą.</string>
   <string name="safety_number_change_dialog__view">Rodyti</string>
-  <string name="safety_number_change_dialog__previous_verified">Anksčiau patvirtinta(-s)</string>
+  <string name="safety_number_change_dialog__previous_verified">Anksčiau patvirtinta(s)</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
   <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Pranešimai apie skambučius įjungti.</string>
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Įjungti pranešimus apie skambučius</string>

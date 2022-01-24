@@ -1980,7 +1980,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="arrays__mute_for_eight_hours">Durante 8 horas</string>
   <string name="arrays__mute_for_one_day">Durante un día</string>
   <string name="arrays__mute_for_seven_days">Durante 7 días</string>
-  <string name="arrays__always">Siempre</string>
+  <string name="arrays__always">Para siempre</string>
   <string name="arrays__settings_default">Ajustes predeterminados</string>
   <string name="arrays__enabled">Activado</string>
   <string name="arrays__disabled">Desactivado</string>

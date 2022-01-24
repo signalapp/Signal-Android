@@ -298,6 +298,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s -മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതുകൊണ്ടോ ഡിവൈസ് മാറിയതുകൊണ്ടോ ആവാമിത്. പുതിയ സുരക്ഷാ നമ്പർ ഉറപ്പുവരുത്താൻ \'ഉറപ്പാക്കു\' ടാപ് ചെയ്യുക. ഇത് ഓപ്ഷണൽ ആണ്.</string>
   <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$sസജീവം</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">തിരഞ്ഞെടുത്ത സംഭാഷണം ഇല്ലാതാക്കണോ?</item>
     <item quantity="other">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കണോ?</item>
@@ -317,6 +318,10 @@
     <item quantity="one">സംഭാഷണം ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
     <item quantity="other">%d സംഭാഷണങ്ങൾ ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">വായിച്ചു</item>
+    <item quantity="other">വായിച്ചു</item>
+  </plurals>
   <plurals name="ConversationListFragment_unread_plural">
     <item quantity="one">വായിച്ചില്ല</item>
     <item quantity="other">വായിച്ചില്ല</item>
@@ -325,12 +330,42 @@
     <item quantity="one">പിൻ</item>
     <item quantity="other">പിൻ</item>
   </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">അൺപിൻ ചെയ്യുക</item>
+    <item quantity="other">അൺപിൻ ചെയ്യുക</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">നിശബ്ദമാക്കുക</item>
+    <item quantity="other">നിശബ്ദമാക്കുക</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">ശബ്‌ദിപ്പിക്കുക</item>
+    <item quantity="other">ശബ്‌ദിപ്പിക്കുക</item>
+  </plurals>
   <string name="ConversationListFragment_select">തിരഞ്ഞെടുക്കൂ</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">ആർക്കൈവ്</item>
+    <item quantity="other">ആർക്കൈവ്</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">അൺആർക്കൈവ്</item>
+    <item quantity="other">അൺആർക്കൈവ്</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">ഇല്ലാതാക്കുക </item>
+    <item quantity="other">ഇല്ലാതാക്കുക </item>
+  </plurals>
   <string name="ConversationListFragment_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d തിരഞ്ഞെടുത്തു</item>
+    <item quantity="other">%d തിരഞ്ഞെടുത്തു</item>
+  </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">അറിയിപ്പ് രൂപരേഖ</string>
   <!--Tooltip shown after you have created your first notification profile-->
   <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">നിങ്ങൾക്കുള്ള അറിയിപ്പുകൾ ഇവിടെ ഓണാക്കുക അല്ലെങ്കിൽ ഓഫ് ചെയ്യുക.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$sസജീവം</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">കീ കൈമാറ്റ സന്ദേശം</string>
   <!--ConversationListItemAction-->
@@ -377,6 +412,7 @@
   <string name="BackupsPreferenceFragment__in_progress">പുരോഗതിയിൽ…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ഇതുവരെ….</string>
   <!--Show percentage of completion of backup-->
+  <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ഇതുവരെ…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ബാക്കപ്പുകൾ സൃഷ്ടിക്കുന്നതിന് Signal-ന് ബാഹ്യ സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിലേക്കു പോയി , \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" ഉപയോഗാനുമതി നൽകുക .</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ഉപയോഗിക്കുന്നു: %s</string>
@@ -753,10 +789,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">പങ്കിടുക</string>
   <string name="InviteActivity_share_with_contacts">കോൺടാക്റ്റുകളുമായി പങ്കിടുക</string>
+  <string name="InviteActivity_share_via">ഇതുവഴി പങ്കിടുക…</string>
   <string name="InviteActivity_cancel">റദ്ദാക്കുക</string>
   <string name="InviteActivity_sending">അയയ്ക്കുന്നു…</string>
   <string name="InviteActivity_invitations_sent">ക്ഷണങ്ങൾ അയച്ചു!</string>
   <string name="InviteActivity_invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
+  <string name="InviteActivity_send_sms">(%d) SMS അയയ്ക്കുക</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS ക്ഷണം അയയ്‌ക്കണോ?</item>
     <item quantity="other">%d SMS ക്ഷണങ്ങൾ അയയ്‌ക്കണോ?</item>
@@ -801,6 +839,18 @@
   <string name="MediaOverviewActivity_List_view_description">ലിസ്റ്റ് കാഴ്ച</string>
   <string name="MediaOverviewActivity_Selected_description">തിരഞ്ഞെടുത്തു</string>
   <string name="MediaOverviewActivity_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">സൂക്ഷിക്കുക</item>
+    <item quantity="other">സൂക്ഷിക്കുക</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">ഇല്ലാതാക്കുക</item>
+    <item quantity="other">ഇല്ലാതാക്കുക</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d തിരഞ്ഞെടുത്തു (%2$s)</item>
+    <item quantity="other">%1$d തിരഞ്ഞെടുത്തു (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">ഫയൽ</string>
   <string name="MediaOverviewActivity_audio">ഓഡിയോ</string>
   <string name="MediaOverviewActivity_video">വീഡിയോ</string>
@@ -825,6 +875,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal കോൾ പുരോഗതിയിലാണ്</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal കോൾ സ്ഥാപിക്കുന്നു</string>
   <string name="NotificationBarManager__incoming_signal_call">ഇൻകമിംഗ് സിഗ്നൽ കോൾ</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Signal ഗ്രൂപ്പ് കോള്‍ വരുന്നു</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal കോൾ സേവനം നിർത്തുന്നു</string>
   <string name="NotificationBarManager__decline_call">കോൾ നിരസിക്കുക</string>
   <string name="NotificationBarManager__answer_call">കോൾ സ്വീകരിക്കുക</string>
@@ -1033,6 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s-ൽ നിന്നുള്ള ഒരു സന്ദേശം ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s അവരുടെ നമ്പർ ഒരു പുതിയ നമ്പറിലേക്ക് മാറ്റി.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ഗ്രൂപ്പ് കോളിലാണ് · %2$s</string>
@@ -1190,6 +1242,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s-യെ വിളിക്കാൻ, Signal-ന് നിങ്ങളുടെ ക്യാമറയിലേക്ക് ആക്സസ് ആവശ്യമാണ്</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">വിളിക്കുന്നു…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">പങ്കെടുക്കുന്നവരെ വിളിക്കാൻ കഴിയാത്തത്ര വലുതാണ് ഗ്രൂപ്പ്.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal വിളി</string>
   <string name="WebRtcCallView__signal_video_call">Signal വീഡിയോ കോൾ</string>
@@ -1202,18 +1255,45 @@
   <string name="WebRtcCallView__reconnecting">റീകണക്ടിംഗ്…</string>
   <string name="WebRtcCallView__joining">ചേരുന്നു…</string>
   <string name="WebRtcCallView__disconnected">വിച്ഛേദിച്ചു</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s നെ വിളിക്കും</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s നെയും %2$s നെയും വിളിക്കും</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal %1$s, %2$s നെയും മറ്റ്  %3$d പേരെയും വിളിക്കും</item>
+    <item quantity="other">Signal %1$s, %2$s നെയും മറ്റ് %3$d പേരെയും വിളിക്കും</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s യെ അറിയിക്കും</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s യെയും %2$s യെയും അറിയിക്കും</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s യെയും മറ്റ്  %3$d പേരെയും അറിയിക്കും</item>
+    <item quantity="other">%1$s, %2$s യെയും  മറ്റ് %3$d പേരെയും അറിയിക്കും</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$s നെ വിളിയ്ക്കുന്നു</string>
+  <string name="WebRtcCallView__ringing_s_and_s"> %1$s നെയും %2$s നെയും വിളിയ്ക്കുന്നു</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">%1$s, %2$s നെയും മറ്റ് %3$d പേരെയും വിളിക്കുന്നു</item>
+    <item quantity="other">%1$s, %2$s നെയും മറ്റ് %3$d പേരെയും വിളിക്കുന്നു</item>
+  </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$sനിങ്ങളെ വിളിക്കുന്നു</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s നിങ്ങളെയും %2$s-നെയും വിളിക്കുന്നു</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s നിങ്ങളെയും %2$s-നെയും %3$s-നെയും വിളിക്കുന്നു </string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s നിങ്ങളെയും %2$s-നെയും %3$s-നെയും മറ്റ് %4$d പേരെയും വിളിക്കുന്നു </item>
+    <item quantity="other">%1$s നിങ്ങളെയും %2$s-നെയും %3$s-നെയും മറ്റ് %4$d പേരെയും വിളിക്കുന്നു </item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">മറ്റാരുമില്ല</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s ഈ കോളിലുണ്ട് </string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s പേർ ഈ കോളിലുണ്ട്</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s - ഉം %2$s - ഉം ഈ കോളിലുണ്ട് </string>
   <string name="WebRtcCallView__s_is_presenting">%1$sഅവതരിപ്പിക്കുന്നു</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s- ഉം, %2$s - ഉം പിന്നെ %3$d - ഉം ഈ കോളിലുണ്ട്</item>
     <item quantity="other">%1$s - ഉം, %2$s - ഉം പിന്നെ %3$d ആളുകളും ഈ കോളിലുണ്ട്</item>
   </plurals>
+  <string name="WebRtcCallView__flip">തിരിക്കൂ</string>
   <string name="WebRtcCallView__speaker">സ്പീക്കർ</string>
   <string name="WebRtcCallView__camera">ക്യാമറ</string>
   <string name="WebRtcCallView__mute">നിശബ്ദമാക്കുക</string>
+  <string name="WebRtcCallView__ring">റിംഗ്</string>
   <string name="WebRtcCallView__end_call">കോൾ അവസാനിപ്പിക്കൂ</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1255,8 +1335,13 @@
   <string name="RegistrationActivity_play_services_error">Play Services പിശക്</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services അപ്‌ഡേറ്റുചെയ്യുന്നു അല്ലെങ്കിൽ താൽക്കാലികമായി ലഭ്യമല്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_terms_and_privacy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">സുഹൃത്തുക്കളുമായി ബന്ധപ്പെടാനും സന്ദേശങ്ങള്‍ അയക്കാനും നിങ്ങളെ സഹായിക്കുന്നതിന് Signal-ന് കോൺ‌ടാക്റ്റുകൾ, മീഡിയ അനുമതികൾ ആവശ്യമാണ്. Signal-ന്റെ സ്വകാര്യ കോൺടാക്റ്റ് കണ്ടെത്തൽ ഉപയോഗിച്ചാണ് നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ അപ്‌ലോഡ് ചെയ്‌തിരിക്കുന്നത്, അതിനർത്ഥം അവ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്‌തതും Signal സേവനത്തിന് ഒരിക്കലും ദൃശ്യമാകാത്തതുമാണ്.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">സുഹൃത്തുക്കളുമായി ബന്ധപ്പെടാൻ നിങ്ങളെ സഹായിക്കുന്നതിന് Signal-ന് കോൺ‌ടാക്റ്റുകൾ അനുമതി ആവശ്യമാണ്. Signal-ന്റെ സ്വകാര്യ കോൺടാക്റ്റ് കണ്ടെത്തൽ ഉപയോഗിച്ചാണ് നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ അപ്‌ലോഡ് ചെയ്‌തിരിക്കുന്നത്, അതിനർത്ഥം അവ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്‌തതും Signal സേവനത്തിന് ഒരിക്കലും ദൃശ്യമാകാത്തതുമാണ്.</string>
   <string name="RegistrationActivity_rate_limited_to_service">ഈ നമ്പർ രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങൾ വളരെയധികം ശ്രമങ്ങൾ നടത്തി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യാനായില്ല. നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+  <string name="RegistrationActivity_non_standard_number_format">അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപം</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">നിങ്ങൾ നൽകിയ നമ്പർ (%1$s) അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപത്തില്‍ ആണെന്ന് തോന്നുന്നു.\n\nനിങ്ങൾ ഉദ്ദേശിച്ചത് %2$s എന്നാണോ?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal ആൻഡ്രോയിഡ് - ഫോണ്‍ നമ്പര്‍ രുപം</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">ഒരു ഡീബഗ് ലോഗ് സമർപ്പിക്കുന്നതിൽ നിന്ന് നിങ്ങൾ ഇപ്പോൾ %d പടി അകലെയാണ്. </item>
     <item quantity="other">ഒരു ഡീബഗ് ലോഗ് സമർപ്പിക്കുന്നതിൽ നിന്ന് നിങ്ങൾ ഇപ്പോൾ %d ഘട്ടങ്ങൾ അകലെയാണ്.</item>
@@ -1529,6 +1614,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">ഉപകരണം മേലിൽ രജിസ്റ്റർ ചെയ്തിട്ടില്ല</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">നിങ്ങളുടെ ഫോൺ നമ്പർ മറ്റൊരു ഉപകരണത്തിൽ Signal-ൽ രജിസ്റ്റർ ചെയ്തതിനാലാകാം ഇത്. വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">ഈ കോളിന് മറുപടി നൽകാൻ, നിങ്ങളുടെ മൈക്രോഫോണ്‍ ഉപയോഗിക്കാന്‍ Signal-നെ അനുവദിക്കുക.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s നിന്നുള്ള കോളിന് മറുപടി നൽകാൻ, നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് Signal-ന് ആക്സസ് നൽകുക.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">കോളുകൾ വിളിക്കുന്നതിനോ സ്വീകരിക്കുന്നതിനോ Signal-ന് മൈക്രോഫോൺ, ക്യാമറ അനുമതികൾ ആവശ്യമാണ്, പക്ഷേ അവ ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">ഒരു ബന്ധിപ്പിച്ച ഉപകരണത്തിൽ ഉത്തരം നൽകി.</string>
@@ -1794,8 +1880,11 @@
   <string name="recipients_panel__to"><small>ഒരു പേരോ നമ്പറോ നൽകുക</small></string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">സ്കാൻ ചെയ്യാൻ തൊടുക</string>
+  <string name="verify_display_fragment__successful_match">വിജയകരമായ ചേര്‍ച്ച</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">സുരക്ഷാ നമ്പർ പരിശോധിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="verify_display_fragment__loading">ലഭ്യമാക്കുന്നു</string>
   <string name="verify_display_fragment__mark_as_verified">പരിശോധിച്ചതായി അടയാളപ്പെടുത്തുക</string>
+  <string name="verify_display_fragment__clear_verification">പരിശോധന പൂർത്തിയാക്കുക</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">സുരക്ഷാ നമ്പർ പങ്കിടുക</string>
   <!--verity_scan_fragment-->
@@ -1805,6 +1894,10 @@
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">നിരസിക്കാൻ താഴേക്ക് സ്വൈപ്പുചെയ്യുക</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">ചില പ്രശ്‌നങ്ങൾക്ക് നിങ്ങളുടെ ശ്രദ്ധ ആവശ്യമാണ്.</string>
+  <string name="message_details_header__sent">അയച്ചത്:</string>
+  <string name="message_details_header__received">സ്വീകരിച്ചത്:</string>
+  <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്നത്:</string>
+  <string name="message_details_header__via">വഴി:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">ശേഷിക്കുന്നു</string>
   <string name="message_details_recipient_header__sent_to">അയച്ചത്</string>
@@ -1846,6 +1939,16 @@
   <string name="HelpFragment__debug_log">ഡീബഗ് ലോഗ്:</string>
   <string name="HelpFragment__could_not_upload_logs">ലോഗുകൾ അപ്‌ലോഡുചെയ്യാനായില്ല</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">പ്രശ്നം മനസിലാക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് ദയവായി കഴിയുന്നത്ര വിവരണാത്മകമായിരിക്കുക.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- ദയവായി ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക \-\-</item>
+    <item>എന്തോ പ്രവർത്തിക്കുന്നില്ല</item>
+    <item>ഫീച്ചർ അഭ്യർത്ഥന</item>
+    <item>ചോദ്യം</item>
+    <item>പ്രതികരണം</item>
+    <item>മറ്റുള്ളവ </item>
+    <item>പേയ്മെന്റുകൾ(മൊബൈൽകോയിൻ)</item>
+    <item>പരിപാലകരും Signal ബൂസ്റ്റും</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>
@@ -1942,6 +2045,8 @@
   <string name="preferences__help">സഹായം</string>
   <string name="preferences__advanced">വിപുലമായ</string>
   <string name="preferences__donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
+  <string name="preferences__become_a_signal_sustainer">Signal പരിപാലകര്‍ ആകുക</string>
+  <string name="preferences__signal_boost">Signal ബൂസ്റ്റ്</string>
   <string name="preferences__privacy">സ്വകാര്യത</string>
   <string name="preferences__mms_user_agent">MMS യൂസർ ഏജൻറ്</string>
   <string name="preferences__advanced_mms_access_point_names">സ്വമേധയാലുള്ള MMS ക്രമീകരണങ്ങൾ</string>
@@ -2224,6 +2329,10 @@
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_context__reaction_multi_select">ഒന്നിലധികം തിരഞ്ഞെടുക്കുക</string>
   <!--Heading which shows how many messages are currently selected-->
+  <plurals name="conversation_context__s_selected">
+    <item quantity="one">%d തിരഞ്ഞെടുത്തു</item>
+    <item quantity="other">%d തിരഞ്ഞെടുത്തു</item>
+  </plurals>
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">സംരക്ഷിക്കൂ</string>
@@ -2475,6 +2584,7 @@
   <string name="BackupDialog_verify">പരിശോധിക്കുക</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">നിങ്ങൾ ബാക്കപ്പിന്റെ രഹസ്യവാചകം വിജയകരമായി നൽകി</string>
   <string name="BackupDialog_passphrase_was_not_correct">രഹസ്യവാചകം ശരിയായിരുന്നില്ല</string>
+  <string name="LocalBackupJob_creating_signal_backup"> Signal ബാക്കപ്പ് സൃഷ്‌ടിക്കുന്നു…</string>
   <string name="LocalBackupJobApi29_backup_failed">ബാക്കപ്പ്  പരാജയപ്പെട്ടു </string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">നിങ്ങളുടെ ബാക്കപ്പ് ഡയറക്ടറി ഇല്ലാതാക്കി അല്ലെങ്കിൽ നീക്കി.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ഈ വോളിയത്തിൽ സംഭരിക്കാനുംമാത്രം നിങ്ങളുടെ ബാക്കപ്പ് ഫയൽ വളരെ വലുതാണ്.</string>
@@ -2597,6 +2707,7 @@
   <string name="DeviceTransfer__keep_both_devices_near_each_other">രണ്ട് ഉപകരണങ്ങളും പരസ്പരം അടുത്ത് വയ്ക്കുക. ഉപകരണങ്ങൾ ഓഫ് ചെയ്യരുത്, Signal തുറന്നിടുക. ട്രാൻസ്ഫറുകൾ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്തിരിക്കുന്നു.</string>
   <string name="DeviceTransfer__d_messages_so_far">ഇതുവരെ %1$d സന്ദേശങ്ങൾ</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">ഇതുവരെ %1$s %% സന്ദേശങ്ങള്‍ …</string>
   <string name="DeviceTransfer__cancel">റദ്ദാക്കൂ</string>
   <string name="DeviceTransfer__try_again">വീണ്ടും ശ്രമിക്കുക</string>
   <string name="DeviceTransfer__stop_transfer_question">കൈമാറ്റം നിർത്തണോ?</string>
@@ -2647,6 +2758,7 @@
   <string name="RecipientBottomSheet_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="RecipientBottomSheet_add_to_contacts">കോൺടാക്റ്റുകളിൽ ചേർക്കൂ</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">കോൺ‌ടാക്റ്റുകൾ തുറക്കാൻ കഴിയുന്ന ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
   <string name="RecipientBottomSheet_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="RecipientBottomSheet_add_to_another_group">മറ്റൊരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="RecipientBottomSheet_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
@@ -2746,7 +2858,9 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">പ്രാദേശിക ഡാറ്റ ഇല്ലാതാക്കാൻ പരാജയപെട്ടു. സിസ്റ്റം അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ നിങ്ങൾക്ക് ഇത് സ്വമേധയാ ഇല്ലാതാക്കാം.</string>
   <string name="DeleteAccountFragment__launch_app_settings">ആപ്പ് ക്രമീകരണങ്ങൾ തുറക്കുക</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">ഗ്രൂപ്പുകള്‍ വിട്ടുപോകുന്നു…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">അക്കൌണ്ട് ഇല്ലാതാക്കുന്നു…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <!--Title of error dialog shown when a network error occurs during account deletion-->
@@ -2911,6 +3025,7 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും Signal-ൽ രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങളുടെ Signal പിൻ ആവശ്യമാണ്</string>
   <string name="AccountSettingsFragment__change_phone_number">ഫോൺ നമ്പർ മാറ്റുക</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">നിങ്ങളുടെ നിലവിലെ ഫോൺ നമ്പർ ഒരു പുതിയ ഫോൺ നമ്പറിലേക്ക് മാറ്റാൻ ഇത് ഉപയോഗിക്കുക. നിങ്ങൾക്ക് ഈ മാറ്റം പഴയപടിയാക്കാനാകില്ല.\n\nതുടരുന്നതിന് മുമ്പ്, നിങ്ങളുടെ പുതിയ നമ്പറിന് SMS അല്ലെങ്കിൽ കോളുകൾ ലഭിക്കുമെന്ന് ഉറപ്പാക്കുക.</string>
   <string name="ChangeNumberFragment__continue">തുടരുക</string>
   <string name="ChangeNumber__your_phone_number_has_been_changed">നിങ്ങളുടെ ഫോൺ നമ്പർ മാറ്റി</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -2920,11 +3035,17 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">നിങ്ങളുടെ പുതിയ ഫോൺ നമ്പർ</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">പുതിയ ഫോൺ നമ്പർ</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">നിങ്ങൾ നൽകിയ ഫോൺ നമ്പർ നിങ്ങളുടെ അക്കൗണ്ടുമായി പൊരുത്തപ്പെടുന്നില്ല.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">നിങ്ങളുടെ പഴയ നമ്പറിന്റെ രാജ്യ കോഡ് വ്യക്തമാക്കണം</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">നിങ്ങളുടെ പഴയ ഫോൺ നമ്പർ വ്യക്തമാക്കണം</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">നിങ്ങളുടെ പുതിയ നമ്പറിന്റെ രാജ്യ കോഡ് വ്യക്തമാക്കണം</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">നിങ്ങളുടെ പുതിയ ഫോൺ നമ്പർ വ്യക്തമാക്കണം</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">നമ്പർ മാറ്റുക</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">%1$sഉറപ്പാക്കുന്നു</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">ക്യാപ്ച ആവശ്യമാണ്</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">നമ്പർ മാറ്റുക</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">നിങ്ങളുടെ ഫോൺ നമ്പർ %1$s-ൽ നിന്ന് %2$s-ലേക്ക് മാറ്റാൻ പോകുകയാണ്.\n\nതുടരുന്നതിന് മുമ്പ്, ചുവടെയുള്ള നമ്പർ ശരിയാണോയെന്ന് പരിശോധിക്കുക.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">നമ്പർ തിരുത്തുക</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
@@ -3164,10 +3285,19 @@
     <item quantity="one">സന്ദേശം അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു.</item>
     <item quantity="other">സന്ദേശങ്ങള്‍ അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു.</item>
   </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">സന്ദേശം ലഭ്യമല്ലാത്തതിനാൽ ഫോർവേഡ് ചെയ്യാനായില്ല.</item>
+    <item quantity="other">സന്ദേശങ്ങള്‍ ഇനി ലഭ്യമല്ലാത്തതിനാൽ ഫോർവേഡ് ചെയ്യാനായില്ല.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">പരിധി എത്തി</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
   <string name="MediaReviewFragment__add_a_reply">ഒരു മറുപടി ചേർക്കുക</string>
   <string name="ImageEditorHud__cancel">റദ്ദാക്കൂ</string>
+  <string name="ImageEditorHud__draw">വരയ്ക്കുക</string>
+  <string name="ImageEditorHud__write_text">വാചകം എഴുതുക</string>
+  <string name="ImageEditorHud__add_a_sticker">സ്റ്റിക്കർ ചേർക്കുക</string>
+  <string name="ImageEditorHud__blur">മങ്ങിക്കുക</string>
   <string name="ImageEditorHud__clear_all">എല്ലാം മായ്ക്കുക</string>
   <string name="ImageEditorHud__undo">തിരിച്ചാക്കുക</string>
   <string name="ImageEditorHud__delete">ഇല്ലാതാക്കൂ</string>
@@ -3176,9 +3306,12 @@
   <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
   <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">നിങ്ങളെപ്പോലുള്ളവരാണ് Signal പ്രവർത്തിപ്പിക്കുന്നത്.</string>
+  <string name="SubscribeFragment__currency">നാണയം</string>
+  <string name="SubscribeFragment__more_payment_options">പണമടയ്ക്കാനുള്ള കൂടുതല്‍ മാർഗങ്ങൾ</string>
   <string name="SubscribeFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="SubscribeFragment__confirm">സ്ഥിരീകരിക്കുക</string>
   <string name="SubscribeFragment__update">അപ്‌ഡേറ്റ്</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">നിങ്ങളുടെ പിന്തുണയ്ക്ക് നന്ദി!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ചെയ്‌തു</string>
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
   <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>

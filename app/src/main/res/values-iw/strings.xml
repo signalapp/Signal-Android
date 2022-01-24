@@ -395,7 +395,7 @@
     <item quantity="many">מחק</item>
     <item quantity="other">מחק</item>
   </plurals>
-  <string name="ConversationListFragment_select_all">בחר הכל</string>
+  <string name="ConversationListFragment_select_all">בחר הכול</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d נבחר</item>
     <item quantity="two">%d נבחרו</item>
@@ -747,7 +747,7 @@
   <string name="ManageGroupActivity_off">כבוי</string>
   <string name="ManageGroupActivity_on">מופעל</string>
   <string name="ManageGroupActivity_view_all_members">הצג את כל חברי הקבוצה</string>
-  <string name="ManageGroupActivity_see_all">ראה הכל</string>
+  <string name="ManageGroupActivity_see_all">ראה הכול</string>
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">חבר קבוצה %d התווסף.</item>
     <item quantity="two">%d חברי קבוצה התווספו.</item>
@@ -913,7 +913,7 @@
   <string name="MediaOverviewActivity_Media">מדיה</string>
   <string name="MediaOverviewActivity_Files">קבצים</string>
   <string name="MediaOverviewActivity_Audio">שמע</string>
-  <string name="MediaOverviewActivity_All">הכל</string>
+  <string name="MediaOverviewActivity_All">הכול</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">למחוק פריט נבחר?</item>
     <item quantity="two">למחוק פריטים נבחרים?</item>
@@ -928,7 +928,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">מוחק הודעות…</string>
-  <string name="MediaOverviewActivity_Select_all">בחר הכל</string>
+  <string name="MediaOverviewActivity_Select_all">בחר הכול</string>
   <string name="MediaOverviewActivity_collecting_attachments">אוסף צרופות…</string>
   <string name="MediaOverviewActivity_Sort_by">מיין לפי</string>
   <string name="MediaOverviewActivity_Newest">החדש ביותר</string>
@@ -938,7 +938,7 @@
   <string name="MediaOverviewActivity_Grid_view_description">תצוגת סורג</string>
   <string name="MediaOverviewActivity_List_view_description">תצוגת רשימה</string>
   <string name="MediaOverviewActivity_Selected_description">נבחר</string>
-  <string name="MediaOverviewActivity_select_all">בחר הכל</string>
+  <string name="MediaOverviewActivity_select_all">בחר הכול</string>
   <plurals name="MediaOverviewActivity_save_plural">
     <item quantity="one">שמור</item>
     <item quantity="two">שמור</item>
@@ -1482,7 +1482,7 @@
   <string name="RegistrationActivity_a_verification_code_will_be_sent_to">קוד וידוא יישלח אל:</string>
   <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">תקבל שיחה כדי לוודא מספר זה.</string>
   <string name="RegistrationActivity_is_your_phone_number_above_correct">האם מספר הטלפון שלך למעלה נכון?</string>
-  <string name="RegistrationActivity_edit_number">עריכת המספר</string>
+  <string name="RegistrationActivity_edit_number">ערוך מספר</string>
   <string name="RegistrationActivity_missing_google_play_services">שירותי Google Play חסרים</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">במכשיר זה חסרים שירותי Google Play. אתה יכול עדין להשתמש ב־Signal, אבל תצורה זו עשויה לגרום לאמינות מופחתת או לביצועים מופחתים.\n\nאם אינך משתמש מתקדם, אינך מריץ ROM של Android שהותקן לאחר רכישה, או שאתה מאמין שאתה רואה זאת בטעות, אנא צור קשר עם support@signal.org לעזרה באיתור תקלות.</string>
   <string name="RegistrationActivity_i_understand">אני מבין</string>
@@ -1712,7 +1712,7 @@
   <string name="MessageNotifier_error_delivering_message">שגיאה במסירת הודעה.</string>
   <string name="MessageNotifier_message_delivery_paused">מסירת הודעה הושהתה.</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">וודא כדי להמשיך להתכתב ב־Signal.</string>
-  <string name="MessageNotifier_mark_all_as_read">סמן שהכל נקרא</string>
+  <string name="MessageNotifier_mark_all_as_read">סמן הכול כנקרא</string>
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_turn_off_these_notifications">כבה התראות אלו</string>
   <string name="MessageNotifier_view_once_photo">תמונה לצפייה חד־פעמית</string>
@@ -2064,7 +2064,7 @@
   <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[כדי לוודא את האבטחה של ההצפנה מקצה־אל־קצה שלך עם %s, השווה את המספרים לעיל עם המכשיר של הצד השני. אתה יכול גם לסרוק את הקוד במכשיר של הצד שני. <a href="https://signal.org/redirect/safety-numbers">למד עוד.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">הקש כדי לסרוק</string>
   <string name="verify_display_fragment__successful_match">התאמה מוצלחת</string>
-  <string name="verify_display_fragment__failed_to_verify_safety_number">נכשל בוידוא מספר ביטחון</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">נכשל בווידוא מספר ביטחון</string>
   <string name="verify_display_fragment__loading">טוען…</string>
   <string name="verify_display_fragment__mark_as_verified">סמן כמוֻדא</string>
   <string name="verify_display_fragment__clear_verification">נקה וידוא</string>
@@ -2296,7 +2296,7 @@
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">זה ימחק לצמיתות את כל היסטורית ההודעות והמדיה מהמכשיר שלך.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">האם אתה בטוח שאתה רוצה למחוק את כל היסטורית ההודעות?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">כל היסטורית ההודעות תימחק לצמיתות. פעולה זו אינה ניתנת לביטול.</string>
-  <string name="preferences_storage__delete_all_now">מחק הכל כעת</string>
+  <string name="preferences_storage__delete_all_now">מחק הכול עכשיו</string>
   <string name="preferences_storage__forever">לנצח</string>
   <string name="preferences_storage__one_year">שנה 1</string>
   <string name="preferences_storage__six_months">6 חודשים</string>
@@ -2357,7 +2357,7 @@
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">כל הפעילות</string>
-  <string name="PaymentsAllActivityFragment__all">הכל</string>
+  <string name="PaymentsAllActivityFragment__all">הכול</string>
   <string name="PaymentsAllActivityFragment__sent">נשלח</string>
   <string name="PaymentsAllActivityFragment__received">התקבל</string>
   <string name="PaymentsHomeFragment__introducing_payments">היכרות עם תשלומים (בטא)</string>
@@ -2368,7 +2368,7 @@
   <string name="PaymentsHomeFragment__no_recent_activity_yet">אין פעילות מהזמן האחרון עדיין</string>
   <string name="PaymentsHomeFragment__pending_requests">בקשות ממתינות</string>
   <string name="PaymentsHomeFragment__recent_activity">פעילות מהזמן האחרון</string>
-  <string name="PaymentsHomeFragment__see_all">ראה הכל</string>
+  <string name="PaymentsHomeFragment__see_all">ראה הכול</string>
   <string name="PaymentsHomeFragment__add_funds">הוסף כספים</string>
   <string name="PaymentsHomeFragment__send">שלח</string>
   <string name="PaymentsHomeFragment__sent_s">%1$s נשלחו</string>
@@ -2546,7 +2546,7 @@
   <string name="conversation_list_batch__menu_delete_selected">מחק נבחרים</string>
   <string name="conversation_list_batch__menu_pin_selected">הצמד נבחרים</string>
   <string name="conversation_list_batch__menu_unpin_selected">בטל הצמדת נבחרים</string>
-  <string name="conversation_list_batch__menu_select_all">בחר הכל</string>
+  <string name="conversation_list_batch__menu_select_all">בחר הכול</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">אחסן בארכיון נבחרים</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">הוצא מארכיון נבחרים</string>
   <string name="conversation_list_batch__menu_mark_as_read">סמן כנקרא</string>
@@ -2590,7 +2590,7 @@
   <string name="text_secure_normal__menu_new_group">קבוצה חדשה</string>
   <string name="text_secure_normal__menu_settings">הגדרות</string>
   <string name="text_secure_normal__menu_clear_passphrase">נעל</string>
-  <string name="text_secure_normal__mark_all_as_read">סמן הכל כנקרא</string>
+  <string name="text_secure_normal__mark_all_as_read">סמן הכול כנקרא</string>
   <string name="text_secure_normal__invite_friends">הזמן חברים</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">העתק ללוח העריכה</string>
@@ -2690,7 +2690,7 @@
   <string name="AccountLockedFragment__learn_more">למד עוד</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">הכנס את ה־PIN שלך</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">הכנס את ה־PIN שיצרת עבור החשבון שלך. הוא שונה מקוד הוידוא שלך במסרון.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">הכנס את ה־PIN שיצרת עבור החשבון שלך. הוא שונה מקוד הווידוא שלך במסרון.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">הכנס PIN אלפאנומרי</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">הכנס PIN מספרי</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN שגוי. נסה שוב.</string>
@@ -3239,24 +3239,24 @@
   <string name="ChangeNumberFragment__continue">המשך</string>
   <string name="ChangeNumber__your_phone_number_has_been_changed">מספר הטלפון שלך השתנה.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
-  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">שינוי המספר</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">שנה מספר</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">המספר הישן שלך</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">מספר טלפון ישן</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">מספר ישן של טלפון</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">המספר החדש שלך</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">מספר טלפון חדש</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">מספר חדש של טלפון</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">מספר הטלפון שהכנסת אינו תואם אל מספר הטלפון של החשבון שלך.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">אתה חייב לציין את קוד המדינה של המספר הישן שלך</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">אתה חייב לציין את מספר הטלפון הישן שלך</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">אתה חייב לציין את קוד המדינה של המספר החדש שלך</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">אתה חייב לציין את מספר הטלפון החדש שלך</string>
   <!--ChangeNumberVerifyFragment-->
-  <string name="ChangeNumberVerifyFragment__change_number">שינוי המספר</string>
+  <string name="ChangeNumberVerifyFragment__change_number">שנה מספר</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">מוודא את %1$s</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">אתגר מענה דרוש</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">שנה מספר</string>
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">אתה עומד לשנות את מספר הטלפון שלך מן %1$s אל %2$s.\n\nלפני המשכה, אנא וודא שהמספר למטה נכון.</string>
-  <string name="ChangeNumberConfirmFragment__edit_number">עריכת המספר</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">ערוך מספר</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">שינוי מספר של Signal - צריך עזרה עם PIN עבור Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
@@ -3339,7 +3339,7 @@
   <string name="DataAndStorageSettingsFragment__media_quality">איכות מדיה</string>
   <string name="DataAndStorageSettingsFragment__sent_media_quality">הגדר איכות מדיה</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">שליחת מדיה באיכות גבוהה תשתמש ביותר נתונים.</string>
-  <string name="DataAndStorageSettingsFragment__high">גבוה</string>
+  <string name="DataAndStorageSettingsFragment__high">גבוהה</string>
   <string name="DataAndStorageSettingsFragment__standard">תקנית</string>
   <string name="DataAndStorageSettingsFragment__calls">שיחות</string>
   <!--ChatColorSelectionFragment-->
@@ -3433,7 +3433,7 @@
   <string name="ConversationSettingsFragment__unblock">שחרר חסימה</string>
   <string name="ConversationSettingsFragment__unblock_group">שחרר חסימת קבוצה</string>
   <string name="ConversationSettingsFragment__add_to_a_group">הוסף אל קבוצה</string>
-  <string name="ConversationSettingsFragment__see_all">ראה הכל</string>
+  <string name="ConversationSettingsFragment__see_all">ראה הכול</string>
   <string name="ConversationSettingsFragment__add_members">הוסף חברי קבוצה</string>
   <string name="ConversationSettingsFragment__permissions">הרשאות</string>
   <string name="ConversationSettingsFragment__requests_and_invites">בקשות והזמנות</string>
@@ -3729,7 +3729,7 @@
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">תזמן</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
-  <string name="NotificationProfileDetails__see_all">ראה הכל</string>
+  <string name="NotificationProfileDetails__see_all">ראה הכול</string>
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">הוסף תזמון</string>
   <!--Descriptor text indicating what the user can do with this screen-->

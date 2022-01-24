@@ -3243,9 +3243,11 @@ broj telefona</string>
   <string name="ManageDonationsFragment__subscription_faq">Najčešća pitanja</string>
   <string name="BoostFragment__give_signal_a_boost">Donirajte jednokratnom uplatom</string>
   <string name="Boost__enter_custom_amount">Unesi prilagođeni iznos</string>
+  <string name="MySupportPreference__add_a_signal_boost">Dodaj Signal Boost</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__please_contact_support">Molimo Vas da kontaktirate podršku</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pretplatnik</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Dodaj Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
   <string name="SubscribeFragment__processing_payment">Obrada uplate…</string>

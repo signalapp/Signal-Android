@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Marcou como não verificado o seu número de segurança com %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Marcou como não verificado o seu número de segurança com %s a partir de outro dispositivo</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Não pode ser entregue uma mensagem de %s</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s alterou o número de telemóvel para um número novo.</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s alterou o número de telefone para um número novo.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou uma chamada em grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada de grupo · %2$s</string>
@@ -1505,7 +1505,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de utilizadores não podem começar com um número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nome de utilizador inválido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Os nomes de utilizadores devem ter entre %1$d e %2$d caracteres.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Os nomes de utilizadores no Signal são opcionais. Se escolher criar um nome de utilizador, os outros utilizadores do Signal serão capazes de encontrá-lo através desse nome de utilizador e contactá-lo sem saber o seu número de telemóvel.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Os nomes de utilizadores no Signal são opcionais. Se escolher criar um nome de utilizador, os outros utilizadores do Signal serão capazes de encontrá-lo através desse nome de utilizador e contactá-lo sem saber o seu número de telefone.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contacto está no Signal!</item>
     <item quantity="other">%d contactos estão no Signal!</item>
@@ -1888,7 +1888,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Introduza um nome ou número</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Para verificar a segurança da sua encriptação ponta-a-ponta com %s, compare os números acima com o dispositivo da outra pessoa. Também pode digitalizar o código no telemóvel da outra pessoa. <a href="https://signal.org/redirect/safety-numbers">Mais informações.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Para verificar a segurança da sua encriptação ponta-a-ponta com %s, compare os números acima com o dispositivo da outra pessoa. Também pode digitalizar o código no telefone da outra pessoa. <a href="https://signal.org/redirect/safety-numbers">Mais informações.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toque para ler</string>
   <string name="verify_display_fragment__successful_match">Correspondência bem sucedida</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Falha o verificar o número de segurança</string>
@@ -2504,7 +2504,7 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A sua conta foi bloqueada para proteger a sua privacidade e segurança. Após %1$d dias de inatividade  ser-lhe-á permitido voltar a registar este número de telemóvel sem necessitar do seu PIN. Todo o conteúdo será eliminado.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A sua conta foi bloqueada para proteger a sua privacidade e segurança. Após %1$d dias de inatividade, ser-lhe-á permitido voltar a registar este número de telefone sem necessitar do seu PIN. Todo o conteúdo será eliminado.</string>
   <string name="AccountLockedFragment__next">Seguinte</string>
   <string name="AccountLockedFragment__learn_more">Saber mais</string>
   <!--KbsLockFragment-->
@@ -2608,13 +2608,13 @@
   <string name="RegistrationActivity_incorrect_code">Código Incorrecto</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
-  <string name="preferences_app_protection__see_my_phone_number">Ver o meu número de telemóvel</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">Encontrar-me através do número de telemóvel</string>
+  <string name="preferences_app_protection__see_my_phone_number">Ver o meu número de telefone</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Encontrar-me através do número de telefone</string>
   <string name="PhoneNumberPrivacy_everyone">Todos</string>
   <string name="PhoneNumberPrivacy_my_contacts">Os meus contactos</string>
   <string name="PhoneNumberPrivacy_nobody">Ninguém</string>
-  <string name="PhoneNumberPrivacy_everyone_see_description">O seu número de telemóvel ficará visível para todas as pessoas e grupos com quem troque mensagens.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Qualquer pessoa que tenha o seu número de telemóvel nos seus contactos irá vê-lo como contacto no Signal. As outras pessoas poderão encontrá-lo através da pesquisa.</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">O seu número de telefone ficará visível para todas as pessoas e grupos com quem troque mensagens.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Qualquer pessoa que tenha o seu número de telefone nos seus contactos irá vê-lo como contacto no Signal. As outras pessoas poderão encontrá-lo através da pesquisa.</string>
   <string name="preferences_app_protection__screen_lock">Bloqueio de ecrã</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloqueie o acesso ao Signal utilizando o bloqueio de ecrã do Android ou a impressão digital</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Bloqueio de ecrã devido a inatividade</string>
@@ -2623,7 +2623,7 @@
   <string name="preferences_app_protection__change_your_pin">Alterar o seu PIN</string>
   <string name="preferences_app_protection__pin_reminders">Lembretes de PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Os PINs mantém encriptada a informação guardada no Signal de forma a que apenas você lhe possa aceder. O seu perfil, definições e contactos serão restaurados quando reinstalar o Signal.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione uma segurança extra ao pedir o seu PIN do Signal para registar o seu número de telemóvel novamente com o Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione uma segurança extra ao pedir o seu PIN do Signal para registar o seu número de telefone novamente com o Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Os lembretes ajudam-no a lembrar-se do seu PIN, pois ele não pode ser recuperado. Este, ser-lhe-á solicitado com menos frequência ao longo do tempo.</string>
   <string name="preferences_app_protection__turn_off">Desativar</string>
   <string name="preferences_app_protection__confirm_pin">Confirmar PIN</string>
@@ -2861,7 +2861,7 @@
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Eliminar %1$s na sua conta de pagamentos</string>
   <string name="DeleteAccountFragment__no_country_code">Sem código de país especificado</string>
   <string name="DeleteAccountFragment__no_number">Sem número especificado</string>
-  <string name="DeleteAccountFragment__the_phone_number">O número de telemóvel que introduziu não coincide com as suas contas.</string>
+  <string name="DeleteAccountFragment__the_phone_number">O número de telefone que introduziu não coincide com as suas contas.</string>
   <string name="DeleteAccountFragment__are_you_sure">Deseja realmente eliminar a sua conta?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Isto irá eliminar a sua conta do Signal e repor a aplicação. A aplicação irá encerrar depois do processo estar completo.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Falha ao eliminar conta. Tem alguma ligação à rede?</string>
@@ -3036,29 +3036,29 @@
   <string name="AccountSettingsFragment__account">Conta</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ser-lhe-á pedido menos frequentemente ao longo do tempo</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Exija o seu PIN do Signal para registar novamente o seu número de telefone com o Signal.</string>
-  <string name="AccountSettingsFragment__change_phone_number">Alterar o número de telemóvel</string>
+  <string name="AccountSettingsFragment__change_phone_number">Alterar o número de telefone</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilize isto para alterar o seu número atual para um número de telemóvel novo. Não pode desfazer esta alteração.\n\nAntes de continuar, assegure-se que o seu número novo pode receber SMS ou chamadas.</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilize isto para alterar o seu número atual para um número de telefone novo. Não pode desfazer esta alteração.\n\nAntes de continuar, assegure-se que o seu número novo pode receber SMS ou chamadas.</string>
   <string name="ChangeNumberFragment__continue">Continuar</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">O seu número de telemóvel foi alterado.</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">O seu número de telefone foi alterado.</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Alterar número</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">O seu número antigo</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Número de telemóvel antigo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Número de telefone antigo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">O seu número novo</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Número de telemóvel novo</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">O número de telemóvel que introduziu não coincide com as suas contas.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Número de telefone novo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">O número de telefone que introduziu não coincide com as suas contas.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Deverá especificar o código do país do seu número antigo</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Deverá especificar o seu número de telemóvel antigo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Deverá especificar o seu número de telefone antigo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Deverá especificar o código do país do seu número novo</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Deverá especificar o seu número de telemóvel novo</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Deverá especificar o seu número de telefone novo</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Alterar número</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">A verificar %1$s</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha necessário</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Alterar número</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Está prestes a alterar p seu número de telemóvel de %1$s para %2$s.\n\n\Antes de prosseguir, confirme que o número abaixo se encontra correto.</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Está prestes a alterar o seu número de telefone de %1$s para %2$s.\n\n\Antes de prosseguir, confirme que o número abaixo se encontra correto.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Editar número</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Alterar o número do Signal - Necessita de ajuda com o PIN para Android (v2 PIN)</string>
@@ -3069,7 +3069,7 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">Atualizar PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Manter o PIN antigo?</string>
   <!--ChangeNumberLockActivity-->
-  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Parece que você tentou mudar o seu número de telemóvel. Aguardamos a confirmação de que a mudança foi bem-sucedida.\n\nA verificar agora…</string>
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Parece que você tentou mudar o seu número de telefone. Aguardamos a confirmação de que a mudança foi bem-sucedida.\n\nA verificar agora…</string>
   <string name="ChangeNumberLockActivity__change_status_confirmed">Estado da alteração confirmado</string>
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Seu número foi confirmado como %1$s. Se esse não for o seu novo número, refaça o processo de alteração de número.</string>
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Estado da alteração não confirmado</string>
