@@ -18,6 +18,7 @@ import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -62,8 +63,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Advances a groups state to a specified revision.
@@ -169,16 +172,18 @@ public final class GroupsV2StateProcessor {
 
       GlobalGroupState inputGroupState = null;
 
-      DecryptedGroup localState = groupDatabase.getGroup(groupId)
-                                               .transform(g -> g.requireV2GroupProperties().getDecryptedGroup())
-                                               .orNull();
+      Optional<GroupRecord> localRecord = groupDatabase.getGroup(groupId);
+      DecryptedGroup        localState  = localRecord.transform(g -> g.requireV2GroupProperties().getDecryptedGroup()).orNull();
 
       if (signedGroupChange != null                                       &&
           localState != null                                              &&
           localState.getRevision() + 1 == signedGroupChange.getRevision() &&
           revision == signedGroupChange.getRevision())
       {
-        if (SignalStore.internalValues().gv2IgnoreP2PChanges()) {
+
+        if (notInGroupAndNotBeingAdded(localRecord, signedGroupChange)) {
+          Log.w(TAG, "Ignoring P2P group change because we're not currently in the group and this change doesn't add us in. Falling back to a server fetch.");
+        } else if (SignalStore.internalValues().gv2IgnoreP2PChanges()) {
           Log.w(TAG, "Ignoring P2P group change by setting");
         } else {
           try {
@@ -203,10 +208,14 @@ public final class GroupsV2StateProcessor {
         } catch (GroupNotAMemberException e) {
           if (localState != null && signedGroupChange != null) {
             try {
-              Log.i(TAG, "Applying P2P group change when not a member");
-              DecryptedGroup newState = DecryptedGroupUtil.applyWithoutRevisionCheck(localState, signedGroupChange);
+              if (notInGroupAndNotBeingAdded(localRecord, signedGroupChange)) {
+                Log.w(TAG, "Server says we're not a member. Ignoring P2P group change because we're not currently in the group and this change doesn't add us in.");
+              } else {
+                Log.i(TAG, "Server says we're not a member. Applying P2P group change.");
+                DecryptedGroup newState = DecryptedGroupUtil.applyWithoutRevisionCheck(localState, signedGroupChange);
 
-              inputGroupState = new GlobalGroupState(localState, Collections.singletonList(new ServerGroupLogEntry(newState, signedGroupChange)));
+                inputGroupState = new GlobalGroupState(localState, Collections.singletonList(new ServerGroupLogEntry(newState, signedGroupChange)));
+              }
             } catch (NotAbleToApplyGroupV2ChangeException failed) {
               Log.w(TAG, "Unable to apply P2P group change when not a member", failed);
             }
@@ -249,6 +258,26 @@ public final class GroupsV2StateProcessor {
       }
 
       return new GroupUpdateResult(GroupState.GROUP_UPDATED, newLocalState);
+    }
+
+    private boolean notInGroupAndNotBeingAdded(@NonNull Optional<GroupRecord> localRecord, @NonNull DecryptedGroupChange signedGroupChange) {
+      boolean currentlyInGroup     = localRecord.isPresent() && localRecord.get().isActive();
+      boolean addedAsMember        = signedGroupChange.getNewMembersList()
+                                                      .stream()
+                                                      .map(DecryptedMember::getUuid)
+                                                      .map(UuidUtil::fromByteStringOrNull)
+                                                      .filter(Objects::nonNull)
+                                                      .collect(Collectors.toSet())
+                                                      .contains(Recipient.self().requireAci().uuid());
+      boolean addedAsPendingMember = signedGroupChange.getNewPendingMembersList()
+                                                      .stream()
+                                                      .map(DecryptedPendingMember::getUuid)
+                                                      .map(UuidUtil::fromByteStringOrNull)
+                                                      .filter(Objects::nonNull)
+                                                      .collect(Collectors.toSet())
+                                                      .contains(Recipient.self().requireAci().uuid());
+
+      return !currentlyInGroup && !addedAsMember && !addedAsPendingMember;
     }
 
     /**
