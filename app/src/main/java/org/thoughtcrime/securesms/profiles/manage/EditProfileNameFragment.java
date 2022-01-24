@@ -53,7 +53,7 @@ public class EditProfileNameFragment extends Fragment {
     this.givenName.setText(Recipient.self().getProfileName().getGivenName());
     this.familyName.setText(Recipient.self().getProfileName().getFamilyName());
 
-    viewModel.onGivenNameLengthChanged(this.givenName.getText().length());
+    viewModel.onGivenNameChanged(this.givenName.getText().toString());
 
     view.<Toolbar>findViewById(R.id.toolbar)
         .setNavigationOnClickListener(v -> Navigation.findNavController(view)
@@ -64,7 +64,7 @@ public class EditProfileNameFragment extends Fragment {
 
     this.givenName.addTextChangedListener(new AfterTextChanged(s -> {
       trimFieldToMaxByteLength(s);
-      viewModel.onGivenNameLengthChanged(s.length());
+      viewModel.onGivenNameChanged(s.toString());
     }));
     this.familyName.addTextChangedListener(new AfterTextChanged(EditProfileNameFragment::trimFieldToMaxByteLength));
 

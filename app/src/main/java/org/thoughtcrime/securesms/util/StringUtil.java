@@ -17,7 +17,10 @@ public final class StringUtil {
 
   private static final Set<Character> WHITESPACE = SetUtil.newHashSet('\u200E',  // left-to-right mark
                                                                       '\u200F',  // right-to-left mark
-                                                                      '\u2007'); // figure space
+                                                                      '\u2007',  // figure space
+                                                                      '\u200B',  // zero-width space
+                                                                      '\u2800'); // braille blank
+
 
   private static final class Bidi {
     /** Override text direction  */
