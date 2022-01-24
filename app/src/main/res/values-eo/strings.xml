@@ -1085,7 +1085,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vi markis vian sekurigan numeron kun %s kiel nekonfirmitan.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vi markis, el alia aparato, vian sekurigan numeron kun %s kiel nekonfirmitan.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Mesaĝo el %s ne estis liverata.</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ŝanĝis sian numeron.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ŝanĝis sian numeron.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ekigis grupalvokon · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s estas en la grupalvoko · %2$s</string>
@@ -3041,7 +3041,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Tio eblas al vi ŝanĝi vian nunan telefonnumeron al nova. Vi ne povas malfari tion.\n\nAntaŭ ol daŭrigi, certigu, ke via nova numero povas ricevi SMS-ojn aŭ alvokojn.</string>
   <string name="ChangeNumberFragment__continue">Daŭrigi</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Via telefonnumero ŝanĝiĝis.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Via telefonnumero ŝanĝiĝis.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ŝanĝi telefonnumeron</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Via antaŭa numero</string>

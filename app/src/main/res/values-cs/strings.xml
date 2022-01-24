@@ -1206,7 +1206,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili jste vaše bezpečnostní číslo pro komunikaci s %s jako neověřené.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní číslo pro komunikaci s %s jako neověřené.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Zpráva od %s nemohla být doručena.</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s změnil(a) své číslo na nové.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s změnil(a) své číslo na nové.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s se účastní skupinového hovoru · %2$s</string>
@@ -3236,7 +3236,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Pomocí této funkce můžete změnit své aktuální telefonní číslo na nové. Tuto změnu nelze vrátit zpět.\n\nPřed pokračováním se ujistěte, že nové číslo může přijímat SMS nebo hovory.</string>
   <string name="ChangeNumberFragment__continue">Pokračovat</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Vaše telefonní číslo bylo změněno.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Vaše telefonní číslo bylo změněno.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Změnit číslo</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vaše staré číslo</string>

@@ -1025,7 +1025,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">تاسې له %s سره خپل د خوندیتوب شمېره د ناتایید شوي په توګه نښاني کړې</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">تاسې له %s سره خپل د خوندیتوب شمېره له بلې وسیلې څخه د ناتایید شوي په توګه نښاني کړې</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">د %s یو پیغام و نه لیږل شو</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s خپله شمېره نوې شمېرې ته بدله کړې ده.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s خپله شمېره نوې شمېرې ته بدله کړې ده.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ګروپ کال پیل کړی. %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s په ګروپ کال کې ده. %2$s</string>
@@ -2950,7 +2950,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">خپله اوسنۍ ټلیفون شمېره مو نوې ټلیفون شمېرې ته د بدلولو لپاره دا وکاروئ. تاسې نشئ کولای چې دا کار بیرته اولي حالت ته راولئ./n/nتر وړاندې تګ مخکې، ځان ډاډه کړئ چې ستاسې نوې شمېره کولای شي لنډلیکلي پیغامونه یا ټلیفوني اړیکې تر لاسه کولای شي.</string>
   <string name="ChangeNumberFragment__continue">ادامه</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">ستاسې د ټلیفون شمېره بدله شوې ده.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">ستاسې د ټلیفون شمېره بدله شوې ده.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">د شمېرې بدلول</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">ستاسې پخوانۍ شمېره</string>

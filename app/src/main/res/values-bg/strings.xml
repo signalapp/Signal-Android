@@ -1047,7 +1047,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Отбелязахте числото си за сигурност с %s като непотвърдени</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Отбелязахте числот си за сугорност с %s като непотвърдени от друго устройство</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Съобщение от %s не успя да бъде доставено</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s смени номера си с нов номер.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s смени номера си с нов номер.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групово разговор · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е в групов разговор · %2$s</string>

@@ -1145,7 +1145,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ai marcat numărul tău de siguranță cu %s ca și neverificat</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ai marcat numărul tău de siguranță cu %s ca și neverificat de pe alt dispozitiv</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un mesaj de la %s nu a putut fi livrat</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s și-a schimbat numărul de telefon cu unul nou.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s și-a schimbat numărul de telefon cu unul nou.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a început un apel de grup · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s este în apelul de grup · %2$s</string>
@@ -3135,7 +3135,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilizează acest meniu pentru a-ți schimba actualul număr de telefon cu un număr nou. Nu poți anula această modificare.\n\nÎnainte de a continua asigură-te că noul număr de telefon poate primi SMS-uri sau apeluri.</string>
   <string name="ChangeNumberFragment__continue">Continuare</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Numărul tău de telefon a fost schimbat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Numărul tău de telefon a fost schimbat.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Schimbă Numărul</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vechiul număr</string>

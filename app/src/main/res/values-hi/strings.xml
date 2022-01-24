@@ -1079,7 +1079,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">आपने %s के साथ अपना सुरक्षा नंबर असत्यापित मार्क करा हुआ है</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">आपने %s के साथ अपना सुरक्षा नंबर किसी और डिवाइस से असत्यापित मार्क करा हुआ है</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s से एक संदेश डिलीवर नहीं किया जा सका</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ने उनके नंबर को एक नए नंबर में बदल दिया.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ने उनके नंबर को एक नए नंबर में बदल दिया.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने एक ग्रुप कॉल शुरू की · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ग्रुप कॉल में है · %2$s</string>
@@ -3016,7 +3016,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">अपने मौजूदा फ़ोन नंबर को नए फ़ोन नंबर में बदलने के लिए इसका इस्तेमाल करें. आप इस बदलाव को पहले जैसा नहीं कर सकते.\n\nजारी रखने से पहले, पक्का करें कि आपके नए नंबर पर SMS या कॉल आ सकते हैं.</string>
   <string name="ChangeNumberFragment__continue">आगे </string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">आपका फ़ोन नंबर बदल दिया गया है.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">आपका फ़ोन नंबर बदल दिया गया है.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">नंबर बदलें</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">आपका पुराना नंबर</string>

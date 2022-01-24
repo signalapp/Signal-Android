@@ -1023,7 +1023,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">你已標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %s 的一則訊息無法送達</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s 將他們變更了新的電話號碼。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s 將他們變更了新的電話號碼。</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
@@ -2939,7 +2939,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">使用此可將你現在的電話號碼變更為新的電話號碼。你無法取消此變更。\n\n在繼續之前，請確保你的新電話號碼可以接收簡訊或電話。</string>
   <string name="ChangeNumberFragment__continue">繼續</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">你的電話號碼已經變更。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">你的電話號碼已經變更。</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">更改號碼</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">你的舊電話號碼</string>

@@ -1328,7 +1328,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">لقد قمت بالإشعار بأنّ رقم الأمان مع %s لم يتم التحقّق منه</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">لقد قمت بالإشعار بأنّ رقم الأمان مع %s لم يتم التحقّق منه عن طريق جهاز آخر</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">تعذر توصيل رسالة من %s</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">لقد استُبدِل رقم %1$s برقم جديد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">لقد استُبدِل رقم %1$s برقم جديد.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في المكالمة الجماعية · %2$s</string>
@@ -3418,7 +3418,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">يُرجى استخدام هذا لاستبدال رقم هاتفك الحالي بالجديد. لن يكون بإمكانك التراجع عن هذا اﻷمر.\n\nلذا، يجب عليك، قبل الاستمرار، التأكد من أن رقم هاتفك الجديد يستطيع تلقي المكالمات والرسائل القصيرة.</string>
   <string name="ChangeNumberFragment__continue">الاِستِمرار</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">لقد تغير رقم هاتفك.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">لقد تغير رقم هاتفك.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">تغيير الرقم</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">رقم هاتفك القديم</string>

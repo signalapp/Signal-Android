@@ -1145,7 +1145,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Означили сте ваш сигурносни број са %s као непроверен.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Означили сте ваш сигурносни број са %s као непроверен на другом уређају.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порука од %s није могла да се испоручи</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s променио свој број на нови број</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s променио свој број на нови број</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s покренуо/ла групни позив · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s је у групном позиву · %2$s</string>
@@ -3139,7 +3139,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користите ово да промените свој тренутни телефонски број на нови телефонски број. Не можете поништити ову промену.\n\nПре него што наставите, проверите да ли ваш нови број може да прима СМС или позиве.</string>
   <string name="ChangeNumberFragment__continue">Настави</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Ваш телефонски број је промењен.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Ваш телефонски број је промењен.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Променити број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ваш стари број</string>

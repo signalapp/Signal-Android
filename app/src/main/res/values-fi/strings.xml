@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Merkitsit turvanumerosi kontaktin %s kanssa varmentamattomaksi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Merkitsit turvanumerosi kontaktin %s kanssa varmentamattomaksi toisesta laitteesta.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Viestiä kontaktilta %s ei pystytty toimittamaan</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s vaihtoi numeronsa uuteen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s vaihtoi numeronsa uuteen.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s on ryhmäpuhelussa · %2$s</string>
@@ -3035,7 +3035,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Voit vaihtaa nykyisen puhelinnumerosi uuteen numeroon. Et voi perua tätä muutosta.\n\nEnnen kuin jatkat, varmista että uusi numero voi vastaanottaa tekstiviestejä tai puheluja.</string>
   <string name="ChangeNumberFragment__continue">Jatka</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Puhelinnumerosi on vaihdettu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Puhelinnumerosi on vaihdettu.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Muokkaa numeroa</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vanha numerosi</string>

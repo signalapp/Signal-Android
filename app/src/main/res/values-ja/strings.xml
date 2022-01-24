@@ -1023,7 +1023,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s に対する安全番号を未検証にしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s に対する安全番号を他の端末で未検証にしました</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s からのメッセージを配信できませんでした</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s が電話番号を変更しました。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s が電話番号を変更しました。</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始しました · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s はグループ通話中です · %2$s</string>
@@ -2933,7 +2933,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">現在使用している電話番号を、新しい電話番号に変更する際に使用してください。この変更を元に戻すことはできません。続ける前に、新しい電話番号がSMSや通話を受信できることを確認してください。</string>
   <string name="ChangeNumberFragment__continue">続ける</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">電話番号を変更しました。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">電話番号を変更しました。</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">電話番号の変更</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">変更前の電話番号</string>

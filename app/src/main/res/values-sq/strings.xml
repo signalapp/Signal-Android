@@ -1088,7 +1088,7 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar nga një tjetër pajisje</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">S\’u dërgua dot një mesazh prej %s</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s e ndryshoi numrin e vet me një numër të ri.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s e ndryshoi numrin e vet me një numër të ri.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
@@ -3049,7 +3049,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Përdoreni këtë që të ndryshoni numrin tuaj të tanishëm të telefonit me një numër të ri. Këtë ndryshim s\’mund ta zhbëni.\n\nPara se të vazhdoni, sigurohuni se numri juaj i ri mund të marrë SMS ose thirrje.</string>
   <string name="ChangeNumberFragment__continue">Vazhdo</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Numri juaj i telefonit është ndryshuar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Numri juaj i telefonit është ndryshuar.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Ndrysho Numrin</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Numri juaj i vjetër</string>

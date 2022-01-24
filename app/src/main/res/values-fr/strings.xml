@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vous avez marqué votre numéro de sécurité avec %s comme non confirmé</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vous avez marqué votre numéro de sécurité avec %s comme non confirmé à partir d’un autre appareil</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un message de %s n’a pas pu être remis</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s a changé son numéro pour un nouveau.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s a changé son numéro pour un nouveau.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s fait partie de l’appel de groupe · %2$s</string>
@@ -3032,7 +3032,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilisez cette fonction pour changer votre numéro de téléphone actuel pour un nouveau. Vous ne pouvez pas annuler ce changement.\nAvant de continuer, assurez-vous que votre nouveau numéro puisse recevoir des SMS ou des appels.</string>
   <string name="ChangeNumberFragment__continue">Poursuivre</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Votre numéro de téléphone a été modifié.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Votre numéro de téléphone a été modifié.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Changer le numéro</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Votre ancien numéro</string>

@@ -1079,7 +1079,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο από άλλη συσκευή</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ένα μήνυμα από τον/την %s δεν μπόρεσε να παραδοθεί</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Ο/Η %1$s άλλαξε τον αριθμό τηλεφώνου του/της.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">Ο/Η %1$s άλλαξε τον αριθμό τηλεφώνου του/της.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
@@ -3016,7 +3016,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Με αυτό μπορείς να αλλάξεις τον τωρινό αριθμό τηλεφώνου σου σε κάποιον καινούργιο. Δεν μπορείς να αναιρέσεις αυτή την αλλαγή.\n\nΠριν συνεχίσεις, επιβεβαίωσε πως μπορείς να λάβεις SMS ή κλήσεις στο νέο αριθμό.</string>
   <string name="ChangeNumberFragment__continue">Συνέχεια</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Ο αριθμός τηλεφώνου σου άλλαξε.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Ο αριθμός τηλεφώνου σου άλλαξε.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Αλλαγή αριθμού</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ο παλιός σου αριθμός</string>

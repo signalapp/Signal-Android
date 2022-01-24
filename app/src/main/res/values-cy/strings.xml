@@ -1208,7 +1208,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Rydych wedi marcio eich rhif diogelwch gyda %s heb eu gwirio</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Rydych wedi marcio eich rhif diogelwch gyda %s heb eu gwirio o ddyfais arall</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nid oedd modd anfon neges gan %s</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Newidiodd %1$s eu rhif i rif newydd.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">Newidiodd %1$s eu rhif i rif newydd.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Dechreuodd %1$s alwad grŵp · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Mae %1$s mewn galwad grŵp · %2$s</string>
@@ -3239,7 +3239,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Defnyddiwch hwn i newid eich rhif ffôn cyfredol i rif ffôn newydd. Nid oes modd dadwneud y newid hwn.\n\nCyn parhau, gwnewch yn siŵr bod eich rhif newydd yn gallu derbyn SMS neu alwadau.</string>
   <string name="ChangeNumberFragment__continue">Parhau</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Mae eich rhif ffôn wedi\'i newid.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Mae eich rhif ffôn wedi\'i newid.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Newid Rhif</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Eich hen rif</string>

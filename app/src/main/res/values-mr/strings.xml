@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s सोबत आपण आपला सुरक्षितता नंबर असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s सोबत आपण आपला सुरक्षितता नंबर दुसऱ्या डिव्हाईस वरून असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s यांनी त्यांचा नंबर नवीन नंबर वर बदलला.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s यांनी त्यांचा नंबर नवीन नंबर वर बदलला.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये  आहे · %2$s</string>
@@ -3038,7 +3038,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">तुमचा वर्तमान फोन नंबर नवीन फोन नंबरवर बदलण्यासाठी याचा वापर करा.आपण हा बदल पूर्ववत करु शकत नाही.\n\nपुढे जाण्यापूर्वी, तुमच्या नवीन नंबरवर SMS किंवा कॉल मिळू शकतील याची खात्री करा.</string>
   <string name="ChangeNumberFragment__continue">सुरू ठेवा</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">तुमचा फोन नंबर बदलला आहे.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">तुमचा फोन नंबर बदलला आहे.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number"> नंबर बदला</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">तुमचा जुना नंबर</string>

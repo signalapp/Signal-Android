@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Biztonsági számodat megerősítetlennek jelölted a %s nevű partnereddel</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Biztonsági számodat egy másik készülékről megerősítetlennek jelölted %s nevű partnereddel</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Egy üzenet %s ismerősödtől nem érkezett meg</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s megváltoztatta a számát egy új számra.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s megváltoztatta a számát egy új számra.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s csoport hívást indított · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s csoporthívásban van · %2$s</string>
@@ -3042,7 +3042,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Itt a Signal által regisztrált, aktuálisan használt telefonszámodat változtathatod meg egy másikra. Ez a művelet nem vonható vissza.\n\nKezdés előtt győződj meg róla, hogy az új számon tudsz SMS-t, vagy hívást fogadni!</string>
   <string name="ChangeNumberFragment__continue">Folytatás</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Telefonszámod megváltozott.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Telefonszámod megváltozott.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Szám változtatása</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Régi telefonszámod</string>

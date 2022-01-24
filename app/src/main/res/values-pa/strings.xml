@@ -1072,7 +1072,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">ਤੁਸੀਂ ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ %s ਦੇ ਨਾਲ ਅਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ ਕੀਤਾ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ ਤੋਂ %s ਨਾਲ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਨੂੰ ਅਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ ਕੀਤਾ</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s ਤੋਂ ਇੱਕ ਸੁਨੇਹਾ ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$sਨੇ ਆਪਣਾ ਨੰਬਰ ਨਵੇਂ ਲਈ ਬਦਲਿਆ ਹੈ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$sਨੇ ਆਪਣਾ ਨੰਬਰ ਨਵੇਂ ਲਈ ਬਦਲਿਆ ਹੈ।</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ਨੇ ਗਰੁੱਪ ਕਾਲ ਸ਼ੁਰੂ ਕੀਤੀ · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ਗਰੁੱਪ ਕਾਲ ਵਿੱਚ ਹੈ · %2$s</string>
@@ -2999,7 +2999,7 @@
   <string name="AccountSettingsFragment__change_phone_number">ਫ਼ੋਨ ਨੰਬਰ ਬਦਲੋ</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">ਤੁਹਾਡਾ ਫ਼ੋਨ ਨੰਬਰ ਬਦਲਿਆ ਗਿਆ ਹੈ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">ਤੁਹਾਡਾ ਫ਼ੋਨ ਨੰਬਰ ਬਦਲਿਆ ਗਿਆ ਹੈ।</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">ਨੰਬਰ ਬਦਲੋ</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">ਤੁਹਾਡਾ ਪੁਰਾਣਾ ਨੰਬਰ</string>

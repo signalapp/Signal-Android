@@ -1023,7 +1023,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">您已剔低話您同 %s 之間嘅安全碼未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">您喺另一部機度已剔低話您同 %s 之間嘅安全碼未驗證</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">有一則 %s 發出嘅訊息送達唔到</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s 已轉咗新冧把。</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s 已轉咗新冧把。</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已發起成谷通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 嚟到成谷通話 · %2$s</string>
@@ -2943,7 +2943,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">呢度係俾您將您而家用緊個電話冧把轉做一個新嘅電話冧把。一轉咗您就冇得返轉頭㗎喇。\n\n咁喺繼續之前，請確定您個新冧把而家可以收到短訊或者聽到電話。</string>
   <string name="ChangeNumberFragment__continue">繼續</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">您嘅電話冧把而家已改咗。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">您嘅電話冧把而家已改咗。</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">轉冧把</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">您個舊冧把</string>

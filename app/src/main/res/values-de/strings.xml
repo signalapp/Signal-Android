@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %s als nicht verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als nicht verifiziert markiert.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Eine Nachricht von %s konnte nicht zugestellt werden</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Die Rufnummer von %1$s hat sich geändert.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">Die Rufnummer von %1$s hat sich geändert.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hat einen Gruppenanruf begonnen · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s nimmt am Gruppenanruf teil · %2$s</string>
@@ -3030,7 +3030,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Verwende diese Funktion, um deine aktuelle Rufnummer auf eine neue Rufnummer zu ändern. Du kannst diese Änderung nicht rückgängig machen.\n\nBevor du fortfährst, vergewissere dich, dass deine neue Rufnummer SMS oder Anrufe empfangen kann.</string>
   <string name="ChangeNumberFragment__continue">Fortfahren</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Deine Rufnummer wurde geändert.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Deine Rufnummer wurde geändert.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Rufnummer ändern</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Deine alte Rufnummer</string>
@@ -3210,7 +3210,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationSettingsFragment__video">Video</string>
   <string name="ConversationSettingsFragment__audio">Audio</string>
   <string name="ConversationSettingsFragment__call">Anrufen</string>
-  <string name="ConversationSettingsFragment__mute">Stummschalten</string>
+  <string name="ConversationSettingsFragment__mute">Stumm</string>
   <string name="ConversationSettingsFragment__muted">Stumm</string>
   <string name="ConversationSettingsFragment__search">Suchen</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Verschwindende Nachrichten</string>

@@ -1023,7 +1023,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Bạn đã hủy xác minh mã số an toàn với %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bạn đã hủy xác minh mã số an toàn với %s từ thiết bị khác</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Một tin nhắn từ %s không thể được gửi</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$sđã thay đổi số điện thoại của họ sang một số mới.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$sđã thay đổi số điện thoại của họ sang một số mới.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s đã bắt đầu cuộc gọi nhóm · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s đang trong cuộc gọi nhóm · %2$s</string>
@@ -2934,7 +2934,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Dùng để thay đổi số điện thoại hiện tại của bạn sang một số khác. Bạn không thể khôi phục thay đổi này. /n/n Trước khi tiếp tục, hãy chắc chắn rằng số điện thoại mới của bạn đang hoạt động bình thường.</string>
   <string name="ChangeNumberFragment__continue">Tiếp tục</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Số điện thoại của bạn đã thay đổi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Số điện thoại của bạn đã thay đổi.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Thay đổi số</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Số cũ của bạn</string>

@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Heu tret la verificació del número de seguretat amb %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Heu tret la verificació del número de seguretat amb %s des d\'un altre dispositiu</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No s\'ha pogut lliurar un missatge de %s.</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ha canviat el número.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ha canviat el número.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciat una trucada de grup · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s és a la trucada de grup · %2$s</string>
@@ -3035,7 +3035,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Useu-ho per canviar el número de telèfon actual per un número nou. No podeu desfer aquest canvi. \n\nAbans de continuar, assegureu-vos que el número nou pugui rebre SMS o trucades.</string>
   <string name="ChangeNumberFragment__continue">Continua</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">S\'ha canviat el número de telèfon.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">S\'ha canviat el número de telèfon.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Canvia el número</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">El número antic</string>

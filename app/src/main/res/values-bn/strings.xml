@@ -1079,7 +1079,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">আপনি %sএর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">আপনি অন্য একটি ডিভাইস থেকে  %s এর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s এর থেকে একটি বার্তা সরবরাহ করা যায়নি</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s একটি নতুন নম্বরে তাদের নম্বর পরিবর্তন করেছে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s একটি নতুন নম্বরে তাদের নম্বর পরিবর্তন করেছে।</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s একটি গ্রুপ কল শুরু করেছে । %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s গ্রুপ কল এ আছেন। %2$s</string>
@@ -3005,7 +3005,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">আপনার বর্তমান ফোন নম্বরটি একটি নতুন ফোন নম্বরে পরিবর্তন করতে এটি ব্যবহার করুন। আপনি এই পরিবর্তনটি পূর্বাবস্থায় ফেরাতে পারবেন না।\n\nচালিয়ে যাওয়ার আগে, নিশ্চিত করুন যে আপনার নতুন নম্বরটি SMS বা কল পেতে পারে।</string>
   <string name="ChangeNumberFragment__continue">চালিয়ে যান</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">আপনার ফোন নম্বর পরিবর্তন করা হয়েছে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">আপনার ফোন নম্বর পরিবর্তন করা হয়েছে।</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">নম্বর পরিবর্তন করুন</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">আপনার পুরাতন নাম্বার</string>

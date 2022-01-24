@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s-ൽ നിന്നുള്ള ഒരു സന്ദേശം ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s അവരുടെ നമ്പർ ഒരു പുതിയ നമ്പറിലേക്ക് മാറ്റി.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s അവരുടെ നമ്പർ ഒരു പുതിയ നമ്പറിലേക്ക് മാറ്റി.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ഗ്രൂപ്പ് കോളിലാണ് · %2$s</string>
@@ -3027,7 +3027,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">നിങ്ങളുടെ നിലവിലെ ഫോൺ നമ്പർ ഒരു പുതിയ ഫോൺ നമ്പറിലേക്ക് മാറ്റാൻ ഇത് ഉപയോഗിക്കുക. നിങ്ങൾക്ക് ഈ മാറ്റം പഴയപടിയാക്കാനാകില്ല.\n\nതുടരുന്നതിന് മുമ്പ്, നിങ്ങളുടെ പുതിയ നമ്പറിന് SMS അല്ലെങ്കിൽ കോളുകൾ ലഭിക്കുമെന്ന് ഉറപ്പാക്കുക.</string>
   <string name="ChangeNumberFragment__continue">തുടരുക</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">നിങ്ങളുടെ ഫോൺ നമ്പർ മാറ്റി</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">നിങ്ങളുടെ ഫോൺ നമ്പർ മാറ്റി</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">നമ്പർ മാറ്റുക</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">നിങ്ങളുടെ പഴയ ഫോൺ നമ്പർ</string>
@@ -3293,17 +3293,24 @@
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
   <string name="MediaReviewFragment__add_a_reply">ഒരു മറുപടി ചേർക്കുക</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ വളരെ വലുതായിരുന്നു</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ അസാധുവാണ്</string>
+  <string name="MediaReviewFragment__too_many_items_selected">വളരെയധികം ഇനങ്ങൾ തിരഞ്ഞെടുത്തു</string>
   <string name="ImageEditorHud__cancel">റദ്ദാക്കൂ</string>
   <string name="ImageEditorHud__draw">വരയ്ക്കുക</string>
   <string name="ImageEditorHud__write_text">വാചകം എഴുതുക</string>
   <string name="ImageEditorHud__add_a_sticker">സ്റ്റിക്കർ ചേർക്കുക</string>
   <string name="ImageEditorHud__blur">മങ്ങിക്കുക</string>
+  <string name="ImageEditorHud__done_editing">എഡിറ്റിംഗ് കഴിഞ്ഞു</string>
   <string name="ImageEditorHud__clear_all">എല്ലാം മായ്ക്കുക</string>
   <string name="ImageEditorHud__undo">തിരിച്ചാക്കുക</string>
   <string name="ImageEditorHud__delete">ഇല്ലാതാക്കൂ</string>
   <string name="MediaCountIndicatorButton__send">അയയ്‌ക്കുക</string>
   <string name="MediaReviewSelectedItem__tap_to_select">തിരഞ്ഞെടുക്കാൻ ടാപ്പുചെയ്യുക</string>
   <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">മാറ്റങ്ങൾ ഉപേക്ഷിക്കുക?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">ഈ ഫോട്ടോയിൽ നിങ്ങൾ വരുത്തിയ മാറ്റങ്ങളെല്ലാം നഷ്‌ടമാകും.</string>
+  <string name="CameraFragment__failed_to_open_camera">ക്യാമറ തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">നിങ്ങളെപ്പോലുള്ളവരാണ് Signal പ്രവർത്തിപ്പിക്കുന്നത്.</string>
   <string name="SubscribeFragment__currency">നാണയം</string>

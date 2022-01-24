@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du har markeret dit sikkerhedsnummer med %s som ubekræftet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som ubekræftet fra en anden enhed</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En besked fra %s kunne ikke leveres</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ændrede sit nummer til et nyt nummer.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ændrede sit nummer til et nyt nummer.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startede et gruppeopkald · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er med i gruppeopkaldet · %2$s</string>
@@ -3040,7 +3040,7 @@ nummer (%s) er ugyldigt</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Brug dette til at ændre dit nuværende telefonnummer til et nyt telefonnummer. Du kan ikke fortryde denne ændring.\n\nFør du fortsætter, skal du sikre dig, at dit nye nummer kan modtage SMS\'er eller opkald.</string>
   <string name="ChangeNumberFragment__continue">Fortsæt</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Dit telefonnummer er blevet ændret.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Dit telefonnummer er blevet ændret.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Skift nummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Dit gamle nummer</string>

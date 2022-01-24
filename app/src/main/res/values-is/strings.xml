@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Þú merktir öryggisnúmer þitt með %s sem ekki sannreynt</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Þú merktir öryggisnúmer þitt með %s sem ekki sannreynt á öðru tæki</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Skilaboð frá %s var ekki hægt að afhenda</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s skipti yfir í nýtt símanúmer.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s skipti yfir í nýtt símanúmer.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hóf hópsímtal · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er í hópsímtalinu · %2$s</string>
@@ -3043,7 +3043,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Notaðu þetta til að breyta fyrirliggjandi símanúmeri yfir í nýtt símanúmer. Þú getur ekki afturkallað þessa breytingu.\n\nÁður en þú heldur áfram skaltu ganga úr skugga um að nýja símanúmerið geti tekið við SMS-skilaboðum eða hringingum.</string>
   <string name="ChangeNumberFragment__continue">Áfram</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Símanúmerið þitt hefur breyst.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Símanúmerið þitt hefur breyst.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Skipta um símanúmer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Gamla símanúmerið þitt</string>

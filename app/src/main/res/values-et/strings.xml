@@ -2896,7 +2896,7 @@
   <string name="AccountSettingsFragment__change_phone_number">Muuda telefoninumbrit</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">Jätka</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Sinu telefoninumber on muudetud.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Sinu telefoninumber on muudetud.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Numbri muutmine</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Sinu vana number</string>

@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте сигурносниот број со %s како непроверен</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте Вашиот сигурносен број со %s како непроверен од друг уред.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порака од %s не може да биде испорачана</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s го смени бројот со нов број.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s го смени бројот со нов број.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групен повик · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е во групниот повик · %2$s</string>
@@ -3037,7 +3037,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користете го ова за да го промените сегашниот телефонски број во нов телефонски број. Не можете да ја поништите оваа промена.\n\nПред да продолжите, проверете дали Вашиот нов број може да прима SMS или повици. </string>
   <string name="ChangeNumberFragment__continue">Продолжи</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Вашиот телефонски број е променет.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Вашиот телефонски број е променет.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Смени го бројот</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Вашиот стар број</string>

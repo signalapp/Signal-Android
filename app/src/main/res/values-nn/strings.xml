@@ -1089,7 +1089,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta frå ei anna eining</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Klarte ikkje å levera ei melding frå %s</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s har endra nummeret sitt til eit nytt nummer.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s har endra nummeret sitt til eit nytt nummer.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s starta ein gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
@@ -3051,7 +3051,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
 
 Før du går vidare, må du sørgja for at det nye nummeret kan ta i mot SMS eller samtalar.</string>
   <string name="ChangeNumberFragment__continue">Hald fram</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Telefonnummeret ditt er endra.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Telefonnummeret ditt er endra.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Endra nummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Det gamle nummeret ditt</string>

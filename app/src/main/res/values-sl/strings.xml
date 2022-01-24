@@ -1206,7 +1206,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Varnostno število z uporabnikom/co %s ste označili kot nepotrjeno</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Varnostno število z uporabnikom/co %s ste na drugi napravi označili kot nepotrjeno</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sporočilo uporabnika/ce %s ni moglo biti dostavljeno</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">Uporabnik/ca %1$s ima novo telefonsko številko.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">Uporabnik/ca %1$s ima novo telefonsko številko.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Uporabnik/ca %1$s je začel/a skupinski klic. · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Uporabnik/ca %1$s je v skupinskem klicu. · %2$s</string>
@@ -3228,7 +3228,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">S tem lahko zamenjate vašo trenutno telefonsko številko z drugo. Te spremembe ne morete preklicati. \n\nPreden nadaljujete, preverite, če vaša nova telefonska številka lahko prejema sporočila SMS ali klice.</string>
   <string name="ChangeNumberFragment__continue">Nadaljuj</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Vaša telefonska številka je bila zamenjana.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Vaša telefonska številka je bila zamenjana.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Sprememba številke</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vaša stara številka</string>

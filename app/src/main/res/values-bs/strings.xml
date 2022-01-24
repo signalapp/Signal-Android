@@ -1145,7 +1145,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen sa drugog uređaja</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Poruku od %s nije bilo moguće dostaviti</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s je promijenio/la broj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s je promijenio/la broj.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s učestvuje u grupnom pozivu · %2$s</string>
@@ -3144,7 +3144,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Ovdje možete trenutni broj svog telefona zamijeniti novim. Ne možete poništiti ovu izmjenu.\n\nPrije nego što nastavite, provjerite i potvrdite da na svoj novi broj možete primati SMS-poruke ili pozive.</string>
   <string name="ChangeNumberFragment__continue">Nastavi</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Broj Vašeg telefona promijenjen je.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Broj Vašeg telefona promijenjen je.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Promijeni broj</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vaš stari broj</string>

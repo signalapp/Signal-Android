@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ile olan güvenlik numaranızı doğrulanmamış olarak işaretlediniz.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ile olan güvenlik numaranızı başka bir cihazdan doğrulanmamış olarak işaretlediniz. </string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s tarafından gelen bir ileti teslim edilemedi</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s numarasını değiştirdi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s numarasını değiştirdi.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s grup araması başlattı · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s grup görüşmesinde· %2$s</string>
@@ -3039,7 +3039,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Geçerli telefon numaranızı yeni bir telefon numarasına değiştirmek için bunu kullanın. Bu değişikliği geri alamazsınız.devam etmeden önce, yeni numaranızın SMS veya arama alabildiğinden emin olun.</string>
   <string name="ChangeNumberFragment__continue">Devam Et</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Telefon numaranız değişti.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Telefon numaranız değişti.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Numarayı Değiştir</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Eski numaranız</string>

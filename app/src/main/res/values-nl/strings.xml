@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Je hebt je veiligheidsnummer met %s vanaf een ander apparaat gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Een bericht van %s kan niet worden afgeleverd</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s heeft zijn of haar telefoonnummer gewijzigd.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s heeft zijn of haar telefoonnummer gewijzigd.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s heeft een groepsoproep gestart · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in deze groepsoproep aanwezig · %2$s</string>
@@ -3044,7 +3044,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit als je op een ander telefoonnummer door wilt gaan met Signal. Je kunt overatappen naar een nieuw telefoonnummer niet ongedaan maken.\n\nGa na dat je op het nieuwe telefoonnummer sms-berichten of oproepen kunt ontvangen voordat je verder gaat.</string>
   <string name="ChangeNumberFragment__continue">Doorgaan</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Je telefoonnummer is gewijzigd.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Je telefoonnummer is gewijzigd.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Nummer veranderen</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Je oude telefoonnummer</string>

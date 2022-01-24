@@ -1019,7 +1019,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Anda telah menandakan tak sah kepada nombor keselamatan anda dengan %s </string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Anda telah menandakan tak sah kepada nombor keselamatan anda dengan %s daripada peranti lain</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Mesej daripada %s tidak dapat disampaikan</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s telah menukar nombor mereka ke nombor baharu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s telah menukar nombor mereka ke nombor baharu.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s telah memulakan panggilan kumpulan · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s berada dalam panggilan kumpulan · %2$s</string>
@@ -2915,7 +2915,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gunakan ini untuk menukar nombor telefon semasa anda ke nombor telefon yang baharu. Anda tidak boleh membatalkan perubahan ini.\n\Sebelum meneruskan, sila pastikan nombor telefon yang baharu boleh menerima SMS atau panggilan.</string>
   <string name="ChangeNumberFragment__continue">Teruskan</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Nombor telefon anda telah ditukar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Nombor telefon anda telah ditukar.</string> -->
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Tukar Nombor</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Nombor lama anda</string>
