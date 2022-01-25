@@ -10,7 +10,6 @@ import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.text.TextUtils
 import com.annimon.stream.Stream
-import com.bumptech.glide.Glide
 import com.google.protobuf.InvalidProtocolBufferException
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.logging.Log
@@ -699,7 +698,6 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < ATTACHMENT_CLEAR_HASHES_2) {
       db.execSQL("UPDATE part SET data_hash = null")
-      Glide.get(context).clearDiskCache()
     }
 
     if (oldVersion < UUIDS) {
