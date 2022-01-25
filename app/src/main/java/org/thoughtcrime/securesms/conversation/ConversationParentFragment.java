@@ -3356,6 +3356,11 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
+  public void openGifSearch() {
+    AttachmentManager.selectGif(this, ConversationParentFragment.PICK_GIF, isMms());
+  }
+
+  @Override
   public void onGifSelectSuccess(@NonNull Uri blobUri, int width, int height) {
     setMedia(blobUri,
              Objects.requireNonNull(MediaType.from(BlobProvider.getMimeType(blobUri))),
