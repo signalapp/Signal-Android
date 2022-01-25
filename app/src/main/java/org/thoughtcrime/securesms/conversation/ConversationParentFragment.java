@@ -2726,7 +2726,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeMediaKeyboardProviders() {
-    KeyboardPagerViewModel keyboardPagerViewModel = new ViewModelProvider(this).get(KeyboardPagerViewModel.class);
+    KeyboardPagerViewModel keyboardPagerViewModel = new ViewModelProvider(requireActivity()).get(KeyboardPagerViewModel.class);
 
     switch (TextSecurePreferences.getMediaKeyboardMode(requireContext())) {
       case EMOJI:
