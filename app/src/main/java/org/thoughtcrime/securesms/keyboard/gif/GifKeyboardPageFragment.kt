@@ -107,7 +107,7 @@ class GifKeyboardPageFragment : LoggingFragment(R.layout.gif_keyboard_page_fragm
   }
 
   private fun openGifSearch() {
-    AttachmentManager.selectGif(requireActivity(), ConversationParentFragment.PICK_GIF, host.isMms())
+    AttachmentManager.selectGif(requireParentFragment(), ConversationParentFragment.PICK_GIF, host.isMms())
   }
 
   interface Host {

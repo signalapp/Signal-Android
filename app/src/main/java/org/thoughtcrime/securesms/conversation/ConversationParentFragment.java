@@ -1150,20 +1150,20 @@ public class ConversationParentFragment extends Fragment
   public void onAttachmentSelectorClicked(@NonNull AttachmentKeyboardButton button) {
     switch (button) {
       case GALLERY:
-        AttachmentManager.selectGallery(requireActivity(), MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport(), inputPanel.getQuote().isPresent());
+        AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport(), inputPanel.getQuote().isPresent());
         break;
       case FILE:
-        AttachmentManager.selectDocument(requireActivity(), PICK_DOCUMENT);
+        AttachmentManager.selectDocument(this, PICK_DOCUMENT);
         break;
       case CONTACT:
-        AttachmentManager.selectContactInfo(requireActivity(), PICK_CONTACT);
+        AttachmentManager.selectContactInfo(this, PICK_CONTACT);
         break;
       case LOCATION:
-        AttachmentManager.selectLocation(requireActivity(), PICK_LOCATION);
+        AttachmentManager.selectLocation(this, PICK_LOCATION);
         break;
       case PAYMENT:
         if (recipient.get().hasProfileKeyCredential()) {
-          AttachmentManager.selectPayment(requireActivity(), recipient.getId());
+          AttachmentManager.selectPayment(this, recipient.getId());
         } else {
           CanNotSendPaymentDialog.show(requireActivity());
         }
