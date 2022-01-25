@@ -1023,7 +1023,6 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">你已標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %s 的一則訊息無法送達</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s 將他們變更了新的電話號碼。</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
@@ -2939,7 +2938,9 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">使用此可將你現在的電話號碼變更為新的電話號碼。你無法取消此變更。\n\n在繼續之前，請確保你的新電話號碼可以接收簡訊或電話。</string>
   <string name="ChangeNumberFragment__continue">繼續</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">你的電話號碼已經變更。</string> -->
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">好的</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">更改號碼</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">你的舊電話號碼</string>
@@ -2968,12 +2969,19 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">更新 PIN 碼</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">要保留舊PIN碼嗎？</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">你似乎試著變更你的電話號碼，但我們無法確定是否成功。\n\n正在重新檢查…</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">更改狀態已確認</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">你的電話號碼已確認為 %1$s。 如果這不是你的新電話號碼，請重新開始變更電話號碼的流程。</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">更改狀態未確認</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">我們無法確定你的變更電話號碼要求的狀態。\n\n（錯誤：%1$s）</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">重試</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">離開</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">送出偵錯日誌</string>
   <!--ChatsSettingsFragment-->

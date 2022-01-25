@@ -67,7 +67,7 @@
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal kræver tilladelse til at tilgå dine kontakter, for at kunne vedhæfte kontaktinformation, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal kræver tilladelse til at tilgå din placering, for at kunne vedhæfte placeringer, hvilket er blevet nægtet. Gå venligst til appindstillinger, vælg \"Tilladelser\" og tilvælg \"Placering\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Uploader mediefil…</string>
+  <string name="AttachmentUploadJob_uploading_media">Uploader mediefil …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video …</string>
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">Tjekker efter beskeder …</string>
@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du har markeret dit sikkerhedsnummer med %s som ubekræftet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som ubekræftet fra en anden enhed</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En besked fra %s kunne ikke leveres</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ændrede sit nummer til et nyt nummer.</string> -->
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s ændrede sit telefonnummer.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startede et gruppeopkald · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er med i gruppeopkaldet · %2$s</string>
@@ -3040,7 +3040,10 @@ nummer (%s) er ugyldigt</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Brug dette til at ændre dit nuværende telefonnummer til et nyt telefonnummer. Du kan ikke fortryde denne ændring.\n\nFør du fortsætter, skal du sikre dig, at dit nye nummer kan modtage SMS\'er eller opkald.</string>
   <string name="ChangeNumberFragment__continue">Fortsæt</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Dit telefonnummer er blevet ændret.</string> -->
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Dit telefonnummer er blevet ændret til %1$s</string>
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">Okay</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Skift nummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Dit gamle nummer</string>
@@ -3069,12 +3072,19 @@ nummer (%s) er ugyldigt</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Opdatér pinkode</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Behold gammel pinkode?</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Det ser ud til, at du forsøgte at ændre dit nummer, men vi kunne ikke fastslå, om det lykkedes.\n\nTjekker igen nu …</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Ændringsstatus bekræftet</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Dit nummer er blevet bekræftet som %1$s. Hvis dette ikke er dit nye nummer, bedes du genstarte processen med at ændre nummer igen.</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Ændringsstatus ubekræftet</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Vi kunne ikke fastslå status for din anmodning om ændring af nummer.\n\n(Fejl: %1$s)</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Prøv igen</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Forlad</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Indsend fejlsøgningslog</string>
   <!--ChatsSettingsFragment-->

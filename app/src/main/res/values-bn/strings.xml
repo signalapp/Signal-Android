@@ -1079,7 +1079,6 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">আপনি %sএর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">আপনি অন্য একটি ডিভাইস থেকে  %s এর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s এর থেকে একটি বার্তা সরবরাহ করা যায়নি</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s একটি নতুন নম্বরে তাদের নম্বর পরিবর্তন করেছে।</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s একটি গ্রুপ কল শুরু করেছে । %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s গ্রুপ কল এ আছেন। %2$s</string>
@@ -3005,7 +3004,9 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">আপনার বর্তমান ফোন নম্বরটি একটি নতুন ফোন নম্বরে পরিবর্তন করতে এটি ব্যবহার করুন। আপনি এই পরিবর্তনটি পূর্বাবস্থায় ফেরাতে পারবেন না।\n\nচালিয়ে যাওয়ার আগে, নিশ্চিত করুন যে আপনার নতুন নম্বরটি SMS বা কল পেতে পারে।</string>
   <string name="ChangeNumberFragment__continue">চালিয়ে যান</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">আপনার ফোন নম্বর পরিবর্তন করা হয়েছে।</string> -->
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">ঠিক আছে</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">নম্বর পরিবর্তন করুন</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">আপনার পুরাতন নাম্বার</string>
@@ -3034,12 +3035,19 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">পিন আপডেট করুন</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">পুরাতন পিন রাখবেন?</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">দেখে মনে হচ্ছে আপনি আপনার নম্বর পরিবর্তন করার চেষ্টা করেছেন কিন্তু এটি সফল হয়েছে কিনা তা আমরা নির্ধারণ করতে অক্ষম। \n\nএখন পুনরায় পরীক্ষা করা হচ্ছে</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">অবস্থা পরিবর্তন নিশ্চিত করা হয়েছে</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">আপনার নম্বরটি %1$s হিসাবে নিশ্চিত করা হয়েছে৷ যদি এটি আপনার নতুন নম্বর না হয়, অনুগ্রহ করে নম্বর পরিবর্তনের প্রক্রিয়াটি পুনরায় শুরু করুন।</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">অবস্থা পরিবর্তন নিশ্চিত করা হয়নি</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">আমরা আপনার নম্বর পরিবর্তন অনুরোধের অবস্থা নির্ধারণ করতে পারিনি।\n\n(ত্রুটি: %1$s)</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">পুনরায় চেষ্টা করুন</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">ছেড়ে চলে যান</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">ডিবাগ লগ সাবমিট করুন</string>
   <!--ChatsSettingsFragment-->

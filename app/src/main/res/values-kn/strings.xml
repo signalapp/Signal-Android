@@ -2895,6 +2895,9 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal ಜೊತೆಗೆ ಪುನಃ ನಿಮ್ಮ ಫೋನ್ ನಂಬರ್ ನೋಂದಣಿ ಮಾಡಲು ನಿಮ್ಮ Signal ಪಿನ್ ಅಗತ್ಯವಿದೆ</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">ಮುಂದುವರಿಸಿ</string>
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">ಸರಿ</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">ನೀವು ನಮೂದಿಸಿದ ಫೋನ್ ನಿಮ್ಮ ಖಾತೆಗೆ ಹೋಲಿಕೆಯಾಗುತ್ತಿಲ್ಲ.</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2904,7 +2907,14 @@
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">ತೊರೆಯಿರಿ </string>
   <string name="ChangeNumberLockActivity__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಿ</string>
   <!--ChatsSettingsFragment-->

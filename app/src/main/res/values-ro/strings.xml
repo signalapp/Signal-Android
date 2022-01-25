@@ -1145,7 +1145,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ai marcat numărul tău de siguranță cu %s ca și neverificat</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ai marcat numărul tău de siguranță cu %s ca și neverificat de pe alt dispozitiv</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un mesaj de la %s nu a putut fi livrat</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s și-a schimbat numărul de telefon cu unul nou.</string> -->
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s și-a schimbat numărul de telefon.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a început un apel de grup · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s este în apelul de grup · %2$s</string>
@@ -3135,7 +3135,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilizează acest meniu pentru a-ți schimba actualul număr de telefon cu un număr nou. Nu poți anula această modificare.\n\nÎnainte de a continua asigură-te că noul număr de telefon poate primi SMS-uri sau apeluri.</string>
   <string name="ChangeNumberFragment__continue">Continuare</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Numărul tău de telefon a fost schimbat.</string> -->
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Numărul tău de telefon a fost schimbat în %1$s</string>
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">Okay</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Schimbă Numărul</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vechiul număr</string>
@@ -3164,12 +3167,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChangeNumberPinDiffersFragment__update_pin">Actualizează PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Păstrezi vechiul PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Se pare că ai încercat să-ți schimbi numărul de telefon dar nu am putut determina dacă a reușit.\n\nVerificăm din nou acum…</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Schimbare confirmată</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numărul tău a fost confirmat ca fiind %1$s. Dacă acesta nu este numărul tău te rugăm să reiei procesul de schimbare a numărului.</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Schimbare neconfirmată</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nu am putut determina starea cererii tale de schimbare a numărului de telefon.\n\n(Eroare: %1$s)</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Încearcă din nou</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Părăsește</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Trimite jurnalul de depanare</string>
   <!--ChatsSettingsFragment-->

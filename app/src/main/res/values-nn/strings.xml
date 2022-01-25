@@ -1089,7 +1089,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte at tryggleiksnummeret ditt med %s ikkje er stadfesta frå ei anna eining</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Klarte ikkje å levera ei melding frå %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s har endra nummeret sitt til eit nytt nummer.</string> -->
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s har endra telefonnummeret sitt.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s starta ein gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
@@ -3051,7 +3051,10 @@ Kom i gang ved å senda ei melding til ein venn.</string>
 
 Før du går vidare, må du sørgja for at det nye nummeret kan ta i mot SMS eller samtalar.</string>
   <string name="ChangeNumberFragment__continue">Hald fram</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Telefonnummeret ditt er endra.</string> -->
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Telefonnummeret ditt er endra til %1$s.</string>
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">Greitt</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Endra nummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Det gamle nummeret ditt</string>
@@ -3082,16 +3085,23 @@ Stadfest at nummeret under er korrekt før du går vidare.</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Oppdater PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Ta vare på gammal PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Det ser ut som om du prøvde å endra nummeret ditt, men me klarte ikkje å stadfesta om det fungerte.
 
 Sjekkar igjen no …</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Stadfesta statusendring</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Nummeret ditt er stadfesta som %1$s. Køyr nummerendringa på nytt viss dette ikkje er det nye nummeret ditt.</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Endringsstatus ikkje stadfesta</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Me klarte ikkje å stadfesta status på nummerendringa di.
 
 (Feil: %1$s)</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Prøv igjen</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Forlat</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Send feilsøkingslogg</string>
   <!--ChatsSettingsFragment-->

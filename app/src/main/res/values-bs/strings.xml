@@ -1145,7 +1145,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste svoj sigurnosni broj sa %s kao nepotvrđen sa drugog uređaja</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Poruku od %s nije bilo moguće dostaviti</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s je promijenio/la broj.</string> -->
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s je promijenio/la broj.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s učestvuje u grupnom pozivu · %2$s</string>
@@ -3144,7 +3144,10 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Ovdje možete trenutni broj svog telefona zamijeniti novim. Ne možete poništiti ovu izmjenu.\n\nPrije nego što nastavite, provjerite i potvrdite da na svoj novi broj možete primati SMS-poruke ili pozive.</string>
   <string name="ChangeNumberFragment__continue">Nastavi</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Broj Vašeg telefona promijenjen je.</string> -->
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Broj Vašeg telefona promijenjen je u %1$s</string>
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">Uredu</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Promijeni broj</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vaš stari broj</string>
@@ -3173,12 +3176,19 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ažurirajte PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Zadržati stari PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Izgleda da ste pokušali promijeniti svoj broj, ali nismo mogli utvrditi je li proces okončan uspješno.\n\nProvjeravamo sada…</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Promjena je potvrđena</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Vaš je broj potvrđen kao %1$s. Ako ovo nije Vaš novi broj, molimo iznova započnite proces promjene broja.</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Promjena nije potvrđena</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nismo mogli utvrditi status Vašeg zahtjeva za promjenu broja.\n\n(Greška: %1$s)</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Pokušaj</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Napusti</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Pošaljite zapis za ispravljanje grešaka</string>
   <!--ChatsSettingsFragment-->

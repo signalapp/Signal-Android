@@ -1032,7 +1032,6 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்படாததாக குறித்தீர்கள்</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s உடனான உங்கள் பாதுகாப்பு எண்ணை சரிபார்க்கப்படாததாக வேறொரு சாதனத்திலிருந்து குறித்தீர்கள்</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">இருந்து ஒரு செய்தி %s வழங்க முடியவில்லை</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s அவர்களின் எண்ணை புதிய எண்ணுக்கு மாற்றி விட்டார்கள்</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$sகுழு அழைப்பைத் தொடங்கினார்%2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s குழு அழைப்பில் உள்ளார் %2$s</string>
@@ -2928,6 +2927,9 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">உங்கள் தேவை Signal பின் பதிவு செய்ய தொலைபேசி உடன் எண் Signal மீண்டும்</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">தொடர்ந்து செல் </string>
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">சரி</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
   <!--ChangeNumberVerifyFragment-->
@@ -2937,7 +2939,14 @@
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">மீண்டும் முயற்சி செய்</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">விலகு</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">பிழைத்திருத்த பதிவைச் சமர்ப்பிக்கவும்</string>
   <!--ChatsSettingsFragment-->

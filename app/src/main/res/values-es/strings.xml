@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Has retirado la marca de verificación de tus cifras de seguridad con %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Has retirado la marca de verificación de tus cifras de seguridad con %s desde otro dispositivo</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No se pudo recibir un mensaje de %s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s ha cambiado su número de teléfono en Signal.</string> -->
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s ha cambiado su número de teléfono.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciado una llamada en grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s participa en la llamada · %2$s</string>
@@ -3041,7 +3041,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Esta opción te permite cambiar tu número de teléfono actual en Signal a un número de teléfono nuevo. Este cambio no se puede deshacer.\n\n Antes de continuar, asegúrate que tu número nuevo puede recibir SMS o llamadas.</string>
   <string name="ChangeNumberFragment__continue">Adelante</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChangeNumber__your_phone_number_has_been_changed">Has cambiado tu número de teléfono en Signal.</string> -->
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Se ha cambiado tu número de teléfono a %1$s</string>
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">De acuerdo</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Cambiar número</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Tu número antiguo</string>
@@ -3070,12 +3073,19 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChangeNumberPinDiffersFragment__update_pin">Actualizar PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">¿Conservar PIN antiguo?</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Parece que has intentado cambiar tu número de teléfono pero Signal no puede determinar si el cambio se ha completado con éxito.\n\nVolviendo a comprobar ahora …</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Cambio de número confirmado</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Hemos confirmado tu nuevo número en Signal: %1$s. Si este no es tu nuevo número, por favor anótalo e inicia el proceso de cambio de número de nuevo.</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Cambio de número no confirmado</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Fallo al determinar el estado de tu cambio de número.\n\n(Error: %1$s)</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Reintentar</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Abandonar</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Enviar registro de depuración</string>
   <!--ChatsSettingsFragment-->

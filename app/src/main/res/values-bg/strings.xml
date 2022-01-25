@@ -1047,7 +1047,6 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Отбелязахте числото си за сигурност с %s като непотвърдени</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Отбелязахте числот си за сугорност с %s като непотвърдени от друго устройство</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Съобщение от %s не успя да бъде доставено</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s смени номера си с нов номер.</string> -->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групово разговор · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е в групов разговор · %2$s</string>
@@ -2821,6 +2820,9 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">Изисквайте вашият Signal ПИН при регистриране на вашия телефонен номер със Signal отново</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">Продължи</string>
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">Добре</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Промени Номер</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Въведеният от вас телефонен номер не съответства на вашия акаунт.</string>
@@ -2833,7 +2835,14 @@
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__update_pin">Актуализирайте ПИН</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Опитай Отново</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Напусни</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Изпращане на доклад</string>
   <!--ChatsSettingsFragment-->
