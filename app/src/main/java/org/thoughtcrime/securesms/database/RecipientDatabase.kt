@@ -789,7 +789,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   fun applyStorageSyncContactUpdate(update: StorageRecordUpdate<SignalContactRecord>) {
     val db = writableDatabase
-    val identityStore = ApplicationDependencies.getIdentityStore()
+    val identityStore = ApplicationDependencies.getProtocolStore().aci().identities()
     val values = getValuesForStorageContact(update.new, false)
 
     try {
@@ -2525,7 +2525,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val e164Record = getRecord(byE164)
 
     // Identities
-    ApplicationDependencies.getIdentityStore().delete(e164Record.e164!!)
+    ApplicationDependencies.getProtocolStore().aci().identities().delete(e164Record.e164!!)
 
     // Group Receipts
     val groupReceiptValues = ContentValues()

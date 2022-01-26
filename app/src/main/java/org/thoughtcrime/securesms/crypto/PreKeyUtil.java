@@ -44,7 +44,7 @@ public class PreKeyUtil {
   private static final int BATCH_SIZE = 100;
 
   public synchronized static List<PreKeyRecord> generatePreKeys(Context context) {
-    PreKeyStore        preKeyStore    = ApplicationDependencies.getPreKeyStore();
+    PreKeyStore        preKeyStore    = ApplicationDependencies.getProtocolStore().aci();
     List<PreKeyRecord> records        = new LinkedList<>();
     int                preKeyIdOffset = TextSecurePreferences.getNextPreKeyId(context);
 
@@ -64,7 +64,7 @@ public class PreKeyUtil {
 
   public synchronized static SignedPreKeyRecord generateSignedPreKey(Context context, IdentityKeyPair identityKeyPair, boolean active) {
     try {
-      SignedPreKeyStore  signedPreKeyStore = ApplicationDependencies.getPreKeyStore();
+      SignedPreKeyStore  signedPreKeyStore = ApplicationDependencies.getProtocolStore().aci();
       int                signedPreKeyId    = TextSecurePreferences.getNextSignedPreKeyId(context);
       ECKeyPair          keyPair           = Curve.generateKeyPair();
       byte[]             signature         = Curve.calculateSignature(identityKeyPair.getPrivateKey(), keyPair.getPublicKey().serialize());

@@ -35,7 +35,7 @@ class WebRtcCallRepository {
         recipients = Collections.singletonList(recipient);
       }
 
-      consumer.accept(ApplicationDependencies.getIdentityStore().getIdentityRecords(recipients));
+      consumer.accept(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients));
     });
   }
 }

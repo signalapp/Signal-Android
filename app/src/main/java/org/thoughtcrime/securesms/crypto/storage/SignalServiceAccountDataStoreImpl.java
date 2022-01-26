@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.database.SignalDatabase;
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -12,14 +12,10 @@ import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.groups.state.SenderKeyRecord;
-import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.libsignal.state.PreKeyRecord;
-import org.whispersystems.libsignal.state.PreKeyStore;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
-import org.whispersystems.libsignal.state.SignedPreKeyStore;
-import org.whispersystems.signalservice.api.SignalServiceDataStore;
-import org.whispersystems.signalservice.api.SignalServiceSessionStore;
+import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.push.DistributionId;
 
 import java.util.Collection;
@@ -27,22 +23,32 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public class SignalProtocolStoreImpl implements SignalServiceDataStore {
+public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDataStore {
 
-  private final Context                   context;
-  private final PreKeyStore               preKeyStore;
-  private final SignedPreKeyStore         signedPreKeyStore;
-  private final IdentityKeyStore          identityKeyStore;
-  private final SignalServiceSessionStore sessionStore;
-  private final SignalSenderKeyStore      senderKeyStore;
+  private final Context                    context;
+  private final TextSecurePreKeyStore      preKeyStore;
+  private final TextSecurePreKeyStore      signedPreKeyStore;
+  private final TextSecureIdentityKeyStore identityKeyStore;
+  private final TextSecureSessionStore     sessionStore;
+  private final SignalSenderKeyStore       senderKeyStore;
 
-  public SignalProtocolStoreImpl(Context context) {
+  public SignalServiceAccountDataStoreImpl(@NonNull Context context,
+                                           @NonNull TextSecurePreKeyStore preKeyStore,
+                                           @NonNull TextSecureIdentityKeyStore identityKeyStore,
+                                           @NonNull TextSecureSessionStore sessionStore,
+                                           @NonNull SignalSenderKeyStore senderKeyStore)
+  {
     this.context           = context;
-    this.preKeyStore       = ApplicationDependencies.getPreKeyStore();
-    this.signedPreKeyStore = ApplicationDependencies.getPreKeyStore();
-    this.identityKeyStore  = ApplicationDependencies.getIdentityStore();
-    this.sessionStore      = ApplicationDependencies.getSessionStore();
-    this.senderKeyStore    = ApplicationDependencies.getSenderKeyStore();
+    this.preKeyStore       = preKeyStore;
+    this.signedPreKeyStore = preKeyStore;
+    this.identityKeyStore  = identityKeyStore;
+    this.sessionStore      = sessionStore;
+    this.senderKeyStore    = senderKeyStore;
+  }
+
+  @Override
+  public boolean isMultiDevice() {
+    return TextSecurePreferences.isMultiDevice(context);
   }
 
   @Override
@@ -185,17 +191,20 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
     senderKeyStore.clearSenderKeySharedWith(addresses);
   }
 
-  @Override
-  public boolean isMultiDevice() {
-    return TextSecurePreferences.isMultiDevice(context);
+  public @NonNull TextSecureIdentityKeyStore identities() {
+    return identityKeyStore;
   }
 
-  @Override
-  public Transaction beginTransaction() {
-    SignalDatabase.getRawDatabase().beginTransaction();
-    return () -> {
-      SignalDatabase.getRawDatabase().setTransactionSuccessful();
-      SignalDatabase.getRawDatabase().endTransaction();
-    };
+  public @NonNull TextSecurePreKeyStore preKeys() {
+    return preKeyStore;
   }
+
+  public @NonNull TextSecureSessionStore sessions() {
+    return sessionStore;
+  }
+
+  public @NonNull SignalSenderKeyStore senderKeys() {
+    return senderKeyStore;
+  }
+
 }

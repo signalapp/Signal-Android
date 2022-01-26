@@ -54,7 +54,7 @@ final class RecipientDialogRepository {
 
   void getIdentity(@NonNull Consumer<IdentityRecord> callback) {
     SignalExecutors.BOUNDED.execute(
-      () -> callback.accept(ApplicationDependencies.getIdentityStore().getIdentityRecord(recipientId).orNull()));
+      () -> callback.accept(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orNull()));
   }
 
   void getRecipient(@NonNull RecipientCallback recipientCallback) {

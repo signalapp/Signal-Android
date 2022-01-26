@@ -149,7 +149,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         return;
       }
 
-      Optional<IdentityRecord>  identityRecord  = ApplicationDependencies.getIdentityStore().getIdentityRecord(recipient.getId());
+      Optional<IdentityRecord>  identityRecord  = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.getId());
       Optional<VerifiedMessage> verifiedMessage = getVerifiedMessage(recipient, identityRecord);
       Map<RecipientId, Integer> inboxPositions  = SignalDatabase.threads().getInboxPositions();
       Set<RecipientId>          archived        = SignalDatabase.threads().getArchivedRecipients();
@@ -208,7 +208,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       Set<RecipientId>           archived       = SignalDatabase.threads().getArchivedRecipients();
 
       for (Recipient recipient : recipients) {
-        Optional<IdentityRecord>  identity      = ApplicationDependencies.getIdentityStore().getIdentityRecord(recipient.getId());
+        Optional<IdentityRecord>  identity      = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.getId());
         Optional<VerifiedMessage> verified      = getVerifiedMessage(recipient, identity);
         Optional<String>          name          = Optional.fromNullable(recipient.isSystemContact() ? recipient.getDisplayName(context) : recipient.getGroupName(context));
         Optional<ProfileKey>      profileKey    = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());

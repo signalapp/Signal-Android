@@ -25,7 +25,6 @@ import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
@@ -77,7 +76,7 @@ public final class MessageDecryptionUtil {
    * caller.
    */
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
-    SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
+    SignalProtocolStore  axolotlStore = ApplicationDependencies.getProtocolStore().aci();
     SignalServiceAddress localAddress = new SignalServiceAddress(Recipient.self().requireAci(), Recipient.self().requireE164());
     SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, SignalStore.account().getDeviceId(), axolotlStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
     List<Job>            jobs         = new LinkedList<>();

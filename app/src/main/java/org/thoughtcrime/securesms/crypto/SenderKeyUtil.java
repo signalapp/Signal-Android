@@ -22,7 +22,7 @@ public final class SenderKeyUtil {
    */
   public static void rotateOurKey(@NonNull Context context, @NonNull DistributionId distributionId) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      ApplicationDependencies.getSenderKeyStore().deleteAllFor(Recipient.self().requireServiceId(), distributionId);
+      ApplicationDependencies.getProtocolStore().aci().senderKeys().deleteAllFor(Recipient.self().requireServiceId(), distributionId);
       SignalDatabase.senderKeyShared().deleteAllFor(distributionId);
     }
   }
@@ -40,7 +40,7 @@ public final class SenderKeyUtil {
    */
   public static void clearAllState(@NonNull Context context) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      ApplicationDependencies.getSenderKeyStore().deleteAll();
+      ApplicationDependencies.getProtocolStore().aci().senderKeys().deleteAll();
       SignalDatabase.senderKeyShared().deleteAll();
     }
   }

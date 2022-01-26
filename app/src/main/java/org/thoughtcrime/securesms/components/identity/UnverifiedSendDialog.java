@@ -43,9 +43,9 @@ public class UnverifiedSendDialog extends AlertDialog.Builder implements DialogI
     SimpleTask.run(() -> {
       try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
         for (IdentityRecord identityRecord : untrustedRecords) {
-          ApplicationDependencies.getIdentityStore().setVerified(identityRecord.getRecipientId(),
-                                                                 identityRecord.getIdentityKey(),
-                                                                 IdentityDatabase.VerifiedStatus.DEFAULT);
+          ApplicationDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
+                                                                                    identityRecord.getIdentityKey(),
+                                                                                    IdentityDatabase.VerifiedStatus.DEFAULT);
         }
       }
       return null;

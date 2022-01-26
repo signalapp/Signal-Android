@@ -1949,7 +1949,7 @@ public class ConversationParentFragment extends Fragment
         }
 
         long               startTime          =  System.currentTimeMillis();
-        IdentityRecordList identityRecordList = ApplicationDependencies.getIdentityStore().getIdentityRecords(recipients);
+        IdentityRecordList identityRecordList = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients);
 
         Log.i(TAG, String.format(Locale.US, "Loaded %d identities in %d ms", recipients.size(), System.currentTimeMillis() - startTime));
 
@@ -3934,9 +3934,9 @@ public class ConversationParentFragment extends Fragment
       SimpleTask.run(() -> {
         try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
           for (IdentityRecord identityRecord : unverifiedIdentities) {
-            ApplicationDependencies.getIdentityStore().setVerified(identityRecord.getRecipientId(),
-                                                                   identityRecord.getIdentityKey(),
-                                                                   VerifiedStatus.DEFAULT);
+            ApplicationDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
+                                                                                      identityRecord.getIdentityKey(),
+                                                                                      VerifiedStatus.DEFAULT);
           }
         }
         return null;

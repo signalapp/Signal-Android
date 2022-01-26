@@ -148,12 +148,12 @@ public class SignalServiceMessageSender {
 
   private static final int RETRY_COUNT = 4;
 
-  private final PushServiceSocket       socket;
-  private final SignalServiceDataStore  store;
-  private final SignalSessionLock       sessionLock;
-  private final SignalServiceAddress    localAddress;
-  private final int                     localDeviceId;
-  private final Optional<EventListener> eventListener;
+  private final PushServiceSocket             socket;
+  private final SignalServiceAccountDataStore store;
+  private final SignalSessionLock             sessionLock;
+  private final SignalServiceAddress          localAddress;
+  private final int                           localDeviceId;
+  private final Optional<EventListener>       eventListener;
 
   private final AttachmentService attachmentService;
   private final MessagingService  messagingService;
@@ -174,7 +174,7 @@ public class SignalServiceMessageSender {
                                     boolean automaticNetworkRetry)
   {
     this.socket            = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
-    this.store             = store;
+    this.store             = store.aci();
     this.sessionLock       = sessionLock;
     this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
     this.localDeviceId     = credentialsProvider.getDeviceId();

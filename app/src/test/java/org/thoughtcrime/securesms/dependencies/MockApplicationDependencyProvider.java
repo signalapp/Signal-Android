@@ -7,6 +7,7 @@ import org.signal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
@@ -179,22 +180,7 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
   }
 
   @Override
-  public @NonNull TextSecureIdentityKeyStore provideIdentityStore() {
-    return null;
-  }
-
-  @Override
-  public @NonNull TextSecureSessionStore provideSessionStore() {
-    return null;
-  }
-
-  @Override
-  public @NonNull TextSecurePreKeyStore providePreKeyStore() {
-    return null;
-  }
-
-  @Override
-  public @NonNull SignalSenderKeyStore provideSenderKeyStore() {
+  public @NonNull SignalServiceDataStoreImpl provideProtocolStore() {
     return null;
   }
 

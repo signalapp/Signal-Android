@@ -161,7 +161,7 @@ public final class RegistrationRepository {
     SignalStore.account().setFcmToken(registrationData.getFcmToken());
     SignalStore.account().setFcmEnabled(registrationData.isFcm());
 
-    ApplicationDependencies.getIdentityStore()
+    ApplicationDependencies.getProtocolStore().aci().identities()
                            .saveIdentityWithoutSideEffects(selfId,
                                                            identityKey.getPublicKey(),
                                                            IdentityDatabase.VerifiedStatus.VERIFIED,

@@ -15,24 +15,24 @@ public class SessionUtil {
   public static boolean hasSession(@NonNull RecipientId id) {
     SignalProtocolAddress axolotlAddress = new SignalProtocolAddress(Recipient.resolved(id).requireServiceId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
 
-    return ApplicationDependencies.getSessionStore().containsSession(axolotlAddress);
+    return ApplicationDependencies.getProtocolStore().aci().containsSession(axolotlAddress);
   }
 
   public static void archiveSiblingSessions(SignalProtocolAddress address) {
-    ApplicationDependencies.getSessionStore().archiveSiblingSessions(address);
+    ApplicationDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(address);
   }
 
   public static void archiveAllSessions() {
-    ApplicationDependencies.getSessionStore().archiveAllSessions();
+    ApplicationDependencies.getProtocolStore().aci().sessions().archiveAllSessions();
   }
 
   public static void archiveSession(RecipientId recipientId, int deviceId) {
-    ApplicationDependencies.getSessionStore().archiveSession(recipientId, deviceId);
+    ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(recipientId, deviceId);
   }
 
   public static boolean ratchetKeyMatches(@NonNull Recipient recipient, int deviceId, @NonNull ECPublicKey ratchetKey) {
     SignalProtocolAddress address = new SignalProtocolAddress(recipient.resolve().requireServiceId(), deviceId);
-    SessionRecord         session = ApplicationDependencies.getSessionStore().loadSession(address);
+    SessionRecord         session = ApplicationDependencies.getProtocolStore().aci().loadSession(address);
 
     return session.currentRatchetKeyMatches(ratchetKey);
   }
