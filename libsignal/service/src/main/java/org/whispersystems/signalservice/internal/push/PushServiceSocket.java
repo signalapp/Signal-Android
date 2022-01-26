@@ -365,7 +365,7 @@ public class PushServiceSocket {
     String                   requestBody              = JsonUtil.toJson(changePhoneNumberRequest);
     String                   responseBody             = makeServiceRequest(CHANGE_NUMBER_PATH, "PUT", requestBody);
 
-    return new VerifyAccountResponse();
+    return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
   }
 
   public void setAccountAttributes(String signalingKey,

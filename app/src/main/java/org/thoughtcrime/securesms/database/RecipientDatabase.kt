@@ -99,6 +99,7 @@ import java.util.LinkedHashSet
 import java.util.LinkedList
 import java.util.Objects
 import java.util.concurrent.TimeUnit
+import kotlin.jvm.Throws
 import kotlin.math.max
 
 open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
@@ -418,14 +419,14 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           fetch.id
         }
         is RecipientFetch.MatchAndUpdateE164 -> {
-          setPhoneNumber(fetch.id, fetch.e164)
+          setPhoneNumberOrThrowSilent(fetch.id, fetch.e164)
           recipientsNeedingRefresh = listOf(fetch.id)
           recipientChangedNumber = fetch.changedNumber
           fetch.id
         }
         is RecipientFetch.MatchAndReassignE164 -> {
           removePhoneNumber(fetch.e164Id, db)
-          setPhoneNumber(fetch.id, fetch.e164)
+          setPhoneNumberOrThrowSilent(fetch.id, fetch.e164)
           recipientsNeedingRefresh = listOf(fetch.id, fetch.e164Id)
           recipientChangedNumber = fetch.changedNumber
           fetch.id
@@ -1749,12 +1750,16 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       putNull(PHONE)
       putNull(PNI_COLUMN)
     }
-    db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
+
+    if (update(recipientId, values)) {
+      rotateStorageId(recipientId)
+    }
   }
 
   /**
    * Should only use if you are confident that this will not result in any contact merging.
    */
+  @Throws(SQLiteConstraintException::class)
   fun setPhoneNumberOrThrow(id: RecipientId, e164: String) {
     val contentValues = ContentValues(1).apply {
       put(PHONE, e164)
@@ -1763,6 +1768,16 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       rotateStorageId(id)
       Recipient.live(id).refresh()
       StorageSyncHelper.scheduleSyncForDataChange()
+    }
+  }
+
+  @Throws(SQLiteConstraintException::class)
+  fun setPhoneNumberOrThrowSilent(id: RecipientId, e164: String) {
+    val contentValues = ContentValues(1).apply {
+      put(PHONE, e164)
+    }
+    if (update(id, contentValues)) {
+      rotateStorageId(id)
     }
   }
 
