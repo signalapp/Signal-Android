@@ -10,9 +10,9 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.concurrent.LatestPrioritizedSerialExecutor;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MentionDatabase;
@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.FtsUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.signal.core.util.concurrent.LatestPrioritizedSerialExecutor;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
 import java.util.ArrayList;
@@ -56,6 +55,7 @@ public class SearchRepository {
   private static final String TAG = Log.tag(SearchRepository.class);
 
   private final Context           context;
+  private final String            noteToSelfTitle;
   private final SearchDatabase    searchDatabase;
   private final ContactRepository contactRepository;
   private final ThreadDatabase    threadDatabase;
@@ -66,14 +66,15 @@ public class SearchRepository {
   private final LatestPrioritizedSerialExecutor searchExecutor;
   private final Executor                        serialExecutor;
 
-  public SearchRepository() {
+  public SearchRepository(@NonNull String noteToSelfTitle) {
     this.context           = ApplicationDependencies.getApplication().getApplicationContext();
+    this.noteToSelfTitle   = noteToSelfTitle;
     this.searchDatabase    = SignalDatabase.messageSearch();
     this.threadDatabase    = SignalDatabase.threads();
     this.recipientDatabase = SignalDatabase.recipients();
     this.mentionDatabase   = SignalDatabase.mentions();
     this.mmsDatabase       = SignalDatabase.mms();
-    this.contactRepository = new ContactRepository(context);
+    this.contactRepository = new ContactRepository(context, noteToSelfTitle);
     this.searchExecutor    = new LatestPrioritizedSerialExecutor(SignalExecutors.BOUNDED);
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);
   }
@@ -173,7 +174,7 @@ public class SearchRepository {
       }
     }
 
-    if (context.getString(R.string.note_to_self).toLowerCase().contains(query.toLowerCase())) {
+    if (noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
       recipientIds.add(Recipient.self().getId());
     }
 

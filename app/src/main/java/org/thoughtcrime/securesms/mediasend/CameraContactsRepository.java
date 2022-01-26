@@ -9,6 +9,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -48,7 +49,7 @@ class CameraContactsRepository {
     this.threadDatabase    = SignalDatabase.threads();
     this.groupDatabase     = SignalDatabase.groups();
     this.recipientDatabase = SignalDatabase.recipients();
-    this.contactRepository = new ContactRepository(context);
+    this.contactRepository = new ContactRepository(context, context.getString(R.string.note_to_self));
     this.serialExecutor    = SignalExecutors.SERIAL;
     this.parallelExecutor  = SignalExecutors.BOUNDED;
   }

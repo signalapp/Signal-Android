@@ -2191,7 +2191,9 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeSearchObserver() {
-    searchViewModel = new ViewModelProvider(this).get(ConversationSearchViewModel.class);
+    ConversationSearchViewModel.Factory viewModelFactory = new ConversationSearchViewModel.Factory(getString(R.string.note_to_self));
+
+    searchViewModel = new ViewModelProvider(this, viewModelFactory).get(ConversationSearchViewModel.class);
 
     searchViewModel.getSearchResults().observe(getViewLifecycleOwner(), result -> {
       if (result == null) return;

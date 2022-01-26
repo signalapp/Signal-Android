@@ -290,15 +290,17 @@ class ConversationListViewModel extends ViewModel {
   public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
     private final boolean isArchived;
+    private final String  noteToSelfTitle;
 
-    public Factory(boolean isArchived) {
-      this.isArchived = isArchived;
+    public Factory(boolean isArchived, @NonNull String noteToSelfTitle) {
+      this.isArchived      = isArchived;
+      this.noteToSelfTitle = noteToSelfTitle;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new ConversationListViewModel(ApplicationDependencies.getApplication(), new SearchRepository(), isArchived));
+      return modelClass.cast(new ConversationListViewModel(ApplicationDependencies.getApplication(), new SearchRepository(noteToSelfTitle), isArchived));
     }
   }
 }
