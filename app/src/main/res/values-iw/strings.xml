@@ -1206,6 +1206,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא ממכשיר אחר</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">הודעה מאת %s לא יכלה להימסר</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s שינה/שינתה את המספר שלו/שלה.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s התחיל/ה שיחה קבוצתית · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s בשיחה הקבוצתית · %2$s</string>
@@ -3237,6 +3238,7 @@
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">השתמש בזה כדי לשנות את מספר הטלפון הנוכחי שלך אל מספר טלפון חדש. אתה לא יכול לבטל את השינוי הזה.\n\nלפני המשכה, וודא שהמספר החדש שלך יכול לקבל מסרונים או שיחות.</string>
   <string name="ChangeNumberFragment__continue">המשך</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">מספר הטלפון שלך השתנה אל %1$s</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">בסדר</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->

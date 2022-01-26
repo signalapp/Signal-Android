@@ -763,7 +763,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">ഗ്രൂപ്പ് ലിങ്കുകൾ ഉപയോഗിക്കുന്നതിന് Signal അപ്‌ഡേറ്റുചെയ്യുക</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">നിങ്ങൾ ഉപയോഗിക്കുന്ന Signal-ന്റെ പതിപ്പ് ഈ ഗ്രൂപ്പ് ലിങ്കിനെ പിന്തുണയ്ക്കുന്നില്ല. ലിങ്ക് വഴി ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യുക.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">നിങ്ങളുടെ ലിങ്കുചെയ്‌ത ഒന്നോ അതിലധികമോ ഉപകരണങ്ങൾ ഗ്രൂപ്പ് ലിങ്കുകളെ പിന്തുണയ്‌ക്കാത്ത Signal ന്റെ ഒരു പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് നിങ്ങളുടെ ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ (ഉപകരണങ്ങളിൽ) സിഗ്നൽ അപ്‌ഡേറ്റുചെയ്യുക.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">നിങ്ങളുടെ ബന്ധിപ്പിച്ച ഒന്നോ അതിലധികമോ ഉപകരണങ്ങൾ ഗ്രൂപ്പ് ലിങ്കുകളെ പിന്തുണയ്‌ക്കാത്ത Signal ന്റെ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് നിങ്ങളുടെ ബന്ധിപ്പിച്ച ഉപകരണത്തിൽ (ഉപകരണങ്ങളിൽ) Signal അപ്‌ഡേറ്റുചെയ്യുക.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ഗ്രൂപ്പ് ലിങ്ക് അസാധുവാണ്</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
@@ -1084,6 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s-ൽ നിന്നുള്ള ഒരു സന്ദേശം ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s അവരുടെ ഫോൺ നമ്പർ മാറ്റി.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ഗ്രൂപ്പ് കോളിലാണ് · %2$s</string>
@@ -1152,10 +1153,10 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">ഉപകരണങ്ങളൊന്നും കണ്ടെത്തിയില്ല.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">നെറ്റ്‌വർക്ക് പിശക്.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR കോഡ് അസാധുവാണ്.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ക്ഷമിക്കണം, നിങ്ങൾക്ക് ഇതിനകം തന്നെ നിരവധി ഉപകരണങ്ങൾ ലിങ്കുചെയ്തിട്ടുണ്ട്, ചിലത് നീക്കംചെയ്യാൻ ശ്രമിക്കുക</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ക്ഷമിക്കണം, നിങ്ങൾക്ക് ഇതിനകം തന്നെ നിരവധി ഉപകരണങ്ങൾ ബന്ധിപ്പിച്ചിട്ടുണ്ട്, ചിലത് നീക്കംചെയ്യാൻ ശ്രമിക്കുക</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ക്ഷമിക്കണം, ഇത് സാധുവായ ഉപകരണ ലിങ്ക് QR കോഡല്ല.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">ഒരു Signal ഉപകരണം ബന്ധിപ്പിക്കണോ?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ഒരു മൂന്നാം കക്ഷി സ്കാനർ ഉപയോഗിച്ച് നിങ്ങൾ ഒരു Signal ഉപകരണം ലിങ്കുചെയ്യാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. നിങ്ങളുടെ പരിരക്ഷയ്‌ക്കായി, Signal-നുള്ളിൽ നിന്ന് കോഡ് വീണ്ടും സ്‌കാൻ ചെയ്യുക.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ഒരു മൂന്നാം കക്ഷി സ്കാനർ ഉപയോഗിച്ച് നിങ്ങൾ ഒരു Signal ഉപകരണം ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. നിങ്ങളുടെ പരിരക്ഷയ്‌ക്കായി, Signal-നുള്ളിൽ നിന്ന് കോഡ് വീണ്ടും സ്‌കാൻ ചെയ്യുക.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ഒരു QR കോഡ് സ്കാൻ ചെയ്യുന്നതിന് Signal-ന് ക്യാമറ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"ക്യാമറ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ക്യാമറ അനുമതിയില്ലാതെ ഒരു QR കോഡ് സ്കാൻ ചെയ്യാൻ കഴിയില്ല</string>
   <!--OutdatedBuildReminder-->
@@ -1617,8 +1618,8 @@
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s നിന്നുള്ള കോളിന് മറുപടി നൽകാൻ, നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് Signal-ന് ആക്സസ് നൽകുക.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">കോളുകൾ വിളിക്കുന്നതിനോ സ്വീകരിക്കുന്നതിനോ Signal-ന് മൈക്രോഫോൺ, ക്യാമറ അനുമതികൾ ആവശ്യമാണ്, പക്ഷേ അവ ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">ഒരു ബന്ധിപ്പിച്ച ഉപകരണത്തിൽ ഉത്തരം നൽകി.</string>
-  <string name="WebRtcCallActivity__declined_on_a_linked_device">ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ നിരസിച്ചു.</string>
-  <string name="WebRtcCallActivity__busy_on_a_linked_device">ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ തിരക്കിലാണ്.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">ബന്ധിപ്പിച്ച ഉപകരണത്തിൽ നിരസിച്ചു.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">ബന്ധിപ്പിച്ച ഉപകരണത്തിൽ തിരക്കിലാണ്.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">മാറ്റിയ സുരക്ഷാ നമ്പറുമായി ആരോ ഈ കോളിൽ ചേർന്നിട്ടുണ്ട്.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_swipe_up_to_change_views">ദര്‍ശനരീതി മാറ്റുന്നതിന് മുകളിലേക്ക് സ്വൈപ്പുചെയ്യുക</string>
@@ -1762,11 +1763,11 @@
   <string name="country_selection_fragment__search">തിരയൽ</string>
   <string name="country_selection_fragment__no_matching_countries">പൊരുത്തപ്പെടുന്ന രാജ്യങ്ങളൊന്നുമില്ല</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">ലിങ്കുചെയ്യുന്നതിന് ഉപകരണത്തിൽ പ്രദർശിപ്പിച്ചിരിക്കുന്ന QR കോഡ് സ്‌കാൻ ചെയ്യുക</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">ബന്ധിപ്പിക്കുന്നതിന് ഉപകരണത്തിൽ പ്രദർശിപ്പിച്ചിരിക്കുന്ന QR കോഡ് സ്‌കാൻ ചെയ്യുക</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">ഉപകരണം ബന്ധിപ്പിക്കൂ </string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">ഉപകരണങ്ങളൊന്നും ലിങ്കുചെയ്‌തിട്ടില്ല</string>
+  <string name="device_list_fragment__no_devices_linked">ഉപകരണങ്ങളൊന്നും ബന്ധിപ്പിച്ചിട്ടില്</string>
   <string name="device_list_fragment__link_new_device">പുതിയ ഉപകരണം ബന്ധിപ്പിക്കൂ</string>
   <!--expiration-->
   <string name="expiration_off">ഓഫ്</string>
@@ -1878,6 +1879,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ഒരു പേരോ നമ്പറോ നൽകുക</small></string>
   <!--verify_display_fragment-->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s-മായുള്ള നിങ്ങളുടെ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്ഷന്റെ സുരക്ഷ പരിശോധിക്കാൻ, മുകളിലെ നമ്പറുകൾ അവരുടെ ഉപകരണവുമായി താരതമ്യം ചെയ്യുക. നിങ്ങൾക്ക് അവരുടെ ഫോണിലെ കോഡ് സ്കാൻ ചെയ്യാനും കഴിയും.<a href="https://signal.org/redirect/safety-numbers">കൂടുതല്‍ അറിയുക</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">സ്കാൻ ചെയ്യാൻ തൊടുക</string>
   <string name="verify_display_fragment__successful_match">വിജയകരമായ ചേര്‍ച്ച</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">സുരക്ഷാ നമ്പർ പരിശോധിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
@@ -2044,6 +2046,7 @@
   <string name="preferences__help">സഹായം</string>
   <string name="preferences__advanced">വിപുലമായ</string>
   <string name="preferences__donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
+  <string name="preferences__subscription">സബ്സ്ക്രിപ്ഷൻ</string>
   <string name="preferences__become_a_signal_sustainer">Signal പരിപാലകര്‍ ആകുക</string>
   <string name="preferences__signal_boost">Signal ബൂസ്റ്റ്</string>
   <string name="preferences__privacy">സ്വകാര്യത</string>
@@ -2861,10 +2864,13 @@
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">അക്കൌണ്ട് ഇല്ലാതാക്കുന്നു…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">നിങ്ങൾ ഉൾപ്പെടുന്ന ഗ്രൂപ്പുകളുടെ എണ്ണം അനുസരിച്ച്, ഇതിന് കുറച്ച് സമയമെടുത്തേക്കാം</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">ഉപയോക്തൃ ഡാറ്റ ഇല്ലാതാക്കുകയും ആപ്പ് പുനഃസജ്ജമാക്കുകയും ചെയ്യുന്നു</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">അക്കൗണ്ട് ഡിലീറ്റ് ചെയ്യാൻ സാധിച്ചില്ല.</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">ഇല്ലാതാക്കൽ പ്രക്രിയ പൂർത്തിയാക്കുന്നതിൽ ഒരു പ്രശ്നമുണ്ടായി. നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">രാജ്യങ്ങൾ തിരയുക</string>
   <!--CreateGroupActivity-->
@@ -3027,6 +3033,7 @@
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">നിങ്ങളുടെ നിലവിലെ ഫോൺ നമ്പർ ഒരു പുതിയ ഫോൺ നമ്പറിലേക്ക് മാറ്റാൻ ഇത് ഉപയോഗിക്കുക. നിങ്ങൾക്ക് ഈ മാറ്റം പഴയപടിയാക്കാനാകില്ല.\n\nതുടരുന്നതിന് മുമ്പ്, നിങ്ങളുടെ പുതിയ നമ്പറിന് SMS അല്ലെങ്കിൽ കോളുകൾ ലഭിക്കുമെന്ന് ഉറപ്പാക്കുക.</string>
   <string name="ChangeNumberFragment__continue">തുടരുക</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">നിങ്ങളുടെ ഫോൺ നമ്പർ %1$s എന്നാക്കി മാറ്റി</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">ശരി</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -3325,7 +3332,13 @@
   <string name="MediaReviewImagePageFragment__discard_changes">മാറ്റങ്ങൾ ഉപേക്ഷിക്കുക?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">ഈ ഫോട്ടോയിൽ നിങ്ങൾ വരുത്തിയ മാറ്റങ്ങളെല്ലാം നഷ്‌ടമാകും.</string>
   <string name="CameraFragment__failed_to_open_camera">ക്യാമറ തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
+  <string name="BadgesOverviewFragment__my_badges">എന്റെ ബാഡ്ജുകൾ</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">പ്രൊഫൈലിൽ ബാഡ്ജുകൾ പ്രദർശിപ്പിക്കുക</string>
+  <string name="BadgeSelectionFragment__select_badges">ബാഡ്ജുകൾ തിരഞ്ഞെടുക്കുക</string>
   <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">ഒരു ബാഡ്ജ് തിരഞ്ഞെടുക്കുക</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">നിങ്ങൾ ഒരു ബാഡ്ജ് തിരഞ്ഞെടുക്കണം</string>
+  <string name="ImageView__badge">ബാഡ്ജ്</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">നിങ്ങളെപ്പോലുള്ളവരാണ് Signal പ്രവർത്തിപ്പിക്കുന്നത്.</string>
   <string name="SubscribeFragment__currency">നാണയം</string>
   <string name="SubscribeFragment__more_payment_options">പണമടയ്ക്കാനുള്ള കൂടുതല്‍ മാർഗങ്ങൾ</string>

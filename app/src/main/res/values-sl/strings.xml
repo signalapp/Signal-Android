@@ -1368,7 +1368,7 @@
   <string name="RedPhone_ending_call">Zaključevanje klica …</string>
   <string name="RedPhone_ringing">Zvoni…</string>
   <string name="RedPhone_busy">Zasedeno</string>
-  <string name="RedPhone_recipient_unavailable">Klicani/a ni na voljo</string>
+  <string name="RedPhone_recipient_unavailable">Klicani/a ni dosegljiv/a</string>
   <string name="RedPhone_network_failed">Napaka omrežja!</string>
   <string name="RedPhone_number_not_registered">Številka ni registrirana!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Številka, ki ste jo klicali, ne podpira varnih klicev!</string>
