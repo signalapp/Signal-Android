@@ -13,9 +13,31 @@
     android:visibility="gone"
     tools:visibility="visible">
 
-    <include
-        android:id="@+id/conversation_reaction_toolbar"
-        layout="@layout/conversation_reaction_long_press_toolbar" />
+    <Space
+        android:id="@+id/dropdown_anchor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        tools:ignore="RtlHardcoded" />
+
+    <View
+        android:id="@+id/toolbar_shade"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/reactions_screen_shade_color"
+        android:layout_alignParentTop="true" />
+
+    <View
+        android:id="@+id/input_shade"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/reactions_screen_shade_color"
+        android:layout_alignParentBottom="true" />
+
+    <View
+        android:id="@+id/conversation_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <View
         android:id="@+id/conversation_reaction_scrubber_background"

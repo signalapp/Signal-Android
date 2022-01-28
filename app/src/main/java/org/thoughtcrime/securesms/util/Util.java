@@ -444,6 +444,15 @@ public class Util {
     return Math.min(Math.max(value, min), max);
   }
 
+  /**
+   * Returns half of the difference between the given length, and the length when scaled by the
+   * given scale.
+   */
+  public static float halfOffsetFromScale(int length, float scale) {
+    float scaledLength = length * scale;
+    return (length - scaledLength) / 2;
+  }
+
   public static @Nullable String readTextFromClipboard(@NonNull Context context) {
     {
       ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);

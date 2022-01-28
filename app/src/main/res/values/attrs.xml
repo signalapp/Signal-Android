@@ -251,10 +251,6 @@
       <attr name="rcv_outgoing" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="AdaptiveActionsToolbar">
-        <attr name="aat_max_shown" format="integer" />
-    </declare-styleable>
-
     <declare-styleable name="VideoThumbnailsRangeSelectorView">
         <attr name="thumbWidth" format="dimension" />
         <attr name="thumbColorEdited" format="color" />

@@ -51,4 +51,10 @@ public interface GiphyMp4Playable {
    * Specifies whether the content can start playing.
    */
   boolean canPlayContent();
+
+  /**
+   * Specifies whether the projection from {@link #getGiphyMp4PlayableProjection(ViewGroup)} should
+   * be used to project into a view.
+   */
+  boolean shouldProjectContent();
 }

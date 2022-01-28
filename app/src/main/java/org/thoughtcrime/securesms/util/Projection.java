@@ -114,6 +114,14 @@ public final class Projection {
     return set(x, y + yTranslation, width, height, corners);
   }
 
+  public @NonNull Projection scale(float scale) {
+    Corners newCorners = new Corners(this.corners.topLeft * scale,
+                                     this.corners.topRight * scale,
+                                     this.corners.bottomRight * scale,
+                                     this.corners.bottomLeft * scale);
+    return set(x, y, (int) (width * scale), (int) (height * scale), newCorners);
+  }
+
   public static @NonNull Projection relativeToParent(@NonNull ViewGroup parent, @NonNull View view, @Nullable Corners corners) {
     Rect viewBounds = new Rect();
 

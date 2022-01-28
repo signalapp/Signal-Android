@@ -79,6 +79,7 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
     }
 
     private val colorPaint = Paint()
+    private val outOfBoundsPaint = Paint()
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
       outRect.setEmpty()
@@ -122,6 +123,8 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
         mask.setXfermode(colorPaint.xfermode)
         mask.setBounds(0, 0, parent.width, parent.height)
         mask.draw(canvas)
+
+        outOfBoundsPaint.color = chatColors.getColors().last()
       } else {
         colorPaint.color = chatColors.asSingleColor()
         canvas.drawRect(
@@ -131,7 +134,13 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
           parent.height.toFloat(),
           colorPaint
         )
+
+        outOfBoundsPaint.color = chatColors.asSingleColor()
       }
+
+      canvas.drawRect(
+        0f, parent.height.toFloat(), parent.width.toFloat(), parent.height * 2f, outOfBoundsPaint
+      )
     }
   }
 

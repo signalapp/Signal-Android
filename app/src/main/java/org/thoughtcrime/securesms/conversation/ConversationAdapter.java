@@ -707,6 +707,11 @@ public class ConversationAdapter
     }
 
     @Override
+    public boolean shouldProjectContent() {
+      return getBindable().shouldProjectContent();
+    }
+
+    @Override
     public @NonNull ProjectionList getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
       return getBindable().getColorizerProjections(coordinateRoot);
     }

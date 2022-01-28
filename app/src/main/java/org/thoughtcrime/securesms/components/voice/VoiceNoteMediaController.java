@@ -192,6 +192,27 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
   /**
+   * Tells the Media service to resume playback of a given audio slide. If the audio slide is not
+   * currently paused, playback will be started from the beginning.
+   *
+   * @param audioSlideUri  The Uri of the desired audio slide
+   * @param messageId      The Message id of the given audio slide
+   */
+  public void resumePlayback(@NonNull Uri audioSlideUri, long messageId) {
+    if (isCurrentTrack(audioSlideUri)) {
+      getMediaController().getTransportControls().play();
+    } else {
+      Bundle extras = new Bundle();
+      extras.putLong(EXTRA_MESSAGE_ID, messageId);
+      extras.putLong(EXTRA_THREAD_ID, -1L);
+      extras.putDouble(EXTRA_PROGRESS, 0.0);
+      extras.putBoolean(EXTRA_PLAY_SINGLE, true);
+
+      getMediaController().getTransportControls().playFromUri(audioSlideUri, extras);
+    }
+  }
+
+  /**
    * Pauses playback if the given audio slide is playing.
    *
    * @param audioSlideUri The Uri of the audio slide to pause.

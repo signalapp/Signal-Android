@@ -362,7 +362,7 @@ class MultiselectItemDecoration(
             }
           }
 
-          if (child.canPlayContent()) {
+          if (child.canPlayContent() && child.shouldProjectContent()) {
             val mp4GifProjection = child.getGiphyMp4PlayableProjection(child.rootView as ViewGroup)
             path.op(mp4GifProjection.path, Path.Op.DIFFERENCE)
             mp4GifProjection.release()

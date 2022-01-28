@@ -121,7 +121,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     }
   }
 
-  private @Nullable GiphyMp4ProjectionPlayerHolder getCurrentHolder(int adapterPosition) {
+  public @Nullable GiphyMp4ProjectionPlayerHolder getCurrentHolder(int adapterPosition) {
     if (playing.get(adapterPosition) != null) {
       return playing.get(adapterPosition);
     } else if (notPlaying.get(adapterPosition) != null) {

@@ -2775,22 +2775,6 @@
     <string name="conversation_callable_secure__menu_video">Signal video call</string>
 
     <!-- conversation_context -->
-    <!-- Button to view detailed information for a message -->
-    <string name="conversation_context__menu_message_details">Info</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
-    <string name="conversation_context__menu_copy_text">Copy</string>
-    <!-- Button to delete a message -->
-    <string name="conversation_context__menu_delete_message">Delete</string>
-    <!-- Button to forward a message to another person or group chat -->
-    <string name="conversation_context__menu_forward_message">Forward</string>
-    <!-- Button to retry sending a message -->
-    <string name="conversation_context__menu_resend_message">Resend message</string>
-    <!-- Button to reply to a message -->
-    <string name="conversation_context__menu_reply_to_message">Reply</string>
-
-    <!-- conversation_context_reaction -->
-    <!-- Button to select a message and enter selection mode -->
-    <string name="conversation_context__reaction_multi_select">Select multiple</string>
 
     <!-- Heading which shows how many messages are currently selected -->
     <plurals name="conversation_context__s_selected">
@@ -2818,6 +2802,10 @@
     <string name="conversation_selection__menu_reply">Reply</string>
     <!-- Button to save a message attachment (image, file etc.) -->
     <string name="conversation_selection__menu_save">Save</string>
+    <!-- Button to retry sending a message -->
+    <string name="conversation_selection__menu_resend_message">Resend</string>
+    <!-- Button to select a message and enter selection mode -->
+    <string name="conversation_selection__menu_multi_select">Select</string>
 
     <!-- conversation_expiring_on -->
 

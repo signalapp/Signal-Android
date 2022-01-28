@@ -3664,12 +3664,13 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void handleReaction(@NonNull ConversationMessage conversationMessage,
-                             @NonNull Toolbar.OnMenuItemClickListener toolbarListener,
+                             @NonNull ConversationReactionOverlay.OnActionSelectedListener onActionSelectedListener,
+                             @NonNull SelectedConversationModel selectedConversationModel,
                              @NonNull ConversationReactionOverlay.OnHideListener onHideListener)
   {
-    reactionDelegate.setOnToolbarItemClickedListener(toolbarListener);
+    reactionDelegate.setOnActionSelectedListener(onActionSelectedListener);
     reactionDelegate.setOnHideListener(onHideListener);
-    reactionDelegate.show(requireActivity(), recipient.get(), conversationMessage, groupViewModel.isNonAdminInAnnouncementGroup());
+    reactionDelegate.show(requireActivity(), recipient.get(), conversationMessage, groupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel);
   }
 
   @Override
@@ -3695,6 +3696,11 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onVoiceNotePlay(@NonNull Uri uri, long messageId, double progress) {
     voiceNoteMediaController.startConsecutivePlayback(uri, messageId, progress);
+  }
+
+  @Override
+  public void onVoiceNoteResume(@NonNull Uri uri, long messageId) {
+    voiceNoteMediaController.resumePlayback(uri, messageId);
   }
 
   @Override

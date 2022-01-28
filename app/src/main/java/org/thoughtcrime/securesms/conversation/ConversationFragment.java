@@ -24,6 +24,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -148,6 +149,7 @@ import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
@@ -180,7 +182,6 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends LoggingFragment implements MultiselectForwardFragment.Callback {
@@ -196,7 +197,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   private LiveRecipient               recipient;
   private long                        threadId;
-  private boolean                     isReacting;
   private ActionMode                  actionMode;
   private Locale                      locale;
   private FrameLayout                 videoContainer;
@@ -768,7 +768,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     if (menuState.shouldShowSaveAttachmentAction()) {
-      items.add(new ActionItem(R.drawable.ic_save_24, getResources().getString(R.string.conversation_selection__menu_save), () -> {
+      items.add(new ActionItem(R.drawable.ic_save_24_tinted, getResources().getString(R.string.conversation_selection__menu_save), () -> {
         handleSaveAttachment((MediaMmsMessageRecord) getSelectedConversationMessage().getMessageRecord());
         actionMode.finish();
       }));
@@ -810,19 +810,21 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
       listener.onBottomActionBarVisibilityChanged(View.VISIBLE);
 
-      ViewKt.doOnPreDraw(bottomActionBar, new Function1<View, Unit>() {
-        @Override public Unit invoke(View view) {
-          if (view.getHeight() == 0 && view.getVisibility() == View.VISIBLE) {
-            ViewKt.doOnPreDraw(bottomActionBar, this);
-            return Unit.INSTANCE;
+      bottomActionBar.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+        @Override
+        public boolean onPreDraw() {
+          if (bottomActionBar.getHeight() == 0 && bottomActionBar.getVisibility() == View.VISIBLE) {
+            return false;
           }
 
-          int bottomPadding = view.getHeight() + (int) DimensionUnit.DP.toPixels(18);
+          bottomActionBar.getViewTreeObserver().removeOnPreDrawListener(this);
+
+          int bottomPadding = bottomActionBar.getHeight() + (int) DimensionUnit.DP.toPixels(18);
           list.setPadding(list.getPaddingLeft(), list.getPaddingTop(), list.getPaddingRight(), bottomPadding);
 
           list.scrollBy(0, -(bottomPadding - additionalScrollOffset));
 
-          return Unit.INSTANCE;
+          return false;
         }
       });
     } else {
@@ -1314,12 +1316,14 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     void onForwardClicked();
     void onMessageRequest(@NonNull MessageRequestViewModel viewModel);
     void handleReaction(@NonNull ConversationMessage conversationMessage,
-                        @NonNull Toolbar.OnMenuItemClickListener toolbarListener,
+                        @NonNull ConversationReactionOverlay.OnActionSelectedListener onActionSelectedListener,
+                        @NonNull SelectedConversationModel selectedConversationModel,
                         @NonNull ConversationReactionOverlay.OnHideListener onHideListener);
     void onCursorChanged();
     void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
     void onVoiceNotePause(@NonNull Uri uri);
     void onVoiceNotePlay(@NonNull Uri uri, long messageId, double progress);
+    void onVoiceNoteResume(@NonNull Uri uri, long messageId);
     void onVoiceNoteSeekTo(@NonNull Uri uri, double progress);
     void onVoiceNotePlaybackSpeedChanged(@NonNull Uri uri, float speed);
     void onRegisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
@@ -1430,16 +1434,63 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         multiselectItemDecoration.setFocusedItem(new MultiselectPart.Message(item.getConversationMessage()));
         list.invalidateItemDecorations();
 
-        isReacting = true;
         reactionsShade.setVisibility(View.VISIBLE);
         list.setLayoutFrozen(true);
-        listener.handleReaction(item.getConversationMessage(), new ReactionsToolbarListener(item.getConversationMessage()), () -> {
-          isReacting = false;
-          reactionsShade.setVisibility(View.GONE);
-          list.setLayoutFrozen(false);
-          WindowUtil.setLightStatusBarFromTheme(requireActivity());
-          clearFocusedItem();
-        });
+
+        if (itemView instanceof ConversationItem) {
+          Uri audioUri = getAudioUriForLongClick(messageRecord);
+          if (audioUri != null) {
+            listener.onVoiceNotePause(audioUri);
+          }
+
+          Bitmap videoBitmap          = null;
+          int    childAdapterPosition = list.getChildAdapterPosition(itemView);
+
+          final GiphyMp4ProjectionPlayerHolder mp4Holder;
+          if (childAdapterPosition != RecyclerView.NO_POSITION) {
+            mp4Holder = giphyMp4ProjectionRecycler.getCurrentHolder(childAdapterPosition);
+            if (mp4Holder != null) {
+              mp4Holder.pause();
+              videoBitmap = mp4Holder.getBitmap();
+              mp4Holder.hide();
+            }
+          } else {
+            mp4Holder = null;
+          }
+
+          ConversationItem conversationItem = (ConversationItem) itemView;
+          Bitmap           bitmap           = ConversationItemSelection.snapshotView(conversationItem, list, messageRecord, videoBitmap);
+
+          final ConversationItemBodyBubble bodyBubble                = conversationItem.bodyBubble;
+                SelectedConversationModel  selectedConversationModel = new SelectedConversationModel(bitmap,
+                                                                                                     itemView.getX(),
+                                                                                                     itemView.getY() + list.getTranslationY(),
+                                                                                                     bodyBubble.getX(),
+                                                                                                     bodyBubble.getWidth(),
+                                                                                                     audioUri,
+                                                                                                     messageRecord.isOutgoing());
+
+          bodyBubble.setVisibility(View.INVISIBLE);
+
+          listener.handleReaction(item.getConversationMessage(), new ReactionsToolbarListener(item.getConversationMessage()), selectedConversationModel, () -> {
+            reactionsShade.setVisibility(View.GONE);
+            list.setLayoutFrozen(false);
+
+            if (selectedConversationModel.getAudioUri() != null) {
+              listener.onVoiceNoteResume(selectedConversationModel.getAudioUri(), messageRecord.getId());
+            }
+
+            WindowUtil.setLightStatusBarFromTheme(requireActivity());
+            clearFocusedItem();
+
+            if (mp4Holder != null) {
+              mp4Holder.show();
+              mp4Holder.resume();
+            }
+
+            bodyBubble.setVisibility(View.VISIBLE);
+          });
+        }
       } else {
         clearFocusedItem();
         ((ConversationAdapter) list.getAdapter()).toggleSelection(item);
@@ -1447,6 +1498,20 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
         actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
       }
+    }
+
+    @Nullable private Uri getAudioUriForLongClick(@NonNull MessageRecord messageRecord) {
+      VoiceNotePlaybackState playbackState = listener.getVoiceNoteMediaController().getVoiceNotePlaybackState().getValue();
+      if (playbackState == null || !playbackState.isPlaying()) {
+        return null;
+      }
+
+      if (!MessageRecordUtil.hasAudio(messageRecord) || !messageRecord.isMms()) {
+        return null;
+      }
+
+      Uri messageUri = ((MmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide().getUri();
+      return playbackState.getUri().equals(messageUri) ? messageUri : null;
     }
 
     @Override
@@ -1867,7 +1932,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
   }
 
-  private class ReactionsToolbarListener implements Toolbar.OnMenuItemClickListener {
+  private class ReactionsToolbarListener implements ConversationReactionOverlay.OnActionSelectedListener {
 
     private final ConversationMessage conversationMessage;
 
@@ -1876,16 +1941,32 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     @Override
-    public boolean onMenuItemClick(MenuItem item) {
-      switch (item.getItemId()) {
-        case R.id.action_info:        handleDisplayDetails(conversationMessage);                                            return true;
-        case R.id.action_delete:      handleDeleteMessages(conversationMessage.getMultiselectCollection().toSet());         return true;
-        case R.id.action_copy:        handleCopyMessage(conversationMessage.getMultiselectCollection().toSet());            return true;
-        case R.id.action_reply:       handleReplyMessage(conversationMessage);                                              return true;
-        case R.id.action_multiselect: handleEnterMultiSelect(conversationMessage);                                          return true;
-        case R.id.action_forward:     handleForwardMessageParts(conversationMessage.getMultiselectCollection().toSet());    return true;
-        case R.id.action_download:    handleSaveAttachment((MediaMmsMessageRecord) conversationMessage.getMessageRecord()); return true;
-        default:                                                                                                            return false;
+    public void onActionSelected(@NonNull ConversationReactionOverlay.Action action) {
+      switch (action) {
+        case REPLY:
+          handleReplyMessage(conversationMessage);
+          break;
+        case FORWARD:
+          handleForwardMessageParts(conversationMessage.getMultiselectCollection().toSet());
+          break;
+        case RESEND:
+          handleResendMessage(conversationMessage.getMessageRecord());
+          break;
+        case DOWNLOAD:
+          handleSaveAttachment((MediaMmsMessageRecord) conversationMessage.getMessageRecord());
+          break;
+        case COPY:
+          handleCopyMessage(conversationMessage.getMultiselectCollection().toSet());
+          break;
+        case MULTISELECT:
+          handleEnterMultiSelect(conversationMessage);
+          break;
+        case VIEW_INFO:
+          handleDisplayDetails(conversationMessage);
+          break;
+        case DELETE:
+          handleDeleteMessages(conversationMessage.getMultiselectCollection().toSet());
+          break;
       }
     }
   }

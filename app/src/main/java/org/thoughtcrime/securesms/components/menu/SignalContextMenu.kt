@@ -6,18 +6,10 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.PopupWindow
-import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.adapter.mapping.Factory
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 /**
  * A custom context menu that will show next to an anchor view and display several options. Basically a PopupMenu with custom UI and positioning rules.
@@ -42,9 +34,10 @@ class SignalContextMenu private constructor(
 
   val context: Context = anchor.context
 
-  val mappingAdapter = MappingAdapter().apply {
-    registerFactory(DisplayItem::class.java, ItemViewHolderFactory())
-  }
+  private val contextMenuList = ContextMenuList(
+    recyclerView = contentView.findViewById(R.id.signal_context_menu_list),
+    onItemClick = { dismiss() },
+  )
 
   init {
     setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.signal_context_menu_background))
@@ -59,13 +52,7 @@ class SignalContextMenu private constructor(
       elevation = 20f
     }
 
-    contentView.findViewById<RecyclerView>(R.id.signal_context_menu_list).apply {
-      adapter = mappingAdapter
-      layoutManager = LinearLayoutManager(context)
-      itemAnimator = null
-    }
-
-    mappingAdapter.submitList(items.toAdapterItems())
+    contextMenuList.setItems(items)
   }
 
   private fun show() {
@@ -97,7 +84,7 @@ class SignalContextMenu private constructor(
       offsetY = baseOffsetY
     } else if (menuTopBound > screenTopBound) {
       offsetY = -(anchorRect.height() + contentView.measuredHeight + baseOffsetY)
-      mappingAdapter.submitList(items.reversed().toAdapterItems())
+      contextMenuList.setItems(items.reversed())
     } else {
       offsetY = -((anchorRect.height() / 2) + (contentView.measuredHeight / 2) + baseOffsetY)
     }
@@ -120,65 +107,6 @@ class SignalContextMenu private constructor(
     }
 
     showAsDropDown(anchor, offsetX, offsetY)
-  }
-
-  private fun List<ActionItem>.toAdapterItems(): List<DisplayItem> {
-    return this.mapIndexed { index, item ->
-      val displayType: DisplayType = when {
-        this.size == 1 -> DisplayType.ONLY
-        index == 0 -> DisplayType.TOP
-        index == this.size - 1 -> DisplayType.BOTTOM
-        else -> DisplayType.MIDDLE
-      }
-
-      DisplayItem(item, displayType)
-    }
-  }
-
-  private data class DisplayItem(
-    val item: ActionItem,
-    val displayType: DisplayType
-  ) : MappingModel<DisplayItem> {
-    override fun areItemsTheSame(newItem: DisplayItem): Boolean {
-      return this == newItem
-    }
-
-    override fun areContentsTheSame(newItem: DisplayItem): Boolean {
-      return this == newItem
-    }
-  }
-
-  private enum class DisplayType {
-    TOP, BOTTOM, MIDDLE, ONLY
-  }
-
-  private inner class ItemViewHolder(itemView: View) : MappingViewHolder<DisplayItem>(itemView) {
-    val icon: ImageView = itemView.findViewById(R.id.signal_context_menu_item_icon)
-    val title: TextView = itemView.findViewById(R.id.signal_context_menu_item_title)
-
-    override fun bind(model: DisplayItem) {
-      icon.setImageResource(model.item.iconRes)
-      title.text = model.item.title
-      itemView.setOnClickListener {
-        model.item.action.run()
-        dismiss()
-      }
-
-      if (Build.VERSION.SDK_INT >= 21) {
-        when (model.displayType) {
-          DisplayType.TOP -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_top)
-          DisplayType.BOTTOM -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_bottom)
-          DisplayType.MIDDLE -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_middle)
-          DisplayType.ONLY -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_only)
-        }
-      }
-    }
-  }
-
-  private inner class ItemViewHolderFactory : Factory<DisplayItem> {
-    override fun createViewHolder(parent: ViewGroup): MappingViewHolder<DisplayItem> {
-      return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.signal_context_menu_item, parent, false))
-    }
   }
 
   enum class HorizontalPosition {
