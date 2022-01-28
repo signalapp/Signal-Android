@@ -332,15 +332,15 @@
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
     <item quantity="one">برداشتن سنجاق</item>
-    <item quantity="other">حذف سنجاق</item>
+    <item quantity="other">برداشتن سنجاق</item>
   </plurals>
   <plurals name="ConversationListFragment_mute_plural">
-    <item quantity="one">بستن</item>
+    <item quantity="one">بی‌صدا</item>
     <item quantity="other">بی‌صدا</item>
   </plurals>
   <plurals name="ConversationListFragment_unmute_plural">
-    <item quantity="one">باز کردن</item>
-    <item quantity="other">صدادار</item>
+    <item quantity="one">باصدا</item>
+    <item quantity="other">باصدا</item>
   </plurals>
   <string name="ConversationListFragment_select">انتخاب</string>
   <plurals name="ConversationListFragment_archive_plural">
@@ -361,9 +361,9 @@
     <item quantity="other">%d انتخاب شد</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
-  <string name="ConversationListFragment__notification_profile">پروفایل اعلانات</string>
+  <string name="ConversationListFragment__notification_profile">پروفایل اعلان‌ها</string>
   <!--Tooltip shown after you have created your first notification profile-->
-  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">پروفایل اعلانات خود را اینجا روشن یا خاموش کنید.</string>
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">پروفایل اعلان‌های خود را اینجا روشن یا خاموش کنید.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
   <string name="ConversationListFragment__s_on">%1$s روشن</string>
   <!--ConversationListItem-->
@@ -409,7 +409,7 @@
   <string name="BackupsPreferenceFragment__turn_off">خاموش</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">برای بازگردانی یک پشتیبان، یک نسخهٔ جدید سیگنال را نصب کنید. برنامه را باز کرده و روی «بازگردانی پشتیبان» ضربه بزنید، سپس فایل پشتیبان را مشخص کنید. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">بیشتر یاد بگیرید</string>
-  <string name="BackupsPreferenceFragment__in_progress">در حال پیشروی…</string>
+  <string name="BackupsPreferenceFragment__in_progress">در حال پیشرفت…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d تا بحال…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% تا کنون…</string>
@@ -495,7 +495,7 @@
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">دعوت‌نامه ارسال شد</item>
-    <item quantity="other">%d دعوت‌نامه ها ارسال شدند</item>
+    <item quantity="other">%d دعوت‌نامه‌ها ارسال شدند</item>
   </plurals>
   <string name="GroupManagement_invite_single_user">«%1$s» نمی‌تواند به صورت خودکار توسط شما به این گروه اضافه شود.\n\nآن‌ها برای پیوستن دعوت شده‌اند و پیام‌های گروهی را تا زمانی که دعوت را نپذیرند، نخواهند دید.</string>
   <string name="GroupManagement_invite_multiple_users">این کاربران نمی‌توانند به صورت خودکار توسط شما به این گروه اضافه شوند.\n\nآن‌ها برای پیوستن به گروه دعوت شده‌اند و پیام‌های گروهی را تا زمانی که دعوت را بپذیرند، نخواهند دید.</string>
@@ -1084,6 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">شما شمارهٔ ایمنی خود را با %s وارسی نشده علامت زدید</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ ایمنی خود را با %s از طریق دستگاه یک دستگاه دیگر وارسی نشده علامت زدید</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">یک پیام از %s نتوانست تحویل داده شود</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s شماره‌تلفن خود را تغییر داد.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی است · %2$s</string>
@@ -3039,6 +3040,7 @@
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">از این گزینه برای تغییر شماره‌تلفن فعلی خود به یک شماره‌تلفن جدید استفاده کنید. شما نمی‌توانید این تغییر را بازگردانی کنید.\n\n قبل از ادامه، مطمئن شوید که شمارهٔ جدید شما می‌تواند پیامک یا تماس دریافت کند.</string>
   <string name="ChangeNumberFragment__continue">ادامه</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">شماره‌تلفن شما به %1$s تغییر یافت</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">خوب</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->

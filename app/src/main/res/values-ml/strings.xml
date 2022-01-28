@@ -93,7 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_block">തടയുക</string>
   <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത് വിടുക</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">സ്പാം റിപ്പോർട്ട് ചെയ്യുക തടയുക</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">സ്പാം റിപ്പോർട്ട് ചെയ്ത് തടയുക</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ഇന്ന്</string>
   <string name="BucketedThreadMedia_Yesterday">ഇന്നലെ</string>
@@ -242,7 +242,7 @@
   <string name="ConversationActivity_join">ചേരുക</string>
   <string name="ConversationActivity_full">പൂർണ്ണമായി</string>
   <string name="ConversationActivity_error_sending_media">മീഡിയ അയയ്‌ക്കുന്നതിൽ പിശക്</string>
-  <string name="ConversationActivity__reported_as_spam_and_blocked">സ്പാം ആയും ബ്ലോക്ക് ചെയ്തതായും റിപ്പോർട്ട് ചെയ്തു.</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">സ്‌പാമായി റിപ്പോർട്ട് ചെയ്‌ത് ബ്ലോക്ക് ചെയ്‌തു.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d വായിക്കാത്ത സന്ദേശം</item>
@@ -1119,7 +1119,7 @@
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s - മായി നിങ്ങളുടെ സംഭാഷണം തുടരുകയും നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടുകയും ചെയ്യണോ?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ഈ ഗ്രൂപ്പിൽ ചേര്‍ൻ, നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടണോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ നിങ്ങൾ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ഈ ഗ്രൂപ്പിൽ ചേരണോ? നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ അവരുടെ സന്ദേശങ്ങൾ കണ്ടതായി അവർക്ക് അറിയില്ല.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ഈ ഗ്രൂപ്പിനെ അൺ‌ബ്ലോക്ക് ചെയ്ത് നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടണോ? നിങ്ങൾ അൺ‌ബ്ലോക്ക് ചെയ്യുന്നതു വരെ നിങ്ങൾക്ക് സന്ദേശങ്ങളൊന്നും ലഭിക്കില്ല.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ഈ ഗ്രൂപ്പിനെ തടഞ്ഞത് മാറ്റുകയും നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടണോ? നിങ്ങൾ അൺ‌ബ്ലോക്ക് ചെയ്യുന്നതു വരെ നിങ്ങൾക്ക് സന്ദേശങ്ങളൊന്നും ലഭിക്കില്ല.</string>
   <string name="MessageRequestProfileView_view">കാണുക</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s അംഗം</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s, %2$s എന്നിവയിലെ അംഗം</string>
@@ -1342,6 +1342,7 @@
   <string name="RegistrationActivity_non_standard_number_format">അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപം</string>
   <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">നിങ്ങൾ നൽകിയ നമ്പർ (%1$s) അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപത്തില്‍ ആണെന്ന് തോന്നുന്നു.\n\nനിങ്ങൾ ഉദ്ദേശിച്ചത് %2$s എന്നാണോ?</string>
   <string name="RegistrationActivity_signal_android_phone_number_format">Signal ആൻഡ്രോയിഡ് - ഫോണ്‍ നമ്പര്‍ രുപം</string>
+  <string name="RegistrationActivity_call_requested">കോള്‍ അഭ്യർത്ഥിച്ചു</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">ഒരു ഡീബഗ് ലോഗ് സമർപ്പിക്കുന്നതിൽ നിന്ന് നിങ്ങൾ ഇപ്പോൾ %d പടി അകലെയാണ്. </item>
     <item quantity="other">ഒരു ഡീബഗ് ലോഗ് സമർപ്പിക്കുന്നതിൽ നിന്ന് നിങ്ങൾ ഇപ്പോൾ %d ഘട്ടങ്ങൾ അകലെയാണ്.</item>
@@ -1566,6 +1567,7 @@
   <string name="MessageNotifier_reacted_s_to_s">\"%2$s\"- നോട് %1$s പ്രതികരിച്ചു</string>
   <string name="MessageNotifier_reacted_s_to_your_video">നിങ്ങളുടെ വീഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">നിങ്ങളുടെ ചിത്രത്തോട് %1$s പ്രതികരിച്ചു.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">നിങ്ങളുടെ GIF-നോട് %1$s എന്ന് പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">നിങ്ങളുടെ ഫയലിനോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">നിങ്ങളുടെ ഓഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">നിങ്ങളുടെ ഒരിക്കൽ മാത്രം കാണാവുന്ന മീഡിയയിലേക്കുള്ള പ്രതികരണം %1$s ആണ്</string>
@@ -1986,7 +1988,7 @@
   <string name="arrays__large">വലുത്</string>
   <string name="arrays__extra_large">അധിക വലുത്</string>
   <string name="arrays__default">സ്ഥിരസ്ഥിതി</string>
-  <string name="arrays__high">ഉയർന്ന</string>
+  <string name="arrays__high">ഉയർന്നത്</string>
   <string name="arrays__max">പരമാവധി</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
@@ -3019,7 +3021,7 @@
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">സ്റ്റാൻഡേർഡ്</string>
   <string name="QualitySelectorBottomSheetDialog__faster_less_data">വേഗത്തിൽ, കുറഞ്ഞ ഡാറ്റ</string>
-  <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്ന</string>
+  <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്നത്</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">സാവധാനം, കൂടുതൽ ഡാറ്റ</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">ഫോട്ടോ നിലവാരം</string>
   <!--AppSettingsFragment-->
@@ -3056,8 +3058,13 @@
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">നിങ്ങളുടെ ഫോൺ നമ്പർ %1$s-ൽ നിന്ന് %2$s-ലേക്ക് മാറ്റാൻ പോകുകയാണ്.\n\nതുടരുന്നതിന് മുമ്പ്, ചുവടെയുള്ള നമ്പർ ശരിയാണോയെന്ന് പരിശോധിക്കുക.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">നമ്പർ തിരുത്തുക</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal നമ്പർ മാറ്റം - ആൻഡ്രോയിഡിനായുള്ള  PIN ല്‍ സഹായം ആവശ്യമാണ് (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PINs പൊരുത്തപ്പെടുന്നില്ല</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">നിങ്ങളുടെ പുതിയ നമ്പറുമായി ബന്ധപ്പെടുത്തിയിരിക്കുന്ന PIN നിങ്ങളുടെ പഴയ നമ്പറുമായി ബന്ധപ്പെടുത്തിയിരിക്കുന്ന PIN-ൽ നിന്ന് വ്യത്യസ്തമാണ്. നിങ്ങളുടെ പഴയ PIN സൂക്ഷിക്കണോ അതോ അത് പുതുക്കണോ?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">പഴയ PIN സൂക്ഷിക്കുക</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">PIN പുതുക്കുക </string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">പഴയ PIN സൂക്ഷിക്കണോ?</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">നിങ്ങളുടെ നമ്പർ മാറ്റാൻ ശ്രമിച്ചതായി തോന്നുന്നു, പക്ഷേ അത് വിജയകരമാണോ എന്ന് ഞങ്ങൾക്ക് നിർണ്ണയിക്കാനായില്ല.\n\nഇപ്പോൾ വീണ്ടും പരിശോധിക്കുന്നു…</string>
@@ -3085,14 +3092,18 @@
   <string name="NotificationsSettingsFragment__notify_when">എപ്പോൾ അറിയിക്കുക…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">കോൺടാക്റ്റ് Signal ചേരുന്നു</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">അറിയിപ്പ് രൂപരേഖകള്‍</string>
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">പ്രൊഫൈലുകൾ</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ആളുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നും മാത്രം അറിയിപ്പുകൾ ലഭിക്കുന്നതിന് ഒരു രൂപരേഖ സൃഷ്‌ടിക്കുക.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">അറിയിപ്പ് രൂപരേഖകള്‍</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">രൂപരേഖ സൃഷ്‌ടിക്കുക</string>
   <!--PrivacySettingsFragment-->
-  <string name="PrivacySettingsFragment__blocked">തടഞ്ഞു</string>
+  <string name="PrivacySettingsFragment__blocked">തടഞ്ഞത്</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d കോൺ‌ടാക്റ്റുകൾ</string>
   <string name="PrivacySettingsFragment__messaging">സന്ദേശ വിനിമയം</string>
   <string name="PrivacySettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
@@ -3132,8 +3143,10 @@
   <string name="HelpFragment__copyright_signal_messenger">പകർപ്പവകാശ Signal സന്ദേശകന്‍</string>
   <string name="HelpFragment__licenced_under_the_gplv3">ജിപിഎൽവി3 കീഴിൽ ലൈസൻസ്</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">മീഡിയ നിലവാരം</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">അയയ്ക്കുന്ന മീഡിയയുടെ നിലവാരം</string>
   <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ഉയർന്ന നിലവാരമുള്ള മീഡിയ അയയ്ക്കുന്നത് കൂടുതൽ ഡാറ്റ ഉപയോഗിക്കും.</string>
-  <string name="DataAndStorageSettingsFragment__high">ഉയർന്ന</string>
+  <string name="DataAndStorageSettingsFragment__high">ഉയർന്നത്</string>
   <string name="DataAndStorageSettingsFragment__standard">സ്റ്റാൻഡേർഡ്</string>
   <string name="DataAndStorageSettingsFragment__calls">കോളുകൾ</string>
   <!--ChatColorSelectionFragment-->
@@ -3182,6 +3195,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ഫോട്ടോ ചേർക്കുക</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
   <string name="BecomeASustainerMegaphone__no_thanks">വേണ്ട, നന്ദി</string>
   <string name="BecomeASustainerMegaphone__contribute">സംഭാവന ചെയ്യുക</string>
   <!--KeyboardPagerFragment-->
@@ -3314,6 +3328,7 @@
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
   <string name="MediaReviewFragment__add_a_reply">ഒരു മറുപടി ചേർക്കുക</string>
+  <string name="MediaReviewFragment__send_to">അയക്കുക</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ വളരെ വലുതായിരുന്നു</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ അസാധുവാണ്</string>
   <string name="MediaReviewFragment__too_many_items_selected">വളരെയധികം ഇനങ്ങൾ തിരഞ്ഞെടുത്തു</string>
@@ -3340,17 +3355,36 @@
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">നിങ്ങൾ ഒരു ബാഡ്ജ് തിരഞ്ഞെടുക്കണം</string>
   <string name="ImageView__badge">ബാഡ്ജ്</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">നിങ്ങളെപ്പോലുള്ളവരാണ് Signal പ്രവർത്തിപ്പിക്കുന്നത്.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">നിങ്ങളുടെ ഡാറ്റയ്‌ക്ക് വേണ്ടിയല്ല - മറിച്ച് നിങ്ങൾക്കു വേണ്ടി  - നിർമ്മിച്ച സാങ്കേതികവിദ്യയെ അത് നിലനിർത്തുന്ന ആളുകളുടെ കമ്മ്യൂണിറ്റിയിൽ ചേരുന്നതിലൂടെ  പിന്തുണയ്ക്കുക.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signal നെ നിലനിർത്തുന്ന കമ്മ്യൂണിറ്റിയിൽ ചേരുന്നതിലൂടെ, നിങ്ങളുടെ ഡാറ്റയ്‌ക്ക് വേണ്ടിയല്ല, മറിച്ച് നിങ്ങൾക്കു വേണ്ടി നിർമ്മിച്ച സാങ്കേതികവിദ്യയെ പിന്തുണയ്‌ക്കുക.</string>
   <string name="SubscribeFragment__currency">നാണയം</string>
   <string name="SubscribeFragment__more_payment_options">പണമടയ്ക്കാനുള്ള കൂടുതല്‍ മാർഗങ്ങൾ</string>
+  <string name="SubscribeFragment__cancel_subscription">സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കുക</string>
+  <string name="SubscribeFragment__confirm_cancellation">റദ്ദാക്കൽ സ്ഥിരീകരിക്കണോ?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">നിങ്ങളിൽ നിന്ന് വീണ്ടും നിരക്ക് ഈടാക്കില്ല. നിങ്ങളുടെ ബില്ലിംഗ് കാലയളവിന്റെ അവസാനം നിങ്ങളുടെ പ്രൊഫൈലിൽ നിന്ന് നിങ്ങളുടെ ബാഡ്ജ് നീക്കം ചെയ്യപ്പെടും.</string>
   <string name="SubscribeFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="SubscribeFragment__confirm">സ്ഥിരീകരിക്കുക</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കി.</string>
   <string name="SubscribeFragment__update">അപ്‌ഡേറ്റ്</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">എന്തുകൊണ്ട് സംഭാവന ചെയ്യണം?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">നിങ്ങളുടെ പിന്തുണയ്ക്ക് നന്ദി!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ബൂസ്റ്റിനു നന്ദി!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">നിങ്ങൾ ഒരു ബൂസ്റ്റ് ബാഡ്ജ് നേടി! നിങ്ങളുടെ പ്രൊഫൈലിൽ ഈ ബാഡ്‌ജ് പ്രദർശിപ്പിച്ച് അവബോധം സൃഷ്ടിക്കാൻ Signal-നെ സഹായിക്കുക.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">നിങ്ങൾക്ക്</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">പ്രതിമാസ സസ്റ്റൈനർ ആകാം.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">പ്രൊഫൈലിൽ പ്രദർശിപ്പിക്കുക</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ചെയ്‌തു</string>
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
   <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>
+  <string name="MySupportPreference__processing_transaction">ഇടപാട് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">നിങ്ങളുടെ ബാഡ്‌ജ് കാലഹരണപ്പെട്ടു</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ബാഡ്ജ് കാലഹരണപ്പെട്ടു</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കി</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">നിങ്ങൾക്കായി നിർമ്മിച്ച സാങ്കേതികവിദ്യയെ പിന്തുണയ്‌ക്കുന്നത് തുടരുന്നതിന്, പ്രതിമാസ പരിപാലകർ ആകുന്നത് പരിഗണിക്കുക.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">സബ്സ്ക്രിപ്ഷൻ പുതുക്കുക</string>
   <string name="Subscription__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
   <string name="SubscribeFragment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
@@ -3379,9 +3413,12 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">ജോലി</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">ഉറക്കം</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">വാഹനം ഓടിയ്ക്കുല്‍</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">ശ്രദ്ധ കേന്ദ്രീകരിക്കുല്‍</string>
   <!--Error message shown when attempting to next/save without a profile name-->
   <!--Title for add recipients to notification profile screen in create flow-->
   <!--Description of what the user should be doing with this screen-->
@@ -3403,6 +3440,7 @@
   <string name="NotificationProfileDetails__delete">ഇല്ലാതാക്കൂ</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">ദിവസേന</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">ഓൺ</string>
   <!--Profile status on if it is not the active profile-->
@@ -3413,14 +3451,17 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">സമയപ്പട്ടിക</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">എല്ലാം കാണുക</string>
   <!--Title for add schedule to profile in create flow-->
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">സമയപ്പട്ടിക</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">ആരംഭിക്കുക</string>
   <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">അവസാനം</string>
   <!--First letter of Sunday-->
   <!--First letter of Monday-->
   <!--First letter of Tuesday-->
@@ -3450,6 +3491,7 @@
   <!--Option to view profile details-->
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">അറിയിപ്പ് രൂപരേഖകള്‍</string>
   <!--Description for notification profile megaphone-->
   <!--Call to action button to create a profile from megaphone-->
   <string name="NotificationProfilesMegaphone__create_a_profile">ഒരു പ്രൊഫൈൽ സൃഷ്ടിക്കുക</string>

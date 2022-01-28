@@ -1930,7 +1930,7 @@
   <string name="AndroidManifest__verify_safety_number">Veiligheidsnummer verifiëren</string>
   <string name="AndroidManifest__log_submit">Foutopsporingslog indienen</string>
   <string name="AndroidManifest__media_preview">Mediavoorbeeld</string>
-  <string name="AndroidManifest__message_details">Berichtdetails</string>
+  <string name="AndroidManifest__message_details">Bericht­details</string>
   <string name="AndroidManifest__linked_devices">Gekoppelde apparaten</string>
   <string name="AndroidManifest__invite_friends">Kennissen uitnodigen</string>
   <string name="AndroidManifest_archived_conversations">Gearchiveerde gesprekken</string>
@@ -2147,7 +2147,7 @@
   <string name="preferences_data_and_storage__never">Nooit</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
   <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele-dataoverdracht</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruikmaken van minder dataoverdracht bij oproepen kan bij een slechte verbinding de kwaliteit van een oproep verbeteren</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Wanneer je een slechte verbinding hebt kan het instellen van minder dataoverdracht de kwaliteit van een oproep juist verbeteren.</string>
   <string name="preferences_notifications__messages">Berichten</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
   <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend gesprek</string>
@@ -2329,7 +2329,7 @@
   <string name="conversation_callable_secure__menu_video">Signal-video-oproep</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Berichtdetails</string>
+  <string name="conversation_context__menu_message_details">Bericht­details</string>
   <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_context__menu_copy_text">Tekst kopiëren</string>
   <!--Button to delete a message-->

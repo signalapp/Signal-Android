@@ -947,7 +947,7 @@
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ha cambiado su nombre a %2$s.</string>
-  <string name="MessageRecord_changed_their_profile_name_from_to">%1$sha cambiado su nombre de %2$s a %3$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ha cambiado su nombre de %2$s a %3$s.</string>
   <string name="MessageRecord_changed_their_profile">%1$s ha cambiado su nombre.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Has creado el grupo.</string>

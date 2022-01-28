@@ -2689,7 +2689,7 @@ nummer (%s) er ugyldigt</string>
   <string name="DeviceTransferSetup__retry">Prøv igen</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Indsend fejlsøgningslogger</string>
   <string name="DeviceTransferSetup__verify_code">Bekræft kode</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Kontroller, at koden nedenfor er den samme på begge jeres enheder. Tryk derefter på Fortsæt.</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Kontroller, at koden nedenfor er den samme på begge dine enheder. Tryk derefter på fortsæt.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Numrene stemmer ikke overens</string>
   <string name="DeviceTransferSetup__continue">Fortsæt</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Nummeret er ikke det samme</string>
