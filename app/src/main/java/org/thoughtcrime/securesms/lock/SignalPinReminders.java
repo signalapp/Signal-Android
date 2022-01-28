@@ -33,11 +33,11 @@ public class SignalPinReminders {
   }};
 
   private static final Map<Long, Integer> STRINGS = new HashMap<Long, Integer>() {{
-    put(ONE_DAY, R.string.SignalPinReminders_well_remind_you_again_tomorrow);
-    put(THREE_DAYS, R.string.SignalPinReminders_well_remind_you_again_in_a_few_days);
-    put(ONE_WEEK, R.string.SignalPinReminders_well_remind_you_again_in_a_week);
-    put(TWO_WEEKS, R.string.SignalPinReminders_well_remind_you_again_in_a_couple_weeks);
-    put(FOUR_WEEKS, R.string.SignalPinReminders_well_remind_you_again_in_a_month);
+    put(ONE_DAY, R.string.SignalPinReminders2_well_remind_you_again_tomorrow);
+    put(THREE_DAYS, R.string.SignalPinReminders2_well_remind_you_again_in_a_few_days);
+    put(ONE_WEEK, R.string.SignalPinReminders2_well_remind_you_again_in_a_week);
+    put(TWO_WEEKS, R.string.SignalPinReminders2_well_remind_you_again_in_a_couple_weeks);
+    put(FOUR_WEEKS, R.string.SignalPinReminders2_well_remind_you_again_in_a_month);
   }};
 
   public static final long INITIAL_INTERVAL = INTERVALS.first();
@@ -59,7 +59,7 @@ public class SignalPinReminders {
       return stringRes;
     } else {
       Log.w(TAG, "Couldn't find a string for interval " + interval);
-      return R.string.SignalPinReminders_well_remind_you_again_later;
+      return R.string.SignalPinReminders2_well_remind_you_again_later;
     }
   }
 }
