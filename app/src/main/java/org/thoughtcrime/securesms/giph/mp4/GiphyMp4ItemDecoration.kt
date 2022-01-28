@@ -37,7 +37,7 @@ class GiphyMp4ItemDecoration(
         return
       }
 
-      val childTop = footerViewHolder.itemView.top
+      val childTop: Int = footerViewHolder.itemView.top
       parent.translationY = min(0, -childTop).toFloat()
       onRecyclerVerticalTranslationSet(parent.translationY)
     }

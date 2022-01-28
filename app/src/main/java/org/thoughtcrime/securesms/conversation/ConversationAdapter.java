@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.MediaItem;
 
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagingController;
@@ -778,7 +780,23 @@ public class ConversationAdapter
   }
 
   public static class FooterViewHolder extends HeaderFooterViewHolder {
-    FooterViewHolder(@NonNull View itemView) { super(itemView); }
+    FooterViewHolder(@NonNull View itemView) {
+      super(itemView);
+      setPaddingTop();
+    }
+
+    @Override
+    void bind(@Nullable View view) {
+      super.bind(view);
+      setPaddingTop();
+    }
+
+    private void setPaddingTop() {
+      if (Build.VERSION.SDK_INT <= 23) {
+        int addToPadding = ViewUtil.getStatusBarHeight(itemView) + (int) ThemeUtil.getThemedDimen(itemView.getContext(), android.R.attr.actionBarSize);
+        ViewUtil.setPaddingTop(itemView, itemView.getPaddingTop() + addToPadding);
+      }
+    }
   }
 
   public static class HeaderViewHolder extends HeaderFooterViewHolder {
