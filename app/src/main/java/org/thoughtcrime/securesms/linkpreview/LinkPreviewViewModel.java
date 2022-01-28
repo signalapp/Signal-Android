@@ -80,6 +80,7 @@ public class LinkPreviewViewModel extends ViewModel {
   public void onTextChanged(@NonNull Context context, @NonNull String text, int cursorStart, int cursorEnd) {
     if (!enabled) return;
 
+    final Context applicationContext = context.getApplicationContext();
     debouncer.publish(() -> {
       if (TextUtils.isEmpty(text)) {
         userCanceled = false;
@@ -110,7 +111,7 @@ public class LinkPreviewViewModel extends ViewModel {
       linkPreviewState.setValue(LinkPreviewState.forLoading());
 
       activeUrl     = link.get().getUrl();
-      activeRequest = repository.getLinkPreview(context, link.get().getUrl(), new LinkPreviewRepository.Callback() {
+      activeRequest = repository.getLinkPreview(applicationContext, link.get().getUrl(), new LinkPreviewRepository.Callback() {
           @Override
           public void onSuccess(@NonNull LinkPreview linkPreview) {
             ThreadUtil.runOnMain(() -> {
