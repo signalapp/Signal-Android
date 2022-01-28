@@ -118,13 +118,16 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
         colorPaint.xfermode = noLayerXfermode
       }
 
+      val firstColor: Int
+      val lastColor: Int
       if (chatColors.isGradient()) {
         val mask = chatColors.chatBubbleMask as RotatableGradientDrawable
         mask.setXfermode(colorPaint.xfermode)
         mask.setBounds(0, 0, parent.width, parent.height)
         mask.draw(canvas)
 
-        outOfBoundsPaint.color = chatColors.getColors().last()
+        firstColor = chatColors.getColors().first()
+        lastColor = chatColors.getColors().last()
       } else {
         colorPaint.color = chatColors.asSingleColor()
         canvas.drawRect(
@@ -135,9 +138,16 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
           colorPaint
         )
 
-        outOfBoundsPaint.color = chatColors.asSingleColor()
+        firstColor = chatColors.asSingleColor()
+        lastColor = chatColors.asSingleColor()
       }
 
+      outOfBoundsPaint.color = firstColor
+      canvas.drawRect(
+        0f, -parent.height.toFloat(), parent.width.toFloat(), 0f, outOfBoundsPaint
+      )
+
+      outOfBoundsPaint.color = lastColor
       canvas.drawRect(
         0f, parent.height.toFloat(), parent.width.toFloat(), parent.height * 2f, outOfBoundsPaint
       )

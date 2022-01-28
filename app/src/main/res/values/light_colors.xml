@@ -126,8 +126,8 @@
 
     <color name="reactions_pill_text_color">@color/core_grey_60</color>
     <color name="reactions_pill_selected_text_color">@color/core_grey_75</color>
-    <color name="reactions_screen_shade_color">@color/transparent_black_40</color>
-    <color name="reactions_status_bar_shade">#999999</color>
+    <color name="reactions_screen_shade_color">@color/transparent_black_50</color>
+    <color name="reactions_status_bar_shade">#808080</color>
 
     <color name="recipient_contact_button_color">@color/core_grey_02</color>
 

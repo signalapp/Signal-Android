@@ -1466,6 +1466,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                                                                                      itemView.getX(),
                                                                                                      itemView.getY() + list.getTranslationY(),
                                                                                                      bodyBubble.getX(),
+                                                                                                     bodyBubble.getY(),
                                                                                                      bodyBubble.getWidth(),
                                                                                                      audioUri,
                                                                                                      messageRecord.isOutgoing());

@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation
 
 import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Path
 import android.view.View
 import androidx.core.graphics.applyCanvas
@@ -51,7 +50,8 @@ object ConversationItemSelection {
 
     val path = Path()
 
-    val yTranslation = -conversationItem.y
+    val xTranslation = -conversationItem.x - conversationItem.bodyBubble.x
+    val yTranslation = -conversationItem.y - conversationItem.bodyBubble.y
 
     val mp4Projection = conversationItem.getGiphyMp4PlayableProjection(list)
     var scaledVideoBitmap = videoBitmap
@@ -63,29 +63,30 @@ object ConversationItemSelection {
         true
       )
 
+      mp4Projection.translateX(xTranslation)
       mp4Projection.translateY(yTranslation)
       mp4Projection.applyToPath(path)
     }
 
     projections.use {
       it.forEach { p ->
+        p.translateX(xTranslation)
         p.translateY(yTranslation)
         p.applyToPath(path)
       }
     }
 
-    val distanceToBubbleBottom = conversationItem.bodyBubble.height + conversationItem.bodyBubble.y.toInt()
-    return createBitmap(conversationItem.width, distanceToBubbleBottom).applyCanvas {
+    return createBitmap(conversationItem.bodyBubble.width, conversationItem.bodyBubble.height).applyCanvas {
       if (drawConversationItem) {
-        draw(conversationItem)
+        conversationItem.bodyBubble.draw(this)
       }
 
       withClip(path) {
-        withTranslation(y = yTranslation) {
+        withTranslation(x = xTranslation, y = yTranslation) {
           list.draw(this)
 
           if (scaledVideoBitmap != null) {
-            drawBitmap(scaledVideoBitmap, mp4Projection.x, mp4Projection.y - yTranslation, null)
+            drawBitmap(scaledVideoBitmap, mp4Projection.x - xTranslation, mp4Projection.y - yTranslation, null)
           }
         }
       }
@@ -94,13 +95,6 @@ object ConversationItemSelection {
       conversationItem.reactionsView.visibility = initialReactionVisibility
       conversationItem.bodyBubble.scaleX = originalScale
       conversationItem.bodyBubble.scaleY = originalScale
-    }
-  }
-
-  private fun Canvas.draw(conversationItem: ConversationItem) {
-    val bodyBubble = conversationItem.bodyBubble
-    withTranslation(bodyBubble.x, bodyBubble.y) {
-      bodyBubble.draw(this@draw)
     }
   }
 }

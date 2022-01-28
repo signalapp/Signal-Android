@@ -53,8 +53,7 @@ import kotlin.Unit;
 
 public final class ConversationReactionOverlay extends RelativeLayout {
 
-  private static final Interpolator INTERPOLATOR          = new DecelerateInterpolator();
-  private static final long         TRANSITION_Y_DURATION = 150;
+  private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
   private final Rect  emojiViewGlobalRect = new Rect();
   private final Rect  emojiStripViewBounds = new Rect();
@@ -89,10 +88,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private ConversationContextMenu contextMenu;
 
   private float touchDownDeadZoneSize;
-  private float distanceFromTouchDownPointToTopOfScrubberDeadZone;
   private float distanceFromTouchDownPointToBottomOfScrubberDeadZone;
-  private int   scrubberDistanceFromTouchDown;
-  private int   scrubberHeight;
   private int   scrubberWidth;
   private int   selectedVerticalTranslation;
   private int   scrubberHorizontalMargin;
@@ -137,15 +133,12 @@ public final class ConversationReactionOverlay extends RelativeLayout {
 
     customEmojiIndex = emojiViews.length - 1;
 
-    distanceFromTouchDownPointToTopOfScrubberDeadZone    = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_top);
     distanceFromTouchDownPointToBottomOfScrubberDeadZone = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_bottom);
 
-    touchDownDeadZoneSize         = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_touch_deadzone_size);
-    scrubberDistanceFromTouchDown = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrubber_distance);
-    scrubberHeight                = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrubber_height);
-    scrubberWidth                 = getResources().getDimensionPixelOffset(R.dimen.reaction_scrubber_width);
-    selectedVerticalTranslation   = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrub_vertical_translation);
-    scrubberHorizontalMargin      = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrub_horizontal_margin);
+    touchDownDeadZoneSize       = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_touch_deadzone_size);
+    scrubberWidth               = getResources().getDimensionPixelOffset(R.dimen.reaction_scrubber_width);
+    selectedVerticalTranslation = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrub_vertical_translation);
+    scrubberHorizontalMargin    = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrub_horizontal_margin);
 
     animationEmojiStartDelayFactor = getResources().getInteger(R.integer.reaction_scrubber_emoji_reveal_duration_start_delay_factor);
 
@@ -180,7 +173,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     }
 
     ViewGroup.LayoutParams layoutParams = inputShade.getLayoutParams();
-    layoutParams.height = activity.findViewById(R.id.bottom_panel).getHeight();
+    layoutParams.height = getInputPanelHeight(activity);
     inputShade.setLayoutParams(layoutParams);
 
     toolbarShade.setVisibility(VISIBLE);
@@ -191,11 +184,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     conversationItem.setLayoutParams(new LayoutParams(conversationItemSnapshot.getWidth(), conversationItemSnapshot.getHeight()));
     conversationItem.setBackground(new BitmapDrawable(getResources(), conversationItemSnapshot));
 
-    float   initialX        = selectedConversationModel.getBitmapX();
     boolean isMessageOnLeft = selectedConversationModel.isOutgoing() ^ ViewUtil.isLtr(this);
-
-    conversationItem.setX(initialX);
-    conversationItem.setY(selectedConversationModel.getBitmapY() - statusBarHeight);
 
     conversationItem.setScaleX(ConversationItem.LONG_PRESS_SCALE_FACTOR);
     conversationItem.setScaleY(ConversationItem.LONG_PRESS_SCALE_FACTOR);
@@ -208,58 +197,70 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     });
   }
 
+  private int getInputPanelHeight(@NonNull Activity activity) {
+    View bottomPanel = activity.findViewById(R.id.bottom_panel);
+    View emojiDrawer = activity.findViewById(R.id.emoji_drawer);
+
+    return bottomPanel.getHeight() + (emojiDrawer != null && emojiDrawer.getVisibility() == VISIBLE ? emojiDrawer.getHeight() : 0);
+  }
+
   private void showAfterLayout(@NonNull Activity activity,
                                @NonNull ConversationMessage conversationMessage,
                                @NonNull PointF lastSeenDownPoint,
                                boolean isMessageOnLeft) {
     contextMenu = new ConversationContextMenu(dropdownAnchor, getMenuActionItems(conversationMessage));
 
+    conversationItem.setX(selectedConversationModel.getBubbleX());
+    conversationItem.setY(selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() - statusBarHeight);
+
     Bitmap  conversationItemSnapshot = selectedConversationModel.getBitmap();
     boolean isWideLayout             = contextMenu.getMaxWidth() + scrubberWidth < getWidth();
 
     int bubbleWidth = selectedConversationModel.getBubbleWidth();
 
-    float endX            = selectedConversationModel.getBitmapX();
+    float endX            = selectedConversationModel.getBubbleX();
     float endY            = conversationItem.getY();
     float endApparentTop  = endY;
     float endScale        = 1f;
 
-    float menuPadding       = DimensionUnit.DP.toPixels(12f);
-    int   reactionBarHeight = backgroundView.getHeight();
+    float menuPadding           = DimensionUnit.DP.toPixels(12f);
+    float reactionBarTopPadding = DimensionUnit.DP.toPixels(32f);
+    int   reactionBarHeight     = backgroundView.getHeight();
 
     float reactionBarBackgroundY;
 
     if (isWideLayout) {
-      boolean everythingFitsVertically = scrubberHeight + conversationItemSnapshot.getHeight() < getHeight();
+      boolean everythingFitsVertically = reactionBarHeight + menuPadding + reactionBarTopPadding + conversationItemSnapshot.getHeight() < getHeight();
       if (everythingFitsVertically) {
-        boolean reactionBarFitsAboveItem = conversationItem.getY() > scrubberHeight;
+        boolean reactionBarFitsAboveItem = conversationItem.getY() > reactionBarHeight + menuPadding + reactionBarTopPadding;
 
         if (reactionBarFitsAboveItem) {
           reactionBarBackgroundY = conversationItem.getY() - menuPadding - reactionBarHeight;
         } else {
-          endY                   = reactionBarHeight + menuPadding;
-          reactionBarBackgroundY = 0f;
+          endY                   = reactionBarHeight + menuPadding + reactionBarTopPadding;
+          reactionBarBackgroundY = reactionBarTopPadding;
         }
       } else {
-        float spaceAvailableForItem = getHeight() - reactionBarHeight - menuPadding;
+        float spaceAvailableForItem = getHeight() - reactionBarHeight - menuPadding * 2;
 
         endScale               = spaceAvailableForItem / conversationItem.getHeight();
-        endY                   = reactionBarHeight + menuPadding - Util.halfOffsetFromScale(conversationItemSnapshot.getHeight(), endScale);
-        reactionBarBackgroundY = 0f;
+        endX                  += Util.halfOffsetFromScale(conversationItemSnapshot.getWidth(), endScale) * (isMessageOnLeft ? -1 : 1);
+        endY                   = reactionBarHeight + menuPadding + reactionBarTopPadding - Util.halfOffsetFromScale(conversationItemSnapshot.getHeight(), endScale);
+        reactionBarBackgroundY = reactionBarTopPadding;
       }
     } else {
-      boolean everythingFitsVertically = contextMenu.getMaxHeight() + conversationItemSnapshot.getHeight() + menuPadding + reactionBarHeight < getHeight();
+      boolean everythingFitsVertically = contextMenu.getMaxHeight() + conversationItemSnapshot.getHeight() + menuPadding + reactionBarHeight + reactionBarTopPadding < getHeight();
 
       if (everythingFitsVertically) {
-        float   itemBottom        = selectedConversationModel.getBitmapY() + conversationItemSnapshot.getHeight();
-        boolean menuFitsBelowItem = itemBottom + menuPadding + contextMenu.getMaxHeight() <= getHeight();
+        float   bubbleBottom      = selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() + conversationItemSnapshot.getHeight();
+        boolean menuFitsBelowItem = bubbleBottom + menuPadding + contextMenu.getMaxHeight() <= getHeight() + statusBarHeight;
 
         if (menuFitsBelowItem) {
           reactionBarBackgroundY = conversationItem.getY() - menuPadding - reactionBarHeight;
 
-          if (reactionBarBackgroundY < 0) {
-            endY                   = backgroundView.getHeight();
-            reactionBarBackgroundY = 0f;
+          if (reactionBarBackgroundY < reactionBarTopPadding) {
+            endY                   = backgroundView.getHeight() + menuPadding;
+            reactionBarBackgroundY = reactionBarTopPadding;
           }
         } else {
           endY                   = getHeight() - contextMenu.getMaxHeight() - menuPadding - conversationItemSnapshot.getHeight();
@@ -267,30 +268,44 @@ public final class ConversationReactionOverlay extends RelativeLayout {
         }
 
         endApparentTop = endY;
-      } else if (reactionBarHeight + contextMenu.getMaxHeight() + menuPadding < getHeight()) {
-        float spaceAvailableForItem = (float) getHeight() - contextMenu.getMaxHeight() - menuPadding - reactionBarHeight;
+      } else if (reactionBarHeight + contextMenu.getMaxHeight() + menuPadding * 2 < getHeight()) {
+        float spaceAvailableForItem = (float) getHeight() - contextMenu.getMaxHeight() - menuPadding * 2 - reactionBarHeight - reactionBarTopPadding;
 
         endScale               = spaceAvailableForItem / conversationItemSnapshot.getHeight();
-        endY                   = reactionBarHeight - Util.halfOffsetFromScale(conversationItemSnapshot.getHeight(), endScale);
-        reactionBarBackgroundY = 0f;
-        endApparentTop         = reactionBarHeight;
+        endX                  += Util.halfOffsetFromScale(conversationItemSnapshot.getWidth(), endScale) * (isMessageOnLeft ? -1 : 1);
+        endY                   = reactionBarHeight - Util.halfOffsetFromScale(conversationItemSnapshot.getHeight(), endScale) + menuPadding + reactionBarTopPadding;
+        reactionBarBackgroundY = reactionBarTopPadding;
+        endApparentTop         = reactionBarHeight + menuPadding + reactionBarTopPadding;
       } else {
         contextMenu.setHeight(contextMenu.getMaxHeight() / 2);
 
         int     menuHeight     = contextMenu.getHeight();
-        boolean fitsVertically = menuHeight + conversationItem.getHeight() + menuPadding + reactionBarHeight < getHeight();
+        boolean fitsVertically = menuHeight + conversationItem.getHeight() + menuPadding * 2 + reactionBarHeight + reactionBarTopPadding < getHeight();
 
         if (fitsVertically) {
-          endY                   = getHeight() - menuHeight - menuPadding - conversationItemSnapshot.getHeight();
-          reactionBarBackgroundY = endY - reactionBarHeight;
+          float   bubbleBottom      = selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() + conversationItemSnapshot.getHeight();
+          boolean menuFitsBelowItem = bubbleBottom + menuPadding + menuHeight <= getHeight() + statusBarHeight;
+
+          if (menuFitsBelowItem) {
+            reactionBarBackgroundY = conversationItem.getY() - menuPadding - reactionBarHeight;
+
+            if (reactionBarBackgroundY < reactionBarTopPadding) {
+              endY                   = reactionBarTopPadding + reactionBarHeight + menuPadding;
+              reactionBarBackgroundY = reactionBarTopPadding;
+            }
+          } else {
+            endY                   = getHeight() - menuHeight - menuPadding - conversationItemSnapshot.getHeight();
+            reactionBarBackgroundY = endY - reactionBarHeight - menuPadding;
+          }
           endApparentTop         = endY;
         } else {
-          float spaceAvailableForItem = (float) getHeight() - menuHeight - menuPadding - reactionBarHeight;
+          float spaceAvailableForItem = (float) getHeight() - menuHeight - menuPadding * 2 - reactionBarHeight - reactionBarTopPadding;
 
           endScale               = spaceAvailableForItem / conversationItemSnapshot.getHeight();
-          endY                   = reactionBarHeight - Util.halfOffsetFromScale(conversationItemSnapshot.getHeight(), endScale);
-          reactionBarBackgroundY = 0f;
-          endApparentTop         = reactionBarHeight;
+          endX                  += Util.halfOffsetFromScale(conversationItemSnapshot.getWidth(), endScale) * (isMessageOnLeft ? -1 : 1);
+          endY                   = reactionBarHeight - Util.halfOffsetFromScale(conversationItemSnapshot.getHeight(), endScale) + menuPadding + reactionBarTopPadding;
+          reactionBarBackgroundY = reactionBarTopPadding;
+          endApparentTop         = reactionBarHeight + menuPadding + reactionBarTopPadding;
         }
       }
     }
@@ -331,21 +346,21 @@ public final class ConversationReactionOverlay extends RelativeLayout {
       float offsetX       = isMessageOnLeft ? scrubberRight + menuPadding : scrubberX - contextMenu.getMaxWidth() - menuPadding;
       contextMenu.show((int) offsetX, (int) Math.min(backgroundView.getY(), getHeight() - contextMenu.getMaxHeight()));
     } else {
-      float contentX = selectedConversationModel.getContentX();
-      float offsetX  = isMessageOnLeft ? contentX : - contextMenu.getMaxWidth() + contentX + bubbleWidth;
+      float contentX = selectedConversationModel.getBubbleX();
+      float offsetX  = isMessageOnLeft ? contentX : -contextMenu.getMaxWidth() + contentX + bubbleWidth;
 
       float menuTop = endApparentTop + (conversationItemSnapshot.getHeight() * endScale);
       contextMenu.show((int) offsetX, (int) (menuTop + menuPadding));
     }
 
-    conversationItem.animate()
-                    .x(endX)
-                    .scaleX(endScale)
-                    .scaleY(endScale);
+    int revealDuration = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_duration);
 
     conversationItem.animate()
+                    .x(endX)
                     .y(endY)
-                    .setDuration(TRANSITION_Y_DURATION);
+                    .scaleX(endScale)
+                    .scaleY(endScale)
+                    .setDuration(revealDuration);
   }
 
   @RequiresApi(api = 21)
@@ -375,7 +390,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private void hideInternal(@Nullable OnHideListener onHideListener) {
     overlayState = OverlayState.HIDDEN;
 
-    int duration = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_duration);
+    int duration = getContext().getResources().getInteger(R.integer.reaction_scrubber_hide_duration);
 
     List<Animator> hides = new ArrayList<>(hideAnimators);
 
@@ -395,16 +410,16 @@ public final class ConversationReactionOverlay extends RelativeLayout {
 
     ObjectAnimator itemXAnim = new ObjectAnimator();
     itemXAnim.setProperty(View.X);
-    itemXAnim.setFloatValues(selectedConversationModel.getBitmapX());
+    itemXAnim.setFloatValues(selectedConversationModel.getBubbleX());
     itemXAnim.setTarget(conversationItem);
     itemXAnim.setDuration(duration);
     hides.add(itemXAnim);
 
     ObjectAnimator itemYAnim = new ObjectAnimator();
     itemYAnim.setProperty(View.Y);
-    itemYAnim.setFloatValues(selectedConversationModel.getBitmapY() - statusBarHeight);
+    itemYAnim.setFloatValues(selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() - statusBarHeight);
     itemYAnim.setTarget(conversationItem);
-    itemYAnim.setDuration(TRANSITION_Y_DURATION);
+    itemYAnim.setDuration(duration);
     hides.add(itemYAnim);
 
     hideAnimatorSet.playTogether(hides);
@@ -720,29 +735,28 @@ public final class ConversationReactionOverlay extends RelativeLayout {
 
   private void initAnimators() {
 
-    int duration = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_duration);
+    int revealDuration = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_duration);
+    int revealOffset = getContext().getResources().getInteger(R.integer.reaction_scrubber_reveal_offset);
 
     List<Animator> reveals = Stream.of(emojiViews)
         .mapIndexed((idx, v) -> {
           Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_reveal);
           anim.setTarget(v);
-          anim.setStartDelay(idx * animationEmojiStartDelayFactor);
+          anim.setStartDelay(revealOffset + idx * animationEmojiStartDelayFactor);
           return anim;
         })
         .toList();
 
-    Animator overlayRevealAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_in);
-    overlayRevealAnim.setDuration(duration);
-    reveals.add(overlayRevealAnim);
-
     Animator backgroundRevealAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_in);
     backgroundRevealAnim.setTarget(backgroundView);
-    backgroundRevealAnim.setDuration(duration);
+    backgroundRevealAnim.setDuration(revealDuration);
+    backgroundRevealAnim.setStartDelay(revealOffset);
     reveals.add(backgroundRevealAnim);
 
     Animator selectedRevealAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_in);
     selectedRevealAnim.setTarget(selectedView);
-    selectedRevealAnim.setDuration(duration);
+    backgroundRevealAnim.setDuration(revealDuration);
+    backgroundRevealAnim.setStartDelay(revealOffset);
     reveals.add(selectedRevealAnim);
 
     revealAnimatorSet.setInterpolator(INTERPOLATOR);
@@ -757,18 +771,20 @@ public final class ConversationReactionOverlay extends RelativeLayout {
                           })
                           .toList();
 
+    int hideDuration = getContext().getResources().getInteger(R.integer.reaction_scrubber_hide_duration);
+
     Animator overlayHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
-    overlayHideAnim.setDuration(duration);
+    overlayHideAnim.setDuration(hideDuration);
     hideAnimators.add(overlayHideAnim);
 
     Animator backgroundHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
     backgroundHideAnim.setTarget(backgroundView);
-    backgroundHideAnim.setDuration(duration);
+    backgroundHideAnim.setDuration(hideDuration);
     hideAnimators.add(backgroundHideAnim);
 
     Animator selectedHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
     selectedHideAnim.setTarget(selectedView);
-    selectedHideAnim.setDuration(duration);
+    selectedHideAnim.setDuration(hideDuration);
     hideAnimators.add(selectedHideAnim);
 
     hideAnimatorSet = newHideAnimatorSet();

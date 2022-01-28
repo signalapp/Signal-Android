@@ -363,13 +363,17 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public boolean dispatchTouchEvent(MotionEvent ev) {
-    if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-      getHandler().postDelayed(shrinkBubble, SHRINK_BUBBLE_DELAY_MILLIS);
-    } else {
-      getHandler().removeCallbacks(shrinkBubble);
-      bodyBubble.animate()
-                .scaleX(1.0f)
-                .scaleY(1.0f);
+    switch (ev.getAction()) {
+      case MotionEvent.ACTION_DOWN:
+        getHandler().postDelayed(shrinkBubble, SHRINK_BUBBLE_DELAY_MILLIS);
+        break;
+      case MotionEvent.ACTION_UP:
+      case MotionEvent.ACTION_CANCEL:
+        getHandler().removeCallbacks(shrinkBubble);
+        bodyBubble.animate()
+                  .scaleX(1.0f)
+                  .scaleY(1.0f);
+        break;
     }
 
     return super.dispatchTouchEvent(ev);

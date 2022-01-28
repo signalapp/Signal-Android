@@ -9,9 +9,10 @@ import android.net.Uri
  */
 data class SelectedConversationModel(
   val bitmap: Bitmap,
-  val bitmapX: Float,
-  val bitmapY: Float,
-  val contentX: Float,
+  val itemX: Float,
+  val itemY: Float,
+  val bubbleX: Float,
+  val bubbleY: Float,
   val bubbleWidth: Int,
   val audioUri: Uri? = null,
   val isOutgoing: Boolean,

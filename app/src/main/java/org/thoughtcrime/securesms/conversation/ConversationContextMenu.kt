@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
@@ -30,12 +31,17 @@ class ConversationContextMenu(private val anchor: View, items: List<ActionItem>)
 
   init {
     setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.signal_context_menu_background))
+    animationStyle = R.style.ConversationContextMenuAnimation
 
     isFocusable = false
     isOutsideTouchable = true
 
     if (Build.VERSION.SDK_INT >= 21) {
       elevation = 20f
+    }
+
+    setTouchInterceptor { _, event ->
+      event.action == MotionEvent.ACTION_OUTSIDE
     }
 
     contextMenuList.setItems(items)
