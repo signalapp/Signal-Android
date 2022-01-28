@@ -10,7 +10,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
@@ -160,9 +160,9 @@ public final class IdentityUtil {
 
   public static void processVerifiedMessage(Context context, VerifiedMessage verifiedMessage) {
     try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      TextSecureIdentityKeyStore identityStore  = ApplicationDependencies.getProtocolStore().aci().identities();
-      Recipient                  recipient      = Recipient.externalPush(context, verifiedMessage.getDestination());
-      Optional<IdentityRecord>   identityRecord = identityStore.getIdentityRecord(recipient.getId());
+      SignalIdentityKeyStore   identityStore  = ApplicationDependencies.getProtocolStore().aci().identities();
+      Recipient                recipient      = Recipient.externalPush(context, verifiedMessage.getDestination());
+      Optional<IdentityRecord> identityRecord = identityStore.getIdentityRecord(recipient.getId());
 
       if (!identityRecord.isPresent() && verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT) {
         Log.w(TAG, "No existing record for default status");

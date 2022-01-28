@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BackupUtil;
@@ -249,6 +250,17 @@ public class FullBackupImporter extends FullBackupBase {
   @SuppressLint("ApplySharedPref")
   private static void processPreference(@NonNull Context context, SharedPreference preference) {
     SharedPreferences preferences = context.getSharedPreferences(preference.getFile(), 0);
+
+    // Identity keys were moved from shared prefs into SignalStore. Need to handle importing backups made before the migration.
+    if ("SecureSMS-Preferences".equals(preference.getFile())) {
+      if ("pref_identity_public_v3".equals(preference.getKey()) && preference.hasValue()) {
+        SignalStore.account().restoreLegacyIdentityPublicKeyFromBackup(preference.getValue());
+      } else if ("pref_identity_private_v3".equals(preference.getKey()) && preference.hasValue()) {
+        SignalStore.account().restoreLegacyIdentityPrivateKeyFromBackup(preference.getValue());
+      }
+
+      return;
+    }
 
     if (preference.hasValue()) {
       preferences.edit().putString(preference.getKey(), preference.getValue()).commit();

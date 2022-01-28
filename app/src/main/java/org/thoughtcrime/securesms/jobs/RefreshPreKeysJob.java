@@ -85,7 +85,7 @@ public class RefreshPreKeysJob extends BaseJob {
     }
 
     List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeys(context);
-    IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context);
+    IdentityKeyPair    identityKey         = SignalStore.account().getAciIdentityKey();
     SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
     Log.i(TAG, "Registering new prekeys...");

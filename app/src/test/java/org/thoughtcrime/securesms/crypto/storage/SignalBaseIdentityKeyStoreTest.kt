@@ -15,7 +15,7 @@ import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.libsignal.ecc.ECPublicKey
 import org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS
 
-class TextSecureIdentityKeyStoreTest {
+class SignalBaseIdentityKeyStoreTest {
 
   companion object {
     private const val ADDRESS = "address1"
@@ -29,7 +29,7 @@ class TextSecureIdentityKeyStoreTest {
   @Test
   fun `getIdentity() hits disk on first retrieve but not the second`() {
     val mockDb = mock(IdentityDatabase::class.java)
-    val subject = TextSecureIdentityKeyStore(mock(Context::class.java), mockDb)
+    val subject = SignalBaseIdentityKeyStore(mock(Context::class.java), mockDb)
     val identityKey = IdentityKey(ECPublicKey.fromPublicKeyBytes(ByteArray(32)))
     val record = mockRecord(ADDRESS, identityKey)
 
@@ -45,7 +45,7 @@ class TextSecureIdentityKeyStoreTest {
   @Test
   fun `invalidate() evicts cache entry`() {
     val mockDb = mock(IdentityDatabase::class.java)
-    val subject = TextSecureIdentityKeyStore(mock(Context::class.java), mockDb)
+    val subject = SignalBaseIdentityKeyStore(mock(Context::class.java), mockDb)
     val identityKey = IdentityKey(ECPublicKey.fromPublicKeyBytes(ByteArray(32)))
     val record = mockRecord(ADDRESS, identityKey)
 

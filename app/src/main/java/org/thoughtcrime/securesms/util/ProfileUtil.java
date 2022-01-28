@@ -300,7 +300,7 @@ public final class ProfileUtil {
     if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
       return null;
     } else {
-      IdentityKeyPair         identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(ApplicationDependencies.getApplication());
+      IdentityKeyPair         identityKeyPair = SignalStore.account().getAciIdentityKey();
       MobileCoinPublicAddress publicAddress   = ApplicationDependencies.getPayments()
                                                                        .getWallet()
                                                                        .getMobileCoinPublicAddress();

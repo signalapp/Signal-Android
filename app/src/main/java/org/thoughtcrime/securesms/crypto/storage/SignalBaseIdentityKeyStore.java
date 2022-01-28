@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
+import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore.SaveResult;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -19,12 +20,12 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.AccountIdentifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +33,14 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class TextSecureIdentityKeyStore implements IdentityKeyStore {
+/**
+ * We technically need a separate ACI and PNI identity store, but we want them both to share the same underlying data, including the same cache.
+ * So this class represents the core store, and we can create multiple {@link SignalIdentityKeyStore} that use this same instance, changing only what each of
+ * those reports as their own identity key.
+ */
+public class SignalBaseIdentityKeyStore {
 
-  private static final String TAG = Log.tag(TextSecureIdentityKeyStore.class);
+  private static final String TAG = Log.tag(SignalBaseIdentityKeyStore.class);
 
   private static final Object LOCK                        = new Object();
   private static final int    TIMESTAMP_THRESHOLD_SECONDS = 5;
@@ -42,26 +48,19 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   private final Context context;
   private final Cache   cache;
 
-  public TextSecureIdentityKeyStore(Context context) {
+  public SignalBaseIdentityKeyStore(@NonNull Context context) {
     this(context, SignalDatabase.identities());
   }
 
-  TextSecureIdentityKeyStore(@NonNull Context context, @NonNull IdentityDatabase identityDatabase) {
+  SignalBaseIdentityKeyStore(@NonNull Context context, @NonNull IdentityDatabase identityDatabase) {
     this.context = context;
     this.cache   = new Cache(identityDatabase);
   }
 
-  @Override
-  public IdentityKeyPair getIdentityKeyPair() {
-    return IdentityKeyUtil.getIdentityKeyPair(context);
-  }
-
-  @Override
   public int getLocalRegistrationId() {
     return SignalStore.account().getRegistrationId();
   }
 
-  @Override
   public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
     return saveIdentity(address, identityKey, false) == SaveResult.UPDATE;
   }
@@ -121,15 +120,14 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     }
   }
 
-  @Override
-  public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
+  public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, IdentityKeyStore.Direction direction) {
     Recipient self = Recipient.self();
 
     boolean isSelf = address.getName().equals(self.requireAci().toString()) ||
                      address.getName().equals(self.requireE164());
 
     if (isSelf) {
-      return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
+      return identityKey.equals(SignalStore.account().getAciIdentityKey().getPublicKey());
     }
 
     IdentityStoreRecord record = cache.get(address.getName());
@@ -144,7 +142,6 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     }
   }
 
-  @Override
   public IdentityKey getIdentity(SignalProtocolAddress address) {
     IdentityStoreRecord record = cache.get(address.getName());
     return record != null ? record.getIdentityKey() : null;
@@ -316,12 +313,5 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     public synchronized void invalidate(@NonNull String addressName) {
       cache.remove(addressName);
     }
-  }
-
-  public enum SaveResult {
-    NEW,
-    UPDATE,
-    NON_BLOCKING_APPROVAL_REQUIRED,
-    NO_CHANGE
   }
 }

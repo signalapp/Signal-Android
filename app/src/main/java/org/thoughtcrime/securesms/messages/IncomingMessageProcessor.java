@@ -168,7 +168,6 @@ public class IncomingMessageProcessor {
 
     private boolean needsToEnqueueDecryption() {
       return !jobManager.areQueuesEmpty(SetUtil.newHashSet(Job.Parameters.MIGRATION_QUEUE_KEY, PushDecryptMessageJob.QUEUE)) ||
-             !IdentityKeyUtil.hasIdentityKey(context)                                                                        ||
              TextSecurePreferences.getNeedsSqlCipherMigration(context);
     }
 

@@ -182,12 +182,6 @@ public class FullBackupExporter extends FullBackupBase {
         stopwatch.split("table::" + table);
       }
 
-      for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
-        throwIfCanceled(cancellationSignal);
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
-        outputStream.write(preference);
-      }
-
       for (BackupProtos.SharedPreference preference : TextSecurePreferences.getPreferencesToSaveToBackup(context)) {
         throwIfCanceled(cancellationSignal);
         EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));

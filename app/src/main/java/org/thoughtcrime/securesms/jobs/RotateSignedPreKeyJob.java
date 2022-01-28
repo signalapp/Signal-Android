@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
@@ -53,7 +54,7 @@ public class RotateSignedPreKeyJob extends BaseJob {
     Log.i(TAG, "Rotating signed prekey...");
 
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
-    IdentityKeyPair             identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
+    IdentityKeyPair             identityKey        = SignalStore.account().getAciIdentityKey();
     SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
     accountManager.setSignedPreKey(signedPreKeyRecord);

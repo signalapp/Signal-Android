@@ -129,7 +129,7 @@ public final class PushDecryptMessageJob extends BaseJob {
   }
 
   private boolean needsMigration() {
-    return !IdentityKeyUtil.hasIdentityKey(context) || TextSecurePreferences.getNeedsSqlCipherMigration(context);
+    return TextSecurePreferences.getNeedsSqlCipherMigration(context);
   }
 
   private void postMigrationNotification() {

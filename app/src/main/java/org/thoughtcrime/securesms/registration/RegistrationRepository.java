@@ -134,7 +134,7 @@ public final class RegistrationRepository {
     PNI     pni    = PNI.parseOrThrow(response.getPni());
     boolean hasPin = response.isStorageCapable();
 
-    IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(context);
+    IdentityKeyPair    identityKey  = SignalStore.account().getAciIdentityKey();
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(context);
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(context, identityKey, true);
 

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -26,16 +25,16 @@ import java.util.UUID;
 
 public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDataStore {
 
-  private final Context                    context;
-  private final TextSecurePreKeyStore      preKeyStore;
-  private final TextSecurePreKeyStore      signedPreKeyStore;
-  private final TextSecureIdentityKeyStore identityKeyStore;
-  private final TextSecureSessionStore     sessionStore;
-  private final SignalSenderKeyStore       senderKeyStore;
+  private final Context                context;
+  private final TextSecurePreKeyStore  preKeyStore;
+  private final TextSecurePreKeyStore  signedPreKeyStore;
+  private final SignalIdentityKeyStore identityKeyStore;
+  private final TextSecureSessionStore sessionStore;
+  private final SignalSenderKeyStore   senderKeyStore;
 
   public SignalServiceAccountDataStoreImpl(@NonNull Context context,
                                            @NonNull TextSecurePreKeyStore preKeyStore,
-                                           @NonNull TextSecureIdentityKeyStore identityKeyStore,
+                                           @NonNull SignalIdentityKeyStore identityKeyStore,
                                            @NonNull TextSecureSessionStore sessionStore,
                                            @NonNull SignalSenderKeyStore senderKeyStore)
   {
@@ -193,7 +192,7 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
     senderKeyStore.clearSenderKeySharedWith(addresses);
   }
 
-  public @NonNull TextSecureIdentityKeyStore identities() {
+  public @NonNull SignalIdentityKeyStore identities() {
     return identityKeyStore;
   }
 

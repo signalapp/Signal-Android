@@ -61,7 +61,7 @@ public class CreateSignedPreKeyJob extends BaseJob {
     }
 
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
-    IdentityKeyPair             identityKeyPair    = IdentityKeyUtil.getIdentityKeyPair(context);
+    IdentityKeyPair             identityKeyPair    = SignalStore.account().getAciIdentityKey();
     SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKeyPair, true);
 
     accountManager.setSignedPreKey(signedPreKeyRecord);

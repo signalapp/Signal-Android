@@ -52,6 +52,7 @@ public final class AppInitialization {
     Log.i(TAG, "onPostBackupRestore()");
 
     ApplicationDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
+    SignalStore.onPostBackupRestore();
     SignalStore.onFirstEverAppLaunch();
     SignalStore.onboarding().clearAll();
     TextSecurePreferences.onPostBackupRestore(context);

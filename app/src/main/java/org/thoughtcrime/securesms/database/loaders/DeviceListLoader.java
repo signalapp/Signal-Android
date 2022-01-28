@@ -11,6 +11,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.devicelist.Device;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -77,7 +78,7 @@ public class DeviceListLoader extends AsyncLoader<List<Device>> {
         throw new IOException("Got a DeviceName that wasn't properly populated.");
       }
 
-      return new Device(deviceInfo.getId(), new String(decryptName(deviceName, IdentityKeyUtil.getIdentityKeyPair(getContext()))), deviceInfo.getCreated(), deviceInfo.getLastSeen());
+      return new Device(deviceInfo.getId(), new String(decryptName(deviceName, SignalStore.account().getAciIdentityKey())), deviceInfo.getCreated(), deviceInfo.getLastSeen());
 
     } catch (IOException e) {
       Log.w(TAG, "Failed while reading the protobuf.", e);

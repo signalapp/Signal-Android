@@ -150,6 +150,13 @@ public final class SignalStore {
     getInstance().store.resetCache();
   }
 
+  /**
+   * Restoring a backup changes the underlying disk values, so the cache needs to be reset.
+   */
+  public static void onPostBackupRestore() {
+    getInstance().store.resetCache();
+  }
+
   public static @NonNull AccountValues account() {
     return getInstance().accountValues;
   }

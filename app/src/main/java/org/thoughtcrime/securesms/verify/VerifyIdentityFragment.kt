@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -45,7 +45,7 @@ class VerifyIdentityFragment : Fragment(R.layout.fragment_container), ScanListen
     VerifyDisplayFragment.create(
       recipientId,
       remoteIdentity,
-      IdentityKeyParcelable(IdentityKeyUtil.getIdentityKey(requireContext())),
+      IdentityKeyParcelable(SignalStore.account().aciIdentityKey.publicKey),
       Recipient.self().requireE164(),
       isVerified
     )

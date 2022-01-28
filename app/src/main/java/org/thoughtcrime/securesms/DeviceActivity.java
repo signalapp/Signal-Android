@@ -24,6 +24,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.qr.ScanListener;
 import org.thoughtcrime.securesms.util.Base64;
@@ -187,7 +188,7 @@ public class DeviceActivity extends PassphraseRequiredActivity
           }
 
           ECPublicKey      publicKey         = Curve.decodePoint(Base64.decode(publicKeyEncoded), 0);
-          IdentityKeyPair  identityKeyPair   = IdentityKeyUtil.getIdentityKeyPair(context);
+          IdentityKeyPair  identityKeyPair   = SignalStore.account().getAciIdentityKey();
           Optional<byte[]> profileKey        = Optional.of(ProfileKeyUtil.getProfileKey(getContext()));
 
           TextSecurePreferences.setMultiDevice(DeviceActivity.this, true);

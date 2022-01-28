@@ -13,10 +13,11 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
+import org.thoughtcrime.securesms.crypto.storage.SignalBaseIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
@@ -75,6 +76,7 @@ import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
@@ -276,12 +278,20 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceDataStoreImpl provideProtocolStore() {
-    SignalServiceAccountDataStoreImpl aci = new SignalServiceAccountDataStoreImpl(context,
-                                                                                  new TextSecurePreKeyStore(context),
-                                                                                  new TextSecureIdentityKeyStore(context),
-                                                                                  new TextSecureSessionStore(context),
-                                                                                  new SignalSenderKeyStore(context));
-    return new SignalServiceDataStoreImpl(context, aci, aci);
+    SignalBaseIdentityKeyStore baseIdentityStore = new SignalBaseIdentityKeyStore(context);
+
+    SignalServiceAccountDataStoreImpl aciStore = new SignalServiceAccountDataStoreImpl(context,
+                                                                                       new TextSecurePreKeyStore(context),
+                                                                                       new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getAciIdentityKey()),
+                                                                                       new TextSecureSessionStore(context),
+                                                                                       new SignalSenderKeyStore(context));
+
+    SignalServiceAccountDataStoreImpl pniStore = new SignalServiceAccountDataStoreImpl(context,
+                                                                                       new TextSecurePreKeyStore(context),
+                                                                                       new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getPniIdentityKey()),
+                                                                                       new TextSecureSessionStore(context),
+                                                                                       new SignalSenderKeyStore(context));
+    return new SignalServiceDataStoreImpl(context, aciStore, pniStore);
   }
 
   @Override
