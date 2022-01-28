@@ -66,6 +66,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -538,6 +539,13 @@ public class ConversationParentFragment extends Fragment
     });
     initializeInsightObserver();
     initializeActionBar();
+
+    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+      @Override
+      public void handleOnBackPressed() {
+        onBackPressed();
+      }
+    });
   }
 
   // TODO [alex] LargeScreenSupport -- This needs to be fed a stream of intents
@@ -1102,13 +1110,12 @@ public class ConversationParentFragment extends Fragment
     case R.id.menu_expiring_messages_off:
     case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
     case R.id.menu_create_bubble:             handleCreateBubble();                              return true;
-    case android.R.id.home:                   requireActivity().onBackPressed();                 return true;
+    case android.R.id.home:                   requireActivity().finish();                        return true;
     }
 
     return false;
   }
 
-  // TODO [alex] LargeScreenSupport -- Add to a back handler
   public void onBackPressed() {
     Log.d(TAG, "onBackPressed()");
     if (reactionDelegate.isShowing()) {
@@ -1116,7 +1123,7 @@ public class ConversationParentFragment extends Fragment
     } else if (container.isInputOpen()) {
       container.hideCurrentInput(composeText);
     } else {
-      requireActivity().onBackPressed();
+      requireActivity().finish();
     }
   }
 
