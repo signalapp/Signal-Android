@@ -133,6 +133,7 @@ dependencyResolutionManagement {
             alias('mockito-core').to('org.mockito:mockito-core:2.23.4')
             alias('robolectric-robolectric').to('org.robolectric', 'robolectric').versionRef('robolectric')
             alias('robolectric-shadows-multidex').to('org.robolectric', 'shadows-multidex').versionRef('robolectric')
+            alias('bouncycastle-bcprov-jdk15on').to('org.bouncycastle:bcprov-jdk15on:1.70')
             alias('hamcrest-hamcrest').to('org.hamcrest:hamcrest:2.2')
             alias('assertj-core').to('org.assertj:assertj-core:3.11.1')
             alias('powermock-api-mockito').to('org.powermock', 'powermock-api-mockito2').versionRef('powermock')
