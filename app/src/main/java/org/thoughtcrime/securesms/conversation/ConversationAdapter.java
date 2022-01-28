@@ -401,7 +401,7 @@ public class ConversationAdapter
   }
 
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {
-    int messagePosition = hasHeader() ? position - 1 : position;
+    int messagePosition = isTypingViewEnabled ? position - 1 : position;
     int count = messagePosition + 1;
     viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, count, count));
 
