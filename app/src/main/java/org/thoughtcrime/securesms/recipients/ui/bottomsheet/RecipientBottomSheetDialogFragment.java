@@ -211,13 +211,13 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       }
 
       ButtonStripPreference.State  buttonStripState = new ButtonStripPreference.State(
-          /* isMessageAvailable = */ !recipient.isSelf(),
-          /* isVideoAvailable = */   recipient.isRegistered() && !recipient.isSelf(),
-          /* isAudioAvailable = */   !recipient.isSelf(),
-          /* isMuteAvailable = */    false,
-          /* isSearchAvailable = */  false,
-          /* isAudioSecure = */      recipient.isRegistered(),
-          /* isMuted = */            false
+          /* isMessageAvailable = */ !recipient.isBlocked() && !recipient.isSelf(),
+          /* isVideoAvailable   = */ !recipient.isBlocked() && !recipient.isSelf() && recipient.isRegistered(),
+          /* isAudioAvailable   = */ !recipient.isBlocked() && !recipient.isSelf(),
+          /* isMuteAvailable    = */ false,
+          /* isSearchAvailable  = */ false,
+          /* isAudioSecure      = */ recipient.isRegistered(),
+          /* isMuted            = */ false
       );
 
       ButtonStripPreference.Model buttonStripModel = new ButtonStripPreference.Model(
@@ -246,7 +246,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
       new ButtonStripPreference.ViewHolder(buttonStrip).bind(buttonStripModel);
 
-      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf()) {
+      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf() || recipient.isBlocked()) {
         addContactButton.setVisibility(View.GONE);
       } else {
         addContactButton.setVisibility(View.VISIBLE);
