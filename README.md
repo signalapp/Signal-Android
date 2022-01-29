@@ -2,9 +2,7 @@
 
 Signal-BA is an unofficial fully FOSS version of Signal with some extra features.
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="100">](https://benarmstead.github.io/fdroid/repo?fingerprint=9CCBC7C297F0B54520834681D1D29C2184B2CD262E80AA9E453215284ED3D684)
-
-Or install it via this [apk](https://github.com/benarmstead/Signal-BA/releases/latest).
+Install it via this [apk](https://github.com/benarmstead/Signal-BA/releases/latest).
 
 ## Installation
 
