@@ -20,6 +20,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -362,6 +363,9 @@ public class ConversationParentFragment extends Fragment
   private static final int SMS_DEFAULT         = 11;
   private static final int MEDIA_SENDER        = 12;
 
+  private static final int     REQUEST_CODE_PIN_SHORTCUT = 902;
+  private static final String  ACTION_PINNED_SHORTCUT    = "action_pinned_shortcut";
+
   private   GlideRequests                glideRequests;
   protected ComposeText                  composeText;
   private   AnimatingToggle              buttonToggle;
@@ -403,6 +407,7 @@ public class ConversationParentFragment extends Fragment
   private   ImageView                wallpaper;
   private   View                     wallpaperDim;
   private   Toolbar                  toolbar;
+  private   BroadcastReceiver        pinnedShortcutReceiver;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -697,6 +702,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onDestroy() {
     if (securityUpdateReceiver != null)  requireActivity().unregisterReceiver(securityUpdateReceiver);
+    if (pinnedShortcutReceiver != null)  requireActivity().unregisterReceiver(pinnedShortcutReceiver);
     super.onDestroy();
   }
 
@@ -1276,6 +1282,15 @@ public class ConversationParentFragment extends Fragment
     final Context context = requireContext().getApplicationContext();
     final Recipient recipient = this.recipient.get();
 
+    if (pinnedShortcutReceiver == null) {
+      pinnedShortcutReceiver = new BroadcastReceiver() {
+        @Override public void onReceive(Context context, Intent intent) {
+          Toast.makeText(context, context.getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
+        }
+      };
+      requireActivity().registerReceiver(pinnedShortcutReceiver, new IntentFilter(ACTION_PINNED_SHORTCUT));
+    }
+
     GlideApp.with(this)
             .asBitmap()
             .load(recipient.getContactPhoto())
@@ -1327,9 +1342,10 @@ public class ConversationParentFragment extends Fragment
                                                                   .setIntent(ShortcutLauncherActivity.createIntent(context, recipient.getId()))
                                                                   .build();
 
-    if (ShortcutManagerCompat.requestPinShortcut(context, shortcutInfoCompat, null)) {
-      Toast.makeText(context, context.getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
-    }
+    Intent callbackIntent                = new Intent(ACTION_PINNED_SHORTCUT);
+    PendingIntent shortcutPinnedCallback = PendingIntent.getBroadcast(context, REQUEST_CODE_PIN_SHORTCUT, callbackIntent, 0);
+
+    ShortcutManagerCompat.requestPinShortcut(context, shortcutInfoCompat, shortcutPinnedCallback.getIntentSender());
 
     bitmap.recycle();
   }
