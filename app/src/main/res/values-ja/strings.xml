@@ -1310,7 +1310,7 @@
   <string name="SharedContactView_invite_to_signal">Signalに招待する</string>
   <string name="SharedContactView_message">Signalメッセージ</string>
   <!--SignalBottomActionBar-->
-  <string name="SignalBottomActionBar_more">続き</string>
+  <string name="SignalBottomActionBar_more">その他</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">あとで再度お知らせします。</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">明日、再度お知らせします。</string>

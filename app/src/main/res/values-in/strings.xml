@@ -1023,6 +1023,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Anda menandai nomor keamanan anda dengan %s tidak terverifikasi</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Anda menandai nomor keamanan anda dengan %s tidak terverifikasi dari perangkat lain</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sebuah pesan dari %s tidak dapat diterima</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s mengubah nomor teleponnya.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s memulai panggilan grup. %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s berada di panggilan grup. %2$s</string>
@@ -2943,6 +2944,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gunakan ini untuk mengubah nomor telepon Anda saat ini ke nomor telepon yang baru. Anda tidak dapat membatalkannya.\n\nSebelum melanjutkan, pastikan nomor baru Anda dapat menerima SMS atau panggilan telepon.</string>
   <string name="ChangeNumberFragment__continue">Lanjut</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Nomor telepon Anda telah diubah ke %1$s</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Oke</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->

@@ -353,7 +353,7 @@
   </plurals>
   <plurals name="ConversationListFragment_delete_plural">
     <item quantity="one">ഇല്ലാതാക്കുക </item>
-    <item quantity="other">ഇല്ലാതാക്കുക </item>
+    <item quantity="other">ഇല്ലാതാക്കൂ</item>
   </plurals>
   <string name="ConversationListFragment_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
   <plurals name="ConversationListFragment_s_selected">
@@ -377,7 +377,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ചില കോൺ‌ടാക്റ്റുകൾ‌ ലെഗസി ഗ്രൂപ്പുകളിൽ‌ ഉണ്ടാകാനാകില്ല.</string>
-  <string name="CreateGroupActivity__select_members">അംഗങ്ങളെ തിരഞ്ഞെടുക്കുക</string>
+  <string name="CreateGroupActivity__select_members">അംഗങ്ങളെ തിരഞ്ഞെടുക്കൂ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">പ്രൊഫൈൽ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ ക്രമീകരിക്കുന്നതിൽ പിശക്</string>
@@ -480,7 +480,7 @@
   <string name="AddToGroupActivity_add_to_groups">ഗ്രൂപ്പുകളിലേക്ക് ചേർക്കുക</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="AddToGroupActivity_add">ചേർക്കുക</string>
-  <string name="AddToGroupActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
+  <string name="AddToGroupActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കൂ</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
   <string name="ChooseNewAdminActivity_done">ചെയ്‌തു</string>
@@ -694,7 +694,7 @@
   <string name="GroupMentionSettingDialog_always_notify_me">എന്നെ അറിയിക്കുക</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">എന്നെ അറിയിക്കരുത്</string>
   <!--ManageProfileFragment-->
-  <string name="ManageProfileFragment_profile_name">പ്രൊഫൈൽ പേര്</string>
+  <string name="ManageProfileFragment_profile_name">പ്രൊഫൈലിന്റെ പേര്</string>
   <string name="ManageProfileFragment_username">ഉപയോക്തൃനാമം</string>
   <string name="ManageProfileFragment_about">എന്നെ പറ്റി</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">നിങ്ങളെ പറ്റി രണ്ടുവാക്ക് എഴുതൂ</string>
@@ -841,11 +841,11 @@
   <string name="MediaOverviewActivity_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
   <plurals name="MediaOverviewActivity_save_plural">
     <item quantity="one">സൂക്ഷിക്കുക</item>
-    <item quantity="other">സൂക്ഷിക്കുക</item>
+    <item quantity="other">സംരക്ഷിക്കൂ</item>
   </plurals>
   <plurals name="MediaOverviewActivity_delete_plural">
     <item quantity="one">ഇല്ലാതാക്കുക</item>
-    <item quantity="other">ഇല്ലാതാക്കുക</item>
+    <item quantity="other">ഇല്ലാതാക്കൂ</item>
   </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d തിരഞ്ഞെടുത്തു (%2$s)</item>
@@ -1019,7 +1019,7 @@
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">നിങ്ങൾ ഗ്രൂപ്പ് വിവരണം മാറ്റി.</string>
   <string name="MessageRecord_s_changed_the_group_description">%1$s ഗ്രൂപ്പ് വിവരണം മാറ്റി.</string>
-  <string name="MessageRecord_the_group_description_has_changed">ഗ്രൂപ്പ് വിവരണം മാറി.</string>
+  <string name="MessageRecord_the_group_description_has_changed">ഗ്രൂപ്പ് വിവരണം മാറിയിരിക്കുന്നു.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">നിങ്ങൾ ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ഗ്രൂപ്പ് അവതാർ മാറ്റി.</string>
@@ -1244,7 +1244,7 @@
   <string name="WebRtcCallActivity__calling">വിളിക്കുന്നു…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">പങ്കെടുക്കുന്നവരെ വിളിക്കാൻ കഴിയാത്തത്ര വലുതാണ് ഗ്രൂപ്പ്.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_call">Signal വിളി</string>
+  <string name="WebRtcCallView__signal_call">Signal കോൾ</string>
   <string name="WebRtcCallView__signal_video_call">Signal വീഡിയോ കോൾ</string>
   <string name="WebRtcCallView__start_call">കോൾ ആരംഭിക്കുക</string>
   <string name="WebRtcCallView__join_call">കോളിൽ ചേരുക</string>
@@ -1433,7 +1433,7 @@
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ഇല്ലാതാക്കാൻ ഒരു വരി തൊടുക</string>
   <string name="SubmitDebugLogActivity_submit">സമർപ്പിക്കുക</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ലോഗുകൾ സമർപ്പിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
-  <string name="SubmitDebugLogActivity_success">വിജയം!</string>
+  <string name="SubmitDebugLogActivity_success">വിജയകരം!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ഈ URL പകർത്തി നിങ്ങളുടെ പ്രശ്ന റിപ്പോർട്ടിലേക്കോ പിന്തുണാ ഇമെയിലിലേക്കോ ചേർക്കുക:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">പങ്കിടുക</string>
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">സംഭാവന നൽകുന്നവർക്ക് കാണുന്നതിന് ഈ ലോഗ് പരസ്യമായി ഓൺലൈനിൽ പോസ്റ്റുചെയ്യും. അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുമ്പ് നിങ്ങൾക്ക് ഇത് പരിശോധിക്കാവുന്നതാണ്.</string>
@@ -1575,7 +1575,7 @@
   <string name="MessageNotifier_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">\"കോൺ‌ടാക്റ്റ് Signal-ഇൽ (സിഗ്‌നലിൽ)‌ ചേർ‌ന്നു\" എന്ന അറിയിപ്പുകൾ ഓഫാക്കണോ? നിങ്ങൾക്ക് അവ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കാം: Signal-ഇൽ (സിഗ്നലിൽ) &gt; ക്രമീകരണങ്ങൾ &gt; അറിയിപ്പുകൾ.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_channel_messages">സന്ദേശങ്ങൾ</string>
+  <string name="NotificationChannel_channel_messages">സന്ദേശങ്ങള്‍</string>
   <string name="NotificationChannel_calls">കോളുകൾ</string>
   <string name="NotificationChannel_failures">പരാജയങ്ങൾ</string>
   <string name="NotificationChannel_backups">ബാക്കപ്പുകൾ</string>
@@ -1595,7 +1595,7 @@
   <string name="SaveAttachmentTask_saved_to">%s-ലേക്ക് സംരക്ഷിച്ചു</string>
   <string name="SaveAttachmentTask_saved">സംരക്ഷിച്ചു</string>
   <!--SearchToolbar-->
-  <string name="SearchToolbar_search">തിരയൽ</string>
+  <string name="SearchToolbar_search">തിരയുക</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">സംഭാഷണങ്ങൾ, കോൺ‌ടാക്റ്റുകൾ, സന്ദേശങ്ങൾ എന്നിവയ്ക്കായി തിരയുക</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">കുറുക്കുവഴി അസാധുവാണ്</string>
@@ -3342,12 +3342,14 @@
   <string name="ImageEditorHud__undo">തിരിച്ചാക്കുക</string>
   <string name="ImageEditorHud__delete">ഇല്ലാതാക്കൂ</string>
   <string name="MediaCountIndicatorButton__send">അയയ്‌ക്കുക</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">നീക്കം ചെയ്യാൻ തൊടുക</string>
   <string name="MediaReviewSelectedItem__tap_to_select">തിരഞ്ഞെടുക്കാൻ ടാപ്പുചെയ്യുക</string>
   <string name="MediaReviewImagePageFragment__discard">കളയുക</string>
   <string name="MediaReviewImagePageFragment__discard_changes">മാറ്റങ്ങൾ ഉപേക്ഷിക്കുക?</string>
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">ഈ ഫോട്ടോയിൽ നിങ്ങൾ വരുത്തിയ മാറ്റങ്ങളെല്ലാം നഷ്‌ടമാകും.</string>
   <string name="CameraFragment__failed_to_open_camera">ക്യാമറ തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="BadgesOverviewFragment__my_badges">എന്റെ ബാഡ്ജുകൾ</string>
+  <string name="BadgesOverviewFragment__featured_badge">ഫീച്ചേർഡ് ബാഡ്ജ്</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">പ്രൊഫൈലിൽ ബാഡ്ജുകൾ പ്രദർശിപ്പിക്കുക</string>
   <string name="BadgeSelectionFragment__select_badges">ബാഡ്ജുകൾ തിരഞ്ഞെടുക്കുക</string>
   <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
@@ -3373,7 +3375,10 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">നിങ്ങൾക്ക്</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">പ്രതിമാസ സസ്റ്റൈനർ ആകാം.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">പ്രൊഫൈലിൽ പ്രദർശിപ്പിക്കുക</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ഫീച്ചേർഡ് ബാഡ്ജ് ഉണ്ടാക്കുക</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ചെയ്‌തു</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">നിങ്ങൾക്ക് ഒന്നിലധികം ബാഡ്‌ജുകൾ ഉള്ളപ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈലിൽ മറ്റുള്ളവർക്ക് കാണുന്നതിന് ഫീച്ചർ ചെയ്യുന്നതിനായി നിങ്ങൾക്ക് ഒന്ന് തിരഞ്ഞെടുക്കാം.</string>
+  <string name="BecomeASustainerFragment__get_badges">Signal-നെ പിന്തുണച്ച് നിങ്ങളുടെ പ്രൊഫൈലിനായി ബാഡ്ജുകൾ നേടുക.</string>
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
   <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>
   <string name="MySupportPreference__processing_transaction">ഇടപാട് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
@@ -3389,6 +3394,11 @@
   <string name="SubscribeFragment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__your_badge_could_not_be_added">നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് നിങ്ങളുടെ ബാഡ്ജ് ചേർക്കാൻ കഴിഞ്ഞില്ല, എന്നാൽ നിങ്ങളിൽ നിന്ന് നിരക്ക് ഈടാക്കിയിരിക്കാം. പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
+  <string name="DonationsErrors__your_payment">നിങ്ങളുടെ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യാനായില്ല, നിങ്ങളിൽ നിന്ന് നിരക്ക് ഈടാക്കിയിട്ടില്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.</string>
+  <string name="DonationsErrors__still_processing">പ്രോസസ്സ് ചെയ്യുന്നു</string>
+  <string name="DonationsErrors__couldnt_add_badge">ബാഡ്ജ് ചേർക്കാനായില്ല</string>
+  <string name="DonationsErrors__your_badge_could_not">നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് നിങ്ങളുടെ ബാഡ്ജ് ചേർക്കാൻ കഴിഞ്ഞില്ല, എന്നാൽ നിങ്ങളിൽ നിന്ന് നിരക്ക് ഈടാക്കിയിരിക്കാം. പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
   <string name="DonationsErrors__your_payment_is_still">നിങ്ങളുടെ പേയ്‌മെന്റ് ഇപ്പോഴും പ്രോസസ്സ് ചെയ്യുകയാണ്. നിങ്ങളുടെ കണക്ഷനെ ആശ്രയിച്ച് ഇതിന് കുറച്ച് മിനിറ്റുകൾ എടുത്തേക്കാം.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ലഭ്യമല്ല</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">ഇൻ-ആപ്പിൽ സംഭാവന നൽകാൻ നിങ്ങൾ Google Pay സജ്ജീകരിക്കേണ്ടതുണ്ട്.</string>
@@ -3396,31 +3406,33 @@
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കുന്നതിന് ഇന്റർനെറ്റ് കണക്ഷൻ ആവശ്യമാണ്.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">നിങ്ങളുടെ ഉപകരണം Google Pay പിന്തുണയ്‌ക്കാത്തതിനാൽ ഒരു ബാഡ്‌ജ് നേടാൻ നിങ്ങൾക്ക് സബ്‌സ്‌ക്രൈബ് ചെയ്യാനാകില്ല. ഞങ്ങളുടെ വെബ്‌സൈറ്റിൽ സംഭാവന നൽകിക്കൊണ്ട് നിങ്ങൾക്ക് ഇപ്പോഴും Signal-നെ പിന്തുണയ്ക്കാം.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">നെറ്റ്‌വർക്ക് പിശക്. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
-  <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കൂ</string>
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
-  <string name="EditNotificationProfileFragment__profile_name">പ്രൊഫൈൽ പേര്</string>
+  <string name="EditNotificationProfileFragment__profile_name">പ്രൊഫൈലിന്റെ പേര്</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
   <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
   <!--Call to action button to continue to the next step-->
   <string name="EditNotificationProfileFragment__next">അടുത്തത്</string>
   <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
-  <string name="EditNotificationProfileFragment__create">സൃഷ്ടിക്കുക</string>
+  <string name="EditNotificationProfileFragment__create">സൃഷ്ടിക്കൂ</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">സംരക്ഷിക്കൂ</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">ഈ പ്രൊഫൈൽ തിരുത്തുക</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">ജോലി</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__sleep">ഉറക്കം</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__driving">വാഹനം ഓടിയ്ക്കുല്‍</string>
+  <string name="EditNotificationProfileFragment__driving">വാഹനം ഓടിക്കുന്നു</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">ശ്രദ്ധ കേന്ദ്രീകരിക്കുല്‍</string>
   <!--Error message shown when attempting to next/save without a profile name-->
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">അനുവദിച്ചിരിക്കുന്ന അറിയിപ്പുകൾ</string>
   <!--Description of what the user should be doing with this screen-->
   <!--Button text that launches the contact picker to select from-->
   <!--Call to action button on contact picker for adding to profile-->
@@ -3429,9 +3441,11 @@
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">പ്രൊഫൈലുകൾ</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">പുതിയ പ്രൊഫൈൽ</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">ഓൺ</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">പ്രൊഫൈൽ ഇല്ലാതാക്കൂ</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">തിരിച്ചാക്കുക</string>
@@ -3470,7 +3484,9 @@
   <!--First letter of Friday-->
   <!--First letter of Saturday-->
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">ആരംഭ സമയം സജ്ജമാക്കുക</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">അവസാന സമയം സജ്ജമാക്കുക</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">സംരക്ഷിക്കൂ</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3478,21 +3494,28 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">അടുത്തത്</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">ഷെഡ്യൂളിന് കുറഞ്ഞത് ഒരു ദിവസമെങ്കിലും ഉണ്ടായിരിക്കണം</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">പ്രൊഫൈൽ സൃഷ്ടിച്ചു</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">ചെയ്‌തു</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">ചാറ്റ് ലിസ്റ്റിലെ മെനു വഴി നിങ്ങളുടെ പ്രൊഫൈൽ സ്വമേധയാ ഓണാക്കുകയോ ഓഫാക്കുകയോ ചെയ്യാം.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ ഓട്ടോമേറ്റ് ചെയ്യാൻ ക്രമീകരണങ്ങളിൽ ഒരു ഷെഡ്യൂൾ ചേർക്കുക.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">നിങ്ങളുടെ ഷെഡ്യൂൾ അനുസരിച്ച് നിങ്ങളുടെ പ്രൊഫൈൽ സ്വയമേവ ഓണും ഓഫും ആകും.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">പുതിയ പ്രൊഫൈൽ</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s വരെ</string>
   <!--Option to view profile details-->
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
-  <string name="NotificationProfilesMegaphone__notification_profiles">അറിയിപ്പ് രൂപരേഖകള്‍</string>
+  <string name="NotificationProfilesMegaphone__notification_profiles">അറിയിപ്പ് പ്രൊഫൈലുകൾ</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ആളുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നും മാത്രം അറിയിപ്പുകൾ നേടുക.</string>
   <!--Call to action button to create a profile from megaphone-->
   <string name="NotificationProfilesMegaphone__create_a_profile">ഒരു പ്രൊഫൈൽ സൃഷ്ടിക്കുക</string>
   <!--Button to dismiss notification profile megaphone-->

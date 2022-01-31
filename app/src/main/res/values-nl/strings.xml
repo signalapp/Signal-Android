@@ -2147,7 +2147,7 @@
   <string name="preferences_data_and_storage__never">Nooit</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
   <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele-dataoverdracht</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Wanneer je een slechte verbinding hebt kan het instellen van minder dataoverdracht de kwaliteit van een oproep juist verbeteren.</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Wanneer je een slechte verbinding hebt kan het instellen van minder dataoverdracht de kwaliteit van een oproep verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
   <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend gesprek</string>

@@ -33,7 +33,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">ਸਕਰੀਨ ਲੌਕ %1$s, ਰਜਿਟਰੇਸ਼ਨ ਲੌਕ %2$s </string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ਥੀਮ %1$s,  ਭਾਸ਼ਾ %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ਰਜਿਸਟਰੇਸ਼ਨ ਲੌਕ ਲਈ PINs ਜ਼ਰੂਰੀ ਹਨ। PINs ਅਸਮਰੱਥ ਕਰਨ ਲਈ ਪਹਿਲਾਂ ਰਜਿਸਟਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਅਸਮਰੱਥ ਕਰੋ।</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ਰਜਿਸਟਰੇਸ਼ਨ ਲਾਕ ਲਈ PIN ਜ਼ਰੂਰੀ ਹਨ। PIN ਅਸਮਰੱਥ ਕਰਨ ਲਈ ਪਹਿਲਾਂ ਰਜਿਸਟਰੇਸ਼ਨ ਲਾਕ ਨੂੰ ਅਸਮਰੱਥ ਕਰੋ।</string>
   <string name="ApplicationPreferencesActivity_pin_created">ਪਿੰਨ ਬਣਾਇਆ।</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN ਅਸਮਰੱਥ ਹੈ।</string>
   <string name="ApplicationPreferencesActivity_hide">ਲੁਕਾਓ</string>
@@ -62,7 +62,7 @@
   <string name="AttachmentKeyboard_give_access">ਪਹੁੰਚ ਦਿਓ</string>
   <string name="AttachmentKeyboard_payment">ਭੁਗਤਾਨ</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">ਮੀਡੀਆ ਨੂੰ ਚੁਣਨ ਲਈ ਕੋਈ ਐਪ ਨਹੀਂ ਮਿਲ ਸਕੀ</string>
+  <string name="AttachmentManager_cant_open_media_selection">ਮੀਡੀਆ ਨੂੰ ਚੁਣਨ ਲਈ ਕੋਈ ਐਪ ਨਹੀਂ ਲੱਭੀ।</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal ਨੂੰ ਫ਼ੋਟੋਆਂ, ਵੀਡੀਓ ਜਾਂ ਆਡੀਓ ਜੋੜਨ ਲਈ ਸਟੋਰੇਜ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਪਰ ਇਸਨੂੰ ਸਥਾਈ ਤੌਰ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਮੇਨੂ ’ਤੇ ਜਾਰੀ ਰੱਖੋ, \"ਇਜਾਜ਼ਤਾਂ\" ਚੁਣੋ ਅਤੇ \"ਸਟੋਰੇਜ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal ਨੂੰ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਜੋੜਨ ਲਈ ਸੰਪਰਕਾਂ ਲਈ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਪਰ ਇਸਨੂੰ ਸਥਾਈ ਤੌਰ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਮੇਨੂ ’ਤੇ ਜਾਰੀ ਰੱਖੋ, \"ਇਜਾਜ਼ਤਾਂ\" ਚੁਣੋ ਅਤੇ \"ਸੰਪਰਕ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal ਨੂੰ ਕੋਈ ਟਿਕਾਣਾ ਜੋੜਨ ਲਈ ਟਿਕਾਣੇ ਲਈ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਪਰ ਇਸਨੂੰ ਸਥਾਈ ਤੌਰ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਮੇਨੂ ’ਤੇ ਜਾਰੀ ਰੱਖੋ, \"ਇਜਾਜ਼ਤਾਂ\" ਚੁਣੋ ਅਤੇ \"ਟਿਕਾਣਾ\" ਸਮਰੱਥ ਕਰੋ।</string>
@@ -337,6 +337,10 @@
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">ਚੁੱਪ</item>
     <item quantity="other">ਚੁੱਪ</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">ਅਣ-ਮਿਊਟ ਕਰੋ</item>
+    <item quantity="other">ਅਣ-ਮਿਊਟ ਕਰੋ</item>
   </plurals>
   <string name="ConversationListFragment_select">ਚੁਣੋ</string>
   <plurals name="ConversationListFragment_archive_plural">
@@ -839,6 +843,10 @@
     <item quantity="one">ਹਟਾਓ</item>
     <item quantity="other">ਹਟਾਓ</item>
   </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$dਚੁਣਿਆ (%2$s)</item>
+    <item quantity="other">%1$d ਚੁਣੇ (%2$s)</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">ਫ਼ਾਈਲ</string>
   <string name="MediaOverviewActivity_audio">ਆਡੀਓ</string>
   <string name="MediaOverviewActivity_video">ਵੀਡੀਓ</string>
@@ -861,7 +869,7 @@
   <string name="Megaphones_add_photo">ਫ਼ੋਟੋ ਜੋੜੋ</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal ਕਾਲ ਚੱਲ ਰਹੀ ਹੈ</string>
-  <string name="NotificationBarManager__establishing_signal_call">Signal ਕਾਲ ਸਥਾਪਤ ਕਰ ਰਿਹਾ ਹੈ</string>
+  <string name="NotificationBarManager__establishing_signal_call">Signal ਕਾਲ ਸਥਾਪਤ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ</string>
   <string name="NotificationBarManager__incoming_signal_call">ਆ ਰਹੀ Signal ਕਾਲ</string>
   <string name="NotificationBarManager__incoming_signal_group_call">ਆ ਰਹੀ Signal ਗਰੁੱਪ ਕਾਲ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal ਕਾਲ ਸੇਵਾ ਬੰਦ ਹੋ ਰਹੀ ਹੈ</string>
@@ -1072,6 +1080,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">ਤੁਸੀਂ ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ %s ਦੇ ਨਾਲ ਅਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ ਕੀਤਾ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ ਤੋਂ %s ਨਾਲ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਨੂੰ ਅਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ ਕੀਤਾ</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s ਤੋਂ ਇੱਕ ਸੁਨੇਹਾ ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s ਨੇ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਬਦਲਿਆ।</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ਨੇ ਗਰੁੱਪ ਕਾਲ ਸ਼ੁਰੂ ਕੀਤੀ · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ਗਰੁੱਪ ਕਾਲ ਵਿੱਚ ਹੈ · %2$s</string>
@@ -1242,6 +1251,7 @@
   <string name="WebRtcCallView__reconnecting">ਦੁਬਾਰਾ ਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
   <string name="WebRtcCallView__joining">ਸ਼ਾਮਲ ਹੋ ਰਹੇ ਹਨ…</string>
   <string name="WebRtcCallView__disconnected">ਕੁਨੈਕਸ਼ਨ ਬੰਦ</string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s ਨੂੰ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇਗਾ</string>
   <string name="WebRtcCallView__ringing_s">%1$s ਨੂੰ ਘੰਟੀ ਜਾ ਰਹੀ ਹੈ</string>
   <string name="WebRtcCallView__s_is_calling_you">%1$s ਤੁਹਾਨੂੰ ਕਾਲ ਕਰ ਰਹੇ ਹਨ</string>
   <string name="WebRtcCallView__no_one_else_is_here">ਇੱਥੇ ਹੋਰ ਕੋਈ ਨਹੀਂ ਹੈ</string>
@@ -1946,7 +1956,7 @@
   <string name="arrays__name_only">ਸਿਰਫ ਨਾਮ</string>
   <string name="arrays__no_name_or_message">ਕੋਈ ਨਾਂ ਜਾਂ ਸੁਨੇਹਾ ਨਹੀਂ ਹੈ</string>
   <string name="arrays__images">ਤਸਵੀਰਾਂ </string>
-  <string name="arrays__audio">ਆਡੀਓ)</string>
+  <string name="arrays__audio">ਆਡੀਓ</string>
   <string name="arrays__video">ਵੀਡੀਓ</string>
   <string name="arrays__documents">ਦਸਤਾਵੇਜ਼</string>
   <string name="arrays__small">ਛੋਟਾ</string>
@@ -2999,6 +3009,7 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">ਤੁਹਾਡਾ ਫ਼ੋਨ ਨੰਬਰ %1$s ਵਜੋਂ ਬਦਲਿਆ ਗਿਆ ਹੈ।</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">ਠੀਕ ਹੈ</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -3008,6 +3019,10 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">ਤੁਹਾਡਾ ਨਵਾਂ ਨੰਬਰ</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">ਨਵਾਂ ਫ਼ੋਨ ਨੰਬਰ</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">ਤੁਹਾਡੇ ਵਲੋਂ ਦਿੱਤਾ ਫ਼ੋਨ ਨੰਬਰ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਮਿਲਦਾ ਨਹੀਂ ਹੈ।</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">ਤੁਹਾਡੇ ਆਪਣੇ ਪੁਰਾਣੇ ਨੰਬਰ ਦਾ ਦੇਸ਼ ਕੋਡ ਦੇਣਾ ਪਵੇਗਾ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">ਤੁਹਾਨੂੰ ਆਪਣਾ ਪੁਰਾਣਾ ਫ਼ੋਨ ਨੰਬਰ ਦੇਣਾ ਪਵੇਗਾ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">ਤੁਹਾਡੇ ਆਪਣੇ ਨਵੇਂ ਨੰਬਰ ਦਾ ਦੇਸ਼ ਕੋਡ ਦੇਣਾ ਪਵੇਗਾ</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">ਤੁਹਾਨੂੰ ਆਪਣਾ ਨਵਾਂ ਫ਼ੋਨ ਨੰਬਰ ਦੇਣਾ ਪਵੇਗਾ</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">ਨੰਬਰ ਬਦਲੋ</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">%1$s ਤਸਦੀਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
@@ -3017,6 +3032,7 @@
   <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">ਤੁਸੀਂ %1$s ਤੋਂ %2$s ਲਈ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਬਦਲਣ ਵਾਲੇ ਹੋ।\n\nਜਾਰੀ ਰੱਖਣ ਤੋਂ ਪਹਿਲਾਂ ਕਿਰਪਾ ਕਰਕੇ ਜਾਂਚ ਕਰੋ ਕਿ ਹੇਠਲਾ ਨੰਬਰ ਠੀਕ ਹੈ।</string>
   <string name="ChangeNumberConfirmFragment__edit_number">ਨੰਬਰ ਨੂੰ ਸੋਧੋ</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal ਨੰਬਰ ਬਦਲੋ - Android ਲਈ ਪਿੰਨ (v2 PIN) ਨਾਲ ਮਦਦ ਦੀ ਲੋੜ ਹੈ</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">ਪਿੰਨ ਮਿਲਦੇ ਨਹੀਂ ਹਨ</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">ਤੁਹਾਡੇ ਨਵੇਂ ਨੰਬਰ ਨਾਲ ਸੰਬੰਧਿਤ ਪਿੰਨ ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਨਾਲ ਸੰਬੰਧਿਤ ਪਿੰਨ ਤੋਂ ਵੱਖਰਾ ਹੈ। ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਪੁਰਾਣੇ ਪਿੰਨ ਨੂੰ ਰੱਖਣਾ ਜਾਂ ਬਦਲਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
@@ -3031,6 +3047,7 @@
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">ਤੁਹਾਡਾ ਨੰਬਰ %1$s ਵਜੋਂ ਤਸਦੀਕ ਕੀਤਾ ਜਾ ਚੁੱਕਾ ਹੈ। ਜੇ ਇਹ ਤੁਹਾਡਾ ਨਵਾਂ ਨੰਬਰ ਨਹੀਂ ਹੈ ਤਾਂ ਨੰਬਰ ਬਦਲਣ ਦੀ ਕਾਰਵਾਈ ਮੁੜ-ਸ਼ੁਰੂ ਕਰੋ।</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">ਤਬਦੀਲੀ ਸਥਿਤੀ ਨਾ-ਤਸਦੀਕ ਹੈ</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">ਅਸੀਂ ਤੁਹਾਡੀ ਨੰਬਰ ਬਦਲਣ ਦੀ ਬੇਨਤੀ ਦਾ ਪਤਾ ਨਹੀਂ ਲਗਾ ਸਕੇ ਹਾਂ।\n\n(ਗ਼ਲਤੀ: %1$s)</string>
   <!--Dialog button to retry confirming the number on the server-->
@@ -3100,6 +3117,9 @@
   <string name="HelpFragment__copyright_signal_messenger">ਕਾਪੀਰਾਈਟ Signal ਮੈਸੰਜਰ</string>
   <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ਦੇ ਅਧੀਨ ਲਸੰਸ ਦਿੱਤਾ</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">ਮੀਡੀਆ ਕੁਆਲਟੀ</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">ਭੇਜੀ ਮੀਡੀਆ ਕੁਆਲਟੀ</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">ਵਧੀਆ ਕੁਆਲਟੀ ਮੀਡੀਆ ਭੇਜਣ ਲਈ ਵੱਧ ਡਾਟਾ ਵਰਤਿਆ ਜਾਵੇਗਾ।</string>
   <string name="DataAndStorageSettingsFragment__high">ਉੱਚਾ</string>
   <string name="DataAndStorageSettingsFragment__standard">ਸਟੈਂਡਰਡ</string>
   <string name="DataAndStorageSettingsFragment__calls">ਕਾਲਾਂ </string>
@@ -3289,6 +3309,8 @@
   <string name="MediaReviewFragment__add_a_reply">ਜਵਾਬ ਜੋੜੋ</string>
   <string name="MediaReviewFragment__send_to">ਇਸ ਨੂੰ ਭੇਜੋ</string>
   <string name="MediaReviewFragment__view_once_message">ਸੁਨੇਹੇ ਨੂੰ ਇੱਕ ਵਾਰ ਵੇਖੋ</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">ਇੱਕ ਜਾਂ ਵੱਧ ਚੀਜ਼ਾਂ ਬਹੁਤ ਵੱਡੀਆਂ ਸਨ</string>
+  <string name="MediaReviewFragment__too_many_items_selected">ਬਹੁਤ ਵੱਧ ਚੀਜ਼ਾਂ ਚੁਣੀਆਂ ਗਈਆਂ</string>
   <string name="ImageEditorHud__cancel">ਰੱਦ ਕਰੋ</string>
   <string name="ImageEditorHud__draw">ਖਿੱਚੋ</string>
   <string name="ImageEditorHud__write_text">ਲਿਖਤ ਲਿਖੋ</string>
@@ -3306,6 +3328,8 @@
   <string name="MediaReviewImagePageFragment__youll_lose_any_changes">ਤੁਹਾਡੇ ਵਲੋਂ ਇਸ ਫ਼ੋਟੋੋ ਲਈ ਕੀਤੀਆਂ ਕੋਈ ਵੀ ਤਬਦੀਲੀਆਂ ਖਤਮ ਹੋ ਜਾਣਗੀਆਂ।</string>
   <string name="CameraFragment__failed_to_open_camera">ਕੈਮਰਾ ਖੋਲ੍ਹਣ ਲਈ ਅਸਫ਼ਲ</string>
   <string name="BadgesOverviewFragment__my_badges">ਮੇਰੇ ਬੈਜ</string>
+  <string name="BadgesOverviewFragment__featured_badge">ਖਾਸ ਬਿੱਲਾ</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਬਿੱਲੇ ਦਿਖਾਓ</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">ਪ੍ਰੋਫ਼ਾਈਲ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
   <string name="BadgeSelectionFragment__select_badges">ਬਿੱਲੇ ਚੁਣੋ</string>
   <string name="SelectFeaturedBadgeFragment__preview">ਝਲਕ</string>
@@ -3315,35 +3339,50 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ਸਹਾਇਕ ਬਣੋ</string>
   <string name="ImageView__badge">ਬੈਜ</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕਾਂ ਦਾ ਆਸਰਾ ਹੈ।</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">ਤਕਨੀਕ, ਜੋ ਕਿ ਤੁਹਾਡੇ ਲਈ ਬਣਾਈ ਗਈ ਹੈ— ਨਾ ਕਿ ਤੁਹਾਡੇ ਡਾਟੇ ਲਈ—ਦਾ ਸਹਿਯੋਗ Signal ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਵਾਲੀ ਕਮਿਊਨਟੀ ਦਾ ਹਿੱਸਾ ਬਣ ਕੇ ਕਰੋ।</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">ਤਕਨੀਕ, ਜੋ ਕਿ ਤੁਹਾਡੇ ਲਈ ਬਣਾਈ ਗਈ ਹੈ, ਨਾ ਕਿ ਤੁਹਾਡੇ ਡਾਟੇ ਲਈ, ਦਾ ਸਹਿਯੋਗ Signal ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਵਾਲੀ ਕਮਿਊਨਟੀ ਦਾ ਹਿੱਸਾ ਬਣ ਕੇ ਕਰੋ।</string>
   <string name="SubscribeFragment__currency">ਕਰੰਸੀ</string>
+  <string name="SubscribeFragment__more_payment_options">ਭੁਗਤਾਨ ਦੇ ਹੋਰ ਢੰਗ</string>
   <string name="SubscribeFragment__cancel_subscription">ਮੈਂਬਰੀ ਰੱਦ ਕਰੋ</string>
+  <string name="SubscribeFragment__confirm_cancellation">ਪੱਕਾ ਰੱਦ ਕਰਨਾ ਹੈ?</string>
   <string name="SubscribeFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <string name="SubscribeFragment__confirm">ਪੁਸ਼ਟੀ ਕਰੋ</string>
   <string name="SubscribeFragment__update_subscription">ਮੈਂਬਰੀ ਅੱਪਡੇਟ ਕਰੋ</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">ਤੁਹਾਡੀ ਮੈਂਬਰੀ ਰੱਦ ਕੀਤੀ ਜਾ ਚੁੱਕੀ ਹੈ।</string>
+  <string name="SubscribeFragment__update_subscription_question">ਮੈਂਬਰੀ ਅੱਪਡੇਟ ਕਰਨੀ ਹੈ?</string>
   <string name="SubscribeFragment__update">ਅੱਪਡੇਟ ਕਰੋ</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">ਤੁਹਾਡੇ ਤੋਂ ਨਵੇਂ ਮੈਂਬਰੀ ਕੀਮਤ ਦੀ ਪੂਰੀ ਰਕਮ ਅੱਜ ਵਸੂਲੀ ਜਾਵੇਗੀ। ਤੁਹਾਡੀ ਮੈਂਬਰੀ %1$s ਨੂੰ ਨਵਿਆਈ ਜਾਵੇਗੀ।</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ਤੁਹਾਡੀ ਨਵੀਂ ਮੈਂਬਰੀ ਦੀ ਕੀਮਤ ਲਈ ਪੂਰੀ ਰਕਮ (%1$s) ਅੱਜ ਲੈ ਲਈ ਜਾਵੇਗੀ। ਤੁਹਾਡੀ ਮੈਂਬਰੀ ਹਰ ਮਹੀਨੇ ਨਵਿਆਈ ਜਾਵੇਗੀ।</string>
   <string name="Subscription__s_per_month">%s/ਮਹੀਨਾ</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/ਮਹੀਨਾ  ਨਵਿਆਉਣ %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/ਮਹੀਨਾ ਮਿਆਦ ਪੁੱਗਣੀ %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal ਬਿਨਾਂ ਇਸ਼ਤਿਹਾਰਾਂ ਜਾਂ ਨਿਵੇਸ਼ਕਾਂ ਤੋਂ ਗ਼ੈਰ-ਫਾਇਦਾ ਸੰਗਠਨ ਹੈ, ਜੋ ਕਿ ਸਿਰਫ਼ ਇਸ ਨੂੰ ਵਰਤਣ ਤੇ ਇਸ ਦੇ ਮਹੱਤਵ ਨੂੰ ਸਮਝਣ ਵਾਲੇ ਲੋਕਾਂ ਕਰਕੇ ਚੱਲਦੀ ਹੈ। ਲਗਾਤਾਰ ਮਹੀਨੇਵਾਰ ਯੋਗਦਾਨ ਪਾਓ ਅਤੇ ਆਪਣੇ ਸਹਿਯੋਗ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਆਪਣੇ ਪ੍ਰੋਫਾਇਲ ਲਈ ਬਿੱਲਾ ਪਾਓ।</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">ਯੋਗਦਾਨ ਕਿਓ ਪਾਈਏ?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal ਆਜ਼ਾਦ ਸਰੋਤ ਪਰਦੇਦਾਰੀ ਵਿਕਸਤ ਕਰਨ ਲਈ ਵਚਨਬੱਧ ਹੈ। ਤਕਨੀਕ ਜੋ ਆਜ਼ਾਦ ਵਿਚਾਰ ਰੱਖਣ ਤੇ ਸੰਸਾਰ ਭਰ ਦੇ ਸੰਚਾਰ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਦੇ ਸਮਰੱਥ ਕਰਦੀ ਹੈ।</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">ਤੁਹਾਡਾ ਯੋਗਦਾਨ ਇਸ ਮਕਸਦ ਨੂੰ ਜਾਰੀ ਰੱਖਦਾ ਹੈ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਸੰਚਾਰ ਲਈ ਲੱਖਾਂ ਲੋਕਾਂ ਵਲੋਂ ਵਰਤੀ ਜਾਂਦੀ ਐਪ ਦੇ ਵਿਕਾਸ ਤੇ ਕਾਰਜਕਾਰੀ ਕੰਮਾਂ ਲਈ ਭੁਗਤਾਨ ਕਰਦਾ ਹੈ। ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀ। ਕੋਈ ਟਰੈਕਰ ਨਹੀਂ। ਕੋਈ ਮਜ਼ਾਕ ਨਹੀਂ।</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ਤੁਹਾਡੇ ਸਹਿਯੋਗ ਲਈ ਧੰਨਵਾਦ ਹੈ!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ਬੂਸਟ ਲਈ ਧੰਨਵਾਦ ਹੈ!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">ਤੁਸੀਂ %sਬਿੱਲਾ ਪਾ ਲਿਆ ਹੈ! ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਇਹ ਬਿੱਲਾ ਦਿਖਾ ਕੇ Signal ਜਾਗਰੂਕਤਾ ਫੈਲਾਉਂਣ ਲਈ ਮਦਦ ਕਰੋ।</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">ਤੁਸੀਂ ਬੂਸਟ ਬਿੱਲਾ ਪਾਇਆ ਹੈ। ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਇਹ ਬਿੱਲਾ ਦਿਖਾ ਕੇ Signal ਜਾਗਰੂਕ ਫੈਲਾਉਣ ਲਈ ਮਦਦ ਕਰੋ!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">ਤੁਹਾਡੇ ਕਰ ਸਕਦੇ ਹੋ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ਮਹੀਨੇਵਾਰ ਸਹਿਯੋਗੀ ਬਣ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਓ</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ਖਾਸ ਬਿੱਲਾ ਬਣਾਓ</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ਮੁਕੰਮਲ</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">ਜਦੋਂ ਤੁਹਾਡੇ ਕੋਲ ਇੱਕ ਤੋਂ ਵੱਧ ਬਿੱਲੇ ਹੋਣ ਤਾਂ ਤੁਸੀਂ ਆਪਣੇ ਪ੍ਰੋਫਾਈਲ ਉੱਤੇ ਹੋਰਾਂ ਨੂੰ ਦਿਖਾਉਣ ਲਈ ਇੱਕ ਬਿੱਲਾ ਚੁਣ ਸਕਦੇ ਹੋ।</string>
   <string name="BecomeASustainerFragment__get_badges">Signal ਨੂੰ ਸਹਿਯੋਗ ਦੇ ਕੇ ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਲਈ ਬਿੱਲੇ ਲਵੋ।</string>
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ਬਿਨਾਂ ਇਸ਼ਤਿਹਾਰਾਂ ਜਾਂ ਨਿਵੇਸ਼ਕਾਂ ਦੇ ਗ਼ੈਰ-ਫਾਇਦਾ ਸੰਗਠਨ ਹੈ, ਜਿਸ ਨੂੰ ਤੁਹਾਡੇ ਵਰਗੇ ਲੋਕ ਹੀ ਸਹਿਯੋਗ ਦਿੰਦੇ ਹਨ।</string>
   <string name="ManageDonationsFragment__my_support">ਮੇਰਾ ਸਹਿਯੋਗ</string>
   <string name="ManageDonationsFragment__manage_subscription">ਮੈਂਬਰੀ ਦਾ ਇੰਤਜ਼ਾਮ ਕਰੋ</string>
   <string name="ManageDonationsFragment__badges">ਬੈਜ</string>
   <string name="ManageDonationsFragment__subscription_faq">ਮੈਂਬਰੀ ਲਈ ਸਵਾਲ-ਜਵਾਬ</string>
+  <string name="BoostFragment__give_signal_a_boost">Signal ਨੂੰ ਸਹਿਯੋਗ ਦਿਓ</string>
+  <string name="BoostFragment__say_thanks_and_earn">\"ਧੰਨਵਾਦ!\" ਕਹੋ ਅਤੇ %1$d ਦਿਨਾਂ ਲਈ ਬੂਸਟ ਬਿੱਲਾ ਲਵੋ।</string>
   <string name="Boost__enter_custom_amount">ਪਸੰਦੀਦਾ ਰਕਮ ਦਿਓ</string>
   <string name="Boost__one_time_contribution">ਇੱਕ-ਵਾਰ ਯੋਗਦਾਨ</string>
+  <string name="MySupportPreference__add_a_signal_boost">Signal ਬੂਸਟ ਜੋੜੋ</string>
   <string name="MySupportPreference__s_per_month">%1$s/ਮਹੀਨਾ</string>
+  <string name="MySupportPreference__renews_s">%1$s ਨਵਿਆਓ</string>
   <string name="MySupportPreference__processing_transaction">ਲੈਣ-ਦੇਣ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">ਬਿੱਲਾ ਜੋੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। %1$s</string>
@@ -3360,6 +3399,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">ਤੁਹਾਡੇ ਬਹੁਤ ਜ਼ਿਆਦਾ ਦੇਰ ਨਾ-ਸਰਗਰਮ ਰਹਿਣ ਕਰਕੇ ਤੁਹਾਡੀ ਸਹਿਯੋਗ ਮੈਂਬਰੀ ਨੂੰ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ। ਤੁਹਾਡਾ %1$s ਬਿੱਲਾ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">ਤੁਸੀਂ Signal ਵਰਤਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ, ਪਰ ਐਪ ਨੂੰ ਸਹਿਯੋਗ ਦੇਣ ਤੇ ਆਪਣੇ ਬਿੱਲੇ ਨੂੰ ਮੁੜ-ਸਰਗਰਮ ਕਰਨ ਲਈ ਹੁਣੇ ਨਵਿਆਓ।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">ਮੈਂਬਰੀ ਨੂੰ ਨਵਿਆਓ</string>
+  <string name="Subscription__please_contact_support_for_more_information">ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਮਦਦ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।</string>
   <string name="Subscription__contact_support">ਸਹਾਇਤਾ ਦੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
   <string name="Subscription__earn_a_s_badge">%1$s ਬਿੱਲਾ ਪਾਓ</string>
   <string name="SubscribeFragment__processing_payment">ਭੁਗਤਾਨ ਕਾਰਵਾਈ ਅਧੀਨ ਹੈ…</string>
@@ -3372,6 +3412,10 @@
   <string name="DonationsErrors__couldnt_add_badge">ਬਿੱਲਾ ਜੋੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ</string>
   <string name="DonationsErrors__your_badge_could_not">ਤੁਹਾਡੇ ਬਿੱਲੇ ਨੂੰ ਤੁਹਾਡੇ ਖਾਤੇ ਵਿੱਚ ਜੋੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ, ਪਰ ਤੁਹਾਡੇ ਤੋਂ ਰਕਮ ਲਈ ਜਾ ਚੁੱਕੀ ਹੋ ਸਕਦੀ ਹੈ। ਮਦਦ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।</string>
   <string name="DonationsErrors__your_payment_is_still">ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਉੱਤੇ ਹਾਲੇ ਵੀ ਕਾਰਵਾਈ ਜਾਰੀ ਹੈ। ਇਸ ਨੂੰ ਤੁਹਾਡੇ ਕਨੈਕਸ਼ਨ ਮੁਤਾਬਕ ਕੁਝ ਮਿੰਟ ਲੱਗ ਸਕਦੇ ਹਨ।</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay ਮੌਜੂਦ ਨਹੀਂ ਹੈ</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">ਐਪ ਵਿੱਚ ਦਾਨ ਦੇਣ ਲਈ ਤੁਹਾਨੂੰ Google Pay ਸੈਟ ਅੱਪ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇਗੀ।</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">ਮੈਂਬਰੀ ਰੱਦ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ਮੈਂਬਰੀ ਰੱਦ ਕਰਨ ਲਈ ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਦੀ ਲੋੜ ਹੈ।</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">ਤੁਹਾਡਾ ਡਿਵਾਈਸ Google Pay ਲਈ ਸਹਾਇਕ ਨਹੀਂ ਹੈ, ਇਸਕਰਕੇ ਤੁਹਾਨੂੰ ਬਿੱਲਾ ਨਹੀਂ ਮਿਲ ਸਕਦਾ ਹੈ। ਫੇਰ ਵੀ ਤੁਸੀਂ ਸਾਡੀ ਵੈੱਬਸਾਈਟ ਉੱਤੇ ਦਾਨ ਕਰਕੇ Signal ਨੂੰ ਸਹਿਯੋਗ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ਨੈੱਟਵਰਕ ਗਲਤੀ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="NetworkFailure__retry">ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>

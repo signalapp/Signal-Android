@@ -3397,7 +3397,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal er dedikeret til udviklingen af open source-privatlivsteknologi, der beskytter ytringsfrihed og muliggør sikker global kommunikation.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Dit bidrag støtter denne sag og betaler for udviklingen og driften af en app, der bruges af millioner til privat kommunikation. Ingen reklamer. Ingen trackere. Ingen spøg.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tak for din støtte!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tak for saltvandsindsprøjtningen!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tak for boostet!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du har gjort dig fortjent til et %s-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Du har gjort dig fortjent til et Boost-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan også</string>
@@ -3413,7 +3413,7 @@ nummer (%s) er ugyldigt</string>
   <string name="ManageDonationsFragment__badges">Emblemer</string>
   <string name="ManageDonationsFragment__subscription_faq">Abonnement OSS</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Fejl ved oprettelse af abonnement.</string>
-  <string name="BoostFragment__give_signal_a_boost">Giv Signal en saltvandsindsprøjtning</string>
+  <string name="BoostFragment__give_signal_a_boost">Giv Signal et boost</string>
   <string name="BoostFragment__say_thanks_and_earn">Sig \"Tak!\", og gør dig fortjent til Boost-emblemet i %1$d dage.</string>
   <string name="Boost__enter_custom_amount">Angiv tilpasset beløb</string>
   <string name="Boost__one_time_contribution">Engangsbidrag</string>

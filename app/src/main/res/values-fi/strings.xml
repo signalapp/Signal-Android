@@ -34,8 +34,8 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Näytön lukitus %1$s, rekisteröintiesto %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, Kieli %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Rekisteröintiesto vaatii tunnusluvun. Poista rekisteröintiesto käytöstä ennen tunnusluvun poistamista.</string>
-  <string name="ApplicationPreferencesActivity_pin_created">Tunnusluku luotu.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">Tunnusluku poistettu käytöstä.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Tunnusluku on luotu.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">Tunnusluku on poistettu käytöstä.</string>
   <string name="ApplicationPreferencesActivity_hide">Piilota</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Piilotetaanko muistutus?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Tallenna maksujen palautuslause</string>
