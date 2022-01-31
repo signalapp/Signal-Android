@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 
 import java.security.MessageDigest;
 import java.util.Collections;
@@ -26,10 +27,11 @@ import java.util.List;
  * for various presentations.
  */
 public class ConversationMessage {
-  @NonNull  private final MessageRecord         messageRecord;
-  @NonNull  private final List<Mention>         mentions;
-  @Nullable private final SpannableString       body;
-  @NonNull  private final MultiselectCollection multiselectCollection;
+  @NonNull  private final MessageRecord          messageRecord;
+  @NonNull  private final List<Mention>          mentions;
+  @Nullable private final SpannableString        body;
+  @NonNull  private final MultiselectCollection  multiselectCollection;
+  @NonNull  private final MessageStyler.Result   styleResult;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord) {
     this(messageRecord, null, null);
@@ -40,11 +42,24 @@ public class ConversationMessage {
                               @Nullable List<Mention> mentions)
   {
     this.messageRecord = messageRecord;
-    this.body          = body != null ? SpannableString.valueOf(body) : null;
     this.mentions      = mentions != null ? mentions : Collections.emptyList();
+
+    if (body != null) {
+      this.body = SpannableString.valueOf(body);
+    } else if (messageRecord.hasMessageRanges()) {
+      this.body = SpannableString.valueOf(messageRecord.getBody());
+    } else {
+      this.body = null;
+    }
 
     if (!this.mentions.isEmpty() && this.body != null) {
       MentionAnnotation.setMentionAnnotations(this.body, this.mentions);
+    }
+
+    if (this.body != null && messageRecord.hasMessageRanges()) {
+      styleResult = MessageStyler.style(messageRecord.requireMessageRanges(), this.body);
+    } else {
+      styleResult = MessageStyler.Result.none();
     }
 
     multiselectCollection = Multiselect.getParts(this);
@@ -84,6 +99,14 @@ public class ConversationMessage {
 
   public @NonNull SpannableString getDisplayBody(Context context) {
     return (body != null) ? body : messageRecord.getDisplayBody(context);
+  }
+
+  public boolean hasStyleLinks() {
+    return styleResult.getHasStyleLinks();
+  }
+
+  public @Nullable BodyRangeList.BodyRange.Button getBottomButton() {
+    return styleResult.getBottomButton();
   }
 
   /**

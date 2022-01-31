@@ -76,6 +76,11 @@ public final class BlockUnblockDialog {
         builder.setPositiveButton(R.string.RecipientPreferenceActivity_block, ((dialog, which) -> onBlock.run()));
         builder.setNegativeButton(android.R.string.cancel, null);
       }
+    } else if (recipient.isReleaseNotes()) {
+      builder.setTitle(resources.getString(R.string.BlockUnblockDialog_block_s, recipient.getDisplayName(context)));
+      builder.setMessage(R.string.BlockUnblockDialog_block_getting_signal_updates_and_news);
+      builder.setPositiveButton(R.string.BlockUnblockDialog_block, ((dialog, which) -> onBlock.run()));
+      builder.setNegativeButton(android.R.string.cancel, null);
     } else {
       builder.setTitle(resources.getString(R.string.BlockUnblockDialog_block_s, recipient.getDisplayName(context)));
       builder.setMessage(R.string.BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages);
@@ -115,6 +120,12 @@ public final class BlockUnblockDialog {
         builder.setPositiveButton(R.string.RecipientPreferenceActivity_unblock, ((dialog, which) -> onUnblock.run()));
         builder.setNegativeButton(android.R.string.cancel, null);
       }
+    } else if (recipient.isReleaseNotes()) {
+      builder.setTitle(resources.getString(R.string.BlockUnblockDialog_unblock_s, recipient.getDisplayName(context)));
+      builder.setMessage(R.string.BlockUnblockDialog_resume_getting_signal_updates_and_news);
+
+      builder.setPositiveButton(R.string.RecipientPreferenceActivity_unblock, ((dialog, which) -> onUnblock.run()));
+      builder.setNegativeButton(android.R.string.cancel, null);
     } else {
       builder.setTitle(resources.getString(R.string.BlockUnblockDialog_unblock_s, recipient.getDisplayName(context)));
       builder.setMessage(R.string.BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other);

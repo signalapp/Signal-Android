@@ -102,6 +102,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <ViewStub
+                    android:id="@+id/conversation_release_notes_unmute_stub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout="@layout/conversation_activity_unmute" />
+
             </FrameLayout>
 
             <Button

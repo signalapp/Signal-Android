@@ -28,6 +28,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
@@ -123,6 +124,7 @@ public class MmsDatabase extends MessageDatabase {
           static final String SHARED_CONTACTS = "shared_contacts";
           static final String LINK_PREVIEWS   = "previews";
           static final String MENTIONS_SELF   = "mentions_self";
+          static final String MESSAGE_RANGES  = "ranges";
 
   public  static final String VIEW_ONCE       = "reveal_duration";
 
@@ -168,7 +170,8 @@ public class MmsDatabase extends MessageDatabase {
                                                                                   NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0, " +
                                                                                   VIEWED_RECEIPT_COUNT   + " INTEGER DEFAULT 0, " +
                                                                                   SERVER_GUID            + " TEXT DEFAULT NULL, "+
-                                                                                  RECEIPT_TIMESTAMP      + " INTEGER DEFAULT -1);";
+                                                                                  RECEIPT_TIMESTAMP      + " INTEGER DEFAULT -1, " +
+                                                                                  MESSAGE_RANGES         + " BLOB DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + "," + THREAD_ID + ");",
@@ -191,7 +194,7 @@ public class MmsDatabase extends MessageDatabase {
       DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
       EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT, QUOTE_MISSING, QUOTE_MENTIONS,
       SHARED_CONTACTS, LINK_PREVIEWS, UNIDENTIFIED, VIEW_ONCE, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
-      REMOTE_DELETED, MENTIONS_SELF, NOTIFIED_TIMESTAMP, VIEWED_RECEIPT_COUNT, RECEIPT_TIMESTAMP,
+      REMOTE_DELETED, MENTIONS_SELF, NOTIFIED_TIMESTAMP, VIEWED_RECEIPT_COUNT, RECEIPT_TIMESTAMP, MESSAGE_RANGES,
       "json_group_array(json_object(" +
       "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
       "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
@@ -493,6 +496,11 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public void insertNumberChangeMessages(@NonNull Recipient recipient) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void insertBoostRequestMessage(@NonNull RecipientId recipientId, long threadId) {
     throw new UnsupportedOperationException();
   }
 
@@ -1351,7 +1359,7 @@ public class MmsDatabase extends MessageDatabase {
       return Optional.absent();
     }
 
-    long messageId = insertMediaMessage(threadId, retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), retrieved.getLinkPreviews(), retrieved.getMentions(), contentValues, null, true);
+    long messageId = insertMediaMessage(threadId, retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), retrieved.getLinkPreviews(), retrieved.getMentions(), retrieved.getMessageRanges(), contentValues, null, true);
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
       SignalDatabase.threads().incrementUnread(threadId, 1);
@@ -1540,7 +1548,7 @@ public class MmsDatabase extends MessageDatabase {
 
     MentionUtil.UpdatedBodyAndMentions updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.getBody(), message.getMentions());
 
-    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), contentValues, insertListener, false);
+    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), null, contentValues, insertListener, false);
 
     if (message.getRecipient().isGroup()) {
       OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
@@ -1593,8 +1601,9 @@ public class MmsDatabase extends MessageDatabase {
                                   @NonNull List<Contact> sharedContacts,
                                   @NonNull List<LinkPreview> linkPreviews,
                                   @NonNull List<Mention> mentions,
+                                  @Nullable BodyRangeList messageRanges,
                                   @NonNull ContentValues contentValues,
-                                  @Nullable SmsDatabase.InsertListener insertListener,
+                                  @Nullable InsertListener insertListener,
                                   boolean updateThread)
       throws MmsException
   {
@@ -1615,6 +1624,10 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(BODY, body);
     contentValues.put(PART_COUNT, allAttachments.size());
     contentValues.put(MENTIONS_SELF, mentionsSelf ? 1 : 0);
+
+    if (messageRanges != null) {
+      contentValues.put(MESSAGE_RANGES, messageRanges.toByteArray());
+    }
 
     db.beginTransaction();
     try {
@@ -1993,7 +2006,8 @@ public class MmsDatabase extends MessageDatabase {
                                        false,
                                        0,
                                        0,
-                                       -1);
+                                       -1,
+                                       null);
     }
   }
 
@@ -2095,6 +2109,7 @@ public class MmsDatabase extends MessageDatabase {
       long                 notifiedTimestamp    = CursorUtil.requireLong(cursor, NOTIFIED_TIMESTAMP);
       int                  viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.VIEWED_RECEIPT_COUNT));
       long                 receiptTimestamp     = CursorUtil.requireLong(cursor, MmsSmsColumns.RECEIPT_TIMESTAMP);
+      byte[]               messageRangesData    = CursorUtil.requireBlob(cursor, MESSAGE_RANGES);
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
@@ -2114,13 +2129,22 @@ public class MmsDatabase extends MessageDatabase {
       Set<Attachment>          previewAttachments = Stream.of(previews).filter(lp -> lp.getThumbnail().isPresent()).map(lp -> lp.getThumbnail().get()).collect(Collectors.toSet());
       SlideDeck                slideDeck          = buildSlideDeck(context, Stream.of(attachments).filterNot(contactAttachments::contains).filterNot(previewAttachments::contains).toList());
       Quote                    quote              = getQuote(cursor);
+      BodyRangeList            messageRanges      = null;
+
+      try {
+        if (messageRangesData != null) {
+          messageRanges = BodyRangeList.parseFrom(messageRangesData);
+        }
+      } catch (InvalidProtocolBufferException e) {
+        Log.w(TAG, "Error parsing message ranges", e);
+      }
 
       return new MediaMmsMessageRecord(id, recipient, recipient,
                                        addressDeviceId, dateSent, dateReceived, dateServer, deliveryReceiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
                                        isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, Collections.emptyList(),
-                                       remoteDelete, mentionsSelf, notifiedTimestamp, viewedReceiptCount, receiptTimestamp);
+                                       remoteDelete, mentionsSelf, notifiedTimestamp, viewedReceiptCount, receiptTimestamp, messageRanges);
     }
 
     private Set<IdentityKeyMismatch> getMismatchedIdentities(String document) {

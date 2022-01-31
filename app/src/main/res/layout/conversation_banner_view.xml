@@ -62,6 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:drawablePadding="4dp"
         android:gravity="center"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"

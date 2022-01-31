@@ -552,9 +552,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       conversationBanner.setAvatar(GlideApp.with(context), recipient);
       conversationBanner.showBackgroundBubble(recipient.hasWallpaper());
 
-      String title = isSelf ? context.getString(R.string.note_to_self) : recipient.getDisplayNameOrUsername(context);
-      conversationBanner.setTitle(title);
-      conversationBanner.setAbout(recipient.getCombinedAboutAndEmoji());
+      String title = conversationBanner.setTitle(recipient);
+      conversationBanner.setAbout(recipient);
 
       if (recipient.isGroup()) {
         if (pendingMemberCount > 0) {
@@ -1820,6 +1819,16 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onChangeNumberUpdateContact(@NonNull Recipient recipient) {
       startActivity(RecipientExporter.export(recipient).asAddContactIntent());
+    }
+
+    @Override
+    public void onCallToAction(@NonNull String action) {
+
+    }
+
+    @Override
+    public void onDonateClicked() {
+
     }
   }
 

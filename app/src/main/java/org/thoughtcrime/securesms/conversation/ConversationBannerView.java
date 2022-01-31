@@ -78,11 +78,26 @@ public class ConversationBannerView extends ConstraintLayout {
     }
   }
 
-  public void setTitle(@Nullable CharSequence title) {
+  public String setTitle(@NonNull Recipient recipient) {
+    if (recipient.isReleaseNotes()) {
+      contactTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_official_28, 0);
+    } else {
+      contactTitle.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+    }
+
+    String title = recipient.isSelf() ? getContext().getString(R.string.note_to_self) : recipient.getDisplayNameOrUsername(getContext());
     contactTitle.setText(title);
+    return title;
   }
 
-  public void setAbout(@Nullable String about) {
+  public void setAbout(@NonNull Recipient recipient) {
+    String about;
+    if (recipient.isReleaseNotes()) {
+      about = getContext().getString(R.string.ReleaseNotes__signal_release_notes_and_news);
+    } else {
+      about = recipient.getCombinedAboutAndEmoji();
+    }
+
     contactAbout.setText(about);
     contactAbout.setVisibility(TextUtils.isEmpty(about) ? GONE : VISIBLE);
   }

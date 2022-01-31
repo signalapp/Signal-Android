@@ -111,6 +111,7 @@ public class AttachmentUtil {
     return recipient.isSystemContact()  ||
            recipient.isProfileSharing() ||
            message.isOutgoing()         ||
-           recipient.isSelf();
+           recipient.isSelf()           ||
+           recipient.isReleaseNotes();
     }
   }

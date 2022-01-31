@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -18,6 +17,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.SimpleEmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -44,7 +44,7 @@ public class FromTextView extends SimpleEmojiTextView {
   }
 
   public void setText(Recipient recipient, boolean read, @Nullable String suffix) {
-    setText(recipient, recipient.getDisplayName(getContext()), read, suffix);
+    setText(recipient, recipient.getDisplayNameOrUsername(getContext()), read, suffix);
   }
 
   public void setText(Recipient recipient, @Nullable CharSequence fromString, boolean read, @Nullable String suffix) {
@@ -62,11 +62,19 @@ public class FromTextView extends SimpleEmojiTextView {
       builder.append(suffix);
     }
 
+    if (recipient.isReleaseNotes()) {
+      Drawable official = ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_20);
+      official.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(20));
+
+      builder.append(" ")
+             .append(SpanUtil.buildCenteredImageSpan(official));
+    }
+
     setText(builder);
 
     if      (recipient.isBlocked()) setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
     else if (recipient.isMuted())   setCompoundDrawablesRelativeWithIntrinsicBounds(getMuted(), null, null, null);
-    else                            setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+    else                            setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
   }
 
   private Drawable getMuted() {

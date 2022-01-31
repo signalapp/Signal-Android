@@ -56,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
             android:drawablePadding="3dp"
-            android:drawableTint="@color/signal_inverse_transparent_80"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"

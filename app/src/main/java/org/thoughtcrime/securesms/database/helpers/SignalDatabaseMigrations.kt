@@ -183,8 +183,9 @@ object SignalDatabaseMigrations {
   private const val REACTION_BACKUP_CLEANUP = 125
   private const val REACTION_REMOTE_DELETE_CLEANUP = 126
   private const val PNI_CLEANUP = 127
+  private const val MESSAGE_RANGES = 128
 
-  const val DATABASE_VERSION = 127
+  const val DATABASE_VERSION = 128
 
   @JvmStatic
   fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2262,6 +2263,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < PNI_CLEANUP) {
       db.execSQL("UPDATE recipient SET pni = NULL WHERE phone IS NULL")
+    }
+
+    if (oldVersion < MESSAGE_RANGES) {
+      db.execSQL("ALTER TABLE mms ADD COLUMN ranges BLOB DEFAULT NULL")
     }
   }
 

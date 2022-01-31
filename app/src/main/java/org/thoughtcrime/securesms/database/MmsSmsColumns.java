@@ -77,6 +77,7 @@ public interface MmsSmsColumns {
     protected static final long GROUP_CALL_TYPE                    = 12;
     protected static final long BAD_DECRYPT_TYPE                   = 13;
     protected static final long CHANGE_NUMBER_TYPE                 = 14;
+    protected static final long BOOST_REQUEST_TYPE                 = 15;
 
     protected static final long BASE_INBOX_TYPE                    = 20;
     protected static final long BASE_OUTBOX_TYPE                   = 21;
@@ -338,6 +339,10 @@ public interface MmsSmsColumns {
 
     public static boolean isChangeNumber(long type) {
       return type == CHANGE_NUMBER_TYPE;
+    }
+
+    public static boolean isBoostRequest(long type) {
+      return type == BOOST_REQUEST_TYPE;
     }
 
     public static boolean isGroupV2LeaveOnly(long type) {

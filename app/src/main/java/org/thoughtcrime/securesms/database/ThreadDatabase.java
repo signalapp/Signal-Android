@@ -1522,6 +1522,7 @@ public class ThreadDatabase extends Database {
     return MmsSmsColumns.Types.isProfileChange(type) ||
            MmsSmsColumns.Types.isGroupV1MigrationEvent(type) ||
            MmsSmsColumns.Types.isChangeNumber(type) ||
+           MmsSmsColumns.Types.isBoostRequest(type) ||
            MmsSmsColumns.Types.isGroupV2LeaveOnly(type);
   }
 

@@ -351,7 +351,7 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
   }
 
   private void handleCopyToClipboard(Fingerprint fingerprint, int segmentCount) {
-    Util.writeTextToClipboard(getActivity(), getFormattedSafetyNumbers(fingerprint, segmentCount));
+    Util.writeTextToClipboard(requireContext(), "Safety numbers", getFormattedSafetyNumbers(fingerprint, segmentCount));
   }
 
   private void handleCompareWithClipboard(Fingerprint fingerprint) {

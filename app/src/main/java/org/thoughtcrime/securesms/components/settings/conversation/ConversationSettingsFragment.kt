@@ -393,28 +393,32 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         enabled = it.canEditGroupAttributes
       }
 
-      clickPref(
-        title = DSLSettingsText.from(R.string.ConversationSettingsFragment__disappearing_messages),
-        summary = summary,
-        icon = DSLSettingsIcon.from(icon),
-        isEnabled = enabled,
-        onClick = {
-          val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToAppSettingsExpireTimer()
-            .setInitialValue(state.disappearingMessagesLifespan)
-            .setRecipientId(state.recipient.id)
-            .setForResultMode(false)
+      if (!state.recipient.isReleaseNotes) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.ConversationSettingsFragment__disappearing_messages),
+          summary = summary,
+          icon = DSLSettingsIcon.from(icon),
+          isEnabled = enabled,
+          onClick = {
+            val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToAppSettingsExpireTimer()
+              .setInitialValue(state.disappearingMessagesLifespan)
+              .setRecipientId(state.recipient.id)
+              .setForResultMode(false)
 
-          navController.safeNavigate(action)
-        }
-      )
+            navController.safeNavigate(action)
+          }
+        )
+      }
 
-      clickPref(
-        title = DSLSettingsText.from(R.string.preferences__chat_color_and_wallpaper),
-        icon = DSLSettingsIcon.from(R.drawable.ic_color_24),
-        onClick = {
-          startActivity(ChatWallpaperActivity.createIntent(requireContext(), state.recipient.id))
-        }
-      )
+      if (!state.recipient.isReleaseNotes) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences__chat_color_and_wallpaper),
+          icon = DSLSettingsIcon.from(R.drawable.ic_color_24),
+          onClick = {
+            startActivity(ChatWallpaperActivity.createIntent(requireContext(), state.recipient.id))
+          }
+        )
+      }
 
       if (!state.recipient.isSelf) {
         clickPref(
@@ -507,7 +511,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           )
         }
 
-        if (recipientSettingsState.selfHasGroups) {
+        if (recipientSettingsState.selfHasGroups && !state.recipient.isReleaseNotes) {
 
           dividerPref()
 

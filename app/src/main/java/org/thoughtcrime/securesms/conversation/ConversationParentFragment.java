@@ -401,6 +401,7 @@ public class ConversationParentFragment extends Fragment
   private   Stub<TextView>           cannotSendInAnnouncementGroupBanner;
   private   View                     requestingMemberBanner;
   private   View                     cancelJoinRequest;
+  private   Stub<View>               releaseChannelUnmute;
   private   Stub<View>               mentionsSuggestions;
   private   MaterialButton           joinGroupCallButton;
   private   boolean                  callingTooltipShown;
@@ -942,8 +943,8 @@ public class ConversationParentFragment extends Fragment
     }
 
     if (isSingleConversation()) {
-      if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
-      else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
+      if (isSecureText)                           inflater.inflate(R.menu.conversation_callable_secure, menu);
+      else if (!recipient.get().isReleaseNotes()) inflater.inflate(R.menu.conversation_callable_insecure, menu);
     } else if (isGroupConversation()) {
       if (isActiveV2Group && Build.VERSION.SDK_INT > 19) {
         inflater.inflate(R.menu.conversation_callable_groupv2, menu);
@@ -969,14 +970,14 @@ public class ConversationParentFragment extends Fragment
 
     inflater.inflate(R.menu.conversation, menu);
 
-    if (isSingleConversation() && !isSecureText) {
+    if (isSingleConversation() && !isSecureText && !recipient.get().isReleaseNotes()) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
     if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
     else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
 
-    if (isSingleConversation() && getRecipient().getContactUri() == null) {
+    if (isSingleConversation() && getRecipient().getContactUri() == null && !recipient.get().isReleaseNotes()) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
 
@@ -1002,6 +1003,10 @@ public class ConversationParentFragment extends Fragment
       }
 
       hideMenuItem(menu, R.id.menu_mute_notifications);
+    }
+
+    if (recipient != null && recipient.get().isReleaseNotes()) {
+      hideMenuItem(menu, R.id.menu_add_shortcut);
     }
 
     hideMenuItem(menu, R.id.menu_group_recipients);
@@ -2049,6 +2054,7 @@ public class ConversationParentFragment extends Fragment
     cannotSendInAnnouncementGroupBanner = ViewUtil.findStubById(view, R.id.conversation_cannot_send_announcement_stub);
     requestingMemberBanner              = view.findViewById(R.id.conversation_requesting_banner);
     cancelJoinRequest                   = view.findViewById(R.id.conversation_cancel_request);
+    releaseChannelUnmute                = ViewUtil.findStubById(view, R.id.conversation_release_notes_unmute_stub);
     joinGroupCallButton                 = view.findViewById(R.id.conversation_group_call_join);
 
     container.setIsBubble(isInBubble());
@@ -2721,12 +2727,30 @@ public class ConversationParentFragment extends Fragment
       inputPanel.setHideForBlockedState(true);
       makeDefaultSmsButton.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
+    } else if (recipient.isReleaseNotes() && !recipient.isBlocked()) {
+      unblockButton.setVisibility(View.GONE);
+      inputPanel.setHideForBlockedState(true);
+      makeDefaultSmsButton.setVisibility(View.GONE);
+      registerButton.setVisibility(View.GONE);
+
+      if (recipient.isMuted()) {
+        View unmuteBanner = releaseChannelUnmute.get();
+        unmuteBanner.setVisibility(View.VISIBLE);
+        unmuteBanner.findViewById(R.id.conversation_activity_unmute_button)
+                    .setOnClickListener(v -> handleUnmuteNotifications());
+      } else if (releaseChannelUnmute.resolved()) {
+        releaseChannelUnmute.get().setVisibility(View.GONE);
+      }
     } else {
       boolean inactivePushGroup = isPushGroupConversation() && !recipient.isActiveGroup();
       inputPanel.setHideForBlockedState(inactivePushGroup);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
+    }
+
+    if (releaseChannelUnmute.resolved() && !recipient.isReleaseNotes()) {
+      releaseChannelUnmute.get().setVisibility(View.GONE);
     }
   }
 

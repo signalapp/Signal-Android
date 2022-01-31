@@ -76,11 +76,24 @@ message ProfileChangeDetails {
 
 message BodyRangeList {
     message BodyRange {
+        enum Style {
+            BOLD   = 0;
+            ITALIC = 1;
+        }
+
+        message Button {
+            string label  = 1;
+            string action = 2;
+        }
+
         int32 start  = 1;
         int32 length = 2;
 
         oneof associatedValue {
             string mentionUuid = 3;
+            Style  style       = 4;
+            string link        = 5;
+            Button button      = 6;
         }
     }
 

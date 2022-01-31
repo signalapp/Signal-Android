@@ -45,6 +45,7 @@ import android.view.MotionEvent;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -122,6 +123,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
+import org.thoughtcrime.securesms.util.PlaceholderURLSpan;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.SearchUtil;
@@ -199,6 +201,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private           Stub<LinkPreviewView>                   linkPreviewStub;
   private           Stub<BorderlessImageView>               stickerStub;
   private           Stub<ViewOnceMessageView>               revealableStub;
+  private           Stub<Button>                            callToActionStub;
   private @Nullable EventListener                           eventListener;
 
   private int     defaultBubbleColor;
@@ -277,6 +280,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.linkPreviewStub         =         new Stub<>(findViewById(R.id.link_preview_stub));
     this.stickerStub             =         new Stub<>(findViewById(R.id.sticker_view_stub));
     this.revealableStub          =         new Stub<>(findViewById(R.id.revealable_view_stub));
+    this.callToActionStub        =           ViewUtil.findStubById(this, R.id.conversation_item_call_to_action_stub);
     this.groupSenderHolder       =                    findViewById(R.id.group_sender_holder);
     this.quoteView               =                    findViewById(R.id.quote_view);
     this.reply                   =                    findViewById(R.id.reply_icon_wrapper);
@@ -443,6 +447,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         !hasAudio(messageRecord)                                       &&
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
         !bodyText.isJumbomoji()                                        &&
+        conversationMessage.getBottomButton() == null                  &&
         bodyText.getLastLineWidth() > 0)
     {
       TextView dateView           = footer.getDateView();
@@ -922,6 +927,18 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       bodyText.setText(StringUtil.trim(styledText));
       bodyText.setVisibility(View.VISIBLE);
+
+      if (conversationMessage.getBottomButton() != null) {
+        callToActionStub.get().setVisibility(View.VISIBLE);
+        callToActionStub.get().setText(conversationMessage.getBottomButton().getLabel());
+        callToActionStub.get().setOnClickListener(v -> {
+          if (eventListener != null) {
+            eventListener.onCallToAction(conversationMessage.getBottomButton().getAction());
+          }
+        });
+      } else if (callToActionStub.resolved()) {
+        callToActionStub.get().setVisibility(View.GONE);
+      }
     }
   }
 
@@ -1322,6 +1339,19 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         int     start = messageBody.getSpanStart(urlSpan);
         int     end   = messageBody.getSpanEnd(urlSpan);
         URLSpan span  = new InterceptableLongClickCopyLinkSpan(urlSpan.getURL(), urlClickListener);
+        messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      }
+    }
+
+    if (conversationMessage.hasStyleLinks()) {
+      for (PlaceholderURLSpan placeholder : messageBody.getSpans(0, messageBody.length(), PlaceholderURLSpan.class)) {
+        int     start = messageBody.getSpanStart(placeholder);
+        int     end   = messageBody.getSpanEnd(placeholder);
+        URLSpan span  = new InterceptableLongClickCopyLinkSpan(placeholder.getValue(),
+                                                               urlClickListener,
+                                                               ContextCompat.getColor(getContext(), R.color.signal_accent_primary),
+                                                               false);
+
         messageBody.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
