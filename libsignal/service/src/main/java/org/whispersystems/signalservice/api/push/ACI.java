@@ -84,6 +84,11 @@ public final class ACI extends AccountIdentifier {
   }
 
   @Override
+  public boolean isAci() {
+    return true;
+  }
+
+  @Override
   public int hashCode() {
     return uuid.hashCode();
   }

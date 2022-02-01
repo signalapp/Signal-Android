@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database;
 
 import android.app.Application;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.KeyValuePersistentStorage;
 import org.thoughtcrime.securesms.util.CursorUtil;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 
@@ -59,6 +61,11 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     }
     return instance;
   }
+
+  public static boolean exists(Context context) {
+    return context.getDatabasePath(DATABASE_NAME).exists();
+  }
+
 
   private KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
     super(application, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0,new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());

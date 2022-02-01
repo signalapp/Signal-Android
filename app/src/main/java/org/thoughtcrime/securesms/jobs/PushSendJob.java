@@ -100,7 +100,7 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   protected final void onSend() throws Exception {
-    if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
+    if (SignalStore.account().aciPreKeys().getSignedPreKeyFailureCount() > 5) {
       ApplicationDependencies.getJobManager().add(new RotateSignedPreKeyJob());
       throw new TextSecureExpiredException("Too many signed prekey rotation failures");
     }

@@ -1,41 +1,56 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.IdentityKeyPair;
+import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.AccountIdentifier;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+/**
+ * Creates and uploads a new signed prekey for an identity if one hasn't been uploaded yet.
+ */
 public class CreateSignedPreKeyJob extends BaseJob {
 
   public static final String KEY = "CreateSignedPreKeyJob";
 
   private static final String TAG = Log.tag(CreateSignedPreKeyJob.class);
 
-  public CreateSignedPreKeyJob(Context context) {
+  private CreateSignedPreKeyJob() {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
+                           .setMaxInstancesForFactory(1)
                            .setQueue("CreateSignedPreKeyJob")
-                           .setMaxAttempts(25)
+                           .setLifespan(TimeUnit.DAYS.toMillis(30))
+                           .setMaxAttempts(Parameters.UNLIMITED)
                            .build());
   }
 
   private CreateSignedPreKeyJob(@NonNull Job.Parameters parameters) {
     super(parameters);
+  }
+
+  /**
+   * Enqueues an instance of this job if we not yet created + uploaded signed prekeys for one of our identities.
+   */
+  public static void enqueueIfNeeded() {
+    if (!SignalStore.account().aciPreKeys().isSignedPreKeyRegistered() || !SignalStore.account().pniPreKeys().isSignedPreKeyRegistered()) {
+      Log.i(TAG, "Some signed prekeys aren't registered yet. Enqueuing a job.");
+      ApplicationDependencies.getJobManager().add(new CreateSignedPreKeyJob());
+    }
   }
 
   @Override
@@ -50,22 +65,33 @@ public class CreateSignedPreKeyJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-      Log.w(TAG, "Signed prekey already registered...");
-      return;
-    }
-
     if (!SignalStore.account().isRegistered()) {
       Log.w(TAG, "Not yet registered...");
       return;
     }
 
-    SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
-    IdentityKeyPair             identityKeyPair    = SignalStore.account().getAciIdentityKey();
-    SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKeyPair, true);
+    createPreKeys(SignalStore.account().getAci(), ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys());
+    createPreKeys(SignalStore.account().getPni(), ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys());
+  }
 
-    accountManager.setSignedPreKey(signedPreKeyRecord);
-    TextSecurePreferences.setSignedPreKeyRegistered(context, true);
+  private void createPreKeys(@Nullable AccountIdentifier accountId, @NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore)
+      throws IOException
+  {
+    if (accountId == null) {
+      warn(TAG, "AccountId not set!");
+      return;
+    }
+
+    if (metadataStore.isSignedPreKeyRegistered()) {
+      warn(TAG, "Signed prekey for " + (accountId.isAci() ? "ACI" : "PNI") + " already registered...");
+      return;
+    }
+
+    SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
+    SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
+
+    accountManager.setSignedPreKey(accountId, signedPreKeyRecord);
+    metadataStore.setSignedPreKeyRegistered(true);
   }
 
   @Override

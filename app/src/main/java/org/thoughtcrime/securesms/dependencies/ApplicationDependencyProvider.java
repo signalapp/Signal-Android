@@ -278,16 +278,27 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceDataStoreImpl provideProtocolStore() {
+    ACI localAci = SignalStore.account().getAci();
+    PNI localPni = SignalStore.account().getPni();
+
+    if (localAci == null) {
+      throw new IllegalStateException("No ACI set!");
+    }
+
+    if (localPni == null) {
+      throw new IllegalStateException("No PNI set!");
+    }
+
     SignalBaseIdentityKeyStore baseIdentityStore = new SignalBaseIdentityKeyStore(context);
 
     SignalServiceAccountDataStoreImpl aciStore = new SignalServiceAccountDataStoreImpl(context,
-                                                                                       new TextSecurePreKeyStore(context),
+                                                                                       new TextSecurePreKeyStore(localAci),
                                                                                        new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getAciIdentityKey()),
                                                                                        new TextSecureSessionStore(context),
                                                                                        new SignalSenderKeyStore(context));
 
     SignalServiceAccountDataStoreImpl pniStore = new SignalServiceAccountDataStoreImpl(context,
-                                                                                       new TextSecurePreKeyStore(context),
+                                                                                       new TextSecurePreKeyStore(localPni),
                                                                                        new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getPniIdentityKey()),
                                                                                        new TextSecureSessionStore(context),
                                                                                        new SignalSenderKeyStore(context));

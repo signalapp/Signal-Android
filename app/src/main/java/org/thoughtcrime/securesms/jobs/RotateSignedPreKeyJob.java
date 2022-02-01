@@ -4,21 +4,28 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.IdentityKeyPair;
+import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Forces the creation + upload of new signed prekeys for both the ACI and PNI identities.
+ */
 public class RotateSignedPreKeyJob extends BaseJob {
 
   public static final String KEY = "RotateSignedPreKeyJob";
@@ -53,17 +60,34 @@ public class RotateSignedPreKeyJob extends BaseJob {
   public void onRun() throws Exception {
     Log.i(TAG, "Rotating signed prekey...");
 
+    ACI aci = SignalStore.account().getAci();
+    PNI pni = SignalStore.account().getPni();
+
+    if (aci == null) {
+      Log.w(TAG, "ACI is unset!");
+      return;
+    }
+
+    if (pni == null) {
+      Log.w(TAG, "PNI is unset!");
+      return;
+    }
+
+    rotate(aci, ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys());
+    rotate(pni, ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys());
+  }
+
+  private void rotate(@NonNull AccountIdentifier accountId, @NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore)
+      throws IOException
+  {
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
-    IdentityKeyPair             identityKey        = SignalStore.account().getAciIdentityKey();
-    SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
+    SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, false);
 
-    accountManager.setSignedPreKey(signedPreKeyRecord);
+    accountManager.setSignedPreKey(accountId, signedPreKeyRecord);
 
-    PreKeyUtil.setActiveSignedPreKeyId(context, signedPreKeyRecord.getId());
-    TextSecurePreferences.setSignedPreKeyRegistered(context, true);
-    TextSecurePreferences.setSignedPreKeyFailureCount(context, 0);
-
-    ApplicationDependencies.getJobManager().add(new CleanPreKeysJob());
+    metadataStore.setActiveSignedPreKeyId(signedPreKeyRecord.getId());
+    metadataStore.setSignedPreKeyRegistered(true);
+    metadataStore.setSignedPreKeyFailureCount(0);
   }
 
   @Override
@@ -73,7 +97,11 @@ public class RotateSignedPreKeyJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    TextSecurePreferences.setSignedPreKeyFailureCount(context, TextSecurePreferences.getSignedPreKeyFailureCount(context) + 1);
+    PreKeyMetadataStore aciStore = SignalStore.account().aciPreKeys();
+    PreKeyMetadataStore pniStore = SignalStore.account().pniPreKeys();
+
+    aciStore.setSignedPreKeyFailureCount(aciStore.getSignedPreKeyFailureCount() + 1);
+    pniStore.setSignedPreKeyFailureCount(pniStore.getSignedPreKeyFailureCount() + 1);
   }
 
   public static final class Factory implements Job.Factory<RotateSignedPreKeyJob> {

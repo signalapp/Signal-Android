@@ -416,18 +416,18 @@ public class SignalServiceAccountManager {
    *
    * @throws IOException
    */
-  public void setPreKeys(IdentityKey identityKey, SignedPreKeyRecord signedPreKey, List<PreKeyRecord> oneTimePreKeys)
+  public void setPreKeys(AccountIdentifier accountId, IdentityKey identityKey, SignedPreKeyRecord signedPreKey, List<PreKeyRecord> oneTimePreKeys)
       throws IOException
   {
-    this.pushServiceSocket.registerPreKeys(identityKey, signedPreKey, oneTimePreKeys);
+    this.pushServiceSocket.registerPreKeys(accountId, identityKey, signedPreKey, oneTimePreKeys);
   }
 
   /**
    * @return The server's count of currently available (eg. unused) prekeys for this user.
    * @throws IOException
    */
-  public int getPreKeysCount() throws IOException {
-    return this.pushServiceSocket.getAvailablePreKeys();
+  public int getPreKeysCount(AccountIdentifier accountId) throws IOException {
+    return this.pushServiceSocket.getAvailablePreKeys(accountId);
   }
 
   /**
@@ -436,16 +436,16 @@ public class SignalServiceAccountManager {
    * @param signedPreKey The client's new signed prekey.
    * @throws IOException
    */
-  public void setSignedPreKey(SignedPreKeyRecord signedPreKey) throws IOException {
-    this.pushServiceSocket.setCurrentSignedPreKey(signedPreKey);
+  public void setSignedPreKey(AccountIdentifier accountId, SignedPreKeyRecord signedPreKey) throws IOException {
+    this.pushServiceSocket.setCurrentSignedPreKey(accountId, signedPreKey);
   }
 
   /**
    * @return The server's view of the client's current signed prekey.
    * @throws IOException
    */
-  public SignedPreKeyEntity getSignedPreKey() throws IOException {
-    return this.pushServiceSocket.getCurrentSignedPreKey();
+  public SignedPreKeyEntity getSignedPreKey(AccountIdentifier accountId) throws IOException {
+    return this.pushServiceSocket.getCurrentSignedPreKey(accountId);
   }
 
   /**

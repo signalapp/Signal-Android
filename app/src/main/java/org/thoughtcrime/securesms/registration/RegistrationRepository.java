@@ -9,11 +9,13 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
+import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -30,14 +32,15 @@ import org.thoughtcrime.securesms.registration.VerifyAccountRepository.VerifyAcc
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.PreKeyRecord;
+import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.KeyHelper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.AccountIdentifier;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -74,7 +77,7 @@ public final class RegistrationRepository {
   }
 
   public @NonNull ProfileKey getProfileKey(@NonNull String e164) {
-    ProfileKey profileKey = findExistingProfileKey(context, e164);
+    ProfileKey profileKey = findExistingProfileKey(e164);
 
     if (profileKey == null) {
       profileKey = ProfileKeyUtil.createNew();
@@ -127,19 +130,22 @@ public final class RegistrationRepository {
                                        @Nullable KbsPinData kbsData)
       throws IOException
   {
-    SessionUtil.archiveAllSessions();
-    SenderKeyUtil.clearAllState(context);
-
     ACI     aci    = ACI.parseOrThrow(response.getUuid());
     PNI     pni    = PNI.parseOrThrow(response.getPni());
     boolean hasPin = response.isStorageCapable();
 
-    IdentityKeyPair    identityKey  = SignalStore.account().getAciIdentityKey();
-    List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(context);
-    SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(context, identityKey, true);
+    SignalStore.account().setAci(aci);
+    SignalStore.account().setPni(pni);
 
-    SignalServiceAccountManager accountManager = AccountManagerFactory.createAuthenticated(context, aci, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
-    accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKey, records);
+    SessionUtil.archiveAllSessions();
+    SenderKeyUtil.clearAllState(context);
+
+    SignalServiceAccountManager       accountManager   = AccountManagerFactory.createAuthenticated(context, aci, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
+    SignalServiceAccountDataStoreImpl aciProtocolStore = ApplicationDependencies.getProtocolStore().aci();
+    SignalServiceAccountDataStoreImpl pniProtocolStore = ApplicationDependencies.getProtocolStore().pni();
+
+    generateAndRegisterPreKeys(aci, accountManager, aciProtocolStore, SignalStore.account().aciPreKeys());
+    generateAndRegisterPreKeys(pni, accountManager, pniProtocolStore, SignalStore.account().pniPreKeys());
 
     if (registrationData.isFcm()) {
       accountManager.setGcmId(Optional.fromNullable(registrationData.getFcmToken()));
@@ -151,35 +157,50 @@ public final class RegistrationRepository {
     recipientDatabase.setProfileSharing(selfId, true);
     recipientDatabase.markRegisteredOrThrow(selfId, aci);
     recipientDatabase.setPni(selfId, pni);
-
-    SignalStore.account().setE164(registrationData.getE164());
-    SignalStore.account().setAci(aci);
-    SignalStore.account().setPni(pni);
     recipientDatabase.setProfileKey(selfId, registrationData.getProfileKey());
+
     ApplicationDependencies.getRecipientCache().clearSelf();
 
+    SignalStore.account().setE164(registrationData.getE164());
     SignalStore.account().setFcmToken(registrationData.getFcmToken());
     SignalStore.account().setFcmEnabled(registrationData.isFcm());
 
-    ApplicationDependencies.getProtocolStore().aci().identities()
-                           .saveIdentityWithoutSideEffects(selfId,
-                                                           identityKey.getPublicKey(),
-                                                           IdentityDatabase.VerifiedStatus.VERIFIED,
-                                                           true,
-                                                           System.currentTimeMillis(),
-                                                           true);
+    long now = System.currentTimeMillis();
+    saveOwnIdentityKey(selfId, aciProtocolStore, now);
+    saveOwnIdentityKey(selfId, pniProtocolStore, now);
 
     SignalStore.account().setServicePassword(registrationData.getPassword());
     SignalStore.account().setRegistered(true);
-    TextSecurePreferences.setSignedPreKeyRegistered(context, true);
     TextSecurePreferences.setPromptedPushRegistration(context, true);
     TextSecurePreferences.setUnauthorizedReceived(context, false);
 
     PinState.onRegistration(context, kbsData, pin, hasPin);
   }
 
+  private void generateAndRegisterPreKeys(@NonNull AccountIdentifier accountId,
+                                          @NonNull SignalServiceAccountManager accountManager,
+                                          @NonNull SignalProtocolStore protocolStore,
+                                          @NonNull PreKeyMetadataStore metadataStore)
+      throws IOException
+  {
+    SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
+    List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore);
+
+    accountManager.setPreKeys(accountId, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
+    metadataStore.setSignedPreKeyRegistered(true);
+  }
+
+  private void saveOwnIdentityKey(@NonNull RecipientId selfId, @NonNull SignalServiceAccountDataStoreImpl protocolStore, long now) {
+    protocolStore.identities().saveIdentityWithoutSideEffects(selfId,
+                                                              protocolStore.getIdentityKeyPair().getPublicKey(),
+                                                              IdentityDatabase.VerifiedStatus.VERIFIED,
+                                                              true,
+                                                              now,
+                                                              true);
+  }
+
   @WorkerThread
-  private static @Nullable ProfileKey findExistingProfileKey(@NonNull Context context, @NonNull String e164number) {
+  private static @Nullable ProfileKey findExistingProfileKey(@NonNull String e164number) {
     RecipientDatabase     recipientDatabase = SignalDatabase.recipients();
     Optional<RecipientId> recipient         = recipientDatabase.getByE164(e164number);
 

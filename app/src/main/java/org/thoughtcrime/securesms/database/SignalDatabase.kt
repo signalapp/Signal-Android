@@ -397,8 +397,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       get() = instance!!.pendingRetryReceiptDatabase
 
     @get:JvmStatic
-    @get:JvmName("preKeys")
-    val preKeys: OneTimePreKeyDatabase
+    @get:JvmName("oneTimePreKeys")
+    val oneTimePreKeys: OneTimePreKeyDatabase
       get() = instance!!.preKeyDatabase
 
     @get:Deprecated("This only exists to migrate from legacy storage. There shouldn't be any new usages.")

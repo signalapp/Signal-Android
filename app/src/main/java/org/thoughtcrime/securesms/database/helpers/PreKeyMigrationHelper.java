@@ -14,6 +14,7 @@ import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -94,7 +95,7 @@ public final class PreKeyMigrationHelper {
         reader.close();
 
         Log.i(TAG, "Setting next prekey id: " + index.nextPreKeyId);
-        TextSecurePreferences.setNextPreKeyId(context, index.nextPreKeyId);
+        SignalStore.account().aciPreKeys().setNextOneTimePreKeyId(index.nextPreKeyId);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -108,8 +109,8 @@ public final class PreKeyMigrationHelper {
 
         Log.i(TAG, "Setting next signed prekey id: " + index.nextSignedPreKeyId);
         Log.i(TAG, "Setting active signed prekey id: " + index.activeSignedPreKeyId);
-        TextSecurePreferences.setNextSignedPreKeyId(context, index.nextSignedPreKeyId);
-        TextSecurePreferences.setActiveSignedPreKeyId(context, index.activeSignedPreKeyId);
+        SignalStore.account().aciPreKeys().setNextSignedPreKeyId(index.nextSignedPreKeyId);
+        SignalStore.account().aciPreKeys().setActiveSignedPreKeyId(index.activeSignedPreKeyId);
       } catch (IOException e) {
         Log.w(TAG, e);
       }

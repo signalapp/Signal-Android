@@ -28,6 +28,11 @@ public final class PNI extends AccountIdentifier {
   }
 
   @Override
+  public boolean isAci() {
+    return false;
+  }
+
+  @Override
   public int hashCode() {
     return uuid.hashCode();
   }

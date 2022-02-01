@@ -193,10 +193,10 @@ public class PushServiceSocket {
   private static final String CHANGE_NUMBER_PATH         = "/v1/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
 
-  private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
-  private static final String PREKEY_PATH               = "/v2/keys/%s";
+  private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
+  private static final String PREKEY_PATH               = "/v2/keys/%s?identity=%s";
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
-  private static final String SIGNED_PREKEY_PATH        = "/v2/keys/signed";
+  private static final String SIGNED_PREKEY_PATH        = "/v2/keys/signed?identity=%s";
 
   private static final String PROVISIONING_CODE_PATH    = "/v1/devices/provisioning/code";
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
@@ -563,7 +563,8 @@ public class PushServiceSocket {
     makeServiceRequest(String.format(UUID_ACK_MESSAGE_PATH, uuid), "DELETE", null);
   }
 
-  public void registerPreKeys(IdentityKey identityKey,
+  public void registerPreKeys(AccountIdentifier accountId,
+                              IdentityKey identityKey,
                               SignedPreKeyRecord signedPreKey,
                               List<PreKeyRecord> records)
       throws IOException
@@ -578,15 +579,17 @@ public class PushServiceSocket {
     }
 
     SignedPreKeyEntity signedPreKeyEntity = new SignedPreKeyEntity(signedPreKey.getId(),
-        signedPreKey.getKeyPair().getPublicKey(),
-        signedPreKey.getSignature());
+                                                                   signedPreKey.getKeyPair().getPublicKey(),
+                                                                   signedPreKey.getSignature());
 
-    String response = makeServiceRequest(String.format(PREKEY_PATH, ""), "PUT",
-        JsonUtil.toJson(new PreKeyState(entities, signedPreKeyEntity, identityKey)));
+    makeServiceRequest(String.format(Locale.US, PREKEY_PATH, "", accountId.isAci() ? "aci" : "pni"),
+                       "PUT",
+                       JsonUtil.toJson(new PreKeyState(entities, signedPreKeyEntity, identityKey)));
   }
 
-  public int getAvailablePreKeys() throws IOException {
-    String       responseText = makeServiceRequest(PREKEY_METADATA_PATH, "GET", null);
+  public int getAvailablePreKeys(AccountIdentifier accountId) throws IOException {
+    String       path         = String.format(PREKEY_METADATA_PATH, accountId.isAci() ? "aci" : "pni");
+    String       responseText = makeServiceRequest(path, "GET", null);
     PreKeyStatus preKeyStatus = JsonUtil.fromJson(responseText, PreKeyStatus.class);
 
     return preKeyStatus.getCount();
@@ -675,9 +678,10 @@ public class PushServiceSocket {
     }
   }
 
-  public SignedPreKeyEntity getCurrentSignedPreKey() throws IOException {
+  public SignedPreKeyEntity getCurrentSignedPreKey(AccountIdentifier accountId) throws IOException {
     try {
-      String responseText = makeServiceRequest(SIGNED_PREKEY_PATH, "GET", null);
+      String path         = String.format(SIGNED_PREKEY_PATH, accountId.isAci() ? "aci" : "pni");
+      String responseText = makeServiceRequest(path, "GET", null);
       return JsonUtil.fromJson(responseText, SignedPreKeyEntity.class);
     } catch (NotFoundException e) {
       Log.w(TAG, e);
@@ -685,11 +689,12 @@ public class PushServiceSocket {
     }
   }
 
-  public void setCurrentSignedPreKey(SignedPreKeyRecord signedPreKey) throws IOException {
+  public void setCurrentSignedPreKey(AccountIdentifier accountId, SignedPreKeyRecord signedPreKey) throws IOException {
+    String             path               = String.format(SIGNED_PREKEY_PATH, accountId.isAci() ? "aci" : "pni");
     SignedPreKeyEntity signedPreKeyEntity = new SignedPreKeyEntity(signedPreKey.getId(),
                                                                    signedPreKey.getKeyPair().getPublicKey(),
                                                                    signedPreKey.getSignature());
-    makeServiceRequest(SIGNED_PREKEY_PATH, "PUT", JsonUtil.toJson(signedPreKeyEntity));
+    makeServiceRequest(path, "PUT", JsonUtil.toJson(signedPreKeyEntity));
   }
 
   public void retrieveAttachment(int cdnNumber, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)

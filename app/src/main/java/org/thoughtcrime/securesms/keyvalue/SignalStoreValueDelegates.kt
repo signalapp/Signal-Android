@@ -3,102 +3,102 @@ package org.thoughtcrime.securesms.keyvalue
 import kotlin.reflect.KProperty
 
 internal fun SignalStoreValues.longValue(key: String, default: Long): SignalStoreValueDelegate<Long> {
-  return LongValue(key, default)
+  return LongValue(key, default, this.store)
 }
 
 internal fun SignalStoreValues.booleanValue(key: String, default: Boolean): SignalStoreValueDelegate<Boolean> {
-  return BooleanValue(key, default)
+  return BooleanValue(key, default, this.store)
 }
 
 internal fun <T : String?> SignalStoreValues.stringValue(key: String, default: T): SignalStoreValueDelegate<T> {
-  return StringValue(key, default)
+  return StringValue(key, default, this.store)
 }
 
 internal fun SignalStoreValues.integerValue(key: String, default: Int): SignalStoreValueDelegate<Int> {
-  return IntValue(key, default)
+  return IntValue(key, default, this.store)
 }
 
 internal fun SignalStoreValues.floatValue(key: String, default: Float): SignalStoreValueDelegate<Float> {
-  return FloatValue(key, default)
+  return FloatValue(key, default, this.store)
 }
 
 internal fun SignalStoreValues.blobValue(key: String, default: ByteArray): SignalStoreValueDelegate<ByteArray> {
-  return BlobValue(key, default)
+  return BlobValue(key, default, this.store)
 }
 
 /**
  * Kotlin delegate that serves as a base for all other value types. This allows us to only expose this sealed
  * class to callers and protect the individual implementations as private behind the various extension functions.
  */
-sealed class SignalStoreValueDelegate<T> {
+sealed class SignalStoreValueDelegate<T>(private val store: KeyValueStore) {
   operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-    return getValue(thisRef as SignalStoreValues)
+    return getValue(store)
   }
 
   operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-    setValue(thisRef as SignalStoreValues, value)
+    setValue(store, value)
   }
 
-  internal abstract fun getValue(values: SignalStoreValues): T
-  internal abstract fun setValue(values: SignalStoreValues, value: T)
+  internal abstract fun getValue(values: KeyValueStore): T
+  internal abstract fun setValue(values: KeyValueStore, value: T)
 }
 
-private class LongValue(private val key: String, private val default: Long) : SignalStoreValueDelegate<Long>() {
-  override fun getValue(values: SignalStoreValues): Long {
+private class LongValue(private val key: String, private val default: Long, store: KeyValueStore) : SignalStoreValueDelegate<Long>(store) {
+  override fun getValue(values: KeyValueStore): Long {
     return values.getLong(key, default)
   }
 
-  override fun setValue(values: SignalStoreValues, value: Long) {
-    values.putLong(key, value)
+  override fun setValue(values: KeyValueStore, value: Long) {
+    values.beginWrite().putLong(key, value).apply()
   }
 }
 
-private class BooleanValue(private val key: String, private val default: Boolean) : SignalStoreValueDelegate<Boolean>() {
-  override fun getValue(values: SignalStoreValues): Boolean {
+private class BooleanValue(private val key: String, private val default: Boolean, store: KeyValueStore) : SignalStoreValueDelegate<Boolean>(store) {
+  override fun getValue(values: KeyValueStore): Boolean {
     return values.getBoolean(key, default)
   }
 
-  override fun setValue(values: SignalStoreValues, value: Boolean) {
-    values.putBoolean(key, value)
+  override fun setValue(values: KeyValueStore, value: Boolean) {
+    values.beginWrite().putBoolean(key, value).apply()
   }
 }
 
-private class StringValue<T : String?>(private val key: String, private val default: T) : SignalStoreValueDelegate<T>() {
-  override fun getValue(values: SignalStoreValues): T {
+private class StringValue<T : String?>(private val key: String, private val default: T, store: KeyValueStore) : SignalStoreValueDelegate<T>(store) {
+  override fun getValue(values: KeyValueStore): T {
     return values.getString(key, default) as T
   }
 
-  override fun setValue(values: SignalStoreValues, value: T) {
-    values.putString(key, value)
+  override fun setValue(values: KeyValueStore, value: T) {
+    values.beginWrite().putString(key, value).apply()
   }
 }
 
-private class IntValue(private val key: String, private val default: Int) : SignalStoreValueDelegate<Int>() {
-  override fun getValue(values: SignalStoreValues): Int {
+private class IntValue(private val key: String, private val default: Int, store: KeyValueStore) : SignalStoreValueDelegate<Int>(store) {
+  override fun getValue(values: KeyValueStore): Int {
     return values.getInteger(key, default)
   }
 
-  override fun setValue(values: SignalStoreValues, value: Int) {
-    values.putInteger(key, value)
+  override fun setValue(values: KeyValueStore, value: Int) {
+    values.beginWrite().putInteger(key, value).apply()
   }
 }
 
-private class FloatValue(private val key: String, private val default: Float) : SignalStoreValueDelegate<Float>() {
-  override fun getValue(values: SignalStoreValues): Float {
+private class FloatValue(private val key: String, private val default: Float, store: KeyValueStore) : SignalStoreValueDelegate<Float>(store) {
+  override fun getValue(values: KeyValueStore): Float {
     return values.getFloat(key, default)
   }
 
-  override fun setValue(values: SignalStoreValues, value: Float) {
-    values.putFloat(key, value)
+  override fun setValue(values: KeyValueStore, value: Float) {
+    values.beginWrite().putFloat(key, value).apply()
   }
 }
 
-private class BlobValue(private val key: String, private val default: ByteArray) : SignalStoreValueDelegate<ByteArray>() {
-  override fun getValue(values: SignalStoreValues): ByteArray {
+private class BlobValue(private val key: String, private val default: ByteArray, store: KeyValueStore) : SignalStoreValueDelegate<ByteArray>(store) {
+  override fun getValue(values: KeyValueStore): ByteArray {
     return values.getBlob(key, default)
   }
 
-  override fun setValue(values: SignalStoreValues, value: ByteArray) {
-    values.putBlob(key, value)
+  override fun setValue(values: KeyValueStore, value: ByteArray) {
+    values.beginWrite().putBlob(key, value).apply()
   }
 }

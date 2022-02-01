@@ -97,9 +97,10 @@ public class ApplicationMigrations {
     static final int FIX_EMOJI_QUALITY             = 53;
     static final int CHANGE_NUMBER_CAPABILITY_4    = 54;
     static final int KBS_MIGRATION                 = 55;
+    static final int PNI_IDENTITY                  = 56;
   }
 
-  public static final int CURRENT_VERSION = 55;
+  public static final int CURRENT_VERSION = 56;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -419,6 +420,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.KBS_MIGRATION) {
       jobs.put(Version.KBS_MIGRATION, new KbsEnclaveMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.PNI_IDENTITY) {
+      jobs.put(Version.PNI_IDENTITY, new PniAccountInitializationMigrationJob());
     }
 
     return jobs;

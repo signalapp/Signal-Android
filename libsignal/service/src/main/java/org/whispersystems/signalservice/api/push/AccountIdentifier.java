@@ -17,6 +17,12 @@ public abstract class AccountIdentifier {
     return uuid;
   }
 
+  public abstract boolean isAci();
+
+  public final boolean isPni() {
+    return !isAci();
+  }
+
   @Override
   public String toString() {
     return uuid.toString();

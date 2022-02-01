@@ -8,6 +8,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterCipher
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -18,9 +19,11 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.IdentityKeyPair
 import org.whispersystems.libsignal.ecc.Curve
+import org.whispersystems.libsignal.util.Medium
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import java.security.SecureRandom
 
 internal class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
@@ -35,10 +38,22 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     private const val KEY_FCM_TOKEN_LAST_SET_TIME = "account.fcm_token_last_set_time"
     private const val KEY_DEVICE_NAME = "account.device_name"
     private const val KEY_DEVICE_ID = "account.device_id"
+
     private const val KEY_ACI_IDENTITY_PUBLIC_KEY = "account.aci_identity_public_key"
     private const val KEY_ACI_IDENTITY_PRIVATE_KEY = "account.aci_identity_private_key"
+    private const val KEY_ACI_SIGNED_PREKEY_REGISTERED = "account.aci_signed_prekey_registered"
+    private const val KEY_ACI_NEXT_SIGNED_PREKEY_ID = "account.aci_next_signed_prekey_id"
+    private const val KEY_ACI_ACTIVE_SIGNED_PREKEY_ID = "account.aci_active_signed_prekey_id"
+    private const val KEY_ACI_SIGNED_PREKEY_FAILURE_COUNT = "account.aci_signed_prekey_failure_count"
+    private const val KEY_ACI_NEXT_ONE_TIME_PREKEY_ID = "account.aci_next_one_time_prekey_id"
+
     private const val KEY_PNI_IDENTITY_PUBLIC_KEY = "account.pni_identity_public_key"
     private const val KEY_PNI_IDENTITY_PRIVATE_KEY = "account.pni_identity_private_key"
+    private const val KEY_PNI_SIGNED_PREKEY_REGISTERED = "account.pni_signed_prekey_registered"
+    private const val KEY_PNI_NEXT_SIGNED_PREKEY_ID = "account.pni_next_signed_prekey_id"
+    private const val KEY_PNI_ACTIVE_SIGNED_PREKEY_ID = "account.pni_active_signed_prekey_id"
+    private const val KEY_PNI_SIGNED_PREKEY_FAILURE_COUNT = "account.pni_signed_prekey_failure_count"
+    private const val KEY_PNI_NEXT_ONE_TIME_PREKEY_ID = "account.pni_next_one_time_prekey_id"
 
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
@@ -102,9 +117,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
   }
 
   /** A randomly-generated value that represents this registration instance. Helps the server know if you reinstalled. */
-  var registrationId: Int
-    get() = getInteger(KEY_REGISTRATION_ID, 0)
-    set(value) = putInteger(KEY_REGISTRATION_ID, value)
+  var registrationId: Int by integerValue(KEY_REGISTRATION_ID, 0)
 
   /** The identity key pair for the ACI identity. */
   val aciIdentityKey: IdentityKeyPair
@@ -147,8 +160,8 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     val key: IdentityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
     store
       .beginWrite()
-      .putBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, key.publicKey.serialize())
-      .putBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, key.privateKey.serialize())
+      .putBlob(KEY_PNI_IDENTITY_PUBLIC_KEY, key.publicKey.serialize())
+      .putBlob(KEY_PNI_IDENTITY_PRIVATE_KEY, key.privateKey.serialize())
       .commit()
   }
 
@@ -174,11 +187,27 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     putBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, Base64.decode(base64))
   }
 
+  @get:JvmName("aciPreKeys")
+  val aciPreKeys: PreKeyMetadataStore = object : PreKeyMetadataStore {
+    override var nextSignedPreKeyId: Int by integerValue(KEY_ACI_NEXT_SIGNED_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+    override var activeSignedPreKeyId: Int by integerValue(KEY_ACI_ACTIVE_SIGNED_PREKEY_ID, -1)
+    override var isSignedPreKeyRegistered: Boolean by booleanValue(KEY_ACI_SIGNED_PREKEY_REGISTERED, false)
+    override var signedPreKeyFailureCount: Int by integerValue(KEY_ACI_SIGNED_PREKEY_FAILURE_COUNT, 0)
+    override var nextOneTimePreKeyId: Int by integerValue(KEY_ACI_NEXT_ONE_TIME_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+  }
+
+  @get:JvmName("pniPreKeys")
+  val pniPreKeys: PreKeyMetadataStore = object : PreKeyMetadataStore {
+    override var nextSignedPreKeyId: Int by integerValue(KEY_PNI_NEXT_SIGNED_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+    override var activeSignedPreKeyId: Int by integerValue(KEY_PNI_ACTIVE_SIGNED_PREKEY_ID, -1)
+    override var isSignedPreKeyRegistered: Boolean by booleanValue(KEY_PNI_SIGNED_PREKEY_REGISTERED, false)
+    override var signedPreKeyFailureCount: Int by integerValue(KEY_PNI_SIGNED_PREKEY_FAILURE_COUNT, 0)
+    override var nextOneTimePreKeyId: Int by integerValue(KEY_PNI_NEXT_ONE_TIME_PREKEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
+  }
+
   /** Indicates whether the user has the ability to receive FCM messages. Largely coupled to whether they have Play Service. */
-  var fcmEnabled: Boolean
-    @JvmName("isFcmEnabled")
-    get() = getBoolean(KEY_FCM_ENABLED, false)
-    set(value) = putBoolean(KEY_FCM_ENABLED, value)
+  @get:JvmName("isFcmEnabled")
+  var fcmEnabled: Boolean by booleanValue(KEY_FCM_ENABLED, false)
 
   /** The FCM token, which allows the server to send us FCM messages. */
   var fcmToken: String?
@@ -249,6 +278,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     ApplicationDependencies.getGroupsV2Authorization().clear()
   }
 
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
   private fun migrateFromSharedPrefsV1(context: Context) {
     Log.i(TAG, "[V1] Migrating account values from shared prefs.")
 
@@ -263,11 +293,14 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     putLong(KEY_FCM_TOKEN_LAST_SET_TIME, TextSecurePreferences.getLongPreference(context, "pref_gcm_registration_id_last_set_time", 0))
   }
 
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
   private fun migrateFromSharedPrefsV2(context: Context) {
     Log.i(TAG, "[V2] Migrating account values from shared prefs.")
 
     val masterSecretPrefs: SharedPreferences = context.getSharedPreferences("SecureSMS-Preferences", 0)
     val defaultPrefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+    val storeWriter: KeyValueStore.Writer = store.beginWrite()
 
     if (masterSecretPrefs.hasStringData("pref_identity_public_v3")) {
       Log.i(TAG, "Migrating modern identity key.")
@@ -275,11 +308,9 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
       val identityPublic = Base64.decode(masterSecretPrefs.getString("pref_identity_public_v3", null)!!)
       val identityPrivate = Base64.decode(masterSecretPrefs.getString("pref_identity_private_v3", null)!!)
 
-      store
-        .beginWrite()
+      storeWriter
         .putBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, identityPublic)
         .putBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, identityPrivate)
-        .commit()
     } else if (masterSecretPrefs.hasStringData("pref_identity_public_curve25519")) {
       Log.i(TAG, "Migrating legacy identity key.")
 
@@ -287,14 +318,20 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
       val identityPublic = Base64.decode(masterSecretPrefs.getString("pref_identity_public_curve25519", null)!!)
       val identityPrivate = masterCipher.decryptKey(Base64.decode(masterSecretPrefs.getString("pref_identity_private_curve25519", null)!!)).serialize()
 
-      store
-        .beginWrite()
+      storeWriter
         .putBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, identityPublic)
         .putBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, identityPrivate)
-        .commit()
     } else {
       Log.w(TAG, "No pre-existing identity key! No migration.")
     }
+
+    storeWriter
+      .putInteger(KEY_ACI_NEXT_SIGNED_PREKEY_ID, defaultPrefs.getInt("pref_next_signed_pre_key_id", SecureRandom().nextInt(Medium.MAX_VALUE)))
+      .putInteger(KEY_ACI_ACTIVE_SIGNED_PREKEY_ID, defaultPrefs.getInt("pref_active_signed_pre_key_id", -1))
+      .putInteger(KEY_ACI_NEXT_ONE_TIME_PREKEY_ID, defaultPrefs.getInt("pref_next_pre_key_id", SecureRandom().nextInt(Medium.MAX_VALUE)))
+      .putInteger(KEY_ACI_SIGNED_PREKEY_FAILURE_COUNT, defaultPrefs.getInt("pref_signed_prekey_failure_count", 0))
+      .putBoolean(KEY_ACI_SIGNED_PREKEY_REGISTERED, defaultPrefs.getBoolean("pref_signed_prekey_registered", false))
+      .commit()
 
     masterSecretPrefs
       .edit()
@@ -308,6 +345,11 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
       .edit()
       .remove("pref_local_uuid")
       .remove("pref_identity_public_v3")
+      .remove("pref_next_signed_pre_key_id")
+      .remove("pref_active_signed_pre_key_id")
+      .remove("pref_signed_prekey_failure_count")
+      .remove("pref_signed_prekey_registered")
+      .remove("pref_next_pre_key_id")
       .remove("pref_gcm_password")
       .remove("pref_gcm_registered")
       .remove("pref_local_registration_id")

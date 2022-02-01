@@ -130,7 +130,7 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < SIGNED_PREKEY_VERSION) {
-      ApplicationDependencies.getJobManager().add(new CreateSignedPreKeyJob(context));
+      CreateSignedPreKeyJob.enqueueIfNeeded();
     }
 
     if (lastSeenVersion < NO_DECRYPT_QUEUE_VERSION) {

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database.helpers
 
+import android.app.Application
 import android.app.NotificationChannel
 import android.content.ContentValues
 import android.content.Context
@@ -18,8 +19,10 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper.entrySet
+import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList
+import org.thoughtcrime.securesms.database.requireString
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob
@@ -39,6 +42,7 @@ import org.thoughtcrime.securesms.util.SqlUtil
 import org.thoughtcrime.securesms.util.Stopwatch
 import org.thoughtcrime.securesms.util.Triple
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -185,11 +189,12 @@ object SignalDatabaseMigrations {
   private const val PNI_CLEANUP = 127
   private const val MESSAGE_RANGES = 128
   private const val REACTION_TRIGGER_FIX = 129
+  private const val PNI_STORES = 130
 
-  const val DATABASE_VERSION = 129
+  const val DATABASE_VERSION = 130
 
   @JvmStatic
-  fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+  fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     if (oldVersion < RECIPIENT_CALL_RINGTONE_VERSION) {
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_ringtone TEXT DEFAULT NULL")
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_vibrate INTEGER DEFAULT " + RecipientDatabase.VibrateState.DEFAULT.id)
@@ -2285,6 +2290,80 @@ object SignalDatabaseMigrations {
         """.trimIndent()
       )
     }
+
+    if (oldVersion < PNI_STORES) {
+      val localAci: ACI? = getLocalAci(context)
+
+      // One-Time Prekeys
+      db.execSQL(
+        """
+        CREATE TABLE one_time_prekeys_tmp (
+          _id INTEGER PRIMARY KEY,
+          account_id TEXT NOT NULL,
+          key_id INTEGER,
+          public_key TEXT NOT NULL,
+          private_key TEXT NOT NULL,
+          UNIQUE(account_id, key_id)
+        )
+        """.trimIndent()
+      )
+
+      if (localAci != null) {
+        db.execSQL(
+          """
+          INSERT INTO one_time_prekeys_tmp (account_id, key_id, public_key, private_key)
+          SELECT
+            '$localAci' AS account_id,
+            one_time_prekeys.key_id,
+            one_time_prekeys.public_key,
+            one_time_prekeys.private_key
+          FROM one_time_prekeys
+          """.trimIndent()
+        )
+      } else {
+        Log.w(TAG, "No local ACI set. Not migrating any existing one-time prekeys.")
+      }
+
+      db.execSQL("DROP TABLE one_time_prekeys")
+      db.execSQL("ALTER TABLE one_time_prekeys_tmp RENAME TO one_time_prekeys")
+
+      // Signed Prekeys
+      db.execSQL(
+        """
+        CREATE TABLE signed_prekeys_tmp (
+          _id INTEGER PRIMARY KEY,
+          account_id TEXT NOT NULL,
+          key_id INTEGER,
+          public_key TEXT NOT NULL,
+          private_key TEXT NOT NULL,
+          signature TEXT NOT NULL,
+          timestamp INTEGER DEFAULT 0,
+          UNIQUE(account_id, key_id)
+        )
+        """.trimIndent()
+      )
+
+      if (localAci != null) {
+        db.execSQL(
+          """
+          INSERT INTO signed_prekeys_tmp (account_id, key_id, public_key, private_key, signature, timestamp)
+          SELECT
+            '$localAci' AS account_id,
+            signed_prekeys.key_id,
+            signed_prekeys.public_key,
+            signed_prekeys.private_key,
+            signed_prekeys.signature,
+            signed_prekeys.timestamp
+          FROM signed_prekeys
+          """.trimIndent()
+        )
+      } else {
+        Log.w(TAG, "No local ACI set. Not migrating any existing signed prekeys.")
+      }
+
+      db.execSQL("DROP TABLE signed_prekeys")
+      db.execSQL("ALTER TABLE signed_prekeys_tmp RENAME TO signed_prekeys")
+    }
   }
 
   @JvmStatic
@@ -2294,6 +2373,9 @@ object SignalDatabaseMigrations {
     }
   }
 
+  /**
+   * Important: You can't change this method, or you risk breaking existing migrations. If you need to change this, make a new method.
+   */
   private fun migrateReaction(db: SQLiteDatabase, cursor: Cursor, isMms: Boolean) {
     try {
       val messageId = CursorUtil.requireLong(cursor, "_id")
@@ -2312,6 +2394,24 @@ object SignalDatabaseMigrations {
       }
     } catch (e: InvalidProtocolBufferException) {
       Log.w(TAG, "Failed to parse reaction!")
+    }
+  }
+
+  /**
+   * Important: You can't change this method, or you risk breaking existing migrations. If you need to change this, make a new method.
+   */
+  private fun getLocalAci(context: Application): ACI? {
+    if (KeyValueDatabase.exists(context)) {
+      val keyValueDatabase = KeyValueDatabase.getInstance(context).readableDatabase
+      keyValueDatabase.query("key_value", arrayOf("value"), "key = ?", SqlUtil.buildArgs("account.aci"), null, null, null).use { cursor ->
+        return if (cursor.moveToFirst()) {
+          ACI.parseOrNull(cursor.requireString("value"))
+        } else {
+          null
+        }
+      }
+    } else {
+      return ACI.parseOrNull(PreferenceManager.getDefaultSharedPreferences(context).getString("pref_local_uuid", null))
     }
   }
 }
