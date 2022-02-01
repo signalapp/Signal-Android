@@ -384,7 +384,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     initializeMessageRequestViewModel();
     initializeListAdapter();
 
-    // TODO [alex] LargeScreenSupport -- conversationViewModel.getSearchQuery().observe(getViewLifecycleOwner(), this::onSearchQueryUpdated);
+    conversationViewModel.getSearchQuery().observe(getViewLifecycleOwner(), this::onSearchQueryUpdated);
 
     return view;
   }
@@ -1161,7 +1161,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     return getListAdapter().isTypingViewEnabled();
   }
 
-  public void onSearchQueryUpdated(@Nullable String query) {
+  private void onSearchQueryUpdated(@Nullable String query) {
     if (getListAdapter() != null) {
       getListAdapter().onSearchQueryUpdated(query);
     }

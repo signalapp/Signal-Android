@@ -1020,8 +1020,7 @@ public class ConversationParentFragment extends Fragment
       public boolean onQueryTextSubmit(String query) {
         searchViewModel.onQueryUpdated(query, threadId, true);
         searchNav.showLoading();
-        // TODO [alex] LargeScreenSupport -- Set search query on viewModel
-        fragment.onSearchQueryUpdated(query);
+        viewModel.setSearchQuery(query);
         return true;
       }
 
@@ -1029,8 +1028,7 @@ public class ConversationParentFragment extends Fragment
       public boolean onQueryTextChange(String query) {
         searchViewModel.onQueryUpdated(query, threadId, false);
         searchNav.showLoading();
-        // TODO [alex] LargeScreenSupport -- Set search query on viewModel
-        fragment.onSearchQueryUpdated(query);
+        viewModel.setSearchQuery(query);
         return true;
       }
     };
@@ -1059,8 +1057,7 @@ public class ConversationParentFragment extends Fragment
         searchViewModel.onSearchClosed();
         searchNav.setVisibility(View.GONE);
         inputPanel.setHideForSearch(false);
-        // TODO [alex] LargeScreenSupport -- Set search query on viewModel
-        fragment.onSearchQueryUpdated(null);
+        viewModel.setSearchQuery(null);
         setBlockedUserState(recipient.get(), isSecureText, isDefaultSms);
         invalidateOptionsMenu();
         return true;
