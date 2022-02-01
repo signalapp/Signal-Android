@@ -927,7 +927,7 @@
   <string name="MessageRecord_missed_audio_call_date">Испуштен аудио повик · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Испуштен видео повик · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ја уреди групата.</string>
-  <string name="MessageRecord_s_called_you_date">%1$s ве повика · %2$s</string>
+  <string name="MessageRecord_s_called_you_date">%1$s Ве повика · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s е на Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Вклучивте исчезнувачки пораки.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s оневозможивте исчезнувачки пораки.</string>

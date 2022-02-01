@@ -2220,7 +2220,7 @@
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">ഫണ്ടുകൾ ചേർക്കുക</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">നിങ്ങളുടെ വാലറ്റ് വിലാസം</string>
-  <string name="PaymentsAddMoneyFragment__copy">പകർത്തുക</string>
+  <string name="PaymentsAddMoneyFragment__copy">പകർത്തൂ</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="PaymentsAddMoneyFragment__to_add_funds">ഫണ്ടുകൾ ചേർക്കുന്നതിന്, നിങ്ങളുടെ വാലറ്റ് വിലാസത്തിലേക്ക് മൊബൈൽ കോയിൻ അയയ്ക്കുക. മൊബൈൽ കോയിൻ പിന്തുണയ്ക്കുന്ന ഒരു എക്സ്ചേഞ്ചിൽ നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് ഒരു ട്രാൻസാക്ഷൻ ആരംഭിക്കുക, തുടർന്ന് ക്യുആർ കോഡ് സ്കാൻ ചെയ്യുക അല്ലെങ്കിൽ നിങ്ങളുടെ വാലറ്റ് വിലാസം പകർത്തുക.</string>
   <!--PaymentsDetailsFragment-->
@@ -2984,7 +2984,7 @@
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">നിങ്ങൾ നിങ്ങളുടെ വാക്യം ശരിയായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക, വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക?</string>
   <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം ഡിജിറ്റലായി സംഭരിക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയാണെങ്കിൽ, നിങ്ങൾ വിശ്വസിക്കുന്ന എവിടെയെങ്കിലും അത് സുരക്ഷിതമായി സംഭരിക്കപ്പെടുന്നുവെന്ന് ഉറപ്പാക്കുക.</string>
-  <string name="PaymentsRecoveryPhraseFragment__copy">പകർത്തുക</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy">പകർത്തൂ</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം സ്ഥിരീകരിക്കുക</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യത്തിൽ നിന്ന് ഇനിപ്പറയുന്ന വാക്കുകൾ നൽകുക.</string>
@@ -3196,6 +3196,7 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">ഫോട്ടോ ചേർക്കുക</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">നിങ്ങളെപ്പോലുള്ള ആളുകളാണ് Signal നിലനിർത്തുന്നത്. സംഭാവന ചെയ്യ്ത് ഒരു പ്രൊഫൈൽ ബാഡ്ജ് സ്വീകരിക്കൂ.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">വേണ്ട, നന്ദി</string>
   <string name="BecomeASustainerMegaphone__contribute">സംഭാവന ചെയ്യുക</string>
   <!--KeyboardPagerFragment-->
@@ -3246,6 +3247,7 @@
   <string name="ConversationSettingsFragment__conversation_muted_forever">സംഭാഷണം എന്നെന്നേക്കുമായി മ്യുട് ചെയ്തു</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ക്ലിപ്ബോർഡിലേക്ക് ഫോൺ നമ്പർ പകർത്തി.</string>
   <string name="ConversationSettingsFragment__phone_number">ഫോൺ നമ്പർ</string>
+  <string name="ConversationSettingsFragment__get_badges">Signal-നെ പിന്തുണച്ച് നിങ്ങളുടെ പ്രൊഫൈലിനായി ബാഡ്ജുകൾ നേടുക. കൂടുതലറിയാൻ ഒരു ബാഡ്ജിൽ തൊടുക.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
@@ -3307,7 +3309,10 @@
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">മുകളിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
+  <string name="MultiselectForwardFragment__forward_to">ഫോർവേഡ് ചെയ്യുക</string>
   <string name="MultiselectForwardFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
+  <string name="MultiselectForwardFragment__faster_forwards">അതിവേഗ ഫോര്‍വേഡുകള്‍</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">കൈമാറിയ സന്ദേശങ്ങള്‍ ഇപ്പോൾ ഉടനടി അയയ്‌ക്കുന്നു.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d സന്ദേശം അയയ്ക്കുക</item>
     <item quantity="other">%1$d സന്ദേശങ്ങള്‍ അയയ്ക്കുക</item>
@@ -3329,6 +3334,7 @@
   <string name="MediaReviewFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
   <string name="MediaReviewFragment__add_a_reply">ഒരു മറുപടി ചേർക്കുക</string>
   <string name="MediaReviewFragment__send_to">അയക്കുക</string>
+  <string name="MediaReviewFragment__view_once_message">ഒരിയ്ക്കല്‍ മാത്രം കാണാവുന്ന സന്ദേശം</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ വളരെ വലുതായിരുന്നു</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">ഒന്നോ അതിലധികമോ ഇനങ്ങൾ അസാധുവാണ്</string>
   <string name="MediaReviewFragment__too_many_items_selected">വളരെയധികം ഇനങ്ങൾ തിരഞ്ഞെടുത്തു</string>
@@ -3340,7 +3346,9 @@
   <string name="ImageEditorHud__done_editing">എഡിറ്റിംഗ് കഴിഞ്ഞു</string>
   <string name="ImageEditorHud__clear_all">എല്ലാം മായ്ക്കുക</string>
   <string name="ImageEditorHud__undo">തിരിച്ചാക്കുക</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">മാർക്കറിനും ഹൈലൈറ്ററിനും ഇടയിൽ മാറ്റുക</string>
   <string name="ImageEditorHud__delete">ഇല്ലാതാക്കൂ</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">ടെക്സ്റ്റ് ശൈലികൾക്കിടയിൽ മാറ്റുക</string>
   <string name="MediaCountIndicatorButton__send">അയയ്‌ക്കുക</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">നീക്കം ചെയ്യാൻ തൊടുക</string>
   <string name="MediaReviewSelectedItem__tap_to_select">തിരഞ്ഞെടുക്കാൻ ടാപ്പുചെയ്യുക</string>
@@ -3351,10 +3359,13 @@
   <string name="BadgesOverviewFragment__my_badges">എന്റെ ബാഡ്ജുകൾ</string>
   <string name="BadgesOverviewFragment__featured_badge">ഫീച്ചേർഡ് ബാഡ്ജ്</string>
   <string name="BadgesOverviewFragment__display_badges_on_profile">പ്രൊഫൈലിൽ ബാഡ്ജുകൾ പ്രദർശിപ്പിക്കുക</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">പ്രൊഫൈൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="BadgeSelectionFragment__select_badges">ബാഡ്ജുകൾ തിരഞ്ഞെടുക്കുക</string>
   <string name="SelectFeaturedBadgeFragment__preview">പ്രിവ്യൂ</string>
   <string name="SelectFeaturedBadgeFragment__select_a_badge">ഒരു ബാഡ്ജ് തിരഞ്ഞെടുക്കുക</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">നിങ്ങൾ ഒരു ബാഡ്ജ് തിരഞ്ഞെടുക്കണം</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">പ്രൊഫൈൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ഒരു പരിപാലകരാകുക</string>
   <string name="ImageView__badge">ബാഡ്ജ്</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">നിങ്ങളെപ്പോലുള്ളവരാണ് Signal പ്രവർത്തിപ്പിക്കുന്നത്.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">നിങ്ങളുടെ ഡാറ്റയ്‌ക്ക് വേണ്ടിയല്ല - മറിച്ച് നിങ്ങൾക്കു വേണ്ടി  - നിർമ്മിച്ച സാങ്കേതികവിദ്യയെ അത് നിലനിർത്തുന്ന ആളുകളുടെ കമ്മ്യൂണിറ്റിയിൽ ചേരുന്നതിലൂടെ  പിന്തുണയ്ക്കുക.</string>
@@ -3366,7 +3377,9 @@
   <string name="SubscribeFragment__you_wont_be_charged_again">നിങ്ങളിൽ നിന്ന് വീണ്ടും നിരക്ക് ഈടാക്കില്ല. നിങ്ങളുടെ ബില്ലിംഗ് കാലയളവിന്റെ അവസാനം നിങ്ങളുടെ പ്രൊഫൈലിൽ നിന്ന് നിങ്ങളുടെ ബാഡ്ജ് നീക്കം ചെയ്യപ്പെടും.</string>
   <string name="SubscribeFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="SubscribeFragment__confirm">സ്ഥിരീകരിക്കുക</string>
+  <string name="SubscribeFragment__update_subscription">സബ്സ്ക്രിപ്ഷൻ അപ്ഡേറ്റ് ചെയ്യുക</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കി.</string>
+  <string name="SubscribeFragment__update_subscription_question">സബ്സ്ക്രിപ്ഷൻ അപ്ഡേറ്റ് ചെയ്യണോ?</string>
   <string name="SubscribeFragment__update">അപ്‌ഡേറ്റ്</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">എന്തുകൊണ്ട് സംഭാവന ചെയ്യണം?</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">നിങ്ങളുടെ പിന്തുണയ്ക്ക് നന്ദി!</string>
@@ -3379,7 +3392,10 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ചെയ്‌തു</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">നിങ്ങൾക്ക് ഒന്നിലധികം ബാഡ്‌ജുകൾ ഉള്ളപ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈലിൽ മറ്റുള്ളവർക്ക് കാണുന്നതിന് ഫീച്ചർ ചെയ്യുന്നതിനായി നിങ്ങൾക്ക് ഒന്ന് തിരഞ്ഞെടുക്കാം.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal-നെ പിന്തുണച്ച് നിങ്ങളുടെ പ്രൊഫൈലിനായി ബാഡ്ജുകൾ നേടുക.</string>
+  <string name="ManageDonationsFragment__my_support">എന്റെ പിന്തുണ</string>
+  <string name="ManageDonationsFragment__manage_subscription">സബ്സ്ക്രിപ്ഷൻ നിയന്ത്രിക്കുക</string>
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
+  <string name="ManageDonationsFragment__subscription_faq">സബ്സ്ക്രിപ്ഷൻ FAQ</string>
   <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>
   <string name="MySupportPreference__processing_transaction">ഇടപാട് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
