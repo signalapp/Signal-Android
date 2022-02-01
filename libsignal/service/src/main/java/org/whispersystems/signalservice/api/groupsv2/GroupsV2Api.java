@@ -95,37 +95,6 @@ public final class GroupsV2Api {
                            .decryptGroup(group);
   }
 
-  public List<DecryptedGroupHistoryEntry> getGroupHistory(GroupSecretParams groupSecretParams,
-                                                          int fromRevision,
-                                                          GroupsV2AuthorizationString authorization)
-      throws IOException, InvalidGroupStateException, VerificationFailedException
-  {
-    List<GroupChanges.GroupChangeState> changesList = new LinkedList<>();
-    PushServiceSocket.GroupHistory      group;
-
-    do {
-      group = socket.getGroupsV2GroupHistory(fromRevision, authorization);
-
-      changesList.addAll(group.getGroupChanges().getGroupChangesList());
-
-      if (group.hasMore()) {
-        fromRevision = group.getNextPageStartGroupRevision();
-      }
-    } while (group.hasMore());
-
-    ArrayList<DecryptedGroupHistoryEntry> result          = new ArrayList<>(changesList.size());
-    GroupsV2Operations.GroupOperations    groupOperations = groupsOperations.forGroup(groupSecretParams);
-
-    for (GroupChanges.GroupChangeState change : changesList) {
-      Optional<DecryptedGroup>       decryptedGroup  = change.hasGroupState () ? Optional.of(groupOperations.decryptGroup(change.getGroupState())) : Optional.absent();
-      Optional<DecryptedGroupChange> decryptedChange = change.hasGroupChange() ? groupOperations.decryptChange(change.getGroupChange(), false)     : Optional.absent();
-
-      result.add(new DecryptedGroupHistoryEntry(decryptedGroup, decryptedChange));
-    }
-
-    return result;
-  }
-
   public GroupHistoryPage getGroupHistoryPage(GroupSecretParams groupSecretParams,
                                           int fromRevision,
                                           GroupsV2AuthorizationString authorization)
