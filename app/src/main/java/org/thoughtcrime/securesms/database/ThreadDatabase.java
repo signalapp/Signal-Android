@@ -78,6 +78,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import kotlin.Unit;
+import kotlin.collections.CollectionsKt;
+
 public class ThreadDatabase extends Database {
 
   private static final String TAG = Log.tag(ThreadDatabase.class);
@@ -874,14 +877,32 @@ public class ThreadDatabase extends Database {
   }
 
   public void unpinConversations(@NonNull Collection<Long> threadIds) {
-    SQLiteDatabase db            = databaseHelper.getSignalWritableDatabase();
-    ContentValues  contentValues = new ContentValues(1);
-    String         placeholders  = StringUtil.join(Stream.of(threadIds).map(unused -> "?").toList(), ",");
-    String         selection     = ID + " IN (" + placeholders + ")";
+    SQLiteDatabase db                     = databaseHelper.getSignalWritableDatabase();
+    ContentValues  contentValues          = new ContentValues(1);
+    String         placeholders           = StringUtil.join(Stream.of(threadIds).map(unused -> "?").toList(), ",");
+    String         selection              = ID + " IN (" + placeholders + ")";
+    List<Long>     remainingPinnedThreads = getPinnedThreadIds();
 
+    remainingPinnedThreads.removeAll(threadIds);
     contentValues.put(PINNED, 0);
 
-    db.update(TABLE_NAME, contentValues, selection, SqlUtil.buildArgs(Stream.of(threadIds).toArray()));
+    db.beginTransaction();
+    try {
+      db.update(TABLE_NAME, contentValues, selection, SqlUtil.buildArgs(Stream.of(threadIds).toArray()));
+
+      CollectionsKt.forEachIndexed(remainingPinnedThreads, (index, threadId) -> {
+        ContentValues values = new ContentValues(1);
+        values.put(PINNED, index + 1);
+        db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(threadId));
+
+        return Unit.INSTANCE;
+      });
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
     notifyConversationListListeners();
 
     SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
