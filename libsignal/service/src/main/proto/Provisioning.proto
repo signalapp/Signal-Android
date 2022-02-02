@@ -20,15 +20,19 @@ message ProvisionEnvelope {
 }
 
 message ProvisionMessage {
-  optional bytes  identityKeyPublic   = 1;
-  optional bytes  identityKeyPrivate  = 2;
-  optional string number              = 3;
-  optional string uuid                = 8;
-  optional string provisioningCode    = 4;
-  optional string userAgent           = 5;
-  optional bytes  profileKey          = 6;
-  optional bool   readReceipts        = 7;
-  optional uint32 provisioningVersion = 9;
+  optional bytes  aciIdentityKeyPublic  = 1;
+  optional bytes  aciIdentityKeyPrivate = 2;
+  optional bytes  pniIdentityKeyPublic  = 11;
+  optional bytes  pniIdentityKeyPrivate = 12;
+  optional string aci                   = 8;
+  optional string pni                   = 10;
+  optional string number                = 3;
+  optional string provisioningCode      = 4;
+  optional string userAgent             = 5;
+  optional bytes  profileKey            = 6;
+  optional bool   readReceipts          = 7;
+  optional uint32 provisioningVersion   = 9;
+  // NEXT ID: 13
 }
 
 enum ProvisioningVersion {

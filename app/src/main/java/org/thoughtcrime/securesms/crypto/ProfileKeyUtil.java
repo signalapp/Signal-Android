@@ -22,18 +22,6 @@ public final class ProfileKeyUtil {
   private ProfileKeyUtil() {
   }
 
-  /** @deprecated Use strongly typed {@link org.signal.zkgroup.profiles.ProfileKey}
-   * from {@link #getSelfProfileKey()}
-   * or {@code getSelfProfileKey().serialize()} if you need the bytes. */
-  @Deprecated
-  public static @NonNull byte[] getProfileKey(@NonNull Context context) {
-    byte[] profileKey = Recipient.self().getProfileKey();
-    if (profileKey == null) {
-      throw new AssertionError();
-    }
-    return profileKey;
-  }
-
   public static synchronized @NonNull ProfileKey getSelfProfileKey() {
     try {
       return new ProfileKey(Recipient.self().getProfileKey());

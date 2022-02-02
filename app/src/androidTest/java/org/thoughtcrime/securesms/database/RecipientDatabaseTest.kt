@@ -30,10 +30,16 @@ class RecipientDatabaseTest {
 
   private lateinit var recipientDatabase: RecipientDatabase
 
+  private val localAci = ACI.from(UUID.randomUUID());
+  private val localPni = PNI.from(UUID.randomUUID());
+
   @Before
   fun setup() {
     recipientDatabase = SignalDatabase.recipients
     ensureDbEmpty()
+
+    SignalStore.account().setAci(localAci)
+    SignalStore.account().setPni(localPni)
   }
 
   // ==============================================================

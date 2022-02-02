@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage.PniIdentity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class SignalServiceSyncMessage {
   private final Optional<KeysMessage>                       keys;
   private final Optional<MessageRequestResponseMessage>     messageRequestResponse;
   private final Optional<OutgoingPaymentMessage>            outgoingPaymentMessage;
+  private final Optional<PniIdentity>                       pniIdentity;
   private final Optional<List<ViewedMessage>>               views;
 
   private SignalServiceSyncMessage(Optional<SentTranscriptMessage>             sent,
@@ -44,7 +46,8 @@ public class SignalServiceSyncMessage {
                                    Optional<KeysMessage>                       keys,
                                    Optional<MessageRequestResponseMessage>     messageRequestResponse,
                                    Optional<OutgoingPaymentMessage>            outgoingPaymentMessage,
-                                   Optional<List<ViewedMessage>>               views)
+                                   Optional<List<ViewedMessage>>               views,
+                                   Optional<PniIdentity>                       pniIdentity)
   {
     this.sent                   = sent;
     this.contacts               = contacts;
@@ -61,10 +64,12 @@ public class SignalServiceSyncMessage {
     this.messageRequestResponse = messageRequestResponse;
     this.outgoingPaymentMessage = outgoingPaymentMessage;
     this.views                  = views;
+    this.pniIdentity            = pniIdentity;
   }
 
   public static SignalServiceSyncMessage forSentTranscript(SentTranscriptMessage sent) {
     return new SignalServiceSyncMessage(Optional.of(sent),
+                                        Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
@@ -96,6 +101,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
+                                        Optional.absent(),
                                         Optional.absent());
   }
 
@@ -103,6 +109,7 @@ public class SignalServiceSyncMessage {
     return new SignalServiceSyncMessage(Optional.absent(),
                                         Optional.absent(),
                                         Optional.of(groups),
+                                        Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
@@ -132,6 +139,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
+                                        Optional.absent(),
                                         Optional.absent());
   }
 
@@ -142,6 +150,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.of(reads),
+                                        Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
@@ -168,7 +177,8 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
-                                        Optional.of(views));
+                                        Optional.of(views),
+                                        Optional.absent());
   }
 
   public static SignalServiceSyncMessage forViewOnceOpen(ViewOnceOpenMessage timerRead) {
@@ -179,6 +189,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.of(timerRead),
+                                        Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
@@ -207,6 +218,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
+                                        Optional.absent(),
                                         Optional.absent());
   }
 
@@ -225,6 +237,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
+                                        Optional.absent(),
                                         Optional.absent());
   }
 
@@ -233,6 +246,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.of(blocked),
+                                        Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
@@ -261,6 +275,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
+                                        Optional.absent(),
                                         Optional.absent());
   }
 
@@ -275,6 +290,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.of(stickerPackOperations),
+                                        Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
@@ -297,6 +313,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
+                                        Optional.absent(),
                                         Optional.absent());
   }
 
@@ -313,6 +330,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.of(keys),
+                                        Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent());
@@ -333,6 +351,7 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.of(messageRequestResponse),
                                         Optional.absent(),
+                                        Optional.absent(),
                                         Optional.absent());
   }
 
@@ -351,11 +370,32 @@ public class SignalServiceSyncMessage {
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.of(outgoingPaymentMessage),
+                                        Optional.absent(),
                                         Optional.absent());
+  }
+
+  public static SignalServiceSyncMessage forPniIdentity(PniIdentity pniIdentity) {
+    return new SignalServiceSyncMessage(Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.of(pniIdentity));
   }
 
   public static SignalServiceSyncMessage empty() {
     return new SignalServiceSyncMessage(Optional.absent(),
+                                        Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
                                         Optional.absent(),
@@ -430,6 +470,10 @@ public class SignalServiceSyncMessage {
 
   public Optional<List<ViewedMessage>> getViewed() {
     return views;
+  }
+
+  public Optional<PniIdentity> getPniIdentity() {
+    return pniIdentity;
   }
 
   public enum FetchType {

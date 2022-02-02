@@ -26,12 +26,14 @@ message Envelope {
   optional string sourceE164      = 2;
   optional string sourceUuid      = 11;
   optional uint32 sourceDevice    = 7;
+  optional string destinationUuid = 13;
   optional string relay           = 3;
   optional uint64 timestamp       = 5;
   optional bytes  legacyMessage   = 6; // Contains an encrypted DataMessage
   optional bytes  content         = 8; // Contains an encrypted Content
   optional string serverGuid      = 9;
   optional uint64 serverTimestamp = 10;
+  // NEXT ID: 14
 }
 
 message Content {
@@ -408,6 +410,7 @@ message SyncMessage {
       BLOCKED       = 3;
       CONFIGURATION = 4;
       KEYS          = 5;
+      PNI_IDENTITY  = 6;
     }
 
     optional Type type = 1;
@@ -464,6 +467,11 @@ message SyncMessage {
 
   message Keys {
     optional bytes storageService = 1;
+  }
+
+  message PniIdentity {
+    optional bytes publicKey  = 1;
+    optional bytes privateKey = 2;
   }
 
   message MessageRequestResponse {

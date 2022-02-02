@@ -19,6 +19,7 @@ import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
@@ -35,6 +36,7 @@ import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -128,14 +130,16 @@ public class SignalServiceAccountManager {
 
   /**
    * Construct a SignalServiceAccountManager.
-   *  @param configuration The URL for the Signal Service.
-   * @param aci The Signal Service UUID.
+   * @param configuration The URL for the Signal Service.
+   * @param aci The Signal Service ACI.
+   * @param pni The Signal Service PNI.
    * @param e164 The Signal Service phone number.
    * @param password A Signal Service password.
    * @param signalAgent A string which identifies the client software.
    */
   public SignalServiceAccountManager(SignalServiceConfiguration configuration,
                                      ACI aci,
+                                     PNI pni,
                                      String e164,
                                      int deviceId,
                                      String password,
@@ -143,7 +147,7 @@ public class SignalServiceAccountManager {
                                      boolean automaticNetworkRetry)
   {
     this(configuration,
-         new StaticCredentialsProvider(aci, e164, deviceId, password),
+         new StaticCredentialsProvider(aci, pni, e164, deviceId, password),
          signalAgent,
          new GroupsV2Operations(ClientZkOperations.create(configuration)),
          automaticNetworkRetry);
@@ -715,36 +719,32 @@ public class SignalServiceAccountManager {
 
   public void addDevice(String deviceIdentifier,
                         ECPublicKey deviceKey,
-                        IdentityKeyPair identityKeyPair,
-                        Optional<byte[]> profileKey,
+                        IdentityKeyPair aciIdentityKeyPair,
+                        IdentityKeyPair pniIdentityKeyPair,
+                        ProfileKey profileKey,
                         String code)
       throws InvalidKeyException, IOException
   {
-    PrimaryProvisioningCipher cipher = new PrimaryProvisioningCipher(deviceKey);
-    ProvisionMessage.Builder message = ProvisionMessage.newBuilder()
-                                                       .setIdentityKeyPublic(ByteString.copyFrom(identityKeyPair.getPublicKey().serialize()))
-                                                       .setIdentityKeyPrivate(ByteString.copyFrom(identityKeyPair.getPrivateKey().serialize()))
-                                                       .setProvisioningCode(code)
-                                                       .setProvisioningVersion(ProvisioningVersion.CURRENT_VALUE);
-
     String e164 = credentials.getE164();
     ACI    aci  = credentials.getAci();
+    PNI    pni  = credentials.getPni();
 
-    if (e164 != null) {
-      message.setNumber(e164);
-    } else {
-      throw new AssertionError("Missing phone number!");
-    }
+    Preconditions.checkArgument(e164 != null, "Missing e164!");
+    Preconditions.checkArgument(aci != null, "Missing ACI!");
+    Preconditions.checkArgument(pni != null, "Missing PNI!");
 
-    if (aci != null) {
-      message.setUuid(aci.toString());
-    } else {
-      Log.w(TAG, "[addDevice] Missing UUID.");
-    }
-
-    if (profileKey.isPresent()) {
-      message.setProfileKey(ByteString.copyFrom(profileKey.get()));
-    }
+    PrimaryProvisioningCipher cipher  = new PrimaryProvisioningCipher(deviceKey);
+    ProvisionMessage.Builder  message = ProvisionMessage.newBuilder()
+                                                        .setAciIdentityKeyPublic(ByteString.copyFrom(aciIdentityKeyPair.getPublicKey().serialize()))
+                                                        .setAciIdentityKeyPrivate(ByteString.copyFrom(aciIdentityKeyPair.getPrivateKey().serialize()))
+                                                        .setPniIdentityKeyPublic(ByteString.copyFrom(pniIdentityKeyPair.getPublicKey().serialize()))
+                                                        .setPniIdentityKeyPrivate(ByteString.copyFrom(pniIdentityKeyPair.getPrivateKey().serialize()))
+                                                        .setAci(aci.toString())
+                                                        .setPni(pni.toString())
+                                                        .setNumber(e164)
+                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
+                                                        .setProvisioningCode(code)
+                                                        .setProvisioningVersion(ProvisioningVersion.CURRENT_VALUE);
 
     byte[] ciphertext = cipher.encrypt(message.build());
     this.pushServiceSocket.sendProvisioningMessage(deviceIdentifier, ciphertext);

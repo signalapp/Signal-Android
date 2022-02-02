@@ -32,6 +32,7 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
         $DEVICE INTEGER NOT NULL,
         $RECORD BLOB NOT NULL,
         UNIQUE($ACCOUNT_ID, $ADDRESS, $DEVICE)
+      )
     """
   }
 

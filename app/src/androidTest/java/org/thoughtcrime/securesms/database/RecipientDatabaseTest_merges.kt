@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -33,6 +34,7 @@ import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.libsignal.state.SessionRecord
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
 
@@ -51,6 +53,9 @@ class RecipientDatabaseTest_merges {
   private lateinit var reactionDatabase: ReactionDatabase
   private lateinit var notificationProfileDatabase: NotificationProfileDatabase
 
+  private val localAci = ACI.from(UUID.randomUUID());
+  private val localPni = PNI.from(UUID.randomUUID());
+
   @Before
   fun setup() {
     recipientDatabase = SignalDatabase.recipients
@@ -64,6 +69,9 @@ class RecipientDatabaseTest_merges {
     mentionDatabase = SignalDatabase.mentions
     reactionDatabase = SignalDatabase.reactions
     notificationProfileDatabase = SignalDatabase.notificationProfiles
+
+    SignalStore.account().setAci(localAci)
+    SignalStore.account().setPni(localPni)
 
     ensureDbEmpty()
   }
@@ -99,7 +107,7 @@ class RecipientDatabaseTest_merges {
     identityDatabase.saveIdentity(ACI_A.toString(), recipientIdAci, identityKeyAci, IdentityDatabase.VerifiedStatus.VERIFIED, false, 0, false)
     identityDatabase.saveIdentity(E164_A, recipientIdE164, identityKeyE164, IdentityDatabase.VerifiedStatus.VERIFIED, false, 0, false)
 
-    sessionDatabase.store(SignalProtocolAddress(ACI_A.toString(), 1), SessionRecord())
+    sessionDatabase.store(localAci, SignalProtocolAddress(ACI_A.toString(), 1), SessionRecord())
 
     reactionDatabase.addReaction(MessageId(smsId1, false), ReactionRecord("a", recipientIdAci, 1, 1))
     reactionDatabase.addReaction(MessageId(mmsId1, true), ReactionRecord("b", recipientIdE164, 1, 1))
@@ -175,7 +183,7 @@ class RecipientDatabaseTest_merges {
     assertNull(identityDatabase.getIdentityStoreRecord(E164_A))
 
     // Session validation
-    assertNotNull(sessionDatabase.load(SignalProtocolAddress(ACI_A.toString(), 1)))
+    assertNotNull(sessionDatabase.load(localAci, SignalProtocolAddress(ACI_A.toString(), 1)))
 
     // Reaction validation
     val reactionsSms: List<ReactionRecord> = reactionDatabase.getReactions(MessageId(smsId1, false))

@@ -43,4 +43,8 @@ public class RequestMessage {
   public boolean isKeysRequest() {
     return request.getType() == Request.Type.KEYS;
   }
+
+  public boolean isPniIdentityRequest() {
+    return request.getType() == Request.Type.PNI_IDENTITY;
+  }
 }

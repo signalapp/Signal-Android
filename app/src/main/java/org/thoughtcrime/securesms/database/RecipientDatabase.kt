@@ -2604,7 +2604,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     // Sessions
-    val localAci: ACI = Recipient.self().aci.get()
+    val localAci: ACI = SignalStore.account().aci!!
     val sessionDatabase = sessions
     val hasE164Session = sessionDatabase.getAllFor(localAci, e164Record.e164).isNotEmpty()
     val hasAciSession = sessionDatabase.getAllFor(localAci, aciRecord.aci.toString()).isNotEmpty()

@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -187,12 +188,13 @@ public class DeviceActivity extends PassphraseRequiredActivity
             return BAD_CODE;
           }
 
-          ECPublicKey      publicKey         = Curve.decodePoint(Base64.decode(publicKeyEncoded), 0);
-          IdentityKeyPair  identityKeyPair   = SignalStore.account().getAciIdentityKey();
-          Optional<byte[]> profileKey        = Optional.of(ProfileKeyUtil.getProfileKey(getContext()));
+          ECPublicKey     publicKey          = Curve.decodePoint(Base64.decode(publicKeyEncoded), 0);
+          IdentityKeyPair aciIdentityKeyPair = SignalStore.account().getAciIdentityKey();
+          IdentityKeyPair pniIdentityKeyPair = SignalStore.account().getPniIdentityKey();
+          ProfileKey      profileKey         = ProfileKeyUtil.getSelfProfileKey();
 
           TextSecurePreferences.setMultiDevice(DeviceActivity.this, true);
-          accountManager.addDevice(ephemeralId, publicKey, identityKeyPair, profileKey, verificationCode);
+          accountManager.addDevice(ephemeralId, publicKey, aciIdentityKeyPair, pniIdentityKeyPair, profileKey, verificationCode);
 
           return SUCCESS;
         } catch (NotFoundException e) {

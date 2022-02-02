@@ -371,6 +371,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     }
 
     @Override
+    public PNI getPni() {
+      return SignalStore.account().getPni();
+    }
+
+    @Override
     public String getE164() {
       return SignalStore.account().getE164();
     }

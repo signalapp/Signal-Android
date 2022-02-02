@@ -24,12 +24,12 @@ class SecondaryProvisioningCipherTest {
     val primaryProvisioningCipher = PrimaryProvisioningCipher(provisioningCipher.secondaryDevicePublicKey.publicKey)
 
     val message = ProvisionMessage.newBuilder()
-      .setIdentityKeyPublic(ByteString.copyFrom(primaryIdentityKeyPair.publicKey.serialize()))
-      .setIdentityKeyPrivate(ByteString.copyFrom(primaryIdentityKeyPair.privateKey.serialize()))
+      .setAciIdentityKeyPublic(ByteString.copyFrom(primaryIdentityKeyPair.publicKey.serialize()))
+      .setAciIdentityKeyPrivate(ByteString.copyFrom(primaryIdentityKeyPair.privateKey.serialize()))
       .setProvisioningCode("code")
       .setProvisioningVersion(ProvisioningVersion.CURRENT_VALUE)
       .setNumber("+14045555555")
-      .setUuid(UUID.randomUUID().toString())
+      .setAci(UUID.randomUUID().toString())
       .setProfileKey(ByteString.copyFrom(primaryProfileKey.serialize()))
 
     val provisionMessage = ProvisioningProtos.ProvisionEnvelope.parseFrom(primaryProvisioningCipher.encrypt(message.build()))
@@ -39,7 +39,7 @@ class SecondaryProvisioningCipherTest {
 
     val success = result as SecondaryProvisioningCipher.ProvisionDecryptResult.Success
 
-    assertThat(success.uuid.toString(), `is`(message.uuid))
+    assertThat(success.uuid.toString(), `is`(message.aci))
     assertThat(success.e164, `is`(message.number))
     assertThat(success.identityKeyPair.serialize(), `is`(primaryIdentityKeyPair.serialize()))
     assertThat(success.profileKey.serialize(), `is`(primaryProfileKey.serialize()))

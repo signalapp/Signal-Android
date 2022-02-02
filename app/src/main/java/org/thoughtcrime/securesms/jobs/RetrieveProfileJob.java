@@ -396,7 +396,7 @@ public class RetrieveProfileJob extends BaseJob {
 
       IdentityKey identityKey = new IdentityKey(Base64.decode(identityKeyValue), 0);
 
-      if (!ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient).isPresent()) {
+      if (!ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipient.getId()).isPresent()) {
         Log.w(TAG, "Still first use for " + recipient.getId());
         return;
       }

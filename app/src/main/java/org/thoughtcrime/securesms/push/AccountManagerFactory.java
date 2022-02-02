@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.PNI;
 
 public class AccountManagerFactory {
 
@@ -20,6 +21,7 @@ public class AccountManagerFactory {
 
   public static @NonNull SignalServiceAccountManager createAuthenticated(@NonNull Context context,
                                                                          @NonNull ACI aci,
+                                                                         @NonNull PNI pni,
                                                                          @NonNull String number,
                                                                          int deviceId,
                                                                          @NonNull String password)
@@ -36,6 +38,7 @@ public class AccountManagerFactory {
 
     return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
                                            aci,
+                                           pni,
                                            number,
                                            deviceId,
                                            password,
@@ -44,7 +47,7 @@ public class AccountManagerFactory {
   }
 
   /**
-   * Should only be used during registration when you haven't yet been assigned a UUID.
+   * Should only be used during registration when you haven't yet been assigned an ACI.
    */
   public static @NonNull SignalServiceAccountManager createUnauthenticated(@NonNull Context context,
                                                                            @NonNull String number,
@@ -62,7 +65,7 @@ public class AccountManagerFactory {
     }
 
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
-                                           null, number, deviceId, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
+                                           null, null, number, deviceId, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
   }
 
 }

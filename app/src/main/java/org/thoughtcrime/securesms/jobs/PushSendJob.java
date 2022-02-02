@@ -174,7 +174,7 @@ public abstract class PushSendJob extends SendJob {
       return Optional.absent();
     }
 
-    return Optional.of(ProfileKeyUtil.getProfileKey(context));
+    return Optional.of(ProfileKeyUtil.getSelfProfileKey().serialize());
   }
 
   protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {
