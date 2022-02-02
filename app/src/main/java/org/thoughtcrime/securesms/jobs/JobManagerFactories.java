@@ -244,7 +244,7 @@ public final class JobManagerFactories {
   public static List<ConstraintObserver> getConstraintObservers(@NonNull Application application) {
     return Arrays.asList(CellServiceConstraintObserver.getInstance(application),
                          new ChargingConstraintObserver(application),
-                         new NetworkConstraintObserver(application),
+                         NetworkConstraintObserver.getInstance(application),
                          new SqlCipherMigrationConstraintObserver(),
                          new DecryptionsDrainedConstraintObserver(),
                          new NotInCallConstraintObserver());

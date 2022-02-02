@@ -67,7 +67,7 @@ public class NewConversationActivity extends ContactSelectionActivity
     } else {
       Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
 
-      if (SignalStore.account().isRegistered() && NetworkConstraint.isMet(this)) {
+      if (SignalStore.account().isRegistered() && NetworkConstraint.isMet(getApplication())) {
         Log.i(TAG, "[onContactSelected] Doing contact refresh.");
 
         AlertDialog progress = SimpleProgressDialog.show(this);
