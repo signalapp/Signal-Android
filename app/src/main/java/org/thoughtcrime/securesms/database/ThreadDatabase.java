@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
@@ -581,6 +582,10 @@ public class ThreadDatabase extends Database {
     }
 
     query += " AND " + ARCHIVED + " = 0";
+
+    if (SignalStore.releaseChannelValues().getReleaseChannelRecipientId() != null) {
+      query += " AND " + RECIPIENT_ID + " != " + SignalStore.releaseChannelValues().getReleaseChannelRecipientId().toLong();
+    }
 
     return db.rawQuery(createQuery(query, 0, limit, true), null);
   }
@@ -1599,7 +1604,8 @@ public class ThreadDatabase extends Database {
                                                           false,
                                                           recipientSettings.getRegistered(),
                                                           recipientSettings,
-                                                          null);
+                                                          null,
+                                                          false);
           recipient = new Recipient(recipientId, details, false);
         } else {
           recipient = Recipient.live(recipientId).get();

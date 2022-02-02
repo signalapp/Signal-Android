@@ -80,7 +80,8 @@ object RecipientDatabaseTestUtils {
     ),
     extras: Recipient.Extras? = null,
     hasGroupsInCommon: Boolean = false,
-    badges: List<Badge> = emptyList()
+    badges: List<Badge> = emptyList(),
+    isReleaseChannel: Boolean = false
   ): Recipient = Recipient(
     recipientId,
     RecipientDetails(
@@ -142,7 +143,8 @@ object RecipientDatabaseTestUtils {
         hasGroupsInCommon,
         badges
       ),
-      participants
+      participants,
+      isReleaseChannel
     ),
     resolved
   )

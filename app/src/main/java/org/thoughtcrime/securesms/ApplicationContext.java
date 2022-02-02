@@ -36,6 +36,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
+import org.thoughtcrime.securesms.jobs.RetrieveReleaseChannelJob;
 import org.thoughtcrime.securesms.mms.SignalGlideModule;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
@@ -194,6 +195,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(EmojiSearchIndexDownloadJob::scheduleIfNecessary)
                             .addPostRender(() -> SignalDatabase.messageLog().trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge()))
                             .addPostRender(() -> JumboEmoji.updateCurrentVersion(this))
+                            .addPostRender(RetrieveReleaseChannelJob::enqueue)
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");

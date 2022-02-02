@@ -41,6 +41,7 @@ public final class SignalStore {
   private final ChatColorsValues          chatColorsValues;
   private final ImageEditorValues         imageEditorValues;
   private final NotificationProfileValues notificationProfileValues;
+  private final ReleaseChannelValues      releaseChannelValues;
 
   private static volatile SignalStore instance;
 
@@ -81,6 +82,7 @@ public final class SignalStore {
     this.chatColorsValues          = new ChatColorsValues(store);
     this.imageEditorValues         = new ImageEditorValues(store);
     this.notificationProfileValues = new NotificationProfileValues(store);
+    this.releaseChannelValues      = new ReleaseChannelValues(store);
   }
 
   public static void onFirstEverAppLaunch() {
@@ -107,6 +109,7 @@ public final class SignalStore {
     chatColorsValues().onFirstEverAppLaunch();
     imageEditorValues().onFirstEverAppLaunch();
     notificationProfileValues().onFirstEverAppLaunch();
+    releaseChannelValues().onFirstEverAppLaunch();
   }
 
   public static List<String> getKeysToIncludeInBackup() {
@@ -134,6 +137,7 @@ public final class SignalStore {
     keys.addAll(chatColorsValues().getKeysToIncludeInBackup());
     keys.addAll(imageEditorValues().getKeysToIncludeInBackup());
     keys.addAll(notificationProfileValues().getKeysToIncludeInBackup());
+    keys.addAll(releaseChannelValues().getKeysToIncludeInBackup());
     return keys;
   }
 
@@ -236,6 +240,10 @@ public final class SignalStore {
 
   public static @NonNull NotificationProfileValues notificationProfileValues() {
     return getInstance().notificationProfileValues;
+  }
+
+  public static @NonNull ReleaseChannelValues releaseChannelValues() {
+    return getInstance().releaseChannelValues;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {

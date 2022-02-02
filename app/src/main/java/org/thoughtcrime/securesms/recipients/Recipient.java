@@ -439,7 +439,7 @@ public class Recipient {
     this.extras                      = details.extras;
     this.hasGroupsInCommon           = details.hasGroupsInCommon;
     this.badges                      = details.badges;
-    this.isReleaseNotesRecipient     = false;
+    this.isReleaseNotesRecipient     = details.isReleaseChannel;
   }
 
   public @NonNull RecipientId getId() {

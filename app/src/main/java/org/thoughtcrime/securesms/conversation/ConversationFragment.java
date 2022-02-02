@@ -1828,7 +1828,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onDonateClicked() {
-
+      if (SignalStore.donationsValues().isLikelyASustainer()) {
+        startActivity(AppSettingsActivity.boost(requireContext()));
+      } else {
+        startActivity(AppSettingsActivity.subscriptions(requireContext()));
+      }
     }
   }
 

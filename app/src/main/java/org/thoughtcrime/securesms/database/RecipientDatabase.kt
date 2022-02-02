@@ -664,6 +664,22 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
+  /**
+   * Only call once to create initial release channel recipient.
+   */
+  fun insertReleaseChannelRecipient(): RecipientId {
+    val values = ContentValues().apply {
+      put(AVATAR_COLOR, AvatarColor.random().serialize())
+    }
+
+    val id = writableDatabase.insert(TABLE_NAME, null, values)
+    if (id < 0) {
+      throw AssertionError("Failed to insert recipient!")
+    } else {
+      return GetOrInsertResult(RecipientId.from(id), true).recipientId
+    }
+  }
+
   fun getBlocked(): Cursor {
     return readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$BLOCKED = 1", null, null, null, null)
   }
