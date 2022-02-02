@@ -1356,14 +1356,14 @@
   <string name="conversation_callable_secure__menu_call">Telepon Signal</string>
   <string name="conversation_callable_secure__menu_video">Telepon video Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Rincian pesen</string>
-  <string name="conversation_context__menu_copy_text">Salin teks</string>
-  <string name="conversation_context__menu_delete_message">Brusak pesen</string>
-  <string name="conversation_context__menu_forward_message">Terusaken pesen</string>
-  <string name="conversation_context__menu_resend_message">Kirimaken pesen malih</string>
-  <string name="conversation_context__menu_reply_to_message">Wangsuli pesen</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Rincian pesen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Salin teks</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Brusak pesen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Terusaken pesen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Kirimaken pesen malih</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Wangsuli pesen</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">Pileh ingkang kathah</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Pileh ingkang kathah</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Simpen lampiran</string>
   <!--conversation_expiring_off-->

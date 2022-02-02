@@ -2075,20 +2075,20 @@
   <string name="conversation_callable_secure__menu_video">Signal ဗီဒီယိုခေါ်ဆိုမှု</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">အချက်အလက် </string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">အချက်အလက် </string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">ကူးမည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">ကူးမည်</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">ဖျက်မယ်</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">ဖျက်မယ်</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">ထပ်ဆင့် ပေးပို့မယ်</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">ထပ်ဆင့် ပေးပို့မယ်</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">မက်ဆေ့ချ် ပြန်ပို့မယ်</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">မက်ဆေ့ချ် ပြန်ပို့မယ်</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">စာပြန်မည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">စာပြန်မည်</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">မျိုးစုံရွေးချယ်မယ်</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">မျိုးစုံရွေးချယ်မယ်</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->

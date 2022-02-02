@@ -2326,20 +2326,20 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_callable_secure__menu_video">Videollamada de Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Detalles</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Detalles</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Copiar</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Copiar</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Eliminar</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Eliminar</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Reenviar</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Reenviar</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Reenviar mensaje</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Reenviar mensaje</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Responder</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Responder</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Selección múltiple</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Selección múltiple</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d seleccionado</item>

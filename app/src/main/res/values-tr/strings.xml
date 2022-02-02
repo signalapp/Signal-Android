@@ -2323,20 +2323,20 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_callable_secure__menu_video">Görüntülü Signal araması</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Bilgi</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Bilgi</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopyala</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopyala</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Sil</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Sil</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Yönlendir</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Yönlendir</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">İletiyi tekrar gönder</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">İletiyi tekrar gönder</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Cevapla</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Cevapla</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Çoklu seçim</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Çoklu seçim</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d seçili</item>

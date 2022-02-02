@@ -2195,18 +2195,18 @@
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">કૉપિ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">કૉપિ</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">કાઢી નાખો </string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">કાઢી નાખો </string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">ફોરવર્ડ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">ફોરવર્ડ</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">મેસેજ ફરીથી મોકલો</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">મેસેજ ફરીથી મોકલો</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">જવાબ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">જવાબ</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">વધારે પસંદ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">વધારે પસંદ કરો</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->

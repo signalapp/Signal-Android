@@ -1700,14 +1700,14 @@
   <string name="conversation_callable_secure__menu_call">ការហៅចេញSignal</string>
   <string name="conversation_callable_secure__menu_video">ការហៅ Signal ជាវីដេអូ</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">សារលម្អិត</string>
-  <string name="conversation_context__menu_copy_text">ថតចម្លងអក្សរ</string>
-  <string name="conversation_context__menu_delete_message">លុបសារ</string>
-  <string name="conversation_context__menu_forward_message">បញ្ជូនសារបន្ត</string>
-  <string name="conversation_context__menu_resend_message">ផ្ញើសារឡើងវិញ</string>
-  <string name="conversation_context__menu_reply_to_message">ឆ្លើយតបសារ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">សារលម្អិត</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">ថតចម្លងអក្សរ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">លុបសារ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">បញ្ជូនសារបន្ត</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">ផ្ញើសារឡើងវិញ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">ឆ្លើយតបសារ</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">ជ្រើសរើសច្រើន</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">ជ្រើសរើសច្រើន</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">រក្សាឯកសារភ្ជាប់</string>
   <!--conversation_expiring_off-->

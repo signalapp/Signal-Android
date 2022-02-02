@@ -2319,20 +2319,20 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_callable_secure__menu_video">Signal-videosamtal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Info</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Info</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopiera</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopiera</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Ta bort</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Ta bort</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Vidarebefordra</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Vidarebefordra</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Skicka meddelande igen</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Skicka meddelande igen</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Svara</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Svara</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Välj flera</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Välj flera</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d vald</item>

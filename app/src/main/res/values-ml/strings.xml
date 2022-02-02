@@ -2318,20 +2318,20 @@
   <string name="conversation_callable_secure__menu_video">Signal വീഡിയോ കോൾ</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">വിവരം</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">വിവരം</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">പകർത്തുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">പകർത്തുക</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">ഇല്ലാതാക്കൂ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">ഇല്ലാതാക്കൂ</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">ഫോർവേഡ് ചെയ്യുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">ഫോർവേഡ് ചെയ്യുക</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">സന്ദേശം വീണ്ടും അയയ്‌ക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">സന്ദേശം വീണ്ടും അയയ്‌ക്കുക</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">മറുപടി</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">മറുപടി</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">ഒന്നിലധികം തിരഞ്ഞെടുക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">ഒന്നിലധികം തിരഞ്ഞെടുക്കുക</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d തിരഞ്ഞെടുത്തു</item>

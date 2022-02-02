@@ -1058,12 +1058,12 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signalwan kayachipay</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Chaskipa kilkashkakuna</string>
-  <string name="conversation_context__menu_copy_text">Shinashina kilkashkata yallichina</string>
-  <string name="conversation_context__menu_delete_message">Chaskita pichana</string>
-  <string name="conversation_context__menu_forward_message">Chaskita kutin kachana</string>
-  <string name="conversation_context__menu_resend_message">Chaskita kutin kachana</string>
-  <string name="conversation_context__menu_reply_to_message">Chaskita kutichina</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Chaskipa kilkashkakuna</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Shinashina kilkashkata yallichina</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Chaskita pichana</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Chaskita kutin kachana</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Chaskita kutin kachana</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Chaskita kutichina</string> -->
   <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Allichina kimichishkata</string>

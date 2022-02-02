@@ -2080,14 +2080,14 @@
   <string name="conversation_callable_secure__menu_call">Signal కాల్</string>
   <string name="conversation_callable_secure__menu_video">Signal వీడియో కాల్</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">సందేశం వివరాలు</string>
-  <string name="conversation_context__menu_copy_text">మూల గ్రంథము అనుకరణ</string>
-  <string name="conversation_context__menu_delete_message">సందేశాన్ని తొలగించు</string>
-  <string name="conversation_context__menu_forward_message">సందేశాన్ని బదలాయించు</string>
-  <string name="conversation_context__menu_resend_message">సందేశాన్ని తిరిగి పంపు</string>
-  <string name="conversation_context__menu_reply_to_message">సందేశానికి ప్రత్యుత్తరం ఇవ్వండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">సందేశం వివరాలు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">మూల గ్రంథము అనుకరణ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">సందేశాన్ని తొలగించు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">సందేశాన్ని బదలాయించు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">సందేశాన్ని తిరిగి పంపు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">సందేశానికి ప్రత్యుత్తరం ఇవ్వండి</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">బహుళ ఎంచుకోండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">బహుళ ఎంచుకోండి</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">జత పరిచినది దాచి పెట్టు </string>
   <!--conversation_expiring_off-->

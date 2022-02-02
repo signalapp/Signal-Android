@@ -2320,20 +2320,20 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_callable_secure__menu_video">Signal-videopuhelu</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Tietoja</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Tietoja</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopioi</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopioi</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Poista</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Poista</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Välittäminen</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Välittäminen</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Lähetä viesti uudelleen</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Lähetä viesti uudelleen</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Vastaa</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Vastaa</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Valitse useita</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Valitse useita</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d valittu</item>

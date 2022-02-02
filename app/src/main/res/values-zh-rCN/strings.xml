@@ -2121,20 +2121,20 @@
   <string name="conversation_callable_secure__menu_video">Signal 视频通话</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">信息</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">信息</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">复制</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">复制</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">删除</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">删除</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">转发</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">转发</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">重新发送信息</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">重新发送信息</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">回复</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">回复</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">多选</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">多选</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->

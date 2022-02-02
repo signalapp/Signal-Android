@@ -2411,20 +2411,20 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="conversation_callable_secure__menu_video">Signal videozvans</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Informācija</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Informācija</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopēt</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopēt</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Dzēst</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Dzēst</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Uz priekšu</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Uz priekšu</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Atkārtoti sūtīt ziņu</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Atkārtoti sūtīt ziņu</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Atbildēt</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Atbildēt</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Atzīmējiet vairākus</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Atzīmējiet vairākus</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="zero">%d atlasītas</item>

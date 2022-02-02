@@ -2176,18 +2176,18 @@
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">복사</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">복사</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">삭제</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">삭제</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">전달</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">전달</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">메시지 다시 보내기</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">메시지 다시 보내기</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">답장</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">답장</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">여러 개 선택</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">여러 개 선택</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->

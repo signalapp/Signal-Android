@@ -2409,20 +2409,20 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_callable_secure__menu_video">Apel video Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Informații</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Informații</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Copiere</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Copiere</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Șterge</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Șterge</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Redirecționează</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Redirecționează</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Retrimite mesajul</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Retrimite mesajul</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Răspunde</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Răspunde</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Selectează mai multe</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Selectează mai multe</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d selectat</item>

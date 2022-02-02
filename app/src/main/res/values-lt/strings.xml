@@ -2500,20 +2500,20 @@
   <string name="conversation_callable_secure__menu_video">Signal vaizdo skambutis</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Informacija</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Informacija</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopijuoti</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopijuoti</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Ištrinti</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Ištrinti</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Persiųsti</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Persiųsti</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Iš naujo siųsti žinutę</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Iš naujo siųsti žinutę</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Atsakyti</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Atsakyti</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Pasirinkti kelis</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Pasirinkti kelis</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">Pažymėta %d</item>

@@ -2227,20 +2227,20 @@
   <string name="conversation_callable_secure__menu_video">Signal காணொளி அழைப்பு</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">தகவல்</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">தகவல்</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">நகல்</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">நகல்</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">நீக்கு</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">நீக்கு</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">முன்னனுப்புக</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">முன்னனுப்புக</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">செய்தியை மீண்டும் அனுப்பு</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">செய்தியை மீண்டும் அனுப்பு</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">பதில்</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">பதில்</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">பலவற்றை தேர்வு செய்க</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">பலவற்றை தேர்வு செய்க</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->

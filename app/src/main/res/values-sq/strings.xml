@@ -2332,20 +2332,20 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation_callable_secure__menu_video">Thirrje video Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Info</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Info</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopjoje</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopjoje</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Fshiji</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Fshiji</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Përcjellje</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Përcjellje</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Ridërgoje mesazhin</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Ridërgoje mesazhin</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Përgjigju</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Përgjigju</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Përzgjidhni disa</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Përzgjidhni disa</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d i përsgjedhur</item>

@@ -2321,20 +2321,20 @@
   <string name="conversation_callable_secure__menu_video">Βιντεοκλήση Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Πληροφορίες</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Πληροφορίες</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Αντιγραφή</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Αντιγραφή</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Διαγραφή</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Διαγραφή</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Προώθηση</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Προώθηση</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Αποστολή ξανά</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Αποστολή ξανά</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Απάντηση</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Απάντηση</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Επιλογή πολλαπλών</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Επιλογή πολλαπλών</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d επιλεγμένο</item>

@@ -2154,18 +2154,18 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopier</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopier</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Slett</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Slett</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Videresend</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Videresend</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Send melding på nytt</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Send melding på nytt</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Svar</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Svar</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Velg flere</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Velg flere</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->

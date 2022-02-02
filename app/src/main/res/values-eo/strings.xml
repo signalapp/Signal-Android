@@ -2326,20 +2326,20 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_callable_secure__menu_video">Signal-vidalvoko</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Informo</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Informo</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopii</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopii</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Forigi</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Forigi</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Plusendi</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Plusendi</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Resendi mesaĝon</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Resendi mesaĝon</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Respondi</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Respondi</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Elekti plurajn</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Elekti plurajn</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d elektita</item>

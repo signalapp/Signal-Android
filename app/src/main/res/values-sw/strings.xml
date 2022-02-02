@@ -2196,20 +2196,20 @@ nambari yako ya simu</string>
   <string name="conversation_callable_secure__menu_video">Simu ya video ya Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Maelezo</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Maelezo</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Nakili</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Nakili</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Futa</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Futa</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Mbele</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Mbele</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Tuma tena ujumbe</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Tuma tena ujumbe</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Jibu</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Jibu</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Chagua anuai</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Chagua anuai</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->

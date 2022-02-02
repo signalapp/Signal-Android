@@ -2317,20 +2317,20 @@
   <string name="conversation_callable_secure__menu_video">Appel vidéo Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Renseignements</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Renseignements</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Copier</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Copier</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Supprimer</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Supprimer</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Transférer</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Transférer</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Renvoyer le message</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Renvoyer le message</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Répondre</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Répondre</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Sélection multiple</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Sélection multiple</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d sélectionné</item>

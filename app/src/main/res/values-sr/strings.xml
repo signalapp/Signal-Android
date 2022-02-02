@@ -2412,20 +2412,20 @@
   <string name="conversation_callable_secure__menu_video">Signal видео позив</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Инфо</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Инфо</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Копирај</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Копирај</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Избриши</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Избриши</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Проследи</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Проследи</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Понови слање</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Понови слање</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Одговори</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Одговори</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Изабери више</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Изабери више</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">Одабрано %d </item>

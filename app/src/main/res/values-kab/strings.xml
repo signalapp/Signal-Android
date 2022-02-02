@@ -2088,14 +2088,14 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="conversation_callable_secure__menu_call">Asiwel Signal</string>
   <string name="conversation_callable_secure__menu_video">Asiwel Signal s tvidyut</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Talqayt n yizen</string>
-  <string name="conversation_context__menu_copy_text">Nɣel aḍris</string>
-  <string name="conversation_context__menu_delete_message">Kkes izen</string>
-  <string name="conversation_context__menu_forward_message">Ḍfer izen</string>
-  <string name="conversation_context__menu_resend_message">Azn izen i tikelt nniḍen</string>
-  <string name="conversation_context__menu_reply_to_message">Err i yizen</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Talqayt n yizen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Nɣel aḍris</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Kkes izen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Ḍfer izen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Azn izen i tikelt nniḍen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Err i yizen</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">Fren aṭas</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Fren aṭas</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Sekles taceqquft yaddan</string>
   <!--conversation_expiring_off-->

@@ -2322,20 +2322,20 @@
   <string name="conversation_callable_secure__menu_video">Signal व्हिडिओ कॉल</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">माहिती</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">माहिती</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">कॉपी करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">कॉपी करा</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">हटवा</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">हटवा</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">फॉर्वर्ड करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">फॉर्वर्ड करा</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">संदेश पुन्हा पाठवा</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">संदेश पुन्हा पाठवा</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">प्रत्युत्तर द्या</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">प्रत्युत्तर द्या</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">अनेक निवडा</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">अनेक निवडा</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d निवडला</item>

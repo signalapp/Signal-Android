@@ -2248,20 +2248,20 @@
   <string name="conversation_callable_secure__menu_video">د Signal ویډیويي اړیکه</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">معلومات</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">معلومات</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">کاپي کول</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">کاپي کول</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">پاکول</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">پاکول</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">فاروارډ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">فاروارډ</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">د پیغام بیالیږل</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">د پیغام بیالیږل</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">بیا پلي کول</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">بیا پلي کول</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">د ګڼ شمېر مواردو ټاکل</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">د ګڼ شمېر مواردو ټاکل</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->

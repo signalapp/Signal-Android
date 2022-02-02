@@ -1934,14 +1934,14 @@
   <string name="conversation_callable_secure__menu_call">Gerîna Signalê</string>
   <string name="conversation_callable_secure__menu_video">Gerîna vîdoyî ya Signalê</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Hûrgiliyên peyamê</string>
-  <string name="conversation_context__menu_copy_text">Nivîsê kopî bike</string>
-  <string name="conversation_context__menu_delete_message">Peyamê jê bibe</string>
-  <string name="conversation_context__menu_forward_message">Peyamê berhêl bike</string>
-  <string name="conversation_context__menu_resend_message">Peyamê dîsa bişîne</string>
-  <string name="conversation_context__menu_reply_to_message">Peyamê bibersivîne</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Hûrgiliyên peyamê</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Nivîsê kopî bike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Peyamê jê bibe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Peyamê berhêl bike</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Peyamê dîsa bişîne</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Peyamê bibersivîne</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">Bijartina pirjimarî</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Bijartina pirjimarî</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Pêvekê tomar bike</string>
   <!--conversation_expiring_off-->

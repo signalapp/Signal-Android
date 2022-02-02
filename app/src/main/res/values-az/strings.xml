@@ -2326,20 +2326,20 @@
   <string name="conversation_callable_secure__menu_video">Signal görüntülü zəngi</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Məlumat</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Məlumat</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopyala</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopyala</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Sil</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Sil</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Yönləndir</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Yönləndir</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Mesajı yenidən göndər</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Mesajı yenidən göndər</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Cavabla</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Cavabla</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Çoxlu seçim</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Çoxlu seçim</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d seçildi</item>

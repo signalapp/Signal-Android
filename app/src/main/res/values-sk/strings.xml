@@ -2499,20 +2499,20 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_callable_secure__menu_video">Videohovor Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Info</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Info</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopírovať</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopírovať</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Odstrániť</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Odstrániť</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Preposlať</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Preposlať</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Odoslať správu znovu</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Odoslať správu znovu</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Odpovedať</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Odpovedať</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Vyberte viaceré</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Vyberte viaceré</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d vybraný</item>

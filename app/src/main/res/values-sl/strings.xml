@@ -2491,20 +2491,20 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_callable_secure__menu_video">Video klic Signal</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Info</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Info</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopiraj</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopiraj</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Izbriši</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Izbriši</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Posreduj</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Posreduj</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Ponovno pošlji sporočilo</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Ponovno pošlji sporočilo</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Odgovori</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Odgovori</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Izberi več</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Izberi več</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d izbran</item>

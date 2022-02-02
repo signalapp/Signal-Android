@@ -2229,20 +2229,20 @@
   <string name="conversation_callable_secure__menu_video">Signalビデオ通話</string>
   <!--conversation_context-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">詳細</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">詳細</string> -->
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">コピー</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">コピー</string> -->
   <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">削除</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">削除</string> -->
   <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">転送</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">転送</string> -->
   <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">メッセージの再送信</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">メッセージの再送信</string> -->
   <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">返信</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">返信</string> -->
   <!--conversation_context_reaction-->
   <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">複数を選択</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">複数を選択</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="other">%d件選択済み</item>
