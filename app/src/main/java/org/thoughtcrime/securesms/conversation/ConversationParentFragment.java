@@ -2148,7 +2148,7 @@ public class ConversationParentFragment extends Fragment
       int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color_wallpaper);
       toolbar.setBackgroundColor(toolbarColor);
       // TODO [alex] LargeScreenSupport -- statusBarBox
-      if (Build.VERSION.SDK_INT > 21) {
+      if (Build.VERSION.SDK_INT > 23) {
         WindowUtil.setStatusBarColor(requireActivity().getWindow(), toolbarColor);
       }
     } else {
@@ -2162,7 +2162,7 @@ public class ConversationParentFragment extends Fragment
       int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color);
       toolbar.setBackgroundColor(toolbarColor);
       // TODO [alex] LargeScreenSupport -- statusBarBox
-      if (Build.VERSION.SDK_INT > 21) {
+      if (Build.VERSION.SDK_INT > 23) {
         WindowUtil.setStatusBarColor(requireActivity().getWindow(), toolbarColor);
       }
     }
