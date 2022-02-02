@@ -603,7 +603,8 @@ public class SignalServiceMessageSender {
   }
 
   public ResumableUploadSpec getResumableUploadSpec() throws IOException {
-    AttachmentV3UploadAttributes       v3UploadAttributes = null;
+    long                         start              = System.currentTimeMillis();
+    AttachmentV3UploadAttributes v3UploadAttributes = null;
 
     Log.d(TAG, "Using pipe to retrieve attachment upload attributes...");
     try {
@@ -613,13 +614,21 @@ public class SignalServiceMessageSender {
     } catch (IOException e) {
       Log.w(TAG, "Failed to retrieve attachment upload attributes using pipe. Falling back...");
     }
+    
+    long webSocket = System.currentTimeMillis() - start;
 
     if (v3UploadAttributes == null) {
       Log.d(TAG, "Not using pipe to retrieve attachment upload attributes...");
       v3UploadAttributes = socket.getAttachmentV3UploadAttributes();
     }
 
-    return socket.getResumableUploadSpec(v3UploadAttributes);
+    long                rest = System.currentTimeMillis() - start;
+    ResumableUploadSpec spec = socket.getResumableUploadSpec(v3UploadAttributes);
+    long                end  = System.currentTimeMillis() - start;
+
+    Log.d(TAG, "[getResumableUploadSpec] webSocket: " + webSocket + " rest: " + rest + " end: " + end);
+
+    return spec;
   }
 
   private SignalServiceAttachmentPointer uploadAttachmentV3(SignalServiceAttachmentStream attachment, byte[] attachmentKey, PushAttachmentData attachmentData) throws IOException {
