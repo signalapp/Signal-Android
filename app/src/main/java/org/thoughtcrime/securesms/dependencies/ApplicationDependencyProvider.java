@@ -294,13 +294,13 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     SignalServiceAccountDataStoreImpl aciStore = new SignalServiceAccountDataStoreImpl(context,
                                                                                        new TextSecurePreKeyStore(localAci),
                                                                                        new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getAciIdentityKey()),
-                                                                                       new TextSecureSessionStore(context),
+                                                                                       new TextSecureSessionStore(localAci),
                                                                                        new SignalSenderKeyStore(context));
 
     SignalServiceAccountDataStoreImpl pniStore = new SignalServiceAccountDataStoreImpl(context,
                                                                                        new TextSecurePreKeyStore(localPni),
                                                                                        new SignalIdentityKeyStore(baseIdentityStore, () -> SignalStore.account().getPniIdentityKey()),
-                                                                                       new TextSecureSessionStore(context),
+                                                                                       new TextSecureSessionStore(localPni),
                                                                                        new SignalSenderKeyStore(context));
     return new SignalServiceDataStoreImpl(context, aciStore, pniStore);
   }

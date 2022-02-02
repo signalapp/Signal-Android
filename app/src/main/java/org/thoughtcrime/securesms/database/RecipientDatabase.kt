@@ -2604,19 +2604,20 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     // Sessions
+    val localAci: ACI = Recipient.self().aci.get()
     val sessionDatabase = sessions
-    val hasE164Session = sessionDatabase.getAllFor(e164Record.e164).size > 0
-    val hasAciSession = sessionDatabase.getAllFor(aciRecord.aci.toString()).size > 0
+    val hasE164Session = sessionDatabase.getAllFor(localAci, e164Record.e164).isNotEmpty()
+    val hasAciSession = sessionDatabase.getAllFor(localAci, aciRecord.aci.toString()).isNotEmpty()
 
     if (hasE164Session && hasAciSession) {
       Log.w(TAG, "Had a session for both users. Deleting the E164.", true)
-      sessionDatabase.deleteAllFor(e164Record.e164)
+      sessionDatabase.deleteAllFor(localAci, e164Record.e164)
     } else if (hasE164Session && !hasAciSession) {
       Log.w(TAG, "Had a session for E164, but not ACI. Re-assigning to the ACI.", true)
       val values = ContentValues().apply {
         put(SessionDatabase.ADDRESS, aciRecord.aci.toString())
       }
-      db.update(SessionDatabase.TABLE_NAME, values, SessionDatabase.ADDRESS + " = ?", SqlUtil.buildArgs(e164Record.e164))
+      db.update(SessionDatabase.TABLE_NAME, values, "${SessionDatabase.ACCOUNT_ID} = ? AND ${SessionDatabase.ADDRESS} = ?", SqlUtil.buildArgs(localAci, e164Record.e164))
     } else if (!hasE164Session && hasAciSession) {
       Log.w(TAG, "Had a session for ACI, but not E164. No action necessary.", true)
     } else {

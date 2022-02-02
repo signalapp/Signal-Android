@@ -656,6 +656,15 @@ public class Recipient {
     return resolved;
   }
 
+  public @NonNull PNI requirePni() {
+    PNI resolved = resolving ? resolve().pni : pni;
+
+    if (resolved == null) {
+      throw new MissingAddressError(id);
+    }
+
+    return resolved;
+  }
 
   public @NonNull String requireE164() {
     String resolved = resolving ? resolve().e164 : e164;
@@ -699,6 +708,10 @@ public class Recipient {
 
   public boolean hasAci() {
     return getAci().isPresent();
+  }
+
+  public boolean hasPni() {
+    return getPni().isPresent();
   }
 
   public boolean isAciOnly() {

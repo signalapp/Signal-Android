@@ -13,7 +13,7 @@ import org.whispersystems.signalservice.api.push.AccountIdentifier
 import java.io.IOException
 import java.util.LinkedList
 
-class SignedPreKeyDatabase internal constructor(context: Context?, databaseHelper: SignalDatabase?) : Database(context, databaseHelper) {
+class SignedPreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
   companion object {
     private val TAG = Log.tag(SignedPreKeyDatabase::class.java)
 

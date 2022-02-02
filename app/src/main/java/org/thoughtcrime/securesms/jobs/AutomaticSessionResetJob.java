@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -84,7 +83,7 @@ public class AutomaticSessionResetJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    SessionUtil.archiveSession(recipientId, deviceId);
+    ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(recipientId, deviceId);
     SignalDatabase.senderKeyShared().deleteAllFor(recipientId);
     insertLocalMessage();
 

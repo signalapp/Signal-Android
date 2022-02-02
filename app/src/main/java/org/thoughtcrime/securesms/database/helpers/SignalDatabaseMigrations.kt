@@ -2363,6 +2363,39 @@ object SignalDatabaseMigrations {
 
       db.execSQL("DROP TABLE signed_prekeys")
       db.execSQL("ALTER TABLE signed_prekeys_tmp RENAME TO signed_prekeys")
+
+      // Sessions
+      db.execSQL(
+        """
+        CREATE TABLE sessions_tmp (
+          _id INTEGER PRIMARY KEY AUTOINCREMENT,
+          account_id TEXT NOT NULL,
+          address TEXT NOT NULL,
+          device INTEGER NOT NULL,
+          record BLOB NOT NULL,
+          UNIQUE(account_id, address, device)
+        )
+        """.trimIndent()
+      )
+
+      if (localAci != null) {
+        db.execSQL(
+          """
+          INSERT INTO sessions_tmp (account_id, address, device, record)
+          SELECT
+            '$localAci' AS account_id,
+            sessions.address,
+            sessions.device,
+            sessions.record
+          FROM sessions
+          """.trimIndent()
+        )
+      } else {
+        Log.w(TAG, "No local ACI set. Not migrating any existing sessions.")
+      }
+
+      db.execSQL("DROP TABLE sessions")
+      db.execSQL("ALTER TABLE sessions_tmp RENAME TO sessions")
     }
   }
 

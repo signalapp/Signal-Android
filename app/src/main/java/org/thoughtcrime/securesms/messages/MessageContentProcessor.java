@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -121,7 +120,9 @@ import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
+import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -1977,11 +1978,13 @@ public final class MessageContentProcessor {
   private void handleIndividualRetryReceipt(@NonNull Recipient requester, @Nullable MessageLogEntry messageLogEntry, @NonNull SignalServiceContent content, @NonNull DecryptionErrorMessage decryptionErrorMessage) {
     boolean archivedSession = false;
 
-    if (decryptionErrorMessage.getRatchetKey().isPresent()                             &&
-        SessionUtil.ratchetKeyMatches(requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
+    // TODO [pnp] Ignore retry receipts that have a PNI destinationUuid
+
+    if (decryptionErrorMessage.getRatchetKey().isPresent() &&
+        ratchetKeyMatches(requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
     {
       warn(content.getTimestamp(), "[RetryReceipt-I] Ratchet key matches. Archiving the session.");
-      SessionUtil.archiveSession(requester.getId(), content.getSenderDevice());
+      ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(requester.getId(), content.getSenderDevice());
       archivedSession = true;
     }
 
@@ -2013,6 +2016,13 @@ public final class MessageContentProcessor {
     } else {
       return SignalDatabase.mmsSms().getMessageFor(sentTimestamp, Recipient.self().getId());
     }
+  }
+
+  public static boolean ratchetKeyMatches(@NonNull Recipient recipient, int deviceId, @NonNull ECPublicKey ratchetKey) {
+    SignalProtocolAddress address = new SignalProtocolAddress(recipient.resolve().requireServiceId(), deviceId);
+    SessionRecord         session = ApplicationDependencies.getProtocolStore().aci().loadSession(address);
+
+    return session.currentRatchetKeyMatches(ratchetKey);
   }
 
   private static boolean isInvalidMessage(@NonNull SignalServiceDataMessage message) {

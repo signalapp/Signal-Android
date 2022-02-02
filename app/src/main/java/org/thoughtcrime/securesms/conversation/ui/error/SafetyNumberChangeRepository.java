@@ -12,7 +12,6 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -119,7 +118,8 @@ final class SafetyNumberChangeRepository {
 
   @WorkerThread
   private TrustAndVerifyResult trustOrVerifyChangedRecipientsAndResendInternal(@NonNull List<ChangedRecipient> changedRecipients,
-                                                                               @NonNull MessageRecord messageRecord) {
+                                                                               @NonNull MessageRecord messageRecord)
+  {
     if (changedRecipients.isEmpty()) {
       Log.d(TAG, "No changed recipients to process, will still process message record");
     }
@@ -134,8 +134,8 @@ final class SafetyNumberChangeRepository {
         Log.d(TAG, "Saving identity result: " + result);
         if (result == SignalIdentityKeyStore.SaveResult.NO_CHANGE) {
           Log.i(TAG, "Archiving sessions explicitly as they appear to be out of sync.");
-          SessionUtil.archiveSession(changedRecipient.getRecipient().getId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
-          SessionUtil.archiveSiblingSessions(mismatchAddress);
+          ApplicationDependencies.getProtocolStore().aci().sessions().archiveSession(changedRecipient.getRecipient().getId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+          ApplicationDependencies.getProtocolStore().aci().sessions().archiveSiblingSessions(mismatchAddress);
           SignalDatabase.senderKeyShared().deleteAllFor(changedRecipient.getRecipient().getId());
         }
       }

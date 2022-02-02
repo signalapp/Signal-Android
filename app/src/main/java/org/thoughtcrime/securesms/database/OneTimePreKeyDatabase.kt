@@ -12,7 +12,7 @@ import org.whispersystems.libsignal.state.PreKeyRecord
 import org.whispersystems.signalservice.api.push.AccountIdentifier
 import java.io.IOException
 
-class OneTimePreKeyDatabase internal constructor(context: Context?, databaseHelper: SignalDatabase?) : Database(context, databaseHelper) {
+class OneTimePreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
   companion object {
     private val TAG = Log.tag(OneTimePreKeyDatabase::class.java)
 

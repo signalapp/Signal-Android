@@ -154,10 +154,16 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
               .setPositiveButton(android.R.string.ok) { _, _ ->
                 if (recipient.hasAci()) {
-                  SignalDatabase.sessions.deleteAllFor(recipient.requireAci().toString())
+                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requireAci(), addressName = recipient.requireAci().toString())
+                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requirePni(), addressName = recipient.requireAci().toString())
                 }
                 if (recipient.hasE164()) {
-                  SignalDatabase.sessions.deleteAllFor(recipient.requireE164())
+                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requireAci(), addressName = recipient.requireE164())
+                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requirePni(), addressName = recipient.requireE164())
+                }
+                if (recipient.hasPni()) {
+                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requireAci(), addressName = recipient.requirePni().toString())
+                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requirePni(), addressName = recipient.requirePni().toString())
                 }
               }
               .show()

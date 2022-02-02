@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.registration;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,10 +11,8 @@ import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
-import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
-import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -137,7 +134,8 @@ public final class RegistrationRepository {
     SignalStore.account().setAci(aci);
     SignalStore.account().setPni(pni);
 
-    SessionUtil.archiveAllSessions();
+    ApplicationDependencies.getProtocolStore().aci().sessions().archiveAllSessions();
+    ApplicationDependencies.getProtocolStore().pni().sessions().archiveAllSessions();
     SenderKeyUtil.clearAllState(context);
 
     SignalServiceAccountManager       accountManager   = AccountManagerFactory.createAuthenticated(context, aci, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
