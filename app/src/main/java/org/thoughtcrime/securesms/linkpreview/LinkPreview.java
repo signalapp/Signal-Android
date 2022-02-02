@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.linkpreview;
 
+import android.os.Build;
+import android.text.Html;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -13,6 +16,8 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+
+import static android.text.Html.FROM_HTML_MODE_LEGACY;
 
 public class LinkPreview {
 
@@ -71,14 +76,23 @@ public class LinkPreview {
   }
 
   public @NonNull String getTitle() {
-    return title;
+    // HTML entities in og:title will be converted to regular character on API level 24 and
+    // onwards.
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      return Html.fromHtml(title, FROM_HTML_MODE_LEGACY).toString();
+    } else {
+      return title;
+    }
   }
 
   public @NonNull String getDescription() {
     if (description.equals(title)) {
       return "";
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      return Html.fromHtml(description, FROM_HTML_MODE_LEGACY).toString();
+    } else {
+      return description;
     }
-    return description;
   }
 
   public long getDate() {
