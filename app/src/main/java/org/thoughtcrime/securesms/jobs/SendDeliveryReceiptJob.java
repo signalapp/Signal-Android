@@ -102,6 +102,11 @@ public class SendDeliveryReceiptJob extends BaseJob {
     SignalServiceMessageSender  messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                   recipient      = Recipient.resolved(recipientId);
 
+    if (recipient.isSelf()) {
+      Log.i(TAG, "Not sending to self, abort");
+      return;
+    }
+
     if (recipient.isUnregistered()) {
       Log.w(TAG, recipient.getId() + " is unregistered!");
       return;

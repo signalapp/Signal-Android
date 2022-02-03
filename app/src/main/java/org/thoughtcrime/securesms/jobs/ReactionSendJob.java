@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -227,14 +228,20 @@ public class ReactionSendJob extends BaseJob {
       GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush());
     }
 
-    SignalServiceDataMessage dataMessage = dataMessageBuilder.build();
-    List<SendMessageResult>  results     = GroupSendUtil.sendResendableDataMessage(context,
-                                                                                   conversationRecipient.getGroupId().transform(GroupId::requireV2).orNull(),
-                                                                                   destinations,
-                                                                                   false,
-                                                                                   ContentHint.RESENDABLE,
-                                                                                   messageId,
-                                                                                   dataMessage);
+    SignalServiceDataMessage dataMessage         = dataMessageBuilder.build();
+    List<Recipient>          nonSelfDestinations = destinations.stream().filter(r -> !r.isSelf()).collect(Collectors.toList());
+    boolean                  includesSelf        = nonSelfDestinations.size() != destinations.size();
+    List<SendMessageResult>  results             = GroupSendUtil.sendResendableDataMessage(context,
+                                                                                           conversationRecipient.getGroupId().transform(GroupId::requireV2).orNull(),
+                                                                                           nonSelfDestinations,
+                                                                                           false,
+                                                                                           ContentHint.RESENDABLE,
+                                                                                           messageId,
+                                                                                           dataMessage);
+
+    if (includesSelf) {
+      results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));
+    }
 
     return GroupSendJobHelper.getCompletedSends(destinations, results);
   }
