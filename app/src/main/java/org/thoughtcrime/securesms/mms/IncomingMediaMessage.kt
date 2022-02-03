@@ -14,7 +14,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext
 
 class IncomingMediaMessage(
-  val from: RecipientId,
+  val from: RecipientId?,
   val groupId: GroupId? = null,
   val body: String? = null,
   val isPushMessage: Boolean = false,
@@ -43,13 +43,13 @@ class IncomingMediaMessage(
   val isGroupMessage: Boolean = groupId != null
 
   constructor(
-    from: RecipientId,
+    from: RecipientId?,
     groupId: Optional<GroupId>,
-    body: String,
+    body: String?,
     sentTimeMillis: Long,
     serverTimeMillis: Long,
     receivedTimeMillis: Long,
-    attachments: List<Attachment>,
+    attachments: List<Attachment>?,
     subscriptionId: Int,
     expiresIn: Long,
     expirationUpdate: Boolean,
@@ -76,7 +76,7 @@ class IncomingMediaMessage(
   )
 
   constructor(
-    from: RecipientId,
+    from: RecipientId?,
     sentTimeMillis: Long,
     serverTimeMillis: Long,
     receivedTimeMillis: Long,
