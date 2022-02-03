@@ -93,7 +93,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Вы сможете отправлять сообщения и звонить друг другу, а ваши имя и фото станут доступны этому контакту.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблокированные люди не смогут звонить вам или отправлять вам сообщения.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Прекратить получение обновлений и новостей от Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Возобновить получение обновлений и новостей от Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Разблокировать %1$s?</string>
   <string name="BlockUnblockDialog_block">Заблокировать</string>
   <string name="BlockUnblockDialog_block_and_leave">Заблокировать и покинуть</string>
@@ -1210,7 +1212,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Не удалось доставить сообщение от %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s изменил(-а) свой номер телефона.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Нравится эта новая функция? Скажите «спасибо» с помощью Ускорения.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal существует благодаря таким людям, как вы. Пожалуйста, станьте Поддерживающим.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s начал(-а) групповой звонок · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s в групповом звонке · %2$s</string>
@@ -1243,6 +1247,7 @@
   <string name="MessageRequestBottomView_unblock">Разблокировать</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и открыть ваше имя и фото этому человеку? Он не узнает, что вы видели его сообщение, пока вы не примете запрос.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и открыть ваше имя и фото этому человеку? Вы не получите никаких сообщений, пока не разблокируете его.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Получать обновления и новости от %1$s? Вы не будете получать никаких сообщений, пока не разблокируете.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продолжить ваш разговор с этой группой и открыть ваше имя и фото её участникам?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Обновите эту группу, чтобы активировать такие новые функции, как @упоминания и администраторы групп. Участники, которые ещё не открыли свои имена или фото этой группе получат приглашение присоединиться.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Эта Старая группа больше не может быть использована, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
@@ -2526,7 +2531,7 @@
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Сохранить</string>
   <!--Button to retry sending a message-->
-  <string name="conversation_selection__menu_resend_message">Отправить еще раз</string>
+  <string name="conversation_selection__menu_resend_message">Отправить ещё раз</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_selection__menu_multi_select">Выбрать</string>
   <!--conversation_expiring_on-->
@@ -3797,5 +3802,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Не удалось открыть приложение для выбора мелодии.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Обновления и новости Signal</string>
   <!--EOF-->
 </resources>

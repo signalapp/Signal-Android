@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Voitte jatkossa lähettää viestejä ja soittaa toisillenne, ja nimesi ja kuvasi jaetaan heidän kanssaan.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Estetyt henkilöt eivät voi soittaa sinulle tai lähettää sinulle viestejä.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Estä Signalin päivitysten ja uutisten vastaanotto.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Jatka Signalin päivitysten ja uutisten vastaanottoa.</string>
   <string name="BlockUnblockDialog_unblock_s">Poistetaanko käyttäjän %1$s esto?</string>
   <string name="BlockUnblockDialog_block">Estä</string>
   <string name="BlockUnblockDialog_block_and_leave">Estä ja poistu</string>
@@ -1088,7 +1090,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Viestiä kontaktilta %s ei pystytty toimittamaan</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s on vaihtanut puhelinnumeroaan.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Pidätkö tästä uudesta ominaisuudesta? Kiitä siitä Boostilla.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal toimii kaltaistesi ihmisten tuella. Liity Tukijaksi nyt.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s on ryhmäpuhelussa · %2$s</string>
@@ -1117,6 +1121,7 @@
   <string name="MessageRequestBottomView_unblock">Poista esto</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja profiilikuvasi? Hän ei tiedä että olet nähnyt hänen viestinsä ennen hyväksymistä.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Sallitaanko henkilön %1$s lähettää sinulle viestejä ja nähdä nimesi ja profiilikuvasi? Et saa viestejä ennen eston poistamista.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Haluatko päivityksiä ja uutisia lähteestä %1$s? Et saa mitään päivityksiä ennen kuin sallit heidät.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Jatketaanko keskustelua tämän ryhmän kanssa ja näytetäänkö nimesi ja kuvasi sen jäsenille?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Päivitä tämä ryhmä ottaaksesi käyttöön uudet ominaisuudet kuten @maininnat ja ylläpitäjät. Jäsenille jotka eivät ole jakaneet nimeään tai kuvaansa tässä ryhmässä lähetetään kutsu.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Tätä vanhan tyyppistä ryhmää ei pystytä päivittämään uuden tyyppiseksi koska se on liian suuri. Ryhmässä voi olla enintään  %1$d jäsentä.</string>
@@ -3590,5 +3595,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Valitsimen avaus epäonnistui.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signalin julkaisutiedot ja uutiset</string>
   <!--EOF-->
 </resources>

@@ -93,7 +93,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Bydd modd i chi negesu a galw\'ch gilydd a bydd eich enw a\'ch llun yn cael eu rhannu gyda nhw.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Ni fydd pobl sydd wedi\'u rhwystro\'n gallu eich ffonio nac anfon negeseuon atoch.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Rhwystro derbyn diweddariadau a newyddion Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Ailgychwyn derbyn diweddariadau a newyddion Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Dadrwystro %1$s?</string>
   <string name="BlockUnblockDialog_block">Rhwystro</string>
   <string name="BlockUnblockDialog_block_and_leave">Rhwystro a Gadael</string>
@@ -1212,7 +1214,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nid oedd modd anfon neges gan %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">Mae %1$s wedi newid rhif eu ffôn.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Hoffi\'r nodwedd newydd hon? Dwedwch diolch gyda Boost.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Mae Signal yn cael ei rymuso gan bobl fel chi. Dewch yn gynhaliwr heddiw.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Dechreuodd %1$s alwad grŵp · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Mae %1$s mewn galwad grŵp · %2$s</string>
@@ -1245,6 +1249,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRequestBottomView_unblock">Dadrwystro</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn gwybod eich bod wedi gweld eich neges nes i ch dderbyn.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Gadael i %1$s eich negesu a rhannu eich enw a llun gyda nhw? Byddan nhw ddim yn derbyn unrhyw negeseuon nes i chi eu dadrwystro.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Yn derbyn diweddariadau a newyddion gan %1$s? Fyddwch chi ddim yn derbyn diweddariadau nes i chi eu ddadrwystro nhw. </string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Parhau â\'ch sgwrs gyda\'r grŵp hwn a rhannu eich enw a\'ch llun gyda\'i aelodau?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uwchraddiwch y grŵp hwn i agor nodweddion newydd fel @mentions a gweinyddwyr. Bydd aelodau nad ydyn nhw wedi rhannu eu henw na\'u llun yn y grŵp hwn yn cael gwahoddiad i ymuno.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Nid oes modd defnyddio\'r Hen Grŵp hwn mwyach oherwydd ei fod yn rhy fawr. Uchafswm maint y grŵp yw %1$d.</string>
@@ -3806,5 +3811,6 @@ Send neges heb ei ddiogelu?</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Wedi methu agor y dewisydd.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Nodiadau Ryddhau a Newyddion Signal</string>
   <!--EOF-->
 </resources>

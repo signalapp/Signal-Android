@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vi povos mesaĝi kaj alvoki unu la alian. Via nomo kaj foto estos videblaj.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Ne plu ricevi ĝisdatigojn kaj novaĵojn de Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Denove ricevi ĝisdatigojn kaj novaĵojn de Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Ĉu malbloki %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloki</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloki kaj forlasi</string>
@@ -1089,7 +1091,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Mesaĝo el %s ne estis liverata.</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ŝanĝis sian telefonnumeron.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Ĉu vi ŝatas tiun funkcion? Diru dankon per „plikonatigo“.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal ekzistas pro la subteno de homoj kiel vi. Iĝi donacanto hodiaŭ.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ekigis grupalvokon · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s estas en la grupalvoko · %2$s</string>
@@ -1118,6 +1122,7 @@
   <string name="MessageRequestBottomView_unblock">Malbloki</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Ŝi aŭ li ne scios, ke vi vidis ŝian aŭ lian mesaĝojn ĝis via akcepto.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ĉu vi volas, ke %1$s mesaĝu al vi, kaj ke ŝi aŭ li vidu vian nomon kaj foton? Vi ricevos neniun mesaĝon, se vi ne malblokas ŝin aŭ lin.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ĉu vi volas ricevi ĝisdatigojn kaj novaĵojn pri %1$s? Vi ricevos neniun, krom se vi malblokas tiun homon.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ĉu plu interparoli al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Ĝisdatigu tiun grupon por uzi novajn funkciojn kiel @menciojn kaj administranton. Anoj, kiuj ne kunhavis ilian nomon aŭ foton kun la grupo estos invititaj anigi.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Jena malnovtipa grupo jam ne povas uziĝi pro troa grandeco. Maksimuma grupgrando estas %1$d.</string>
@@ -3596,5 +3601,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Malsukceso malfermi la elektilon.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Eldonaj notoj kaj novaĵoj pri Signal</string>
   <!--EOF-->
 </resources>

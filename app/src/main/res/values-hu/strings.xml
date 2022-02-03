@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Lehetőségetek lesz üzenetet küldeni egymásnak és felhívni egymást, valamint a neved és a fotód is megosztásra kerül velük.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">A letiltott személyek nem fognak tudni sem felhívni, sem pedig üzenetet küldeni neked.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal újdonságok és hírek blokkolása.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal újdonságok és hírek bekapcsolása.</string>
   <string name="BlockUnblockDialog_unblock_s">Feloldod %1$s tiltását?</string>
   <string name="BlockUnblockDialog_block">Letiltás</string>
   <string name="BlockUnblockDialog_block_and_leave">Tiltás és kilépés</string>
@@ -1088,7 +1090,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Egy üzenet %s ismerősödtől nem érkezett meg</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s megváltoztatta a telefonszámát.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Tetszett valamelyik újdonság? Adj egy támogató Lökést!</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">A Signalt olyan emberek működtetik, mint Te. Válj Fenttartóvá!</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s csoport hívást indított · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s csoporthívásban van · %2$s</string>
@@ -3597,5 +3601,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Sikertelen tallózás.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal újdonságok &amp; és hírek</string>
   <!--EOF-->
 </resources>

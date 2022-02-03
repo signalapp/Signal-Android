@@ -93,7 +93,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Lahko si bosta pošiljala sporočila, se klicala in si delila ime in fotografijo.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirani uporabniki/ce vas ne bodo mogli klicati ali vam pošiljati sporočil.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokiraj prejem Signalovih novic in novosti.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Ponovno dovoli prejem Signalovih novic in novosti.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokiram uporabnika/co %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokiraj</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokiraj in zapusti</string>
@@ -1210,7 +1212,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sporočilo uporabnika/ce %s ni moglo biti dostavljeno</string>
   <string name="MessageRecord_s_changed_their_phone_number">Uporabnik/ca %1$s je spremenil/a svojo telefonsko številko.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Vam je všeč ta novost? Recite hvala s spodbudo.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Postanite podpornik.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Uporabnik/ca %1$s je začel/a skupinski klic. · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Uporabnik/ca %1$s je v skupinskem klicu. · %2$s</string>
@@ -1243,6 +1247,7 @@
   <string name="MessageRequestBottomView_unblock">Odblokiraj</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Želite omogočiti uporabniku/ci %1$s,  da vam pošilja sporočila in z njim/njo deliti svoje ime in fotografijo? Dokler ne sprejmete vabila, pošiljatelj/ica ne bo vedel/a, da ste prejeli njegovo/njeno sporočilo.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Želite omogočiti uporabniku/ci %1$s da vam pošilja sporočila in z njim/njo deliti svoje ime in fotografijo? Dokler ga/je ne odblokirate, od njega/nje ne boste prejemali sporočil.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Prejemate novice in novosti od %1$s? Dokler jih ponovno ne dovolite, ne boste prejemali nobenih novosti.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Želite še naprej sodelovati v pogovoru s to skupino in z njenimi člani/cami deliti svoje ime in fotografijo?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nadgradite to skupino, da boste lahko uporabljali napredne funkcije, kot so @omembe in skrbniki/ce skupine. Člani/ce, ki s skupino niso delili/e svojega imena in fotografije, bodo povabljeni/e, da se pridružijo.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Te Stare skupine ne morete več uporabljati, ker je prevelika. Največja velikost skupine je %1$d.</string>
@@ -3795,5 +3800,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Odpiranje izbirnika ni uspelo.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signalove novosti &amp; novice</string>
   <!--EOF-->
 </resources>

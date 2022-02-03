@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Bir-birinizə mesaj göndərə, zəng edə biləcəksiniz, foto və adınız onlarla paylaşılacaq.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Əngəllənmiş şəxslər sizə zəng edə və ya mesaj göndərə bilməyəcək.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal yeniliklərini və xəbərlərini almağı əngəlləyin.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal yeniliklərini və xəbərlərini almağı davam etdirin.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s əngəldən çıxarılsın?</string>
   <string name="BlockUnblockDialog_block">Əngəllə</string>
   <string name="BlockUnblockDialog_block_and_leave">Əngəllə və tərk et</string>
@@ -1088,7 +1090,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s tərəfindən göndərilən bir mesaj çatdırıla bilmədi</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s, nömrəsini dəyişdirdi.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Bu yeni özəlliyi bəyəndiniz? Bir Gücləndirmə ilə təşəkkür edə bilərsiniz.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal, sizin kimi insanlardan dəstək alır. Elə bu gün bir dəstəkçi olun.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s bir qrup zəngi başlatdı · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s qrup zəngindədir · %2$s</string>
@@ -1117,6 +1121,7 @@
   <string name="MessageRequestBottomView_unblock">Əngəldən çıxart</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s əlaqəsinin sizə mesaj göndərməsinə icazə verərək adınızı və fotonuzu onunla paylaşırsınız? Qəbul edənə qədər onun mesajlarını gördüyünüzü bilməyəcək.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s əlaqəsinin sizə mesaj göndərməsinə icazə verərək adınızı və fotonuzu onunla paylaşırsınız? Əngəldən çıxardana qədər heç bir mesaj almayacaqsınız.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s üzərindən yeniliklər və xəbərlər alınsın? Əngəli götürənə qədər heç bir yenilik almayacaqsınız.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Bu qrup ilə danışığınıza davam edib adınızı və fotonuzu üzvlər ilə paylaşmaq istəyirsiniz?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@adçəkmə və admin kimi yeni özəllikləri aktivləşdirmək üçün bu qrupu yüksəldin. Bu qrupda adını və fotosunu paylaşmayan üzvlərə qoşulmaq üçün dəvət göndəriləcək.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Bu Köhnə Qrup çox böyük olduğu üçün istifadə edilə bilmir. Maksimum qrup ölçüsü %1$d.</string>
@@ -2357,6 +2362,7 @@
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Saxla</string>
   <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Təkrar göndər</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_selection__menu_multi_select">Seçin</string>
   <!--conversation_expiring_on-->
@@ -3595,5 +3601,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Seçici, açılmadı.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal buraxılış qeydləri və xəbərləri</string>
   <!--EOF-->
 </resources>

@@ -92,7 +92,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Moći ćete razmjenjivati poruke i pozive, a sa sagovornikom će biti podijeljeni i Vaše ime i slika.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirane osobe neće Vas više moći zvati niti Vam slati poruke.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokiraj primanje ažuriranja Signala i novosti.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Nastavi primati ažuriranja Signala i novosti.</string>
   <string name="BlockUnblockDialog_unblock_s">Deblokirati %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokiraj</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokiraj i napusti</string>
@@ -1149,7 +1151,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Poruku od %s nije bilo moguće dostaviti</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s je promijenio/la broj.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Sviđa Vam se nova mogućnost aplikacije? Kažite \"hvala\" putem Podsticaja.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal postoji zahvaljujući osobama poput Vas. Postanite pokrovitelj danas.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s učestvuje u grupnom pozivu · %2$s</string>
@@ -1180,6 +1184,7 @@
   <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dopustiti da Vam %1$s šalje poruke i vidi Vaše ime i sliku? On ili ona neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dopustiti da Vam %1$s šalje poruke i vidi Vaše ime i sliku? Nećete primati poruke od njega ili nje dok ih ne prestanete blokirati.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Primati ažuriranja i novosti od %1$s? Nećete primati nikakve novosti dok ovu osobu ne deblokirate.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Nastaviti konverzaciju s ovom grupom i dopustiti njenim članovima da vide Vaše ime i sliku?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nadogradite ovu grupu da biste aktivirali mogućnosti poput @spomena i administracije grupe. Članovi koji nisu podijelili svoje ime ili sliku s grupom bit će pozvani da se pridruže.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ova grupa više se ne može koristiti jer je prevelika. Maksimum za grupu iznosi %1$d.</string>
@@ -1808,7 +1813,7 @@
   <string name="ConversationUpdateItem_view">Pregled</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Vrijeme za nestajanje poruka bit će podešeno na %1$s kad im pošaljete poruku.</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Snaga Signala</string>
+  <string name="ConversationUpdateItem_signal_boost">Signal Pojačivač</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
   <string name="ConversationUpdateItem_become_a_sustainer">Postanite pokrovitelj</string>
   <!--audio_view-->
@@ -2153,7 +2158,7 @@
   <string name="preferences__donate_to_signal">Donirajte za Signal</string>
   <string name="preferences__subscription">Pretplata</string>
   <string name="preferences__become_a_signal_sustainer">Postanite pokrovitelj Signala</string>
-  <string name="preferences__signal_boost">Snaga Signala</string>
+  <string name="preferences__signal_boost">Signal Pojačivač</string>
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ručna MMS podešavanja</string>
@@ -2445,6 +2450,7 @@
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Pohrani</string>
   <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Pošalji ponovo</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_selection__menu_multi_select">Odaberi</string>
   <!--conversation_expiring_on-->
@@ -3503,7 +3509,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal je posvećen razvoju tehnologije za zaštitu privatnosti slijedeći model otvorenog kōda a koja štiti slobodu izražavanja i omogućava sigurnu globalnu komunikaciju.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Vaš doprinos održava taj razvoj i finansira razvoj i funkcionisanje aplikacije za privatnu komunikaciju koju koriste milioni ljudi. Bez reklama. Bez praćenja. Bez zezanja.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala Vam za Vašu podršku!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za podsticaj!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala za Podsticaj!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Zaslužili ste %s značku! Pomozite u širenju svijesti o Signalu prikazavši ovu značku na svom profilu.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Zaslužili ste značku \"Pojačivač\"! Pomozite u širenju svijesti o Signalu prikazavši ovu značku na svom profilu.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Također možete</string>
@@ -3704,5 +3710,6 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Neuspjelo otvaranje birača.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal napomene o novoobjavljenoj verziji i novosti</string>
   <!--EOF-->
 </resources>
