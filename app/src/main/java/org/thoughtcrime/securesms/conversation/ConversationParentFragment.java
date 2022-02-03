@@ -200,6 +200,8 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel;
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment;
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment;
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment;
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -338,7 +340,8 @@ public class ConversationParentFragment extends Fragment
                EmojiEventListener,
                GifKeyboardPageFragment.Host,
                EmojiKeyboardPageFragment.Callback,
-               EmojiSearchFragment.Callback
+               EmojiSearchFragment.Callback,
+               StickerKeyboardPageFragment.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -2473,6 +2476,11 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {
+    if (getContext() == null) {
+      Log.w(TAG, "onRecipientChanged called in detached state. Ignoring.");
+      return;
+    }
+
     Log.i(TAG, "onModified(" + recipient.getId() + ") " + recipient.getRegistered());
     titleView.setTitle(glideRequests, recipient);
     titleView.setVerified(identityRecords.isVerified());
@@ -3458,6 +3466,10 @@ public class ConversationParentFragment extends Fragment
   @Override
   public @NonNull VoiceNoteMediaController getVoiceNoteMediaController() {
     return voiceNoteMediaController;
+  }
+
+  @Override public void openStickerSearch() {
+    StickerSearchDialogFragment.show(getChildFragmentManager());
   }
 
   // Listeners
