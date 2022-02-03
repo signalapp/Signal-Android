@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">গ্রুপের সদস্যরা আপনাকে আবার এই গ্রুপে যুক্ত করতে পারবে।</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">তোমরা একে অপরকে বার্তা পাঠাতে ও কল করতে পারবে এবং তোমার নাম ও ছবি তাদের সাথে শেয়ার করা হবে।</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">অবরুদ্ধ লোকেরা আপনাকে কল করতে বা আপনাকে বার্তা প্রেরণ করতে পারবে না।</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">%1$s কে আনব্লক করুন?</string>
   <string name="BlockUnblockDialog_block">অবরূদ্ধ</string>
   <string name="BlockUnblockDialog_block_and_leave">ব্লক করুন ও ছেড়ে যান</string>
@@ -1079,6 +1081,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">আপনি %sএর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">আপনি অন্য একটি ডিভাইস থেকে  %s এর নিরাপত্তা নাম্বার অযাচিত নির্বাচন করেছেন</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s এর থেকে একটি বার্তা সরবরাহ করা যায়নি</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s একটি গ্রুপ কল শুরু করেছে । %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s গ্রুপ কল এ আছেন। %2$s</string>
@@ -1711,6 +1715,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">এই গ্রুপে কোনও কন্ট্যাক্ট নেই। অনুরোধগুলি সতর্কতার সাথে পর্যালোচনা করুন।</string>
   <string name="ConversationUpdateItem_view">দেখান</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">আপনি তাদের মেসেজ পাঠালে মেসেজ অদৃশ্য হওয়ার সময় %1$s-এ সেট করা হবে।</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">সিগন্যাল বুস্ট</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">একজন সাসটেইনার হয়ে উঠুন</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">চালু…. বিরতি</string>
   <string name="audio_view__download_accessibility_description">ডাউনলোড</string>
@@ -2301,21 +2309,6 @@
   <string name="conversation_callable_secure__menu_call">Signal কল</string>
   <string name="conversation_callable_secure__menu_video">Signal ভিডিও কল</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">তথ্য</string> -->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">কপি করুন</string> -->
-  <!--Button to delete a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">মুছুন</string> -->
-  <!--Button to forward a message to another person or group chat-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">ফরওয়ার্ড</string> -->
-  <!--Button to retry sending a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">বার্তা পুনরায় পাঠান</string> -->
-  <!--Button to reply to a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">প্রত্যুত্তর</string> -->
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">একাধিক নির্বাচন করুন</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2335,6 +2328,10 @@
   <string name="conversation_selection__menu_reply">প্রত্যুত্তর</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">সংরক্ষণ করুন</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">পুনরায় পাঠান</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">নির্বাচন</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">আমন্ত্রণ</string>
@@ -3508,5 +3505,6 @@
   <string name="NotificationProfilesMegaphone__not_now">এখন না</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">পিকার খুলতে ব্যর্থ হয়েছে।</string>
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

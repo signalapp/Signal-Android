@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ਗਰੁੱਪ ਦੇ ਮੈਂਬਰ ਤੁਹਾਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਕਰਨ ਦੇ ਸਮਰੱਥ ਹੋਣਗੇ।</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ਤੁਸੀਂ ਇਕ ਦੂਜੇ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਕਾਲ ਕਰਨ ਦੇ ਯੋਗ ਹੋਵੋਗੇ ਅਤੇ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫੋਟੋ ਉਨ੍ਹਾਂ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾਏਗੀ।</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ਪਾਬੰਦੀਸ਼ੁਦਾ ਲੋਕ ਤੁਹਾਨੂੰ ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ ਜਾਂ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਣਗੇ।</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">%1$s ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਉਣੀ ਹੈ?</string>
   <string name="BlockUnblockDialog_block">ਪਾਬੰਦੀ ਲਾਓ</string>
   <string name="BlockUnblockDialog_block_and_leave">ਪਾਬੰਦੀ ਲਾਓ ਤੇ ਛੱਡੋ</string>
@@ -1081,6 +1083,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ ਤੋਂ %s ਨਾਲ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਨੂੰ ਅਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹਿਤ ਕੀਤਾ</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s ਤੋਂ ਇੱਕ ਸੁਨੇਹਾ ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ਨੇ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਬਦਲਿਆ।</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ਨੇ ਗਰੁੱਪ ਕਾਲ ਸ਼ੁਰੂ ਕੀਤੀ · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ਗਰੁੱਪ ਕਾਲ ਵਿੱਚ ਹੈ · %2$s</string>
@@ -1694,6 +1698,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ। ਬੇਨਤੀਆਂ ਦੀ ਧਿਆਨ ਨਾਲ ਸਮੀਖਿਆ ਕਰੋ।</string>
   <string name="ConversationUpdateItem_view">ਵੇਖੋ</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">ਜਦੋਂ ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜੋਗੇ ਤਾਂ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ ਦਾ ਸਮਾਂ %1$s ’ਤੇ ਸੈੱਟ ਹੋ ਜਾਵੇਗਾ।</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal ਬੂਸਟ</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">ਸਹਾਇਕ ਬਣੋ</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">ਚਲਾਓ … ਰੋਕੋ </string>
   <string name="audio_view__download_accessibility_description">ਡਾਊਨਲੋਡ ਕਰੋ</string>
@@ -2293,21 +2301,6 @@
   <string name="conversation_callable_secure__menu_call">Signal ਕਾਲ </string>
   <string name="conversation_callable_secure__menu_video">Signal ਵੀਡੀਓ ਕਾਲ</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">ਜਾਣਕਾਰੀ</string> -->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">ਕਾਪੀ ਕਰੋ</string> -->
-  <!--Button to delete a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">ਹਟਾਓ</string> -->
-  <!--Button to forward a message to another person or group chat-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">ਅੱਗੇ ਭੇਜੋ </string> -->
-  <!--Button to retry sending a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">ਸੁਨੇਹਾ ਦੁਬਾਰਾ ਭੇਜੋ</string> -->
-  <!--Button to reply to a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">ਜਵਾਬ ਦਿਓ</string> -->
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">ਕਈ ਚੁਣੋ</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d ਚੁਣਿਆ</item>
@@ -2331,6 +2324,10 @@
   <string name="conversation_selection__menu_reply">ਜਵਾਬ ਦਿਓ</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">ਸੰਭਾਲੋ</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">ਦੁਬਾਰਾ ਭੇਜੋ</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">ਚੁਣੋ</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ਸੱਦਾ</string>
@@ -3559,5 +3556,6 @@
   <string name="NotificationProfilesMegaphone__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">ਚੋਣਕਾਰ ਖੋਲ੍ਹਣ ਲਈ ਅਸਫ਼ਲ ਹੈ।</string>
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

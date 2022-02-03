@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Членовите на групата ќе можат повторно да те додаваат во оваа група.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ќе можете да испраќате пораки и да се јавувате и Вашето име и слика ќе бидат споделени со нив.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокирани луѓе нема да можат да Ви се јават или да Ви испраќаат пораки.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">Да го/ја одблокирам %1$s?</string>
   <string name="BlockUnblockDialog_block">Блокирај</string>
   <string name="BlockUnblockDialog_block_and_leave">Блокирај и напушти</string>
@@ -1085,6 +1087,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте Вашиот сигурносен број со %s како непроверен од друг уред.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порака од %s не може да биде испорачана</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s го промени телефонскиот број</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групен повик · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е во групниот повик · %2$s</string>
@@ -1720,6 +1724,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контакти во оваа група. Внимателно разгледајте ги барањата.</string>
   <string name="ConversationUpdateItem_view">Поглед</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Времето на исчезнувачките пораки ќе биде поставено на %1$s  кога ќе им испратите порака.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal поттик</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Станете поддржувач</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пушти … Пауза</string>
   <string name="audio_view__download_accessibility_description">Преземи</string>
@@ -2321,21 +2329,6 @@
   <string name="conversation_callable_secure__menu_call">Signal повик </string>
   <string name="conversation_callable_secure__menu_video">Signal видео повик</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Информации</string> -->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Копирај</string> -->
-  <!--Button to delete a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Избриши</string> -->
-  <!--Button to forward a message to another person or group chat-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Препрати</string> -->
-  <!--Button to retry sending a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Препрати порака</string> -->
-  <!--Button to reply to a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Одговори</string> -->
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Изберете повеќе</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d избрана</item>
@@ -2359,6 +2352,10 @@
   <string name="conversation_selection__menu_reply">Одговори</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Зачувај</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Испрати пак</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Избери</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Покани</string>
@@ -3594,5 +3591,6 @@
   <string name="NotificationProfilesMegaphone__not_now">Не сега</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Не успеа да се отвори менито за избор.</string>
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

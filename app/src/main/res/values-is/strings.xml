@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Hópmeðlimir geta bætt þér í þennan hóp aftur.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Þið munuð geta sent hverju/m/ri öðru skilaboð og hringt, og nafn og mynd þín mun vera deild með þessum aðila.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Útilokaðir einstaklingar munu ekki geta hringt í þig eða sent þér skilaboð.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">Opna á %1$s?</string>
   <string name="BlockUnblockDialog_block">Loka á</string>
   <string name="BlockUnblockDialog_block_and_leave">Útiloka og yfirgefa</string>
@@ -1085,6 +1087,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Þú merktir öryggisnúmer þitt með %s sem ekki sannreynt á öðru tæki</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Skilaboð frá %s var ekki hægt að afhenda</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s skipti um símanúmer.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hóf hópsímtal · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er í hópsímtalinu · %2$s</string>
@@ -1723,6 +1727,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Engir tengiliðir í þessum hópi. Yfirfarðu beiðnir vandlega.</string>
   <string name="ConversationUpdateItem_view">Skoða</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Niðurtalning sjálfeyðandi skilaboða er tímastillt á %1$s þegar þú sendir viðkomandi aðila skilaboð.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal-hvatning</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Gerstu stuðningsaðili</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spila … bíða</string>
   <string name="audio_view__download_accessibility_description">Sækja</string>
@@ -2324,21 +2332,6 @@
   <string name="conversation_callable_secure__menu_call">Signal-símtal</string>
   <string name="conversation_callable_secure__menu_video">Signal-myndsímtal</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Upplýsingar</string> -->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Afrita</string> -->
-  <!--Button to delete a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Eyða</string> -->
-  <!--Button to forward a message to another person or group chat-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Áfram</string> -->
-  <!--Button to retry sending a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Endursenda skilaboð</string> -->
-  <!--Button to reply to a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Svara</string> -->
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Velja mörg</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d valin</item>
@@ -2362,6 +2355,9 @@
   <string name="conversation_selection__menu_reply">Svara</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Vista</string>
+  <!--Button to retry sending a message-->
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Velja</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Bjóða</string>
@@ -3600,5 +3596,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="NotificationProfilesMegaphone__not_now">Ekki núna</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Mistókst að opna veljara.</string>
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

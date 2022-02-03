@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് നിങ്ങളെ വീണ്ടും ഈ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിയും.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">നിങ്ങൾക്ക് പരസ്പരം സന്ദേശമയയ്‌ക്കാനും വിളിക്കാനും കഴിയും ഒപ്പം നിങ്ങളുടെ പേരും ഫോട്ടോയും അവരുമായി പങ്കിടും.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ബ്ലോക്ക് ചെയ്ത ആളുകൾക്ക് നിങ്ങളെ വിളിക്കാനോ സന്ദേശങ്ങൾ അയയ്ക്കാനോ കഴിയില്ല.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_block">തടയുക</string>
   <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത് വിടുക</string>
@@ -1085,6 +1087,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s-ൽ നിന്നുള്ള ഒരു സന്ദേശം ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s അവരുടെ ഫോൺ നമ്പർ മാറ്റി.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ഗ്രൂപ്പ് കോളിലാണ് · %2$s</string>
@@ -1716,6 +1720,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ഈ ഗ്രൂപ്പിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_view">കാണുക</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുമ്പോൾ അപ്രത്യക്ഷമാകുന്ന സന്ദേശ സമയം %1$s ആയി സജ്ജീകരിക്കും.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal ബൂസ്റ്റ്</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
   <string name="audio_view__download_accessibility_description">ഡൌൺലോഡ്</string>
@@ -2317,21 +2325,6 @@
   <string name="conversation_callable_secure__menu_call">Signal കോൾ</string>
   <string name="conversation_callable_secure__menu_video">Signal വീഡിയോ കോൾ</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">വിവരം</string> -->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">പകർത്തുക</string> -->
-  <!--Button to delete a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">ഇല്ലാതാക്കൂ</string> -->
-  <!--Button to forward a message to another person or group chat-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">ഫോർവേഡ് ചെയ്യുക</string> -->
-  <!--Button to retry sending a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">സന്ദേശം വീണ്ടും അയയ്‌ക്കുക</string> -->
-  <!--Button to reply to a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">മറുപടി</string> -->
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">ഒന്നിലധികം തിരഞ്ഞെടുക്കുക</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d തിരഞ്ഞെടുത്തു</item>
@@ -2355,6 +2348,10 @@
   <string name="conversation_selection__menu_reply">മറുപടി</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">സംരക്ഷിക്കൂ</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">വീണ്ടും അയയ്‌ക്കുക</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">തിരഞ്ഞെടുക്കൂ</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ക്ഷണിക്കുക</string>
@@ -3537,5 +3534,6 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

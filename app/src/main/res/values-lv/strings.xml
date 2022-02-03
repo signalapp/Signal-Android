@@ -91,6 +91,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupas dalībnieki varēs jūs atkal pievienot šai grupai.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jūs varēsiet sūtīt ziņas un zvanīt viens otram kā arī jūsu vārds un fotogrāfija tiks kopīgota</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Bloķēti lietotāji nevarēs Jums piezvanīt vai nosūtīt ziņojumu.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">Atbloķēt %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloķēt</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloķēt un iziet</string>
@@ -1146,6 +1148,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs atzīmējāt savu drošības kodu ar %s kā nepārbaudītu no citas ierīces</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered"> %s ziņu nevarēja piegādāt</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s nomainīja savu telefona numuru.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s sāka grupas zvanu · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ir grupas zvanā · %2$s</string>
@@ -1801,6 +1805,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Šajā grupā nav kontaktpersonu. Pārskatiet pieprasījumus rūpīgi.</string>
   <string name="ConversationUpdateItem_view">Skatīt</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Pēc ziņu nosūtīšanas ziņu dzēšanas laiks tiks iestatīts uz %1$s.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal Atbalsts</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Kļūstiet par Uzturētāju</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atskaņot … Pauzēt</string>
   <string name="audio_view__download_accessibility_description">Lejupielādēt</string>
@@ -2410,21 +2418,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="conversation_callable_secure__menu_call">Signal audiozvans</string>
   <string name="conversation_callable_secure__menu_video">Signal videozvans</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Informācija</string> -->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopēt</string> -->
-  <!--Button to delete a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Dzēst</string> -->
-  <!--Button to forward a message to another person or group chat-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Uz priekšu</string> -->
-  <!--Button to retry sending a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Atkārtoti sūtīt ziņu</string> -->
-  <!--Button to reply to a message-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Atbildēt</string> -->
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Atzīmējiet vairākus</string> -->
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="zero">%d atlasītas</item>
@@ -2449,6 +2442,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="conversation_selection__menu_reply">Atbildēt</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Saglabāt</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Sūtīt vēlreiz</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Atlasīt</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Uzacināt</string>
@@ -3700,5 +3697,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="NotificationProfilesMegaphone__not_now">Ne tagad</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Neizdevās atvērt atlasītāju.</string>
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>
