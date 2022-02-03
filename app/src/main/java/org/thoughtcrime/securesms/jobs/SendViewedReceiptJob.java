@@ -150,6 +150,11 @@ public class SendViewedReceiptJob extends BaseJob {
 
     Recipient recipient = Recipient.resolved(recipientId);
 
+    if (recipient.isSelf()) {
+      Log.i(TAG, "Not sending view receipt to self.");
+      return;
+    }
+
     if (recipient.isBlocked()) {
       Log.w(TAG, "Refusing to send receipts to blocked recipient");
       return;

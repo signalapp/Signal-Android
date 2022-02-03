@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
@@ -59,6 +60,7 @@ public class SendReadReceiptJob extends BaseJob {
   private final long            timestamp;
   private final List<MessageId> messageIds;
 
+  @VisibleForTesting
   public SendReadReceiptJob(long threadId, @NonNull RecipientId recipientId, List<Long> messageSentTimestamps, List<MessageId> messageIds) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
@@ -94,6 +96,10 @@ public class SendReadReceiptJob extends BaseJob {
    * maximum size.
    */
   public static void enqueue(long threadId, @NonNull RecipientId recipientId, List<MarkedMessageInfo> markedMessageInfos) {
+    if (recipientId.equals(Recipient.self().getId())) {
+      return;
+    }
+
     JobManager                    jobManager      = ApplicationDependencies.getJobManager();
     List<List<MarkedMessageInfo>> messageIdChunks = Util.chunk(markedMessageInfos, MAX_TIMESTAMPS);
 
@@ -145,6 +151,10 @@ public class SendReadReceiptJob extends BaseJob {
     }
 
     Recipient recipient = Recipient.resolved(recipientId);
+
+    if (recipient.isSelf()) {
+      Log.i(TAG, "Not sending to self, aborting.");
+    }
 
     if (recipient.isBlocked()) {
       Log.w(TAG, "Refusing to send receipts to blocked recipient");
