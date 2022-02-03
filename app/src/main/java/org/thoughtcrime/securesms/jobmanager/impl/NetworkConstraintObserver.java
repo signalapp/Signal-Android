@@ -67,7 +67,7 @@ public class NetworkConstraintObserver implements ConstraintObserver {
   }
 
   private void requestNetwork(int retryCount) {
-    if (Build.VERSION.SDK_INT < 21 || retryCount > 5) {
+    if (Build.VERSION.SDK_INT < 24 || retryCount > 5) {
       hasInternet = isActiveNetworkConnected(application);
 
       application.registerReceiver(new BroadcastReceiver() {
@@ -86,7 +86,7 @@ public class NetworkConstraintObserver implements ConstraintObserver {
                                                            .build();
 
       ConnectivityManager connectivityManager = Objects.requireNonNull(ContextCompat.getSystemService(application, ConnectivityManager.class));
-      connectivityManager.requestNetwork(request, Build.VERSION.SDK_INT >= 26 ? new NetworkStateListener26(retryCount) : new NetworkStateListener21());
+      connectivityManager.requestNetwork(request, Build.VERSION.SDK_INT >= 26 ? new NetworkStateListener26(retryCount) : new NetworkStateListener24());
     }
   }
 
@@ -117,8 +117,8 @@ public class NetworkConstraintObserver implements ConstraintObserver {
     }
   }
 
-  @TargetApi(21)
-  private class NetworkStateListener21 extends ConnectivityManager.NetworkCallback {
+  @TargetApi(24)
+  private class NetworkStateListener24 extends ConnectivityManager.NetworkCallback {
     @Override
     public void onAvailable(@NonNull Network network) {
       Log.i(REASON, "Network available: " + network.hashCode());
@@ -136,7 +136,7 @@ public class NetworkConstraintObserver implements ConstraintObserver {
   }
 
   @TargetApi(26)
-  private class NetworkStateListener26 extends NetworkStateListener21 {
+  private class NetworkStateListener26 extends NetworkStateListener24 {
     private final int retryCount;
 
     public NetworkStateListener26(int retryCount) {
