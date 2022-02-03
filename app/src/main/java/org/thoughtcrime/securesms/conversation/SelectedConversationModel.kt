@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation
 
 import android.graphics.Bitmap
 import android.net.Uri
+import android.view.View
 
 /**
  * Contains information on a single selected conversation item. This is used when transitioning
@@ -16,4 +17,5 @@ data class SelectedConversationModel(
   val bubbleWidth: Int,
   val audioUri: Uri? = null,
   val isOutgoing: Boolean,
+  val focusedView: View?,
 )

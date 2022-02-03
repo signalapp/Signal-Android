@@ -3,8 +3,10 @@ package org.thoughtcrime.securesms.conversation;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -14,11 +16,10 @@ import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,7 +52,7 @@ import java.util.List;
 
 import kotlin.Unit;
 
-public final class ConversationReactionOverlay extends RelativeLayout {
+public final class ConversationReactionOverlay extends FrameLayout {
 
   private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
@@ -94,6 +95,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private int   scrubberHorizontalMargin;
   private int   animationEmojiStartDelayFactor;
   private int   statusBarHeight;
+  private int   bottomNavigationBarHeight;
 
   private OnReactionSelectedListener       onReactionSelectedListener;
   private OnActionSelectedListener         onActionSelectedListener;
@@ -168,16 +170,24 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     if (Build.VERSION.SDK_INT >= 21) {
       View statusBarBackground = activity.findViewById(android.R.id.statusBarBackground);
       statusBarHeight = statusBarBackground == null ? 0 : statusBarBackground.getHeight();
+
+      View navigationBarBackground = activity.findViewById(android.R.id.navigationBarBackground);
+      bottomNavigationBarHeight = navigationBarBackground == null ? 0 : navigationBarBackground.getHeight();
     } else {
-      statusBarHeight = ViewUtil.getStatusBarHeight(this);
+      statusBarHeight           = ViewUtil.getStatusBarHeight(this);
+      bottomNavigationBarHeight = ViewUtil.getNavigationBarHeight(this);
     }
 
-    ViewGroup.LayoutParams layoutParams = inputShade.getLayoutParams();
-    layoutParams.height = getInputPanelHeight(activity);
-    inputShade.setLayoutParams(layoutParams);
+    boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    if (isLandscape) {
+      bottomNavigationBarHeight = 0;
+    }
 
     toolbarShade.setVisibility(VISIBLE);
+    toolbarShade.setAlpha(1f);
+
     inputShade.setVisibility(VISIBLE);
+    inputShade.setAlpha(1f);
 
     Bitmap conversationItemSnapshot = selectedConversationModel.getBitmap();
 
@@ -191,6 +201,11 @@ public final class ConversationReactionOverlay extends RelativeLayout {
 
     setVisibility(View.INVISIBLE);
 
+    if (Build.VERSION.SDK_INT >= 21) {
+      this.activity = activity;
+      updateSystemUiOnShow(activity);
+    }
+
     ViewKt.doOnLayout(this, v -> {
       showAfterLayout(activity, conversationMessage, lastSeenDownPoint, isMessageOnLeft);
       return Unit.INSTANCE;
@@ -198,7 +213,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private int getInputPanelHeight(@NonNull Activity activity) {
-    View bottomPanel = activity.findViewById(R.id.bottom_panel);
+    View bottomPanel = activity.findViewById(R.id.conversation_activity_panel_parent);
     View emojiDrawer = activity.findViewById(R.id.emoji_drawer);
 
     return bottomPanel.getHeight() + (emojiDrawer != null && emojiDrawer.getVisibility() == VISIBLE ? emojiDrawer.getHeight() : 0);
@@ -208,6 +223,11 @@ public final class ConversationReactionOverlay extends RelativeLayout {
                                @NonNull ConversationMessage conversationMessage,
                                @NonNull PointF lastSeenDownPoint,
                                boolean isMessageOnLeft) {
+    LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
+    layoutParams.bottomMargin = bottomNavigationBarHeight;
+    layoutParams.height = getInputPanelHeight(activity);
+    inputShade.setLayoutParams(layoutParams);
+
     contextMenu = new ConversationContextMenu(dropdownAnchor, getMenuActionItems(conversationMessage));
 
     conversationItem.setX(selectedConversationModel.getBubbleX());
@@ -216,7 +236,8 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     Bitmap  conversationItemSnapshot = selectedConversationModel.getBitmap();
     boolean isWideLayout             = contextMenu.getMaxWidth() + scrubberWidth < getWidth();
 
-    int bubbleWidth = selectedConversationModel.getBubbleWidth();
+    int overlayHeight = getHeight() - bottomNavigationBarHeight;
+    int bubbleWidth   = selectedConversationModel.getBubbleWidth();
 
     float endX            = selectedConversationModel.getBubbleX();
     float endY            = conversationItem.getY();
@@ -230,7 +251,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     float reactionBarBackgroundY;
 
     if (isWideLayout) {
-      boolean everythingFitsVertically = reactionBarHeight + menuPadding + reactionBarTopPadding + conversationItemSnapshot.getHeight() < getHeight();
+      boolean everythingFitsVertically = reactionBarHeight + menuPadding + reactionBarTopPadding + conversationItemSnapshot.getHeight() < overlayHeight;
       if (everythingFitsVertically) {
         boolean reactionBarFitsAboveItem = conversationItem.getY() > reactionBarHeight + menuPadding + reactionBarTopPadding;
 
@@ -241,7 +262,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
           reactionBarBackgroundY = reactionBarTopPadding;
         }
       } else {
-        float spaceAvailableForItem = getHeight() - reactionBarHeight - menuPadding * 2;
+        float spaceAvailableForItem = overlayHeight - reactionBarHeight - menuPadding - reactionBarTopPadding;
 
         endScale               = spaceAvailableForItem / conversationItem.getHeight();
         endX                  += Util.halfOffsetFromScale(conversationItemSnapshot.getWidth(), endScale) * (isMessageOnLeft ? -1 : 1);
@@ -249,27 +270,27 @@ public final class ConversationReactionOverlay extends RelativeLayout {
         reactionBarBackgroundY = reactionBarTopPadding;
       }
     } else {
-      boolean everythingFitsVertically = contextMenu.getMaxHeight() + conversationItemSnapshot.getHeight() + menuPadding + reactionBarHeight + reactionBarTopPadding < getHeight();
+      boolean everythingFitsVertically = contextMenu.getMaxHeight() + conversationItemSnapshot.getHeight() + menuPadding + reactionBarHeight + reactionBarTopPadding < overlayHeight;
 
       if (everythingFitsVertically) {
         float   bubbleBottom      = selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() + conversationItemSnapshot.getHeight();
-        boolean menuFitsBelowItem = bubbleBottom + menuPadding + contextMenu.getMaxHeight() <= getHeight() + statusBarHeight;
+        boolean menuFitsBelowItem = bubbleBottom + menuPadding + contextMenu.getMaxHeight() <= overlayHeight + statusBarHeight;
 
         if (menuFitsBelowItem) {
           reactionBarBackgroundY = conversationItem.getY() - menuPadding - reactionBarHeight;
 
           if (reactionBarBackgroundY < reactionBarTopPadding) {
-            endY                   = backgroundView.getHeight() + menuPadding;
+            endY                   = backgroundView.getHeight() + menuPadding + reactionBarTopPadding;
             reactionBarBackgroundY = reactionBarTopPadding;
           }
         } else {
-          endY                   = getHeight() - contextMenu.getMaxHeight() - menuPadding - conversationItemSnapshot.getHeight();
+          endY                   = overlayHeight - contextMenu.getMaxHeight() - menuPadding - conversationItemSnapshot.getHeight();
           reactionBarBackgroundY = endY - menuPadding - reactionBarHeight;
         }
 
         endApparentTop = endY;
-      } else if (reactionBarHeight + contextMenu.getMaxHeight() + menuPadding * 2 < getHeight()) {
-        float spaceAvailableForItem = (float) getHeight() - contextMenu.getMaxHeight() - menuPadding * 2 - reactionBarHeight - reactionBarTopPadding;
+      } else if (reactionBarHeight + contextMenu.getMaxHeight() + menuPadding * 2 < overlayHeight) {
+        float spaceAvailableForItem = (float) overlayHeight - contextMenu.getMaxHeight() - menuPadding * 2 - reactionBarHeight - reactionBarTopPadding;
 
         endScale               = spaceAvailableForItem / conversationItemSnapshot.getHeight();
         endX                  += Util.halfOffsetFromScale(conversationItemSnapshot.getWidth(), endScale) * (isMessageOnLeft ? -1 : 1);
@@ -280,11 +301,11 @@ public final class ConversationReactionOverlay extends RelativeLayout {
         contextMenu.setHeight(contextMenu.getMaxHeight() / 2);
 
         int     menuHeight     = contextMenu.getHeight();
-        boolean fitsVertically = menuHeight + conversationItem.getHeight() + menuPadding * 2 + reactionBarHeight + reactionBarTopPadding < getHeight();
+        boolean fitsVertically = menuHeight + conversationItem.getHeight() + menuPadding * 2 + reactionBarHeight + reactionBarTopPadding < overlayHeight;
 
         if (fitsVertically) {
           float   bubbleBottom      = selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() + conversationItemSnapshot.getHeight();
-          boolean menuFitsBelowItem = bubbleBottom + menuPadding + menuHeight <= getHeight() + statusBarHeight;
+          boolean menuFitsBelowItem = bubbleBottom + menuPadding + menuHeight <= overlayHeight + statusBarHeight;
 
           if (menuFitsBelowItem) {
             reactionBarBackgroundY = conversationItem.getY() - menuPadding - reactionBarHeight;
@@ -294,12 +315,12 @@ public final class ConversationReactionOverlay extends RelativeLayout {
               reactionBarBackgroundY = reactionBarTopPadding;
             }
           } else {
-            endY                   = getHeight() - menuHeight - menuPadding - conversationItemSnapshot.getHeight();
+            endY                   = overlayHeight - menuHeight - menuPadding - conversationItemSnapshot.getHeight();
             reactionBarBackgroundY = endY - reactionBarHeight - menuPadding;
           }
           endApparentTop         = endY;
         } else {
-          float spaceAvailableForItem = (float) getHeight() - menuHeight - menuPadding * 2 - reactionBarHeight - reactionBarTopPadding;
+          float spaceAvailableForItem = (float) overlayHeight - menuHeight - menuPadding * 2 - reactionBarHeight - reactionBarTopPadding;
 
           endScale               = spaceAvailableForItem / conversationItemSnapshot.getHeight();
           endX                  += Util.halfOffsetFromScale(conversationItemSnapshot.getWidth(), endScale) * (isMessageOnLeft ? -1 : 1);
@@ -315,11 +336,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     hideAnimatorSet.end();
     hideAnimatorSet = newHideAnimatorSet();
     setVisibility(View.VISIBLE);
-
-    if (Build.VERSION.SDK_INT >= 21) {
-      this.activity = activity;
-      updateSystemUiOnShow(activity);
-    }
 
     float scrubberX;
     if (isMessageOnLeft) {
@@ -344,7 +360,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     if (isWideLayout) {
       float scrubberRight = scrubberX + scrubberWidth;
       float offsetX       = isMessageOnLeft ? scrubberRight + menuPadding : scrubberX - contextMenu.getMaxWidth() - menuPadding;
-      contextMenu.show((int) offsetX, (int) Math.min(backgroundView.getY(), getHeight() - contextMenu.getMaxHeight()));
+      contextMenu.show((int) offsetX, (int) Math.min(backgroundView.getY(), overlayHeight - contextMenu.getMaxHeight()));
     } else {
       float contentX = selectedConversationModel.getBubbleX();
       float offsetX  = isMessageOnLeft ? contentX : -contextMenu.getMaxWidth() + contentX + bubbleWidth;
@@ -376,6 +392,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
 
     if (!ThemeUtil.isDarkTheme(getContext())) {
       WindowUtil.clearLightStatusBar(window);
+      WindowUtil.clearLightNavigationBar(window);
     }
   }
 
@@ -422,10 +439,48 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     itemYAnim.setDuration(duration);
     hides.add(itemYAnim);
 
+    ObjectAnimator toolbarShadeAnim = new ObjectAnimator();
+    toolbarShadeAnim.setProperty(View.ALPHA);
+    toolbarShadeAnim.setFloatValues(0f);
+    toolbarShadeAnim.setTarget(toolbarShade);
+    toolbarShadeAnim.setDuration(duration);
+    hides.add(toolbarShadeAnim);
+
+    ObjectAnimator inputShadeAnim = new ObjectAnimator();
+    inputShadeAnim.setProperty(View.ALPHA);
+    inputShadeAnim.setFloatValues(0f);
+    inputShadeAnim.setTarget(inputShade);
+    inputShadeAnim.setDuration(duration);
+    hides.add(inputShadeAnim);
+
+    if (Build.VERSION.SDK_INT >= 21 && activity != null) {
+      ValueAnimator statusBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalStatusBarColor);
+      statusBarAnim.setDuration(duration);
+      statusBarAnim.addUpdateListener(animation -> {
+        WindowUtil.setStatusBarColor(activity.getWindow(), (int) animation.getAnimatedValue());
+      });
+      hides.add(statusBarAnim);
+
+      ValueAnimator navigationBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalNavigationBarColor);
+      navigationBarAnim.setDuration(duration);
+      navigationBarAnim.addUpdateListener(animation -> {
+        WindowUtil.setNavigationBarColor(activity.getWindow(), (int) animation.getAnimatedValue());
+      });
+      hides.add(navigationBarAnim);
+    }
+
     hideAnimatorSet.playTogether(hides);
 
     revealAnimatorSet.end();
     hideAnimatorSet.start();
+
+    if (onHideListener != null) {
+      onHideListener.startHide();
+    }
+
+    if (selectedConversationModel.getFocusedView() != null) {
+      ViewUtil.focusAndShowKeyboard(selectedConversationModel.getFocusedView());
+    }
 
     hideAnimatorSet.addListener(new AnimationCompleteListener() {
       @Override public void onAnimationEnd(Animator animation) {
@@ -435,8 +490,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
         inputShade.setVisibility(INVISIBLE);
 
         if (Build.VERSION.SDK_INT >= 21 && activity != null) {
-          WindowUtil.setStatusBarColor(activity.getWindow(), originalStatusBarColor);
-          WindowUtil.setNavigationBarColor(activity.getWindow(), originalNavigationBarColor);
           activity = null;
         }
 
@@ -729,13 +782,21 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private void handleActionItemClicked(@NonNull Action action) {
-    hideInternal(() -> {
-      if (onHideListener != null) {
-        onHideListener.onHide();
+    hideInternal(new OnHideListener() {
+      @Override public void startHide() {
+        if (onHideListener != null) {
+          onHideListener.startHide();
+        }
       }
 
-      if (onActionSelectedListener != null) {
-        onActionSelectedListener.onActionSelected(action);
+      @Override public void onHide() {
+        if (onHideListener != null) {
+          onHideListener.onHide();
+        }
+
+        if (onActionSelectedListener != null) {
+          onActionSelectedListener.onActionSelected(action);
+        }
       }
     });
   }
@@ -749,7 +810,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
         .mapIndexed((idx, v) -> {
           Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_reveal);
           anim.setTarget(v);
-          anim.setStartDelay(revealOffset + idx * animationEmojiStartDelayFactor);
+          anim.setStartDelay(idx * animationEmojiStartDelayFactor);
           return anim;
         })
         .toList();
@@ -773,7 +834,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
                           .mapIndexed((idx, v) -> {
                             Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_hide);
                             anim.setTarget(v);
-                            anim.setStartDelay(idx * animationEmojiStartDelayFactor);
                             return anim;
                           })
                           .toList();
@@ -812,6 +872,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   public interface OnHideListener {
+    void startHide();
     void onHide();
   }
 

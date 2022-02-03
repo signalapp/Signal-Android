@@ -3792,6 +3792,11 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
+  public boolean isKeyboardOpen() {
+    return container.isKeyboardOpen();
+  }
+
+  @Override
   public void setThreadId(long threadId) {
     this.threadId = threadId;
   }

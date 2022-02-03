@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.conversation
 import android.graphics.Bitmap
 import android.graphics.Path
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.graphics.applyCanvas
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.withClip
 import androidx.core.graphics.withTranslation
+import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.hasNoBubble
@@ -76,6 +78,8 @@ object ConversationItemSelection {
       }
     }
 
+    conversationItem.destroyAllDrawingCaches()
+
     return createBitmap(conversationItem.bodyBubble.width, conversationItem.bodyBubble.height).applyCanvas {
       if (drawConversationItem) {
         conversationItem.bodyBubble.draw(this)
@@ -95,6 +99,16 @@ object ConversationItemSelection {
       conversationItem.reactionsView.visibility = initialReactionVisibility
       conversationItem.bodyBubble.scaleX = originalScale
       conversationItem.bodyBubble.scaleY = originalScale
+    }
+  }
+}
+
+private fun ViewGroup.destroyAllDrawingCaches() {
+  children.forEach {
+    it.destroyDrawingCache()
+
+    if (it is ViewGroup) {
+      it.destroyAllDrawingCaches()
     }
   }
 }

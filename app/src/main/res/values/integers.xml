@@ -3,6 +3,5 @@
     <integer name="reaction_scrubber_reveal_duration">200</integer>
     <integer name="reaction_scrubber_reveal_offset">100</integer>
     <integer name="reaction_scrubber_hide_duration">150</integer>
-    <integer name="reaction_scrubber_reveal_emoji_duration">380</integer>
     <integer name="reaction_scrubber_emoji_reveal_duration_start_delay_factor">10</integer>
 </resources>

@@ -341,6 +341,15 @@ public final class ViewUtil {
     return result;
   }
 
+  public static int getNavigationBarHeight(@NonNull View view) {
+    int result = 0;
+    int resourceId = view.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+    if (resourceId > 0) {
+      result = view.getResources().getDimensionPixelSize(resourceId);
+    }
+    return result;
+  }
+
   public static void hideKeyboard(@NonNull Context context, @NonNull View view) {
     InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
     inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);

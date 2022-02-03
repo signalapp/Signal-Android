@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.mutiselect
 
+import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Bitmap
@@ -12,6 +13,7 @@ import android.graphics.Region
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.forEach
@@ -54,6 +56,7 @@ class MultiselectItemDecoration(
 
   private val selectedParts: MutableSet<MultiselectPart> = mutableSetOf()
   private var enterExitAnimation: ValueAnimator? = null
+  private var hideShadeAnimation: ValueAnimator? = null
   private val multiselectPartAnimatorMap: MutableMap<MultiselectPart, ValueAnimator> = mutableMapOf()
 
   private var checkedBitmap: Bitmap? = null
@@ -77,7 +80,10 @@ class MultiselectItemDecoration(
     checkedBitmap = null
   }
 
-  private val shadeColor = ContextCompat.getColor(context, R.color.reactions_screen_shade_color)
+  private val darkShadeColor = ContextCompat.getColor(context, R.color.reactions_screen_dark_shade_color)
+  private val lightShadeColor = ContextCompat.getColor(context, R.color.reactions_screen_light_shade_color)
+
+  private val argbEvaluator = ArgbEvaluator()
 
   private val unselectedPaint = Paint().apply {
     isAntiAlias = true
@@ -371,7 +377,7 @@ class MultiselectItemDecoration(
       }
 
       canvas.clipPath(path)
-      canvas.drawColor(shadeColor)
+      canvas.drawShade()
       canvas.restore()
     }
   }
@@ -389,8 +395,36 @@ class MultiselectItemDecoration(
       }
 
       canvas.clipPath(path, Region.Op.DIFFERENCE)
-      canvas.drawColor(shadeColor)
+      canvas.drawShade()
       canvas.restore()
+    }
+  }
+
+  private fun Canvas.drawShade() {
+    val progress = hideShadeAnimation?.animatedValue as? Float
+    if (progress == null) {
+      drawColor(lightShadeColor)
+      drawColor(darkShadeColor)
+      return
+    }
+
+    drawColor(argbEvaluator.evaluate(progress, lightShadeColor, Color.TRANSPARENT) as Int)
+    drawColor(argbEvaluator.evaluate(progress, darkShadeColor, Color.TRANSPARENT) as Int)
+  }
+
+  fun hideShade(list: RecyclerView) {
+    hideShadeAnimation = ValueAnimator.ofFloat(0f, 1f).apply {
+      duration = 150L
+
+      addUpdateListener {
+        invalidateIfAnimatorsAreRunning(list)
+      }
+
+      doOnEnd {
+        hideShadeAnimation = null
+      }
+
+      start()
     }
   }
 
@@ -441,7 +475,10 @@ class MultiselectItemDecoration(
   }
 
   private fun invalidateIfAnimatorsAreRunning(parent: RecyclerView) {
-    if (enterExitAnimation?.isRunning == true || multiselectPartAnimatorMap.values.any { it.isRunning }) {
+    if (enterExitAnimation?.isRunning == true ||
+      multiselectPartAnimatorMap.values.any { it.isRunning } ||
+      hideShadeAnimation?.isRunning == true
+    ) {
       parent.invalidate()
     }
   }
