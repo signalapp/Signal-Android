@@ -7,6 +7,7 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
@@ -25,6 +26,7 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Send a group call update message to every one in a V2 group. Used to indicate you
@@ -146,18 +148,25 @@ public class GroupCallUpdateSendJob extends BaseJob {
   private @NonNull List<Recipient> deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException
   {
-    SignalServiceDataMessage.Builder dataMessage = SignalServiceDataMessage.newBuilder()
-                                                                           .withTimestamp(System.currentTimeMillis())
-                                                                           .withGroupCallUpdate(new SignalServiceDataMessage.GroupCallUpdate(eraId));
+    SignalServiceDataMessage.Builder dataMessageBuilder = SignalServiceDataMessage.newBuilder()
+                                                                                  .withTimestamp(System.currentTimeMillis())
+                                                                                  .withGroupCallUpdate(new SignalServiceDataMessage.GroupCallUpdate(eraId));
 
-    GroupUtil.setDataMessageGroupContext(context, dataMessage, conversationRecipient.requireGroupId().requirePush());
+    GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush());
 
-    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context,
-                                                                                conversationRecipient.requireGroupId().requireV2(),
-                                                                                destinations,
-                                                                                false,
-                                                                                ContentHint.DEFAULT,
-                                                                                dataMessage.build());
+    SignalServiceDataMessage dataMessage         = dataMessageBuilder.build();
+    List<Recipient>          nonSelfDestinations = destinations.stream().filter(r -> !r.isSelf()).collect(Collectors.toList());
+    boolean                  includesSelf        = nonSelfDestinations.size() != destinations.size();
+    List<SendMessageResult>  results             = GroupSendUtil.sendUnresendableDataMessage(context,
+                                                                                             conversationRecipient.requireGroupId().requireV2(),
+                                                                                             nonSelfDestinations,
+                                                                                             false,
+                                                                                             ContentHint.DEFAULT,
+                                                                                             dataMessage);
+
+    if (includesSelf) {
+      results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));
+    }
 
     return GroupSendJobHelper.getCompletedSends(destinations, results);
   }

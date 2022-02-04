@@ -616,7 +616,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       }
       try {
         messageSender.sendCallMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
-                                      UnidentifiedAccessUtil.getAccessFor(context, recipient),
+                                      recipient.isSelf() ? Optional.absent() : UnidentifiedAccessUtil.getAccessFor(context, recipient),
                                       callMessage);
       } catch (UntrustedIdentityException e) {
         Log.i(TAG, "sendOpaqueCallMessage onFailure: ", e);
@@ -857,11 +857,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   public void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {
     SignalExecutors.BOUNDED.execute(() -> SignalDatabase.sms().insertOrUpdateGroupCall(groupId,
-                                                                                                          Recipient.self().getId(),
-                                                                                                          System.currentTimeMillis(),
-                                                                                                          groupCallEraId,
-                                                                                                          joinedMembers,
-                                                                                                          isCallFull));
+                                                                                       Recipient.self().getId(),
+                                                                                       System.currentTimeMillis(),
+                                                                                       groupCallEraId,
+                                                                                       joinedMembers,
+                                                                                       isCallFull));
   }
 
   public void sendCallMessage(@NonNull final RemotePeer remotePeer,
