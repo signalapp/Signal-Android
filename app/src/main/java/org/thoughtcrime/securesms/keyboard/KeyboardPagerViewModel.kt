@@ -36,13 +36,13 @@ class KeyboardPagerViewModel : ViewModel() {
   fun pages(): LiveData<Set<KeyboardPage>> = pages
 
   fun setOnlyPage(page: KeyboardPage) {
-    pages.value = setOf(page)
+    pages.postValue(setOf(page))
     switchToPage(page)
   }
 
   fun switchToPage(page: KeyboardPage) {
     if (this.pages.value.contains(page) && this.page.value != page) {
-      this.page.value = page
+      this.page.postValue(page)
     }
   }
 }
