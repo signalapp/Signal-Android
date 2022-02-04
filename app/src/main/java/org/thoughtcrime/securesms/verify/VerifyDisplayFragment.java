@@ -394,7 +394,9 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
   }
 
   private void setRecipientText(Recipient recipient) {
-    description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.getDisplayName(getContext()))));
+    String escapedDisplayName = Html.escapeHtml(recipient.getDisplayName(getContext()));
+
+    description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s), escapedDisplayName)));
     description.setMovementMethod(LinkMovementMethod.getInstance());
   }
 
