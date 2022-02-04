@@ -3149,7 +3149,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void updateLinkPreviewState() {
-    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent()) {
+    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent() && getContext() != null) {
       linkPreviewViewModel.onEnabled();
       linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
