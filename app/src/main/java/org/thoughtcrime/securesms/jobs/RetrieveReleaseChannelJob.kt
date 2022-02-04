@@ -102,8 +102,9 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
       return
     }
 
-    if (SignalDatabase.threads.getUnarchivedConversationListCount() < 6) {
+    if (values.previousManifestMd5.isEmpty() && (SignalDatabase.threads.getArchivedConversationListCount() + SignalDatabase.threads.getUnarchivedConversationListCount()) < 6) {
       Log.i(TAG, "User does not have enough conversations to show release channel")
+      values.nextScheduledCheck = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7)
       return
     }
 
