@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalWebSocket;
@@ -113,10 +114,10 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket) {
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore) {
       return new SignalServiceMessageSender(provideSignalServiceNetworkAccess().getConfiguration(),
                                             new DynamicCredentialsProvider(),
-                                            provideProtocolStore(),
+                                            protocolStore,
                                             ReentrantSessionLock.INSTANCE,
                                             BuildConfig.SIGNAL_AGENT,
                                             signalWebSocket,

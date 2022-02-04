@@ -6,11 +6,7 @@ import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
-import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -35,6 +31,7 @@ import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalWebSocket;
@@ -55,7 +52,7 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket) {
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore) {
     return null;
   }
 

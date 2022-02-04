@@ -1977,7 +1977,7 @@ public class SignalServiceMessageSender {
     }
 
     for (int deviceId : deviceIds) {
-      if (store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
+      if (deviceId == SignalServiceAddress.DEFAULT_DEVICE_ID || store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
         messages.add(getEncryptedMessage(socket, recipient, unidentifiedAccess, deviceId, plaintext));
       }
     }

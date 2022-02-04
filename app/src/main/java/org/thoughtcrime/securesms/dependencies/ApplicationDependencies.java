@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalWebSocket;
@@ -199,7 +200,7 @@ public class ApplicationDependencies {
 
     synchronized (LOCK) {
       if (messageSender == null) {
-        messageSender = provider.provideSignalServiceMessageSender(getSignalWebSocket());
+        messageSender = provider.provideSignalServiceMessageSender(getSignalWebSocket(), getProtocolStore());
       }
       return messageSender;
     }
@@ -600,7 +601,7 @@ public class ApplicationDependencies {
   public interface Provider {
     @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
-    @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket);
+    @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore);
     @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver();
     @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
     @NonNull IncomingMessageProcessor provideIncomingMessageProcessor();
