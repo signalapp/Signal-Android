@@ -581,7 +581,7 @@ private static final String[] GROUP_PROJECTION = {
         throw new AssertionError("V2 master key but no group state");
       }
       groupId.requireV2();
-      groupMembers = getV2GroupMembers(context, groupState, true);
+      groupMembers = getV2GroupMembers(groupState, true);
       contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
       contentValues.put(V2_REVISION, groupState.getRevision());
       contentValues.put(V2_DECRYPTED_GROUP, groupState.toByteArray());
@@ -720,7 +720,7 @@ private static final String[] GROUP_PROJECTION = {
       contentValues.put(UNMIGRATED_V1_MEMBERS, unmigratedV1Members.isEmpty() ? null : RecipientId.toSerializedList(unmigratedV1Members));
     }
 
-    List<RecipientId> groupMembers = getV2GroupMembers(context, decryptedGroup, true);
+    List<RecipientId> groupMembers = getV2GroupMembers(decryptedGroup, true);
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getRevision());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
@@ -885,7 +885,15 @@ private static final String[] GROUP_PROJECTION = {
       if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
         Log.w(TAG, "Seen unknown UUID in members list");
       } else {
-        groupMembers.add(RecipientId.from(ACI.from(uuid), null));
+        RecipientId           id       = RecipientId.from(ACI.from(uuid), null);
+        Optional<RecipientId> remapped = RemappedRecords.getInstance().getRecipient(id);
+
+        if (remapped.isPresent()) {
+          Log.w(TAG, "Saw that " + id + " remapped to " + remapped + ". Using the mapping.");
+          groupMembers.add(remapped.get());
+        } else {
+          groupMembers.add(id);
+        }
       }
     }
 
@@ -894,7 +902,7 @@ private static final String[] GROUP_PROJECTION = {
     return groupMembers;
   }
 
-  private static @NonNull List<RecipientId> getV2GroupMembers(@NonNull Context context, @NonNull DecryptedGroup decryptedGroup, boolean shouldRetry) {
+  private static @NonNull List<RecipientId> getV2GroupMembers(@NonNull DecryptedGroup decryptedGroup, boolean shouldRetry) {
     List<UUID>        uuids = DecryptedGroupUtil.membersToUuidList(decryptedGroup.getMembersList());
     List<RecipientId> ids   = uuidsToRecipientIds(uuids);
 
@@ -902,7 +910,8 @@ private static final String[] GROUP_PROJECTION = {
       if (shouldRetry) {
         Log.w(TAG, "Found remapped records where we shouldn't. Clearing cache and trying again.");
         RecipientId.clearCache();
-        return getV2GroupMembers(context, decryptedGroup, false);
+        RemappedRecords.getInstance().resetCache();
+        return getV2GroupMembers(decryptedGroup, false);
       } else {
         throw new IllegalStateException("Remapped records in group membership!");
       }
