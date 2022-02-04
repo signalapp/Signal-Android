@@ -242,6 +242,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                     parent.invalidate();
                   }
                 });
+
+      reactionsView.animate()
+                   .scaleX(LONG_PRESS_SCALE_FACTOR)
+                   .scaleY(LONG_PRESS_SCALE_FACTOR);
     }
   };
 
@@ -377,6 +381,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         bodyBubble.animate()
                   .scaleX(1.0f)
                   .scaleY(1.0f);
+        reactionsView.animate()
+                     .scaleX(1.0f)
+                     .scaleY(1.0f);
         break;
     }
 
