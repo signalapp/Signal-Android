@@ -90,7 +90,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您哋可以再寫訊息或者通話，您個名同幅相亦都會分享畀佢。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">封鎖咗嘅人就無得再同您通話或者寫訊息畀您。</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">封鎖接收 Signal 出爐線報。</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">恢復接收 Signal 出爐線報。</string>
   <string name="BlockUnblockDialog_unblock_s">係咪要解除封鎖 %1$s？</string>
   <string name="BlockUnblockDialog_block">封鎖</string>
   <string name="BlockUnblockDialog_block_and_leave">封鎖，然後退谷</string>
@@ -1027,7 +1029,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">有一則 %s 發出嘅訊息送達唔到</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s 已轉咗新電話冧把。</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">呢樣新嘢，唔知又啱唔啱您合尺？啱心水嘅話，不妨隨心幫我哋買支旗，話我哋知您 buy。</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal 應援靠團伙。誠意召集課金師隨心捐獻，擔當我哋嘅後援。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已發起成谷通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 嚟到成谷通話 · %2$s</string>
@@ -1054,6 +1058,7 @@
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">您肯唔肯俾 %1$s 發訊息畀您，並同佢分享您嘅名同相？您話䎺之前，佢都唔會知您睇過佢個訊息嘅。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">您肯唔肯俾 %1$s 發訊息畀您，並同佢分享您嘅名同相？您解除封鎖佢之前，您都唔會收到佢任何嘅訊息。</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">您肯唔肯接收 %1$s 嘅出爐線報？您解除封鎖佢之前，您都唔會收到佢任何嘅消息。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">係咪要繼續同呢個谷對話，並向個谷嘅所有成員分享您嘅名同相？</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升級呢個谷以啟用新功能，例如 @點名講 同埋個谷嘅話事人功能。呢個谷入面未有分享佢嘅名或相嘅成員將會獲邀加入。</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">呢個舊版谷冇得繼續用，因為太大喇。谷嘅人數上限係 %1$d 人。</string>
@@ -2269,6 +2274,7 @@
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">儲存</string>
   <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">再發一次</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_selection__menu_multi_select">揀選</string>
   <!--conversation_expiring_on-->
@@ -3491,5 +3497,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">開唔到揀選工具。</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal 進化之藍圖與線報</string>
   <!--EOF-->
 </resources>

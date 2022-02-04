@@ -3244,7 +3244,7 @@
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Gerai</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
-  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Pakeisti numerį</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Keisti numerį</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Jūsų senas numeris</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Senas telefono numeris</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Jūsų naujas numeris</string>
@@ -3255,7 +3255,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Privalote nurodyti savo naujo numerio šalies kodą</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Privalote nurodyti savo naują telefono numerį</string>
   <!--ChangeNumberVerifyFragment-->
-  <string name="ChangeNumberVerifyFragment__change_number">Pakeisti numerį</string>
+  <string name="ChangeNumberVerifyFragment__change_number">Keisti numerį</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Patvirtinamas %1$s</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Reikia saugos kodo</string>
   <!--ChangeNumberConfirmFragment-->

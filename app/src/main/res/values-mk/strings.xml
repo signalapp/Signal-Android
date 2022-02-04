@@ -925,17 +925,17 @@
   <string name="MessageRecord_left_group">Ја напуштивте групата.</string>
   <string name="MessageRecord_you_updated_group">Ја уредивте групата.</string>
   <string name="MessageRecord_the_group_was_updated">Групата беше ажурирана.</string>
-  <string name="MessageRecord_you_called_date">Вие повикавте· %1$s</string>
+  <string name="MessageRecord_you_called_date">Вие повикавте · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Испуштен аудио повик · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Испуштен видео повик · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ја уреди групата.</string>
   <string name="MessageRecord_s_called_you_date">%1$s Ве повика · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s е на Signal!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Вклучивте исчезнувачки пораки.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s оневозможивте исчезнувачки пораки.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Го поставивте времето за исчезнување на пораките на %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s го постави времето на исчезнување на пораките на %2$s.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Времето за исчезнувачката порака е поставено на %1$s.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Исклучивте исчезнувачки пораки.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ги исклучи исчезнувачките пораки.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Го поставивте времето за исчезнувачки пораки на %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s го постави времето за исчезнувачки пораки на %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Времето за исчезнувачки пораки е поставено на %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Оваа група е ажурирана во нова група.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Не можевте да бидете додадени во новата група но поканети сте да се приклучите,</string>
   <string name="MessageRecord_chat_session_refreshed">Сесијата со разговорот е освежена</string>
@@ -1472,8 +1472,8 @@
   <string name="ThreadRecord_this_message_was_deleted">Оваа порака беше избришана.</string>
   <string name="ThreadRecord_you_deleted_this_message">Вие ја избришавте оваа порака.</string>
   <string name="ThreadRecord_s_is_on_signal">%s е на Signal!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">Пораки што исчезнуваат се оневозможени</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за исчезнувачката порака е поставено на %s.</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Исчезнувачките пораки се исклучени</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за исчезнувачки пораки е поставено на %s.</string>
   <string name="ThreadRecord_safety_number_changed">Сигурносниот број е променет. </string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Вашиот сигурносен број со %s е променет.</string>
   <string name="ThreadRecord_you_marked_verified">Одбележавте проверено</string>
@@ -1725,7 +1725,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Немате заеднички групи. Прегледувајте ги барањата внимателно.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контакти во оваа група. Внимателно разгледајте ги барањата.</string>
   <string name="ConversationUpdateItem_view">Поглед</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Времето на исчезнувачките пораки ќе биде поставено на %1$s  кога ќе им испратите порака.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Времето на исчезнувачките пораки ќе биде поставено на %1$s кога ќе им испратите порака.</string>
   <!--Update item button text to show to boost a feature-->
   <string name="ConversationUpdateItem_signal_boost">Signal поттик</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
@@ -1913,7 +1913,7 @@
   <string name="message_details_header__issues_need_your_attention">Некои проблеми барааат Ваше внимание.</string>
   <string name="message_details_header__sent">Испратено:</string>
   <string name="message_details_header__received">Примено:</string>
-  <string name="message_details_header__disappears">Исчезнува:</string>
+  <string name="message_details_header__disappears">Исчезнува за:</string>
   <string name="message_details_header__via">Преку:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">На чекање</string>
@@ -2340,7 +2340,7 @@
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">Зачувај</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Пораки што исчезнуваат</string>
+  <string name="conversation_expiring_off__disappearing_messages">Исчезнувачки пораки</string>
   <!--conversation_selection-->
   <!--Button to view detailed information for a message-->
   <string name="conversation_selection__menu_message_details">Информации</string>
@@ -3108,7 +3108,7 @@
   <string name="PrivacySettingsFragment__blocked">Блокирани</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d контакти</string>
   <string name="PrivacySettingsFragment__messaging">Пораки</string>
-  <string name="PrivacySettingsFragment__disappearing_messages">Пораки што исчезнуваат</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Исчезнувачки пораки</string>
   <string name="PrivacySettingsFragment__app_security">Безбедност на апликацијата</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирај слики од екранот во листата на последни апликации и во самата апликација</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal пораки и повици. Секогаш префрлај повици и запечатен испраќач.</string>
@@ -3229,7 +3229,7 @@
   <string name="ConversationSettingsFragment__mute">Исклучи</string>
   <string name="ConversationSettingsFragment__muted">Исклучен звук</string>
   <string name="ConversationSettingsFragment__search">Барај</string>
-  <string name="ConversationSettingsFragment__disappearing_messages">Пораки што исчезнуваат</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Исчезнувачки пораки</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Звуци и известувања</string>
   <string name="ConversationSettingsFragment__contact_details">Детали за контактот</string>
   <string name="ConversationSettingsFragment__view_safety_number">Види сигурносен број</string>
