@@ -1552,18 +1552,21 @@ public class ConversationParentFragment extends Fragment
 
     sendButton.resetAvailableTransports(isMediaMessage);
 
-    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes()) {
-      sendButton.disableTransport(Type.TEXTSECURE);
-    }
+    boolean smsEnabled = true;
 
     if (recipient.get().isPushGroup() || (!recipient.get().isMmsGroup() && !recipient.get().hasSmsAddress())) {
       sendButton.disableTransport(Type.SMS);
+      smsEnabled = false;
     }
 
-    if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection()) {
+    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes() && smsEnabled) {
+      sendButton.disableTransport(Type.TEXTSECURE);
+    }
+
+    if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection() && smsEnabled) {
       sendButton.setDefaultTransport(Type.SMS);
     } else {
-      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes()) {
+      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
         sendButton.setDefaultTransport(Type.TEXTSECURE);
       } else {
         sendButton.setDefaultTransport(Type.SMS);
