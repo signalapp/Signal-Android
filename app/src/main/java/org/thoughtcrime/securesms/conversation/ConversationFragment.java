@@ -399,7 +399,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     GiphyMp4PlaybackController.attach(list, callback, maxPlayback);
     list.addItemDecoration(new GiphyMp4ItemDecoration(callback, translationY -> {
-      reactionsShade.setTranslationY(translationY);
+      reactionsShade.setTranslationY(translationY + list.getHeight());
       return Unit.INSTANCE;
     }), 0);
 
@@ -899,7 +899,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     inlineDateDecoration = new StickyHeaderDecoration(adapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE);
-    list.addItemDecoration(inlineDateDecoration);
+    list.addItemDecoration(inlineDateDecoration, 0);
   }
 
   public void setLastSeen(long lastSeen) {
@@ -1446,17 +1446,18 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           Bitmap videoBitmap          = null;
           int    childAdapterPosition = list.getChildAdapterPosition(itemView);
 
-          final GiphyMp4ProjectionPlayerHolder mp4Holder;
+          GiphyMp4ProjectionPlayerHolder mp4Holder = null;
           if (childAdapterPosition != RecyclerView.NO_POSITION) {
             mp4Holder = giphyMp4ProjectionRecycler.getCurrentHolder(childAdapterPosition);
-            if (mp4Holder != null) {
+            if (mp4Holder != null && mp4Holder.isVisible()) {
               mp4Holder.pause();
               videoBitmap = mp4Holder.getBitmap();
               mp4Holder.hide();
+            } else {
+              mp4Holder = null;
             }
-          } else {
-            mp4Holder = null;
           }
+          final GiphyMp4ProjectionPlayerHolder finalMp4Holder = mp4Holder;
 
           ConversationItem conversationItem = (ConversationItem) itemView;
           Bitmap           bitmap           = ConversationItemSelection.snapshotView(conversationItem, list, messageRecord, videoBitmap);
@@ -1478,16 +1479,21 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
           ViewUtil.hideKeyboard(requireContext(), conversationItem);
 
+          boolean showScrollButtons = conversationViewModel.getShowScrollButtons();
+          if (showScrollButtons) {
+            conversationViewModel.setShowScrollButtons(false);
+          }
+
           listener.handleReaction(item.getConversationMessage(),
                                   new ReactionsToolbarListener(item.getConversationMessage()),
                                   selectedConversationModel,
                                   new ConversationReactionOverlay.OnHideListener() {
                                     @Override public void startHide() {
                                       multiselectItemDecoration.hideShade(list);
+                                      ViewUtil.fadeOut(reactionsShade, getResources().getInteger(R.integer.reaction_scrubber_hide_duration), View.GONE);
                                     }
 
                                     @Override public void onHide() {
-                                      reactionsShade.setVisibility(View.GONE);
                                       list.setLayoutFrozen(false);
 
                                       if (selectedConversationModel.getAudioUri() != null) {
@@ -1498,12 +1504,16 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                       WindowUtil.setLightNavigationBarFromTheme(requireActivity());
                                       clearFocusedItem();
 
-                                      if (mp4Holder != null) {
-                                        mp4Holder.show();
-                                        mp4Holder.resume();
+                                      if (finalMp4Holder != null) {
+                                        finalMp4Holder.show();
+                                        finalMp4Holder.resume();
                                       }
 
                                       bodyBubble.setVisibility(View.VISIBLE);
+
+                                      if (showScrollButtons) {
+                                        conversationViewModel.setShowScrollButtons(true);
+                                      }
                                     }
                                   });
         }

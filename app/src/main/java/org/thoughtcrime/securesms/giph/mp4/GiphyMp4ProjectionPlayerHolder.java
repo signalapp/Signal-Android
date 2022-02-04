@@ -99,6 +99,10 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     container.setVisibility(View.GONE);
   }
 
+  public boolean isVisible() {
+    return container.getVisibility() == View.VISIBLE;
+  }
+
   public void pause() {
     player.pause();
   }

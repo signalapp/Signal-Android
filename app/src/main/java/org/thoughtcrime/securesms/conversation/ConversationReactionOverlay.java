@@ -212,21 +212,12 @@ public final class ConversationReactionOverlay extends FrameLayout {
     });
   }
 
-  private int getInputPanelHeight(@NonNull Activity activity) {
-    View bottomPanel = activity.findViewById(R.id.conversation_activity_panel_parent);
-    View emojiDrawer = activity.findViewById(R.id.emoji_drawer);
-
-    return bottomPanel.getHeight() + (emojiDrawer != null && emojiDrawer.getVisibility() == VISIBLE ? emojiDrawer.getHeight() : 0);
-  }
-
   private void showAfterLayout(@NonNull Activity activity,
                                @NonNull ConversationMessage conversationMessage,
                                @NonNull PointF lastSeenDownPoint,
                                boolean isMessageOnLeft) {
-    LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
-    layoutParams.bottomMargin = bottomNavigationBarHeight;
-    layoutParams.height = getInputPanelHeight(activity);
-    inputShade.setLayoutParams(layoutParams);
+    updateToolbarShade(activity);
+    updateInputShade(activity);
 
     contextMenu = new ConversationContextMenu(dropdownAnchor, getMenuActionItems(conversationMessage));
 
@@ -379,6 +370,29 @@ public final class ConversationReactionOverlay extends FrameLayout {
                     .setDuration(revealDuration);
   }
 
+  private void updateToolbarShade(@NonNull Activity activity) {
+    View toolbar         = activity.findViewById(R.id.toolbar);
+    View bannerContainer = activity.findViewById(R.id.conversation_banner_container);
+
+    LayoutParams layoutParams = (LayoutParams) toolbarShade.getLayoutParams();
+    layoutParams.height = toolbar.getHeight() + bannerContainer.getHeight();
+    toolbarShade.setLayoutParams(layoutParams);
+  }
+
+  private void updateInputShade(@NonNull Activity activity) {
+    LayoutParams layoutParams = (LayoutParams) inputShade.getLayoutParams();
+    layoutParams.bottomMargin = bottomNavigationBarHeight;
+    layoutParams.height = getInputPanelHeight(activity);
+    inputShade.setLayoutParams(layoutParams);
+  }
+
+  private int getInputPanelHeight(@NonNull Activity activity) {
+    View bottomPanel = activity.findViewById(R.id.conversation_activity_panel_parent);
+    View emojiDrawer = activity.findViewById(R.id.emoji_drawer);
+
+    return bottomPanel.getHeight() + (emojiDrawer != null && emojiDrawer.getVisibility() == VISIBLE ? emojiDrawer.getHeight() : 0);
+  }
+
   @RequiresApi(api = 21)
   private void updateSystemUiOnShow(@NonNull Activity activity) {
     Window window   = activity.getWindow();
@@ -488,10 +502,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
         toolbarShade.setVisibility(INVISIBLE);
         inputShade.setVisibility(INVISIBLE);
-
-        if (Build.VERSION.SDK_INT >= 21 && activity != null) {
-          activity = null;
-        }
 
         if (onHideListener != null) {
           onHideListener.onHide();
