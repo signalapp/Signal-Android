@@ -1016,8 +1016,14 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * @return All storage IDs for ContactRecords, excluding the ones that need to be deleted.
    */
   fun getContactStorageSyncIdsMap(): Map<RecipientId, StorageId> {
-    val query = "$STORAGE_SERVICE_ID NOT NULL AND $ACI_COLUMN NOT NULL AND $ID != ? AND $GROUP_TYPE != ?"
-    val args = SqlUtil.buildArgs(Recipient.self().id, GroupType.SIGNAL_V2.id.toString())
+    val query = """
+      $STORAGE_SERVICE_ID NOT NULL AND (
+        ($GROUP_TYPE = ? AND $ACI_COLUMN NOT NULL AND $ID != ?)
+        OR
+        $GROUP_TYPE IN (?)
+      )
+    """.trimIndent()
+    val args = SqlUtil.buildArgs(GroupType.NONE.id, Recipient.self().id, GroupType.SIGNAL_V1.id)
     val out: MutableMap<RecipientId, StorageId> = HashMap()
 
     readableDatabase.query(TABLE_NAME, arrayOf(ID, STORAGE_SERVICE_ID, GROUP_TYPE), query, args, null, null, null).use { cursor ->
