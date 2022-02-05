@@ -348,7 +348,7 @@
   </plurals>
   <string name="ConversationListFragment_select">Vælg</string>
   <plurals name="ConversationListFragment_archive_plural">
-    <item quantity="one">Arkiver</item>
+    <item quantity="one">Arkivér</item>
     <item quantity="other">Arkivér</item>
   </plurals>
   <plurals name="ConversationListFragment_unarchive_plural">

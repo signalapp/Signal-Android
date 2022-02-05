@@ -287,7 +287,7 @@
   <string name="ConversationFragment_failed_to_open_message">Не успеа да се отвори пораката</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Можете да повлечете на десно на било која порака за брз одговор</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Можете да повлечете на лево на било која порака за брз одговор</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Испратени медија датотеки за еден преглед се автоматски отстранети откога ќе се испратат.</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Испратени еднократно видливи медија датотеки автоматски се отстрануваат откога ќе се испратат</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Веќе ја видовте оваа порака</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додадате белешки во овој разговор.\nАко Вашата сметка има поврзани уреди, новите белешки ќе бидат синхронизирани.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име.</string>
@@ -912,7 +912,7 @@
     <item quantity="other">Не може да споделите повеќе од %d предмети.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Избери примачи</string>
-  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Допрете овде за да направите оваа порака да изчезне откако ќе ја видите.</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Допрете овде за да исчезне оваа порака откако ќе биде видена.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Цела медија</string>
   <string name="MediaRepository__camera">Камера</string>
@@ -1580,7 +1580,7 @@
   <string name="MessageNotifier_reacted_s_to_your_gif">Реагираше %1$s на Вашиот GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Реагираше %1$s на Вашата датотека.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Реагираше %1$s на Вашето аудио.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагираше %1$s на Вашата медија за еден преглед.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагираше со %1$s на Вашата еднократно видлива медија.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Реагираше %1$s на Вашиот стикер.</string>
   <string name="MessageNotifier_this_message_was_deleted">Оваа порака беше избришана.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Дали да исклучам известувања за луѓе што се приклучуваат на Signal? Можете да ги вклучите пак во Signal &gt; Поставувања &gt; Известувања.</string>
@@ -1856,7 +1856,7 @@
   <string name="prompt_passphrase_activity__unlock">Отклучи</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal има потреба од MMS поставувања за да испорачува медија и групни пораки преку Вашиот мобилен оператор. Вашиот уред не ги прави достапни овие информации, понекогаш ова се случува поради тоа што уредите се заклучени или поради рестриктивна конфигурација.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да испратите медија и групни пораки допрете „Во ред“  и довршете ги поставувањата. MMS поставувањата за Вашиот оператор можат да бидат пронајдени преку пребарување на „Вашиот APN за операторот“. Ова ќе треба да го направите само еднаш.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да испратите медија и групни пораки допрете „Во ред“ и довршете ги бараните поставувањата. MMS поставувањата за Вашиот оператор можат да бидат пронајдени преку пребарување на „Вашиот APN за операторот“. Ова ќе треба да го направите само еднаш.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем со испорака</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Порака, налепница, реакција или потврда за прочитани пораки не може да Ви се достави од %s. Можеби се обиделе да Ви испратат директно или во група.</string>
@@ -1900,7 +1900,7 @@
   <string name="verify_display_fragment__successful_match">Успешно совпаѓање</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на сигурносниот број</string>
   <string name="verify_display_fragment__loading">Вчитувам…</string>
-  <string name="verify_display_fragment__mark_as_verified">Означи како проверено</string>
+  <string name="verify_display_fragment__mark_as_verified">Обележи како проверено</string>
   <string name="verify_display_fragment__clear_verification">Отстрани проверка</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Сподели сигурносен број</string>

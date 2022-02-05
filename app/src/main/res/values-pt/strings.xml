@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Poderão enviar mensagens e telefonar uns aos outros, o seu nome e fotografia serão partilhados com eles.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">As pessoas bloqueadas não serão capazes de lhe ligar ou enviar-lhe mensagens.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloquear a obtenção de atualizações e novidades do Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Retomar a obtenção de atualizações e novidades do Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquear e abandonar</string>
@@ -1088,7 +1090,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Não pode ser entregue uma mensagem de %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s alterou o seu número de telefone.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Gosta deste recurso? Diga obrigado Apoiando-nos.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">O Signal é apoiado por pessoas como você. Torne-se num apoiante hoje mesmo.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou uma chamada em grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada de grupo · %2$s</string>
@@ -1117,6 +1121,7 @@
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permite que %1$s lhe envie mensagens e que seja partilhado o seu nome e fotografia com ele(a)? Ele(a) não saberá que viu a mensagem dele(a) até que aceite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permite que %1$s lhe envie mensagens e que seja partilhado o seu nome e fotografia com ele(a)? Ele(a) não irá receber nenhuma mensagem até que o(a) desbloqueie.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Obter atualizações e novidades a partir de %1$s? Não receberá nenhuma atualização até que as desbloqueie.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar a sua conversa com este grupo e partilhar o seu nome e fotografia com os seus membros?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Faça o upgrade deste grupo para ativar os recursos novos como @menções e os administradores. Os membros que não partilharam os seus nomes ou fotografias neste grupo serão convidados a juntarem-se.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este \'Grupo legado\' deixou de poder ser utilizado porque é demasiadamente grande. O tamanho máximo do grupo é de %1$d.</string>
@@ -3595,5 +3600,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Falha ao abrir o seletor.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Notas e novidades de lançamento do Signal</string>
   <!--EOF-->
 </resources>
