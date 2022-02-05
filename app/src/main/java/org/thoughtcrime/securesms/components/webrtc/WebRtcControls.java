@@ -165,7 +165,7 @@ public final class WebRtcControls {
     return isOngoing();
   }
 
-  boolean displayAnswerWithAudio() {
+  boolean displayAnswerWithoutVideo() {
     return isIncoming() && isRemoteVideoEnabled;
   }
 
