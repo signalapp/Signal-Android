@@ -232,7 +232,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             onItemLongPress = { message, position ->
                 handleLongPress(message, position)
             },
-            glide
+            glide,
+            onDeselect = { message, position ->
+                actionMode?.let {
+                    onDeselect(message, position, it)
+                }
+            }
         )
         adapter.visibleMessageContentViewDelegate = this
         adapter
@@ -799,20 +804,24 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private fun handlePress(message: MessageRecord, position: Int, view: VisibleMessageView, event: MotionEvent) {
         val actionMode = this.actionMode
         if (actionMode != null) {
-            adapter.toggleSelection(message, position)
-            val actionModeCallback = ConversationActionModeCallback(adapter, viewModel.threadId, this)
-            actionModeCallback.delegate = this
-            actionModeCallback.updateActionModeMenu(actionMode.menu)
-            if (adapter.selectedItems.isEmpty()) {
-                actionMode.finish()
-                this.actionMode = null
-            }
+            onDeselect(message, position, actionMode)
         } else {
             // NOTE:
             // We have to use onContentClick (rather than a click listener directly on
             // the view) so as to not interfere with all the other gestures. Do not add
             // onClickListeners directly to message content views.
             view.onContentClick(event)
+        }
+    }
+
+    private fun onDeselect(message: MessageRecord, position: Int, actionMode: ActionMode) {
+        adapter.toggleSelection(message, position)
+        val actionModeCallback = ConversationActionModeCallback(adapter, viewModel.threadId, this)
+        actionModeCallback.delegate = this
+        actionModeCallback.updateActionModeMenu(actionMode.menu)
+        if (adapter.selectedItems.isEmpty()) {
+            actionMode.finish()
+            this.actionMode = null
         }
     }
 
