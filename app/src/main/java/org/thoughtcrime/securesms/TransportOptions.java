@@ -109,7 +109,7 @@ public class TransportOptions {
   }
 
   public static @NonNull TransportOption getPushTransportOption(@NonNull Context context) {
-    return new TransportOption(Type.TEXTSECURE,
+    return new TransportOption(Type.SIGNAL,
                                R.drawable.ic_send_lock_24,
                                context.getResources().getColor(R.color.core_ultramarine),
                                context.getString(R.string.ConversationActivity_transport_signal),

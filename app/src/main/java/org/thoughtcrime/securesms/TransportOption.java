@@ -15,7 +15,7 @@ public class TransportOption implements Parcelable {
 
   public enum Type {
     SMS,
-    TEXTSECURE
+    SIGNAL
   }
 
   private final int                             drawable;

@@ -155,7 +155,7 @@ public final class MultiShareSender {
                                        @NonNull List<Mention> validatedMentions)
   {
     String body = multiShareArgs.getDraftText();
-    if (transportOption.isType(TransportOption.Type.TEXTSECURE) && !forceSms && body != null) {
+    if (transportOption.isType(TransportOption.Type.SIGNAL) && !forceSms && body != null) {
       MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(context, body, transportOption.calculateCharacters(body).maxPrimaryMessageSize);
       body = splitMessage.getBody();
 

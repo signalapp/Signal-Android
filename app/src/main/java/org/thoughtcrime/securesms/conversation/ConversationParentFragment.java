@@ -1549,7 +1549,7 @@ public class ConversationParentFragment extends Fragment
     sendButton.resetAvailableTransports(isMediaMessage);
 
     if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes()) {
-      sendButton.disableTransport(Type.TEXTSECURE);
+      sendButton.disableTransport(Type.SIGNAL);
     }
 
     if (recipient.get().isPushGroup() || (!recipient.get().isMmsGroup() && !recipient.get().hasSmsAddress())) {
@@ -1560,7 +1560,7 @@ public class ConversationParentFragment extends Fragment
       sendButton.setDefaultTransport(Type.SMS);
     } else {
       if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes()) {
-        sendButton.setDefaultTransport(Type.TEXTSECURE);
+        sendButton.setDefaultTransport(Type.SIGNAL);
       } else {
         sendButton.setDefaultTransport(Type.SMS);
       }
@@ -2844,7 +2844,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private MediaConstraints getCurrentMediaConstraints() {
-    return sendButton.getSelectedTransport().getType() == Type.TEXTSECURE
+    return sendButton.getSelectedTransport().getType() == Type.SIGNAL
            ? MediaConstraints.getPushMediaConstraints()
            : MediaConstraints.getMmsMediaConstraints(sendButton.getSelectedTransport().getSimSubscriptionId().or(-1));
   }
