@@ -6,7 +6,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
-import org.thoughtcrime.securesms.TextSecureExpiredException;
+import org.thoughtcrime.securesms.SignalExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -33,7 +33,7 @@ public abstract class SendJob extends BaseJob {
   @Override
   public final void onRun() throws Exception {
     if (SignalStore.misc().isClientDeprecated()) {
-      throw new TextSecureExpiredException(String.format("TextSecure expired (build %d, now %d)",
+      throw new SignalExpiredException(String.format("Signal expired (build %d, now %d)",
                                                          BuildConfig.BUILD_TIMESTAMP,
                                                          System.currentTimeMillis()));
     }
