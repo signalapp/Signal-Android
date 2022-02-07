@@ -619,6 +619,10 @@ public class ConversationParentFragment extends Fragment
       if (searchViewItem != null && searchViewItem.expandActionView()) {
         searchViewModel.onSearchOpened();
       }
+    } else {
+      searchViewModel.onSearchClosed();
+      viewModel.setSearchQuery(null);
+      inputPanel.setHideForSearch(false);
     }
   }
 
