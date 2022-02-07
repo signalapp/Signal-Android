@@ -107,7 +107,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
 
       sectionHeaderPref(R.string.AccountSettingsFragment__account)
 
-      if (FeatureFlags.changeNumber() && Recipient.self().changeNumberCapability == Recipient.Capability.SUPPORTED) {
+      if (FeatureFlags.changeNumber() && Recipient.self().changeNumberCapability == Recipient.Capability.SUPPORTED && SignalStore.account().isRegistered) {
         clickPref(
           title = DSLSettingsText.from(R.string.AccountSettingsFragment__change_phone_number),
           onClick = {
