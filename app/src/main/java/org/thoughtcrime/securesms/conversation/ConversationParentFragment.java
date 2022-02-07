@@ -922,15 +922,10 @@ public class ConversationParentFragment extends Fragment
     boolean isActiveV2Group           = groupActiveState != null && groupActiveState.isActiveV2Group();
     boolean isInActiveGroup           = groupActiveState != null && !groupActiveState.isActiveGroup();
 
-    if (isInMessageRequest()) {
+    if (isInMessageRequest() && recipient != null && !recipient.get().isBlocked()) {
       if (isActiveGroup) {
         inflater.inflate(R.menu.conversation_message_requests_group, menu);
       }
-
-      inflater.inflate(R.menu.conversation_message_requests, menu);
-
-      if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-      else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
 
       super.onCreateOptionsMenu(menu, inflater);
     }
