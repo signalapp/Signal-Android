@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityCreateClosedGroupBinding
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.sending_receiving.MessageSender
@@ -28,8 +28,8 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.fadeIn
 import org.thoughtcrime.securesms.util.fadeOut
 
-//TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
+    private lateinit var binding: ActivityCreateClosedGroupBinding
     private var isLoading = false
         set(newValue) { field = newValue; invalidateOptionsMenu() }
     private var members = listOf<String>()
@@ -50,11 +50,12 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-        setContentView(R.layout.activity_create_closed_group)
+        binding = ActivityCreateClosedGroupBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar!!.title = resources.getString(R.string.activity_create_closed_group_title)
-        recyclerView.adapter = this.selectContactsAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
+        binding.recyclerView.adapter = this.selectContactsAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 
@@ -80,8 +81,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     private fun update(members: List<String>) {
         //if there is a Note to self conversation, it loads self in the list, so we need to remove it here
         this.members = members.minus(publicKey)
-        mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
-        emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
+        binding.mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
+        binding.emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
         invalidateOptionsMenu()
     }
     // endregion
@@ -95,12 +96,12 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     }
 
     private fun createNewPrivateChat() {
-        setResult(Companion.closedGroupCreatedResultCode)
+        setResult(closedGroupCreatedResultCode)
         finish()
     }
 
     private fun createClosedGroup() {
-        val name = nameEditText.text.trim()
+        val name = binding.nameEditText.text.trim()
         if (name.isEmpty()) {
             return Toast.makeText(this, R.string.activity_create_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()
         }
@@ -116,9 +117,9 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
         isLoading = true
-        loaderContainer.fadeIn()
+        binding.loaderContainer.fadeIn()
         MessageSender.createClosedGroup(name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
-            loaderContainer.fadeOut()
+            binding.loaderContainer.fadeOut()
             isLoading = false
             val threadID = DatabaseComponent.get(this).threadDatabase().getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
              if (!isFinishing) {
@@ -126,7 +127,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
                 finish()
             }
         }.failUi {
-            loaderContainer.fadeOut()
+            binding.loaderContainer.fadeOut()
             isLoading = false
             Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
         }

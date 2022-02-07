@@ -121,14 +121,12 @@ public class DateUtils extends android.text.format.DateUtils {
    * e.g. 2020-09-04T19:17:51Z
    * https://www.iso.org/iso-8601-date-and-time-format.html
    *
-   * Note: SDK_INT == 0 check needed to pass unit tests due to JVM date parser differences.
-   *
    * @return The timestamp if able to be parsed, otherwise -1.
    */
   @SuppressLint("ObsoleteSdkInt")
   public static long parseIso8601(@Nullable String date) {
     SimpleDateFormat format;
-    if (Build.VERSION.SDK_INT == 0 || Build.VERSION.SDK_INT >= 24) {
+    if (Build.VERSION.SDK_INT >= 24) {
       format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault());
     } else {
       format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault());

@@ -9,20 +9,23 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.mms.GlideRequests
 
-class HomeAdapter(context: Context, cursor: Cursor?) : CursorRecyclerViewAdapter<HomeAdapter.ViewHolder>(context, cursor) {
+class HomeAdapter(
+    context: Context,
+    cursor: Cursor?,
+    val listener: ConversationClickListener
+) : CursorRecyclerViewAdapter<HomeAdapter.ViewHolder>(context, cursor) {
     private val threadDatabase = DatabaseComponent.get(context).threadDatabase()
     lateinit var glide: GlideRequests
     var typingThreadIDs = setOf<Long>()
         set(value) { field = value; notifyDataSetChanged() }
-    var conversationClickListener: ConversationClickListener? = null
 
     class ViewHolder(val view: ConversationView) : RecyclerView.ViewHolder(view)
 
     override fun onCreateItemViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ConversationView(context)
-        view.setOnClickListener { conversationClickListener?.onConversationClick(view) }
+        view.setOnClickListener { view.thread?.let { listener.onConversationClick(it) } }
         view.setOnLongClickListener {
-            conversationClickListener?.onLongConversationClick(view)
+            view.thread?.let { listener.onLongConversationClick(it) }
             true
         }
         return ViewHolder(view)
@@ -45,6 +48,6 @@ class HomeAdapter(context: Context, cursor: Cursor?) : CursorRecyclerViewAdapter
 }
 
 interface ConversationClickListener {
-    fun onConversationClick(view: ConversationView)
-    fun onLongConversationClick(view: ConversationView)
+    fun onConversationClick(thread: ThreadRecord)
+    fun onLongConversationClick(thread: ThreadRecord)
 }

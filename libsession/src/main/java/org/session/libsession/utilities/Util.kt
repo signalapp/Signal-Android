@@ -22,6 +22,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import kotlin.math.min
 
 object Util {
     @Volatile
@@ -216,7 +217,7 @@ object Util {
         val results: MutableList<List<T>> = LinkedList()
         var index = 0
         while (index < list.size) {
-            val subListSize = Math.min(partitionSize, list.size - index)
+            val subListSize = min(partitionSize, list.size - index)
             results.add(list.subList(index, index + subListSize))
             index += partitionSize
         }

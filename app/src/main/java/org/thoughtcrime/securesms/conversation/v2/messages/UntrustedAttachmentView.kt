@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.view_untrusted_attachment.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ViewUntrustedAttachmentBinding
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.dialogs.DownloadDialog
 import org.thoughtcrime.securesms.util.ActivityDispatcher
-import java.util.*
+import java.util.Locale
 
 class UntrustedAttachmentView: LinearLayout {
-
+    private lateinit var binding: ViewUntrustedAttachmentBinding
     enum class AttachmentType {
         AUDIO,
         DOCUMENT,
@@ -27,7 +27,7 @@ class UntrustedAttachmentView: LinearLayout {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
     private fun initialize() {
-        LayoutInflater.from(context).inflate(R.layout.view_untrusted_attachment, this)
+        binding = ViewUntrustedAttachmentBinding.inflate(LayoutInflater.from(context), this, true)
     }
     // endregion
 
@@ -42,8 +42,8 @@ class UntrustedAttachmentView: LinearLayout {
         iconDrawable.mutate().setTint(textColor)
         val text = context.getString(R.string.UntrustedAttachmentView_download_attachment, context.getString(stringRes).toLowerCase(Locale.ROOT))
 
-        untrustedAttachmentIcon.setImageDrawable(iconDrawable)
-        untrustedAttachmentTitle.text = text
+        binding.untrustedAttachmentIcon.setImageDrawable(iconDrawable)
+        binding.untrustedAttachmentTitle.text = text
     }
     // endregion
 

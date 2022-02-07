@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
+import androidx.core.database.getStringOrNull
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsignal.utilities.Base64
@@ -73,7 +74,7 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         notifyConversationListListeners()
     }
 
-    private fun contactFromCursor(cursor: Cursor): Contact {
+    fun contactFromCursor(cursor: Cursor): Contact {
         val sessionID = cursor.getString(sessionID)
         val contact = Contact(sessionID)
         contact.name = cursor.getStringOrNull(name)
@@ -86,5 +87,30 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         contact.threadID = cursor.getLong(threadID)
         contact.isTrusted = cursor.getInt(isTrusted) != 0
         return contact
+    }
+
+    fun contactFromCursor(cursor: android.database.Cursor): Contact {
+        val sessionID = cursor.getString(cursor.getColumnIndexOrThrow(sessionID))
+        val contact = Contact(sessionID)
+        contact.name = cursor.getStringOrNull(cursor.getColumnIndexOrThrow(name))
+        contact.nickname = cursor.getStringOrNull(cursor.getColumnIndexOrThrow(nickname))
+        contact.profilePictureURL = cursor.getStringOrNull(cursor.getColumnIndexOrThrow(profilePictureURL))
+        contact.profilePictureFileName = cursor.getStringOrNull(cursor.getColumnIndexOrThrow(profilePictureFileName))
+        cursor.getStringOrNull(cursor.getColumnIndexOrThrow(profilePictureEncryptionKey))?.let {
+            contact.profilePictureEncryptionKey = Base64.decode(it)
+        }
+        contact.threadID = cursor.getLong(cursor.getColumnIndexOrThrow(threadID))
+        contact.isTrusted = cursor.getInt(cursor.getColumnIndexOrThrow(isTrusted)) != 0
+        return contact
+    }
+
+    fun queryContactsByName(constraint: String): Cursor {
+        return databaseHelper.readableDatabase.query(
+            sessionContactTable, null, " $name LIKE ? OR $nickname LIKE ?", arrayOf(
+                "%$constraint%",
+                "%$constraint%"
+            ),
+            null, null, null
+        )
     }
 }

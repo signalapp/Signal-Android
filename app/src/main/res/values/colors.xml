@@ -8,7 +8,7 @@
     <color name="profile_picture_background">#353535</color>
     <color name="cell_background">#1B1B1B</color>
     <color name="cell_selected">#0C0C0C</color>
-    <color name="action_bar_background">#171717</color>
+    <color name="action_bar_background">#161616</color>
     <color name="separator">#36383C</color>
     <color name="unimportant_button_background">#323232</color>
     <color name="dialog_background">#101011</color>

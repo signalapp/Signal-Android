@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import androidx.core.view.isVisible
@@ -13,8 +14,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import kotlinx.android.synthetic.main.thumbnail_view.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ThumbnailViewBinding
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
 import org.session.libsession.utilities.Util.equals
 import org.session.libsignal.utilities.ListenableFuture
@@ -22,11 +23,13 @@ import org.session.libsignal.utilities.SettableFuture
 import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget
 import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.mms.GlideRequest
+import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.mms.Slide
 
 open class KThumbnailView: FrameLayout {
-
+    private lateinit var binding: ThumbnailViewBinding
     companion object {
         private const val WIDTH = 0
         private const val HEIGHT = 1
@@ -37,10 +40,10 @@ open class KThumbnailView: FrameLayout {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize(attrs) }
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize(attrs) }
 
-    private val image by lazy { thumbnail_image }
-    private val playOverlay by lazy { play_overlay }
-    val loadIndicator: View by lazy { thumbnail_load_indicator }
-    val downloadIndicator: View by lazy { thumbnail_download_icon }
+    private val image by lazy { binding.thumbnailImage }
+    private val playOverlay by lazy { binding.playOverlay }
+    val loadIndicator: View by lazy { binding.thumbnailLoadIndicator }
+    val downloadIndicator: View by lazy { binding.thumbnailDownloadIcon }
 
     private val dimensDelegate = ThumbnailDimensDelegate()
 
@@ -48,7 +51,7 @@ open class KThumbnailView: FrameLayout {
     private var radius: Int = 0
 
     private fun initialize(attrs: AttributeSet?) {
-        inflate(context, R.layout.thumbnail_view, this)
+        binding = ThumbnailViewBinding.inflate(LayoutInflater.from(context), this)
         if (attrs != null) {
             val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0)
 

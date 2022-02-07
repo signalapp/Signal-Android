@@ -63,10 +63,13 @@
 
                     <RelativeLayout
                         android:id="@+id/unreadCountIndicator"
-                        android:layout_width="20dp"
+                        android:layout_width="wrap_content"
+                        android:maxWidth="40dp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="4dp"
-                        android:background="@drawable/circle_tintable"
+                        android:background="@drawable/rounded_rectangle"
                         android:backgroundTint="@color/conversation_unread_count_indicator_background">
 
                         <TextView
@@ -74,10 +77,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:textSize="@dimen/very_small_font_size"
+                            android:text="8"
                             android:textColor="@color/text"
-                            android:textStyle="bold"
-                            android:text="8" />
+                            android:textSize="@dimen/very_small_font_size"
+                            android:textStyle="bold" />
 
                     </RelativeLayout>
 

@@ -12,7 +12,6 @@ import android.os.AsyncTask
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -24,7 +23,6 @@ import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.sending_receiving.MessageSender
@@ -35,7 +33,12 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.utilities.toHexString
-import org.thoughtcrime.securesms.*
+import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.ExpirationDialog
+import org.thoughtcrime.securesms.MediaOverviewActivity
+import org.thoughtcrime.securesms.MuteDialog
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.ShortcutLauncherActivity
 import org.thoughtcrime.securesms.contacts.SelectContactsActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.utilities.NotificationUtils
@@ -101,15 +104,12 @@ object ConversationMenuHelper {
         val searchViewItem = menu.findItem(R.id.menu_search)
         (context as ConversationActivityV2).searchViewItem = searchViewItem
         val searchView = searchViewItem.actionView as SearchView
-        val searchViewModel = context.searchViewModel!!
         val queryListener = object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return true
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                searchViewModel.onQueryUpdated(query, threadId)
-                context.searchBottomBar.showLoading()
                 context.onSearchQueryUpdated(query)
                 return true
             }
@@ -117,10 +117,7 @@ object ConversationMenuHelper {
         searchViewItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
                 searchView.setOnQueryTextListener(queryListener)
-                searchViewModel.onSearchOpened()
-                context.searchBottomBar.visibility = View.VISIBLE
-                context.searchBottomBar.setData(0, 0)
-                context.inputBar.visibility = View.GONE
+                context.onSearchOpened()
                 for (i in 0 until menu.size()) {
                     if (menu.getItem(i) != searchViewItem) {
                         menu.getItem(i).isVisible = false
@@ -131,11 +128,7 @@ object ConversationMenuHelper {
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                 searchView.setOnQueryTextListener(null)
-                searchViewModel.onSearchClosed()
-                context.searchBottomBar.visibility = View.GONE
-                context.inputBar.visibility = View.VISIBLE
-                context.onSearchQueryUpdated(null)
-                context.invalidateOptionsMenu()
+                context.onSearchClosed()
                 return true
             }
         })
@@ -169,7 +162,7 @@ object ConversationMenuHelper {
     }
 
     private fun search(context: Context) {
-        val searchViewModel = (context as ConversationActivityV2).searchViewModel!!
+        val searchViewModel = (context as ConversationActivityV2).searchViewModel
         searchViewModel.onSearchOpened()
     }
 

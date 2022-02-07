@@ -7,8 +7,8 @@ import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.dialog_download.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.DialogDownloadBinding
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -26,20 +26,20 @@ class DownloadDialog(private val recipient: Recipient) : BaseDialog() {
     @Inject lateinit var contactDB: SessionContactDatabase
 
     override fun setContentView(builder: AlertDialog.Builder) {
-        val contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_download, null)
+        val binding = DialogDownloadBinding.inflate(LayoutInflater.from(requireContext()))
         val sessionID = recipient.address.toString()
         val contact = contactDB.getContactWithSessionID(sessionID)
         val name = contact?.displayName(Contact.ContactContext.REGULAR) ?: sessionID
         val title = resources.getString(R.string.dialog_download_title, name)
-        contentView.downloadTitleTextView.text = title
+        binding.downloadTitleTextView.text = title
         val explanation = resources.getString(R.string.dialog_download_explanation, name)
         val spannable = SpannableStringBuilder(explanation)
         val startIndex = explanation.indexOf(name)
         spannable.setSpan(StyleSpan(Typeface.BOLD), startIndex, startIndex + name.count(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        contentView.downloadExplanationTextView.text = spannable
-        contentView.cancelButton.setOnClickListener { dismiss() }
-        contentView.downloadButton.setOnClickListener { trust() }
-        builder.setView(contentView)
+        binding.downloadExplanationTextView.text = spannable
+        binding.cancelButton.setOnClickListener { dismiss() }
+        binding.downloadButton.setOnClickListener { trust() }
+        builder.setView(binding.root)
     }
 
     private fun trust() {

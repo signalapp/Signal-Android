@@ -76,6 +76,14 @@
         />
 
     <TextView
+        android:id="@+id/markAllAsReadTextView"
+        style="@style/BottomSheetActionItem"
+        android:drawableStart="?attr/menu_mark_all_as_read"
+        android:text="@string/mark_all_as_read"
+        android:visibility="gone"
+        />
+
+    <TextView
         android:id="@+id/deleteTextView"
         style="@style/BottomSheetActionItem"
         android:drawableStart="?attr/menu_trash_icon"

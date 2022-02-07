@@ -13,9 +13,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
-import kotlinx.android.synthetic.main.activity_display_name.registerButton
-import kotlinx.android.synthetic.main.activity_pn_mode.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityPnModeBinding
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
@@ -28,6 +27,7 @@ import org.thoughtcrime.securesms.util.GlowViewUtilities
 import org.thoughtcrime.securesms.util.PNModeView
 
 class PNModeActivity : BaseActionBarActivity() {
+    private lateinit var binding: ActivityPnModeBinding
     private var selectedOptionView: PNModeView? = null
 
     // region Lifecycle
@@ -35,15 +35,18 @@ class PNModeActivity : BaseActionBarActivity() {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo(true)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
-        setContentView(R.layout.activity_pn_mode)
-        contentView.disableClipping()
-        fcmOptionView.setOnClickListener { toggleFCM() }
-        fcmOptionView.mainColor = resources.getColorWithID(R.color.pn_option_background, theme)
-        fcmOptionView.strokeColor = resources.getColorWithID(R.color.pn_option_border, theme)
-        backgroundPollingOptionView.setOnClickListener { toggleBackgroundPolling() }
-        backgroundPollingOptionView.mainColor = resources.getColorWithID(R.color.pn_option_background, theme)
-        backgroundPollingOptionView.strokeColor = resources.getColorWithID(R.color.pn_option_border, theme)
-        registerButton.setOnClickListener { register() }
+        binding = ActivityPnModeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        with(binding) {
+            contentView.disableClipping()
+            fcmOptionView.setOnClickListener { toggleFCM() }
+            fcmOptionView.mainColor = resources.getColorWithID(R.color.pn_option_background, theme)
+            fcmOptionView.strokeColor = resources.getColorWithID(R.color.pn_option_border, theme)
+            backgroundPollingOptionView.setOnClickListener { toggleBackgroundPolling() }
+            backgroundPollingOptionView.mainColor = resources.getColorWithID(R.color.pn_option_background, theme)
+            backgroundPollingOptionView.strokeColor = resources.getColorWithID(R.color.pn_option_border, theme)
+            registerButton.setOnClickListener { register() }
+        }
         toggleFCM()
     }
 
@@ -63,8 +66,7 @@ class PNModeActivity : BaseActionBarActivity() {
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when(id) {
+        when(item.itemId) {
             R.id.learnMoreButton -> learnMore()
             else -> { /* Do nothing */ }
         }
@@ -81,52 +83,52 @@ class PNModeActivity : BaseActionBarActivity() {
         }
     }
 
-    private fun toggleFCM() {
+    private fun toggleFCM() = with(binding) {
         when (selectedOptionView) {
             null -> {
                 performTransition(R.drawable.pn_option_background_select_transition, fcmOptionView)
-                GlowViewUtilities.animateShadowColorChange(this, fcmOptionView, R.color.transparent, R.color.accent)
+                GlowViewUtilities.animateShadowColorChange(this@PNModeActivity, fcmOptionView, R.color.transparent, R.color.accent)
                 animateStrokeColorChange(fcmOptionView, R.color.pn_option_border, R.color.accent)
                 selectedOptionView = fcmOptionView
             }
             fcmOptionView -> {
                 performTransition(R.drawable.pn_option_background_deselect_transition, fcmOptionView)
-                GlowViewUtilities.animateShadowColorChange(this, fcmOptionView, R.color.accent, R.color.transparent)
+                GlowViewUtilities.animateShadowColorChange(this@PNModeActivity, fcmOptionView, R.color.accent, R.color.transparent)
                 animateStrokeColorChange(fcmOptionView, R.color.accent, R.color.pn_option_border)
                 selectedOptionView = null
             }
             backgroundPollingOptionView -> {
                 performTransition(R.drawable.pn_option_background_select_transition, fcmOptionView)
-                GlowViewUtilities.animateShadowColorChange(this, fcmOptionView, R.color.transparent, R.color.accent)
+                GlowViewUtilities.animateShadowColorChange(this@PNModeActivity, fcmOptionView, R.color.transparent, R.color.accent)
                 animateStrokeColorChange(fcmOptionView, R.color.pn_option_border, R.color.accent)
                 performTransition(R.drawable.pn_option_background_deselect_transition, backgroundPollingOptionView)
-                GlowViewUtilities.animateShadowColorChange(this, backgroundPollingOptionView, R.color.accent, R.color.transparent)
+                GlowViewUtilities.animateShadowColorChange(this@PNModeActivity, backgroundPollingOptionView, R.color.accent, R.color.transparent)
                 animateStrokeColorChange(backgroundPollingOptionView, R.color.accent, R.color.pn_option_border)
                 selectedOptionView = fcmOptionView
             }
         }
     }
 
-    private fun toggleBackgroundPolling() {
+    private fun toggleBackgroundPolling() = with(binding) {
         when (selectedOptionView) {
             null -> {
                 performTransition(R.drawable.pn_option_background_select_transition, backgroundPollingOptionView)
-                GlowViewUtilities.animateShadowColorChange(this, backgroundPollingOptionView, R.color.transparent, R.color.accent)
+                GlowViewUtilities.animateShadowColorChange(this@PNModeActivity, backgroundPollingOptionView, R.color.transparent, R.color.accent)
                 animateStrokeColorChange(backgroundPollingOptionView, R.color.pn_option_border, R.color.accent)
                 selectedOptionView = backgroundPollingOptionView
             }
             backgroundPollingOptionView -> {
                 performTransition(R.drawable.pn_option_background_deselect_transition, backgroundPollingOptionView)
-                GlowViewUtilities.animateShadowColorChange(this, backgroundPollingOptionView, R.color.accent, R.color.transparent)
+                GlowViewUtilities.animateShadowColorChange(this@PNModeActivity, backgroundPollingOptionView, R.color.accent, R.color.transparent)
                 animateStrokeColorChange(backgroundPollingOptionView, R.color.accent, R.color.pn_option_border)
                 selectedOptionView = null
             }
             fcmOptionView -> {
                 performTransition(R.drawable.pn_option_background_select_transition, backgroundPollingOptionView)
-                GlowViewUtilities.animateShadowColorChange(this, backgroundPollingOptionView, R.color.transparent, R.color.accent)
+                GlowViewUtilities.animateShadowColorChange(this@PNModeActivity, backgroundPollingOptionView, R.color.transparent, R.color.accent)
                 animateStrokeColorChange(backgroundPollingOptionView, R.color.pn_option_border, R.color.accent)
                 performTransition(R.drawable.pn_option_background_deselect_transition, fcmOptionView)
-                GlowViewUtilities.animateShadowColorChange(this, fcmOptionView, R.color.accent, R.color.transparent)
+                GlowViewUtilities.animateShadowColorChange(this@PNModeActivity, fcmOptionView, R.color.accent, R.color.transparent)
                 animateStrokeColorChange(fcmOptionView, R.color.accent, R.color.pn_option_border)
                 selectedOptionView = backgroundPollingOptionView
             }
@@ -153,7 +155,7 @@ class PNModeActivity : BaseActionBarActivity() {
             dialog.create().show()
             return
         }
-        TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
+        TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == binding.fcmOptionView))
         val application = ApplicationContext.getInstance(this)
         application.startPollingIfNeeded()
         application.registerForFCMIfNeeded(true)

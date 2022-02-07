@@ -13,62 +13,63 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.view.isVisible
-import androidx.fragment.app.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.activity_join_public_chat.*
-import kotlinx.android.synthetic.main.fragment_enter_chat_url.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityJoinPublicChatBinding
+import network.loki.messenger.databinding.FragmentEnterChatUrlBinding
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2.DefaultGroup
 import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.PublicKeyValidation
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
-import org.thoughtcrime.securesms.groups.DefaultGroupsViewModel
-import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.groups.OpenGroupManager
+import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragmentDelegate
-import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.util.State
-import java.util.*
+import java.util.Locale
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
+    private lateinit var binding: ActivityJoinPublicChatBinding
     private val adapter = JoinPublicChatActivityAdapter(this)
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+        binding = ActivityJoinPublicChatBinding.inflate(layoutInflater)
         // Set content view
-        setContentView(R.layout.activity_join_public_chat)
+        setContentView(binding.root)
         // Set title
         supportActionBar!!.title = resources.getString(R.string.activity_join_public_chat_title)
         // Set up view pager
-        viewPager.adapter = adapter
-        tabLayout.setupWithViewPager(viewPager)
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
     // endregion
 
     // region Updating
     private fun showLoader() {
-        loader.visibility = View.VISIBLE
-        loader.animate().setDuration(150).alpha(1.0f).start()
+        binding.loader.visibility = View.VISIBLE
+        binding.loader.animate().setDuration(150).alpha(1.0f).start()
     }
 
     private fun hideLoader() {
-        loader.animate().setDuration(150).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
+        binding.loader.animate().setDuration(150).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
 
             override fun onAnimationEnd(animation: Animator?) {
                 super.onAnimationEnd(animation)
-                loader.visibility = View.GONE
+                binding.loader.visibility = View.GONE
             }
         })
     }
@@ -166,26 +167,28 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
 
 // region Enter Chat URL Fragment
 class EnterChatURLFragment : Fragment() {
+    private lateinit var binding: FragmentEnterChatUrlBinding
     private val viewModel by activityViewModels<DefaultGroupsViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_enter_chat_url, container, false)
+        binding = FragmentEnterChatUrlBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        chatURLEditText.imeOptions = chatURLEditText.imeOptions or 16777216 // Always use incognito keyboard
-        joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
+        binding.chatURLEditText.imeOptions = binding.chatURLEditText.imeOptions or 16777216 // Always use incognito keyboard
+        binding.joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
         viewModel.defaultRooms.observe(viewLifecycleOwner) { state ->
-            defaultRoomsContainer.isVisible = state is State.Success
-            defaultRoomsLoaderContainer.isVisible = state is State.Loading
-            defaultRoomsLoader.isVisible = state is State.Loading
+            binding.defaultRoomsContainer.isVisible = state is State.Success
+            binding.defaultRoomsLoaderContainer.isVisible = state is State.Loading
+            binding.defaultRoomsLoader.isVisible = state is State.Loading
             when (state) {
                 State.Loading -> {
-                    // TODO: Show a loader
+                    // TODO: Show a binding.loader
                 }
                 is State.Error -> {
-                    // TODO: Hide the loader
+                    // TODO: Hide the binding.loader
                 }
                 is State.Success -> {
                     populateDefaultGroups(state.value)
@@ -195,10 +198,10 @@ class EnterChatURLFragment : Fragment() {
     }
 
     private fun populateDefaultGroups(groups: List<DefaultGroup>) {
-        defaultRoomsGridLayout.removeAllViews()
-        defaultRoomsGridLayout.useDefaultMargins = false
-        groups.forEach { defaultGroup ->
-            val chip = layoutInflater.inflate(R.layout.default_group_chip, defaultRoomsGridLayout, false) as Chip
+        binding.defaultRoomsGridLayout.removeAllViews()
+        binding.defaultRoomsGridLayout.useDefaultMargins = false
+        groups.iterator().forEach { defaultGroup ->
+            val chip = layoutInflater.inflate(R.layout.default_group_chip, binding.defaultRoomsGridLayout, false) as Chip
             val drawable = defaultGroup.image?.let { bytes ->
                 val bitmap = BitmapFactory.decodeByteArray(bytes,0, bytes.size)
                 RoundedBitmapDrawableFactory.create(resources,bitmap).apply {
@@ -210,18 +213,18 @@ class EnterChatURLFragment : Fragment() {
             chip.setOnClickListener {
                 (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(defaultGroup.joinURL)
             }
-            defaultRoomsGridLayout.addView(chip)
+            binding.defaultRoomsGridLayout.addView(chip)
         }
         if ((groups.size and 1) != 0) { // This checks that the number of rooms is even
-            layoutInflater.inflate(R.layout.grid_layout_filler, defaultRoomsGridLayout)
+            layoutInflater.inflate(R.layout.grid_layout_filler, binding.defaultRoomsGridLayout)
         }
     }
 
     // region Convenience
     private fun joinPublicChatIfPossible() {
         val inputMethodManager = requireContext().getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(chatURLEditText.windowToken, 0)
-        val chatURL = chatURLEditText.text.trim().toString().toLowerCase(Locale.US)
+        inputMethodManager.hideSoftInputFromWindow(binding.chatURLEditText.windowToken, 0)
+        val chatURL = binding.chatURLEditText.text.trim().toString().toLowerCase(Locale.US)
         (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
     }
     // endregion

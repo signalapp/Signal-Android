@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.BaseUnitTest;
 import org.session.libsession.utilities.Util;
 
 import java.util.LinkedList;
@@ -9,7 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class ListPartitionTest extends BaseUnitTest {
+public class ListPartitionTest {
 
   @Test public void testPartitionEven() {
     List<Integer> list = new LinkedList<>();

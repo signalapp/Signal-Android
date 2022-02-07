@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainQuoteViewContainer"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/input_bar_background"
-    android:paddingHorizontal="@dimen/medium_spacing">
+    android:paddingHorizontal="@dimen/medium_spacing"
+    android:paddingVertical="@dimen/small_spacing">
 
     <View
         android:id="@+id/quoteViewAccentLine"
         android:layout_width="@dimen/accent_line_thickness"
         android:layout_height="0dp"
-        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:background="@color/text" />
+        android:layout_marginVertical="4dp"
+        android:background="@color/text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toStartOf="@id/quoteStartBarrier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
+        tools:visibility="gone"
         android:id="@+id/quoteViewAttachmentPreviewContainer"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/view_quote_attachment_preview_background">
+        android:layout_marginVertical="@dimen/small_spacing"
+        android:background="@drawable/view_quote_attachment_preview_background"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toStartOf="@id/quoteStartBarrier"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/quoteViewAttachmentPreviewImageView"
@@ -41,48 +53,62 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/quoteViewMainContentContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="30dp"
-        android:gravity="center_vertical"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/quoteStartBarrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="quoteViewAttachmentPreviewContainer,quoteViewAccentLine" />
 
+    <LinearLayout
+        android:layout_marginVertical="@dimen/small_spacing"
+        android:id="@+id/quoteTextParent"
+        android:layout_marginStart="@dimen/medium_spacing"
+        android:layout_marginEnd="@dimen/medium_spacing"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/quoteStartBarrier"
+        app:layout_constraintEnd_toStartOf="@id/quoteViewCancelButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
         <TextView
+            tools:visibility="gone"
             android:id="@+id/quoteViewAuthorTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Spiderman"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text"
             android:textSize="@dimen/small_font_size"
             android:textStyle="bold"
-            android:textColor="@color/text"
-            android:maxLines="1"
-            android:ellipsize="end" />
+            tools:text="Spiderman" />
 
         <TextView
             android:id="@+id/quoteViewBodyTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="3"
-            android:text="Yo, I need your help here!"
             android:textColor="@color/text"
-            android:textSize="@dimen/small_font_size" />
-
+            android:textSize="@dimen/small_font_size"
+            tools:text="@tools:sample/lorem/random" />
     </LinearLayout>
 
     <ImageView
+        tools:visibility="gone"
         android:id="@+id/quoteViewCancelButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:layout_marginStart="@dimen/small_spacing"
+        android:layout_marginEnd="@dimen/small_spacing"
         android:padding="6dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
         android:src="@drawable/ic_close_white_48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/text" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

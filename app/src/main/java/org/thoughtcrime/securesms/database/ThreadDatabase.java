@@ -45,6 +45,7 @@ import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.Pair;
 import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -55,6 +56,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 
 import java.io.Closeable;
@@ -337,6 +339,19 @@ public class ThreadDatabase extends Database {
 
   }
 
+  public Cursor searchConversationAddresses(String addressQuery) {
+    if (addressQuery == null || addressQuery.isEmpty()) {
+      return null;
+    }
+
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    String   selection      = TABLE_NAME + "." + ADDRESS + " LIKE ? AND " + TABLE_NAME + "." + MESSAGE_COUNT + " != 0";
+    String[] selectionArgs  = new String[]{addressQuery+"%"};
+    String query = createQuery(selection, 0);
+    Cursor cursor = db.rawQuery(query, selectionArgs);
+    return cursor;
+  }
+
   public Cursor getFilteredConversationList(@Nullable List<Address> filter) {
     if (filter == null || filter.size() == 0)
       return null;
@@ -593,6 +608,18 @@ public class ThreadDatabase extends Database {
     notifyConversationListeners(threadId);
   }
 
+  public void markAllAsRead(long threadId, boolean isGroupRecipient) {
+    List<MarkedMessageInfo> messages = setRead(threadId, true);
+    if (isGroupRecipient) {
+      for (MarkedMessageInfo message: messages) {
+        MarkReadReceiver.scheduleDeletion(context, message.getExpirationInfo());
+      }
+    } else {
+      MarkReadReceiver.process(context, messages);
+    }
+    ApplicationContext.getInstance(context).messageNotifier.updateNotification(context, false, 0);
+  }
+
   private boolean deleteThreadOnEmpty(long threadId) {
     Recipient threadRecipient = getRecipientForThreadId(threadId);
     return threadRecipient != null && !threadRecipient.isOpenGroupRecipient();
@@ -692,14 +719,14 @@ public class ThreadDatabase extends Database {
       long               count                = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
       int                unreadCount          = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.UNREAD_COUNT));
       long               type                 = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_TYPE));
-      boolean            archived             = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.ARCHIVED)) != 0;
+      boolean            archived             = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.ARCHIVED)) != 0;
       int                status               = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.STATUS));
       int                deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.DELIVERY_RECEIPT_COUNT));
       int                readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.READ_RECEIPT_COUNT));
       long               expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
       long               lastSeen             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
       Uri                snippetUri           = getSnippetUri(cursor);
-      boolean            pinned              = cursor.getInt(cursor.getColumnIndex(ThreadDatabase.IS_PINNED)) != 0;
+      boolean            pinned              = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.IS_PINNED)) != 0;
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;

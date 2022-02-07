@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contentView"
@@ -22,6 +21,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/session_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_marginLeft="20dp"
@@ -35,33 +35,54 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="9dp" />
 
-                <TextView
+                <org.thoughtcrime.securesms.home.PathStatusView
+                    android:id="@+id/pathStatusView"
+                    android:layout_alignBottom="@+id/profileButton"
+                    android:layout_alignEnd="@+id/profileButton"
+                    android:layout_width="@dimen/path_status_view_size"
+                    android:layout_height="@dimen/path_status_view_size"/>
+
+                <ImageView
+                    android:id="@+id/sessionHeaderImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="64dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/app_name"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/very_large_font_size" />
+                    android:layout_centerInParent="true"
+                    android:layout_toStartOf="@+id/searchViewContainer"
+                    android:layout_toEndOf="@+id/profileButton"
+                    android:padding="@dimen/medium_spacing"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_session"
+                    app:tint="@color/black" />
 
                 <RelativeLayout
-                    android:id="@+id/pathStatusViewContainer"
+                    android:id="@+id/searchViewContainer"
                     android:layout_width="@dimen/small_profile_picture_size"
                     android:layout_height="@dimen/small_profile_picture_size"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true">
 
-                    <org.thoughtcrime.securesms.home.PathStatusView
-                        android:layout_width="@dimen/path_status_view_size"
-                        android:layout_height="@dimen/path_status_view_size"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="8dp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_baseline_search_24"
+                        app:tint="@color/text" />
 
                 </RelativeLayout>
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/search_toolbar"
+                android:layout_marginHorizontal="@dimen/medium_spacing"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+                <org.thoughtcrime.securesms.home.search.GlobalSearchInputLayout
+                    android:layout_centerVertical="true"
+                    android:id="@+id/globalSearchInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             </RelativeLayout>
 
             <View
@@ -70,11 +91,10 @@
                 android:background="?android:dividerHorizontal"
                 android:elevation="1dp" />
 
-            <ViewStub
-                android:id="@+id/seedReminderStub"
-                android:layout="@layout/seed_reminder_stub"
+            <org.thoughtcrime.securesms.onboarding.SeedReminderView
+                android:id="@+id/seedReminderView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -91,7 +111,9 @@
             android:layout_height="match_parent"
             android:paddingBottom="172dp"
             android:clipToPadding="false"
-            tools:listitem="@layout/view_conversation"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="6"
+            tools:listitem="@layout/view_conversation" />
 
         <View
             android:id="@+id/gradientView"
@@ -99,25 +121,36 @@
             android:layout_height="match_parent"
             android:background="@drawable/home_activity_gradient" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:scrollbars="vertical"
+            android:id="@+id/globalSearchRecycler"
+            android:layout_width="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/view_global_search_result"
+            tools:itemCount="6"
+            android:layout_height="match_parent"/>
+
         <LinearLayout
             android:id="@+id/emptyStateContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="32dp"
+            android:layout_centerInParent="true"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:layout_centerInParent="true">
+            android:paddingBottom="32dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/medium_font_size"
+                android:text="@string/activity_home_empty_state_message"
                 android:textColor="@color/text"
-                android:text="@string/activity_home_empty_state_message" />
+                android:textSize="@dimen/medium_font_size" />
 
             <Button
-                style="@style/Widget.Session.Button.Common.ProminentOutline"
                 android:id="@+id/createNewPrivateChatButton"
+                style="@style/Widget.Session.Button.Common.ProminentOutline"
                 android:layout_width="196dp"
                 android:layout_height="@dimen/medium_button_height"
                 android:layout_marginTop="@dimen/medium_spacing"

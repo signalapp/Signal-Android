@@ -1,7 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainContainer"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainContainerConstraint"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Content that will only show on its own -->
+    <org.thoughtcrime.securesms.conversation.v2.messages.DeletedMessageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:id="@+id/deletedMessageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <org.thoughtcrime.securesms.conversation.v2.messages.UntrustedAttachmentView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:id="@+id/untrustedView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <org.thoughtcrime.securesms.conversation.v2.messages.VoiceMessageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:id="@+id/voiceMessageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <org.thoughtcrime.securesms.conversation.v2.messages.OpenGroupInvitationView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:id="@+id/openGroupInvitationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <org.thoughtcrime.securesms.conversation.v2.messages.DocumentView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:id="@+id/documentView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!-- Content that will show with other elements -->
+
+    <org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:id="@+id/quoteView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <org.thoughtcrime.securesms.conversation.v2.messages.LinkPreviewView
+        app:layout_constraintTop_toBottomOf="@+id/quoteView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        android:id="@+id/linkPreviewView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <androidx.constraintlayout.widget.Barrier
+        app:barrierAllowsGoneWidgets="true"
+        android:id="@+id/bodyBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="albumThumbnailView,linkPreviewView,quoteView,voiceMessageView"/>
+
+    <org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
+        app:layout_constraintTop_toBottomOf="@+id/linkPreviewView"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        android:id="@+id/albumThumbnailView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        app:layout_constraintHorizontal_bias="0"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/albumThumbnailView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bodyBarrier"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="@dimen/small_spacing"
+        android:id="@+id/bodyTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

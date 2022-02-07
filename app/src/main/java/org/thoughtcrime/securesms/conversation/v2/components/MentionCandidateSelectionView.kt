@@ -45,7 +45,7 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
         }
 
         override fun getView(position: Int, cellToBeReused: View?, parent: ViewGroup): View {
-            val cell = cellToBeReused as MentionCandidateView? ?: MentionCandidateView.inflate(LayoutInflater.from(context), parent)
+            val cell = cellToBeReused as MentionCandidateView? ?: MentionCandidateView(context)
             val mentionCandidate = getItem(position)
             cell.glide = glide
             cell.mentionCandidate = mentionCandidate

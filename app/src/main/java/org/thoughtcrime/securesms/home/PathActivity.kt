@@ -17,26 +17,33 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import kotlinx.android.synthetic.main.activity_path.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityPathBinding
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsignal.utilities.Snode
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.util.*
 import org.thoughtcrime.securesms.util.GlowViewUtilities
 import org.thoughtcrime.securesms.util.IP2Country
 import org.thoughtcrime.securesms.util.PathDotView
+import org.thoughtcrime.securesms.util.UiModeUtilities
+import org.thoughtcrime.securesms.util.animateSizeChange
+import org.thoughtcrime.securesms.util.disableClipping
+import org.thoughtcrime.securesms.util.fadeIn
+import org.thoughtcrime.securesms.util.fadeOut
+import org.thoughtcrime.securesms.util.getColorWithID
 
 class PathActivity : PassphraseRequiredActionBarActivity() {
+    private lateinit var binding: ActivityPathBinding
     private val broadcastReceivers = mutableListOf<BroadcastReceiver>()
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-        setContentView(R.layout.activity_path)
+        binding = ActivityPathBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar!!.title = resources.getString(R.string.activity_path_title)
-        pathRowsContainer.disableClipping()
-        learnMoreButton.setOnClickListener { learnMore() }
+        binding.pathRowsContainer.disableClipping()
+        binding.learnMoreButton.setOnClickListener { learnMore() }
         update(false)
         registerObservers()
     }
@@ -82,7 +89,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
     private fun handleOnionRequestPathCountriesLoaded() { update(false) }
 
     private fun update(isAnimated: Boolean) {
-        pathRowsContainer.removeAllViews()
+        binding.pathRowsContainer.removeAllViews()
         if (OnionRequestAPI.paths.isNotEmpty()) {
             val path = OnionRequestAPI.paths.firstOrNull() ?: return finish()
             val dotAnimationRepeatInterval = path.count().toLong() * 1000 + 1000
@@ -94,18 +101,18 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
             val destinationRow = getPathRow(resources.getString(R.string.activity_path_destination_row_title), null, LineView.Location.Bottom, path.count().toLong() * 1000 + 2000, dotAnimationRepeatInterval)
             val rows = listOf( youRow ) + pathRows + listOf( destinationRow )
             for (row in rows) {
-                pathRowsContainer.addView(row)
+                binding.pathRowsContainer.addView(row)
             }
             if (isAnimated) {
-                spinner.fadeOut()
+                binding.spinner.fadeOut()
             } else {
-                spinner.alpha = 0.0f
+                binding.spinner.alpha = 0.0f
             }
         } else {
             if (isAnimated) {
-                spinner.fadeIn()
+                binding.spinner.fadeIn()
             } else {
-                spinner.alpha = 1.0f
+                binding.spinner.alpha = 1.0f
             }
         }
     }

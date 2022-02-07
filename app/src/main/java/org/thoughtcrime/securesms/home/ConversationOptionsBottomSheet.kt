@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.fragment_conversation_bottom_sheet.*
-import network.loki.messenger.R
+import network.loki.messenger.databinding.FragmentConversationBottomSheetBinding
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.util.UiModeUtilities
 
-public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
-
+class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
+    private lateinit var binding: FragmentConversationBottomSheetBinding
     //FIXME AC: Supplying a threadRecord directly into the field from an activity
     // is not the best idea. It doesn't survive configuration change.
     // We should be dealing with IDs and all sorts of serializable data instead
@@ -25,24 +24,27 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.
     var onBlockTapped: (() -> Unit)? = null
     var onUnblockTapped: (() -> Unit)? = null
     var onDeleteTapped: (() -> Unit)? = null
+    var onMarkAllAsReadTapped: (() -> Unit)? = null
     var onNotificationTapped: (() -> Unit)? = null
     var onSetMuteTapped: ((Boolean) -> Unit)? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_conversation_bottom_sheet, container, false)
+        binding = FragmentConversationBottomSheetBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onClick(v: View?) {
         when (v) {
-            detailsTextView -> onViewDetailsTapped?.invoke()
-            pinTextView -> onPinTapped?.invoke()
-            unpinTextView -> onUnpinTapped?.invoke()
-            blockTextView -> onBlockTapped?.invoke()
-            unblockTextView -> onUnblockTapped?.invoke()
-            deleteTextView -> onDeleteTapped?.invoke()
-            notificationsTextView -> onNotificationTapped?.invoke()
-            unMuteNotificationsTextView -> onSetMuteTapped?.invoke(false)
-            muteNotificationsTextView -> onSetMuteTapped?.invoke(true)
+            binding.detailsTextView -> onViewDetailsTapped?.invoke()
+            binding.pinTextView -> onPinTapped?.invoke()
+            binding.unpinTextView -> onUnpinTapped?.invoke()
+            binding.blockTextView -> onBlockTapped?.invoke()
+            binding.unblockTextView -> onUnblockTapped?.invoke()
+            binding.deleteTextView -> onDeleteTapped?.invoke()
+            binding.markAllAsReadTextView -> onMarkAllAsReadTapped?.invoke()
+            binding.notificationsTextView -> onNotificationTapped?.invoke()
+            binding.unMuteNotificationsTextView -> onSetMuteTapped?.invoke(false)
+            binding.muteNotificationsTextView -> onSetMuteTapped?.invoke(true)
         }
     }
 
@@ -51,26 +53,28 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.
         if (!this::thread.isInitialized) { return dismiss() }
         val recipient = thread.recipient
         if (!recipient.isGroupRecipient && !recipient.isLocalNumber) {
-            detailsTextView.visibility = View.VISIBLE
-            unblockTextView.visibility = if (recipient.isBlocked) View.VISIBLE else View.GONE
-            blockTextView.visibility = if (recipient.isBlocked) View.GONE else View.VISIBLE
-            detailsTextView.setOnClickListener(this)
-            blockTextView.setOnClickListener(this)
-            unblockTextView.setOnClickListener(this)
+            binding.detailsTextView.visibility = View.VISIBLE
+            binding.unblockTextView.visibility = if (recipient.isBlocked) View.VISIBLE else View.GONE
+            binding.blockTextView.visibility = if (recipient.isBlocked) View.GONE else View.VISIBLE
+            binding.detailsTextView.setOnClickListener(this)
+            binding.blockTextView.setOnClickListener(this)
+            binding.unblockTextView.setOnClickListener(this)
         } else {
-            detailsTextView.visibility = View.GONE
+            binding.detailsTextView.visibility = View.GONE
         }
-        unMuteNotificationsTextView.isVisible = recipient.isMuted && !recipient.isLocalNumber
-        muteNotificationsTextView.isVisible = !recipient.isMuted && !recipient.isLocalNumber
-        unMuteNotificationsTextView.setOnClickListener(this)
-        muteNotificationsTextView.setOnClickListener(this)
-        notificationsTextView.isVisible = recipient.isGroupRecipient && !recipient.isMuted
-        notificationsTextView.setOnClickListener(this)
-        deleteTextView.setOnClickListener(this)
-        pinTextView.isVisible = !thread.isPinned
-        unpinTextView.isVisible = thread.isPinned
-        pinTextView.setOnClickListener(this)
-        unpinTextView.setOnClickListener(this)
+        binding.unMuteNotificationsTextView.isVisible = recipient.isMuted && !recipient.isLocalNumber
+        binding.muteNotificationsTextView.isVisible = !recipient.isMuted && !recipient.isLocalNumber
+        binding.unMuteNotificationsTextView.setOnClickListener(this)
+        binding.muteNotificationsTextView.setOnClickListener(this)
+        binding.notificationsTextView.isVisible = recipient.isGroupRecipient && !recipient.isMuted
+        binding.notificationsTextView.setOnClickListener(this)
+        binding.deleteTextView.setOnClickListener(this)
+        binding.markAllAsReadTextView.isVisible = thread.unreadCount > 0
+        binding.markAllAsReadTextView.setOnClickListener(this)
+        binding.pinTextView.isVisible = !thread.isPinned
+        binding.unpinTextView.isVisible = thread.isPinned
+        binding.pinTextView.setOnClickListener(this)
+        binding.unpinTextView.setOnClickListener(this)
     }
 
     override fun onStart() {

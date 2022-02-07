@@ -73,7 +73,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
             builder.build() to message.serverID
         }
 
-        envelopes.chunked(20).forEach { list ->
+        envelopes.chunked(256).forEach { list ->
             val parameters = list.map { (message, serverId) ->
                 MessageReceiveParameters(message.toByteArray(), openGroupMessageServerID = serverId)
             }

@@ -729,5 +729,4 @@
     <string name="deleted_message">ये संदेश मिटा दिया है</string>
     <string name="delete_message_for_me">स्वयं के लिये मिटाये</string>
     <string name="delete_message_for_everyone">सभी के लिए संदेश मिटायें</string>
-    <string name="delete_message_for_me_and_recipient">स्वयमेव और प्राप्तिकर्ता के लिये मिटाये</string>
 </resources>

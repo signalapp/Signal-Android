@@ -6,8 +6,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.dialog_seed.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.DialogSeedBinding
 import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.hexEncodedPrivateKey
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -28,11 +28,11 @@ class SeedDialog : BaseDialog() {
     }
 
     override fun setContentView(builder: AlertDialog.Builder) {
-        val contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_seed, null)
-        contentView.seedTextView.text = seed
-        contentView.cancelButton.setOnClickListener { dismiss() }
-        contentView.copyButton.setOnClickListener { copySeed() }
-        builder.setView(contentView)
+        val binding = DialogSeedBinding.inflate(LayoutInflater.from(requireContext()))
+        binding.seedTextView.text = seed
+        binding.cancelButton.setOnClickListener { dismiss() }
+        binding.copyButton.setOnClickListener { copySeed() }
+        builder.setView(binding.root)
     }
 
     private fun copySeed() {

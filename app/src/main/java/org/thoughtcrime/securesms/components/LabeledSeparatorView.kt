@@ -7,13 +7,14 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
-import kotlinx.android.synthetic.main.view_separator.view.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ViewSeparatorBinding
 import org.thoughtcrime.securesms.util.toPx
 import org.session.libsession.utilities.ThemeUtil
 
 class LabeledSeparatorView : RelativeLayout {
 
+    private lateinit var binding: ViewSeparatorBinding
     private val path = Path()
 
     private val paint: Paint by lazy {
@@ -43,10 +44,9 @@ class LabeledSeparatorView : RelativeLayout {
     }
 
     private fun setUpViewHierarchy() {
-        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val contentView = inflater.inflate(R.layout.view_separator, null)
+        binding = ViewSeparatorBinding.inflate(LayoutInflater.from(context))
         val layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
-        addView(contentView, layoutParams)
+        addView(binding.root, layoutParams)
         setWillNotDraw(false)
     }
     // endregion
@@ -59,9 +59,9 @@ class LabeledSeparatorView : RelativeLayout {
         val hMargin = toPx(16, resources).toFloat()
         path.reset()
         path.moveTo(0.0f, h / 2)
-        path.lineTo(titleTextView.left - hMargin, h / 2)
-        path.addRoundRect(titleTextView.left - hMargin, toPx(1, resources).toFloat(), titleTextView.right + hMargin, h - toPx(1, resources).toFloat(), h / 2, h / 2, Path.Direction.CCW)
-        path.moveTo(titleTextView.right + hMargin, h / 2)
+        path.lineTo(binding.titleTextView.left - hMargin, h / 2)
+        path.addRoundRect(binding.titleTextView.left - hMargin, toPx(1, resources).toFloat(), binding.titleTextView.right + hMargin, h - toPx(1, resources).toFloat(), h / 2, h / 2, Path.Direction.CCW)
+        path.moveTo(binding.titleTextView.right + hMargin, h / 2)
         path.lineTo(w, h / 2)
         path.close()
         c.drawPath(path, paint)

@@ -13,12 +13,12 @@ import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
-import kotlinx.android.synthetic.main.dialog_share_logs.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import network.loki.messenger.BuildConfig
 import network.loki.messenger.R
+import network.loki.messenger.databinding.DialogShareLogsBinding
 import org.session.libsignal.utilities.ExternalStorageUtil
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.util.StreamUtil
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.*
+import java.util.Objects
 import java.util.concurrent.TimeUnit
 
 class ShareLogsDialog : BaseDialog() {
@@ -34,16 +34,15 @@ class ShareLogsDialog : BaseDialog() {
     private var shareJob: Job? = null
 
     override fun setContentView(builder: AlertDialog.Builder) {
-        val contentView =
-            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_share_logs, null)
-        contentView.cancelButton.setOnClickListener {
+        val binding = DialogShareLogsBinding.inflate(LayoutInflater.from(requireContext()))
+        binding.cancelButton.setOnClickListener {
             dismiss()
         }
-        contentView.shareButton.setOnClickListener {
+        binding.shareButton.setOnClickListener {
             // start the export and share
             shareLogs()
         }
-        builder.setView(contentView)
+        builder.setView(binding.root)
         builder.setCancelable(false)
     }
 

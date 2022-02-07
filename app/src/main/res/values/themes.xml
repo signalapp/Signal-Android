@@ -5,6 +5,9 @@
     <style name="Base.Theme.Session" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
+        <item name="searchBackgroundColor">#1B1B1B</item>
+        <item name="searchIconColor">#E5E5E8</item>
+        <item name="searchHighlightTint">@color/accent</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlNormal">?android:textColorPrimary</item>
         <item name="colorControlActivated">?colorAccent</item>
@@ -78,6 +81,7 @@
         <item name="menu_info_icon">@drawable/ic_baseline_info_24</item>
         <item name="menu_pin_icon">@drawable/ic_outline_pin_24</item>
         <item name="menu_unpin_icon">@drawable/ic_outline_pin_off_24</item>
+        <item name="menu_mark_all_as_read">@drawable/ic_outline_mark_chat_read_24</item>
 
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_filled_keyboard_24</item>
         <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_24</item>

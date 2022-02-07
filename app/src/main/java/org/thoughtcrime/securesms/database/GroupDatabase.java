@@ -29,6 +29,7 @@ import org.session.libsignal.database.LokiOpenGroupDatabaseProtocol;
 
 import java.io.Closeable;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -111,7 +112,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     }
   }
 
-  Optional<GroupRecord> getGroup(Cursor cursor) {
+  public Optional<GroupRecord> getGroup(Cursor cursor) {
     Reader reader = new Reader(cursor);
     return Optional.fromNullable(reader.getCurrent());
   }
@@ -144,6 +145,29 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     }
     reader.close();
     return groups;
+  }
+
+  public Cursor getGroupsFilteredByMembers(List<String> members) {
+    if (members == null || members.isEmpty()) {
+      return null;
+    }
+
+    String[] queriesValues = new String[members.size()];
+
+    StringBuilder queries = new StringBuilder();
+    for (int i=0; i < members.size(); i++) {
+      boolean isEnd = i == (members.size() - 1);
+      queries.append(MEMBERS + " LIKE ?");
+      queriesValues[i] = "%"+members.get(i)+"%";
+      if (!isEnd) {
+        queries.append(" OR ");
+      }
+    }
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, null,
+            queries.toString(),
+            queriesValues,
+            null, null, null);
   }
 
   public @NonNull List<Recipient> getGroupMembers(String groupId, boolean includeSelf) {

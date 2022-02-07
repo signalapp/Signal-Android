@@ -16,8 +16,8 @@ import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Toast
 import com.goterl.lazysodium.utils.KeyPair
-import kotlinx.android.synthetic.main.activity_register.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivityRegisterBinding
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.utilities.KeyHelper
@@ -26,9 +26,9 @@ import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.KeyPairUtilities
 import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
-import java.util.*
 
 class RegisterActivity : BaseActionBarActivity() {
+    private lateinit var binding: ActivityRegisterBinding
     private var seed: ByteArray? = null
     private var ed25519KeyPair: KeyPair? = null
     private var x25519KeyPair: ECKeyPair? = null
@@ -37,7 +37,8 @@ class RegisterActivity : BaseActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setUpActionBarSessionLogo()
         TextSecurePreferences.apply {
             setHasViewedSeed(this@RegisterActivity, false)
@@ -45,8 +46,8 @@ class RegisterActivity : BaseActionBarActivity() {
             setRestorationTime(this@RegisterActivity, 0)
             setLastProfileUpdateTime(this@RegisterActivity, System.currentTimeMillis())
         }
-        registerButton.setOnClickListener { register() }
-        copyButton.setOnClickListener { copyPublicKey() }
+        binding.registerButton.setOnClickListener { register() }
+        binding.copyButton.setOnClickListener { copyPublicKey() }
         val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms of Service and Privacy Policy")
         termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 40, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsExplanation.setSpan(object : ClickableSpan() {
@@ -62,8 +63,8 @@ class RegisterActivity : BaseActionBarActivity() {
                 openURL("https://getsession.org/privacy-policy/")
             }
         }, 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        termsTextView.movementMethod = LinkMovementMethod.getInstance()
-        termsTextView.text = termsExplanation
+        binding.termsTextView.movementMethod = LinkMovementMethod.getInstance()
+        binding.termsTextView.text = termsExplanation
         updateKeyPair()
     }
     // endregion
@@ -94,12 +95,12 @@ class RegisterActivity : BaseActionBarActivity() {
             }
             count += 1
             if (count < limit) {
-                publicKeyTextView.text = mangledHexEncodedPublicKey
+                binding.publicKeyTextView.text = mangledHexEncodedPublicKey
                 Handler().postDelayed({
                     animate()
                 }, 32)
             } else {
-                publicKeyTextView.text = hexEncodedPublicKey
+                binding.publicKeyTextView.text = hexEncodedPublicKey
             }
         }
         animate()

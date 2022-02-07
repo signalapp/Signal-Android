@@ -70,11 +70,12 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
   public static void process(@NonNull Context context, @NonNull List<MarkedMessageInfo> markedReadMessages) {
     if (markedReadMessages.isEmpty()) return;
-    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) return;
 
     for (MarkedMessageInfo messageInfo : markedReadMessages) {
       scheduleDeletion(context, messageInfo.getExpirationInfo());
     }
+
+    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) return;
 
     Map<Address, List<SyncMessageId>> addressMap = Stream.of(markedReadMessages)
                                                          .map(MarkedMessageInfo::getSyncMessageId)

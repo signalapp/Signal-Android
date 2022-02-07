@@ -116,8 +116,8 @@ class IP2Country private constructor(private val context: Context) {
 
     private fun populateCacheIfNeeded() {
         ThreadUtils.queue {
-            OnionRequestAPI.paths.forEach { path ->
-                path.forEach { snode ->
+            OnionRequestAPI.paths.iterator().forEach { path ->
+                path.iterator().forEach { snode ->
                     cacheCountryForIP(snode.ip) // Preload if needed
                 }
             }

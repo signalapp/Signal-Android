@@ -7,7 +7,11 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.*
+import android.os.AsyncTask
+import android.os.Build
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
@@ -15,9 +19,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.activity_settings.*
 import network.loki.messenger.BuildConfig
 import network.loki.messenger.R
+import network.loki.messenger.databinding.ActivitySettingsBinding
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.ui.alwaysUi
@@ -30,16 +34,24 @@ import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection
+import org.thoughtcrime.securesms.home.PathActivity
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
-import org.thoughtcrime.securesms.util.*
+import org.thoughtcrime.securesms.util.BitmapDecodingException
+import org.thoughtcrime.securesms.util.BitmapUtil
+import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
+import org.thoughtcrime.securesms.util.UiModeUtilities
+import org.thoughtcrime.securesms.util.disableClipping
+import org.thoughtcrime.securesms.util.push
+import org.thoughtcrime.securesms.util.show
 import java.io.File
 import java.security.SecureRandom
-import java.util.*
+import java.util.Date
 
 class SettingsActivity : PassphraseRequiredActionBarActivity() {
+    private lateinit var binding: ActivitySettingsBinding
     private var displayNameEditActionMode: ActionMode? = null
         set(value) { field = value; handleDisplayNameEditActionModeChanged() }
     private lateinit var glide: GlideRequests
@@ -59,33 +71,38 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val displayName = TextSecurePreferences.getProfileName(this) ?: hexEncodedPublicKey
         glide = GlideApp.with(this)
-        profilePictureView.glide = glide
-        profilePictureView.publicKey = hexEncodedPublicKey
-        profilePictureView.displayName = displayName
-        profilePictureView.isLarge = true
-        profilePictureView.update()
-        profilePictureView.setOnClickListener { showEditProfilePictureUI() }
-        ctnGroupNameSection.setOnClickListener { startActionMode(DisplayNameEditActionModeCallback()) }
-        btnGroupNameDisplay.text = displayName
-        publicKeyTextView.text = hexEncodedPublicKey
-        copyButton.setOnClickListener { copyPublicKey() }
-        shareButton.setOnClickListener { sharePublicKey() }
-        privacyButton.setOnClickListener { showPrivacySettings() }
-        notificationsButton.setOnClickListener { showNotificationSettings() }
-        chatsButton.setOnClickListener { showChatSettings() }
-        sendInvitationButton.setOnClickListener { sendInvitation() }
-        faqButton.setOnClickListener { showFAQ() }
-        surveyButton.setOnClickListener { showSurvey() }
-        helpTranslateButton.setOnClickListener { helpTranslate() }
-        seedButton.setOnClickListener { showSeed() }
-        clearAllDataButton.setOnClickListener { clearAllData() }
-        debugLogButton.setOnClickListener { shareLogs() }
-        val isLightMode = UiModeUtilities.isDayUiMode(this)
-        oxenLogoImageView.setImageResource(if (isLightMode) R.drawable.oxen_light_mode else R.drawable.oxen_dark_mode)
-        versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
+        with(binding) {
+            profilePictureView.glide = glide
+            profilePictureView.publicKey = hexEncodedPublicKey
+            profilePictureView.displayName = displayName
+            profilePictureView.isLarge = true
+            profilePictureView.update()
+            profilePictureView.setOnClickListener { showEditProfilePictureUI() }
+            ctnGroupNameSection.setOnClickListener { startActionMode(DisplayNameEditActionModeCallback()) }
+            btnGroupNameDisplay.text = displayName
+            publicKeyTextView.text = hexEncodedPublicKey
+            copyButton.setOnClickListener { copyPublicKey() }
+            shareButton.setOnClickListener { sharePublicKey() }
+            pathButton.setOnClickListener { showPath() }
+            pathContainer.disableClipping()
+            privacyButton.setOnClickListener { showPrivacySettings() }
+            notificationsButton.setOnClickListener { showNotificationSettings() }
+            chatsButton.setOnClickListener { showChatSettings() }
+            sendInvitationButton.setOnClickListener { sendInvitation() }
+            faqButton.setOnClickListener { showFAQ() }
+            surveyButton.setOnClickListener { showSurvey() }
+            helpTranslateButton.setOnClickListener { helpTranslate() }
+            seedButton.setOnClickListener { showSeed() }
+            clearAllDataButton.setOnClickListener { clearAllData() }
+            debugLogButton.setOnClickListener { shareLogs() }
+            val isLightMode = UiModeUtilities.isDayUiMode(this@SettingsActivity)
+            oxenLogoImageView.setImageResource(if (isLightMode) R.drawable.oxen_light_mode else R.drawable.oxen_dark_mode)
+            versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -152,22 +169,22 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun handleDisplayNameEditActionModeChanged() {
         val isEditingDisplayName = this.displayNameEditActionMode !== null
 
-        btnGroupNameDisplay.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
-        displayNameEditText.visibility = if (isEditingDisplayName) View.VISIBLE else View.INVISIBLE
+        binding.btnGroupNameDisplay.visibility = if (isEditingDisplayName) View.INVISIBLE else View.VISIBLE
+        binding.displayNameEditText.visibility = if (isEditingDisplayName) View.VISIBLE else View.INVISIBLE
 
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (isEditingDisplayName) {
-            displayNameEditText.setText(btnGroupNameDisplay.text)
-            displayNameEditText.selectAll()
-            displayNameEditText.requestFocus()
-            inputMethodManager.showSoftInput(displayNameEditText, 0)
+            binding.displayNameEditText.setText(binding.btnGroupNameDisplay.text)
+            binding.displayNameEditText.selectAll()
+            binding.displayNameEditText.requestFocus()
+            inputMethodManager.showSoftInput(binding.displayNameEditText, 0)
         } else {
-            inputMethodManager.hideSoftInputFromWindow(displayNameEditText.windowToken, 0)
+            inputMethodManager.hideSoftInputFromWindow(binding.displayNameEditText.windowToken, 0)
         }
     }
 
     private fun updateProfile(isUpdatingProfilePicture: Boolean) {
-        loader.isVisible = true
+        binding.loader.isVisible = true
         val promises = mutableListOf<Promise<*, Exception>>()
         val displayName = displayNameToBeUploaded
         if (displayName != null) {
@@ -192,15 +209,15 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         }
         compoundPromise.alwaysUi {
             if (displayName != null) {
-                btnGroupNameDisplay.text = displayName
+                binding.btnGroupNameDisplay.text = displayName
             }
             if (isUpdatingProfilePicture && profilePicture != null) {
-                profilePictureView.recycle() // Clear the cached image before updating
-                profilePictureView.update()
+                binding.profilePictureView.recycle() // Clear the cached image before updating
+                binding.profilePictureView.update()
             }
             displayNameToBeUploaded = null
             profilePictureToBeUploaded = null
-            loader.isVisible = false
+            binding.loader.isVisible = false
         }
     }
     // endregion
@@ -211,7 +228,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
      * @return true if the update was successful.
      */
     private fun saveDisplayName(): Boolean {
-        val displayName = displayNameEditText.text.toString().trim()
+        val displayName = binding.displayNameEditText.text.toString().trim()
         if (displayName.isEmpty()) {
             Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
             return false
@@ -289,6 +306,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, "Can't open URL", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun showPath() {
+        val intent = Intent(this, PathActivity::class.java)
+        show(intent)
     }
 
     private fun showSurvey() {

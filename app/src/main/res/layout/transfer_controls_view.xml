@@ -35,7 +35,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:tint="@color/core_grey_60"
+            app:tint="@color/core_grey_60"
             app:srcCompat="@drawable/ic_arrow_down_circle_filled" />
 
         <TextView

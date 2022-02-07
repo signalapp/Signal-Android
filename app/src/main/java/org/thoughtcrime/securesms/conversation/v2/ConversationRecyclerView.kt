@@ -2,16 +2,12 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.VelocityTracker
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import org.thoughtcrime.securesms.util.disableClipping
 import org.thoughtcrime.securesms.util.toPx
 import kotlin.math.abs
-import kotlin.math.max
 
 class ConversationRecyclerView : RecyclerView {
     private val maxLongPressVelocityY = toPx(10, resources)
@@ -37,10 +33,10 @@ class ConversationRecyclerView : RecyclerView {
         if (abs(vy) > maxLongPressVelocityY && abs(vx) < minSwipeVelocityX) { return super.onInterceptTouchEvent(e) }
         // Return false if abs(v.x) > abs(v.y) so that only swipes that are more horizontal than vertical
         // get passed on to the message view
-        if (abs(vx) > abs(vy)) {
-            return false
+        return if (abs(vx) > abs(vy)) {
+            false
         } else {
-            return super.onInterceptTouchEvent(e)
+            super.onInterceptTouchEvent(e)
         }
     }
 

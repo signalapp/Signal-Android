@@ -229,7 +229,7 @@ object BackupUtil {
     @JvmOverloads
     fun deleteAllBackupFiles(context: Context, except: Collection<BackupFileRecord>? = null) {
         val db = DatabaseComponent.get(context).lokiBackupFilesDatabase()
-        db.getBackupFiles().forEach { record ->
+        db.getBackupFiles().iterator().forEach { record ->
             if (except != null && except.contains(record)) return@forEach
 
             // Try to delete the related file. The operation may fail in many cases

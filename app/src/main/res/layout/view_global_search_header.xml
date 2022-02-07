@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?colorPrimary"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        tools:text="@string/global_search_messages"
+        android:textSize="18sp"
+        android:fontFamily="@font/roboto_medium"
+        android:paddingVertical="@dimen/medium_spacing"
+        android:paddingHorizontal="@dimen/very_large_spacing"
+        android:id="@+id/search_header"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+</LinearLayout>

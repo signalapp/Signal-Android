@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar.mentions
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -42,7 +41,7 @@ class MentionCandidatesView(context: Context, attrs: AttributeSet?, defStyleAttr
         override fun getItem(position: Int): Mention { return candidates[position] }
 
         override fun getView(position: Int, cellToBeReused: View?, parent: ViewGroup): View {
-            val cell = cellToBeReused as MentionCandidateView? ?: MentionCandidateView.inflate(LayoutInflater.from(context), parent)
+            val cell = cellToBeReused as MentionCandidateView? ?: MentionCandidateView(context)
             val mentionCandidate = getItem(position)
             cell.glide = glide
             cell.candidate = mentionCandidate

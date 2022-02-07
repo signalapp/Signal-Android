@@ -16,17 +16,17 @@
 
     <org.thoughtcrime.securesms.conversation.v2.ConversationRecyclerView
         android:id="@+id/conversationRecyclerView"
+        android:layout_above="@+id/typingIndicatorViewContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/input_bar_height" />
+        android:layout_height="match_parent" />
 
     <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorViewContainer
         android:id="@+id/typingIndicatorViewContainer"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginBottom="@dimen/input_bar_height"
         android:visibility="gone"
-        android:layout_alignParentBottom="true" />
+        android:layout_above="@+id/inputBar"
+        />
 
     <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
         android:id="@+id/inputBar"
@@ -92,34 +92,37 @@
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/inputBar"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="72dp">
+        android:layout_marginBottom="32dp">
 
         <RelativeLayout
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/view_scroll_to_bottom_button_background">
 
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:src="@drawable/ic_chevron_up"
                 android:layout_centerInParent="true"
                 android:rotation="180"
+                android:src="@drawable/ic_chevron_up"
                 app:tint="@color/text" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/unreadCountIndicator"
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
+            android:maxWidth="40dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
             android:layout_height="20dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/circle_tintable"
+            android:background="@drawable/rounded_rectangle"
             android:backgroundTint="@color/conversation_unread_count_indicator_background">
 
             <TextView

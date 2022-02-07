@@ -238,7 +238,7 @@ on viallinen!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
     <string name="ThreadRecord_s_took_a_screenshot">%s otti kuvakaappauksen.</string>
-    <string name="ThreadRecord_media_saved_by_s">Media tallennettu toimesta.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media tallennettu toimesta %s.</string>
     <string name="ThreadRecord_safety_number_changed">Turvanumero vaihtunut</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinun ja yhteystiedon %s turvanumero on vaihtunut.</string>
     <string name="ThreadRecord_you_marked_verified">Merkitsit varmennetuksi.</string>

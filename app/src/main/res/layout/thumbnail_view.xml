@@ -45,7 +45,7 @@
             android:layout_height="24dp"
             android:layout_marginStart="17dp"
             android:layout_marginTop="12dp"
-            android:tint="@color/core_blue"
+            app:tint="@color/core_blue"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/triangle_right" />
 

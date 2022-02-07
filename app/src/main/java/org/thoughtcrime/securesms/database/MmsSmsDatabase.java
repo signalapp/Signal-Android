@@ -139,7 +139,7 @@ public class MmsSmsDatabase extends Database {
 
     try (Cursor cursor = queryTables(PROJECTION, selection, order, "1")) {
       cursor.moveToFirst();
-      return cursor.getLong(cursor.getColumnIndex(MmsSmsColumns.ID));
+      return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
     }
   }
 
@@ -157,7 +157,7 @@ public class MmsSmsDatabase extends Database {
     try {
       return cursor != null ? cursor.getCount() : 0;
     } finally {
-      if (cursor != null) cursor.close();;
+      if (cursor != null) cursor.close();
     }
   }
 

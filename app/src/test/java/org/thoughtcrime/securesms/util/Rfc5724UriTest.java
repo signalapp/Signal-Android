@@ -20,13 +20,12 @@ package org.thoughtcrime.securesms.util;
 import junit.framework.AssertionFailedError;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.BaseUnitTest;
 
 import java.net.URISyntaxException;
 
 import static org.junit.Assert.assertTrue;
 
-public class Rfc5724UriTest extends BaseUnitTest {
+public class Rfc5724UriTest {
 
   @Test public void testInvalidPath() throws Exception {
     final String[] invalidSchemaUris = {

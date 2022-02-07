@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.annotation.SuppressLint;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
@@ -313,7 +313,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   }
 
   private void initViewModel() {
-    viewModel = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
 
     viewModel.getSelectedMedia().observe(this, media -> {
       if (Util.isEmpty(media)) {

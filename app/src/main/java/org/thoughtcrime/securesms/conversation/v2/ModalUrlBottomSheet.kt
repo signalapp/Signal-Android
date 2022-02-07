@@ -15,14 +15,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.fragment_modal_url_bottom_sheet.*
 import network.loki.messenger.R
+import network.loki.messenger.databinding.FragmentModalUrlBottomSheetBinding
 import org.thoughtcrime.securesms.util.UiModeUtilities
 
 class ModalUrlBottomSheet(private val url: String): BottomSheetDialogFragment(), View.OnClickListener {
-
-    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_modal_url_bottom_sheet, container, false)
+    private lateinit var binding: FragmentModalUrlBottomSheetBinding
+    
+    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View {
+        binding = FragmentModalUrlBottomSheetBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,10 +33,10 @@ class ModalUrlBottomSheet(private val url: String): BottomSheetDialogFragment(),
         val spannable = SpannableStringBuilder(explanation)
         val startIndex = explanation.indexOf(url)
         spannable.setSpan(StyleSpan(Typeface.BOLD), startIndex, startIndex + url.count(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        openURLExplanationTextView.text = spannable
-        cancelButton.setOnClickListener(this)
-        copyButton.setOnClickListener(this)
-        openURLButton.setOnClickListener(this)
+        binding.openURLExplanationTextView.text = spannable
+        binding.cancelButton.setOnClickListener(this)
+        binding.copyButton.setOnClickListener(this)
+        binding.openURLButton.setOnClickListener(this)
     }
 
     private fun open() {
@@ -64,9 +66,9 @@ class ModalUrlBottomSheet(private val url: String): BottomSheetDialogFragment(),
 
     override fun onClick(v: View?) {
         when (v) {
-            openURLButton -> open()
-            copyButton -> copy()
-            cancelButton -> dismiss()
+            binding.openURLButton -> open()
+            binding.copyButton -> copy()
+            binding.cancelButton -> dismiss()
         }
     }
 }

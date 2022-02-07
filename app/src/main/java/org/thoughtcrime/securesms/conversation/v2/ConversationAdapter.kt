@@ -4,9 +4,7 @@ import android.content.Context
 import android.database.Cursor
 import android.view.MotionEvent
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import kotlinx.android.synthetic.main.view_visible_message.view.*
 import org.thoughtcrime.securesms.conversation.v2.messages.ControlMessageView
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
@@ -17,7 +15,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 
 class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPress: (MessageRecord, Int, VisibleMessageView, MotionEvent) -> Unit,
     private val onItemSwipeToReply: (MessageRecord, Int) -> Unit, private val onItemLongPress: (MessageRecord, Int) -> Unit,
-    private val glide: GlideRequests)
+    private val glide: GlideRequests, private val onDeselect: (MessageRecord, Int) -> Unit)
     : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
     private val messageDB = DatabaseComponent.get(context).mmsSmsDatabase()
     var selectedItems = mutableSetOf<MessageRecord>()
@@ -49,15 +47,9 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
     override fun onCreateItemViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         @Suppress("NAME_SHADOWING")
         val viewType = ViewType.allValues[viewType]
-        when (viewType) {
-            ViewType.Visible -> {
-                val view = VisibleMessageView(context)
-                return VisibleMessageViewHolder(view)
-            }
-            ViewType.Control -> {
-                val view = ControlMessageView(context)
-                return ControlMessageViewHolder(view)
-            }
+        return when (viewType) {
+            ViewType.Visible -> VisibleMessageViewHolder(VisibleMessageView(context))
+            ViewType.Control -> ControlMessageViewHolder(ControlMessageView(context))
             else -> throw IllegalStateException("Unexpected view type: $viewType.")
         }
     }
@@ -71,13 +63,16 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 val view = viewHolder.view
                 val isSelected = selectedItems.contains(message)
                 view.snIsSelected = isSelected
-                view.messageTimestampTextView.isVisible = isSelected
                 view.indexInAdapter = position
                 view.bind(message, messageBefore, getMessageAfter(position, cursor), glide, searchQuery)
                 if (!message.isDeleted) {
                     view.onPress = { event -> onItemPress(message, viewHolder.adapterPosition, view, event) }
                     view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
                     view.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
+                } else {
+                    view.onPress = null
+                    view.onSwipeToReply = null
+                    view.onLongPress = null
                 }
                 view.contentViewDelegate = visibleMessageContentViewDelegate
             }
@@ -109,6 +104,27 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
         // one for the cursor because the layout is reversed
         if (!cursor.moveToPosition(position - 1)) { return null }
         return messageDB.readerFor(cursor).current
+    }
+
+    override fun changeCursor(cursor: Cursor?) {
+        super.changeCursor(cursor)
+        val toRemove = mutableSetOf<MessageRecord>()
+        val toDeselect = mutableSetOf<Pair<Int, MessageRecord>>()
+        for (selected in selectedItems) {
+            val position = getItemPositionForTimestamp(selected.timestamp)
+            if (position == null || position == -1) {
+                toRemove += selected
+            } else {
+                val item = getMessage(getCursorAtPositionOrThrow(position))
+                if (item == null || item.isDeleted) {
+                    toDeselect += position to selected
+                }
+            }
+        }
+        selectedItems -= toRemove
+        toDeselect.iterator().forEach { (pos, record) ->
+            onDeselect(record, pos)
+        }
     }
 
     fun toggleSelection(message: MessageRecord, position: Int) {

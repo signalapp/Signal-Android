@@ -5,6 +5,10 @@
         <item name="android:navigationBarColor">?android:navigationBarColor</item>
         <item name="android:textColorHint">@color/gray50</item>
 
+        <item name="searchBackgroundColor">#F2F2F2</item>
+        <item name="searchIconColor">#413F40</item>
+        <item name="searchHighlightTint">#767676</item>
+
         <item name="home_gradient_start">#00FFFFFF</item>
         <item name="home_gradient_end">#FFFFFFFF</item>
 
