@@ -90,7 +90,7 @@ class LinkPreviewView : LinearLayout {
         }
         // intersectedModalSpans should only be a list of one item
         val hitSpans = bodyTextView.getIntersectedModalSpans(hitRect)
-        hitSpans.forEach { span ->
+        hitSpans.iterator().forEach { span ->
             span.onClick(bodyTextView)
         }
     }

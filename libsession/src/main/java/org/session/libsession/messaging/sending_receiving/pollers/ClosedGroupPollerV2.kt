@@ -39,7 +39,7 @@ class ClosedGroupPollerV2 {
     fun start() {
         val storage = MessagingModuleConfiguration.shared.storage
         val allGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
-        allGroupPublicKeys.forEach { startPolling(it) }
+        allGroupPublicKeys.iterator().forEach { startPolling(it) }
     }
 
     fun startPolling(groupPublicKey: String) {
@@ -51,7 +51,7 @@ class ClosedGroupPollerV2 {
     fun stop() {
         val storage = MessagingModuleConfiguration.shared.storage
         val allGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
-        allGroupPublicKeys.forEach { stopPolling(it) }
+        allGroupPublicKeys.iterator().forEach { stopPolling(it) }
     }
 
     fun stopPolling(groupPublicKey: String) {
@@ -100,7 +100,7 @@ class ClosedGroupPollerV2 {
         }
         promise.success { envelopes ->
             if (!isPolling(groupPublicKey)) { return@success }
-            envelopes.forEach { (envelope, serverHash) ->
+            envelopes.iterator().forEach { (envelope, serverHash) ->
                 val job = MessageReceiveJob(envelope.toByteArray(), serverHash)
                 JobQueue.shared.add(job)
             }

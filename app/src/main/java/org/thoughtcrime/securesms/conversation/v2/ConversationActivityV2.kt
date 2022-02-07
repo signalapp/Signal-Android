@@ -133,6 +133,8 @@ import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.util.toPx
 import java.util.Locale
 import java.util.concurrent.ExecutionException
+import java.util.concurrent.atomic.AtomicLong
+import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
 import kotlin.math.abs
 import kotlin.math.max
@@ -249,12 +251,16 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private val documentButton by lazy { InputBarButton(this, R.drawable.ic_document_small_dark, hasOpaqueBackground = true) }
     private val libraryButton by lazy { InputBarButton(this, R.drawable.ic_baseline_photo_library_24, hasOpaqueBackground = true) }
     private val cameraButton by lazy { InputBarButton(this, R.drawable.ic_baseline_photo_camera_24, hasOpaqueBackground = true) }
+    private val messageToScrollTimestamp = AtomicLong(-1)
+    private val messageToScrollAuthor = AtomicReference<Address?>(null)
 
     // region Settings
     companion object {
         // Extras
         const val THREAD_ID = "thread_id"
         const val ADDRESS = "address"
+        const val SCROLL_MESSAGE_ID = "scroll_message_id"
+        const val SCROLL_MESSAGE_AUTHOR = "scroll_message_author"
         // Request codes
         const val PICK_DOCUMENT = 2
         const val TAKE_PHOTO = 7
@@ -272,6 +278,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         super.onCreate(savedInstanceState, isReady)
         binding = ActivityConversationV2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        // messageIdToScroll
+        messageToScrollTimestamp.set(intent.getLongExtra(SCROLL_MESSAGE_ID, -1))
+        messageToScrollAuthor.set(intent.getParcelableExtra(SCROLL_MESSAGE_AUTHOR))
         val thread = threadDb.getRecipientForThreadId(viewModel.threadId)
         if (thread == null) {
             Toast.makeText(this, "This thread has been deleted.", Toast.LENGTH_LONG).show()
@@ -351,6 +360,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
             override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
                 adapter.changeCursor(cursor)
+                if (cursor != null) {
+                    val messageTimestamp = messageToScrollTimestamp.getAndSet(-1)
+                    val author = messageToScrollAuthor.getAndSet(null)
+                    if (author != null && messageTimestamp >= 0) {
+                        jumpToMessage(author, messageTimestamp, null)
+                    }
+                }
             }
 
             override fun onLoaderReset(cursor: Loader<Cursor>) {
@@ -1296,7 +1312,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun resendMessage(messages: Set<MessageRecord>) {
-        messages.forEach { messageRecord ->
+        messages.iterator().forEach { messageRecord ->
             ResendMessageUtilities.resend(messageRecord)
         }
         endActionMode()

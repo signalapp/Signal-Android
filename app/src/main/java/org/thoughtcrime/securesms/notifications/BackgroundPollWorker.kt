@@ -60,7 +60,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             val closedGroupPoller = ClosedGroupPollerV2() // Intentionally don't use shared
             val storage = MessagingModuleConfiguration.shared.storage
             val allGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
-            allGroupPublicKeys.forEach { closedGroupPoller.poll(it) }
+            allGroupPublicKeys.iterator().forEach { closedGroupPoller.poll(it) }
 
             // Open Groups
             val threadDB = DatabaseComponent.get(context).lokiThreadDatabase()

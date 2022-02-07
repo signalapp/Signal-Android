@@ -8,6 +8,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.app.Application;
+
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
@@ -84,13 +86,14 @@ public class FastJobStorageTest {
 
   @Test
   public void updateAllJobsToBePending_allArePending() {
-    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, true),
+    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, true),
                                       Collections.emptyList(),
                                       Collections.emptyList());
-    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", "f2", null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, true),
+    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", AvatarDownloadJob.KEY, null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, true),
                                       Collections.emptyList(),
                                       Collections.emptyList());
 
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
 
     subject.init();
@@ -134,10 +137,11 @@ public class FastJobStorageTest {
 
   @Test
   public void updateJobAfterRetry_stateUpdated() {
-    FullSpec fullSpec = new FullSpec(new JobSpec("1", "f1", null, 0, 0, 0, 3, 30000, -1, -1, EMPTY_DATA, true),
+    FullSpec fullSpec = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, null, 0, 0, 0, 3, 30000, -1, -1, EMPTY_DATA, true),
                                      Collections.emptyList(),
                                      Collections.emptyList());
 
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
 
     subject.init();
@@ -153,13 +157,14 @@ public class FastJobStorageTest {
 
   @Test
   public void getPendingJobsWithNoDependenciesInCreatedOrder_noneWhenEarlierItemInQueueInRunning() {
-    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", "f1", "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, true),
+    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, true),
                                       Collections.emptyList(),
                                       Collections.emptyList());
-    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", "f2", "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", AvatarDownloadJob.KEY, "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                       Collections.emptyList(),
                                       Collections.emptyList());
 
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
@@ -168,10 +173,11 @@ public class FastJobStorageTest {
 
   @Test
   public void getPendingJobsWithNoDependenciesInCreatedOrder_noneWhenAllJobsAreRunning() {
-    FullSpec fullSpec = new FullSpec(new JobSpec("1", "f1", "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, true),
+    FullSpec fullSpec = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, true),
                                      Collections.emptyList(),
                                      Collections.emptyList());
 
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
     subject.init();
 
@@ -180,10 +186,11 @@ public class FastJobStorageTest {
 
   @Test
   public void getPendingJobsWithNoDependenciesInCreatedOrder_noneWhenNextRunTimeIsAfterCurrentTime() {
-    FullSpec fullSpec = new FullSpec(new JobSpec("1", "f1", "q", 0, 10, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, "q", 0, 10, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                      Collections.emptyList(),
                                      Collections.emptyList());
 
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
     subject.init();
 
@@ -192,14 +199,14 @@ public class FastJobStorageTest {
 
   @Test
   public void getPendingJobsWithNoDependenciesInCreatedOrder_noneWhenDependentOnAnotherJob() {
-    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", "f1", null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, true),
+    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, true),
                                       Collections.emptyList(),
                                       Collections.emptyList());
-    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", "f2", null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", AvatarDownloadJob.KEY, null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                       Collections.emptyList(),
                                       Collections.singletonList(new DependencySpec("2", "1")));
 
-
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
@@ -208,10 +215,11 @@ public class FastJobStorageTest {
 
   @Test
   public void getPendingJobsWithNoDependenciesInCreatedOrder_singleEligibleJob() {
-    FullSpec fullSpec = new FullSpec(new JobSpec("1", "f1", "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                      Collections.emptyList(),
                                      Collections.emptyList());
 
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
     subject.init();
 
@@ -220,14 +228,14 @@ public class FastJobStorageTest {
 
   @Test
   public void getPendingJobsWithNoDependenciesInCreatedOrder_multipleEligibleJobs() {
-    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", "f1", null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                       Collections.emptyList(),
                                       Collections.emptyList());
-    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", "f2", null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", AvatarDownloadJob.KEY, null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                       Collections.emptyList(),
                                       Collections.emptyList());
 
-
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
@@ -236,14 +244,14 @@ public class FastJobStorageTest {
 
   @Test
   public void getPendingJobsWithNoDependenciesInCreatedOrder_singleEligibleJobInMixedList() {
-    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", "f1", null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, true),
+    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", AvatarDownloadJob.KEY, null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, true),
                                       Collections.emptyList(),
                                       Collections.emptyList());
-    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", "f2", null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", AvatarDownloadJob.KEY, null, 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                       Collections.emptyList(),
                                       Collections.emptyList());
 
-
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 
@@ -255,14 +263,14 @@ public class FastJobStorageTest {
 
   @Test
   public void getPendingJobsWithNoDependenciesInCreatedOrder_firstItemInQueue() {
-    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", "f1", "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", RetrieveProfileAvatarJob.KEY, "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                       Collections.emptyList(),
                                       Collections.emptyList());
-    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", "f2", "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", RetrieveProfileAvatarJob.KEY, "q", 0, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
                                       Collections.emptyList(),
                                       Collections.emptyList());
 
-
+    JobManagerFactories.getJobFactories(mock(Application.class));
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2)));
     subject.init();
 

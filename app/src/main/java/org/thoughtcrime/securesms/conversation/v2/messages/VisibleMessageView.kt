@@ -390,7 +390,7 @@ class VisibleMessageView : LinearLayout {
     }
 
     fun onContentClick(event: MotionEvent) {
-        binding.messageContentView.onContentClick.forEach { clickHandler -> clickHandler.invoke(event) }
+        binding.messageContentView.onContentClick.iterator().forEach { clickHandler -> clickHandler.invoke(event) }
     }
 
     private fun onPress(event: MotionEvent) {

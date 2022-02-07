@@ -165,7 +165,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:src="@drawable/ic_baseline_clear_24"
-            android:tint="@android:color/white"/>
+            app:tint="@android:color/white"/>
 
     </FrameLayout>
 

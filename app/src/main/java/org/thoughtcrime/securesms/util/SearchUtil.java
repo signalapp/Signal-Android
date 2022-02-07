@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.util;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 

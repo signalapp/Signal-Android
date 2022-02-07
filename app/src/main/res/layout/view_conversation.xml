@@ -77,10 +77,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:textSize="@dimen/very_small_font_size"
+                            android:text="8"
                             android:textColor="@color/text"
-                            android:textStyle="bold"
-                            android:text="8" />
+                            android:textSize="@dimen/very_small_font_size"
+                            android:textStyle="bold" />
 
                     </RelativeLayout>
 

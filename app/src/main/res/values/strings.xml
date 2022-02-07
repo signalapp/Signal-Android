@@ -905,5 +905,7 @@
     <string name="conversation_pin">Pin</string>
     <string name="conversation_unpin">Unpin</string>
     <string name="mark_all_as_read">Mark all as read</string>
+    <string name="global_search_contacts_groups">Contacts and Groups</string>
+    <string name="global_search_messages">Messages</string>
 
 </resources>

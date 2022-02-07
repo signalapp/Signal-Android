@@ -66,25 +66,18 @@ public class ContactAccessor {
   public List<String> getNumbersForThreadSearchFilter(Context context, String constraint) {
     LinkedList<String> numberList = new LinkedList<>();
 
-    GroupDatabase.Reader reader = null;
     GroupRecord record;
-
-    try {
-      reader = DatabaseComponent.get(context).groupDatabase().getGroupsFilteredByTitle(constraint);
-
+    try (GroupDatabase.Reader reader = DatabaseComponent.get(context).groupDatabase().getGroupsFilteredByTitle(constraint)) {
       while ((record = reader.getNext()) != null) {
         numberList.add(record.getEncodedId());
       }
-    } finally {
-      if (reader != null)
-        reader.close();
     }
 
-    if (context.getString(R.string.note_to_self).toLowerCase().contains(constraint.toLowerCase()) &&
-        !numberList.contains(TextSecurePreferences.getLocalNumber(context)))
-    {
-      numberList.add(TextSecurePreferences.getLocalNumber(context));
-    }
+//    if (context.getString(R.string.note_to_self).toLowerCase().contains(constraint.toLowerCase()) &&
+//        !numberList.contains(TextSecurePreferences.getLocalNumber(context)))
+//    {
+//      numberList.add(TextSecurePreferences.getLocalNumber(context));
+//    }
 
     return numberList;
   }

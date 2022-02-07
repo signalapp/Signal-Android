@@ -105,7 +105,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
       onMediaSelectionChanged(new ArrayList<>(viewModel.getSelectedMedia().getValue()));
     }
 
-    viewModel.getMediaInBucket(requireContext(), bucketId).observe(this, adapter::setMedia);
+    viewModel.getMediaInBucket(requireContext(), bucketId).observe(getViewLifecycleOwner(), adapter::setMedia);
 
     initMediaObserver(viewModel);
   }
@@ -178,7 +178,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   }
 
   private void initMediaObserver(@NonNull MediaSendViewModel viewModel) {
-    viewModel.getCountButtonState().observe(this, media -> {
+    viewModel.getCountButtonState().observe(getViewLifecycleOwner(), media -> {
       requireActivity().invalidateOptionsMenu();
     });
   }

@@ -52,7 +52,7 @@ object PushNotificationAPI {
         // Unsubscribe from all closed groups
         val allClosedGroupPublicKeys = MessagingModuleConfiguration.shared.storage.getAllClosedGroupPublicKeys()
         val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey()!!
-        allClosedGroupPublicKeys.forEach { closedGroup ->
+        allClosedGroupPublicKeys.iterator().forEach { closedGroup ->
             performOperation(ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
         }
     }
@@ -81,7 +81,7 @@ object PushNotificationAPI {
         }
         // Subscribe to all closed groups
         val allClosedGroupPublicKeys = MessagingModuleConfiguration.shared.storage.getAllClosedGroupPublicKeys()
-        allClosedGroupPublicKeys.forEach { closedGroup ->
+        allClosedGroupPublicKeys.iterator().forEach { closedGroup ->
             performOperation(ClosedGroupOperation.Subscribe, closedGroup, publicKey)
         }
     }

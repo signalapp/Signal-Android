@@ -15,6 +15,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import network.loki.messenger.util.InputBarButtonDrawableMatcher.Companion.inputButtonWithDrawable
 import network.loki.messenger.util.NewConversationButtonDrawableMatcher.Companion.newConversationButtonWithDrawable
 import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -73,7 +74,7 @@ class HomeActivityTests {
         onView(allOf(withId(R.id.button), isDescendantOfA(withId(R.id.seedReminderView)))).perform(ViewActions.click())
         onView(withId(R.id.copyButton)).perform(ViewActions.click())
         pressBack()
-        onView(withId(R.id.seedReminderView)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.seedReminderView)).check(matches(not(isDisplayed())))
     }
 
     @Test
@@ -85,7 +86,7 @@ class HomeActivityTests {
     @Test
     fun testIsVisible_alreadyDismissed_seedView() {
         setupLoggedInState(hasViewedSeed = true)
-        onView(withId(R.id.seedReminderView)).check(doesNotExist())
+        onView(withId(R.id.seedReminderView)).check(matches(not(isDisplayed())))
     }
 
     @Test

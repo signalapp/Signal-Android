@@ -155,7 +155,7 @@ object MessageSender {
                 var isSuccess = false
                 val promiseCount = promises.size
                 var errorCount = 0
-                promises.forEach { promise: RawResponsePromise ->
+                promises.iterator().forEach { promise: RawResponsePromise ->
                     promise.success {
                         if (isSuccess) { return@success } // Succeed as soon as the first promise succeeds
                         isSuccess = true

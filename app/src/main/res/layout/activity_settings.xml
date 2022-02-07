@@ -111,6 +111,39 @@
                 android:layout_marginTop="@dimen/large_spacing"
                 android:background="?android:dividerHorizontal" />
 
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/pathButton"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                app:justifyContent="center"
+                app:alignItems="center"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@drawable/setting_button_background">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/medium_font_size"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="@string/activity_path_title" />
+                <FrameLayout
+                    android:id="@+id/pathContainer"
+                    android:layout_width="@dimen/small_profile_picture_size"
+                    android:layout_height="@dimen/small_profile_picture_size">
+                    <org.thoughtcrime.securesms.home.PathStatusView
+                        android:layout_gravity="center"
+                        android:layout_width="@dimen/path_status_view_size"
+                        android:layout_height="@dimen/path_status_view_size"/>
+                </FrameLayout>
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="?android:dividerHorizontal" />
+
             <TextView
                 android:id="@+id/privacyButton"
                 android:layout_width="match_parent"
@@ -275,9 +308,9 @@
     </ScrollView>
 
     <FrameLayout
-        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
 
         <RelativeLayout
             android:id="@+id/loader"
@@ -290,8 +323,8 @@
                 style="@style/SpinKitView.Large.ThreeBounce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_centerInParent="true"
+                android:layout_marginTop="8dp"
                 app:SpinKit_Color="@android:color/white" />
 
         </RelativeLayout>

@@ -33,6 +33,6 @@
         android:layout_height="7dp"
         android:layout_gravity="bottom|right|end"
         app:srcCompat="@drawable/triangle_bottom_right_corner"
-        android:tint="@color/core_grey_25"/>
+        app:tint="@color/core_grey_25"/>
 
 </FrameLayout>

@@ -450,7 +450,7 @@ private inline fun <reified T> wrap(x: T): Array<T> {
 
 private fun wrap(x: Map<String, String>): ContentValues {
     val result = ContentValues(x.size)
-    x.forEach { result.put(it.key, it.value) }
+    x.iterator().forEach { result.put(it.key, it.value) }
     return result
 }
 // endregion

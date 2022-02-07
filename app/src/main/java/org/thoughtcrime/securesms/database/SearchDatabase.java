@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
@@ -8,8 +9,8 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.session.libsession.utilities.Util;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import java.util.List;
 
@@ -80,7 +81,7 @@ public class SearchDatabase extends Database {
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
       "WHERE " + MMS_FTS_TABLE_NAME + " MATCH ? " +
       "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
-      "LIMIT 500";
+      "LIMIT ?";
 
   private static final String MESSAGES_FOR_THREAD_QUERY =
       "SELECT " +
@@ -115,7 +116,9 @@ public class SearchDatabase extends Database {
     SQLiteDatabase db          = databaseHelper.getReadableDatabase();
     String         prefixQuery = adjustQuery(query);
 
-    Cursor cursor = db.rawQuery(MESSAGES_QUERY, new String[] { prefixQuery, prefixQuery });
+    int queryLimit = Math.min(query.length()*50,500);
+
+    Cursor cursor = db.rawQuery(MESSAGES_QUERY, new String[] { prefixQuery, prefixQuery, String.valueOf(queryLimit) });
     setNotifyConverationListListeners(cursor);
     return cursor;
   }

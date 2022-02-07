@@ -237,7 +237,6 @@
     <string name="ThreadRecord_s_is_on_signal">%s është në Session! </string>
     <string name="ThreadRecord_disappearing_messages_disabled">Zhdukja e mesazheve është e çaktivizuar</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje mesazhesh është vënë %s</string>
-    <string name="ThreadRecord_s_took_a_screenshot">Bëri nje screenshot</string>
     <string name="ThreadRecord_media_saved_by_s">Media u kursye me %s</string>
     <string name="ThreadRecord_safety_number_changed">Numri i sigurisë ndryshoi</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>

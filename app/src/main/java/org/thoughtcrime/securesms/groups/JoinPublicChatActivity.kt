@@ -200,7 +200,7 @@ class EnterChatURLFragment : Fragment() {
     private fun populateDefaultGroups(groups: List<DefaultGroup>) {
         binding.defaultRoomsGridLayout.removeAllViews()
         binding.defaultRoomsGridLayout.useDefaultMargins = false
-        groups.forEach { defaultGroup ->
+        groups.iterator().forEach { defaultGroup ->
             val chip = layoutInflater.inflate(R.layout.default_group_chip, binding.defaultRoomsGridLayout, false) as Chip
             val drawable = defaultGroup.image?.let { bytes ->
                 val bitmap = BitmapFactory.decodeByteArray(bytes,0, bytes.size)

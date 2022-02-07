@@ -35,12 +35,10 @@ public class AudioCodec {
 
   public AudioCodec() throws IOException {
     this.bufferSize  = AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
-    this.audioRecord = createAudioRecord(this.bufferSize);
     this.mediaCodec  = createMediaCodec(this.bufferSize);
-
-    this.mediaCodec.start();
-
     try {
+      this.audioRecord = createAudioRecord(this.bufferSize);
+      this.mediaCodec.start();
       audioRecord.startRecording();
     } catch (Exception e) {
       Log.w(TAG, e);
@@ -167,7 +165,7 @@ public class AudioCodec {
     return adtsHeader;
   }
 
-  private AudioRecord createAudioRecord(int bufferSize) {
+  private AudioRecord createAudioRecord(int bufferSize) throws SecurityException {
     return new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLE_RATE,
                            AudioFormat.CHANNEL_IN_MONO,
                            AudioFormat.ENCODING_PCM_16BIT, bufferSize * 10);

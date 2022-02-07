@@ -214,7 +214,7 @@ class VisibleMessageContentView : LinearLayout {
             val body = getBodySpans(context, message, searchQuery)
             binding.bodyTextView.text = body
             onContentClick.add { e: MotionEvent ->
-                binding.bodyTextView.getIntersectedModalSpans(e).forEach { span ->
+                binding.bodyTextView.getIntersectedModalSpans(e).iterator().forEach { span ->
                     span.onClick(binding.bodyTextView)
                 }
             }
