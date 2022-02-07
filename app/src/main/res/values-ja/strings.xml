@@ -90,7 +90,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">お互いにメッセージや通話ができるようになります。あなたの名前とプロフィール写真が相手と共有されます。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ブロックされた相手は、あなたへのメッセージ送信や通話発信ができなくなります。</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signalのアップデート情報やニュースを受信しません。</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signalのアップデート情報やニュースを受信します。</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s のブロックを解除しますか？</string>
   <string name="BlockUnblockDialog_block">ブロックする</string>
   <string name="BlockUnblockDialog_block_and_leave">ブロックして抜ける</string>
@@ -1024,12 +1026,12 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s に対する安全番号を他の端末で検証済みにしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s に対する安全番号を未検証にしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s に対する安全番号を他の端末で未検証にしました</string>
-  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s からのメッセージを配信できませんでした</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s からのメッセージを配送できませんでした</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s が電話番号を変更しました。</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">この新機能を、気に入っていただけましたか？気に入っていただけたのなら「ブースト」でご支援ください。</string>
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">この新機能を気に入っていただけましたら、ブーストでご支援ください。</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signalは、皆さんによって支えられています。ぜひ、「サポーター」になりましょう！</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signalはユーザの皆様によって支えられています。今日からサポーターになりませんか。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始しました · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s はグループ通話中です · %2$s</string>
@@ -1056,7 +1058,7 @@
   <string name="MessageRequestBottomView_unblock">ブロック解除</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s からメッセージを受信し、あなたの名前と画像を共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s にあなたへのメッセージ送信や、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
-  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s から更新情報やニュースを受け取りますか？ブロックを解除するまでは受信されません。</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s から更新情報やニュースを受け取りますか？ブロックを解除するまでは受け取りません。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">このグループとのチャットを継続して、あなたの名前と画像をそのメンバーと共有しますか？</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@メンションや管理者などの機能を有効にするため、グループをアップグレードしてください。名前や写真を共有していないグループメンバーは、改めて招待されます。</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">このレガシーグループは大きすぎるため使用できません。グループの最大人数は%1$d人です。</string>
@@ -1399,7 +1401,7 @@
   <string name="ThreadRecord_you_marked_verified">検証済みにしました</string>
   <string name="ThreadRecord_you_marked_unverified">未検証にしました</string>
   <string name="ThreadRecord_message_could_not_be_processed">メッセージを処理できませんでした</string>
-  <string name="ThreadRecord_delivery_issue">配信エラー</string>
+  <string name="ThreadRecord_delivery_issue">配送エラー</string>
   <string name="ThreadRecord_message_request">メッセージ申請</string>
   <string name="ThreadRecord_photo">写真</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1476,9 +1478,9 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d個のチャットに%1$d件の新着メッセージ</string>
   <string name="MessageNotifier_most_recent_from_s">最新の受信: %1$s</string>
   <string name="MessageNotifier_locked_message">ロックされたメッセージ</string>
-  <string name="MessageNotifier_message_delivery_failed">メッセージの配信に失敗しました。</string>
-  <string name="MessageNotifier_failed_to_deliver_message">メッセージの配信に失敗しました。</string>
-  <string name="MessageNotifier_error_delivering_message">メッセージの配信中にエラーが発生しました。</string>
+  <string name="MessageNotifier_message_delivery_failed">メッセージを配送できませんでした。</string>
+  <string name="MessageNotifier_failed_to_deliver_message">メッセージを配送できませんでした。</string>
+  <string name="MessageNotifier_error_delivering_message">メッセージの配送中にエラーが発生しました。</string>
   <string name="MessageNotifier_message_delivery_paused">メッセージの配送が保留されました。</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signalでのメッセージ送受信を続けるため、認証してください。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
@@ -1625,7 +1627,7 @@
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__send_failed_indicator_description">送信失敗</string>
   <string name="conversation_item_sent__pending_approval_description">承認待ち</string>
-  <string name="conversation_item_sent__delivered_description">配信済み</string>
+  <string name="conversation_item_sent__delivered_description">配送済み</string>
   <string name="conversation_item_sent__message_read">既読</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">連絡先の写真</string>
@@ -1645,7 +1647,7 @@
   <!--Update item button text to show to boost a feature-->
   <string name="ConversationUpdateItem_signal_boost">Signalブースト</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">サポーターになりませんか</string>
+  <string name="ConversationUpdateItem_become_a_sustainer">サポーターになる</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -1764,12 +1766,12 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ロック解除</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signalは、携帯電話回線を通じてメディアとグループメッセージを配信するためにMMSの設定を必要としますが、この端末の設定情報を利用できません。これは端末がロックされていたり、その他の制限のある場合に発生することがあります。</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signalは、携帯電話回線を通じてメディアとグループメッセージを配送するためにMMSの設定を必要としますが、この端末の設定情報を利用できません。これは端末がロックされていたり、その他の制限のある場合に発生することがあります。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">メディアやグループメッセージを送信するには「OK」をタップして設定を完了してください。MMSの設定は一般的には「アクセスポイント名」を探すことで見つかります。これは1度だけ行う必要があります。</string>
   <!--BadDecryptLearnMoreDialog-->
-  <string name="BadDecryptLearnMoreDialog_delivery_issue">配信エラー</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s からのメッセージ、ステッカー、リアクションまたは既読通知を、あなたに配信できませんでした。直接またはグループで、送信しようとしているかもしれません。</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s からのメッセージ、ステッカー、リアクションまたは既読通知を、あなたに配信できませんでした。</string>
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">配送エラー</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s からのメッセージ、ステッカー、リアクションまたは既読通知を、あなたに配送できませんでした。直接またはグループで、送信しようとしているかもしれません。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s からのメッセージ、ステッカー、リアクションまたは既読通知を、あなたに配送できませんでした。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名 (必須)</string>
   <string name="CreateProfileActivity_last_name_optional">姓 (任意)</string>
@@ -1828,7 +1830,7 @@
   <string name="message_details_recipient_header__pending_send">保留中</string>
   <string name="message_details_recipient_header__sent_to">宛先</string>
   <string name="message_details_recipient_header__sent_from">送信元</string>
-  <string name="message_details_recipient_header__delivered_to">配信先</string>
+  <string name="message_details_recipient_header__delivered_to">配送先</string>
   <string name="message_details_recipient_header__read_by">既読者</string>
   <string name="message_details_recipient_header__not_sent">未送信</string>
   <string name="message_details_recipient_header__viewed">閲覧済み</string>
@@ -1981,8 +1983,8 @@
   <string name="preferences__mms_proxy_port">MMSプロキシポート</string>
   <string name="preferences__mmsc_username">MMSCユーザー名</string>
   <string name="preferences__mmsc_password">MMSCパスワード</string>
-  <string name="preferences__sms_delivery_reports">SMS配信レポート</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSメッセージで配信レポートを要求します。</string>
+  <string name="preferences__sms_delivery_reports">SMS配送レポート</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSメッセージで配送レポートを要求します。</string>
   <string name="preferences__data_and_storage">データとストレージ</string>
   <string name="preferences__storage">ストレージ</string>
   <string name="preferences__payments">決済機能</string>
@@ -2072,7 +2074,7 @@
   <string name="preferences_notifications__priority">優先度</string>
   <string name="preferences_communication__category_sealed_sender">送信者の秘匿化</string>
   <string name="preferences_communication__sealed_sender_display_indicators">アイコンを表示する</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">送信者の秘匿化を用いて届けられたメッセージで「メッセージの詳細」を選択した際に、ステータスアイコンを表示します。</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">送信者を秘匿化して届けられたメッセージで「メッセージの詳細」を選択した際に、ステータスアイコンを表示します。</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">全員を許可する</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザーからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
   <string name="preferences_communication__sealed_sender_learn_more">詳しく見る</string>
@@ -2309,7 +2311,7 @@
   <string name="conversation_add_to_contacts__menu_add_to_contacts">連絡先に追加</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">宛先リスト</string>
-  <string name="conversation_group_options__delivery">配信</string>
+  <string name="conversation_group_options__delivery">配送</string>
   <string name="conversation_group_options__conversation">チャット</string>
   <string name="conversation_group_options__broadcast">一斉送信</string>
   <!--text_secure_normal-->
@@ -3008,12 +3010,12 @@
   <string name="PrivacySettingsFragment__disappearing_messages">消えるメッセージ</string>
   <string name="PrivacySettingsFragment__app_security">アプリのセキュリティ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします。</string>
-  <string name="PrivacySettingsFragment__signal_message_and_calls">Signalメッセージと通話, 通話を常に中継, 送信者の秘匿化</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signalメッセージと通話、通話を常に中継、送信者の秘匿化</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">新規チャットの既定タイマー</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">今後新しく始めるチャットについて、消えるメッセージのタイマーの既定値を設定します。</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">ステータスアイコンを表示する</string>
-  <string name="AdvancedPrivacySettingsFragment__show_an_icon">送信者の秘匿化を用いて届けられたメッセージの詳細で、アイコンを表示します。</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">送信者を秘匿化して届けられたメッセージの詳細で、アイコンを表示します。</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">有効にすると、あなたの新規チャットで新たに送受信されるメッセージは、閲覧後に消えます。</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">有効にすると、このチャットで新たに送受信されたメッセージは、閲覧後に消えます。</string>

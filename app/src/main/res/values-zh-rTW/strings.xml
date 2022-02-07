@@ -90,7 +90,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">你將能夠互相發訊息和打電話，並且你的姓名和照片將與他們共享。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被封鎖的人將無法給你打電話或向你傳送訊息。</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">封鎖取得 Signal 更新和新聞的通知。</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">繼續取得 Signal 更新和新聞的通知。</string>
   <string name="BlockUnblockDialog_unblock_s">解除封鎖%1$s嗎？</string>
   <string name="BlockUnblockDialog_block">封鎖</string>
   <string name="BlockUnblockDialog_block_and_leave">封鎖並離開</string>
@@ -1027,7 +1029,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %s 的一則訊息無法送達</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s 變更了他們的電話號碼。</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">喜歡這個新功能嗎？ 你可以用贊助來表示感謝。</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal 由像你這樣的人提供支持。今天就成為贊助人吧。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
@@ -1054,6 +1058,7 @@
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">讓%1$s傳訊息給你並與他們分享你的名字和照片嗎？ 除非你解鎖他們，否則你將不會收到任何訊息。</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">要從 %1$s取得更新和新聞的通知嗎？ 在你取消封鎖它們之前，你不會收到任何更新通知。</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">繼續與該群組對話，並與該群組成員分享你的名字和照片嗎？</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">升級此群組以啟動新功能，例如@提及和管理員功能。未在此群組中分享姓名或照片的成員將被邀請加入。</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">此舊版群組太大，因此無法再使用。 最大組大小為%1$d。</string>
@@ -1646,7 +1651,7 @@
   <string name="ConversationUpdateItem_view">檢視</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">銷毀的訊息時間將設定為%1$s 當你要傳送訊息給他人。</string>
   <!--Update item button text to show to boost a feature-->
-  <string name="ConversationUpdateItem_signal_boost">Signal 加油支持</string>
+  <string name="ConversationUpdateItem_signal_boost">Signal 單次贊助</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
   <string name="ConversationUpdateItem_become_a_sustainer">成為贊助人</string>
   <!--audio_view-->
@@ -1876,7 +1881,7 @@
     <item>回報</item>
     <item>其他</item>
     <item>付款(行動貨幣)</item>
-    <item>贊助人 &amp; Signal 加油支持</item>
+    <item>長期贊助 &amp; Signal 單次贊助</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">這個訊息</string>
@@ -1975,7 +1980,7 @@
   <string name="preferences__donate_to_signal">贊助 Signal</string>
   <string name="preferences__subscription">定期贊助</string>
   <string name="preferences__become_a_signal_sustainer">成為Signal 支持者</string>
-  <string name="preferences__signal_boost">Signal 加油支持</string>
+  <string name="preferences__signal_boost">Signal 單次贊助</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">手動多媒體設定</string>
@@ -2356,11 +2361,11 @@
   <string name="InsightsDashboardFragment__cancel">取消</string>
   <string name="InsightsDashboardFragment__send">傳送</string>
   <string name="InsightsModalFragment__title">介紹 統計</string>
-  <string name="InsightsModalFragment__description">找出安全傳送的訊息數量，然後迅速邀請新聯絡人提高加油支持 Signal 比例。</string>
+  <string name="InsightsModalFragment__description">找出安全傳送的訊息數量，然後迅速邀請新聯絡人提高單次贊助 Signal 的比例。</string>
   <string name="InsightsModalFragment__view_insights">檢視 統計</string>
   <string name="FirstInviteReminder__title">邀請至 Signal</string>
   <string name="FirstInviteReminder__description">你傳送的加密訊息數量可以增加多達 %1$d%%</string>
-  <string name="SecondInviteReminder__title">支持推廣你的 Signal</string>
+  <string name="SecondInviteReminder__title">單次贊助你的 Signal</string>
   <string name="SecondInviteReminder__description">邀請 %1$s</string>
   <string name="InsightsReminder__view_insights">檢視 統計</string>
   <string name="InsightsReminder__invite">邀請</string>
@@ -3287,9 +3292,9 @@
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal 致力於開發開源隱私技術，以保護言論自由並實現安全的全球通訊。</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">你的貢獻推動了這一事業，並為數百萬人用於私人通訊的應用程式的開發和運營支付了費用。 沒有廣告。 沒有追踪器。 這不是開玩笑的。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">謝謝你的支援!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的加油!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">謝謝你的贊助!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">你贏得了%s徽章！ 透過在你的個人資料上顯示此徽章，幫助 Signal 建立知名度。</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">你已獲得加油支持徽章！ 透過在你的個人資料上展示此徽章，並幫助 Signal 建立知名度。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">你已獲得贊助徽章！ 透過在你的個人資料上展示此徽章，並幫助 Signal 建立知名度。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">你也可以做到</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為每月定期的贊助人。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資訊中展示</string>
@@ -3303,11 +3308,11 @@
   <string name="ManageDonationsFragment__badges">徽章</string>
   <string name="ManageDonationsFragment__subscription_faq">定期贊助 問與答</string>
   <string name="ManageDonationsFragment__error_getting_subscription">取得定期贊助時發生錯誤</string>
-  <string name="BoostFragment__give_signal_a_boost">加油支持 Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得\"加油支持\"徽章並展示在個人資料中 %1$d 天。</string>
+  <string name="BoostFragment__give_signal_a_boost">單次贊助 Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">感協捐款，說聲感謝！你將獲得\"贊助\"徽章並展示在個人資料中 %1$d 天。</string>
   <string name="Boost__enter_custom_amount">輸入自定義金額</string>
   <string name="Boost__one_time_contribution">一次性捐款</string>
-  <string name="MySupportPreference__add_a_signal_boost">增加 Signal 加油支持次數</string>
+  <string name="MySupportPreference__add_a_signal_boost">增加 Signal 單次贊助的次數</string>
   <string name="MySupportPreference__s_per_month">%1$s/月</string>
   <string name="MySupportPreference__renews_s">續約 %1$s</string>
   <string name="MySupportPreference__processing_transaction">處理交易中…</string>
@@ -3317,11 +3322,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">你的徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">徽章已過期</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">定期贊助已取消</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">你的\"加油支持\"徽章已過期，你的個人資料中的其他人將看不到了。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">你可以透過一次性捐款將你的\"加油支持\"徽章再展示 30 天。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">你的\"贊助\"徽章已過期，你的個人資料中的其他人將看不到了。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">你可以透過一次性捐款將你的\"贊助\"徽章再展示 30 天。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">要繼續支援專為你打造的技術，請考慮成為每月贊助人。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為定期贊助人</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">增加一次加油支持</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">增加一次贊助</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">你的定期贊助已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以繼續使用 Signal，但要支援該應用程式並重新啟動你的徽章，請立即續約。</string>
@@ -3488,5 +3493,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">無法開啟選擇器。</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal 發行說明 &amp; 消息</string>
   <!--EOF-->
 </resources>

@@ -2943,7 +2943,7 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">要求講得啱您個 Signal PIN 碼先可以喺 Signal 重新註冊您個電話冧把</string>
   <string name="AccountSettingsFragment__change_phone_number">轉電話冧把</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">呢度係俾您將您而家用緊個電話冧把轉做一個新嘅電話冧把。一轉咗您就冇得返轉頭㗎喇。\n\n咁喺繼續之前，請確定您個新冧把而家可以收到短訊或者聽到電話。</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">您可以喺度將您而家用緊嗰個電話冧把，轉做一個新嘅電話冧把。喺度一轉咗就冇得返轉頭㗎喇。\n\n喺繼續之前，請先確定您個新冧把，而家可以收到短訊或者接到電話。</string>
   <string name="ChangeNumberFragment__continue">繼續</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
   <string name="ChangeNumber__your_phone_number_has_changed_to_s">您嘅電話冧把而家已改咗做 %1$s</string>
@@ -2966,7 +2966,7 @@
   <string name="ChangeNumberVerifyFragment__captcha_required">要做咗 CAPTCHA 先得</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">轉冧把</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">您即將要將您個電話冧把由 %1$s 轉做 %2$s。\n\n咁喺繼續之前，請驗證下低個冧把的而且確無錯。</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">您即將要將您個電話冧把由 %1$s 轉做 %2$s。\n\n喺繼續之前，請先查驗下低呢個冧把的而且確無錯。</string>
   <string name="ChangeNumberConfirmFragment__edit_number">改過個冧把</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal 轉冧把 - Android 版 PIN 碼需要幫手 (v2 PIN)</string>

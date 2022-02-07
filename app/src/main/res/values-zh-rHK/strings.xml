@@ -2942,7 +2942,7 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">要求輸入您的 Signal PIN 碼才可再次在 Signal 註冊您的電話號碼</string>
   <string name="AccountSettingsFragment__change_phone_number">變更電話號碼</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">以此將您目前的電話號碼變更為新的電話號碼。您將無法復原此變更。\n\n在繼續之前，請確定您的新號碼可以接收短訊或來電。</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">藉此將您現用的電話號碼變更為新的電話號碼。您將無法復原此變更。\n\n在繼續之前，請確定您的新號碼可以接收短訊或來電。</string>
   <string name="ChangeNumberFragment__continue">繼續</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
   <string name="ChangeNumber__your_phone_number_has_changed_to_s">您的電話號碼現已變更為 %1$s</string>

@@ -20,27 +20,27 @@
   <string name="ApplicationPreferencesActivity_unregistering">Дерегистрација</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Дерегистрирам од Signal пораки и повици…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Да ги исклучам Signal пораките и повиците?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Исклучи ги пораките и повиците од Signal со дерегистрирање од серверот. Ќе мора повторно да го регистрирате телефонскиот број за да може повторно да добивате пораки.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Исклучи ги пораките и повиците од Signal со дерегистрирање од серверот. Ќе мора повторно да го регистрирате телефонскиот број за да може повторно да користите пораки и повици.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при поврзување со серверот!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS активиран</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Промена на стандардната SMS апликација</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS деактивиран</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS неактивиран</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Постави ја Signal како стандардна SMS апликација</string>
   <string name="ApplicationPreferencesActivity_on">вклучено</string>
   <string name="ApplicationPreferencesActivity_On">Вклучено</string>
   <string name="ApplicationPreferencesActivity_off">исклучено</string>
   <string name="ApplicationPreferencesActivity_Off">Исклучено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Заклучување на екранот %1$s. Заклучување на регистрацијата %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Заклучување на екранот %1$s, Заклучување на регистрацијата %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Јазик %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN кодот е потребен за заклучување на регистрацијата. За да го исклучите PIN кодот, Ве молиме прво исклучете го заклучувањето на регистрацијата.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-от е потребен за заклучување на регистрацијата. За да го исклучите PIN-от, Ве молиме прво исклучете го заклучувањето на регистрацијата.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-от е создаден.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-от е исклучен.</string>
   <string name="ApplicationPreferencesActivity_hide">Сокриј</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Да го сокријам потсетникот?</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Сними фраза за враќање на плаќањата</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Запиши резервна фраза на плаќањата</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Сними фраза</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Пред да го исклучите PIN-от, морате да ја снимите  фразата за повраток на Вашите плаќања за да се осигурате дека можете да ја повратите Вашата сметка.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Пред да го исклучите PIN-от, морате да ја запишете резервната фраза на Вашите плаќања за да се осигурате дека можете да ја вратите Вашата сметка.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d минута</item>
@@ -63,9 +63,9 @@
   <string name="AttachmentKeyboard_payment">Плаќање</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не е пронајдена апликација за избор на медија.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">На Signal му е потребна дозвола за пристап до складот за да можете да прикачите слики, видеа или аудио. Ова е трајно одбиено. Ве молиме продолжете до менито со поставувања, изберете „Дозволи“, и вклучете „Склад“</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">На Signal му е потребна дозвола до контактите за да можете да прикачите информации за контакти. Ова е трајно одбиено. Ве молиме продолжете до менито за поставување на апликациите, изберете „Дозволи“ и вклучете \"Контакти\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal има потреба од дозвола за локацијата за да може да прикачи локација. Ова е трајно одбиено. Ве молиме продолжете во менито со поставувања и изберете „Дозволи“, и потоа вклучете „Локација“.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal има потреба од дозвола до складот за да можете да прикачите слики, видеа или аудио. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“, и вклучете „Склад“</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal има потреба од дозвола до контактите за да можете да прикачите информации за контакти. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставување на апликациите, изберете „Дозволи“ и вклучете \"Контакти\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal има потреба од дозвола за локација за да може да прикачи локација. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“, и вклучете „Локација“.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Прикачувам медија…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Компресирам видео…</string>
@@ -74,25 +74,25 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Блокирани корисници</string>
   <string name="BlockedUsersActivity__add_blocked_user">Додај блокиран корисник</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Блокираните корисници нема да можат да Ве контактираат или да Ви праќаат пораки.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Блокираните корисници нема да можат да Ви се јават или да Ви испраќаат пораки.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Нема блокирани корисници</string>
   <string name="BlockedUsersActivity__block_user">Да го блокирам корисникот?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" нема да може да Ви се јави или да Ви испраќа пораки.</string>
   <string name="BlockedUsersActivity__block">Блокирај</string>
   <string name="BlockedUsersActivity__unblock_user">Да го одблокирам корисникот?</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Дали сакате да го одблокирате \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Дали сакате да сè одблокира \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">Одблокирај</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Да ја блокирам и напуштам %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Блокирај го/ја %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Повеќе нема да добивате пораки од оваа група и членовите нема да можат да Ве додадат во оваа група повторно.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Членовите на групата нема да бидат во можност да Ве додадат во групата повторно.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Членовите на групата ќе можат повторно да те додаваат во оваа група.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Членовите на групата нема да можат повторно да Ве додадат во оваа група.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Членовите на групата ќе можат повторно да Ве додадат во оваа група.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ќе можете да испраќате пораки и да се јавувате и Вашето име и слика ќе бидат споделени со нив.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокирани луѓе нема да можат да Ви се јават или да Ви испраќаат пораки.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_unblock_s">Да го/ја одблокирам %1$s?</string>
+  <string name="BlockUnblockDialog_unblock_s">Одблокирај го/ја %1$s?</string>
   <string name="BlockUnblockDialog_block">Блокирај</string>
   <string name="BlockUnblockDialog_block_and_leave">Блокирај и напушти</string>
   <string name="BlockUnblockDialog_report_spam_and_block">Пријави спам и блокирај</string>
@@ -113,11 +113,11 @@
   <string name="CameraContacts_recent_contacts">Скорешни контакти</string>
   <string name="CameraContacts_signal_contacts">Signal контакти</string>
   <string name="CameraContacts_signal_groups">Signal групи</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Можете да споделите со максимално %d разговори.</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Можете да споделите максимално со %d разговори.</string>
   <string name="CameraContacts_select_signal_recipients">Избери Signal примачи</string>
   <string name="CameraContacts_no_signal_contacts">Нема Signal контакти</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Можете да го користите само копчето за камерата за да испраќате слики на Signal контакти.</string>
-  <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете го најдете контактот што го барате?</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете да го најдете контактот што го барате?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Поканете контакт да се приклучи на Signal</string>
   <string name="CameraContacts__menu_search">Барај</string>
   <!--ClearProfileActivity-->
@@ -164,7 +164,7 @@
   <string name="ContactShareEditActivity_type_mobile">Мобилен</string>
   <string name="ContactShareEditActivity_type_work">Работа</string>
   <string name="ContactShareEditActivity_type_missing">Друго</string>
-  <string name="ContactShareEditActivity_invalid_contact">Одбраниот контакт е невалиден</string>
+  <string name="ContactShareEditActivity_invalid_contact">Избраниот контакт е невалиден</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Не е испратено, допрете за детали</string>
   <string name="ConversationItem_error_partially_not_delivered">Делумно испратена, допрете за детали</string>
@@ -216,14 +216,14 @@
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Вашето барање за да се приклучите е испратено до администраторот на групата. Ќе бидете известени штом превземат нешто околу тоа.</string>
   <string name="ConversationActivity_cancel_request">Откажи барање</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">За да испраќате аудио пораки, дозволете му на Signal пристап до Вашиот микрофон.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal има потреба од дозвола за микрофонот за да може да испраќа аудио пораки. Ова е трајно одбиено. Ве молиме продолжете до поставувањата, изберете „Дозволи“ и вклучете го „Микрофон“.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal има потреба од дозвола за микрофонот и камерата за да може да воспостави повик со %s. И двете се трајно одбиени. Ве молиме продолжете до поставувањата, изберете „Дозволи“ и вклучете ги „Микрофон“ и „Камера“.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal има потреба од дозвола до микрофонот за да може да испраќа аудио пораки. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Микрофон“.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal има потреба од дозвола до микрофонот и камерата за да може да воспостави повик со %s. Овие дозволи се трајно одбиени. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Микрофон“ и „Камера“.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">За да снимате фотографии и видеа, дозволете му на Signal пристап до камерата.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">На Signal му треба дозвола за SMS за да може да испраќа SMS. Ова е трајно одбиено. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера”. </string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">На Signal му е потребна дозвола до камерата за да прави слики и видеа</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal има потреба од дозвола до камерата за да слика и снима видео. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера”. </string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal има потреба од дозвола до камерата за да слика и снима видео</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Вклучете дозвола за микрофонот за да дозволите снимање на видеа со звук.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal има потреба од дозвола за микрофонот за да може да снима видеа. Ова е одбиено трајно. Ве молиме продолжете до поставувањата, изберете „Дозволи“ и вклучете ги „Микрофон“ и „Камера“.</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">На Signal му е потребна дозвола за микрофонот за да снима видеа.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal има потреба од дозвола до микрофонот за да може да снима видеа. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Микрофон“ и „Камера“.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal има потреба од дозвола до микрофонот за да снима видеа.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не може да испраќа SMS/MMS пораки бидејќи не е Вашата стандардна апликација за SMS. Дали сакате да ја промените ова во поставувањата на Android?</string>
   <string name="ConversationActivity_yes">Да</string>
@@ -281,7 +281,7 @@
   <string name="ConversationFragment_deleting_messages">Бришење на пораките… </string>
   <string name="ConversationFragment_delete_for_me">Избриши за мене</string>
   <string name="ConversationFragment_delete_for_everyone">Избриши за сите</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Оваа порака ќе биде избришана за сите во разговорот ако тие не се на понова верзија на Signal. Тие ќе можат да видат дека сте ја избришале пораката.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Оваа порака ќе биде избришана за сите во разговорот ако се на понова верзија на Signal. Тие ќе можат да видат дека сте ја избришале пораката.</string>
   <string name="ConversationFragment_quoted_message_not_found">Оригиналната порака не е пронајдена</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Оригиналната порака не е повеќе достапна</string>
   <string name="ConversationFragment_failed_to_open_message">Не успеа да се отвори пораката</string>
@@ -306,8 +306,8 @@
     <item quantity="other">Да ги избришам избраните разговори?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Ова трајно ќе ги отстрани избраните разговори.</item>
-    <item quantity="other">Ова трајно ќе ги отстрани сите %1$d избрани разговори.</item>
+    <item quantity="one">Ова трајно ќе го избрише избраниот разговор.</item>
+    <item quantity="other">Ова трајно ќе ги избрише сите %1$d избрани разговори.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Бришење</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Бришење на избраните разговори…</string>
@@ -415,7 +415,7 @@
   <string name="BackupsPreferenceFragment__d_so_far">%1$d до сега…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% до сега…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal има потреба од дозвола до надворешен склад за да може да создава резервни копии. Ова е трајно одбиено. Ве молиме продолжете до поставувањата, изберете „Дозволи“ и вклучете го „Склад“.</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal има потреба од дозвола до надворешен склад за да може да создава резервни копии. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Склад“.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Користите прилагодено: %s</string>
   <string name="CustomDefaultPreference_using_default">Користите стандардно: %s</string>
@@ -769,7 +769,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Групниот линк не е валиден</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Покани пријатели</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Споделете линк со пријатели за да им овозможите да се приклучат брзо на групава.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Споделете линк со пријателите за да им овозможите да се приклучат брзо на оваа група.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Вклучи и сподели линк</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Сподели линк</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Не може да се овозможи групен линк. Ве молиме обидете се повторно подоцна</string>
@@ -906,7 +906,7 @@
   <string name="MediaSendActivity_message">Порака</string>
   <string name="MediaSendActivity_select_recipients">Избери примачи</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">На Signal му треба пристап до Вашите контакти за да може да ги прикаже.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal има потреба од дозвола до контактите за да може да ги прикаже Вашите контакти. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете „Контакти“.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal има потреба од дозвола до контактите за да може да ги прикаже Вашите контакти. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Контакти“.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Не може да споделите повеќе од %d предмет.</item>
     <item quantity="other">Не може да споделите повеќе од %d предмети.</item>
@@ -1165,7 +1165,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Извинете, но ова не е валиден QR код за уред.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Да поврзам уред со Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа дека сакате да поврзете Signal уред користејќи скенер од 3та страна. За Ваша заштита, Ве молиме повторно скенирајте го кодот преку Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете „Камера“.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не успеав да го скенирам QR кодот без дозвола за камерата.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ажурирај веднаш</string>
@@ -1345,7 +1345,7 @@
   <string name="RegistrationActivity_play_services_error">Грешка со Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services се ажурира или моментално е недостапна. Ве молиме обидетете се повторно.</string>
   <string name="RegistrationActivity_terms_and_privacy">Услови и Политика на приватност</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да Ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се качуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да Ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се прикачуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти за да Ви помогне да се поврзете со пријателите. Вашите контакти се качуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Направивте премногу обиди за регистрација на овој број. Ве молиме обидете се повторно подоцна.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не може да се поврзе со услугата. Ве молиме проверете ја Вашата интернет конекција и обидете се повторно.</string>
@@ -1413,7 +1413,7 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Примена е погрешна порака
 за размена на клучеви!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
-Примена е порака за размена на клучеви за погрешна верзија на протоколот.</string>
+Примена е порака за размена на клучеви за неважечка верзија на протоколот.</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Примена е порака со нов сигурносен број. Допрете за процесирање и приказ.</string>
   <string name="SmsMessageRecord_secure_session_reset">Ја ресетиравте безбедната сесија.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ја ресетираше безбедната сесија.</string>
@@ -1470,7 +1470,7 @@
   <string name="ThreadRecord_view_once_video">Еднократно видливо видео </string>
   <string name="ThreadRecord_view_once_media">Еднократно видлива медија</string>
   <string name="ThreadRecord_this_message_was_deleted">Оваа порака беше избришана.</string>
-  <string name="ThreadRecord_you_deleted_this_message">Вие ја избришавте оваа порака.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Ја избришавте оваа порака.</string>
   <string name="ThreadRecord_s_is_on_signal">%s е на Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Исчезнувачките пораки се исклучени</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за исчезнувачки пораки е поставено на %s.</string>
@@ -1506,7 +1506,7 @@
   <string name="UsernameEditFragment_this_username_is_available">Корисничкото име е достапно.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Корисничките имиња можат да се состојат од а-Ш, 0-9 и долни цртички.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Корисничкото име не може да започне со број.</string>
-  <string name="UsernameEditFragment_username_is_invalid">Корисничкоти име не е валидно.</string>
+  <string name="UsernameEditFragment_username_is_invalid">Корисничкоти име е невалидно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Корисничките имиња мора да бидат помеѓу %1$d и %2$d знаци.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Корисничките имиња на Signal се опционални. Ако одберете да создадете корисничко име другите Signal корисници ќе можат да Ве пронајдат по ова корисничко име и да Ве контактираат без да го знаат Вашиот телефонски број.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
@@ -1521,7 +1521,7 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">Нашиот Signal сигурносен број:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изгледа дека немате апликации преку кои може да споделите.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Во таблата со исечоци не е пронајден сигурносен број за проверка</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете „Камера“.</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувања, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Не можам да го скенирам QR кодот без дозвола за камерата</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Мора да размените пораки за да можете да го видите сигурносниот број на %1$s.</string>
   <!--ViewOnceMessageActivity-->
@@ -1546,8 +1546,8 @@
   <string name="MediaPreviewActivity_you">Вие</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Неподдржан тип на датотека</string>
   <string name="MediaPreviewActivity_draft">Нацрт</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal има потреба од дозвола до складот за да може да зачувува на надворешен склад. Изгледа дека ова е трајно одбиено. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете „Склад“.</string>
-  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Не успеав да зачувам на екстерниот склад без дозвола</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal има потреба од дозвола до складот за да може да зачувува на надворешен склад. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Склад“.</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Не успеав да зачувам на надворешен склад без дозвола</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Избриши порака?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Ова трајно ќе ја избрише оваа порака.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s до %2$s</string>
@@ -1574,14 +1574,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Отворете го Signal за да ги видите скорешните известувања.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
-  <string name="MessageNotifier_reacted_s_to_s">Реакција %1$s на „%2$s“.</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">Реагираше %1$s на Вашето видео.</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">Реагираше %1$s на Вашата слика.</string>
-  <string name="MessageNotifier_reacted_s_to_your_gif">Реагираше %1$s на Вашиот GIF.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">Реагираше %1$s на Вашата датотека.</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">Реагираше %1$s на Вашето аудио.</string>
+  <string name="MessageNotifier_reacted_s_to_s">Реагираше со %1$s на „%2$s“.</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Реагираше со %1$s на Вашето видео.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Реагираше со %1$s на Вашата слика.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Реагираше со %1$s на Вашиот GIF.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Реагираше со %1$s на Вашата датотека.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Реагираше со %1$s на Вашето аудио.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагираше со %1$s на Вашата еднократно видлива медија.</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">Реагираше %1$s на Вашиот стикер.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Реагираше со %1$s на Вашиот стикер.</string>
   <string name="MessageNotifier_this_message_was_deleted">Оваа порака беше избришана.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Дали да исклучам известувања за луѓе што се приклучуваат на Signal? Можете да ги вклучите пак во Signal &gt; Поставувања &gt; Известувања.</string>
   <!--Notification Channels-->
@@ -1608,7 +1608,7 @@
   <string name="SearchToolbar_search">Барај</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Пребарувајте разговори, контакти и пораки</string>
   <!--ShortcutLauncherActivity-->
-  <string name="ShortcutLauncherActivity_invalid_shortcut">Не валидна кратенка</string>
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Невалидна кратенка</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
@@ -1628,7 +1628,7 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">За да одговорите на повикот, дозволете му на Signal пристап до Вашиот микрофон.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">За да одговорите на повикот од %s, дозволете му на Signal пристап до Вашиот микрофонот.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal има потреба од дозвола до микрофонот и камерата за да може да воспоставува повици. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете ги „Микрофон“ и „Камера“.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal има потреба од дозвола до микрофонот и камерата за да може да воспоставува повици. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Микрофон“ и „Камера“.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Одговорено на поврзаниот уред.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Одбиено на поврзаниот уред.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Зафатено на поврзаниот уред.</string>
@@ -1664,7 +1664,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Слика на контакт</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal има потреба од дозвола да пристапи до Вашите контакти за да може да ги прикаже Вашите контакти. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувањата, изберете „Дозволи“ и вклучете „Контакти“.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal има потреба од дозвола до контакти за да може да ги прикаже Вашите контакти. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Контакти“.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Грешка при преземање на контакти, проверете ја Вашата интернет конекција.</string>
   <string name="ContactSelectionListFragment_username_not_found">Корисничкото име не е пронајдено</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" не е корисник на Signal. Ве молиме проверете го корисничкото име и обидете се повторно.</string>
@@ -2269,7 +2269,7 @@
   <string name="PaymentsTransferFragment__check_the_wallet_address">Проверете ја адресата на паричникот на која се обидувате да префрлите и обидете се повторно.</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Не можете да префрлате на адресата на Вашиот Signal паричник. Внесете адреса на паричник од Вашата сметка на поддржана берза.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">За да скенира QR код, на Signal му е потребен пристап до камерата. </string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">На Signal му е потребна дозвола од камерата за да сними QR-код. Одете во поставки, изберете „Дозволи“ и вклучете „Камера“.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal има потреба од дозвола од камерата за да сними QR-код. Одете во поставувања, изберете „Дозволи“ и вклучете „Камера“.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">За да скенира QR код, на Signal му е потребен пристап до камерата. </string>
   <string name="PaymentsTransferFragment__settings">Поставувања</string>
   <!--PaymentsTransferQrScanFragment-->
@@ -2546,7 +2546,7 @@
   <string name="ConversationListFragment_loading">Се вчитува…</string>
   <string name="CallNotificationBuilder_connecting">Поврзува…</string>
   <string name="Permissions_permission_required">Потребна е дозвола</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">На Signal му треба дозвола за SMS за да може да испраќа SMS. Ова е трајно одбиено. Ве молиме продолжете до менито за поставувања на апликациите, изберете „Дозволи“, и вклучете „SMS“. </string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal има потреба од дозвола за SMS за да може да испраќа SMS. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“, и вклучете „SMS“. </string>
   <string name="Permissions_continue">Продолжете</string>
   <string name="Permissions_not_now">Не сега</string>
   <string name="conversation_activity__enable_signal_messages">ОВОЗМОЖИ SIGNAL ПОРАКИ</string>
@@ -2554,7 +2554,7 @@
   <string name="PushDecryptJob_new_locked_message">Нова заклучена порака</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Отклучете за да ги видите пораките што чекаат</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Лозинка за резервната копија</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервните копии ќе бидат зачувани на екстерен склад и шифриран со лозинката подолу. Морате да ја имате оваа лозинка за да ја вратите резервната копија.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервните копии ќе бидат зачувани на надворешен склад и шифрирани со лозинката подолу. Морате да ја имате оваа лозинка за да ја вратите резервната копија.</string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">Мора да ја имате оваа лозинка за да ја вратите резервната копија.</string>
   <string name="backup_enable_dialog__folder">Папка</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ја запишав оваа лозинка. Без неа нема да можам да ја вратам резервната копија.</string>
@@ -2563,13 +2563,13 @@
   <string name="registration_activity__transfer_account">Префрли сметка</string>
   <string name="registration_activity__skip">Прескокни</string>
   <string name="preferences_chats__chat_backups">Резервни копии на разговори</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Направи резервна копија на надворешен склад</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Направи резервна копија на разговори на надворешен склад</string>
   <string name="preferences_chats__transfer_account">Префрли сметка</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Префрли сметка на друг Android уред</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Внесете ја вашата резервна лозинка</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Внесете лозинка за резервна копија</string>
   <string name="RegistrationActivity_restore">Врати</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Не може да се внесат резервни копии од понови верзии на Signal</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">Погрешна лозинка на резервна копија</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Погрешна лозинка за резервна копија</string>
   <string name="RegistrationActivity_checking">Проверувам…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d пораки до сега…</string>
   <string name="RegistrationActivity_restore_from_backup">Врати од резервна копија?</string>
@@ -2791,8 +2791,8 @@
   <string name="GroupsLearnMore_paragraph_2">Застарените групи сѐ уште не можат да бидат надградени во нови групи, но затоа можете да создадете нова група со истите членови се доколку сите ја користат најновата верзија на Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal ќе нуди начин за надградба од застарени групи во иднина.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Секој кој што го има линкот може да ги види името и сликата на групата како и да побара да се приклучи. Споделете го линкот само со луѓе на кои што им верувате.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Секој кој што го има линкот може да ги види името и сликата на групата, како и да побара да се приклучи. Споделете го линкот само со луѓе на кои што им верувате.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Секој кој што го има линкот може да ги види името и сликата на групата и да побара да се приклучи. Споделете го линкот само со луѓе на кои им верувате.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Секој кој што го има линкот може да ги види името и сликата на групата и да се приклучи на групата. Споделете го линкот само со луѓе на кои им верувате.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Сподели преку Signal</string>
   <string name="GroupLinkBottomSheet_copy">Копирај</string>
   <string name="GroupLinkBottomSheet_qr_code">QR код</string>

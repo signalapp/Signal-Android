@@ -1090,7 +1090,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un messaggio da %s non può essere consegnato</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ha cambiato il suo numero di telefono.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Ti piace questa nuova funzionalità? Di\' grazie con un Boost.</string>
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Ti piace questa nuova funzionalità? Ringrazia con un Boost.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal è sostenuto da persone come te. Diventa un sostenitore oggi.</string>
   <!--Group Calling update messages-->
@@ -1121,7 +1121,7 @@
   <string name="MessageRequestBottomView_unblock">Sblocca</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permettere a %1$s di inviarti messaggi e condividere il tuo nome e la tua foto con loro? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permettere a %1$s di inviarti messaggi e condividere il tuo nome e la tua foto con loro? Non riceverai alcun messaggio finché non li sbloccherai.</string>
-  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ricevere aggiornamenti e notizie da %1$s? Non riceverai aggiornamenti finché non lo sbloccherai.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ricevere aggiornamenti e notizie da %1$s? Non riceverai aggiornamenti finché non li sbloccherai.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuare la tua conversazione con questo gruppo e condividere il tuo nome e la tua foto con i suoi membri?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Aggiorna questo gruppo per attivare nuove funzionalità come @menzioni e amministratori. I membri che non hanno condiviso il loro nome o la loro foto in questo gruppo saranno invitati a unirsi.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Questo Gruppo Legacy non può più essere usato perché è troppo grande. La dimensione massima del gruppo è %1$d.</string>
@@ -2362,7 +2362,7 @@
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Salva</string>
   <!--Button to retry sending a message-->
-  <string name="conversation_selection__menu_resend_message">Rinvia</string>
+  <string name="conversation_selection__menu_resend_message">Reinvia</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_selection__menu_multi_select">Seleziona</string>
   <!--conversation_expiring_on-->
