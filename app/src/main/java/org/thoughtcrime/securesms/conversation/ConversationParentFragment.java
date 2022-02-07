@@ -1096,7 +1096,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   public void invalidateOptionsMenu() {
-    if (!isSearchRequested) {
+    if (!isSearchRequested && getActivity() != null) {
       onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
     }
   }
