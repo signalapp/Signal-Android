@@ -101,9 +101,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
   private OnActionSelectedListener         onActionSelectedListener;
   private OnHideListener                   onHideListener;
 
-  private AnimatorSet    revealAnimatorSet = new AnimatorSet();
-  private AnimatorSet    hideAnimatorSet   = new AnimatorSet();
-  private List<Animator> hideAnimators;
+  private AnimatorSet revealAnimatorSet = new AnimatorSet();
+  private AnimatorSet hideAnimatorSet   = new AnimatorSet();
 
   public ConversationReactionOverlay(@NonNull Context context) {
     super(context);
@@ -325,7 +324,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     reactionBarBackgroundY = Math.max(reactionBarBackgroundY, -statusBarHeight);
 
     hideAnimatorSet.end();
-    hideAnimatorSet = newHideAnimatorSet();
     setVisibility(View.VISIBLE);
 
     float scrubberX;
@@ -421,72 +419,11 @@ public final class ConversationReactionOverlay extends FrameLayout {
   private void hideInternal(@Nullable OnHideListener onHideListener) {
     overlayState = OverlayState.HIDDEN;
 
-    int duration = getContext().getResources().getInteger(R.integer.reaction_scrubber_hide_duration);
-
-    List<Animator> hides = new ArrayList<>(hideAnimators);
-
-    ObjectAnimator itemScaleXAnim = new ObjectAnimator();
-    itemScaleXAnim.setProperty(View.SCALE_X);
-    itemScaleXAnim.setFloatValues(1f);
-    itemScaleXAnim.setTarget(conversationItem);
-    itemScaleXAnim.setDuration(duration);
-    hides.add(itemScaleXAnim);
-
-    ObjectAnimator itemScaleYAnim = new ObjectAnimator();
-    itemScaleYAnim.setProperty(View.SCALE_Y);
-    itemScaleYAnim.setFloatValues(1f);
-    itemScaleYAnim.setTarget(conversationItem);
-    itemScaleYAnim.setDuration(duration);
-    hides.add(itemScaleYAnim);
-
-    ObjectAnimator itemXAnim = new ObjectAnimator();
-    itemXAnim.setProperty(View.X);
-    itemXAnim.setFloatValues(selectedConversationModel.getBubbleX());
-    itemXAnim.setTarget(conversationItem);
-    itemXAnim.setDuration(duration);
-    hides.add(itemXAnim);
-
-    ObjectAnimator itemYAnim = new ObjectAnimator();
-    itemYAnim.setProperty(View.Y);
-    itemYAnim.setFloatValues(selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() - statusBarHeight);
-    itemYAnim.setTarget(conversationItem);
-    itemYAnim.setDuration(duration);
-    hides.add(itemYAnim);
-
-    ObjectAnimator toolbarShadeAnim = new ObjectAnimator();
-    toolbarShadeAnim.setProperty(View.ALPHA);
-    toolbarShadeAnim.setFloatValues(0f);
-    toolbarShadeAnim.setTarget(toolbarShade);
-    toolbarShadeAnim.setDuration(duration);
-    hides.add(toolbarShadeAnim);
-
-    ObjectAnimator inputShadeAnim = new ObjectAnimator();
-    inputShadeAnim.setProperty(View.ALPHA);
-    inputShadeAnim.setFloatValues(0f);
-    inputShadeAnim.setTarget(inputShade);
-    inputShadeAnim.setDuration(duration);
-    hides.add(inputShadeAnim);
-
-    if (Build.VERSION.SDK_INT >= 21 && activity != null) {
-      ValueAnimator statusBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalStatusBarColor);
-      statusBarAnim.setDuration(duration);
-      statusBarAnim.addUpdateListener(animation -> {
-        WindowUtil.setStatusBarColor(activity.getWindow(), (int) animation.getAnimatedValue());
-      });
-      hides.add(statusBarAnim);
-
-      ValueAnimator navigationBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalNavigationBarColor);
-      navigationBarAnim.setDuration(duration);
-      navigationBarAnim.addUpdateListener(animation -> {
-        WindowUtil.setNavigationBarColor(activity.getWindow(), (int) animation.getAnimatedValue());
-      });
-      hides.add(navigationBarAnim);
-    }
-
-    hideAnimatorSet.playTogether(hides);
+    AnimatorSet animatorSet = newHideAnimatorSet();
+    hideAnimatorSet = animatorSet;
 
     revealAnimatorSet.end();
-    hideAnimatorSet.start();
+    animatorSet.start();
 
     if (onHideListener != null) {
       onHideListener.startHide();
@@ -496,9 +433,9 @@ public final class ConversationReactionOverlay extends FrameLayout {
       ViewUtil.focusAndShowKeyboard(selectedConversationModel.getFocusedView());
     }
 
-    hideAnimatorSet.addListener(new AnimationCompleteListener() {
+    animatorSet.addListener(new AnimationCompleteListener() {
       @Override public void onAnimationEnd(Animator animation) {
-        hideAnimatorSet.removeListener(this);
+        animatorSet.removeListener(this);
 
         toolbarShade.setVisibility(INVISIBLE);
         inputShade.setVisibility(INVISIBLE);
@@ -839,32 +776,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
     revealAnimatorSet.setInterpolator(INTERPOLATOR);
     revealAnimatorSet.playTogether(reveals);
-
-    hideAnimators = Stream.of(emojiViews)
-                          .mapIndexed((idx, v) -> {
-                            Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_hide);
-                            anim.setTarget(v);
-                            return anim;
-                          })
-                          .toList();
-
-    int hideDuration = getContext().getResources().getInteger(R.integer.reaction_scrubber_hide_duration);
-
-    Animator overlayHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
-    overlayHideAnim.setDuration(hideDuration);
-    hideAnimators.add(overlayHideAnim);
-
-    Animator backgroundHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
-    backgroundHideAnim.setTarget(backgroundView);
-    backgroundHideAnim.setDuration(hideDuration);
-    hideAnimators.add(backgroundHideAnim);
-
-    Animator selectedHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
-    selectedHideAnim.setTarget(selectedView);
-    selectedHideAnim.setDuration(hideDuration);
-    hideAnimators.add(selectedHideAnim);
-
-    hideAnimatorSet = newHideAnimatorSet();
   }
 
   private @NonNull AnimatorSet newHideAnimatorSet() {
@@ -878,7 +789,95 @@ public final class ConversationReactionOverlay extends FrameLayout {
     });
     set.setInterpolator(INTERPOLATOR);
 
+    set.playTogether(newHideAnimators());
+
     return set;
+  }
+
+  private @NonNull List<Animator> newHideAnimators() {
+    int duration = getContext().getResources().getInteger(R.integer.reaction_scrubber_hide_duration);
+
+    List<Animator> animators = new ArrayList<>(Stream.of(emojiViews)
+                                                     .mapIndexed((idx, v) -> {
+                                                       Animator anim = AnimatorInflaterCompat.loadAnimator(getContext(), R.animator.reactions_scrubber_hide);
+                                                       anim.setTarget(v);
+                                                       return anim;
+                                                     })
+                                                     .toList());
+
+    Animator overlayHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
+    overlayHideAnim.setDuration(duration);
+    animators.add(overlayHideAnim);
+
+    Animator backgroundHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
+    backgroundHideAnim.setTarget(backgroundView);
+    backgroundHideAnim.setDuration(duration);
+    animators.add(backgroundHideAnim);
+
+    Animator selectedHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
+    selectedHideAnim.setTarget(selectedView);
+    selectedHideAnim.setDuration(duration);
+    animators.add(selectedHideAnim);
+
+    ObjectAnimator itemScaleXAnim = new ObjectAnimator();
+    itemScaleXAnim.setProperty(View.SCALE_X);
+    itemScaleXAnim.setFloatValues(1f);
+    itemScaleXAnim.setTarget(conversationItem);
+    itemScaleXAnim.setDuration(duration);
+    animators.add(itemScaleXAnim);
+
+    ObjectAnimator itemScaleYAnim = new ObjectAnimator();
+    itemScaleYAnim.setProperty(View.SCALE_Y);
+    itemScaleYAnim.setFloatValues(1f);
+    itemScaleYAnim.setTarget(conversationItem);
+    itemScaleYAnim.setDuration(duration);
+    animators.add(itemScaleYAnim);
+
+    ObjectAnimator itemXAnim = new ObjectAnimator();
+    itemXAnim.setProperty(View.X);
+    itemXAnim.setFloatValues(selectedConversationModel.getBubbleX());
+    itemXAnim.setTarget(conversationItem);
+    itemXAnim.setDuration(duration);
+    animators.add(itemXAnim);
+
+    ObjectAnimator itemYAnim = new ObjectAnimator();
+    itemYAnim.setProperty(View.Y);
+    itemYAnim.setFloatValues(selectedConversationModel.getItemY() + selectedConversationModel.getBubbleY() - statusBarHeight);
+    itemYAnim.setTarget(conversationItem);
+    itemYAnim.setDuration(duration);
+    animators.add(itemYAnim);
+
+    ObjectAnimator toolbarShadeAnim = new ObjectAnimator();
+    toolbarShadeAnim.setProperty(View.ALPHA);
+    toolbarShadeAnim.setFloatValues(0f);
+    toolbarShadeAnim.setTarget(toolbarShade);
+    toolbarShadeAnim.setDuration(duration);
+    animators.add(toolbarShadeAnim);
+
+    ObjectAnimator inputShadeAnim = new ObjectAnimator();
+    inputShadeAnim.setProperty(View.ALPHA);
+    inputShadeAnim.setFloatValues(0f);
+    inputShadeAnim.setTarget(inputShade);
+    inputShadeAnim.setDuration(duration);
+    animators.add(inputShadeAnim);
+
+    if (Build.VERSION.SDK_INT >= 21 && activity != null) {
+      ValueAnimator statusBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalStatusBarColor);
+      statusBarAnim.setDuration(duration);
+      statusBarAnim.addUpdateListener(animation -> {
+        WindowUtil.setStatusBarColor(activity.getWindow(), (int) animation.getAnimatedValue());
+      });
+      animators.add(statusBarAnim);
+
+      ValueAnimator navigationBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalNavigationBarColor);
+      navigationBarAnim.setDuration(duration);
+      navigationBarAnim.addUpdateListener(animation -> {
+        WindowUtil.setNavigationBarColor(activity.getWindow(), (int) animation.getAnimatedValue());
+      });
+      animators.add(navigationBarAnim);
+    }
+
+    return animators;
   }
 
   public interface OnHideListener {

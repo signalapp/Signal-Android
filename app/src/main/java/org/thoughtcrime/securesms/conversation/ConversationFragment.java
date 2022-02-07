@@ -908,7 +908,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     lastSeenDecoration = new LastSeenHeader(getListAdapter(), lastSeen);
-    list.addItemDecoration(lastSeenDecoration);
+    list.addItemDecoration(lastSeenDecoration, 0);
   }
 
   private void handleCopyMessage(final Set<MultiselectPart> multiselectParts) {
