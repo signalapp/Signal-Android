@@ -82,15 +82,6 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
     // endregion
 
-    // region General
-    private fun setHeight(newHeight: Int) {
-        val layoutParams = binding.inputBarLinearLayout.layoutParams as LayoutParams
-        layoutParams.height = newHeight
-        binding.inputBarLinearLayout.layoutParams = layoutParams
-        delegate?.inputBarHeightChanged(newHeight)
-    }
-    // endregion
-
     // region Updating
     override fun inputBarEditTextContentChanged(text: CharSequence) {
         sendButton.isVisible = text.isNotEmpty()
@@ -99,8 +90,6 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
 
     override fun inputBarEditTextHeightChanged(newValue: Int) {
-        val newHeight = max(newValue + 2 * vMargin, minHeight) + binding.inputBarAdditionalContentContainer.height
-        setHeight(newHeight)
     }
 
     override fun commitInputContent(contentUri: Uri) {
@@ -127,40 +116,26 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         quoteView.delegate = this
         binding.inputBarAdditionalContentContainer.addView(quoteView)
         val attachments = (message as? MmsMessageRecord)?.slideDeck
-        // The max content width is the screen width - 2 times the horizontal input bar padding - the
-        // quote view content area's start and end margins. This unfortunately has to be calculated manually
-        // here to get the layout right.
-        val maxContentWidth = (screenWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources) - toPx(30, resources)).roundToInt()
         val sender = if (message.isOutgoing) TextSecurePreferences.getLocalNumber(context)!! else message.individualRecipient.address.serialize()
         quoteView.bind(sender, message.body, attachments,
-            thread, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId, false, glide)
-        // The 6 DP below is the padding the quote view applies to itself, which isn't included in the
-        // intrinsic height calculation.
-        val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight(maxContentWidth) + toPx(6, resources)
-        val newHeight = max(binding.inputBarEditText.height + 2 * vMargin, minHeight) + quoteViewIntrinsicHeight
-        additionalContentHeight = quoteViewIntrinsicHeight
-        setHeight(newHeight)
+            thread, true, message.isOpenGroupInvitation, message.threadId, false, glide)
+        requestLayout()
     }
 
     override fun cancelQuoteDraft() {
         quote = null
         binding.inputBarAdditionalContentContainer.removeAllViews()
-        val newHeight = max(binding.inputBarEditText.height + 2 * vMargin, minHeight)
-        additionalContentHeight = 0
-        setHeight(newHeight)
+        requestLayout()
     }
 
     fun draftLinkPreview() {
         quote = null
-        val linkPreviewDraftHeight = toPx(88, resources)
         binding.inputBarAdditionalContentContainer.removeAllViews()
         val linkPreviewDraftView = LinkPreviewDraftView(context)
         linkPreviewDraftView.delegate = this
         this.linkPreviewDraftView = linkPreviewDraftView
         binding.inputBarAdditionalContentContainer.addView(linkPreviewDraftView)
-        val newHeight = max(binding.inputBarEditText.height + 2 * vMargin, minHeight) + linkPreviewDraftHeight
-        additionalContentHeight = linkPreviewDraftHeight
-        setHeight(newHeight)
+        requestLayout()
     }
 
     fun updateLinkPreviewDraft(glide: GlideRequests, linkPreview: LinkPreview) {
@@ -173,9 +148,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         if (quote != null) { return }
         linkPreview = null
         binding.inputBarAdditionalContentContainer.removeAllViews()
-        val newHeight = max(binding.inputBarEditText.height + 2 * vMargin, minHeight)
-        additionalContentHeight = 0
-        setHeight(newHeight)
+        requestLayout()
     }
 
     private fun showOrHideInputIfNeeded() {

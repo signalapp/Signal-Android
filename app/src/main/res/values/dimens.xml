@@ -125,5 +125,6 @@
     <dimen name="drawable_padding">24dp</dimen>
     <dimen name="normal_padding">16dp</dimen>
     <dimen name="action_item_height">56dp</dimen>
+    <dimen name="conversation_item_quote_width">120dp</dimen>
 
 </resources>

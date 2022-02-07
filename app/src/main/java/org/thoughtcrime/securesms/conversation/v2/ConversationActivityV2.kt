@@ -560,29 +560,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun inputBarHeightChanged(newValue: Int) {
-        @Suppress("NAME_SHADOWING") val newValue = max(newValue, resources.getDimension(R.dimen.input_bar_height).roundToInt())
-        // 36 DP is the exact height of the typing indicator view. It's also exactly 18 * 2, and 18 is the large message
-        // corner radius. This makes 36 DP look "correct" in the context of other messages on the screen.
-        val typingIndicatorHeight = if (binding.typingIndicatorViewContainer.isVisible) toPx(36, resources) else 0
-        // Recycler view
-        val recyclerViewLayoutParams = binding.conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.bottomMargin = newValue + typingIndicatorHeight
-        binding.conversationRecyclerView.layoutParams = recyclerViewLayoutParams
-        // Additional content container
-        val additionalContentContainerLayoutParams = binding.additionalContentContainer.layoutParams as RelativeLayout.LayoutParams
-        additionalContentContainerLayoutParams.bottomMargin = newValue
-        binding.additionalContentContainer.layoutParams = additionalContentContainerLayoutParams
-        // Attachment options
-        val attachmentButtonHeight = binding.inputBar.attachmentButtonsContainerHeight
-        val bottomMargin = (newValue - binding.inputBar.additionalContentHeight - attachmentButtonHeight) / 2
-        val margin = toPx(8, resources)
-        val attachmentOptionsContainerLayoutParams = binding.attachmentOptionsContainer.layoutParams as RelativeLayout.LayoutParams
-        attachmentOptionsContainerLayoutParams.bottomMargin = bottomMargin + attachmentButtonHeight + margin
-        binding.attachmentOptionsContainer.layoutParams = attachmentOptionsContainerLayoutParams
-        // Scroll to bottom button
-        val scrollToBottomButtonLayoutParams = binding.scrollToBottomButton.layoutParams as RelativeLayout.LayoutParams
-        scrollToBottomButtonLayoutParams.bottomMargin = newValue + binding.additionalContentContainer.height + toPx(12, resources)
-        binding.scrollToBottomButton.layoutParams = scrollToBottomButtonLayoutParams
     }
 
     override fun inputBarEditTextContentChanged(newContent: CharSequence) {

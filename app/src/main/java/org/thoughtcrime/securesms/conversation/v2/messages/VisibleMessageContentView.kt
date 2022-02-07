@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.text.Spannable
+import android.text.StaticLayout
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.URLSpan
@@ -12,6 +13,7 @@ import android.text.util.Linkify
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
@@ -41,7 +43,7 @@ import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.UiModeUtilities
 import org.thoughtcrime.securesms.util.getColorWithID
 import org.thoughtcrime.securesms.util.toPx
-import java.util.Locale
+import java.util.*
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
@@ -89,9 +91,6 @@ class VisibleMessageContentView : LinearLayout {
         }
 
         binding.quoteView.isVisible = message is MmsMessageRecord && message.quote != null
-        val quoteLayoutParams = binding.quoteView.layoutParams
-        quoteLayoutParams.width = if (mediaThumbnailMessage) 0 else ViewGroup.LayoutParams.WRAP_CONTENT
-        binding.quoteView.layoutParams = quoteLayoutParams
 
         binding.linkPreviewView.isVisible = message is MmsMessageRecord && message.linkPreviews.isNotEmpty()
 
@@ -120,7 +119,7 @@ class VisibleMessageContentView : LinearLayout {
                 quote.text
             }
             binding.quoteView.bind(quote.author.toString(), quoteText, quote.attachment, thread,
-                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId,
+                message.isOutgoing, message.isOpenGroupInvitation, message.threadId,
                 quote.isOriginalMissing, glide)
             onContentClick.add { event ->
                 val r = Rect()
@@ -192,8 +191,21 @@ class VisibleMessageContentView : LinearLayout {
 
         // set it to use constraints if not only a text message, otherwise wrap content to whatever width it wants
         val params = binding.bodyTextView.layoutParams
-        params.width = if (onlyBodyMessage) ViewGroup.LayoutParams.WRAP_CONTENT else 0
+        params.width = if (onlyBodyMessage || binding.barrierViewsGone()) ViewGroup.LayoutParams.WRAP_CONTENT else 0
         binding.bodyTextView.layoutParams = params
+        binding.bodyTextView.maxWidth = maxWidth
+
+        val bodyWidth = with (binding.bodyTextView) {
+            StaticLayout.getDesiredWidth(text, paint).roundToInt()
+        }
+
+        val quote = (message as? MmsMessageRecord)?.quote
+        val quoteLayoutParams = binding.quoteView.layoutParams
+        quoteLayoutParams.width =
+            if (mediaThumbnailMessage || quote == null) 0
+            else binding.quoteView.calculateWidth(quote, bodyWidth, maxWidth, thread)
+
+        binding.quoteView.layoutParams = quoteLayoutParams
 
         if (message.body.isNotEmpty() && !hideBody) {
             val color = getTextColor(context, message)
@@ -208,6 +220,9 @@ class VisibleMessageContentView : LinearLayout {
             }
         }
     }
+
+    private fun ViewVisibleMessageContentBinding.barrierViewsGone(): Boolean =
+        listOf<View>(albumThumbnailView, linkPreviewView, voiceMessageView, quoteView).none { it.isVisible }
 
     private fun getBackground(isOutgoing: Boolean, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean): Drawable {
         val isSingleMessage = (isStartOfMessageCluster && isEndOfMessageCluster)

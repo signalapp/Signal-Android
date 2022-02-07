@@ -145,13 +145,13 @@ class VisibleMessageView : LinearLayout {
         binding.messageTimestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), message.timestamp)
         // Margins
         val startPadding = if (isGroupThread) {
-            if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
+            if (message.isOutgoing) resources.getDimensionPixelSize(R.dimen.very_large_spacing) else toPx(50,resources)
         } else {
-            if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt()
-            else resources.getDimension(R.dimen.medium_spacing).toInt()
+            if (message.isOutgoing) resources.getDimensionPixelSize(R.dimen.very_large_spacing)
+            else resources.getDimensionPixelSize(R.dimen.medium_spacing)
         }
-        val endPadding = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
-            else resources.getDimension(R.dimen.very_large_spacing).toInt()
+        val endPadding = if (message.isOutgoing) resources.getDimensionPixelSize(R.dimen.medium_spacing)
+            else resources.getDimensionPixelSize(R.dimen.very_large_spacing)
         binding.messageContentContainer.setPaddingRelative(startPadding, 0, endPadding, 0)
         // Set inter-message spacing
         setMessageSpacing(isStartOfMessageCluster, isEndOfMessageCluster)
