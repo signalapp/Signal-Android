@@ -24,6 +24,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -163,10 +164,11 @@ public class MediaRepository {
     Map<String, FolderData> folders            = new HashMap<>();
 
     String[] projection = new String[] { Images.Media._ID, Images.Media.BUCKET_ID, Images.Media.BUCKET_DISPLAY_NAME, Images.Media.DATE_MODIFIED };
-    String   selection  = isNotPending();
+    String   selection  = isNotPending() + " AND " + Images.Media.MIME_TYPE + " NOT LIKE ?";
+    String[] args       = SqlUtil.buildArgs("%image/svg%");
     String   sortBy     = Images.Media.BUCKET_DISPLAY_NAME + " COLLATE NOCASE ASC, " + Images.Media.DATE_MODIFIED + " DESC";
 
-    try (Cursor cursor = context.getContentResolver().query(contentUri, projection, selection, null, sortBy)) {
+    try (Cursor cursor = context.getContentResolver().query(contentUri, projection, selection, args, sortBy)) {
       while (cursor != null && cursor.moveToNext()) {
         long       rowId     = cursor.getLong(cursor.getColumnIndexOrThrow(projection[0]));
         Uri        thumbnail = ContentUris.withAppendedId(contentUri, rowId);
@@ -222,8 +224,8 @@ public class MediaRepository {
   @WorkerThread
   private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId, @NonNull Uri contentUri, boolean isImage) {
     List<Media> media         = new LinkedList<>();
-    String      selection     = Images.Media.BUCKET_ID + " = ? AND " + isNotPending();
-    String[]    selectionArgs = new String[] { bucketId };
+    String      selection     = Images.Media.BUCKET_ID + " = ? AND " + isNotPending() + " AND " + Images.Media.MIME_TYPE + " NOT LIKE ?";
+    String[]    selectionArgs = new String[] { bucketId, "%image/svg%" };
     String      sortBy        = Images.Media.DATE_MODIFIED + " DESC";
 
     String[] projection;
@@ -235,8 +237,8 @@ public class MediaRepository {
     }
 
     if (Media.ALL_MEDIA_BUCKET_ID.equals(bucketId)) {
-      selection     = isNotPending();
-      selectionArgs = null;
+      selection     = isNotPending() + " AND " + Images.Media.MIME_TYPE + " NOT LIKE ?";
+      selectionArgs = SqlUtil.buildArgs("%image/svg%");
     }
 
     try (Cursor cursor = context.getContentResolver().query(contentUri, projection, selection, selectionArgs, sortBy)) {
