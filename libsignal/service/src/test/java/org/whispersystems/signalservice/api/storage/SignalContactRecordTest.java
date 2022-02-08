@@ -52,7 +52,7 @@ public class SignalContactRecordTest {
                                                             String e164,
                                                             String givenName)
   {
-    return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(aci, e164))
+    return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(aci, e164), null)
                                   .setGivenName(givenName);
   }
 }

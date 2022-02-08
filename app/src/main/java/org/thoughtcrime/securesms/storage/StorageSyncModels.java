@@ -97,8 +97,7 @@ public final class StorageSyncModels {
 
     ACI aci = recipient.getAci() != null ? recipient.getAci() : ACI.UNKNOWN;
 
-    return new SignalContactRecord.Builder(rawStorageId, new SignalServiceAddress(aci, recipient.getE164()))
-                                  .setUnknownFields(recipient.getSyncExtras().getStorageProto())
+    return new SignalContactRecord.Builder(rawStorageId, new SignalServiceAddress(aci, recipient.getE164()), recipient.getSyncExtras().getStorageProto())
                                   .setProfileKey(recipient.getProfileKey())
                                   .setGivenName(recipient.getProfileName().getGivenName())
                                   .setFamilyName(recipient.getProfileName().getFamilyName())
@@ -123,8 +122,7 @@ public final class StorageSyncModels {
       throw new AssertionError("Group is not V1");
     }
 
-    return new SignalGroupV1Record.Builder(rawStorageId, groupId.getDecodedId())
-                                  .setUnknownFields(recipient.getSyncExtras().getStorageProto())
+    return new SignalGroupV1Record.Builder(rawStorageId, groupId.getDecodedId(), recipient.getSyncExtras().getStorageProto())
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing())
                                   .setArchived(recipient.getSyncExtras().isArchived())
@@ -148,8 +146,7 @@ public final class StorageSyncModels {
       throw new AssertionError("Group master key not on recipient record");
     }
 
-    return new SignalGroupV2Record.Builder(rawStorageId, groupMasterKey)
-                                  .setUnknownFields(recipient.getSyncExtras().getStorageProto())
+    return new SignalGroupV2Record.Builder(rawStorageId, groupMasterKey, recipient.getSyncExtras().getStorageProto())
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing())
                                   .setArchived(recipient.getSyncExtras().isArchived())
