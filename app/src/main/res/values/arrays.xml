@@ -26,6 +26,7 @@
 <!-- eu --><item>Euskara</item>
 <!-- tl --><item>Filipino</item>
 <!-- fr --><item>Français</item>
+<!-- fy --><item>Frysk</item>
 <!-- ga --><item>Gaeilge</item>
 <!-- gl --><item>Galego</item>
 <!-- el --><item>Greek ελληνικά</item>
@@ -107,6 +108,7 @@
       <item>eu</item>
       <item>tl</item>
       <item>fr</item>
+      <item>fy</item>
       <item>ga</item>
       <item>gl</item>
       <item>el</item>
