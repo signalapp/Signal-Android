@@ -87,6 +87,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlemmer kan legge deg til denne gruppen igjen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Du vil være i stand til å sende meldinger og ringe hverandre og navn og bilde ditt vil bli delt med dem.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokkerte personer vil ikke kunne ringe deg eller sende deg meldinger.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">avblokker %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokker</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokker og forlat</string>
@@ -1013,6 +1015,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte sikkerhetsnummer for %s som ikke bekreftet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte sikkerhetsnummer for %s som ikke bekreftet fra en annen enhet</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En melding fra %s kunne ikke leveres</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startet en gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
@@ -1609,6 +1613,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i denne gruppen. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_view">Vis</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Utløpstiden for meldinger blir satt til %1$s når du melder dem.</string>
+  <!--Update item button text to show to boost a feature-->
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spill av … Pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -2152,20 +2158,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_callable_secure__menu_call">Signal-samtale</string>
   <string name="conversation_callable_secure__menu_video">Signal videosamtale</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopier</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Slett</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Videresend</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Send melding på nytt</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Svar</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Velg flere</string>
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2184,6 +2176,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_selection__menu_reply">Svar</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Lagre</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Send på nytt</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Velg</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Inviter</string>
@@ -3116,5 +3112,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">Ikke nå</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

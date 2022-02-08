@@ -92,6 +92,10 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členovia skupiny vás budú môcť do tejto skupiny znovu pridať.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete si môcť navzájom písať a volať a budú vidieť vaše meno a fotku.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudú môcť volať ani posielať správy.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokovať prijímanie aktualizácií a noviniek Signal.</string>
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Pokračovať v získavaní aktualizácií a noviniek Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokovať %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokovať</string>
   <string name="BlockUnblockDialog_block_and_leave">Zablokovať a odísť</string>
@@ -1207,6 +1211,10 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bezpečnostné číslo s %s ste označili ako neoverené z iného zariadenia</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Správu od %s sa nepodarilo doručiť</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s si zmenili svoje telefónne číslo.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Páči sa vám táto nová funkcia? Poďakujte pomocou funkcie Podporiť.</string>
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal poháňajú ľudia ako vy. Staňte sa podporovateľom ešte dnes.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil(a) skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je v skupinovom hovore · %2$s</string>
@@ -1239,6 +1247,7 @@
   <string name="MessageRequestBottomView_unblock">Odblokovať</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Povoliť používateľovi %1$s, aby vám posielal správy a zdieľať s ním vaše meno a fotku? Kým s tým nebudete súhlasiť, nebude vedieť, že ste jeho správu videli.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Povoliť používateľovi %1$s, aby vám posielal správy a zdieľať s ním vaše meno a fotku? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Chcete dostávať aktualizácie a novinky od %1$s? Nebudete dostávať žiadne aktualizácie, kým ich neodblokujete.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovať v chate v tejto skupine a zdieľať vaše meno a fotku s jej členmi?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Modernizovaním tejto skupiny aktivujete nové funkcie ako @spomenutia a administrátori. Členovia, ktorí nezdieľali svoje meno alebo fotku, budú do tejto skupiny pozvaní.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Táto Zastaraná skupina sa nemôže ďalej používať, pretože je príliš veľká. Maximálna veľkosť skupiny je %1$d.</string>
@@ -1881,6 +1890,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">V tejto skupine nie sú žiadne kontakty. Žiadosti starostlivo skontrolujte.</string>
   <string name="ConversationUpdateItem_view">Zobraziť</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Keď odošlete správu, čas zmiznutia správy bude nastavený na %1$s.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Podporiť Signal</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Staňte sa Sustainerom</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Prehrať … Pozastaviť</string>
   <string name="audio_view__download_accessibility_description">Stiahnuť</string>
@@ -2498,21 +2511,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_callable_secure__menu_call">Signal hovor</string>
   <string name="conversation_callable_secure__menu_video">Videohovor Signal</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Info</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopírovať</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Odstrániť</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Preposlať</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Odoslať správu znovu</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Odpovedať</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Vyberte viaceré</string>
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d vybraný</item>
@@ -2538,6 +2536,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_selection__menu_reply">Odpovedať</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Uložiť</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Poslať znovu</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Vybrať</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozvať</string>
@@ -3805,5 +3807,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="NotificationProfilesMegaphone__not_now">Teraz nie</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Výber sa nepodarilo otvoriť.</string>
+  <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Poznámky k vydaniu Signal  &amp; Novinky</string>
   <!--EOF-->
 </resources>

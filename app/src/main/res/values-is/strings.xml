@@ -90,6 +90,10 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Hópmeðlimir geta bætt þér í þennan hóp aftur.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Þið munuð geta sent hverju/m/ri öðru skilaboð og hringt, og nafn og mynd þín mun vera deild með þessum aðila.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Útilokaðir einstaklingar munu ekki geta hringt í þig eða sent þér skilaboð.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Loka á uppfærslur og fréttir frá Signal</string>
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Halda áfram að fá uppfærslur og fréttir frá Signal</string>
   <string name="BlockUnblockDialog_unblock_s">Opna á %1$s?</string>
   <string name="BlockUnblockDialog_block">Loka á</string>
   <string name="BlockUnblockDialog_block_and_leave">Útiloka og yfirgefa</string>
@@ -1085,6 +1089,10 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Þú merktir öryggisnúmer þitt með %s sem ekki sannreynt á öðru tæki</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Skilaboð frá %s var ekki hægt að afhenda</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s skipti um símanúmer.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Líkar þér við þennan eiginleika? Þakkaðu fyrir þig með hvatningu.</string>
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal er keyrt áfram af fólki eins og þér. Sýndu stuðning þinn í verki!</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hóf hópsímtal · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er í hópsímtalinu · %2$s</string>
@@ -1113,6 +1121,7 @@
   <string name="MessageRequestBottomView_unblock">Opna á</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Viltu leyfa %1$s að senda þér skilaboð og deila nafninu þínu og mynd með honum? Hann mun ekki vita hvort þú hafir séð skilaboðin hans fyrr en þú samþykkir þetta.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Viltu leyfa %1$s að senda þér skilaboð og deila nafninu þínu og mynd með viðkomandi notanda? Hann mun ekki vita hvort þú hafir séð skilaboðin hans fyrr en þú opnar á hann.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Fá uppfærslur og fréttir frá %1$s? Þú færð engar uppfærslur fyrr en þú aflæsir þeim.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Viltu halda áfram samtalinu við þennan hóp og deila nafninu þínu og mynd með meðlimum hans?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppfærðu þennan hóp til að virkja nýja eiginleika á borð við @mentions og hópstjóra. Meðlimir sem ekki hafa deilt nafninu sínu eða mynd í hópnum fá boð um að taka þátt.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Þennan hóp af eldri gerð er ekki hægt að nota því hann er of stór. Hámarksstærð hópa er %1$d.</string>
@@ -1723,6 +1732,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Engir tengiliðir í þessum hópi. Yfirfarðu beiðnir vandlega.</string>
   <string name="ConversationUpdateItem_view">Skoða</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Niðurtalning sjálfeyðandi skilaboða er tímastillt á %1$s þegar þú sendir viðkomandi aðila skilaboð.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal-hvatning</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Gerstu stuðningsaðili</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spila … bíða</string>
   <string name="audio_view__download_accessibility_description">Sækja</string>
@@ -2324,21 +2337,6 @@
   <string name="conversation_callable_secure__menu_call">Signal-símtal</string>
   <string name="conversation_callable_secure__menu_video">Signal-myndsímtal</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Upplýsingar</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Afrita</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Eyða</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Áfram</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Endursenda skilaboð</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Svara</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Velja mörg</string>
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d valin</item>
@@ -2362,6 +2360,10 @@
   <string name="conversation_selection__menu_reply">Svara</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Vista</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Endursenda</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Velja</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Bjóða</string>
@@ -2504,7 +2506,7 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">Rangt PIN-númer. Prófaðu aftur.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Aðgangur læstur</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Til að vernda einkalíf þitt og öryggi aðgangsins þíns höfum við lokað honum. 
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Til að vernda einkalíf þitt og öryggi aðgangsins þíns höfum við lokað honum.
 
 Eftir %1$d daga án virkni, geturðu endurskráð þig án PIN-númersins þíns. Öllu efni á aðgangnum þínum verður eytt.</string>
   <string name="AccountLockedFragment__next">Næsta</string>
@@ -2522,7 +2524,7 @@ Eftir %1$d daga án virkni, geturðu endurskráð þig án PIN-númersins þíns
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Skráning á Signal - Þarf hjálp vegna PIN-númers fyrir Android (útg.1 PIN)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Skráning á Signal - Þarf hjálp vegna PIN-númers fyrir Android (útg.2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Til að gæta fyllsta öryggis, þá er engin leið til að endurheimta 
+    <item quantity="one">Til að gæta fyllsta öryggis, þá er engin leið til að endurheimta
 PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað þig með SMS eftir %1$d dag án virkni. Í því tilfelli verður aðgangurinn þinn verður tæmdur og öllu efni á honum eytt.</item>
     <item quantity="other">Til að gæta fyllsta öryggis, þá er engin leið til að endurheimta PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað þig með SMS eftir %1$d daga án virkni. Í því tilfelli verður aðgangurinn þinn verður tæmdur og öllu efni á honum eytt.</item>
   </plurals>
@@ -2661,7 +2663,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ýttu á auðkennismyndina þína efst til vinstri til að opna stillingar</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_account">Ýttu á \"Notandaaðgangur\"</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Ýttu á \'Notandaaðgangur\'</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Ýttu á \"Yfirfæra aðgang\" og svo á \"Halda áfram\" á báðum tækjunum</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -3600,5 +3602,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="NotificationProfilesMegaphone__not_now">Ekki núna</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Mistókst að opna veljara.</string>
+  <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Útgáfuupplýsingar og fréttir frá Signal</string>
   <!--EOF-->
 </resources>

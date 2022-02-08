@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -13,22 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.TextViewCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
-import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.ContextUtil;
+import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
-
-import java.util.Objects;
 
 public class ConversationTitleView extends RelativeLayout {
 
@@ -89,9 +86,9 @@ public class ConversationTitleView extends RelativeLayout {
     Drawable endDrawable   = null;
 
     if (recipient != null && recipient.isBlocked()) {
-      startDrawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_block_white_18dp);
+      startDrawable = ContextUtil.requireDrawable(getContext(), R.drawable.ic_block_white_18dp);
     } else if (recipient != null && recipient.isMuted()) {
-      startDrawable = Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.ic_bell_disabled_16));
+      startDrawable = ContextUtil.requireDrawable(getContext(), R.drawable.ic_bell_disabled_16);
       startDrawable.setBounds(0, 0, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18));
     }
 
@@ -99,8 +96,19 @@ public class ConversationTitleView extends RelativeLayout {
       endDrawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_profile_circle_outline_16);
     }
 
+    if (startDrawable != null) {
+      startDrawable = DrawableUtil.tint(startDrawable, ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_80));
+    }
+
+    if (endDrawable != null) {
+      endDrawable = DrawableUtil.tint(endDrawable, ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_80));
+    }
+
+    if (recipient != null && recipient.isReleaseNotes()) {
+      endDrawable = ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_24);
+    }
+
     title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, null, endDrawable, null);
-    TextViewCompat.setCompoundDrawableTintList(title, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_80)));
 
     if (recipient != null) {
       this.avatar.setAvatar(glideRequests, recipient, false);

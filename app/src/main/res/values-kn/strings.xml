@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ಗುಂಪಿನ ಸದಸ್ಯರು ನಿಮ್ಮನ್ನು ಪುನಃ ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ನೀವು ಪರಸ್ಪರ ಸಂದೇಶ ಕಳುಹಿಸಲು ಮತ್ತು ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ನಿರ್ಬಂಧಿಸಿದ ಜನರಿಗೆ ನಿಮಗೆ ಕರೆ ಮಾಡಲು ಅಥವಾ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">%1$sನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
   <string name="BlockUnblockDialog_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="BlockUnblockDialog_block_and_leave">ನಿರ್ಬಂಧಿಸಿ ಹಾಗು ಹೊರಹೋಗಿ</string>
@@ -1023,6 +1025,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ನೀವು ದೃಢೀಕರಿಸದೇ ಇರುವ %s ನೊಂದಿಗೆ ಗುರುತಿಸಿದ್ದೀರಿ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ಮತ್ತೊಂದು ಸಾಧನದಿಂದ ದೃಢೀಕರಿಸದೇ ಇರುವ %s ನೊಂದಿಗೆ ಗುರುತಿಸಿದ್ದೀರಿ</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s ಅವರ ಮೆಸೇಜ್ ಅನ್ನು ಡೆಲಿವರಿ ಮಾಡಲಾಗದು</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್ ಆರಂಭಿಸಿದ್ದಾರೆ · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %2$s</string>
@@ -1619,6 +1623,8 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ಈ ಗ್ರೂಪ್‌ನಲ್ಲಿ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ. ವಿನಂತಿಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ.</string>
   <string name="ConversationUpdateItem_view">ತೋರಿಸು</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">ನೀವು ಅವರಿಗೆ ಮೆಸೇಜ್ ಮಾಡಿದಾಗ ಮರೆಯಾಗುವ ಮೆಸೇಜ್‌ ಸಮಯವನ್ನು %1$s ಗೆ ನಿಗದಿಸಲಾಗುತ್ತದೆ.</string>
+  <!--Update item button text to show to boost a feature-->
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">ಪ್ಲೇ… ವಿರಾಮ</string>
   <string name="audio_view__download_accessibility_description">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
@@ -2198,20 +2204,6 @@
   <string name="conversation_callable_secure__menu_call">Signal ಕರೆ</string>
   <string name="conversation_callable_secure__menu_video">Signal ವೀಡಿಯೊ ಕರೆ</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">ನಕಲಿಸು</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">ಅಳಿಸು</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">ಫಾರ್ವರ್ಡ್</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">ಸಂದೇಶ ಪುನಃ ಕಳುಹಿಸಿ</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">ಉತ್ತರಿಸಿ</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">ಬಹು ಆಯ್ಕೆ ಮಾಡಿ </string>
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2230,6 +2222,10 @@
   <string name="conversation_selection__menu_reply">ಉತ್ತರಿಸಿ</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">ಉಳಿಸಿ</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">ಪುನಃ ಕಳುಹಿಸಿ</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">ಆಯ್ಕೆ ಮಾಡಿ</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ಆಹ್ವಾನ</string>
@@ -3244,5 +3240,6 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">ಈಗಲ್ಲ</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

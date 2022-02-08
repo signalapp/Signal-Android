@@ -1376,14 +1376,14 @@
   <string name="conversation_callable_secure__menu_call">Signal کال</string>
   <string name="conversation_callable_secure__menu_video">Signal ویڈیو کال</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">سنیہے دیاں تفصیلاں</string>
-  <string name="conversation_context__menu_copy_text">متن کاپی کرو</string>
-  <string name="conversation_context__menu_delete_message"> سنیہا مٹا دیو</string>
-  <string name="conversation_context__menu_forward_message"> سنیہا اگے گھلو</string>
-  <string name="conversation_context__menu_resend_message"> سنیہا فیر گھلو</string>
-  <string name="conversation_context__menu_reply_to_message"> سنیہے دا جواب دیو</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">سنیہے دیاں تفصیلاں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">متن کاپی کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message"> سنیہا مٹا دیو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message"> سنیہا اگے گھلو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message"> سنیہا فیر گھلو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message"> سنیہے دا جواب دیو</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select"> اک توں ودھ چنو</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select"> اک توں ودھ چنو</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment"> اٹیچمنٹ محفوظ کرو</string>
   <!--conversation_expiring_off-->

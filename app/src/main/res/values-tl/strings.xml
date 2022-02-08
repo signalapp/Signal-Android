@@ -1450,14 +1450,14 @@
   <string name="conversation_callable_secure__menu_call">Tawag sa Signal</string>
   <string name="conversation_callable_secure__menu_video">Video call sa Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Mga detalye ng mensahe</string>
-  <string name="conversation_context__menu_copy_text">Kopyahin ang text</string>
-  <string name="conversation_context__menu_delete_message">Burahin ang mensahe</string>
-  <string name="conversation_context__menu_forward_message">Ipasa ang mensahe</string>
-  <string name="conversation_context__menu_resend_message">Muling ipadala ang mensahe</string>
-  <string name="conversation_context__menu_reply_to_message">Tugon sa mensahe</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Mga detalye ng mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kopyahin ang text</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Burahin ang mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Ipasa ang mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Muling ipadala ang mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Tugon sa mensahe</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">Pumili ng marami</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Pumili ng marami</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">I-save ang kalakip</string>
   <!--conversation_expiring_off-->

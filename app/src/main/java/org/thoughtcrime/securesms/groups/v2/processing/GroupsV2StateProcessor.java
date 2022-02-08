@@ -199,12 +199,7 @@ public final class GroupsV2StateProcessor {
 
       if (inputGroupState == null) {
         try {
-          if (FeatureFlags.groupsV2UpdatePaging()) {
-            return updateLocalGroupFromServerPaged(revision, localState, timestamp);
-          } else {
-            boolean latestRevisionOnly = revision == LATEST && (localState == null || localState.getRevision() == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION);
-            inputGroupState = queryServer(localState, latestRevisionOnly);
-          }
+          return updateLocalGroupFromServerPaged(revision, localState, timestamp);
         } catch (GroupNotAMemberException e) {
           if (localState != null && signedGroupChange != null) {
             try {
@@ -386,7 +381,8 @@ public final class GroupsV2StateProcessor {
         throws IOException, GroupNotAMemberException, GroupDoesNotExistException
     {
       try {
-        return groupsV2Api.getGroupHistory(groupSecretParams, revision, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireAci(), groupSecretParams))
+        return groupsV2Api.getGroupHistoryPage(groupSecretParams, revision, groupsV2Authorization.getAuthorizationForToday(Recipient.self().requireAci(), groupSecretParams))
+                          .getResults()
                           .get(0)
                           .getGroup()
                           .orNull();
@@ -566,58 +562,6 @@ public final class GroupsV2StateProcessor {
         for (Job job : RetrieveProfileJob.forRecipients(updated)) {
           jobManager.runSynchronously(job, 5000);
         }
-      }
-    }
-
-    private @NonNull GlobalGroupState queryServer(@Nullable DecryptedGroup localState, boolean latestOnly)
-        throws IOException, GroupNotAMemberException
-    {
-      ACI                       selfAci = Recipient.self().requireAci();
-      DecryptedGroup            latestServerGroup;
-      List<ServerGroupLogEntry> history;
-
-      try {
-        latestServerGroup = groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(selfAci, groupSecretParams));
-      } catch (NotInGroupException | GroupNotFoundException e) {
-        throw new GroupNotAMemberException(e);
-      } catch (VerificationFailedException | InvalidGroupStateException e) {
-        throw new IOException(e);
-      }
-
-      if (latestOnly || !GroupProtoUtil.isMember(selfAci.uuid(), latestServerGroup.getMembersList())) {
-        history = Collections.singletonList(new ServerGroupLogEntry(latestServerGroup, null));
-      } else {
-        int revisionWeWereAdded = GroupProtoUtil.findRevisionWeWereAdded(latestServerGroup, selfAci.uuid());
-        int logsNeededFrom      = localState != null ? Math.max(localState.getRevision(), revisionWeWereAdded) : revisionWeWereAdded;
-
-        history = getFullMemberHistory(selfAci, logsNeededFrom);
-      }
-
-      return new GlobalGroupState(localState, history);
-    }
-
-    private List<ServerGroupLogEntry> getFullMemberHistory(@NonNull ACI selfAci, int logsNeededFromRevision) throws IOException {
-      try {
-        Collection<DecryptedGroupHistoryEntry> groupStatesFromRevision = groupsV2Api.getGroupHistory(groupSecretParams, logsNeededFromRevision, groupsV2Authorization.getAuthorizationForToday(selfAci, groupSecretParams));
-        ArrayList<ServerGroupLogEntry>         history                 = new ArrayList<>(groupStatesFromRevision.size());
-        boolean                                ignoreServerChanges     = SignalStore.internalValues().gv2IgnoreServerChanges();
-
-        if (ignoreServerChanges) {
-          Log.w(TAG, "Server change logs are ignored by setting");
-        }
-
-        for (DecryptedGroupHistoryEntry entry : groupStatesFromRevision) {
-          DecryptedGroup       group  = entry.getGroup().orNull();
-          DecryptedGroupChange change = ignoreServerChanges ? null : entry.getChange().orNull();
-
-          if (group != null || change != null) {
-            history.add(new ServerGroupLogEntry(group, change));
-          }
-        }
-
-        return history;
-      } catch (InvalidGroupStateException | VerificationFailedException e) {
-        throw new IOException(e);
       }
     }
 

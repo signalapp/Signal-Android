@@ -2,11 +2,7 @@ package org.thoughtcrime.securesms.messages;
 
 import android.app.Application;
 import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.IBinder;
 
 import androidx.annotation.NonNull;
@@ -21,13 +17,13 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobs.PushDecryptDrainedJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.IncomingMessageProcessor.Processor;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -42,22 +38,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * The application-level manager of our websocket connection.
- *
+ * <p>
  * This class is responsible for opening/closing the websocket based on the app's state and observing new inbound messages received on the websocket.
  */
 public class IncomingMessageObserver {
 
   private static final String TAG = Log.tag(IncomingMessageObserver.class);
 
-  public  static final  int FOREGROUND_ID            = 313399;
-  private static final long REQUEST_TIMEOUT_MINUTES  = 1;
+  public static final  int  FOREGROUND_ID           = 313399;
+  private static final long REQUEST_TIMEOUT_MINUTES = 1;
 
   private static final AtomicInteger INSTANCE_COUNT = new AtomicInteger(0);
 
-  private final Application                context;
-  private final SignalServiceNetworkAccess networkAccess;
-  private final List<Runnable>             decryptionDrainedListeners;
-  private final BroadcastReceiver          connectionReceiver;
+  private final Application                               context;
+  private final SignalServiceNetworkAccess                networkAccess;
+  private final List<Runnable>                            decryptionDrainedListeners;
+  private final NetworkConstraintObserver.NetworkListener networkListener;
 
   private boolean appVisible;
 
@@ -92,22 +88,18 @@ public class IncomingMessageObserver {
       }
     });
 
-    connectionReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        synchronized (IncomingMessageObserver.this) {
-          if (!NetworkConstraint.isMet(context)) {
-            Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.");
-            networkDrained    = false;
-            decryptionDrained = false;
-            disconnect();
-          }
-          IncomingMessageObserver.this.notifyAll();
-        }
-      }
-    };
+    networkListener = this::networkChanged;
+    NetworkConstraintObserver.getInstance(this.context).addListener(networkListener);
+  }
 
-    context.registerReceiver(connectionReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+  private synchronized void networkChanged() {
+    if (!NetworkConstraint.isMet(context)) {
+      Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.");
+      networkDrained    = false;
+      decryptionDrained = false;
+      disconnect();
+    }
+    IncomingMessageObserver.this.notifyAll();
   }
 
   public synchronized void notifyRegistrationChanged() {
@@ -160,9 +152,9 @@ public class IncomingMessageObserver {
     Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Censored: %s, Registered: %s, Proxy: %s",
                              hasNetwork, appVisible, fcmEnabled, networkAccess.isCensored(), registered, hasProxy));
 
-    return registered                  &&
+    return registered &&
            (appVisible || !fcmEnabled) &&
-           hasNetwork                  &&
+           hasNetwork &&
            !networkAccess.isCensored();
   }
 
@@ -177,7 +169,7 @@ public class IncomingMessageObserver {
   public void terminateAsync() {
     INSTANCE_COUNT.decrementAndGet();
 
-    context.unregisterReceiver(connectionReceiver);
+    NetworkConstraintObserver.getInstance(context).removeListener(networkListener);
 
     SignalExecutors.BOUNDED.execute(() -> {
       Log.w(TAG, "Beginning termination.");

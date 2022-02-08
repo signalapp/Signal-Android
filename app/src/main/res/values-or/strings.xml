@@ -2069,14 +2069,14 @@
   <string name="conversation_callable_secure__menu_call">Signal କଲ୍</string>
   <string name="conversation_callable_secure__menu_video">Signal ଭିଡିଓ କଲ୍…</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">ବାର୍ତ୍ତା ବିବରଣୀ</string>
-  <string name="conversation_context__menu_copy_text">ପାଠ୍ୟର ନକଲ ବନାନ୍ତୁ</string>
-  <string name="conversation_context__menu_delete_message">ବାର୍ତ୍ତା ବିଲୋପ କରନ୍ତୁ</string>
-  <string name="conversation_context__menu_forward_message">ବାର୍ତ୍ତା ଅଗ୍ରଗାମୀ କରନ୍ତୁ</string>
-  <string name="conversation_context__menu_resend_message">ବାର୍ତ୍ତା ପୁଣି ପଠାନ୍ତୁ</string>
-  <string name="conversation_context__menu_reply_to_message">ବାର୍ତ୍ତାର ଉତ୍ତର ଦିଅ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">ବାର୍ତ୍ତା ବିବରଣୀ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">ପାଠ୍ୟର ନକଲ ବନାନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">ବାର୍ତ୍ତା ବିଲୋପ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">ବାର୍ତ୍ତା ଅଗ୍ରଗାମୀ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">ବାର୍ତ୍ତା ପୁଣି ପଠାନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">ବାର୍ତ୍ତାର ଉତ୍ତର ଦିଅ</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">ଏକାଧିକ ଚୟନ କରନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">ଏକାଧିକ ଚୟନ କରନ୍ତୁ</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ସଲଗ୍ନକ ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <!--conversation_expiring_off-->

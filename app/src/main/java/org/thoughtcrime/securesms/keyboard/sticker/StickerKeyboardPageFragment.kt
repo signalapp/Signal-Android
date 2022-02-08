@@ -87,11 +87,14 @@ class StickerKeyboardPageFragment :
 
     view.findViewById<KeyboardPageSearchView>(R.id.sticker_keyboard_search_text).callbacks = object : KeyboardPageSearchView.Callbacks {
       override fun onClicked() {
-        StickerSearchDialogFragment.show(requireActivity().supportFragmentManager)
+        findListener<Callback>()!!.openStickerSearch()
       }
     }
 
-    view.findViewById<View>(R.id.sticker_search).setOnClickListener { StickerSearchDialogFragment.show(requireActivity().supportFragmentManager) }
+    view.findViewById<View>(R.id.sticker_search).setOnClickListener {
+      findListener<Callback>()!!.openStickerSearch()
+    }
+
     view.findViewById<View>(R.id.sticker_manage).setOnClickListener { findListener<StickerEventListener>()?.onStickerManagementClicked() }
 
     ApplicationDependencies.getDatabaseObserver().registerStickerObserver(this)
@@ -236,5 +239,9 @@ class StickerKeyboardPageFragment :
         viewModel.selectPack((item.get() as KeyboardStickerListAdapter.HasPackId).packId)
       }
     }
+  }
+
+  interface Callback {
+    fun openStickerSearch()
   }
 }

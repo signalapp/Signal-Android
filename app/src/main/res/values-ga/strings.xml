@@ -1010,12 +1010,12 @@ a shonrú</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Glao Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Sonraí na teachtaireachta</string>
-  <string name="conversation_context__menu_copy_text">Macasamhlaigh an téacs</string>
-  <string name="conversation_context__menu_delete_message">Scrios an teachtaireacht</string>
-  <string name="conversation_context__menu_forward_message">Cuir an teachtaireacht ar aghaidh</string>
-  <string name="conversation_context__menu_resend_message">Athsheol an teachtaireacht</string>
-  <string name="conversation_context__menu_reply_to_message">Freagair an teachtaireacht</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Sonraí na teachtaireachta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Macasamhlaigh an téacs</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Scrios an teachtaireacht</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Cuir an teachtaireacht ar aghaidh</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Athsheol an teachtaireacht</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Freagair an teachtaireacht</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Cuir an ceangaltán i dtaisce</string>
   <!--conversation_expiring_off-->

@@ -171,7 +171,7 @@ public class StickerDatabase extends Database {
     String         selection = PACK_ID + " = ? AND " + COVER + " = ?";
     String[]       args      = new String[] { packId, "0" };
 
-    return db.query(TABLE_NAME, null, selection, args, null, null, null);
+    return db.query(TABLE_NAME, null, selection, args, null, null, STICKER_ID + " ASC");
   }
 
   public @Nullable Cursor getRecentlyUsedStickers(int limit) {

@@ -89,6 +89,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">အဖွဲ့ဝင်များသည် သင့်ကို ဤအဖွဲ့ထဲသို့ ထပ်မံထည့်သွင်းနိုင်သည်။</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">တစ်ဦးနှင့်တစ်ဦး မက်ဆေ့ချ်ပို့ခြင်း၊ ဖုန်းခေါ်ဆိုခြင်း ပြုလုပ်နိုင်ပြီး သင်၏အမည်နှင့်ဓာတ်ပုံကို သူတို့နှင့်အတူ မျှဝေမည်။</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ဘလော့ထားသော လူများသည် သင့်ကိုဖုန်းခေါ်ဆိုခြင်း၊ မက်ဆေ့ချ်ပို့ခြင်း မပြုလုပ်နိုင်ပါ။</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">%1$s ကို ဘလော့ဖြည်မည်လား?</string>
   <string name="BlockUnblockDialog_block">ဘလော့မည်</string>
   <string name="BlockUnblockDialog_block_and_leave">ဘလော့ပြီး ထွက်မည်</string>
@@ -946,6 +948,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်အား အခြားဖုန်း/ကွန်ပျူတာမှ အတည်ပြုထားသည်။</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်များမှာ အတည်မပြုရသေးပါ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">သင်နှင့် %s တို့၏ လုံခြုံရေးနံပါတ်အား အခြားဖုန်း/ကွန်ပျူတာမှ အတည်ပြုမထားပါ။</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှု စခဲ့ပါသည် · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှုထဲ၌ ရှိပါသည် · %2$s</string>
@@ -1515,6 +1519,8 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">တူညီသော အဖွဲ့များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">၎င်းအဖွဲ့ထဲတွင် အဆက်အသွယ်များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
   <string name="ConversationUpdateItem_view">ကြည့်မယ်</string>
+  <!--Update item button text to show to boost a feature-->
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">ဖွင့်မယ် … ခေတ္တရပ်မယ်</string>
   <string name="audio_view__download_accessibility_description">ကူးဆွဲသည်</string>
@@ -2074,21 +2080,6 @@
   <string name="conversation_callable_secure__menu_call">Signal ဖုန်းခေါ်ဆိုမှု</string>
   <string name="conversation_callable_secure__menu_video">Signal ဗီဒီယိုခေါ်ဆိုမှု</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">အချက်အလက် </string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">ကူးမည်</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">ဖျက်မယ်</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">ထပ်ဆင့် ပေးပို့မယ်</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">မက်ဆေ့ချ် ပြန်ပို့မယ်</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">စာပြန်မည်</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">မျိုးစုံရွေးချယ်မယ်</string>
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2108,6 +2099,9 @@
   <string name="conversation_selection__menu_reply">စာပြန်မည်</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">သိမ်းမယ်</string>
+  <!--Button to retry sending a message-->
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">ရွေးမယ်</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ဖိတ်ခေါ်မယ်</string>
@@ -2988,5 +2982,6 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

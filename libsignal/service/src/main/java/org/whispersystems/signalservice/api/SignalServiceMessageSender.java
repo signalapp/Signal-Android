@@ -148,12 +148,12 @@ public class SignalServiceMessageSender {
 
   private static final int RETRY_COUNT = 4;
 
-  private final PushServiceSocket       socket;
-  private final SignalServiceDataStore  store;
-  private final SignalSessionLock       sessionLock;
-  private final SignalServiceAddress    localAddress;
-  private final int                     localDeviceId;
-  private final Optional<EventListener> eventListener;
+  private final PushServiceSocket             socket;
+  private final SignalServiceAccountDataStore store;
+  private final SignalSessionLock             sessionLock;
+  private final SignalServiceAddress          localAddress;
+  private final int                           localDeviceId;
+  private final Optional<EventListener>       eventListener;
 
   private final AttachmentService attachmentService;
   private final MessagingService  messagingService;
@@ -174,7 +174,7 @@ public class SignalServiceMessageSender {
                                     boolean automaticNetworkRetry)
   {
     this.socket            = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
-    this.store             = store;
+    this.store             = store.aci();
     this.sessionLock       = sessionLock;
     this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
     this.localDeviceId     = credentialsProvider.getDeviceId();
@@ -609,7 +609,8 @@ public class SignalServiceMessageSender {
   }
 
   public ResumableUploadSpec getResumableUploadSpec() throws IOException {
-    AttachmentV3UploadAttributes       v3UploadAttributes = null;
+    long                         start              = System.currentTimeMillis();
+    AttachmentV3UploadAttributes v3UploadAttributes = null;
 
     Log.d(TAG, "Using pipe to retrieve attachment upload attributes...");
     try {
@@ -620,12 +621,20 @@ public class SignalServiceMessageSender {
       Log.w(TAG, "Failed to retrieve attachment upload attributes using pipe. Falling back...");
     }
 
+    long webSocket = System.currentTimeMillis() - start;
+
     if (v3UploadAttributes == null) {
       Log.d(TAG, "Not using pipe to retrieve attachment upload attributes...");
       v3UploadAttributes = socket.getAttachmentV3UploadAttributes();
     }
 
-    return socket.getResumableUploadSpec(v3UploadAttributes);
+    long                rest = System.currentTimeMillis() - start;
+    ResumableUploadSpec spec = socket.getResumableUploadSpec(v3UploadAttributes);
+    long                end  = System.currentTimeMillis() - start;
+
+    Log.d(TAG, "[getResumableUploadSpec] webSocket: " + webSocket + " rest: " + rest + " end: " + end);
+
+    return spec;
   }
 
   private SignalServiceAttachmentPointer uploadAttachmentV3(SignalServiceAttachmentStream attachment, byte[] attachmentKey, PushAttachmentData attachmentData) throws IOException {
@@ -1968,7 +1977,7 @@ public class SignalServiceMessageSender {
     }
 
     for (int deviceId : deviceIds) {
-      if (store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
+      if (deviceId == SignalServiceAddress.DEFAULT_DEVICE_ID || store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
         messages.add(getEncryptedMessage(socket, recipient, unidentifiedAccess, deviceId, plaintext));
       }
     }

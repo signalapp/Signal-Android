@@ -11,4 +11,8 @@ import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseExc
  */
 public interface ErrorMapper {
   Throwable parseError(int status, String body, Function<String, String> getHeader) throws MalformedResponseException;
+
+  default Throwable parseError(int status) throws MalformedResponseException {
+    return parseError(status, "", s -> "");
+  }
 }

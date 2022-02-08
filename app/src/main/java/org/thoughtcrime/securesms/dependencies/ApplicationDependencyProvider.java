@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
-import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
 
@@ -14,7 +13,8 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalWebSocket;
@@ -113,10 +114,10 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket) {
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore) {
       return new SignalServiceMessageSender(provideSignalServiceNetworkAccess().getConfiguration(),
                                             new DynamicCredentialsProvider(),
-                                            new SignalProtocolStoreImpl(context),
+                                            protocolStore,
                                             ReentrantSessionLock.INSTANCE,
                                             BuildConfig.SIGNAL_AGENT,
                                             signalWebSocket,
@@ -274,23 +275,13 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull TextSecureIdentityKeyStore provideIdentityStore() {
-    return new TextSecureIdentityKeyStore(context);
-  }
-
-  @Override
-  public @NonNull TextSecureSessionStore provideSessionStore() {
-    return new TextSecureSessionStore(context);
-  }
-
-  @Override
-  public @NonNull TextSecurePreKeyStore providePreKeyStore() {
-    return new TextSecurePreKeyStore(context);
-  }
-
-  @Override
-  public @NonNull SignalSenderKeyStore provideSenderKeyStore() {
-    return new SignalSenderKeyStore(context);
+  public @NonNull SignalServiceDataStoreImpl provideProtocolStore() {
+    SignalServiceAccountDataStoreImpl aci = new SignalServiceAccountDataStoreImpl(context,
+                                                                                  new TextSecurePreKeyStore(context),
+                                                                                  new TextSecureIdentityKeyStore(context),
+                                                                                  new TextSecureSessionStore(context),
+                                                                                  new SignalSenderKeyStore(context));
+    return new SignalServiceDataStoreImpl(context, aci, aci);
   }
 
   @Override

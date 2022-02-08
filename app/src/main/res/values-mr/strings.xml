@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">गट सदस्य आपल्याला पुन्हा या गटात जोडू शकतील.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आपण एकमेकांना संदेश पाठविण्यात आणि कॉल करण्यात सक्षम असाल आणि आपले नाव आणि फोटो त्यांच्यासह सामायिक केला जाईल.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">अवरोधित लोक आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यास सक्षम असणार नाहीत.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">%1$s ला अनब्लॉक करायचे?</string>
   <string name="BlockUnblockDialog_block">अवरोधित करा</string>
   <string name="BlockUnblockDialog_block_and_leave">अवरोधित करा आणि सोडा</string>
@@ -1084,6 +1086,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s सोबत आपण आपला सुरक्षितता नंबर असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s सोबत आपण आपला सुरक्षितता नंबर दुसऱ्या डिव्हाईस वरून असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये  आहे · %2$s</string>
@@ -1720,6 +1724,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">या गटात कुठलेही संपर्क नाहीत. विनंत्यांचे काळजीपूर्वक पुनरावलोकन करा.</string>
   <string name="ConversationUpdateItem_view">बघा</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">आपण त्यांना संदेश पाठवल्यावर हरवणाऱ्या संदेशाची वेळ %1$s वर सेट केली गेली जाईल.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal बूस्ट</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">सस्टेनर बना</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">प्ले करा … विराम द्या</string>
   <string name="audio_view__download_accessibility_description">डाऊनलोड करा</string>
@@ -2321,21 +2329,6 @@
   <string name="conversation_callable_secure__menu_call">Signal कॉल</string>
   <string name="conversation_callable_secure__menu_video">Signal व्हिडिओ कॉल</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">माहिती</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">कॉपी करा</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">हटवा</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">फॉर्वर्ड करा</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">संदेश पुन्हा पाठवा</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">प्रत्युत्तर द्या</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">अनेक निवडा</string>
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d निवडला</item>
@@ -2359,6 +2352,10 @@
   <string name="conversation_selection__menu_reply">प्रत्युत्तर द्या</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">जतन करा</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">पुन्हा पाठवा</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">निवडा</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">आमंत्रित करा</string>
@@ -3593,5 +3590,6 @@
   <string name="NotificationProfilesMegaphone__not_now">आता नाही</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर उघडण्यात अयशस्वी.</string>
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

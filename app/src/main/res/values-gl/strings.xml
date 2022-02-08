@@ -87,6 +87,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Os membros do grupo poderán engadirte de volta.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Poderás enviar mensaxes e facer chamadas e o teu nome e foto compartirase con eles.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">As persoas bloqueadas non poderán chamarte ou enviarche mensaxes.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquear e saír</string>
@@ -1002,6 +1004,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Marcaches como sen verificar o teu número de seguranza con %s </string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Marcaches como sen verificar o teu número de seguranza con %s desde outro dispositivo</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Non se puido entregar a mensaxe de %s</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou unha chamada en grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada en grupo · %2$s</string>
@@ -1600,6 +1604,8 @@
   <string name="ConversationUpdateItem_enable_call_notifications">Activar notificacións de chamadas</string>
   <string name="ConversationUpdateItem_update_contact">Actualizar contacto</string>
   <string name="ConversationUpdateItem_view">Ver</string>
+  <!--Update item button text to show to boost a feature-->
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reproducir … Deter</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -2076,21 +2082,6 @@
   <string name="conversation_callable_secure__menu_call">Chamada de Signal</string>
   <string name="conversation_callable_secure__menu_video">Videochamada Signal</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Información</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Copiar</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Eliminar</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Reenviar</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Reenviar mensaxe</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Responder</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Selección múltiple</string>
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2110,6 +2101,10 @@
   <string name="conversation_selection__menu_reply">Responder</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Gardar</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Reenviar</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Seleccionar</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Convidar</string>
@@ -2984,5 +2979,6 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">Agora non</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

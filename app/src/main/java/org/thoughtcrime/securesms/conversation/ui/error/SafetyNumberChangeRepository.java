@@ -68,7 +68,7 @@ final class SafetyNumberChangeRepository {
 
     List<Recipient> recipients = Stream.of(recipientIds).map(Recipient::resolved).toList();
 
-    List<ChangedRecipient> changedRecipients = Stream.of(ApplicationDependencies.getIdentityStore().getIdentityRecords(recipients).getIdentityRecords())
+    List<ChangedRecipient> changedRecipients = Stream.of(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getIdentityRecords())
                                                      .map(record -> new ChangedRecipient(Recipient.resolved(record.getRecipientId()), record))
                                                      .toList();
 
@@ -96,7 +96,7 @@ final class SafetyNumberChangeRepository {
 
   @WorkerThread
   private TrustAndVerifyResult trustOrVerifyChangedRecipientsInternal(@NonNull List<ChangedRecipient> changedRecipients) {
-    TextSecureIdentityKeyStore identityStore = ApplicationDependencies.getIdentityStore();
+    TextSecureIdentityKeyStore identityStore = ApplicationDependencies.getProtocolStore().aci().identities();
 
     try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       for (ChangedRecipient changedRecipient : changedRecipients) {
@@ -104,9 +104,9 @@ final class SafetyNumberChangeRepository {
 
         if (changedRecipient.isUnverified()) {
           Log.d(TAG, "Setting " + identityRecord.getRecipientId() + " as verified");
-          ApplicationDependencies.getIdentityStore().setVerified(identityRecord.getRecipientId(),
-                                                                 identityRecord.getIdentityKey(),
-                                                                 IdentityDatabase.VerifiedStatus.DEFAULT);
+          ApplicationDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
+                                                                                    identityRecord.getIdentityKey(),
+                                                                                    IdentityDatabase.VerifiedStatus.DEFAULT);
         } else {
           Log.d(TAG, "Setting " + identityRecord.getRecipientId() + " as approved");
           identityStore.setApproval(identityRecord.getRecipientId(), true);
@@ -129,7 +129,7 @@ final class SafetyNumberChangeRepository {
         SignalProtocolAddress mismatchAddress = new SignalProtocolAddress(changedRecipient.getRecipient().requireServiceId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
 
         Log.d(TAG, "Saving identity for: " + changedRecipient.getRecipient().getId() + " " + changedRecipient.getIdentityRecord().getIdentityKey().hashCode());
-        TextSecureIdentityKeyStore.SaveResult result = ApplicationDependencies.getIdentityStore().saveIdentity(mismatchAddress, changedRecipient.getIdentityRecord().getIdentityKey(), true);
+        TextSecureIdentityKeyStore.SaveResult result = ApplicationDependencies.getProtocolStore().aci().identities().saveIdentity(mismatchAddress, changedRecipient.getIdentityRecord().getIdentityKey(), true);
 
         Log.d(TAG, "Saving identity result: " + result);
         if (result == TextSecureIdentityKeyStore.SaveResult.NO_CHANGE) {

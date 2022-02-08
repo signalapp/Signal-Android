@@ -16,13 +16,11 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.MediaItem;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversation.ClipProjectionDrawable;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
@@ -41,10 +39,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable, Colorizable {
   private final TextView               sentDate;
@@ -248,6 +243,11 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   @Override
   public boolean canPlayContent() {
     return conversationItem.canPlayContent();
+  }
+
+  @Override
+  public boolean shouldProjectContent() {
+    return conversationItem.shouldProjectContent();
   }
 
   @Override

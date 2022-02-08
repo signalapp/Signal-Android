@@ -102,7 +102,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
           else -> VerifiedStatus.DEFAULT
         }
 
-        ApplicationDependencies.getIdentityStore().saveIdentityWithoutSideEffects(
+        ApplicationDependencies.getProtocolStore().aci().identities().saveIdentityWithoutSideEffects(
           recipient.id,
           contact.verified.get().identityKey,
           verifiedStatus,

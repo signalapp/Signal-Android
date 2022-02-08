@@ -6,16 +6,39 @@
     android:layout_width="0dp"
     android:layout_height="0dp"
     app:layout_constraintTop_toTopOf="@+id/status_bar_guideline"
-    app:layout_constraintBottom_toBottomOf="@+id/navigation_bar_guideline"
     app:layout_constraintStart_toStartOf="@+id/parent_start_guideline"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="@+id/parent_end_guideline"
     android:elevation="1000dp"
     android:visibility="gone"
     tools:visibility="visible">
 
-    <include
-        android:id="@+id/conversation_reaction_toolbar"
-        layout="@layout/conversation_reaction_long_press_toolbar" />
+    <Space
+        android:id="@+id/dropdown_anchor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        tools:ignore="RtlHardcoded" />
+
+    <FrameLayout
+        android:id="@+id/toolbar_shade"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/reactions_screen_light_shade_color"
+        android:foreground="@color/reactions_screen_dark_shade_color" />
+
+    <FrameLayout
+        android:id="@+id/input_shade"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:background="@color/reactions_screen_light_shade_color"
+        android:foreground="@color/reactions_screen_dark_shade_color" />
+
+    <View
+        android:id="@+id/conversation_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <View
         android:id="@+id/conversation_reaction_scrubber_background"

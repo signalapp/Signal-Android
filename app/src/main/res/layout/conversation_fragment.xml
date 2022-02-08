@@ -27,14 +27,13 @@
         android:overScrollMode="ifContentScrolls"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <FrameLayout
         android:id="@+id/reactions_shade"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/reactions_screen_shade_color"
-        android:visibility="gone"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintTop_toBottomOf="@android:id/list" />
+        android:background="@color/reactions_screen_light_shade_color"
+        android:foreground="@color/reactions_screen_dark_shade_color"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/scroll_date_header"

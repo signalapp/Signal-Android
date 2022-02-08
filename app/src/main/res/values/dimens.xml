@@ -149,9 +149,7 @@
     <dimen name="contact_selection_item_height">@dimen/selection_item_header_height</dimen>
 
     <dimen name="conversation_reaction_scrubber_height">136dp</dimen>
-    <dimen name="conversation_reaction_scrubber_distance">25dp</dimen>
     <dimen name="conversation_reaction_touch_deadzone_size">40dp</dimen>
-    <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_top">136dp</dimen>
     <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_bottom">30dp</dimen>
     <dimen name="conversation_reaction_scrub_vertical_translation">25dp</dimen>
     <dimen name="conversation_reaction_scrub_horizontal_margin">16dp</dimen>

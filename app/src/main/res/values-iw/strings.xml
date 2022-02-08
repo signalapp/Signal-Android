@@ -92,6 +92,10 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">חברי קבוצה יוכלו להוסיף אותך שוב אל קבוצה זו.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">תוכלו להתכתב ולהתקשר אחד לשני, והשם והתמונה שלכם ישותפו עם הצד השני.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">אנשים חסומים לא יוכלו להתקשר אליך או לשלוח לך הודעות.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">חסום קבלת עדכונים וחדשות של Signal.</string>
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">המשך קבלת עדכונים וחדשות של Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">לשחרר חסימה של %1$s?</string>
   <string name="BlockUnblockDialog_block">חסום</string>
   <string name="BlockUnblockDialog_block_and_leave">חסום ועזוב</string>
@@ -1207,6 +1211,10 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא ממכשיר אחר</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">הודעה מאת %s לא יכלה להימסר</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s שינה/שינתה את המספר שלו/שלה.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">אוהב את המאפיין החדש הזה? אמור תודה עם תמריץ.</string>
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal ממונע על ידי אנשים כמוך. הפוך אל מחזיק היום.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s התחיל/ה שיחה קבוצתית · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s בשיחה הקבוצתית · %2$s</string>
@@ -1239,6 +1247,7 @@
   <string name="MessageRequestBottomView_unblock">שחרר חסימה</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">לאפשר אל %1$s לשלוח אליך הודעות? הצד השני לא יידע שראית את ההודעות שלו עד שלא תאשר.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">לאפשר אל %1$s לשלוח אליך הודעות ולשתף את השם והתמונה שלך איתו/איתה? לא תקבל הודעות כלשהן עד שתשחרר חסימה שלו/שלה.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">האם לקבל עדכונים וחדשות מאת %1$s? לא תקבל עדכונים כלשהם עד שלא תבטל חסימה שלו/שלה.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">להמשיך את השיחה שלך עם קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">שדרג קבוצה זו כדי להפעיל מאפיינים חדשים כמו @אזכורים ומנהלנים. חברי קבוצה שלא שיתפו את השם או התמונה שלהם בקבוצה זו יוזמנו להצטרף.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">קבוצה מיושנת זו אינה יכולה עוד להיות בשימוש מאחר שהיא גדולה מדי. גודל הקבוצה המרבי הוא %1$d.</string>
@@ -1882,6 +1891,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">אין אנשי קשר בקבוצה הזאת. סקור בקשות בזהירות.</string>
   <string name="ConversationUpdateItem_view">הצג</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">הזמן של ההודעות הנעלמות יוגדר אל %1$s כאשר אתה מתכתב עם הצד השני.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">תמריץ Signal</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">הפוך אל מחזיק</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -2499,21 +2512,6 @@
   <string name="conversation_callable_secure__menu_call">שיחת Signal</string>
   <string name="conversation_callable_secure__menu_video">שיחת וידאו של Signal</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">מידע</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">העתק</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">מחק</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">העבר הלאה</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">שלח מחדש הודעה</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">השב</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">בחר רבים</string>
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d נבחר</item>
@@ -2539,6 +2537,10 @@
   <string name="conversation_selection__menu_reply">השב</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">שמור</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">שלח מחדש</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">בחר</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">הזמן</string>
@@ -3806,5 +3808,7 @@
   <string name="NotificationProfilesMegaphone__not_now">לא עכשיו</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">נכשל בפתיחת בורר.</string>
+  <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">הערות שחרור וחדשות של Signal</string>
   <!--EOF-->
 </resources>

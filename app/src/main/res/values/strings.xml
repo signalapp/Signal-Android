@@ -114,6 +114,10 @@
     <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Group members will be able to add you to this group again.</string>
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">You will be able to message and call each other and your name and photo will be shared with them.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blocked people won\'t be able to call you or send you messages.</string>
+    <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Block getting Signal updates and news.</string>
+    <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Resume getting Signal updates and news.</string>
     <string name="BlockUnblockDialog_unblock_s">Unblock %1$s?</string>
     <string name="BlockUnblockDialog_block">Block</string>
     <string name="BlockUnblockDialog_block_and_leave">Block and Leave</string>
@@ -1253,6 +1257,10 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">You marked your safety number with %s unverified from another device</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">A message from %s couldn\'t be delivered</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s changed their phone number.</string>
+    <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
+    <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Like this new feature? Say thanks with a Boost.</string>
+    <!-- Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one -->
+    <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal is powered by people like you. Become a sustainer today.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
@@ -1287,6 +1295,7 @@
     <string name="MessageRequestBottomView_unblock">Unblock</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Let %1$s message you and share your name and photo with them? They won\'t know you\'ve seen their message until you accept.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Let %1$s message you and share your name and photo with them? You won\'t receive any messages until you unblock them.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Get updates and news from %1$s? You won\'t receive any updates until you unblock them.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continue your conversation with this group and share your name and photo with its members?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Upgrade this group to activate new features like @mentions and admins. Members who have not shared their name or photo in this group will be invited to join.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">This Legacy Group can no longer be used because it is too large. The maximum group size is %1$d.</string>
@@ -2007,6 +2016,10 @@
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">No contacts in this group. Review requests carefully.</string>
     <string name="ConversationUpdateItem_view">View</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">The disappearing message time will be set to %1$s when you message them.</string>
+    <!-- Update item button text to show to boost a feature -->
+    <string name="ConversationUpdateItem_signal_boost">Signal Boost</string>
+    <!-- Update item button text to show to become a sustainer in the release notes channel -->
+    <string name="ConversationUpdateItem_become_a_sustainer">Become a Sustainer</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -2775,22 +2788,6 @@
     <string name="conversation_callable_secure__menu_video">Signal video call</string>
 
     <!-- conversation_context -->
-    <!-- Button to view detailed information for a message -->
-    <string name="conversation_context__menu_message_details">Info</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
-    <string name="conversation_context__menu_copy_text">Copy</string>
-    <!-- Button to delete a message -->
-    <string name="conversation_context__menu_delete_message">Delete</string>
-    <!-- Button to forward a message to another person or group chat -->
-    <string name="conversation_context__menu_forward_message">Forward</string>
-    <!-- Button to retry sending a message -->
-    <string name="conversation_context__menu_resend_message">Resend message</string>
-    <!-- Button to reply to a message -->
-    <string name="conversation_context__menu_reply_to_message">Reply</string>
-
-    <!-- conversation_context_reaction -->
-    <!-- Button to select a message and enter selection mode -->
-    <string name="conversation_context__reaction_multi_select">Select multiple</string>
 
     <!-- Heading which shows how many messages are currently selected -->
     <plurals name="conversation_context__s_selected">
@@ -2818,6 +2815,10 @@
     <string name="conversation_selection__menu_reply">Reply</string>
     <!-- Button to save a message attachment (image, file etc.) -->
     <string name="conversation_selection__menu_save">Save</string>
+    <!-- Button to retry sending a message -->
+    <string name="conversation_selection__menu_resend_message">Resend</string>
+    <!-- Button to select a message and enter selection mode -->
+    <string name="conversation_selection__menu_multi_select">Select</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4239,6 +4240,9 @@
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+
+    <!-- Description shown for the Signal Release Notes channel -->
+    <string name="ReleaseNotes__signal_release_notes_and_news">Signal Release Notes &amp; News</string>
 
     <!-- EOF -->
 

@@ -664,6 +664,22 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
+  /**
+   * Only call once to create initial release channel recipient.
+   */
+  fun insertReleaseChannelRecipient(): RecipientId {
+    val values = ContentValues().apply {
+      put(AVATAR_COLOR, AvatarColor.random().serialize())
+    }
+
+    val id = writableDatabase.insert(TABLE_NAME, null, values)
+    if (id < 0) {
+      throw AssertionError("Failed to insert recipient!")
+    } else {
+      return GetOrInsertResult(RecipientId.from(id), true).recipientId
+    }
+  }
+
   fun getBlocked(): Cursor {
     return readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$BLOCKED = 1", null, null, null, null)
   }
@@ -789,7 +805,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   fun applyStorageSyncContactUpdate(update: StorageRecordUpdate<SignalContactRecord>) {
     val db = writableDatabase
-    val identityStore = ApplicationDependencies.getIdentityStore()
+    val identityStore = ApplicationDependencies.getProtocolStore().aci().identities()
     val values = getValuesForStorageContact(update.new, false)
 
     try {
@@ -1000,8 +1016,14 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * @return All storage IDs for ContactRecords, excluding the ones that need to be deleted.
    */
   fun getContactStorageSyncIdsMap(): Map<RecipientId, StorageId> {
-    val query = "$STORAGE_SERVICE_ID NOT NULL AND $ACI_COLUMN NOT NULL AND $ID != ? AND $GROUP_TYPE != ?"
-    val args = SqlUtil.buildArgs(Recipient.self().id, GroupType.SIGNAL_V2.id.toString())
+    val query = """
+      $STORAGE_SERVICE_ID NOT NULL AND (
+        ($GROUP_TYPE = ? AND $ACI_COLUMN NOT NULL AND $ID != ?)
+        OR
+        $GROUP_TYPE IN (?)
+      )
+    """.trimIndent()
+    val args = SqlUtil.buildArgs(GroupType.NONE.id, Recipient.self().id, GroupType.SIGNAL_V1.id)
     val out: MutableMap<RecipientId, StorageId> = HashMap()
 
     readableDatabase.query(TABLE_NAME, arrayOf(ID, STORAGE_SERVICE_ID, GROUP_TYPE), query, args, null, null, null).use { cursor ->
@@ -2525,7 +2547,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val e164Record = getRecord(byE164)
 
     // Identities
-    ApplicationDependencies.getIdentityStore().delete(e164Record.e164!!)
+    ApplicationDependencies.getProtocolStore().aci().identities().delete(e164Record.e164!!)
 
     // Group Receipts
     val groupReceiptValues = ContentValues()
@@ -2984,7 +3006,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       "ο" -> "\u038C\u039F\u03BF\u03CC\u1F40-\u1F45\u1F48-\u1F4D\u1F78\u1F79\u1FF8\u1FF9"
       "σ" -> "\u03A3\u03C2\u03C3"
       "ς" -> "\u03A3\u03C2\u03C3"
-      "υ" -> "\u038E\u03A5\u03AB\u03C5\u03CB\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F\u1F7A\u1F7B\u1FE0-\u1FE3\u1FE6-\u1FEB"
+      "υ" -> "\u038E\u03A5\u03AB\u03C5\u03CB\u03CD\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F\u1F7A\u1F7B\u1FE0-\u1FE3\u1FE6-\u1FEB"
       "ω" -> "\u038F\u03A9\u03C9\u03CE\u1F60-\u1F6F\u1F7C\u1F7D\u1FA0-\u1FAF\u1FF2-\u1FF4\u1FF6\u1FF7\u1FFA-\u1FFC"
       else -> ""
     }

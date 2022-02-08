@@ -89,6 +89,11 @@ final class GiphyMp4ViewHolder extends MappingViewHolder<GiphyImage> implements 
     return true;
   }
 
+  @Override
+  public boolean shouldProjectContent() {
+    return true;
+  }
+
   private void loadPlaceholderImage(@NonNull GiphyImage giphyImage) {
     GlideApp.with(itemView)
             .load(new ChunkedImageUrl(giphyImage.getStillUrl()))

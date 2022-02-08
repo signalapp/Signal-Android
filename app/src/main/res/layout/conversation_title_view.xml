@@ -13,7 +13,8 @@
         android:transitionName="avatar"
         android:id="@+id/contact_photo_container"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp">
 
         <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
@@ -21,7 +22,6 @@
             android:layout_height="36dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
             android:clickable="true"
             android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
             android:cropToPadding="true"
@@ -56,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
             android:drawablePadding="3dp"
-            android:drawableTint="@color/signal_inverse_transparent_80"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"

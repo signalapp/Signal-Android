@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گروپ ممبران آپ کو دوبارہ اس گروپ میں شامل کرسکیں گے۔</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">آپ ایک دوسرے کو پیغام دینے اور کال کرنے کے قابل ہو جائیں گے اور آپ کے نام اور تصویر ان کے ساتھ شیئر کی جائے گی۔</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">مسدود افراد آپ کو کال کرنے یا پیغامات بھیجنے کے اہل نہیں ہوں گے۔</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">%1$s کو غیر مسدود کریں؟</string>
   <string name="BlockUnblockDialog_block">بلاک</string>
   <string name="BlockUnblockDialog_block_and_leave">مسدود اور چھوڑو</string>
@@ -1023,6 +1025,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">آپ نے غیر تصدیق شدہ اپنے حفاظتی نمبر کو %s کے ساتھ نشان لگایا</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">آپ نے دوسری ڈیوائس سے غیر تصدیق شدہ اپنے حفاظتی نمبر کو %sکے ساتھ نشان لگایا</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s کا پیغام نہیں پہنچایا جاسکا</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s نے ایک گروپ کال شروع کی.%2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s گروپ کال میں ہے ·%2$s</string>
@@ -1617,6 +1621,8 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">اس گروپ میں کوئی رابطہ نہیں ہے۔ درخواستوں کا بغور جائزہ لیں۔</string>
   <string name="ConversationUpdateItem_view">دیکھیں</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">غائب ہونے والے میسج ٹائم کا وقت%1$s پر رکھا جائے گا جب آپ انہیں میسج کریں گے۔</string>
+  <!--Update item button text to show to boost a feature-->
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">چلائیں ۔۔۔ روکیں</string>
   <string name="audio_view__download_accessibility_description">ڈاؤن لوڈ کریں</string>
@@ -2196,20 +2202,6 @@
   <string name="conversation_callable_secure__menu_call">Signal کال</string>
   <string name="conversation_callable_secure__menu_video">Signal ویڈیو کال</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">کاپی کریں</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">حذف کریں</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">آگے</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">پیغام دوبارہ بھیجیں</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">جواب دیں</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">متعدد منتخب کریں</string>
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2228,6 +2220,10 @@
   <string name="conversation_selection__menu_reply">جواب دیں</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">محفوظ کریں</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">دوبارہ بھیجیں</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">منتخب کریں</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">مدعو کریں</string>
@@ -3234,5 +3230,6 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">ابھی نہیں</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

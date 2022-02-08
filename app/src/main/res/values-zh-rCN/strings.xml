@@ -89,6 +89,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">组成员将能够再次将您添加到此组。</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您将能与之通话和发消息，同时分享您的昵称和头像。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">被屏蔽的用户无法向你发起通话或给你发送消息。</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">解除屏蔽%1$s?</string>
   <string name="BlockUnblockDialog_block">屏蔽</string>
   <string name="BlockUnblockDialog_block_and_leave">屏蔽并离开</string>
@@ -962,6 +964,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">已将您与 %s 的安全码标记为未验证</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">已在另一设备上将您与 %s 的安全码标记为未验证</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">来自 %s 消息无法送到</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s发起了群组通话  · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群通话中 · %2$s</string>
@@ -1549,6 +1553,8 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">该群组无联系人。请仔细审查请求。</string>
   <string name="ConversationUpdateItem_view">查看</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">在您向他们发送消息时，限时消息时间将设置为 %1$s。</string>
+  <!--Update item button text to show to boost a feature-->
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
@@ -2120,21 +2126,6 @@
   <string name="conversation_callable_secure__menu_call">Signal 呼叫</string>
   <string name="conversation_callable_secure__menu_video">Signal 视频通话</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">信息</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">复制</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">删除</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">转发</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">重新发送信息</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">回复</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">多选</string>
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2154,6 +2145,10 @@
   <string name="conversation_selection__menu_reply">回复</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">保存</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">重新发送</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">选择</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀请</string>
@@ -3144,5 +3139,6 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">稍后再说</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

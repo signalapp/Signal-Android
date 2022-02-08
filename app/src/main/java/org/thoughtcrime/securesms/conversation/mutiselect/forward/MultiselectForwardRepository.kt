@@ -30,7 +30,7 @@ class MultiselectForwardRepository(context: Context) {
   fun checkForBadIdentityRecords(shareContacts: List<ShareContact>, consumer: Consumer<List<IdentityRecord>>) {
     SignalExecutors.BOUNDED.execute {
       val recipients: List<Recipient> = shareContacts.map { Recipient.resolved(it.recipientId.get()) }
-      val identityRecordList: IdentityRecordList = ApplicationDependencies.getIdentityStore().getIdentityRecords(recipients)
+      val identityRecordList: IdentityRecordList = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients)
 
       consumer.accept(identityRecordList.untrustedRecords)
     }

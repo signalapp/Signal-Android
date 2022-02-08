@@ -42,7 +42,7 @@ public class SmsCharacterCalculator extends CharacterCalculator {
       charactersSpent     = messageBody.length();
       charactersRemaining = 1000;
     } catch (RuntimeException e) {
-      if (e.getCause() instanceof SecurityException) {
+      if (e instanceof SecurityException || e.getCause() instanceof SecurityException) {
         Log.e(TAG, "Security Exception", e);
         messagesSpent       = 1;
         charactersSpent     = messageBody.length();

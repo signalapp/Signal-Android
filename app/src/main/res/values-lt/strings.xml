@@ -92,6 +92,10 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupės nariai galės ir vėl jus pridėti į šią grupę.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Galėsite vieni kitiems rašyti žinutes bei skambinti, o jūsų vardas ir nuotrauka bus bendrinami su naudotoju.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Užblokuoti žmonės negalės jums skambinti ar siųsti žinučių.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokuoti ir nebegauti Signal atnaujinimų bei naujienų.</string>
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Pratęsti ir gauti Signal atnaujinimus bei naujienas.</string>
   <string name="BlockUnblockDialog_unblock_s">Atblokuoti %1$s?</string>
   <string name="BlockUnblockDialog_block">Užblokuoti</string>
   <string name="BlockUnblockDialog_block_and_leave">Užblokuoti ir išeiti</string>
@@ -1207,6 +1211,10 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nepavyko pristatyti žinutės nuo %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s pasikeitė telefono numerį.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Patinka ši nauja ypatybė? Atsidėkokite Signal paskatinimu.</string>
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal veikia dėka tokių žmonių kaip jūs. Tapkite remėju jau šiandien.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
@@ -1239,6 +1247,7 @@
   <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Naudotojas nežinos, kad matėte jo žinutę tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ar norite leisti, kad %1$s rašytų jums žinutes, ir bendrinti savo vardą bei nuotrauką su šiuo naudotoju? Jūs negausite jokių žinučių tol, kol neatblokuosite šio naudotojo.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Ar gauti atnaujinimus ir naujienas iš %1$s? Jūs nebegausite jokių atnaujinimų tol, kol jų neatblokuosite.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tęsti jūsų pokalbį su šia grupe ir bendrinti jūsų vardą ir nuotrauką su jos nariais?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Naujinkite šią grupę, norėdami aktyvuoti tokias naujas ypatybes kaip @paminėjimai ir administratoriai. Nariai, kurie šioje grupėje nebendrino savo vardo ar nuotraukos, bus pakviesti prie jos prisijungti.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Pasenusi grupė daugiau nebegali būti naudojama, nes yra per didelė. Didžiausias grupės dydis yra %1$d.</string>
@@ -1882,6 +1891,10 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Šioje grupėje nėra jokių adresatų. Atidžiai peržiūrėkite prašymus.</string>
   <string name="ConversationUpdateItem_view">Rodyti</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Kai rašysite jiems žinutes, išnykstančių žinučių laikas bus nustatytas į %1$s.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal paskatinimas</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Tapti remėju</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
@@ -2499,21 +2512,6 @@
   <string name="conversation_callable_secure__menu_call">Signal skambutis</string>
   <string name="conversation_callable_secure__menu_video">Signal vaizdo skambutis</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Informacija</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopijuoti</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Ištrinti</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Persiųsti</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Iš naujo siųsti žinutę</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Atsakyti</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Pasirinkti kelis</string>
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">Pažymėta %d</item>
@@ -2539,6 +2537,10 @@
   <string name="conversation_selection__menu_reply">Atsakyti</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Įrašyti</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Siųsti iš naujo</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Žymėti</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pakviesti</string>
@@ -3242,7 +3244,7 @@
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Gerai</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
-  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Pakeisti numerį</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Keisti numerį</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Jūsų senas numeris</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Senas telefono numeris</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Jūsų naujas numeris</string>
@@ -3253,7 +3255,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Privalote nurodyti savo naujo numerio šalies kodą</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Privalote nurodyti savo naują telefono numerį</string>
   <!--ChangeNumberVerifyFragment-->
-  <string name="ChangeNumberVerifyFragment__change_number">Pakeisti numerį</string>
+  <string name="ChangeNumberVerifyFragment__change_number">Keisti numerį</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Patvirtinamas %1$s</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Reikia saugos kodo</string>
   <!--ChangeNumberConfirmFragment-->
@@ -3806,5 +3808,7 @@
   <string name="NotificationProfilesMegaphone__not_now">Ne dabar</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nepavyko atverti parinkiklio.</string>
+  <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal laidos informacija ir naujienos</string>
   <!--EOF-->
 </resources>

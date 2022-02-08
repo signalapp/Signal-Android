@@ -183,8 +183,10 @@ object SignalDatabaseMigrations {
   private const val REACTION_BACKUP_CLEANUP = 125
   private const val REACTION_REMOTE_DELETE_CLEANUP = 126
   private const val PNI_CLEANUP = 127
+  private const val MESSAGE_RANGES = 128
+  private const val REACTION_TRIGGER_FIX = 129
 
-  const val DATABASE_VERSION = 127
+  const val DATABASE_VERSION = 129
 
   @JvmStatic
   fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -509,9 +511,9 @@ object SignalDatabaseMigrations {
         """
         CREATE TABLE job_spec(
           _id INTEGER PRIMARY KEY AUTOINCREMENT,
-          job_spec_id TEXT UNIQUE, 
-          factory_key TEXT, 
-          queue_key TEXT, 
+          job_spec_id TEXT UNIQUE,
+          factory_key TEXT,
+          queue_key TEXT,
           create_time INTEGER,
           next_run_attempt_time INTEGER,
           run_attempt INTEGER,
@@ -529,7 +531,7 @@ object SignalDatabaseMigrations {
         """
         CREATE TABLE constraint_spec(
           _id INTEGER PRIMARY KEY AUTOINCREMENT,
-          job_spec_id TEXT, 
+          job_spec_id TEXT,
           factory_key TEXT,
           UNIQUE(job_spec_id, factory_key)
         )
@@ -540,7 +542,7 @@ object SignalDatabaseMigrations {
         """
         CREATE TABLE dependency_spec(
           _id INTEGER PRIMARY KEY AUTOINCREMENT,
-          job_spec_id TEXT, 
+          job_spec_id TEXT,
           depends_on_job_spec_id TEXT,
           UNIQUE(job_spec_id, depends_on_job_spec_id)
         )
@@ -554,7 +556,7 @@ object SignalDatabaseMigrations {
         """
         CREATE TABLE sticker (
           _id INTEGER PRIMARY KEY AUTOINCREMENT,
-          pack_id TEXT NOT NULL, 
+          pack_id TEXT NOT NULL,
           pack_key TEXT NOT NULL,
           pack_title TEXT NOT NULL,
           pack_author TEXT NOT NULL,
@@ -754,8 +756,8 @@ object SignalDatabaseMigrations {
         """
         CREATE TABLE key_value (
           _id INTEGER PRIMARY KEY AUTOINCREMENT,
-          key TEXT UNIQUE, 
-          value TEXT, 
+          key TEXT UNIQUE,
+          value TEXT,
           type INTEGER
         )
         """.trimIndent()
@@ -962,7 +964,7 @@ object SignalDatabaseMigrations {
           SELECT _data
           FROM (
             SELECT _data, MIN(quote) AS all_quotes
-            FROM part 
+            FROM part
             WHERE _data NOT NULL AND data_hash NOT NULL
             GROUP BY _data
           )
@@ -1200,7 +1202,7 @@ object SignalDatabaseMigrations {
       db.rawQuery(
         // language=sql
         """
-          SELECT _id, group_id 
+          SELECT _id, group_id
           FROM recipient
           WHERE group_id NOT IN (SELECT group_id FROM groups)
             AND group_id LIKE '__textsecure_group__!%' AND length(group_id) <> 53
@@ -1344,9 +1346,9 @@ object SignalDatabaseMigrations {
         // language=sql
         """
           SELECT r._id FROM recipient AS r WHERE EXISTS (
-            SELECT 1 
-            FROM groups AS g 
-            INNER JOIN recipient AS gr ON (g.recipient_id = gr._id AND gr.profile_sharing = 1) 
+            SELECT 1
+            FROM groups AS g
+            INNER JOIN recipient AS gr ON (g.recipient_id = gr._id AND gr.profile_sharing = 1)
               WHERE g.active = 1 AND (g.members LIKE r._id || ',%' OR g.members LIKE '%,' || r._id || ',%' OR g.members LIKE '%,' || r._id)
           )
         """.trimIndent()
@@ -1534,7 +1536,7 @@ object SignalDatabaseMigrations {
         """
           CREATE TABLE sender_key_shared (
             _id INTEGER PRIMARY KEY AUTOINCREMENT,
-            distribution_id TEXT NOT NULL, 
+            distribution_id TEXT NOT NULL,
             address TEXT NOT NULL,
             device INTEGER NOT NULL,
             UNIQUE(distribution_id, address, device) ON CONFLICT REPLACE
@@ -1584,7 +1586,7 @@ object SignalDatabaseMigrations {
             date_sent INTEGER NOT NULL,
             content BLOB NOT NULL,
             related_message_id INTEGER DEFAULT -1,
-            is_related_message_mms INTEGER DEFAULT 0, 
+            is_related_message_mms INTEGER DEFAULT 0,
             content_hint INTEGER NOT NULL,
             group_id BLOB DEFAULT NULL
           )
@@ -1645,7 +1647,7 @@ object SignalDatabaseMigrations {
         // language=sql
         """
           CREATE TABLE msl_message (
-            _id INTEGER PRIMARY KEY, 
+            _id INTEGER PRIMARY KEY,
             payload_id INTEGER NOT NULL REFERENCES msl_payload (_id) ON DELETE CASCADE,
             message_id INTEGER NOT NULL,
             is_mms INTEGER NOT NULL
@@ -1703,8 +1705,8 @@ object SignalDatabaseMigrations {
       db.execSQL(
         // language=sql
         """
-          INSERT INTO thread_tmp 
-          SELECT 
+          INSERT INTO thread_tmp
+          SELECT
             _id,
             date,
             recipient_ids,
@@ -1805,8 +1807,8 @@ object SignalDatabaseMigrations {
       db.execSQL(
         // language=sql
         """
-          INSERT INTO mms_tmp 
-          SELECT 
+          INSERT INTO mms_tmp
+          SELECT
             _id,
             thread_id,
             date,
@@ -1918,8 +1920,8 @@ object SignalDatabaseMigrations {
       db.execSQL(
         // language=sql
         """
-          INSERT INTO sms_tmp 
-          SELECT 
+          INSERT INTO sms_tmp
+          SELECT
             _id,
             thread_id,
             address,
@@ -2025,12 +2027,12 @@ object SignalDatabaseMigrations {
       db.execSQL(
         // language=sql
         """
-          INSERT INTO sessions_tmp (address, device, record) 
-          SELECT 
-            COALESCE(recipient.uuid, recipient.phone) AS new_address, 
-            sessions.device, 
-            sessions.record 
-          FROM sessions INNER JOIN recipient ON sessions.address = recipient._id 
+          INSERT INTO sessions_tmp (address, device, record)
+          SELECT
+            COALESCE(recipient.uuid, recipient.phone) AS new_address,
+            sessions.device,
+            sessions.record
+          FROM sessions INNER JOIN recipient ON sessions.address = recipient._id
           WHERE new_address NOT NULL
         """.trimIndent()
       )
@@ -2058,7 +2060,7 @@ object SignalDatabaseMigrations {
         // language=sql
         """
           INSERT INTO identities_tmp (address, identity_key, first_use, timestamp, verified, nonblocking_approval)
-          SELECT 
+          SELECT
             COALESCE(recipient.uuid, recipient.phone) AS new_address,
             identities.key,
             identities.first_use,
@@ -2118,7 +2120,7 @@ object SignalDatabaseMigrations {
         // language=sql
         """
           INSERT INTO sender_keys_tmp (address, device, distribution_id, record, created_at)
-          SELECT 
+          SELECT
             recipient.uuid AS new_address,
             sender_keys.device,
             sender_keys.distribution_id,
@@ -2185,7 +2187,7 @@ object SignalDatabaseMigrations {
         // language=sql
         """
           CREATE TABLE notification_profile (
-            _id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            _id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL UNIQUE,
             emoji TEXT NOT NULL,
             color TEXT NOT NULL,
@@ -2262,6 +2264,26 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < PNI_CLEANUP) {
       db.execSQL("UPDATE recipient SET pni = NULL WHERE phone IS NULL")
+    }
+
+    if (oldVersion < MESSAGE_RANGES) {
+      db.execSQL("ALTER TABLE mms ADD COLUMN ranges BLOB DEFAULT NULL")
+    }
+
+    if (oldVersion < REACTION_TRIGGER_FIX) {
+      db.execSQL("DROP TRIGGER reactions_mms_delete")
+      db.execSQL("CREATE TRIGGER reactions_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 1; END")
+
+      db.execSQL(
+        // language=sql
+        """
+          DELETE FROM reaction
+          WHERE
+            (is_mms = 0 AND message_id NOT IN (SELECT _id from sms))
+            OR
+            (is_mms = 1 AND message_id NOT IN (SELECT _id from mms))
+        """.trimIndent()
+      )
     }
   }
 

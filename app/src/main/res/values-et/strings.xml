@@ -87,6 +87,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupi liikmetel on võimalik sind sellesse gruppi uuesti lisada.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Teil on võimalik üksteisele sõnumeid saata ja helistada ning sinu nimi ja foto jagatakse teistega.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokeeritud isikutel pole võimalik sulle helistada ega sõnumeid saata.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">Kas eemaldada %1$sblokeering?</string>
   <string name="BlockUnblockDialog_block">Blokeeri</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokeeri ja lahku</string>
@@ -1075,6 +1077,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Sa märkisid oma turvanumbri kontaktiga %s mittekinnitatuks</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Sa märkisid teisest seadmest oma turvanumbri kontaktiga %s mittekinnitatuks</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sõnumit kasutajalt %s ei õnnestunud edastada</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s alustas grupikõne · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s on selles grupikõnes · %2$s</string>
@@ -1696,6 +1700,9 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ühiseid gruppe pole. Vaata taotlused hoolikalt üle.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Selles grupis pole kontakte. Kontrolli taotlusti tähelepanelikult.</string>
   <string name="ConversationUpdateItem_view">Näita</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signalile hoogu</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Esita … Peata</string>
   <string name="audio_view__download_accessibility_description">Laadi alla</string>
@@ -2244,21 +2251,6 @@
   <string name="conversation_callable_secure__menu_call">Signali kõne</string>
   <string name="conversation_callable_secure__menu_video">Signali videokõne</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Teave</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopeeri</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Kustuta</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Edasta</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Saada sõnum uuesti</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Vasta</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Vali mitu</string>
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d valitud</item>
@@ -2282,6 +2274,10 @@
   <string name="conversation_selection__menu_reply">Vasta</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Salvesta</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Saada uuesti</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Vali</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Kutsu</string>
@@ -3347,5 +3343,6 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">Mitte praegu</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

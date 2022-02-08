@@ -92,6 +92,8 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onInMemoryMessageClicked(@NonNull InMemoryMessageRecord messageRecord);
     void onViewGroupDescriptionChange(@Nullable GroupId groupId, @NonNull String description, boolean isMessageRequestAccepted);
     void onChangeNumberUpdateContact(@NonNull Recipient recipient);
+    void onCallToAction(@NonNull String action);
+    void onDonateClicked();
 
     /** @return true if handled, false if you want to let the normal url handling continue */
     boolean onUrlClicked(@NonNull String url);

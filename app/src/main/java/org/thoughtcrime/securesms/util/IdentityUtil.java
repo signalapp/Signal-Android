@@ -52,7 +52,7 @@ public final class IdentityUtil {
     final RecipientId                              recipientId = recipient.getId();
 
     SimpleTask.run(SignalExecutors.BOUNDED,
-                   () -> ApplicationDependencies.getIdentityStore().getIdentityRecord(recipientId),
+                   () -> ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId),
                    future::set);
 
     return future;
@@ -144,10 +144,10 @@ public final class IdentityUtil {
 
   public static void saveIdentity(String user, IdentityKey identityKey) {
     try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      SessionStore          sessionStore     = ApplicationDependencies.getSessionStore();
+      SessionStore          sessionStore     = ApplicationDependencies.getProtocolStore().aci();
       SignalProtocolAddress address          = new SignalProtocolAddress(user, SignalServiceAddress.DEFAULT_DEVICE_ID);
 
-      if (ApplicationDependencies.getIdentityStore().saveIdentity(address, identityKey)) {
+      if (ApplicationDependencies.getProtocolStore().aci().identities().saveIdentity(address, identityKey)) {
         if (sessionStore.containsSession(address)) {
           SessionRecord sessionRecord = sessionStore.loadSession(address);
           sessionRecord.archiveCurrentState();
@@ -160,7 +160,7 @@ public final class IdentityUtil {
 
   public static void processVerifiedMessage(Context context, VerifiedMessage verifiedMessage) {
     try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      TextSecureIdentityKeyStore identityStore  = ApplicationDependencies.getIdentityStore();
+      TextSecureIdentityKeyStore identityStore  = ApplicationDependencies.getProtocolStore().aci().identities();
       Recipient                  recipient      = Recipient.externalPush(context, verifiedMessage.getDestination());
       Optional<IdentityRecord>   identityRecord = identityStore.getIdentityRecord(recipient.getId());
 

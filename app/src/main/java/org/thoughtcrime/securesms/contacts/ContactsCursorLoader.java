@@ -75,7 +75,7 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
 
     this.mode              = mode;
     this.recents           = recents;
-    this.contactRepository = new ContactRepository(context);
+    this.contactRepository = new ContactRepository(context, context.getString(R.string.note_to_self));
   }
 
   protected final List<Cursor> getUnfilteredResults() {

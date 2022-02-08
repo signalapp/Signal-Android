@@ -233,6 +233,10 @@ class ShareRepository {
   }
 
   private static @Nullable String getFileName(@NonNull Context context, @NonNull Uri uri) {
+    if (uri.getScheme().equalsIgnoreCase("file")) {
+      return uri.getLastPathSegment();
+    }
+
     try (Cursor cursor = context.getContentResolver().query(uri, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME) >= 0) {
         return cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));

@@ -12,7 +12,9 @@
     <color name="transparent_black_20">#33000000</color>
     <color name="transparent_black_25">#40000000</color>
     <color name="transparent_black_40">#66000000</color>
+    <color name="transparent_black_50">#80000000</color>
     <color name="transparent_black_60">#99000000</color>
+    <color name="transparent_black_70">#b3000000</color>
     <color name="transparent_black_80">#CC000000</color>
     <color name="transparent_black_90">#e6000000</color>
 
@@ -25,12 +27,13 @@
     <color name="transparent_white_40">#66ffffff</color>
     <color name="transparent_white_60">#99ffffff</color>
     <color name="transparent_white_80">#ccffffff</color>
+    <color name="transparent_white_87">#dfffffff</color>
     <color name="transparent_white_90">#e6ffffff</color>
     <color name="transparent_white_95">#f3ffffff</color>
 
     <color name="conversation_compose_divider">#32000000</color>
 
-    <color name="action_mode_status_bar">@color/core_grey_60</color>
+    <color name="conversation_item_selected_system_ui">#4d4d4d</color>
     <color name="touch_highlight">#400099cc</color>
 
     <color name="device_link_item_background_light">#ffffffff</color>

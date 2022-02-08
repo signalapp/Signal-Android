@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.MmsException;
+import org.thoughtcrime.securesms.releasechannel.ReleaseChannel;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Base64;
@@ -38,7 +39,13 @@ import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okio.Okio;
 
 public final class AttachmentDownloadJob extends BaseJob {
 
@@ -139,7 +146,11 @@ public final class AttachmentDownloadJob extends BaseJob {
     Log.i(TAG, "Downloading push part " + attachmentId);
     database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
 
-    retrieveAttachment(messageId, attachmentId, attachment);
+    if (attachment.getCdnNumber() != ReleaseChannel.CDN_NUMBER) {
+      retrieveAttachment(messageId, attachmentId, attachment);
+    } else {
+      retrieveUrlAttachment(messageId, attachmentId, attachment);
+    }
   }
 
   @Override
@@ -219,6 +230,27 @@ public final class AttachmentDownloadJob extends BaseJob {
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);
+    }
+  }
+
+  private void retrieveUrlAttachment(long messageId,
+                                     final AttachmentId attachmentId,
+                                     final Attachment attachment)
+      throws IOException
+  {
+    Request request = new Request.Builder()
+        .get()
+        .url(Objects.requireNonNull(attachment.getFileName()))
+        .build();
+
+    try (Response response = ApplicationDependencies.getOkHttpClient().newCall(request).execute()) {
+      ResponseBody body = response.body();
+      if (body != null) {
+        SignalDatabase.attachments().insertAttachmentsForPlaceholder(messageId, attachmentId, Okio.buffer(body.source()).inputStream());
+      }
+    } catch (MmsException e) {
+      Log.w(TAG, "Experienced exception while trying to download an attachment.", e);
+      markFailed(messageId, attachmentId);
     }
   }
 

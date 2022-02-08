@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
@@ -101,9 +100,9 @@ public class ContactRepository {
     }));
   }};
 
-  public ContactRepository(@NonNull Context context) {
+  public ContactRepository(@NonNull Context context, @NonNull String noteToSelfTitle) {
     this.recipientDatabase = SignalDatabase.recipients();
-    this.noteToSelfTitle   = context.getString(R.string.note_to_self);
+    this.noteToSelfTitle   = noteToSelfTitle;
     this.context           = context.getApplicationContext();
   }
 

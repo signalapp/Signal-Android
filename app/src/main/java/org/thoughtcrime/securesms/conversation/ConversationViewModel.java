@@ -286,6 +286,10 @@ public class ConversationViewModel extends ViewModel {
     this.hasUnreadMentions.setValue(hasUnreadMentions);
   }
 
+  boolean getShowScrollButtons() {
+    return this.showScrollButtons.getValue();
+  }
+
   void setShowScrollButtons(boolean showScrollButtons) {
     this.showScrollButtons.setValue(showScrollButtons);
   }

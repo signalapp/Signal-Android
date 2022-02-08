@@ -90,6 +90,10 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anëtarë të grupit do të jenë në gjendje t\’ju rishtojnë te ky grup.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Do të jeni në gjendje t\’i dërgoni mesazhe dhe t\’i bëni thirrje njëri-tjetrit, dhe emri juaj dhe fotoja do të jenë të dukshëm për të.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Personat e bllokuar s\’do të jenë në gjendje t\’ju bëjnë thirrje apo t\’ju dërgojnë mesazhe.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blloko marrje përditësimesh dhe lajmesh mbi Signal-in.</string>
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Rifillo marrje përditësimesh dhe lajmesh mbi Signal-in.</string>
   <string name="BlockUnblockDialog_unblock_s">Të zhbllokohet %1$s?</string>
   <string name="BlockUnblockDialog_block">Bllokoje</string>
   <string name="BlockUnblockDialog_block_and_leave">Bllokoje dhe Braktise</string>
@@ -505,7 +509,7 @@
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Krejt historiku i mesazhe dhe mediat janë mbajtur prej kohës para përmirësimit.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Do t\’ju duhet të pranoni një ftesë, ta të ribëheni pjesë e këtij grupi, dhe s\’do të merrni mesazhe grupi, pa e pranuar.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">Ky anëtar do të duhet të pranojë një ftesë për t\’u bërë pjesë e 
+    <item quantity="one">Ky anëtar do të duhet të pranojë një ftesë për t\’u bërë pjesë e
 grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="other">Këta anëtarë do të duhet të pranojnë një ftesë për t\’u bërë pjesë e grupit dhe s\’do të marrin mesazhe grupi përpara se ta pranojnë:</item>
   </plurals>
@@ -638,9 +642,9 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Do të krijohet një Grup i Dikurshëm, ngaqë “%1$s” po përdor një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me të pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Do të krijohet një Grup i Dikurshëm, ngaqë %1$d anëtar po përdor një
- version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri 
+ version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri
 me të pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.</item>
-    <item quantity="other">Do të krijohet një Grup i Dikurshëm, ngaqë %1$d anëtarë po përdorin një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me ta, pasi 
+    <item quantity="other">Do të krijohet një Grup i Dikurshëm, ngaqë %1$d anëtarë po përdorin një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me ta, pasi
 të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ky grup s\’mund të krijohet, ngaqë “%1$s” po përdor një version të vjetër të Signal-it. Duhet ta hiqni para krijimit të grupit.</string>
@@ -1089,6 +1093,10 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar nga një tjetër pajisje</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">S\’u dërgua dot një mesazh prej %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ndryshoi numrin e vet të telefonit.</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Ju pëlqen kjo veçori e re? Thoni faleminderit me një Përforcim.</string>
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal-i bazohet në njerëz si ju. Bëhuni një përkrahës që sot.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
@@ -1117,6 +1125,7 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="MessageRequestBottomView_unblock">Zhbllokoje</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Të lejohet %1$s t\’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S\’do ta dijë se e keni parë mesazhin e tij, para se të pranoni këtë.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Të lejohet %1$s t\’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S\’do të merrni ndonjë mesazh, para se ta zhbllokoni.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Merrni përditësime dhe lajme nga 1%1$s? S’do të merrni ndonjë përditësim, para se t’i zhbllokoni.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Të vazhdohet biseda juaj me këtë grup dhe t\’u jepet emri dhe fotoja juaj anëtarëve të tij?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Përmirësojeni këtë grup, që të aktivizohen veçori të reja, të tilla si @përmendje dhe përgjegjës. Anëtarët që nuk kanë dhënë emrin ose foton e tyre te ky grup, do të ftohen të bëhen pjesë.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ky Grup i Dikurshëm s\’mund të përdoret më, ngaqë është shumë i madh. Madhësia maksimum për grupet është %1$d.</string>
@@ -1728,6 +1737,10 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Pa kontakte në këtë grup. Shqyrtojini me kujdes kërkesat.</string>
   <string name="ConversationUpdateItem_view">Shihni</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Koha për mesazhe që treten do të caktohet si %1$s, kur u dërgoni mesazhe.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Fuqizim Signal-i</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Bëhuni një Mbështetës</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
@@ -2090,7 +2103,7 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="preferences__disable_pin">Çaktivizoje PIN-in</string>
   <string name="preferences__enable_pin">Aktivizoje PIN-in</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nëse çaktivizoni PIN-in, do të humbni krejt të dhënat, kur riregjistroni
- Signal-in, veç në i kopjeruajtshi dhe rikthefshi dorazi. S\’mund të 
+ Signal-in, veç në i kopjeruajtshi dhe rikthefshi dorazi. S\’mund të
 aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-et i mbajnë të fshehtëzuara të dhëna e depozituara me Signal, që kështu të mund t\’i përdorni. Profili, rregullimet dhe kontaktet tuaja do të rikthehen, kur të riinstaloni Signal-in. S\’do t\’ju duhet PIN-i për të hapur aplikacionin.</string>
   <string name="preferences__system_default">Parazgjedhje sistemi</string>
@@ -2331,21 +2344,6 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation_callable_secure__menu_call">Thirrje përmes Signal-i</string>
   <string name="conversation_callable_secure__menu_video">Thirrje video Signal</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Info</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Kopjoje</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Fshiji</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Përcjellje</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Ridërgoje mesazhin</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Përgjigju</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Përzgjidhni disa</string>
   <!--Heading which shows how many messages are currently selected-->
   <plurals name="conversation_context__s_selected">
     <item quantity="one">%d i përsgjedhur</item>
@@ -2369,6 +2367,10 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="conversation_selection__menu_reply">Përgjigju</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Ruaji</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Ridërgoje</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Përzgjidhni</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Fto</string>
@@ -2527,8 +2529,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Regjistrim Signal-i - Duhet Ndihmë me PIN për Android (v1 PIN)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Regjistrim Signal-i - Duhet Ndihmë me PIN për Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Për privatësinë dhe sigurinë tuaj, s\’ka mënyrë për të rimarrë PIN-in 
-tuaj. Nëse s\’mbani mend PIN-in tuaj, mund  të ribëni verifikimin me SMS pas %1$d dite pa veprimtari. Në këtë rast, llogaria juaj do të 
+    <item quantity="one">Për privatësinë dhe sigurinë tuaj, s\’ka mënyrë për të rimarrë PIN-in
+tuaj. Nëse s\’mbani mend PIN-in tuaj, mund  të ribëni verifikimin me SMS pas %1$d dite pa veprimtari. Në këtë rast, llogaria juaj do të
 spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="other">Për privatësinë dhe sigurinë tuaj, s\’ka mënyrë për të rimarrë PIN-in tuaj. Nëse s\’mbani mend PIN-in tuaj, mund  të ribëni verifikimin me SMS pas %1$d ditësh pa veprimtari. Në këtë rast, llogaria juaj do të spastrohet dhe krejt lënda do të fshihet.</item>
   </plurals>
@@ -3606,5 +3608,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="NotificationProfilesMegaphone__not_now">Jo tani</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">S\’u arrit të hapet zgjedhësi.</string>
+  <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Shënime Hedhjeje Në Qarkullim &amp; Lajme Signal</string>
   <!--EOF-->
 </resources>

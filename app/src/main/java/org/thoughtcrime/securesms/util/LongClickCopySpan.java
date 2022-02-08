@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.util;
 
-import android.annotation.TargetApi;
-import android.content.ClipData;
 import android.content.Context;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
@@ -21,23 +19,34 @@ public class LongClickCopySpan extends URLSpan {
   @ColorInt
   private int highlightColor;
 
+  private final Integer textColor;
+  private final boolean underline;
+
   public LongClickCopySpan(String url) {
+    this(url, null, true);
+  }
+
+  public LongClickCopySpan(String url, @ColorInt Integer textColor, boolean underline) {
     super(url);
+    this.textColor = textColor;
+    this.underline = underline;
   }
 
   void onLongClick(View widget) {
     Context context = widget.getContext();
     String preparedUrl = prepareUrl(getURL());
     copyUrl(context, preparedUrl);
-    Toast.makeText(context,
-            context.getString(R.string.ConversationItem_copied_text, preparedUrl), Toast.LENGTH_SHORT).show();
+    Toast.makeText(context, context.getString(R.string.ConversationItem_copied_text, preparedUrl), Toast.LENGTH_SHORT).show();
   }
 
   @Override
   public void updateDrawState(@NonNull TextPaint ds) {
     super.updateDrawState(ds);
+    if (textColor != null) {
+      ds.setColor(textColor);
+    }
     ds.bgColor = highlightColor;
-    ds.setUnderlineText(!isHighlighted);
+    ds.setUnderlineText(!isHighlighted && underline);
   }
 
   void setHighlighted(boolean highlighted, @ColorInt int highlightColor) {
@@ -46,22 +55,7 @@ public class LongClickCopySpan extends URLSpan {
   }
 
   private void copyUrl(Context context, String url) {
-    int sdk = android.os.Build.VERSION.SDK_INT;
-    if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
-      @SuppressWarnings("deprecation") android.text.ClipboardManager clipboard =
-              (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-      clipboard.setText(url);
-    } else {
-      copyUriSdk11(context, url);
-    }
-  }
-
-  @TargetApi(android.os.Build.VERSION_CODES.HONEYCOMB)
-  private void copyUriSdk11(Context context, String url) {
-    android.content.ClipboardManager clipboard =
-            (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-    ClipData clip = ClipData.newPlainText(context.getString(R.string.app_name), url);
-    clipboard.setPrimaryClip(clip);
+    Util.writeTextToClipboard(context, url);
   }
 
   private String prepareUrl(String url) {

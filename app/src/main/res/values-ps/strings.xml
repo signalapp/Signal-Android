@@ -90,6 +90,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">د ګروپ غړي به وکولای شي چې تاسې بیا په دغه ګروپ کې اضافه کړي.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">تاسې به وکولای شئ چې هر یوه ته پیغام ولیږئ او اړیکه ونیسئ او ستاسې نوم او عکس به له هغوی سره شریک کړل شي.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">بلاک شوي کسان به هېڅ ونشي کړای چې تاسې ته پیغام ولیږي یا درسره اړیکه ونیسي.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">غواړئ  %1$s له بلاک څخه وباسئ؟</string>
   <string name="BlockUnblockDialog_block">بلاک کول </string>
   <string name="BlockUnblockDialog_block_and_leave">بلاک او پریښودل</string>
@@ -1025,6 +1027,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">تاسې له %s سره خپل د خوندیتوب شمېره د ناتایید شوي په توګه نښاني کړې</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">تاسې له %s سره خپل د خوندیتوب شمېره له بلې وسیلې څخه د ناتایید شوي په توګه نښاني کړې</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">د %s یو پیغام و نه لیږل شو</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ګروپ کال پیل کړی. %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s په ګروپ کال کې ده. %2$s</string>
@@ -1658,6 +1662,9 @@
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">په دغه ګروپ کې هېڅ مخاطبین نشته. غوښتنې په دقت سره تر نظر تیرې کړئ.</string>
   <string name="ConversationUpdateItem_view">ليدل</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">کله چې تاسې هغوی ته پیغام لیږئ نو د ورک کېدونکي پیغام وخت به %1$s ته تنظیم شي.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">د Signal پیاوړی کول</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پلي کول… درول</string>
   <string name="audio_view__download_accessibility_description">راښکته کول</string>
@@ -2247,21 +2254,6 @@
   <string name="conversation_callable_secure__menu_call">د Signal ټلیفوني اړیکه</string>
   <string name="conversation_callable_secure__menu_video">د Signal ویډیويي اړیکه</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">معلومات</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">کاپي کول</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">پاکول</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">فاروارډ</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">د پیغام بیالیږل</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">بیا پلي کول</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">د ګڼ شمېر مواردو ټاکل</string>
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2281,6 +2273,10 @@
   <string name="conversation_selection__menu_reply">بیا پلي کول</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">ثبت</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">بیااستول</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">ټاکل</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">بلنه</string>
@@ -3403,5 +3399,6 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">اوس نه</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

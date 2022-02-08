@@ -78,6 +78,9 @@ class SmsDatabaseTest {
     TestSms.insert(db, type = MmsSmsColumns.Types.CHANGE_NUMBER_TYPE)
     assertFalse(smsDatabase.hasMeaningfulMessage(1))
 
+    TestSms.insert(db, type = MmsSmsColumns.Types.BOOST_REQUEST_TYPE)
+    assertFalse(smsDatabase.hasMeaningfulMessage(1))
+
     TestSms.insert(db, type = MmsSmsColumns.Types.BASE_INBOX_TYPE or MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS)
     assertFalse(smsDatabase.hasMeaningfulMessage(1))
   }

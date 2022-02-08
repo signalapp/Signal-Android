@@ -351,7 +351,7 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
   }
 
   private void handleCopyToClipboard(Fingerprint fingerprint, int segmentCount) {
-    Util.writeTextToClipboard(getActivity(), getFormattedSafetyNumbers(fingerprint, segmentCount));
+    Util.writeTextToClipboard(requireContext(), "Safety numbers", getFormattedSafetyNumbers(fingerprint, segmentCount));
   }
 
   private void handleCompareWithClipboard(Fingerprint fingerprint) {
@@ -541,7 +541,7 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
         try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
           if (verified) {
             Log.i(TAG, "Saving identity: " + recipientId);
-            ApplicationDependencies.getIdentityStore()
+            ApplicationDependencies.getProtocolStore().aci().identities()
                                    .saveIdentityWithoutSideEffects(recipientId,
                                                                    remoteIdentity,
                                                                    IdentityDatabase.VerifiedStatus.VERIFIED,
@@ -549,7 +549,7 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
                                                                    System.currentTimeMillis(),
                                                                    true);
           } else {
-            ApplicationDependencies.getIdentityStore().setVerified(recipientId, remoteIdentity, IdentityDatabase.VerifiedStatus.DEFAULT);
+            ApplicationDependencies.getProtocolStore().aci().identities().setVerified(recipientId, remoteIdentity, IdentityDatabase.VerifiedStatus.DEFAULT);
           }
 
           ApplicationDependencies.getJobManager()

@@ -182,6 +182,10 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isChangeNumber(type);
   }
 
+  public boolean isBoostRequest() {
+    return MmsSmsColumns.Types.isBoostRequest(type);
+  }
+
   public int getDeliveryStatus() {
     return deliveryStatus;
   }

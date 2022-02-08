@@ -96,6 +96,7 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
   override fun onStickerLongClicked(sticker: KeyboardStickerListAdapter.Sticker) = Unit
 
   companion object {
+    @JvmStatic
     fun show(fragmentManager: FragmentManager) {
       StickerSearchDialogFragment().show(fragmentManager, "TAG")
     }

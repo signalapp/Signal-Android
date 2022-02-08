@@ -143,11 +143,10 @@ object Avatars {
   )
 
   data class ColorPair(
-    val backgroundAvatarColor: AvatarColor,
-    val foregroundAvatarColor: ForegroundColor
+    @ColorInt val backgroundColor: Int,
+    @ColorInt val foregroundColor: Int,
+    val code: String
   ) {
-    @ColorInt val backgroundColor: Int = backgroundAvatarColor.colorInt()
-    @ColorInt val foregroundColor: Int = foregroundAvatarColor.colorInt
-    val code: String = backgroundAvatarColor.serialize()
+    constructor(backgroundAvatarColor: AvatarColor, foregroundAvatarColor: ForegroundColor) : this(backgroundAvatarColor.colorInt(), foregroundAvatarColor.colorInt, backgroundAvatarColor.serialize())
   }
 }

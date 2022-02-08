@@ -89,6 +89,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ahli-ahli kumpulan akan dapat menambah anda kepada kumpulan ini lagi.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan dapat menghantar mesej dan membuat panggilan antara satu sama lain dan nama serta gambar anda akan dikongsi bersama mereka.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang-orang diblock tidak akan boleh untuk memanggil anda atau menghantar anda mesej.</string>
+  <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_unblock_s">Unblock %1$s?</string>
   <string name="BlockUnblockDialog_block">Sekat</string>
   <string name="BlockUnblockDialog_block_and_leave">Block dan Tinggalkan</string>
@@ -1019,6 +1021,8 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Anda telah menandakan tak sah kepada nombor keselamatan anda dengan %s </string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Anda telah menandakan tak sah kepada nombor keselamatan anda dengan %s daripada peranti lain</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Mesej daripada %s tidak dapat disampaikan</string>
+  <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s telah memulakan panggilan kumpulan · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s berada dalam panggilan kumpulan · %2$s</string>
@@ -1629,6 +1633,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Tidak ada kenalan dalam kumpulan ini. Semak permintaan dengan teliti.</string>
   <string name="ConversationUpdateItem_view">Lihat</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Masa mesej hilang akan ditetapkan kepada %1$s apabila anda menghantar mesej tersebut.</string>
+  <!--Update item button text to show to boost a feature-->
+  <string name="ConversationUpdateItem_signal_boost">Signal Boost</string>
+  <!--Update item button text to show to become a sustainer in the release notes channel-->
+  <string name="ConversationUpdateItem_become_a_sustainer">Jadilah seorang Sustainer</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Main … Jeda</string>
   <string name="audio_view__download_accessibility_description">Muat turun</string>
@@ -2221,21 +2229,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="conversation_callable_secure__menu_call">Panggilan Signal</string>
   <string name="conversation_callable_secure__menu_video">Panggilan video Signal</string>
   <!--conversation_context-->
-  <!--Button to view detailed information for a message-->
-  <string name="conversation_context__menu_message_details">Maklumat</string>
-  <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_context__menu_copy_text">Salin</string>
-  <!--Button to delete a message-->
-  <string name="conversation_context__menu_delete_message">Padam</string>
-  <!--Button to forward a message to another person or group chat-->
-  <string name="conversation_context__menu_forward_message">Hantar</string>
-  <!--Button to retry sending a message-->
-  <string name="conversation_context__menu_resend_message">Hantar semula mesej</string>
-  <!--Button to reply to a message-->
-  <string name="conversation_context__menu_reply_to_message">Balas</string>
-  <!--conversation_context_reaction-->
-  <!--Button to select a message and enter selection mode-->
-  <string name="conversation_context__reaction_multi_select">Pilih berbilang</string>
   <!--Heading which shows how many messages are currently selected-->
   <!--conversation_context_image-->
   <!--Button to save a message attachment (image, file etc.)-->
@@ -2255,6 +2248,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="conversation_selection__menu_reply">Balas</string>
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Simpan</string>
+  <!--Button to retry sending a message-->
+  <string name="conversation_selection__menu_resend_message">Hantar semula</string>
+  <!--Button to select a message and enter selection mode-->
+  <string name="conversation_selection__menu_multi_select">Pilih</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Jemput</string>
@@ -3410,5 +3407,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="NotificationProfilesMegaphone__not_now">Bukan sekarang</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Gagal untuk membuka pemilih.</string>
+  <!--Description shown for the Signal Release Notes channel-->
   <!--EOF-->
 </resources>

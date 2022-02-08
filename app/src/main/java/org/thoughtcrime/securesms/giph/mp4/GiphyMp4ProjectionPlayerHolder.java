@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,8 +99,20 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     container.setVisibility(View.GONE);
   }
 
+  public boolean isVisible() {
+    return container.getVisibility() == View.VISIBLE;
+  }
+
+  public void pause() {
+    player.pause();
+  }
+
   public void show() {
     container.setVisibility(View.VISIBLE);
+  }
+
+  public void resume() {
+    player.play();
   }
 
   @Override
@@ -176,5 +189,9 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
 
   public void setCorners(@Nullable Projection.Corners corners) {
     player.setCorners(corners);
+  }
+
+  public @Nullable Bitmap getBitmap() {
+    return player.getBitmap();
   }
 }

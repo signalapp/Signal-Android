@@ -20,6 +20,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -66,6 +67,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -198,6 +200,8 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel;
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment;
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment;
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment;
 import org.thoughtcrime.securesms.keyvalue.PaymentsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -336,7 +340,8 @@ public class ConversationParentFragment extends Fragment
                EmojiEventListener,
                GifKeyboardPageFragment.Host,
                EmojiKeyboardPageFragment.Callback,
-               EmojiSearchFragment.Callback
+               EmojiSearchFragment.Callback,
+               StickerKeyboardPageFragment.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -360,6 +365,9 @@ public class ConversationParentFragment extends Fragment
   public static  final int PICK_GIF            = 10;
   private static final int SMS_DEFAULT         = 11;
   private static final int MEDIA_SENDER        = 12;
+
+  private static final int     REQUEST_CODE_PIN_SHORTCUT = 902;
+  private static final String  ACTION_PINNED_SHORTCUT    = "action_pinned_shortcut";
 
   private   GlideRequests                glideRequests;
   protected ComposeText                  composeText;
@@ -396,12 +404,14 @@ public class ConversationParentFragment extends Fragment
   private   Stub<TextView>           cannotSendInAnnouncementGroupBanner;
   private   View                     requestingMemberBanner;
   private   View                     cancelJoinRequest;
+  private   Stub<View>               releaseChannelUnmute;
   private   Stub<View>               mentionsSuggestions;
   private   MaterialButton           joinGroupCallButton;
   private   boolean                  callingTooltipShown;
   private   ImageView                wallpaper;
   private   View                     wallpaperDim;
   private   Toolbar                  toolbar;
+  private   BroadcastReceiver        pinnedShortcutReceiver;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -538,6 +548,13 @@ public class ConversationParentFragment extends Fragment
     });
     initializeInsightObserver();
     initializeActionBar();
+
+    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+      @Override
+      public void handleOnBackPressed() {
+        onBackPressed();
+      }
+    });
   }
 
   // TODO [alex] LargeScreenSupport -- This needs to be fed a stream of intents
@@ -602,6 +619,10 @@ public class ConversationParentFragment extends Fragment
       if (searchViewItem != null && searchViewItem.expandActionView()) {
         searchViewModel.onSearchOpened();
       }
+    } else {
+      searchViewModel.onSearchClosed();
+      viewModel.setSearchQuery(null);
+      inputPanel.setHideForSearch(false);
     }
   }
 
@@ -689,6 +710,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onDestroy() {
     if (securityUpdateReceiver != null)  requireActivity().unregisterReceiver(securityUpdateReceiver);
+    if (pinnedShortcutReceiver != null)  requireActivity().unregisterReceiver(pinnedShortcutReceiver);
     super.onDestroy();
   }
 
@@ -928,8 +950,8 @@ public class ConversationParentFragment extends Fragment
     }
 
     if (isSingleConversation()) {
-      if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
-      else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
+      if (isSecureText)                           inflater.inflate(R.menu.conversation_callable_secure, menu);
+      else if (!recipient.get().isReleaseNotes()) inflater.inflate(R.menu.conversation_callable_insecure, menu);
     } else if (isGroupConversation()) {
       if (isActiveV2Group && Build.VERSION.SDK_INT > 19) {
         inflater.inflate(R.menu.conversation_callable_groupv2, menu);
@@ -955,14 +977,14 @@ public class ConversationParentFragment extends Fragment
 
     inflater.inflate(R.menu.conversation, menu);
 
-    if (isSingleConversation() && !isSecureText) {
+    if (isSingleConversation() && !isSecureText && !recipient.get().isReleaseNotes()) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
     if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
     else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
 
-    if (isSingleConversation() && getRecipient().getContactUri() == null) {
+    if (isSingleConversation() && getRecipient().getContactUri() == null && !recipient.get().isReleaseNotes()) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
 
@@ -988,6 +1010,10 @@ public class ConversationParentFragment extends Fragment
       }
 
       hideMenuItem(menu, R.id.menu_mute_notifications);
+    }
+
+    if (recipient != null && recipient.get().isReleaseNotes()) {
+      hideMenuItem(menu, R.id.menu_add_shortcut);
     }
 
     hideMenuItem(menu, R.id.menu_group_recipients);
@@ -1074,7 +1100,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   public void invalidateOptionsMenu() {
-    if (!isSearchRequested) {
+    if (!isSearchRequested && getActivity() != null) {
       onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
     }
   }
@@ -1102,13 +1128,12 @@ public class ConversationParentFragment extends Fragment
     case R.id.menu_expiring_messages_off:
     case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
     case R.id.menu_create_bubble:             handleCreateBubble();                              return true;
-    case android.R.id.home:                   requireActivity().onBackPressed();                 return true;
+    case android.R.id.home:                   requireActivity().finish();                        return true;
     }
 
     return false;
   }
 
-  // TODO [alex] LargeScreenSupport -- Add to a back handler
   public void onBackPressed() {
     Log.d(TAG, "onBackPressed()");
     if (reactionDelegate.isShowing()) {
@@ -1116,7 +1141,7 @@ public class ConversationParentFragment extends Fragment
     } else if (container.isInputOpen()) {
       container.hideCurrentInput(composeText);
     } else {
-      requireActivity().onBackPressed();
+      requireActivity().finish();
     }
   }
 
@@ -1269,6 +1294,15 @@ public class ConversationParentFragment extends Fragment
     final Context context = requireContext().getApplicationContext();
     final Recipient recipient = this.recipient.get();
 
+    if (pinnedShortcutReceiver == null) {
+      pinnedShortcutReceiver = new BroadcastReceiver() {
+        @Override public void onReceive(Context context, Intent intent) {
+          Toast.makeText(context, context.getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
+        }
+      };
+      requireActivity().registerReceiver(pinnedShortcutReceiver, new IntentFilter(ACTION_PINNED_SHORTCUT));
+    }
+
     GlideApp.with(this)
             .asBitmap()
             .load(recipient.getContactPhoto())
@@ -1320,9 +1354,10 @@ public class ConversationParentFragment extends Fragment
                                                                   .setIntent(ShortcutLauncherActivity.createIntent(context, recipient.getId()))
                                                                   .build();
 
-    if (ShortcutManagerCompat.requestPinShortcut(context, shortcutInfoCompat, null)) {
-      Toast.makeText(context, context.getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
-    }
+    Intent callbackIntent                = new Intent(ACTION_PINNED_SHORTCUT);
+    PendingIntent shortcutPinnedCallback = PendingIntent.getBroadcast(context, REQUEST_CODE_PIN_SHORTCUT, callbackIntent, 0);
+
+    ShortcutManagerCompat.requestPinShortcut(context, shortcutInfoCompat, shortcutPinnedCallback.getIntentSender());
 
     bitmap.recycle();
   }
@@ -1517,7 +1552,7 @@ public class ConversationParentFragment extends Fragment
 
     sendButton.resetAvailableTransports(isMediaMessage);
 
-    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly()) {
+    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes()) {
       sendButton.disableTransport(Type.TEXTSECURE);
     }
 
@@ -1528,7 +1563,7 @@ public class ConversationParentFragment extends Fragment
     if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection()) {
       sendButton.setDefaultTransport(Type.SMS);
     } else {
-      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly()) {
+      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes()) {
         sendButton.setDefaultTransport(Type.TEXTSECURE);
       } else {
         sendButton.setDefaultTransport(Type.SMS);
@@ -1949,7 +1984,7 @@ public class ConversationParentFragment extends Fragment
         }
 
         long               startTime          =  System.currentTimeMillis();
-        IdentityRecordList identityRecordList = ApplicationDependencies.getIdentityStore().getIdentityRecords(recipients);
+        IdentityRecordList identityRecordList = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients);
 
         Log.i(TAG, String.format(Locale.US, "Loaded %d identities in %d ms", recipients.size(), System.currentTimeMillis() - startTime));
 
@@ -2026,6 +2061,7 @@ public class ConversationParentFragment extends Fragment
     cannotSendInAnnouncementGroupBanner = ViewUtil.findStubById(view, R.id.conversation_cannot_send_announcement_stub);
     requestingMemberBanner              = view.findViewById(R.id.conversation_requesting_banner);
     cancelJoinRequest                   = view.findViewById(R.id.conversation_cancel_request);
+    releaseChannelUnmute                = ViewUtil.findStubById(view, R.id.conversation_release_notes_unmute_stub);
     joinGroupCallButton                 = view.findViewById(R.id.conversation_group_call_join);
 
     container.setIsBubble(isInBubble());
@@ -2119,7 +2155,7 @@ public class ConversationParentFragment extends Fragment
       int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color_wallpaper);
       toolbar.setBackgroundColor(toolbarColor);
       // TODO [alex] LargeScreenSupport -- statusBarBox
-      if (Build.VERSION.SDK_INT > 21) {
+      if (Build.VERSION.SDK_INT > 23) {
         WindowUtil.setStatusBarColor(requireActivity().getWindow(), toolbarColor);
       }
     } else {
@@ -2133,7 +2169,7 @@ public class ConversationParentFragment extends Fragment
       int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color);
       toolbar.setBackgroundColor(toolbarColor);
       // TODO [alex] LargeScreenSupport -- statusBarBox
-      if (Build.VERSION.SDK_INT > 21) {
+      if (Build.VERSION.SDK_INT > 23) {
         WindowUtil.setStatusBarColor(requireActivity().getWindow(), toolbarColor);
       }
     }
@@ -2191,7 +2227,9 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeSearchObserver() {
-    searchViewModel = new ViewModelProvider(this).get(ConversationSearchViewModel.class);
+    ConversationSearchViewModel.Factory viewModelFactory = new ConversationSearchViewModel.Factory(getString(R.string.note_to_self));
+
+    searchViewModel = new ViewModelProvider(this, viewModelFactory).get(ConversationSearchViewModel.class);
 
     searchViewModel.getSearchResults().observe(getViewLifecycleOwner(), result -> {
       if (result == null) return;
@@ -2442,6 +2480,11 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {
+    if (getContext() == null) {
+      Log.w(TAG, "onRecipientChanged called in detached state. Ignoring.");
+      return;
+    }
+
     Log.i(TAG, "onModified(" + recipient.getId() + ") " + recipient.getRegistered());
     titleView.setTitle(glideRequests, recipient);
     titleView.setVerified(identityRecords.isVerified());
@@ -2696,12 +2739,30 @@ public class ConversationParentFragment extends Fragment
       inputPanel.setHideForBlockedState(true);
       makeDefaultSmsButton.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
+    } else if (recipient.isReleaseNotes() && !recipient.isBlocked()) {
+      unblockButton.setVisibility(View.GONE);
+      inputPanel.setHideForBlockedState(true);
+      makeDefaultSmsButton.setVisibility(View.GONE);
+      registerButton.setVisibility(View.GONE);
+
+      if (recipient.isMuted()) {
+        View unmuteBanner = releaseChannelUnmute.get();
+        unmuteBanner.setVisibility(View.VISIBLE);
+        unmuteBanner.findViewById(R.id.conversation_activity_unmute_button)
+                    .setOnClickListener(v -> handleUnmuteNotifications());
+      } else if (releaseChannelUnmute.resolved()) {
+        releaseChannelUnmute.get().setVisibility(View.GONE);
+      }
     } else {
       boolean inactivePushGroup = isPushGroupConversation() && !recipient.isActiveGroup();
       inputPanel.setHideForBlockedState(inactivePushGroup);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
+    }
+
+    if (releaseChannelUnmute.resolved() && !recipient.isReleaseNotes()) {
+      releaseChannelUnmute.get().setVisibility(View.GONE);
     }
   }
 
@@ -3092,7 +3153,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void updateLinkPreviewState() {
-    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent()) {
+    if (SignalStore.settings().isLinkPreviewsEnabled() && isSecureText && !sendButton.getSelectedTransport().isSms() && !attachmentManager.isAttachmentPresent() && getContext() != null) {
       linkPreviewViewModel.onEnabled();
       linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
@@ -3411,6 +3472,10 @@ public class ConversationParentFragment extends Fragment
     return voiceNoteMediaController;
   }
 
+  @Override public void openStickerSearch() {
+    StickerSearchDialogFragment.show(getChildFragmentManager());
+  }
+
   // Listeners
 
   private final class DeleteCanceledVoiceNoteListener implements ListenableFuture.Listener<VoiceNoteDraft> {
@@ -3655,12 +3720,13 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void handleReaction(@NonNull ConversationMessage conversationMessage,
-                             @NonNull Toolbar.OnMenuItemClickListener toolbarListener,
+                             @NonNull ConversationReactionOverlay.OnActionSelectedListener onActionSelectedListener,
+                             @NonNull SelectedConversationModel selectedConversationModel,
                              @NonNull ConversationReactionOverlay.OnHideListener onHideListener)
   {
-    reactionDelegate.setOnToolbarItemClickedListener(toolbarListener);
+    reactionDelegate.setOnActionSelectedListener(onActionSelectedListener);
     reactionDelegate.setOnHideListener(onHideListener);
-    reactionDelegate.show(requireActivity(), recipient.get(), conversationMessage, groupViewModel.isNonAdminInAnnouncementGroup());
+    reactionDelegate.show(requireActivity(), recipient.get(), conversationMessage, groupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel);
   }
 
   @Override
@@ -3686,6 +3752,11 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onVoiceNotePlay(@NonNull Uri uri, long messageId, double progress) {
     voiceNoteMediaController.startConsecutivePlayback(uri, messageId, progress);
+  }
+
+  @Override
+  public void onVoiceNoteResume(@NonNull Uri uri, long messageId) {
+    voiceNoteMediaController.resumePlayback(uri, messageId);
   }
 
   @Override
@@ -3722,6 +3793,11 @@ public class ConversationParentFragment extends Fragment
             reactionDelegate.hide();
           }
         });
+  }
+
+  @Override
+  public boolean isKeyboardOpen() {
+    return container.isKeyboardOpen();
   }
 
   @Override
@@ -3934,9 +4010,9 @@ public class ConversationParentFragment extends Fragment
       SimpleTask.run(() -> {
         try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
           for (IdentityRecord identityRecord : unverifiedIdentities) {
-            ApplicationDependencies.getIdentityStore().setVerified(identityRecord.getRecipientId(),
-                                                                   identityRecord.getIdentityKey(),
-                                                                   VerifiedStatus.DEFAULT);
+            ApplicationDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
+                                                                                      identityRecord.getIdentityKey(),
+                                                                                      VerifiedStatus.DEFAULT);
           }
         }
         return null;

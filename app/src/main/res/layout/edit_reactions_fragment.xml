@@ -58,12 +58,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_reactions_fragment_scrubber" />
 
-    <View
+    <FrameLayout
         android:id="@+id/edit_reactions_fragment_reaction_mask"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0"
-        android:background="@color/reactions_screen_shade_color"
+        android:background="@color/reactions_screen_light_shade_color"
+        android:foreground="@color/reactions_screen_dark_shade_color"
         app:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -29,6 +29,7 @@
         android:gravity="center"
         android:text="@string/NotificationProfilesFragment__notification_profiles"
         android:textAppearance="@style/TextAppearance.Signal.Title1"
+        android:hyphenationFrequency="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notification_profiles_empty_icon" />

@@ -40,7 +40,7 @@ public class UntrustedSendDialog extends AlertDialog.Builder implements DialogIn
 
   @Override
   public void onClick(DialogInterface dialog, int which) {
-    final TextSecureIdentityKeyStore identityStore = ApplicationDependencies.getIdentityStore();
+    final TextSecureIdentityKeyStore identityStore = ApplicationDependencies.getProtocolStore().aci().identities();
 
     SimpleTask.run(() -> {
       try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {

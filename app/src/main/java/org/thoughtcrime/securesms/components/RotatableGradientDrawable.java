@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 
 import java.util.Arrays;
 
-import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 /**
@@ -121,7 +120,11 @@ public final class RotatableGradientDrawable extends Drawable {
   public void draw(Canvas canvas) {
     int save = canvas.save();
     canvas.rotate(degrees, getBounds().width() / 2f, getBounds().height() / 2f);
-    canvas.drawRect(fillRect, fillPaint);
+
+    int height = fillRect.height();
+    int width = fillRect.width();
+    canvas.drawRect(fillRect.left - width, fillRect.top - height, fillRect.right + width, fillRect.bottom + height, fillPaint);
+
     canvas.restoreToCount(save);
   }
 

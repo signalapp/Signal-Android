@@ -130,8 +130,8 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
-            isVideoAvailable = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED && !recipient.isSelf && !recipient.isBlocked,
-            isAudioAvailable = !recipient.isGroup && !recipient.isSelf && !recipient.isBlocked,
+            isVideoAvailable = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED && !recipient.isSelf && !recipient.isBlocked && !recipient.isReleaseNotes,
+            isAudioAvailable = !recipient.isGroup && !recipient.isSelf && !recipient.isBlocked && !recipient.isReleaseNotes,
             isAudioSecure = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED,
             isMuted = recipient.isMuted,
             isMuteAvailable = !recipient.isSelf,
@@ -141,7 +141,7 @@ sealed class ConversationSettingsViewModel(
           canModifyBlockedState = !recipient.isSelf && RecipientUtil.isBlockable(recipient),
           specificSettingsState = state.requireRecipientSettingsState().copy(
             contactLinkState = when {
-              recipient.isSelf -> ContactLinkState.NONE
+              recipient.isSelf || recipient.isReleaseNotes -> ContactLinkState.NONE
               recipient.isSystemContact -> ContactLinkState.OPEN
               else -> ContactLinkState.ADD
             }

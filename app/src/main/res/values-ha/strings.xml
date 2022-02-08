@@ -1369,14 +1369,14 @@
   <string name="conversation_callable_secure__menu_call">Kiran Signal</string>
   <string name="conversation_callable_secure__menu_video">Kiran bidiyon Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Karin bayanin sako</string>
-  <string name="conversation_context__menu_copy_text">Kwafa rubutu</string>
-  <string name="conversation_context__menu_delete_message">Goge sako</string>
-  <string name="conversation_context__menu_forward_message">Ingiza sako</string>
-  <string name="conversation_context__menu_resend_message">Sake tura sako</string>
-  <string name="conversation_context__menu_reply_to_message">Amsa sako</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Karin bayanin sako</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Kwafa rubutu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Goge sako</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Ingiza sako</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Sake tura sako</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Amsa sako</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">Zaba da yawa</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Zaba da yawa</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Ajiye kari</string>
   <!--conversation_expiring_off-->

@@ -187,19 +187,26 @@
             android:textColor="@color/signal_text_primary"
             android:textColorLink="@color/signal_text_primary"
             app:emoji_maxLength="1000"
-            app:scaleEmojis="true"
             app:measureLastLine="true"
+            app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />
+
+        <ViewStub
+            android:id="@+id/conversation_item_call_to_action_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/conversation_item_call_to_action"
+            android:layout_margin="8dp" />
 
         <org.thoughtcrime.securesms.components.ConversationItemFooter
             android:id="@+id/conversation_item_footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="-5dp"
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
-            android:layout_gravity="end"
             android:alpha="0.7"
             android:clipChildren="false"
             android:clipToPadding="false"
@@ -212,9 +219,9 @@
             android:id="@+id/conversation_item_sticker_footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="2dp"
-            android:layout_gravity="end"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingStart="@dimen/message_bubble_horizontal_padding"
