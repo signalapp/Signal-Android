@@ -25,7 +25,7 @@ jobs:
       run: $ANDROID_HOME/tools/bin/sdkmanager --uninstall "platforms;android-31"
 
     - name: Build with Gradle
-      run: ./gradlew assemblePlayProdRelease
+      run: ./gradlew assemblePlayFossProdRelease
 
     - name: Get version
       id: get-version
@@ -40,13 +40,13 @@ jobs:
         KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
       run: |
         echo "${KEYSTORE_BASE64}" | base64 -d > apksign.keystore
-        for apk in app/build/outputs/apk/playProd/release/*-unsigned-*.apk; do
+        for apk in app/build/outputs/apk/playFossProd/release/*-unsigned-*.apk; do
         out=${apk/-unsigned-/-signed-}
         ${ANDROID_HOME}/build-tools/30.0.2/apksigner sign --ks apksign.keystore --ks-pass env:KEYSTORE_PASS --out "${out}" "${apk}"
         echo "$(sha256sum ${out})"
         done
         rm apksign.keystore
-        
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -60,7 +60,7 @@ jobs:
 
     - name: Get Universal APK Filename
       id: get-universal-filename
-      run: echo ::set-output name=FILENAME::$(basename $(ls -1 app/build/outputs/apk/playProd/release/*-universal-*-signed-*.apk) )
+      run: echo ::set-output name=FILENAME::$(basename $(ls -1 app/build/outputs/apk/playFossProd/release/*-universal-*-signed-*.apk) )
 
     - name: Upload Universal APK
       uses: actions/upload-release-asset@v1
@@ -68,7 +68,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: "app/build/outputs/apk/playProd/release/${{ steps.get-universal-filename.outputs.FILENAME }}"
+        asset_path: "app/build/outputs/apk/playFossProd/release/${{ steps.get-universal-filename.outputs.FILENAME }}"
         asset_name: ${{ steps.get-universal-filename.outputs.FILENAME }}
         asset_content_type: application/vnd.android.package-archive
 
