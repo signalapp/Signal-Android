@@ -126,6 +126,11 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       return;
     }
 
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Not primary device, aborting...");
+      return;
+    }
+
     if (recipientId == null) generateFullContactUpdate();
     else                     generateSingleContactUpdate(recipientId);
   }

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.media.Ringtone
 import android.media.RingtoneManager
 import android.net.Uri
 import android.provider.Settings
@@ -17,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -36,6 +38,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val MESSAGE_SOUND_SELECT: Int = 1
 private const val CALL_RINGTONE_SELECT: Int = 2
+private val TAG = Log.tag(NotificationsSettingsFragment::class.java)
 
 class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__notifications) {
 
@@ -248,9 +251,14 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     return if (TextUtils.isEmpty(uri.toString())) {
       getString(R.string.preferences__silent)
     } else {
-      val tone = RingtoneUtil.getRingtone(requireContext(), uri)
+      val tone: Ringtone? = RingtoneUtil.getRingtone(requireContext(), uri)
       if (tone != null) {
-        tone.getTitle(requireContext()) ?: getString(R.string.NotificationsSettingsFragment__unknown_ringtone)
+        try {
+          tone.getTitle(requireContext()) ?: getString(R.string.NotificationsSettingsFragment__unknown_ringtone)
+        } catch (e: SecurityException) {
+          Log.w(TAG, "Unable to get title for ringtone", e)
+          return getString(R.string.NotificationsSettingsFragment__unknown_ringtone)
+        }
       } else {
         getString(R.string.preferences__default)
       }

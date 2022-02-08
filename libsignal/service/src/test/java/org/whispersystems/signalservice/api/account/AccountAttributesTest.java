@@ -17,7 +17,8 @@ public final class AccountAttributesTest {
                                                         new byte[10],
                                                         false,
                                                         new AccountAttributes.Capabilities(true, true, true, true, true, true, true),
-                                                        false));
+                                                        false,
+                                                        null));
     assertEquals("{\"signalingKey\":\"skey\"," +
                  "\"registrationId\":123," +
                  "\"voice\":true," +
@@ -28,7 +29,8 @@ public final class AccountAttributesTest {
                  "\"unidentifiedAccessKey\":\"AAAAAAAAAAAAAA==\"," +
                  "\"unrestrictedUnidentifiedAccess\":false," +
                  "\"discoverableByPhoneNumber\":false," +
-                 "\"capabilities\":{\"uuid\":true,\"storage\":true,\"senderKey\":true,\"announcementGroup\":true,\"changeNumber\":true,\"gv2-3\":true,\"gv1-migration\":true}}", json);
+                 "\"capabilities\":{\"uuid\":true,\"storage\":true,\"senderKey\":true,\"announcementGroup\":true,\"changeNumber\":true,\"gv2-3\":true,\"gv1-migration\":true}," +
+                 "\"name\":null}", json);
   }
 
   @Test

@@ -131,6 +131,17 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   }
 
   @Override
+  public int read() throws IOException {
+    byte[] buffer = new byte[1];
+    int    read;
+
+    //noinspection StatementWithEmptyBody
+    while ((read = read(buffer)) == 0);
+
+    return (read == -1) ? -1 : ((int) buffer[0]) & 0xFF;
+  }
+
+  @Override
   public int read(byte[] buffer) throws IOException {
     return read(buffer, 0, buffer.length);
   }

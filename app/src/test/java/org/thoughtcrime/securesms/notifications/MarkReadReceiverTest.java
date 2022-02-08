@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
@@ -37,21 +38,25 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(ApplicationDependencies.class)
+@PrepareForTest({ApplicationDependencies.class, Recipient.class})
 public class MarkReadReceiverTest {
 
   private final Context    mockContext    = mock(Context.class);
   private final JobManager mockJobManager = mock(JobManager.class);
+  private final Recipient  mockSelf       = mock(Recipient.class);
   private final List<Job>  jobs           = new LinkedList<>();
 
   @Before
   public void setUp() {
     mockStatic(ApplicationDependencies.class);
+    mockStatic(Recipient.class);
     when(ApplicationDependencies.getJobManager()).thenReturn(mockJobManager);
     doAnswer((Answer<Void>) invocation -> {
       jobs.add((Job) invocation.getArguments()[0]);
       return null;
     }).when(mockJobManager).add(any());
+    when(Recipient.self()).thenReturn(mockSelf);
+    when(mockSelf.getId()).thenReturn(RecipientId.from(-1));
   }
 
   @Test

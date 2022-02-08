@@ -71,6 +71,11 @@ public class StorageForcePushJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException {
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Only the primary device can force push");
+      return;
+    }
+
     StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
     SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase = SignalDatabase.recipients();

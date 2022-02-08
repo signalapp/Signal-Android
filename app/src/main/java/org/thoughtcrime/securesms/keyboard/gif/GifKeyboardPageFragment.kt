@@ -9,13 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
 import org.thoughtcrime.securesms.keyboard.findListener
-import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 
 class GifKeyboardPageFragment : LoggingFragment(R.layout.gif_keyboard_page_fragment) {
@@ -107,11 +105,12 @@ class GifKeyboardPageFragment : LoggingFragment(R.layout.gif_keyboard_page_fragm
   }
 
   private fun openGifSearch() {
-    AttachmentManager.selectGif(requireActivity(), ConversationActivity.PICK_GIF, host.isMms())
+    host.openGifSearch()
   }
 
   interface Host {
     fun isMms(): Boolean
+    fun openGifSearch()
     fun onGifSelectSuccess(blobUri: Uri, width: Int, height: Int)
   }
 }

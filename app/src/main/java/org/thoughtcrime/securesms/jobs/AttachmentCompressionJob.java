@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.StreamingTranscoder;
 import org.thoughtcrime.securesms.video.TranscoderCancelationSignal;
@@ -162,8 +161,26 @@ public final class AttachmentCompressionJob extends BaseJob {
       throws UndeliverableMessageException
   {
     try {
-      attachmentDatabase.markAttachmentAsTransformed(attachmentId);
-    } catch (Exception e) {
+      if (attachment.isSticker()) {
+        Log.d(TAG, "Sticker, not compressing.");
+      } else if (MediaUtil.isVideo(attachment)) {
+        Log.i(TAG, "Compressing video.");
+        attachment = transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
+        if (!constraints.isSatisfied(context, attachment)) {
+          throw new UndeliverableMessageException("Size constraints could not be met on video!");
+        }
+      } else if (constraints.canResize(attachment)) {
+        Log.i(TAG, "Compressing image.");
+        MediaStream converted = compressImage(context, attachment, constraints);
+        attachmentDatabase.updateAttachmentData(attachment, converted, false);
+        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
+      } else if (constraints.isSatisfied(context, attachment)) {
+        Log.i(TAG, "Not compressing.");
+        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
+      } else {
+        throw new UndeliverableMessageException("Size constraints could not be met!");
+      }
+    } catch (IOException | MmsException e) {
       throw new UndeliverableMessageException(e);
     }
   }
@@ -179,8 +196,7 @@ public final class AttachmentCompressionJob extends BaseJob {
     AttachmentDatabase.TransformProperties transformProperties = attachment.getTransformProperties();
 
     boolean allowSkipOnFailure = false;
-
-    if(!TextSecurePreferences.isCompressionEnabled(context)) {
+    if (true) {
       return attachment;
     }
 

@@ -103,13 +103,13 @@ class ExpireTimerSettingsFragment : DSLSettingsFragment(
       val values: Array<Int> = resources.getIntArray(R.array.ExpireTimerSettingsFragment__values).toTypedArray()
 
       var hasCustomValue = true
-      labels.zip(values).forEach { (label, value) ->
+      labels.zip(values).forEach { (label, seconds) ->
         radioPref(
           title = DSLSettingsText.from(label),
-          isChecked = state.currentTimer == value,
-          onClick = { viewModel.select(value) }
+          isChecked = state.currentTimer == seconds,
+          onClick = { viewModel.select(seconds) }
         )
-        hasCustomValue = hasCustomValue && state.currentTimer != value
+        hasCustomValue = hasCustomValue && state.currentTimer != seconds
       }
 
       radioPref(

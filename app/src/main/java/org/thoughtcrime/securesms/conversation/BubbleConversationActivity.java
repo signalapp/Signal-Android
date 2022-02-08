@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.conversation;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+
 /**
  * Activity which encapsulates a conversation for a Bubble window.
  *
@@ -9,7 +12,11 @@ package org.thoughtcrime.securesms.conversation;
  */
 public class BubbleConversationActivity extends ConversationActivity {
   @Override
-  protected boolean isInBubble() {
+  public boolean isInBubble() {
     return true;
+  }
+
+  @Override
+  public void onInitializeToolbar(@NonNull Toolbar toolbar) {
   }
 }

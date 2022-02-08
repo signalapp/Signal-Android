@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.os.PowerManager
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -25,7 +25,7 @@ private const val PROXIMITY_THRESHOLD = 5f
  * Manages the WakeLock while a VoiceNote is playing back in the target activity.
  */
 class VoiceNoteProximityWakeLockManager(
-  private val activity: AppCompatActivity,
+  private val activity: FragmentActivity,
   private val mediaController: MediaControllerCompat
 ) : DefaultLifecycleObserver {
 

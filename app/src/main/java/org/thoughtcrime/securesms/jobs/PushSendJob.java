@@ -446,17 +446,6 @@ public abstract class PushSendJob extends SendJob {
     }
   }
 
-  protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    SignalServiceAddress  localAddress = new SignalServiceAddress(Recipient.self().requireAci(), Recipient.self().requireE164());
-    SentTranscriptMessage transcript   = new SentTranscriptMessage(Optional.of(localAddress),
-                                                                   message.getTimestamp(),
-                                                                   message,
-                                                                   message.getExpiresInSeconds(),
-                                                                   Collections.singletonMap(localAddress, syncAccess.isPresent()),
-                                                                   false);
-    return SignalServiceSyncMessage.forSentTranscript(transcript);
-  }
-
   protected void handleProofRequiredException(@NonNull ProofRequiredException proofRequired, @Nullable Recipient recipient, long threadId, long messageId, boolean isMms)
       throws ProofRequiredException, RetryLaterException
   {

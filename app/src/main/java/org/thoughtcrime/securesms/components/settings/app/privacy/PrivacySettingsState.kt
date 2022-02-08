@@ -7,7 +7,6 @@ data class PrivacySettingsState(
   val seeMyPhoneNumber: PhoneNumberPrivacyValues.PhoneNumberSharingMode,
   val findMeByPhoneNumber: PhoneNumberPrivacyValues.PhoneNumberListingMode,
   val readReceipts: Boolean,
-  val compression: Boolean,
   val typingIndicators: Boolean,
   val screenLock: Boolean,
   val screenLockActivityTimeout: Long,

@@ -37,7 +37,6 @@ public final class AppInitialization {
     TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
     TextSecurePreferences.setPasswordDisabled(context, true);
     TextSecurePreferences.setReadReceiptsEnabled(context, true);
-    TextSecurePreferences.setCompressionEnabled(context, false);
     TextSecurePreferences.setTypingIndicatorsEnabled(context, true);
     TextSecurePreferences.setHasSeenWelcomeScreen(context, false);
     ApplicationDependencies.getMegaphoneRepository().onFirstEverAppLaunch();

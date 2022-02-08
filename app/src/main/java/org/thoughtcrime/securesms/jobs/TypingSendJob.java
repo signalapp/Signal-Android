@@ -78,7 +78,6 @@ public class TypingSendJob extends BaseJob {
     if (true) {
       return;
     }
-    
     if (!Recipient.self().isRegistered()) {
       throw new NotPushRegisteredException();
     }

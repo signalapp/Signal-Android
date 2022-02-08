@@ -37,6 +37,7 @@ import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
 
@@ -144,7 +145,7 @@ public final class IdentityUtil {
   public static void saveIdentity(String user, IdentityKey identityKey) {
     try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       SessionStore          sessionStore     = ApplicationDependencies.getSessionStore();
-      SignalProtocolAddress address          = new SignalProtocolAddress(user, 1);
+      SignalProtocolAddress address          = new SignalProtocolAddress(user, SignalServiceAddress.DEFAULT_DEVICE_ID);
 
       if (ApplicationDependencies.getIdentityStore().saveIdentity(address, identityKey)) {
         if (sessionStore.containsSession(address)) {

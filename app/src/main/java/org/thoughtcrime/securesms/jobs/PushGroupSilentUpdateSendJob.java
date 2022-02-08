@@ -130,9 +130,15 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    GroupId.V2      groupId        = GroupId.v2(GroupUtil.requireMasterKey(groupContextV2.getMasterKey().toByteArray()));
-    List<Recipient> destinations   = Stream.of(recipients).map(Recipient::resolved).toList();
-    List<Recipient> completions    = deliver(destinations, groupId);
+    GroupId.V2 groupId = GroupId.v2(GroupUtil.requireMasterKey(groupContextV2.getMasterKey().toByteArray()));
+
+    if (Recipient.externalGroupExact(context, groupId).isBlocked()) {
+      Log.i(TAG, "Not updating group state for blocked group " + groupId);
+      return;
+    }
+
+    List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
+    List<Recipient> completions  = deliver(destinations, groupId);
 
     for (Recipient completion : completions) {
       recipients.remove(completion.getId());

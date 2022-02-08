@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.api.services;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -10,9 +9,14 @@ import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
+import org.whispersystems.signalservice.internal.push.GroupMismatchedDevices;
+import org.whispersystems.signalservice.internal.push.GroupStaleDevices;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
 import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse;
 import org.whispersystems.signalservice.internal.push.SendMessageResponse;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException;
+import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.internal.websocket.DefaultResponseMapper;
@@ -85,7 +89,18 @@ public class MessagingService {
                                                                     .build();
 
     return signalWebSocket.request(requestMessage)
-                          .map(DefaultResponseMapper.getDefault(SendGroupMessageResponse.class)::map)
+                          .map(DefaultResponseMapper.extend(SendGroupMessageResponse.class)
+                                                    .withCustomError(401, (status, errorBody, getHeader) -> new InvalidUnidentifiedAccessHeaderException())
+                                                    .withCustomError(404, (status, errorBody, getHeader) -> new NotFoundException("At least one unregistered user in message send."))
+                                                    .withCustomError(409, (status, errorBody, getHeader) -> {
+                                                      GroupMismatchedDevices[] mismatchedDevices = JsonUtil.fromJsonResponse(errorBody, GroupMismatchedDevices[].class);
+                                                      return new GroupMismatchedDevicesException(mismatchedDevices);
+                                                    })
+                                                    .withCustomError(410, (status, errorBody, getHeader) -> {
+                                                      GroupStaleDevices[] staleDevices = JsonUtil.fromJsonResponse(errorBody, GroupStaleDevices[].class);
+                                                      return new GroupStaleDevicesException(staleDevices);
+                                                    })
+                                                    .build()::map)
                           .onErrorReturn(ServiceResponse::forUnknownError);
   }
 

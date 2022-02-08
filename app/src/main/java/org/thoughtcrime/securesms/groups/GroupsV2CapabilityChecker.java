@@ -29,9 +29,10 @@ public final class GroupsV2CapabilityChecker {
 
   /**
    * @param resolved A collection of resolved recipients.
+   * @return True if a recipient needed to be refreshed, otherwise false.
    */
   @WorkerThread
-  public static void refreshCapabilitiesIfNecessary(@NonNull Collection<Recipient> resolved) throws IOException {
+  public static boolean refreshCapabilitiesIfNecessary(@NonNull Collection<Recipient> resolved) throws IOException {
     Set<RecipientId> needsRefresh = Stream.of(resolved)
                                           .filter(r -> r.getGroupsV2Capability() != Recipient.Capability.SUPPORTED)
                                           .map(Recipient::getId)
@@ -48,6 +49,10 @@ public final class GroupsV2CapabilityChecker {
           throw new IOException("Recipient capability was not retrieved in time");
         }
       }
+
+      return true;
+    } else {
+      return false;
     }
   }
 

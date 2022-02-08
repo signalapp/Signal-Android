@@ -4,6 +4,8 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import androidx.annotation.NonNull;
+
 import net.zetetic.database.SQLException;
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 import net.zetetic.database.sqlcipher.SQLiteTransactionListener;
@@ -11,8 +13,11 @@ import net.zetetic.database.sqlcipher.SQLiteTransactionListener;
 import org.signal.core.util.tracing.Tracer;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * This is a wrapper around {@link net.zetetic.database.sqlcipher.SQLiteDatabase}. There's difficulties
@@ -33,9 +38,13 @@ public class SQLiteDatabase {
   private static final String KEY_THREAD = "thread";
   private static final String NAME_LOCK  = "LOCK";
 
-
   private final net.zetetic.database.sqlcipher.SQLiteDatabase wrapped;
   private final Tracer                                        tracer;
+
+  private static final ThreadLocal<Set<Runnable>> POST_TRANSACTION_TASKS = new ThreadLocal<>();
+  static {
+    POST_TRANSACTION_TASKS.set(new LinkedHashSet<>());
+  }
 
   public SQLiteDatabase(net.zetetic.database.sqlcipher.SQLiteDatabase wrapped) {
     this.wrapped = wrapped;
@@ -102,8 +111,75 @@ public class SQLiteDatabase {
     return wrapped;
   }
 
+  /**
+   * Allows you to enqueue a task to be run after the active transaction is successfully completed.
+   * If the transaction fails, the task is discarded.
+   * If there is no current transaction open, the task is run immediately.
+   */
+  public void runPostSuccessfulTransaction(@NonNull Runnable task) {
+    if (wrapped.inTransaction()) {
+      getPostTransactionTasks().add(task);
+    } else {
+      task.run();
+    }
+  }
+
+  /**
+   * Does the same as {@link #runPostSuccessfulTransaction(Runnable)}, except that you can pass in a "dedupe key".
+   * There can only be one task enqueued for a given dedupe key. So, if you enqueue a second task with that key, it will be discarded.
+   */
+  public void runPostSuccessfulTransaction(@NonNull String dedupeKey, @NonNull Runnable task) {
+    if (wrapped.inTransaction()) {
+      getPostTransactionTasks().add(new DedupedRunnable(dedupeKey, task));
+    } else {
+      task.run();
+    }
+  }
+
+  private @NonNull Set<Runnable> getPostTransactionTasks() {
+    Set<Runnable> tasks = POST_TRANSACTION_TASKS.get();
+
+    if (tasks == null) {
+      tasks = new LinkedHashSet<>();
+      POST_TRANSACTION_TASKS.set(tasks);
+    }
+
+    return tasks;
+  }
+
   private interface Returnable<E> {
     E run();
+  }
+
+  /**
+   * Runnable whose equals/hashcode is determined by a key you pass in.
+   */
+  private static class DedupedRunnable implements Runnable {
+    private final String   key;
+    private final Runnable runnable;
+
+    protected DedupedRunnable(@NonNull String key, @NonNull Runnable runnable) {
+      this.key      = key;
+      this.runnable = runnable;
+    }
+
+    @Override
+    public void run() {
+      runnable.run();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final DedupedRunnable that = (DedupedRunnable) o;
+      return key.equals(that.key);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(key);
+    }
   }
 
 
@@ -113,7 +189,31 @@ public class SQLiteDatabase {
 
   public void beginTransaction() {
     traceLockStart();
-    trace("beginTransaction()", wrapped::beginTransaction);
+
+    if (wrapped.inTransaction()) {
+      trace("beginTransaction()", wrapped::beginTransaction);
+    } else {
+      trace("beginTransaction()", () -> {
+        wrapped.beginTransactionWithListener(new SQLiteTransactionListener() {
+          @Override
+          public void onBegin() { }
+
+          @Override
+          public void onCommit() {
+            Set<Runnable> tasks = getPostTransactionTasks();
+            for (Runnable r : tasks) {
+              r.run();
+            }
+            tasks.clear();
+          }
+
+          @Override
+          public void onRollback() {
+            getPostTransactionTasks().clear();
+          }
+        });
+      });
+    }
   }
 
   public void endTransaction() {

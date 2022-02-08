@@ -44,6 +44,9 @@ public class AccountAttributes {
   @JsonProperty
   private Capabilities capabilities;
 
+  @JsonProperty
+  private String name;
+
   public AccountAttributes(String signalingKey,
                            int registrationId,
                            boolean fetchesMessages,
@@ -52,7 +55,8 @@ public class AccountAttributes {
                            byte[] unidentifiedAccessKey,
                            boolean unrestrictedUnidentifiedAccess,
                            Capabilities capabilities,
-                           boolean discoverableByPhoneNumber)
+                           boolean discoverableByPhoneNumber,
+                           String name)
   {
     this.signalingKey                   = signalingKey;
     this.registrationId                 = registrationId;
@@ -65,6 +69,7 @@ public class AccountAttributes {
     this.unrestrictedUnidentifiedAccess = unrestrictedUnidentifiedAccess;
     this.capabilities                   = capabilities;
     this.discoverableByPhoneNumber      = discoverableByPhoneNumber;
+    this.name                           = name;
   }
 
   public AccountAttributes() {}
@@ -111,6 +116,10 @@ public class AccountAttributes {
 
   public Capabilities getCapabilities() {
     return capabilities;
+  }
+
+  public String getName() {
+    return name;
   }
 
   public static class Capabilities {

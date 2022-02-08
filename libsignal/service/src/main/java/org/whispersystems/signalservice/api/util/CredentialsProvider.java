@@ -11,5 +11,6 @@ import org.whispersystems.signalservice.api.push.ACI;
 public interface CredentialsProvider {
   ACI getAci();
   String getE164();
+  int getDeviceId();
   String getPassword();
 }

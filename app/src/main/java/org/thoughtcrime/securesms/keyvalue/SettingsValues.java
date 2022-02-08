@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
 
 import java.util.Arrays;
@@ -376,10 +376,6 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setUniversalExpireTimer(int seconds) {
     putInteger(UNIVERSAL_EXPIRE_TIMER, seconds);
-    SignalExecutors.BOUNDED.execute(() -> {
-      SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
-      StorageSyncHelper.scheduleSyncForDataChange();
-    });
   }
 
   public int getUniversalExpireTimer() {

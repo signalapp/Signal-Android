@@ -42,7 +42,7 @@ public final class RingtoneUtil {
     try {
       return RingtoneManager.getActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE);
     } catch (SecurityException e) {
-      Log.w(TAG, "Failed to set ringtone with first fallback approach", e);
+      Log.w(TAG, "Failed to get ringtone with first fallback approach", e);
     }
 
     Log.i(TAG, "Attempting to get default ringtone directly via reflection");

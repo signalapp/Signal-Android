@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -105,8 +106,8 @@ public class AccountRecordProcessor extends DefaultStorageRecordProcessor<Signal
     AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode        = remote.getPhoneNumberSharingMode();
     boolean                              preferContactAvatars          = remote.isPreferContactAvatars();
     int                                  universalExpireTimer          = remote.getUniversalExpireTimer();
-    boolean                              primarySendsSms               = local.isPrimarySendsSms();
-    String                               e164                          = local.getE164();
+    boolean                              primarySendsSms               = SignalStore.account().isPrimaryDevice() ? local.isPrimarySendsSms() : remote.isPrimarySendsSms();
+    String                               e164                          = SignalStore.account().isPrimaryDevice() ? local.getE164() : remote.getE164();
     List<String>                         defaultReactions              = remote.getDefaultReactions().size() > 0 ? remote.getDefaultReactions() : local.getDefaultReactions();
     boolean                              displayBadgesOnProfile        = remote.isDisplayBadgesOnProfile();
     boolean                              subscriptionManuallyCancelled = remote.isSubscriptionManuallyCancelled();

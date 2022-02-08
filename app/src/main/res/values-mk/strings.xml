@@ -139,7 +139,7 @@
   <string name="CommunicationActions_insecure_call">Незаштитен повик</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Можно е да важат трошоци од операторот. Бројот кој што го барате не е регистриран на Signal. Овој повик ќе биде направен преку мобилниот оператор, не преку интернет.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Вашиот сигурносен број за %1$s е променет. Ова може да значи дека некој дека некој се обидува да ја пресретне Вашата комуникација, или пак дека %2$s го има реинсталирано Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Вашиот сигурносен број со %1$s е променет. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација, или пак дека %2$s го има реинсталирано Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можеби сакате да го потврдите Вашиот безбедносен број со овој контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Прифати</string>
   <!--ContactsCursorLoader-->
@@ -295,7 +295,7 @@
   <string name="ConversationFragment_contact_us">Контактирајте не</string>
   <string name="ConversationFragment_verify">Провери</string>
   <string name="ConversationFragment_not_now">Не сега</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed">Вашииот сигурносен број за %s се промени </string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Вашиот сигурносен број со %s е променет</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Вашиот сигурносен број со %s е променет, најверојатно бидејќи го има реинсталирано Signal или ги има променето уредите. Допрете „Провери“ за да го потврдите новиот сигурносен број. Ова не е задолжително.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s вклучен</string>
@@ -927,7 +927,7 @@
   <string name="MessageRecord_missed_audio_call_date">Испуштен аудио повик · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Испуштен видео повик · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ја уреди групата.</string>
-  <string name="MessageRecord_s_called_you_date">%1$s ве повика · %2$s</string>
+  <string name="MessageRecord_s_called_you_date">%1$s Ве повика · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s е на Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Вклучивте исчезнувачки пораки.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s оневозможивте исчезнувачки пораки.</string>
@@ -947,7 +947,7 @@
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s го промени името на својот профил во %2$s.</string>
-  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ги променија имињата на своите профили од %2$s во %3$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s го промени името на својот профил од %2$s во %3$s.</string>
   <string name="MessageRecord_changed_their_profile">%1$s го промени профилот.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Создадовте група.</string>
@@ -1013,27 +1013,27 @@
   <string name="MessageRecord_you_added_invited_member_s">Го додадовте поканетиот член %1$s.</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s го/ја додаде %2$s.</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">Го сменивте името на групата во „%1$s“.</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s го смени името на групата во „%2$s“.</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Го променивте името на групата во „%1$s“.</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s го промени името на групата во „%2$s“.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Името на групата е променето во „%1$s“.</string>
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">Го променивте описот на групата.</string>
   <string name="MessageRecord_s_changed_the_group_description">%1$s го промени описот на групата. </string>
   <string name="MessageRecord_the_group_description_has_changed">Описот на групата е променет.</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">Вие го сменивте групниот аватар.</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">Го променивте групниот аватар.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s го промени групниот аватар.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">Групниот аватар е променет.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Променивте кој може да ги уредува информациите за групата во „%1$s“.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s промени кој може да ги уредува информациите за групата во „%2$s“.</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Кој може да ги менува информациите за групата е променето во „%1$s“.</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Кој може да ги уредува информациите за групата е променето во „%1$s“.</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Променивте кој може да ги уредува информациите за групата во „%1$s“.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s промени кој може да го уредува членството во групата во „%2$s“.</string>
-  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Кој може да го менува членството во групата е променето во „%1$s“.</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Кој може да го уредува членството во групата е променето во „%1$s“.</string>
   <!--GV2 announcement group change-->
-  <string name="MessageRecord_you_allow_all_members_to_send">Ги сменивте поставките на групата за да дозволите сите членови да испраќаат пораки.</string>
+  <string name="MessageRecord_you_allow_all_members_to_send">Ги сменивте поставувањата на групата за да дозволите сите членови да испраќаат пораки.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">Ги сменивте поставувањата на групата за да дозволите само администраторите да испраќаат пораки.</string>
   <string name="MessageRecord_s_allow_all_members_to_send">%1$s ги смени поставувањата на групата за да дозволи сите членови да испраќаат пораки.</string>
   <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ги смени поставувањата на групата за да дозволи само администраторите да испраќаат пораки.</string>
@@ -1084,7 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте сигурносниот број со %s како непроверен</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте Вашиот сигурносен број со %s како непроверен од друг уред.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порака од %s не може да биде испорачана</string>
-  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s го смени бројот со нов број.</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s го промени телефонскиот број</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групен повик · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е во групниот повик · %2$s</string>
@@ -1812,7 +1812,7 @@
   <string name="IdentityUtil_unverified_dialog_many">Вашиот сигурносен број со %1$s, %2$s и %3$s повеќе не е проверен. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација или пак дека тие го имаат реинсталирано Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Вашиот сигурносен број со %s само што се промени. </string>
   <string name="IdentityUtil_untrusted_dialog_two">Вашиот сигурносен број со %1$s и %2$s само што се промени</string>
-  <string name="IdentityUtil_untrusted_dialog_many">Вашиот сигурносен број со %1$s,%2$s и %3$s само што се промени. </string>
+  <string name="IdentityUtil_untrusted_dialog_many">Вашиот сигурносен број со %1$s, %2$s и %3$s само што се промени. </string>
   <plurals name="identity_others">
     <item quantity="one">%d друг</item>
     <item quantity="other">%d други</item>
@@ -3037,7 +3037,10 @@
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Користете го ова за да го промените сегашниот телефонски број во нов телефонски број. Не можете да ја поништите оваа промена.\n\nПред да продолжите, проверете дали Вашиот нов број може да прима SMS или повици. </string>
   <string name="ChangeNumberFragment__continue">Продолжи</string>
-  <string name="ChangeNumber__your_phone_number_has_been_changed">Вашиот телефонски број е променет.</string>
+  <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Вашиот телефонски број е променет во %1$s</string>
+  <!--Confirmation button to dismiss number changed dialog-->
+  <string name="ChangeNumber__okay">Во ред</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Смени го бројот</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Вашиот стар број</string>
@@ -3066,12 +3069,19 @@
   <string name="ChangeNumberPinDiffersFragment__update_pin">Ажурирај PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Да го задржам стариот PIN?</string>
   <!--ChangeNumberLockActivity-->
+  <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Изгледа сте се обиделе да го промените Вашиот број, но не успеавме да утврдиме дали е успешно.\n\nПовторно се проверува…</string>
+  <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Промената е потврдена</string>
+  <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Вашиот број е потврден како %1$s. Ако ова не е Вашиот нов број, повторно започнете го процесот на промена на бројот.</string>
+  <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Промената не е потврдена</string>
+  <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Не можевме да го одредиме статусот на Вашето барање за промена на бројот.\n\n(Грешка: %1$s)</string>
+  <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Пробај пак</string>
+  <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Напушти</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Испрати запис за дебагирање</string>
   <!--ChatsSettingsFragment-->

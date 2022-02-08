@@ -10,7 +10,6 @@ import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.text.TextUtils
 import com.annimon.stream.Stream
-import com.bumptech.glide.Glide
 import com.google.protobuf.InvalidProtocolBufferException
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.logging.Log
@@ -183,8 +182,9 @@ object SignalDatabaseMigrations {
   private const val NOTIFICATION_PROFILES_END_FIX = 124
   private const val REACTION_BACKUP_CLEANUP = 125
   private const val REACTION_REMOTE_DELETE_CLEANUP = 126
+  private const val PNI_CLEANUP = 127
 
-  const val DATABASE_VERSION = 126
+  const val DATABASE_VERSION = 127
 
   @JvmStatic
   fun migrate(context: Context, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -699,7 +699,6 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < ATTACHMENT_CLEAR_HASHES_2) {
       db.execSQL("UPDATE part SET data_hash = null")
-      Glide.get(context).clearDiskCache()
     }
 
     if (oldVersion < UUIDS) {
@@ -2259,6 +2258,10 @@ object SignalDatabaseMigrations {
             (is_mms = 1 AND message_id IN (SELECT _id from mms WHERE remote_deleted = 1))
         """.trimIndent()
       )
+    }
+
+    if (oldVersion < PNI_CLEANUP) {
+      db.execSQL("UPDATE recipient SET pni = NULL WHERE phone IS NULL")
     }
   }
 

@@ -95,12 +95,20 @@ public class SendDeliveryReceiptJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException, UndeliverableMessageException {
+    if (true) {
+      return;
+    }
     if (!Recipient.self().isRegistered()) {
       throw new NotPushRegisteredException();
     }
 
     SignalServiceMessageSender  messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                   recipient      = Recipient.resolved(recipientId);
+
+    if (recipient.isSelf()) {
+      Log.i(TAG, "Not sending to self, abort");
+      return;
+    }
 
     if (recipient.isUnregistered()) {
       Log.w(TAG, recipient.getId() + " is unregistered!");

@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -621,6 +622,10 @@ final class GroupManagerV2 {
       final DecryptedGroup                  decryptedGroupState;
       final DecryptedGroup                  previousGroupState;
 
+      if (Recipient.externalGroupExact(context, groupId).isBlocked()) {
+        throw new GroupChangeFailedException("Group is blocked.");
+      }
+
       try {
         previousGroupState  = v2GroupProperties.getDecryptedGroup();
         decryptedChange     = groupOperations.decryptChange(changeActions, selfAci.uuid());
@@ -850,7 +855,7 @@ final class GroupManagerV2 {
       } else if (requestToJoin) {
         Log.i(TAG, "Requested to join, cannot send update");
 
-        RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, new GroupMutation(null, decryptedChange, decryptedGroup), signedGroupChange);
+        RecipientAndThread recipientAndThread = sendGroupUpdate(groupMasterKey, new GroupMutation(null, decryptedChange, decryptedGroup), signedGroupChange, false);
 
         return new GroupManager.GroupActionResult(groupRecipient,
                                                   recipientAndThread.threadId,
@@ -1074,7 +1079,7 @@ final class GroupManagerV2 {
 
         groupDatabase.update(groupId, resetRevision(newGroup, decryptedGroup.getRevision()));
 
-        sendGroupUpdate(groupMasterKey, new GroupMutation(decryptedGroup, decryptedChange, newGroup), signedGroupChange);
+        sendGroupUpdate(groupMasterKey, new GroupMutation(decryptedGroup, decryptedChange, newGroup), signedGroupChange, false);
       } catch (VerificationFailedException | InvalidGroupStateException | NotAbleToApplyGroupV2ChangeException e) {
         throw new GroupChangeFailedException(e);
       }
@@ -1131,29 +1136,52 @@ final class GroupManagerV2 {
                                                       @NonNull GroupMutation groupMutation,
                                                       @Nullable GroupChange signedGroupChange)
   {
-    GroupId.V2                groupId                 = GroupId.v2(masterKey);
-    Recipient                 groupRecipient          = Recipient.externalGroupExact(context, groupId);
-    DecryptedGroupV2Context   decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, groupMutation, signedGroupChange);
-    OutgoingGroupUpdateMessage outgoingMessage        = new OutgoingGroupUpdateMessage(groupRecipient,
-                                                                                       decryptedGroupV2Context,
-                                                                                       null,
-                                                                                       System.currentTimeMillis(),
-                                                                                       0,
-                                                                                       false,
-                                                                                       null,
-                                                                                       Collections.emptyList(),
-                                                                                       Collections.emptyList(),
-                                                                                       Collections.emptyList());
+    return sendGroupUpdate(masterKey, groupMutation, signedGroupChange, true);
+  }
+
+  private @NonNull RecipientAndThread sendGroupUpdate(@NonNull GroupMasterKey masterKey,
+                                                      @NonNull GroupMutation groupMutation,
+                                                      @Nullable GroupChange signedGroupChange,
+                                                      boolean sendToMembers)
+  {
+    GroupId.V2                 groupId                 = GroupId.v2(masterKey);
+    Recipient                  groupRecipient          = Recipient.externalGroupExact(context, groupId);
+    DecryptedGroupV2Context    decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, groupMutation, signedGroupChange);
+    OutgoingGroupUpdateMessage outgoingMessage         = new OutgoingGroupUpdateMessage(groupRecipient,
+                                                                                        decryptedGroupV2Context,
+                                                                                        null,
+                                                                                        System.currentTimeMillis(),
+                                                                                        0,
+                                                                                        false,
+                                                                                        null,
+                                                                                        Collections.emptyList(),
+                                                                                        Collections.emptyList(),
+                                                                                        Collections.emptyList());
 
 
     DecryptedGroupChange plainGroupChange = groupMutation.getGroupChange();
 
     if (plainGroupChange != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(plainGroupChange)) {
-      ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, groupMutation.getNewGroupState(), outgoingMessage));
+      if (sendToMembers) {
+        ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, groupMutation.getNewGroupState(), outgoingMessage));
+      }
+
       return new RecipientAndThread(groupRecipient, -1);
     } else {
-      long threadId = MessageSender.send(context, outgoingMessage, -1, false, null, null);
-      return new RecipientAndThread(groupRecipient, threadId);
+      if (sendToMembers) {
+        long threadId = MessageSender.send(context, outgoingMessage, -1, false, null, null);
+        return new RecipientAndThread(groupRecipient, threadId);
+      } else {
+        long threadId = SignalDatabase.threads().getOrCreateValidThreadId(outgoingMessage.getRecipient(), -1, outgoingMessage.getDistributionType());
+        try {
+          long messageId = SignalDatabase.mms().insertMessageOutbox(outgoingMessage, threadId, false, null);
+          SignalDatabase.mms().markAsSent(messageId, true);
+          SignalDatabase.threads().update(threadId, true);
+        } catch (MmsException e) {
+          throw new AssertionError(e);
+        }
+        return new RecipientAndThread(groupRecipient, threadId);
+      }
     }
   }
 

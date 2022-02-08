@@ -17,6 +17,7 @@ import org.whispersystems.signalservice.api.KbsPinData
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
@@ -39,7 +40,7 @@ class VerifyAccountRepository(private val context: Application) {
 
     return Single.fromCallable {
       val fcmToken: Optional<String> = FcmUtil.getToken()
-      val accountManager = AccountManagerFactory.createUnauthenticated(context, e164, password)
+      val accountManager = AccountManagerFactory.createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password)
       val pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, fcmToken, e164, PUSH_REQUEST_TIMEOUT)
 
       if (mode == Mode.PHONE_CALL) {
@@ -57,6 +58,7 @@ class VerifyAccountRepository(private val context: Application) {
     val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(
       context,
       registrationData.e164,
+      SignalServiceAddress.DEFAULT_DEVICE_ID,
       registrationData.password
     )
 
@@ -80,6 +82,7 @@ class VerifyAccountRepository(private val context: Application) {
     val accountManager: SignalServiceAccountManager = AccountManagerFactory.createUnauthenticated(
       context,
       registrationData.e164,
+      SignalServiceAddress.DEFAULT_DEVICE_ID,
       registrationData.password
     )
 

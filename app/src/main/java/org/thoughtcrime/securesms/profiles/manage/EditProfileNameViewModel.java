@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
 import android.content.Context;
+import android.text.Editable;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.StringUtil;
 
 public final class EditProfileNameViewModel extends ViewModel {
 
@@ -22,8 +24,8 @@ public final class EditProfileNameViewModel extends ViewModel {
     this.events     = new SingleLiveEvent<>();
   }
 
-  void onGivenNameLengthChanged(int length) {
-    if (length <= 0) {
+  void onGivenNameChanged(@NonNull String text) {
+    if (StringUtil.isVisuallyEmpty(text.toString())) {
       saveState.setValue(SaveState.DISABLED);
     } else {
       saveState.setValue(SaveState.IDLE);

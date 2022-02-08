@@ -123,6 +123,11 @@ public class GroupV1MigrationJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, GroupChangeBusyException, RetryLaterException {
+    if (Recipient.resolved(recipientId).isBlocked()) {
+      Log.i(TAG, "Group blocked. Skipping.");
+      return;
+    }
+
     try {
       GroupsV1MigrationUtil.migrate(context, recipientId, false);
     } catch (GroupsV1MigrationUtil.InvalidMigrationStateException e) {

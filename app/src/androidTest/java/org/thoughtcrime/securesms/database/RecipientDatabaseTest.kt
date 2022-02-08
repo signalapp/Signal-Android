@@ -4,10 +4,14 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.ThreadUtil
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.RecipientChangedNumberJob
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
@@ -17,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.PNI
 import java.lang.IllegalArgumentException
 import java.util.UUID
 
@@ -189,17 +194,21 @@ class RecipientDatabaseTest {
   @Test
   fun getAndPossiblyMerge_e164MapsToExistingUserButAciDoesNot_aciAndE164_2_highTrust() {
     val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+    recipientDatabase.setPni(existingId, PNI_A)
 
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A, true)
+    recipientDatabase.setPni(retrievedId, PNI_A)
     assertNotEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
     assertEquals(ACI_B, retrievedRecipient.requireAci())
     assertEquals(E164_A, retrievedRecipient.requireE164())
+    assertEquals(PNI_A, retrievedRecipient.pni.get())
 
     val existingRecipient = Recipient.resolved(existingId)
     assertEquals(ACI_A, existingRecipient.requireAci())
     assertFalse(existingRecipient.hasE164())
+    assertNull(existingRecipient.pni.orNull())
   }
 
   /** We never change the ACI of an existing row. New ACI = new person, regardless of trust. And low trust means we can’t take the e164. */
@@ -262,8 +271,11 @@ class RecipientDatabaseTest {
   /** High trust lets you merge two different users into one. You should prefer the ACI user. Not shown: merging threads, dropping e164 sessions, etc. */
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_merge_highTrust() {
-    val existingAciId: RecipientId = recipientDatabase.getOrInsertFromAci(ACI_A)
-    val existingE164Id: RecipientId = recipientDatabase.getOrInsertFromE164(E164_A)
+    val changeNumberListener = ChangeNumberListener()
+    changeNumberListener.enqueue()
+
+    val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, null, true)
+    val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A, true)
 
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
     assertEquals(existingAciId, retrievedId)
@@ -274,6 +286,32 @@ class RecipientDatabaseTest {
 
     val existingE164Recipient = Recipient.resolved(existingE164Id)
     assertEquals(retrievedId, existingE164Recipient.id)
+
+    changeNumberListener.waitForJobManager()
+    assertFalse(changeNumberListener.numberChangeWasEnqueued)
+  }
+
+  /** Same as [getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_merge_highTrust], but with a number change. */
+  @Test
+  fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_merge_highTrust_changedNumber() {
+    val changeNumberListener = ChangeNumberListener()
+    changeNumberListener.enqueue()
+
+    val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, true)
+    val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A, true)
+
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+    assertEquals(existingAciId, retrievedId)
+
+    val retrievedRecipient = Recipient.resolved(retrievedId)
+    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(E164_A, retrievedRecipient.requireE164())
+
+    val existingE164Recipient = Recipient.resolved(existingE164Id)
+    assertEquals(retrievedId, existingE164Recipient.id)
+
+    changeNumberListener.waitForJobManager()
+    assert(changeNumberListener.numberChangeWasEnqueued)
   }
 
   /** Low trust means you can’t merge. If you’re retrieving a user from the table with this data, prefer the ACI one. */
@@ -297,6 +335,9 @@ class RecipientDatabaseTest {
   /** Another high trust case. No new rules here, just a more complex scenario to show how different rules interact. */
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_complex_highTrust() {
+    val changeNumberListener = ChangeNumberListener()
+    changeNumberListener.enqueue()
+
     val existingId1: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, true)
     val existingId2: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A, true)
 
@@ -310,6 +351,8 @@ class RecipientDatabaseTest {
     val existingRecipient2 = Recipient.resolved(existingId2)
     assertEquals(ACI_B, existingRecipient2.requireAci())
     assertFalse(existingRecipient2.hasE164())
+
+    assert(changeNumberListener.numberChangeWasEnqueued)
   }
 
   /** Another low trust case. No new rules here, just a more complex scenario to show how different rules interact. */
@@ -376,6 +419,63 @@ class RecipientDatabaseTest {
     assertEquals(E164_A, recipientWithId1.requireE164())
   }
 
+  /** This is a case where normally we'd update the E164 of a user, but here the changeSelf flag is disabled, so we shouldn't. */
+  @Test
+  fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_aciBelongsToLocalUser_highTrust_changeSelfFalse() {
+    val dataSet = KeyValueDataSet().apply {
+      putString(AccountValues.KEY_E164, E164_A)
+      putString(AccountValues.KEY_ACI, ACI_A.toString())
+    }
+    SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
+
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, highTrust = true, changeSelf = false)
+    assertEquals(existingId, retrievedId)
+
+    val retrievedRecipient = Recipient.resolved(retrievedId)
+    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(E164_A, retrievedRecipient.requireE164())
+  }
+
+  /** This is a case where we're changing our own number, and it's allowed because changeSelf = true. */
+  @Test
+  fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_aciBelongsToLocalUser_highTrust_changeSelfTrue() {
+    val dataSet = KeyValueDataSet().apply {
+      putString(AccountValues.KEY_E164, E164_A)
+      putString(AccountValues.KEY_ACI, ACI_A.toString())
+    }
+    SignalStore.inject(KeyValueStore(MockKeyValuePersistentStorage.withDataSet(dataSet)))
+
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, highTrust = true, changeSelf = true)
+    assertEquals(existingId, retrievedId)
+
+    val retrievedRecipient = Recipient.resolved(retrievedId)
+    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(E164_B, retrievedRecipient.requireE164())
+  }
+
+  /** Verifying a case where a change number job is expected to be enqueued. */
+  @Test
+  fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_highTrust_changedNumber() {
+    val changeNumberListener = ChangeNumberListener()
+    changeNumberListener.enqueue()
+
+    val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
+
+    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B, true)
+    assertEquals(existingId, retrievedId)
+
+    val retrievedRecipient = Recipient.resolved(retrievedId)
+    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(E164_B, retrievedRecipient.requireE164())
+
+    changeNumberListener.waitForJobManager()
+    assert(changeNumberListener.numberChangeWasEnqueued)
+  }
+
   // ==============================================================
   // Misc
   // ==============================================================
@@ -426,9 +526,30 @@ class RecipientDatabaseTest {
     }
   }
 
+  private class ChangeNumberListener {
+
+    var numberChangeWasEnqueued = false
+      private set
+
+    fun waitForJobManager() {
+      ApplicationDependencies.getJobManager().flush()
+      ThreadUtil.sleep(500)
+    }
+
+    fun enqueue() {
+      ApplicationDependencies.getJobManager().addListener(
+        { job -> job.factoryKey == RecipientChangedNumberJob.KEY },
+        { _, _ -> numberChangeWasEnqueued = true }
+      )
+    }
+  }
+
   companion object {
     val ACI_A = ACI.from(UUID.fromString("3436efbe-5a76-47fa-a98a-7e72c948a82e"))
     val ACI_B = ACI.from(UUID.fromString("8de7f691-0b60-4a68-9cd9-ed2f8453f9ed"))
+
+    val PNI_A = PNI.from(UUID.fromString("154b8d92-c960-4f6c-8385-671ad2ffb999"))
+    val PNI_B = PNI.from(UUID.fromString("ba92b1fb-cd55-40bf-adda-c35a85375533"))
 
     const val E164_A = "+12221234567"
     const val E164_B = "+13331234567"

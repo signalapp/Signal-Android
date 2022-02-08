@@ -5,6 +5,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
@@ -80,7 +81,16 @@ public class WebSocketConnection extends WebSocketListener {
                              SignalServiceConfiguration serviceConfiguration,
                              Optional<CredentialsProvider> credentialsProvider,
                              String signalAgent,
-                             HealthMonitor healthMonitor)
+                             HealthMonitor healthMonitor) {
+    this(name, serviceConfiguration, credentialsProvider, signalAgent, healthMonitor, "");
+  }
+
+  public WebSocketConnection(String name,
+                             SignalServiceConfiguration serviceConfiguration,
+                             Optional<CredentialsProvider> credentialsProvider,
+                             String signalAgent,
+                             HealthMonitor healthMonitor,
+                             String extraPathUri)
   {
     this.name                = "[" + name + ":" + System.identityHashCode(this) + "]";
     this.trustStore          = serviceConfiguration.getSignalServiceUrls()[0].getTrustStore();
@@ -95,9 +105,9 @@ public class WebSocketConnection extends WebSocketListener {
     String uri = serviceConfiguration.getSignalServiceUrls()[0].getUrl().replace("https://", "wss://").replace("http://", "ws://");
 
     if (credentialsProvider.isPresent()) {
-      this.wsUri = uri + "/v1/websocket/?login=%s&password=%s";
+      this.wsUri = uri + "/v1/websocket/" + extraPathUri + "?login=%s&password=%s";
     } else {
-      this.wsUri = uri + "/v1/websocket/";
+      this.wsUri = uri + "/v1/websocket/" + extraPathUri;
     }
   }
 
@@ -113,6 +123,9 @@ public class WebSocketConnection extends WebSocketListener {
 
       if (credentialsProvider.isPresent()) {
         String identifier = Objects.requireNonNull(credentialsProvider.get().getAci()).toString();
+        if (credentialsProvider.get().getDeviceId() != SignalServiceAddress.DEFAULT_DEVICE_ID) {
+          identifier += "." + credentialsProvider.get().getDeviceId();
+        }
         filledUri = String.format(wsUri, identifier, credentialsProvider.get().getPassword());
       } else {
         filledUri = wsUri;

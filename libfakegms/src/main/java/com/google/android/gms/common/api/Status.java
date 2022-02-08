@@ -8,5 +8,9 @@ public final class Status {
     return CommonStatusCodes.ERROR;
   }
 
+  public String getStatusMessage() {
+    return new String();
+  }
+
   public static final int RESULT_SUCCESS = 0;
 }

@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.internal.websocket;
 
 import org.whispersystems.libsignal.util.guava.Function;
+import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 
 /**
  * Can map an API response to an appropriate {@link Throwable}.
@@ -9,5 +10,5 @@ import org.whispersystems.libsignal.util.guava.Function;
  * {@link DefaultErrorMapper}.
  */
 public interface ErrorMapper {
-  Throwable parseError(int status, String body, Function<String, String> getHeader);
+  Throwable parseError(int status, String body, Function<String, String> getHeader) throws MalformedResponseException;
 }

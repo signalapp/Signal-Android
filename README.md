@@ -23,9 +23,9 @@ However this can sometimes fail, in which case you will need to clear your signa
 - **Deleting messages time extension**
 
   Messages must be deleted within 3 hours of sending on Signal. Signal-BA has modified this to 24 hours (the limit the recipient will allow deleted messages up to).
-  
+
 - **Does not allow remote deletion on the device**
-  
+
   Signal allows contacts to delete messages on your device up to 3 hours after sending. This fork will ignore these deletion requests.
 
 - **Does not compress images or video**

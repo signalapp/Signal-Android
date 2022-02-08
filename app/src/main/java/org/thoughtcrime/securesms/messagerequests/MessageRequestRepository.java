@@ -255,10 +255,6 @@ final class MessageRequestRepository {
 
       RecipientUtil.unblock(context, recipient);
 
-      List<MessageDatabase.MarkedMessageInfo> messageIds = SignalDatabase.threads().setEntireThreadRead(threadId);
-      ApplicationDependencies.getMessageNotifier().updateNotification(context);
-      MarkReadReceiver.process(context, messageIds);
-
       if (TextSecurePreferences.isMultiDevice(context)) {
         ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(liveRecipient.getId()));
       }

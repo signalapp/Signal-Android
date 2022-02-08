@@ -26,7 +26,7 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
   override fun onAttach(context: Context) {
     super.onAttach(context)
 
-    callback = context as Callback
+    callback = findListener<Callback>()!!
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

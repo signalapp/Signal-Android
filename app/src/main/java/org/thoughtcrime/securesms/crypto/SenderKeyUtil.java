@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.SignalSessionLock;
@@ -30,7 +31,7 @@ public final class SenderKeyUtil {
    * Gets when the sender key session was created, or -1 if it doesn't exist.
    */
   public static long getCreateTimeForOurKey(@NonNull Context context, @NonNull DistributionId distributionId) {
-    SignalProtocolAddress address = new SignalProtocolAddress(Recipient.self().requireServiceId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+    SignalProtocolAddress address = new SignalProtocolAddress(Recipient.self().requireServiceId(), SignalStore.account().getDeviceId());
     return SignalDatabase.senderKeys().getCreatedTime(address, distributionId);
   }
 

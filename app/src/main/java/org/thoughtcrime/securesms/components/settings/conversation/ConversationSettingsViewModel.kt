@@ -130,8 +130,8 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
-            isVideoAvailable = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED && !recipient.isSelf,
-            isAudioAvailable = !recipient.isGroup && !recipient.isSelf,
+            isVideoAvailable = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED && !recipient.isSelf && !recipient.isBlocked,
+            isAudioAvailable = !recipient.isGroup && !recipient.isSelf && !recipient.isBlocked,
             isAudioSecure = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED,
             isMuted = recipient.isMuted,
             isMuteAvailable = !recipient.isSelf,
@@ -240,11 +240,12 @@ sealed class ConversationSettingsViewModel(
     private val liveGroup = LiveGroup(groupId)
 
     init {
-      store.update(liveGroup.groupRecipient) { recipient, state ->
+      val recipientAndIsActive = LiveDataUtil.combineLatest(liveGroup.groupRecipient, liveGroup.isActive) { r, a -> r to a }
+      store.update(recipientAndIsActive) { (recipient, isActive), state ->
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
-            isVideoAvailable = recipient.isPushV2Group,
+            isVideoAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive,
             isAudioAvailable = false,
             isAudioSecure = recipient.isPushV2Group,
             isMuted = recipient.isMuted,

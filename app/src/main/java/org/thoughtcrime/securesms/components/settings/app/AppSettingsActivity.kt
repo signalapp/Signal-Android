@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.navigation.NavDirections
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.MainActivity
@@ -15,6 +16,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationP
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.DynamicTheme
@@ -24,6 +27,7 @@ private const val START_LOCATION = "app.settings.start.location"
 private const val START_ARGUMENTS = "app.settings.start.arguments"
 private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_PREFERENCES"
 private const val STATE_WAS_CONFIGURATION_UPDATED = "app.settings.state.configuration.updated"
+private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
 
 class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
 
@@ -82,6 +86,17 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
         startService(intent)
       }
     }
+
+    if (savedInstanceState == null) {
+      when (intent.getStringExtra(EXTRA_PERFORM_ACTION_ON_CREATE)) {
+        ACTION_CHANGE_NUMBER_SUCCESS -> {
+          MaterialAlertDialogBuilder(this)
+            .setMessage(getString(R.string.ChangeNumber__your_phone_number_has_changed_to_s, PhoneNumberFormatter.prettyPrint(Recipient.self().requireE164())))
+            .setPositiveButton(R.string.ChangeNumber__okay, null)
+            .show()
+        }
+      }
+    }
   }
 
   override fun onNewIntent(intent: Intent?) {
@@ -109,8 +124,14 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
   }
 
   companion object {
+    const val ACTION_CHANGE_NUMBER_SUCCESS = "action_change_number_success"
+
     @JvmStatic
-    fun home(context: Context): Intent = getIntentForStartLocation(context, StartLocation.HOME)
+    @JvmOverloads
+    fun home(context: Context, action: String? = null): Intent {
+      return getIntentForStartLocation(context, StartLocation.HOME)
+        .putExtra(EXTRA_PERFORM_ACTION_ON_CREATE, action)
+    }
 
     @JvmStatic
     fun backups(context: Context): Intent = getIntentForStartLocation(context, StartLocation.BACKUPS)

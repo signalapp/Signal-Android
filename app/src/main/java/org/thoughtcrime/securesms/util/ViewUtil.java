@@ -100,6 +100,10 @@ public final class ViewUtil {
     return new Stub<>(parent.findViewById(resId));
   }
 
+  public static <T extends View> Stub<T> findStubById(@NonNull View parent, @IdRes int resId) {
+    return new Stub<>(parent.findViewById(resId));
+  }
+
   private static Animation getAlphaAnimation(float from, float to, int duration) {
     final Animation anim = new AlphaAnimation(from, to);
     anim.setInterpolator(new FastOutSlowInInterpolator());
