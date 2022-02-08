@@ -576,14 +576,6 @@
     <string name="GroupManagement_access_level_only_admins">Only admins</string>
     <string name="GroupManagement_access_level_no_one">No one</string>
     <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
-    <array name="GroupManagement_edit_group_membership_choices">
-        <item>@string/GroupManagement_access_level_all_members</item>
-        <item>@string/GroupManagement_access_level_only_admins</item>
-    </array>
-    <array name="GroupManagement_edit_group_info_choices">
-        <item>@string/GroupManagement_access_level_all_members</item>
-        <item>@string/GroupManagement_access_level_only_admins</item>
-    </array>
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">

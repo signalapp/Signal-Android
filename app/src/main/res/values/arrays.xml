@@ -419,4 +419,14 @@
         <item>@string/PlaybackSpeedToggleTextView__p5x</item>
     </string-array>
 
+    <!-- GV2 access levels -->
+    <array name="GroupManagement_edit_group_membership_choices">
+        <item>@string/GroupManagement_access_level_all_members</item>
+        <item>@string/GroupManagement_access_level_only_admins</item>
+    </array>
+    <array name="GroupManagement_edit_group_info_choices">
+        <item>@string/GroupManagement_access_level_all_members</item>
+        <item>@string/GroupManagement_access_level_only_admins</item>
+    </array>
+
 </resources>
