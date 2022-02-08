@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 
@@ -288,17 +289,25 @@ public class KeyCachingService extends Service {
   private PendingIntent buildLockIntent() {
     Intent intent = new Intent(this, KeyCachingService.class);
     intent.setAction(PASSPHRASE_EXPIRED_EVENT);
-    return PendingIntent.getService(getApplicationContext(), 0, intent, 0);
+    return PendingIntent.getService(getApplicationContext(), 0, intent, getPendingIntentFlags());
   }
 
   private PendingIntent buildLaunchIntent() {
     // TODO [greyson] Navigation
-    return PendingIntent.getActivity(getApplicationContext(), 0, MainActivity.clearTop(this), 0);
+    return PendingIntent.getActivity(getApplicationContext(), 0, MainActivity.clearTop(this), getPendingIntentFlags());
   }
 
   private static PendingIntent buildExpirationPendingIntent(@NonNull Context context) {
     Intent expirationIntent = new Intent(PASSPHRASE_EXPIRED_EVENT, null, context, KeyCachingService.class);
-    return PendingIntent.getService(context, 0, expirationIntent, 0);
+    return PendingIntent.getService(context, 0, expirationIntent, getPendingIntentFlags());
+  }
+
+  private static int getPendingIntentFlags() {
+    if (Build.VERSION.SDK_INT >= 23) {
+      return PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+    } else {
+      return PendingIntent.FLAG_UPDATE_CURRENT;
+    }
   }
 
   @Override
