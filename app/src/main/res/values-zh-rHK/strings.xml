@@ -1031,7 +1031,7 @@
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">喜歡此新功能嗎？何妨集結小小心意，為 Signal 加一加油。</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal 有您作伴，何懼崩壞的命盤。將相本無種，成為力撐派，惜爐堪稱一欄可自滿。</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">萬家燈火照，將點點光輝，放進 Signal。今日就成為延續人吧。</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 開展了群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 加入了群組通話 · %2$s</string>
@@ -1656,7 +1656,7 @@
   <!--Update item button text to show to boost a feature-->
   <string name="ConversationUpdateItem_signal_boost">Signal 有團伙</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">成為力撐派</string>
+  <string name="ConversationUpdateItem_become_a_sustainer">成為延續人</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
@@ -1884,7 +1884,7 @@
     <item>意見回饋</item>
     <item>其他</item>
     <item>付款 (MobileCoin)</item>
-    <item>力撐派及 Signal 集氣</item>
+    <item>延續人及 Signal 集氣</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此訊息</string>
@@ -1982,7 +1982,7 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">捐款給 Signal</string>
   <string name="preferences__subscription">訂閱</string>
-  <string name="preferences__become_a_signal_sustainer">成為 Signal 力撐派</string>
+  <string name="preferences__become_a_signal_sustainer">成為 Signal 延續人</string>
   <string name="preferences__signal_boost">Signal 有團伙</string>
   <string name="preferences__privacy">私隱</string>
   <string name="preferences__mms_user_agent">MMS 使用者代理</string>
@@ -3103,8 +3103,8 @@
   <string name="AddAProfilePhotoMegaphone__not_now">現在不要</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">新增照片</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__become_a_sustainer">成為力撐派</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">不論一表人才，還是年輕有為，唯獨這麼三個字撈起 Signal 的位位多麼似您。請隨心捐款，並在個人資料中笑納一枚徽章聊以致謝。</string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">成為延續人</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">萬家燈火照，將點點光輝，放進 Signal。凡捐獻即獲贈個人資料徽章。</string>
   <string name="BecomeASustainerMegaphone__no_thanks">在心中</string>
   <string name="BecomeASustainerMegaphone__contribute">我捐款</string>
   <!--KeyboardPagerFragment-->
@@ -3269,11 +3269,11 @@
   <string name="SelectFeaturedBadgeFragment__select_a_badge">請選擇一個徽章</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">您必須選取一個徽章</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新個人資料失敗</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為力撐派</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為延續人</string>
   <string name="ImageView__badge">徽章</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal 由您這樣的人提供動力。</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">支持為您而設—而非為您的資料而造—的科技，擔起力撐派，成為延續爐火的一分子。</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">支持為您而設、而非為您的資料而造的科技，擔起力撐派，成為延續 Signal 爐火的一分子。</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">支持為您而設—而非為您的資料而造—的科技，擔起延續人，成為延續爐火的一分子。</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">支持為您而設、而非為您的資料而造的科技，擔起延續人，成為延續 Signal 爐火的一分子。</string>
   <string name="SubscribeFragment__currency">貨幣</string>
   <string name="SubscribeFragment__more_payment_options">更多付款選項</string>
   <string name="SubscribeFragment__cancel_subscription">取消訂閱</string>
@@ -3299,7 +3299,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">您已獲贈一枚「%s」徽章！不妨在您的個人資料中展覽徽章，讓人一呼百應撐起 Signal。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">您已獲贈一枚集氣徽章！不妨在您的個人資料中展覽徽章，讓人一呼百應撐起 Signal。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">您亦可考慮</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為月供力撐派。</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為月供延續人。</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資料中展現</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為別注徽章</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
@@ -3327,11 +3327,11 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">訂閱已取消</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">您的集氣徽章已到時限，不再在您的個人資料中讓別人看見。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">您可憑單次捐款，將您的「集氣」徽章再延續 30 天。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">如欲繼續支持為您而設的科技，請考慮成為月供力撐派。</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為力撐派</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">如欲繼續支持為您而設的科技，請考慮成為月供延續人。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為延續人</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">新增集氣</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">現在不要</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">有見您已有好一段日子未曾使用，您的力撐派訂閱已自動取消。您的「%1$s」徽章不再在您的個人資料中讓別人看見。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">有見您已有好一段日子未曾使用，您的延續人訂閱已自動取消。您的「%1$s」徽章不再在您的個人資料中讓別人看見。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">您可如常使用 Signal，沒有關係。假如您希望支持此應用程式並延續您的徽章，請立即續期。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為訂閱續期</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援團隊以取得更多資訊。</string>

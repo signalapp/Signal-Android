@@ -126,11 +126,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Да отстранам групна слика?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Ажурирај го Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Оваа верзија на апликацијата повеќе не е поддржана. За да продолжите да испраќате и примате пораки, ажурирајте на последната верзија.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Оваа верзија на апликацијата повеќе не е поддржана. За да продолжите да испраќате и примате пораки, ажурирајте на најновата верзија.</string>
   <string name="ClientDeprecatedActivity_update">Aжурирај</string>
   <string name="ClientDeprecatedActivity_dont_update">Не ажурирај</string>
   <string name="ClientDeprecatedActivity_warning">Предупредување</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Вашата верзија на Signal е истечена. Можете да ја видите историјата на пораки но нема да можете да испраќате и примате пораки додека не ажурирате.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Вашата верзија на Signal е истечена. Можете да ја видите историјата на пораки, но нема да можете да испраќате и примате пораки додека не ажурирате.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Не беше најден веб прелистувач</string>
   <string name="CommunicationActions_send_email">Испрати е-пошта</string>
@@ -139,7 +139,7 @@
   <string name="CommunicationActions_cancel">Откажи</string>
   <string name="CommunicationActions_call">Повикај</string>
   <string name="CommunicationActions_insecure_call">Незаштитен повик</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Можно е да важат трошоци од операторот. Бројот кој што го барате не е регистриран на Signal. Овој повик ќе биде направен преку мобилниот оператор, не преку интернет.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Можно е да важат трошоци од операторот. Бројот кој што го повикувате не е регистриран на Signal. Овој повик ќе биде направен преку мобилниот оператор, не преку интернет.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Вашиот сигурносен број со %1$s е променет. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација, или пак дека %2$s го има реинсталирано Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можеби сакате да го потврдите Вашиот безбедносен број со овој контакт.</string>
@@ -154,7 +154,7 @@
   <string name="ContactsDatabase_message_s">Порака %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal повик %s</string>
   <!--ContactNameEditActivity-->
-  <string name="ContactNameEditActivity_given_name">Дадено име</string>
+  <string name="ContactNameEditActivity_given_name">Име</string>
   <string name="ContactNameEditActivity_family_name">Презиме</string>
   <string name="ContactNameEditActivity_prefix">Префикс</string>
   <string name="ContactNameEditActivity_suffix">Суфикс</string>
@@ -167,9 +167,9 @@
   <string name="ContactShareEditActivity_invalid_contact">Избраниот контакт е невалиден</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Не е испратено, допрете за детали</string>
-  <string name="ConversationItem_error_partially_not_delivered">Делумно испратена, допрете за детали</string>
+  <string name="ConversationItem_error_partially_not_delivered">Делумно испратено, допрете за детали</string>
   <string name="ConversationItem_error_network_not_delivered">Испраќањето е неуспешно</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Добиена порака за размена на клучеви, допрете за обработка.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Примена порака за размена на клучеви, допрете за обработка.</string>
   <string name="ConversationItem_group_action_left">%1$s ја напушти групата.</string>
   <string name="ConversationItem_send_paused">Испраќањето е паузирано</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Испраќањето не успеа, допрете за необезбеден одговор</string>
@@ -180,8 +180,8 @@
   <string name="ConversationItem_copied_text">Ископирано %s</string>
   <string name="ConversationItem_from_s">од %s</string>
   <string name="ConversationItem_to_s">до %s</string>
-  <string name="ConversationItem_read_more"> Прочитајте повеќе</string>
-  <string name="ConversationItem_download_more">  Преземете повеќе</string>
+  <string name="ConversationItem_read_more"> Прочитај повеќе</string>
+  <string name="ConversationItem_download_more">  Преземи повеќе</string>
   <string name="ConversationItem_pending">  Во тек</string>
   <string name="ConversationItem_this_message_was_deleted">Оваа порака беше избришана.</string>
   <string name="ConversationItem_you_deleted_this_message">Ја избришавте оваа порака.</string>
@@ -189,7 +189,7 @@
   <string name="ConversationActivity_add_attachment">Додај прилог</string>
   <string name="ConversationActivity_select_contact_info">Изберете информации за контакт</string>
   <string name="ConversationActivity_compose_message">Напишете порака</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извинете, се појави грешка при прикачување на датотеката.</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извинете, се појави грешка при прикачување на прилогот.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адресата не е валидна SMS или e-mail адреса!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Пораката е празна!</string>
   <string name="ConversationActivity_group_members">Членови на групата</string>
@@ -206,14 +206,14 @@
   <string name="ConversationActivity_unblock">Одблокирај</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Прилогот ги надминува ограничувањата на големината за видот на пораката што ја испраќате.</string>
   <string name="ConversationActivity_unable_to_record_audio">Не може да се снима аудио!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Не можете да испраќате пораки на оваа група бидејќи не сте повеќе член.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Не можете да испраќате пораки на оваа група бидејќи повеќе не сте член.</string>
   <string name="ConversationActivity_only_s_can_send_messages">Само %1$s може да испраќа пораки.</string>
   <string name="ConversationActivity_admins">администратори</string>
   <string name="ConversationActivity_message_an_admin">Испрати порака на админ</string>
   <string name="ConversationActivity_cant_start_group_call">Не можам да започнам групен повик</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Само администраторите на оваа група можат да започнат повик.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Не постои апликација на Вашиот уред која што може да се справи со линкот.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Вашето барање за да се приклучите е испратено до администраторот на групата. Ќе бидете известени штом превземат нешто околу тоа.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Вашето барање за да се приклучите е испратено до администраторот на групата. Ќе бидете известени штом преземат нешто околу тоа.</string>
   <string name="ConversationActivity_cancel_request">Откажи барање</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">За да испраќате аудио пораки, дозволете му на Signal пристап до Вашиот микрофон.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal има потреба од дозвола до микрофонот за да може да испраќа аудио пораки. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Микрофон“.</string>
@@ -221,11 +221,11 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">За да снимате фотографии и видеа, дозволете му на Signal пристап до камерата.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal има потреба од дозвола до камерата за да слика и снима видео. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера”. </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal има потреба од дозвола до камерата за да слика и снима видео</string>
-  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Вклучете дозвола за микрофонот за да дозволите снимање на видеа со звук.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Вклучете дозвола за микрофонот за снимање на видеа со звук.</string>
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal има потреба од дозвола до микрофонот за да може да снима видеа. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Микрофон“ и „Камера“.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal има потреба од дозвола до микрофонот за да снима видеа.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не може да испраќа SMS/MMS пораки бидејќи не е Вашата стандардна апликација за SMS. Дали сакате да ја промените ова во поставувањата на Android?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не може да испраќа SMS/MMS пораки бидејќи не е Ваша стандардна апликација за SMS. Дали сакате да го промените ова во поставувањата на Android?</string>
   <string name="ConversationActivity_yes">Да</string>
   <string name="ConversationActivity_no">Не</string>
   <string name="ConversationActivity_search_position">%1$d од %2$d</string>
@@ -255,10 +255,10 @@
     <item quantity="one">Да ја избришам избраната порака?</item>
     <item quantity="other">Да ги избришам избраните пораки?</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Да снимам во склад?</string>
+  <string name="ConversationFragment_save_to_sd_card">Да се зачува во склад?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Со зачувување на оваа медија датотека на складот, ќе се дозволи пристап до истата, од страна на било која друга апликација на уредот.\n\nДали да продолжам?</item>
-    <item quantity="other">Со зачувување на сите %1$d медија датотеки на складот ќе се дозволи пристап до истите, од страна на било која друга апликација на уредот.\n\nДа продолжам?</item>
+    <item quantity="one">Со зачувување на оваа медија во складот, на сите други апликација на Вашиот уредот ќе се дозволи пристап до истата.\n\nДали да продолжам?</item>
+    <item quantity="other">Со зачувување на сите %1$d медија датотеки во складот, на сите други апликација на Вашиот уредот ќе се дозволи пристап до истата.\n\nДали да продолжам?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Грешка при зачувување на прилогот во складот!</item>
