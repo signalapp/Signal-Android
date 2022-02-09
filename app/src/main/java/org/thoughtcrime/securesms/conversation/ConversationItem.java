@@ -144,6 +144,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -164,6 +165,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   public  static final float LONG_PRESS_SCALE_FACTOR    = 0.95f;
   private static final int   SHRINK_BUBBLE_DELAY_MILLIS = 100;
+  private static final long  MAX_CLUSTERING_TIME_DIFF   = TimeUnit.MINUTES.toMillis(3);
 
   private ConversationMessage     conversationMessage;
   private MessageRecord           messageRecord;
@@ -1560,7 +1562,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       contactPhotoHolder.setVisibility(VISIBLE);
 
       if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().equals(previous.get().getRecipient()) ||
-          !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()))
+          !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()) || !isWithinClusteringTime(current, previous.get()))
       {
         groupSenderHolder.setVisibility(VISIBLE);
 
@@ -1574,7 +1576,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         groupSenderHolder.setVisibility(GONE);
       }
 
-      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().equals(next.get().getRecipient())) {
+      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().equals(next.get().getRecipient()) || !isWithinClusteringTime(current, next.get())) {
         contactPhoto.setVisibility(VISIBLE);
         badgeImageView.setVisibility(VISIBLE);
       } else {
@@ -1674,20 +1676,21 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private boolean isStartOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, boolean isGroupThread) {
     if (isGroupThread) {
       return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
-             !current.getRecipient().equals(previous.get().getRecipient());
+             !current.getRecipient().equals(previous.get().getRecipient()) || !isWithinClusteringTime(current, previous.get());
     } else {
       return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
-             current.isOutgoing() != previous.get().isOutgoing() || previous.get().isSecure() != current.isSecure();
+             current.isOutgoing() != previous.get().isOutgoing() || previous.get().isSecure() != current.isSecure() || !isWithinClusteringTime(current, previous.get());
     }
   }
 
   private boolean isEndOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     if (isGroupThread) {
       return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
-             !current.getRecipient().equals(next.get().getRecipient()) || !current.getReactions().isEmpty();
+             !current.getRecipient().equals(next.get().getRecipient()) || !current.getReactions().isEmpty() || !isWithinClusteringTime(current, next.get());
     } else {
       return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
-             current.isOutgoing() != next.get().isOutgoing() || !current.getReactions().isEmpty() || next.get().isSecure() != current.isSecure();
+             current.isOutgoing() != next.get().isOutgoing() || !current.getReactions().isEmpty() || next.get().isSecure() != current.isSecure() ||
+             !isWithinClusteringTime(current, next.get());
     }
   }
 
@@ -1700,6 +1703,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     return forceFooter(messageRecord) || current.getExpiresIn() > 0 || !current.isSecure() || current.isPending() || current.isPendingInsecureSmsFallback() ||
            current.isFailed() || current.isRateLimited() || differentTimestamps || isEndOfMessageCluster(current, next, isGroupThread);
+  }
+
+  private static boolean isWithinClusteringTime(@NonNull MessageRecord lhs, @NonNull MessageRecord rhs) {
+    long timeDiff = Math.abs(lhs.getDateSent() - rhs.getDateSent());
+    return timeDiff <= MAX_CLUSTERING_TIME_DIFF;
   }
 
   private void setMessageSpacing(@NonNull Context context, @NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
