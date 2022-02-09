@@ -74,6 +74,10 @@ public final class SignalGroupV2Record implements SignalRecord {
         diff.add("MuteUntil");
       }
 
+      if (!Objects.equals(this.notifyForMentionsWhenMuted(), that.notifyForMentionsWhenMuted())) {
+        diff.add("NotifyForMentionsWhenMuted");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -122,6 +126,10 @@ public final class SignalGroupV2Record implements SignalRecord {
 
   public long getMuteUntil() {
     return proto.getMutedUntilTimestamp();
+  }
+
+  public boolean notifyForMentionsWhenMuted() {
+    return !proto.getDontNotifyForMentionsIfMuted();
   }
 
 
@@ -185,6 +193,11 @@ public final class SignalGroupV2Record implements SignalRecord {
 
     public Builder setMuteUntil(long muteUntil) {
       builder.setMutedUntilTimestamp(muteUntil);
+      return this;
+    }
+
+    public Builder setNotifyForMentionsWhenMuted(boolean value) {
+      builder.setDontNotifyForMentionsIfMuted(!value);
       return this;
     }
 

@@ -899,7 +899,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   fun applyStorageSyncGroupV2Update(update: StorageRecordUpdate<SignalGroupV2Record>) {
     val values = getValuesForStorageGroupV2(update.new, false)
 
-    val updateCount = writableDatabase.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", arrayOf(Base64.encodeBytes(update.old.id.raw)))
+    val updateCount = writableDatabase.update(TABLE_NAME, values, "$STORAGE_SERVICE_ID = ?", arrayOf(Base64.encodeBytes(update.old.id.raw)))
     if (updateCount < 1) {
       throw AssertionError("Had an update, but it didn't match any rows!")
     }
@@ -1386,7 +1386,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(MENTION_SETTING, mentionSetting.id)
     }
     if (update(id, values)) {
+      rotateStorageId(id)
       Recipient.live(id).refresh()
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
 
@@ -2763,6 +2765,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(BLOCKED, if (groupV2.isBlocked) "1" else "0")
       put(MUTE_UNTIL, groupV2.muteUntil)
       put(STORAGE_SERVICE_ID, Base64.encodeBytes(groupV2.id.raw))
+      put(MENTION_SETTING, if (groupV2.notifyForMentionsWhenMuted()) MentionSetting.ALWAYS_NOTIFY.id else MentionSetting.DO_NOT_NOTIFY.id)
 
       if (groupV2.hasUnknownFields()) {
         put(STORAGE_PROTO, Base64.encodeBytes(groupV2.serializeUnknownFields()))
