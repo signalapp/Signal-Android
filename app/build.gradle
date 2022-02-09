@@ -344,6 +344,9 @@ android {
                 output.versionCodeOverride = canonicalVersionCode * postFixSize + 5
                 def tag = getCurrentGitTag()
                 if (tag != null && tag.length() > 0) {
+                    if (tag.startsWith("v")) {
+                        tag = tag.substring(1)
+                    }
                     output.versionNameOverride = tag
                 }
             } else {
