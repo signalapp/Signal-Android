@@ -169,6 +169,32 @@ public final class StringUtil {
   }
 
   /**
+   * @return True if the provided text contains a mix of LTR and RTL characters, otherwise false.
+   */
+  public static boolean hasMixedTextDirection(@Nullable CharSequence text) {
+    if (text == null) {
+      return false;
+    }
+
+    Boolean isLtr = null;
+
+    for (int i = 0, len = Character.codePointCount(text, 0, text.length()); i < len; i++) {
+      int  codePoint = Character.codePointAt(text, i);
+      byte direction = Character.getDirectionality(codePoint);
+
+      if (isLtr != null && isLtr && direction != Character.DIRECTIONALITY_LEFT_TO_RIGHT) {
+        return true;
+      } else if (isLtr != null && !isLtr && direction != Character.DIRECTIONALITY_RIGHT_TO_LEFT) {
+        return true;
+      } else {
+        isLtr = direction == Character.DIRECTIONALITY_LEFT_TO_RIGHT;
+      }
+    }
+
+    return false;
+  }
+
+  /**
    * Isolates bi-directional text from influencing surrounding text. You should use this whenever
    * you're injecting user-generated text into a larger string.
    *
