@@ -1508,6 +1508,7 @@
     <string name="WebRtcCallView__flip">Flip</string>
     <string name="WebRtcCallView__speaker">Speaker</string>
     <string name="WebRtcCallView__camera">Camera</string>
+    <string name="WebRtcCallView__unmute">Unmute</string>
     <string name="WebRtcCallView__mute">Mute</string>
     <string name="WebRtcCallView__ring">Ring</string>
     <string name="WebRtcCallView__end_call">End call</string>
