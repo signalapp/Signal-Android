@@ -58,7 +58,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public final class GroupDatabase extends Database {
+public class GroupDatabase extends Database {
 
   private static final String TAG = Log.tag(GroupDatabase.class);
 
