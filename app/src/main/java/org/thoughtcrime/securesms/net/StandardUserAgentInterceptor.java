@@ -9,7 +9,9 @@ import org.thoughtcrime.securesms.BuildConfig;
  */
 public class StandardUserAgentInterceptor extends UserAgentInterceptor {
 
+  public static final String USER_AGENT = "Signal-Android/" + BuildConfig.VERSION_NAME + " Android/" + Build.VERSION.SDK_INT;
+
   public StandardUserAgentInterceptor() {
-    super("Signal-Android/" + BuildConfig.VERSION_NAME + " Android/" + Build.VERSION.SDK_INT);
+    super(USER_AGENT);
   }
 }
