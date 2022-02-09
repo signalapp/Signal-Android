@@ -19,6 +19,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.push.DistributionId;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -139,6 +140,7 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   @Override
   public void archiveSession(SignalProtocolAddress address) {
     sessionStore.archiveSession(address);
+    senderKeyStore.clearSenderKeySharedWith(Collections.singleton(address));
   }
 
   @Override
