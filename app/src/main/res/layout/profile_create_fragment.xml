@@ -131,7 +131,7 @@
                         android:layout_marginTop="13dp"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
-                        android:autofillHints="given-name"
+                        android:autofillHints="personGivenName"
                         android:hint="@string/CreateProfileActivity_first_name_required"
                         android:inputType="textPersonName"
                         android:singleLine="true" />
@@ -158,7 +158,7 @@
                         android:layout_marginTop="13dp"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
-                        android:autofillHints="family-name"
+                        android:autofillHints="personFamilyName"
                         android:hint="@string/CreateProfileActivity_last_name_optional"
                         android:inputType="textPersonName"
                         android:singleLine="true" />

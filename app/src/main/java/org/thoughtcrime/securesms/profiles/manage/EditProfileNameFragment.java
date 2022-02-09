@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 /**
@@ -71,6 +72,8 @@ public class EditProfileNameFragment extends Fragment {
     saveButton.setOnClickListener(v -> viewModel.onSaveClicked(requireContext(),
                                                                givenName.getText().toString(),
                                                                familyName.getText().toString()));
+
+    ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(this.givenName);
   }
 
   private void initializeViewModel() {
