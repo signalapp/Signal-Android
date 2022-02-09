@@ -152,10 +152,13 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   public @NonNull Optional<IdentityRecord> getIdentityRecord(@NonNull RecipientId recipientId) {
     Recipient recipient = Recipient.resolved(recipientId);
+    return getIdentityRecord(recipient);
+  }
 
+  public @NonNull Optional<IdentityRecord> getIdentityRecord(@NonNull Recipient recipient) {
     if (recipient.hasServiceIdentifier()) {
       IdentityStoreRecord record = cache.get(recipient.requireServiceId());
-      return Optional.fromNullable(record).transform(r -> r.toIdentityRecord(recipientId));
+      return Optional.fromNullable(record).transform(r -> r.toIdentityRecord(recipient.getId()));
     } else {
       Log.w(TAG, "[getIdentityRecord] No serviceId for " + recipient.getId());
       return Optional.absent();
