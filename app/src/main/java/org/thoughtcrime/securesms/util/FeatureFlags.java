@@ -88,7 +88,6 @@ public final class FeatureFlags {
   private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
-  private static final String VOICE_NOTE_RECORDING_V2           = "android.voiceNoteRecordingV2.2";
   private static final String HARDWARE_AEC_MODELS               = "android.calling.hardwareAecModels";
   private static final String FORCE_DEFAULT_AEC                 = "android.calling.forceDefaultAec";
 
@@ -132,7 +131,6 @@ public final class FeatureFlags {
       DONOR_BADGES,
       DONOR_BADGES_DISPLAY,
       CHANGE_NUMBER_ENABLED,
-      VOICE_NOTE_RECORDING_V2,
       HARDWARE_AEC_MODELS,
       FORCE_DEFAULT_AEC
   );
@@ -189,7 +187,6 @@ public final class FeatureFlags {
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES_DISPLAY,
       DONATE_MEGAPHONE,
-      VOICE_NOTE_RECORDING_V2,
       FORCE_DEFAULT_AEC
   );
 
@@ -433,11 +430,6 @@ public final class FeatureFlags {
 
   public static boolean cdsh() {
     return Environment.IS_STAGING && getBoolean(CDSH, false);
-  }
-
-  /** Whether or not to use the new voice note recorder backed by MediaRecorder. */
-  public static boolean voiceNoteRecordingV2() {
-    return getBoolean(VOICE_NOTE_RECORDING_V2, false);
   }
 
   /** A comma-separated list of models that should use hardware AEC for calling. */
