@@ -622,6 +622,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 val query = text.substring(currentMentionStartIndex + 1) // + 1 to get rid of the "@"
                 showOrUpdateMentionCandidatesIfNeeded(query)
             }
+        } else {
+            currentMentionStartIndex = -1
+            hideMentionCandidates()
         }
         previousText = text
     }
@@ -636,13 +639,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             val candidates = MentionsManager.getMentionCandidates(query, viewModel.threadId, viewModel.recipient.isOpenGroupRecipient)
             this.mentionCandidatesView = view
             view.show(candidates, viewModel.threadId)
-            view.alpha = 0.0f
-            val animation = ValueAnimator.ofObject(FloatEvaluator(), view.alpha, 1.0f)
-            animation.duration = 250L
-            animation.addUpdateListener { animator ->
-                view.alpha = animator.animatedValue as Float
-            }
-            animation.start()
         } else {
             val candidates = MentionsManager.getMentionCandidates(query, viewModel.threadId, viewModel.recipient.isOpenGroupRecipient)
             this.mentionCandidatesView!!.setMentionCandidates(candidates)

@@ -93,6 +93,7 @@ class VisibleMessageContentView : LinearLayout {
         binding.quoteView.isVisible = message is MmsMessageRecord && message.quote != null
 
         binding.linkPreviewView.isVisible = message is MmsMessageRecord && message.linkPreviews.isNotEmpty()
+        binding.linkPreviewView.bodyTextView = binding.bodyTextView
 
         val linkPreviewLayout = binding.linkPreviewView.layoutParams
         linkPreviewLayout.width = if (mediaThumbnailMessage) 0 else ViewGroup.LayoutParams.WRAP_CONTENT

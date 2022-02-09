@@ -16,9 +16,9 @@
 
     <org.thoughtcrime.securesms.conversation.v2.ConversationRecyclerView
         android:id="@+id/conversationRecyclerView"
-        android:layout_above="@+id/typingIndicatorViewContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/typingIndicatorViewContainer" />
 
     <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorViewContainer
         android:id="@+id/typingIndicatorViewContainer"
@@ -45,8 +45,7 @@
         android:id="@+id/additionalContentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/input_bar_height" />
+        android:layout_alignBottom="@+id/conversationRecyclerView"/>
 
     <LinearLayout
         android:id="@+id/attachmentOptionsContainer"
