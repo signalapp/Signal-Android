@@ -71,7 +71,7 @@ subprojects {
         task qa {
             group 'Verification'
             description 'Quality Assurance. Run before pushing'
-            dependsOn 'testReleaseUnitTest', 'lintRelease'
+            dependsOn 'clean', 'testReleaseUnitTest', 'lintRelease'
         }
     }
 }
@@ -79,9 +79,14 @@ subprojects {
 task qa {
     group 'Verification'
     description 'Quality Assurance. Run before pushing.'
-    dependsOn ':Signal-Android:testPlayProdReleaseUnitTest',
+    dependsOn 'clean',
+            ':Signal-Android:testPlayProdReleaseUnitTest',
             ':Signal-Android:lintPlayProdRelease',
             'Signal-Android:ktlintCheck',
             ':libsignal-service:test',
             ':Signal-Android:assemblePlayProdRelease'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

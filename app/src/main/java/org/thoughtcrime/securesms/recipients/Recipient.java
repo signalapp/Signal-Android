@@ -211,20 +211,20 @@ public class Recipient {
   }
 
   /**
-   * Returns a fully-populated {@link Recipient} based off of a UUID and phone number, creating one
+   * Returns a fully-populated {@link Recipient} based off of an ACI and phone number, creating one
    * in the database if necessary. We want both piece of information so we're able to associate them
    * both together, depending on which are available.
    *
-   * In particular, while we'll eventually get the UUID of a user created via a phone number
+   * In particular, while we'll eventually get the ACI of a user created via a phone number
    * (through a directory sync), the only way we can store the phone number is by retrieving it from
    * sent messages and whatnot. So we should store it when available.
    *
-   * @param highTrust This should only be set to true if the source of the E164-UUID pairing is one
+   * @param highTrust This should only be set to true if the source of the E164-ACI pairing is one
    *                  that can be trusted as accurate (like an envelope).
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable ACI aci, @Nullable String e164, boolean highTrust) {
-    if (UuidUtil.UNKNOWN_UUID.equals(aci)) {
+    if (ACI.UNKNOWN.equals(aci)) {
       throw new AssertionError();
     }
 
@@ -233,11 +233,15 @@ public class Recipient {
 
     Recipient resolved = resolved(recipientId);
 
+    if (!resolved.getId().equals(recipientId)) {
+      Log.w(TAG, "Resolved " + recipientId + ", but got back a recipient with " + resolved.getId());
+    }
+
     if (highTrust && !resolved.isRegistered() && aci != null) {
       Log.w(TAG, "External high-trust push was locally marked unregistered. Marking as registered.");
       db.markRegistered(recipientId, aci);
     } else if (highTrust && !resolved.isRegistered()) {
-      Log.w(TAG, "External high-trust push was locally marked unregistered, but we don't have a UUID, so we can't do anything.", new Throwable());
+      Log.w(TAG, "External high-trust push was locally marked unregistered, but we don't have an ACI, so we can't do anything.", new Throwable());
     }
 
     return resolved;

@@ -89,8 +89,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
     } else if (matchesLocal) {
       return local;
     } else {
-      return new SignalGroupV1Record.Builder(keyGenerator.generate(), remote.getGroupId())
-                                    .setUnknownFields(unknownFields)
+      return new SignalGroupV1Record.Builder(keyGenerator.generate(), remote.getGroupId(), unknownFields)
                                     .setBlocked(blocked)
                                     .setProfileSharingEnabled(blocked)
                                     .setForcedUnread(forcedUnread)

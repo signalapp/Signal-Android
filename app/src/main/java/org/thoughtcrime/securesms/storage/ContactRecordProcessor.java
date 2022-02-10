@@ -118,8 +118,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     } else if (matchesLocal) {
       return local;
     } else {
-      return new SignalContactRecord.Builder(keyGenerator.generate(), address)
-                                    .setUnknownFields(unknownFields)
+      return new SignalContactRecord.Builder(keyGenerator.generate(), address, unknownFields)
                                     .setGivenName(givenName)
                                     .setFamilyName(familyName)
                                     .setProfileKey(profileKey)

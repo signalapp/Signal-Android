@@ -1,3 +1,6 @@
+// IMPORTANT: After changing a dependency, please run:
+// ./gradlew --write-verification-metadata sha256 qa --rerun-tasks
+
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
@@ -51,7 +54,7 @@ dependencyResolutionManagement {
 
             // Google
             alias('google-protobuf-javalite').to('com.google.protobuf:protobuf-javalite:3.11.4')
-            alias('google-libphonenumber').to('com.googlecode.libphonenumber:libphonenumber:8.12.33')
+            alias('google-libphonenumber').to('com.googlecode.libphonenumber:libphonenumber:8.12.42')
             alias('google-play-services-maps').to('com.google.android.gms:play-services-maps:16.1.0')
             alias('google-play-services-auth').to('com.google.android.gms:play-services-auth:16.0.1')
             alias('google-play-services-wallet').to('com.google.android.gms:play-services-wallet:18.1.3')
@@ -73,7 +76,7 @@ dependencyResolutionManagement {
             alias('signal-client-android').to('org.whispersystems', 'signal-client-android').versionRef('signal-client')
             alias('signal-aesgcmprovider').to('org.signal:aesgcmprovider:0.0.3')
             alias('signal-argon2').to('org.signal:argon2:13.1')
-            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.17.0')
+            alias('signal-ringrtc').to('org.signal:ringrtc-android:2.18.0')
             alias('signal-android-database-sqlcipher').to('org.signal:android-database-sqlcipher:4.4.3-S8')
 
             // Third Party

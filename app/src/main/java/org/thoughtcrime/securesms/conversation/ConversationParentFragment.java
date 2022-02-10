@@ -922,15 +922,10 @@ public class ConversationParentFragment extends Fragment
     boolean isActiveV2Group           = groupActiveState != null && groupActiveState.isActiveV2Group();
     boolean isInActiveGroup           = groupActiveState != null && !groupActiveState.isActiveGroup();
 
-    if (isInMessageRequest()) {
+    if (isInMessageRequest() && recipient != null && !recipient.get().isBlocked()) {
       if (isActiveGroup) {
         inflater.inflate(R.menu.conversation_message_requests_group, menu);
       }
-
-      inflater.inflate(R.menu.conversation_message_requests, menu);
-
-      if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-      else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
 
       super.onCreateOptionsMenu(menu, inflater);
     }
@@ -1552,18 +1547,21 @@ public class ConversationParentFragment extends Fragment
 
     sendButton.resetAvailableTransports(isMediaMessage);
 
-    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes()) {
-      sendButton.disableTransport(Type.TEXTSECURE);
-    }
+    boolean smsEnabled = true;
 
     if (recipient.get().isPushGroup() || (!recipient.get().isMmsGroup() && !recipient.get().hasSmsAddress())) {
       sendButton.disableTransport(Type.SMS);
+      smsEnabled = false;
     }
 
-    if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection()) {
+    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes() && smsEnabled) {
+      sendButton.disableTransport(Type.TEXTSECURE);
+    }
+
+    if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection() && smsEnabled) {
       sendButton.setDefaultTransport(Type.SMS);
     } else {
-      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes()) {
+      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
         sendButton.setDefaultTransport(Type.TEXTSECURE);
       } else {
         sendButton.setDefaultTransport(Type.SMS);
@@ -3546,7 +3544,7 @@ public class ConversationParentFragment extends Fragment
     public boolean onKey(View v, int keyCode, KeyEvent event) {
       if (event.getAction() == KeyEvent.ACTION_DOWN) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-          if (SignalStore.settings().isEnterKeySends()) {
+          if (SignalStore.settings().isEnterKeySends() || event.isCtrlPressed()) {
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
             return true;

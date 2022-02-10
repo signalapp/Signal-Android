@@ -48,13 +48,12 @@ public class ConversationPopupActivity extends ConversationActivity {
     else                getWindow().setLayout((int) (width * .7), (int) (height * .75));
 
     super.onCreate(bundle, ready);
-
-    getTitleView().setOnClickListener(null);
   }
 
   @Override
   protected void onResume() {
     super.onResume();
+    getTitleView().setOnClickListener(null);
     getComposeText().requestFocus();
     getQuickAttachmentToggle().disable();
   }

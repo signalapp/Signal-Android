@@ -92,6 +92,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -116,11 +117,14 @@ public class SignalServiceAccountManager {
 
   private static final String TAG = SignalServiceAccountManager.class.getSimpleName();
 
+  private static final int STORAGE_READ_MAX_ITEMS = 1000;
+
   private final PushServiceSocket          pushServiceSocket;
   private final CredentialsProvider        credentials;
   private final String                     userAgent;
   private final GroupsV2Operations         groupsV2Operations;
   private final SignalServiceConfiguration configuration;
+
 
   /**
    * Construct a SignalServiceAccountManager.
@@ -566,29 +570,45 @@ public class SignalServiceAccountManager {
       return Collections.emptyList();
     }
 
-    List<SignalStorageRecord> result    = new ArrayList<>();
-    ReadOperation.Builder     operation = ReadOperation.newBuilder();
-    Map<ByteString, Integer>  typeMap   = new HashMap<>();
+    List<SignalStorageRecord> result           = new ArrayList<>();
+    Map<ByteString, Integer>  typeMap          = new HashMap<>();
+    List<ReadOperation>       readOperations   = new LinkedList<>();
+    ReadOperation.Builder     currentOperation = ReadOperation.newBuilder();
 
     for (StorageId key : storageKeys) {
       typeMap.put(ByteString.copyFrom(key.getRaw()), key.getType());
 
+      if (currentOperation.getReadKeyCount() >= STORAGE_READ_MAX_ITEMS) {
+        Log.i(TAG, "Going over max read items. Starting a new read operation.");
+        readOperations.add(currentOperation.build());
+        currentOperation = ReadOperation.newBuilder();
+      }
+
       if (StorageId.isKnownType(key.getType())) {
-        operation.addReadKey(ByteString.copyFrom(key.getRaw()));
+        currentOperation.addReadKey(ByteString.copyFrom(key.getRaw()));
       } else {
         result.add(SignalStorageRecord.forUnknown(key));
       }
     }
 
-    String       authToken = this.pushServiceSocket.getStorageAuth();
-    StorageItems items     = this.pushServiceSocket.readStorageItems(authToken, operation.build());
+    if (currentOperation.getReadKeyCount() > 0) {
+      readOperations.add(currentOperation.build());
+    }
 
-    for (StorageItem item : items.getItemsList()) {
-      Integer type = typeMap.get(item.getKey());
-      if (type != null) {
-        result.add(SignalStorageModels.remoteToLocalStorageRecord(item, type, storageKey));
-      } else {
-        Log.w(TAG, "No type found! Skipping.");
+    Log.i(TAG, "Reading " + storageKeys.size() + " items split over " + readOperations.size() + " page(s).");
+
+    String authToken = this.pushServiceSocket.getStorageAuth();
+
+    for (ReadOperation readOperation : readOperations) {
+      StorageItems items = this.pushServiceSocket.readStorageItems(authToken, readOperation);
+
+      for (StorageItem item : items.getItemsList()) {
+        Integer type = typeMap.get(item.getKey());
+        if (type != null) {
+          result.add(SignalStorageModels.remoteToLocalStorageRecord(item, type, storageKey));
+        } else {
+          Log.w(TAG, "No type found! Skipping.");
+        }
       }
     }
 

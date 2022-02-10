@@ -2641,9 +2641,18 @@
   <string name="RecipientBottomSheet_add_to_contacts">Oan kontaktelist tafoegje</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
   <string name="RecipientBottomSheet_add_to_a_group">Oan in groep tafoegje</string>
+  <string name="RecipientBottomSheet_view_safety_number">Feilichheidsnûmer werjaan</string>
+  <string name="RecipientBottomSheet_make_admin">Behearder meitsje</string>
+  <string name="RecipientBottomSheet_remove_from_group">Ut de groep fuortsmite</string>
   <string name="RecipientBottomSheet_message_description">Berjocht</string>
+  <string name="RecipientBottomSheet_voice_call_description">Audio-oprop</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Unbefeilige audio-oprop</string>
+  <string name="RecipientBottomSheet_video_call_description">Fideo-oprop</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">It beheardersfoech fan %1$s ynlûke?</string>
   <string name="RecipientBottomSheet_remove">Furt helje</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiearre nei it klamboerd</string>
+  <string name="GroupRecipientListItem_admin">Behearder</string>
+  <string name="GroupRecipientListItem_approve_description">Tastean</string>
   <string name="GroupRecipientListItem_deny_description">Ofwize</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--GroupLinkBottomSheetDialogFragment-->
@@ -2666,6 +2675,7 @@
   <string name="ReviewCardDialogFragment__remove">Furt helje</string>
   <!--ReviewCard-->
   <string name="ReviewCard__request">Fersyk</string>
+  <string name="ReviewCard__remove_from_group">Ut de groep fuortsmite</string>
   <string name="ReviewCard__update_contact">Kontaktpersoan bywurkje</string>
   <string name="ReviewCard__block">Blokkearje</string>
   <string name="ReviewCard__delete">Ferwiderje</string>
@@ -2682,6 +2692,7 @@
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Lân sykje</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Oerslaan</string>
   <plurals name="CreateGroupActivity__d_members">
@@ -2694,10 +2705,15 @@
   <string name="ShareActivity__comma_s">, %1$s</string>
   <!--MultiShareDialogs-->
   <!--ShareInterstitialActivity-->
+  <string name="ShareInterstitialActivity__forward_message">Berjocht trochstjoere</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Peteareftergrûn</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Petearkleur</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Kleurynstellingen fuortsmite</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Kleurynstelling fuortsmite</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Kleurynstelling fuortsmite?</string>
+  <string name="ChatWallpaperFragment__clear">Fuortsmite</string>
   <!--ChatWallpaperSelectionFragment-->
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Foarbyld</string>
@@ -2705,9 +2721,13 @@
   <!--WallpaperImageSelectionActivity-->
   <!--WallpaperCropActivity-->
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Oer MobileCoin</string>
+  <string name="payment_info_card_adding_funds">Kredyt tafoegje</string>
+  <string name="payment_info_card_cashing_out">Utbetelje</string>
   <string name="payment_info_card_hide">Ferstopje</string>
   <string name="payment_info_card_update_pin">Pinkoade bywurkje</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__your_balance">Dyn kredyt</string>
   <string name="DeactivateWalletFragment__deactivate">Utskeakelje</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herstel-sin</string>
@@ -2754,8 +2774,16 @@
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Oké</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Nûmer wizigje</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Dyn âlde telefoannûmer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Dyn nije telefoannûmer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Dyn nije nûmer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nij telefoannûmer</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Nûmer wizigje</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha fereaske</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Telefoannûmer wizigje</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Telefoannûmer wizigje</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
@@ -2866,6 +2894,7 @@
   <string name="ConversationSettingsFragment__mute">Meldingen dôvje</string>
   <string name="ConversationSettingsFragment__search">Sykje</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Ferrinnende berjochten</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Feilichheidsnûmer werjaan</string>
   <string name="ConversationSettingsFragment__block">Blokkearje</string>
   <string name="ConversationSettingsFragment__block_group">Groep blokkearje en ferlitte</string>
   <string name="ConversationSettingsFragment__unblock">Deblokkearje</string>
