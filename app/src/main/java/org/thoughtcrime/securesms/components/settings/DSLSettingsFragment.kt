@@ -22,7 +22,7 @@ abstract class DSLSettingsFragment(
   @StringRes private val titleId: Int = -1,
   @MenuRes private val menuId: Int = -1,
   @LayoutRes layoutId: Int = R.layout.dsl_settings_fragment,
-  val layoutManagerProducer: (Context) -> RecyclerView.LayoutManager = { context -> LinearLayoutManager(context) }
+  protected var layoutManagerProducer: (Context) -> RecyclerView.LayoutManager = { context -> LinearLayoutManager(context) }
 ) : Fragment(layoutId) {
 
   private var recyclerView: RecyclerView? = null
