@@ -38,6 +38,7 @@ import org.whispersystems.libsignal.UntrustedIdentityException;
 import org.whispersystems.libsignal.groups.GroupCipher;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
+import org.whispersystems.libsignal.protocol.PlaintextContent;
 import org.whispersystems.libsignal.protocol.PreKeySignalMessage;
 import org.whispersystems.libsignal.protocol.SignalMessage;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -202,6 +203,9 @@ public class SignalServiceCipher {
         SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
         paddedMessage = sessionCipher.decrypt(new SignalMessage(ciphertext));
+        metadata      = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false, envelope.getServerGuid(), Optional.absent());
+      } else if (envelope.isPlaintextContent()) {
+        paddedMessage = new PlaintextContent(ciphertext).getBody();
         metadata      = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false, envelope.getServerGuid(), Optional.absent());
       } else if (envelope.isUnidentifiedSender()) {
         SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getAci().uuid(), localAddress.getNumber().orNull(), localDeviceId));
