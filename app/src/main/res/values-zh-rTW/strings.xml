@@ -1178,6 +1178,11 @@
   <string name="RedPhone_number_not_registered">號碼尚未註冊</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">您撥通的號碼不支援加密語音！</string>
   <string name="RedPhone_got_it">收到</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day"> 💜 節快樂!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">透過成為Signal的長期贊助人來表達你的愛。</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">輕觸此處以開啟你的視訊</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">如要撥電話給 %1$s，Signal 需要存取你的相機</string>
@@ -1979,7 +1984,7 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">贊助 Signal</string>
   <string name="preferences__subscription">定期贊助</string>
-  <string name="preferences__become_a_signal_sustainer">成為Signal 支持者</string>
+  <string name="preferences__become_a_signal_sustainer">成為Signal 長期贊助人</string>
   <string name="preferences__signal_boost">Signal 單次贊助</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
@@ -3328,7 +3333,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為定期贊助人</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">增加一次贊助</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">你的定期贊助已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">你的定期贊助已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以繼續使用 Signal，但要支援該應用程式並重新啟動你的徽章，請立即續約。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">更新定期贊助</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援部門以了解更多資訊。</string>

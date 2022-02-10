@@ -1385,6 +1385,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="RedPhone_number_not_registered">Rhif heb ei gofrestru!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Nid yw\'r rhif rydych chi\'n ei ddeialu\'n cefnogi llais diogel!</string>
   <string name="RedPhone_got_it">Iawn, rwy\'n deall</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapiwch yma i droi eich fideo ymlaen</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">I alw %1$s, mae angen i Signal gael mynediad i\'ch camera.</string>
@@ -3646,7 +3649,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gynhaliwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Ychwanegwch Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw\'ch bathodyn %1$s i\'w weld ar eich proffil mwyach.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw\'ch bathodyn %1$s i\'w weld ar eich proffil mwyach.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Gallwch barhau i ddefnyddio Signal ond i gefnogi\'r ap ac ail-greu\'ch bathodyn, adnewyddwch nawr.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Adnewyddu tanysgrifiad</string>
   <string name="Subscription__please_contact_support_for_more_information">Cysylltwch â\'n cefnogaeth i gael mwy o wybodaeth.</string>

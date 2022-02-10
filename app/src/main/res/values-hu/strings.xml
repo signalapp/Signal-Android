@@ -1247,6 +1247,11 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="RedPhone_number_not_registered">A szám nincs regisztrálva!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Az általad tárcsázott szám nem támogatja a biztonságos hangátvitelt!</string>
   <string name="RedPhone_got_it">Rendben</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Boldog 💜 napot!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Mutasd ki vonzalmadat és válj Signal Fenntartóvá.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Koppintsd ide a videókép bekapcsolásához</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s hívásához a Signalnak hozzá kell férnie kamerádhoz</string>
@@ -3436,7 +3441,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Válj Fenntartóvá</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">\"Löket\" hozzáadása</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Fenntartói előfizetésed automatikusan törlésre került, mert túl sokáig voltál inaktív. A %1$s kitűződ már nem látható profilképeden.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Fenntartói előfizetésed automatikusan törlésre került, mert túl sokáig voltál inaktív. A %1$s kitűződ már nem látható profilképeden.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Természetesen továbbra is használhatod a Signalt, de az alkalmazás támogatásához és jelvényed újraaktiválásához el kell végezned az előfizetés megújítását.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Előfizetés megújítása</string>
   <string name="Subscription__please_contact_support_for_more_information">Kérünk lépj kapcsolatba a Támogatási Központtal.</string>

@@ -1447,10 +1447,10 @@
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">The number you dialed does not support secure voice!</string>
     <string name="RedPhone_got_it">Got it</string>
 
-    <!-- Valentine's Day Megaphone -->
-    <!-- Title text for the Valentine's Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
+    <!-- Valentine\'s Day Megaphone -->
+    <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
     <string name="ValentinesDayMegaphone_happy_heart_day">Happy 💜 Day!</string>
-    <!-- Body text for the Valentine's Day donation megaphone. -->
+    <!-- Body text for the Valentine\'s Day donation megaphone. -->
     <string name="ValentinesDayMegaphone_show_your_affection">Show your affection by becoming a Signal sustainer.</string>
 
     <!-- WebRtcCallActivity -->

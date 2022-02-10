@@ -350,8 +350,8 @@
     <item quantity="other">Archivieren</item>
   </plurals>
   <plurals name="ConversationListFragment_unarchive_plural">
-    <item quantity="one">In Eingang verschieben</item>
-    <item quantity="other">In Eingang verschieben</item>
+    <item quantity="one">Rückgängig</item>
+    <item quantity="other">Rückgängig</item>
   </plurals>
   <plurals name="ConversationListFragment_delete_plural">
     <item quantity="one">Löschen</item>
@@ -656,7 +656,7 @@
   <string name="ManageGroupActivity_block_group">Gruppe blockieren</string>
   <string name="ManageGroupActivity_unblock_group">Gruppe freigeben</string>
   <string name="ManageGroupActivity_leave_group">Gruppe verlassen</string>
-  <string name="ManageGroupActivity_mute_notifications">Benachrichtigungen stummschalten</string>
+  <string name="ManageGroupActivity_mute_notifications">Stumm</string>
   <string name="ManageGroupActivity_custom_notifications">Personalisierte Benachrichtigungen</string>
   <string name="ManageGroupActivity_mentions">Erwähnungen</string>
   <string name="ManageGroupActivity_chat_color_and_wallpaper">Unterhaltungsfarbe &amp; Hintergrund</string>
@@ -1243,6 +1243,11 @@
   <string name="RedPhone_number_not_registered">Rufnummer nicht registriert!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die gewählte Rufnummer unterstützt keine verschlüsselten Anrufe!</string>
   <string name="RedPhone_got_it">Verstanden</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Happy 💜 Day!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Zeige deine Zuneigung, indem du ein Signal-Unterstützer wirst.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Hier antippen, um deine Videoübertragung anzuschalten</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Um %1$s anzurufen, benötigt Signal Zugriff auf deine Kamera</string>
@@ -1526,7 +1531,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlerhaft verschlüsselte MMS</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS wurde für eine nicht bestehende sichere Sitzung verschlüsselt</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">Benachrichtigungen stummschalten</string>
+  <string name="MuteDialog_mute_notifications">Stumm</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Daten werden importiert</string>
   <string name="ApplicationMigrationService_importing_text_messages">Nachrichten werden importiert</string>
@@ -2380,9 +2385,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Sichere Sitzung zurücksetzen</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">Stummschaltung aufheben</string>
+  <string name="conversation_muted__unmute">Stumm aufheben</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">Stummschalten</string>
+  <string name="conversation_unmuted__mute_notifications">Stumm</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">Gruppeneinstellungen</string>
   <string name="conversation__menu_leave_group">Gruppe verlassen</string>
@@ -3254,7 +3259,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wer darf die Gruppendetails bearbeiten?</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">Wer darf Nachrichten senden?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
-  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Benachrichtigungen stummschalten</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Stumm</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nicht stumm</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Stummgeschaltet bis %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Erwähnungen</string>
@@ -3423,7 +3428,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Unterstützer werden</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost hinzufügen</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Deine regelmäßige Unterstützerspende wurde automatisch gekündigt, da du längere Zeit inaktiv warst. Dein %1$s-Abzeichen ist nicht mehr in deinem Profil sichtbar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Deine regelmäßige Unterstützerspende wurde automatisch gekündigt, da du längere Zeit inaktiv warst. Dein %1$s-Abzeichen ist nicht mehr in deinem Profil sichtbar.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kannst Signal weiterhin nutzen, aber um die App zu unterstützen und dein Abzeichen zu reaktivieren, solltest du deine Spende verlängern.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Regelmäßige Spende verlängern</string>
   <string name="Subscription__please_contact_support_for_more_information">Bitte kontaktiere für weitere Informationen den Support.</string>

@@ -1175,6 +1175,9 @@
   <string name="RedPhone_number_not_registered">નંબર રજીસ્ટર નથી!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">તમે ડાયલ કરેલ નંબર સુરક્ષિત ઑડિયોને સપોર્ટ કરતું નથી!</string>
   <string name="RedPhone_got_it">ખબર પડી</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">તમારી વિડિયો ચાલુ કરવા માટે અહીં ટેપ કરો</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">કૉલ કરવા માટે %1$s, Signal ને તમારા માઇક્રોફોન અને કૅમેરાની ઍક્સેસની જરૂર છે.</string>

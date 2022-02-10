@@ -1253,6 +1253,11 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="RedPhone_number_not_registered">Nummer ikkje registrert</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Nummeret du ringte støttar ikkje sikker stemme!</string>
   <string name="RedPhone_got_it">Ålreit</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Gledeleg 💜-dag!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Del kjærleiken – bli Signal-bidragsytar.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Trykk her for å skru på videoen din</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal treng tilgang til kameraet ditt for å ringa %1$s</string>
@@ -3452,7 +3457,7 @@ Sjekkar igjen no …</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli ein bidragsytar</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Få ein Signal-auke</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikkje no</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Bidragsytar-abonnementet ditt blei automatisk avslutta sidan du var inaktiv for lenge. %1$s-merket ditt er ikkje lenger synleg på profilen din.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Bidragsytar-abonnementet ditt blei automatisk avslutta sidan du var inaktiv for lenge. %1$s-merket ditt er ikkje lenger synleg på profilen din.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan halda fram med å bruka Signal, men du må fornya for å fortsetja å støtta appen og gjenaktivera merket.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
   <string name="Subscription__please_contact_support_for_more_information">Ta kontakt med brukarstøtte for meir informasjon.</string>

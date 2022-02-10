@@ -1173,6 +1173,9 @@
   <string name="RedPhone_number_not_registered">Số điện thoại chưa đăng ký!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Số điện thoại vừa rồi không hỗ trợ cuộc gọi bảo mật!</string>
   <string name="RedPhone_got_it">Đã rõ</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Nhấn để bật camera</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Để gọi %1$s, Signal cần quyền truy cập máy ảnh của bạn</string>
@@ -3316,7 +3319,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Thêm quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Bạn vẫn có thể tiếp tục dùng Signal, nhưng nếu bạn muốn tiếp tục quyên góp ủng hộ cho ứng dụng và nhận lại huy hiệu của mình thì bạn cần đăng ký lại.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Đăng ký lại quyên góp</string>
   <string name="Subscription__please_contact_support_for_more_information">Vui lòng liên hệ với bộ phận hỗ trợ để biết thêm thông tin.</string>

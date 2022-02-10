@@ -1310,6 +1310,9 @@
   <string name="RedPhone_number_not_registered">Број није пријављен!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Број који сте бирали не подржава обезбеђене позиве!</string>
   <string name="RedPhone_got_it">Важи</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Кликните овде да укључите вашу камеру</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Да бисте позвали %1$s, апликацији Signal је потребан приступ Вашој камери.</string>
@@ -3535,7 +3538,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Постати одрживач</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Додајте Буст</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сада</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Ваша претплата за подршку је аутоматско поништена пошто сте били превише неактивни. Ваша значка %1$s није више видљива на вашем профилу.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Ваша претплата за подршку је аутоматско поништена пошто сте били превише неактивни. Ваша значка %1$s није више видљива на вашем профилу.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Још увек можете да кориситите Signal али да подржите апликацију и поново активирате своју значку, обновите сада.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Обновити претплату</string>
   <string name="Subscription__please_contact_support_for_more_information">Молимо контактирајте подршку за више информација.</string>

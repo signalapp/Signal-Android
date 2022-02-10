@@ -1249,6 +1249,10 @@
   <string name="RedPhone_number_not_registered">Telefoannûmer net registrearre!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">It yntoetste nûmer stipet gjin befeilige bellen!</string>
   <string name="RedPhone_got_it">Begrepen</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Noflike 💜-dei!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tik hjir om dyn kamera oan te setten</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal hat tagong nedich ta dyn kamera om %1$s te bellen</string>

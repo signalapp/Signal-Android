@@ -1513,6 +1513,9 @@
   <string name="RedPhone_number_not_registered">الرقم غير مسجل!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">الرقم المطلوب لا يدعم مكالمات صوتية مشفرة!</string>
   <string name="RedPhone_got_it">عُلم</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">يُرجى اللمس هنا لتشغيل مكالمتك بالصورة. </string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">للاتصال بـ%1$s، يحتاج Signal صلاحية الوصول إلى الكاميرا</string>
@@ -3830,7 +3833,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن من الداعمين</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">أضف دعماً</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">تمّ إلغاء اشتراك الداعم الخاص بك تلقائياً لعدم نشاطك لفترة طويلة. لم تعد شارة %1$s الخاصة بك ظاهرة في ملفك الشخصي.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">تمّ إلغاء اشتراك الداعم الخاص بك تلقائياً لعدم نشاطك لفترة طويلة. لم تعد شارة %1$s الخاصة بك ظاهرة في ملفك الشخصي.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام Signal، ولكن لدعم التطبيق وإعادة تفعيل شارتك، جدد الآن.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
   <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>

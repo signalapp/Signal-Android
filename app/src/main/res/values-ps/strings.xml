@@ -1182,6 +1182,9 @@
   <string name="RedPhone_number_not_registered">شمېره نه ده ثبت شوې!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">هغه شمېره چې تاسې ډایل کړي د خوندي غږ مرسته له ځانه سره نه لري!</string>
   <string name="RedPhone_got_it">پوه شوئ</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">د خپلې ویډیو د روښانولو لپاره دلته کلیک وکړئ</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">د دې لپاره چې %1$s سره اړیکه ونیسئ، Signal ستاسې کیمرې ته لاسرسي لرلو ته اړتیا لري</string>

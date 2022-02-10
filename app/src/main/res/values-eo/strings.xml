@@ -1248,6 +1248,9 @@
   <string name="RedPhone_number_not_registered">Numero ne registrita!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">La numero, kiun vi alvokis, ne subtenas sekurigan komunikon!</string>
   <string name="RedPhone_got_it">Bone</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tuŝetu ĉi tie por ebligi vian videon</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Por telefoni %1$s, Signal bezonas aliron al via fotilo</string>
@@ -3436,7 +3439,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Aldoni plikonatigon</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Via subtenanto-abono aŭtomate nuliĝis pro via tro longa neaktiveco. Via insigno %1$s ne plu videblas en via profilo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Via subtenanto-abono aŭtomate nuliĝis pro via tro longa neaktiveco. Via insigno %1$s ne plu videblas en via profilo.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vi povas daŭrigi uzi Signal-on, sed por subtenu la aplikaĵon kaj rehavi vian insignon, reaboniĝu nun.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reabono</string>
   <string name="Subscription__please_contact_support_for_more_information">Kontaktu Signa-helpon por plia informo. </string>

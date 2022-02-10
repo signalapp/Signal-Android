@@ -1235,6 +1235,9 @@
   <string name="RedPhone_number_not_registered">নাম্বারটি নিবন্ধিত নয়!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">আপনার ডায়াল করা নাম্বার সুরক্ষিত ভয়েস সমর্থন করে না!</string>
   <string name="RedPhone_got_it">বুঝতে পেরেছি</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">আপনার ভিডিও চালু করতে এখানে আলতো চাপুন</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s কে ফোন করতে Signal কে আপনার ক্যামেরা ব্যাবহার করতে হবে।</string>
@@ -3389,7 +3392,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">একজন সাসটেইনার হোন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">একটি বুস্ট যোগ করুন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">এখন না</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">আপনার সাসটেইনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে বাতিল হয়ে গেছে কারণ আপনি অনেক দিন ধরে নিষ্ক্রিয় ছিলেন। আপনার %1$s ব্যাজ আপনার প্রোফাইলে আর দৃশ্যমান নয়।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">আপনার সাসটেইনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে বাতিল হয়ে গেছে কারণ আপনি অনেক দিন ধরে নিষ্ক্রিয় ছিলেন। আপনার %1$s ব্যাজ আপনার প্রোফাইলে আর দৃশ্যমান নয়।</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">আপনি সিগন্যাল ব্যবহার চালিয়ে যেতে পারেন তবে অ্যাপটিকে সমর্থন করতে এবং আপনার ব্যাজ পুনরায় সক্রিয় করতে, এখনই নবায়ন করুন।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">সদস্যতা নবায়ন করুন</string>
   <string name="Subscription__please_contact_support_for_more_information">আরও তথ্যের জন্য সাপোর্টে যোগাযোগ করুন।</string>

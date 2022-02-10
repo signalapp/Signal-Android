@@ -1179,6 +1179,11 @@
   <string name="RedPhone_number_not_registered">號碼尚未註冊！</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">您所撥打的號碼不支援安全語音！</string>
   <string name="RedPhone_got_it">我知道了</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">💜 人節快樂！</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">成為 Signal 延續人，盡訴延綿心意。</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">輕觸此處以開啟您的視像</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal 需要存取您的相機，以便與 %1$s 通話。</string>
@@ -3331,7 +3336,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為延續人</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">新增集氣</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">現在不要</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">有見您已有好一段日子未曾使用，您的延續人訂閱已自動取消。您的「%1$s」徽章不再在您的個人資料中讓別人看見。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">有見您已有好一段日子未曾使用，您的延續人訂閱已自動取消。您的「%1$s」徽章不再在您的個人資料中讓別人看見。</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">您可如常使用 Signal，沒有關係。假如您希望支持此應用程式並延續您的徽章，請立即續期。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為訂閱續期</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援團隊以取得更多資訊。</string>

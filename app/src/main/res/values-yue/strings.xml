@@ -1179,6 +1179,11 @@
   <string name="RedPhone_number_not_registered">個冧把未有註冊！</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">您所打嘅冧把唔支援安全語音！</string>
   <string name="RedPhone_got_it">明白</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">祝天下有 💜 人終成眷屬！</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">無論咿家嘅您，圍爐取暖定取戀，擔當 Signal 後援都…係愛呀！無論一起不一起，都希望您過得好。</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">撳一下呢度去開啟您嘅視像</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">要同 %1$s 通話嘅話，Signal 需要存取您部機嘅相機</string>
@@ -3332,7 +3337,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">擔當後援</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">買多支旗</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">遲啲先啦</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">見您冇用好一排，您嘅後援課金計劃已經自動取消。您嘅「%1$s」襟章已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">見您冇用好一排，您嘅後援課金計劃已經自動取消。您嘅「%1$s」襟章已經喺您嘅個人資料度除返落嚟，人哋唔會再睇到。</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal 一切如常運作，並讓您自由使用。若要繼續支持呢個 app 並掛返起您個襟章，請立即續期。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為課金計劃續期</string>
   <string name="Subscription__please_contact_support_for_more_information">詳情請聯絡支援。</string>

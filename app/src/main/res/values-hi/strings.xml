@@ -1235,6 +1235,9 @@
   <string name="RedPhone_number_not_registered">नंबर पंजीकृत नहीं है</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">आपके द्वारा डायल किया गया नंबर सुरक्षित आवाज का समर्थन नहीं करता है!</string>
   <string name="RedPhone_got_it">समझ गया </string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">वीडियो शुरु करने के लिये यहाँ टैप करें</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s को कॉल करने के लिए, Signal को आपके कैमरा तक पहुँच करने की ज़रूरत है</string>
@@ -3400,7 +3403,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">एक सस्टेनर बनें</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">एक बूस्ट शामिल करें</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">अभी नहीं</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">आपका सस्टेनर सब्सक्रिप्शन स्वचालित रूप से रद्द कर दीया गया था क्योंकि आप बहुत लंबे समय से इनएक्टिव थे. आपका %1$s बैज अब आपकी प्रोफ़ाइल पर दिखाई नहीं दे रहा है.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">आपका सस्टेनर सब्सक्रिप्शन स्वचालित रूप से रद्द कर दीया गया था क्योंकि आप बहुत लंबे समय से इनएक्टिव थे. आपका %1$s बैज अब आपकी प्रोफ़ाइल पर दिखाई नहीं दे रहा है.</string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आप Signal का इस्तेमाल करना जारी रख सकते हैं लेकिन ऐप का समर्थन करने और अपने बैज को फिर से एक्टिव करने के लिए, अभी रिन्यू करें.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">सब्सक्रिप्शन को रिन्यू करें</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक जानकारी के लिए कृपया समर्थन से संपर्क करें.</string>

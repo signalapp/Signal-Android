@@ -1168,6 +1168,9 @@
   <string name="RedPhone_number_not_registered">Nombor tidak didaftarkan!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Nombor yang anda dail tidak menyokong panggilan selamat!</string>
   <string name="RedPhone_got_it">Faham</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ketik sini untuk dayakan video anda</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Untuk memanggil %1$s, Signal memerlukan akses kepada kamera anda</string>
@@ -3291,7 +3294,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Sustainer</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tambah Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Langganan Sustainer anda telah dibatalkan secara automatik kerana anda terlalu lama tidak aktif. Lencana %1$s anda tidak lagi dipaparkan di profil anda. </string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Langganan Sustainer anda telah dibatalkan secara automatik kerana anda terlalu lama tidak aktif. Lencana %1$s anda tidak lagi dipaparkan di profil anda. </string> -->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda boleh terus menggunakan Signal tetapi untuk menyokong aplikasi dan mengaktifkan semula lencana anda, sila perbaharui sekarang.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perbaharui langganan</string>
   <string name="Subscription__please_contact_support_for_more_information">Sila hubungi bantuan untuk maklumat lebih lanjut</string>
