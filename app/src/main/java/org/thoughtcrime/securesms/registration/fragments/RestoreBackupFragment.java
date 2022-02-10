@@ -126,9 +126,19 @@ public final class RestoreBackupFragment extends LoggingFragment {
     }
 
     RestoreBackupFragmentArgs args = RestoreBackupFragmentArgs.fromBundle(requireArguments());
-    if ((Build.VERSION.SDK_INT < 29 || BackupUtil.isUserSelectionRequired(requireContext())) && args.getUri() != null) {
-      Log.i(TAG, "Restoring backup from passed uri");
-      initializeBackupForUri(view, args.getUri());
+    if ((Build.VERSION.SDK_INT < 29 || BackupUtil.isUserSelectionRequired(requireContext())) && (args.getUri() != null || args.getMultiUris() != null)) {
+      Uri singleUri = args.getUri();
+      Uri[] multiUris = args.getMultiUris();
+      boolean isMultifileBackup = (multiUris != null && multiUris.length > 0);
+      if (singleUri != null && singleUri.toString().endsWith(".backup.part000")) {
+        isMultifileBackup = true;
+        multiUris = new Uri[] { singleUri };
+      }
+      if (isMultifileBackup) {
+        initializeBackupForUris(view, multiUris);
+      } else {
+        initializeBackupForUri(view, singleUri);
+      }
 
       return;
     }
@@ -162,6 +172,10 @@ public final class RestoreBackupFragment extends LoggingFragment {
 
   private void initializeBackupForUri(@NonNull View view, @NonNull Uri uri) {
     getFromUri(requireContext(), uri, backup -> handleBackupInfo(view, backup));
+  }
+
+  private void initializeBackupForUris(@NonNull View view, @NonNull Uri[] uris) {
+    getFromUris(requireContext(), uris, backup -> handleBackupInfo(view, backup));
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -248,6 +262,22 @@ public final class RestoreBackupFragment extends LoggingFragment {
     ThreadUtil.postToMain(() -> Toast.makeText(context, errorResId, Toast.LENGTH_LONG).show());
   }
 
+  static void getFromUris(@NonNull Context context,
+                          @NonNull Uri[] backupUris,
+                          @NonNull OnBackupSearchResultListener listener)
+  {
+    SimpleTask.run(() -> {
+                   try {
+                     return BackupUtil.getBackupInfoFromMultiUris(context, backupUris);
+                   } catch (BackupUtil.BackupFileException e) {
+                     Log.w(TAG, "Could not restore backup.", e);
+                     postToastForBackupRestorationFailure(context, e);
+                     return null;
+                   }
+                 },
+                 listener::run);
+  }
+
   private void handleRestore(@NonNull Context context, @NonNull BackupUtil.BackupInfo backup) {
     View     view   = LayoutInflater.from(context).inflate(R.layout.enter_backup_passphrase_dialog, null);
     EditText prompt = view.findViewById(R.id.restore_passphrase_input);
@@ -288,11 +318,19 @@ public final class RestoreBackupFragment extends LoggingFragment {
           SQLiteDatabase database = SignalDatabase.getBackupDatabase();
 
           BackupPassphrase.set(context, passphrase);
-          FullBackupImporter.importFile(context,
-                                        AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                                        database,
-                                        backup.getUri(),
-                                        passphrase);
+          if (backup.isSingleFileBackup()) {
+            FullBackupImporter.importFile(context,
+                                          AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                                          database,
+                                          backup.getUri(),
+                                          passphrase);
+          } else if (backup.isMultiFileBackup()) {
+            FullBackupImporter.importFile(context,
+                                          AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                                          database,
+                                          backup.getUris(),
+                                          passphrase);
+          }
 
           SignalDatabase.upgradeRestored(database);
           NotificationChannels.restoreContactNotificationChannels(context);

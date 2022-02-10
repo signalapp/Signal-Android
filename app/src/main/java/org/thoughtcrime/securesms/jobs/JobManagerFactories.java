@@ -105,7 +105,9 @@ public final class JobManagerFactories {
       put(LeaveGroupV2Job.KEY,                       new LeaveGroupV2Job.Factory());
       put(LeaveGroupV2WorkerJob.KEY,                 new LeaveGroupV2WorkerJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
+      put(LocalChunkedBackupJob.KEY,                 new LocalChunkedBackupJob.Factory());
       put(LocalBackupJobApi29.KEY,                   new LocalBackupJobApi29.Factory());
+      put(LocalChunkedBackupJobApi29.KEY,            new LocalChunkedBackupJobApi29.Factory());
       put(MarkerJob.KEY,                             new MarkerJob.Factory());
       put(MmsDownloadJob.KEY,                        new MmsDownloadJob.Factory());
       put(MmsReceiveJob.KEY,                         new MmsReceiveJob.Factory());

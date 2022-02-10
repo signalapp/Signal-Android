@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.registration.fragments;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
@@ -24,6 +26,8 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
+
+import java.util.Arrays;
 
 public class ChooseBackupFragment extends LoggingFragment {
 
@@ -54,7 +58,16 @@ public class ChooseBackupFragment extends LoggingFragment {
     if (requestCode == OPEN_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
       ChooseBackupFragmentDirections.ActionRestore restore = ChooseBackupFragmentDirections.actionRestore();
 
+      ClipData clipData = data.getClipData();
+      int multiUrisCount = clipData == null ? 0 : clipData.getItemCount();
+      Uri[] multiUris = new Uri[multiUrisCount];
+      for (int i = 0; i < multiUrisCount; ++i) {
+        Uri uri = clipData.getItemAt(i).getUri();
+        multiUris[i] = uri;
+      }
+
       restore.setUri(data.getData());
+      restore.setMultiUris(multiUris);
 
       SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), restore);
     }
@@ -67,6 +80,7 @@ public class ChooseBackupFragment extends LoggingFragment {
     intent.setType("application/octet-stream");
     intent.addCategory(Intent.CATEGORY_OPENABLE);
     intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 
     if (Build.VERSION.SDK_INT >= 26) {
       intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings().getLatestSignalBackupDirectory());

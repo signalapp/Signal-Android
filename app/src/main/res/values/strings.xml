@@ -499,6 +499,7 @@
     <string name="BackupsPreferenceFragment__chat_backups">Chat backups</string>
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backups are encrypted with a passphrase and stored on your device.</string>
     <string name="BackupsPreferenceFragment__create_backup">Create backup</string>
+    <string name="BackupsPreferenceFragment__create_chunked_backup">Create chunked backup</string>
     <string name="BackupsPreferenceFragment__last_backup">Last backup: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Backup folder</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verify backup passphrase</string>

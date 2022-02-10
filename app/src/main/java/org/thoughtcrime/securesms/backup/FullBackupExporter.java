@@ -106,7 +106,23 @@ public class FullBackupExporter extends FullBackupBase {
       throws IOException
   {
     try (OutputStream outputStream = new FileOutputStream(output)) {
-      internalExport(context, attachmentSecret, input, outputStream, passphrase, true, cancellationSignal);
+      internalExport(context, attachmentSecret, input, outputStream, passphrase, true, false, cancellationSignal);
+    }
+  }
+
+  public static List<File> exportChunked(@NonNull Context context,
+                                         @NonNull AttachmentSecret attachmentSecret,
+                                         @NonNull SQLiteDatabase input,
+                                         @NonNull File backupDir,
+                                         @NonNull String backupPrefix,
+                                         @NonNull String backupSuffix,
+                                         @NonNull String passphrase,
+                                         @NonNull BackupCancellationSignal cancellationSignal)
+      throws IOException
+  {
+    try (MultiFileOutputStream outputStream = new MultiFileOutputStream(backupDir, backupPrefix, backupSuffix)) {
+      internalExport(context, attachmentSecret, input, outputStream, passphrase, true, true, cancellationSignal);
+      return outputStream.getFiles();
     }
   }
 
@@ -120,7 +136,24 @@ public class FullBackupExporter extends FullBackupBase {
       throws IOException
   {
     try (OutputStream outputStream = Objects.requireNonNull(context.getContentResolver().openOutputStream(output.getUri()))) {
-      internalExport(context, attachmentSecret, input, outputStream, passphrase, true, cancellationSignal);
+      internalExport(context, attachmentSecret, input, outputStream, passphrase, true, false, cancellationSignal);
+    }
+  }
+
+  @RequiresApi(29)
+  public static List<DocumentFile> exportChunked(@NonNull Context context,
+                                                 @NonNull AttachmentSecret attachmentSecret,
+                                                 @NonNull SQLiteDatabase input,
+                                                 @NonNull DocumentFile backupDir,
+                                                 @NonNull String backupPrefix,
+                                                 @NonNull String backupSuffix,
+                                                 @NonNull String passphrase,
+                                                 @NonNull BackupCancellationSignal cancellationSignal)
+      throws IOException
+  {
+    try (MultiFileOutputStream29 outputStream = new MultiFileOutputStream29(context, backupDir, backupPrefix, backupSuffix)) {
+      internalExport(context, attachmentSecret, input, outputStream, passphrase, true, true, cancellationSignal);
+      return outputStream.getFiles();
     }
   }
 
@@ -131,7 +164,7 @@ public class FullBackupExporter extends FullBackupBase {
                               @NonNull String passphrase)
       throws IOException
   {
-    internalExport(context, attachmentSecret, input, outputStream, passphrase, false, () -> false);
+    internalExport(context, attachmentSecret, input, outputStream, passphrase, false, false, () -> false);
   }
 
   private static void internalExport(@NonNull Context context,
@@ -140,10 +173,11 @@ public class FullBackupExporter extends FullBackupBase {
                                      @NonNull OutputStream fileOutputStream,
                                      @NonNull String passphrase,
                                      boolean closeOutputStream,
+                                     boolean isChunked,
                                      @NonNull BackupCancellationSignal cancellationSignal)
       throws IOException
   {
-    BackupFrameOutputStream outputStream          = new BackupFrameOutputStream(fileOutputStream, passphrase);
+    BackupFrameOutputStream outputStream          = new BackupFrameOutputStream(fileOutputStream, passphrase, isChunked);
     int                     count                 = 0;
     long                    estimatedCountOutside = 0L;
 
@@ -162,41 +196,41 @@ public class FullBackupExporter extends FullBackupBase {
       for (String table : tables) {
         throwIfCanceled(cancellationSignal);
         if (table.equals(MmsDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isNonExpiringMmsMessage(cursor) && isNotReleaseChannel(cursor), null, count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> isNonExpiringMmsMessage(cursor) && isNotReleaseChannel(cursor), null, count, estimatedCount, isChunked, cancellationSignal);
         } else if (table.equals(SmsDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isNonExpiringSmsMessage(cursor) && isNotReleaseChannel(cursor), null, count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, FullBackupExporter::isNonExpiringSmsMessage, null, count, estimatedCount, isChunked, cancellationSignal);
         } else if (table.equals(ReactionDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, new MessageId(CursorUtil.requireLong(cursor, ReactionDatabase.MESSAGE_ID), CursorUtil.requireBoolean(cursor, ReactionDatabase.IS_MMS))), null, count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, new MessageId(CursorUtil.requireLong(cursor, ReactionDatabase.MESSAGE_ID), CursorUtil.requireBoolean(cursor, ReactionDatabase.IS_MMS))), null, count, estimatedCount, isChunked, cancellationSignal);
         } else if (table.equals(MentionDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessageAndNotReleaseChannel(input, CursorUtil.requireLong(cursor, MentionDatabase.MESSAGE_ID)), null, count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessage(input, CursorUtil.requireLong(cursor, MentionDatabase.MESSAGE_ID)), null, count, estimatedCount, isChunked, cancellationSignal);
         } else if (table.equals(GroupReceiptDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessageAndNotReleaseChannel(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count, estimatedCount, isChunked, cancellationSignal);
         } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessageAndNotReleaseChannel(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), (cursor, innerCount) -> exportAttachment(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), (cursor, innerCount) -> exportAttachment(attachmentSecret, cursor, outputStream, innerCount, estimatedCount, isChunked), count, estimatedCount, isChunked, cancellationSignal);
         } else if (table.equals(StickerDatabase.TABLE_NAME)) {
-          count = exportTable(table, input, outputStream, cursor -> true, (cursor, innerCount) -> exportSticker(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, cursor -> true, (cursor, innerCount) -> exportSticker(attachmentSecret, cursor, outputStream, innerCount, estimatedCount, isChunked), count, estimatedCount, isChunked, cancellationSignal);
         } else if (!BLACKLISTED_TABLES.contains(table) && !table.startsWith("sqlite_")) {
-          count = exportTable(table, input, outputStream, null, null, count, estimatedCount, cancellationSignal);
+          count = exportTable(table, input, outputStream, null, null, count, estimatedCount, isChunked, cancellationSignal);
         }
         stopwatch.split("table::" + table);
       }
 
       for (BackupProtos.SharedPreference preference : TextSecurePreferences.getPreferencesToSaveToBackup(context)) {
         throwIfCanceled(cancellationSignal);
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, isChunked, ++count, estimatedCount));
         outputStream.write(preference);
       }
 
       stopwatch.split("prefs");
 
-      count = exportKeyValues(outputStream, SignalStore.getKeysToIncludeInBackup(), count, estimatedCount, cancellationSignal);
+      count = exportKeyValues(outputStream, SignalStore.getKeysToIncludeInBackup(), count, estimatedCount, isChunked, cancellationSignal);
 
       stopwatch.split("key_values");
 
       for (AvatarHelper.Avatar avatar : AvatarHelper.getAvatars(context)) {
         throwIfCanceled(cancellationSignal);
         if (avatar != null) {
-          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
+          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, isChunked, ++count, estimatedCount));
           try (InputStream inputStream = avatar.getInputStream()) {
             outputStream.write(avatar.getFilename(), inputStream, avatar.getLength());
           }
@@ -211,7 +245,7 @@ public class FullBackupExporter extends FullBackupBase {
       if (closeOutputStream) {
         outputStream.close();
       }
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, ++count, estimatedCountOutside));
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, isChunked, ++count, estimatedCountOutside));
     }
   }
 
@@ -300,6 +334,7 @@ public class FullBackupExporter extends FullBackupBase {
                                  @Nullable PostProcessor postProcess,
                                  int count,
                                  long estimatedCount,
+                                 boolean isChunked,
                                  @NonNull BackupCancellationSignal cancellationSignal)
       throws IOException
   {
@@ -339,7 +374,7 @@ public class FullBackupExporter extends FullBackupBase {
 
           statement.append(')');
 
-          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
+          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, isChunked, ++count, estimatedCount));
           outputStream.write(statementBuilder.setStatement(statement.toString()).build());
 
           if (postProcess != null) {
@@ -352,7 +387,7 @@ public class FullBackupExporter extends FullBackupBase {
     return count;
   }
 
-  private static int exportAttachment(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount) {
+  private static int exportAttachment(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount, boolean isChunked) {
     try {
       long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID));
       long uniqueId = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID));
@@ -377,7 +412,7 @@ public class FullBackupExporter extends FullBackupBase {
         if (random != null && random.length == 32) inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
         else                                       inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
 
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, isChunked, ++count, estimatedCount));
         outputStream.write(new AttachmentId(rowId, uniqueId), inputStream, size);
         inputStream.close();
       }
@@ -388,7 +423,7 @@ public class FullBackupExporter extends FullBackupBase {
     return count;
   }
 
-  private static int exportSticker(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount) {
+  private static int exportSticker(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount, boolean isChunked) {
     try {
       long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID));
       long size     = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH));
@@ -397,7 +432,7 @@ public class FullBackupExporter extends FullBackupBase {
       byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM));
 
       if (!TextUtils.isEmpty(data) && size > 0) {
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, isChunked, ++count, estimatedCount));
         try (InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0)) {
           outputStream.writeSticker(rowId, inputStream, size);
         }
@@ -430,6 +465,7 @@ public class FullBackupExporter extends FullBackupBase {
                                      @NonNull List<String> keysToIncludeInBackup,
                                      int count,
                                      long estimatedCount,
+                                     boolean isChunked,
                                      BackupCancellationSignal cancellationSignal) throws IOException
   {
     KeyValueDataSet dataSet = KeyValueDatabase.getInstance(ApplicationDependencies.getApplication())
@@ -470,7 +506,7 @@ public class FullBackupExporter extends FullBackupBase {
         throw new AssertionError("Unknown type: " + type);
       }
 
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, isChunked, ++count, estimatedCount));
       outputStream.write(builder.build());
     }
 
@@ -488,7 +524,7 @@ public class FullBackupExporter extends FullBackupBase {
 
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, @NonNull MessageId messageId) {
     if (messageId.isMms()) {
-      return isForNonExpiringMmsMessageAndNotReleaseChannel(db, messageId.getId());
+      return isForNonExpiringMmsMessage(db, messageId.getId());
     } else {
       return isForNonExpiringSmsMessage(db, messageId.getId());
     }
@@ -508,14 +544,14 @@ public class FullBackupExporter extends FullBackupBase {
     return false;
   }
 
-  private static boolean isForNonExpiringMmsMessageAndNotReleaseChannel(@NonNull SQLiteDatabase db, long mmsId) {
-    String[] columns = new String[] { MmsDatabase.RECIPIENT_ID, MmsDatabase.EXPIRES_IN, MmsDatabase.VIEW_ONCE};
+  private static boolean isForNonExpiringMmsMessage(@NonNull SQLiteDatabase db, long mmsId) {
+    String[] columns = new String[] { MmsDatabase.EXPIRES_IN, MmsDatabase.VIEW_ONCE};
     String   where   = MmsDatabase.ID + " = ?";
     String[] args    = new String[] { String.valueOf(mmsId) };
 
     try (Cursor mmsCursor = db.query(MmsDatabase.TABLE_NAME, columns, where, args, null, null, null)) {
       if (mmsCursor != null && mmsCursor.moveToFirst()) {
-        return isNonExpiringMmsMessage(mmsCursor) && isNotReleaseChannel(mmsCursor);
+        return isNonExpiringMmsMessage(mmsCursor);
       }
     }
 
@@ -539,10 +575,10 @@ public class FullBackupExporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupFrameOutputStream(@NonNull OutputStream output, @NonNull String passphrase) throws IOException {
+    private BackupFrameOutputStream(@NonNull OutputStream output, @NonNull String passphrase, boolean isChunked) throws IOException {
       try {
         byte[]   salt    = Util.getSecretBytes(32);
-        byte[]   key     = getBackupKey(passphrase, salt);
+        byte[]   key     = getBackupKey(passphrase, salt, isChunked);
         byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
         byte[][] split   = ByteUtil.split(derived, 32, 32);
 

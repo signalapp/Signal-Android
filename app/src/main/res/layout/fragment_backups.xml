@@ -87,6 +87,73 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_backup_create_chunked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:minHeight="?attr/listPreferredItemHeightLarge"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/fragment_backup_create_chunked_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BackupsPreferenceFragment__create_chunked_backup"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintBottom_toTopOf="@id/fragment_backup_create_chunked_summary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/fragment_backup_create_chunked_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BackupsPreferenceFragment__last_backup"
+                android:textAppearance="@style/Signal.Text.Preview"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintBottom_toTopOf="@id/fragment_backup_chunked_progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_backup_create_chunked_title" />
+
+            <ProgressBar
+                android:id="@+id/fragment_backup_chunked_progress"
+                style="?android:progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/fragment_backup_chunked_progress_summary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_backup_create_chunked_summary"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/fragment_backup_chunked_progress_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/signal_text_secondary"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_backup_chunked_progress"
+                tools:text="10000 so far..."
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <LinearLayout
             android:id="@+id/fragment_backup_folder"
             android:layout_width="match_parent"

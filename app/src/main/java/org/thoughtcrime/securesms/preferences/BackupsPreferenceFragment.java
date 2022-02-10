@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
+import org.thoughtcrime.securesms.jobs.LocalChunkedBackupJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.BackupUtil;
@@ -45,14 +46,18 @@ public class BackupsPreferenceFragment extends Fragment {
   private static final short CHOOSE_BACKUPS_LOCATION_REQUEST_CODE = 26212;
 
   private View        create;
+  private View        createChunked;
   private View        folder;
   private View        verify;
   private TextView    toggle;
   private TextView    info;
   private TextView    summary;
+  private TextView    chunkedSummary;
   private TextView    folderName;
   private ProgressBar progress;
+  private ProgressBar chunkedProgress;
   private TextView    progressSummary;
+  private TextView    chunkedProgressSummary;
 
   private final NumberFormat formatter = NumberFormat.getInstance();
 
@@ -63,18 +68,23 @@ public class BackupsPreferenceFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    create          = view.findViewById(R.id.fragment_backup_create);
-    folder          = view.findViewById(R.id.fragment_backup_folder);
-    verify          = view.findViewById(R.id.fragment_backup_verify);
-    toggle          = view.findViewById(R.id.fragment_backup_toggle);
-    info            = view.findViewById(R.id.fragment_backup_info);
-    summary         = view.findViewById(R.id.fragment_backup_create_summary);
-    folderName      = view.findViewById(R.id.fragment_backup_folder_name);
-    progress        = view.findViewById(R.id.fragment_backup_progress);
-    progressSummary = view.findViewById(R.id.fragment_backup_progress_summary);
+    create                 = view.findViewById(R.id.fragment_backup_create);
+    createChunked          = view.findViewById(R.id.fragment_backup_create_chunked);
+    folder                 = view.findViewById(R.id.fragment_backup_folder);
+    verify                 = view.findViewById(R.id.fragment_backup_verify);
+    toggle                 = view.findViewById(R.id.fragment_backup_toggle);
+    info                   = view.findViewById(R.id.fragment_backup_info);
+    summary                = view.findViewById(R.id.fragment_backup_create_summary);
+    chunkedSummary         = view.findViewById(R.id.fragment_backup_create_chunked_summary);
+    folderName             = view.findViewById(R.id.fragment_backup_folder_name);
+    progress               = view.findViewById(R.id.fragment_backup_progress);
+    chunkedProgress        = view.findViewById(R.id.fragment_backup_chunked_progress);
+    progressSummary        = view.findViewById(R.id.fragment_backup_progress_summary);
+    chunkedProgressSummary = view.findViewById(R.id.fragment_backup_chunked_progress_summary);
 
     toggle.setOnClickListener(unused -> onToggleClicked());
     create.setOnClickListener(unused -> onCreateClicked());
+    createChunked.setOnClickListener(unused -> onCreateChunkedClicked());
     verify.setOnClickListener(unused -> BackupDialog.showVerifyBackupPassphraseDialog(requireContext()));
 
     formatter.setMinimumFractionDigits(1);
@@ -90,6 +100,7 @@ public class BackupsPreferenceFragment extends Fragment {
 
     setBackupStatus();
     setBackupSummary();
+    setChunkedBackupSummary();
     setInfo();
   }
 
@@ -121,6 +132,14 @@ public class BackupsPreferenceFragment extends Fragment {
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(FullBackupBase.BackupEvent event) {
+    if (event.isChunked()) {
+      onChunkedBackupEvent(event);
+    } else {
+      onSingleFileBackupEvent(event);
+    }
+  }
+
+  private void onSingleFileBackupEvent(FullBackupBase.BackupEvent event) {
     if (event.getType() == FullBackupBase.BackupEvent.Type.PROGRESS) {
       create.setEnabled(false);
       summary.setText(getString(R.string.BackupsPreferenceFragment__in_progress));
@@ -146,6 +165,32 @@ public class BackupsPreferenceFragment extends Fragment {
     }
   }
 
+  private void onChunkedBackupEvent(FullBackupBase.BackupEvent event) {
+    if (event.getType() == FullBackupBase.BackupEvent.Type.PROGRESS) {
+      createChunked.setEnabled(false);
+      chunkedSummary.setText(getString(R.string.BackupsPreferenceFragment__in_progress));
+      chunkedProgress.setVisibility(View.VISIBLE);
+      chunkedProgressSummary.setVisibility(event.getCount() > 0 ? View.VISIBLE : View.GONE);
+
+      if (event.getEstimatedTotalCount() == 0) {
+        chunkedProgress.setIndeterminate(true);
+        chunkedProgressSummary.setText(getString(R.string.BackupsPreferenceFragment__d_so_far, event.getCount()));
+      } else {
+        double completionPercentage = event.getCompletionPercentage();
+
+        chunkedProgress.setIndeterminate(false);
+        chunkedProgress.setMax(100);
+        chunkedProgress.setProgress((int) completionPercentage);
+        chunkedProgressSummary.setText(getString(R.string.BackupsPreferenceFragment__s_so_far, formatter.format(completionPercentage)));
+      }
+    } else if (event.getType() == FullBackupBase.BackupEvent.Type.FINISHED) {
+      createChunked.setEnabled(true);
+      chunkedProgress.setVisibility(View.GONE);
+      chunkedProgressSummary.setVisibility(View.GONE);
+      setChunkedBackupSummary();
+    }
+  }
+
   private void setBackupStatus() {
     if (SignalStore.settings().isBackupEnabled()) {
       if (BackupUtil.canUserAccessBackupDirectory(requireContext())) {
@@ -163,6 +208,10 @@ public class BackupsPreferenceFragment extends Fragment {
 
   private void setBackupSummary() {
     summary.setText(getString(R.string.BackupsPreferenceFragment__last_backup, BackupUtil.getLastBackupTime(requireContext(), Locale.getDefault())));
+  }
+
+  private void setChunkedBackupSummary() {
+    chunkedSummary.setText(getString(R.string.BackupsPreferenceFragment__last_backup, BackupUtil.getLastChunkedBackupTime(requireContext(), Locale.getDefault())));
   }
 
   private void setBackupFolderName() {
@@ -235,10 +284,24 @@ public class BackupsPreferenceFragment extends Fragment {
     }
   }
 
+  private void onCreateChunkedClicked() {
+    if (BackupUtil.isUserSelectionRequired(requireContext())) {
+      onCreateChunkedClickedApi29();
+    } else {
+      onCreateChunkedClickedLegacy();
+    }
+  }
+
   @RequiresApi(29)
   private void onCreateClickedApi29() {
     Log.i(TAG, "Queing backup...");
     LocalBackupJob.enqueue(true);
+  }
+
+  @RequiresApi(29)
+  private void onCreateChunkedClickedApi29() {
+    Log.i(TAG, "Queing backup...");
+    LocalChunkedBackupJob.enqueue(true);
   }
 
   private void onCreateClickedLegacy() {
@@ -253,9 +316,22 @@ public class BackupsPreferenceFragment extends Fragment {
                .execute();
   }
 
+  private void onCreateChunkedClickedLegacy() {
+    Permissions.with(this)
+               .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .onAllGranted(() -> {
+                 Log.i(TAG, "Queuing backup...");
+                 LocalChunkedBackupJob.enqueue(true);
+               })
+               .withPermanentDenialDialog(getString(R.string.BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
+               .execute();
+  }
+
   private void setBackupsEnabled() {
     toggle.setText(R.string.BackupsPreferenceFragment__turn_off);
     create.setVisibility(View.VISIBLE);
+    createChunked.setVisibility(View.VISIBLE);
     verify.setVisibility(View.VISIBLE);
     setBackupFolderName();
   }
@@ -263,6 +339,7 @@ public class BackupsPreferenceFragment extends Fragment {
   private void setBackupsDisabled() {
     toggle.setText(R.string.BackupsPreferenceFragment__turn_on);
     create.setVisibility(View.GONE);
+    createChunked.setVisibility(View.GONE);
     folder.setVisibility(View.GONE);
     verify.setVisibility(View.GONE);
     ApplicationDependencies.getJobManager().cancelAllInQueue(LocalBackupJob.QUEUE);

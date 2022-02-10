@@ -253,6 +253,12 @@
             app:argType="android.net.Uri"
             app:nullable="true" />
 
+        <argument
+            android:name="multiUris"
+            android:defaultValue="@null"
+            app:argType="android.net.Uri[]"
+            app:nullable="true" />
+
     </fragment>
 
     <fragment

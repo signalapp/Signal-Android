@@ -50,6 +50,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -86,12 +87,21 @@ public class FullBackupImporter extends FullBackupBase {
       throws IOException
   {
     try (InputStream is = getInputStream(context, uri)) {
-      importFile(context, attachmentSecret, db, is, passphrase);
+      importFile(context, attachmentSecret, db, is, false, passphrase);
     }
   }
 
   public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
-                                @NonNull SQLiteDatabase db, @NonNull InputStream is, @NonNull String passphrase)
+                                @NonNull SQLiteDatabase db, @NonNull Uri[] uris, @NonNull String passphrase)
+      throws IOException
+  {
+    try (InputStream is = getInputStream(context, uris)) {
+      importFile(context, attachmentSecret, db, is, true, passphrase);
+    }
+  }
+
+  public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
+                                @NonNull SQLiteDatabase db, @NonNull InputStream is, boolean isChunked, @NonNull String passphrase)
       throws IOException
   {
     int count = 0;
@@ -101,14 +111,14 @@ public class FullBackupImporter extends FullBackupBase {
     db.beginTransaction();
     keyValueDatabase.beginTransaction();
     try {
-      BackupRecordInputStream inputStream = new BackupRecordInputStream(is, passphrase);
+      BackupRecordInputStream inputStream = new BackupRecordInputStream(is, passphrase, isChunked);
 
       dropAllTables(db);
 
       BackupFrame frame;
 
       while (!(frame = inputStream.readFrame()).getEnd()) {
-        if (count % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, count, 0));
+        if (count % 100 == 0) EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, isChunked, count, 0));
         count++;
 
         if      (frame.hasVersion())    processVersion(db, frame.getVersion());
@@ -128,15 +138,20 @@ public class FullBackupImporter extends FullBackupBase {
       keyValueDatabase.endTransaction();
     }
 
-    EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, count, 0));
+    EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, isChunked, count, 0));
   }
 
   private static @NonNull InputStream getInputStream(@NonNull Context context, @NonNull Uri uri) throws IOException{
     if (BackupUtil.isUserSelectionRequired(context) || uri.getScheme().equals("content")) {
       return Objects.requireNonNull(context.getContentResolver().openInputStream(uri));
     } else {
-      return new FileInputStream(new File(Objects.requireNonNull(uri.getPath())));
+      return new FileInputStream(Objects.requireNonNull(uri.getPath()));
     }
+  }
+
+  private static @NonNull InputStream getInputStream(@NonNull Context context, @NonNull Uri[] uris) throws IOException{
+    Arrays.sort(uris);
+    return new MultiFileInputStream(context.getContentResolver(), uris);
   }
 
   private static void processVersion(@NonNull SQLiteDatabase db, DatabaseVersion version) throws IOException {
@@ -313,7 +328,7 @@ public class FullBackupImporter extends FullBackupBase {
     private byte[] iv;
     private int    counter;
 
-    private BackupRecordInputStream(@NonNull InputStream in, @NonNull String passphrase) throws IOException {
+    private BackupRecordInputStream(@NonNull InputStream in, @NonNull String passphrase, boolean isChunked) throws IOException {
       try {
         this.in = in;
 
@@ -338,7 +353,7 @@ public class FullBackupImporter extends FullBackupBase {
           throw new IOException("Invalid IV length!");
         }
 
-        byte[]   key     = getBackupKey(passphrase, header.hasSalt() ? header.getSalt().toByteArray() : null);
+        byte[]   key     = getBackupKey(passphrase, header.hasSalt() ? header.getSalt().toByteArray() : null, isChunked);
         byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
         byte[][] split   = ByteUtil.split(derived, 32, 32);
 
