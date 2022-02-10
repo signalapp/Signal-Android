@@ -9,6 +9,8 @@
     <string name="support_center_url" translatable="false">https://support.signal.org/</string>
     <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
     <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
+    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
+    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -4069,9 +4071,16 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Add a Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Not now</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Your Sustainer subscription was automatically cancelled because you were inactive for too long. Your %1$s badge is no longer visible on your profile.</string>
+    <!-- Copy displayed when badge expires after user inactivity -->
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Your Sustainer subscription was automatically cancelled because you were inactive for too long. Your %1$s badge is no longer visible on your profile.</string>
+    <!-- Copy displayed when badge expires after payment failure -->
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Your Sustainer subscription was cancelled because we couldn\'t process your payment. Your badge is no longer visible on your profile.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">You can keep using Signal but to support the app and reactivate your badge, renew now.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew subscription</string>
+
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Can\'t process subscription payment</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">We\'re having trouble collecting your Signal Sustainer payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Don\'t show this again</string>
 
     <string name="Subscription__please_contact_support_for_more_information">Please contact support for more information.</string>
     <string name="Subscription__contact_support">Contact Support</string>
@@ -4097,6 +4106,35 @@
     <string name="NetworkFailure__retry">Retry</string>
 
     <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
+
+    <!-- Stripe decline code generic_failure -->
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Try another payment method or contact your bank for more information.</string>
+    <!-- Stripe decline code verify on Google Pay and try again -->
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Verify your payment method is up to date in Google Pay and try again.</string>
+    <!-- Stripe decline code learn more action label -->
+    <string name="DeclineCode__learn_more">Learn more</string>
+    <!-- Stripe decline code contact issuer -->
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Verify your payment method is up to date in Google Pay and try again. If the problem continues, contact your bank.</string>
+    <!-- Stripe decline code purchase not supported -->
+    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Your card does not support this type of purchase. Try another payment method.</string>
+    <!-- Stripe decline code your card has expired -->
+    <string name="DeclineCode__your_card_has_expired">Your card has expired. Update your payment method in Google Pay and try again.</string>
+    <!-- Stripe decline code go to google pay action label -->
+    <string name="DeclineCode__go_to_google_pay">Go to Google Pay</string>
+    <!-- Stripe decline code incorrect card number -->
+    <string name="DeclineCode__your_card_number_is_incorrect">Your card number is incorrect. Update it in Google Pay and try again.</string>
+    <!-- Stripe decline code incorrect cvc -->
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Your card\'s CVC number is incorrect. Update it in Google Pay and try again.</string>
+    <!-- Stripe decline code insufficient funds -->
+    <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Your card does not have sufficient funds to complete this purchase. Try another payment method.</string>
+    <!-- Stripe decline code incorrect expiration month -->
+    <string name="DeclineCode__the_expiration_month">The expiration month on your payment method is incorrect. Update it in Google Pay and try again.</string>
+    <!-- Stripe decline code incorrect expiration year -->
+    <string name="DeclineCode__the_expiration_year">The expiration year on your payment method is incorrect. Update it in Google Pay and try again.</string>
+    <!-- Stripe decline code issuer not available -->
+    <string name="DeclineCode__try_completing_the_payment_again">Try completing the payment again or contact your bank for more information.</string>
+    <!-- Stripe decline code processing error -->
+    <string name="DeclineCode__try_again">Try again or contact your bank for more information.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Name your profile</string>

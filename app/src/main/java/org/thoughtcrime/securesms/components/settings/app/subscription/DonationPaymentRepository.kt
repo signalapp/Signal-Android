@@ -13,6 +13,8 @@ import org.signal.donations.GooglePayApi
 import org.signal.donations.GooglePayPaymentSource
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
@@ -88,13 +90,13 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   fun continuePayment(price: FiatMoney, paymentData: PaymentData): Completable {
     Log.d(TAG, "Creating payment intent for $price...", true)
     return stripeApi.createPaymentIntent(price, application.getString(R.string.Boost__thank_you_for_your_donation))
-      .onErrorResumeNext { Single.error(DonationExceptions.SetupFailed(it)) }
+      .onErrorResumeNext { Single.error(DonationError.getPaymentSetupError(DonationErrorSource.BOOST, it)) }
       .flatMapCompletable { result ->
         Log.d(TAG, "Created payment intent for $price.", true)
         when (result) {
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost amount is too small")))
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost amount is too large")))
-          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(DonationExceptions.SetupFailed(Exception("Boost currency is not supported")))
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(DonationError.boostAmountTooSmall())
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(DonationError.boostAmountTooLarge())
+          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(DonationError.invalidCurrencyForBoost())
           is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(paymentData, result.paymentIntent)
         }
       }
@@ -141,7 +143,10 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
   private fun confirmPayment(paymentData: PaymentData, paymentIntent: StripeApi.PaymentIntent): Completable {
     Log.d(TAG, "Confirming payment intent...", true)
-    val confirmPayment = stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), paymentIntent)
+    val confirmPayment = stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), paymentIntent).onErrorResumeNext {
+      Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.BOOST, it))
+    }
+
     val waitOnRedemption = Completable.create {
       Log.d(TAG, "Confirmed payment intent.", true)
 
@@ -164,20 +169,20 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
             }
             JobTracker.JobState.FAILURE -> {
               Log.d(TAG, "Boost request response job chain failed permanently.", true)
-              it.onError(DonationExceptions.RedemptionFailed)
+              it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.BOOST))
             }
             else -> {
               Log.d(TAG, "Boost request response job chain ignored due to in-progress jobs.", true)
-              it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
+              it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.BOOST))
             }
           }
         } else {
           Log.d(TAG, "Boost redemption timed out waiting for job completion.", true)
-          it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
+          it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.BOOST))
         }
       } catch (e: InterruptedException) {
         Log.d(TAG, "Boost redemption job interrupted", e, true)
-        it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
+        it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.BOOST))
       }
     }
 
@@ -236,20 +241,20 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
                 }
                 JobTracker.JobState.FAILURE -> {
                   Log.d(TAG, "Subscription request response job chain failed permanently.", true)
-                  it.onError(DonationExceptions.RedemptionFailed)
+                  it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION))
                 }
                 else -> {
                   Log.d(TAG, "Subscription request response job chain ignored due to in-progress jobs.", true)
-                  it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
+                  it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
                 }
               }
             } else {
               Log.d(TAG, "Subscription request response job timed out.", true)
-              it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
+              it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
             }
           } catch (e: InterruptedException) {
             Log.w(TAG, "Subscription request response interrupted.", e, true)
-            it.onError(DonationExceptions.TimedOutWaitingForTokenRedemption)
+            it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
           }
         }
       }.doOnError {

@@ -11,6 +11,7 @@ import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.badges.BadgeRepository;
 import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.subscription.Subscriber;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -28,6 +30,8 @@ import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
+import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
 import java.util.Comparator;
@@ -218,6 +222,29 @@ public class RefreshOwnProfileJob extends BaseJob {
 
       if (!SignalStore.donationsValues().isUserManuallyCancelled()) {
         Log.d(TAG, "Detected an unexpected subscription expiry.", true);
+        Subscriber subscriber = SignalStore.donationsValues().getSubscriber();
+
+        boolean isDueToPaymentFailure = false;
+        if (subscriber != null) {
+          ServiceResponse<ActiveSubscription> response = ApplicationDependencies.getDonationsService()
+                                                                                .getSubscription(subscriber.getSubscriberId())
+                                                                                .blockingGet();
+
+          if (response.getResult().isPresent()) {
+            ActiveSubscription activeSubscription = response.getResult().get();
+            if (activeSubscription.isFailedPayment()) {
+              Log.d(TAG, "Unexpected expiry due to payment failure.", true);
+              SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(activeSubscription.getActiveSubscription().getStatus());
+              isDueToPaymentFailure = true;
+            }
+          }
+        }
+
+        if (!isDueToPaymentFailure) {
+          Log.d(TAG, "Unexpected expiry due to inactivity.", true);
+          SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(UnexpectedSubscriptionCancellation.INACTIVE.getStatus());
+        }
+
         MultiDeviceSubscriptionSyncRequestJob.enqueue();
         SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
       }

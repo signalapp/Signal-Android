@@ -34,6 +34,8 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     private const val DISPLAY_BADGES_ON_PROFILE = "donation.display.badges.on.profile"
     private const val SUBSCRIPTION_REDEMPTION_FAILED = "donation.subscription.redemption.failed"
     private const val SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT = "donation.should.cancel.subscription.before.next.subscribe.attempt"
+    private const val SUBSCRIPTION_CANCELATION_REASON = "donation.subscription.cancelation.reason"
+    private const val SHOW_CANT_PROCESS_DIALOG = "show.cant.process.dialog"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -42,7 +44,9 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     KEY_CURRENCY_CODE_BOOST,
     KEY_LAST_KEEP_ALIVE_LAUNCH,
     KEY_LAST_END_OF_PERIOD_SECONDS,
-    SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT
+    SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT,
+    SUBSCRIPTION_CANCELATION_REASON,
+    SHOW_CANT_PROCESS_DIALOG
   )
 
   private val subscriptionCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency()) }
@@ -223,6 +227,10 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   fun clearSubscriptionRedemptionFailed() {
     putBoolean(SUBSCRIPTION_REDEMPTION_FAILED, false)
   }
+
+  var unexpectedSubscriptionCancelationReason: String? by stringValue(SUBSCRIPTION_CANCELATION_REASON, null)
+
+  var showCantProcessDialog: Boolean by booleanValue(SHOW_CANT_PROCESS_DIALOG, true)
 
   /**
    * Denotes that the previous attempt to subscribe failed in some way. Either an

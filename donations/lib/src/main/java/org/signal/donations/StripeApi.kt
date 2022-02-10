@@ -10,7 +10,6 @@ import okhttp3.Response
 import okio.ByteString
 import org.json.JSONObject
 import org.signal.core.util.money.FiatMoney
-import java.io.IOException
 import java.math.BigDecimal
 import java.util.Locale
 
@@ -90,7 +89,7 @@ class StripeApi(
         val paymentMethodObject = body.string().replace("\n", "").let { JSONObject(it) }
         paymentMethodObject.getString("id")
       } else {
-        throw IOException("Failed to parse payment method response")
+        throw StripeError.FailedToParsePaymentMethodResponseError
       }
     }
   }
@@ -128,19 +127,36 @@ class StripeApi(
     if (response.isSuccessful) {
       return response
     } else {
-      throw IOException("postForm failed with code: ${response.code()}. errorCode: ${parseErrorCode(response.body()?.string())}")
+      val body = response.body()?.toString()
+      throw StripeError.PostError(
+        response.code(),
+        parseErrorCode(body),
+        parseDeclineCode(body)
+      )
     }
   }
 
   private fun parseErrorCode(body: String?): String? {
     if (body == null) {
-      return "No body."
+      return null
     }
 
     return try {
       JSONObject(body).getJSONObject("error").getString("code")
     } catch (e: Exception) {
-      "Unable to parse error code."
+      null
+    }
+  }
+
+  private fun parseDeclineCode(body: String?): StripeDeclineCode? {
+    if (body == null) {
+      return null
+    }
+
+    return try {
+      StripeDeclineCode.getFromCode(JSONObject(body).getJSONObject("error").getString("decline_code"))
+    } catch (e: Exception) {
+      null
     }
   }
 

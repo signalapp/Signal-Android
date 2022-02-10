@@ -4,12 +4,13 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.receipts.ReceiptCredentialPresentation;
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.subscription.DonorBadgeNotifications;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -27,11 +28,13 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   public static final String SUBSCRIPTION_QUEUE                    = "ReceiptRedemption";
   public static final String KEY                                   = "DonationReceiptRedemptionJob";
   public static final String INPUT_RECEIPT_CREDENTIAL_PRESENTATION = "data.receipt.credential.presentation";
-  public static final String INPUT_PAYMENT_FAILURE                 = "data.payment.failure";
-  public static final String INPUT_KEEP_ALIVE_409                  = "data.keep.alive.409";
+  public static final String DATA_ERROR_SOURCE                     = "data.error.source";
 
-  public static DonationReceiptRedemptionJob createJobForSubscription() {
+  private final DonationErrorSource errorSource;
+
+  public static DonationReceiptRedemptionJob createJobForSubscription(@NonNull DonationErrorSource errorSource) {
     return new DonationReceiptRedemptionJob(
+        errorSource,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -44,6 +47,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   public static DonationReceiptRedemptionJob createJobForBoost() {
     return new DonationReceiptRedemptionJob(
+        DonationErrorSource.BOOST,
         new Job.Parameters
             .Builder()
             .addConstraint(NetworkConstraint.KEY)
@@ -53,13 +57,14 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .build());
   }
 
-  private DonationReceiptRedemptionJob(@NonNull Job.Parameters parameters) {
+  private DonationReceiptRedemptionJob(@NonNull DonationErrorSource errorSource, @NonNull Job.Parameters parameters) {
     super(parameters);
+    this.errorSource = errorSource;
   }
 
   @Override
   public @NonNull Data serialize() {
-    return Data.EMPTY;
+    return new Data.Builder().putString(DATA_ERROR_SOURCE, errorSource.serialize()).build();
   }
 
   @Override
@@ -69,22 +74,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    Data inputData = getInputData();
-
-    if (inputData != null && inputData.getBooleanOrDefault(INPUT_PAYMENT_FAILURE, false)) {
-      DonorBadgeNotifications.PaymentFailed.INSTANCE.show(context);
-    } else if (inputData != null && inputData.getBooleanOrDefault(INPUT_KEEP_ALIVE_409, false)) {
-      Log.i(TAG, "Skipping redemption due to 409 error during keep-alive.");
-      return;
-    } else {
-      DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
-    }
-
-    if (isForSubscription()) {
-      Log.d(TAG, "Marking subscription failure", true);
-      SignalStore.donationsValues().markSubscriptionRedemptionFailed();
-      MultiDeviceSubscriptionSyncRequestJob.enqueue();
-    }
   }
 
   @Override
@@ -94,10 +83,6 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     if (inputData == null) {
       Log.w(TAG, "No input data. Exiting.", null, true);
       return;
-    }
-
-    if (inputData.getBooleanOrDefault(INPUT_PAYMENT_FAILURE, false)) {
-      throw new Exception("Payment failed.");
     }
 
     byte[] presentationBytes = inputData.getStringAsBlob(INPUT_RECEIPT_CREDENTIAL_PRESENTATION);
@@ -121,6 +106,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
         throw new RetryableException();
       } else {
         Log.w(TAG, "Encountered a non-recoverable exception " + response.getStatus(), response.getApplicationError().get(), true);
+        DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(errorSource));
         throw new IOException(response.getApplicationError().get());
       }
     } else if (response.getExecutionError().isPresent()) {
@@ -151,7 +137,10 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   public static class Factory implements Job.Factory<DonationReceiptRedemptionJob> {
     @Override
     public @NonNull DonationReceiptRedemptionJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new DonationReceiptRedemptionJob(parameters);
+      String              serializedErrorSource = data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.UNKNOWN.serialize());
+      DonationErrorSource errorSource           = DonationErrorSource.deserialize(serializedErrorSource);
+
+      return new DonationReceiptRedemptionJob(errorSource, parameters);
     }
   }
 }
