@@ -63,6 +63,7 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY_VERSION      = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
   public  static final String DONATE_MEGAPHONE                  = "android.donate.2";
+  public  static final String VALENTINES_DONATE_MEGAPHONE       = "android.donate.valentines.2022";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
@@ -134,7 +135,8 @@ public final class FeatureFlags {
       CHANGE_NUMBER_ENABLED,
       VOICE_NOTE_RECORDING_V2,
       HARDWARE_AEC_MODELS,
-      FORCE_DEFAULT_AEC
+      FORCE_DEFAULT_AEC,
+      VALENTINES_DONATE_MEGAPHONE
   );
 
   @VisibleForTesting
@@ -190,7 +192,8 @@ public final class FeatureFlags {
       DONOR_BADGES_DISPLAY,
       DONATE_MEGAPHONE,
       VOICE_NOTE_RECORDING_V2,
-      FORCE_DEFAULT_AEC
+      FORCE_DEFAULT_AEC,
+      VALENTINES_DONATE_MEGAPHONE
   );
 
   /**
@@ -304,6 +307,11 @@ public final class FeatureFlags {
   /** The raw donate megaphone CSV string */
   public static String donateMegaphone() {
     return getString(DONATE_MEGAPHONE, "");
+  }
+
+  /** The raw valentine's day donate megaphone CSV string */
+  public static String valentinesDonateMegaphone() {
+    return getString(VALENTINES_DONATE_MEGAPHONE, "");
   }
 
   /**

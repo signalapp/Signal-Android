@@ -37,6 +37,13 @@ public final class LocaleFeatureFlags {
     return isEnabled(FeatureFlags.DONATE_MEGAPHONE, FeatureFlags.donateMegaphone());
   }
 
+  /**
+   * In valentines donation megaphone group for given country code
+   */
+  public static boolean isInValentinesDonateMegaphone() {
+    return isEnabled(FeatureFlags.VALENTINES_DONATE_MEGAPHONE, FeatureFlags.valentinesDonateMegaphone());
+  }
+
   public static @NonNull Optional<PushMediaConstraints.MediaConfig> getMediaQualityLevel() {
     Map<String, Integer> countryValues = parseCountryValues(FeatureFlags.getMediaQualityLevels(), NOT_FOUND);
     int                  level         = getCountryValue(countryValues, Recipient.self().getE164().or(""), NOT_FOUND);
