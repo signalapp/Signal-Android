@@ -2629,7 +2629,9 @@
     <string name="preferences__internal_audio_processing_method" translatable="false">Audio processing method</string>
     <string name="preferences__internal_badges" translatable="false">Badges</string>
     <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
-
+    <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
+    <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
+    <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
 
     <!-- Payments -->
     <string name="PaymentsActivityFragment__all_activity">All activity</string>
