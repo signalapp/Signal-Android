@@ -1244,6 +1244,9 @@
   <string name="RedPhone_number_not_registered">നമ്പർ രജിസ്റ്റർ ചെയ്തിട്ടില്ല!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">നിങ്ങൾ ഡയൽ ചെയ്ത നമ്പർ സുരക്ഷിത ശബ്ദത്തെ പിന്തുണയ്ക്കുന്നില്ല!</string>
   <string name="RedPhone_got_it">മനസ്സിലായി</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">നിങ്ങളുടെ വീഡിയോ ഓൺ ചെയ്യാൻ ഇവിടെ തൊടുക</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s-യെ വിളിക്കാൻ, Signal-ന് നിങ്ങളുടെ ക്യാമറയിലേക്ക് ആക്സസ് ആവശ്യമാണ്</string>

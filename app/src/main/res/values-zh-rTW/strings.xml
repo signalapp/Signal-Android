@@ -1178,6 +1178,9 @@
   <string name="RedPhone_number_not_registered">號碼尚未註冊</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">您撥通的號碼不支援加密語音！</string>
   <string name="RedPhone_got_it">收到</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">輕觸此處以開啟你的視訊</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">如要撥電話給 %1$s，Signal 需要存取你的相機</string>
@@ -1979,7 +1982,7 @@
   <string name="preferences__advanced">進階</string>
   <string name="preferences__donate_to_signal">贊助 Signal</string>
   <string name="preferences__subscription">定期贊助</string>
-  <string name="preferences__become_a_signal_sustainer">成為Signal 支持者</string>
+  <string name="preferences__become_a_signal_sustainer">成為Signal 長期贊助人</string>
   <string name="preferences__signal_boost">Signal 單次贊助</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

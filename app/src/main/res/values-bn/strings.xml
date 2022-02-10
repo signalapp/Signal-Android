@@ -1235,6 +1235,9 @@
   <string name="RedPhone_number_not_registered">নাম্বারটি নিবন্ধিত নয়!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">আপনার ডায়াল করা নাম্বার সুরক্ষিত ভয়েস সমর্থন করে না!</string>
   <string name="RedPhone_got_it">বুঝতে পেরেছি</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">আপনার ভিডিও চালু করতে এখানে আলতো চাপুন</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s কে ফোন করতে Signal কে আপনার ক্যামেরা ব্যাবহার করতে হবে।</string>

@@ -1112,6 +1112,9 @@
   <string name="RedPhone_number_not_registered">号码未注册！</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">您输入的号码不支持加密语音！</string>
   <string name="RedPhone_got_it">知道了</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">点击这里以启用视频</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal 需要访问您的麦克风来呼叫 %1$s</string>

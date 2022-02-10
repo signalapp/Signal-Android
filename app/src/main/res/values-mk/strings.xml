@@ -126,11 +126,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Да отстранам групна слика?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Ажурирај го Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Оваа верзија на апликацијата повеќе не е поддржана. За да продолжите да испраќате и примате пораки, ажурирајте на последната верзија.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Оваа верзија на апликацијата повеќе не е поддржана. За да продолжите да испраќате и примате пораки, ажурирајте на најновата верзија.</string>
   <string name="ClientDeprecatedActivity_update">Aжурирај</string>
   <string name="ClientDeprecatedActivity_dont_update">Не ажурирај</string>
   <string name="ClientDeprecatedActivity_warning">Предупредување</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Вашата верзија на Signal е истечена. Можете да ја видите историјата на пораки но нема да можете да испраќате и примате пораки додека не ажурирате.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Вашата верзија на Signal е истечена. Можете да ја видите историјата на пораки, но нема да можете да испраќате и примате пораки додека не ажурирате.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Не беше најден веб прелистувач</string>
   <string name="CommunicationActions_send_email">Испрати е-пошта</string>
@@ -139,7 +139,7 @@
   <string name="CommunicationActions_cancel">Откажи</string>
   <string name="CommunicationActions_call">Повикај</string>
   <string name="CommunicationActions_insecure_call">Незаштитен повик</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Можно е да важат трошоци од операторот. Бројот кој што го барате не е регистриран на Signal. Овој повик ќе биде направен преку мобилниот оператор, не преку интернет.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Можно е да важат трошоци од операторот. Бројот кој што го повикувате не е регистриран на Signal. Овој повик ќе биде направен преку мобилниот оператор, не преку интернет.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Вашиот сигурносен број со %1$s е променет. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација, или пак дека %2$s го има реинсталирано Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можеби сакате да го потврдите Вашиот безбедносен број со овој контакт.</string>
@@ -154,7 +154,7 @@
   <string name="ContactsDatabase_message_s">Порака %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal повик %s</string>
   <!--ContactNameEditActivity-->
-  <string name="ContactNameEditActivity_given_name">Дадено име</string>
+  <string name="ContactNameEditActivity_given_name">Име</string>
   <string name="ContactNameEditActivity_family_name">Презиме</string>
   <string name="ContactNameEditActivity_prefix">Префикс</string>
   <string name="ContactNameEditActivity_suffix">Суфикс</string>
@@ -167,9 +167,9 @@
   <string name="ContactShareEditActivity_invalid_contact">Избраниот контакт е невалиден</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Не е испратено, допрете за детали</string>
-  <string name="ConversationItem_error_partially_not_delivered">Делумно испратена, допрете за детали</string>
+  <string name="ConversationItem_error_partially_not_delivered">Делумно испратено, допрете за детали</string>
   <string name="ConversationItem_error_network_not_delivered">Испраќањето е неуспешно</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Добиена порака за размена на клучеви, допрете за обработка.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Примена порака за размена на клучеви, допрете за обработка.</string>
   <string name="ConversationItem_group_action_left">%1$s ја напушти групата.</string>
   <string name="ConversationItem_send_paused">Испраќањето е паузирано</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Испраќањето не успеа, допрете за необезбеден одговор</string>
@@ -180,8 +180,8 @@
   <string name="ConversationItem_copied_text">Ископирано %s</string>
   <string name="ConversationItem_from_s">од %s</string>
   <string name="ConversationItem_to_s">до %s</string>
-  <string name="ConversationItem_read_more"> Прочитајте повеќе</string>
-  <string name="ConversationItem_download_more">  Преземете повеќе</string>
+  <string name="ConversationItem_read_more"> Прочитај повеќе</string>
+  <string name="ConversationItem_download_more">  Преземи повеќе</string>
   <string name="ConversationItem_pending">  Во тек</string>
   <string name="ConversationItem_this_message_was_deleted">Оваа порака беше избришана.</string>
   <string name="ConversationItem_you_deleted_this_message">Ја избришавте оваа порака.</string>
@@ -189,7 +189,7 @@
   <string name="ConversationActivity_add_attachment">Додај прилог</string>
   <string name="ConversationActivity_select_contact_info">Изберете информации за контакт</string>
   <string name="ConversationActivity_compose_message">Напишете порака</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извинете, се појави грешка при прикачување на датотеката.</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Извинете, се појави грешка при прикачување на прилогот.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адресата не е валидна SMS или e-mail адреса!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Пораката е празна!</string>
   <string name="ConversationActivity_group_members">Членови на групата</string>
@@ -206,14 +206,14 @@
   <string name="ConversationActivity_unblock">Одблокирај</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Прилогот ги надминува ограничувањата на големината за видот на пораката што ја испраќате.</string>
   <string name="ConversationActivity_unable_to_record_audio">Не може да се снима аудио!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Не можете да испраќате пораки на оваа група бидејќи не сте повеќе член.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Не можете да испраќате пораки на оваа група бидејќи повеќе не сте член.</string>
   <string name="ConversationActivity_only_s_can_send_messages">Само %1$s може да испраќа пораки.</string>
   <string name="ConversationActivity_admins">администратори</string>
   <string name="ConversationActivity_message_an_admin">Испрати порака на админ</string>
   <string name="ConversationActivity_cant_start_group_call">Не можам да започнам групен повик</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Само администраторите на оваа група можат да започнат повик.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Не постои апликација на Вашиот уред која што може да се справи со линкот.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Вашето барање за да се приклучите е испратено до администраторот на групата. Ќе бидете известени штом превземат нешто околу тоа.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Вашето барање за да се приклучите е испратено до администраторот на групата. Ќе бидете известени штом преземат нешто околу тоа.</string>
   <string name="ConversationActivity_cancel_request">Откажи барање</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">За да испраќате аудио пораки, дозволете му на Signal пристап до Вашиот микрофон.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal има потреба од дозвола до микрофонот за да може да испраќа аудио пораки. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Микрофон“.</string>
@@ -221,11 +221,11 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">За да снимате фотографии и видеа, дозволете му на Signal пристап до камерата.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal има потреба од дозвола до камерата за да слика и снима видео. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера”. </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal има потреба од дозвола до камерата за да слика и снима видео</string>
-  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Вклучете дозвола за микрофонот за да дозволите снимање на видеа со звук.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Вклучете дозвола за микрофонот за снимање на видеа со звук.</string>
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal има потреба од дозвола до микрофонот за да може да снима видеа. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувањата, изберете „Дозволи“ и вклучете „Микрофон“ и „Камера“.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal има потреба од дозвола до микрофонот за да снима видеа.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не може да испраќа SMS/MMS пораки бидејќи не е Вашата стандардна апликација за SMS. Дали сакате да ја промените ова во поставувањата на Android?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не може да испраќа SMS/MMS пораки бидејќи не е Ваша стандардна апликација за SMS. Дали сакате да го промените ова во поставувањата на Android?</string>
   <string name="ConversationActivity_yes">Да</string>
   <string name="ConversationActivity_no">Не</string>
   <string name="ConversationActivity_search_position">%1$d од %2$d</string>
@@ -255,16 +255,16 @@
     <item quantity="one">Да ја избришам избраната порака?</item>
     <item quantity="other">Да ги избришам избраните пораки?</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Да снимам во склад?</string>
+  <string name="ConversationFragment_save_to_sd_card">Да се зачува во склад?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Со зачувување на оваа медија датотека на складот, ќе се дозволи пристап до истата, од страна на било која друга апликација на уредот.\n\nДали да продолжам?</item>
-    <item quantity="other">Со зачувување на сите %1$d медија датотеки на складот ќе се дозволи пристап до истите, од страна на било која друга апликација на уредот.\n\nДа продолжам?</item>
+    <item quantity="one">Со зачувување на оваа медија во складот, на сите други апликација на Вашиот уредот ќе се дозволи пристап до истата.\n\nДали да продолжам?</item>
+    <item quantity="other">Со зачувување на сите %1$d медија датотеки во складот, на сите други апликација на Вашиот уредот ќе се дозволи пристап до истата.\n\nДали да продолжам?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Грешка при зачувување на прилогот во складот!</item>
     <item quantity="other">Грешка при зачувување на прилози во складот!</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не може да се запишува на складот!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не може да се запишува во складот!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Зачувувам прилог</item>
     <item quantity="other">Зачувувам %1$d прилози</item>
@@ -274,16 +274,16 @@
     <item quantity="other">Зачувувам %1$d прилози во складот…</item>
   </plurals>
   <string name="ConversationFragment_pending">На чекање…</string>
-  <string name="ConversationFragment_push">Data (Signal)</string>
+  <string name="ConversationFragment_push">Интернет (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Бришење</string>
-  <string name="ConversationFragment_deleting_messages">Бришење на пораките… </string>
+  <string name="ConversationFragment_deleting_messages">Бришење на пораките…</string>
   <string name="ConversationFragment_delete_for_me">Избриши за мене</string>
   <string name="ConversationFragment_delete_for_everyone">Избриши за сите</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Оваа порака ќе биде избришана за сите во разговорот ако се на понова верзија на Signal. Тие ќе можат да видат дека сте ја избришале пораката.</string>
   <string name="ConversationFragment_quoted_message_not_found">Оригиналната порака не е пронајдена</string>
-  <string name="ConversationFragment_quoted_message_no_longer_available">Оригиналната порака не е повеќе достапна</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Оригиналната порака повеќе не е достапна</string>
   <string name="ConversationFragment_failed_to_open_message">Не успеа да се отвори пораката</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Можете да повлечете на десно на било која порака за брз одговор</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Можете да повлечете на лево на било која порака за брз одговор</string>
@@ -294,11 +294,11 @@
   <string name="ConversationFragment__tap_to_review">Допрете за преглед</string>
   <string name="ConversationFragment__review_requests_carefully">Прегледајте ги барањата внимателно</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal пронајде друг контакт со истото име.</string>
-  <string name="ConversationFragment_contact_us">Контактирајте не</string>
+  <string name="ConversationFragment_contact_us">Контактирајте нѐ</string>
   <string name="ConversationFragment_verify">Провери</string>
   <string name="ConversationFragment_not_now">Не сега</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Вашиот сигурносен број со %s е променет</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Вашиот сигурносен број со %s е променет, најверојатно бидејќи го има реинсталирано Signal или ги има променето уредите. Допрете „Провери“ за да го потврдите новиот сигурносен број. Ова не е задолжително.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Вашиот сигурносен број со %s е променет, најверојатно бидејќи го има реинсталирано Signal или го има променето уредот. Допрете „Провери“ за да го потврдите новиот сигурносен број. Ова не е задолжително.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s вклучен</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
@@ -313,12 +313,12 @@
   <string name="ConversationListFragment_deleting_selected_conversations">Бришење на избраните разговори…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Разговорот е архивиран</item>
-    <item quantity="other">%d архивирани разговори</item>
+    <item quantity="other">Архивирани се %d разговори</item>
   </plurals>
   <string name="ConversationListFragment_undo">ВРАТИ</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-    <item quantity="one">Преместив разговор во сандачето</item>
-    <item quantity="other">Преместив %d разговори во сандачето</item>
+    <item quantity="one">Разговор е преместен во сандачето</item>
+    <item quantity="other">Преместени се %d разговори во сандачето</item>
   </plurals>
   <plurals name="ConversationListFragment_read_plural">
     <item quantity="one">Прочитано</item>
@@ -388,7 +388,7 @@
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Вашиот профил е шифриран од-крај-до-крај.  Вашиот профил и промените во него ќе бидат видливи на Вашите контакти, кога ќе започнете или прифаќате нови разговори и кога ќе се приклучите на нови групи. </string>
   <string name="CreateProfileActivity_set_avatar_description">Постави аватар</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">Врати од резервна копија?</string>
+  <string name="ChooseBackupFragment__restore_from_backup">Да се ​​врати од резервна копија?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Вратете ги Вашите пораки и медија од локалната резервна копија. Ако не ги вратите сега, нема да можете да го сторите тоа подоцна.</string>
   <string name="ChooseBackupFragment__icon_content_description">Икона за враќање на резервна копија</string>
   <string name="ChooseBackupFragment__choose_backup">Изберете резервна копија</string>
@@ -396,8 +396,8 @@
   <string name="ChooseBackupFragment__no_file_browser_available">Не е достапен прелистувач за датотеки</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Враќањето е завршено</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Да продолжите со употреба на резервната копија, Ве молиме изберете папка. Новите резервни копии ќе бидат зачувани на оваа локација.</string>
-  <string name="RestoreBackupFragment__choose_folder">Одберете папка</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">За да продолжите со употреба на резервната копија, Ве молиме изберете папка. Новите резервни копии ќе бидат зачувани на оваа локација.</string>
+  <string name="RestoreBackupFragment__choose_folder">Избери папка</string>
   <string name="RestoreBackupFragment__not_now">Не сега</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Резервни копии на разговори</string>
@@ -421,12 +421,12 @@
   <string name="CustomDefaultPreference_using_default">Користите стандардно: %s</string>
   <string name="CustomDefaultPreference_none">Нема</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
-  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Одбери слика</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Избери слика</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Сликај</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Одбери од галерија</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Избери од галерија</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Отстрани слика</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Правењето слика има потреба од дозвола за камерата.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Прегледот на Вашата галерија има потреба од дозвола за складот.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">За сликање потребна е дозвола за камерата.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">За прегледување на Вашата галерија потребна е дозвола за складот.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Сега</string>
   <string name="DateUtils_minutes_ago">%dм</string>
@@ -452,13 +452,13 @@
   <string name="DocumentView_unnamed_file">Неименувана датотека</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизација за недостапни Play сервиси</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овој уред не поддржува Play сервиси. Допрете за да ги исклучите оптимизациите за батеријата кои што го спредчуваат Signal да прима пораки при неактивност.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овој уред не поддржува Play сервиси. Допрете за да ја исклучите системската оптимизација на батеријата која што го спречува Signal да прима пораки при неактивност.</string>
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Оваа верзија на Signal е истечена. Ажурирајте веднаш за да испраќате и примате пораки.</string>
   <string name="ExpiredBuildReminder_update_now">Ажурирај веднаш</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
-    <item quantity="one">%d барање од членови во листата на чекање.</item>
+    <item quantity="one">%d барање за член во листата на чекање.</item>
     <item quantity="other">%d барања за членови во листата на чекање.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Преглед</string>
@@ -467,8 +467,8 @@
   <string name="ShareActivity_multiple_attachments_are_only_supported">Повеќекратни прилози се поддржани само за слики и видеа</string>
   <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Немате дозвола да испраќате на оваа група</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманетна неуспешна комуникација со Signal</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успеа да се регистрира со Google Play Services. Пораките и повиците од Signal се исклучени. Ве молиме пробајте да се регистрирате повторно во Поставувања &gt; Напредно.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајно неуспешна комуникација со Signal</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успеа да се регистрира со Google Play Сервиси. Пораките и повиците од Signal се оневозможени. Ве молиме пробајте да се регистрирате повторно во Поставувања &gt; Напредно.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Грешка при преземање на GIF со целосна резолуција</string>
   <!--GiphyFragmentPageAdapter-->
@@ -480,8 +480,8 @@
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" е додаден/а во \"%2$s\".</string>
   <string name="AddToGroupActivity_add_to_group">Додај во група</string>
   <string name="AddToGroupActivity_add_to_groups">Додај во групи</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Оваа личност не може да биде додадена во стари групи.</string>
-  <string name="AddToGroupActivity_add">Додај…</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Оваа личност не може да биде додадена во застарени групи.</string>
+  <string name="AddToGroupActivity_add">Додај</string>
   <string name="AddToGroupActivity_add_to_a_group">Додај во група</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Избери нов администратор</string>
@@ -565,7 +565,7 @@
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Нема да можете да праќате и да примате пораки во оваа група.</string>
   <string name="LeaveGroupDialog_leave">Напушти</string>
   <string name="LeaveGroupDialog_choose_new_admin">Избери нов администратор</string>
-  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Пред да ја напуштите групата мора да одберете барем еден администратор за оваа група.</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Пред да ја напуштите групата мора да изберете барем еден администратор за оваа група.</string>
   <string name="LeaveGroupDialog_choose_admin">Избери администратор</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Не е достапен преглед за линкот</string>
@@ -1245,6 +1245,9 @@
   <string name="RedPhone_number_not_registered">Бројот не е регистриран!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Бројот што го биравте не поддржува безбедни гласовни повици!</string>
   <string name="RedPhone_got_it">Во ред</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Допрете овде за да го вклучите Вашето видео</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">За да го/ја повикате %1$s, на Signal му е потребен пристап до Вашата камера.</string>
@@ -1508,7 +1511,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Корисничкото име не може да започне со број.</string>
   <string name="UsernameEditFragment_username_is_invalid">Корисничкоти име е невалидно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Корисничките имиња мора да бидат помеѓу %1$d и %2$d знаци.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Корисничките имиња на Signal се опционални. Ако одберете да создадете корисничко име другите Signal корисници ќе можат да Ве пронајдат по ова корисничко име и да Ве контактираат без да го знаат Вашиот телефонски број.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Корисничките имиња на Signal се опционални. Ако изберете да создадете корисничко име, другите Signal корисници ќе можат да Ве пронајдат по ова корисничко име и да Ве контактираат без да го знаат Вашиот телефонски број.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d контакт е на Signal!</item>
     <item quantity="other">%d контакти се на Signal!</item>
@@ -1940,7 +1943,7 @@
   <string name="AndroidManifest_remove_photo">Отстрани слика</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Барања за порака</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Корисниците можат да одберат да прифатат нов разговор. Профилните имиња им дозволуваат на луѓето да дознаат кој им испраќа порака.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Корисниците можат да изберат да прифатат нов разговор. Профилните имиња им дозволуваат на луѓето да дознаат кој им испраќа порака.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Додај име на профил</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">Дали веќе сте ги прочитале нашите ЧПП?</string>
@@ -2583,7 +2586,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Да ги исклучам и избришам сите локални резервни копии?</string>
   <string name="BackupDialog_delete_backups_statement">Избриши резервни копии</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">За да вклучите резервни копии, изберете папка. Резервните копии ќе бидат зачувани на таа локација.</string>
-  <string name="BackupDialog_choose_folder">Одберете папка</string>
+  <string name="BackupDialog_choose_folder">Избери папка</string>
   <string name="BackupDialog_copied_to_clipboard">Ископирано на таблата со исечоци</string>
   <string name="BackupDialog_no_file_picker_available">Не е достапен одбирач за датотеки.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Внесете ја Вашата лозинка за резервни копии за проверка</string>
@@ -2812,7 +2815,7 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Прегледај членови</string>
   <string name="ReviewCardDialogFragment__review_request">Прегледај барање</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име, прегледајте ги чкеновите подолу и решете што сакате да направите.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име, прегледајте ги членовите подолу и решете што сакате да направите.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Ако не сте сигурни од кого е барањето, прегледајте ги контактите подолу и решете што сакате да направите.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Немате други заеднички групи.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Немате заеднички групи.</string>
@@ -2956,7 +2959,7 @@
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивирај без пренос</string>
   <string name="DeactivateWalletFragment__deactivate">Деактивирај</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Да деактивирам без пренос?</string>
-  <string name="DeactivateWalletFragment__your_balance_will_remain">Вашата состјоба ќе остане на Вашиот паричник врзан со Signal ако одберете да ги реактивирате плаќањата.</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Вашата состјоба ќе остане на Вашиот паричник врзан со Signal ако изберете да ги реактивирате плаќањата.</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка при деактивирање на паричникот.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Резервна фраза</string>
@@ -2985,7 +2988,7 @@
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Невалидна резервна фраза</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Осигурајте се дека сте ја внеле фразата точно и пробајте пак.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да копирам на таблата со исечоци?</string>
-  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ако одберете да ја складирате резервната фраза дигитално, осигурајте се дека сте 100% сигурни дека е складирана на безбедно место.</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ако изберете да ја зачувате резервната фраза дигитално, осигурајте се дека сте 100% сигурни дека е зачувана на безбедно место.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Потврди резервна фраза</string>

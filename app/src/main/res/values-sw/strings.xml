@@ -1178,6 +1178,9 @@ Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa k
   <string name="RedPhone_number_not_registered">Nambari haijasajiliwa</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Nambari uliyopiga haiwezi sauti salama!</string>
   <string name="RedPhone_got_it">Nimeelewa</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Gusa hapa ili kuwasha video yako</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Ili kumpigia simu %1$s, Signal inahitaji idhini ya kufikia kamera yako</string>
