@@ -67,6 +67,17 @@ public final class Scrubber {
   private static final String  UUID_CENSOR  = "********-****-****-****-**********";
 
   /**
+   * The entire string is censored.
+   */
+  private static final Pattern IPV4_PATTERN = Pattern.compile("\\b" +
+                                                              "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                                                              "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                                                              "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                                                              "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" +
+                                                              "\\b");
+  private static final String IPV4_CENSOR   = "...ipv4...";
+
+  /**
    * The domain name except for TLD will be censored.
    */
   private static final Pattern     DOMAIN_PATTERN = Pattern.compile("([a-z0-9]+\\.)+([a-z0-9\\-]*[a-z\\-][a-z0-9\\-]*)", Pattern.CASE_INSENSITIVE);
@@ -86,6 +97,7 @@ public final class Scrubber {
     in = scrubGroupsV2(in);
     in = scrubUuids(in);
     in = scrubDomains(in);
+    in = scrubIpv4(in);
 
     return in;
   }
@@ -152,6 +164,13 @@ public final class Scrubber {
                    }
                  });
   }
+
+  private static CharSequence scrubIpv4(@NonNull CharSequence in) {
+    return scrub(in,
+                 IPV4_PATTERN,
+                 (matcher, output) -> output.append(IPV4_CENSOR));
+  }
+
 
   private static CharSequence scrub(@NonNull CharSequence in, @NonNull Pattern pattern, @NonNull ProcessMatch processMatch) {
     final StringBuilder output  = new StringBuilder(in.length());
