@@ -308,8 +308,6 @@
               android:allowEmbedded="true"
               android:resizeableActivity="true" />
 
-    <activity android:name=".longmessage.LongMessageActivity" />
-
     <activity android:name=".conversation.ConversationPopupActivity"
               android:windowSoftInputMode="stateVisible"
               android:launchMode="singleTask"
