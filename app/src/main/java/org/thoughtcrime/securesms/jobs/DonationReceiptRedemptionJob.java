@@ -74,6 +74,11 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   @Override
   public void onFailure() {
+    if (isForSubscription()) {
+      Log.d(TAG, "Marking subscription failure", true);
+      SignalStore.donationsValues().markSubscriptionRedemptionFailed();
+      MultiDeviceSubscriptionSyncRequestJob.enqueue();
+    }
   }
 
   @Override
