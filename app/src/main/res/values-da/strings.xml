@@ -3444,8 +3444,12 @@ nummer (%s) er ugyldigt</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Dit abonnement som bidragsyder blev automatisk annulleret, fordi du har været inaktiv for længe. Dit %1$s-emblem er ikke længere synligt på din profil.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Dit Bidragsyder-abonnement blev annulleret, fordi vi ikke kunne behandle din betaling. Dit badge er ikke længere synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsætte med at bruge Signal, men hvis du vil støtte appen og genaktivere dit badge, skal du forny nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Kan ikke behandle betaling af abonnement</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Vi har problemer med at modtage din Signal-bidragsyderbetaling. Sørg for, at din betalingsmetode er opdateret. Hvis den ikke er det, skal du opdatere den i Google Pay. Signal vil forsøge at behandle betalingen igen om et par dage.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Vis ikke dette igen</string>
   <string name="Subscription__please_contact_support_for_more_information">Kontakt venligst support for at få mere information.</string>
   <string name="Subscription__contact_support">Kontakt Support</string>
   <string name="Subscription__earn_a_s_badge">Opnå ret til et %1$s-emblem </string>
@@ -3468,20 +3472,33 @@ nummer (%s) er ugyldigt</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netværksfejl. Kontroller din forbindelse, og prøv igen.</string>
   <string name="NetworkFailure__retry">Prøv igen</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Prøv en anden betalingsmetode, eller kontakt din bank for at få flere oplysninger.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Kontroller, at din betalingsmetode er opdateret i Google Pay, og prøv igen.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Lær mere</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Kontroller, at din betalingsmetode er opdateret i Google Pay, og prøv igen. Hvis problemet fortsætter, skal du kontakte din bank.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Dit kort understøtter ikke denne type køb. Prøv en anden betalingsmetode.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Dit kort er udløbet. Opdater din betalingsmetode i Google Pay, og prøv igen.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Gå til Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Dit kortnummer er forkert. Opdater det i Google Pay, og prøv igen.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Dit kort har et forkert CVC-nummer. Opdater det i Google Pay, og prøv igen.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Dit kort har ikke tilstrækkelige midler til at gennemføre dette køb. Prøv en anden betalingsmetode.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Udløbsmåneden på din betalingsmetode er forkert. Opdater den i Google Pay, og prøv igen.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Udløbsåret på din betalingsmetode er forkert. Opdater det i Google Pay, og prøv igen.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Prøv at gennemføre betalingen igen, eller kontakt din bank for at få flere oplysninger.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Prøv igen, eller kontakt din bank for at få flere oplysninger.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Navngiv din profil</string>
   <!--Hint text for create/edit notification profile name-->

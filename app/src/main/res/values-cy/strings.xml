@@ -20,12 +20,12 @@
   <string name="ApplicationPreferencesActivity_unregistering">Datgofrestru</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Dadgofrestru o negeseuon a galwadau Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Analluogi negeseuon a galwadau Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Analluogi negeseuon a galwadau Signal drwy ddadgofrestru o\'r gweinydd. Bydd angen i chi ailgofrestru eich rhif ffón i\'w defnyddio eto\'n y dyfodol.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Analluogi negeseuon a galwadau Signal drwy ddadgofrestru o\'r gweinydd. Bydd angen i chi ailgofrestru eich rhif ffôn i\'w defnyddio eto\'n y dyfodol.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Gwall cysylltu â\'r gweinydd!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Galluogwyd SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Cyffyrddwch i newid eich rhaglen SMS ragosodedig</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Analluogwyd SMS</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Cyffyrddwch i wneud Signal eich ap SMS rhagosodiedig</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Cyffyrddwch i wneud Signal eich ap SMS rhagosodedig</string>
   <string name="ApplicationPreferencesActivity_on">ymlaen</string>
   <string name="ApplicationPreferencesActivity_On">Ymlaen</string>
   <string name="ApplicationPreferencesActivity_off">diffodd</string>
@@ -179,10 +179,10 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Methodd yr anfon, tapiwch am gam nôl anniogel</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nôl i SMS heb ei amgryptio?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nôl i MMS heb ei amgryptio?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message"><b>Ni</b> fydd y neges yn cael ei amgryptio am nad yw\'r derbynnydd yn ddefnyddiwr Signal bellach. 
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message"><b>Ni</b> fydd y neges yn cael ei hamgryptio am nad yw\'r derbynnydd bellach yn ddefnyddiwr Signal. 
  
-Send neges heb ei ddiogelu?</string>
-  <string name="ConversationItem_unable_to_open_media">Methu canfod app sy\'n gallu agor y cyfryngau hwn.</string>
+Anfon neges heb ei diogelu?</string>
+  <string name="ConversationItem_unable_to_open_media">Methu canfod ap sy\'n gallu agor y cyfryngau hwn.</string>
   <string name="ConversationItem_copied_text">Copïwyd %s</string>
   <string name="ConversationItem_from_s">oddi wrth %s</string>
   <string name="ConversationItem_to_s">at %s</string>
@@ -204,7 +204,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_added_to_home_screen">Ychwanegwyd at y sgrin gartref</string>
   <string name="ConversationActivity_calls_not_supported">Galwadau heb eu cefnogi</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Nid yw\'n ymddangos bod y ddyfais hon yn cefnogi gweithrediadau deialu.</string>
-  <string name="ConversationActivity_transport_insecure_sms">SMS aniogel</string>
+  <string name="ConversationActivity_transport_insecure_sms">SMS anniogel</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS anniogel</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Gadewch i ni newid i Signal %1$s</string>
@@ -228,10 +228,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Mae ar Signal angen caniatâd Camera er mwyn atodi tynnu lluniau neu fideos, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Angen Signal angen caniatâd camera i dynnu lluniau neu fideo</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Galluogi caniatâd meicroffon i gipio fideo gyda sain.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Mae Signal ange caniatâd meicroffon i recordio fideos, and mae wedi ei atal. Ewch i osodiadau\'r ap, dewis \"Caniatâd\" a galluogi \"Meicroffon\" a \"Camera\".</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Mae Signal ange caniatad meicroffon i recordio fideos.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Mae Signal angen caniatâd meicroffon i recordio fideos, and mae wedi ei atal. Ewch i osodiadau\'r ap, dewis \"Caniatâd\" a galluogi \"Meicroffon\" a \"Camera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Mae Signal angen caniatâd meicroffon i recordio fideos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Nid yw Signal yn gallu anfon negeseuon SMS/MMS gan nad yw eich ap ragosodedig SMS.Hoffech chi newid hyn yn eich gosodiadau Android?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Nid yw Signal yn gallu anfon negeseuon SMS/MMS gan nad yw eich ap ragosodedig SMS. Hoffech chi newid hyn yn eich gosodiadau Android?</string>
   <string name="ConversationActivity_yes">Iawn</string>
   <string name="ConversationActivity_no">Na</string>
   <string name="ConversationActivity_search_position">%1$d o %2$d</string>
@@ -268,9 +268,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_save_to_sd_card">Cadw i\'r storio?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Bydd cadw\'r cyfryngau hyn i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
-    <item quantity="two">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i unrhyw apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
-    <item quantity="many">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
-    <item quantity="other">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\Parhau?</item>
+    <item quantity="two">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i unrhyw apiau eraill ar eich dyfais gael mynediad iddynt.\n\nParhau?</item>
+    <item quantity="many">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\nParhau?</item>
+    <item quantity="other">Bydd cadw\'r holl gyfryngau %1$d i\'r storfa yn caniatáu i apiau eraill ar eich dyfais gael mynediad iddynt.\n\nParhau?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Gwall wrth gadw atodiad i\'r storio!</item>
@@ -299,7 +299,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_deleting_messages">Dileu negeseuon…</string>
   <string name="ConversationFragment_delete_for_me">Dileu i mi</string>
   <string name="ConversationFragment_delete_for_everyone">Dileu i bawb</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Bydd y neges hon yn cael ei dileu i bawb sydd yn y sgwrs os ydynt yn defnyddio fersiwn diweddar o Signal. Byddant yn gallu gweld eich bod wedi dileu neges.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Bydd y neges hon yn cael ei dileu i bawb sydd yn y sgwrs os ydynt yn defnyddio fersiwn diweddar o Signal. Byddan nhw\'n gallu gweld eich bod wedi dileu neges.</string>
   <string name="ConversationFragment_quoted_message_not_found">Heb ganfod y neges wreiddiol</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Nid yw\'r neges wreiddiol bellach ar gael</string>
   <string name="ConversationFragment_failed_to_open_message">Methu agor neges</string>
@@ -335,9 +335,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Dileu\'r sgyrsiau hyn…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Sgwrs wedi\'i archifo</item>
-    <item quantity="two">% d sgwrs wedi\'u harchifo</item>
-    <item quantity="many">% d sgwrs wedi\'u harchifo</item>
-    <item quantity="other">% d sgwrs wedi\'u harchifo</item>
+    <item quantity="two">%d sgwrs wedi\'u harchifo</item>
+    <item quantity="many">%d sgwrs wedi\'u harchifo</item>
+    <item quantity="other">%d sgwrs wedi\'u harchifo</item>
   </plurals>
   <string name="ConversationListFragment_undo">DADWNEUD</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
@@ -390,10 +390,10 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Archifo</item>
   </plurals>
   <plurals name="ConversationListFragment_unarchive_plural">
-    <item quantity="one">Dad-archifio</item>
-    <item quantity="two">Dad-archifio</item>
-    <item quantity="many">Dad-archifio</item>
-    <item quantity="other">Dad-archifio</item>
+    <item quantity="one">Dad-archifo</item>
+    <item quantity="two">Dad-archifo</item>
+    <item quantity="many">Dad-archifo</item>
+    <item quantity="other">Dad-archifo</item>
   </plurals>
   <plurals name="ConversationListFragment_delete_plural">
     <item quantity="one">Dileu</item>
@@ -401,7 +401,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Dileu</item>
     <item quantity="other">Dileu</item>
   </plurals>
-  <string name="ConversationListFragment_select_all">Dewis popeth</string>
+  <string name="ConversationListFragment_select_all">Dewis y cyfan</string>
   <plurals name="ConversationListFragment_s_selected">
     <item quantity="one">%d wedi\'i ddewis</item>
     <item quantity="two">%d wedi\'u dewis</item>
@@ -432,7 +432,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateProfileActivity_problem_setting_profile">Anhawster gosod proffil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Creu eich proffil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae eich proffil wedi\'i amgryptio o ben-i-ben. Bydd eich proffil a’ch newidiadau iddo yn weladwy i\'ch cysylltiadau, pan fyddwch chi’n cychwyn neu\'n derbyn sgyrsiau newydd, a phan fyddwch yn ymuno â grwpiau newydd.</string>
-  <string name="CreateProfileActivity_set_avatar_description">Gosod rhithffurf</string>
+  <string name="CreateProfileActivity_set_avatar_description">Gosod afatar</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Adfer o’r wrth gefn?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Adfer eich negeseuon a’ch cyfryngau o gefn wrth gefn lleol. Os na fyddwch yn adfer nawr, ni fyddwch yn gallu adfer yn ddiweddarach.</string>
@@ -443,7 +443,7 @@ Send neges heb ei ddiogelu?</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Adfer wedi\'i gyflawni</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">I barhau i ddefnyddio copïau wrth gefn, dewiswch ffolder. Bydd copïau wrth gefn newydd yn cael eu cadw i\'r lleoliad hwn.</string>
-  <string name="RestoreBackupFragment__choose_folder">Dewisa ffolder</string>
+  <string name="RestoreBackupFragment__choose_folder">Dewiswch ffolder</string>
   <string name="RestoreBackupFragment__not_now">Nid nawr</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Copïau wrth gefn o sgyrsiau</string>
@@ -479,7 +479,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="DateUtils_today">Heddiw</string>
   <string name="DateUtils_yesterday">Ddoe</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">Adnewyddwyd Sesiwn Sgwrsio</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Adnewyddwyd y sesiwn sgwrsio</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Mae Signal yn defnyddio amgryptio o’r dechrau i’r diwedd ac weithiau efallai y bydd angen iddo adnewyddu eich sesiwn sgwrsio. Nid yw hyn yn effeithio ar ddiogelwch eich sgwrs, ond efallai eich bod wedi methu neges o’r cyswllt hwn, a gallwch ofyn iddyn nhw ei hail-gyflwyno.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Datgysylltu \'%s\'?</string>
@@ -583,7 +583,7 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Nid yw\'r aelod hwn yn gallu ymuno â Grwpiau Newydd, a bydd yn cael ei dynnu o\'r grŵp:</item>
-    <item quantity="two">Nid yw\'r aelodau hyn yn gallu ymuno â Grwpiau Newydd, a chânt eu tynnu o\'r grŵp:</item>
+    <item quantity="two">Nid yw\'r aelodau hyn yn gallu ymuno â Grwpiau Newydd, byddan nhw\'n cael eu tynnu o\'r grŵp:</item>
     <item quantity="many">Nid yw\'r aelodau hyn yn gallu ymuno â Grwpiau Newydd, a chânt eu tynnu o\'r grŵp:</item>
     <item quantity="other">Nid yw\'r aelodau hyn yn gallu ymuno â Grwpiau Newydd, a chânt eu tynnu o\'r grŵp:</item>
   </plurals>
@@ -1079,7 +1079,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_s_joined_the_group">Ymunodd %1$s â\'r grŵp.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Rydych wedi tynnu %1$s.</string>
-  <string name="MessageRecord_s_removed_s">Mae %1$s wedi tynnu  %2$s.</string>
+  <string name="MessageRecord_s_removed_s">Mae %1$s wedi tynnu %2$s.</string>
   <string name="MessageRecord_s_removed_you_from_the_group">Mae %1$s wedi\'ch tynnu chi o\'r grŵp.</string>
   <string name="MessageRecord_you_left_the_group">Rydych wedi gadael y grŵp.</string>
   <string name="MessageRecord_s_left_the_group">Mae %1$s wedi gadael y grŵp.</string>
@@ -1216,7 +1216,7 @@ Send neges heb ei ddiogelu?</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Hoffi\'r nodwedd newydd hon? Dwedwch diolch gyda Boost.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Mae Signal yn cael ei rymuso gan bobl fel chi. Dewch yn gynhaliwr heddiw.</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Mae Signal yn cael ei rymuso gan bobl fel chi. Dewch yn gefnogwr heddiw.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Dechreuodd %1$s alwad grŵp · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Mae %1$s mewn galwad grŵp · %2$s</string>
@@ -1366,7 +1366,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ReactionsRecipientAdapter_you">Chi</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Gwiriwch i barhau sgwrsio</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">I helpu atal sothach ar Signal cwblhewch gwirio os gwelwch yn dda.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">I helpu atal spam ar Signal cwblhewch y gwirio, os gwelwch yn dda.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Ar ôl gwirio, gallwch barhau i sgwrsio. Bydd unrhyw negeseuon sydd wedi\'u oedi yn cael eu hanfon yn awtomatig.</string>
   <!--Recipient-->
   <string name="Recipient_you">Chi</string>
@@ -1389,7 +1389,7 @@ Send neges heb ei ddiogelu?</string>
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Diwrnod 💜 Hapus!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">Dangoswch eich cariad drwy ddod yn gynhaliwr Signal.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">Dangoswch eich cariad drwy ddod yn gefnogwr Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapiwch yma i droi eich fideo ymlaen</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">I alw %1$s, mae angen i Signal gael mynediad i\'ch camera.</string>
@@ -1902,7 +1902,7 @@ Send neges heb ei ddiogelu?</string>
   <!--Update item button text to show to boost a feature-->
   <string name="ConversationUpdateItem_signal_boost">Signal Boost</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">Dod yn Gynhaliwr</string>
+  <string name="ConversationUpdateItem_become_a_sustainer">Dod yn Gefnogwr</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Chwarae … Oedi</string>
   <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
@@ -2151,7 +2151,7 @@ Send neges heb ei ddiogelu?</string>
     <item> Adborth</item>
     <item>Arall</item>
     <item>Taliadau (MobileCoin)</item>
-    <item>Rhoddion (Cynhalwyr a Signal Boost)</item>
+    <item>Rhoddion (Cefnogwyrwyr a Signal Boost)</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Y Neges hon</string>
@@ -2252,7 +2252,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__advanced">Uwch</string>
   <string name="preferences__donate_to_signal">Cyfrannu at Signal</string>
   <string name="preferences__subscription">Tanysgrifiad</string>
-  <string name="preferences__become_a_signal_sustainer">Bod yn Gynhaliwr Signal</string>
+  <string name="preferences__become_a_signal_sustainer">Bod yn Gefnogwr Signal</string>
   <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Preifatrwydd</string>
   <string name="preferences__mms_user_agent">Asiant Defnyddiwr MMS</string>
@@ -3412,7 +3412,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Nid nawr</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Ychwanegu llun</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__become_a_sustainer">Dod yn Gynhaliwr</string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Dod yn Gefnogwr</string>
   <string name="BecomeASustainerMegaphone__signal_is_powered">Mae Signal yn cael ei egni gan bobl fel chi. Cyfrannwch a derbyn bathodyn proffil.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Dim diolch</string>
   <string name="BecomeASustainerMegaphone__contribute">Cyfrannu</string>
@@ -3590,7 +3590,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Dewis bathodyn</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Rhaid i chi ddewis bathodyn</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Wedi methu â diweddaru\'r proffil</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn gynhaliwr</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn gefnogwr</string>
   <string name="ImageView__badge">Bathodyn</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Mae nerth Signal mewn pobl fel chi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Cefnogwch dechnoleg sydd wedi\'i hadeiladu ar eich cyfer chi—nid ar gyfer eich data—trwy ymuno â\'r gymuned o bobl sy\'n ei chynnal.</string>
@@ -3649,14 +3649,18 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Mae eich bathodyn Boost wedi dod i ben ac nid yw bellach yn weladwy i eraill ar eich proffil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Gallwch ail-greu eich bathodyn Boost am 30 diwrnod arall gyda chyfraniad unwaith yn unig.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Er mwyn parhau i gefnogi technoleg sydd wedi\'i hadeiladu ar eich cyfer chi, ystyriwch ddod yn Gefnogwr misol.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gynhaliwr</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gefnogwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Ychwanegwch Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw\'ch bathodyn %1$s i\'w weld ar eich proffil mwyach.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu oherwydd nad oeddem yn gallu prosesu eich taliad. Nid yw eich bathodyn bellach yn weladwy ar eich proffil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Gallwch barhau i ddefnyddio Signal ond i gefnogi\'r ap ac ail-greu\'ch bathodyn, adnewyddwch nawr.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Adnewyddu tanysgrifiad</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Methu â phrosesu taliad tanysgrifiad</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Rydym yn cael trafferth casglu eich taliad Signal Sustainer. Gwnewch yn siŵr fod eich dull talu yn gyfredol. Os nad yw, diweddarwch ef yn Google Pay. Bydd Signal yn ceisio prosesu\'r taliad eto ymhen ychydig ddyddiau.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Peidio dangos eto</string>
   <string name="Subscription__please_contact_support_for_more_information">Cysylltwch â\'n cefnogaeth i gael mwy o wybodaeth.</string>
   <string name="Subscription__contact_support">Cysylltu â Chymorth Signal</string>
   <string name="Subscription__earn_a_s_badge">Enillwch fathodyn %1$s</string>
@@ -3679,20 +3683,33 @@ Send neges heb ei ddiogelu?</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gwall rhwydwaith. Gwiriwch eich cysylltiad a cheisio eto.</string>
   <string name="NetworkFailure__retry">Ailgynnig</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Rhowch gynnig ar ddull talu arall neu cysylltwch â\'ch banc am ragor o wybodaeth.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Gwiriwch fod eich dull talu yn gyfredol yn Google Pay a rhowch gynnig arall arni.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Dysgu rhagor</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Gwiriwch fod eich dull talu yn gyfredol yn Google Pay a rhowch gynnig arall arni. Os bydd y broblem yn parhau, cysylltwch â\'ch banc.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Nid yw\'ch cerdyn yn cefnogi\'r math hwn o bryniant. Rhowch gynnig ar ddull talu arall.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Mae eich cerdyn wedi dod i ben. Diweddarwch eich dull talu yn Google Pay a rhowch gynnig arall arni.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Ewch i Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Mae rhif eich cerdyn yn anghywir. Diweddarwch ef yn Google Pay a rhowch gynnig arall arni.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Mae rhif CVC eich cerdyn yn anghywir. Diweddarwch ef yn Google Pay a rhowch gynnig arall arni.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Nid oes gan eich cerdyn ddigon o arian i gwblhau\'r pryniant hwn. Rhowch gynnig ar ddull talu arall.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Mae\'r mis dod i ben ar eich dull talu yn anghywir. Diweddarwch ef yn Google Pay a rhowch gynnig arall arni.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Mae\'r flwyddyn sy\'n dod i ben ar eich dull talu yn anghywir. Diweddarwch ef yn Google Pay a rhowch gynnig arall arni.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Ceisiwch gwblhau\'r taliad eto neu cysylltwch â\'ch banc am ragor o wybodaeth.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Ceisiwch eto neu cysylltwch â\'ch banc am ragor o wybodaeth.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Enwch eich proffil</string>
   <!--Hint text for create/edit notification profile name-->

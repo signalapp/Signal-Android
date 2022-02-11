@@ -92,9 +92,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vei putea trimite mesaje și vă veți putea apela reciproc, iar numele și fotografia ta va fi împărtășită cu ei.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Persoanele blocate nu vor putea să te sune sau să îți trimită mesaje.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blochează știrile și actualizările de la Signal.</string>
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blochează știrile și informările Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Primește din nou actualizări și știri de la Signal.</string>
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Primește din nou informări și știri Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Deblochezi %1$s?</string>
   <string name="BlockUnblockDialog_block">Blochează</string>
   <string name="BlockUnblockDialog_block_and_leave">Blochează și părăsește</string>

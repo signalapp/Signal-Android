@@ -1249,7 +1249,9 @@
   <string name="RedPhone_got_it">فهمیدم</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">روز 💜 مبارک!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">مهربانی خود را با تبدیل شدن به یک حامی سیگنال نشان دهید.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">برای فعال‌سازی ویدئو اینجا ضربه بزنید</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">برای تماس با%1$s، سیگنال به دسترسی دوربین شما نیاز دارد</string>

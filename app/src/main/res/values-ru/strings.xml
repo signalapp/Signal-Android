@@ -3651,6 +3651,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Продлить подписку</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Не удалось обработать платёж для подписки</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Нам не удалось получить ваш платёж Поддерживающего Signal. Убедитесь, что ваш способ оплаты актуален. Если это не так, обновите его в Google Pay. Signal попробует обработать платёж ещё раз через несколько дней.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Больше не показывать это</string>
   <string name="Subscription__please_contact_support_for_more_information">Пожалуйста, свяжитесь с поддержкой, чтобы получить больше информации.</string>
   <string name="Subscription__contact_support">Связаться с поддержкой</string>
   <string name="Subscription__earn_a_s_badge">Заработайте значок «%1$s»</string>
@@ -3673,21 +3674,33 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ошибка сети. Проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
   <string name="NetworkFailure__retry">Повторить попытку</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Попробуйте другой способ оплаты или свяжитесь со своим банком для получения дополнительной информации.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Проверьте, что ваш способ оплаты актуален в Google Pay, и попробуйте ещё раз.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Узнать больше</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Проверьте, что ваш способ оплаты актуален в Google Pay, и попробуйте ещё раз. Если проблема не решается, свяжитесь со своим банком.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Ваша карта не поддерживает этот тип покупки. Попробуйте другой способ оплаты.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Срок действия вашей карты истёк. Обновите свой способ оплаты в Google Pay и попробуйте ещё раз.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Перейти в Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Номер вашей карты неверен. Обновите его в Google Pay и попробуйте ещё раз.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">CVC-код вашей карты неверен. Обновите его в Google Pay и попробуйте ещё раз.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">На вашей карте недостаточно средств для завершения этой покупки. Попробуйте другой способ оплаты.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Месяц истечения срока действия вашего способа оплаты неверен. Обновите его в Google Pay и попробуйте ещё раз.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Год истечения срока действия вашего способа оплаты неверен. Обновите его в Google Pay и попробуйте ещё раз.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Попробуйте завершить платёж ещё раз или свяжитесь со своим банком для получения дополнительной информации.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Попробуйте ещё раз или свяжитесь со своим банком для получения дополнительной информации.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Назовите свой профиль</string>
   <!--Hint text for create/edit notification profile name-->
