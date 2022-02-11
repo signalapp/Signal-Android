@@ -73,7 +73,8 @@ public class RetrieveProfileJob extends BaseJob {
 
   private static final String TAG = Log.tag(RetrieveProfileJob.class);
 
-  private static final String KEY_RECIPIENTS = "recipients";
+  private static final String KEY_RECIPIENTS             = "recipients";
+  private static final String DEDUPE_KEY_RETRIEVE_AVATAR = KEY + "_RETRIEVE_PROFILE_AVATAR";
 
   private final Set<RecipientId> recipientIds;
 
@@ -497,9 +498,10 @@ public class RetrieveProfileJob extends BaseJob {
 
   private static void setProfileAvatar(Recipient recipient, String profileAvatar) {
     if (recipient.getProfileKey() == null) return;
-
     if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
-      ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+      SignalDatabase.runPostSuccessfulTransaction(DEDUPE_KEY_RETRIEVE_AVATAR + recipient.getId(), () -> {
+        ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+      });
     }
   }
 
