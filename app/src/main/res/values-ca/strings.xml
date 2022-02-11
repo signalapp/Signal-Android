@@ -1306,6 +1306,7 @@
   <string name="WebRtcCallView__flip">Canvia</string>
   <string name="WebRtcCallView__speaker">Altaveu</string>
   <string name="WebRtcCallView__camera">Càmera</string>
+  <string name="WebRtcCallView__unmute">No silenciats</string>
   <string name="WebRtcCallView__mute">Silenci</string>
   <string name="WebRtcCallView__ring">Truca</string>
   <string name="WebRtcCallView__end_call">Penja</string>
@@ -3435,7 +3436,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sigueu-ne un sostenidor</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Afegiu-hi una empenta</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">La vostra subscripció de sostenidor s\'ha cancel·lat automàticament perquè heu estat massa temps inactiu. La insígnia %1$s ja no és visible al perfil.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">La vostra subscripció de sostenidor s\'ha cancel·lat automàticament perquè heu estat massa temps inactiu. La insígnia %1$s ja no és visible al perfil.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Podeu continuar usant el Signal, però per donar suport a l\'aplicació i reactivar la insígnia, renoveu-la ara.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renova la subscripció</string>
   <string name="Subscription__please_contact_support_for_more_information">Poseu-vos en contacte amb el servei d\'assistència per obtenir-ne més informació.</string>
@@ -3459,6 +3462,21 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">El vostre dispositiu no és compatible amb Google Pay, de manera que no us hi podeu subscriure per guanyar una insígnia. Podeu donar suport al Signal fent una donació al nostre lloc web.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de connexió. Comproveu la connexió i torneu-ho a provar.</string>
   <string name="NetworkFailure__retry">Torneu a provar-ho</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Més informació</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Nom del perfil</string>
   <!--Hint text for create/edit notification profile name-->

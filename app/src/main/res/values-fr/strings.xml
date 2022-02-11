@@ -842,12 +842,12 @@
   <string name="MediaOverviewActivity_Selected_description">Sélectionné</string>
   <string name="MediaOverviewActivity_select_all">Tout sélectionner</string>
   <plurals name="MediaOverviewActivity_save_plural">
-    <item quantity="one">Enregistré</item>
-    <item quantity="other">Enregistrés</item>
+    <item quantity="one">Enregistrer</item>
+    <item quantity="other">Enregistrer</item>
   </plurals>
   <plurals name="MediaOverviewActivity_delete_plural">
-    <item quantity="one">Supprimé</item>
-    <item quantity="other">Supprimés</item>
+    <item quantity="one">Supprimer</item>
+    <item quantity="other">Supprimer</item>
   </plurals>
   <plurals name="MediaOverviewActivity_d_selected_s">
     <item quantity="one">%1$d sélectionnée (%2$s)</item>
@@ -1302,6 +1302,7 @@
   <string name="WebRtcCallView__flip">Basculer</string>
   <string name="WebRtcCallView__speaker">Haut-parleur</string>
   <string name="WebRtcCallView__camera">Caméra</string>
+  <string name="WebRtcCallView__unmute">Réactiver</string>
   <string name="WebRtcCallView__mute">Sourdine</string>
   <string name="WebRtcCallView__ring">Sonnerie</string>
   <string name="WebRtcCallView__end_call">Raccrocher</string>
@@ -3431,7 +3432,9 @@ Nouvelle tentative…</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Devenir donateur mensuel</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Donner un coup de pouce</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Votre don mensuel a automatiquement été résilié en raison d’une inaction trop longue. Votre macaron %1$s n’est plus visible sur votre profil.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Votre don mensuel a automatiquement été résilié en raison d’une inaction trop longue. Votre macaron %1$s n’est plus visible sur votre profil.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez continuer à utiliser Signal mais pour soutenir l\'application et réactiver votre macaron, renouvelez maintenant.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renouveler l’abonnement</string>
   <string name="Subscription__please_contact_support_for_more_information">Veuillez contacter l’assistance pour plus de renseignements.</string>
@@ -3455,6 +3458,21 @@ Nouvelle tentative…</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil ne prend pas en charge Google Pay, vous ne pouvez donc pas vous abonner pour gagner un macaron. Vous pouvez toujours soutenir Signal en faisant un don sur notre site Web.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur de réseau. Vérifiez votre connexion et réessayez.</string>
   <string name="NetworkFailure__retry">Réessayer</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">En apprendre davantage</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Nommez votre profil</string>
   <!--Hint text for create/edit notification profile name-->

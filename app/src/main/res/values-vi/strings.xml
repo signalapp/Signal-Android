@@ -1226,6 +1226,7 @@
   <string name="WebRtcCallView__flip">Ghim</string>
   <string name="WebRtcCallView__speaker">Loa</string>
   <string name="WebRtcCallView__camera">Máy ảnh</string>
+  <string name="WebRtcCallView__unmute">Bỏ tắt tiếng</string>
   <string name="WebRtcCallView__mute">Im lặng</string>
   <string name="WebRtcCallView__ring">Rung chuông</string>
   <string name="WebRtcCallView__end_call">Kết thúc cuộc gọi</string>
@@ -3319,7 +3320,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Thêm quyên góp</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Đăng ký quyên góp của bạn đã tự động hủy vì tài khoản của bạn đã không hoạt động quá lâu. Mọi người sẽ không thể nhìn thấy huy hiểu %1$strên hồ sơ cá nhận của bạn nữa.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Bạn vẫn có thể tiếp tục dùng Signal, nhưng nếu bạn muốn tiếp tục quyên góp ủng hộ cho ứng dụng và nhận lại huy hiệu của mình thì bạn cần đăng ký lại.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Đăng ký lại quyên góp</string>
   <string name="Subscription__please_contact_support_for_more_information">Vui lòng liên hệ với bộ phận hỗ trợ để biết thêm thông tin.</string>
@@ -3343,6 +3346,21 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hổ trợ Google Pay, vì vậy bạn không thể đăng ký quyên góp và nhận huy hiệu trên thiết bị này. Bạn vẫn có thể đống góp cho Signal trên trang Web của chúng tôi.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Lỗi kết nối: Hãy kiểm tra kết nối của bạn và thử lại.</string>
   <string name="NetworkFailure__retry">Thử lại</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Tìm hiểu thêm</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Tên cấu hình của bạn</string>
   <!--Hint text for create/edit notification profile name-->

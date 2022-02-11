@@ -1265,6 +1265,7 @@
   <string name="WebRtcCallView__flip">Okreni</string>
   <string name="WebRtcCallView__speaker">Zvučnik</string>
   <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__unmute">Uključi zvuk</string>
   <string name="WebRtcCallView__mute">Utišaj</string>
   <string name="WebRtcCallView__end_call">Završi poziv</string>
   <!--CallParticipantsListDialog-->
@@ -3259,12 +3260,29 @@ broj telefona</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pretplatnik</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Dodaj Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
   <string name="SubscribeFragment__processing_payment">Obrada uplate…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još uvijek obrađuje. To može potrajati nekoliko minuta ovisno o vašoj vezi.</string>
   <string name="NetworkFailure__retry">Pokušajte ponovno</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Saznajte više</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Ime profila</string>

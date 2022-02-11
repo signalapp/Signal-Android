@@ -1306,6 +1306,7 @@
   <string name="WebRtcCallView__flip">Baskuli</string>
   <string name="WebRtcCallView__speaker">Laŭtparolilo</string>
   <string name="WebRtcCallView__camera">Fotilo</string>
+  <string name="WebRtcCallView__unmute">Malsilentigi</string>
   <string name="WebRtcCallView__mute">Silentigi</string>
   <string name="WebRtcCallView__ring">Sonoro</string>
   <string name="WebRtcCallView__end_call">Fini alvokon</string>
@@ -3439,7 +3440,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Iĝi donacanto</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Aldoni plikonatigon</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne nun</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Via subtenanto-abono aŭtomate nuliĝis pro via tro longa neaktiveco. Via insigno %1$s ne plu videblas en via profilo.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Via subtenanto-abono aŭtomate nuliĝis pro via tro longa neaktiveco. Via insigno %1$s ne plu videblas en via profilo.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vi povas daŭrigi uzi Signal-on, sed por subtenu la aplikaĵon kaj rehavi vian insignon, reaboniĝu nun.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reabono</string>
   <string name="Subscription__please_contact_support_for_more_information">Kontaktu Signa-helpon por plia informo. </string>
@@ -3463,6 +3466,21 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Via aparato ne povas uzi „Google Pay“: vi do ne povas aboniĝi por gajni insignon. Vi tamen povas subteni Signal-on per donaco niareteje.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eraro de retkonekto. Kontrolu vian konekton kaj reprovu.</string>
   <string name="NetworkFailure__retry">Reprovi</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Scii pli</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Nomi vian profilon</string>
   <!--Hint text for create/edit notification profile name-->

@@ -1300,6 +1300,7 @@
   <string name="WebRtcCallView__flip">Inverter</string>
   <string name="WebRtcCallView__speaker">Alto-falante</string>
   <string name="WebRtcCallView__camera">Câmera</string>
+  <string name="WebRtcCallView__unmute">Reativar notificações</string>
   <string name="WebRtcCallView__mute">Silenciar</string>
   <string name="WebRtcCallView__ring">Ligar</string>
   <string name="WebRtcCallView__end_call">Encerrar</string>
@@ -3434,7 +3435,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se um apoiador</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Fazer uma doação</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Sua doação como Apoiador mensal foi cancelada automaticamente porque você ficou sem usar o Signal por muito tempo. Seu selo %1$s não é mais visualizado por outras pessoas no seu perfil.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Sua doação como Apoiador mensal foi cancelada automaticamente porque você ficou sem usar o Signal por muito tempo. Seu selo %1$s não é mais visualizado por outras pessoas no seu perfil.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Você ainda pode usar o Signal, mas para apoiar o aplicativo e ter esse selo novamente, faça uma doação mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Fazer doação mensal</string>
   <string name="Subscription__please_contact_support_for_more_information">Entre em contato com o suporte para obter mais informações, por favor.</string>
@@ -3458,6 +3461,21 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Seu aparelho não é compatível com Google Pay, portanto você não pode doar para ganhar um selo. Você ainda pode apoiar o Signal ao fazer uma doação em nosso site.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua conexão e tente novamente.</string>
   <string name="NetworkFailure__retry">Tentar novamente</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Saiba mais</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Nomeie este perfil de notificações</string>
   <!--Hint text for create/edit notification profile name-->

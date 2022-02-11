@@ -1253,6 +1253,7 @@
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Noflike 💜-dei!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Jou Signal ek wat leafde troch te helpen Signal mooglik te meitsjen.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tik hjir om dyn kamera oan te setten</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal hat tagong nedich ta dyn kamera om %1$s te bellen</string>
@@ -1308,6 +1309,7 @@
   <string name="WebRtcCallView__flip">Omdraaie</string>
   <string name="WebRtcCallView__speaker">Lûd­sprekker</string>
   <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__unmute">Meldingen net langer dôvje</string>
   <string name="WebRtcCallView__mute">Meldingen dôvje</string>
   <string name="WebRtcCallView__ring">Belle</string>
   <string name="WebRtcCallView__end_call">Oprop beëinigje</string>
@@ -2596,6 +2598,7 @@
   <string name="BackupDialog_enable_backups">Reservekopybestannen ynskeakelje</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ferklearje datsto it begrypst troch it seleksjefekje oan te finken.</string>
   <string name="BackupDialog_delete_backups">Reservekopyen fuortsmite?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Asto it meitsjen fan reservekopyen útskeakelest, dan sil Signal ek alle besteande reservekopyen út de reservekopylokaasje wiskje, om der wis fan te wêzen dat der gjin âlde petearen op dyn apparaat efterbliuwe.</string>
   <string name="BackupDialog_delete_backups_statement">Reservekopyen fuortsmite</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies in map om it meitsjen fan reservekopyen ynskeakelje te kinnen.</string>
   <string name="BackupDialog_choose_folder">Map kieze</string>
@@ -2603,37 +2606,93 @@
   <string name="BackupDialog_no_file_picker_available">Gjin bestânsbrowser beskikber</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Fier dyn reservekopywachtwurd yn om dizze te ferifiearjen</string>
   <string name="BackupDialog_verify">Ferifiearje</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Do hast it krekte reservekopywachtwurd ynfierd</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Do hast net it krekte reservekopywachtwurd ynfierd</string>
+  <string name="LocalBackupJob_creating_signal_backup">Signal reservekopy oan it meitsjen…</string>
+  <string name="LocalBackupJobApi29_backup_failed">It meitsjen fan in reservekopy is mislearre</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dyn reservekopymap is fuortsmiten of ferpleatst.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Dyn reservekopy is te grut om op dit folume te bewarjen.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Der is net genôch ûnthâld om dyn reservekopy te bewarjen.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hjir om it meitsjen fan reservekopyen yn te stellen.</string>
+  <string name="ProgressPreference_d_messages_so_far">%d berjochten oant no ta</string>
+  <string name="RegistrationActivity_wrong_number">Ferkeard nûmer</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Bel my \n (beskikber oer %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Nim kontakt op mei Signal-stipe</string>
+  <string name="RegistrationActivity_code_support_subject">Signal-registraasje – Ferifikaasjekoade foar Android</string>
+  <string name="RegistrationActivity_incorrect_code">Net korrekte koade</string>
   <string name="BackupUtil_never">Nea</string>
   <string name="BackupUtil_unknown">Unbekend</string>
+  <string name="preferences_app_protection__see_my_phone_number">Myn telefoannûmer sjen</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">My fine fia myn telefoannûmer</string>
+  <string name="PhoneNumberPrivacy_everyone">Elkenien</string>
+  <string name="PhoneNumberPrivacy_my_contacts">Myn kontaktpersoanen</string>
+  <string name="PhoneNumberPrivacy_nobody">Net ien</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Dyn telefoannûmer sil sichtber wêze foar elke persoan en elke groep oan wa’tsto in berjocht ferstjoerst</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Elkenien dy’t dyn telefoannûmer yn harren kontaktelist bewarre hat, sil dy as in kontaktpersoan sjen yn de Signal-app. Oaren sille dy fine kinne as se sykje.</string>
+  <string name="preferences_app_protection__screen_lock">App-beskoatteling</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Beskoattelje de Signal-app mei de Android-skermbeskoatteling of fingerôfdruk</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ynaktiviteitsdoer foar app-beskoatteling</string>
+  <string name="preferences_app_protection__signal_pin">Signal-pinkoade</string>
   <string name="preferences_app_protection__create_a_pin">In pinkoade oanmeitsje</string>
+  <string name="preferences_app_protection__change_your_pin">Pinkoade wizigje</string>
+  <string name="preferences_app_protection__pin_reminders">Pinkoade-omtinken</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Mei in pinkoade wurdt ynformaasje fersifere bewarre op Signal-servers, sadat allinnich do der tagong ta hast. Do kinst hjirtroch dyn profylnamme, -foto en -omskriuwing, ynstellingen en (blokkearre) kontakten werstelle wannear’tsto Signal opnij ynstallearrest. Sels Signal-ûntwikkelers kinne dyn ynformaasje net ynsjen.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dit is itselde as twa-faktor-autentikaasje. Elkenien dy’t dyn telefoannûmer opnij probearret te registrearjen by Signal moat ferplicht dyn Signal-pinkoade ynfiere. Hjirtroch kin net ien útsein do de Signal-app registrearje en brûke mei dyn telefoannûmer, sels net as se dyn SIM-kaart hawwe.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Omtinkens helpe dy om dyn Signal-pinkoade te ûnthâlden. Dit is wichtich, omdatsto dyn pinkoade letter net wizigje of weromlêze kinst en omdatsto de pinkoade nedich hast om dyn gegevens te werstellen wannear’tsto dyn telefoannûmer opnij registrearrrest. Nei datsto dyn pinkoade in oantal kear krekt ynfierst, silsto minder faak omtinkens te sjen krije.</string>
   <string name="preferences_app_protection__turn_off">Utskeakelje</string>
+  <string name="preferences_app_protection__confirm_pin">Befêstigje dyn pinkoade</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Dyn Signal-pinkoade befêstigje</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Ferkearde pinkoade, probearje it opnij.</string>
   <string name="AppProtectionPreferenceFragment_none">Gjin</string>
   <string name="preferences_chats__backups">Reservekopyen</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TIK OM TE ÛNTSKOATTELJEN</string>
   <string name="Recipient_unknown">Unbekend</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Account oersette of werstelle</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__continue">Trochgean</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">Tik op ‘Dyn account’</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tik op beide apparaten op ‘Signal-gegevens oersette’ en dan op ‘Trochgean’</string>
   <!--NewDeviceTransferSetupFragment-->
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__grant_location_permission">Machtigen om lokaasje te lêzen</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Lokaasjegegevens ynskeakelje</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Kin de lokaasjeynstellingen net iepenje.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Skeakelje dyn wifi yn</string>
+  <string name="DeviceTransferSetup__error_connecting">Flater by it meitsjen fan ferbining</string>
+  <string name="DeviceTransferSetup__retry">Opnij probearje</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Flateropspoaringslochboek ynrsjinje</string>
+  <string name="DeviceTransferSetup__verify_code">Ferifikaasjekoade</string>
   <string name="DeviceTransferSetup__continue">Trochgean</string>
+  <string name="DeviceTransferSetup__stop_transfer">Oersetten annulearje</string>
+  <string name="DeviceTransferSetup__location_services">Lokaasjebepaling</string>
+  <string name="DeviceTransferSetup__wifi">Wifi</string>
   <string name="DeviceTransferSetup__try_again">Opnij probearje</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__d_messages_so_far">%1$d berjochten oant no ta…</string>
   <!--Filled in with total percentage of messages transferred-->
+  <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% fan de berjochten oant no ta…</string>
   <string name="DeviceTransfer__cancel">Annulearje</string>
   <string name="DeviceTransfer__try_again">Opnij probearje</string>
+  <string name="DeviceTransfer__stop_transfer_question">Oersetten annulearje?</string>
+  <string name="DeviceTransfer__stop_transfer">Oersetten annulearje</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Account oersette</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">Trochgean</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Slute</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Account oersette</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Ferifikaasje fereaske</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Account oersette…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Klear</string>
@@ -2660,11 +2719,14 @@
   <string name="GroupRecipientListItem_deny_description">Ofwize</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_via_signal">Ferstjoere fia Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiearje</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-koade</string>
   <string name="GroupLinkBottomSheet_share">Mei oaren diele</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiearre nei klamboerd</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De ferwizing is op dit stuit net aktyf</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">It ôfspyljen fan it audioberjocht is mislearre</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaItemFactory__voice_message">Audioberjocht · %1$s</string>
   <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s nei %2$s</string>
@@ -2676,14 +2738,31 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Groepsleden fergelykje</string>
   <string name="ReviewCardDialogFragment__review_request">Persoanen fergelykje</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Gjin oare mienskiplike groepen</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Gjin mienskiplike groepen</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">Noch %d oare mienskiplike groep</item>
+    <item quantity="other">Noch %d oare mienskiplike groepen</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d mienskiplike groep</item>
+    <item quantity="other">%d mienskiplike groepen</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s út dizze groep fuortsmite?</string>
   <string name="ReviewCardDialogFragment__remove">Furt helje</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">It fuortsmiten fan in groepslid is mislearre.</string>
   <!--ReviewCard-->
+  <string name="ReviewCard__member">Lid fan dizze groep, mar net yn dyn kontaktelist</string>
   <string name="ReviewCard__request">Fersyk</string>
+  <string name="ReviewCard__your_contact">Persoan dy’t yn dyn kontaktelist stiet</string>
   <string name="ReviewCard__remove_from_group">Ut de groep fuortsmite</string>
   <string name="ReviewCard__update_contact">Kontaktpersoan bywurkje</string>
   <string name="ReviewCard__block">Blokkearje</string>
   <string name="ReviewCard__delete">Ferwiderje</string>
+  <string name="ReviewCard__recently_changed">‘%1$s’ hat koartlyn de profylnamme wizige nei ‘%2$s’</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s docht no mei oan dizze oprop</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s en %2$s dogge no mei</string>
   <string name="CallParticipant__you">Do</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__enter_your_phone_number">Fier dyn telefoannûmer yn</string>
@@ -2799,6 +2878,7 @@
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
   <!--Dialog button to retry confirming the number on the server-->
+  <string name="ChangeNumberLockActivity__retry">Opnij probearje</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Ferlitte</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Flateropspoaringsloch yntsjinje</string>
@@ -3004,10 +3084,28 @@
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Wurdt in stiper</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">No net</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="Subscription__contact_support">Nim kontakt op mei stipe</string>
   <string name="SubscribeFragment__processing_payment">Oerskriuwing oan it ferwurkjen…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="NetworkFailure__retry">Opnij probearje</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Mear lêze</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profylnamme</string>

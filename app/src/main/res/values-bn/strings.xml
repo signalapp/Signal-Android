@@ -1293,6 +1293,7 @@
   <string name="WebRtcCallView__flip">ফ্লিপ</string>
   <string name="WebRtcCallView__speaker">স্পিকার</string>
   <string name="WebRtcCallView__camera">ক্যামেরা</string>
+  <string name="WebRtcCallView__unmute">আনমিউট করুন</string>
   <string name="WebRtcCallView__mute">নিরব</string>
   <string name="WebRtcCallView__ring">রিং</string>
   <string name="WebRtcCallView__end_call">কল শেষ করুন</string>
@@ -3392,7 +3393,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">একজন সাসটেইনার হোন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">একটি বুস্ট যোগ করুন</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">এখন না</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">আপনার সাসটেইনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে বাতিল হয়ে গেছে কারণ আপনি অনেক দিন ধরে নিষ্ক্রিয় ছিলেন। আপনার %1$s ব্যাজ আপনার প্রোফাইলে আর দৃশ্যমান নয়।</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">আপনার সাসটেইনার সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে বাতিল হয়ে গেছে কারণ আপনি অনেক দিন ধরে নিষ্ক্রিয় ছিলেন। আপনার %1$s ব্যাজ আপনার প্রোফাইলে আর দৃশ্যমান নয়।</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">আপনি সিগন্যাল ব্যবহার চালিয়ে যেতে পারেন তবে অ্যাপটিকে সমর্থন করতে এবং আপনার ব্যাজ পুনরায় সক্রিয় করতে, এখনই নবায়ন করুন।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">সদস্যতা নবায়ন করুন</string>
   <string name="Subscription__please_contact_support_for_more_information">আরও তথ্যের জন্য সাপোর্টে যোগাযোগ করুন।</string>
@@ -3416,6 +3419,21 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">আপনার ডিভাইস গুগল পে সমর্থন করে না, তাই আপনি ব্যাজ অর্জন করতে সদস্যতা নিতে পারবেন না। আপনি এখনও আমাদের ওয়েবসাইটে অনুদান দিয়ে সিগন্যাল সমর্থন করতে পারেন।</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">নেটওয়ার্ক ত্রুটি। আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
   <string name="NetworkFailure__retry">পুনরায় চেষ্টা করুন</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">আরও জানুন</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">প্রোফাইল নাম</string>

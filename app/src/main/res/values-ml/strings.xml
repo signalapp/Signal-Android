@@ -1302,6 +1302,7 @@
   <string name="WebRtcCallView__flip">തിരിക്കൂ</string>
   <string name="WebRtcCallView__speaker">സ്പീക്കർ</string>
   <string name="WebRtcCallView__camera">ക്യാമറ</string>
+  <string name="WebRtcCallView__unmute">ശബ്‌ദിപ്പിക്കുക</string>
   <string name="WebRtcCallView__mute">നിശബ്ദമാക്കുക</string>
   <string name="WebRtcCallView__ring">റിംഗ്</string>
   <string name="WebRtcCallView__end_call">കോൾ അവസാനിപ്പിക്കൂ</string>
@@ -3408,6 +3409,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">നിങ്ങൾക്കായി നിർമ്മിച്ച സാങ്കേതികവിദ്യയെ പിന്തുണയ്‌ക്കുന്നത് തുടരുന്നതിന്, പ്രതിമാസ പരിപാലകർ ആകുന്നത് പരിഗണിക്കുക.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">സബ്സ്ക്രിപ്ഷൻ പുതുക്കുക</string>
   <string name="Subscription__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
   <string name="SubscribeFragment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
@@ -3428,6 +3431,21 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">നിങ്ങളുടെ ഉപകരണം Google Pay പിന്തുണയ്‌ക്കാത്തതിനാൽ ഒരു ബാഡ്‌ജ് നേടാൻ നിങ്ങൾക്ക് സബ്‌സ്‌ക്രൈബ് ചെയ്യാനാകില്ല. ഞങ്ങളുടെ വെബ്‌സൈറ്റിൽ സംഭാവന നൽകിക്കൊണ്ട് നിങ്ങൾക്ക് ഇപ്പോഴും Signal-നെ പിന്തുണയ്ക്കാം.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">നെറ്റ്‌വർക്ക് പിശക്. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കൂ</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">കൂടുതൽ അറിയുക</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">പ്രൊഫൈലിന് പേര് നൽകുക</string>
   <!--Hint text for create/edit notification profile name-->

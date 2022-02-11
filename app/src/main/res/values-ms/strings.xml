@@ -1221,6 +1221,7 @@
   <string name="WebRtcCallView__flip">Selak</string>
   <string name="WebRtcCallView__speaker">Pembesar suara</string>
   <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__unmute">Nyahredam</string>
   <string name="WebRtcCallView__mute">Bisukan</string>
   <string name="WebRtcCallView__ring">Panggil</string>
   <string name="WebRtcCallView__end_call">Tamatkan panggilan</string>
@@ -3294,7 +3295,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Sustainer</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tambah Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Bukan sekarang</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Langganan Sustainer anda telah dibatalkan secara automatik kerana anda terlalu lama tidak aktif. Lencana %1$s anda tidak lagi dipaparkan di profil anda. </string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Langganan Sustainer anda telah dibatalkan secara automatik kerana anda terlalu lama tidak aktif. Lencana %1$s anda tidak lagi dipaparkan di profil anda. </string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda boleh terus menggunakan Signal tetapi untuk menyokong aplikasi dan mengaktifkan semula lencana anda, sila perbaharui sekarang.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perbaharui langganan</string>
   <string name="Subscription__please_contact_support_for_more_information">Sila hubungi bantuan untuk maklumat lebih lanjut</string>
@@ -3318,6 +3321,21 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Peranti anda tidak menyokong penggunaan Google Pay, oleh itu anda tidak boleh melanggan untuk mendapatkan lencana. Anda masih boleh menyokong Signal dengan memberikan derma di halaman web kami. </string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ralat rangkaian. Periksa sambungan anda dan cuba lagi.</string>
   <string name="NetworkFailure__retry">Cuba Semula</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Ketahui lebih lanjut</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Nama profil</string>

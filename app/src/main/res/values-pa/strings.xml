@@ -1273,6 +1273,7 @@
   <string name="WebRtcCallView__flip">ਪਲਟੋ</string>
   <string name="WebRtcCallView__speaker">ਸਪੀਕਰ</string>
   <string name="WebRtcCallView__camera">ਕੈਮਰਾ </string>
+  <string name="WebRtcCallView__unmute">ਅਣ-ਮਿਊਟ ਕਰੋ</string>
   <string name="WebRtcCallView__mute">ਚੁੱਪ</string>
   <string name="WebRtcCallView__ring">ਰਿੰਗ</string>
   <string name="WebRtcCallView__end_call">ਕਾਲ ਖਤਮ ਕਰੋ</string>
@@ -3396,7 +3397,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ਸਹਾਇਕ ਬਣੋ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ਬੂਸਟ ਜੋੜੋ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ਹੁਣੇ ਨਹੀਂ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">ਤੁਹਾਡੇ ਬਹੁਤ ਜ਼ਿਆਦਾ ਦੇਰ ਨਾ-ਸਰਗਰਮ ਰਹਿਣ ਕਰਕੇ ਤੁਹਾਡੀ ਸਹਿਯੋਗ ਮੈਂਬਰੀ ਨੂੰ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ। ਤੁਹਾਡਾ %1$s ਬਿੱਲਾ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">ਤੁਹਾਡੇ ਬਹੁਤ ਜ਼ਿਆਦਾ ਦੇਰ ਨਾ-ਸਰਗਰਮ ਰਹਿਣ ਕਰਕੇ ਤੁਹਾਡੀ ਸਹਿਯੋਗ ਮੈਂਬਰੀ ਨੂੰ ਆਪਣੇ-ਆਪ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ। ਤੁਹਾਡਾ %1$s ਬਿੱਲਾ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਉੱਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗਾ।</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">ਤੁਸੀਂ Signal ਵਰਤਣਾ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ, ਪਰ ਐਪ ਨੂੰ ਸਹਿਯੋਗ ਦੇਣ ਤੇ ਆਪਣੇ ਬਿੱਲੇ ਨੂੰ ਮੁੜ-ਸਰਗਰਮ ਕਰਨ ਲਈ ਹੁਣੇ ਨਵਿਆਓ।</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">ਮੈਂਬਰੀ ਨੂੰ ਨਵਿਆਓ</string>
   <string name="Subscription__please_contact_support_for_more_information">ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਮਦਦ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।</string>
@@ -3419,6 +3422,21 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">ਤੁਹਾਡਾ ਡਿਵਾਈਸ Google Pay ਲਈ ਸਹਾਇਕ ਨਹੀਂ ਹੈ, ਇਸਕਰਕੇ ਤੁਹਾਨੂੰ ਬਿੱਲਾ ਨਹੀਂ ਮਿਲ ਸਕਦਾ ਹੈ। ਫੇਰ ਵੀ ਤੁਸੀਂ ਸਾਡੀ ਵੈੱਬਸਾਈਟ ਉੱਤੇ ਦਾਨ ਕਰਕੇ Signal ਨੂੰ ਸਹਿਯੋਗ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ਨੈੱਟਵਰਕ ਗਲਤੀ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="NetworkFailure__retry">ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">ਹੋਰ ਜਾਣੋ</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">ਆਪਣੇ ਪ੍ਰੋਫ਼ਾਈਲ ਨੂੰ ਨਾਂ ਦਿਓ</string>
   <!--Hint text for create/edit notification profile name-->

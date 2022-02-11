@@ -1140,6 +1140,7 @@
   </plurals>
   <string name="WebRtcCallView__speaker">扬声器</string>
   <string name="WebRtcCallView__camera">相机</string>
+  <string name="WebRtcCallView__unmute">取消静音</string>
   <string name="WebRtcCallView__mute">静音</string>
   <string name="WebRtcCallView__end_call">结束呼叫</string>
   <!--CallParticipantsListDialog-->
@@ -3045,11 +3046,28 @@
   <string name="Boost__enter_custom_amount">输入自定义金额</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍后再说</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="Subscription__contact_support">联系支持</string>
   <string name="SubscribeFragment__processing_payment">正在处理付款…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">重试</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">了解更多</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">个人资料名称</string>

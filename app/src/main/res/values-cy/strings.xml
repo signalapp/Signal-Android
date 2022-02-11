@@ -1387,7 +1387,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="RedPhone_got_it">Iawn, rwy\'n deall</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Diwrnod 💜 Hapus!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Dangoswch eich cariad drwy ddod yn gynhaliwr Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapiwch yma i droi eich fideo ymlaen</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">I alw %1$s, mae angen i Signal gael mynediad i\'ch camera.</string>
@@ -1453,6 +1455,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallView__flip">Fflipio</string>
   <string name="WebRtcCallView__speaker">Uchelseinydd</string>
   <string name="WebRtcCallView__camera">Camera</string>
+  <string name="WebRtcCallView__unmute">Dad-dewi</string>
   <string name="WebRtcCallView__mute">Tewi</string>
   <string name="WebRtcCallView__ring">Galw</string>
   <string name="WebRtcCallView__end_call">Gorffen galwad</string>
@@ -3649,7 +3652,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Dod yn Gynhaliwr</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Ychwanegwch Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nid nawr</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw\'ch bathodyn %1$s i\'w weld ar eich proffil mwyach.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Cafodd eich tanysgrifiad Cefnogwr ei ddiddymu\'n awtomatig oherwydd eich bod yn anweithredol am gyfnod rhy hir. Nid yw\'ch bathodyn %1$s i\'w weld ar eich proffil mwyach.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Gallwch barhau i ddefnyddio Signal ond i gefnogi\'r ap ac ail-greu\'ch bathodyn, adnewyddwch nawr.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Adnewyddu tanysgrifiad</string>
   <string name="Subscription__please_contact_support_for_more_information">Cysylltwch â\'n cefnogaeth i gael mwy o wybodaeth.</string>
@@ -3673,6 +3678,21 @@ Send neges heb ei ddiogelu?</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Nid yw\'ch dyfais yn cefnogi Google Pay, felly nid ydych yn gallu tanysgrifio i ennill bathodyn. Gallwch barhau i gefnogi Signal trwy roi rhodd ar ein gwefan.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gwall rhwydwaith. Gwiriwch eich cysylltiad a cheisio eto.</string>
   <string name="NetworkFailure__retry">Ailgynnig</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Dysgu rhagor</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Enwch eich proffil</string>
   <!--Hint text for create/edit notification profile name-->

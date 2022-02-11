@@ -1307,6 +1307,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="WebRtcCallView__flip">Átvált</string>
   <string name="WebRtcCallView__speaker">Kihangosító</string>
   <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__unmute">Némítás feloldása</string>
   <string name="WebRtcCallView__mute">Némítás</string>
   <string name="WebRtcCallView__ring">Csörög</string>
   <string name="WebRtcCallView__end_call">Hívás befejezése</string>
@@ -3441,7 +3442,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Válj Fenntartóvá</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">\"Löket\" hozzáadása</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Fenntartói előfizetésed automatikusan törlésre került, mert túl sokáig voltál inaktív. A %1$s kitűződ már nem látható profilképeden.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Fenntartói előfizetésed automatikusan törlésre került, mert túl sokáig voltál inaktív. A %1$s kitűződ már nem látható profilképeden.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Természetesen továbbra is használhatod a Signalt, de az alkalmazás támogatásához és jelvényed újraaktiválásához el kell végezned az előfizetés megújítását.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Előfizetés megújítása</string>
   <string name="Subscription__please_contact_support_for_more_information">Kérünk lépj kapcsolatba a Támogatási Központtal.</string>
@@ -3465,6 +3468,21 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Az eszközöd nem támogatja a Google Pay-t, így nem tudsz előfizetést indítani kitűző elnyeréséért. Alternatívaként továbbra is adományozhatsz a Signal számára weboldalunkon.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Hálózati hiba. Ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
   <string name="NetworkFailure__retry">Újra</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Tudj meg többet!</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Profil elnevezése</string>
   <!--Hint text for create/edit notification profile name-->

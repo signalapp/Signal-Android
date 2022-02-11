@@ -1233,6 +1233,7 @@
   <string name="WebRtcCallView__flip">翻轉</string>
   <string name="WebRtcCallView__speaker">喇叭</string>
   <string name="WebRtcCallView__camera">相機</string>
+  <string name="WebRtcCallView__unmute">解除靜音</string>
   <string name="WebRtcCallView__mute">靜音對話</string>
   <string name="WebRtcCallView__ring">撥電話</string>
   <string name="WebRtcCallView__end_call">掛斷</string>
@@ -3333,7 +3334,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為定期贊助人</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">增加一次贊助</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">稍後</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">你的定期贊助已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">你的定期贊助已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以繼續使用 Signal，但要支援該應用程式並重新啟動你的徽章，請立即續約。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">更新定期贊助</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援部門以了解更多資訊。</string>
@@ -3357,6 +3360,21 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">你的裝置不支援 Google Pay，因此你無法訂閱以獲得徽章。 你仍然可以透過在我們的網站上捐款來支持 Signal。</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網路錯誤。 檢查你的網路連接並重試。</string>
   <string name="NetworkFailure__retry">重試</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">了解更多</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">為你的描述取名</string>
   <!--Hint text for create/edit notification profile name-->

@@ -1293,6 +1293,7 @@
   <string name="WebRtcCallView__flip">फ़्लिप</string>
   <string name="WebRtcCallView__speaker">स्पीकर</string>
   <string name="WebRtcCallView__camera">कैमरा</string>
+  <string name="WebRtcCallView__unmute">अनम्यूट</string>
   <string name="WebRtcCallView__mute">म्युट</string>
   <string name="WebRtcCallView__ring">रिंग करें</string>
   <string name="WebRtcCallView__end_call">कॉल बंद</string>
@@ -3403,7 +3404,9 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">एक सस्टेनर बनें</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">एक बूस्ट शामिल करें</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">अभी नहीं</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">आपका सस्टेनर सब्सक्रिप्शन स्वचालित रूप से रद्द कर दीया गया था क्योंकि आप बहुत लंबे समय से इनएक्टिव थे. आपका %1$s बैज अब आपकी प्रोफ़ाइल पर दिखाई नहीं दे रहा है.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">आपका सस्टेनर सब्सक्रिप्शन स्वचालित रूप से रद्द कर दीया गया था क्योंकि आप बहुत लंबे समय से इनएक्टिव थे. आपका %1$s बैज अब आपकी प्रोफ़ाइल पर दिखाई नहीं दे रहा है.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आप Signal का इस्तेमाल करना जारी रख सकते हैं लेकिन ऐप का समर्थन करने और अपने बैज को फिर से एक्टिव करने के लिए, अभी रिन्यू करें.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">सब्सक्रिप्शन को रिन्यू करें</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक जानकारी के लिए कृपया समर्थन से संपर्क करें.</string>
@@ -3427,6 +3430,21 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">आपका डिवाइस Google Pay का समर्थन नहीं करता है, इसलिए आप बैज कमाने के लिए सब्सक्राइब नहीं कर सकते. आप अभी भी हमारी वेबसाइट पर दान करके Signal का समर्थन कर सकते हैं.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क एरर. अपने कनेक्शन को चेक करें और फिर से कोशिश करें.</string>
   <string name="NetworkFailure__retry">दोबारा कोशिश करें</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">अधिक जानें</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">प्रोफ़ाइल नाम</string>

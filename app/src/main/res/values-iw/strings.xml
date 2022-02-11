@@ -1451,6 +1451,7 @@
   <string name="WebRtcCallView__flip">החלף</string>
   <string name="WebRtcCallView__speaker">רמקול</string>
   <string name="WebRtcCallView__camera">מצלמה</string>
+  <string name="WebRtcCallView__unmute">בטל השתקה</string>
   <string name="WebRtcCallView__mute">השתק</string>
   <string name="WebRtcCallView__ring">צלצל</string>
   <string name="WebRtcCallView__end_call">סיים שיחה</string>
@@ -3647,7 +3648,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">הפוך אל מחזיק</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">הוסף תמריץ</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">מינוי התמריץ שלך בוטל באופן אוטומטי מאחר שהיית בלתי פעיל למשך זמן רב. תג ה%1$s שלך אינו גלוי יותר בפרופיל שלך.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">מינוי התמריץ שלך בוטל באופן אוטומטי מאחר שהיית בלתי פעיל למשך זמן רב. תג ה%1$s שלך אינו גלוי יותר בפרופיל שלך.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">אתה יכול להמשיך להשתמש ב־Signal אבל כדי לתמוך ביישום ולהפעיל מחדש את התג שלך, חדש עכשיו.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">חדש מינוי</string>
   <string name="Subscription__please_contact_support_for_more_information">אנא צור קשר עם התמיכה לעוד מידע.</string>
@@ -3671,6 +3674,21 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">המכשיר שלך לא תומך ב־Google Pay, כך שאתה לא יכול להירשם כמנוי כדי להרוויח תג. אתה עדין יכול לתמוך ב־Signal ע״י ביצוע תרומה באתר שלנו.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">שגיאת רשת. בדוק את החיבור שלך ונסה שוב.</string>
   <string name="NetworkFailure__retry">נסה שוב</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">למד עוד</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">תן שם לפרופיל שלך</string>
   <!--Hint text for create/edit notification profile name-->

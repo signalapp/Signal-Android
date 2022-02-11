@@ -1280,6 +1280,7 @@
   <string name="WebRtcCallView__flip">Pööra</string>
   <string name="WebRtcCallView__speaker">Valjuhääldi</string>
   <string name="WebRtcCallView__camera">Kaamera</string>
+  <string name="WebRtcCallView__unmute">Eemalda vaigistus</string>
   <string name="WebRtcCallView__mute">Vaigista</string>
   <string name="WebRtcCallView__ring">Helista</string>
   <string name="WebRtcCallView__end_call">Lõpeta kõne</string>
@@ -3232,6 +3233,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Märk on aegunud</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Tellimus tühistatud</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Mitte praegu</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uuenda tellimust</string>
   <string name="Subscription__contact_support">Võta ühendust kasutajatoega</string>
   <string name="Subscription__earn_a_s_badge">Omanda %1$s märk</string>
@@ -3240,6 +3243,21 @@
   <string name="DonationsErrors__couldnt_add_badge">Märgi lisamine ei õnnestunud</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay pole saadaval</string>
   <string name="NetworkFailure__retry">Proovi uuesti</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Rohkem infot</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Lisa profiilile nimi</string>
   <!--Hint text for create/edit notification profile name-->

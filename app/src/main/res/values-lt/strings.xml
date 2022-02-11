@@ -1453,6 +1453,7 @@
   <string name="WebRtcCallView__flip">Apversti</string>
   <string name="WebRtcCallView__speaker">Garsiai</string>
   <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__unmute">Įjungti pranešimus</string>
   <string name="WebRtcCallView__mute">Be garso</string>
   <string name="WebRtcCallView__ring">Skambinti</string>
   <string name="WebRtcCallView__end_call">Baigti skambutį</string>
@@ -3649,7 +3650,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti remėju</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pridėti paskatinimą</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Jūsų remėjo prenumerata buvo automatiškai nutraukta, nes pernelyg ilgą laiką buvote neaktyvūs. Jūsų %1$s ženkliukas yra daugiau nebematomas jūsų profilyje.</string> -->
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Jūsų remėjo prenumerata buvo automatiškai nutraukta, nes pernelyg ilgą laiką buvote neaktyvūs. Jūsų %1$s ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Galite ir toliau naudotis Signal programėle, bet norėdami ją paremti ir iš naujo aktyvuoti ženkliuką, atnaujinkite prenumeratą dabar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Atnaujinti prenumeratą</string>
   <string name="Subscription__please_contact_support_for_more_information">Išsamesnei informacijai, susisiekite su palaikymu.</string>
@@ -3673,6 +3676,21 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Jūsų įrenginys nepalaiko „Google Pay“, todėl negalite prenumeruoti, kad gautumėte ženkliuką. Kita vertus, vis tiek galite palaikyti Signal, paaukodami mūsų internetinėje svetainėje.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="NetworkFailure__retry">Bandyti dar kartą</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Sužinoti daugiau</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Suteikite profiliui pavadinimą</string>
   <!--Hint text for create/edit notification profile name-->
