@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.logsubmit.util;
+package org.signal.core.util.logging;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

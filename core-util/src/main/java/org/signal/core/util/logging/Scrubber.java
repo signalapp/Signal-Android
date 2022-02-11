@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.thoughtcrime.securesms.logsubmit.util;
+package org.signal.core.util.logging;
 
 import androidx.annotation.NonNull;
 

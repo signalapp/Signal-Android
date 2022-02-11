@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.logging
 import android.app.Application
 import android.os.Looper
 import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.Scrubber
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.model.LogEntry
-import org.thoughtcrime.securesms.logsubmit.util.Scrubber
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.text.SimpleDateFormat
