@@ -108,11 +108,6 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     }
 
     @JvmStatic
-    fun getGooglePayNotAvailableError(source: DonationErrorSource, throwable: Throwable): DonationError {
-      return GooglePayError.NotAvailableError(source, throwable)
-    }
-
-    @JvmStatic
     fun getGooglePayRequestTokenError(source: DonationErrorSource, throwable: Throwable): DonationError {
       return GooglePayError.RequestTokenError(source, throwable)
     }

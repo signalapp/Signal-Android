@@ -58,8 +58,6 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
 
-  fun isGooglePayAvailable(): Completable = googlePayApi.queryIsReadyToPay()
-
   fun scheduleSyncForAccountRecordChange() {
     SignalExecutors.BOUNDED.execute {
       scheduleSyncForAccountRecordChangeSync()

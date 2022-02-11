@@ -110,16 +110,6 @@ class BoostViewModel(
       }
     )
 
-    disposables += donationPaymentRepository.isGooglePayAvailable().subscribeBy(
-      onComplete = { store.update { it.copy(isGooglePayAvailable = true) } },
-      onError = {
-        DonationError.routeDonationError(
-          ApplicationDependencies.getApplication(),
-          DonationError.getGooglePayNotAvailableError(DonationErrorSource.BOOST, it)
-        )
-      }
-    )
-
     disposables += currencyObservable.subscribeBy { currency ->
       store.update {
         it.copy(

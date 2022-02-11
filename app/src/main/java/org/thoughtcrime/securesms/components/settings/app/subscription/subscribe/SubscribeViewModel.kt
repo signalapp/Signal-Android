@@ -131,16 +131,6 @@ class SubscribeViewModel(
       onError = this::handleSubscriptionDataLoadFailure
     )
 
-    disposables += donationPaymentRepository.isGooglePayAvailable().subscribeBy(
-      onComplete = { store.update { it.copy(isGooglePayAvailable = true) } },
-      onError = {
-        DonationError.routeDonationError(
-          ApplicationDependencies.getApplication(),
-          DonationError.getGooglePayNotAvailableError(DonationErrorSource.BOOST, it)
-        )
-      }
-    )
-
     disposables += currency.subscribe { selection ->
       store.update { it.copy(currencySelection = selection) }
     }
