@@ -24,6 +24,12 @@ class DonationErrorParams<V> private constructor(
     ): DonationErrorParams<V> {
       return when (throwable) {
         is DonationError.PaymentSetupError.DeclinedError -> getDeclinedErrorParams(context, throwable, callback)
+        is DonationError.PaymentSetupError -> DonationErrorParams(
+          title = R.string.DonationsErrors__error_processing_payment,
+          message = R.string.DonationsErrors__your_payment,
+          positiveAction = callback.onOk(context),
+          negativeAction = null
+        )
         is DonationError.BadgeRedemptionError.TimeoutWaitingForTokenError -> DonationErrorParams(
           title = R.string.DonationsErrors__still_processing,
           message = R.string.DonationsErrors__your_payment_is_still,

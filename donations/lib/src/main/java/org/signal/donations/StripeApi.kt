@@ -9,6 +9,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okio.ByteString
 import org.json.JSONObject
+import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import java.math.BigDecimal
 import java.util.Locale
@@ -19,6 +20,10 @@ class StripeApi(
   private val setupIntentHelper: SetupIntentHelper,
   private val okHttpClient: OkHttpClient
 ) {
+
+  companion object {
+    private val TAG = Log.tag(StripeApi::class.java)
+  }
 
   sealed class CreatePaymentIntentResult {
     data class AmountIsTooSmall(val amount: FiatMoney) : CreatePaymentIntentResult()
@@ -73,12 +78,6 @@ class StripeApi(
       "payment_method" to paymentMethodId
     )
 
-    // TODO Donation receipts
-//    val email = paymentSource.email()
-//    if (email != null) {
-//      parameters["receipt_email"] = email
-//    }
-
     postForm("payment_intents/${paymentIntent.id}/confirm", parameters)
   }.subscribeOn(Schedulers.io())
 
@@ -100,12 +99,6 @@ class StripeApi(
       "card[token]" to JSONObject((tokenizationData.get("token") as String).replace("\n", "")).getString("id"),
       "type" to "card",
     )
-
-    // TODO Donation receipts
-//    val email = paymentSource.email()
-//    if (email != null) {
-//      parameters["billing_details[email]"] = email
-//    }
 
     return postForm("payment_methods", parameters)
   }
@@ -138,24 +131,33 @@ class StripeApi(
 
   private fun parseErrorCode(body: String?): String? {
     if (body == null) {
+      Log.d(TAG, "parseErrorCode: No body.", true)
       return null
     }
 
     return try {
       JSONObject(body).getJSONObject("error").getString("code")
     } catch (e: Exception) {
+      Log.d(TAG, "parseErrorCode: Failed to parse error.", e, true)
       null
     }
   }
 
   private fun parseDeclineCode(body: String?): StripeDeclineCode? {
     if (body == null) {
+      Log.d(TAG, "parseDeclineCode: No body.", true)
       return null
     }
 
     return try {
-      StripeDeclineCode.getFromCode(JSONObject(body).getJSONObject("error").getString("decline_code"))
+      val jsonBody = JSONObject(body)
+      Log.d(TAG, "parseDeclineCode: Parsed body with keys: ${jsonBody.keys().asSequence().joinToString(", ")}")
+      val jsonError = jsonBody.getJSONObject("error")
+      Log.d(TAG, "parseDeclineCode: Parsed error with keys: ${jsonError.keys().asSequence().joinToString(", ")}")
+
+      StripeDeclineCode.getFromCode(jsonError.getString("decline_code"))
     } catch (e: Exception) {
+      Log.d(TAG, "parseDeclineCode: Failed to parse decline code.", e, true)
       null
     }
   }
