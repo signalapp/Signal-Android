@@ -212,7 +212,7 @@ import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
-import org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity;
+import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView;
@@ -3730,7 +3730,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord) {
     if (messageRecord.isIdentityMismatchFailure()) {
-      SafetyNumberChangeDialog.show(requireActivity(), messageRecord);
+      SafetyNumberChangeDialog.show(requireContext(), getChildFragmentManager(), messageRecord);
     } else if (messageRecord.hasFailedWithNetworkFailures()) {
       new AlertDialog.Builder(requireContext())
                      .setMessage(R.string.conversation_activity__message_could_not_be_sent)
@@ -3738,7 +3738,7 @@ public class ConversationParentFragment extends Fragment
                      .setPositiveButton(R.string.conversation_activity__send, (dialog, which) -> MessageSender.resend(requireContext(), messageRecord))
                      .show();
     } else {
-      startActivity(MessageDetailsActivity.getIntentForMessageDetails(requireContext(), messageRecord, messageRecord.getRecipient().getId(), messageRecord.getThreadId()));
+      MessageDetailsFragment.create(messageRecord, recipient.getId()).show(getChildFragmentManager(), null);
     }
   }
 
