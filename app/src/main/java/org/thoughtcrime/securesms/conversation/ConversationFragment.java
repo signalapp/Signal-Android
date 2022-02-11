@@ -59,6 +59,7 @@ import androidx.core.view.ViewKt;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
@@ -1857,7 +1858,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onDonateClicked() {
       if (SignalStore.donationsValues().isLikelyASustainer()) {
-        startActivity(AppSettingsActivity.boost(requireContext()));
+        NavHostFragment navHostFragment = NavHostFragment.create(R.navigation.boosts);
+
+        requireActivity().getSupportFragmentManager()
+                         .beginTransaction()
+                         .add(navHostFragment, "boost_nav")
+                         .commitNow();
       } else {
         startActivity(AppSettingsActivity.subscriptions(requireContext()));
       }

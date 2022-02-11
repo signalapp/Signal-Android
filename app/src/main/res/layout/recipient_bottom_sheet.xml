@@ -46,11 +46,12 @@
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/rbs_full_name"
             style="@style/Signal.Text.Headline.Medium"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dsl_settings_gutter"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:gravity="center_horizontal"
             android:textColor="@color/signal_text_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

@@ -137,11 +137,13 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
     val allReleaseNotes: ReleaseNotes? = S3.getAndVerifyObject(MANIFEST, ReleaseNotes::class.java, manifestMd5).result.orNull()
 
     if (allReleaseNotes != null) {
-      val resolvedNotes: List<FullReleaseNote?> = allReleaseNotes.announcements
-        .filter { it.androidMinVersion.toIntOrNull()?.let { minVersion: Int -> minVersion > values.highestVersionNoteReceived && minVersion <= BuildConfig.CANONICAL_VERSION_CODE } ?: false }
+      val resolvedNotes: List<FullReleaseNote?> = allReleaseNotes.announcements.asSequence()
+        .filter { it.androidMinVersion != null }
+        .filter { it.androidMinVersion!!.toIntOrNull()?.let { minVersion: Int -> minVersion > values.highestVersionNoteReceived && minVersion <= BuildConfig.CANONICAL_VERSION_CODE } ?: false }
         .filter { it.countries == null || LocaleFeatureFlags.shouldShowReleaseNote(it.uuid, it.countries) }
-        .sortedBy { it.androidMinVersion.toInt() }
+        .sortedBy { it.androidMinVersion!!.toInt() }
         .map { resolveReleaseNote(it) }
+        .toList()
 
       if (resolvedNotes.any { it == null }) {
         Log.w(TAG, "Some release notes did not resolve, aborting.")
@@ -174,7 +176,9 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
             body = body,
             threadId = threadId,
             messageRanges = bodyRangeList.build(),
-            image = note.translation.image
+            image = note.translation.image,
+            imageWidth = note.translation.imageWidth?.toIntOrNull() ?: 0,
+            imageHeight = note.translation.imageHeight?.toIntOrNull() ?: 0
           )
 
           SignalDatabase.sms.insertBoostRequestMessage(values.releaseChannelRecipientId!!, threadId)
@@ -186,7 +190,7 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
             ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.threadId)
             TrimThreadJob.enqueueAsync(insertResult.threadId)
 
-            highestVersion = max(highestVersion, note.releaseNote.androidMinVersion.toInt())
+            highestVersion = max(highestVersion, note.releaseNote.androidMinVersion!!.toInt())
           }
         }
 
@@ -242,7 +246,7 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
   data class ReleaseNote(
     @JsonProperty val uuid: String,
     @JsonProperty val countries: String?,
-    @JsonProperty val androidMinVersion: String,
+    @JsonProperty val androidMinVersion: String?,
     @JsonProperty val link: String?,
     @JsonProperty val ctaId: String?
   )
@@ -250,6 +254,8 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
   data class TranslatedReleaseNote(
     @JsonProperty val uuid: String,
     @JsonProperty val image: String?,
+    @JsonProperty val imageWidth: String?,
+    @JsonProperty val imageHeight: String?,
     @JsonProperty val linkText: String?,
     @JsonProperty val title: String,
     @JsonProperty val body: String,
