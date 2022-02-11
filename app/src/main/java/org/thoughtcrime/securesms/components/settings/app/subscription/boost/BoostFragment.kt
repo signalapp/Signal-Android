@@ -34,12 +34,12 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Ne
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.Progress
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -80,7 +80,7 @@ class BoostFragment : DSLSettingsBottomSheetFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    donationPaymentComponent = findListener()!!
+    donationPaymentComponent = requireListener()
     viewModel.refresh()
 
     CurrencySelection.register(adapter)

@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Fragment
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4SaveResult
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
-import org.thoughtcrime.securesms.keyboard.findListener
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 
 class GifKeyboardPageFragment : LoggingFragment(R.layout.gif_keyboard_page_fragment) {
@@ -28,7 +28,7 @@ class GifKeyboardPageFragment : LoggingFragment(R.layout.gif_keyboard_page_fragm
   private lateinit var quickSearchList: RecyclerView
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    host = findListener<Host>() ?: throw AssertionError("Parent fragment or activity must implement Host")
+    host = requireListener()
 
     childFragmentManager.beginTransaction()
       .replace(R.id.gif_keyboard_giphy_frame, GiphyMp4Fragment.create(host.isMms()))

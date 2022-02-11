@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
-import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener
@@ -25,6 +24,8 @@ import org.thoughtcrime.securesms.util.InsetItemDecoration
 import org.thoughtcrime.securesms.util.Throttler
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
+import org.thoughtcrime.securesms.util.fragments.findListener
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.whispersystems.libsignal.util.Pair
 import java.util.Optional
 import kotlin.math.abs
@@ -87,12 +88,12 @@ class StickerKeyboardPageFragment :
 
     view.findViewById<KeyboardPageSearchView>(R.id.sticker_keyboard_search_text).callbacks = object : KeyboardPageSearchView.Callbacks {
       override fun onClicked() {
-        findListener<Callback>()!!.openStickerSearch()
+        requireListener<Callback>().openStickerSearch()
       }
     }
 
     view.findViewById<View>(R.id.sticker_search).setOnClickListener {
-      findListener<Callback>()!!.openStickerSearch()
+      requireListener<Callback>().openStickerSearch()
     }
 
     view.findViewById<View>(R.id.sticker_manage).setOnClickListener { findListener<StickerEventListener>()?.onStickerManagementClicked() }

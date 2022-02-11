@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFrag
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.keyboard.findListener
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import java.util.Locale
 
 /**
@@ -25,7 +25,7 @@ class SetCurrencyFragment : DSLSettingsBottomSheetFragment() {
   )
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    donationPaymentComponent = findListener()!!
+    donationPaymentComponent = requireListener()
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())

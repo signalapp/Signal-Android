@@ -14,9 +14,9 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader
-import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import java.util.Optional
 
 private val DELETE_KEY_EVENT: KeyEvent = KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL)
@@ -37,7 +37,7 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
   private val categoryUpdateOnScroll = UpdateCategorySelectionOnScroll()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    callback = requireNotNull(findListener())
+    callback = requireNotNull(requireListener())
 
     emojiPageView = view.findViewById(R.id.emoji_page_view)
     emojiPageView.initialize(this, this, true)
@@ -85,7 +85,7 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
 
     viewModel.selectedKey.observe(viewLifecycleOwner) { updateCategoryTab(it) }
 
-    eventListener = findListener() ?: throw AssertionError("No emoji listener found")
+    eventListener = requireListener()
   }
 
   private fun updateCategoryTab(key: String) {
