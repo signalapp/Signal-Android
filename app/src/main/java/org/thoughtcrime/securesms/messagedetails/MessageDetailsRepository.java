@@ -12,9 +12,11 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -27,7 +29,7 @@ final class MessageDetailsRepository {
   private final Context context = ApplicationDependencies.getApplication();
 
   @NonNull LiveData<MessageRecord> getMessageRecord(String type, Long messageId) {
-    return new MessageRecordLiveData(context, type, messageId);
+    return new MessageRecordLiveData(new MessageId(messageId, type.equals(MmsSmsDatabase.MMS_TRANSPORT)));
   }
 
   @NonNull LiveData<MessageDetails> getMessageDetails(@Nullable MessageRecord messageRecord) {

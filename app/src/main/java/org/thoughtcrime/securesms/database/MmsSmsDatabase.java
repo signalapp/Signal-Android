@@ -438,7 +438,7 @@ public class MmsSmsDatabase extends Database {
   private @NonNull Collection<SyncMessageId> incrementReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
     SQLiteDatabase            db             = databaseHelper.getSignalWritableDatabase();
     ThreadDatabase            threadDatabase = SignalDatabase.threads();
-    Set<MessageUpdate>        messageUpdates  = new HashSet<>();
+    Set<MessageUpdate>        messageUpdates = new HashSet<>();
     Collection<SyncMessageId> unhandled      = new HashSet<>();
 
     db.beginTransaction();
@@ -455,15 +455,13 @@ public class MmsSmsDatabase extends Database {
 
       for (MessageUpdate update : messageUpdates) {
         threadDatabase.updateSilently(update.getThreadId(), false);
+        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(update.getMessageId());
+        ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(Collections.singleton(update.getThreadId()));
       }
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
-
-      for (MessageUpdate messageUpdate : messageUpdates) {
-        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageUpdate.getMessageId());
-      }
 
       if (messageUpdates.size() > 0) {
         notifyConversationListListeners();
