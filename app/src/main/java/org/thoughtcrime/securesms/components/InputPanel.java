@@ -354,13 +354,13 @@ public class InputPanel extends LinearLayout
     slideToCancel.display();
 
     if (emojiVisible) {
-      ViewUtil.fadeOut(mediaKeyboard, FADE_TIME, View.INVISIBLE);
+      fadeOut(mediaKeyboard);
     }
 
-    ViewUtil.fadeOut(composeText, FADE_TIME, View.INVISIBLE);
-    ViewUtil.fadeOut(quickCameraToggle, FADE_TIME, View.INVISIBLE);
-    ViewUtil.fadeOut(quickAudioToggle, FADE_TIME, View.INVISIBLE);
-    buttonToggle.animate().alpha(0).setDuration(FADE_TIME).start();
+    fadeOut(composeText);
+    fadeOut(quickCameraToggle);
+    fadeOut(quickAudioToggle);
+    fadeOut(buttonToggle);
   }
 
   @Override
@@ -401,7 +401,7 @@ public class InputPanel extends LinearLayout
   public void onRecordLocked() {
     slideToCancel.hide();
     recordLockCancel.setVisibility(View.VISIBLE);
-    buttonToggle.animate().alpha(1).setDuration(FADE_TIME).start();
+    fadeIn(buttonToggle);
     if (listener != null) listener.onRecorderLocked();
   }
 
@@ -488,36 +488,33 @@ public class InputPanel extends LinearLayout
 
   private void hideNormalComposeViews() {
     if (emojiVisible) {
-      Animation animation = mediaKeyboard.getAnimation();
-      if (animation != null) {
-        animation.cancel();
-      }
-
-      mediaKeyboard.setVisibility(View.INVISIBLE);
+      mediaKeyboard.animate().cancel();
+      mediaKeyboard.setAlpha(0f);
     }
 
-    for (Animation animation : Arrays.asList(composeText.getAnimation(), quickCameraToggle.getAnimation(), quickAudioToggle.getAnimation())) {
-      if (animation != null) {
-        animation.cancel();
-      }
+    for (View view : Arrays.asList(composeText, quickCameraToggle, quickAudioToggle, buttonToggle)) {
+      view.animate().cancel();
+      view.setAlpha(0f);
     }
-
-    buttonToggle.animate().cancel();
-
-    composeText.setVisibility(View.INVISIBLE);
-    quickCameraToggle.setVisibility(View.INVISIBLE);
-    quickAudioToggle.setVisibility(View.INVISIBLE);
   }
 
   private void fadeInNormalComposeViews() {
     if (emojiVisible) {
-      ViewUtil.fadeIn(mediaKeyboard, FADE_TIME);
+      fadeIn(mediaKeyboard);
     }
 
-    ViewUtil.fadeIn(composeText, FADE_TIME);
-    ViewUtil.fadeIn(quickCameraToggle, FADE_TIME);
-    ViewUtil.fadeIn(quickAudioToggle, FADE_TIME);
-    buttonToggle.animate().alpha(1).setDuration(FADE_TIME).start();
+    fadeIn(composeText);
+    fadeIn(quickCameraToggle);
+    fadeIn(quickAudioToggle);
+    fadeIn(buttonToggle);
+  }
+
+  private void fadeIn(@NonNull View v) {
+    v.animate().alpha(1).setDuration(FADE_TIME).start();
+  }
+
+  private void fadeOut(@NonNull View v) {
+    v.animate().alpha(0).setDuration(FADE_TIME).start();
   }
 
   private void updateVisibility() {
