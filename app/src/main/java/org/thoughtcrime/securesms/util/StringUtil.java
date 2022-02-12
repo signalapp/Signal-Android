@@ -179,14 +179,15 @@ public final class StringUtil {
     Boolean isLtr = null;
 
     for (int i = 0, len = Character.codePointCount(text, 0, text.length()); i < len; i++) {
-      int  codePoint = Character.codePointAt(text, i);
-      byte direction = Character.getDirectionality(codePoint);
+      int     codePoint = Character.codePointAt(text, i);
+      byte    direction = Character.getDirectionality(codePoint);
+      boolean isLetter  = Character.isLetter(codePoint);
 
-      if (isLtr != null && isLtr && direction != Character.DIRECTIONALITY_LEFT_TO_RIGHT) {
+      if (isLtr != null && isLtr && direction != Character.DIRECTIONALITY_LEFT_TO_RIGHT && isLetter) {
         return true;
-      } else if (isLtr != null && !isLtr && direction != Character.DIRECTIONALITY_RIGHT_TO_LEFT) {
+      } else if (isLtr != null && !isLtr && direction != Character.DIRECTIONALITY_RIGHT_TO_LEFT && isLetter) {
         return true;
-      } else {
+      } else if (isLetter) {
         isLtr = direction == Character.DIRECTIONALITY_LEFT_TO_RIGHT;
       }
     }
