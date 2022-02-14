@@ -154,7 +154,6 @@ final class MenuState {
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText)
                   .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
-                  .shouldShowDetailsAction(!conversationRecipient.isReleaseNotes())
                   .shouldShowReactions(!conversationRecipient.isReleaseNotes())
                   .build();
   }
