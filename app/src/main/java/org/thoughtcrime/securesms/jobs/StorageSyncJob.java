@@ -176,6 +176,11 @@ public class StorageSyncJob extends BaseJob {
       return;
     }
 
+    if (!Recipient.self().hasE164() || !Recipient.self().hasAci()) {
+      Log.w(TAG, "Missing E164 or ACI!");
+      return;
+    }
+
     if (SignalStore.internalValues().storageServiceDisabled()) {
       Log.w(TAG, "Storage service has been manually disabled. Skipping.");
       return;
