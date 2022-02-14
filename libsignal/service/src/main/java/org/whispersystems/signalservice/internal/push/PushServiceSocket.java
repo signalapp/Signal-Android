@@ -515,10 +515,12 @@ public class PushServiceSocket {
       throws IOException
   {
     try {
-      String responseText = makeServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
+      String              responseText = makeServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
+      SendMessageResponse response     = JsonUtil.fromJson(responseText, SendMessageResponse.class);
 
-      if (responseText == null) return new SendMessageResponse(false, unidentifiedAccess.isPresent());
-      else                      return JsonUtil.fromJson(responseText, SendMessageResponse.class);
+      response.setSentUnidentfied(unidentifiedAccess.isPresent());
+
+      return response;
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(bundle.getDestination(), nfe);
     }
