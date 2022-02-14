@@ -93,9 +93,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Będziecie w stanie wysyłać wiadomości i wykonywać połączenia do siebie nawzajem, a Twoje imię i zdjęcie zostaną udostępnione temu kontaktowi.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokowane osoby nie będą mogły do Ciebie dzwonić ani wysyłać Ci wiadomości.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Zablokuj otrzymywanie informacji i wieści Signal.</string>
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Zablokuj otrzymywanie informacji o zmianach i nowościach w Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Wznów otrzymywanie informacji i wieści Signal.</string>
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Wznów otrzymywanie informacji i nowości Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokować %1$s?</string>
   <string name="BlockUnblockDialog_block">Zablokuj</string>
   <string name="BlockUnblockDialog_block_and_leave">Zablokuj i opuść</string>
@@ -1212,7 +1212,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nie udało się dostarczyć wiadomości od %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s zmienił(a) swój numer telefonu.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Podoba Ci się nowa Funkcja? Wyraź podziękowanie Wsparciem.</string>
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Podoba Ci się nowa funkcja? Wyraź podziękowanie Wsparciem.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal funkcjonuje dzięki ludziom takim jak Ty. Wesprzyj nas już dziś.</string>
   <!--Group Calling update messages-->
@@ -1247,7 +1247,7 @@
   <string name="MessageRequestBottomView_unblock">Odblokuj</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Pozwolić %1$s wysyłać do Ciebie wiadomości i udostępnić Twoje imię i zdjęcie temu kontaktowi? Nie będzie on wiedzieć, że przeczytałeś(aś) tę wiadomość, dopóki nie zaakceptujesz.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Pozwolić %1$s wysyłać do Ciebie wiadomości i udostępnić Twoje imię i zdjęcie temu kontaktowi? Nie otrzymasz żadnych wiadomości, dopóki nie odblokujesz.</string>
-  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Czy chcesz otrzymywać informacje i wieści od %1$s? Nie otrzymasz żadnych informacji, dopóki nie odblokujesz tego kontaktu..</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Czy chcesz otrzymywać informacje i nowości od %1$s? Nie otrzymasz żadnych informacji, dopóki nie odblokujesz tego kontaktu.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Kontynuować Twoją konwersację z tą grupą i udostępnić Twoje imię i zdjęcie jej członkom?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Zaktualizuj tę grupę, aby aktywować takie nowe funkcje jak @wzmianki i administratorzy. Członkowie grupy, którzy nie udostępnili tej grupie swojego imienia lub zdjęcia, zostaną do niej zaproszeni.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ta Stara grupa nie może być już używana, ponieważ jest zbyt duża. Maksymalny rozmiar grupy to %1$d.</string>
@@ -1386,7 +1386,7 @@
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Szczęśliwego dnia 💜!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">Okaż swoje uczucia, zostając Wspierającym Signal.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">Okaż swoje uczucia zostając Wspierającym Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Dotknij tutaj, aby włączyć wideo</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Aby zadzwonić do %1$s, Signal potrzebuje dostępu do aparatu</string>
@@ -3842,6 +3842,6 @@ danych, rozważ miesięczną subskrypcję.</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nie udało się otworzyć selektora dzwonków.</string>
   <!--Description shown for the Signal Release Notes channel-->
-  <string name="ReleaseNotes__signal_release_notes_and_news">Informacje o wersji i wieści Signal</string>
+  <string name="ReleaseNotes__signal_release_notes_and_news">Listy zmian i nowości w Signal</string>
   <!--EOF-->
 </resources>

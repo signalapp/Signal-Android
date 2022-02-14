@@ -3614,5 +3614,6 @@ Nouvelle tentative…</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Échec d’ouverture du sélecteur.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Notes de mise à jour et actualités de Signal</string>
   <!--EOF-->
 </resources>

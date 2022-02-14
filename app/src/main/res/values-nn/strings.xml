@@ -3463,6 +3463,7 @@ Sjekkar igjen no …</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan halda fram med å bruka Signal, men du må fornya for å fortsetja å støtta appen og gjenaktivera merket.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnement</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ikkje vis dette igjen</string>
   <string name="Subscription__please_contact_support_for_more_information">Ta kontakt med brukarstøtte for meir informasjon.</string>
   <string name="Subscription__contact_support">Kontakt brukarstøtte</string>
   <string name="Subscription__earn_a_s_badge">Få eit %1$s-merke</string>
@@ -3485,16 +3486,25 @@ Sjekkar igjen no …</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nettverksfeil. Sjekk tilkoplinga di og prøv igjen.</string>
   <string name="NetworkFailure__retry">Prøv igjen</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Prøv ein annan betalingsmetode eller ta kontakt med banken din for meir informasjon.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Stadfest at betalingsmetoden din er oppdatert i Google Pay og prøv igjen.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Lær meir</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Stadfest at betalingsmetoden din er oppdatert i Google Pay og prøv igjen. Ta kontakt med banken din viss problemet held fram.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Kortet ditt støttar ikkje denne typen betaling. Prøv ein annan betalingsmetode.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Kortet ditt er utløpt. Oppdater betalingsmetoden i Google Pay og prøv igjen.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Gå til Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Kortnummeret ditt er feil. Oppdater det i Google Pay og prøv igjen.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">CVC-nummeret på kortet ditt er feil. Oppdater det i Google Pay og prøv igjen.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Kortet ditt har for låg saldo for å fullføra denne betalinga. Prøv ein annan betalingsmetode.</string>
   <!--Stripe decline code incorrect expiration month-->
   <!--Stripe decline code incorrect expiration year-->
   <!--Stripe decline code issuer not available-->

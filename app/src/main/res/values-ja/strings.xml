@@ -3329,10 +3329,14 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ブーストを追加</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">長い間ご利用がなかったため、あなたのサポーターサブスクリプションは自動で解除されました。あなたの%1$sバッジは、プロフィールに表示されなくなっています。</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">長い間ご利用がなかったため、あなたのサポーターサブスクリプションは自動で解除されました。%1$sバッジは、プロフィールに表示されなくなっています。</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">決済処理ができなかったため、あなたのサポーターサブスクリプションは解除されました。バッジはプロフィールに表示されなくなっています。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signalは使い続けられますが、アプリのサポートやバッジを再び有効にするには、今すぐ更新してください。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">サブスクリプションを更新</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">サブスクリプションの決済処理ができません</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Signalサポーターの決済処理に問題があります。あなたの決済方法が最新のものかご確認いただき、Google Payで修正ください。Signalは数日後に決済処理を再開します。</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">今後表示しない</string>
   <string name="Subscription__please_contact_support_for_more_information">詳しくはサポートにお問い合わせください。</string>
   <string name="Subscription__contact_support">サポートに問い合わせる</string>
   <string name="Subscription__earn_a_s_badge">%1$sバッジを獲得しましょう</string>
@@ -3355,20 +3359,33 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ネットワークエラー。インターネット接続を確認して再度試してください。</string>
   <string name="NetworkFailure__retry">再試行</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">別の決済方法をお試しいただくか、取引先の銀行にお問い合わせください。</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Google Payの決済方法が最新であるか確認して、再度試してください。</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">さらに詳しく</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Google Payの決済方法が最新であるか確認して、再度試してください。問題が解消されない場合は、取引先の銀行にお問い合わせください。</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">あなたのクレジットカードはこの支払いに対応していません。別の決済方法をお試しください。</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">クレジットカードが失効しています。Google Payで決済方法を更新して、再度試してください。</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Google Payを開く</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">クレジットカード番号が正しくありません。Google Payで更新して、再度試してください。</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">クレジットカードのセキュリティコードが正しくありません。Google Payで更新して、再度試してください。</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">あなたのクレジットカードは残高が不足しています。別の決済方法をお試しください。</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">決済方法の有効期限の月が正しくありません。Google Payで更新して、再度試してください。</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">決済方法の有効期限の年が正しくありません。Google Payで更新して、再度試してください。</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">再度、決済をお試しいただくか、取引先の銀行にお問い合わせください。</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">再度お試しいただくか、取引先の銀行にお問い合わせください。</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">プロファイル名の選択</string>
   <!--Hint text for create/edit notification profile name-->

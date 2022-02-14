@@ -89,7 +89,7 @@
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Членовите на групата нема да можат повторно да Ве додадат во оваа група.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Членовите на групата ќе можат повторно да Ве додадат во оваа група.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ќе можете да испраќате пораки и да се јавувате и Вашето име и слика ќе бидат споделени со нив.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокирани луѓе нема да можат да Ви се јават или да Ви испраќаат пораки.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокираните луѓе нема да можат да Ви се јават и да Ви испраќаат пораки.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Блокирај вести од Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -144,7 +144,7 @@
   <string name="CommunicationActions_carrier_charges_may_apply">Можно е да важат трошоци од операторот. Бројот кој што го повикувате не е регистриран на Signal. Овој повик ќе биде направен преку мобилниот оператор, не преку интернет.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Вашиот сигурносен број со %1$s е променет. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација, или пак дека %2$s го има реинсталирано Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можеби сакате да го потврдите Вашиот безбедносен број со овој контакт.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можеби сакате да го проверите Вашиот сигурносен број со овој контакт.</string>
   <string name="ConfirmIdentityDialog_accept">Прифати</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Скорешни разговори</string>
@@ -182,10 +182,10 @@
   <string name="ConversationItem_copied_text">Ископирано %s</string>
   <string name="ConversationItem_from_s">од %s</string>
   <string name="ConversationItem_to_s">до %s</string>
-  <string name="ConversationItem_read_more"> Прочитај повеќе</string>
+  <string name="ConversationItem_read_more">  Прочитај повеќе</string>
   <string name="ConversationItem_download_more">  Преземи повеќе</string>
   <string name="ConversationItem_pending">  Во тек</string>
-  <string name="ConversationItem_this_message_was_deleted">Оваа порака беше избришана.</string>
+  <string name="ConversationItem_this_message_was_deleted">Оваа порака е избришана.</string>
   <string name="ConversationItem_you_deleted_this_message">Ја избришавте оваа порака.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_add_attachment">Додај прилог</string>
@@ -290,7 +290,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Можете да повлечете на десно на било која порака за брз одговор</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Можете да повлечете на лево на било која порака за брз одговор</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Испратени еднократно видливи медија датотеки автоматски се отстрануваат откога ќе се испратат</string>
-  <string name="ConversationFragment_you_already_viewed_this_message">Веќе ја видовте оваа порака</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Веќе сте ја виделе оваа порака</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додадате белешки во овој разговор.\nАко Вашата сметка има поврзани уреди, новите белешки ќе бидат синхронизирани.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име.</string>
   <string name="ConversationFragment__tap_to_review">Допрете за преглед</string>
@@ -694,7 +694,7 @@
   <string name="ManageGroupActivity_add_group_description">Додадете опис на групата…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Извести кога некој ќе ме спомне</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Дали да добиете известување кога некој ќе Ве спомне во исклучени разговори?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Дали да добиете известување кога некој ќе Ве спомне во разговори со исклучени известувања?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Извести ме секогаш</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Не ме известувај</string>
   <!--ManageProfileFragment-->
@@ -721,8 +721,8 @@
   <string name="CustomNotificationsDialogFragment__custom_notifications">Прилагодени известувања</string>
   <string name="CustomNotificationsDialogFragment__messages">Пораки</string>
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Користи прилагодени известувања</string>
-  <string name="CustomNotificationsDialogFragment__notification_sound">Звук на известување </string>
-  <string name="CustomNotificationsDialogFragment__vibrate">Вибрирај</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Звук за известување </string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Вибрации</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Поставувања за повици</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Звук за ѕвонење</string>
   <string name="CustomNotificationsDialogFragment__enabled">Овозможено</string>
@@ -789,7 +789,7 @@
   <string name="ImageEditorHud_draw_anywhere_to_blur">Нацртајте било каде за замаглување</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Нацртајте за да замаглите доплнителни лица или области</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Допри и држи да снимиш гласовна порака, пушти да пратиш</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Допри и држи за да снимиш гласовна порака, пушти за да пратиш</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Сподели</string>
   <string name="InviteActivity_share_with_contacts">Сподели со контакти</string>
@@ -1478,7 +1478,7 @@
   <string name="ThreadRecord_view_once_photo">Еднократно видлива фотографија</string>
   <string name="ThreadRecord_view_once_video">Еднократно видливо видео </string>
   <string name="ThreadRecord_view_once_media">Еднократно видлива медија</string>
-  <string name="ThreadRecord_this_message_was_deleted">Оваа порака беше избришана.</string>
+  <string name="ThreadRecord_this_message_was_deleted">Оваа порака е избришана.</string>
   <string name="ThreadRecord_you_deleted_this_message">Ја избришавте оваа порака.</string>
   <string name="ThreadRecord_s_is_on_signal">%s е на Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Исчезнувачките пораки се исклучени</string>
@@ -1591,7 +1591,7 @@
   <string name="MessageNotifier_reacted_s_to_your_audio">Реагираше со %1$s на Вашето аудио.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реагираше со %1$s на Вашата еднократно видлива медија.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Реагираше со %1$s на Вашиот стикер.</string>
-  <string name="MessageNotifier_this_message_was_deleted">Оваа порака беше избришана.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Оваа порака е избришана.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Дали да исклучам известувања за луѓе што се приклучуваат на Signal? Можете да ги вклучите пак во Signal &gt; Поставувања &gt; Известувања.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_channel_messages">Пораки</string>
@@ -3169,8 +3169,8 @@
   <string name="ChatColorSelectionFragment__delete">Избриши</string>
   <string name="ChatColorSelectionFragment__delete_color">Избриши боја</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">Оваа боја се користи во %1$d разговори. Дали сакате да ги зачувате промените за сите разговори?</item>
-    <item quantity="other">Оваа прилагодена боја се користи во %1$d разговори. Дали сакате да ја избришете од сите разговори?</item>
+    <item quantity="one">Оваа боја се користи во %1$d разговор. Дали сакате да ја избришете од разговорот?</item>
+    <item quantity="other">Оваа боја се користи во %1$d разговори. Дали сакате да ја избришете од сите разговори?</item>
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Да се избрише бојата на разговорот?</string>
   <!--CustomChatColorCreatorFragment-->
@@ -3182,7 +3182,7 @@
   <string name="CustomChatColorCreatorFragmentPage__save">Зачувај</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Уреди боја</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Оваа боја се користи во %1$d разговори. Дали сакате да ги зачувате промените за сите разговори?</item>
+    <item quantity="one">Оваа боја се користи во %1$d разговор. Дали сакате да ги зачувате промените за овој разговори?</item>
     <item quantity="other">Оваа боја се користи во %1$d разговори. Дали сакате да ги зачувате промените за сите разговори?</item>
   </plurals>
   <!--ChatColorGradientTool-->
@@ -3254,7 +3254,7 @@
   <string name="ConversationSettingsFragment__group_link">Групен линк</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Додај како контакт</string>
   <string name="ConversationSettingsFragment__unmute">Вклучи известувања</string>
-  <string name="ConversationSettingsFragment__conversation_muted_until_s">Разговорот исклучен до %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Известувањата се исклучени до %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Известувањата се исклучени засекогаш</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонски број копиран на таблата со исечоци.</string>
   <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
@@ -3439,10 +3439,12 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Додај поттик</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сега</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Вашата претплата за поддршка беше автоматски откажана затоа што бевте неактивни премногу долго. Вашиот беџ %1$s повеќе не е видлив на Вашиот профил.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Вашата претплата за поддршка беше автоматски откажана затоа што бевте премногу долго неактивни. Вашиот беџ %1$s повеќе не е видлив на Вашиот профил.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Вашата претплата за поддршка е откажана бидејќи не можевме да го обработиме Вашето плаќање. Вашиот беџ повеќе не е видлив на Вашиот профил.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Можете да продолжите да го користите Signal, но за да ја поддржите апликацијата реактивирајте го беџот, обновете сега.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Обнови претплата</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Не го прикажувај ова повторно</string>
   <string name="Subscription__please_contact_support_for_more_information">Ве молиме контактирајте со тимот за поддршка за повеќе информации.</string>
   <string name="Subscription__contact_support">Контакт за поддршка</string>
   <string name="Subscription__earn_a_s_badge">Добијте %1$s беџ</string>
@@ -3465,20 +3467,31 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет врска и обидете се повторно.</string>
   <string name="NetworkFailure__retry">Пробај пак</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Обидете се со друг начин на плаќање или контактирајте со Вашата банка за повеќе информации.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Проверете дали Вашиот начин на плаќање е ажуриран во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Дознајте повеќе</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Проверете дали Вашиот начин на плаќање е ажуриран во Google Pay и обидете се повторно. Ако проблемот продолжи, контактирајте со Вашата банка.</string>
   <!--Stripe decline code purchase not supported-->
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Вашата картичка е истечена. Ажурирајте го Вашиот начин на плаќање во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Одете на Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Бројот на Вашата картичка е неточен. Ажурирајте го во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">CVC-бројот на Вашата картичка е неточен. Ажурирајте го во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code insufficient funds-->
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Месецот на истекување на Вашиот начин на плаќање е неточен. Ажурирајте го во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Годината на истекување на Вашиот начин на плаќање е неточна. Ажурирајте ја во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Обидете се повторно да го завршите плаќањето или контактирајте со Вашата банка за повеќе информации.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Обидете се повторно или контактирајте со Вашата банка за повеќе информации.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Именувајте го профилот</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3522,7 +3535,7 @@
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">Нов профил</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
-  <string name="NotificationProfilesFragment__on">Вклучи</string>
+  <string name="NotificationProfilesFragment__on">Вклучено</string>
   <!--Button use to permanently delete a notification profile-->
   <string name="NotificationProfileDetails__delete_profile">Избриши профил</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
@@ -3538,7 +3551,7 @@
   <!--Schedule description if all days are selected-->
   <string name="NotificationProfileDetails__everyday">Секој ден</string>
   <!--Profile status on if it is the active profile-->
-  <string name="NotificationProfileDetails__on">Вклучи</string>
+  <string name="NotificationProfileDetails__on">Вклучено</string>
   <!--Profile status on if it is not the active profile-->
   <string name="NotificationProfileDetails__off">Исклучено</string>
   <!--Description of hours for schedule (start to end) times-->

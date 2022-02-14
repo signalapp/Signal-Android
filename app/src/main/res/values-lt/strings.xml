@@ -3653,8 +3653,11 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Jūsų remėjo prenumerata buvo automatiškai nutraukta, nes pernelyg ilgą laiką buvote neaktyvūs. Jūsų %1$s ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Jūsų remėjo prenumerata buvo nutraukta, nes nepavyko apdoroti jūsų mokėjimo. Jūsų ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Galite ir toliau naudotis Signal programėle, bet norėdami ją paremti ir iš naujo aktyvuoti ženkliuką, atnaujinkite prenumeratą dabar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Atnaujinti prenumeratą</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nepavyksta apdoroti prenumeratos mokėjimo</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Daugiau neberodyti</string>
   <string name="Subscription__please_contact_support_for_more_information">Išsamesnei informacijai, susisiekite su palaikymu.</string>
   <string name="Subscription__contact_support">Susisiekti su palaikymu</string>
   <string name="Subscription__earn_a_s_badge">Pelnykite %1$s ženkliuką</string>
@@ -3677,20 +3680,26 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Tinklo klaida. Patikrinkite interneto ryšį ir bandykite dar kartą.</string>
   <string name="NetworkFailure__retry">Bandyti dar kartą</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Pabandykite naudoti kitą mokėjimo būdą arba susisiekite su savo banku dėl išsamesnės informacijos.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Sužinoti daugiau</string>
   <!--Stripe decline code contact issuer-->
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Jūsų kortelė nepalaiko šio pirkimo tipo. Pabandykite naudoti kitą mokėjimo būdą.</string>
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Pereiti į „Google Pay“</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Jūsų kortelėje trūksta lėšų užbaigti šį pirkimą. Pabandykite naudoti kitą mokėjimo metodą.</string>
   <!--Stripe decline code incorrect expiration month-->
   <!--Stripe decline code incorrect expiration year-->
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Bandykite užbaigti pirkimą dar kartą arba susisiekite su savo banku dėl išsamesnės informacijos.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Bandykite dar kartą arba susisiekite su savo banku dėl išsamesnės informacijos.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Suteikite profiliui pavadinimą</string>
   <!--Hint text for create/edit notification profile name-->

@@ -1981,8 +1981,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">நீங்கள் அனுப்பும் அனைத்து SMS-க்கும் விநியோக அறிக்கைகளை கோரவும்</string>
   <string name="preferences__data_and_storage">தரவு மற்றும் சேமிப்பு</string>
   <string name="preferences__storage">சேமிப்பு</string>
-  <string name="preferences__payments">பணம் வழங்கீடு</string>
-  <string name="preferences__payments_beta">கொடுப்பனவுகள் (பீட்டா)</string>
+  <string name="preferences__payments">பணம் செலுத்தல்</string>
+  <string name="preferences__payments_beta">பணம் செலுத்தல் (பீட்டா)</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
   <string name="preferences__keep_messages">செய்திகள் வைப்பு</string>
   <string name="preferences__clear_message_history">செய்தி வரலாற்றை அழிக்கவும்</string>
@@ -2096,11 +2096,11 @@
   <string name="PaymentsAllActivityFragment__all">அனைத்து</string>
   <string name="PaymentsAllActivityFragment__sent">அனுப்பியது </string>
   <string name="PaymentsAllActivityFragment__received">பெறப்பட்டது</string>
-  <string name="PaymentsHomeFragment__introducing_payments">கொடுப்பனவுகளை அறிமுகப்படுத்துதல் (பீட்டா)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">பயன்படுத்தவும் சிக்னல் க்கு அனுப்பு மொபைல் கோயினைப் பெறுங்கள், புதியது தனியுரிமைகவனம் செலுத்திய டிஜிட்டல் நாணயம். தொடங்குவதற்கு செயல்படுத்தவும்.</string>
+  <string name="PaymentsHomeFragment__introducing_payments">பணம் செலுத்தலை அறிமுகப்படுத்துகிறோம் (பீட்டா)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">சிக்னலை பயன்படுத்தி மொபைல் காயினை அனுப்புங்கள் மற்றும் பெறுங்கள். மொபைல் காயின் என்பது ஒரு புதிய தனியுரிமையில் கவனம் செலுத்தக்கூடிய எண்ம நாணயம். தொடங்குவதற்கு செயல்படுத்தவும்.</string>
   <string name="PaymentsHomeFragment__activate_payments">கொடுப்பனவுகளைச் செயல்படுத்தவும்</string>
   <string name="PaymentsHomeFragment__activating_payments">கொடுப்பனவுகளை செயல்படுத்துகிறது…</string>
-  <string name="PaymentsHomeFragment__restore_payments_account">மீட்டமை கொடுப்பனவுகள் கணக்கு</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">பணம் செலுத்தல் கணக்கை மீட்டமை</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">இல்லை சமீபத்திய செயல்பாடு இன்னும்</string>
   <string name="PaymentsHomeFragment__pending_requests">நிலுவையிலுள்ள கோரிக்கைகள்</string>
   <string name="PaymentsHomeFragment__recent_activity">சமீபத்திய நடவடிக்கை</string>
@@ -2125,7 +2125,7 @@
   <string name="PaymentsHomeFragment__could_not_enable_payments">கொடுப்பனவுகளை இயக்க முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">செயலிழக்க கொடுப்பனவுகள்?
 </string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">நீங்கள் கொடுப்பனவுகளை செயலிழக்கச் செய்தால், Signal MobileCoin ஐ அனுப்பவோ பெறவோ முடியாது.</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">நீங்கள் பணம் செலுத்தலை செயலிழக்கச் செய்தால், சிக்னல் மொபைல் காயினை அனுப்பவோ பெறவோ முடியாது.</string>
   <string name="PaymentsHomeFragment__deactivate">செயலிழக்க</string>
   <string name="PaymentsHomeFragment__continue">தொடர்ந்து செல் </string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">இருப்பு தற்போது கிடைக்கவில்லை.</string>
@@ -2826,11 +2826,11 @@
   <string name="WallpaperCropActivity__blur_photo">புகைப்படத்தை மங்கச் செய்ய</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">MobileCoin பற்றி</string>
-  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin ஒரு புதியது தனியுரிமை கவனம் செலுத்திய டிஜிட்டல் நாணயம்.</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">மொபைல் காயின் என்பது ஒரு புதிய தனியுரிமையில் கவனம் செலுத்தக்கூடிய எண்ம நாணயம்.</string>
   <string name="payment_info_card_adding_funds">சேர்த்து நிதி</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">உன்னால் முடியும் கூட்டு நிதி இல் பயன்படுத்த Signal MobileCoin ஐ உங்களுக்கு அனுப்புவதன் மூலம் பணப்பை முகவரி.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">உங்கள் பணப்பை முகவரிக்கு மொபைல் காயினை அனுப்புவதன் மூலம் சிக்னலில் பயன்படுத்துவதற்கு நிதியைச் சேர்க்கலாம்.</string>
   <string name="payment_info_card_cashing_out">வெளியே பணம்</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">உன்னால் முடியும் பணம் அவுட் MobileCoin எந்த நேரத்திலும் பரிமாற்றம்இது MobileCoin ஐ ஆதரிக்கிறது. ஒரு செய்யுங்கள்பரிமாற்றம் உங்கள் கணக்கு அந்த நேரத்தில் பரிமாற்றம்.</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">மொபைல் காயினை ஆதரிக்கும் பணமாற்றக் கூடத்தில் நீங்கள் எப்போது வேண்டுமானாலும் மொபைல் காயினை பணமாகப் பெறலாம். அந்த பணமாற்றக் கூடத்தில் உங்கள் கணக்கிற்கு பறிமாற்றம் செய்யவும்.</string>
   <string name="payment_info_card_hide_this_card">இந்த அட்டையை மறைக்கவா?</string>
   <string name="payment_info_card_hide">மறை</string>
   <string name="payment_info_card_record_recovery_phrase">மீட்பு சொற்றொடரை பதிவுசெய்க</string>
@@ -2872,7 +2872,7 @@
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">பின்வருவனவற்றை எழுதுங்கள் %1$d வரிசையில் சொற்கள். கடை உங்கள் பட்டியல் பாதுகாப்பான இடத்தில்.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">உங்கள் சொற்றொடரை சரியாக உள்ளிட்டுள்ளீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">வேண்டாம் ஸ்கிரீன் ஷாட் அல்லது அனுப்பு வழங்கியவர் மின்னஞ்சல்.</string>
-  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">கொடுப்பனவுகள் கணக்கு மீட்டெடுக்கப்பட்டது.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">பணம் செலுத்தல் கணக்கு மீட்டெடுக்கப்பட்டது.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">தவறானது மீட்பு சொற்றொடர்</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">உங்கள் சொற்றொடரை சரியாக உள்ளிட்டுள்ளீர்கள் என்பதை உறுதிசெய்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">நகலெடுக்கவும் கிளிப்போர்டுக்கு?</string>
@@ -3104,7 +3104,7 @@
   <string name="ConversationSettingsFragment__unmute">ஒலியடக்கை நீக்கு</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">வரை உரையாடல் முடக்கப்பட்டது %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">உரையாடல் எப்போதும் முடக்கப்பட்டது</string>
-  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">நகலெடுக்கப்பட்டது தொலைபேசி கிளிப்போர்டுக்கு எண்.</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">கிளிப்போர்டுக்கு தொலைபேசி எண் நகலெடுக்கப்பட்டது.</string>
   <string name="ConversationSettingsFragment__phone_number">தொலைபேசி எண்</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>

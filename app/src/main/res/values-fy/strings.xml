@@ -2644,19 +2644,30 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">Dyn Signal-pinkoade befêstigje</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Ferkearde pinkoade, probearje it opnij.</string>
   <string name="AppProtectionPreferenceFragment_none">Gjin</string>
+  <string name="RegistrationActivity_too_many_attempts">Te folle besykjen</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Flater by it ferbinen mei Signal-servers</string>
   <string name="preferences_chats__backups">Reservekopyen</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal is beskoattele</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TIK OM TE ÛNTSKOATTELJEN</string>
   <string name="Recipient_unknown">Unbekend</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Account oersette of werstelle</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Oersette fan in Android-apparaat ôf</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens fan in reservekopy út weromstte</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Iepenj Signal op dyn âlde apparaat</string>
   <string name="NewDeviceTransferInstructions__continue">Trochgean</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tik yn de linkerboppehoek op dyn profylfoto om de ynstellingen te iepenjen</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">Tik op ‘Dyn account’</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tik op beide apparaten op ‘Signal-gegevens oersette’ en dan op ‘Trochgean’</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Oan it tarieden om ferbining te meitsjen mei dyn âlde Android-apparaat…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">In momint, dit duorret net lang</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Oan it wachtsjen oant dyn âlde Android-apparaat ferbining makket…</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Reservekopy weromsette</string>
   <!--OldDeviceTransferSetupFragment-->
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__grant_location_permission">Machtigen om lokaasje te lêzen</string>
@@ -2763,16 +2774,32 @@
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s docht no mei oan dizze oprop</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s en %2$s dogge no mei</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s en %3$s dogge no mei</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s en %3$d oar dogge no mei</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s hat de oprop ferlitten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s en %2$s hawwe de oprop ferlitten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s en %3$s hawwe de oprop ferlitten</string>
   <string name="CallParticipant__you">Do</string>
+  <string name="CallParticipant__you_on_another_device">Do (fan in oar apparaat ôf)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (fan in oar apparaat ôf)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Asto al dyn gegevens wiskest:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Fier dyn telefoannûmer yn</string>
   <string name="DeleteAccountFragment__delete_account">Account fuortsmite</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">sille al dyn ynstellingen, list fan (blokkearre) kontaktpersoanen, profylnamme, -foto en -omskriuwing wiske wurde</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">sille alle berjochten wiske wurde</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s wiskje fan dyn oerskriuwingsaccount</string>
+  <string name="DeleteAccountFragment__no_country_code">Der is gjin lânkoade spesifisearre</string>
+  <string name="DeleteAccountFragment__no_number">Der is gjin telefosnnûmer ynfierd</string>
   <string name="DeleteAccountFragment__launch_app_settings">App-ynstellingen iepenje</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Groepen oan it ferlitten…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Gegevens oan it wiskjen…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Dyn gegevens binne net wiske</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Lân sykje</string>
@@ -2796,7 +2823,10 @@
   <string name="ChatWallpaperFragment__reset_chat_colors">Kleurynstellingen fuortsmite</string>
   <string name="ChatWallpaperFragment__reset_chat_color">Kleurynstelling fuortsmite</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">Kleurynstelling fuortsmite?</string>
+  <string name="ChatWallpaperFragment__contact_name">Namme fan kontaktpersoan</string>
+  <string name="ChatWallpaperFragment__reset">Opnij ynstelle</string>
   <string name="ChatWallpaperFragment__clear">Fuortsmite</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Eftergrûn-foarbyld</string>
   <!--ChatWallpaperSelectionFragment-->
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Foarbyld</string>
@@ -2950,6 +2980,7 @@
   <string name="CustomChatColorCreatorFragmentPage__save">Opslaan</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Opnij ynstelle</string>
   <string name="EditReactionsFragment_save">Opslaan</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">Uterlik</string>
