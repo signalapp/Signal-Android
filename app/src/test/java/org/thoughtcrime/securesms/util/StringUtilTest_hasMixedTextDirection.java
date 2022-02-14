@@ -21,13 +21,18 @@ public final class StringUtilTest_hasMixedTextDirection {
       { "",        false },
       { null,      false },
       { "A",       false},
+      { "A.",      false},
+      { "'A'",     false},
+      { "A,",      false},
       { "ة",       false},  // Arabic
+      { ".ة",      false},  // Arabic
       { "ی",       false},  // Kurdish
       { "ی",       false }, // Farsi
       { "و",       false }, // Urdu
       { "ת",       false }, // Hebrew
       { "ש",       false }, // Yiddish
       { "Aة",       true }, // Arabic-ASCII
+      { "A.ة",      true }, // Arabic-ASCII
       { "یA",       true }, // Kurdish-ASCII
       { "Aی",       true }, // Farsi-ASCII
       { "وA",       true }, // Urdu-ASCII
