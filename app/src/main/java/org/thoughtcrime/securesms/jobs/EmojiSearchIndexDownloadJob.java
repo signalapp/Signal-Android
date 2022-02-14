@@ -100,6 +100,7 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
         remoteLanguage.equals(SignalStore.emojiValues().getSearchLanguage()))
     {
       Log.i(TAG, "Already using the latest version of " + manifest.getVersion() + " with the correct language " + remoteLanguage);
+      SignalStore.emojiValues().setLastSearchIndexCheck(System.currentTimeMillis());
       return;
     }
 
