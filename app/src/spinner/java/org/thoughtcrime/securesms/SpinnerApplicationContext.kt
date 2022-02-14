@@ -1,25 +1,37 @@
 package org.thoughtcrime.securesms
 
-import com.facebook.flipper.android.AndroidFlipperClient
-import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin
-import com.facebook.flipper.plugins.inspector.DescriptorMapping
-import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
-import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin
-import com.facebook.soloader.SoLoader
+import android.os.Build
 import leakcanary.LeakCanary
-import org.thoughtcrime.securesms.database.FlipperSqlCipherAdapter
+import org.signal.spinner.Spinner
+import org.thoughtcrime.securesms.database.JobDatabase
+import org.thoughtcrime.securesms.database.KeyValueDatabase
+import org.thoughtcrime.securesms.database.LocalMetricsDatabase
+import org.thoughtcrime.securesms.database.LogDatabase
+import org.thoughtcrime.securesms.database.MegaphoneDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.util.AppSignatureUtil
 import shark.AndroidReferenceMatchers
 
-class FlipperApplicationContext : ApplicationContext() {
+class SpinnerApplicationContext : ApplicationContext() {
   override fun onCreate() {
     super.onCreate()
-    SoLoader.init(this, false)
 
-    val client = AndroidFlipperClient.getInstance(this)
-    client.addPlugin(InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()))
-    client.addPlugin(DatabasesFlipperPlugin(FlipperSqlCipherAdapter(this)))
-    client.addPlugin(SharedPreferencesFlipperPlugin(this))
-    client.start()
+    Spinner.init(
+      this,
+      Spinner.DeviceInfo(
+        name = "${Build.MODEL} (Android ${Build.VERSION.RELEASE}, API ${Build.VERSION.SDK_INT})",
+        packageName = "$packageName (${AppSignatureUtil.getAppSignature(this).or("Unknown")})",
+        appVersion = "${BuildConfig.VERSION_NAME} (${BuildConfig.CANONICAL_VERSION_CODE}, ${BuildConfig.GIT_HASH})"
+      ),
+      linkedMapOf(
+        "signal" to SignalDatabase.rawDatabase,
+        "jobmanager" to JobDatabase.getInstance(this).sqlCipherDatabase,
+        "keyvalue" to KeyValueDatabase.getInstance(this).sqlCipherDatabase,
+        "megaphones" to MegaphoneDatabase.getInstance(this).sqlCipherDatabase,
+        "localmetrics" to LocalMetricsDatabase.getInstance(this).sqlCipherDatabase,
+        "logs" to LogDatabase.getInstance(this).sqlCipherDatabase,
+      )
+    )
 
     LeakCanary.config = LeakCanary.config.copy(
       referenceMatchers = AndroidReferenceMatchers.appDefaults +

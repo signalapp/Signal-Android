@@ -1,0 +1,43 @@
+<html>
+  {{> head title="Query" }}
+  <body>
+
+    {{> prefix isQuery=true}}
+
+    <!-- Query Input -->
+    <form action="query" method="post">
+      <textarea name="query" class="query-input" placeholder="Enter your query...">{{query}}</textarea>
+      <input type="hidden" name="db" value="{{database}}" />
+      <input type="submit" name="action" value="run" />
+      or
+      <input type="submit" name="action" value="analyze" />
+    </form>
+
+    <!-- Query Result -->
+    <h1>Data</h1>
+    {{#if queryResult}}
+      {{queryResult.rowCount}} row(s). <br />
+      {{queryResult.timeToFirstRow}} ms to read the first row. <br />
+      {{queryResult.timeToReadRows}} ms to read the rest of the rows. <br />
+      <br />
+      <table>
+        <tr>
+          {{#each queryResult.columns}}
+            <th>{{this}}</th>
+          {{/each}}
+        </tr>
+        {{#each queryResult.rows}}
+          <tr>
+            {{#each this}}
+              <td>{{this}}</td>
+            {{/each}}
+          </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      No data.
+    {{/if}}
+
+    {{> suffix}}
+  </body>
+</html>

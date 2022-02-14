@@ -1,0 +1,52 @@
+<html>
+  {{> head title="Home" }}
+
+  <style type="text/css">
+    h2 {
+      font-size: 1.25rem;
+    }
+  </style>
+
+  <body>
+
+    {{> prefix isOverview=true}}
+
+    <h1 class="collapse-header active" data-for="table-creates">Tables</h1>
+    <div id="table-creates">
+      {{#if tables}}
+        {{#each tables}}
+          <h2 class="collapse-header" data-for="table-create-{{@index}}">{{name}}</h2>
+          <div id="table-create-{{@index}}" class="hidden">{{{sql}}}</div>
+        {{/each}}
+      {{else}}
+        None.
+      {{/if}}
+    </div>
+
+    <h1 class="collapse-header active" data-for="index-creates">Indices</h1>
+    <div id="index-creates">
+      {{#if indices}}
+        {{#each indices}}
+          <h2 class="collapse-header active" data-for="index-create-{{@index}}">{{name}}</h2>
+          <div id="index-create-{{@index}}">{{{sql}}}</div>
+        {{/each}}
+      {{else}}
+        None.
+      {{/if}}
+    </div>
+
+    <h1 class="collapse-header active" data-for="trigger-creates">Triggers</h1>
+    <div id="trigger-creates">
+      {{#if triggers}}
+        {{#each triggers}}
+          <h2 class="collapse-header active" data-for="trigger-create-{{@index}}">{{name}}</h2>
+          <div id="trigger-create-{{@index}}">{{{sql}}}</div>
+        {{/each}}
+      {{else}}
+        None.
+      {{/if}}
+    </div>
+
+  {{> suffix }}
+  </body>
+</html>

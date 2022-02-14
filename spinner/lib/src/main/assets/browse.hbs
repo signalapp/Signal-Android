@@ -1,0 +1,47 @@
+<html>
+  {{> head title="Browse" }}
+  <body>
+
+    {{> prefix isBrowse=true}}
+
+    <!-- Table Selector -->
+    <form action="browse" method="post">
+      <select name="table">
+        {{#each tableNames}}
+          <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+      <input type="hidden" name="db" value="{{database}}" />
+      <input type="submit" value="browse" />
+    </form>
+
+    <!-- Data -->
+    {{#if table}}
+      <h1>{{table}}</h1>
+    {{else}}
+      <h1>Data</h1>
+    {{/if}}
+
+    {{#if queryResult}}
+      <p>{{queryResult.rowCount}} row(s).</p>
+      <table>
+        <tr>
+          {{#each queryResult.columns}}
+            <th>{{this}}</th>
+          {{/each}}
+        </tr>
+        {{#each queryResult.rows}}
+          <tr>
+            {{#each this}}
+              <td>{{this}}</td>
+            {{/each}}
+          </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      Select a table from above and click 'browse'.
+    {{/if}}
+
+  {{> suffix}}
+  </body>
+</html>

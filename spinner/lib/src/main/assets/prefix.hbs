@@ -1,0 +1,31 @@
+<h1>SPINNER</h1>
+
+<table class="device-info">
+  <tr>
+    <td>Device</td>
+    <td>{{deviceInfo.name}}</td>
+  </tr>
+  <tr>
+    <td>Package</td>
+    <td>{{deviceInfo.packageName}}</td>
+  </tr>
+  <tr>
+    <td>App Version</td>
+    <td>{{deviceInfo.appVersion}}</td>
+  </tr>
+</table>
+
+<div>
+  Database:
+  <select id="database-selector">
+    {{#each databases}}
+      <option value="{{this}}" {{eq database this yes="selected" no=""}}>{{this}}</option>
+    {{/each}}
+  </select>
+</div>
+
+<ol class="tabs">
+  <li {{#if isOverview}}class="active"{{/if}}><a href="/?db={{database}}">Overview</a></li>
+  <li {{#if isBrowse}}class="active"{{/if}}><a href="/browse?db={{database}}">Browse</a></li>
+  <li {{#if isQuery}}class="active"{{/if}}><a href="/query?db={{database}}">Query</a></li>
+</ol>

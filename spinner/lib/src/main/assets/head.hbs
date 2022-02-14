@@ -1,0 +1,86 @@
+<head>
+  <title>Spinner - {{ title }}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌀</text></svg>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    html, body {
+      font-family: monospace;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 8px;
+    }
+
+    .query-input {
+      width: 100%;
+      height: 10rem;
+      margin-bottom: 8px;
+    }
+
+    li.active {
+      font-weight: bold;
+    }
+
+    ol.tabs {
+      margin: 16px 0px 8px 0px;
+      padding: 0px;
+      font-size: 0px;
+    }
+
+    .tabs li {
+      list-style-type: none;
+      display: inline-block;
+      padding: 8px;
+      border-bottom: 1px solid black;
+      font-size: 12px;
+    }
+
+    .tabs li.active {
+      border: 1px solid black;
+      border-bottom: 0;
+    }
+
+    .tabs a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .collapse-header {
+      cursor: pointer;
+    }
+
+    .collapse-header:before {
+      content: "⯈ ";
+      font-size: 1rem;
+    }
+
+    .collapse-header.active:before {
+      content: "⯆ ";
+      font-size: 1rem;
+    }
+
+    h2.collapse-header, h2.collapse-header+div {
+      margin-left: 16px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    table.device-info {
+      margin-bottom: 16px;
+    }
+
+    table.device-info, table.device-info tr, table.device-info td {
+      border: 0;
+      padding: 2px;
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+
+  </style>
+</head>

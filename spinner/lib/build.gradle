@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'org.jlleitschuh.gradle.ktlint'
+}
+
+android {
+    buildToolsVersion BUILD_TOOL_VERSION
+    compileSdkVersion COMPILE_SDK
+
+    defaultConfig {
+        minSdkVersion MINIMUM_SDK
+        targetSdkVersion TARGET_SDK
+    }
+
+    compileOptions {
+        sourceCompatibility JAVA_VERSION
+        targetCompatibility JAVA_VERSION
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+ktlint {
+    // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
+    version = "0.43.2"
+}
+
+dependencies {
+    // Can't use the newest version because it hits some weird NoClassDefFoundException
+    implementation 'com.github.jknack:handlebars:4.0.7'
+
+    implementation libs.androidx.appcompat
+    implementation libs.material.material
+    implementation libs.androidx.sqlite
+    implementation project(':core-util')
+    testImplementation testLibs.junit.junit
+
+    implementation 'org.nanohttpd:nanohttpd-webserver:2.3.1'
+}

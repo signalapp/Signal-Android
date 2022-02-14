@@ -75,18 +75,18 @@ def abiPostFix = ['universal'   : 0,
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
 def selectableVariants = [
-        'nightlyProdFlipper',
+        'nightlyProdSpinner',
         'nightlyProdPerf',
         'nightlyProdRelease',
         'playProdDebug',
-        'playProdFlipper',
+        'playProdSpinner',
         'playProdPerf',
         'playProdRelease',
         'playStagingDebug',
-        'playStagingFlipper',
+        'playStagingSpinner',
         'playStagingPerf',
         'playStagingRelease',
-        'websiteProdFlipper',
+        'websiteProdSpinner',
         'websiteProdRelease',
 ]
 
@@ -250,12 +250,12 @@ android {
 
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Debug\""
         }
-        flipper {
+        spinner {
             initWith debug
             isDefault false
             minifyEnabled false
             matchingFallbacks = ['debug']
-            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Flipper\""
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Spinner\""
         }
         release {
             minifyEnabled true
@@ -509,9 +509,8 @@ dependencies {
     }
     implementation libs.dnsjava
 
-    flipperImplementation libs.facebook.flipper
-    flipperImplementation libs.facebook.soloader
-    flipperImplementation libs.square.leakcanary
+    spinnerImplementation project(":spinner")
+    spinnerImplementation libs.square.leakcanary
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.assertj.core
