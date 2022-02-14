@@ -1214,7 +1214,7 @@
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Vam je všeč ta novost? Recite hvala s spodbudo.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Postanite podpornik.</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Razvoj aplikacije Signal omogočajo ljudje, kot ste vi. Postanite podpornik_ca.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s je začel_a skupinski klic. · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je v skupinskem klicu. · %2$s</string>

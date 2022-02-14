@@ -3657,6 +3657,7 @@
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Ви можете продовжувати використовувати Signal, але щоб підтримати застосунок та повторно активувати свій значок, поновіть зараз.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Поновити передплату</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Неможливо опрацювати платіж передплати</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Не показувати знов</string>
   <string name="Subscription__please_contact_support_for_more_information">Будь ласка, зв\'яжіться з підтримкою для додаткової інформації.</string>
   <string name="Subscription__contact_support">Зверніться в службу підтримки</string>
@@ -3680,15 +3681,21 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Помилка мережі. Перевірте з\'єднання та спробуйте ще.</string>
   <string name="NetworkFailure__retry">Повторити</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Спробуйте інший спосіб платежу, або зв\'яжіться зі своїм банком для додаткової інформації.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Упевніться, що дані вашого способу платежу оновлено у Google Pay та спробуйте знов.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Дізнатись більше</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Упевніться, що дані вашого способу платежу оновлено у Google Pay та спробуйте знов. Якщо проблема не зникає, зв\'яжіться зі своїм банком.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Ваша картка не підтримує цей тип покупки. Спробуйте інший спосіб платежу.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Строк дії вашої картки скінчився. Оновіть спосіб платежу у Google Pay та спробуйте знов.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">До Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Номер картки невірний. Оновіть його у Google Pay та спробуйте знов.</string>
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->
   <!--Stripe decline code incorrect expiration month-->

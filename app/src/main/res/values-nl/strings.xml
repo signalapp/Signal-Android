@@ -2402,7 +2402,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Beveiligde sessie opnieuw opzetten</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">Niet langer dempen</string>
+  <string name="conversation_muted__unmute">Meldingen niet langer dempen</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Meldingen dempen</string>
   <!--conversation-->
