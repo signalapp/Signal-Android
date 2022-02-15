@@ -1247,6 +1247,11 @@
   <string name="RedPhone_number_not_registered">شماره ثبت نشده است!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره‌ای که گرفتید از تماس امن پشتیبانی نمی‌کند!</string>
   <string name="RedPhone_got_it">فهمیدم</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">روز 💜 مبارک!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">مهربانی خود را با تبدیل شدن به یک حامی سیگنال نشان دهید.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">برای فعال‌سازی ویدئو اینجا ضربه بزنید</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">برای تماس با%1$s، سیگنال به دسترسی دوربین شما نیاز دارد</string>
@@ -1302,6 +1307,7 @@
   <string name="WebRtcCallView__flip">برگرداندن</string>
   <string name="WebRtcCallView__speaker">بلندگو</string>
   <string name="WebRtcCallView__camera">دوربین</string>
+  <string name="WebRtcCallView__unmute">باصدا</string>
   <string name="WebRtcCallView__mute">بستن</string>
   <string name="WebRtcCallView__ring">زنگ زدن</string>
   <string name="WebRtcCallView__end_call">پایان دادن به تماس</string>
@@ -3434,7 +3440,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">به یک حامی تبدیل شوید</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">افزودن یک تقویت</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">حالا نه</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">اشتراک حامی شما به صورت خودکار لغو گردید چون شما برای مدتی طولانی غیرفعال بودید. نشان %1$s شما دیگر روی پروفایل شما قابل مشاهده نیست.</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">اشتراک حامی شما به صورت خودکار لغو گردید چون شما برای مدتی طولانی غیرفعال بودید. نشان %1$s شما دیگر روی پروفایل شما قابل مشاهده نیست.</string>
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">شما می‌توانید به استفاده از سیگنال ادامه دهید اما برای پشتیبانی از برنامه و فعال کردن دوبارهٔ نشان خود، حالا تمدید کنید.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">تمدید اشتراک</string>
   <string name="Subscription__please_contact_support_for_more_information">لطفاً با پشتیبانی برای اطلاعات بیشتر تماس بگیرید.</string>
@@ -3458,6 +3466,21 @@
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">دستگاه شما از Google Pay پشتیبانی نمی‌کند، پس شما نمی‌توانید برای بدست آوردن یک نشان برای اشتراک ثبت‌نام کنید. شما هنوز می‌توانید از طریق کمک‌های اهدایی در وب‌سایت ما از سیگنال پشتیبانی کنید.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">خطای شبکه. اتصال خود را بررسی و دوباره امتحان کنید.</string>
   <string name="NetworkFailure__retry">تلاش مجدد</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">بیشتر یاد بگیرید</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">پروفایل خود را نام‌گذاری کنید</string>
   <!--Hint text for create/edit notification profile name-->

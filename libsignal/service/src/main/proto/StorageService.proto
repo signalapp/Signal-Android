@@ -94,12 +94,13 @@ message GroupV1Record {
 }
 
 message GroupV2Record {
-  bytes  masterKey           = 1;
-  bool   blocked             = 2;
-  bool   whitelisted         = 3;
-  bool   archived            = 4;
-  bool   markedUnread        = 5;
-  uint64 mutedUntilTimestamp = 6;
+  bytes  masterKey                    = 1;
+  bool   blocked                      = 2;
+  bool   whitelisted                  = 3;
+  bool   archived                     = 4;
+  bool   markedUnread                 = 5;
+  uint64 mutedUntilTimestamp          = 6;
+  bool   dontNotifyForMentionsIfMuted = 7;
 }
 
 message Payments {

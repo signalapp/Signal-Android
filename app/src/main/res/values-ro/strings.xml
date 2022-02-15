@@ -92,9 +92,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vei putea trimite mesaje și vă veți putea apela reciproc, iar numele și fotografia ta va fi împărtășită cu ei.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Persoanele blocate nu vor putea să te sune sau să îți trimită mesaje.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blochează știrile și actualizările de la Signal.</string>
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blochează știrile și informările Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Primește din nou actualizări și știri de la Signal.</string>
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Primește din nou informări și știri Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Deblochezi %1$s?</string>
   <string name="BlockUnblockDialog_block">Blochează</string>
   <string name="BlockUnblockDialog_block_and_leave">Blochează și părăsește</string>
@@ -429,7 +429,7 @@
   <string name="BackupsPreferenceFragment__last_backup">Ultimul backup: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Director backup</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificare parolă backup</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testează-ți parola de backup și asigură-te că se potrivește</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testează parola de backup și asigură-te că se potrivește</string>
   <string name="BackupsPreferenceFragment__turn_on">Activare</string>
   <string name="BackupsPreferenceFragment__turn_off">Dezactivare</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Pentru a restabili un backup, instalează o copie nouă Signal. Deschide aplicația și atinge \"Restabilire backup\", apoi selectează un fișier de backup. %1$s</string>
@@ -1082,7 +1082,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a schimbat numele grupului în \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Numele grupului a fost schimbat în \"%1$s\".</string>
   <!--GV2 description change-->
-  <string name="MessageRecord_you_changed_the_group_description">Aii schimbat descrierea grupului.</string>
+  <string name="MessageRecord_you_changed_the_group_description">Ai schimbat descrierea grupului.</string>
   <string name="MessageRecord_s_changed_the_group_description">%1$s a schimbat descrierea grupului.</string>
   <string name="MessageRecord_the_group_description_has_changed">Descrierea grupului s-a schimbat.</string>
   <!--GV2 avatar change-->
@@ -1315,6 +1315,11 @@
   <string name="RedPhone_number_not_registered">Numărul nu este înregistrat!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numărul format nu suportă apeluri securizate!</string>
   <string name="RedPhone_got_it">Am înțeles</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Un 💜 Fericit</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Arată-ți afecțiunea devenind un susținător Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Atinge aici pentru a porni camera ta</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pentru a apela pe %1$s, Signal are nevoie de acces la camera ta</string>
@@ -1375,7 +1380,8 @@
   <string name="WebRtcCallView__flip">Comută</string>
   <string name="WebRtcCallView__speaker">Difuzor</string>
   <string name="WebRtcCallView__camera">Cameră foto</string>
-  <string name="WebRtcCallView__mute">Silențios</string>
+  <string name="WebRtcCallView__unmute">Microfon</string>
+  <string name="WebRtcCallView__mute">Mut</string>
   <string name="WebRtcCallView__ring">Sună</string>
   <string name="WebRtcCallView__end_call">Închide</string>
   <!--CallParticipantsListDialog-->
@@ -3536,9 +3542,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Fii un Susținător</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Adaugă un Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nu acum</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Abonamentul tău de Susținător a fost anulat automat deoarece ai fost inactiv pentru o perioadă prea lungă de timp. Insigna ta %1$s nu mai este vizibilă pe profilul tău.</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Abonamentul tău de Susținător a fost anulat automat deoarece ai fost inactiv pentru o perioadă lungă de timp. Insigna ta %1$s nu va mai fi vizibilă pe profilul tău.</string>
+  <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Abonamentul tău de Susținător a fost anulat deoarece nu am putut procesa plata. Insigna ta nu va mai fi vizibilă pe profilul tău.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru a-ți reactiva insigna, reînnoiește acum.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reînnoiește abonamentul</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nu s-a putut procesa plata abonamentului</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Avem probleme la colectarea plății de Susținător Signal. Asigură-te că metoda ta de plată este actualizată. Dacă nu, actualizeaz-o în Google Pay. Signal va încerca să proceseze din nou plata în câteva zile.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Nu mai afișa acest mesaj</string>
   <string name="Subscription__please_contact_support_for_more_information">Te rugăm să contactezi suportul pentru mai multe informații.</string>
   <string name="Subscription__contact_support">Contactează suportul</string>
   <string name="Subscription__earn_a_s_badge">Obține o insignă %1$s</string>
@@ -3560,6 +3572,34 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dispozitivul tău nu acceptă Google Pay, așa că nu te poți abona pentru a obține o insignă. Poți totuși să sprijini Signal făcând o donație pe site-ul nostru.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Eroare de rețea. Verifică-ți conexiunea și încearcă din nou.</string>
   <string name="NetworkFailure__retry">Încearcă din nou</string>
+  <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Încearcă o altă metodă de plată sau ia legătura cu banca ta pentru mai multe informații.</string>
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Verifică dacă metoda de plată este actualizată în Google Pay și încearcă din nou.</string>
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Află mai multe</string>
+  <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Verifică dacă metoda de plată este actualizată în Google Pay și încearcă din nou. Dacă problema persistă, contactează-ți banca.</string>
+  <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Cardul tău nu suportă acest tip de achiziție. Încearcă altă metodă de plată.</string>
+  <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Cardul tău a expirat. Actualizează-ți metoda de plată în Google Pay și încearcă din nou.</string>
+  <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Deschide Google Pay</string>
+  <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Numărul tău de card este incorect. Actualizează-l în Google Pay și încearcă din nou.</string>
+  <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Numărul CVC al cardului este incorect. Actualizează-l în Google Pay și încearcă din nou.</string>
+  <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Cardul tău nu are suficiente fonduri pentru a finaliza această achiziție. Încearcă o altă metodă de plată.</string>
+  <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Luna de expirare a metodei de plată este incorectă. Actualizeaz-o în Google Pay și încearcă din nou.</string>
+  <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Anul de expirare a metodei de plată este incorect. Actualizează-l în Google Pay și încearcă din nou.</string>
+  <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Încearcă să finalizezi din nou plata sau ia legătura cu banca ta pentru mai multe informații.</string>
+  <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Încearcă din nou sau contactează-ți banca pentru mai multe informații.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Denumește profilul</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3701,6 +3741,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Nu s-a putut deschide selectorul.</string>
   <!--Description shown for the Signal Release Notes channel-->
-  <string name="ReleaseNotes__signal_release_notes_and_news">Note privind versiunea &amp; știri Signal</string>
+  <string name="ReleaseNotes__signal_release_notes_and_news">Informații despre versiune &amp; știri Signal</string>
   <!--EOF-->
 </resources>

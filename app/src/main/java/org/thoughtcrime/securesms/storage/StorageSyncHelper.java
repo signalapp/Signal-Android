@@ -161,6 +161,7 @@ public final class StorageSyncHelper {
 
     if (update.getNew().isSubscriptionManuallyCancelled()) {
       SignalStore.donationsValues().markUserManuallyCancelled();
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(null);
     } else {
       SignalStore.donationsValues().clearUserManuallyCancelled();
     }

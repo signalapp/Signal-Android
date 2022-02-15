@@ -2058,8 +2058,6 @@ public class SignalServiceMessageSender {
     for (SignalProtocolAddress address : addressesToClear) {
       store.archiveSession(address);
     }
-
-    store.clearSenderKeySharedWith(addressesToClear);
   }
 
   private List<SignalProtocolAddress> convertToProtocolAddresses(SignalServiceAddress recipient, List<Integer> devices) {

@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
@@ -14,12 +16,13 @@ import org.signal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.signal.zkgroup.receipts.ReceiptCredentialRequestContext;
 import org.signal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.signal.zkgroup.receipts.ReceiptSerial;
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.subscription.DonorBadgeNotifications;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
@@ -95,7 +98,6 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    DonorBadgeNotifications.RedemptionFailed.INSTANCE.show(context);
   }
 
   @Override
@@ -122,12 +124,12 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                                                  .blockingGet();
 
     if (response.getApplicationError().isPresent()) {
-      handleApplicationError(response);
-      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_PAYMENT_FAILURE, true).build());
+      handleApplicationError(context, response);
     } else if (response.getResult().isPresent()) {
       ReceiptCredential receiptCredential = getReceiptCredential(response.getResult().get());
 
       if (!isCredentialValid(receiptCredential)) {
+        DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(DonationErrorSource.BOOST));
         throw new IOException("Could not validate receipt credential");
       }
 
@@ -142,7 +144,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
     }
   }
 
-  private static void handleApplicationError(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
+  private static void handleApplicationError(Context context, ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
     Throwable applicationException = response.getApplicationError().get();
     switch (response.getStatus()) {
       case 204:
@@ -150,12 +152,15 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         throw new RetryableException();
       case 400:
         Log.w(TAG, "Receipt credential request failed to validate.", applicationException, true);
+        DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(DonationErrorSource.BOOST));
         throw new Exception(applicationException);
       case 402:
         Log.w(TAG, "User payment failed.", applicationException, true);
-        break;
+        DonationError.routeDonationError(context, DonationError.genericPaymentFailure(DonationErrorSource.BOOST));
+        throw new Exception(applicationException);
       case 409:
         Log.w(TAG, "Receipt already redeemed with a different request credential.", response.getApplicationError().get(), true);
+        DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(DonationErrorSource.BOOST));
         throw new Exception(applicationException);
       default:
         Log.w(TAG, "Encountered a server failure: " + response.getStatus(), applicationException, true);

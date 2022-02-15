@@ -52,7 +52,7 @@ public class AudioRecorder {
                                  .withMimeType(MediaUtil.AUDIO_AAC)
                                  .createForDraftAttachmentAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
 
-        recorder = Build.VERSION.SDK_INT >= 26 && FeatureFlags.voiceNoteRecordingV2() ? new MediaRecorderWrapper() : new AudioCodec();
+        recorder = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
         recorder.start(fds[1]);
       } catch (IOException e) {
         Log.w(TAG, e);

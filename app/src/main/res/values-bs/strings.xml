@@ -1315,6 +1315,11 @@
   <string name="RedPhone_number_not_registered">Broj nije registrovan!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Broj koji ste birali ne podržava sigurne pozive!</string>
   <string name="RedPhone_got_it">Primljeno na znanje</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Sretan dan 💜!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Pokažite svoju privrženost postavši Signal pokrovitelj.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Pritisnite ovdje da uključite video</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Da biste nazvali %1$s, Signalu je potreban pristup Vašoj kameri</string>
@@ -1375,6 +1380,7 @@
   <string name="WebRtcCallView__flip">Okreni</string>
   <string name="WebRtcCallView__speaker">Zvučnik</string>
   <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__unmute">Isključi stišavanje</string>
   <string name="WebRtcCallView__mute">Stišaj</string>
   <string name="WebRtcCallView__ring">Zvoni</string>
   <string name="WebRtcCallView__end_call">Završi razgovor</string>
@@ -3545,9 +3551,15 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Postanite pokrovitelj</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pojačajte</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Vaša pretplata automatski je otkazana jer ste predugo bili neaktivni. Vaša  \"%1$s\" značka više nije prikazana na Vašem profilu.</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Vaša pretplata automatski je otkazana jer ste predugo bili neaktivni. Vaša  \"%1$s\" značka više nije prikazana na Vašem profilu.</string>
+  <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Vaša je pretplata otkazana jer nismo mogli obraditi Vašu uplatu. Vaša značka više nije prikazana na Vašem profilu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Možete nastaviti s korištenjem Signala, ali ako želite pružiti podršku aplikaciji i ponovo aktivirati svoju značku, obnovite pretplatu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovi pretplatu</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Ne možemo obraditi uplatu</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Imamo problem s naplatom Vaše pretplate. Provjerite i potvrdite da je metod koji koristite za plaćanje ažuriran. Ukoliko nije, ažurirajte ga na Google Payu. Signal će pokušati ponovo obraditi uplatu za nekoliko dana.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ne prikazuj ovo ponovo</string>
   <string name="Subscription__please_contact_support_for_more_information">Molimo kontaktirajte podršku za više informacija.</string>
   <string name="Subscription__contact_support">Kontaktirajte podršku</string>
   <string name="Subscription__earn_a_s_badge">Zaslužite %1$s značku</string>
@@ -3569,6 +3581,34 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaš uređaj ne podržava Google Pay i zato se ne možete pretplatiti i zaslužiti značku. I dalje možete podržati Signal kroz donaciju na našoj internet-stranici.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Mrežna greška. Provjerite svoju internet-konekciju i pokušajte ponovo.</string>
   <string name="NetworkFailure__retry">Pokušaj</string>
+  <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Pokušajte koristiti drugi metod plaćanja ili kontaktirajte svoju banku za više informacija.</string>
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Provjerite je li metod plaćanja koji koristite ažuriran na Google Payu i pokušajte ponovo.</string>
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Saznajte više</string>
+  <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Provjerite je li metod plaćanja koji koristite ažuriran na Google Payu i pokušajte ponovo. Ukoliko se problem nastavi, kontaktirajte svoju banku.</string>
+  <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Vaša kartica ne podržava ovu vrstu kupovine. Pokušajte koristiti drugi metod plaćanja.</string>
+  <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Vaša je kartica istekla. Ažurirajte metod plaćanja na Google Payu i pokušajte ponovo.</string>
+  <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Idi na Google Pay</string>
+  <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Broj Vaše kartice nije tačan. Ažurirajte ga na Google Payu i pokušajte ponovo.</string>
+  <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">CVC broj Vaše kartice nije tačan. Ažurirajte ga na Google Payu i pokušajte ponovo.</string>
+  <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Na Vašoj kartici nema dovoljno sredstava da se okonča kupovina. Pokušajte koristiti drugi metod plaćanja.</string>
+  <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Datum isteka na Vašem metodu plaćanja nije tačan. Ažurirajte ga na Google Payu i pokušajte ponovo.</string>
+  <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Godina isteka na Vašem metodu plaćanja nije tačna. Ažurirajte je na Google Payu i pokušajte ponovo.</string>
+  <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Pokušajte ponovo okončati uplatu ili kontaktirajte svoju banku za više informacija.</string>
+  <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Pokušajte ponovo ili kontaktirajte svoju banku za više informacija.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Naslovite profil</string>
   <!--Hint text for create/edit notification profile name-->

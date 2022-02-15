@@ -38,7 +38,7 @@ class BadgesOverviewFragment : DSLSettingsFragment(
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     Badge.register(adapter) { badge, _, isFaded ->
       if (badge.isExpired() || isFaded) {
-        findNavController().safeNavigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToExpiredBadgeDialog(badge))
+        findNavController().safeNavigate(BadgesOverviewFragmentDirections.actionBadgeManageFragmentToExpiredBadgeDialog(badge, null))
       } else {
         ViewBadgeBottomSheetDialogFragment.show(parentFragmentManager, Recipient.self().id, badge)
       }

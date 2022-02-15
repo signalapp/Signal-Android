@@ -47,6 +47,7 @@ import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
+import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -76,10 +77,10 @@ public final class MessageDecryptionUtil {
    * caller.
    */
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
-    SignalProtocolStore  axolotlStore = ApplicationDependencies.getProtocolStore().aci();
-    SignalServiceAddress localAddress = new SignalServiceAddress(Recipient.self().requireAci(), Recipient.self().requireE164());
-    SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, SignalStore.account().getDeviceId(), axolotlStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
-    List<Job>            jobs         = new LinkedList<>();
+    SignalServiceAccountDataStore protocolStore = ApplicationDependencies.getProtocolStore().aci();
+    SignalServiceAddress          localAddress  = new SignalServiceAddress(Recipient.self().requireAci(), Recipient.self().requireE164());
+    SignalServiceCipher           cipher        = new SignalServiceCipher(localAddress, SignalStore.account().getDeviceId(), protocolStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
+    List<Job>                     jobs          = new LinkedList<>();
 
     if (envelope.isPreKeySignalMessage()) {
       jobs.add(new RefreshPreKeysJob());

@@ -33,8 +33,9 @@
             android:id="@+id/edit_profile_name_given_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="personGivenName"
             android:inputType="textPersonName"
-            android:maxLines="1" />
+            android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,8 +56,9 @@
             android:id="@+id/edit_profile_name_family_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="personFamilyName"
             android:inputType="textPersonName"
-            android:maxLines="1" />
+            android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

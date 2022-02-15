@@ -8,6 +8,8 @@ import androidx.annotation.VisibleForTesting;
 import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
 import java.util.HashMap;
@@ -37,6 +39,7 @@ public class DatabaseObserver {
   private static final String KEY_MESSAGE_UPDATE        = "MessageUpdate:";
   private static final String KEY_MESSAGE_INSERT        = "MessageInsert:";
   private static final String KEY_NOTIFICATION_PROFILES = "NotificationProfiles";
+  private static final String KEY_RECIPIENT             = "Recipient";
 
   private final Application application;
   private final Executor    executor;
@@ -250,6 +253,12 @@ public class DatabaseObserver {
   public void notifyNotificationProfileObservers() {
     runPostSuccessfulTransaction(KEY_NOTIFICATION_PROFILES, () -> {
       notifySet(notificationProfileObservers);
+    });
+  }
+
+  public void notifyRecipientChanged(@NonNull RecipientId recipientId) {
+    runPostSuccessfulTransaction(KEY_RECIPIENT + recipientId.serialize(), () -> {
+      Recipient.live(recipientId).refresh();
     });
   }
 

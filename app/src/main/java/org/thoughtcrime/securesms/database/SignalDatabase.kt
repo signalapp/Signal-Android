@@ -295,6 +295,17 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       }
     }
 
+    @JvmStatic
+    fun runInTransaction(operation: Runnable) {
+      instance!!.signalWritableDatabase.beginTransaction()
+      try {
+        operation.run()
+        instance!!.signalWritableDatabase.setTransactionSuccessful()
+      } finally {
+        instance!!.signalWritableDatabase.endTransaction()
+      }
+    }
+
     @get:JvmStatic
     @get:JvmName("attachments")
     val attachments: AttachmentDatabase

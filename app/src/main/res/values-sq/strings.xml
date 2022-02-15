@@ -1251,6 +1251,11 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="RedPhone_number_not_registered">Numër i paregjistruar!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numri që thirrët nuk mbulon thirrje me zë të sigurta!</string>
   <string name="RedPhone_got_it">E mora</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Gëzuar Ditën e 💜!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Shpalosni dhembshurinë tuaj duke u bërë një përkrahës i Signal-it.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Prekeni këtu që të ktheni te videoja juaj</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Për të thirrur %1$s, Signal-i lyp leje përdorimi të kamerës tuaj</string>
@@ -1306,6 +1311,7 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallView__flip">Ktheje më anë tjetër</string>
   <string name="WebRtcCallView__speaker">Altoparlant</string>
   <string name="WebRtcCallView__camera">Kamerë</string>
+  <string name="WebRtcCallView__unmute">Çheshtoji</string>
   <string name="WebRtcCallView__mute">Heshtoje</string>
   <string name="WebRtcCallView__ring">Bjeri ziles</string>
   <string name="WebRtcCallView__end_call">Përfundoje thirrjen</string>
@@ -3444,9 +3450,15 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bëhuni një Mbështetës</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Shtoni një Përforcim</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jo tani</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Pajtimi juaj si Mbështetës u anulua automatikisht, ngaqë qetë jo aktiv për një kohë të gjatë. Stema juaj %1$s s\’është më e dukshme te profili juaj.</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Pajtimi juaj si Mbështetës u anulua automatikisht, ngaqë qetë jo aktiv për një kohë të gjatë. Stema juaj %1$s s\’është më e dukshme te profili juaj.</string>
+  <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Pajtimi juaj si përkrahës u anulua, ngaqë s’përpunuam dot pagesën tuaj. Stema juaj s’është më e dukshme te profili juaj.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Mund të vazhdoni ta përdorni Signal-in, por që të përkrahni aplikacionin dhe të riaktivizoni stemën, rinovojeni tani.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinovoni pajtimin</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">S’bëhet dot kryerja e pagesës</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Po kemi probleme me marrjen e pagesës tuaj si Përkrahës Signal-i. Sigurohuni se metoda juaj e pagesës është e përditësuar. Nëse s’është, përditësojeni në Google Pay. Signal-i do të provojë sërish të bëjë kryerjen e pagesës pas pak ditësh.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Mos e shfaq më këtë</string>
   <string name="Subscription__please_contact_support_for_more_information">Ju lutemi, për më tepër hollësi, lidhuni më asistencën.</string>
   <string name="Subscription__contact_support">Lidhuni Me Asistencën</string>
   <string name="Subscription__earn_a_s_badge">Fitoni një stemë %1$s</string>
@@ -3468,6 +3480,34 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Pajisja juaj nuk mbulon Google Pay, ndaj s\’mund të kontribuoni për të fituar një stemë. Mundeni ende të përkrahni Signal-in duke bërë një dhurim te sajti ynë.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gabim rrjeti. Ju lutemi, kontrolloni lidhjen tuaj me rrjetin dhe riprovoni.</string>
   <string name="NetworkFailure__retry">Riprovo</string>
+  <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Provoni një metodë tjetër pagese, ose lidhuni me bankën tuaj për më tepër informacion.</string>
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Verifikoni në Google Pay se metoda juaj e pagesës është e përditësuar dhe riprovoni.</string>
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Mësoni më tepër</string>
+  <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Verifikoni në Google Pay se metoda juaj e pagesës është e përditësuar dhe riprovoni. Nëse problemi vazhdon, lidhuni me bankën tuaj.</string>
+  <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Karta juaj nuk e mbulon këtë lloj blerjeje. Provoni tjetër metodë pagese.</string>
+  <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Karta juaj ka skaduar. Përditësoni metodën tuaj të pagesës në Google Pay dhe riprovoni.</string>
+  <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Kaloni në Google Pay</string>
+  <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Numri i kartës tuaj i pasaktë. Përditësojeni në Google Pay dhe riprovoni.</string>
+  <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Numri CVC i kartës tuaj është i pasaktë. Përditësojeni në Google Pay dhe riprovoni.</string>
+  <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Karta juaj nuk ja fonde të mjaftueshme për të plotësuar këtë pagesë. Provoni një metodë tjetër pagese.</string>
+  <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Muaji i skadimit në metodën tuaj të pagesës është i pasaktë. Përditësojeni në Google Pay dhe riprovoni.</string>
+  <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Viti i skadimit në metodën tuaj të pagesës është i pasaktë. Përditësojeni në Google Pay dhe riprovoni.</string>
+  <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Riprovoni të plotësoni pagesën, ose lidhuni me bankën tuaj për më tepër informacion.</string>
+  <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Riprovoni, ose lidhuni me bankën tuaj për më tepër informacion.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Jepni emër për profilin tuaj</string>
   <!--Hint text for create/edit notification profile name-->

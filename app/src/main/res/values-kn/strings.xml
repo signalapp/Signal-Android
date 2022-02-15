@@ -1180,6 +1180,9 @@
   <string name="RedPhone_number_not_registered">ಸಂಖ್ಯೆ  ನೋಂದಾಯಿಸಲಾಗಿಲ್ಲ!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice"> ನೀವು ಡಯಲ್ ಮಾಡಿದ ಸಂಖ್ಯೆಗೆ ಸುರಕ್ಷಿತ ಧ್ವನಿ ಬೆಂಬಲವಿಲ್ಲ !</string>
   <string name="RedPhone_got_it">ಅರ್ಥವಾಯಿತು</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">ನಿಮ್ಮ ವೀಡಿಯೊವನ್ನು ಆನ್ ಮಾಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ ನಿಮ್ಮ ಕ್ಯಾಮರಾ ಪ್ರವೇಶ ಬೇಕಾಗುತ್ತದೆ</string>
@@ -1206,6 +1209,7 @@
   </plurals>
   <string name="WebRtcCallView__speaker">ಸ್ಪೀಕರ್</string>
   <string name="WebRtcCallView__camera">ಕ್ಯಾಮರಾ</string>
+  <string name="WebRtcCallView__unmute">ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="WebRtcCallView__mute">ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="WebRtcCallView__end_call">ಕರೆ ಅಂತ್ಯಗೊಳಿಸಿ</string>
   <!--CallParticipantsListDialog-->
@@ -3144,11 +3148,28 @@
   <string name="Boost__enter_custom_amount">ಕಸ್ಟಮ್‌ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ಈಗಲ್ಲ</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="Subscription__contact_support">ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
   <string name="SubscribeFragment__processing_payment">ಪೇಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string>

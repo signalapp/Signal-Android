@@ -467,7 +467,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
       if (transactionSuccessful) {
         if (recipientsNeedingRefresh.isNotEmpty()) {
-          recipientsNeedingRefresh.forEach { Recipient.live(it).refresh() }
+          recipientsNeedingRefresh.forEach { ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(it) }
           RetrieveProfileJob.enqueue(recipientsNeedingRefresh.toSet())
         }
 
@@ -752,7 +752,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   fun markNeedsSync(recipientId: RecipientId) {
     rotateStorageId(recipientId)
-    Recipient.live(recipientId).refresh()
+    ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(recipientId)
   }
 
   fun applyStorageIdUpdates(storageIds: Map<RecipientId, StorageId>) {
@@ -772,7 +772,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     for (id in storageIds.keys) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -850,7 +850,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     threads.applyStorageSyncUpdate(recipientId, update.new)
-    Recipient.live(recipientId).refresh()
+    ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(recipientId)
   }
 
   fun applyStorageSyncGroupV1Insert(insert: SignalGroupV1Record) {
@@ -858,7 +858,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     val recipientId = RecipientId.from(id)
     threads.applyStorageSyncUpdate(recipientId, insert)
-    Recipient.live(recipientId).refresh()
+    ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(recipientId)
   }
 
   fun applyStorageSyncGroupV1Update(update: StorageRecordUpdate<SignalGroupV1Record>) {
@@ -899,7 +899,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   fun applyStorageSyncGroupV2Update(update: StorageRecordUpdate<SignalGroupV2Record>) {
     val values = getValuesForStorageGroupV2(update.new, false)
 
-    val updateCount = writableDatabase.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", arrayOf(Base64.encodeBytes(update.old.id.raw)))
+    val updateCount = writableDatabase.update(TABLE_NAME, values, "$STORAGE_SERVICE_ID = ?", arrayOf(Base64.encodeBytes(update.old.id.raw)))
     if (updateCount < 1) {
       throw AssertionError("Had an update, but it didn't match any rows!")
     }
@@ -1085,7 +1085,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       writableDatabase.update(TABLE_NAME, values, where, args)
 
       for (recipientId in updated) {
-        Recipient.live(recipientId).refresh()
+        ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(recipientId)
       }
     }
   }
@@ -1112,7 +1112,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       writableDatabase.update(TABLE_NAME, values, where, args)
 
       for (recipientId in updated) {
-        Recipient.live(recipientId).refresh()
+        ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(recipientId)
       }
     }
   }
@@ -1153,7 +1153,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     database.update(TABLE_NAME, values, where, args)
 
     for (id in toUpdate) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1163,7 +1163,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(CUSTOM_CHAT_COLORS_ID, ChatColors.Id.NotSet.longValue)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1173,7 +1173,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(CUSTOM_CHAT_COLORS_ID, color.id.longValue)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1182,7 +1182,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1191,7 +1191,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(FORCE_SMS_SELECTION, if (forceSmsSelection) 1 else 0)
     }
     if (update(id, contentValues)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1201,7 +1201,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
     if (update(id, values)) {
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1210,7 +1210,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(MESSAGE_RINGTONE, notification?.toString())
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1219,7 +1219,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(CALL_RINGTONE, ringtone?.toString())
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1228,7 +1228,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(MESSAGE_VIBRATE, enabled.id)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1237,7 +1237,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(CALL_VIBRATE, enabled.id)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1248,7 +1248,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     if (update(id, values)) {
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
 
     StorageSyncHelper.scheduleSyncForDataChange()
@@ -1275,7 +1275,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     for (id in ids) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
 
     StorageSyncHelper.scheduleSyncForDataChange()
@@ -1301,7 +1301,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     writableDatabase.update(TABLE_NAME, values, query, args)
-    Recipient.live(id).refresh()
+    ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
   }
 
   fun setExpireMessages(id: RecipientId, expiration: Int) {
@@ -1309,7 +1309,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(MESSAGE_EXPIRATION_TIME, expiration)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1318,7 +1318,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(UNIDENTIFIED_ACCESS_MODE, unidentifiedAccessMode.mode)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1360,7 +1360,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyNotificationProfileObservers()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1377,7 +1378,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1386,7 +1387,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(MENTION_SETTING, mentionSetting.id)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      rotateStorageId(id)
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
 
@@ -1413,7 +1416,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     if (update(updateQuery, valuesToSet)) {
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
       return true
     }
@@ -1437,7 +1440,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     if (writableDatabase.update(TABLE_NAME, valuesToSet, selection, args) > 0) {
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       return true
     } else {
       return false
@@ -1465,7 +1468,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     val updated = update(updateQuery, values)
     if (updated) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
 
     return updated
@@ -1476,7 +1479,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     values.putNull(PROFILE_KEY_CREDENTIAL)
     if (update(id, values)) {
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1552,7 +1555,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(SYSTEM_JOINED_NAME, systemContactName)
     }
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1564,7 +1567,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
     if (update(id, contentValues)) {
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
@@ -1574,7 +1577,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(SIGNAL_PROFILE_AVATAR, profileAvatar)
     }
     if (update(id, contentValues)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       if (id == Recipient.self().id) {
         rotateStorageId(id)
         StorageSyncHelper.scheduleSyncForDataChange()
@@ -1589,7 +1592,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     if (update(id, contentValues)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1608,7 +1611,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     if (profiledUpdated) {
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
@@ -1618,7 +1621,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(NOTIFICATION_CHANNEL, notificationChannel)
     }
     if (update(id, contentValues)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1653,7 +1656,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       val rowsUpdated = database.update(TABLE_NAME, values, where, null)
       if (rowsUpdated == idWithWallpaper.size) {
         for (pair in idWithWallpaper) {
-          Recipient.live(pair.first()).refresh()
+          ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(pair.first())
           if (pair.second() != null) {
             WallpaperStorage.onWallpaperDeselected(context, Uri.parse(pair.second()))
           }
@@ -1683,7 +1686,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     if (update(id, values)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
 
     if (existingWallpaperUri != null) {
@@ -1788,7 +1791,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
     if (update(id, contentValues)) {
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
@@ -1836,7 +1839,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(USERNAME, username)
     }
     if (update(id, contentValues)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
@@ -1903,7 +1906,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
     if (update(id, contentValues)) {
       setStorageIdIfNotSet(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -1913,7 +1916,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       putNull(STORAGE_SERVICE_ID)
     }
     if (update(id, contentValues)) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -2078,7 +2081,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     } finally {
       db.setTransactionSuccessful()
       db.endTransaction()
-      updates.entries.forEach { Recipient.live(it.key).refresh() }
+      updates.entries.forEach { ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(it.key) }
     }
   }
 
@@ -2334,7 +2337,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     for (id in ids.keys) {
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -2367,7 +2370,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       writableDatabase.update(TABLE_NAME, values, query.where, query.whereArgs)
 
       for (id in idsToUpdate) {
-        Recipient.live(RecipientId.from(id)).refresh()
+        ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(RecipientId.from(id))
       }
     }
   }
@@ -2396,7 +2399,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         val count = db.update(TABLE_NAME, values, query.where, query.whereArgs)
         if (count > 0) {
           for (id in idsToUpdate) {
-            Recipient.live(RecipientId.from(id)).refresh()
+            ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(RecipientId.from(id))
           }
         }
       }
@@ -2426,7 +2429,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     } finally {
       db.endTransaction()
     }
-    Recipient.live(recipientId).refresh()
+    ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(recipientId)
   }
 
   /**
@@ -2471,7 +2474,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     if (update(query, values)) {
       val id = getByGroupId(v2Id).get()
       rotateStorageId(id)
-      Recipient.live(id).refresh()
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
 
@@ -2763,6 +2766,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(BLOCKED, if (groupV2.isBlocked) "1" else "0")
       put(MUTE_UNTIL, groupV2.muteUntil)
       put(STORAGE_SERVICE_ID, Base64.encodeBytes(groupV2.id.raw))
+      put(MENTION_SETTING, if (groupV2.notifyForMentionsWhenMuted()) MentionSetting.ALWAYS_NOTIFY.id else MentionSetting.DO_NOT_NOTIFY.id)
 
       if (groupV2.hasUnknownFields()) {
         put(STORAGE_PROTO, Base64.encodeBytes(groupV2.serializeUnknownFields()))
@@ -3085,7 +3089,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       clearSystemDataForPendingInfo()
       database.setTransactionSuccessful()
       database.endTransaction()
-      pendingRecipients.forEach { id -> Recipient.live(id).refresh() }
+      pendingRecipients.forEach { id -> ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id) }
     }
 
     private fun markAllRelevantEntriesDirty() {

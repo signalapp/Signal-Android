@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialog
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.model.IdentityRecord
-import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
@@ -41,6 +40,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 import org.whispersystems.libsignal.util.guava.Optional

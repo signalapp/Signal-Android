@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -149,6 +150,10 @@ public class ReactionSendJob extends BaseJob {
 
     Recipient targetAuthor        = message.isOutgoing() ? Recipient.self() : message.getIndividualRecipient();
     long      targetSentTimestamp = message.getDateSent();
+
+    if (targetAuthor.getId().equals(SignalStore.releaseChannelValues().getReleaseChannelRecipientId())) {
+      return;
+    }
 
     if (!remove && !reactionDatabase.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Went to add a reaction, but it's no longer present on the message!");

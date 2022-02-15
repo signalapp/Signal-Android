@@ -62,8 +62,8 @@ ktlint {
     version = "0.43.2"
 }
 
-def canonicalVersionCode = 1003
-def canonicalVersionName = "5.32.0"
+def canonicalVersionCode = 1009
+def canonicalVersionName = "5.32.6"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 5,
@@ -355,6 +355,9 @@ android {
                 output.versionCodeOverride = canonicalVersionCode * postFixSize + 5
                 def tag = getCurrentGitTag()
                 if (tag != null && tag.length() > 0) {
+                    if (tag.startsWith("v")) {
+                        tag = tag.substring(1)
+                    }
                     output.versionNameOverride = tag
                 }
             } else {

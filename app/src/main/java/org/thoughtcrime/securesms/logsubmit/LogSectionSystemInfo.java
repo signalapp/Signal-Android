@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
@@ -52,9 +53,10 @@ public class LogSectionSystemInfo implements LogSection {
                                       .append(ScreenDensity.get(context)).append(", ")
                                       .append(getScreenRefreshRate(context)).append("\n");
     builder.append("Font Scale    : ").append(context.getResources().getConfiguration().fontScale).append("\n");
-    builder.append("Android       : ").append(Build.VERSION.RELEASE).append(" (")
-                                     .append(Build.VERSION.INCREMENTAL).append(", ")
-                                     .append(Build.DISPLAY).append(")\n");
+    builder.append("Android       : ").append(Build.VERSION.RELEASE).append(", API ")
+                                      .append(Build.VERSION.SDK_INT).append(" (")
+                                      .append(Build.VERSION.INCREMENTAL).append(", ")
+                                      .append(Build.DISPLAY).append(")\n");
     builder.append("ABIs          : ").append(TextUtils.join(", ", getSupportedAbis())).append("\n");
     builder.append("Memory        : ").append(getMemoryUsage()).append("\n");
     builder.append("Memclass      : ").append(getMemoryClass(context)).append("\n");
@@ -72,6 +74,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Days Installed: ").append(VersionTracker.getDaysSinceFirstInstalled(context)).append("\n");
     builder.append("Build Variant : ").append(BuildConfig.BUILD_DISTRIBUTION_TYPE).append(BuildConfig.BUILD_ENVIRONMENT_TYPE).append(BuildConfig.BUILD_VARIANT_TYPE).append("\n");
     builder.append("Emoji Version : ").append(getEmojiVersionString(context)).append("\n");
+    builder.append("User-Agent    : ").append(StandardUserAgentInterceptor.USER_AGENT).append("\n");
     builder.append("App           : ");
     try {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))

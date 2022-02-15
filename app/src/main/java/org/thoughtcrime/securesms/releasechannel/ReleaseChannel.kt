@@ -24,6 +24,8 @@ object ReleaseChannel {
     body: String,
     threadId: Long,
     image: String? = null,
+    imageWidth: Int = 0,
+    imageHeight: Int = 0,
     serverUuid: String? = UUID.randomUUID().toString(),
     messageRanges: BodyRangeList? = null
   ): MessageDatabase.InsertResult? {
@@ -36,8 +38,8 @@ object ReleaseChannel {
         null,
         Optional.absent(),
         Optional.absent(),
-        0,
-        0,
+        imageWidth,
+        imageHeight,
         Optional.absent(),
         Optional.of(image),
         false,

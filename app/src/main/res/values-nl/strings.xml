@@ -411,7 +411,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord hebt onthouden</string>
   <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
   <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-upbestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal app en tik op “Back-upgegevens terugzetten”. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-upbestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal-app en tik op “Back-upgegevens terugzetten”. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Meer leren hierover</string>
   <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd …</string>
   <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
@@ -819,7 +819,7 @@
   <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de mms-instellingen van de provider</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
-  <string name="MediaOverviewActivity_Files">Documenten</string>
+  <string name="MediaOverviewActivity_Files">Docu­ment­en</string>
   <string name="MediaOverviewActivity_Audio">Audio</string>
   <string name="MediaOverviewActivity_All">Alles</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
@@ -1247,6 +1247,11 @@
   <string name="RedPhone_number_not_registered">Telefoonnummer niet geregistreerd!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Het ingetoetste nummer ondersteunt geen beveiligd bellen!</string>
   <string name="RedPhone_got_it">Begrepen</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Fijne 💜 valentijnsdag!</string>
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Geef Signal ook wat liefde door te helpen Signal mogelijk te maken.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tik hier om je camera aan te zetten</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal heeft toegang nodig tot je camera om %1$s te bellen</string>
@@ -1302,6 +1307,7 @@
   <string name="WebRtcCallView__flip">Omdraaien</string>
   <string name="WebRtcCallView__speaker">Luidspreker</string>
   <string name="WebRtcCallView__camera">Camera</string>
+  <string name="WebRtcCallView__unmute">Microfoon niet langer dempen</string>
   <string name="WebRtcCallView__mute">Dempen</string>
   <string name="WebRtcCallView__ring">Bellen</string>
   <string name="WebRtcCallView__end_call">Oproep beëindigen</string>
@@ -2006,7 +2012,7 @@
   <string name="arrays__images">Afbeeldingen</string>
   <string name="arrays__audio">Geluid</string>
   <string name="arrays__video">Video</string>
-  <string name="arrays__documents">Documenten</string>
+  <string name="arrays__documents">Docu­ment­en</string>
   <string name="arrays__small">Klein</string>
   <string name="arrays__normal">Normaal</string>
   <string name="arrays__large">Groot</string>
@@ -2128,7 +2134,7 @@
   <string name="preferences_storage__storage_usage">Opslaggebruik</string>
   <string name="preferences_storage__photos">Afbeeldingen</string>
   <string name="preferences_storage__videos">Video\'s</string>
-  <string name="preferences_storage__files">Documenten</string>
+  <string name="preferences_storage__files">Docu­ment­en</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Alle bestanden weergeven</string>
   <string name="preferences_storage__delete_older_messages">Oude berichten wissen?</string>
@@ -2396,7 +2402,7 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Beveiligde sessie opnieuw opzetten</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">Niet langer dempen</string>
+  <string name="conversation_muted__unmute">Meldingen niet langer dempen</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Meldingen dempen</string>
   <!--conversation-->
@@ -2604,7 +2610,7 @@
   <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>
-  <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte op je back-upbestand op te slaan.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte om je back-upbestand op te slaan.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hier om het maken van back-upbestanden in te stellen.</string>
   <string name="ProgressPreference_d_messages_so_far">%d berichten tot nu toe</string>
   <string name="RegistrationActivity_wrong_number">Verkeerd nummer</string>
@@ -2620,16 +2626,16 @@
   <string name="PhoneNumberPrivacy_my_contacts">Mijn contactpersonen</string>
   <string name="PhoneNumberPrivacy_nobody">Niemand</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Je telefoonnummer zal zichtbaar zijn voor iedere persoon en elke groep aan wie je een bericht verzend.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Iedereen die je telefoonnummer in zijn contactenlijst heeft opgeslagen zal je als een contactpersoon zien in de Signal app. Anderen zullen je kunnen vinden als ze zoeken.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Iedereen die je telefoonnummer in zijn contactenlijst heeft opgeslagen zal je als een contactpersoon zien in de Signal-app. Anderen zullen je kunnen vinden als ze zoeken.</string>
   <string name="preferences_app_protection__screen_lock">Appvergrendeling</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Vergrendel de Signal app met de Android-schermvergrendeling of vingerafdruk</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Vergrendel de Signal-app met de Android-schermvergrendeling of vingerafdruk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inactiviteitsduur voor appvergrendeling</string>
   <string name="preferences_app_protection__signal_pin">Signal-pincode</string>
   <string name="preferences_app_protection__create_a_pin">Pincode aanmaken</string>
   <string name="preferences_app_protection__change_your_pin">Pincode wijzigen</string>
   <string name="preferences_app_protection__pin_reminders">Pincode-herinneringen</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signals servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signals ontwikkelaars kunnen je informatie niet inzien.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dit is hetzelfde als twee-factor-authenticatie. Ieder die jouw telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij de Signal app registreren en gebruiken met jouw telefoonnummer, zelfs niet als ze je SIM-kaart hebben.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dit is hetzelfde als twee-factor-authenticatie. Ieder die jouw telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij de Signal-app registreren en gebruiken met jouw telefoonnummer, zelfs niet als ze je SIM-kaart hebben.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
   <string name="preferences_app_protection__turn_off">Uitschakelen</string>
   <string name="preferences_app_protection__confirm_pin">Bevestig je pincode</string>
@@ -2670,7 +2676,7 @@
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Aan het voorbereiden om verbinding te maken met je oude Android-apparaat …</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Een moment, dit duurt niet lang</string>
-  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aan het wachten tot je oude oude Android-apparaat verbinding maakt …</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aan het wachten tot je oude Android-apparaat verbinding maakt …</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om je oude Android apparaat te kunnen detecteren en om er verbinding mee te maken heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Om je oude Android apparaat te kunnen detecteren en om er verbinding mee te maken is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je oude Android apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
@@ -3254,7 +3260,7 @@
   <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>
   <string name="ConversationSettingsFragment__group_link">Groepsverwijzing voor deze groep</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
-  <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
+  <string name="ConversationSettingsFragment__unmute">Meldingen niet langer dempen</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Je heb dit gesprek in het verleden tot %1$s gedempt</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Je hebt dit gesprek in het verleden voor onbepaalde tijd gedempt</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoonnummer naar klembord gekopieerd.</string>
@@ -3439,9 +3445,15 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mogelijk maken</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nogmaals eenmalig doneren</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Je maandelijkse donaties zijn automatisch geannuleerd omdat je te lang inactief bent geweest. Je ‘%1$s’-badge is niet langer voor anderen te zien op je profiel.</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Je maandelijkse donaties zijn automatisch geannuleerd omdat je te lang inactief bent geweest. Je ‘%1$s’-badge is niet langer voor anderen te zien op je profiel.</string>
+  <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Je maandelijkse donaties zijn stopgezet omdat Signal je betaling niet kon verwerken. Je badge is niet langer op je profiel zichtbaar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Signal kan je maandelijkse donatie niet verwerken</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Het lukt Signal niet om je maandelijkse donatie af te schrijven. Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Signal zal je donatie binnen een paar dagen opnieuw proberen af te schrijven.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Dit niet opnieuw weergeven</string>
   <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
   <string name="Subscription__contact_support">Neem contact op</string>
   <string name="Subscription__earn_a_s_badge">Verdien een ‘%1$s’-badge</string>
@@ -3457,12 +3469,40 @@
   <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
   <string name="DonationsErrors__your_payment_is_still">Je overschrijving wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
-  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal app donaties te kunnen doen.</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal-app donaties te kunnen doen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donatie is mislukt</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donatie te annuleren moet je toegang hebben tot internet.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Play, daarom kun je via de app geen maandelijkse donatie maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signal\'s website.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
   <string name="NetworkFailure__retry">Opnieuw proberen</string>
+  <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probeer het via een andere betalingsmethode of neem contact op met je bank om hen om meer informatie te vragen.</string>
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Probeer het daarna opnieuw.</string>
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">Meer leren hierover</string>
+  <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Ga na dat je betalingsmethode nog steeds juist is. Werk je betalingsinformatie bij in Google Pay als dat nodig is. Probeer het daarna opnieuw. Neem contact op met je bank om hen om meer informatie te vragen als dit probleem aanhoud.</string>
+  <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Je betaalkaart ondersteunt dit type overschrijving niet. Probeer het via een andere betalingsmethode opnieuw.</string>
+  <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Je betaalkaart is verlopen. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+  <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Google Pay openen</string>
+  <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Je betaalkaartnummer is niet juist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+  <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Je betaalkaart-verificatiecode is niet juist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+  <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Er staat onvoldoende krediet op je betaalkaart om te doneren. Probeer het via een andere betalingsmethode opnieuw.</string>
+  <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">De maand waarop je betaalmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+  <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Het jaar waarop je betaalmethode verloopt is onjuist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
+  <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Probeer opnieuw om de betaling te doen of neem contact op met je bank om hen om meer informatie te vragen.</string>
+  <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Probeer het opnieuw of neem contact op met je bank om hen om meer informatie te vragen.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Geef je meldingsprofiel een naam</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3604,6 +3644,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Het openen van het belgeluid-keuzemenu is mislukt.</string>
   <!--Description shown for the Signal Release Notes channel-->
-  <string name="ReleaseNotes__signal_release_notes_and_news">Signals uitgaveopmerkingen &amp; nieuws</string>
+  <string name="ReleaseNotes__signal_release_notes_and_news">Uitgaveopmerkingen &amp; nieuws van Signal</string>
   <!--EOF-->
 </resources>

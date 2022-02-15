@@ -59,6 +59,7 @@ import androidx.core.view.ViewKt;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
@@ -121,7 +122,7 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
+import org.thoughtcrime.securesms.longmessage.LongMessageFragment;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
@@ -1574,7 +1575,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onMoreTextClicked(@NonNull RecipientId conversationRecipientId, long messageId, boolean isMms) {
       if (getContext() != null && getActivity() != null) {
-        startActivity(LongMessageActivity.getIntent(getContext(), conversationRecipientId, messageId, isMms));
+        LongMessageFragment.create(messageId, isMms).show(getChildFragmentManager(), null);
       }
     }
 
@@ -1857,7 +1858,12 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onDonateClicked() {
       if (SignalStore.donationsValues().isLikelyASustainer()) {
-        startActivity(AppSettingsActivity.boost(requireContext()));
+        NavHostFragment navHostFragment = NavHostFragment.create(R.navigation.boosts);
+
+        requireActivity().getSupportFragmentManager()
+                         .beginTransaction()
+                         .add(navHostFragment, "boost_nav")
+                         .commitNow();
       } else {
         startActivity(AppSettingsActivity.subscriptions(requireContext()));
       }

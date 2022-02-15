@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.subscribe
 
+import android.content.DialogInterface
 import android.graphics.Color
 import android.text.SpannableStringBuilder
 import androidx.appcompat.app.AlertDialog
@@ -8,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
@@ -20,22 +22,22 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationExceptions
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.Progress
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.help.HelpFragment
-import org.thoughtcrime.securesms.keyboard.findListener
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Calendar
 import java.util.Currency
@@ -63,6 +65,8 @@ class SubscribeFragment : DSLSettingsFragment(
   private lateinit var processingDonationPaymentDialog: AlertDialog
   private lateinit var donationPaymentComponent: DonationPaymentComponent
 
+  private var errorDialog: DialogInterface? = null
+
   private val viewModel: SubscribeViewModel by viewModels(
     factoryProducer = {
       SubscribeViewModel.Factory(SubscriptionsRepository(ApplicationDependencies.getDonationsService()), donationPaymentComponent.donationPaymentRepository, FETCH_SUBSCRIPTION_TOKEN_REQUEST_CODE)
@@ -75,7 +79,7 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    donationPaymentComponent = findListener()!!
+    donationPaymentComponent = requireListener()
     viewModel.refresh()
 
     BadgePreview.register(adapter)
@@ -97,10 +101,7 @@ class SubscribeFragment : DSLSettingsFragment(
     lifecycleDisposable.bindTo(viewLifecycleOwner.lifecycle)
     lifecycleDisposable += viewModel.events.subscribe {
       when (it) {
-        is DonationEvent.GooglePayUnavailableError -> Unit
-        is DonationEvent.PaymentConfirmationError -> onPaymentError(it.throwable)
         is DonationEvent.PaymentConfirmationSuccess -> onPaymentConfirmed(it.badge)
-        is DonationEvent.RequestTokenError -> onPaymentError(DonationExceptions.SetupFailed(it.throwable))
         DonationEvent.RequestTokenSuccess -> Log.w(TAG, "Successfully got request token from Google Pay")
         DonationEvent.SubscriptionCancelled -> onSubscriptionCancelled()
         is DonationEvent.SubscriptionCancellationFailed -> onSubscriptionFailedToCancel(it.throwable)
@@ -109,6 +110,13 @@ class SubscribeFragment : DSLSettingsFragment(
     lifecycleDisposable += donationPaymentComponent.googlePayResultPublisher.subscribe {
       viewModel.onActivityResult(it.requestCode, it.resultCode, it.data)
     }
+
+    lifecycleDisposable += DonationError
+      .getErrorsForSource(DonationErrorSource.SUBSCRIPTION)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { donationError ->
+        onPaymentError(donationError)
+      }
   }
 
   override fun onDestroyView() {
@@ -277,49 +285,21 @@ class SubscribeFragment : DSLSettingsFragment(
   }
 
   private fun onPaymentError(throwable: Throwable?) {
-    if (throwable is DonationExceptions.TimedOutWaitingForTokenRedemption) {
-      Log.w(TAG, "Timeout occurred while redeeming token", throwable, true)
-      MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__still_processing)
-        .setMessage(R.string.DonationsErrors__your_payment_is_still)
-        .setPositiveButton(android.R.string.ok) { dialog, _ ->
-          dialog.dismiss()
-          requireActivity().finish()
-          requireActivity().startActivity(AppSettingsActivity.manageSubscriptions(requireContext()))
-        }
-        .show()
-    } else if (throwable is DonationExceptions.SetupFailed) {
-      Log.w(TAG, "Error occurred while processing payment", throwable, true)
-      MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__error_processing_payment)
-        .setMessage(R.string.DonationsErrors__your_payment)
-        .setPositiveButton(android.R.string.ok) { dialog, _ ->
-          dialog.dismiss()
-        }
-        .show()
-    } else if (SignalStore.donationsValues().shouldCancelSubscriptionBeforeNextSubscribeAttempt) {
-      Log.w(TAG, "Stripe failed to process payment", throwable, true)
-      MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__error_processing_payment)
-        .setMessage(R.string.DonationsErrors__your_badge_could_not_be_added)
-        .setPositiveButton(R.string.Subscription__contact_support) { dialog, _ ->
-          dialog.dismiss()
-          requireActivity().finish()
-          requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
-        }
-        .show()
-    } else {
-      Log.w(TAG, "Error occurred while trying to redeem token", throwable, true)
-      MaterialAlertDialogBuilder(requireContext())
-        .setTitle(R.string.DonationsErrors__couldnt_add_badge)
-        .setMessage(R.string.DonationsErrors__your_badge_could_not)
-        .setPositiveButton(R.string.Subscription__contact_support) { dialog, _ ->
-          dialog.dismiss()
-          requireActivity().finish()
-          requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.DONATION_INDEX))
-        }
-        .show()
+    Log.w(TAG, "onPaymentError", throwable, true)
+
+    if (errorDialog != null) {
+      Log.i(TAG, "Already displaying an error dialog. Skipping.")
+      return
     }
+
+    errorDialog = DonationErrorDialogs.show(
+      requireContext(), throwable,
+      object : DonationErrorDialogs.DialogCallback() {
+        override fun onDialogDismissed() {
+          findNavController().popBackStack()
+        }
+      }
+    )
   }
 
   private fun onSubscriptionCancelled() {

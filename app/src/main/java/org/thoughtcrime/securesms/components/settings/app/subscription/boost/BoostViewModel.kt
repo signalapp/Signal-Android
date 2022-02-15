@@ -18,12 +18,14 @@ import org.signal.donations.GooglePayApi
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.StringUtil
 import org.thoughtcrime.securesms.util.livedata.Store
-import java.lang.NumberFormatException
 import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -108,11 +110,6 @@ class BoostViewModel(
       }
     )
 
-    disposables += donationPaymentRepository.isGooglePayAvailable().subscribeBy(
-      onComplete = { store.update { it.copy(isGooglePayAvailable = true) } },
-      onError = { eventPublisher.onNext(DonationEvent.GooglePayUnavailableError(it)) }
-    )
-
     disposables += currencyObservable.subscribeBy { currency ->
       store.update {
         it.copy(
@@ -146,7 +143,13 @@ class BoostViewModel(
             donationPaymentRepository.continuePayment(boost.price, paymentData).subscribeBy(
               onError = { throwable ->
                 store.update { it.copy(stage = BoostState.Stage.READY) }
-                eventPublisher.onNext(DonationEvent.PaymentConfirmationError(throwable))
+                val donationError: DonationError = if (throwable is DonationError) {
+                  throwable
+                } else {
+                  Log.w(TAG, "Failed to complete payment or redemption", throwable, true)
+                  DonationError.genericBadgeRedemptionFailure(DonationErrorSource.BOOST)
+                }
+                DonationError.routeDonationError(ApplicationDependencies.getApplication(), donationError)
               },
               onComplete = {
                 store.update { it.copy(stage = BoostState.Stage.READY) }
@@ -160,7 +163,7 @@ class BoostViewModel(
 
         override fun onError(googlePayException: GooglePayApi.GooglePayException) {
           store.update { it.copy(stage = BoostState.Stage.READY) }
-          eventPublisher.onNext(DonationEvent.RequestTokenError(googlePayException))
+          DonationError.routeDonationError(ApplicationDependencies.getApplication(), DonationError.getGooglePayRequestTokenError(DonationErrorSource.BOOST, googlePayException))
         }
 
         override fun onCancelled() {

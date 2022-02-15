@@ -1179,6 +1179,9 @@
   <string name="RedPhone_number_not_registered">نمبر رجسٹر نہیں ہے!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">جو نمبر آپ نے ڈائل کیا ہے محفوظ آواز سپورٹ نہیں کر رہا!</string>
   <string name="RedPhone_got_it">یہ مل گیا</string>
+  <!--Valentine\'s Day Megaphone-->
+  <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">آپ کی ویڈیو کو ٹرن کرنے کیلئے یہاں کلک کریں</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s کو فون کرنے کے لئے ، Signal کو آپ کے کیمرے تک رسائی کی ضرورت ہے</string>
@@ -1205,6 +1208,7 @@
   </plurals>
   <string name="WebRtcCallView__speaker">سپیکر</string>
   <string name="WebRtcCallView__camera">کیمرہ</string>
+  <string name="WebRtcCallView__unmute">غیر خاموش</string>
   <string name="WebRtcCallView__mute">خاموش</string>
   <string name="WebRtcCallView__end_call">کال ختم کریں</string>
   <!--CallParticipantsListDialog-->
@@ -3134,11 +3138,28 @@
   <string name="Boost__enter_custom_amount">اپنی مرضی کی رقم درج کریں۔</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ابھی نہیں</string>
+  <!--Copy displayed when badge expires after user inactivity-->
+  <!--Copy displayed when badge expires after payment failure-->
   <string name="Subscription__contact_support">سپورٹ سے رابطہ کریں</string>
   <string name="SubscribeFragment__processing_payment">ادائیگی پر کارروائی ہو رہی ہے…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="NetworkFailure__retry">دوبارہ کوشش کریں</string>
+  <!--Stripe decline code generic_failure-->
+  <!--Stripe decline code verify on Google Pay and try again-->
+  <!--Stripe decline code learn more action label-->
+  <string name="DeclineCode__learn_more">مزید پڑھیں</string>
+  <!--Stripe decline code contact issuer-->
+  <!--Stripe decline code purchase not supported-->
+  <!--Stripe decline code your card has expired-->
+  <!--Stripe decline code go to google pay action label-->
+  <!--Stripe decline code incorrect card number-->
+  <!--Stripe decline code incorrect cvc-->
+  <!--Stripe decline code insufficient funds-->
+  <!--Stripe decline code incorrect expiration month-->
+  <!--Stripe decline code incorrect expiration year-->
+  <!--Stripe decline code issuer not available-->
+  <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">پروفائل کا نام</string>

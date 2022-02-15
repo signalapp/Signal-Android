@@ -127,6 +127,11 @@ public final class SpanUtil {
     return imageSpan;
   }
 
+  public static void appendCenteredImageSpan(@NonNull SpannableStringBuilder builder, @NonNull Drawable drawable, int width, int height) {
+    drawable.setBounds(0, 0, ViewUtil.dpToPx(width), ViewUtil.dpToPx(height));
+    builder.append(" ").append(SpanUtil.buildCenteredImageSpan(drawable));
+  }
+
   public static CharSequence learnMore(@NonNull Context context,
                                        @ColorInt int color,
                                        @NonNull View.OnClickListener onLearnMoreClicked)

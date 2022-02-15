@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +44,9 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ContextUtil;
+import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -170,16 +175,16 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
       String name = recipient.isSelf() ? requireContext().getString(R.string.note_to_self)
                                        : recipient.getDisplayName(requireContext());
-      fullName.setText(name);
       fullName.setVisibility(TextUtils.isEmpty(name) ? View.GONE : View.VISIBLE);
+      SpannableStringBuilder nameBuilder = new SpannableStringBuilder(name);
       if (recipient.isSystemContact() && !recipient.isSelf()) {
-        fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_profile_circle_outline_16, 0);
-        fullName.setCompoundDrawablePadding(ViewUtil.dpToPx(4));
-        TextViewCompat.setCompoundDrawableTintList(fullName, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_text_primary)));
+        Drawable systemContact = DrawableUtil.tint(ContextUtil.requireDrawable(requireContext(), R.drawable.ic_profile_circle_outline_16),
+                                                   ContextCompat.getColor(requireContext(), R.color.signal_text_primary));
+        SpanUtil.appendCenteredImageSpan(nameBuilder, systemContact, 16, 16);
       } else if (recipient.isReleaseNotes()) {
-        fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_official_28, 0);
-        fullName.setCompoundDrawablePadding(ViewUtil.dpToPx(4));
+        SpanUtil.appendCenteredImageSpan(nameBuilder, ContextUtil.requireDrawable(requireContext(), R.drawable.ic_official_28), 28, 28);
       }
+      fullName.setText(nameBuilder);
 
       String aboutText = recipient.getCombinedAboutAndEmoji();
       if (recipient.isReleaseNotes()) {

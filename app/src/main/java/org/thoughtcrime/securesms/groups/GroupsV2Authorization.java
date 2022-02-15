@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-public final class GroupsV2Authorization {
+public class GroupsV2Authorization {
 
   private static final String TAG = Log.tag(GroupsV2Authorization.class);
 

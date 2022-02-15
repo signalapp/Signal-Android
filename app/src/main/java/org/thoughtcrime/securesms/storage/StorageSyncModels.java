@@ -152,6 +152,7 @@ public final class StorageSyncModels {
                                   .setArchived(recipient.getSyncExtras().isArchived())
                                   .setForcedUnread(recipient.getSyncExtras().isForcedUnread())
                                   .setMuteUntil(recipient.getMuteUntil())
+                                  .setNotifyForMentionsWhenMuted(recipient.getMentionSetting() == RecipientDatabase.MentionSetting.ALWAYS_NOTIFY)
                                   .build();
   }
 

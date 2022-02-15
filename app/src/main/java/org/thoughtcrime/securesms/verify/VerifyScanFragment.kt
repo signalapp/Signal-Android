@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ShapeScrim
 import org.thoughtcrime.securesms.components.camera.CameraView
-import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.qr.ScanningThread
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.fragments.requireListener
 
 /**
  * QR Scanner for identity verification
@@ -29,7 +29,7 @@ class VerifyScanFragment : Fragment() {
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
-    scanListener = findListener()!!
+    scanListener = requireListener()
   }
 
   override fun onCreateView(inflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?): View? {

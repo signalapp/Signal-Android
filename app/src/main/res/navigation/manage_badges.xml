@@ -36,5 +36,10 @@
             app:argType="org.thoughtcrime.securesms.badges.models.Badge"
             app:nullable="false" />
 
+        <argument
+            android:name="cancelation_reason"
+            app:argType="string"
+            app:nullable="true" />
+
     </dialog>
 </navigation>
