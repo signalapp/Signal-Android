@@ -2,17 +2,18 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_main"
+    android:background="@color/core_black"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.thoughtcrime.securesms.imageeditor.ImageEditorView
+    <org.signal.imageeditor.core.ImageEditorView
         android:id="@+id/image_editor_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
         android:gravity="center" />
 
-    <org.thoughtcrime.securesms.scribbles.ImageEditorHud
+    <org.thoughtcrime.securesms.scribbles.ImageEditorHudV2
         android:id="@+id/scribble_hud"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log;
 import java.util.Locale;
 
 public class TelephonyUtil {
-  private static final String TAG = TelephonyUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(TelephonyUtil.class);
 
   public static TelephonyManager getManager(final Context context) {
     return (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);

@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/giphy_logo"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/giphy_logo"
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/signal_background_primary">
+
+            <FrameLayout
+                android:id="@+id/giphy_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary">
+                android:background="@color/signal_background_primary"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways">
 
-            <org.thoughtcrime.securesms.giph.ui.GiphyActivityToolbar
-                    android:id="@+id/giphy_toolbar"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:background="?attr/colorPrimary"
-                    android:theme="?attr/actionBarStyle"
-                    app:layout_scrollFlags="scroll|enterAlways"/>
-
-            <com.google.android.material.tabs.TabLayout
-                    app:tabBackground="@null"
-                    app:tabTextColor="@color/signal_text_toolbar_subtitle"
-                    app:tabSelectedTextColor="@color/signal_text_toolbar_title"
-                    app:tabIndicatorColor="@color/signal_text_toolbar_title"
-                    android:id="@+id/tab_layout"
+                <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
+                    android:id="@+id/giphy_search_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextSecure.Conversation.TabBar"
-                    android:scrollbars="horizontal"/>
+                    android:layout_gravity="center"
+                    app:search_bar_tint="@color/signal_background_secondary"
+                    app:search_hint="@string/KeyboardPagerFragment_search_giphy"
+                    app:search_icon_tint="@color/signal_icon_tint_secondary"
+                    app:show_always="true" />
+
+            </FrameLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.viewpager.widget.ViewPager
-                android:id="@+id/giphy_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <ImageView android:id="@+id/giphy_logo"
-               android:src="@drawable/poweredby_giphy"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_alignParentBottom="true"
-               android:padding="10dp"
-               android:background="@color/black"/>
+    <ImageView
+        android:id="@+id/giphy_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"
+        android:padding="10dp"
+        android:src="@drawable/poweredby_giphy" />
 
 </RelativeLayout>

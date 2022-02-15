@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+            android:id="@+id/payment_recipient_selection_fragment_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:theme="?attr/settingsToolbarStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:titleTextAppearance="@style/Signal.Text.Title"
+            app:title="@string/PaymentRecipientSelectionFragment__new_payment" />
+
+        <org.thoughtcrime.securesms.components.ContactFilterView
+            android:id="@+id/contact_filter_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="@dimen/dsl_settings_gutter"
+            android:minHeight="44dp" />
+
+
+        <FrameLayout
+            android:id="@+id/contact_selection_list_fragment_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

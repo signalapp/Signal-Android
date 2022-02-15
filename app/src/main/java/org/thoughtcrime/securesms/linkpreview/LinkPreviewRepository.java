@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -55,6 +55,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifes
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.IDN;
 import java.util.concurrent.ExecutionException;
 
 import okhttp3.CacheControl;
@@ -65,7 +66,7 @@ import okhttp3.Response;
 
 public class LinkPreviewRepository {
 
-  private static final String TAG = LinkPreviewRepository.class.getSimpleName();
+  private static final String TAG = Log.tag(LinkPreviewRepository.class);
 
   private static final CacheControl NO_CACHE = new CacheControl.Builder().noCache().build();
 
@@ -193,7 +194,7 @@ public class LinkPreviewRepository {
         if (bitmap != null) bitmap.recycle();
 
         callback.accept(thumbnail);
-      } catch (IOException e) {
+      } catch (IOException | IllegalArgumentException e) {
         Log.w(TAG, "Exception during link preview image retrieval.", e);
         controller.cancel();
         callback.accept(Optional.absent());
@@ -259,8 +260,7 @@ public class LinkPreviewRepository {
 
         GroupMasterKey                      groupMasterKey = groupInviteLinkUrl.getGroupMasterKey();
         GroupId.V2                          groupId        = GroupId.v2(groupMasterKey);
-        Optional<GroupDatabase.GroupRecord> group          = DatabaseFactory.getGroupDatabase(context)
-                                                                            .getGroup(groupId);
+        Optional<GroupDatabase.GroupRecord> group          = SignalDatabase.groups().getGroup(groupId);
 
         if (group.isPresent()) {
           Log.i(TAG, "Creating preview for locally available group");
@@ -342,6 +342,7 @@ public class LinkPreviewRepository {
                                          bitmap.getHeight(),
                                          null,
                                          null,
+                                         false,
                                          false,
                                          false,
                                          false,

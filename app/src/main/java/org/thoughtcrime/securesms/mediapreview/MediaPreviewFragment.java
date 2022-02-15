@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -24,21 +24,23 @@ public abstract class MediaPreviewFragment extends Fragment {
   static final String DATA_SIZE         = "DATA_SIZE";
   static final String DATA_CONTENT_TYPE = "DATA_CONTENT_TYPE";
   static final String AUTO_PLAY         = "AUTO_PLAY";
+  static final String VIDEO_GIF         = "VIDEO_GIF";
 
   private   AttachmentId attachmentId;
   protected Events       events;
 
   public static MediaPreviewFragment newInstance(@NonNull Attachment attachment, boolean autoPlay) {
-    return newInstance(attachment.getUri(), attachment.getContentType(), attachment.getSize(), autoPlay);
+    return newInstance(attachment.getUri(), attachment.getContentType(), attachment.getSize(), autoPlay, attachment.isVideoGif());
   }
 
-  public static MediaPreviewFragment newInstance(@NonNull Uri dataUri, @NonNull String contentType, long size, boolean autoPlay) {
+  public static MediaPreviewFragment newInstance(@NonNull Uri dataUri, @NonNull String contentType, long size, boolean autoPlay, boolean isVideoGif) {
     Bundle args = new Bundle();
 
     args.putParcelable(MediaPreviewFragment.DATA_URI, dataUri);
     args.putString(MediaPreviewFragment.DATA_CONTENT_TYPE, contentType);
     args.putLong(MediaPreviewFragment.DATA_SIZE, size);
     args.putBoolean(MediaPreviewFragment.AUTO_PLAY, autoPlay);
+    args.putBoolean(MediaPreviewFragment.VIDEO_GIF, isVideoGif);
 
     MediaPreviewFragment fragment = createCorrectFragmentType(contentType);
 
@@ -83,13 +85,13 @@ public abstract class MediaPreviewFragment extends Fragment {
     return null;
   }
 
-  public void checkMediaStillAvailable() {
+  private void checkMediaStillAvailable() {
     if (attachmentId == null) {
       attachmentId = new PartUriParser(Objects.requireNonNull(requireArguments().getParcelable(DATA_URI))).getPartId();
     }
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
-                   () -> DatabaseFactory.getAttachmentDatabase(requireContext()).hasAttachment(attachmentId),
+                   () -> SignalDatabase.attachments().hasAttachment(attachmentId),
                    hasAttachment -> { if (!hasAttachment) events.mediaNotAvailable(); });
   }
 

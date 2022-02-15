@@ -26,21 +26,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.components.BoldSelectionTabItem;
+import org.thoughtcrime.securesms.components.ControllableTabLayout;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -60,7 +62,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private Toolbar                toolbar;
-  private TabLayout              tabLayout;
+  private ControllableTabLayout  tabLayout;
   private ViewPager              viewPager;
   private TextView               sortOrder;
   private View                   sortOrderArrow;
@@ -96,8 +98,8 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
 
     boolean allThreads = threadId == MediaDatabase.ALL_THREADS;
 
+    BoldSelectionTabItem.registerListeners(tabLayout);
     fillTabLayoutIfFits(tabLayout);
-
     tabLayout.setupWithViewPager(viewPager);
     viewPager.setAdapter(new MediaOverviewPagerAdapter(getSupportFragmentManager()));
 
@@ -197,7 +199,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
     if (threadId == MediaDatabase.ALL_THREADS) {
       getSupportActionBar().setTitle(R.string.MediaOverviewActivity_All_storage_use);
     } else {
-      SimpleTask.run(() -> DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId),
+      SimpleTask.run(() -> SignalDatabase.threads().getRecipientForThreadId(threadId),
         (recipient) -> {
           if (recipient != null) {
             getSupportActionBar().setTitle(recipient.getDisplayName(this));
@@ -219,7 +221,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
   }
 
   private void showSortOrderDialog(View v) {
-    new AlertDialog.Builder(MediaOverviewActivity.this)
+    new MaterialAlertDialogBuilder(MediaOverviewActivity.this)
       .setTitle(R.string.MediaOverviewActivity_Sort_by)
       .setSingleChoiceItems(R.array.MediaOverviewActivity_Sort_by,
         currentSorting.ordinal(),

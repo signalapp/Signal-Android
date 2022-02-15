@@ -1,18 +1,32 @@
 buildscript {
+    ext.kotlin_version = '1.4.32'
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://storage.googleapis.com/r8-releases/raw'
+        }
         jcenter {
             content {
                 includeVersion 'org.jetbrains.trove4j', 'trove4j', '20160824'
                 includeGroupByRegex "com\\.archinamon.*"
             }
         }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+            content {
+                includeGroupByRegex "org\\.jlleitschuh\\.gradle.*"
+            }
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
-        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0'
-        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'
+        classpath 'com.android.tools:r8:3.0.73'
+        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.17'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:10.2.1"
+        classpath 'app.cash.exhaustive:exhaustive-gradle:0.1.1'
     }
 }
 
@@ -24,6 +38,8 @@ ext {
     MINIMUM_SDK = 19
 
     JAVA_VERSION = JavaVersion.VERSION_1_8
+
+    LIBSIGNAL_CLIENT_VERSION = '0.9.4'
 }
 
 wrapper {
@@ -33,7 +49,8 @@ wrapper {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        mavenLocal()
     }
 }
 
@@ -49,13 +66,27 @@ subprojects {
             }
         }
     }
+
+    if (project.name != "Signal-Android" && project.name != "libsignal-service" && project.name != "lintchecks" && !project.name.endsWith("-app")) {
+        task qa {
+            group 'Verification'
+            description 'Quality Assurance. Run before pushing'
+            dependsOn 'clean', 'testReleaseUnitTest', 'lintRelease'
+        }
+    }
 }
 
 task qa {
     group 'Verification'
     description 'Quality Assurance. Run before pushing.'
-    dependsOn ':Signal-Android:testPlayProdReleaseUnitTest',
+    dependsOn 'clean',
+            ':Signal-Android:testPlayProdReleaseUnitTest',
             ':Signal-Android:lintPlayProdRelease',
+            'Signal-Android:ktlintCheck',
             ':libsignal-service:test',
-            ':Signal-Android:assemblePlayProdDebug'
+            ':Signal-Android:assemblePlayProdRelease'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

@@ -86,7 +86,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     int           appCompatNightMode = getDelegate().getLocalNightMode() != AppCompatDelegate.MODE_NIGHT_UNSPECIFIED ? getDelegate().getLocalNightMode()
                                                                                                                      : AppCompatDelegate.getDefaultNightMode();
 
-    configuration.uiMode = (configuration.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | mapNightModeToConfigurationUiMode(newBase, appCompatNightMode);
+    configuration.uiMode      = (configuration.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | mapNightModeToConfigurationUiMode(newBase, appCompatNightMode);
+    configuration.orientation = Configuration.ORIENTATION_UNDEFINED;
 
     applyOverrideConfiguration(configuration);
   }

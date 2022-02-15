@@ -42,9 +42,9 @@ public class DeviceAddFragment extends LoggingFragment {
       this.overlay.setOrientation(LinearLayout.VERTICAL);
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (Build.VERSION.SDK_INT >= 21) {
       this.container.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+        @TargetApi(21)
         @Override
         public void onLayoutChange(View v, int left, int top, int right, int bottom,
                                    int oldLeft, int oldTop, int oldRight, int oldBottom)
@@ -80,7 +80,7 @@ public class DeviceAddFragment extends LoggingFragment {
   }
 
   @Override
-  public void onConfigurationChanged(Configuration newConfiguration) {
+  public void onConfigurationChanged(@NonNull Configuration newConfiguration) {
     super.onConfigurationChanged(newConfiguration);
 
     this.scannerView.onPause();
@@ -107,6 +107,4 @@ public class DeviceAddFragment extends LoggingFragment {
       this.scanningThread.setScanListener(scanListener);
     }
   }
-
-
 }

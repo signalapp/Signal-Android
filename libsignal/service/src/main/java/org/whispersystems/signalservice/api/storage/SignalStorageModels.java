@@ -4,6 +4,7 @@ import com.google.protobuf.ByteString;
 
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.whispersystems.libsignal.InvalidKeyException;
+import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.StorageItem;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class SignalStorageModels {
+
+  private static final String TAG = SignalStorageModels.class.getSimpleName();
 
   public static SignalStorageManifest remoteToLocalStorageManifest(StorageManifest manifest, StorageKey storageKey) throws IOException, InvalidKeyException {
     byte[]          rawRecord      = SignalStorageCipher.decrypt(storageKey.deriveManifestKey(manifest.getVersion()), manifest.getValue().toByteArray());
@@ -42,6 +45,9 @@ public final class SignalStorageModels {
     } else if (record.hasAccount() && type == ManifestRecord.Identifier.Type.ACCOUNT_VALUE) {
       return SignalStorageRecord.forAccount(id, new SignalAccountRecord(id, record.getAccount()));
     } else {
+      if (StorageId.isKnownType(type)) {
+        Log.w(TAG, "StorageId is of known type (" + type + "), but the data is bad! Falling back to unknown.");
+      }
       return SignalStorageRecord.forUnknown(StorageId.forType(key, type));
     }
   }

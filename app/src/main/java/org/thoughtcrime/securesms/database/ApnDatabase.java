@@ -37,7 +37,7 @@ import java.io.IOException;
  * Database to query APN and MMSC information
  */
 public class ApnDatabase {
-  private static final String TAG = ApnDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(ApnDatabase.class);
 
   private final SQLiteDatabase db;
   private final Context        context;

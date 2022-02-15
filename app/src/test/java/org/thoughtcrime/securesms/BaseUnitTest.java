@@ -57,7 +57,6 @@ public abstract class BaseUnitTest {
     PowerMockito.doAnswer(logAnswer).when(Log.class, "i", anyString(), anyString());
     PowerMockito.doAnswer(logAnswer).when(Log.class, "w", anyString(), anyString());
     PowerMockito.doAnswer(logAnswer).when(Log.class, "e", anyString(), anyString());
-    PowerMockito.doAnswer(logAnswer).when(Log.class, "wtf", anyString(), anyString());
 
     PowerMockito.doAnswer(new Answer<Boolean>() {
       @Override

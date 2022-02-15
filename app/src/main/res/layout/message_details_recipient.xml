@@ -11,14 +11,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingEnd="@dimen/dsl_settings_gutter">
 
         <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/message_details_recipient_avatar"
             android:foreground="@drawable/contact_photo_background"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
             android:cropToPadding="true"
             tools:src="@drawable/ic_contact_picture"
             android:contentDescription="@string/SingleContactSelectionActivity_contact_photo"
@@ -27,27 +30,38 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <org.thoughtcrime.securesms.badges.BadgeImageView
+            android:id="@+id/message_details_recipient_badge"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="22dp"
+            android:contentDescription="@string/ImageView__badge"
+            app:badge_size="medium"
+            app:layout_constraintStart_toStartOf="@id/message_details_recipient_avatar"
+            app:layout_constraintTop_toTopOf="@id/message_details_recipient_avatar" />
+
         <org.thoughtcrime.securesms.components.FromTextView
             android:id="@+id/message_details_recipient_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/signal_text_primary"
             android:singleLine="true"
             tools:text="Jules Bonnot"
             android:ellipsize="marquee"
             app:layout_constraintStart_toEndOf="@+id/message_details_recipient_avatar"
-            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_timestamp"
+            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_ud_indicator"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/message_details_recipient_error_description"/>
+            app:layout_constraintBottom_toTopOf="@+id/message_details_recipient_error_description"
+            style="@style/Signal.Text.Body"/>
 
         <TextView android:id="@+id/message_details_recipient_error_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFF44336"
             android:visibility="gone"
-            tools:visibility="visible"
+            tools:visibility="gone"
             tools:text="New identity"
             app:layout_constraintStart_toStartOf="@+id/message_details_recipient_name"
             app:layout_constraintTop_toBottomOf="@+id/message_details_recipient_name"
@@ -57,11 +71,13 @@
             android:id="@+id/message_details_recipient_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="05/27/20 1:32 PM"
-            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_name"
-            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_conflict_button"
+            android:textColor="@color/signal_text_secondary"
+            tools:text="1:32 pm"
+            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_conflict_button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/Signal.Text.Preview"/>
 
         <Button
             android:id="@+id/message_details_recipient_conflict_button"
@@ -75,8 +91,8 @@
             android:drawableStart="@drawable/ic_error_white_18dp"
             android:text="@string/message_recipients_list_item__view"
             android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_timestamp"
-            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_ud_indicator"
+            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_ud_indicator"
+            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_timestamp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:visibility="gone" />
@@ -85,14 +101,14 @@
             android:id="@+id/message_details_recipient_ud_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/ic_unidentified_delivery"
-            android:tint="@color/signal_text_secondary"
-            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_conflict_button"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="9dp"
+            app:srcCompat="@drawable/ic_unidentified_delivery"
+            android:tint="@color/signal_text_hint"
+            app:layout_constraintStart_toEndOf="@+id/message_details_recipient_name"
+            app:layout_constraintEnd_toStartOf="@+id/message_details_recipient_conflict_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

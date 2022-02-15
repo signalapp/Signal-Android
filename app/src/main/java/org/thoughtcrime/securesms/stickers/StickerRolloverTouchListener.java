@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyboard.sticker.KeyboardStickerListAdapter;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.Pair;
@@ -24,10 +25,10 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
   private WeakReference<View> currentView;
   private boolean             hoverMode;
 
-  StickerRolloverTouchListener(@NonNull Context context,
-                               @NonNull GlideRequests glideRequests,
-                               @NonNull RolloverEventListener eventListener,
-                               @NonNull RolloverStickerRetriever stickerRetriever)
+  public StickerRolloverTouchListener(@NonNull Context context,
+                                      @NonNull GlideRequests glideRequests,
+                                      @NonNull RolloverEventListener eventListener,
+                                      @NonNull RolloverStickerRetriever stickerRetriever)
   {
     this.eventListener    = eventListener;
     this.stickerRetriever = stickerRetriever;
@@ -57,7 +58,7 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
           View child = recyclerView.getChildAt(i);
 
           if (ViewUtil.isPointInsideView(recyclerView, motionEvent.getRawX(), motionEvent.getRawY()) &&
-              ViewUtil.isPointInsideView(child, motionEvent.getRawX(), motionEvent.getRawY())        &&
+              ViewUtil.isPointInsideView(child, motionEvent.getRawX(), motionEvent.getRawY()) &&
               child != currentView.get())
           {
             showStickerForView(recyclerView, child);
@@ -72,25 +73,35 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
   public void onRequestDisallowInterceptTouchEvent(boolean b) {
   }
 
-  void enterHoverMode(@NonNull RecyclerView recyclerView, View targetView) {
+  public void enterHoverMode(@NonNull RecyclerView recyclerView, View targetView) {
     this.hoverMode = true;
     showStickerForView(recyclerView, targetView);
+  }
+
+  public void enterHoverMode(@NonNull RecyclerView recyclerView, @NonNull KeyboardStickerListAdapter.Sticker sticker) {
+    this.hoverMode = true;
+    showSticker(recyclerView, sticker.getUri(), sticker.getStickerRecord().getEmoji());
   }
 
   private void showStickerForView(@NonNull RecyclerView recyclerView, @NonNull View view) {
     Pair<Object, String> stickerData = stickerRetriever.getStickerDataFromView(view);
 
     if (stickerData != null) {
-      if (!popup.isShowing()) {
-        popup.showAtLocation(recyclerView, Gravity.NO_GRAVITY, 0, 0);
-        eventListener.onStickerPopupStarted();
-      }
-      popup.presentSticker(stickerData.first(), stickerData.second());
+      showSticker(recyclerView, stickerData.first(), stickerData.second());
     }
+  }
+
+  private void showSticker(@NonNull RecyclerView recyclerView, @NonNull Object toLoad, @NonNull String emoji) {
+    if (!popup.isShowing()) {
+      popup.showAtLocation(recyclerView, Gravity.NO_GRAVITY, 0, 0);
+      eventListener.onStickerPopupStarted();
+    }
+    popup.presentSticker(toLoad, emoji);
   }
 
   public interface RolloverEventListener {
     void onStickerPopupStarted();
+
     void onStickerPopupEnded();
   }
 

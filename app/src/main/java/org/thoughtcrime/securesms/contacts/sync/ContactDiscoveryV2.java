@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.push.IasTrustStore;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedQuoteException;
@@ -66,8 +67,8 @@ class ContactDiscoveryV2 {
     KeyStore                    iasKeyStore    = getIasKeyStore(context);
 
     try {
-      Map<String, UUID>                     results      = accountManager.getRegisteredUsers(iasKeyStore, sanitizedNumbers, BuildConfig.CDS_MRENCLAVE);
-      FuzzyPhoneNumberHelper.OutputResultV2 outputResult = FuzzyPhoneNumberHelper.generateOutputV2(results, inputResult);
+      Map<String, ACI>                    results      = accountManager.getRegisteredUsers(iasKeyStore, sanitizedNumbers, BuildConfig.CDS_MRENCLAVE);
+      FuzzyPhoneNumberHelper.OutputResult outputResult = FuzzyPhoneNumberHelper.generateOutput(results, inputResult);
 
       return new DirectoryResult(outputResult.getNumbers(), outputResult.getRewrites(), ignoredNumbers);
     } catch (SignatureException | UnauthenticatedQuoteException | UnauthenticatedResponseException | Quote.InvalidQuoteFormatException |InvalidKeyException e) {

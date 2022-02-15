@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
@@ -77,7 +77,7 @@ public class StickerDownloadJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    StickerDatabase db = DatabaseFactory.getStickerDatabase(context);
+    StickerDatabase db = SignalDatabase.stickers();
 
     StickerRecord stickerRecord = db.getSticker(sticker.getPackId(), sticker.getStickerId(), sticker.isCover());
     if (stickerRecord != null) {

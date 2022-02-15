@@ -12,6 +12,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -274,6 +275,10 @@ public final class DecryptedGroupUtil {
 
     applyModifyTitleAction(builder, change);
 
+    applyModifyDescriptionAction(builder, change);
+
+    applyModifyIsAnnouncementGroupAction(builder, change);
+
     applyModifyAvatarAction(builder, change);
 
     applyModifyDisappearingMessagesTimerAction(builder, change);
@@ -402,6 +407,19 @@ public final class DecryptedGroupUtil {
       builder.setTitle(change.getNewTitle().getValue());
     }
   }
+
+  protected static void applyModifyDescriptionAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
+    if (change.hasNewDescription()) {
+      builder.setDescription(change.getNewDescription().getValue());
+    }
+  }
+
+  protected static void applyModifyIsAnnouncementGroupAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
+    if (change.getNewIsAnnouncementGroup() != EnabledState.UNKNOWN) {
+      builder.setIsAnnouncementGroup(change.getNewIsAnnouncementGroup());
+    }
+  }
+
 
   protected static void applyModifyAvatarAction(DecryptedGroup.Builder builder, DecryptedGroupChange change) {
     if (change.hasNewAvatar()) {
@@ -572,17 +590,22 @@ public final class DecryptedGroupUtil {
            !change.hasNewTitle()                          && // field 10
            !change.hasNewAvatar()                         && // field 11
            !change.hasNewTimer()                          && // field 12
-           isSet(change.getNewAttributeAccess())          && // field 13
-           isSet(change.getNewMemberAccess())             && // field 14
-           isSet(change.getNewInviteLinkAccess())         && // field 15
+           isEmpty(change.getNewAttributeAccess())        && // field 13
+           isEmpty(change.getNewMemberAccess())           && // field 14
+           isEmpty(change.getNewInviteLinkAccess())       && // field 15
            change.getNewRequestingMembersCount()     == 0 && // field 16
            change.getDeleteRequestingMembersCount()  == 0 && // field 17
            change.getPromoteRequestingMembersCount() == 0 && // field 18
-           change.getNewInviteLinkPassword().size()  == 0;   // field 19
+           change.getNewInviteLinkPassword().size()  == 0 && // field 19
+           !change.hasNewDescription()                    && // field 20
+           isEmpty(change.getNewIsAnnouncementGroup());       // field 20
   }
 
-  static boolean isSet(AccessControl.AccessRequired newAttributeAccess) {
+  static boolean isEmpty(AccessControl.AccessRequired newAttributeAccess) {
     return newAttributeAccess == AccessControl.AccessRequired.UNKNOWN;
   }
 
+  static boolean isEmpty(EnabledState enabledState) {
+    return enabledState == EnabledState.UNKNOWN;
+  }
 }

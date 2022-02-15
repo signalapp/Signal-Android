@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Image Editor Sample App</string>
+    <string name="app_name_short">Image Editor</string>
+
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="crop">Crop</string>
+    <string name="done">Done</string>
+    <string name="save">Save</string>
+    <string name="draw">Draw</string>
+    <string name="rotate_90_right">Rotate 90 right</string>
+    <string name="rotate_90_left">Rotate 90 left</string>
+    <string name="flip_horizontal">Flip horizontal</string>
+    <string name="flip_vertical">Flip vertical</string>
+    <string name="edit_text">Edit Text</string>
+    <string name="lock_crop_aspect">Lock crop aspect</string>
+</resources>

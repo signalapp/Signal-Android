@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="13dp"
+    android:paddingBottom="13dp"
+    android:gravity="center_vertical"
+    android:background="?selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/signal_context_menu_item_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:src="@drawable/ic_archive_24dp"/>
+
+    <TextView
+        android:id="@+id/signal_context_menu_item_title"
+        android:textAppearance="@style/TextAppearance.Signal.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        tools:text="Archive" />
+
+</LinearLayout>

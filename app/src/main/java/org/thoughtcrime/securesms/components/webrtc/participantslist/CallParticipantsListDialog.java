@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 
 import java.util.ArrayList;
 import java.util.List;

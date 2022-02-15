@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.conversation;
 import android.app.Activity;
 import android.graphics.PointF;
 import android.view.MotionEvent;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -25,9 +23,8 @@ final class ConversationReactionDelegate {
   private final PointF                            lastSeenDownPoint = new PointF();
 
   private ConversationReactionOverlay.OnReactionSelectedListener onReactionSelectedListener;
-  private Toolbar.OnMenuItemClickListener                        onToolbarItemClickedListener;
+  private ConversationReactionOverlay.OnActionSelectedListener   onActionSelectedListener;
   private ConversationReactionOverlay.OnHideListener             onHideListener;
-  private float                                                  translationY;
 
   ConversationReactionDelegate(@NonNull Stub<ConversationReactionOverlay> overlayStub) {
     this.overlayStub = overlayStub;
@@ -38,28 +35,20 @@ final class ConversationReactionDelegate {
   }
 
   void show(@NonNull Activity activity,
-            @NonNull View maskTarget,
             @NonNull Recipient conversationRecipient,
-            @NonNull MessageRecord messageRecord,
-            int maskPaddingBottom)
+            @NonNull ConversationMessage conversationMessage,
+            boolean isNonAdminInAnnouncementGroup,
+            @NonNull SelectedConversationModel selectedConversationModel)
   {
-    resolveOverlay().show(activity, maskTarget, conversationRecipient, messageRecord, maskPaddingBottom, lastSeenDownPoint);
-  }
-
-  void showMask(@NonNull View maskTarget, int maskPaddingTop, int maskPaddingBottom) {
-    resolveOverlay().showMask(maskTarget, maskPaddingTop, maskPaddingBottom);
+    resolveOverlay().show(activity, conversationRecipient, conversationMessage, lastSeenDownPoint, isNonAdminInAnnouncementGroup, selectedConversationModel);
   }
 
   void hide() {
     overlayStub.get().hide();
   }
 
-  void hideAllButMask() {
-    overlayStub.get().hideAllButMask();
-  }
-
-  void hideMask() {
-    overlayStub.get().hideMask();
+  void hideForReactWithAny() {
+    overlayStub.get().hideForReactWithAny();
   }
 
   void setOnReactionSelectedListener(@NonNull ConversationReactionOverlay.OnReactionSelectedListener onReactionSelectedListener) {
@@ -70,11 +59,11 @@ final class ConversationReactionDelegate {
     }
   }
 
-  void setOnToolbarItemClickedListener(@NonNull Toolbar.OnMenuItemClickListener onToolbarItemClickedListener) {
-    this.onToolbarItemClickedListener = onToolbarItemClickedListener;
+  void setOnActionSelectedListener(@NonNull ConversationReactionOverlay.OnActionSelectedListener onActionSelectedListener) {
+    this.onActionSelectedListener = onActionSelectedListener;
 
     if (overlayStub.resolved()) {
-      overlayStub.get().setOnToolbarItemClickedListener(onToolbarItemClickedListener);
+      overlayStub.get().setOnActionSelectedListener(onActionSelectedListener);
     }
   }
 
@@ -83,14 +72,6 @@ final class ConversationReactionDelegate {
 
     if (overlayStub.resolved()) {
       overlayStub.get().setOnHideListener(onHideListener);
-    }
-  }
-
-  void setListVerticalTranslation(float translationY) {
-    this.translationY = translationY;
-
-    if (overlayStub.resolved()) {
-      overlayStub.get().setListVerticalTranslation(translationY);
     }
   }
 
@@ -115,10 +96,10 @@ final class ConversationReactionDelegate {
 
   private @NonNull ConversationReactionOverlay resolveOverlay() {
     ConversationReactionOverlay overlay = overlayStub.get();
+    overlay.requestFitSystemWindows();
 
-    overlay.setListVerticalTranslation(translationY);
     overlay.setOnHideListener(onHideListener);
-    overlay.setOnToolbarItemClickedListener(onToolbarItemClickedListener);
+    overlay.setOnActionSelectedListener(onActionSelectedListener);
     overlay.setOnReactionSelectedListener(onReactionSelectedListener);
 
     return overlay;

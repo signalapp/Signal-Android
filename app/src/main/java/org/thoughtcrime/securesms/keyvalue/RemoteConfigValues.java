@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 
+import java.util.Collections;
+import java.util.List;
+
 public final class RemoteConfigValues extends SignalStoreValues {
 
   private static final String TAG = Log.tag(RemoteConfigValues.class);
@@ -18,6 +21,11 @@ public final class RemoteConfigValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public String getCurrentConfig() {

@@ -3,14 +3,20 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+/**
+ * Just runs a storage sync. Useful if you've started syncing a new field to storage service.
+ */
 public class StorageServiceMigrationJob extends MigrationJob {
 
   private static final String TAG = Log.tag(StorageServiceMigrationJob.class);
@@ -37,6 +43,13 @@ public class StorageServiceMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
+    if (SignalStore.account().getAci() == null) {
+      Log.w(TAG, "Self not yet available.");
+      return;
+    }
+
+    SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
+
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
     if (TextSecurePreferences.isMultiDevice(context)) {

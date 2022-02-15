@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/conversation_settings_button_strip_button_size"
+        android:layout_height="@dimen/conversation_settings_button_strip_button_size"
+        android:background="@drawable/selectable_icon_button"
+        android:padding="@dimen/conversation_settings_button_strip_button_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/signal_icon_tint_primary"
+        tools:srcCompat="@drawable/ic_bell_24" />
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:maxLines="2"
+        android:textAppearance="@style/Signal.Text.Caption"
+        app:layout_constraintEnd_toEndOf="@id/icon"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toBottomOf="@id/icon"
+        tools:text="@string/ConversationSettingsFragment__mute" />
+
+</merge>

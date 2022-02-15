@@ -18,37 +18,32 @@ public final class LogRecorder extends Log.Logger {
   private final List<Entry> wtf         = new ArrayList<>();
 
   @Override
-  public void v(String tag, String message, Throwable t) {
+  public void v(String tag, String message, Throwable t, boolean keepLonger) {
     verbose.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void d(String tag, String message, Throwable t) {
+  public void d(String tag, String message, Throwable t, boolean keepLonger) {
     debug.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void i(String tag, String message, Throwable t) {
+  public void i(String tag, String message, Throwable t, boolean keepLonger) {
     information.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void w(String tag, String message, Throwable t) {
+  public void w(String tag, String message, Throwable t, boolean keepLonger) {
     warnings.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void e(String tag, String message, Throwable t) {
+  public void e(String tag, String message, Throwable t, boolean keepLonger) {
     errors.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void wtf(String tag, String message, Throwable t) {
-    wtf.add(new Entry(tag, message, t));
-  }
-
-  @Override
-  public void blockUntilAllWritesFinished() {
+  public void flush() {
   }
 
   public List<Entry> getVerbose() {

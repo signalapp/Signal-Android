@@ -21,6 +21,10 @@ public final class GroupDetails {
     return joinInfo.getTitle();
   }
 
+  public @NonNull String getGroupDescription() {
+    return joinInfo.getDescription();
+  }
+
   public @Nullable byte[] getAvatarBytes() {
     return avatarBytes;
   }

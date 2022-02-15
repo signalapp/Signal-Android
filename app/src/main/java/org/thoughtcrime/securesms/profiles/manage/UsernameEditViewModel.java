@@ -9,13 +9,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 class UsernameEditViewModel extends ViewModel {
@@ -73,7 +73,7 @@ class UsernameEditViewModel extends ViewModel {
     uiState.setValue(new State(ButtonState.SUBMIT_LOADING, UsernameStatus.NONE));
 
     repo.setUsername(username, (result) -> {
-      Util.runOnMain(() -> {
+      ThreadUtil.runOnMain(() -> {
         switch (result) {
           case SUCCESS:
             uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE));
@@ -100,7 +100,7 @@ class UsernameEditViewModel extends ViewModel {
     uiState.setValue(new State(ButtonState.DELETE_LOADING, UsernameStatus.NONE));
 
     repo.deleteUsername((result) -> {
-      Util.runOnMain(() -> {
+      ThreadUtil.runOnMain(() -> {
         switch (result) {
           case SUCCESS:
             uiState.postValue(new State(ButtonState.DELETE_DISABLED, UsernameStatus.NONE));

@@ -14,7 +14,6 @@ import androidx.navigation.Navigation;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -42,27 +41,12 @@ public final class ChatWallpaperActivity extends PassphraseRequiredActivity {
     dynamicTheme.onCreate(this);
     setContentView(R.layout.chat_wallpaper_activity);
 
-    Toolbar toolbar = findViewById(R.id.toolbar);
-
-    toolbar.setNavigationOnClickListener(unused -> {
-      if (!Navigation.findNavController(this, R.id.nav_host_fragment).popBackStack()) {
-        finish();
-        ActivityTransitionUtil.setSlideOutTransition(this);
-      }
-    });
-
     if (savedInstanceState == null) {
       Bundle   extras = getIntent().getExtras();
       NavGraph graph  = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
 
       Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, extras != null ? extras : new Bundle());
     }
-  }
-
-  @Override
-  public void onBackPressed() {
-    super.onBackPressed();
-    ActivityTransitionUtil.setSlideOutTransition(this);
   }
 
   @Override

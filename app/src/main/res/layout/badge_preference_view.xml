@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="16dp">
+
+    <ImageView
+        android:id="@+id/badge"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/circle_ultramarine" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/checkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:background="@drawable/circle_tintable"
+        android:elevation="4dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/v2_media_check"
+        tools:alpha="1" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:lineSpacingExtra="4sp"
+        android:lines="2"
+        android:textAlignment="center"
+        android:textAppearance="@style/Signal.Text.Caption"
+        app:layout_constraintEnd_toEndOf="@id/badge"
+        app:layout_constraintStart_toStartOf="@id/badge"
+        app:layout_constraintTop_toBottomOf="@id/badge"
+        app:layout_constraintWidth_max="64dp"
+        tools:text="Signal Sustainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

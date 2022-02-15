@@ -4,11 +4,16 @@ import android.app.Application;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
+import org.signal.core.util.concurrent.DeadlockDetector;
+import org.signal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
+import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.thoughtcrime.securesms.groups.GroupsV2AuthorizationMemoryValueCache;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
@@ -18,22 +23,35 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
-import org.thoughtcrime.securesms.net.PipeConnectivityListener;
+import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
+import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
+import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.thoughtcrime.securesms.service.PendingRetryReceiptManager;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
+import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
 import org.thoughtcrime.securesms.shakereport.ShakeToReport;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IasKeyStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
+import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
+import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.services.DonationsService;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Location for storing and retrieving application-scoped singletons. Users must call
@@ -49,9 +67,9 @@ public class ApplicationDependencies {
   private static final Object FRAME_RATE_TRACKER_LOCK = new Object();
   private static final Object JOB_MANAGER_LOCK        = new Object();
 
-  private static Application     application;
-  private static Provider        provider;
-  private static MessageNotifier messageNotifier;
+  private static Application           application;
+  private static Provider              provider;
+  private static AppForegroundObserver appForegroundObserver;
 
   private static volatile SignalServiceAccountManager  accountManager;
   private static volatile SignalServiceMessageSender   messageSender;
@@ -71,7 +89,23 @@ public class ApplicationDependencies {
   private static volatile TypingStatusSender           typingStatusSender;
   private static volatile DatabaseObserver             databaseObserver;
   private static volatile TrimThreadsByDateManager     trimThreadsByDateManager;
+  private static volatile ViewOnceMessageManager       viewOnceMessageManager;
+  private static volatile ExpiringMessageManager       expiringMessageManager;
+  private static volatile Payments                     payments;
+  private static volatile SignalCallManager            signalCallManager;
   private static volatile ShakeToReport                shakeToReport;
+  private static volatile OkHttpClient                 okHttpClient;
+  private static volatile PendingRetryReceiptManager   pendingRetryReceiptManager;
+  private static volatile PendingRetryReceiptCache     pendingRetryReceiptCache;
+  private static volatile SignalWebSocket              signalWebSocket;
+  private static volatile MessageNotifier              messageNotifier;
+  private static volatile SignalServiceDataStoreImpl   protocolStore;
+  private static volatile GiphyMp4Cache                giphyMp4Cache;
+  private static volatile SimpleExoPlayerPool          exoPlayerPool;
+  private static volatile AudioManagerCompat           audioManagerCompat;
+  private static volatile DonationsService             donationsService;
+  private static volatile DeadlockDetector             deadlockDetector;
+  private static volatile ClientZkReceiptOperations    clientZkReceiptOperations;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -80,30 +114,36 @@ public class ApplicationDependencies {
         throw new IllegalStateException("Already initialized!");
       }
 
-      ApplicationDependencies.application     = application;
-      ApplicationDependencies.provider        = provider;
-      ApplicationDependencies.messageNotifier = provider.provideMessageNotifier();
+      ApplicationDependencies.application           = application;
+      ApplicationDependencies.provider              = provider;
+      ApplicationDependencies.appForegroundObserver = provider.provideAppForegroundObserver();
+
+      ApplicationDependencies.appForegroundObserver.begin();
     }
+  }
+
+  @VisibleForTesting
+  public static boolean isInitialized() {
+    return ApplicationDependencies.application != null;
   }
 
   public static @NonNull Application getApplication() {
     return application;
   }
 
-  public static @NonNull PipeConnectivityListener getPipeListener() {
-    return provider.providePipeListener();
-  }
-
   public static @NonNull SignalServiceAccountManager getSignalServiceAccountManager() {
-    if (accountManager == null) {
-      synchronized (LOCK) {
-        if (accountManager == null) {
-          accountManager = provider.provideSignalServiceAccountManager();
-        }
-      }
+    SignalServiceAccountManager local = accountManager;
+
+    if (local != null) {
+      return local;
     }
 
-    return accountManager;
+    synchronized (LOCK) {
+      if (accountManager == null) {
+        accountManager = provider.provideSignalServiceAccountManager();
+      }
+      return accountManager;
+    }
   }
 
   public static @NonNull GroupsV2Authorization getGroupsV2Authorization() {
@@ -152,30 +192,27 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull SignalServiceMessageSender getSignalServiceMessageSender() {
-    synchronized (LOCK) {
-      if (messageSender == null) {
-        messageSender = provider.provideSignalServiceMessageSender();
-      } else {
-        messageSender.update(
-            IncomingMessageObserver.getPipe(),
-            IncomingMessageObserver.getUnidentifiedPipe(),
-            TextSecurePreferences.isMultiDevice(application));
-      }
+    SignalServiceMessageSender local = messageSender;
+
+    if (local != null) {
+      return local;
     }
 
-    return messageSender;
+    synchronized (LOCK) {
+      if (messageSender == null) {
+        messageSender = provider.provideSignalServiceMessageSender(getSignalWebSocket(), getProtocolStore());
+      }
+      return messageSender;
+    }
   }
 
   public static @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver() {
-    if (messageReceiver == null) {
-      synchronized (LOCK) {
-        if (messageReceiver == null) {
-          messageReceiver = provider.provideSignalServiceMessageReceiver();
-        }
+    synchronized (LOCK) {
+      if (messageReceiver == null) {
+        messageReceiver = provider.provideSignalServiceMessageReceiver();
       }
+      return messageReceiver;
     }
-
-    return messageReceiver;
   }
 
   public static void resetSignalServiceMessageReceiver() {
@@ -184,7 +221,7 @@ public class ApplicationDependencies {
     }
   }
 
-  public static void closeConnectionsAfterProxyFailure() {
+  public static void closeConnections() {
     synchronized (LOCK) {
       if (incomingMessageObserver != null) {
         incomingMessageObserver.terminateAsync();
@@ -203,8 +240,7 @@ public class ApplicationDependencies {
 
   public static void resetNetworkConnectionsAfterProxyChange() {
     synchronized (LOCK) {
-      getPipeListener().reset();
-      closeConnectionsAfterProxyFailure();
+      closeConnections();
     }
   }
 
@@ -297,19 +333,29 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull MessageNotifier getMessageNotifier() {
+    if (messageNotifier == null) {
+      synchronized (LOCK) {
+        if (messageNotifier == null) {
+          messageNotifier = provider.provideMessageNotifier();
+        }
+      }
+    }
     return messageNotifier;
   }
 
   public static @NonNull IncomingMessageObserver getIncomingMessageObserver() {
-    if (incomingMessageObserver == null) {
-      synchronized (LOCK) {
-        if (incomingMessageObserver == null) {
-          incomingMessageObserver = provider.provideIncomingMessageObserver();
-        }
-      }
+    IncomingMessageObserver local = incomingMessageObserver;
+
+    if (local != null) {
+      return local;
     }
 
-    return incomingMessageObserver;
+    synchronized (LOCK) {
+      if (incomingMessageObserver == null) {
+        incomingMessageObserver = provider.provideIncomingMessageObserver();
+      }
+      return incomingMessageObserver;
+    }
   }
 
   public static @NonNull TrimThreadsByDateManager getTrimThreadsByDateManager() {
@@ -324,9 +370,49 @@ public class ApplicationDependencies {
     return trimThreadsByDateManager;
   }
 
+  public static @NonNull ViewOnceMessageManager getViewOnceMessageManager() {
+    if (viewOnceMessageManager == null) {
+      synchronized (LOCK) {
+        if (viewOnceMessageManager == null) {
+          viewOnceMessageManager = provider.provideViewOnceMessageManager();
+        }
+      }
+    }
+
+    return viewOnceMessageManager;
+  }
+
+  public static @NonNull PendingRetryReceiptManager getPendingRetryReceiptManager() {
+    if (pendingRetryReceiptManager == null) {
+      synchronized (LOCK) {
+        if (pendingRetryReceiptManager == null) {
+          pendingRetryReceiptManager = provider.providePendingRetryReceiptManager();
+        }
+      }
+    }
+
+    return pendingRetryReceiptManager;
+  }
+
+  public static @NonNull ExpiringMessageManager getExpiringMessageManager() {
+    if (expiringMessageManager == null) {
+      synchronized (LOCK) {
+        if (expiringMessageManager == null) {
+          expiringMessageManager = provider.provideExpiringMessageManager();
+        }
+      }
+    }
+
+    return expiringMessageManager;
+  }
+
   public static TypingStatusRepository getTypingStatusRepository() {
     if (typingStatusRepository == null) {
-      typingStatusRepository = provider.provideTypingStatusRepository();
+      synchronized (LOCK) {
+        if (typingStatusRepository == null) {
+          typingStatusRepository = provider.provideTypingStatusRepository();
+        }
+      }
     }
 
     return typingStatusRepository;
@@ -334,7 +420,11 @@ public class ApplicationDependencies {
 
   public static TypingStatusSender getTypingStatusSender() {
     if (typingStatusSender == null) {
-      typingStatusSender = provider.provideTypingStatusSender();
+      synchronized (LOCK) {
+        if (typingStatusSender == null) {
+          typingStatusSender = provider.provideTypingStatusSender();
+        }
+      }
     }
 
     return typingStatusSender;
@@ -352,6 +442,18 @@ public class ApplicationDependencies {
     return databaseObserver;
   }
 
+  public static @NonNull Payments getPayments() {
+    if (payments == null) {
+      synchronized (LOCK) {
+        if (payments == null) {
+          payments = provider.providePayments(getSignalServiceAccountManager());
+        }
+      }
+    }
+
+    return payments;
+  }
+
   public static @NonNull ShakeToReport getShakeToReport() {
     if (shakeToReport == null) {
       synchronized (LOCK) {
@@ -364,11 +466,142 @@ public class ApplicationDependencies {
     return shakeToReport;
   }
 
+  public static @NonNull SignalCallManager getSignalCallManager() {
+    if (signalCallManager == null) {
+      synchronized (LOCK) {
+        if (signalCallManager == null) {
+          signalCallManager = provider.provideSignalCallManager();
+        }
+      }
+    }
+
+    return signalCallManager;
+  }
+
+  public static @NonNull OkHttpClient getOkHttpClient() {
+    if (okHttpClient == null) {
+      synchronized (LOCK) {
+        if (okHttpClient == null) {
+          okHttpClient = new OkHttpClient.Builder()
+              .addInterceptor(new StandardUserAgentInterceptor())
+              .dns(SignalServiceNetworkAccess.DNS)
+              .build();
+        }
+      }
+    }
+
+    return okHttpClient;
+  }
+
+  public static @NonNull AppForegroundObserver getAppForegroundObserver() {
+    return appForegroundObserver;
+  }
+
+  public static @NonNull PendingRetryReceiptCache getPendingRetryReceiptCache() {
+    if (pendingRetryReceiptCache == null) {
+      synchronized (LOCK) {
+        if (pendingRetryReceiptCache == null) {
+          pendingRetryReceiptCache = provider.providePendingRetryReceiptCache();
+        }
+      }
+    }
+
+    return pendingRetryReceiptCache;
+  }
+
+  public static @NonNull SignalWebSocket getSignalWebSocket() {
+    if (signalWebSocket == null) {
+      synchronized (LOCK) {
+        if (signalWebSocket == null) {
+          signalWebSocket = provider.provideSignalWebSocket();
+        }
+      }
+    }
+    return signalWebSocket;
+  }
+
+  public static @NonNull SignalServiceDataStoreImpl getProtocolStore() {
+    if (protocolStore == null) {
+      synchronized (LOCK) {
+        if (protocolStore == null) {
+          protocolStore = provider.provideProtocolStore();
+        }
+      }
+    }
+
+    return protocolStore;
+  }
+
+  public static @NonNull GiphyMp4Cache getGiphyMp4Cache() {
+    if (giphyMp4Cache == null) {
+      synchronized (LOCK) {
+        if (giphyMp4Cache == null) {
+          giphyMp4Cache = provider.provideGiphyMp4Cache();
+        }
+      }
+    }
+    return giphyMp4Cache;
+  }
+
+  public static @NonNull SimpleExoPlayerPool getExoPlayerPool() {
+    if (exoPlayerPool == null) {
+      synchronized (LOCK) {
+        if (exoPlayerPool == null) {
+          exoPlayerPool = provider.provideExoPlayerPool();
+        }
+      }
+    }
+    return exoPlayerPool;
+  }
+
+  public static @NonNull AudioManagerCompat getAndroidCallAudioManager() {
+    if (audioManagerCompat == null) {
+      synchronized (LOCK) {
+        if (audioManagerCompat == null) {
+          audioManagerCompat = provider.provideAndroidCallAudioManager();
+        }
+      }
+    }
+    return audioManagerCompat;
+  }
+
+  public static @NonNull DonationsService getDonationsService() {
+    if (donationsService == null) {
+      synchronized (LOCK) {
+        if (donationsService == null) {
+          donationsService = provider.provideDonationsService();
+        }
+      }
+    }
+    return donationsService;
+  }
+
+  public static @NonNull ClientZkReceiptOperations getClientZkReceiptOperations() {
+    if (clientZkReceiptOperations == null) {
+      synchronized (LOCK) {
+        if (clientZkReceiptOperations == null) {
+          clientZkReceiptOperations = provider.provideClientZkReceiptOperations();
+        }
+      }
+    }
+    return clientZkReceiptOperations;
+  }
+
+  public static @NonNull DeadlockDetector getDeadlockDetector() {
+    if (deadlockDetector == null) {
+      synchronized (LOCK) {
+        if (deadlockDetector == null) {
+          deadlockDetector = provider.provideDeadlockDetector();
+        }
+      }
+    }
+    return deadlockDetector;
+  }
+
   public interface Provider {
-    @NonNull PipeConnectivityListener providePipeListener();
     @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
-    @NonNull SignalServiceMessageSender provideSignalServiceMessageSender();
+    @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore);
     @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver();
     @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
     @NonNull IncomingMessageProcessor provideIncomingMessageProcessor();
@@ -381,9 +614,24 @@ public class ApplicationDependencies {
     @NonNull MessageNotifier provideMessageNotifier();
     @NonNull IncomingMessageObserver provideIncomingMessageObserver();
     @NonNull TrimThreadsByDateManager provideTrimThreadsByDateManager();
+    @NonNull ViewOnceMessageManager provideViewOnceMessageManager();
+    @NonNull ExpiringMessageManager provideExpiringMessageManager();
     @NonNull TypingStatusRepository provideTypingStatusRepository();
     @NonNull TypingStatusSender provideTypingStatusSender();
     @NonNull DatabaseObserver provideDatabaseObserver();
+    @NonNull Payments providePayments(@NonNull SignalServiceAccountManager signalServiceAccountManager);
     @NonNull ShakeToReport provideShakeToReport();
+    @NonNull AppForegroundObserver provideAppForegroundObserver();
+    @NonNull SignalCallManager provideSignalCallManager();
+    @NonNull PendingRetryReceiptManager providePendingRetryReceiptManager();
+    @NonNull PendingRetryReceiptCache providePendingRetryReceiptCache();
+    @NonNull SignalWebSocket provideSignalWebSocket();
+    @NonNull SignalServiceDataStoreImpl provideProtocolStore();
+    @NonNull GiphyMp4Cache provideGiphyMp4Cache();
+    @NonNull SimpleExoPlayerPool provideExoPlayerPool();
+    @NonNull AudioManagerCompat provideAndroidCallAudioManager();
+    @NonNull DonationsService provideDonationsService();
+    @NonNull DeadlockDetector provideDeadlockDetector();
+    @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations();
   }
 }

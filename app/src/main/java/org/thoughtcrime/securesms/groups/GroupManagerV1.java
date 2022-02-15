@@ -13,14 +13,11 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
-import org.thoughtcrime.securesms.jobs.LeaveGroupJob;
-import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -52,10 +49,10 @@ final class GroupManagerV1 {
                                                 @Nullable String          name,
                                                           boolean         mms)
   {
-    final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
+    final GroupDatabase groupDatabase    = SignalDatabase.groups();
     final SecureRandom  secureRandom     = new SecureRandom();
     final GroupId       groupId          = mms ? GroupId.createMms(secureRandom) : GroupId.createV1(secureRandom);
-    final RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    final RecipientId   groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     final Recipient     groupRecipient   = Recipient.resolved(groupRecipientId);
 
     memberIds.add(Recipient.self().getId());
@@ -71,7 +68,7 @@ final class GroupManagerV1 {
         Log.w(TAG, "Failed to save avatar!", e);
       }
       groupDatabase.onAvatarUpdated(groupIdV1, avatarBytes != null);
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
+      SignalDatabase.recipients().setProfileSharing(groupRecipient.getId(), true);
       return sendGroupUpdate(context, groupIdV1, memberIds, name, avatarBytes, memberIds.size() - 1);
     } else {
       groupDatabase.create(groupId.requireMms(), name, memberIds);
@@ -83,7 +80,7 @@ final class GroupManagerV1 {
       }
       groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
 
-      long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+      long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId, memberIds.size() - 1, Collections.emptyList());
     }
   }
@@ -95,8 +92,8 @@ final class GroupManagerV1 {
                                        @Nullable String           name,
                                                  int              newMemberCount)
   {
-    final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
-    final RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    final GroupDatabase groupDatabase    = SignalDatabase.groups();
+    final RecipientId   groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
 
     memberAddresses.add(Recipient.self().getId());
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberAddresses));
@@ -115,7 +112,7 @@ final class GroupManagerV1 {
       return sendGroupUpdate(context, groupIdV1, memberAddresses, name, avatarBytes, newMemberCount);
     } else {
       Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
-      long        threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      long        threadId         = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
       return new GroupActionResult(groupRecipient, threadId, newMemberCount, Collections.emptyList());
     }
   }
@@ -125,10 +122,10 @@ final class GroupManagerV1 {
                                        @Nullable byte[]      avatarBytes,
                                        @Nullable String      name)
   {
-    GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
-    RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    GroupDatabase groupDatabase    = SignalDatabase.groups();
+    RecipientId   groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     Recipient     groupRecipient   = Recipient.resolved(groupRecipientId);
-    long          threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    long          threadId         = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
 
     groupDatabase.updateTitle(groupId, name);
     groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
@@ -150,7 +147,7 @@ final class GroupManagerV1 {
                                                    int newMemberCount)
   {
     Attachment  avatarAttachment = null;
-    RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    RecipientId groupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(groupId);
     Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
 
     List<GroupContext.Member> uuidMembers = new ArrayList<>(members.size());
@@ -176,74 +173,35 @@ final class GroupManagerV1 {
 
     if (avatar != null) {
       Uri avatarUri = BlobProvider.getInstance().forData(avatar).createForSingleUseInMemory();
-      avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, false, null, null, null, null, null);
+      avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, false, false, null, null, null, null, null);
     }
 
     OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-    long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null);
+    long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null, null);
 
     return new GroupActionResult(groupRecipient, threadId, newMemberCount, Collections.emptyList());
   }
 
   @WorkerThread
   static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId) {
-    Recipient                            groupRecipient = Recipient.externalGroupExact(context, groupId);
-    long                                 threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-    Optional<OutgoingGroupUpdateMessage> leaveMessage   = createGroupLeaveMessage(context, groupId, groupRecipient);
-
-    if (threadId != -1 && leaveMessage.isPresent()) {
-      try {
-        long id = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(leaveMessage.get(), threadId, false, null);
-        DatabaseFactory.getMmsDatabase(context).markAsSent(id, true);
-      } catch (MmsException e) {
-        Log.w(TAG, "Failed to insert leave message.", e);
-      }
-      ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
-
-      GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-      groupDatabase.setActive(groupId, false);
-      groupDatabase.remove(groupId, Recipient.self().getId());
-      return true;
-    } else {
-      Log.i(TAG, "Group was already inactive. Skipping.");
-      return false;
-    }
+    return false;
   }
 
   @WorkerThread
   static boolean silentLeaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId) {
-    if (DatabaseFactory.getGroupDatabase(context).isActive(groupId)) {
-      Recipient                            groupRecipient = Recipient.externalGroupExact(context, groupId);
-      long                                 threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-      Optional<OutgoingGroupUpdateMessage> leaveMessage   = createGroupLeaveMessage(context, groupId, groupRecipient);
-
-      if (threadId != -1 && leaveMessage.isPresent()) {
-        ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
-
-        GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-        groupDatabase.setActive(groupId, false);
-        groupDatabase.remove(groupId, Recipient.self().getId());
-        return true;
-      } else {
-        Log.w(TAG, "Failed to leave group.");
-        return false;
-      }
-    } else {
-      Log.i(TAG, "Group was already inactive. Skipping.");
-      return true;
-    }
+    return false;
   }
 
   @WorkerThread
   static void updateGroupTimer(@NonNull Context context, @NonNull GroupId.V1 groupId, int expirationTime) {
-    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-    ThreadDatabase    threadDatabase    = DatabaseFactory.getThreadDatabase(context);
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
+    ThreadDatabase    threadDatabase    = SignalDatabase.threads();
     Recipient         recipient         = Recipient.externalGroupExact(context, groupId);
-    long              threadId          = threadDatabase.getThreadIdFor(recipient);
+    long              threadId          = threadDatabase.getOrCreateThreadIdFor(recipient);
 
     recipientDatabase.setExpireMessages(recipient.getId(), expirationTime);
     OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(recipient, System.currentTimeMillis(), expirationTime * 1000L);
-    MessageSender.send(context, outgoingMessage, threadId, false, null);
+    MessageSender.send(context, outgoingMessage, threadId, false, null, null);
   }
 
   @WorkerThread
@@ -251,7 +209,7 @@ final class GroupManagerV1 {
                                                                               @NonNull GroupId.V1 groupId,
                                                                               @NonNull Recipient groupRecipient)
   {
-    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase groupDatabase = SignalDatabase.groups();
 
     if (!groupDatabase.isActive(groupId)) {
       Log.w(TAG, "Group has already been left.");

@@ -40,7 +40,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class ClassicDecryptingPartInputStream {
 
-  private static final String TAG = ClassicDecryptingPartInputStream.class.getSimpleName();
+  private static final String TAG = Log.tag(ClassicDecryptingPartInputStream.class);
 
   private static final int IV_LENGTH  = 16;
   private static final int MAC_LENGTH = 20;

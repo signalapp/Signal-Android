@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.thoughtcrime.securesms.util.Base64;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -63,6 +65,11 @@ public class Data {
   public String getString(@NonNull String key) {
     throwIfAbsent(strings, key);
     return strings.get(key);
+  }
+
+  public byte[] getStringAsBlob(@NonNull String key) {
+    String raw = getString(key);
+    return raw != null ? Base64.decodeOrThrow(raw) : null;
   }
 
   public String getStringOrDefault(@NonNull String key, String defaultValue) {
@@ -346,6 +353,12 @@ public class Data {
 
     public Builder putBooleanArray(@NonNull String key, @NonNull boolean[] value) {
       booleanArrays.put(key, value);
+      return this;
+    }
+
+    public Builder putBlobAsString(@NonNull String key, @Nullable byte[] value) {
+      String serialized = value != null ? Base64.encodeBytes(value) : null;
+      strings.put(key, serialized);
       return this;
     }
 

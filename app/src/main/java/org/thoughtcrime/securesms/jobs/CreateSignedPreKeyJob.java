@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
@@ -23,7 +24,7 @@ public class CreateSignedPreKeyJob extends BaseJob {
 
   public static final String KEY = "CreateSignedPreKeyJob";
 
-  private static final String TAG = CreateSignedPreKeyJob.class.getSimpleName();
+  private static final String TAG = Log.tag(CreateSignedPreKeyJob.class);
 
   public CreateSignedPreKeyJob(Context context) {
     this(new Job.Parameters.Builder()
@@ -54,7 +55,7 @@ public class CreateSignedPreKeyJob extends BaseJob {
       return;
     }
 
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       Log.w(TAG, "Not yet registered...");
       return;
     }

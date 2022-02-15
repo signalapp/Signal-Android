@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
@@ -33,32 +34,34 @@ public final class JobSchedulerScheduler implements Scheduler {
   @RequiresApi(26)
   @Override
   public void schedule(long delay, @NonNull List<Constraint> constraints) {
-    JobScheduler jobScheduler = application.getSystemService(JobScheduler.class);
+    SignalExecutors.BOUNDED.execute(() -> {
+      JobScheduler jobScheduler = application.getSystemService(JobScheduler.class);
 
-    String constraintNames = constraints.isEmpty() ? ""
-                                                   : Stream.of(constraints)
-                                                           .map(Constraint::getJobSchedulerKeyPart)
-                                                           .withoutNulls()
-                                                           .sorted()
-                                                           .collect(Collectors.joining("-"));
+      String constraintNames = constraints.isEmpty() ? ""
+                                                     : Stream.of(constraints)
+                                                             .map(Constraint::getJobSchedulerKeyPart)
+                                                             .withoutNulls()
+                                                             .sorted()
+                                                             .collect(Collectors.joining("-"));
 
-    int jobId = constraintNames.hashCode();
+      int jobId = constraintNames.hashCode();
 
-    if (jobScheduler.getPendingJob(jobId) != null) {
-      return;
-    }
+      if (jobScheduler.getPendingJob(jobId) != null) {
+        return;
+      }
 
-    Log.i(TAG, String.format(Locale.US, "JobScheduler enqueue of %s (%d)", constraintNames, jobId));
+      Log.i(TAG, String.format(Locale.US, "JobScheduler enqueue of %s (%d)", constraintNames, jobId));
 
-    JobInfo.Builder jobInfoBuilder = new JobInfo.Builder(jobId, new ComponentName(application, SystemService.class))
-                                                .setMinimumLatency(delay)
-                                                .setPersisted(true);
+      JobInfo.Builder jobInfoBuilder = new JobInfo.Builder(jobId, new ComponentName(application, SystemService.class))
+                                                  .setMinimumLatency(delay)
+                                                  .setPersisted(true);
 
-    for (Constraint constraint : constraints) {
-      constraint.applyToJobInfo(jobInfoBuilder);
-    }
+      for (Constraint constraint : constraints) {
+        constraint.applyToJobInfo(jobInfoBuilder);
+      }
 
-    jobScheduler.schedule(jobInfoBuilder.build());
+      jobScheduler.schedule(jobInfoBuilder.build());
+    });
   }
 
   @RequiresApi(api = 26)

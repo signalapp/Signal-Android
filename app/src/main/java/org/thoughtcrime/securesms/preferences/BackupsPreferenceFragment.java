@@ -28,13 +28,14 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupDialog;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -53,6 +54,8 @@ public class BackupsPreferenceFragment extends Fragment {
   private TextView    folderName;
   private ProgressBar progress;
   private TextView    progressSummary;
+
+  private final NumberFormat formatter = NumberFormat.getInstance();
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,6 +78,9 @@ public class BackupsPreferenceFragment extends Fragment {
     create.setOnClickListener(unused -> onCreateClicked());
     verify.setOnClickListener(unused -> BackupDialog.showVerifyBackupPassphraseDialog(requireContext()));
 
+    formatter.setMinimumFractionDigits(1);
+    formatter.setMaximumFractionDigits(1);
+
     EventBus.getDefault().register(this);
   }
 
@@ -82,7 +88,6 @@ public class BackupsPreferenceFragment extends Fragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.BackupsPreferenceFragment__chat_backups);
 
     setBackupStatus();
     setBackupSummary();
@@ -121,8 +126,19 @@ public class BackupsPreferenceFragment extends Fragment {
       create.setEnabled(false);
       summary.setText(getString(R.string.BackupsPreferenceFragment__in_progress));
       progress.setVisibility(View.VISIBLE);
-      progressSummary.setVisibility(View.VISIBLE);
-      progressSummary.setText(getString(R.string.BackupsPreferenceFragment__d_so_far, event.getCount()));
+      progressSummary.setVisibility(event.getCount() > 0 ? View.VISIBLE : View.GONE);
+
+      if (event.getEstimatedTotalCount() == 0) {
+        progress.setIndeterminate(true);
+        progressSummary.setText(getString(R.string.BackupsPreferenceFragment__d_so_far, event.getCount()));
+      } else {
+        double completionPercentage = event.getCompletionPercentage();
+
+        progress.setIndeterminate(false);
+        progress.setMax(100);
+        progress.setProgress((int) completionPercentage);
+        progressSummary.setText(getString(R.string.BackupsPreferenceFragment__s_so_far, formatter.format(completionPercentage)));
+      }
     } else if (event.getType() == FullBackupBase.BackupEvent.Type.FINISHED) {
       create.setEnabled(true);
       progress.setVisibility(View.GONE);
@@ -132,7 +148,7 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void setBackupStatus() {
-    if (TextSecurePreferences.isBackupEnabled(requireContext())) {
+    if (SignalStore.settings().isBackupEnabled()) {
       if (BackupUtil.canUserAccessBackupDirectory(requireContext())) {
         setBackupsEnabled();
       } else {
@@ -190,7 +206,7 @@ public class BackupsPreferenceFragment extends Fragment {
 
   @RequiresApi(29)
   private void onToggleClickedApi29() {
-    if (!TextSecurePreferences.isBackupEnabled(requireContext())) {
+    if (!SignalStore.settings().isBackupEnabled()) {
       BackupDialog.showChooseBackupLocationDialog(this, CHOOSE_BACKUPS_LOCATION_REQUEST_CODE);
     } else {
       BackupDialog.showDisableBackupDialog(requireContext(), this::setBackupsDisabled);
@@ -202,7 +218,7 @@ public class BackupsPreferenceFragment extends Fragment {
                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                .ifNecessary()
                .onAllGranted(() -> {
-                 if (!TextSecurePreferences.isBackupEnabled(requireContext())) {
+                 if (!SignalStore.settings().isBackupEnabled()) {
                    BackupDialog.showEnableBackupDialog(requireContext(), null, null, this::setBackupsEnabled);
                  } else {
                    BackupDialog.showDisableBackupDialog(requireContext(), this::setBackupsDisabled);
@@ -250,5 +266,6 @@ public class BackupsPreferenceFragment extends Fragment {
     create.setVisibility(View.GONE);
     folder.setVisibility(View.GONE);
     verify.setVisibility(View.GONE);
+    ApplicationDependencies.getJobManager().cancelAllInQueue(LocalBackupJob.QUEUE);
   }
 }

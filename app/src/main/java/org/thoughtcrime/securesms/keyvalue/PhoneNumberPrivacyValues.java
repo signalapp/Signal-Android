@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
@@ -27,6 +28,11 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
     //getStore().beginWrite()
     //          .putInteger(LISTING_MODE, PhoneNumberListingMode.UNLISTED.ordinal())
     //          .apply();
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Arrays.asList(SHARING_MODE, LISTING_MODE);
   }
 
   public @NonNull PhoneNumberSharingMode getPhoneNumberSharingMode() {

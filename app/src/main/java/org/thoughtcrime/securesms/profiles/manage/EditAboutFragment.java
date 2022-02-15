@@ -241,7 +241,7 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     }
 
     public void bind(@NonNull AboutPreset preset) {
-      this.emoji.setImageDrawable(EmojiUtil.convertToDrawable(itemView.getContext(), preset.getEmoji()));
+      this.emoji.setImageDrawable(EmojiUtil.convertToDrawable(requireContext(), preset.getEmoji()));
       this.body.setText(preset.getBodyRes());
     }
   }

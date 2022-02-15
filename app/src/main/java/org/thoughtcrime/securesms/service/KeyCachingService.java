@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 
@@ -58,7 +59,7 @@ import java.util.concurrent.TimeUnit;
 
 public class KeyCachingService extends Service {
 
-  private static final String TAG = KeyCachingService.class.getSimpleName();
+  private static final String TAG = Log.tag(KeyCachingService.class);
 
   public static final int SERVICE_RUNNING_ID = 4141;
 
@@ -226,7 +227,7 @@ public class KeyCachingService extends Service {
   }
 
   private static void startTimeoutIfAppropriate(@NonNull Context context) {
-    boolean appVisible       = ApplicationContext.getInstance(context).isAppVisible();
+    boolean appVisible       = ApplicationDependencies.getAppForegroundObserver().isForegrounded();
     boolean secretSet        = KeyCachingService.masterSecret != null;
 
     boolean timeoutEnabled   = TextSecurePreferences.isPassphraseTimeoutEnabled(context);
@@ -288,17 +289,25 @@ public class KeyCachingService extends Service {
   private PendingIntent buildLockIntent() {
     Intent intent = new Intent(this, KeyCachingService.class);
     intent.setAction(PASSPHRASE_EXPIRED_EVENT);
-    return PendingIntent.getService(getApplicationContext(), 0, intent, 0);
+    return PendingIntent.getService(getApplicationContext(), 0, intent, getPendingIntentFlags());
   }
 
   private PendingIntent buildLaunchIntent() {
     // TODO [greyson] Navigation
-    return PendingIntent.getActivity(getApplicationContext(), 0, MainActivity.clearTop(this), 0);
+    return PendingIntent.getActivity(getApplicationContext(), 0, MainActivity.clearTop(this), getPendingIntentFlags());
   }
 
   private static PendingIntent buildExpirationPendingIntent(@NonNull Context context) {
     Intent expirationIntent = new Intent(PASSPHRASE_EXPIRED_EVENT, null, context, KeyCachingService.class);
-    return PendingIntent.getService(context, 0, expirationIntent, 0);
+    return PendingIntent.getService(context, 0, expirationIntent, getPendingIntentFlags());
+  }
+
+  private static int getPendingIntentFlags() {
+    if (Build.VERSION.SDK_INT >= 23) {
+      return PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+    } else {
+      return PendingIntent.FLAG_UPDATE_CURRENT;
+    }
   }
 
   @Override

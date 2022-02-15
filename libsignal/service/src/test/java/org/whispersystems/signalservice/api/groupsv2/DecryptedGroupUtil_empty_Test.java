@@ -9,6 +9,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.UUID;
@@ -35,7 +36,7 @@ public final class DecryptedGroupUtil_empty_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("DecryptedGroupUtil and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 19, maxFieldFound);
+                 21, maxFieldFound);
   }
 
   @Test
@@ -203,10 +204,30 @@ public final class DecryptedGroupUtil_empty_Test {
     assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
   }
 
-    @Test
+  @Test
   public void not_empty_with_a_new_invite_link_password_19() {
     DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
                                                       .setNewInviteLinkPassword(ByteString.copyFrom(new byte[16]))
+                                                      .build();
+
+    assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+  }
+
+  @Test
+  public void not_empty_with_modify_description_field_20() {
+    DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
+                                                      .setNewDescription(DecryptedString.newBuilder().setValue("New description"))
+                                                      .build();
+
+    assertFalse(DecryptedGroupUtil.changeIsEmpty(change));
+    assertFalse(DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(change));
+  }
+
+  @Test
+  public void not_empty_with_modify_announcement_field_21() {
+    DecryptedGroupChange change = DecryptedGroupChange.newBuilder()
+                                                      .setNewIsAnnouncementGroup(EnabledState.ENABLED)
                                                       .build();
 
     assertFalse(DecryptedGroupUtil.changeIsEmpty(change));

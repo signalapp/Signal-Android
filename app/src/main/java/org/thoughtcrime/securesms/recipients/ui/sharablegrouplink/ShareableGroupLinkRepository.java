@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.storageservice.protos.groups.AccessControl;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -63,13 +63,13 @@ final class ShareableGroupLinkRepository {
 
   @WorkerThread
   private GroupManager.GroupLinkState toggleGroupLinkState(boolean toggleEnabled, boolean toggleApprovalNeeded) {
-    AccessControl.AccessRequired currentState = DatabaseFactory.getGroupDatabase(context)
-                                                               .getGroup(groupId)
-                                                               .get()
-                                                               .requireV2GroupProperties()
-                                                               .getDecryptedGroup()
-                                                               .getAccessControl()
-                                                               .getAddFromInviteLink();
+    AccessControl.AccessRequired currentState = SignalDatabase.groups()
+                                                              .getGroup(groupId)
+                                                              .get()
+                                                              .requireV2GroupProperties()
+                                                              .getDecryptedGroup()
+                                                              .getAccessControl()
+                                                              .getAddFromInviteLink();
 
     boolean enabled;
     boolean approvalNeeded;

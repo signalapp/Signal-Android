@@ -24,12 +24,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        app:srcCompat="@drawable/ic_video_solid_24" />
+        app:srcCompat="@drawable/ic_video_call_24" />
 
     <ImageView
         android:id="@+id/secure_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_phone_right_solid_24" />
+        app:srcCompat="@drawable/ic_phone_right_24" />
 
 </LinearLayout>

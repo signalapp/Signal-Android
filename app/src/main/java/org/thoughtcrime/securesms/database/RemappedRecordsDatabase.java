@@ -2,12 +2,10 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.Cursor;
-
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 
@@ -44,12 +42,12 @@ public class RemappedRecordsDatabase extends Database {
                                                                                      NEW_ID + " INTEGER)";
   }
 
-  RemappedRecordsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  RemappedRecordsDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
   @NonNull Map<RecipientId, RecipientId> getAllRecipientMappings() {
-    SQLiteDatabase                db           = databaseHelper.getReadableDatabase();
+    SQLiteDatabase                db           = databaseHelper.getSignalReadableDatabase();
     Map<RecipientId, RecipientId> recipientMap = new HashMap<>();
 
     db.beginTransaction();
@@ -71,7 +69,7 @@ public class RemappedRecordsDatabase extends Database {
   }
 
   @NonNull Map<Long, Long> getAllThreadMappings() {
-    SQLiteDatabase  db        = databaseHelper.getReadableDatabase();
+    SQLiteDatabase  db        = databaseHelper.getSignalReadableDatabase();
     Map<Long, Long> threadMap = new HashMap<>();
 
     db.beginTransaction();
@@ -98,10 +96,18 @@ public class RemappedRecordsDatabase extends Database {
     addMapping(Threads.TABLE_NAME, new Mapping(oldId, newId));
   }
 
+  public Cursor getAllRecipients() {
+    return databaseHelper.getSignalReadableDatabase().query(Recipients.TABLE_NAME, null, null, null, null, null, null);
+  }
+
+  public Cursor getAllThreads() {
+    return databaseHelper.getSignalReadableDatabase().query(Threads.TABLE_NAME, null, null, null, null, null, null);
+  }
+
   private @NonNull List<Mapping> getAllMappings(@NonNull String table) {
     List<Mapping> mappings = new LinkedList<>();
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(table, null, null, null, null, null, null)) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(table, null, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         long oldId = CursorUtil.requireLong(cursor, SharedColumns.OLD_ID);
         long newId = CursorUtil.requireLong(cursor, SharedColumns.NEW_ID);
@@ -117,7 +123,7 @@ public class RemappedRecordsDatabase extends Database {
     values.put(SharedColumns.OLD_ID, mapping.getOldId());
     values.put(SharedColumns.NEW_ID, mapping.getNewId());
 
-    databaseHelper.getWritableDatabase().insert(table, null, values);
+    databaseHelper.getSignalWritableDatabase().insert(table, null, values);
   }
 
   static final class Mapping {

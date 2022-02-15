@@ -5,12 +5,13 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.ringrtc.CallState;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.NetworkUtil;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_ESTABLISHED;
@@ -37,8 +38,8 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
 
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 
-    webRtcInteractor.startAudioCommunication(activePeer.getState() == CallState.REMOTE_RINGING);
-    webRtcInteractor.setWantsBluetoothConnection(true);
+    ApplicationDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
+    webRtcInteractor.startAudioCommunication();
 
     activePeer.connected();
 
@@ -53,23 +54,30 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
                                .changeCallInfoState()
                                .callState(WebRtcViewModel.State.CALL_CONNECTED)
                                .callConnectedTime(System.currentTimeMillis())
+                               .commit()
+                               .changeLocalDeviceState()
                                .build();
 
-    webRtcInteractor.unregisterPowerButtonReceiver();
     webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, activePeer);
+    webRtcInteractor.unregisterPowerButtonReceiver();
 
     try {
       CallManager callManager = webRtcInteractor.getCallManager();
       callManager.setCommunicationMode();
       callManager.setAudioEnable(currentState.getLocalDeviceState().isMicrophoneEnabled());
       callManager.setVideoEnable(currentState.getLocalDeviceState().getCameraState().isEnabled());
-      callManager.updateBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
     } catch (CallException e) {
       return callFailure(currentState, "Enabling audio/video failed: ", e);
     }
 
-    if (currentState.getCallSetupState().isAcceptWithVideo()) {
+    if (currentState.getCallSetupState(activePeer).isAcceptWithVideo()) {
       currentState = currentState.getActionProcessor().handleSetEnableVideo(currentState, true);
+    }
+
+    if (currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled()) {
+      webRtcInteractor.setDefaultAudioDevice(SignalAudioManager.AudioDevice.SPEAKER_PHONE, false);
+    } else {
+      webRtcInteractor.setDefaultAudioDevice(SignalAudioManager.AudioDevice.EARPIECE, false);
     }
 
     return currentState;
@@ -86,14 +94,11 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
     }
 
     currentState = currentState.builder()
-                               .changeCallSetupState()
-                               .enableVideoOnCreate(enable)
-                               .commit()
                                .changeLocalDeviceState()
                                .cameraState(camera.getCameraState())
                                .build();
 
-    WebRtcUtil.enableSpeakerPhoneIfNeeded(context, currentState.getCallSetupState().isEnableVideoOnCreate());
+    WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
 
     return currentState;
   }

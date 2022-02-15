@@ -4,6 +4,7 @@
     <item android:title="@string/conversation_group_options__delivery"
           android:id="@+id/menu_group_delivery"
           android:icon="@drawable/ic_call_split_white_24dp"
+          app:iconTint="@color/signal_icon_tint_primary"
           app:showAsAction="ifRoom" >
 
         <menu>

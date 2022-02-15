@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payment_preferences"
+    app:startDestination="@id/paymentsHome">
+
+    <fragment
+        android:id="@+id/paymentsHome"
+        android:name="org.thoughtcrime.securesms.payments.preferences.PaymentsHomeFragment"
+        tools:layout="@layout/payments_home_fragment">
+
+        <action
+            android:id="@+id/action_paymentsHome_to_paymentsAllActivity"
+            app:destination="@id/paymentsAllActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_paymentsHome_to_paymentsAddMoney"
+            app:destination="@id/paymentsAddMoney"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_paymentsHome_to_paymentRecipientSelectionFragment"
+            app:destination="@id/paymentRecipientSelectionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_paymentsHome_to_paymentsTransfer"
+            app:destination="@id/payments_transfer"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_paymentsHome_to_setCurrency"
+            app:destination="@id/setCurrency"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_paymentsHome_to_deactivateWallet"
+            app:destination="@id/deactivateWallet"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_paymentsHome_to_paymentsBackup"
+            app:destination="@id/payments_backup"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="is_restore"
+                android:defaultValue="false"
+                app:argType="boolean" />
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentsAllActivity"
+        android:name="org.thoughtcrime.securesms.payments.preferences.PaymentsAllActivityFragment"
+        tools:layout="@layout/payments_activity_fragment">
+
+        <argument
+            android:name="paymentType"
+            app:argType="org.thoughtcrime.securesms.payments.preferences.PaymentType" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentDetails"
+        android:name="org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsFragment"
+        tools:layout="@layout/payment_details_fragment">
+
+        <argument
+            android:name="paymentDetails"
+            app:argType="org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsParcelable"
+            app:nullable="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentRecipientSelectionFragment"
+        android:name="org.thoughtcrime.securesms.payments.preferences.PaymentRecipientSelectionFragment"
+        tools:layout="@layout/payment_recipient_selection_fragment">
+
+        <action
+            android:id="@+id/action_paymentRecipientSelection_to_createPayment"
+            app:destination="@id/payments_create"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="payee"
+                app:argType="org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable"
+                app:nullable="false" />
+
+            <argument
+                android:name="note"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentsAddMoney"
+        android:name="org.thoughtcrime.securesms.payments.preferences.addmoney.PaymentsAddMoneyFragment"
+        tools:layout="@layout/payments_add_money_fragment" />
+
+    <fragment
+        android:id="@+id/setCurrency"
+        android:name="org.thoughtcrime.securesms.payments.preferences.SetCurrencyFragment"
+        tools:layout="@layout/set_currency_fragment" />
+
+    <fragment
+        android:id="@+id/deactivateWallet"
+        android:name="org.thoughtcrime.securesms.payments.deactivate.DeactivateWalletFragment"
+        tools:layout="@layout/deactivate_wallet_fragment">
+
+        <action
+            android:id="@+id/action_deactivateWallet_to_paymentsTransfer"
+            app:destination="@id/payments_transfer"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/paymentsHome"
+            app:popUpToInclusive="false" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_directly_to_createPayment"
+        app:destination="@id/payments_create"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/paymentsHome"
+        app:popUpToInclusive="true">
+
+        <argument
+            android:name="payee"
+            app:argType="org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable"
+            app:nullable="false" />
+
+        <argument
+            android:name="note"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+    </action>
+
+    <action
+        android:id="@+id/action_directly_to_paymentsHome"
+        app:destination="@id/paymentsHome"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/paymentsHome"
+        app:popUpToInclusive="false" />
+
+    <action
+        android:id="@+id/action_directly_to_paymentDetails"
+        app:destination="@id/paymentDetails"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
+
+    <action
+        android:id="@+id/action_directly_to_paymentsTransfer"
+        app:destination="@id/payments_transfer"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
+
+    <action
+        android:id="@+id/action_directly_to_paymentsBackup"
+        app:destination="@id/payments_backup"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
+
+    <include app:graph="@navigation/payments_create" />
+
+    <include app:graph="@navigation/payments_transfer" />
+
+    <include app:graph="@navigation/payments_backup" />
+
+</navigation>

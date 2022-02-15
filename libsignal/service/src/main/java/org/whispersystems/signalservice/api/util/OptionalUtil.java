@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.api.util;
 
 import com.google.protobuf.ByteString;
 
+import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Arrays;
@@ -9,6 +10,16 @@ import java.util.Arrays;
 public final class OptionalUtil {
 
   private OptionalUtil() {
+  }
+
+  public static <T, R> Optional<R> flatMap(Optional<T> input, Function<T, Optional<R>> flatMapFunction) {
+    Optional<Optional<R>> output = input.transform(flatMapFunction);
+
+    if (output.isPresent()) {
+      return output.get();
+    } else {
+      return Optional.absent();
+    }
   }
 
   public static boolean byteArrayEquals(Optional<byte[]> a, Optional<byte[]> b) {

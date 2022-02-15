@@ -65,10 +65,6 @@ public class ProfileContactPhoto implements ContactPhoto {
   }
 
   private long getFileLastModified() {
-    if (!recipient.isSelf()) {
-      return 0;
-    }
-
     return AvatarHelper.getLastModified(ApplicationDependencies.getApplication(), recipient.getId());
   }
 }

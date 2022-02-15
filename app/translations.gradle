@@ -31,7 +31,7 @@ def autoResConfig() {
 task pullTranslations(type: Exec) {
     group 'Translate'
     description 'Pull translations, requires transifex client and api key.'
-    commandLine 'tx', 'pull', '-a', '--minimum-perc=80', '--force'
+    commandLine 'tx', 'pull', '-a', '--minimum-perc=80', '--force', '--parallel'
 }
 
 task replaceEllipsis {
@@ -87,7 +87,7 @@ task excludeNonTranslatables {
                 def newLines = f.readLines()
                         .collect { line ->
                             if (!inMultiline) {
-                                def singleLineMatcher = line =~ /name="([^"]*)".*<\//
+                                def singleLineMatcher = line =~ /name="([^"]*)".*(<\/|\/>)/
                                 if (singleLineMatcher.find()) {
                                     def name = singleLineMatcher.group(1)
                                     if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {

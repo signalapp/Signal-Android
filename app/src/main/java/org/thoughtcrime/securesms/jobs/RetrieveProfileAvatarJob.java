@@ -8,12 +8,13 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -31,7 +32,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileAvatarJob";
 
-  private static final String TAG = RetrieveProfileAvatarJob.class.getSimpleName();
+  private static final String TAG = Log.tag(RetrieveProfileAvatarJob.class);
 
   private static final int MAX_PROFILE_SIZE_BYTES = 20 * 1024 * 1024;
 
@@ -72,7 +73,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    RecipientDatabase database   = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase database   = SignalDatabase.recipients();
     ProfileKey        profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.resolve().getProfileKey());
 
     if (profileKey == null) {
@@ -100,6 +101,10 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
       try {
         AvatarHelper.setAvatar(context, recipient.getId(), avatarStream);
+
+        if (recipient.isSelf()) {
+          SignalStore.misc().markHasEverHadAnAvatar();
+        }
       } catch (AssertionError e) {
         throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);
       }

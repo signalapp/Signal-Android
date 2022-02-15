@@ -8,11 +8,11 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Objects;
 
-final class ShareContact {
+public final class ShareContact {
   private final Optional<RecipientId> recipientId;
   private final String                number;
 
-  ShareContact(@NonNull Optional<RecipientId> recipientId, @Nullable String number) {
+  public ShareContact(@NonNull Optional<RecipientId> recipientId, @Nullable String number) {
     this.recipientId = recipientId;
     this.number      = number;
   }

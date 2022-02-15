@@ -18,19 +18,21 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.signal.core.util.ThreadUtil;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.thoughtcrime.securesms.testutil.MainThreadUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
@@ -47,7 +49,7 @@ import static org.thoughtcrime.securesms.util.StringUtil.isolateBidi;
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
 @PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "androidx.*" })
-@PrepareForTest(Util.class)
+@PrepareForTest(ThreadUtil.class)
 public final class GroupsV2UpdateMessageProducerTest {
 
   private UUID you;
@@ -1349,12 +1351,14 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private void assertSingleChangeMentioning(DecryptedGroupChange change, List<UUID> expectedMentions) {
+    List<ACI> expectedMentionAcis = expectedMentions.stream().map(ACI::from).collect(Collectors.toList());
+
     List<UpdateDescription> changes = producer.describeChanges(null, change);
 
     assertThat(changes.size(), is(1));
 
     UpdateDescription description = changes.get(0);
-    assertThat(description.getMentioned(), is(expectedMentions));
+    assertThat(description.getMentioned(), is(expectedMentionAcis));
 
     if (expectedMentions.isEmpty()) {
       assertTrue(description.isStringStatic());
@@ -1393,8 +1397,8 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private static @NonNull GroupsV2UpdateMessageProducer.DescribeMemberStrategy createDescriber(@NonNull Map<UUID, String> map) {
-    return uuid -> {
-      String name = map.get(uuid);
+    return aci -> {
+      String name = map.get(aci.uuid());
       assertNotNull(name);
       return name;
     };

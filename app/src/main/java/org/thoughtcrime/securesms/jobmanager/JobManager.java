@@ -9,12 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
-import org.thoughtcrime.securesms.jobmanager.workmanager.WorkManagerMigrator;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -40,9 +39,9 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class JobManager implements ConstraintObserver.Notifier {
 
-  private static final String TAG = JobManager.class.getSimpleName();
+  private static final String TAG = Log.tag(JobManager.class);
 
-  public static final int CURRENT_VERSION = 7;
+  public static final int CURRENT_VERSION = 8;
 
   private final Application   application;
   private final Configuration configuration;
@@ -58,17 +57,7 @@ public class JobManager implements ConstraintObserver.Notifier {
   public JobManager(@NonNull Application application, @NonNull Configuration configuration) {
     this.application   = application;
     this.configuration = configuration;
-    this.executor      = new FilteredExecutor(configuration.getExecutorFactory().newSingleThreadExecutor("signal-JobManager"),
-                                              () -> {
-                                                 if (Util.isMainThread()) {
-                                                   return true;
-                                                 } else if (DatabaseFactory.inTransaction(application)) {
-                                                   Log.w(TAG, "Tried to add a job while in a transaction!", new Throwable());
-                                                   return true;
-                                                 } else {
-                                                   return false;
-                                                 }
-                                              });
+    this.executor      = ThreadUtil.trace(new FilteredExecutor(configuration.getExecutorFactory().newSingleThreadExecutor("signal-JobManager"), ThreadUtil::isMainThread));
     this.jobTracker    = configuration.getJobTracker();
     this.jobController = new JobController(application,
                                            configuration.getJobStorage(),
@@ -83,11 +72,6 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     executor.execute(() -> {
       synchronized (this) {
-        if (WorkManagerMigrator.needsMigration(application)) {
-          Log.i(TAG, "Detected an old WorkManager database. Migrating.");
-          WorkManagerMigrator.migrate(application, configuration.getJobStorage(), configuration.getDataSerializer());
-        }
-
         JobStorage jobStorage = configuration.getJobStorage();
         jobStorage.init();
 
@@ -151,6 +135,14 @@ public class JobManager implements ConstraintObserver.Notifier {
    */
   public void removeListener(@NonNull JobTracker.JobListener listener) {
     jobTracker.removeListener(listener);
+  }
+
+  /**
+   * Returns the state of the first Job that matches the provided filter. Note that there will always be races here, and the result you get back may not be
+   * valid anymore by the time you get it. Use with caution.
+   */
+  public @Nullable JobTracker.JobState getFirstMatchingJobState(@NonNull JobTracker.JobFilter filter) {
+    return jobTracker.getFirstMatchingJobState(filter);
   }
 
   /**
@@ -231,6 +223,15 @@ public class JobManager implements ConstraintObserver.Notifier {
    */
   public void cancelAllInQueue(@NonNull String queue) {
     runOnExecutor(() -> jobController.cancelAllInQueue(queue));
+  }
+
+  /**
+   * Perform an arbitrary update on enqueued jobs. Will not apply to jobs that are already running.
+   * You shouldn't use this if you can help it. You give yourself an opportunity to really screw
+   * things up.
+   */
+  public void update(@NonNull JobUpdater updater) {
+    runOnExecutor(() -> jobController.update(updater));
   }
 
   /**
@@ -342,6 +343,31 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Can tell you if a queue is empty at the time of invocation. It is worth noting that the state
+   * of the queue could change immediately after this method returns due to a call on some other
+   * thread, and you should take that into consideration when using the result. If you want
+   * something to happen within a queue, the safest course of action will always be to create a
+   * job and place it in that queue.
+   *
+   * @return True if requested queue is empty at the time of invocation, otherwise false.
+   */
+  @WorkerThread
+  public boolean isQueueEmpty(@NonNull String queueKey) {
+    return areQueuesEmpty(Collections.singleton(queueKey));
+  }
+
+  /**
+   * See {@link #isQueueEmpty(String)}
+   *
+   * @return True if *all* requested queues are empty at the time of invocation, otherwise false.
+   */
+  @WorkerThread
+  public boolean areQueuesEmpty(@NonNull Set<String> queueKeys) {
+    waitUntilInitialized();
+    return jobController.areQueuesEmpty(queueKeys);
+  }
+
+  /**
    * Pokes the system to take another pass at the job queue.
    */
   void wakeUp() {
@@ -442,6 +468,14 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     public void enqueue() {
       jobManager.enqueueChain(this);
+    }
+
+    public void enqueue(@NonNull JobTracker.JobListener listener) {
+      List<Job> lastChain          = jobs.get(jobs.size() - 1);
+      Job       lastJobInLastChain = lastChain.get(lastChain.size() - 1);
+
+      jobManager.addListener(lastJobInLastChain.getId(), listener);
+      enqueue();
     }
 
     private List<List<Job>> getJobListChain() {

@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -32,12 +33,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class UnidentifiedAccessUtil {
 
-  private static final String TAG = UnidentifiedAccessUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(UnidentifiedAccessUtil.class);
+
+  private static final byte[] UNRESTRICTED_KEY = new byte[16];
 
   public static CertificateValidator getCertificateValidator() {
     try {
@@ -64,11 +68,27 @@ public class UnidentifiedAccessUtil {
   }
 
   @WorkerThread
+  public static Map<RecipientId, Optional<UnidentifiedAccessPair>> getAccessMapFor(@NonNull Context context, @NonNull List<Recipient> recipients) {
+    List<Optional<UnidentifiedAccessPair>> accessList = getAccessFor(context, recipients, true);
+
+    Iterator<Recipient>                        recipientIterator = recipients.iterator();
+    Iterator<Optional<UnidentifiedAccessPair>> accessIterator    = accessList.iterator();
+
+    Map<RecipientId, Optional<UnidentifiedAccessPair>> accessMap = new HashMap<>(recipients.size());
+
+    while (recipientIterator.hasNext()) {
+      accessMap.put(recipientIterator.next().getId(), accessIterator.next());
+    }
+
+    return accessMap;
+  }
+
+  @WorkerThread
   public static List<Optional<UnidentifiedAccessPair>> getAccessFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean log) {
     byte[] ourUnidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
 
     if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
-      ourUnidentifiedAccessKey = Util.getSecretBytes(16);
+      ourUnidentifiedAccessKey = UNRESTRICTED_KEY;
     }
 
     List<Optional<UnidentifiedAccessPair>> access = new ArrayList<>(recipients.size());
@@ -115,7 +135,7 @@ public class UnidentifiedAccessUtil {
       byte[] ourUnidentifiedAccessCertificate = getUnidentifiedAccessCertificate(Recipient.self());
 
       if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
-        ourUnidentifiedAccessKey = Util.getSecretBytes(16);
+        ourUnidentifiedAccessKey = UNRESTRICTED_KEY;
       }
 
       if (ourUnidentifiedAccessCertificate != null) {
@@ -153,15 +173,21 @@ public class UnidentifiedAccessUtil {
 
     switch (recipient.resolve().getUnidentifiedAccessMode()) {
       case UNKNOWN:
-        if (theirProfileKey == null) return Util.getSecretBytes(16);
-        else                         return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+        if (theirProfileKey == null) {
+          return UNRESTRICTED_KEY;
+        } else {
+          return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+        }
       case DISABLED:
         return null;
       case ENABLED:
-        if (theirProfileKey == null) return null;
-        else                         return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+        if (theirProfileKey == null) {
+          return null;
+        } else {
+          return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+        }
       case UNRESTRICTED:
-        return Util.getSecretBytes(16);
+        return UNRESTRICTED_KEY;
       default:
         throw new AssertionError("Unknown mode: " + recipient.getUnidentifiedAccessMode().getMode());
     }

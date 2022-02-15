@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -78,8 +78,8 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
     contactList.setAdapter(contactAdapter);
 
     SharedContactRepository contactRepository = new SharedContactRepository(this,
-                                                                AsyncTask.THREAD_POOL_EXECUTOR,
-                                                                DatabaseFactory.getContactsDatabase(this));
+                                                                            AsyncTask.THREAD_POOL_EXECUTOR,
+                                                                            SignalDatabase.contacts());
 
     viewModel = ViewModelProviders.of(this, new Factory(contactUris, contactRepository)).get(ContactShareEditViewModel.class);
     viewModel.getContacts().observe(this, contacts -> {

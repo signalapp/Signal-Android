@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.emoji.EmojiTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/manage_group_description"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dsl_settings_gutter"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="@dimen/dsl_settings_gutter"
+    android:ellipsize="end"
+    android:gravity="center_horizontal"
+    android:maxLines="2"
+    android:textAppearance="@style/Signal.Text.Body"
+    android:textColor="@color/signal_text_secondary"
+    tools:text="Group to plot the capture of Doc Oct" />

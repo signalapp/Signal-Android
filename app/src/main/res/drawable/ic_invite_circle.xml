@@ -7,7 +7,7 @@
     </item>
     <item
         android:bottom="10dp"
-        android:drawable="@drawable/ic_invite_ultramarine_28"
+        android:drawable="@drawable/ic_invite_inverse_28"
         android:left="10dp"
         android:right="10dp"
         android:top="10dp" />

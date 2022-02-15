@@ -12,12 +12,10 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
-import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
@@ -26,12 +24,16 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -39,12 +41,15 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
+import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -52,10 +57,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 
@@ -67,9 +74,12 @@ public class Recipient {
 
   public static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
 
+  private static final int MAX_MEMBER_NAMES = 10;
+
   private final RecipientId            id;
   private final boolean                resolving;
-  private final UUID                   uuid;
+  private final ACI                    aci;
+  private final PNI                    pni;
   private final String                 username;
   private final String                 e164;
   private final String                 email;
@@ -83,17 +93,16 @@ public class Recipient {
   private final VibrateState           callVibrate;
   private final Uri                    messageRingtone;
   private final Uri                    callRingtone;
-  private final MaterialColor          color;
   private final Optional<Integer>      defaultSubscriptionId;
   private final int                    expireMessages;
   private final RegisteredState        registered;
   private final byte[]                 profileKey;
   private final ProfileKeyCredential   profileKeyCredential;
-  private final String                 name;
+  private final String                 groupName;
   private final Uri                    systemContactPhoto;
   private final String                 customLabel;
   private final Uri                    contactUri;
-  private final ProfileName            profileName;
+  private final ProfileName            signalProfileName;
   private final String                 profileAvatar;
   private final boolean                hasProfileImage;
   private final boolean                profileSharing;
@@ -103,13 +112,23 @@ public class Recipient {
   private final boolean                forceSmsSelection;
   private final Capability             groupsV2Capability;
   private final Capability             groupsV1MigrationCapability;
+  private final Capability             senderKeyCapability;
+  private final Capability             announcementGroupCapability;
+  private final Capability             changeNumberCapability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
   private final ChatWallpaper          wallpaper;
+  private final ChatColors             chatColors;
+  private final AvatarColor            avatarColor;
   private final String                 about;
   private final String                 aboutEmoji;
-
+  private final ProfileName            systemProfileName;
+  private final String                 systemContactName;
+  private final Optional<Extras>       extras;
+  private final boolean                hasGroupsInCommon;
+  private final List<Badge>            badges;
+  private final boolean                isReleaseNotesRecipient;
 
   /**
    * Returns a {@link LiveRecipient}, which contains a {@link Recipient} that may or may not be
@@ -147,20 +166,20 @@ public class Recipient {
    * Returns a fully-populated {@link Recipient} and associates it with the provided username.
    */
   @WorkerThread
-  public static @NonNull Recipient externalUsername(@NonNull Context context, @NonNull UUID uuid, @NonNull String username) {
-    Recipient recipient = externalPush(context, uuid, null, false);
-    DatabaseFactory.getRecipientDatabase(context).setUsername(recipient.getId(), username);
+  public static @NonNull Recipient externalUsername(@NonNull Context context, @NonNull ACI aci, @NonNull String username) {
+    Recipient recipient = externalPush(context, aci, null, false);
+    SignalDatabase.recipients().setUsername(recipient.getId(), username);
     return recipient;
   }
 
   /**
    * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
    * creating one in the database if necessary. Convenience overload of
-   * {@link #externalPush(Context, UUID, String, boolean)}
+   * {@link #externalPush(Context, ACI, String, boolean)}
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull(), false);
+    return externalPush(context, signalServiceAddress.getAci(), signalServiceAddress.getNumber().orNull(), false);
   }
 
   /**
@@ -173,7 +192,7 @@ public class Recipient {
     if (address.getNumber().isPresent()) {
       return externalPush(context, null, address.getNumber().get(), false);
     } else {
-      return externalPush(context, address.getUuid().orNull(), null, false);
+      return externalPush(context, address.getAci(), null, false);
     }
   }
 
@@ -188,31 +207,44 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalHighTrustPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull(), true);
+    return externalPush(context, signalServiceAddress.getAci(), signalServiceAddress.getNumber().orNull(), true);
   }
 
   /**
-   * Returns a fully-populated {@link Recipient} based off of a UUID and phone number, creating one
+   * Returns a fully-populated {@link Recipient} based off of an ACI and phone number, creating one
    * in the database if necessary. We want both piece of information so we're able to associate them
    * both together, depending on which are available.
    *
-   * In particular, while we'll eventually get the UUID of a user created via a phone number
+   * In particular, while we'll eventually get the ACI of a user created via a phone number
    * (through a directory sync), the only way we can store the phone number is by retrieving it from
    * sent messages and whatnot. So we should store it when available.
    *
-   * @param highTrust This should only be set to true if the source of the E164-UUID pairing is one
+   * @param highTrust This should only be set to true if the source of the E164-ACI pairing is one
    *                  that can be trusted as accurate (like an envelope).
    */
   @WorkerThread
-  public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable UUID uuid, @Nullable String e164, boolean highTrust) {
-    if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+  public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable ACI aci, @Nullable String e164, boolean highTrust) {
+    if (ACI.UNKNOWN.equals(aci)) {
       throw new AssertionError();
     }
 
-    RecipientDatabase db          = DatabaseFactory.getRecipientDatabase(context);
-    RecipientId       recipientId = db.getAndPossiblyMerge(uuid, e164, highTrust);
+    RecipientDatabase db          = SignalDatabase.recipients();
+    RecipientId       recipientId = db.getAndPossiblyMerge(aci, e164, highTrust);
 
-    return resolved(recipientId);
+    Recipient resolved = resolved(recipientId);
+
+    if (!resolved.getId().equals(recipientId)) {
+      Log.w(TAG, "Resolved " + recipientId + ", but got back a recipient with " + resolved.getId());
+    }
+
+    if (highTrust && !resolved.isRegistered() && aci != null) {
+      Log.w(TAG, "External high-trust push was locally marked unregistered. Marking as registered.");
+      db.markRegistered(recipientId, aci);
+    } else if (highTrust && !resolved.isRegistered()) {
+      Log.w(TAG, "External high-trust push was locally marked unregistered, but we don't have an ACI, so we can't do anything.", new Throwable());
+    }
+
+    return resolved;
   }
 
   /**
@@ -224,7 +256,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalContact(@NonNull Context context, @NonNull String identifier) {
-    RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase db = SignalDatabase.recipients();
     RecipientId       id = null;
 
     if (UuidUtil.isUuid(identifier)) {
@@ -249,7 +281,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalGroupExact(@NonNull Context context, @NonNull GroupId groupId) {
-    return Recipient.resolved(DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId));
+    return Recipient.resolved(SignalDatabase.recipients().getOrInsertFromGroupId(groupId));
   }
 
   /**
@@ -264,7 +296,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPossiblyMigratedGroup(@NonNull Context context, @NonNull GroupId groupId) {
-    return Recipient.resolved(DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(groupId));
+    return Recipient.resolved(SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(groupId));
   }
 
   /**
@@ -273,19 +305,19 @@ public class Recipient {
    * or serialized groupId.
    *
    * If the identifier is a UUID of a Signal user, prefer using
-   * {@link #externalPush(Context, UUID, String, boolean)} or its overload, as this will let us associate
+   * {@link #externalPush(Context, ACI, String, boolean)} or its overload, as this will let us associate
    * the phone number with the recipient.
    */
   @WorkerThread
   public static @NonNull Recipient external(@NonNull Context context, @NonNull String identifier) {
     Preconditions.checkNotNull(identifier, "Identifier cannot be null!");
 
-    RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
+    RecipientDatabase db = SignalDatabase.recipients();
     RecipientId       id = null;
 
     if (UuidUtil.isUuid(identifier)) {
-      UUID uuid = UuidUtil.parseOrThrow(identifier);
-      id = db.getOrInsertFromUuid(uuid);
+      ACI uuid = ACI.parseOrThrow(identifier);
+      id = db.getOrInsertFromAci(uuid);
     } else if (GroupId.isEncodedGroup(identifier)) {
       id = db.getOrInsertFromGroupId(GroupId.parseOrThrow(identifier));
     } else if (NumberUtil.isValidEmail(identifier)) {
@@ -305,7 +337,8 @@ public class Recipient {
   Recipient(@NonNull RecipientId id) {
     this.id                          = id;
     this.resolving                   = true;
-    this.uuid                        = null;
+    this.aci                         = null;
+    this.pni                         = null;
     this.username                    = null;
     this.e164                        = null;
     this.email                       = null;
@@ -319,18 +352,17 @@ public class Recipient {
     this.callVibrate                 = VibrateState.DEFAULT;
     this.messageRingtone             = null;
     this.callRingtone                = null;
-    this.color                       = null;
     this.insightsBannerTier          = InsightsBannerTier.TIER_TWO;
     this.defaultSubscriptionId       = Optional.absent();
     this.expireMessages              = 0;
     this.registered                  = RegisteredState.UNKNOWN;
     this.profileKey                  = null;
     this.profileKeyCredential        = null;
-    this.name                        = null;
+    this.groupName                   = null;
     this.systemContactPhoto          = null;
     this.customLabel                 = null;
     this.contactUri                  = null;
-    this.profileName                 = ProfileName.EMPTY;
+    this.signalProfileName           = ProfileName.EMPTY;
     this.profileAvatar               = null;
     this.hasProfileImage             = false;
     this.profileSharing              = false;
@@ -340,17 +372,29 @@ public class Recipient {
     this.forceSmsSelection           = false;
     this.groupsV2Capability          = Capability.UNKNOWN;
     this.groupsV1MigrationCapability = Capability.UNKNOWN;
+    this.senderKeyCapability         = Capability.UNKNOWN;
+    this.announcementGroupCapability = Capability.UNKNOWN;
+    this.changeNumberCapability      = Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
+    this.chatColors                  = null;
+    this.avatarColor                 = AvatarColor.UNKNOWN;
     this.about                       = null;
     this.aboutEmoji                  = null;
+    this.systemProfileName           = ProfileName.EMPTY;
+    this.systemContactName           = null;
+    this.extras                      = Optional.absent();
+    this.hasGroupsInCommon           = false;
+    this.badges                      = Collections.emptyList();
+    this.isReleaseNotesRecipient     = false;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
     this.id                          = id;
     this.resolving                   = !resolved;
-    this.uuid                        = details.uuid;
+    this.aci                         = details.aci;
+    this.pni                         = details.pni;
     this.username                    = details.username;
     this.e164                        = details.e164;
     this.email                       = details.email;
@@ -364,18 +408,17 @@ public class Recipient {
     this.callVibrate                 = details.callVibrateState;
     this.messageRingtone             = details.messageRingtone;
     this.callRingtone                = details.callRingtone;
-    this.color                       = details.color;
     this.insightsBannerTier          = details.insightsBannerTier;
     this.defaultSubscriptionId       = details.defaultSubscriptionId;
     this.expireMessages              = details.expireMessages;
     this.registered                  = details.registered;
     this.profileKey                  = details.profileKey;
     this.profileKeyCredential        = details.profileKeyCredential;
-    this.name                        = details.name;
+    this.groupName                   = details.groupName;
     this.systemContactPhoto          = details.systemContactPhoto;
     this.customLabel                 = details.customLabel;
     this.contactUri                  = details.contactUri;
-    this.profileName                 = details.profileName;
+    this.signalProfileName           = details.profileName;
     this.profileAvatar               = details.profileAvatar;
     this.hasProfileImage             = details.hasProfileImage;
     this.profileSharing              = details.profileSharing;
@@ -385,11 +428,22 @@ public class Recipient {
     this.forceSmsSelection           = details.forceSmsSelection;
     this.groupsV2Capability          = details.groupsV2Capability;
     this.groupsV1MigrationCapability = details.groupsV1MigrationCapability;
+    this.senderKeyCapability         = details.senderKeyCapability;
+    this.announcementGroupCapability = details.announcementGroupCapability;
+    this.changeNumberCapability      = details.changeNumberCapability;
     this.storageId                   = details.storageId;
     this.mentionSetting              = details.mentionSetting;
     this.wallpaper                   = details.wallpaper;
+    this.chatColors                  = details.chatColors;
+    this.avatarColor                 = details.avatarColor;
     this.about                       = details.about;
     this.aboutEmoji                  = details.aboutEmoji;
+    this.systemProfileName           = details.systemProfileName;
+    this.systemContactName           = details.systemContactName;
+    this.extras                      = details.extras;
+    this.hasGroupsInCommon           = details.hasGroupsInCommon;
+    this.badges                      = details.badges;
+    this.isReleaseNotesRecipient     = details.isReleaseChannel;
   }
 
   public @NonNull RecipientId getId() {
@@ -404,36 +458,64 @@ public class Recipient {
     return contactUri;
   }
 
-  public @Nullable String getName(@NonNull Context context) {
-    if (this.name == null && groupId != null && groupId.isMms()) {
+  public @Nullable String getGroupName(@NonNull Context context) {
+    if (groupId != null && Util.isEmpty(this.groupName)) {
+      List<Recipient> others = participants.stream()
+                                           .filter(r -> !r.isSelf())
+                                           .limit(MAX_MEMBER_NAMES)
+                                           .collect(Collectors.toList());
+
+      Map<String, Integer> shortNameCounts = new HashMap<>();
+
+      for (Recipient participant : others) {
+        String shortName = participant.getShortDisplayName(context);
+        int    count     = Objects.requireNonNull(shortNameCounts.getOrDefault(shortName, 0));
+
+        shortNameCounts.put(shortName, count + 1);
+      }
+
       List<String> names = new LinkedList<>();
 
-      for (Recipient recipient : participants) {
-        names.add(recipient.getDisplayName(context));
+      for (Recipient participant : others) {
+        String shortName = participant.getShortDisplayName(context);
+        int    count     = Objects.requireNonNull(shortNameCounts.getOrDefault(shortName, 0));
+
+        if (count <= 1) {
+          names.add(shortName);
+        } else {
+          names.add(participant.getDisplayName(context));
+        }
+      }
+
+      if (participants.stream().anyMatch(Recipient::isSelf)) {
+        names.add(context.getString(R.string.Recipient_you));
       }
 
       return Util.join(names, ", ");
-    } else if (name == null && groupId != null && groupId.isPush()) {
-      return context.getString(R.string.RecipientProvider_unnamed_group);
     } else {
-      return this.name;
+      return this.groupName;
     }
   }
 
   public boolean hasName() {
-    return name != null;
+    return groupName != null;
   }
 
   /**
    * False iff it {@link #getDisplayName} would fall back to e164, email or unknown.
    */
   public boolean hasAUserSetDisplayName(@NonNull Context context) {
-    return !TextUtils.isEmpty(getName(context)) ||
+    return !TextUtils.isEmpty(getGroupName(context))             ||
+           !TextUtils.isEmpty(systemContactName)                 ||
            !TextUtils.isEmpty(getProfileName().toString());
   }
 
   public @NonNull String getDisplayName(@NonNull Context context) {
-    String name = getName(context);
+    String name = getGroupName(context);
+
+    if (Util.isEmpty(name)) {
+      name = systemContactName;
+    }
 
     if (Util.isEmpty(name)) {
       name = getProfileName().toString();
@@ -455,7 +537,11 @@ public class Recipient {
   }
 
   public @NonNull String getDisplayNameOrUsername(@NonNull Context context) {
-    String name = getName(context);
+    String name = getGroupName(context);
+
+    if (Util.isEmpty(name)) {
+      name = systemContactName;
+    }
 
     if (Util.isEmpty(name)) {
       name = StringUtil.isolateBidi(getProfileName().toString());
@@ -481,11 +567,16 @@ public class Recipient {
   }
 
   public @NonNull String getMentionDisplayName(@NonNull Context context) {
-    String name = isSelf ? getProfileName().toString() : getName(context);
+    String name = isSelf ? getProfileName().toString() : getGroupName(context);
     name = StringUtil.isolateBidi(name);
 
     if (Util.isEmpty(name)) {
-      name = isSelf ? getName(context) : getProfileName().toString();
+      name = isSelf ? getGroupName(context) : systemContactName;
+      name = StringUtil.isolateBidi(name);
+    }
+
+    if (Util.isEmpty(name)) {
+      name = isSelf ? getGroupName(context) : getProfileName().toString();
       name = StringUtil.isolateBidi(name);
     }
 
@@ -505,7 +596,8 @@ public class Recipient {
   }
 
   public @NonNull String getShortDisplayName(@NonNull Context context) {
-    String name = Util.getFirstNonEmpty(getName(context),
+    String name = Util.getFirstNonEmpty(getGroupName(context),
+                                        getSystemProfileName().getGivenName(),
                                         getProfileName().getGivenName(),
                                         getDisplayName(context));
 
@@ -513,7 +605,8 @@ public class Recipient {
   }
 
   public @NonNull String getShortDisplayNameIncludingUsername(@NonNull Context context) {
-    String name = Util.getFirstNonEmpty(getName(context),
+    String name = Util.getFirstNonEmpty(getGroupName(context),
+                                        getSystemProfileName().getGivenName(),
                                         getProfileName().getGivenName(),
                                         getDisplayName(context),
                                         getUsername().orNull());
@@ -521,26 +614,12 @@ public class Recipient {
     return StringUtil.isolateBidi(name);
   }
 
-  public @NonNull MaterialColor getColor() {
-    if (isGroupInternal()) {
-      return MaterialColor.GROUP;
-    } else if (color != null) {
-      return color;
-     } else if (name != null || profileSharing) {
-      Log.w(TAG, "Had no color for " + id + "! Saving a new one.");
-
-      Context       context = ApplicationDependencies.getApplication();
-      MaterialColor color   = ContactColors.generateFor(getDisplayName(context));
-
-      SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getRecipientDatabase(context).setColorIfNotSet(id, color));
-      return color;
-    } else {
-      return ContactColors.UNKNOWN_COLOR;
-    }
+  public @NonNull Optional<ACI> getAci() {
+    return Optional.fromNullable(aci);
   }
 
-  public @NonNull Optional<UUID> getUuid() {
-    return Optional.fromNullable(uuid);
+  public @NonNull Optional<PNI> getPni() {
+    return Optional.fromNullable(pni);
   }
 
   public @NonNull Optional<String> getUsername() {
@@ -567,11 +646,11 @@ public class Recipient {
     return Optional.fromNullable(e164).or(Optional.fromNullable(email));
   }
 
-  public @NonNull UUID requireUuid() {
-    UUID resolved = resolving ? resolve().uuid : uuid;
+  public @NonNull ACI requireAci() {
+    ACI resolved = resolving ? resolve().aci : aci;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -582,7 +661,7 @@ public class Recipient {
     String resolved = resolving ? resolve().e164 : e164;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -592,7 +671,7 @@ public class Recipient {
     String resolved = resolving ? resolve().email : email;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
@@ -606,7 +685,7 @@ public class Recipient {
     } else if (recipient.getEmail().isPresent()) {
       return recipient.getEmail().get();
     } else {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
   }
 
@@ -618,33 +697,37 @@ public class Recipient {
     return getE164().isPresent();
   }
 
-  public boolean hasUuid() {
-    return getUuid().isPresent();
+  public boolean hasAci() {
+    return getAci().isPresent();
+  }
+
+  public boolean isAciOnly() {
+    return hasAci() && !hasSmsAddress();
   }
 
   public @NonNull GroupId requireGroupId() {
     GroupId resolved = resolving ? resolve().groupId : groupId;
 
     if (resolved == null) {
-      throw new MissingAddressError();
+      throw new MissingAddressError(id);
     }
 
     return resolved;
   }
 
   public boolean hasServiceIdentifier() {
-    return uuid != null || e164 != null;
+    return aci != null || e164 != null;
   }
 
   /**
-   * @return A string identifier able to be used with the Signal service. Prefers UUID, and if not
+   * @return A string identifier able to be used with the Signal service. Prefers ACI, and if not
    * available, will return an E164 number.
    */
   public @NonNull String requireServiceId() {
     Recipient resolved = resolving ? resolve() : this;
 
-    if (resolved.getUuid().isPresent()) {
-      return resolved.getUuid().get().toString();
+    if (resolved.getAci().isPresent()) {
+      return resolved.requireAci().toString();
     } else {
       return getE164().get();
     }
@@ -653,15 +736,15 @@ public class Recipient {
   /**
    * @return A single string to represent the recipient, in order of precedence:
    *
-   * Group ID > UUID > Phone > Email
+   * Group ID > ACI > Phone > Email
    */
   public @NonNull String requireStringId() {
     Recipient resolved = resolving ? resolve() : this;
 
     if (resolved.isGroup()) {
       return resolved.requireGroupId().toString();
-    } else if (resolved.getUuid().isPresent()) {
-      return resolved.getUuid().get().toString();
+    } else if (resolved.getAci().isPresent()) {
+      return resolved.requireAci().toString();
     }
 
     return requireSmsAddress();
@@ -672,7 +755,11 @@ public class Recipient {
   }
 
   public @NonNull ProfileName getProfileName() {
-    return profileName;
+    return signalProfileName;
+  }
+
+  private @NonNull ProfileName getSystemProfileName() {
+    return systemProfileName;
   }
 
   public @Nullable String getProfileAvatar() {
@@ -724,19 +811,23 @@ public class Recipient {
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
-    return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
+    return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER, AvatarUtil.UNDEFINED_SIZE);
   }
 
   public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted) {
     return getSmallFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
   }
 
-  public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, getColor().toAvatarColor(context), inverted);
+  public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER), targetSize).asDrawable(context, avatarColor, inverted);
   }
 
   public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, getColor().toAvatarColor(context), inverted);
+    return getSmallFallbackContactPhotoDrawable(context, inverted, fallbackPhotoProvider, AvatarUtil.UNDEFINED_SIZE);
+  }
+
+  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER), targetSize).asSmallDrawable(context, avatarColor, inverted);
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto() {
@@ -744,12 +835,18 @@ public class Recipient {
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider) {
-    if      (isSelf)                   return fallbackPhotoProvider.getPhotoForLocalNumber();
-    else if (isResolving())            return fallbackPhotoProvider.getPhotoForResolvingRecipient();
-    else if (isGroupInternal())        return fallbackPhotoProvider.getPhotoForGroup();
-    else if (isGroup())                return fallbackPhotoProvider.getPhotoForGroup();
-    else if (!TextUtils.isEmpty(name)) return fallbackPhotoProvider.getPhotoForRecipientWithName(name);
-    else                               return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
+    return getFallbackContactPhoto(fallbackPhotoProvider, AvatarUtil.UNDEFINED_SIZE);
+  }
+
+  public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
+    if      (isSelf)                                return fallbackPhotoProvider.getPhotoForLocalNumber();
+    else if (isResolving())                         return fallbackPhotoProvider.getPhotoForResolvingRecipient();
+    else if (isGroupInternal())                     return fallbackPhotoProvider.getPhotoForGroup();
+    else if (isGroup())                             return fallbackPhotoProvider.getPhotoForGroup();
+    else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName, targetSize);
+    else if (!TextUtils.isEmpty(systemContactName)) return fallbackPhotoProvider.getPhotoForRecipientWithName(systemContactName, targetSize);
+    else if (!signalProfileName.isEmpty())          return fallbackPhotoProvider.getPhotoForRecipientWithName(signalProfileName.toString(), targetSize);
+    else                                            return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
   }
 
   public @Nullable ContactPhoto getContactPhoto() {
@@ -797,7 +894,7 @@ public class Recipient {
     return callVibrate;
   }
 
-  public int getExpireMessages() {
+  public int getExpiresInSeconds() {
     return expireMessages;
   }
 
@@ -820,6 +917,14 @@ public class Recipient {
     return registered == RegisteredState.REGISTERED || isPushGroup();
   }
 
+  public boolean isMaybeRegistered() {
+    return registered != RegisteredState.NOT_REGISTERED || isPushGroup();
+  }
+
+  public boolean isUnregistered() {
+    return registered == RegisteredState.NOT_REGISTERED && !isPushGroup();
+  }
+
   public @Nullable String getNotificationChannel() {
     return !NotificationChannels.supported() ? null : notificationChannel;
   }
@@ -834,6 +939,25 @@ public class Recipient {
 
   public @NonNull Capability getGroupsV1MigrationCapability() {
     return groupsV1MigrationCapability;
+  }
+
+  public @NonNull Capability getSenderKeyCapability() {
+    return senderKeyCapability;
+  }
+
+  public @NonNull Capability getAnnouncementGroupCapability() {
+    return announcementGroupCapability;
+  }
+
+  public @NonNull Capability getChangeNumberCapability() {
+    return changeNumberCapability;
+  }
+
+  /**
+   * True if this recipient supports the message retry system, or false if we should use the legacy session reset system.
+   */
+  public boolean supportsMessageRetries() {
+    return getSenderKeyCapability() == Capability.SUPPORTED;
   }
 
   public @Nullable byte[] getProfileKey() {
@@ -875,6 +999,37 @@ public class Recipient {
     return wallpaper != null || SignalStore.wallpaper().hasWallpaperSet();
   }
 
+  public boolean hasOwnChatColors() {
+    return chatColors != null;
+  }
+
+  public @NonNull ChatColors getChatColors() {
+    if (chatColors != null && !(chatColors.getId() instanceof ChatColors.Id.Auto)) {
+      return chatColors;
+    } if (chatColors != null) {
+      return getAutoChatColor();
+    } else {
+      ChatColors global = SignalStore.chatColorsValues().getChatColors();
+      if (global != null && !(global.getId() instanceof ChatColors.Id.Auto)) {
+        return global;
+      } else {
+        return getAutoChatColor();
+      }
+    }
+  }
+
+  private @NonNull ChatColors getAutoChatColor() {
+    if (getWallpaper() != null) {
+      return getWallpaper().getAutoChatColors();
+    } else {
+      return ChatColorsPalette.Bubbles.getDefault().withId(ChatColors.Id.Auto.INSTANCE);
+    }
+  }
+
+  public @NonNull AvatarColor getAvatarColor() {
+    return avatarColor;
+  }
+
   public boolean isSystemContact() {
     return contactUri != null;
   }
@@ -885,6 +1040,18 @@ public class Recipient {
 
   public @Nullable String getAboutEmoji() {
     return aboutEmoji;
+  }
+
+  public @NonNull List<Badge> getBadges() {
+    return FeatureFlags.displayDonorBadges() || isSelf() ? badges : Collections.emptyList();
+  }
+
+  public @Nullable Badge getFeaturedBadge() {
+    if (getBadges().isEmpty()) {
+      return null;
+    } else {
+      return getBadges().get(0);
+    }
   }
 
   public @Nullable String getCombinedAboutAndEmoji() {
@@ -899,6 +1066,18 @@ public class Recipient {
     } else {
       return null;
     }
+  }
+
+  public boolean shouldBlurAvatar() {
+    boolean showOverride = false;
+    if (extras.isPresent()) {
+      showOverride = extras.get().manuallyShownAvatar();
+    }
+    return !showOverride && !isSelf() && !isProfileSharing() && !isSystemContact() && !hasGroupsInCommon && isRegistered();
+  }
+
+  public boolean hasGroupsInCommon() {
+    return hasGroupsInCommon;
   }
 
   /**
@@ -932,6 +1111,10 @@ public class Recipient {
     return mentionSetting;
   }
 
+  public boolean isReleaseNotes() {
+    return isReleaseNotesRecipient;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -944,7 +1127,6 @@ public class Recipient {
   public int hashCode() {
     return Objects.hash(id);
   }
-
 
   public enum Capability {
     UNKNOWN(0),
@@ -975,6 +1157,39 @@ public class Recipient {
     }
   }
 
+  public static final class Extras {
+    private final RecipientExtras recipientExtras;
+
+    public static @Nullable Extras from(@Nullable RecipientExtras recipientExtras) {
+      if (recipientExtras != null) {
+        return new Extras(recipientExtras);
+      } else {
+        return null;
+      }
+    }
+
+    private Extras(@NonNull RecipientExtras extras) {
+      this.recipientExtras = extras;
+    }
+
+    public boolean manuallyShownAvatar() {
+      return recipientExtras.getManuallyShownAvatar();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final Extras that = (Extras) o;
+      return manuallyShownAvatar() == that.manuallyShownAvatar();
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(manuallyShownAvatar());
+    }
+  }
+
   public boolean hasSameContent(@NonNull Recipient other) {
     return Objects.equals(id, other.id) &&
            resolving == other.resolving &&
@@ -986,8 +1201,7 @@ public class Recipient {
            profileSharing == other.profileSharing &&
            lastProfileFetch == other.lastProfileFetch &&
            forceSmsSelection == other.forceSmsSelection &&
-           Objects.equals(id, other.id) &&
-           Objects.equals(uuid, other.uuid) &&
+           Objects.equals(aci, other.aci) &&
            Objects.equals(username, other.username) &&
            Objects.equals(e164, other.e164) &&
            Objects.equals(email, other.email) &&
@@ -998,16 +1212,16 @@ public class Recipient {
            callVibrate == other.callVibrate &&
            Objects.equals(messageRingtone, other.messageRingtone) &&
            Objects.equals(callRingtone, other.callRingtone) &&
-           color == other.color &&
            Objects.equals(defaultSubscriptionId, other.defaultSubscriptionId) &&
            registered == other.registered &&
            Arrays.equals(profileKey, other.profileKey) &&
            Objects.equals(profileKeyCredential, other.profileKeyCredential) &&
-           Objects.equals(name, other.name) &&
+           Objects.equals(groupName, other.groupName) &&
            Objects.equals(systemContactPhoto, other.systemContactPhoto) &&
            Objects.equals(customLabel, other.customLabel) &&
            Objects.equals(contactUri, other.contactUri) &&
-           Objects.equals(profileName, other.profileName) &&
+           Objects.equals(signalProfileName, other.signalProfileName) &&
+           Objects.equals(systemProfileName, other.systemProfileName) &&
            Objects.equals(profileAvatar, other.profileAvatar) &&
            Objects.equals(notificationChannel, other.notificationChannel) &&
            unidentifiedAccessMode == other.unidentifiedAccessMode &&
@@ -1017,8 +1231,13 @@ public class Recipient {
            Arrays.equals(storageId, other.storageId) &&
            mentionSetting == other.mentionSetting &&
            Objects.equals(wallpaper, other.wallpaper) &&
+           Objects.equals(chatColors, other.chatColors) &&
+           Objects.equals(avatarColor, other.avatarColor) &&
            Objects.equals(about, other.about) &&
-           Objects.equals(aboutEmoji, other.aboutEmoji);
+           Objects.equals(aboutEmoji, other.aboutEmoji) &&
+           Objects.equals(extras, other.extras) &&
+           hasGroupsInCommon == other.hasGroupsInCommon &&
+           Objects.equals(badges, other.badges);
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {
@@ -1049,8 +1268,8 @@ public class Recipient {
       return new ResourceContactPhoto(R.drawable.ic_group_outline_34, R.drawable.ic_group_outline_20, R.drawable.ic_group_outline_48);
     }
 
-    public @NonNull FallbackContactPhoto getPhotoForRecipientWithName(String name) {
-      return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40);
+    public @NonNull FallbackContactPhoto getPhotoForRecipientWithName(String name, int targetSize) {
+      return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize);
     }
 
     public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
@@ -1059,5 +1278,8 @@ public class Recipient {
   }
 
   private static class MissingAddressError extends AssertionError {
+    MissingAddressError(@NonNull RecipientId recipientId) {
+      super("Missing address for " + recipientId.serialize());
+    }
   }
 }

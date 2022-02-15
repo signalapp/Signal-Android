@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppCapabilities;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -13,6 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
@@ -20,28 +22,45 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class RefreshAttributesJob extends BaseJob {
 
   public static final String KEY = "RefreshAttributesJob";
 
-  private static final String TAG = RefreshAttributesJob.class.getSimpleName();
+  private static final String TAG = Log.tag(RefreshAttributesJob.class);
+
+  private static final String KEY_FORCED = "forced";
+
+  private static volatile boolean hasRefreshedThisAppCycle;
+
+  private final boolean forced;
 
   public RefreshAttributesJob() {
+    this(true);
+  }
+
+  /**
+   * @param forced True if you want this job to run no matter what. False if you only want this job
+   *               to run if it hasn't run yet this app cycle.
+   */
+  public RefreshAttributesJob(boolean forced) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("RefreshAttributesJob")
                            .setMaxInstancesForFactory(2)
-                           .build());
+                           .build(),
+         forced);
   }
 
-  private RefreshAttributesJob(@NonNull Job.Parameters parameters) {
+  private RefreshAttributesJob(@NonNull Job.Parameters parameters, boolean forced) {
     super(parameters);
+    this.forced = forced;
   }
 
   @Override
   public @NonNull Data serialize() {
-    return Data.EMPTY;
+    return new Data.Builder().putBoolean(KEY_FORCED, forced).build();
   }
 
   @Override
@@ -51,13 +70,18 @@ public class RefreshAttributesJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (!TextSecurePreferences.isPushRegistered(context) || TextSecurePreferences.getLocalNumber(context) == null) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getE164() == null) {
       Log.w(TAG, "Not yet registered. Skipping.");
       return;
     }
 
-    int       registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
-    boolean   fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
+    if (!forced && hasRefreshedThisAppCycle) {
+      Log.d(TAG, "Already refreshed this app cycle. Skipping.");
+      return;
+    }
+
+    int       registrationId              = SignalStore.account().getRegistrationId();
+    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled();
     byte[]    unidentifiedAccessKey       = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
     String    registrationLockV1          = null;
@@ -73,13 +97,20 @@ public class RefreshAttributesJob extends BaseJob {
 
     boolean phoneNumberDiscoverable = SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isDiscoverable();
 
+    String deviceName = SignalStore.account().getDeviceName();
+    byte[] encryptedDeviceName = (deviceName == null) ? null : DeviceNameCipher.encryptDeviceName(deviceName.getBytes(StandardCharsets.UTF_8), IdentityKeyUtil.getIdentityKeyPair(context));
+
     AccountAttributes.Capabilities capabilities = AppCapabilities.getCapabilities(kbsValues.hasPin() && !kbsValues.hasOptedOut());
     Log.i(TAG, "Calling setAccountAttributes() reglockV1? " + !TextUtils.isEmpty(registrationLockV1) + ", reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + kbsValues.hasPin() +
                "\n    Phone number discoverable : " + phoneNumberDiscoverable +
+               "\n    Device Name : " + (encryptedDeviceName != null) +
                "\n  Capabilities:" +
                "\n    Storage? " + capabilities.isStorage() +
                "\n    GV2? " + capabilities.isGv2() +
                "\n    GV1 Migration? " + capabilities.isGv1Migration() +
+               "\n    Sender Key? " + capabilities.isSenderKey() +
+               "\n    Announcement Groups? " + capabilities.isAnnouncementGroup() +
+               "\n    Change Number? " + capabilities.isChangeNumber() +
                "\n    UUID? " + capabilities.isUuid());
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
@@ -87,9 +118,12 @@ public class RefreshAttributesJob extends BaseJob {
                                               registrationLockV1, registrationLockV2,
                                               unidentifiedAccessKey, universalUnidentifiedAccess,
                                               capabilities,
-                                              phoneNumberDiscoverable);
+                                              phoneNumberDiscoverable,
+                                              encryptedDeviceName);
 
     ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
+
+    hasRefreshedThisAppCycle = true;
   }
 
   @Override
@@ -105,7 +139,7 @@ public class RefreshAttributesJob extends BaseJob {
   public static class Factory implements Job.Factory<RefreshAttributesJob> {
     @Override
     public @NonNull RefreshAttributesJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
-      return new RefreshAttributesJob(parameters);
+      return new RefreshAttributesJob(parameters, data.getBooleanOrDefault(KEY_FORCED, true));
     }
   }
 }

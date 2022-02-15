@@ -14,7 +14,7 @@ public final class ShareContactAndThread implements Parcelable {
   private final long        threadId;
   private final boolean     forceSms;
 
-  ShareContactAndThread(@NonNull RecipientId recipientId, long threadId, boolean forceSms) {
+  public ShareContactAndThread(@NonNull RecipientId recipientId, long threadId, boolean forceSms) {
     this.recipientId = recipientId;
     this.threadId    = threadId;
     this.forceSms    = forceSms;

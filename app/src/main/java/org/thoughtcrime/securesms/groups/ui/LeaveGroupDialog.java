@@ -8,11 +8,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 
 import com.annimon.stream.Stream;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -53,10 +54,10 @@ public final class LeaveGroupDialog {
     }
 
     SimpleTask.run(activity.getLifecycle(), () -> {
-      GroupDatabase.V2GroupProperties groupProperties = DatabaseFactory.getGroupDatabase(activity)
-                                                                       .getGroup(groupId)
-                                                                       .transform(GroupDatabase.GroupRecord::requireV2GroupProperties)
-                                                                       .orNull();
+      GroupDatabase.V2GroupProperties groupProperties = SignalDatabase.groups()
+                                                                      .getGroup(groupId)
+                                                                      .transform(GroupDatabase.GroupRecord::requireV2GroupProperties)
+                                                                      .orNull();
 
       if (groupProperties != null && groupProperties.isAdmin(Recipient.self())) {
         List<Recipient> otherMemberRecipients = groupProperties.getMemberRecipients(GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
@@ -76,7 +77,7 @@ public final class LeaveGroupDialog {
   }
 
   private void showSelectNewAdminDialog() {
-    new AlertDialog.Builder(activity)
+    new MaterialAlertDialogBuilder(activity)
                    .setTitle(R.string.LeaveGroupDialog_choose_new_admin)
                    .setMessage(R.string.LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group)
                    .setNegativeButton(android.R.string.cancel, null)
@@ -85,7 +86,7 @@ public final class LeaveGroupDialog {
   }
 
   private void showLeaveDialog() {
-    new AlertDialog.Builder(activity)
+    new MaterialAlertDialogBuilder(activity)
                    .setTitle(R.string.LeaveGroupDialog_leave_group)
                    .setCancelable(true)
                    .setMessage(R.string.LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group)

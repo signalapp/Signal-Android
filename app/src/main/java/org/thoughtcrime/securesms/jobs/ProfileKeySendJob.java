@@ -8,23 +8,21 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.messages.GroupSendUtil;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
@@ -44,10 +42,13 @@ public class ProfileKeySendJob extends BaseJob {
 
   /**
    * Suitable for a 1:1 conversation or a GV1 group only.
+   *
+   * @param queueLimits True if you only want one of these to be run per person after decryptions
+   *                    are drained, otherwise false.
    */
   @WorkerThread
-  public static ProfileKeySendJob create(@NonNull Context context, long threadId) {
-    Recipient conversationRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
+  public static ProfileKeySendJob create(@NonNull Context context, long threadId, boolean queueLimits) {
+    Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
     if (conversationRecipient == null) {
       throw new AssertionError("We have a thread but no recipient!");
@@ -62,11 +63,23 @@ public class ProfileKeySendJob extends BaseJob {
 
     recipients.remove(Recipient.self().getId());
 
-    return new ProfileKeySendJob(new Parameters.Builder()
-                                               .setQueue(conversationRecipient.getId().toQueueKey())
-                                               .setLifespan(TimeUnit.DAYS.toMillis(1))
-                                               .setMaxAttempts(Parameters.UNLIMITED)
-                                               .build(), threadId, recipients);
+    if (queueLimits) {
+      return new ProfileKeySendJob(new Parameters.Builder()
+                                                 .setQueue("ProfileKeySendJob_" + conversationRecipient.getId().toQueueKey())
+                                                 .setMaxInstancesForQueue(1)
+                                                 .addConstraint(NetworkConstraint.KEY)
+                                                 .addConstraint(DecryptionsDrainedConstraint.KEY)
+                                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                                 .setMaxAttempts(Parameters.UNLIMITED)
+                                                 .build(), threadId, recipients);
+    } else {
+      return new ProfileKeySendJob(new Parameters.Builder()
+                                                 .setQueue(conversationRecipient.getId().toQueueKey())
+                                                 .addConstraint(NetworkConstraint.KEY)
+                                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                                 .setMaxAttempts(Parameters.UNLIMITED)
+                                                 .build(), threadId, recipients);
+    }
   }
 
   private ProfileKeySendJob(@NonNull Parameters parameters, long threadId, @NonNull List<RecipientId> recipients) {
@@ -77,7 +90,11 @@ public class ProfileKeySendJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    Recipient conversationRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
+    Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
     if (conversationRecipient == null) {
       Log.w(TAG, "Thread no longer present");
@@ -85,7 +102,7 @@ public class ProfileKeySendJob extends BaseJob {
     }
 
     List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
-    List<Recipient> completions  = deliver(conversationRecipient, destinations);
+    List<Recipient> completions  = deliver(destinations);
 
     for (Recipient completion : completions) {
       recipients.remove(completion.getId());
@@ -102,6 +119,7 @@ public class ProfileKeySendJob extends BaseJob {
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
     if (e instanceof ServerRejectedException) return false;
+    if (e instanceof NotPushRegisteredException) return false;
     return e instanceof IOException ||
            e instanceof RetryLaterException;
   }
@@ -124,22 +142,15 @@ public class ProfileKeySendJob extends BaseJob {
 
   }
 
-  private List<Recipient> deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations) throws IOException, UntrustedIdentityException {
-    SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);
-    SignalServiceDataMessage.Builder       dataMessage        = SignalServiceDataMessage.newBuilder()
-                                                                                        .asProfileKeyUpdate(true)
-                                                                                        .withTimestamp(System.currentTimeMillis())
-                                                                                        .withProfileKey(Recipient.self().resolve().getProfileKey());
+  private List<Recipient> deliver(@NonNull List<Recipient> destinations) throws IOException, UntrustedIdentityException {
+    SignalServiceDataMessage.Builder dataMessage = SignalServiceDataMessage.newBuilder()
+                                                                           .asProfileKeyUpdate(true)
+                                                                           .withTimestamp(System.currentTimeMillis())
+                                                                           .withProfileKey(Recipient.self().resolve().getProfileKey());
 
-    if (conversationRecipient.isGroup()) {
-      dataMessage.asGroupMessage(new SignalServiceGroup(conversationRecipient.requireGroupId().getDecodedId()));
-    }
+    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context, null, destinations, false, ContentHint.IMPLICIT, dataMessage.build());
 
-    List<SendMessageResult> results = messageSender.sendMessage(addresses, unidentifiedAccess, false, dataMessage.build());
-
-    return GroupSendJobHelper.getCompletedSends(context, results);
+    return GroupSendJobHelper.getCompletedSends(destinations, results);
   }
 
   public static class Factory implements Job.Factory<ProfileKeySendJob> {

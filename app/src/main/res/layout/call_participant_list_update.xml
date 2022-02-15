@@ -26,6 +26,18 @@
             tools:src="@drawable/ic_profile_80"
             tools:visibility="visible" />
 
+        <org.thoughtcrime.securesms.badges.BadgeImageView
+            android:id="@+id/badge"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="22dp"
+            android:contentDescription="@string/ImageView__badge"
+            app:badge_size="medium"
+            app:layout_constraintStart_toStartOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="@id/avatar"
+            tools:visibility="visible" />
+
         <TextView
             android:id="@+id/description"
             android:layout_width="0dp"

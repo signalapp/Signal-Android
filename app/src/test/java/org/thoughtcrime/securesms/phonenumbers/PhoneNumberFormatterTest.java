@@ -3,13 +3,17 @@ package org.thoughtcrime.securesms.phonenumbers;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.testutil.EmptyLogger;
 
 import static junit.framework.Assert.assertEquals;
 
 public class PhoneNumberFormatterTest {
 
   @Before
-  public void setup() {}
+  public void setup() {
+    Log.initialize(new EmptyLogger());
+  }
 
   @Test
   public void testAddressString() throws Exception {
@@ -88,5 +92,12 @@ public class PhoneNumberFormatterTest {
   public void testLostLocalNumber() throws Exception {
     PhoneNumberFormatter formatter = new PhoneNumberFormatter("US", true);
     assertEquals(formatter.format("(415) 111-1122"), "+14151111122");
+  }
+
+  @Test
+  public void testParseNumberFailWithoutLocalNumber() {
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("US", true);
+    assertEquals("+144444444441234512312312312312312312312", formatter.format("44444444441234512312312312312312312312"));
+    assertEquals("+144444444441234512312312312312312312312", formatter.format("144444444441234512312312312312312312312"));
   }
 }

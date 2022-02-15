@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
+import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import java.util.List;
@@ -21,13 +23,17 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
   private static final Object EXPIRATION_TIMER_CHANGE_PAYLOAD = new Object();
 
   private final LifecycleOwner lifecycleOwner;
-  private final GlideRequests glideRequests;
-  private       boolean       running;
+  private final GlideRequests  glideRequests;
+  private final Colorizer      colorizer;
+  private       Callbacks      callbacks;
+  private       boolean        running;
 
-  MessageDetailsAdapter(@NonNull LifecycleOwner lifecycleOwner, @NonNull GlideRequests glideRequests) {
+  MessageDetailsAdapter(@NonNull LifecycleOwner lifecycleOwner, @NonNull GlideRequests glideRequests, @NonNull Colorizer colorizer, @NonNull Callbacks callbacks) {
     super(new MessageDetailsDiffer());
     this.lifecycleOwner = lifecycleOwner;
     this.glideRequests  = glideRequests;
+    this.colorizer      = colorizer;
+    this.callbacks      = callbacks;
     this.running        = true;
   }
 
@@ -35,11 +41,11 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
   public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     switch (viewType) {
       case MessageDetailsViewState.MESSAGE_HEADER:
-        return new MessageHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_header, parent, false), glideRequests);
+        return new MessageHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_header, parent, false), glideRequests, colorizer);
       case MessageDetailsViewState.RECIPIENT_HEADER:
         return new RecipientHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_recipient_header, parent, false));
       case MessageDetailsViewState.RECIPIENT:
-        return new RecipientViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_recipient, parent, false));
+        return new RecipientViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_details_recipient, parent, false), callbacks);
       default:
         throw new AssertionError("unknown view type");
     }
@@ -139,5 +145,9 @@ final class MessageDetailsAdapter extends ListAdapter<MessageDetailsAdapter.Mess
       this.data     = t;
       this.itemType = itemType;
     }
+  }
+
+  interface Callbacks {
+    void onErrorClicked(@NonNull MessageRecord messageRecord);
   }
 }

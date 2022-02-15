@@ -90,6 +90,13 @@ public final class ProfileName implements Parcelable {
   }
 
   /**
+   * Creates a profile name that only contains a given name.
+   */
+  public static @NonNull ProfileName asGiven(@Nullable String givenName) {
+    return fromParts(givenName, null);
+  }
+
+  /**
    * Creates a profile name, trimming chars until it fits the limits.
    */
   public static @NonNull ProfileName fromParts(@Nullable String givenName, @Nullable String familyName) {

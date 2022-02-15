@@ -17,6 +17,7 @@ import androidx.core.view.GestureDetectorCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout;
 
 import java.util.Arrays;
@@ -115,14 +116,16 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
   }
 
   public void clearVerticalBoundaries() {
-    setVerticalBoundaries(parent.getTop(), parent.getMeasuredHeight() + parent.getTop());
+    setTopVerticalBoundary(parent.getTop());
+    setBottomVerticalBoundary(parent.getMeasuredHeight() + parent.getTop());
   }
 
-  public void setVerticalBoundaries(int topBoundary, int bottomBoundary) {
-    extraPaddingTop    = topBoundary - parent.getTop();
-    extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
+  public void setTopVerticalBoundary(int topBoundary) {
+    extraPaddingTop = topBoundary - parent.getTop();
+  }
 
-    adjustPip();
+  public void setBottomVerticalBoundary(int bottomBoundary) {
+    extraPaddingBottom = parent.getMeasuredHeight() + parent.getTop() - bottomBoundary;
   }
 
   private boolean onGestureFinished(MotionEvent e) {
@@ -259,8 +262,8 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
   private Point findNearestCornerPosition(Point projection) {
     if (isLockedToBottomEnd) {
-      return parent.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR ? calculateBottomRightCoordinates(parent)
-                                                                      : calculateBottomLeftCoordinates(parent);
+      return ViewUtil.isLtr(parent) ? calculateBottomRightCoordinates(parent)
+                                    : calculateBottomLeftCoordinates(parent);
     }
 
     Point  maxPoint     = null;

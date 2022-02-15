@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dsl_settings_gutter"
+    android:layout_marginEnd="@dimen/dsl_settings_gutter"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_outline">
+
+        <org.thoughtcrime.securesms.badges.BadgeImageView
+            android:id="@+id/my_support_badge"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            app:badge_size="xlarge"
+            app:layout_constraintBottom_toBottomOf="@id/my_support_expiry"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/my_support_title"
+            tools:src="@drawable/test_gradient" />
+
+        <ProgressBar
+            android:id="@+id/my_support_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/my_support_badge"
+            app:layout_constraintEnd_toEndOf="@id/my_support_badge"
+            app:layout_constraintStart_toStartOf="@id/my_support_badge"
+            app:layout_constraintTop_toTopOf="@id/my_support_badge" />
+
+        <TextView
+            android:id="@+id/my_support_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="12dp"
+            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/my_support_badge"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Subscription Name" />
+
+        <TextView
+            android:id="@+id/my_support_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/my_support_badge"
+            app:layout_constraintTop_toBottomOf="@id/my_support_title"
+            tools:text="Earn a badge!" />
+
+        <TextView
+            android:id="@+id/my_support_expiry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/signal_text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/my_support_badge"
+            app:layout_constraintTop_toBottomOf="@id/my_support_price"
+            tools:text="$400.00" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/my_support_heading_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:barrierMargin="16dp"
+            app:constraint_referenced_ids="my_support_badge,my_support_expiry,my_support_price,my_support_title" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/my_support_boost"
+            style="@style/Signal.Widget.Button.Large.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_boost_gradient"
+            android:text="@string/MySupportPreference__add_a_signal_boost"
+            app:cornerRadius="0dp"
+            app:layout_constraintTop_toBottomOf="@id/my_support_heading_barrier" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

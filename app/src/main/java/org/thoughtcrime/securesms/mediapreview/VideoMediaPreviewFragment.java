@@ -19,6 +19,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   private static final String TAG = Log.tag(VideoMediaPreviewFragment.class);
 
   private VideoPlayer videoView;
+  private boolean     isVideoGif;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +36,8 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     long    size        = arguments.getLong(DATA_SIZE);
     boolean autoPlay    = arguments.getBoolean(AUTO_PLAY);
 
+    isVideoGif = arguments.getBoolean(VIDEO_GIF);
+
     if (!MediaUtil.isVideo(contentType)) {
       throw new AssertionError("This fragment can only display video");
     }
@@ -42,7 +45,12 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     videoView = itemView.findViewById(R.id.video_player);
 
     videoView.setWindow(requireActivity().getWindow());
-    videoView.setVideoSource(new VideoSlide(getContext(), uri, size), autoPlay);
+    videoView.setVideoSource(new VideoSlide(getContext(), uri, size, false), autoPlay);
+
+    if (isVideoGif) {
+      videoView.hideControls();
+      videoView.loopForever();
+    }
 
     videoView.setOnClickListener(v -> events.singleTapOnMedia());
 
@@ -57,6 +65,14 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    if (videoView != null && isVideoGif) {
+      videoView.play();
+    }
+  }
+
+  @Override
   public void pause() {
     if (videoView != null) {
       videoView.pause();
@@ -65,6 +81,6 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
   @Override
   public View getPlaybackControls() {
-    return videoView != null ? videoView.getControlView() : null;
+    return videoView != null && !isVideoGif ? videoView.getControlView() : null;
   }
 }

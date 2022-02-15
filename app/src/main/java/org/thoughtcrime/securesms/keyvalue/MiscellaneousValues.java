@@ -2,14 +2,20 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
+import java.util.Collections;
+import java.util.List;
+
 public final class MiscellaneousValues extends SignalStoreValues {
 
-  private static final String LAST_PREKEY_REFRESH_TIME         = "last_prekey_refresh_time";
-  private static final String MESSAGE_REQUEST_ENABLE_TIME      = "message_request_enable_time";
-  private static final String LAST_PROFILE_REFRESH_TIME        = "misc.last_profile_refresh_time";
-  private static final String LAST_GV1_ROUTINE_MIGRATION_TIME  = "misc.last_gv1_routine_migration_time";
-  private static final String USERNAME_SHOW_REMINDER           = "username.show.reminder";
-  private static final String CLIENT_DEPRECATED                = "misc.client_deprecated";
+  private static final String LAST_PREKEY_REFRESH_TIME        = "last_prekey_refresh_time";
+  private static final String MESSAGE_REQUEST_ENABLE_TIME     = "message_request_enable_time";
+  private static final String LAST_PROFILE_REFRESH_TIME       = "misc.last_profile_refresh_time";
+  private static final String LAST_GV1_ROUTINE_MIGRATION_TIME = "misc.last_gv1_routine_migration_time";
+  private static final String USERNAME_SHOW_REMINDER          = "username.show.reminder";
+  private static final String CLIENT_DEPRECATED               = "misc.client_deprecated";
+  private static final String OLD_DEVICE_TRANSFER_LOCKED      = "misc.old_device.transfer.locked";
+  private static final String HAS_EVER_HAD_AN_AVATAR          = "misc.has.ever.had.an.avatar";
+  private static final String CHANGE_NUMBER_LOCK              = "misc.change_number.lock";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -18,6 +24,11 @@ public final class MiscellaneousValues extends SignalStoreValues {
   @Override
   void onFirstEverAppLaunch() {
     putLong(MESSAGE_REQUEST_ENABLE_TIME, 0);
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public long getLastPrekeyRefreshTime() {
@@ -66,5 +77,37 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void clearClientDeprecated() {
     putBoolean(CLIENT_DEPRECATED, false);
+  }
+
+  public boolean isOldDeviceTransferLocked() {
+    return getBoolean(OLD_DEVICE_TRANSFER_LOCKED, false);
+  }
+
+  public void markOldDeviceTransferLocked() {
+    putBoolean(OLD_DEVICE_TRANSFER_LOCKED, true);
+  }
+
+  public void clearOldDeviceTransferLocked() {
+    putBoolean(OLD_DEVICE_TRANSFER_LOCKED, false);
+  }
+
+  public boolean hasEverHadAnAvatar() {
+    return getBoolean(HAS_EVER_HAD_AN_AVATAR, false);
+  }
+
+  public void markHasEverHadAnAvatar() {
+    putBoolean(HAS_EVER_HAD_AN_AVATAR, true);
+  }
+
+  public boolean isChangeNumberLocked() {
+    return getBoolean(CHANGE_NUMBER_LOCK, false);
+  }
+
+  public void lockChangeNumber() {
+    putBoolean(CHANGE_NUMBER_LOCK, true);
+  }
+
+  public void unlockChangeNumber() {
+    putBoolean(CHANGE_NUMBER_LOCK, false);
   }
 }

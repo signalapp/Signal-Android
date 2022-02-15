@@ -30,6 +30,8 @@ public final class StringUtilTest_whitespace_handling {
       { "\u200E", "", true },
       { "\u200F", "", true },
       { "\u2007", "", true },
+      { "\u200B", "", true },
+      { "\u2800", "", true },
       { "\u2007\u200FA\tB\u200EC\u200E\u200F", "A\tB\u200EC", false },
 
     });

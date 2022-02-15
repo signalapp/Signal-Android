@@ -23,10 +23,14 @@ public class RemoteAttestationRequest {
   @JsonProperty
   private byte[] clientPublic;
 
+  @JsonProperty
+  private int iasVersion;
+
   public RemoteAttestationRequest() {}
 
   public RemoteAttestationRequest(byte[] clientPublic) {
     this.clientPublic = clientPublic;
+    this.iasVersion   = 4;
   }
 
   public byte[] getClientPublic() {

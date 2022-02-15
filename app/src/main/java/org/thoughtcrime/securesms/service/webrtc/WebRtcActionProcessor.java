@@ -1,152 +1,78 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.ResultReceiver;
 
-import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
+import org.signal.ringrtc.CallManager.RingUpdate;
 import org.signal.ringrtc.GroupCall;
+import org.thoughtcrime.securesms.components.sensors.Orientation;
+import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
+import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CallState;
+import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
-import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata;
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.HttpData;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OfferMetadata;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedOfferMetadata;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
+import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ACCEPT_CALL;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_BANDWIDTH_MODE_UPDATE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_BLUETOOTH_CHANGE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_CALL_CONCLUDED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_CALL_CONNECTED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_CAMERA_SWITCH_COMPLETED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_CANCEL_PRE_JOIN_CALL;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_DENY_CALL;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_CONNECTION_FAILURE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_INTERNAL_FAILURE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_REMOTE_BUSY;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_REMOTE_GLARE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_REMOTE_HANGUP;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_REMOTE_HANGUP_ACCEPTED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_REMOTE_HANGUP_BUSY;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_REMOTE_HANGUP_DECLINED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_REMOTE_HANGUP_NEED_PERMISSION;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_SIGNALING_FAILURE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ENDED_TIMEOUT;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_FLIP_CAMERA;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_APPROVE_SAFETY_CHANGE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_ENDED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_CALL_PEEK;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_JOINED_MEMBERSHIP_CHANGED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_LOCAL_DEVICE_STATE_CHANGED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_MESSAGE_SENT_ERROR;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_REMOTE_DEVICE_STATE_CHANGED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_REQUEST_MEMBERSHIP_PROOF;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_REQUEST_UPDATE_MEMBERS;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_HTTP_FAILURE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_HTTP_SUCCESS;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_IS_IN_CALL_QUERY;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_LOCAL_HANGUP;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_LOCAL_RINGING;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_MESSAGE_SENT_ERROR;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_MESSAGE_SENT_SUCCESS;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_NETWORK_CHANGE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_OUTGOING_CALL;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_PRE_JOIN_CALL;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVED_OFFER_EXPIRED;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVED_OFFER_WHILE_ACTIVE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVE_ANSWER;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVE_BUSY;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVE_HANGUP;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVE_ICE_CANDIDATES;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVE_OFFER;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVE_OPAQUE_MESSAGE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_REMOTE_RINGING;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_REMOTE_VIDEO_ENABLE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SCREEN_OFF;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_ANSWER;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_BUSY;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_HANGUP;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_ICE_CANDIDATES;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_OFFER;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SEND_OPAQUE_MESSAGE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SETUP_FAILURE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SET_AUDIO_BLUETOOTH;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SET_AUDIO_SPEAKER;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SET_ENABLE_VIDEO;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_SET_MUTE_AUDIO;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_START_INCOMING_CALL;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_START_OUTGOING_CALL;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_TURN_SERVER_UPDATE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_WIRED_HEADSET_CHANGE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_ANSWER_WITH_VIDEO;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_BLUETOOTH;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_IS_ALWAYS_TURN;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_MUTE;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_RECIPIENT_IDS;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_RESULT_RECEIVER;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_SPEAKER;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.AnswerMetadata;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.HangupMetadata;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.OpaqueMessageMetadata;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedAnswerMetadata;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getAvailable;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getBroadcastFlag;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getCallId;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getCameraState;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getEnable;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getErrorCallState;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getErrorIdentityKey;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getGroupCallEndReason;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getGroupCallHash;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getGroupMembershipToken;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getIceCandidates;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getIceServers;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getNullableRemotePeerFromMap;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getOfferMessageType;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemotePeer;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemotePeerFromMap;
 
 /**
  * Base WebRTC action processor and core of the calling state machine. As actions (as intents)
  * are sent to the service, they are passed to an instance of the current state's action processor.
  * Based on the state of the system, the action processor will either handle the event or do nothing.
- *
+ * <p>
  * For example, the {@link OutgoingCallActionProcessor} responds to the the
  * {@link #handleReceivedBusy(WebRtcServiceState, CallMetadata)} event but no others do.
- *
- * Processing of the actions occur in {@link #processAction(String, Intent, WebRtcServiceState)} and
+ * <p>
+ * Processing of the actions occur in by calls from {@link SignalCallManager} and
  * result in atomic state updates that are returned to the caller. Part of the state change can be
  * the replacement of the current action processor.
  */
@@ -157,108 +83,13 @@ public abstract class WebRtcActionProcessor {
   protected final String           tag;
 
   public WebRtcActionProcessor(@NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
-    this.context          = webRtcInteractor.getWebRtcCallService();
+    this.context          = webRtcInteractor.getContext();
     this.webRtcInteractor = webRtcInteractor;
     this.tag              = tag;
   }
 
   public @NonNull String getTag() {
     return tag;
-  }
-
-  public @NonNull WebRtcServiceState processAction(@NonNull String action, @NonNull Intent intent, @NonNull WebRtcServiceState currentState) {
-    switch (action) {
-      case ACTION_IS_IN_CALL_QUERY:                    return handleIsInCallQuery(currentState, intent.getParcelableExtra(EXTRA_RESULT_RECEIVER));
-
-      // Pre-Join Actions
-      case ACTION_PRE_JOIN_CALL:                       return handlePreJoinCall(currentState, getRemotePeer(intent));
-      case ACTION_CANCEL_PRE_JOIN_CALL:                return handleCancelPreJoinCall(currentState);
-
-      // Outgoing Call Actions
-      case ACTION_OUTGOING_CALL:                       return handleOutgoingCall(currentState, getRemotePeer(intent), getOfferMessageType(intent));
-      case ACTION_START_OUTGOING_CALL:                 return handleStartOutgoingCall(currentState, getRemotePeerFromMap(intent, currentState));
-      case ACTION_SEND_OFFER:                          return handleSendOffer(currentState, CallMetadata.fromIntent(intent), OfferMetadata.fromIntent(intent), getBroadcastFlag(intent));
-      case ACTION_REMOTE_RINGING:                      return handleRemoteRinging(currentState, getRemotePeerFromMap(intent, currentState));
-      case ACTION_RECEIVE_ANSWER:                      return handleReceivedAnswer(currentState, CallMetadata.fromIntent(intent), AnswerMetadata.fromIntent(intent), ReceivedAnswerMetadata.fromIntent(intent));
-      case ACTION_RECEIVE_BUSY:                        return handleReceivedBusy(currentState, CallMetadata.fromIntent(intent));
-
-      // Incoming Call Actions
-      case ACTION_RECEIVE_OFFER:                       return handleReceivedOffer(currentState, CallMetadata.fromIntent(intent), OfferMetadata.fromIntent(intent), ReceivedOfferMetadata.fromIntent(intent));
-      case ACTION_RECEIVED_OFFER_EXPIRED:              return handleReceivedOfferExpired(currentState, getRemotePeerFromMap(intent, currentState));
-      case ACTION_START_INCOMING_CALL:                 return handleStartIncomingCall(currentState, getRemotePeerFromMap(intent, currentState));
-      case ACTION_ACCEPT_CALL:                         return handleAcceptCall(currentState, intent.getBooleanExtra(EXTRA_ANSWER_WITH_VIDEO, false));
-      case ACTION_LOCAL_RINGING:                       return handleLocalRinging(currentState, getRemotePeerFromMap(intent, currentState));
-      case ACTION_DENY_CALL:                           return handleDenyCall(currentState);
-      case ACTION_SEND_ANSWER:                         return handleSendAnswer(currentState, CallMetadata.fromIntent(intent), AnswerMetadata.fromIntent(intent), getBroadcastFlag(intent));
-
-      // Active Call Actions
-      case ACTION_CALL_CONNECTED:                      return handleCallConnected(currentState, getRemotePeerFromMap(intent, currentState));
-      case ACTION_RECEIVED_OFFER_WHILE_ACTIVE:         return handleReceivedOfferWhileActive(currentState, getRemotePeerFromMap(intent, currentState));
-      case ACTION_SEND_BUSY:                           return handleSendBusy(currentState, CallMetadata.fromIntent(intent), getBroadcastFlag(intent));
-      case ACTION_CALL_CONCLUDED:                      return handleCallConcluded(currentState, getNullableRemotePeerFromMap(intent, currentState));
-      case ACTION_REMOTE_VIDEO_ENABLE:                 return handleRemoteVideoEnable(currentState, getEnable(intent));
-      case ACTION_RECEIVE_HANGUP:                      return handleReceivedHangup(currentState, CallMetadata.fromIntent(intent), HangupMetadata.fromIntent(intent));
-      case ACTION_LOCAL_HANGUP:                        return handleLocalHangup(currentState);
-      case ACTION_SEND_HANGUP:                         return handleSendHangup(currentState, CallMetadata.fromIntent(intent), HangupMetadata.fromIntent(intent), getBroadcastFlag(intent));
-      case ACTION_MESSAGE_SENT_SUCCESS:                return handleMessageSentSuccess(currentState, getCallId(intent));
-      case ACTION_MESSAGE_SENT_ERROR:                  return handleMessageSentError(currentState, getCallId(intent), getErrorCallState(intent), getErrorIdentityKey(intent));
-
-      // Call Setup Actions
-      case ACTION_RECEIVE_ICE_CANDIDATES:              return handleReceivedIceCandidates(currentState, CallMetadata.fromIntent(intent), getIceCandidates(intent));
-      case ACTION_SEND_ICE_CANDIDATES:                 return handleSendIceCandidates(currentState, CallMetadata.fromIntent(intent), getBroadcastFlag(intent), getIceCandidates(intent));
-      case ACTION_TURN_SERVER_UPDATE:                  return handleTurnServerUpdate(currentState, getIceServers(intent), intent.getBooleanExtra(EXTRA_IS_ALWAYS_TURN, false));
-
-      // Local Device Actions
-      case ACTION_SET_ENABLE_VIDEO:                    return handleSetEnableVideo(currentState, getEnable(intent));
-      case ACTION_SET_MUTE_AUDIO:                      return handleSetMuteAudio(currentState, intent.getBooleanExtra(EXTRA_MUTE, false));
-      case ACTION_FLIP_CAMERA:                         return handleSetCameraFlip(currentState);
-      case ACTION_SCREEN_OFF:                          return handleScreenOffChange(currentState);
-      case ACTION_WIRED_HEADSET_CHANGE:                return handleWiredHeadsetChange(currentState, getAvailable(intent));
-      case ACTION_SET_AUDIO_SPEAKER:                   return handleSetSpeakerAudio(currentState, intent.getBooleanExtra(EXTRA_SPEAKER, false));
-      case ACTION_SET_AUDIO_BLUETOOTH:                 return handleSetBluetoothAudio(currentState, intent.getBooleanExtra(EXTRA_BLUETOOTH, false));
-      case ACTION_BLUETOOTH_CHANGE:                    return handleBluetoothChange(currentState, getAvailable(intent));
-      case ACTION_CAMERA_SWITCH_COMPLETED:             return handleCameraSwitchCompleted(currentState, getCameraState(intent));
-      case ACTION_NETWORK_CHANGE:                      return handleNetworkChanged(currentState, getAvailable(intent));
-      case ACTION_BANDWIDTH_MODE_UPDATE:               return handleBandwidthModeUpdate(currentState);
-
-      // End Call Actions
-      case ACTION_ENDED_REMOTE_HANGUP:
-      case ACTION_ENDED_REMOTE_HANGUP_ACCEPTED:
-      case ACTION_ENDED_REMOTE_HANGUP_BUSY:
-      case ACTION_ENDED_REMOTE_HANGUP_DECLINED:
-      case ACTION_ENDED_REMOTE_BUSY:
-      case ACTION_ENDED_REMOTE_HANGUP_NEED_PERMISSION:
-      case ACTION_ENDED_REMOTE_GLARE:                  return handleEndedRemote(currentState, action, getRemotePeerFromMap(intent, currentState));
-
-      // End Call Failure Actions
-      case ACTION_ENDED_TIMEOUT:
-      case ACTION_ENDED_INTERNAL_FAILURE:
-      case ACTION_ENDED_SIGNALING_FAILURE:
-      case ACTION_ENDED_CONNECTION_FAILURE:            return handleEnded(currentState, action, getRemotePeerFromMap(intent, currentState));
-
-      // Local Call Failure Actions
-      case ACTION_SETUP_FAILURE:                       return handleSetupFailure(currentState, getCallId(intent));
-
-      // Group Calling
-      case ACTION_GROUP_LOCAL_DEVICE_STATE_CHANGED:    return handleGroupLocalDeviceStateChanged(currentState);
-      case ACTION_GROUP_REMOTE_DEVICE_STATE_CHANGED:   return handleGroupRemoteDeviceStateChanged(currentState);
-      case ACTION_GROUP_JOINED_MEMBERSHIP_CHANGED:     return handleGroupJoinedMembershipChanged(currentState);
-      case ACTION_GROUP_REQUEST_MEMBERSHIP_PROOF:      return handleGroupRequestMembershipProof(currentState, getGroupCallHash(intent), getGroupMembershipToken(intent));
-      case ACTION_GROUP_REQUEST_UPDATE_MEMBERS:        return handleGroupRequestUpdateMembers(currentState);
-      case ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS:   return handleUpdateRenderedResolutions(currentState);
-      case ACTION_GROUP_CALL_ENDED:                    return handleGroupCallEnded(currentState, getGroupCallHash(intent), getGroupCallEndReason(intent));
-      case ACTION_GROUP_CALL_PEEK:                     return handleGroupCallPeek(currentState, getRemotePeer(intent));
-      case ACTION_GROUP_MESSAGE_SENT_ERROR:            return handleGroupMessageSentError(currentState, getRemotePeer(intent), getErrorCallState(intent), getErrorIdentityKey(intent));
-      case ACTION_GROUP_APPROVE_SAFETY_CHANGE:         return handleGroupApproveSafetyNumberChange(currentState, RecipientId.fromSerializedList(intent.getStringExtra(EXTRA_RECIPIENT_IDS)));
-
-      case ACTION_HTTP_SUCCESS:                        return handleHttpSuccess(currentState, HttpData.fromIntent(intent));
-      case ACTION_HTTP_FAILURE:                        return handleHttpFailure(currentState, HttpData.fromIntent(intent));
-
-      case ACTION_SEND_OPAQUE_MESSAGE:                 return handleSendOpaqueMessage(currentState, OpaqueMessageMetadata.fromIntent(intent));
-      case ACTION_RECEIVE_OPAQUE_MESSAGE:              return handleReceivedOpaqueMessage(currentState, OpaqueMessageMetadata.fromIntent(intent));
-    }
-
-    return currentState;
   }
 
   protected @NonNull WebRtcServiceState handleIsInCallQuery(@NonNull WebRtcServiceState currentState, @Nullable ResultReceiver resultReceiver) {
@@ -289,13 +120,22 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleStartOutgoingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleStartOutgoingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer, @NonNull OfferMessage.Type offerType) {
     Log.i(tag, "handleStartOutgoingCall not processed");
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSendOffer(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, @NonNull OfferMetadata offerMetadata, boolean broadcast) {
-    Log.i(tag, "handleSendOffer not processed");
+  protected final @NonNull WebRtcServiceState handleSendOffer(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, @NonNull OfferMetadata offerMetadata, boolean broadcast) {
+    Log.i(tag, "handleSendOffer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
+
+    OfferMessage             offerMessage        = new OfferMessage(callMetadata.getCallId().longValue(), offerMetadata.getSdp(), offerMetadata.getOfferType(), offerMetadata.getOpaque());
+    Integer                  destinationDeviceId = broadcast ? null : callMetadata.getRemoteDevice();
+    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forOffer(offerMessage, true, destinationDeviceId);
+
+    Recipient callRecipient = currentState.getCallInfoState().getCallRecipient();
+    RecipientUtil.shareProfileIfFirstSecureMessage(context, callRecipient);
+    webRtcInteractor.sendCallMessage(callMetadata.getRemotePeer(), callMessage);
+
     return currentState;
   }
 
@@ -327,26 +167,34 @@ public abstract class WebRtcActionProcessor {
                                                             @NonNull OfferMetadata offerMetadata,
                                                             @NonNull ReceivedOfferMetadata receivedOfferMetadata)
   {
-    Log.i(tag, "handleReceivedOffer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
+    Log.i(tag, "handleReceivedOffer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()) + " offer_type:" + offerMetadata.getOfferType());
 
     if (TelephonyUtil.isAnyPstnLineBusy(context)) {
       Log.i(tag, "PSTN line is busy.");
       currentState = currentState.getActionProcessor().handleSendBusy(currentState, callMetadata, true);
-      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
+      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
       return currentState;
     }
 
     if (!RecipientUtil.isCallRequestAccepted(context.getApplicationContext(), callMetadata.getRemotePeer().getRecipient())) {
       Log.w(tag, "Caller is untrusted.");
       currentState = currentState.getActionProcessor().handleSendHangup(currentState, callMetadata, WebRtcData.HangupMetadata.fromType(HangupMessage.Type.NEED_PERMISSION), true);
-      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
+      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
       return currentState;
     }
 
     if (offerMetadata.getOpaque() == null) {
       Log.w(tag, "Opaque data is required.");
       currentState = currentState.getActionProcessor().handleSendHangup(currentState, callMetadata, WebRtcData.HangupMetadata.fromType(HangupMessage.Type.NORMAL), true);
-      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), true, receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
+      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
+      return currentState;
+    }
+
+    NotificationProfile activeProfile = NotificationProfiles.getActiveProfile(SignalDatabase.notificationProfiles().getProfiles());
+    if (activeProfile != null && !(activeProfile.isRecipientAllowed(callMetadata.getRemotePeer().getId()) || activeProfile.getAllowAllCalls())) {
+      Log.w(tag, "Caller is excluded by notification profile.");
+      currentState = currentState.getActionProcessor().handleSendHangup(currentState, callMetadata, WebRtcData.HangupMetadata.fromType(HangupMessage.Type.NORMAL), true);
+      webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);
       return currentState;
     }
 
@@ -355,7 +203,7 @@ public abstract class WebRtcActionProcessor {
     callMetadata.getRemotePeer().setCallStartTimestamp(receivedOfferMetadata.getServerReceivedTimestamp());
 
     currentState = currentState.builder()
-                               .changeCallSetupState()
+                               .changeCallSetupState(callMetadata.getCallId())
                                .isRemoteVideoOffer(offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL)
                                .commit()
                                .changeCallInfoState()
@@ -375,9 +223,8 @@ public abstract class WebRtcActionProcessor {
                                                       offerMetadata.getOpaque(),
                                                       messageAgeSec,
                                                       WebRtcUtil.getCallMediaTypeFromOfferType(offerMetadata.getOfferType()),
-                                                      1,
-                                                      receivedOfferMetadata.isMultiRing(),
-                                                      true,
+                                                      SignalStore.account().getDeviceId(),
+                                                      SignalStore.account().isPrimaryDevice(),
                                                       remoteIdentityKey,
                                                       localIdentityKey);
     } catch (CallException | InvalidKeyException e) {
@@ -392,7 +239,7 @@ public abstract class WebRtcActionProcessor {
   {
     Log.i(tag, "handleReceivedOfferExpired(): call_id: " + remotePeer.getCallId());
 
-    webRtcInteractor.insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState().isRemoteVideoOffer());
+    webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState(remotePeer).isRemoteVideoOffer());
 
     return terminate(currentState, remotePeer);
   }
@@ -417,12 +264,19 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSendAnswer(@NonNull WebRtcServiceState currentState,
+  protected final @NonNull WebRtcServiceState handleSendAnswer(@NonNull WebRtcServiceState currentState,
                                                          @NonNull CallMetadata callMetadata,
                                                          @NonNull AnswerMetadata answerMetadata,
                                                          boolean broadcast)
   {
-    Log.i(tag, "handleSendAnswer not processed");
+    Log.i(tag, "handleSendAnswer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
+
+    AnswerMessage answerMessage          = new AnswerMessage(callMetadata.getCallId().longValue(), answerMetadata.getSdp(), answerMetadata.getOpaque());
+    Integer       destinationDeviceId    = broadcast ? null : callMetadata.getRemoteDevice();
+    SignalServiceCallMessage callMessage = SignalServiceCallMessage.forAnswer(answerMessage, true, destinationDeviceId);
+
+    webRtcInteractor.sendCallMessage(callMetadata.getRemotePeer(), callMessage);
+
     return currentState;
   }
 
@@ -440,7 +294,7 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSendBusy(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, boolean broadcast) {
+  protected final @NonNull WebRtcServiceState handleSendBusy(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, boolean broadcast) {
     Log.i(tag, "handleSendBusy(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
     BusyMessage              busyMessage         = new BusyMessage(callMetadata.getCallId().longValue());
@@ -452,13 +306,30 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
-    Log.i(tag, "handleCallConcluded not processed");
-    return currentState;
+  final protected @NonNull WebRtcServiceState handleCallConcluded(@NonNull WebRtcServiceState currentState, @Nullable RemotePeer remotePeer) {
+    Log.i(tag, "handleCallConcluded():");
+
+    if (remotePeer == null) {
+      return currentState;
+    }
+
+    Log.i(tag, "delete remotePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
+
+    EglBaseWrapper.releaseEglBase(remotePeer.getCallId().longValue());
+
+    return currentState.builder()
+                       .changeCallInfoState()
+                       .removeRemotePeer(remotePeer)
+                       .build();
   }
 
   protected @NonNull WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
     Log.i(tag, "handleRemoteVideoEnable not processed");
+    return currentState;
+  }
+
+  protected  @NonNull WebRtcServiceState handleScreenSharingEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    Log.i(tag, "handleScreenSharingEnable not processed");
     return currentState;
   }
 
@@ -470,7 +341,7 @@ public abstract class WebRtcActionProcessor {
 
     try {
       webRtcInteractor.getCallManager().receivedHangup(callMetadata.getCallId(), callMetadata.getRemoteDevice(), hangupMetadata.getCallHangupType(), hangupMetadata.getDeviceId());
-    } catch  (CallException e) {
+    } catch (CallException e) {
       return callFailure(currentState, "receivedHangup() failed: ", e);
     }
 
@@ -482,7 +353,7 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSendHangup(@NonNull WebRtcServiceState currentState,
+  protected final @NonNull WebRtcServiceState handleSendHangup(@NonNull WebRtcServiceState currentState,
                                                          @NonNull CallMetadata callMetadata,
                                                          @NonNull HangupMetadata hangupMetadata,
                                                          boolean broadcast)
@@ -510,7 +381,8 @@ public abstract class WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleMessageSentError(@NonNull WebRtcServiceState currentState,
                                                                @NonNull CallId callId,
                                                                @NonNull WebRtcViewModel.State errorCallState,
-                                                               @NonNull Optional<IdentityKey> identityKey) {
+                                                               @NonNull Optional<IdentityKey> identityKey)
+  {
     Log.w(tag, "handleMessageSentError():");
 
     try {
@@ -528,7 +400,7 @@ public abstract class WebRtcActionProcessor {
 
     if (errorCallState == WebRtcViewModel.State.UNTRUSTED_IDENTITY) {
       CallParticipant participant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
-      CallParticipant untrusted   = participant.withIdentityKey(identityKey.get());
+      CallParticipant untrusted   = participant.withIdentityKey(identityKey.orNull());
 
       builder.changeCallInfoState()
              .callState(WebRtcViewModel.State.UNTRUSTED_IDENTITY)
@@ -543,17 +415,44 @@ public abstract class WebRtcActionProcessor {
     return builder.build();
   }
 
+  protected @NonNull WebRtcServiceState handleAudioDeviceChanged(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice activeDevice, @NonNull Set<SignalAudioManager.AudioDevice> availableDevices) {
+    Log.i(tag, "handleAudioDeviceChanged not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleSetUserAudioDevice(@NonNull WebRtcServiceState currentState, @NonNull SignalAudioManager.AudioDevice userDevice) {
+    Log.i(tag, "handleSetUserAudioDevice not processed");
+    return currentState;
+  }
+
   //endregion Active call
 
   //region Call setup
 
-  protected @NonNull WebRtcServiceState handleSendIceCandidates(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, boolean broadcast, @NonNull ArrayList<IceCandidateParcel> iceCandidates) {
-    Log.i(tag, "handleSendIceCandidates not processed");
+  protected final @NonNull WebRtcServiceState handleSendIceCandidates(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, boolean broadcast, @NonNull List<byte[]> iceCandidates) {
+    Log.i(tag, "handleSendIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
+
+    List<IceUpdateMessage> iceUpdateMessages = Stream.of(iceCandidates)
+                                                     .map(c -> new IceUpdateMessage(callMetadata.getCallId().longValue(), c, null))
+                                                     .toList();
+
+    Integer                  destinationDeviceId = broadcast ? null : callMetadata.getRemoteDevice();
+    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forIceUpdates(iceUpdateMessages, true, destinationDeviceId);
+
+    webRtcInteractor.sendCallMessage(callMetadata.getRemotePeer(), callMessage);
+
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleReceivedIceCandidates(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, @NonNull ArrayList<IceCandidateParcel> iceCandidateParcels) {
-    Log.i(tag, "handleReceivedIceCandidates not processed");
+  protected @NonNull WebRtcServiceState handleReceivedIceCandidates(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, @NonNull List<byte[]> iceCandidates) {
+    Log.i(tag, "handleReceivedIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()) + ", count: " + iceCandidates.size());
+
+    try {
+      webRtcInteractor.getCallManager().receivedIceCandidates(callMetadata.getCallId(), callMetadata.getRemoteDevice(), iceCandidates);
+    } catch (CallException e) {
+      return callFailure(currentState, "receivedIceCandidates() failed: ", e);
+    }
+
     return currentState;
   }
 
@@ -576,16 +475,6 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSetSpeakerAudio(@NonNull WebRtcServiceState currentState, boolean isSpeaker) {
-    Log.i(tag, "handleSetSpeakerAudio not processed");
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleSetBluetoothAudio(@NonNull WebRtcServiceState currentState, boolean isBluetooth) {
-    Log.i(tag, "handleSetBluetoothAudio not processed");
-    return currentState;
-  }
-
   protected @NonNull WebRtcServiceState handleSetCameraFlip(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleSetCameraFlip not processed");
     return currentState;
@@ -593,16 +482,6 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleScreenOffChange(@NonNull WebRtcServiceState currentState) {
     Log.i(tag, "handleScreenOffChange not processed");
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleBluetoothChange(@NonNull WebRtcServiceState currentState, boolean available) {
-    Log.i(tag, "handleBluetoothChange not processed");
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleWiredHeadsetChange(@NonNull WebRtcServiceState currentState, boolean present) {
-    Log.i(tag, "handleWiredHeadsetChange not processed");
     return currentState;
   }
 
@@ -626,11 +505,37 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleOrientationChanged(@NonNull WebRtcServiceState currentState, boolean isLandscapeEnabled, int orientationDegrees) {
+    Camera camera = currentState.getVideoState().getCamera();
+    if (camera != null) {
+      camera.setOrientation(orientationDegrees);
+    }
+
+    int sinkRotationDegrees  = isLandscapeEnabled ? BroadcastVideoSink.DEVICE_ROTATION_IGNORE : orientationDegrees;
+    int stateRotationDegrees = isLandscapeEnabled ? 0 : orientationDegrees;
+
+    BroadcastVideoSink sink = currentState.getVideoState().getLocalSink();
+    if (sink != null) {
+      sink.setDeviceOrientationDegrees(sinkRotationDegrees);
+    }
+
+    for (CallParticipant callParticipant : currentState.getCallInfoState().getRemoteCallParticipants()) {
+      callParticipant.getVideoSink().setDeviceOrientationDegrees(sinkRotationDegrees);
+    }
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setOrientation(Orientation.fromDegrees(stateRotationDegrees))
+                       .setLandscapeEnabled(isLandscapeEnabled)
+                       .setDeviceOrientation(Orientation.fromDegrees(orientationDegrees))
+                       .build();
+  }
+
   //endregion Local device
 
   //region End call
 
-  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull String action, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleEndedRemote(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedRemoteEvent, @NonNull RemotePeer remotePeer) {
     Log.i(tag, "handleEndedRemote not processed");
     return currentState;
   }
@@ -639,7 +544,7 @@ public abstract class WebRtcActionProcessor {
 
   //region End call failure
 
-  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull String action, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleEnded(@NonNull WebRtcServiceState currentState, @NonNull CallManager.CallEvent endedEvent, @NonNull RemotePeer remotePeer) {
     Log.i(tag, "handleEnded not processed");
     return currentState;
   }
@@ -648,7 +553,7 @@ public abstract class WebRtcActionProcessor {
 
   //region Local call failure
 
-  protected  @NonNull WebRtcServiceState handleSetupFailure(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
+  protected @NonNull WebRtcServiceState handleSetupFailure(@NonNull WebRtcServiceState currentState, @NonNull CallId callId) {
     Log.i(tag, "handleSetupFailure not processed");
     return currentState;
   }
@@ -676,6 +581,8 @@ public abstract class WebRtcActionProcessor {
       Log.w(tag, "Unable to reset call manager: ", e);
     }
 
+    EglBaseWrapper.forceRelease();
+
     currentState = builder.changeCallInfoState().clearPeerMap().build();
     return terminate(currentState, currentState.getCallInfoState().getActivePeer());
   }
@@ -695,24 +602,27 @@ public abstract class WebRtcActionProcessor {
       return currentState;
     }
 
+    ApplicationDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
+
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
-    webRtcInteractor.stopForegroundService();
     boolean playDisconnectSound = (activePeer.getState() == CallState.DIALING) ||
                                   (activePeer.getState() == CallState.REMOTE_RINGING) ||
                                   (activePeer.getState() == CallState.RECEIVED_BUSY) ||
                                   (activePeer.getState() == CallState.CONNECTED);
     webRtcInteractor.stopAudio(playDisconnectSound);
-    webRtcInteractor.setWantsBluetoothConnection(false);
 
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
+    webRtcInteractor.stopForegroundService();
 
     return WebRtcVideoUtil.deinitializeVideo(currentState)
                           .builder()
                           .changeCallInfoState()
                           .activePeer(null)
                           .commit()
-                          .actionProcessor(currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED ? new DisconnectingCallActionProcessor(webRtcInteractor) : new IdleActionProcessor(webRtcInteractor))
-                          .terminate()
+                          .changeLocalDeviceState()
+                          .commit()
+                          .actionProcessor(new IdleActionProcessor(webRtcInteractor))
+                          .terminate(remotePeer.getCallId())
                           .build();
   }
 
@@ -755,15 +665,9 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleGroupCallPeek(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
-    webRtcInteractor.peekGroupCall(remotePeer.getId());
-    return currentState;
-  }
-
   protected @NonNull WebRtcServiceState handleGroupMessageSentError(@NonNull WebRtcServiceState currentState,
-                                                                    @NonNull RemotePeer remotePeer,
-                                                                    @NonNull WebRtcViewModel.State errorCallState,
-                                                                    @NonNull Optional<IdentityKey> identityKey)
+                                                                    @NonNull Collection<RecipientId> recipientIds,
+                                                                    @NonNull WebRtcViewModel.State errorCallState)
   {
     Log.i(tag, "handleGroupMessageSentError not processed");
     return currentState;
@@ -776,35 +680,106 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleReceivedOpaqueMessage(@NonNull WebRtcServiceState currentState, @NonNull WebRtcData.OpaqueMessageMetadata opaqueMessageMetadata) {
+    Log.i(tag, "handleReceivedOpaqueMessage():");
+
+    try {
+      webRtcInteractor.getCallManager().receivedCallMessage(opaqueMessageMetadata.getUuid(),
+                                                            opaqueMessageMetadata.getRemoteDeviceId(),
+                                                            SignalStore.account().getDeviceId(),
+                                                            opaqueMessageMetadata.getOpaque(),
+                                                            opaqueMessageMetadata.getMessageAgeSeconds());
+    } catch (CallException e) {
+      return groupCallFailure(currentState, "Unable to receive opaque message", e);
+    }
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleGroupCallRingUpdate(@NonNull WebRtcServiceState currentState,
+                                                                  @NonNull RemotePeer remotePeerGroup,
+                                                                  @NonNull GroupId.V2 groupId,
+                                                                  long ringId,
+                                                                  @NonNull UUID uuid,
+                                                                  @NonNull RingUpdate ringUpdate)
+  {
+    Log.i(tag, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + ringId + " update: " + ringUpdate);
+
+    try {
+      if (ringUpdate != RingUpdate.BUSY_LOCALLY && ringUpdate != RingUpdate.BUSY_ON_ANOTHER_DEVICE) {
+        webRtcInteractor.getCallManager().cancelGroupRing(groupId.getDecodedId(), ringId, CallManager.RingCancelReason.Busy);
+      }
+      SignalDatabase.groupCallRings().insertOrUpdateGroupRing(ringId,
+                                                              System.currentTimeMillis(),
+                                                              ringUpdate == RingUpdate.REQUESTED ? RingUpdate.BUSY_LOCALLY : ringUpdate);
+    } catch (CallException e) {
+      Log.w(tag, "Unable to cancel ring", e);
+    }
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleSetRingGroup(@NonNull WebRtcServiceState currentState, boolean ringGroup) {
+    Log.i(tag, "handleSetRingGroup not processed");
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleReceivedGroupCallPeekForRingingCheck(@NonNull WebRtcServiceState currentState, @NonNull GroupCallRingCheckInfo info, long deviceCount) {
+    Log.i(tag, "handleReceivedGroupCallPeekForRingingCheck not processed");
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState groupCallFailure(@NonNull WebRtcServiceState currentState, @NonNull String message, @NonNull Throwable error) {
+    Log.w(tag, "groupCallFailure(): " + message, error);
+
+    GroupCall groupCall = currentState.getCallInfoState().getGroupCall();
+    Recipient recipient = currentState.getCallInfoState().getCallRecipient();
+
+    if (recipient != null && currentState.getCallInfoState().getGroupCallState().isConnected()) {
+      webRtcInteractor.sendGroupCallMessage(recipient, WebRtcUtil.getGroupCallEraId(groupCall));
+    }
+
+    currentState = currentState.builder()
+                               .changeCallInfoState()
+                               .callState(WebRtcViewModel.State.CALL_DISCONNECTED)
+                               .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
+                               .build();
+
+    webRtcInteractor.postStateUpdate(currentState);
+
+    try {
+      if (groupCall != null) {
+        groupCall.disconnect();
+      }
+      webRtcInteractor.getCallManager().reset();
+    } catch (CallException e) {
+      Log.w(tag, "Unable to reset call manager: ", e);
+    }
+
+    return terminateGroupCall(currentState);
+  }
+
+  protected synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState) {
+    return terminateGroupCall(currentState, true);
+  }
+
+  protected synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState, boolean terminateVideo) {
+    webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
+    boolean playDisconnectSound = currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED;
+    webRtcInteractor.stopAudio(playDisconnectSound);
+    webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
+    webRtcInteractor.stopForegroundService();
+
+    if (terminateVideo) {
+      WebRtcVideoUtil.deinitializeVideo(currentState);
+      EglBaseWrapper.releaseEglBase(RemotePeer.GROUP_CALL_ID.longValue());
+    }
+
+    GroupCallSafetyNumberChangeNotificationUtil.cancelNotification(context, currentState.getCallInfoState().getCallRecipient());
+
+    return new WebRtcServiceState(new IdleActionProcessor(webRtcInteractor));
+  }
+
   //endregion
-
-  protected @NonNull WebRtcServiceState handleHttpSuccess(@NonNull WebRtcServiceState currentState, @NonNull HttpData httpData) {
-    try {
-      webRtcInteractor.getCallManager().receivedHttpResponse(httpData.getRequestId(), httpData.getStatus(), httpData.getBody() != null ? httpData.getBody() : new byte[0]);
-    } catch (CallException e) {
-      return callFailure(currentState, "Unable to process received http response", e);
-    }
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleHttpFailure(@NonNull WebRtcServiceState currentState, @NonNull HttpData httpData) {
-    try {
-      webRtcInteractor.getCallManager().httpRequestFailed(httpData.getRequestId());
-    } catch (CallException e) {
-      return callFailure(currentState, "Unable to process received http response", e);
-    }
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleSendOpaqueMessage(@NonNull WebRtcServiceState currentState, @NonNull OpaqueMessageMetadata opaqueMessageMetadata) {
-    Log.i(tag, "handleSendOpaqueMessage not processed");
-
-    return currentState;
-  }
-
-  protected @NonNull WebRtcServiceState handleReceivedOpaqueMessage(@NonNull WebRtcServiceState currentState, @NonNull OpaqueMessageMetadata opaqueMessageMetadata) {
-    Log.i(tag, "handleReceivedOpaqueMessage not processed");
-
-    return currentState;
-  }
 }

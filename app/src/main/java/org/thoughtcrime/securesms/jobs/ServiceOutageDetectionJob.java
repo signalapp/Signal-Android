@@ -19,7 +19,7 @@ public class ServiceOutageDetectionJob extends BaseJob {
 
   public static final String KEY = "ServiceOutageDetectionJob";
 
-  private static final String TAG = ServiceOutageDetectionJob.class.getSimpleName();
+  private static final String TAG = Log.tag(ServiceOutageDetectionJob.class);
 
   private static final String IP_SUCCESS = "127.0.0.1";
   private static final String IP_FAILURE = "127.0.0.2";

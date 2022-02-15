@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -59,11 +61,9 @@ final class MediaActions {
                                                      recordCount,
                                                      recordCount);
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                                                 .setIcon(R.drawable.ic_warning)
-                                                 .setTitle(confirmTitle)
-                                                 .setMessage(confirmMessage)
-                                                 .setCancelable(true);
+    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context).setTitle(confirmTitle)
+                                                                                .setMessage(confirmMessage)
+                                                                                .setCancelable(true);
 
     builder.setPositiveButton(R.string.delete, (dialogInterface, i) ->
       new ProgressDialogAsyncTask<MediaDatabase.MediaRecord, Void, Void>(context,

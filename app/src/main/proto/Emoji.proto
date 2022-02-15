@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package signal;
+
+option java_package        = "org.thoughtcrime.securesms.emoji.protos";
+option java_multiple_files = true;
+
+message JumbomojiPack {
+  repeated JumbomojiItem items = 1;
+}
+
+message JumbomojiItem {
+  string name = 1;
+  bytes image = 2;
+}

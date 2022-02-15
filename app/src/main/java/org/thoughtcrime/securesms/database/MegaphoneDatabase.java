@@ -6,9 +6,10 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteOpenHelper;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
@@ -25,7 +26,7 @@ import java.util.Set;
 /**
  * IMPORTANT: Writes should only be made through {@link org.thoughtcrime.securesms.megaphone.MegaphoneRepository}.
  */
-public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabase {
+public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabaseOpenHelper {
 
   private static final String TAG = Log.tag(MegaphoneDatabase.class);
 
@@ -49,13 +50,13 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
 
   private static volatile MegaphoneDatabase instance;
 
-  private final Application    application;
-  private final DatabaseSecret databaseSecret;
+  private final Application application;
 
   public static @NonNull MegaphoneDatabase getInstance(@NonNull Application context) {
     if (instance == null) {
       synchronized (MegaphoneDatabase.class) {
         if (instance == null) {
+          SqlCipherLibraryLoader.load();
           instance = new MegaphoneDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context));
         }
       }
@@ -64,10 +65,9 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   }
 
   public MegaphoneDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook());
+    super(application, DATABASE_NAME, databaseSecret.asString(),  null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
 
-    this.application    = application;
-    this.databaseSecret = databaseSecret;
+    this.application = application;
   }
 
   @Override
@@ -76,9 +76,9 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
 
     db.execSQL(CREATE_TABLE);
 
-    if (DatabaseFactory.getInstance(application).hasTable("megaphone")) {
+    if (SignalDatabase.hasTable("megaphone")) {
       Log.i(TAG, "Found old megaphone table. Migrating data.");
-      migrateDataFromPreviousDatabase(DatabaseFactory.getInstance(application).getRawDatabase(), db);
+      migrateDataFromPreviousDatabase(SignalDatabase.getRawDatabase(), db);
     }
   }
 
@@ -91,10 +91,15 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
 
-    if (DatabaseFactory.getInstance(application).hasTable("megaphone")) {
-      Log.i(TAG, "Dropping original megaphone table from the main database.");
-      DatabaseFactory.getInstance(application).getRawDatabase().rawExecSQL("DROP TABLE megaphone");
-    }
+    db.enableWriteAheadLogging();
+    db.setForeignKeyConstraintsEnabled(true);
+
+    SignalExecutors.BOUNDED.execute(() -> {
+      if (SignalDatabase.hasTable("megaphone")) {
+        Log.i(TAG, "Dropping original megaphone table from the main database.");
+        SignalDatabase.getRawDatabase().execSQL("DROP TABLE megaphone");
+      }
+    });
   }
 
   public void insert(@NonNull Collection<Event> events) {
@@ -191,10 +196,6 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
     String[] args  = new String[]{event.getKey()};
 
     getWritableDatabase().delete(TABLE_NAME, query, args);
-  }
-
-  private @NonNull SQLiteDatabase getWritableDatabase() {
-    return getWritableDatabase(databaseSecret.asString());
   }
 
   @Override

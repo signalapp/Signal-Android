@@ -58,11 +58,14 @@ public final class GenericForegroundService extends Service {
 
     synchronized (GenericForegroundService.class) {
       String action = intent.getAction();
-      if      (ACTION_START.equals(action)) handleStart(intent);
-      else if (ACTION_STOP .equals(action)) handleStop(intent);
-      else                                  throw new IllegalStateException(String.format("Action needs to be %s or %s.", ACTION_START, ACTION_STOP));
 
-      updateNotification();
+      if (action != null) {
+        if      (ACTION_START.equals(action)) handleStart(intent);
+        else if (ACTION_STOP .equals(action)) handleStop(intent);
+        else                                  throw new IllegalStateException(String.format("Action needs to be %s or %s.", ACTION_START, ACTION_STOP));
+
+        updateNotification();
+      }
 
       return START_NOT_STICKY;
     }
@@ -109,12 +112,22 @@ public final class GenericForegroundService extends Service {
                                                            .setContentTitle(active.title)
                                                            .setProgress(active.progressMax, active.progress, active.indeterminate)
                                                            .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), 0))
+                                                           .setVibrate(new long[]{0})
                                                            .build());
   }
 
   @Override
   public IBinder onBind(Intent intent) {
     return binder;
+  }
+
+  /**
+   * Waits for {@param delayMillis} ms before starting the foreground task.
+   * <p>
+   * The delayed notification controller can also shown on demand and promoted to a regular notification controller to update the message etc.
+   */
+  public static DelayedNotificationController startForegroundTaskDelayed(@NonNull Context context, @NonNull String task, long delayMillis, @DrawableRes int iconRes) {
+    return DelayedNotificationController.create(delayMillis, () -> startForegroundTask(context, task, DEFAULTS.channelId, iconRes));
   }
 
   public static NotificationController startForegroundTask(@NonNull Context context, @NonNull String task) {
@@ -135,6 +148,7 @@ public final class GenericForegroundService extends Service {
     intent.putExtra(EXTRA_ICON_RES, iconRes);
     intent.putExtra(EXTRA_ID, id);
 
+    Log.i(TAG, String.format(Locale.US, "Starting foreground service (%s) id=%d", task, id));
     ContextCompat.startForegroundService(context, intent);
 
     return new NotificationController(context, id);
@@ -145,6 +159,7 @@ public final class GenericForegroundService extends Service {
     intent.setAction(ACTION_STOP);
     intent.putExtra(EXTRA_ID, id);
 
+    Log.i(TAG, String.format(Locale.US, "Stopping foreground service id=%d", id));
     ContextCompat.startForegroundService(context, intent);
   }
 

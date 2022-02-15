@@ -21,7 +21,7 @@ public class RemoteAttestationKeys {
     byte[] publicKeys   = ByteUtil.combine(keyPair.getPublicKey().getPublicKeyBytes(), serverPublicEphemeral, serverPublicStatic);
 
     HKDFv3 generator = new HKDFv3();
-    byte[] keys      = generator.deriveSecrets(masterSecret, publicKeys, null, clientKey.length + serverKey.length);
+    byte[] keys      = generator.deriveSecrets(masterSecret, publicKeys, new byte[0], clientKey.length + serverKey.length);
 
     System.arraycopy(keys, 0, clientKey, 0, clientKey.length);
     System.arraycopy(keys, clientKey.length, serverKey, 0, serverKey.length);

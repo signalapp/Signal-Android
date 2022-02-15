@@ -54,7 +54,6 @@ public class MessageRequestMegaphoneActivity extends PassphraseRequiredActivity 
     if (requestCode == EDIT_PROFILE_REQUEST_CODE &&
         resultCode == RESULT_OK                  &&
         Recipient.self().getProfileName() != ProfileName.EMPTY) {
-      ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.MESSAGE_REQUESTS);
       setResult(RESULT_OK);
       finish();
     }

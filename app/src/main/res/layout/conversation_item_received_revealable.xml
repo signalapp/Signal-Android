@@ -7,6 +7,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:revealable_unopenedForegroundColor="@color/conversation_item_received_text_primary_color"
-        app:revealable_openedForegroundColor="@color/signal_text_primary"
+        app:revealable_textColor="@color/signal_text_primary"
+        app:revealable_openedIconColor="@color/conversation_item_incoming_view_once_opened"
+        app:revealable_unopenedIconColor="@color/conversation_item_incoming_view_once_unopened"
+        app:revealable_circleColor="@color/conversation_item_incoming_view_once_circle"
+        app:revealable_circleColorWithWallpaper="@color/conversation_item_incoming_view_once_circle_wallpaper"
         tools:visibility="visible"/>

@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package signal;
+
+option java_package        = "org.thoughtcrime.securesms.payments.proto";
+option java_multiple_files = true;
+
+message MobileCoinLedger {
+
+  message OwnedTXO {
+    uint64 amount          = 1;
+    bytes  keyImage        = 2;
+    bytes  publicKey       = 3;
+    Block  receivedInBlock = 4;
+    Block  spentInBlock    = 5;
+  }
+
+  message Block {
+    uint64 blockNumber = 1;
+    uint64 timestamp   = 2;
+  }
+
+           uint64   balance             = 1;
+           uint64   transferableBalance = 2;
+           Block    highestBlock        = 3;
+           uint64   asOfTimeStamp       = 4;
+  repeated OwnedTXO spentTxos           = 5;
+  repeated OwnedTXO unspentTxos         = 6;
+}
+
+message PaymentMetaData {
+
+  message MobileCoinTxoIdentification {
+    repeated bytes PublicKey = 1;
+    repeated bytes KeyImages = 2;
+  }
+
+  MobileCoinTxoIdentification mobileCoinTxoIdentification = 1;
+}

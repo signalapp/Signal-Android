@@ -7,8 +7,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.ProfileUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,12 +36,13 @@ public final class ProfileUploadJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       Log.w(TAG, "Not registered. Skipping.");
       return;
     }
 
     ProfileUtil.uploadProfile(context);
+    Log.i(TAG, "Profile uploaded.");
   }
 
   @Override

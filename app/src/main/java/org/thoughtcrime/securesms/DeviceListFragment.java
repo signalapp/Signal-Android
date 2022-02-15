@@ -21,6 +21,7 @@ import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.signal.core.util.logging.Log;
@@ -40,7 +41,7 @@ public class DeviceListFragment extends ListFragment
                ListView.OnItemClickListener, Button.OnClickListener
 {
 
-  private static final String TAG = DeviceListFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(DeviceListFragment.class);
 
   private SignalServiceAccountManager accountManager;
   private Locale                      locale;
@@ -52,12 +53,12 @@ public class DeviceListFragment extends ListFragment
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.locale = (Locale) getArguments().getSerializable(PassphraseRequiredActivity.LOCALE_EXTRA);
+    this.locale = (Locale) requireArguments().getSerializable(PassphraseRequiredActivity.LOCALE_EXTRA);
   }
 
   @Override
-  public void onAttach(Activity activity) {
-    super.onAttach(activity);
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
     this.accountManager = ApplicationDependencies.getSignalServiceAccountManager();
   }
 
@@ -121,42 +122,22 @@ public class DeviceListFragment extends ListFragment
     final String deviceName = ((DeviceListItem)view).getDeviceName();
     final long   deviceId   = ((DeviceListItem)view).getDeviceId();
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(requireActivity());
+    builder.setTitle(getString(R.string.DeviceListActivity_unlink_s, deviceName));
     builder.setMessage(R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive);
     builder.setNegativeButton(android.R.string.cancel, null);
-    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        handleDisconnectDevice(deviceId);
-      }
-    });
+    builder.setPositiveButton(android.R.string.ok, (dialog, which) -> handleDisconnectDevice(deviceId));
     builder.show();
   }
 
   private void handleLoaderFailed() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(requireActivity());
     builder.setMessage(R.string.DeviceListActivity_network_connection_failed);
     builder.setPositiveButton(R.string.DeviceListActivity_try_again,
-                              new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
-      }
-    });
+        (dialog, which) -> getLoaderManager().restartLoader(0, null, DeviceListFragment.this));
 
-    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        DeviceListFragment.this.getActivity().onBackPressed();
-      }
-    });
-    builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-      @Override
-      public void onCancel(DialogInterface dialog) {
-        DeviceListFragment.this.getActivity().onBackPressed();
-      }
-    });
+    builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> requireActivity().onBackPressed());
+    builder.setOnCancelListener(dialog -> requireActivity().onBackPressed());
 
     builder.show();
   }

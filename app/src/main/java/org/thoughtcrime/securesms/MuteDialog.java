@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 public class MuteDialog extends AlertDialog {
@@ -29,24 +31,21 @@ public class MuteDialog extends AlertDialog {
   }
 
   public static void show(final Context context, final @NonNull MuteSelectionListener listener, @Nullable Runnable cancelListener) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context);
     builder.setTitle(R.string.MuteDialog_mute_notifications);
-    builder.setItems(R.array.mute_durations, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, final int which) {
-        final long muteUntil;
+    builder.setItems(R.array.mute_durations, (dialog, which) -> {
+      final long muteUntil;
 
-        switch (which) {
-          case 0:  muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1);  break;
-          case 1:  muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(2);  break;
-          case 2:  muteUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1);   break;
-          case 3:  muteUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7);   break;
-          case 4:  muteUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(365); break;
-          default: muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1);  break;
-        }
-
-        listener.onMuted(muteUntil);
+      switch (which) {
+        case 0:  muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1);  break;
+        case 1:  muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(8);  break;
+        case 2:  muteUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1);   break;
+        case 3:  muteUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(7);   break;
+        case 4:  muteUntil = Long.MAX_VALUE;                                           break;
+        default: muteUntil = System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1);  break;
       }
+
+      listener.onMuted(muteUntil);
     });
 
     if (cancelListener != null) {

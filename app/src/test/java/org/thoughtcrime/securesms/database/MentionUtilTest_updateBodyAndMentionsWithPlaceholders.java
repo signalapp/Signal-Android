@@ -69,6 +69,8 @@ public class MentionUtilTest_updateBodyAndMentionsWithPlaceholders {
       builder().text("middle 🤡👍🏾 👨🏼‍🤝‍👨🏽 ").mention("a").text(" 👍🏾 middle 👩‍👩‍👦‍👦").build(),
       builder().text("start ").mention("emoji 🩳").build(),
       builder().text("start ").mention("emoji 🩳").text(" middle ").mention("emoji 🩳").text(" end").build(),
+
+      { "message", Collections.singletonList(new Mention(RecipientId.from(1), 30, 5)), "message", Collections.<Mention>emptyList() }
     });
   }
 

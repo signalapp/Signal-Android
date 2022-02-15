@@ -15,11 +15,9 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 class LongMessage {
 
   private final ConversationMessage conversationMessage;
-  private final String              fullBody;
 
-  LongMessage(@NonNull ConversationMessage conversationMessage, @NonNull String fullBody) {
+  LongMessage(@NonNull ConversationMessage conversationMessage) {
     this.conversationMessage = conversationMessage;
-    this.fullBody            = fullBody;
   }
 
   @NonNull MessageRecord getMessageRecord() {
@@ -27,6 +25,6 @@ class LongMessage {
   }
 
   @NonNull CharSequence getFullBody(@NonNull Context context) {
-    return !TextUtils.isEmpty(fullBody) ? fullBody : conversationMessage.getDisplayBody(context);
+    return conversationMessage.getDisplayBody(context);
   }
 }

@@ -27,8 +27,6 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.Telephony;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
@@ -47,9 +45,9 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import org.signal.core.util.LinkedBlockingLifoQueue;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
@@ -66,17 +64,12 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class Util {
-  private static final String TAG = Util.class.getSimpleName();
+  private static final String TAG = Log.tag(Util.class);
 
   private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(90);
-
-  private static volatile Handler handler;
 
   public static <T> List<T> asList(T... elements) {
     List<T> result = new LinkedList<>();
@@ -88,11 +81,11 @@ public class Util {
     return join(Arrays.asList(list), delimiter);
   }
 
-  public static String join(Collection<String> list, String delimiter) {
+  public static <T> String join(Collection<T> list, String delimiter) {
     StringBuilder result = new StringBuilder();
     int i = 0;
 
-    for (String item : list) {
+    for (T item : list) {
       result.append(item);
 
       if (++i < list.size())
@@ -146,17 +139,6 @@ public class Util {
     }
 
     return out.toString();
-  }
-
-  public static ExecutorService newSingleThreadedLifoExecutor() {
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
-
-    executor.execute(() -> {
-//        Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-      Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
-    });
-
-    return executor;
   }
 
   public static boolean isEmpty(EncodedStringValue[] value) {
@@ -422,61 +404,12 @@ public class Util {
     return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) || OutgoingLegacyMmsConnection.isConnectionPossible(context);
   }
 
-  public static boolean isMainThread() {
-    return Looper.myLooper() == Looper.getMainLooper();
-  }
-
-  public static void assertMainThread() {
-    if (!isMainThread()) {
-      throw new AssertionError("Must run on main thread.");
-    }
-  }
-
-  public static void assertNotMainThread() {
-    if (isMainThread()) {
-      throw new AssertionError("Cannot run on main thread.");
-    }
-  }
-
-  public static void postToMain(final @NonNull Runnable runnable) {
-    getHandler().post(runnable);
-  }
-
-  public static void runOnMain(final @NonNull Runnable runnable) {
-    if (isMainThread()) runnable.run();
-    else                getHandler().post(runnable);
-  }
-
-  public static void runOnMainDelayed(final @NonNull Runnable runnable, long delayMillis) {
-    getHandler().postDelayed(runnable, delayMillis);
-  }
-
-  public static void cancelRunnableOnMain(@NonNull Runnable runnable) {
-    getHandler().removeCallbacks(runnable);
-  }
-
-  public static void runOnMainSync(final @NonNull Runnable runnable) {
-    if (isMainThread()) {
-      runnable.run();
-    } else {
-      final CountDownLatch sync = new CountDownLatch(1);
-      runOnMain(() -> {
-        try {
-          runnable.run();
-        } finally {
-          sync.countDown();
-        }
-      });
-      try {
-        sync.await();
-      } catch (InterruptedException ie) {
-        throw new AssertionError(ie);
-      }
-    }
-  }
-
   public static <T> T getRandomElement(T[] elements) {
     return elements[new SecureRandom().nextInt(elements.length)];
+  }
+
+  public static <T> T getRandomElement(List<T> elements) {
+    return elements.get(new SecureRandom().nextInt(elements.size()));
   }
 
   public static boolean equals(@Nullable Object a, @Nullable Object b) {
@@ -512,6 +445,15 @@ public class Util {
     return Math.min(Math.max(value, min), max);
   }
 
+  /**
+   * Returns half of the difference between the given length, and the length when scaled by the
+   * given scale.
+   */
+  public static float halfOffsetFromScale(int length, float scale) {
+    float scaledLength = length * scale;
+    return (length - scaledLength) / 2;
+  }
+
   public static @Nullable String readTextFromClipboard(@NonNull Context context) {
     {
       ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -525,10 +467,13 @@ public class Util {
   }
 
   public static void writeTextToClipboard(@NonNull Context context, @NonNull String text) {
-    {
-      ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-      clipboardManager.setPrimaryClip(ClipData.newPlainText("Safety numbers", text));
-    }
+    writeTextToClipboard(context, context.getString(R.string.app_name), text);
+  }
+
+  public static void writeTextToClipboard(@NonNull Context context, @NonNull String label, @NonNull String text) {
+    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipData clip = ClipData.newPlainText(label, text);
+    clipboard.setPrimaryClip(clip);
   }
 
   public static int toIntExact(long value) {
@@ -551,27 +496,8 @@ public class Util {
     return MemoryUnitFormat.formatBytes(sizeBytes);
   }
 
-  public static void sleep(long millis) {
-    try {
-      Thread.sleep(millis);
-    } catch (InterruptedException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  public static void copyToClipboard(@NonNull Context context, @NonNull String text) {
+  public static void copyToClipboard(@NonNull Context context, @NonNull CharSequence text) {
     ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText("text", text));
-  }
-
-  private static Handler getHandler() {
-    if (handler == null) {
-      synchronized (Util.class) {
-        if (handler == null) {
-          handler = new Handler(Looper.getMainLooper());
-        }
-      }
-    }
-    return handler;
   }
 
   @SafeVarargs
@@ -600,26 +526,5 @@ public class Util {
     } catch (NumberFormatException e) {
       return defaultValue;
     }
-  }
-
-  /**
-   * Appends the stack trace of the provided throwable onto the provided primary exception. This is
-   * useful for when exceptions are thrown inside of asynchronous systems (like runnables in an
-   * executor) where you'd otherwise lose important parts of the stack trace. This lets you save a
-   * throwable at the entry point, and then combine it with any caught exceptions later.
-   *
-   * @return The provided primary exception, for convenience.
-   */
-  public static RuntimeException appendStackTrace(@NonNull RuntimeException primary, @NonNull Throwable secondary) {
-    StackTraceElement[] now      = primary.getStackTrace();
-    StackTraceElement[] then     = secondary.getStackTrace();
-    StackTraceElement[] combined = new StackTraceElement[now.length + then.length];
-
-    System.arraycopy(now, 0, combined, 0, now.length);
-    System.arraycopy(then, 0, combined, now.length, then.length);
-
-    primary.setStackTrace(combined);
-
-    return primary;
   }
 }

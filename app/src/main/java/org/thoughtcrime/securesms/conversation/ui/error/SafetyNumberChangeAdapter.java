@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
 
@@ -80,6 +81,6 @@ final class SafetyNumberChangeAdapter extends ListAdapter<ChangedRecipient, Safe
   }
 
   interface Callbacks {
-    void onViewIdentityRecord(@NonNull IdentityDatabase.IdentityRecord identityRecord);
+    void onViewIdentityRecord(@NonNull IdentityRecord identityRecord);
   }
 }

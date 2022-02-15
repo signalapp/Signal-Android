@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -18,14 +20,14 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public final class MultiShareArgs implements Parcelable {
 
-  private static final String ARGS = "ShareInterstitialArgs";
-
   private final Set<ShareContactAndThread> shareContactAndThreads;
-  private final ArrayList<Media>           media;
+  private final List<Media>                media;
   private final String                     draftText;
   private final StickerLocator             stickerLocator;
   private final boolean                    borderless;
@@ -33,10 +35,13 @@ public final class MultiShareArgs implements Parcelable {
   private final String                     dataType;
   private final boolean                    viewOnce;
   private final LinkPreview                linkPreview;
+  private final List<Mention>              mentions;
+  private final long                       timestamp;
+  private final long                       expiresAt;
 
   private MultiShareArgs(@NonNull Builder builder) {
     shareContactAndThreads = builder.shareContactAndThreads;
-    media                  = builder.media == null ? new ArrayList<>() : builder.media;
+    media                  = builder.media == null ? new ArrayList<>() : new ArrayList<>(builder.media);
     draftText              = builder.draftText;
     stickerLocator         = builder.stickerLocator;
     borderless             = builder.borderless;
@@ -44,10 +49,13 @@ public final class MultiShareArgs implements Parcelable {
     dataType               = builder.dataType;
     viewOnce               = builder.viewOnce;
     linkPreview            = builder.linkPreview;
+    mentions               = builder.mentions == null ? new ArrayList<>() : new ArrayList<>(builder.mentions);
+    timestamp              = builder.timestamp;
+    expiresAt              = builder.expiresAt;
   }
 
   protected MultiShareArgs(Parcel in) {
-    shareContactAndThreads = new HashSet<>(in.createTypedArrayList(ShareContactAndThread.CREATOR));
+    shareContactAndThreads = new HashSet<>(Objects.requireNonNull(in.createTypedArrayList(ShareContactAndThread.CREATOR)));
     media                  = in.createTypedArrayList(Media.CREATOR);
     draftText              = in.readString();
     stickerLocator         = in.readParcelable(StickerLocator.class.getClassLoader());
@@ -55,10 +63,14 @@ public final class MultiShareArgs implements Parcelable {
     dataUri                = in.readParcelable(Uri.class.getClassLoader());
     dataType               = in.readString();
     viewOnce               = in.readByte() != 0;
+    mentions               = in.createTypedArrayList(Mention.CREATOR);
+    timestamp              = in.readLong();
+    expiresAt              = in.readLong();
 
+    String      linkedPreviewString = in.readString();
     LinkPreview preview;
     try {
-      preview = LinkPreview.deserialize(in.readString());
+      preview = linkedPreviewString != null ? LinkPreview.deserialize(linkedPreviewString) : null;
     } catch (IOException e) {
       preview = null;
     }
@@ -70,7 +82,7 @@ public final class MultiShareArgs implements Parcelable {
     return shareContactAndThreads;
   }
 
-  public ArrayList<Media> getMedia() {
+  public @NonNull List<Media> getMedia() {
     return media;
   }
 
@@ -82,7 +94,7 @@ public final class MultiShareArgs implements Parcelable {
     return dataType;
   }
 
-  public String getDraftText() {
+  public @Nullable String getDraftText() {
     return draftText;
   }
 
@@ -102,11 +114,23 @@ public final class MultiShareArgs implements Parcelable {
     return linkPreview;
   }
 
+  public @NonNull List<Mention> getMentions() {
+    return mentions;
+  }
+
+  public long getTimestamp() {
+    return timestamp;
+  }
+
+  public long getExpiresAt() {
+    return expiresAt;
+  }
+
   public @NonNull InterstitialContentType getInterstitialContentType() {
     if (!requiresInterstitial()) {
       return InterstitialContentType.NONE;
     } else if (!this.getMedia().isEmpty() ||
-               (this.getDataUri() != null && this.getDataUri() != Uri.EMPTY && this.getDataType() != null))
+               (this.getDataUri() != null && this.getDataUri() != Uri.EMPTY && this.getDataType() != null && MediaUtil.isImageOrVideoType(this.getDataType())))
     {
       return InterstitialContentType.MEDIA;
     } else if (!TextUtils.isEmpty(this.getDraftText())) {
@@ -144,6 +168,9 @@ public final class MultiShareArgs implements Parcelable {
     dest.writeParcelable(dataUri, flags);
     dest.writeString(dataType);
     dest.writeByte((byte) (viewOnce ? 1 : 0));
+    dest.writeTypedList(mentions);
+    dest.writeLong(timestamp);
+    dest.writeLong(expiresAt);
 
     if (linkPreview != null) {
       try {
@@ -157,6 +184,10 @@ public final class MultiShareArgs implements Parcelable {
   }
 
   public Builder buildUpon() {
+    return buildUpon(shareContactAndThreads);
+  }
+
+  public Builder buildUpon(@NonNull Set<ShareContactAndThread> shareContactAndThreads) {
     return new Builder(shareContactAndThreads).asBorderless(borderless)
                                               .asViewOnce(viewOnce)
                                               .withDataType(dataType)
@@ -164,7 +195,10 @@ public final class MultiShareArgs implements Parcelable {
                                               .withDraftText(draftText)
                                               .withLinkPreview(linkPreview)
                                               .withMedia(media)
-                                              .withStickerLocator(stickerLocator);
+                                              .withStickerLocator(stickerLocator)
+                                              .withMentions(mentions)
+                                              .withTimestamp(timestamp)
+                                              .withExpiration(expiresAt);
   }
 
   private boolean requiresInterstitial() {
@@ -176,21 +210,24 @@ public final class MultiShareArgs implements Parcelable {
 
     private final Set<ShareContactAndThread> shareContactAndThreads;
 
-    private ArrayList<Media> media;
-    private String           draftText;
-    private StickerLocator   stickerLocator;
-    private boolean          borderless;
-    private Uri              dataUri;
-    private String           dataType;
-    private LinkPreview      linkPreview;
-    private boolean          viewOnce;
+    private List<Media>    media;
+    private String         draftText;
+    private StickerLocator stickerLocator;
+    private boolean        borderless;
+    private Uri            dataUri;
+    private String         dataType;
+    private LinkPreview    linkPreview;
+    private boolean        viewOnce;
+    private List<Mention>  mentions;
+    private long           timestamp;
+    private long           expiresAt;
 
     public Builder(@NonNull Set<ShareContactAndThread> shareContactAndThreads) {
       this.shareContactAndThreads = shareContactAndThreads;
     }
 
-    public @NonNull Builder withMedia(@Nullable ArrayList<Media> media) {
-      this.media = media;
+    public @NonNull Builder withMedia(@Nullable List<Media> media) {
+      this.media = media != null ? new ArrayList<>(media) : null;
       return this;
     }
 
@@ -226,6 +263,21 @@ public final class MultiShareArgs implements Parcelable {
 
     public @NonNull Builder asViewOnce(boolean viewOnce) {
       this.viewOnce = viewOnce;
+      return this;
+    }
+
+    public @NonNull Builder withMentions(@Nullable List<Mention> mentions) {
+      this.mentions = mentions != null ? new ArrayList<>(mentions) : null;
+      return this;
+    }
+
+    public @NonNull Builder withTimestamp(long timestamp) {
+      this.timestamp = timestamp;
+      return this;
+    }
+
+    public @NonNull Builder withExpiration(long expiresAt) {
+      this.expiresAt = expiresAt;
       return this;
     }
 

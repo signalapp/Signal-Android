@@ -4,6 +4,7 @@
     <item android:title="@string/conversation_callable_insecure__menu_call"
           android:id="@+id/menu_call_insecure"
           android:icon="@drawable/ic_phone_right_unlock_solid_24"
+          app:iconTint="@color/signal_icon_tint_primary"
           app:showAsAction="always" />
 
 </menu>

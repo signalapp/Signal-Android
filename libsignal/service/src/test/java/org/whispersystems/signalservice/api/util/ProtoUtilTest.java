@@ -91,6 +91,18 @@ public class ProtoUtilTest {
   }
 
   @Test
+  public void hasUnknownFields_nullInnerMessage() throws InvalidProtocolBufferException {
+    TestPersonWithNewMessage person = TestPersonWithNewMessage.newBuilder()
+                                                              .setName("Peter Parker")
+                                                              .setAge(23)
+                                                              .build();
+
+    TestPerson personWithUnknowns = TestPerson.parseFrom(person.toByteArray());
+
+    assertFalse(ProtoUtil.hasUnknownFields(personWithUnknowns));
+  }
+
+  @Test
   public void combineWithUnknownFields_noUnknowns() throws InvalidProtocolBufferException {
     TestPerson personWithUnknowns = TestPerson.newBuilder()
                                               .setName("Peter Parker")
@@ -224,6 +236,6 @@ public class ProtoUtilTest {
     TestInnerMessageWithNewString reparsedTest = TestInnerMessageWithNewString.parseFrom(combined.toByteArray());
 
     Assert.assertEquals("a2", reparsedTest.getInner().getA());
-    Assert.assertEquals("", reparsedTest.getInner().getB());
+    Assert.assertEquals("b1", reparsedTest.getInner().getB());
   }
 }

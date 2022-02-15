@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp"
+    android:gravity="center_horizontal"
+    android:background="?selectableItemBackgroundBorderless">
+
+    <ImageView
+        android:id="@+id/signal_bottom_action_bar_item_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        tools:src="@drawable/ic_archive_24"/>
+
+    <TextView
+        android:id="@+id/signal_bottom_action_bar_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:gravity="center_horizontal"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="Archive"/>
+
+
+</LinearLayout>

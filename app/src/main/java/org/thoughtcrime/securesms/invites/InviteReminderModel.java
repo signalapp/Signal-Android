@@ -9,8 +9,7 @@ import androidx.annotation.WorkerThread;
 import org.thoughtcrime.securesms.components.reminder.FirstInviteReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.SecondInviteReminder;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -49,19 +48,19 @@ public final class InviteReminderModel {
       return new NoReminderInfo();
     }
 
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    long threadId                 = threadDatabase.getThreadIdFor(recipient);
+    ThreadDatabase threadDatabase = SignalDatabase.threads();
+    Long threadId                 = threadDatabase.getThreadIdFor(recipient.getId());
 
-    MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
-    int conversationCount         = mmsSmsDatabase.getInsecureSentCount(threadId);
+    if (threadId != null) {
+      int conversationCount = SignalDatabase.mmsSms().getInsecureSentCount(threadId);
 
-    if (conversationCount >= SECOND_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenSecondInviteReminder()) {
-      return new SecondInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
-    } else if (conversationCount >= FIRST_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenFirstInviteReminder()) {
-      return new FirstInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
-    } else {
-      return new NoReminderInfo();
+      if (conversationCount >= SECOND_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenSecondInviteReminder()) {
+        return new SecondInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
+      } else if (conversationCount >= FIRST_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenFirstInviteReminder()) {
+        return new FirstInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
+      }
     }
+    return new NoReminderInfo();
   }
 
   public @NonNull Optional<Reminder> getReminder() {

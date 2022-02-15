@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.webrtc.RendererCommon;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,9 +30,12 @@ public class CallParticipantsLayout extends FlexboxLayout {
   private static final int MULTIPLE_PARTICIPANT_SPACING = ViewUtil.dpToPx(3);
   private static final int CORNER_RADIUS                = ViewUtil.dpToPx(10);
 
-  private List<CallParticipant> callParticipants = Collections.emptyList();
+  private List<CallParticipant> callParticipants   = Collections.emptyList();
   private CallParticipant       focusedParticipant = null;
   private boolean               shouldRenderInPip;
+  private boolean               isPortrait;
+  private boolean               isIncomingRing;
+  private LayoutStrategy        layoutStrategy;
 
   public CallParticipantsLayout(@NonNull Context context) {
     super(context);
@@ -45,10 +49,21 @@ public class CallParticipantsLayout extends FlexboxLayout {
     super(context, attrs, defStyleAttr);
   }
 
-  void update(@NonNull List<CallParticipant> callParticipants, @NonNull CallParticipant focusedParticipant, boolean shouldRenderInPip) {
+  void update(@NonNull List<CallParticipant> callParticipants,
+              @NonNull CallParticipant focusedParticipant,
+              boolean shouldRenderInPip,
+              boolean isPortrait,
+              boolean isIncomingRing,
+              @NonNull LayoutStrategy layoutStrategy)
+  {
     this.callParticipants   = callParticipants;
     this.focusedParticipant = focusedParticipant;
     this.shouldRenderInPip  = shouldRenderInPip;
+    this.isPortrait         = isPortrait;
+    this.isIncomingRing     = isIncomingRing;
+    this.layoutStrategy     = layoutStrategy;
+
+    setFlexDirection(layoutStrategy.getFlexDirection());
     updateLayout();
   }
 
@@ -104,6 +119,7 @@ public class CallParticipantsLayout extends FlexboxLayout {
 
     callParticipantView.setCallParticipant(participant);
     callParticipantView.setRenderInPip(shouldRenderInPip);
+    layoutStrategy.setChildScaling(participant, callParticipantView, isPortrait, count);
 
     if (count > 1) {
       view.setPadding(MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING);
@@ -113,13 +129,19 @@ public class CallParticipantsLayout extends FlexboxLayout {
       cardView.setRadius(0);
     }
 
+    if (isIncomingRing) {
+      callParticipantView.hideAvatar();
+    } else {
+      callParticipantView.showAvatar();
+    }
+
     if (count > 2) {
       callParticipantView.useSmallAvatar();
     } else {
       callParticipantView.useLargeAvatar();
     }
 
-    setChildLayoutParams(view, index, getChildCount());
+    layoutStrategy.setChildLayoutParams(view, index, getChildCount());
   }
 
   private void addCallParticipantView() {
@@ -131,17 +153,14 @@ public class CallParticipantsLayout extends FlexboxLayout {
     addView(view);
   }
 
-  private void setChildLayoutParams(@NonNull View child, int childPosition, int childCount) {
-    FlexboxLayout.LayoutParams params = (FlexboxLayout.LayoutParams) child.getLayoutParams();
-    if (childCount < 3) {
-      params.setFlexBasisPercent(1f);
-    } else {
-      if ((childCount % 2) != 0 && childPosition == childCount - 1) {
-        params.setFlexBasisPercent(1f);
-      } else {
-        params.setFlexBasisPercent(0.5f);
-      }
-    }
-    child.setLayoutParams(params);
+  public interface LayoutStrategy {
+    int getFlexDirection();
+
+    void setChildScaling(@NonNull CallParticipant callParticipant,
+                         @NonNull CallParticipantView callParticipantView,
+                         boolean isPortrait,
+                         int childCount);
+
+    void setChildLayoutParams(@NonNull View child, int childPosition, int childCount);
   }
 }

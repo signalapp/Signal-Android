@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="32dp"
+        android:paddingTop="@dimen/transfer_split_top_padding"
+        android:paddingEnd="32dp"
+        android:paddingBottom="16dp">
+
+        <!-- region Progress -->
+        <ProgressBar
+            android:id="@+id/device_transfer_setup_fragment_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/device_transfer_setup_fragment_status"
+            style="@style/TextAppearance.Signal.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/device_transfer_setup_fragment_progress"
+            app:layout_constraintStart_toStartOf="@+id/device_transfer_setup_fragment_progress"
+            app:layout_constraintTop_toBottomOf="@+id/device_transfer_setup_fragment_progress"
+            tools:text="Status" />
+        <!-- endregion -->
+
+        <!-- region Error -->
+        <TextView
+            android:id="@+id/device_transfer_setup_fragment_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="There was an error" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/device_transfer_setup_fragment_error_resolve"
+            style="@style/Signal.Widget.Button.Medium.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/device_transfer_setup_fragment_error"
+            app:layout_constraintStart_toStartOf="@+id/device_transfer_setup_fragment_error"
+            app:layout_constraintTop_toBottomOf="@+id/device_transfer_setup_fragment_error"
+            tools:text="Fix me!" />
+        <!-- endregion -->
+
+        <!-- region Verify code -->
+        <include
+            android:id="@+id/device_transfer_setup_fragment_verify"
+            layout="@layout/device_transfer_setup_verify_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- endregion -->
+
+        <!-- region Waiting for other continue -->
+        <include
+            android:id="@+id/device_transfer_setup_fragment_waiting"
+            layout="@layout/device_transfer_setup_waiting_for_other_verify_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- endregion -->
+
+        <!-- region Troubleshooting -->
+        <include
+            android:id="@+id/device_transfer_setup_fragment_troubleshooting"
+            layout="@layout/device_transfer_setup_troubleshooting_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/transfer_split_top_padding"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- endregion -->
+
+        <!-- region Groups -->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/device_transfer_setup_fragment_progress_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="device_transfer_setup_fragment_progress,device_transfer_setup_fragment_status" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/device_transfer_setup_fragment_error_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="device_transfer_setup_fragment_error,device_transfer_setup_fragment_error_resolve" />
+        <!-- endregion -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

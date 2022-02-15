@@ -9,21 +9,22 @@ import com.google.android.gms.security.ProviderInstaller;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-
-import java.util.UUID;
+import org.whispersystems.signalservice.api.push.ACI;
 
 public class AccountManagerFactory {
 
-  private static final String TAG = AccountManagerFactory.class.getSimpleName();
+  private static final String TAG = Log.tag(AccountManagerFactory.class);
 
   public static @NonNull SignalServiceAccountManager createAuthenticated(@NonNull Context context,
-                                                                         @NonNull UUID uuid,
+                                                                         @NonNull ACI aci,
                                                                          @NonNull String number,
+                                                                         int deviceId,
                                                                          @NonNull String password)
   {
-    if (new SignalServiceNetworkAccess(context).isCensored(number)) {
+    if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(number)) {
       SignalExecutors.BOUNDED.execute(() -> {
         try {
           ProviderInstaller.installIfNeeded(context);
@@ -33,8 +34,13 @@ public class AccountManagerFactory {
       });
     }
 
-    return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
-                                           uuid, number, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
+    return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
+                                           aci,
+                                           number,
+                                           deviceId,
+                                           password,
+                                           BuildConfig.SIGNAL_AGENT,
+                                           FeatureFlags.okHttpAutomaticRetry());
   }
 
   /**
@@ -42,6 +48,7 @@ public class AccountManagerFactory {
    */
   public static @NonNull SignalServiceAccountManager createUnauthenticated(@NonNull Context context,
                                                                            @NonNull String number,
+                                                                           int deviceId,
                                                                            @NonNull String password)
   {
     if (new SignalServiceNetworkAccess(context).isCensored(number)) {
@@ -55,7 +62,7 @@ public class AccountManagerFactory {
     }
 
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
-                                           null, number, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
+                                           null, number, deviceId, password, BuildConfig.SIGNAL_AGENT, FeatureFlags.okHttpAutomaticRetry());
   }
 
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/avatar"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <org.thoughtcrime.securesms.badges.BadgeImageView
+            android:id="@+id/badge"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:contentDescription="@string/BadgesOverviewFragment__featured_badge"
+            app:badge_size="large"
+            app:layout_constraintBottom_toBottomOf="@id/avatar"
+            app:layout_constraintEnd_toEndOf="@id/avatar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

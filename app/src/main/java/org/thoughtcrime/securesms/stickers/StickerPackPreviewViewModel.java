@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.stickers;
 
 import android.app.Application;
-import android.database.ContentObserver;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.thoughtcrime.securesms.database.DatabaseContentProviders;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository.StickerManifestResult;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -20,7 +20,7 @@ final class StickerPackPreviewViewModel extends ViewModel {
   private final StickerPackPreviewRepository                     previewRepository;
   private final StickerManagementRepository                      managementRepository;
   private final MutableLiveData<Optional<StickerManifestResult>> stickerManifest;
-  private final ContentObserver                                  packObserver;
+  private final DatabaseObserver.Observer                        packObserver;
 
   private String packId;
   private String packKey;
@@ -33,16 +33,13 @@ final class StickerPackPreviewViewModel extends ViewModel {
     this.previewRepository    = previewRepository;
     this.managementRepository = managementRepository;
     this.stickerManifest      = new MutableLiveData<>();
-    this.packObserver         = new ContentObserver(null) {
-      @Override
-      public void onChange(boolean selfChange) {
-        if (!TextUtils.isEmpty(packId) && !TextUtils.isEmpty(packKey)) {
-          previewRepository.getStickerManifest(packId, packKey, stickerManifest::postValue);
-        }
+    this.packObserver         = () -> {
+      if (!TextUtils.isEmpty(packId) && !TextUtils.isEmpty(packKey)) {
+        previewRepository.getStickerManifest(packId, packKey, stickerManifest::postValue);
       }
     };
 
-    application.getContentResolver().registerContentObserver(DatabaseContentProviders.StickerPack.CONTENT_URI, true, packObserver);
+    ApplicationDependencies.getDatabaseObserver().registerStickerPackObserver(packObserver);
   }
 
   LiveData<Optional<StickerManifestResult>> getStickerManifest(@NonNull String packId, @NonNull String packKey) {
@@ -64,7 +61,7 @@ final class StickerPackPreviewViewModel extends ViewModel {
 
   @Override
   protected void onCleared() {
-    application.getContentResolver().unregisterContentObserver(packObserver);
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(packObserver);
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 /**
@@ -14,7 +15,15 @@ public final class InterceptableLongClickCopyLinkSpan extends LongClickCopySpan 
   public InterceptableLongClickCopyLinkSpan(@NonNull String url,
                                             @NonNull UrlClickHandler onClickListener)
   {
-    super(url);
+    this(url, onClickListener, null, true);
+  }
+
+  public InterceptableLongClickCopyLinkSpan(@NonNull String url,
+                                            @NonNull UrlClickHandler onClickListener,
+                                            @ColorInt Integer textColor,
+                                            boolean underline)
+  {
+    super(url, textColor, underline);
     this.onClickListener = onClickListener;
   }
 

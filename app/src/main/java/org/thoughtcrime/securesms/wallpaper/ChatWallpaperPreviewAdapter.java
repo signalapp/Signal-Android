@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.wallpaper;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.MappingAdapter;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
 
 class ChatWallpaperPreviewAdapter extends MappingAdapter {
   ChatWallpaperPreviewAdapter() {

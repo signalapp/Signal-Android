@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spanned;
@@ -26,37 +27,44 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppInitialization;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.io.IOException;
 import java.util.Locale;
 
-public final class RestoreBackupFragment extends BaseRegistrationFragment {
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
+
+public final class RestoreBackupFragment extends LoggingFragment {
 
   private static final String TAG                            = Log.tag(RestoreBackupFragment.class);
   private static final short  OPEN_DOCUMENT_TREE_RESULT_CODE = 13782;
@@ -66,6 +74,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
   private TextView               restoreBackupProgress;
   private CircularProgressButton restoreButton;
   private View                   skipRestoreButton;
+  private RegistrationViewModel  viewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,26 +98,33 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
     skipRestoreButton.setOnClickListener((v) -> {
                        Log.i(TAG, "User skipped backup restore.");
-                       Navigation.findNavController(view)
-                                 .navigate(RestoreBackupFragmentDirections.actionSkip());
+                       SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                                   RestoreBackupFragmentDirections.actionSkip());
                      });
 
-    if (isReregister()) {
+    viewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
+
+    if (viewModel.isReregister()) {
       Log.i(TAG, "Skipping backup restore during re-register.");
-      Navigation.findNavController(view)
-                .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  RestoreBackupFragmentDirections.actionSkipNoReturn());
       return;
     }
 
-    if (TextSecurePreferences.isBackupEnabled(requireContext())) {
+    if (viewModel.hasBackupCompleted()) {
+      onBackupComplete();
+      return;
+    }
+
+    if (SignalStore.settings().isBackupEnabled()) {
       Log.i(TAG, "Backups enabled, so a backup must have been previously restored.");
-      Navigation.findNavController(view)
-                .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  RestoreBackupFragmentDirections.actionSkipNoReturn());
       return;
     }
 
     RestoreBackupFragmentArgs args = RestoreBackupFragmentArgs.fromBundle(requireArguments());
-    if (BackupUtil.isUserSelectionRequired(requireContext()) && args.getUri() != null) {
+    if ((Build.VERSION.SDK_INT < 29 || BackupUtil.isUserSelectionRequired(requireContext())) && args.getUri() != null) {
       Log.i(TAG, "Restoring backup from passed uri");
       initializeBackupForUri(view, args.getUri());
 
@@ -119,8 +135,8 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
       initializeBackupDetection(view);
     } else {
       Log.i(TAG, "Skipping backup detection. We don't have the permission.");
-      Navigation.findNavController(view)
-                .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  RestoreBackupFragmentDirections.actionSkipNoReturn());
     }
   }
 
@@ -137,12 +153,11 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
       enableBackups(requireContext());
 
-      Navigation.findNavController(requireView())
-                .navigate(RestoreBackupFragmentDirections.actionBackupRestored());
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()),
+                                  RestoreBackupFragmentDirections.actionBackupRestored());
     }
   }
 
-  @RequiresApi(29)
   private void initializeBackupForUri(@NonNull View view, @NonNull Uri uri) {
     getFromUri(requireContext(), uri, backup -> handleBackupInfo(view, backup));
   }
@@ -161,8 +176,8 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
     if (backup == null) {
       Log.i(TAG, "Skipping backup detection. No backup found, or permission revoked since.");
-      Navigation.findNavController(view)
-                .navigate(RestoreBackupFragmentDirections.actionNoBackupFound());
+      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+                                  RestoreBackupFragmentDirections.actionNoBackupFound());
     } else {
       restoreBackupSize.setText(getString(R.string.RegistrationActivity_backup_size_s, Util.getPrettyFileSize(backup.getSize())));
       restoreBackupTime.setText(getString(R.string.RegistrationActivity_backup_timestamp_s, DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), backup.getTimestamp())));
@@ -197,7 +212,6 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     }.execute();
   }
 
-  @RequiresApi(29)
   static void getFromUri(@NonNull Context context,
                          @NonNull Uri backupUri,
                          @NonNull OnBackupSearchResultListener listener)
@@ -243,7 +257,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
         try {
           Log.i(TAG, "Starting backup restore.");
 
-          SQLiteDatabase database = DatabaseFactory.getBackupDatabase(context);
+          SQLiteDatabase database = SignalDatabase.getBackupDatabase();
 
           BackupPassphrase.set(context, passphrase);
           FullBackupImporter.importFile(context,
@@ -252,7 +266,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
                                         backup.getUri(),
                                         passphrase);
 
-          DatabaseFactory.upgradeRestored(context, database);
+          SignalDatabase.upgradeRestored(database);
           NotificationChannels.restoreContactNotificationChannels(context);
 
           enableBackups(context);
@@ -272,6 +286,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
       @Override
       protected void onPostExecute(@NonNull BackupImportResult result) {
+        viewModel.markBackupCompleted();
         cancelSpinning(restoreButton);
         skipRestoreButton.setVisibility(View.VISIBLE);
 
@@ -299,6 +314,14 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    if (viewModel != null && viewModel.hasBackupCompleted()) {
+      onBackupComplete();
+    }
+  }
+
+  @Override
   public void onStop() {
     super.onStop();
     EventBus.getDefault().unregister(this);
@@ -306,7 +329,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(@NonNull FullBackupBase.BackupEvent event) {
-    int count = event.getCount();
+    long count = event.getCount();
 
     if (count == 0) {
       restoreBackupProgress.setText(R.string.RegistrationActivity_checking);
@@ -318,19 +341,23 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     skipRestoreButton.setVisibility(View.INVISIBLE);
 
     if (event.getType() == FullBackupBase.BackupEvent.Type.FINISHED) {
-      if (BackupUtil.isUserSelectionRequired(requireContext()) && !BackupUtil.canUserAccessBackupDirectory(requireContext())) {
-        displayConfirmationDialog(requireContext());
-      } else {
-        Navigation.findNavController(requireView())
-                  .navigate(RestoreBackupFragmentDirections.actionBackupRestored());
-      }
+      onBackupComplete();
+    }
+  }
+
+  private void onBackupComplete() {
+    if (BackupUtil.isUserSelectionRequired(requireContext()) && !BackupUtil.canUserAccessBackupDirectory(requireContext())) {
+      displayConfirmationDialog(requireContext());
+    } else {
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()),
+                                  RestoreBackupFragmentDirections.actionBackupRestored());
     }
   }
 
   private void enableBackups(@NonNull Context context) {
     if (BackupUtil.canUserAccessBackupDirectory(context)) {
       LocalBackupListener.setNextBackupTimeToIntervalFromNow(context);
-      TextSecurePreferences.setBackupEnabled(context, true);
+      SignalStore.settings().setBackupEnabled(true);
       LocalBackupListener.schedule(context);
     }
   }
@@ -353,8 +380,8 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
                      BackupPassphrase.set(context, null);
                      dialog.dismiss();
 
-                     Navigation.findNavController(requireView())
-                               .navigate(RestoreBackupFragmentDirections.actionBackupRestored());
+                     SafeNavigation.safeNavigate(Navigation.findNavController(requireView()),
+                                                 RestoreBackupFragmentDirections.actionBackupRestored());
                    })
                    .setCancelable(false)
                    .show();

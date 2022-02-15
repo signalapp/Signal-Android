@@ -49,7 +49,7 @@ import java.util.concurrent.TimeoutException;
 public class IncomingLollipopMmsConnection extends LollipopMmsConnection implements IncomingMmsConnection {
 
   public  static final String ACTION = IncomingLollipopMmsConnection.class.getCanonicalName() + "MMS_DOWNLOADED_ACTION";
-  private static final String TAG    = IncomingLollipopMmsConnection.class.getSimpleName();
+  private static final String TAG    = Log.tag(IncomingLollipopMmsConnection.class);
 
   public IncomingLollipopMmsConnection(Context context) {
     super(context, ACTION);
@@ -126,7 +126,14 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
       Bundle  configValues            = smsManager.getCarrierConfigValues();
       boolean parseContentDisposition = configValues.getBoolean(SmsManager.MMS_CONFIG_SUPPORT_MMS_CONTENT_DISPOSITION);
 
-      RetrieveConf retrieved = (RetrieveConf) new PduParser(baos.toByteArray(), parseContentDisposition).parse();
+      RetrieveConf retrieved;
+
+      try {
+        retrieved = (RetrieveConf) new PduParser(baos.toByteArray(), parseContentDisposition).parse();
+      } catch (NullPointerException e) {
+        Log.w(TAG, "Badly formatted MMS message caused the parser to fail.", e);
+        throw new MmsException(e);
+      }
 
       if (retrieved == null) return null;
 

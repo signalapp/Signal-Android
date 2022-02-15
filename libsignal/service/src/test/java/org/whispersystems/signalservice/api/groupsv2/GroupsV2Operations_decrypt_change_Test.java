@@ -17,6 +17,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
@@ -33,13 +34,14 @@ import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.testutil.ZkGroupLibraryUtil;
+import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import java.util.Collections;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
 public final class GroupsV2Operations_decrypt_change_Test {
 
@@ -50,14 +52,22 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
   @Before
   public void setup() throws InvalidInputException {
-    ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS();
+    LibSignalLibraryUtil.assumeLibSignalSupportedOnOS();
 
     server             = new TestZkGroupServer();
     groupSecretParams  = GroupSecretParams.deriveFromMasterKey(new GroupMasterKey(Util.getSecretBytes(32)));
     clientZkOperations = new ClientZkOperations(server.getServerPublicParams());
     groupOperations    = new GroupsV2Operations(clientZkOperations).forGroup(groupSecretParams);
   }
-  
+
+  @Test
+  public void ensure_GroupV2Operations_decryptChange_knows_about_all_fields_of_DecryptedGroupChange() {
+    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
+
+    assertEquals("GroupV2Operations#decryptChange and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
+                 21, maxFieldFound);
+  }
+
   @Test
   public void cannot_decrypt_change_with_epoch_higher_than_known() throws InvalidProtocolBufferException, VerificationFailedException, InvalidGroupStateException {
     GroupChange change = GroupChange.newBuilder()
@@ -132,7 +142,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
   @Test(expected = InvalidGroupStateException.class)
   public void cannot_decrypt_member_additions_with_bad_cipher_text_field3() throws InvalidProtocolBufferException, VerificationFailedException, InvalidGroupStateException {
-    byte[]                      randomPresentation = Util.getSecretBytes(ProfileKeyCredentialPresentation.SIZE);
+    byte[]                      randomPresentation = Util.getSecretBytes(5);
     GroupChange.Actions.Builder actions            = GroupChange.Actions.newBuilder();
 
     actions.addAddMembers(GroupChange.Actions.AddMemberAction.newBuilder()
@@ -155,7 +165,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
   @Test(expected = InvalidGroupStateException.class)
   public void cannot_decrypt_member_removals_with_bad_cipher_text_field4() throws InvalidProtocolBufferException, VerificationFailedException, InvalidGroupStateException {
-    byte[]                      randomPresentation = Util.getSecretBytes(UuidCiphertext.SIZE);
+    byte[]                      randomPresentation = Util.getSecretBytes(5);
     GroupChange.Actions.Builder actions            = GroupChange.Actions.newBuilder();
 
     actions.addDeleteMembers(GroupChange.Actions.DeleteMemberAction.newBuilder()
@@ -359,6 +369,22 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                                         .setInviteLinkPassword(ByteString.copyFrom(newPassword))),
                       DecryptedGroupChange.newBuilder()
                                           .setNewInviteLinkPassword(ByteString.copyFrom(newPassword)));
+  }
+
+  @Test
+  public void can_pass_through_new_description_field20() {
+    assertDecryption(groupOperations.createModifyGroupDescription("New Description"),
+                     DecryptedGroupChange.newBuilder()
+                                         .setNewDescription(DecryptedString.newBuilder().setValue("New Description").build()));
+  }
+
+  @Test
+  public void can_pass_through_new_announcment_only_field21() {
+    assertDecryption(GroupChange.Actions.newBuilder()
+                                        .setModifyAnnouncementsOnly(GroupChange.Actions.ModifyAnnouncementsOnlyAction.newBuilder()
+                                                                                                                     .setAnnouncementsOnly(true)),
+                     DecryptedGroupChange.newBuilder()
+                                         .setNewIsAnnouncementGroup(EnabledState.ENABLED));
   }
 
   private static ProfileKey newProfileKey() {

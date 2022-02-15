@@ -10,6 +10,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,19 @@ public class JobTracker {
   }
 
   /**
+   * Returns the state of the first Job that matches the provided filter. Note that there will always be races here, and the result you get back may not be
+   * valid anymore by the time you get it. Use with caution.
+   */
+  synchronized @Nullable JobState getFirstMatchingJobState(@NonNull JobFilter filter) {
+    for (JobInfo info : jobInfos.values()) {
+      if (filter.matches(info.getJob())) {
+        return info.getJobState();
+      }
+    }
+    return null;
+  }
+
+  /**
    * Update the state of a job with the associated ID.
    */
   synchronized void onStateChange(@NonNull Job job, @NonNull JobState state) {
@@ -64,6 +78,22 @@ public class JobTracker {
           .forEach(listener -> {
             listenerExecutor.execute(() -> listener.onStateChanged(job, state));
           });
+  }
+
+  /**
+   * Returns whether or not any jobs referenced by the IDs in the provided collection have failed.
+   * Keep in mind that this is not perfect -- our data is only kept in memory, and even then only up
+   * to a certain limit.
+   */
+  synchronized boolean haveAnyFailed(@NonNull Collection<String> jobIds) {
+    for (String jobId : jobIds) {
+      JobInfo jobInfo = jobInfos.get(jobId);
+      if (jobInfo != null && jobInfo.getJobState() == JobState.FAILURE) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private @NonNull JobInfo getOrCreateJobInfo(@NonNull Job job) {

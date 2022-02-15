@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/button"
+    style="@style/Signal.Widget.Button.Large.Secondary.NoOutline"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dsl_settings_gutter"
+    android:layout_marginEnd="@dimen/dsl_settings_gutter"
+    app:iconGravity="textEnd"
+    tools:text="Secondary button" />

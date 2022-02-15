@@ -6,13 +6,14 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -23,14 +24,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-abstract class ConversationListDataSource implements PagedDataSource<Conversation> {
+abstract class ConversationListDataSource implements PagedDataSource<Long, Conversation> {
 
   private static final String TAG = Log.tag(ConversationListDataSource.class);
 
   protected final ThreadDatabase threadDatabase;
 
   protected ConversationListDataSource(@NonNull Context context) {
-    this.threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    this.threadDatabase = SignalDatabase.threads();
   }
 
   public static ConversationListDataSource create(@NonNull Context context, boolean isArchived) {
@@ -71,6 +72,16 @@ abstract class ConversationListDataSource implements PagedDataSource<Conversatio
     stopwatch.stop(TAG);
 
     return conversations;
+  }
+
+  @Override
+  public @Nullable Conversation load(Long threadId) {
+    throw new UnsupportedOperationException("Not implemented!");
+  }
+
+  @Override
+  public @NonNull Long getKey(@NonNull Conversation conversation) {
+    return conversation.getThreadRecord().getThreadId();
   }
 
   protected abstract int getTotalCount();

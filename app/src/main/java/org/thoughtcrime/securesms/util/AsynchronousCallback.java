@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.util;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.ThreadUtil;
+
 public final class AsynchronousCallback {
 
   /**
@@ -51,12 +53,12 @@ public final class AsynchronousCallback {
       return new WorkerThread<R, E>() {
         @Override
         public void onComplete(@Nullable R result) {
-          Util.runOnMain(() -> MainThread.this.onComplete(result));
+          ThreadUtil.runOnMain(() -> MainThread.this.onComplete(result));
         }
 
         @Override
         public void onError(@Nullable E error) {
-          Util.runOnMain(() -> MainThread.this.onError(error));
+          ThreadUtil.runOnMain(() -> MainThread.this.onError(error));
         }
       };
     }

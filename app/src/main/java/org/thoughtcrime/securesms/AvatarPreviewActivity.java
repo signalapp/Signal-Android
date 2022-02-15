@@ -27,6 +27,7 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
@@ -71,12 +72,14 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
       getWindow().setSharedElementReturnTransition(inflater.inflateTransition(R.transition.full_screen_avatar_image_return_transition_set));
     }
 
-    Toolbar   toolbar = findViewById(R.id.toolbar);
-    ImageView avatar  = findViewById(R.id.avatar);
+    Toolbar       toolbar = findViewById(R.id.toolbar);
+    EmojiTextView title   = findViewById(R.id.title);
+    ImageView     avatar  = findViewById(R.id.avatar);
 
     setSupportActionBar(toolbar);
 
     requireSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    requireSupportActionBar().setDisplayShowTitleEnabled(false);
 
     Context     context     = getApplicationContext();
     RecipientId recipientId = RecipientId.from(getIntent().getStringExtra(RECIPIENT_ID_EXTRA));
@@ -122,7 +125,7 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
                 }
               });
 
-      toolbar.setTitle(recipient.getDisplayName(context));
+      title.setText(recipient.getDisplayName(context));
     });
 
     FullscreenHelper fullscreenHelper = new FullscreenHelper(this);

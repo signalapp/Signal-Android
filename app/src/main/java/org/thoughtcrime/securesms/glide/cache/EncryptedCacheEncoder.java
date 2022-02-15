@@ -17,7 +17,7 @@ import java.net.SocketException;
 
 public class EncryptedCacheEncoder extends EncryptedCoder implements Encoder<InputStream> {
 
-  private static final String TAG = EncryptedCacheEncoder.class.getSimpleName();
+  private static final String TAG = Log.tag(EncryptedCacheEncoder.class);
 
   private final byte[]    secret;
   private final ArrayPool byteArrayPool;

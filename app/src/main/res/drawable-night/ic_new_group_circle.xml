@@ -7,7 +7,7 @@
     </item>
     <item
         android:bottom="10dp"
-        android:drawable="@drawable/ic_group_outline_ultramarine_28"
+        android:drawable="@drawable/ic_group_outline_new_28"
         android:left="10dp"
         android:right="10dp"
         android:top="10dp" />

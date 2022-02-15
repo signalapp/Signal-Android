@@ -8,7 +8,7 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
@@ -86,7 +86,7 @@ class ReviewCardRepository {
         ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forDelete(recipientId));
       }
 
-      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+      ThreadDatabase threadDatabase = SignalDatabase.threads();
       long           threadId       = Objects.requireNonNull(threadDatabase.getThreadIdFor(recipientId));
 
       threadDatabase.deleteConversation(threadId);
@@ -122,7 +122,7 @@ class ReviewCardRepository {
     SignalExecutors.BOUNDED.execute(() -> {
       Recipient resolved = Recipient.resolved(recipientId);
 
-      List<RecipientId> recipientIds = DatabaseFactory.getRecipientDatabase(context)
+      List<RecipientId> recipientIds = SignalDatabase.recipients()
           .getSimilarRecipientIds(resolved);
 
       if (recipientIds.isEmpty()) {

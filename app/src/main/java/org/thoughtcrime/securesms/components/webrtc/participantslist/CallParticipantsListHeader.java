@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 
 public class CallParticipantsListHeader implements MappingModel<CallParticipantsListHeader> {
 

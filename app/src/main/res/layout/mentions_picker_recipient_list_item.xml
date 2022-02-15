@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,11 +16,25 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         app:fallbackImageSize="small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/recipient_view_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/recipient_view_badge"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="23dp"
+        app:badge_size="small"
+        app:layout_constraintStart_toStartOf="@id/recipient_view_avatar"
+        app:layout_constraintTop_toTopOf="@id/recipient_view_avatar" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_view_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
@@ -28,6 +42,10 @@
         android:singleLine="true"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.Preview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recipient_view_avatar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

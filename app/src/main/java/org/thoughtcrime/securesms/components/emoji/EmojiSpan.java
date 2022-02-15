@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.emoji;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
@@ -14,29 +15,42 @@ public class EmojiSpan extends AnimatingImageSpan {
 
   private final float SHIFT_FACTOR = 1.5f;
 
-  private final int            size;
-  private final FontMetricsInt fm;
+  private int            size;
+  private FontMetricsInt fontMetrics;
 
   public EmojiSpan(@NonNull Drawable drawable, @NonNull TextView tv) {
     super(drawable, tv);
-    fm   = tv.getPaint().getFontMetricsInt();
-    size = fm != null ? Math.abs(fm.descent) + Math.abs(fm.ascent)
-                      : tv.getResources().getDimensionPixelSize(R.dimen.conversation_item_body_text_size);
+    fontMetrics = tv.getPaint().getFontMetricsInt();
+    size        = fontMetrics != null ? Math.abs(fontMetrics.descent) + Math.abs(fontMetrics.ascent)
+                                      : tv.getResources().getDimensionPixelSize(R.dimen.conversation_item_body_text_size);
+    getDrawable().setBounds(0, 0, size, size);
+  }
+
+  public EmojiSpan(@NonNull Context context, @NonNull Drawable drawable, @NonNull Paint paint) {
+    super(drawable, null);
+    fontMetrics = paint.getFontMetricsInt();
+    size        = fontMetrics != null ? Math.abs(fontMetrics.descent) + Math.abs(fontMetrics.ascent)
+                                      : context.getResources().getDimensionPixelSize(R.dimen.conversation_item_body_text_size);
+
     getDrawable().setBounds(0, 0, size, size);
   }
 
   @Override
   public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, FontMetricsInt fm) {
-    if (fm != null && this.fm != null) {
-      fm.ascent  = this.fm.ascent;
-      fm.descent = this.fm.descent;
-      fm.top     = this.fm.top;
-      fm.bottom  = this.fm.bottom;
-      fm.leading = this.fm.leading;
-      return size;
+    if (fm != null && this.fontMetrics != null) {
+      fm.ascent  = this.fontMetrics.ascent;
+      fm.descent = this.fontMetrics.descent;
+      fm.top     = this.fontMetrics.top;
+      fm.bottom  = this.fontMetrics.bottom;
+      fm.leading = this.fontMetrics.leading;
     } else {
-      return super.getSize(paint, text, start, end, fm);
+      this.fontMetrics = paint.getFontMetricsInt();
+      this.size        = Math.abs(this.fontMetrics.descent) + Math.abs(this.fontMetrics.ascent);
+
+      getDrawable().setBounds(0, 0, size, size);
     }
+
+    return size;
   }
 
   @Override
@@ -44,6 +58,7 @@ public class EmojiSpan extends AnimatingImageSpan {
     int height          = bottom - top;
     int centeringMargin = (height - size) / 2;
     int adjustedMargin  = (int) (centeringMargin * SHIFT_FACTOR);
+    int adjustedBottom  = bottom - adjustedMargin;
     super.draw(canvas, text, start, end, x, top, y, bottom - adjustedMargin, paint);
   }
 }

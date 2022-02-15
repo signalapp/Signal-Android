@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -239,7 +239,7 @@ public class RecipientIdMigrationHelper {
   private static @Nullable Long getRecipientId(@NonNull SQLiteDatabase db, @NonNull String address) {
     try (Cursor cursor = db.rawQuery("SELECT _id FROM recipient_preferences WHERE recipient_ids = ?", new String[]{ address })) {
       if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getLong(cursor.getColumnIndex("_id"));
+        return cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
       } else {
         return null;
       }

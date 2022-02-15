@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
@@ -24,11 +23,11 @@ import java.util.Map;
 
 public class MentionDatabase extends Database {
 
-  static final String TABLE_NAME = "mention";
+  public static final String TABLE_NAME = "mention";
 
   private static final String ID           = "_id";
           static final String THREAD_ID    = "thread_id";
-  private static final String MESSAGE_ID   = "message_id";
+  public  static final String MESSAGE_ID   = "message_id";
           static final String RECIPIENT_ID = "recipient_id";
   private static final String RANGE_START  = "range_start";
   private static final String RANGE_LENGTH = "range_length";
@@ -45,12 +44,12 @@ public class MentionDatabase extends Database {
     "CREATE INDEX IF NOT EXISTS mention_recipient_id_thread_id_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ", " + THREAD_ID + ");"
   };
 
-  public MentionDatabase(@NonNull Context context, @NonNull SQLCipherOpenHelper databaseHelper) {
+  public MentionDatabase(@NonNull Context context, @NonNull SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
   public void insert(long threadId, long messageId, @NonNull Collection<Mention> mentions) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     db.beginTransaction();
     try {
@@ -71,7 +70,7 @@ public class MentionDatabase extends Database {
   }
 
   public @NonNull List<Mention> getMentionsForMessage(long messageId) {
-    SQLiteDatabase db       = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db       = databaseHelper.getSignalReadableDatabase();
     List<Mention>  mentions = new LinkedList<>();
 
     try (Cursor cursor = db.query(TABLE_NAME, null, MESSAGE_ID + " = ?", SqlUtil.buildArgs(messageId), null, null, null)) {
@@ -86,7 +85,7 @@ public class MentionDatabase extends Database {
   }
 
   public @NonNull Map<Long, List<Mention>> getMentionsForMessages(@NonNull Collection<Long> messageIds) {
-    SQLiteDatabase db  = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db  = databaseHelper.getSignalReadableDatabase();
     String         ids = TextUtils.join(",", messageIds);
 
     try (Cursor cursor = db.query(TABLE_NAME, null, MESSAGE_ID + " IN (" + ids + ")", null, null, null, null)) {
@@ -99,7 +98,7 @@ public class MentionDatabase extends Database {
   }
 
   public @NonNull Map<Long, List<Mention>> getMentionsContainingRecipients(@NonNull Collection<RecipientId> recipientIds, long threadId, long limit) {
-    SQLiteDatabase db  = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db  = databaseHelper.getSignalReadableDatabase();
     String         ids = TextUtils.join(",", Stream.of(recipientIds).map(RecipientId::serialize).toList());
 
     String where = " WHERE " + RECIPIENT_ID + " IN (" + ids + ")";
@@ -124,21 +123,21 @@ public class MentionDatabase extends Database {
   }
 
   void deleteMentionsForMessage(long messageId) {
-    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db    = databaseHelper.getSignalWritableDatabase();
     String         where = MESSAGE_ID + " = ?";
 
     db.delete(TABLE_NAME, where, SqlUtil.buildArgs(messageId));
   }
 
   void deleteAbandonedMentions() {
-    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db    = databaseHelper.getSignalWritableDatabase();
     String         where = MESSAGE_ID + " NOT IN (SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME + ") OR " + THREAD_ID + " NOT IN (SELECT " + ThreadDatabase.ID + " FROM " + ThreadDatabase.TABLE_NAME + ")";
 
     db.delete(TABLE_NAME, where, null);
   }
 
   void deleteAllMentions() {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.delete(TABLE_NAME, null, null);
   }
 

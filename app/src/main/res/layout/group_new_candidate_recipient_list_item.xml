@@ -26,6 +26,7 @@
         app:layout_goneMarginEnd="16dp"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.Signal.Body1"
+        android:maxLines="2"
         app:layout_constraintBottom_toTopOf="@+id/sms_contact"
         app:layout_constraintEnd_toStartOf="@+id/sms_warning"
         app:layout_constraintHorizontal_bias="0"

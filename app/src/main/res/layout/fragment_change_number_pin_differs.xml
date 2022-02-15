@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/change_number_pin_differs_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/ChangeNumberPinDiffersFragment__pins_do_not_match"
+            android:textAppearance="@style/TextAppearance.Signal.Title1"
+            app:layout_constraintBottom_toTopOf="@id/change_number_pin_differs_keep_old_pin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.20" />
+
+        <TextView
+            android:id="@+id/change_number_pin_differs_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="27dp"
+            android:gravity="center_horizontal"
+            android:minHeight="66dp"
+            android:text="@string/ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textColor="@color/core_grey_60"
+            app:layout_constraintTop_toBottomOf="@id/change_number_pin_differs_title" />
+
+        <Button
+            android:id="@+id/change_number_pin_differs_keep_old_pin"
+            style="@style/Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ChangeNumberPinDiffersFragment__keep_old_pin"
+            app:layout_constraintBottom_toTopOf="@id/change_number_pin_differs_update_pin"
+            tools:layout_editor_absoluteX="32dp" />
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/change_number_pin_differs_update_pin"
+            style="@style/Button.Registration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            app:cpb_textIdle="@string/ChangeNumberPinDiffersFragment__update_pin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

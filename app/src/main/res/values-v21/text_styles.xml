@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Signal.Text.Title.SettingsBio">
+        <item name="android:letterSpacing">0.013</item>
+    </style>
+</resources>

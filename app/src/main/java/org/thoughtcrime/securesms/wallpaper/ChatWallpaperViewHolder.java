@@ -9,25 +9,30 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.DisplayMetricsUtil;
-import org.thoughtcrime.securesms.util.MappingAdapter;
-import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.adapter.mapping.Factory;
+import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
 
 class ChatWallpaperViewHolder extends MappingViewHolder<ChatWallpaperSelectionMappingModel> {
 
-  private final ImageView     preview;
-  private final View          dimmer;
-  private final EventListener eventListener;
+  private final AspectRatioFrameLayout frame;
+  private final ImageView              preview;
+  private final EventListener          eventListener;
 
   public ChatWallpaperViewHolder(@NonNull View itemView, @Nullable EventListener eventListener, @Nullable DisplayMetrics windowDisplayMetrics) {
     super(itemView);
+    this.frame         = itemView.findViewById(R.id.chat_wallpaper_preview_frame);
     this.preview       = itemView.findViewById(R.id.chat_wallpaper_preview);
-    this.dimmer        = itemView.findViewById(R.id.chat_wallpaper_dim);
     this.eventListener = eventListener;
 
     if (windowDisplayMetrics != null) {
       DisplayMetricsUtil.forceAspectRatioToScreenByAdjustingHeight(windowDisplayMetrics, itemView);
+    } else if (frame != null) {
+      frame.setAspectRatio(1.0f);
     }
   }
 
@@ -35,7 +40,7 @@ class ChatWallpaperViewHolder extends MappingViewHolder<ChatWallpaperSelectionMa
   public void bind(@NonNull ChatWallpaperSelectionMappingModel model) {
     model.loadInto(preview);
 
-    ChatWallpaperDimLevelUtil.applyDimLevelForNightMode(dimmer, model.getWallpaper());
+    preview.setColorFilter(ChatWallpaperDimLevelUtil.getDimColorFilterForNightMode(context, model.getWallpaper()));
 
     if (eventListener != null) {
       preview.setOnClickListener(unused -> {
@@ -46,8 +51,8 @@ class ChatWallpaperViewHolder extends MappingViewHolder<ChatWallpaperSelectionMa
     }
   }
 
-  public static @NonNull MappingAdapter.Factory<ChatWallpaperSelectionMappingModel> createFactory(@LayoutRes int layout, @Nullable EventListener listener, @Nullable DisplayMetrics windowDisplayMetrics) {
-    return new MappingAdapter.LayoutFactory<>(view -> new ChatWallpaperViewHolder(view, listener, windowDisplayMetrics), layout);
+  public static @NonNull Factory<ChatWallpaperSelectionMappingModel> createFactory(@LayoutRes int layout, @Nullable EventListener listener, @Nullable DisplayMetrics windowDisplayMetrics) {
+    return new LayoutFactory<>(view -> new ChatWallpaperViewHolder(view, listener, windowDisplayMetrics), layout);
   }
 
   public interface EventListener {

@@ -8,32 +8,45 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.database.DatabaseObserver;
+import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.subjects.PublishSubject;
+
 public class ReactionsViewModel extends ViewModel {
 
-  private final Repository              repository;
+  private final MessageId           messageId;
+  private final ReactionsRepository repository;
 
-  public ReactionsViewModel(@NonNull Repository repository) {
-    this.repository = repository;
+  public ReactionsViewModel(@NonNull MessageId messageId) {
+    this.messageId  = messageId;
+    this.repository = new ReactionsRepository();
   }
 
-  public @NonNull LiveData<List<EmojiCount>> getEmojiCounts() {
-    return Transformations.map(repository.getReactions(),
-                               reactionList -> {
-                                 List<EmojiCount> emojiCounts = Stream.of(reactionList)
-                                                                      .groupBy(ReactionDetails::getBaseEmoji)
-                                                                      .sorted(this::compareReactions)
-                                                                      .map(entry -> new EmojiCount(entry.getKey(),
-                                                                                                   getCountDisplayEmoji(entry.getValue()),
-                                                                                                   entry.getValue()))
-                                                                      .toList();
+  public @NonNull Observable<List<EmojiCount>> getEmojiCounts() {
+    return repository.getReactions(messageId)
+                     .map(reactionList -> {
+                       List<EmojiCount> emojiCounts = Stream.of(reactionList)
+                                                            .groupBy(ReactionDetails::getBaseEmoji)
+                                                            .sorted(this::compareReactions)
+                                                            .map(entry -> new EmojiCount(entry.getKey(),
+                                                                                         getCountDisplayEmoji(entry.getValue()),
+                                                                                         entry.getValue()))
+                                                            .toList();
 
-                                 emojiCounts.add(0, EmojiCount.all(reactionList));
+                       emojiCounts.add(0, EmojiCount.all(reactionList));
 
-                                 return emojiCounts;
-                               });
+                       return emojiCounts;
+                     })
+                     .observeOn(AndroidSchedulers.mainThread());
   }
 
   private int compareReactions(@NonNull Map.Entry<String, List<ReactionDetails>> lhs, @NonNull Map.Entry<String, List<ReactionDetails>> rhs) {
@@ -48,7 +61,7 @@ public class ReactionsViewModel extends ViewModel {
 
   private long getLatestTimestamp(List<ReactionDetails> reactions) {
     return Stream.of(reactions)
-                 .max((a, b) -> Long.compare(a.getTimestamp(), b.getTimestamp()))
+                 .max(Comparator.comparingLong(ReactionDetails::getTimestamp))
                  .map(ReactionDetails::getTimestamp)
                  .orElse(-1L);
   }
@@ -63,21 +76,17 @@ public class ReactionsViewModel extends ViewModel {
     return reactions.get(reactions.size() - 1).getDisplayEmoji();
   }
 
-  interface Repository {
-    LiveData<List<ReactionDetails>>  getReactions();
-  }
-
   static final class Factory implements ViewModelProvider.Factory {
 
-    private final Repository repository;
+    private final MessageId messageId;
 
-    Factory(@NonNull Repository repository) {
-      this.repository = repository;
+    Factory(@NonNull MessageId messageId) {
+      this.messageId = messageId;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return (T) new ReactionsViewModel(repository);
+      return modelClass.cast(new ReactionsViewModel(messageId));
     }
   }
 }

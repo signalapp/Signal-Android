@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.audio;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
@@ -8,29 +7,29 @@ import android.os.ParcelFileDescriptor;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.whispersystems.libsignal.util.Pair;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 public class AudioRecorder {
 
-  private static final String TAG = AudioRecorder.class.getSimpleName();
+  private static final String TAG = Log.tag(AudioRecorder.class);
 
   private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder");
 
   private final Context context;
 
-  private AudioCodec audioCodec;
-  private Uri        captureUri;
+  private Recorder recorder;
+  private Uri      captureUri;
 
   public AudioRecorder(@NonNull Context context) {
     this.context = context;
@@ -42,7 +41,7 @@ public class AudioRecorder {
     executor.execute(() -> {
       Log.i(TAG, "Running startRecording() + " + Thread.currentThread().getId());
       try {
-        if (audioCodec != null) {
+        if (recorder != null) {
           throw new AssertionError("We can only record once at a time.");
         }
 
@@ -51,38 +50,38 @@ public class AudioRecorder {
         captureUri = BlobProvider.getInstance()
                                  .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
                                  .withMimeType(MediaUtil.AUDIO_AAC)
-                                 .createForSingleSessionOnDiskAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
-        audioCodec = new AudioCodec();
+                                 .createForDraftAttachmentAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
 
-        audioCodec.start(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));
+        recorder = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
+        recorder.start(fds[1]);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
     });
   }
 
-  public @NonNull ListenableFuture<Pair<Uri, Long>> stopRecording() {
+  public @NonNull ListenableFuture<VoiceNoteDraft> stopRecording() {
     Log.i(TAG, "stopRecording()");
 
-    final SettableFuture<Pair<Uri, Long>> future = new SettableFuture<>();
+    final SettableFuture<VoiceNoteDraft> future = new SettableFuture<>();
 
     executor.execute(() -> {
-      if (audioCodec == null) {
+      if (recorder == null) {
         sendToFuture(future, new IOException("MediaRecorder was never initialized successfully!"));
         return;
       }
 
-      audioCodec.stop();
+      recorder.stop();
 
       try {
         long size = MediaUtil.getMediaSize(context, captureUri);
-        sendToFuture(future, new Pair<>(captureUri, size));
+        sendToFuture(future, new VoiceNoteDraft(captureUri, size));
       } catch (IOException ioe) {
         Log.w(TAG, ioe);
         sendToFuture(future, ioe);
       }
 
-      audioCodec = null;
+      recorder   = null;
       captureUri = null;
     });
 
@@ -90,10 +89,10 @@ public class AudioRecorder {
   }
 
   private <T> void sendToFuture(final SettableFuture<T> future, final Exception exception) {
-    Util.runOnMain(() -> future.setException(exception));
+    ThreadUtil.runOnMain(() -> future.setException(exception));
   }
 
   private <T> void sendToFuture(final SettableFuture<T> future, final T result) {
-    Util.runOnMain(() -> future.set(result));
+    ThreadUtil.runOnMain(() -> future.set(result));
   }
 }

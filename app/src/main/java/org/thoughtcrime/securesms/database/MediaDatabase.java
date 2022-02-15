@@ -1,14 +1,12 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
-import android.database.ContentObserver;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -20,51 +18,54 @@ public class MediaDatabase extends Database {
     private static final String THREAD_RECIPIENT_ID = "THREAD_RECIPIENT_ID";
 
     private static final String BASE_MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ROW_ID + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FILE_NAME + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CDN_NUMBER + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_LOCATION + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DIGEST + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.BORDERLESS + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_ID + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_EMOJI + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VISUAL_HASH + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFORM_PROPERTIES + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
-        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UPLOAD_TIMESTAMP + ", "
-        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
-        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
-        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "
-        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SERVER + ", "
-        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.THREAD_ID + ", "
-        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.RECIPIENT_ID + ", "
-        + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " as " + THREAD_RECIPIENT_ID + " "
-        + "FROM " + AttachmentDatabase.TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
-        + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
-        + "LEFT JOIN " + ThreadDatabase.TABLE_NAME
-        + " ON " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.THREAD_ID + " "
-        + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
-        + " FROM " + MmsDatabase.TABLE_NAME
-        + " WHERE " + MmsDatabase.THREAD_ID + " __EQUALITY__ ?) AND (%s) AND "
-        + MmsDatabase.VIEW_ONCE + " = 0 AND "
-        + AttachmentDatabase.DATA + " IS NOT NULL AND "
-        + "(" + AttachmentDatabase.QUOTE + " = 0 OR (" + AttachmentDatabase.QUOTE + " = 1 AND " + AttachmentDatabase.DATA_HASH + " IS NULL)) AND "
-        + AttachmentDatabase.STICKER_PACK_ID + " IS NULL ";
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FILE_NAME + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CDN_NUMBER + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_LOCATION + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DIGEST + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.BORDERLESS + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VIDEO_GIF + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_ID + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_EMOJI + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VISUAL_HASH + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFORM_PROPERTIES + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
+                                                   + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UPLOAD_TIMESTAMP + ", "
+                                                   + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
+                                                   + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
+                                                   + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "
+                                                   + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SERVER + ", "
+                                                   + MmsDatabase.TABLE_NAME + "." + MmsDatabase.THREAD_ID + ", "
+                                                   + MmsDatabase.TABLE_NAME + "." + MmsDatabase.RECIPIENT_ID + ", "
+                                                   + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " as " + THREAD_RECIPIENT_ID + " "
+                                                   + "FROM " + AttachmentDatabase.TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
+                                                   + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
+                                                   + "LEFT JOIN " + ThreadDatabase.TABLE_NAME
+                                                   + " ON " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.THREAD_ID + " "
+                                                   + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
+                                                   + " FROM " + MmsDatabase.TABLE_NAME
+                                                   + " WHERE " + MmsDatabase.THREAD_ID + " __EQUALITY__ ?) AND (%s) AND "
+                                                   + MmsDatabase.VIEW_ONCE + " = 0 AND "
+                                                   + AttachmentDatabase.DATA + " IS NOT NULL AND "
+                                                   + "(" + AttachmentDatabase.QUOTE + " = 0 OR (" + AttachmentDatabase.QUOTE + " = 1 AND " + AttachmentDatabase.DATA_HASH + " IS NULL)) AND "
+                                                   + AttachmentDatabase.STICKER_PACK_ID + " IS NULL AND "
+                                                   + MmsDatabase.RECIPIENT_ID + " > 0 AND "
+                                                   + THREAD_RECIPIENT_ID + " > 0";
 
    private static final String UNIQUE_MEDIA_QUERY = "SELECT "
         + "MAX(" + AttachmentDatabase.SIZE + ") as " + AttachmentDatabase.SIZE + ", "
@@ -73,15 +74,18 @@ public class MediaDatabase extends Database {
         + "WHERE " + AttachmentDatabase.STICKER_PACK_ID + " IS NULL "
         + "GROUP BY " + AttachmentDatabase.DATA;
 
-  private static final String GALLERY_MEDIA_QUERY  = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR " + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%'");
+  private static final String GALLERY_MEDIA_QUERY  = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'image/svg%' AND (" +
+                                                                                     AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR " +
+                                                                                     AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%')");
   private static final String AUDIO_MEDIA_QUERY    = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'audio/%'");
   private static final String ALL_MEDIA_QUERY      = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'text/x-signal-plain'");
-  private static final String DOCUMENT_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'image/%' AND " +
+  private static final String DOCUMENT_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/svg%' OR (" +
+                                                                                     AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'image/%' AND " +
                                                                                      AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'video/%' AND " +
                                                                                      AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'audio/%' AND " +
-                                                                                     AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'text/x-signal-plain'");
+                                                                                     AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'text/x-signal-plain')");
 
-  MediaDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  MediaDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
@@ -90,60 +94,44 @@ public class MediaDatabase extends Database {
   }
 
   public @NonNull Cursor getGalleryMediaForThread(long threadId, @NonNull Sorting sorting, boolean listenToAllThreads) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY));
     String[]       args     = {threadId + ""};
-    Cursor         cursor   = database.rawQuery(query, args);
-    if (listenToAllThreads) {
-      setNotifyConversationListeners(cursor);
-    } else {
-      setNotifyConversationListeners(cursor, threadId);
-    }
-    return cursor;
+
+    return database.rawQuery(query, args);
   }
 
   public @NonNull Cursor getDocumentMediaForThread(long threadId, @NonNull Sorting sorting) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, DOCUMENT_MEDIA_QUERY));
     String[]       args     = {threadId + ""};
-    Cursor         cursor   = database.rawQuery(query, args);
-    setNotifyConversationListeners(cursor, threadId);
-    return cursor;
+
+    return database.rawQuery(query, args);
   }
 
   public @NonNull Cursor getAudioMediaForThread(long threadId, @NonNull Sorting sorting) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, AUDIO_MEDIA_QUERY));
     String[]       args     = {threadId + ""};
-    Cursor         cursor   = database.rawQuery(query, args);
-    setNotifyConversationListeners(cursor, threadId);
-    return cursor;
+
+    return database.rawQuery(query, args);
   }
 
   public @NonNull Cursor getAllMediaForThread(long threadId, @NonNull Sorting sorting) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, ALL_MEDIA_QUERY));
     String[]       args     = {threadId + ""};
-    Cursor         cursor   = database.rawQuery(query, args);
-    setNotifyConversationListeners(cursor, threadId);
-    return cursor;
+
+    return database.rawQuery(query, args);
   }
 
   private static String applyEqualityOperator(long threadId, String query) {
     return query.replace("__EQUALITY__", threadId == ALL_THREADS ? "!=" : "=");
   }
 
-  public void subscribeToMediaChanges(@NonNull ContentObserver observer) {
-    registerAttachmentListeners(observer);
-  }
-
-  public void unsubscribeToMediaChanges(@NonNull ContentObserver observer) {
-    context.getContentResolver().unregisterContentObserver(observer);
-  }
-
   public StorageBreakdown getStorageBreakdown() {
     StorageBreakdown storageBreakdown = new StorageBreakdown();
-    SQLiteDatabase   database         = databaseHelper.getReadableDatabase();
+    SQLiteDatabase   database         = databaseHelper.getSignalReadableDatabase();
 
     try (Cursor cursor = database.rawQuery(UNIQUE_MEDIA_QUERY, new String[0])) {
       int sizeColumn        = cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE);
@@ -203,8 +191,8 @@ public class MediaDatabase extends Database {
     }
 
     public static MediaRecord from(@NonNull Context context, @NonNull Cursor cursor) {
-      AttachmentDatabase       attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-      List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachment(cursor);
+      AttachmentDatabase       attachmentDatabase = SignalDatabase.attachments();
+      List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachments(cursor);
       RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID)));
       long                     threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
       boolean                  outgoing           = MessageDatabase.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)));

@@ -92,7 +92,7 @@ public class FcmFetchService extends Service {
         FcmJobService.schedule(context);
       } else {
         Log.w(TAG, "Failed to retrieve messages. Scheduling on JobManager (API " + Build.VERSION.SDK_INT + ").");
-        ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob(context));
+        ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob());
       }
     }
   }

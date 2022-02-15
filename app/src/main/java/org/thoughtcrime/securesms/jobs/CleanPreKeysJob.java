@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.whispersystems.libsignal.InvalidKeyIdException;
@@ -24,7 +24,7 @@ public class CleanPreKeysJob extends BaseJob {
 
   public static final String KEY = "CleanPreKeysJob";
 
-  private static final String TAG = CleanPreKeysJob.class.getSimpleName();
+  private static final String TAG = Log.tag(CleanPreKeysJob.class);
 
   private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(30);
 
@@ -55,7 +55,7 @@ public class CleanPreKeysJob extends BaseJob {
       Log.i(TAG, "Cleaning prekeys...");
 
       int                activeSignedPreKeyId = PreKeyUtil.getActiveSignedPreKeyId(context);
-      SignedPreKeyStore  signedPreKeyStore    = new SignalProtocolStoreImpl(context);
+      SignedPreKeyStore  signedPreKeyStore    = ApplicationDependencies.getProtocolStore().aci();
 
       if (activeSignedPreKeyId < 0) return;
 

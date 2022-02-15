@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.groups.ui.addmembers;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -9,20 +11,45 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.ContactSelectionActivity;
+import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.PushContactSelectionActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 public class AddMembersActivity extends PushContactSelectionActivity {
 
-  public static final String GROUP_ID = "group_id";
+  public static final String GROUP_ID           = "group_id";
+  public static final String ANNOUNCEMENT_GROUP = "announcement_group";
 
   private View                done;
   private AddMembersViewModel viewModel;
+
+  public static @NonNull Intent createIntent(@NonNull Context context,
+                                             @NonNull GroupId groupId,
+                                             int displayModeFlags,
+                                             int selectionWarning,
+                                             int selectionLimit,
+                                             boolean isAnnouncementGroup,
+                                             @NonNull List<RecipientId> membersWithoutSelf)  {
+    Intent intent = new Intent(context, AddMembersActivity.class);
+
+    intent.putExtra(GROUP_ID, groupId.toString());
+    intent.putExtra(ANNOUNCEMENT_GROUP, isAnnouncementGroup);
+    intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayModeFlags);
+    intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, new SelectionLimits(selectionWarning, selectionLimit));
+    intent.putParcelableArrayListExtra(ContactSelectionListFragment.CURRENT_SELECTION, new ArrayList<>(membersWithoutSelf));
+
+    return intent;
+  }
 
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
@@ -52,29 +79,40 @@ public class AddMembersActivity extends PushContactSelectionActivity {
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
     if (getGroupId().isV1() && recipientId.isPresent() && !Recipient.resolved(recipientId.get()).hasE164()) {
       Toast.makeText(this, R.string.AddMembersActivity__this_person_cant_be_added_to_legacy_groups, Toast.LENGTH_SHORT).show();
-      return false;
+      callback.accept(false);
+      return;
     }
 
     if (contactsFragment.hasQueryFilter()) {
-      getToolbar().clear();
+      getContactFilterView().clear();
     }
 
     enableDone();
 
-    return true;
+    callback.accept(true);
   }
 
   @Override
   public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
     if (contactsFragment.hasQueryFilter()) {
-      getToolbar().clear();
+      getContactFilterView().clear();
     }
 
     if (contactsFragment.getSelectedContactsCount() < 1) {
       disableDone();
+    }
+  }
+
+  @Override
+  public void onSelectionChanged() {
+    int selectedContactsCount = contactsFragment.getTotalMemberCount() + 1;
+    if (selectedContactsCount == 0) {
+      getToolbar().setTitle(getString(R.string.AddMembersActivity__add_members));
+    } else {
+      getToolbar().setTitle(getResources().getQuantityString(R.plurals.CreateGroupActivity__d_members, selectedContactsCount, selectedContactsCount));
     }
   }
 
@@ -90,6 +128,10 @@ public class AddMembersActivity extends PushContactSelectionActivity {
 
   private GroupId getGroupId() {
     return GroupId.parseOrThrow(getIntent().getStringExtra(GROUP_ID));
+  }
+
+  private boolean isAnnouncementGroup() {
+    return getIntent().getBooleanExtra(ANNOUNCEMENT_GROUP, false);
   }
 
   private void displayAlertMessage(@NonNull AddMembersViewModel.AddMemberDialogMessageState state) {

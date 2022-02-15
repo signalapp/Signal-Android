@@ -1,15 +1,12 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
-
-import net.sqlcipher.Cursor;
-
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 /**
  * Contains all databases necessary for full-text search (FTS).
@@ -86,7 +83,7 @@ public class SearchDatabase extends Database {
       "FROM " + MmsDatabase.TABLE_NAME + " " +
       "INNER JOIN " + MMS_FTS_TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " " +
       "INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
-      "WHERE " + MMS_FTS_TABLE_NAME + " MATCH ? " +
+      "WHERE " + MMS_FTS_TABLE_NAME + " MATCH ? AND " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + " & " + MmsSmsColumns.Types.GROUP_V2_BIT + " = 0 " +
       "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
       "LIMIT 500";
 
@@ -121,40 +118,33 @@ public class SearchDatabase extends Database {
         "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
         "LIMIT 500";
 
-  public SearchDatabase(@NonNull Context context, @NonNull SQLCipherOpenHelper databaseHelper) {
+  public SearchDatabase(@NonNull Context context, @NonNull SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
   public Cursor queryMessages(@NonNull String query) {
-    SQLiteDatabase db                  = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db                  = databaseHelper.getSignalReadableDatabase();
     String         fullTextSearchQuery = createFullTextSearchQuery(query);
 
     if (TextUtils.isEmpty(fullTextSearchQuery)) {
       return null;
     }
 
-    Cursor cursor = db.rawQuery(MESSAGES_QUERY, new String[] { fullTextSearchQuery,
-                                                               fullTextSearchQuery });
-
-    setNotifyConversationListListeners(cursor);
-    return cursor;
+    return db.rawQuery(MESSAGES_QUERY, new String[] { fullTextSearchQuery, fullTextSearchQuery });
   }
 
   public Cursor queryMessages(@NonNull String query, long threadId) {
-    SQLiteDatabase db                  = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db                  = databaseHelper.getSignalReadableDatabase();
     String         fullTextSearchQuery = createFullTextSearchQuery(query);
 
     if (TextUtils.isEmpty(fullTextSearchQuery)) {
       return null;
     }
 
-    Cursor cursor = db.rawQuery(MESSAGES_FOR_THREAD_QUERY, new String[] { fullTextSearchQuery,
-                                                                          String.valueOf(threadId),
-                                                                          fullTextSearchQuery,
-                                                                          String.valueOf(threadId) });
-
-    setNotifyConversationListListeners(cursor);
-    return cursor;
+    return db.rawQuery(MESSAGES_FOR_THREAD_QUERY, new String[] { fullTextSearchQuery,
+                                                                 String.valueOf(threadId),
+                                                                 fullTextSearchQuery,
+                                                                 String.valueOf(threadId) });
   }
 
   private static String createFullTextSearchQuery(@NonNull String query) {

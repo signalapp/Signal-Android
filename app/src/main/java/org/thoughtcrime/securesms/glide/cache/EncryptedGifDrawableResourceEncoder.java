@@ -18,7 +18,7 @@ import java.io.OutputStream;
 
 public class EncryptedGifDrawableResourceEncoder extends EncryptedCoder implements ResourceEncoder<GifDrawable> {
 
-  private static final String TAG = EncryptedGifDrawableResourceEncoder.class.getSimpleName();
+  private static final String TAG = Log.tag(EncryptedGifDrawableResourceEncoder.class);
 
   private final byte[] secret;
 

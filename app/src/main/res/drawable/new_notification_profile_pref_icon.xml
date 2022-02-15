@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/signal_background_dialog_secondary" />
+            <padding android:right="12dp" android:bottom="12dp" android:top="12dp" android:left="12dp" />
+            <padding android:right="12dp" android:bottom="12dp" android:top="12dp" android:left="12dp" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_plus_24" />
+</layer-list>

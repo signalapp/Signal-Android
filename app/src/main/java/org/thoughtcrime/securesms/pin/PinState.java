@@ -19,18 +19,14 @@ import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
-import org.thoughtcrime.securesms.registration.service.KeyBackupSystemWrongPinException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
-import org.whispersystems.signalservice.api.KeyBackupServicePinException;
-import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -40,61 +36,6 @@ import java.util.concurrent.TimeUnit;
 public final class PinState {
 
   private static final String TAG = Log.tag(PinState.class);
-
-  /**
-   * Invoked during registration to restore the master key based on the server response during
-   * verification.
-   *
-   * Does not affect {@link PinState}.
-   */
-  public static synchronized @Nullable KbsPinData restoreMasterKey(@Nullable String pin,
-                                                                   @NonNull KbsEnclave enclave,
-                                                                   @Nullable String basicStorageCredentials,
-                                                                   @NonNull TokenResponse tokenResponse)
-    throws IOException, KeyBackupSystemWrongPinException, KeyBackupSystemNoDataException
-  {
-    Log.i(TAG, "restoreMasterKey()");
-
-    if (pin == null) return null;
-
-    if (basicStorageCredentials == null) {
-      throw new AssertionError("Cannot restore KBS key, no storage credentials supplied");
-    }
-
-    Log.i(TAG, "Preparing to restore from " + enclave.getEnclaveName());
-    return restoreMasterKeyFromEnclave(enclave, pin, basicStorageCredentials, tokenResponse);
-  }
-
-  private static @NonNull KbsPinData restoreMasterKeyFromEnclave(@NonNull KbsEnclave enclave,
-                                                                 @NonNull String pin,
-                                                                 @NonNull String basicStorageCredentials,
-                                                                 @NonNull TokenResponse tokenResponse)
-      throws IOException, KeyBackupSystemWrongPinException, KeyBackupSystemNoDataException
-  {
-    KeyBackupService                keyBackupService = ApplicationDependencies.getKeyBackupService(enclave);
-    KeyBackupService.RestoreSession session          = keyBackupService.newRegistrationSession(basicStorageCredentials, tokenResponse);
-
-    try {
-      Log.i(TAG, "Restoring pin from KBS");
-
-      HashedPin  hashedPin = PinHashing.hashPin(pin, session);
-      KbsPinData kbsData   = session.restorePin(hashedPin);
-
-      if (kbsData != null) {
-        Log.i(TAG, "Found registration lock token on KBS.");
-      } else {
-        throw new AssertionError("Null not expected");
-      }
-
-      return kbsData;
-    } catch (UnauthenticatedResponseException | InvalidKeyException e) {
-      Log.w(TAG, "Failed to restore key", e);
-      throw new IOException(e);
-    } catch (KeyBackupServicePinException e) {
-      Log.w(TAG, "Incorrect pin", e);
-      throw new KeyBackupSystemWrongPinException(e.getToken());
-    }
-  }
 
   /**
    * Invoked after a user has successfully registered. Ensures all the necessary state is updated.
@@ -126,7 +67,7 @@ public final class PinState {
       Log.i(TAG, "Has a PIN to restore.");
       SignalStore.kbsValues().clearRegistrationLockAndPin();
       TextSecurePreferences.setV1RegistrationLockEnabled(context, false);
-      SignalStore.storageServiceValues().setNeedsAccountRestore(true);
+      SignalStore.storageService().setNeedsAccountRestore(true);
     } else {
       Log.i(TAG, "No registration lock or PIN at all.");
       SignalStore.kbsValues().clearRegistrationLockAndPin();
@@ -145,7 +86,7 @@ public final class PinState {
     SignalStore.kbsValues().setKbsMasterKey(kbsData, pin);
     SignalStore.kbsValues().setV2RegistrationLockEnabled(false);
     SignalStore.pinValues().resetPinReminders();
-    SignalStore.storageServiceValues().setNeedsAccountRestore(false);
+    SignalStore.storageService().setNeedsAccountRestore(false);
     resetPinRetryCount(context, pin);
     ClearFallbackKbsEnclaveJob.clearAll();
 
@@ -157,7 +98,7 @@ public final class PinState {
    */
   public static synchronized void onPinRestoreForgottenOrSkipped() {
     SignalStore.kbsValues().clearRegistrationLockAndPin();
-    SignalStore.storageServiceValues().setNeedsAccountRestore(false);
+    SignalStore.storageService().setNeedsAccountRestore(false);
 
     updateState(buildInferredStateFromOtherFields());
   }
@@ -171,10 +112,11 @@ public final class PinState {
   {
     Log.i(TAG, "onPinChangedOrCreated()");
 
+    KbsEnclave                        kbsEnclave       = KbsEnclaves.current();
     KbsValues                         kbsValues        = SignalStore.kbsValues();
     boolean                           isFirstPin       = !kbsValues.hasPin() || kbsValues.hasOptedOut();
     MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
-    KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService(KbsEnclaves.current());
+    KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService(kbsEnclave);
     KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
     HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
     KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
@@ -186,10 +128,10 @@ public final class PinState {
     ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL);
 
     if (isFirstPin) {
-      Log.i(TAG, "First time setting a PIN. Refreshing attributes to set the 'storage' capability.");
+      Log.i(TAG, "First time setting a PIN. Refreshing attributes to set the 'storage' capability. Enclave: " + kbsEnclave.getEnclaveName());
       bestEffortRefreshAttributes();
     } else {
-      Log.i(TAG, "Not the first time setting a PIN.");
+      Log.i(TAG, "Not the first time setting a PIN. Enclave: " + kbsEnclave.getEnclaveName());
     }
 
     updateState(buildInferredStateFromOtherFields());
@@ -232,8 +174,12 @@ public final class PinState {
 
     assertState(State.PIN_WITH_REGISTRATION_LOCK_DISABLED);
 
+
+    KbsEnclave kbsEnclave = KbsEnclaves.current();
+    Log.i(TAG, "Enclave: " + kbsEnclave.getEnclaveName());
+
     SignalStore.kbsValues().setV2RegistrationLockEnabled(false);
-    ApplicationDependencies.getKeyBackupService(KbsEnclaves.current())
+    ApplicationDependencies.getKeyBackupService(kbsEnclave)
                            .newPinChangeSession(SignalStore.kbsValues().getRegistrationLockTokenResponse())
                            .enableRegistrationLock(SignalStore.kbsValues().getOrCreateMasterKey());
     SignalStore.kbsValues().setV2RegistrationLockEnabled(true);
@@ -273,9 +219,12 @@ public final class PinState {
   {
     Log.i(TAG, "onMigrateToRegistrationLockV2()");
 
+    KbsEnclave kbsEnclave = KbsEnclaves.current();
+    Log.i(TAG, "Enclave: " + kbsEnclave.getEnclaveName());
+
     KbsValues                         kbsValues        = SignalStore.kbsValues();
     MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
-    KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService(KbsEnclaves.current());
+    KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService(kbsEnclave);
     KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
     HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
     KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
@@ -353,6 +302,8 @@ public final class PinState {
   private static @NonNull KbsPinData setPinOnEnclave(@NonNull KbsEnclave enclave, @NonNull String pin, @NonNull MasterKey masterKey)
       throws IOException, UnauthenticatedResponseException
   {
+    Log.i(TAG, "Setting PIN on enclave: " + enclave.getEnclaveName());
+
     KeyBackupService                  kbs              = ApplicationDependencies.getKeyBackupService(enclave);
     KeyBackupService.PinChangeSession pinChangeSession = kbs.newPinChangeSession();
     HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);

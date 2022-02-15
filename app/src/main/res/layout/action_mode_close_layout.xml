@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/action_mode_close_button"
+    android:layout_width="24dp"
+    android:layout_height="24dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="24dp"
+    app:srcCompat="@drawable/ic_x_24" >
+</ImageView>

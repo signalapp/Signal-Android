@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,8 +55,8 @@ public final class PlacePickerActivity extends AppCompatActivity {
   private AddressLookup            addressLookup;
   private GoogleMap                googleMap;
 
-  public static void startActivityForResultAtCurrentLocation(@NonNull Activity activity, int requestCode) {
-    activity.startActivityForResult(new Intent(activity, PlacePickerActivity.class), requestCode);
+  public static void startActivityForResultAtCurrentLocation(@NonNull Fragment fragment, int requestCode) {
+    fragment.startActivityForResult(new Intent(fragment.requireActivity(), PlacePickerActivity.class), requestCode);
   }
 
   public static AddressData addressFromData(@NonNull Intent data) {

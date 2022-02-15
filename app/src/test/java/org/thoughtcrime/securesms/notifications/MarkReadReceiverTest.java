@@ -13,11 +13,13 @@ import org.mockito.stubbing.Answer;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
@@ -36,21 +38,25 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(ApplicationDependencies.class)
+@PrepareForTest({ApplicationDependencies.class, Recipient.class})
 public class MarkReadReceiverTest {
 
   private final Context    mockContext    = mock(Context.class);
   private final JobManager mockJobManager = mock(JobManager.class);
+  private final Recipient  mockSelf       = mock(Recipient.class);
   private final List<Job>  jobs           = new LinkedList<>();
 
   @Before
   public void setUp() {
     mockStatic(ApplicationDependencies.class);
+    mockStatic(Recipient.class);
     when(ApplicationDependencies.getJobManager()).thenReturn(mockJobManager);
     doAnswer((Answer<Void>) invocation -> {
       jobs.add((Job) invocation.getArguments()[0]);
       return null;
     }).when(mockJobManager).add(any());
+    when(Recipient.self()).thenReturn(mockSelf);
+    when(mockSelf.getId()).thenReturn(RecipientId.from(-1));
   }
 
   @Test
@@ -94,7 +100,8 @@ public class MarkReadReceiverTest {
 
   private MessageDatabase.MarkedMessageInfo createMarkedMessageInfo(long threadId, @NonNull RecipientId recipientId) {
     return new MessageDatabase.MarkedMessageInfo(threadId,
-                                                   new MessageDatabase.SyncMessageId(recipientId, 0),
-                                                   new MessageDatabase.ExpirationInfo(0, 0, 0, false));
+                                                 new MessageDatabase.SyncMessageId(recipientId, 0),
+                                                 new MessageId(1, true),
+                                                 new MessageDatabase.ExpirationInfo(0, 0, 0, false));
   }
 }

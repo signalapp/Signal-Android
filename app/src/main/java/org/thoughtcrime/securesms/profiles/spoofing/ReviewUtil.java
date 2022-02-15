@@ -7,8 +7,8 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -46,9 +46,7 @@ public final class ReviewUtil {
       return false;
     }
 
-    return DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication())
-                          .getSimilarRecipientIds(recipient)
-                          .size() > 1;
+    return SignalDatabase.recipients().getSimilarRecipientIds(recipient).size() > 1;
   }
 
   @WorkerThread
@@ -61,7 +59,7 @@ public final class ReviewUtil {
       return Collections.emptyList();
     }
 
-    List<Recipient> members = DatabaseFactory.getGroupDatabase(context)
+    List<Recipient> members = SignalDatabase.groups()
                                              .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_INCLUDING_SELF);
 
     List<ReviewRecipient> changed = Stream.of(profileChangeRecords)
@@ -92,19 +90,19 @@ public final class ReviewUtil {
 
   @WorkerThread
   public static @NonNull List<MessageRecord> getProfileChangeRecordsForGroup(@NonNull Context context, @NonNull GroupId.V2 groupId) {
-    RecipientId recipientId = DatabaseFactory.getRecipientDatabase(context).getByGroupId(groupId).get();
-    Long        threadId    = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
+    RecipientId recipientId = SignalDatabase.recipients().getByGroupId(groupId).get();
+    Long        threadId    = SignalDatabase.threads().getThreadIdFor(recipientId);
 
     if (threadId == null) {
       return Collections.emptyList();
     } else {
-      return DatabaseFactory.getSmsDatabase(context).getProfileChangeDetailsRecords(threadId, System.currentTimeMillis() - TIMEOUT);
+      return SignalDatabase.sms().getProfileChangeDetailsRecords(threadId, System.currentTimeMillis() - TIMEOUT);
     }
   }
 
   @WorkerThread
   public static int getGroupsInCommonCount(@NonNull Context context, @NonNull RecipientId recipientId) {
-    return Stream.of(DatabaseFactory.getGroupDatabase(context)
+    return Stream.of(SignalDatabase.groups()
                  .getPushGroupsContainingMember(recipientId))
                  .filter(g -> g.getMembers().contains(Recipient.self().getId()))
                  .map(GroupDatabase.GroupRecord::getRecipientId)

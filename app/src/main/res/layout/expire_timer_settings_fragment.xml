@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        layout="@layout/dsl_settings_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/timer_select_fragment_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/white"
+        android:text="@string/EditProfileNameFragment_save"
+        app:cornerRadius="80dp"
+        app:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="?colorAccent"
+        app:cpb_cornerRadius="28dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/ExpireTimerSettingsFragment__save" />
+
+</FrameLayout>

@@ -14,15 +14,62 @@
         <action
             android:id="@+id/action_chatWallpaperFragment_to_chatWallpaperSelectionFragment"
             app:destination="@id/chatWallpaperSelectionFragment"
-            app:enterAnim="@anim/slide_from_end"
-            app:exitAnim="@anim/slide_to_start"
-            app:popEnterAnim="@anim/slide_from_start"
-            app:popExitAnim="@anim/slide_to_end" />
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_chatWallpaperFragment_to_chatColorSelectionFragment"
+            app:destination="@id/chatColorSelectionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/chatWallpaperSelectionFragment"
         android:name="org.thoughtcrime.securesms.wallpaper.ChatWallpaperSelectionFragment"
         android:label="chat_wallpaper_selection_fragment"
-        tools:layout="@layout/chat_wallpaper_selection_fragment">
+        tools:layout="@layout/chat_wallpaper_selection_fragment" />
+    <fragment
+        android:id="@+id/chatColorSelectionFragment"
+        android:name="org.thoughtcrime.securesms.conversation.colors.ui.ChatColorSelectionFragment"
+        android:label="chat_color_selection_fragment"
+        tools:layout="@layout/chat_color_selection_fragment">
+        <action
+            android:id="@+id/action_chatColorSelectionFragment_to_customChatColorCreatorFragment"
+            app:destination="@id/customChatColorCreatorFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
+
+        <argument
+            android:name="recipient_id"
+            app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customChatColorCreatorFragment"
+        android:name="org.thoughtcrime.securesms.conversation.colors.ui.custom.CustomChatColorCreatorFragment"
+        android:label="custom_chat_color_creator_fragment"
+        tools:layout="@layout/custom_chat_color_creator_fragment">
+
+        <argument
+            android:name="recipient_id"
+            app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+            app:nullable="true" />
+
+        <argument
+            android:name="start_page"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <argument
+            android:name="chat_color_id"
+            android:defaultValue="0L"
+            app:argType="long" />
     </fragment>
 </navigation>

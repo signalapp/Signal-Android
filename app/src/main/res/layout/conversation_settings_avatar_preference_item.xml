@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="40dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/bio_preference_avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <org.thoughtcrime.securesms.badges.BadgeImageView
+            android:id="@+id/bio_preference_badge"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="52dp"
+            android:contentDescription="@string/ImageView__badge"
+            app:badge_size="large"
+            app:layout_constraintStart_toStartOf="@id/bio_preference_avatar"
+            app:layout_constraintTop_toTopOf="@id/bio_preference_avatar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

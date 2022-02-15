@@ -20,7 +20,7 @@ public class DocumentSlide extends Slide {
                        @NonNull String contentType,  long size,
                        @Nullable String fileName)
   {
-    super(context, constructAttachmentFromUri(context, uri, contentType, size, 0, 0, true, StorageUtil.getCleanFileName(fileName), null, null, null, null, false, false, false));
+    super(context, constructAttachmentFromUri(context, uri, contentType, size, 0, 0, true, StorageUtil.getCleanFileName(fileName), null, null, null, null, false, false, false, false));
   }
 
   @Override

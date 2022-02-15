@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.exoplayer2.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -20,4 +20,4 @@
         android:visibility="gone"
         tools:alpha="0.2f"
         tools:visibility="visible" />
-</FrameLayout>
+</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>

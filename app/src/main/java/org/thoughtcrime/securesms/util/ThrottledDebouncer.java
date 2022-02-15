@@ -38,12 +38,16 @@ public class ThrottledDebouncer {
 
   @MainThread
   public void publish(Runnable runnable) {
+    handler.setRunnable(runnable);
+
     if (handler.hasMessages(WHAT)) {
-      handler.setRunnable(runnable);
-    } else {
-      runnable.run();
-      handler.sendMessageDelayed(handler.obtainMessage(WHAT), threshold);
+      return;
     }
+
+    long sinceLastRun = System.currentTimeMillis() - handler.lastRun;
+    long delay        = Math.max(0, threshold - sinceLastRun);
+
+    handler.sendMessageDelayed(handler.obtainMessage(WHAT), delay);
   }
 
   @MainThread
@@ -58,10 +62,12 @@ public class ThrottledDebouncer {
     }
 
     private Runnable runnable;
+    private long     lastRun = 0;
 
     @Override
     public void handleMessage(Message msg) {
       if (msg.what == WHAT && runnable != null) {
+        lastRun = System.currentTimeMillis();
         runnable.run();
         runnable = null;
       }

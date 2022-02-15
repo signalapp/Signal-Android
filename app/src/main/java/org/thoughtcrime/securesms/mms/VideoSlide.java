@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.net.Uri;
+import android.os.Build;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -27,20 +28,21 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class VideoSlide extends Slide {
 
-  public VideoSlide(Context context, Uri uri, long dataSize) {
-    this(context, uri, dataSize, null, null);
+  public VideoSlide(Context context, Uri uri, long dataSize, boolean gif) {
+    this(context, uri, dataSize, gif, null, null);
   }
 
-  public VideoSlide(Context context, Uri uri, long dataSize, @Nullable String caption, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, false, transformProperties));
+  public VideoSlide(Context context, Uri uri, long dataSize, boolean gif, @Nullable String caption, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
   }
 
-  public VideoSlide(Context context, Uri uri, long dataSize, int width, int height, @Nullable String caption, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, width, height, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, false, transformProperties));
+  public VideoSlide(Context context, Uri uri, long dataSize, boolean gif, int width, int height, @Nullable String caption, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, width, height, MediaUtil.hasVideoThumbnail(context, uri), null, caption, null, null, null, false, false, gif, false, transformProperties));
   }
 
   public VideoSlide(Context context, Attachment attachment) {
@@ -54,7 +56,7 @@ public class VideoSlide extends Slide {
 
   @Override
   public boolean hasPlayOverlay() {
-    return true;
+    return !(isVideoGif() && GiphyMp4PlaybackPolicy.autoplay()) || Build.VERSION.SDK_INT < 23;
   }
 
   @Override

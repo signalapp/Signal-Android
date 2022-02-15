@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.conversation.ui.error;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
@@ -34,5 +34,10 @@ final class ChangedRecipient {
 
   boolean isVerified() {
     return record.getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED;
+  }
+
+  @Override
+  public String toString() {
+    return "ChangedRecipient{" + "recipient=" + recipient.getId() + ", record=" + record.getIdentityKey().hashCode() + '}';
   }
 }

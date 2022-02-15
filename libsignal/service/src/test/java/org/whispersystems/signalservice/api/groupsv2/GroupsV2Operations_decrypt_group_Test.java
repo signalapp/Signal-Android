@@ -21,6 +21,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.ClientZkGroupCipher;
@@ -38,7 +39,7 @@ import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.testutil.ZkGroupLibraryUtil;
+import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import java.util.Collections;
 import java.util.UUID;
@@ -55,7 +56,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
 
   @Before
   public void setup() throws InvalidInputException {
-    ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS();
+    LibSignalLibraryUtil.assumeLibSignalSupportedOnOS();
 
     TestZkGroupServer  server             = new TestZkGroupServer();
     ClientZkOperations clientZkOperations = new ClientZkOperations(server.getServerPublicParams());
@@ -74,7 +75,7 @@ public final class GroupsV2Operations_decrypt_group_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(Group.class);
 
     assertEquals("GroupOperations and its tests need updating to account for new fields on " + Group.class.getName(),
-                 10, maxFieldFound);
+                 12, maxFieldFound);
   }
   
   @Test
@@ -270,6 +271,28 @@ public final class GroupsV2Operations_decrypt_group_Test {
     DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
 
     assertEquals(password, decryptedGroup.getInviteLinkPassword());
+  }
+
+  @Test
+  public void decrypt_description_field_11() throws VerificationFailedException, InvalidGroupStateException {
+    Group group = Group.newBuilder()
+                       .setDescription(groupOperations.encryptDescription("Description!"))
+                       .build();
+
+    DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
+
+    assertEquals("Description!", decryptedGroup.getDescription());
+  }
+
+  @Test
+  public void decrypt_announcements_field_12() throws VerificationFailedException, InvalidGroupStateException {
+    Group group = Group.newBuilder()
+                       .setAnnouncementsOnly(true)
+                       .build();
+
+    DecryptedGroup decryptedGroup = groupOperations.decryptGroup(group);
+
+    assertEquals(EnabledState.ENABLED, decryptedGroup.getIsAnnouncementGroup());
   }
 
   private ByteString encryptProfileKey(UUID uuid, ProfileKey profileKey) {

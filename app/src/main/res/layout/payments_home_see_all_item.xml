@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/payments_home_see_all_item_button"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="?selectableItemBackground"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:text="@string/PaymentsHomeFragment__see_all"
+    android:textAppearance="@style/Signal.Text.Body" />
