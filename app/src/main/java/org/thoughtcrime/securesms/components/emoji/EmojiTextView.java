@@ -13,7 +13,7 @@ import android.text.TextDirectionHeuristic;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.text.method.TransformationMethod;
-import android.text.style.MetricAffectingSpan;
+import android.text.style.CharacterStyle;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -218,7 +218,7 @@ public class EmojiTextView extends AppCompatTextView {
       return false;
     }
 
-    return ((Spanned) text).nextSpanTransition(-1, text.length(), MetricAffectingSpan.class) != text.length();
+    return ((Spanned) text).nextSpanTransition(-1, text.length(), CharacterStyle.class) != text.length();
   }
 
   public int getLastLineWidth() {
@@ -302,7 +302,7 @@ public class EmojiTextView extends AppCompatTextView {
     if (getLayout() != null) {
       ellipsize.run();
     } else {
-      ViewKt.doOnNextLayout(this, view -> {
+      ViewKt.doOnPreDraw(this, view -> {
         ellipsize.run();
         return Unit.INSTANCE;
       });
