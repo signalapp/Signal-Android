@@ -24,6 +24,7 @@
         android:clipToPadding="false"
         android:paddingBottom="@dimen/conversation_bottom_padding"
         android:scrollbars="vertical"
+        android:splitMotionEvents="false"
         android:overScrollMode="ifContentScrolls"
         app:layout_constraintTop_toTopOf="parent" />
 
