@@ -86,12 +86,12 @@ public class CallNotificationBuilder {
 
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
 
-    return new NotificationCompat.Builder(context, NotificationChannels.OTHER).setSmallIcon(R.drawable.ic_call_secure_white_24dp)
-                                                                              .setContentIntent(pendingIntent)
-                                                                              .setOngoing(true)
-                                                                              .setContentTitle(context.getString(R.string.NotificationBarManager__stopping_signal_call_service))
-                                                                              .setPriority(NotificationCompat.PRIORITY_MIN)
-                                                                              .build();
+    return new NotificationCompat.Builder(context, NotificationChannels.CALL_STATUS).setSmallIcon(R.drawable.ic_call_secure_white_24dp)
+                                                                                    .setContentIntent(pendingIntent)
+                                                                                    .setOngoing(true)
+                                                                                    .setContentTitle(context.getString(R.string.NotificationBarManager__stopping_signal_call_service))
+                                                                                    .setPriority(NotificationCompat.PRIORITY_MIN)
+                                                                                    .build();
   }
 
   public static int getStoppingNotificationId() {
@@ -107,7 +107,7 @@ public class CallNotificationBuilder {
     if (callActivityRestricted() && type == TYPE_INCOMING_RINGING) {
       return NotificationChannels.CALLS;
     } else {
-      return NotificationChannels.OTHER;
+      return NotificationChannels.CALL_STATUS;
     }
   }
 

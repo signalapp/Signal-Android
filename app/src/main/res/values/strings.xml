@@ -1868,6 +1868,10 @@
     <string name="NotificationChannel_voice_notes">Voice Notes</string>
     <string name="NotificationChannel_contact_joined_signal">Contact joined Signal</string>
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No activity available to open notification channel settings.</string>
+    <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
+    <string name="NotificationChannel_background_connection">Background connection</string>
+    <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
+    <string name="NotificationChannel_call_status">Call status</string>
     <!-- ProfileEditNameFragment -->
 
     <!-- QuickResponseService -->
