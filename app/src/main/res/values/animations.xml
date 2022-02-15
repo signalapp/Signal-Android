@@ -21,7 +21,7 @@
     </style>
 
     <style name="ConversationContextMenuAnimation" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowEnterAnimation">@anim/delay_fade_in</item>
         <item name="android:windowExitAnimation">@anim/shrink_fade_out</item>
     </style>
 </resources>
