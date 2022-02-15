@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
+import org.webrtc.RendererCommon;
 
 class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant, WebRtcCallParticipantsRecyclerAdapter.ViewHolder> {
 
@@ -61,6 +62,7 @@ class WebRtcCallParticipantsRecyclerAdapter extends ListAdapter<CallParticipant,
     void bind(@NonNull CallParticipant callParticipant) {
       callParticipantView.setCallParticipant(callParticipant);
       callParticipantView.setRenderInPip(true);
+      callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
     }
   }
 

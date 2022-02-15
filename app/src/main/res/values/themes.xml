@@ -3,6 +3,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Signal.Transparent" parent="Theme.AppCompat">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -88,7 +89,13 @@
         <item name="contact_filter_toolbar_icon_tint">@color/signal_text_toolbar_subtitle</item>
     </style>
 
-    <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/login_top_background</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
@@ -96,9 +103,16 @@
 
         <item name="android:textColorHint">#cc000000</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">default</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/login_top_background</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
@@ -126,15 +140,15 @@
 
     <style name="TextSecure.BaseLightTheme" parent="@style/Theme.MaterialComponents.Light.Bridge">
         <item name="theme_type">light</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
-        <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
-        <item name="actionModeBackground">@color/signal_background_secondary</item>
+        <item name="actionModeBackground">@color/signal_background_primary</item>
         <item name="actionModeCloseDrawable">@drawable/ic_x_tinted</item>
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_light_theme</item>
@@ -143,13 +157,15 @@
         <item name="colorPrimaryDark">@color/core_ultramarine</item>
         <item name="colorAccent">@color/core_ultramarine</item>
         <item name="colorControlActivated">@color/core_ultramarine</item>
-        <item name="colorControlHighlight">@color/core_ultramarine</item>
+        <item name="colorControlHighlight">@color/transparent_black_10</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
+
+        <item name="settingsToolbarStyle">@style/TextSecure.LightActionBar.Settings</item>
 
         <item name="contact_filter_toolbar_icon_tint">@color/signal_icon_tint_primary</item>
 
@@ -170,7 +186,9 @@
 
         <item name="colorControlNormal">@color/core_grey_90</item>
 
-
+        <item name="materialAlertDialogTheme">@style/Signal.ThemeOverlay.Dialog.Rounded</item>
+        <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
+        <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
@@ -179,30 +197,32 @@
 
     <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.MaterialComponents.Bridge">
         <item name="theme_type">dark</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
-        <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="actionModeBackground">@color/signal_background_secondary</item>
+        <item name="actionModeBackground">@color/signal_background_primary</item>
         <item name="actionModeCloseDrawable">@drawable/ic_x_tinted</item>
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="colorAccent">@color/core_ultramarine_light</item>
         <item name="colorControlActivated">@color/core_ultramarine_light</item>
-        <item name="colorControlHighlight">@color/core_ultramarine_light</item>
-        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/core_ultramarine_light</item>
+        <item name="colorControlHighlight">@color/transparent_white_10</item>
+        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/transparent_white_10</item>
         <item name="android:windowBackground">@color/core_grey_95</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
+
+        <item name="settingsToolbarStyle">@style/TextSecure.DarkActionBar.Settings</item>
 
         <item name="contact_filter_toolbar_icon_tint">@color/signal_icon_tint_primary</item>
 
@@ -222,6 +242,10 @@
         <item name="chipStyle">@style/Signal.Chip.Action</item>
 
         <item name="colorControlNormal">@color/core_white</item>
+
+        <item name="materialAlertDialogTheme">@style/Signal.ThemeOverlay.Dialog.Rounded</item>
+        <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
+        <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -252,6 +276,18 @@
     </style>
 
     <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
+    </style>
+
+    <style name="TextSecure.LightNoActionBar.ConversationSettings" parent="TextSecure.LightNoActionBar">
+        <item name="android:windowBackground">@color/transparent_black_20</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="TextSecure.DarkNoActionBar.ConversationSettings" parent="TextSecure.DarkNoActionBar">
+        <item name="android:windowBackground">@color/transparent_black_20</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="TextSecure.FullScreenMedia" parent="TextSecure.DarkNoActionBar">
@@ -295,6 +331,7 @@
     </style>
 
     <style name="TextSecure.DarkTheme.WebRTCCall">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/core_ultramarine</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowTranslucentStatus">true</item>
@@ -342,6 +379,10 @@
         <item name="android:windowAnimationStyle">@style/FadeScale</item>
     </style>
 
+    <style name="Signal.DayNight.Dialog.Animated.Bottom" parent="Signal.DayNight">
+        <item name="android:windowAnimationStyle">@style/FakeBottomSheet</item>
+    </style>
+
     <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">
         <item name="backgroundTint">@color/core_grey_75</item>
         <item name="behavior_peekHeight">@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_min_height</item>
@@ -352,12 +393,55 @@
         <item name="backgroundTint">@color/white</item>
     </style>
 
+    <style name="Widget.Signal.ReactWithAny" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/Widget.Signal.ReactWithAny.BottomSheet</item>
+    </style>
+
+    <style name="Widget.Signal.ReactWithAny.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="backgroundTint">@color/react_with_any_background</item>
+    </style>
+
+    <style name="Widget.Signal.FixedRoundedCorners" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet</item>
+    </style>
+
+    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="backgroundTint">@color/signal_background_dialog</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">8dp</item>
-        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeTopRight">18dp</item>
+        <item name="cornerSizeTopLeft">18dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Signal.WallpaperPreview" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">12dp</item>
+        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeBottomLeft">12dp</item>
+        <item name="cornerSizeBottomRight">12dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Signal.MediaSelection" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Signal.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
@@ -414,6 +498,13 @@
         <item name="android:textColor">@color/core_grey_90</item>
         <item name="chipBackgroundColor">@color/core_grey_05</item>
         <item name="closeIconTint">@color/core_grey_60</item>
+    </style>
+    
+    <style name="ThemeOverlay.Signal.EditProfileInput" parent="ThemeOverlay.MaterialComponents">
+        <item name="colorAccent">@color/signal_accent_primary</item>
+        <item name="colorControlNormal">@color/signal_accent_primary</item>
+        <item name="colorControlHighlight">@color/signal_accent_primary</item>
+        <item name="colorControlActivated">@color/signal_accent_primary</item>
     </style>
 
 </resources>

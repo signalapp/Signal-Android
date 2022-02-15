@@ -2,27 +2,40 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/media_overview_detail_item_height">
 
     <FrameLayout
         android:id="@+id/image_container"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <org.thoughtcrime.securesms.components.ThumbnailView
             android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/media_preview_activity__media_content_description" />
-
-        <include layout="@layout/media_overview_selected_overlay" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/media_preview_activity__media_content_description"
+            app:thumbnail_radius="8dp"
+            app:transparent_overlay_color="@color/transparent_black_08" />
 
     </FrameLayout>
 
+    <include layout="@layout/media_overview_selected_overlay" />
+
     <include layout="@layout/media_overview_detail_text" />
+
+    <View
+        android:id="@+id/audio"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

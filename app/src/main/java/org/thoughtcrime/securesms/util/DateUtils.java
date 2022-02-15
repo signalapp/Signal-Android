@@ -40,9 +40,10 @@ import java.util.concurrent.TimeUnit;
 public class DateUtils extends android.text.format.DateUtils {
 
   @SuppressWarnings("unused")
-  private static final String                        TAG                = DateUtils.class.getSimpleName();
-  private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT        = new ThreadLocal<>();
-  private static final ThreadLocal<SimpleDateFormat> BRIEF_EXACT_FORMAT = new ThreadLocal<>();
+  private static final String                        TAG                    = Log.tag(DateUtils.class);
+  private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT            = new ThreadLocal<>();
+  private static final ThreadLocal<SimpleDateFormat> BRIEF_EXACT_FORMAT     = new ThreadLocal<>();
+  private static final long                          MAX_RELATIVE_TIMESTAMP = TimeUnit.MINUTES.toMillis(3);
 
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);
@@ -102,6 +103,18 @@ public class DateUtils extends android.text.format.DateUtils {
     }
   }
 
+  public static String getSimpleRelativeTimeSpanString(final Context context, final Locale locale, final long timestamp) {
+    if (isWithin(timestamp, 1, TimeUnit.MINUTES)) {
+      return context.getString(R.string.DateUtils_just_now);
+    } else if (isWithin(timestamp, 1, TimeUnit.HOURS)) {
+      int mins = (int) TimeUnit.MINUTES.convert(System.currentTimeMillis() - timestamp, TimeUnit.MILLISECONDS);
+      return context.getResources().getString(R.string.DateUtils_minutes_ago, mins);
+    } else {
+      String format = DateFormat.is24HourFormat(context) ? "HH:mm" : "hh:mm a";
+      return getFormattedDateTime(timestamp, format, locale);
+    }
+  }
+
   public static String getTimeString(final Context c, final Locale locale, final long timestamp) {
     StringBuilder format = new StringBuilder();
 
@@ -144,17 +157,27 @@ public class DateUtils extends android.text.format.DateUtils {
     return new SimpleDateFormat(dateFormatPattern, locale);
   }
 
-  public static String getRelativeDate(@NonNull Context context,
-                                       @NonNull Locale locale,
-                                       long timestamp)
+  public static String getConversationDateHeaderString(@NonNull Context context,
+                                                       @NonNull Locale locale,
+                                                       long timestamp)
   {
     if (isToday(timestamp)) {
       return context.getString(R.string.DateUtils_today);
     } else if (isYesterday(timestamp)) {
       return context.getString(R.string.DateUtils_yesterday);
+    } else if (isWithin(timestamp, 182, TimeUnit.DAYS)) {
+      return formatDateWithDayOfWeek(locale, timestamp);
     } else {
-      return formatDate(locale, timestamp);
+      return formatDateWithYear(locale, timestamp);
     }
+  }
+
+  public static String formatDateWithDayOfWeek(@NonNull Locale locale, long timestamp) {
+    return getFormattedDateTime(timestamp, "EEE, MMM d", locale);
+  }
+
+  public static String formatDateWithYear(@NonNull Locale locale, long timestamp) {
+    return getFormattedDateTime(timestamp, "MMM d, yyyy", locale);
   }
 
   public static String formatDate(@NonNull Locale locale, long timestamp) {
@@ -172,8 +195,8 @@ public class DateUtils extends android.text.format.DateUtils {
     return d1.equals(d2);
   }
 
-  public static boolean isSameExtendedRelativeTimestamp(@NonNull Context context, @NonNull Locale locale, long t1, long t2) {
-    return getExtendedRelativeTimeSpanString(context, locale, t1).equals(getExtendedRelativeTimeSpanString(context, locale, t2));
+  public static boolean isSameExtendedRelativeTimestamp(long second, long first) {
+    return second - first < MAX_RELATIVE_TIMESTAMP;
   }
 
   private static String getLocalizedPattern(String template, Locale locale) {
@@ -197,7 +220,7 @@ public class DateUtils extends android.text.format.DateUtils {
    *
    * @return The timestamp if able to be parsed, otherwise -1.
    */
-  @SuppressLint("ObsoleteSdkInt")
+  @SuppressLint({ "ObsoleteSdkInt", "NewApi" })
   public static long parseIso8601(@Nullable String date) {
     SimpleDateFormat format;
     if (Build.VERSION.SDK_INT == 0 || Build.VERSION.SDK_INT >= 24) {

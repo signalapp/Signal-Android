@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
@@ -24,7 +23,7 @@ import java.util.List;
 
 public class SignedPreKeyDatabase extends Database {
 
-  private static final String TAG = SignedPreKeyDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(SignedPreKeyDatabase.class);
 
   public static final String TABLE_NAME = "signed_prekeys";
 
@@ -43,12 +42,12 @@ public class SignedPreKeyDatabase extends Database {
       SIGNATURE + " TEXT NOT NULL, " +
       TIMESTAMP + " INTEGER DEFAULT 0);";
 
-  SignedPreKeyDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  SignedPreKeyDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
   public @Nullable SignedPreKeyRecord getSignedPreKey(int keyId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
 
     try (Cursor cursor = database.query(TABLE_NAME, null, KEY_ID + " = ?",
                                         new String[] {String.valueOf(keyId)},
@@ -72,7 +71,7 @@ public class SignedPreKeyDatabase extends Database {
   }
 
   public @NonNull List<SignedPreKeyRecord> getAllSignedPreKeys() {
-    SQLiteDatabase           database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase           database = databaseHelper.getSignalReadableDatabase();
     List<SignedPreKeyRecord> results  = new LinkedList<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, null)) {
@@ -95,7 +94,7 @@ public class SignedPreKeyDatabase extends Database {
   }
 
   public void insertSignedPreKey(int keyId, SignedPreKeyRecord record) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(KEY_ID, keyId);
@@ -109,7 +108,7 @@ public class SignedPreKeyDatabase extends Database {
 
 
   public void removeSignedPreKey(int keyId) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, KEY_ID + " = ? AND " + SIGNATURE + " IS NOT NULL", new String[] {String.valueOf(keyId)});
   }
 

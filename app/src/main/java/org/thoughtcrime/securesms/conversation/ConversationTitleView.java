@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -12,22 +12,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.TextViewCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.ContextUtil;
+import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ConversationTitleView extends RelativeLayout {
 
   private AvatarImageView avatar;
+  private BadgeImageView  badge;
   private TextView        title;
   private TextView        subtitle;
   private ImageView       verified;
@@ -49,6 +52,7 @@ public class ConversationTitleView extends RelativeLayout {
     super.onFinishInflate();
 
     this.title                    = findViewById(R.id.title);
+    this.badge                    = findViewById(R.id.badge);
     this.subtitle                 = findViewById(R.id.subtitle);
     this.verified                 = findViewById(R.id.verified_indicator);
     this.subtitleContainer        = findViewById(R.id.subtitle_container);
@@ -62,7 +66,7 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   public void showExpiring(@NonNull LiveRecipient recipient) {
-    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.get().getExpireMessages()));
+    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.get().getExpiresInSeconds()));
     expirationBadgeContainer.setVisibility(View.VISIBLE);
     updateSubtitleVisibility();
   }
@@ -78,24 +82,42 @@ public class ConversationTitleView extends RelativeLayout {
     if   (recipient == null) setComposeTitle();
     else                     setRecipientTitle(recipient);
 
-    int startDrawable = 0;
-    int endDrawable   = 0;
+    Drawable startDrawable = null;
+    Drawable endDrawable   = null;
 
     if (recipient != null && recipient.isBlocked()) {
-      startDrawable = R.drawable.ic_block_white_18dp;
+      startDrawable = ContextUtil.requireDrawable(getContext(), R.drawable.ic_block_white_18dp);
     } else if (recipient != null && recipient.isMuted()) {
-      startDrawable = R.drawable.ic_volume_off_white_18dp;
+      startDrawable = ContextUtil.requireDrawable(getContext(), R.drawable.ic_bell_disabled_16);
+      startDrawable.setBounds(0, 0, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18));
     }
 
     if (recipient != null && recipient.isSystemContact() && !recipient.isSelf()) {
-      endDrawable = R.drawable.ic_profile_circle_outline_16;
+      endDrawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_profile_circle_outline_16);
     }
 
-    title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, 0, endDrawable, 0);
-    TextViewCompat.setCompoundDrawableTintList(title, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.transparent_white_90)));
+    if (startDrawable != null) {
+      startDrawable = DrawableUtil.tint(startDrawable, ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_80));
+    }
+
+    if (endDrawable != null) {
+      endDrawable = DrawableUtil.tint(endDrawable, ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_80));
+    }
+
+    if (recipient != null && recipient.isReleaseNotes()) {
+      endDrawable = ContextUtil.requireDrawable(getContext(), R.drawable.ic_official_24);
+    }
+
+    title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, null, endDrawable, null);
 
     if (recipient != null) {
       this.avatar.setAvatar(glideRequests, recipient, false);
+    }
+
+    if (recipient == null || recipient.isSelf()) {
+      badge.setBadgeFromRecipient(null);
+    } else {
+      badge.setBadgeFromRecipient(recipient);
     }
 
     updateVerifiedSubtitleVisibility();

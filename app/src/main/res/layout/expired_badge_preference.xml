@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="28dp"
+    android:layout_marginBottom="24dp">
+
+    <org.thoughtcrime.securesms.badges.BadgeImageView
+        android:id="@+id/expired_badge"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:badge_size="badge_112"
+        tools:src="@drawable/test_gradient" />
+
+    <ImageView
+        android:id="@+id/expired_badge_fade"
+        android:importantForAccessibility="no"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        app:layout_constraintHorizontal_bias="0.52"
+        android:src="@drawable/expired_badge_fade"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

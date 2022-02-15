@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/signal_accent_primary" android:state_checked="true" android:state_enabled="true" />
+    <item android:color="@color/signal_background_secondary" android:state_checked="false" android:state_enabled="false" />
+    <item android:color="@color/signal_divider_minor" />
+</selector>

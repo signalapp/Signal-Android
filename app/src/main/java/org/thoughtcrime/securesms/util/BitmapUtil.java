@@ -20,6 +20,7 @@ import androidx.exifinterface.media.ExifInterface;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -40,7 +41,7 @@ import javax.microedition.khronos.egl.EGLDisplay;
 
 public class BitmapUtil {
 
-  private static final String TAG = BitmapUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(BitmapUtil.class);
 
   private static final int MAX_COMPRESSION_QUALITY          = 90;
   private static final int MIN_COMPRESSION_QUALITY          = 45;
@@ -48,6 +49,11 @@ public class BitmapUtil {
   private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
   private static final int MAX_IMAGE_HALF_SCALES            = 3;
 
+  /**
+   * @deprecated You probably want to use {@link ImageCompressionUtil} instead, which has a clearer
+   *             contract and handles mimetypes properly.
+   */
+  @Deprecated
   @WorkerThread
   public static <T> ScaleResult createScaledBytes(@NonNull Context context, @NonNull T model, @NonNull MediaConstraints constraints)
       throws BitmapDecodingException
@@ -58,6 +64,10 @@ public class BitmapUtil {
                              constraints.getImageMaxSize(context));
   }
 
+  /**
+   * @deprecated You probably want to use {@link ImageCompressionUtil} instead, which has a clearer
+   *             contract and handles mimetypes properly.
+   */
   @WorkerThread
   public static <T> ScaleResult createScaledBytes(@NonNull Context context,
                                                   @NonNull T model,
@@ -69,6 +79,10 @@ public class BitmapUtil {
     return createScaledBytes(context, model, maxImageWidth, maxImageHeight, maxImageSize, CompressFormat.JPEG);
   }
 
+  /**
+   * @deprecated You probably want to use {@link ImageCompressionUtil} instead, which has a clearer
+   *             contract and handles mimetypes properly.
+   */
   @WorkerThread
   public static <T> ScaleResult createScaledBytes(Context context,
                                                   T model,
@@ -230,16 +244,19 @@ public class BitmapUtil {
     return options;
   }
 
+  public static int getExifOrientation(ExifInterface exif) {
+    return exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+  }
+
   @Nullable
-  public static Pair<Integer, Integer> getExifDimensions(InputStream inputStream) throws IOException {
-    ExifInterface exif   = new ExifInterface(inputStream);
-    int           width  = exif.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH, 0);
-    int           height = exif.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH, 0);
+  public static Pair<Integer, Integer> getExifDimensions(ExifInterface exif) {
+    int width  = exif.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH, 0);
+    int height = exif.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH, 0);
     if (width == 0 || height == 0) {
       return null;
     }
 
-    int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 0);
+    int orientation = getExifOrientation(exif);
     if (orientation == ExifInterface.ORIENTATION_ROTATE_90  ||
         orientation == ExifInterface.ORIENTATION_ROTATE_270 ||
         orientation == ExifInterface.ORIENTATION_TRANSVERSE ||
@@ -397,7 +414,7 @@ public class BitmapUtil {
       }
     };
 
-    Util.runOnMain(runnable);
+    ThreadUtil.runOnMain(runnable);
 
     synchronized (result) {
       while (!created.get()) Util.wait(result, 0);

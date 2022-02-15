@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 
 public class MmsRadio {
 
-  private static final String TAG = MmsRadio.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsRadio.class);
 
   private static MmsRadio instance;
 

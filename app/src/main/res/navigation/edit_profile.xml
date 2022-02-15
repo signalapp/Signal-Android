@@ -19,6 +19,24 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/action_createProfileFragment_to_avatar_picker"
+            app:destination="@id/avatar_picker"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="group_id"
+                app:argType="org.thoughtcrime.securesms.groups.ParcelableGroupId"
+                app:nullable="true" />
+
+            <argument
+                android:name="group_avatar_media"
+                app:argType="org.thoughtcrime.securesms.mediasend.Media"
+                app:nullable="true" />
+        </action>
+
     </fragment>
 
     <fragment
@@ -26,5 +44,7 @@
         android:name="org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment"
         android:label="fragment_edit_username"
         tools:layout="@layout/username_edit_fragment" />
+
+    <include app:graph="@navigation/avatar_picker" />
 
 </navigation>

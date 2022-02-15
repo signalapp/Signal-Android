@@ -32,7 +32,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MemoryFileUtil;
@@ -105,7 +105,7 @@ public final class PartProvider extends BaseContentProvider {
 
     if (uriMatcher.match(uri) == SINGLE_ROW) {
       PartUriParser      partUriParser = new PartUriParser(uri);
-      DatabaseAttachment attachment    = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(partUriParser.getPartId());
+      DatabaseAttachment attachment    = SignalDatabase.attachments().getAttachment(partUriParser.getPartId());
 
       if (attachment != null) {
         Log.i(TAG, "getType() called: " + uri + " It's " + attachment.getContentType());
@@ -128,7 +128,7 @@ public final class PartProvider extends BaseContentProvider {
 
     if (uriMatcher.match(url) == SINGLE_ROW) {
       PartUriParser      partUri    = new PartUriParser(url);
-      DatabaseAttachment attachment = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachment(partUri.getPartId());
+      DatabaseAttachment attachment = SignalDatabase.attachments().getAttachment(partUri.getPartId());
 
       if (attachment == null) return null;
 
@@ -155,10 +155,10 @@ public final class PartProvider extends BaseContentProvider {
   }
 
   private ParcelFileDescriptor getParcelStreamForAttachment(AttachmentId attachmentId) throws IOException {
-    long       plaintextLength = StreamUtil.getStreamLength(DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(attachmentId, 0));
+    long       plaintextLength = StreamUtil.getStreamLength(SignalDatabase.attachments().getAttachmentStream(attachmentId, 0));
     MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
 
-    InputStream  in  = DatabaseFactory.getAttachmentDatabase(getContext()).getAttachmentStream(attachmentId, 0);
+    InputStream  in  = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0);
     OutputStream out = memoryFile.getOutputStream();
 
     StreamUtil.copy(in, out);

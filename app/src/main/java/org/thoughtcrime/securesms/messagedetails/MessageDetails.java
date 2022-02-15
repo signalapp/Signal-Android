@@ -24,6 +24,7 @@ final class MessageDetails {
   private final Collection<RecipientDeliveryStatus> delivered;
   private final Collection<RecipientDeliveryStatus> read;
   private final Collection<RecipientDeliveryStatus> notSent;
+  private final Collection<RecipientDeliveryStatus> viewed;
 
   MessageDetails(@NonNull ConversationMessage conversationMessage, @NonNull List<RecipientDeliveryStatus> recipients) {
     this.conversationMessage = conversationMessage;
@@ -33,8 +34,11 @@ final class MessageDetails {
     delivered = new TreeSet<>(RECIPIENT_COMPARATOR);
     read      = new TreeSet<>(RECIPIENT_COMPARATOR);
     notSent   = new TreeSet<>(RECIPIENT_COMPARATOR);
+    viewed    = new TreeSet<>(RECIPIENT_COMPARATOR);
 
-    if (conversationMessage.getMessageRecord().isOutgoing()) {
+    if (conversationMessage.getMessageRecord().getRecipient().isSelf()) {
+      read.addAll(recipients);
+    } else if (conversationMessage.getMessageRecord().isOutgoing()) {
       for (RecipientDeliveryStatus status : recipients) {
         switch (status.getDeliveryStatus()) {
           case UNKNOWN:
@@ -52,6 +56,8 @@ final class MessageDetails {
           case READ:
             read.add(status);
             break;
+          case VIEWED:
+            viewed.add(status);
         }
       }
     } else {
@@ -81,5 +87,9 @@ final class MessageDetails {
 
   @NonNull Collection<RecipientDeliveryStatus> getNotSent() {
     return notSent;
+  }
+
+  @NonNull Collection<RecipientDeliveryStatus> getViewed() {
+    return viewed;
   }
 }

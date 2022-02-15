@@ -42,13 +42,12 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
     <FrameLayout
         android:id="@+id/contact_selection_list_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@id/toolbar"
-        app:layout_constraintBottom_toTopOf="@id/selected_list"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <org.thoughtcrime.securesms.components.SearchToolbar
@@ -64,8 +63,9 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:alpha="1"
+        android:alpha="0"
         android:background="@drawable/compose_divider_background"
+        android:translationY="48dp"
         app:layout_constraintBottom_toTopOf="@id/selected_list" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -73,10 +73,13 @@
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginEnd="16dp"
+        android:alpha="0"
+        android:background="@color/signal_background_primary"
         android:clipToPadding="false"
         android:orientation="horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="78dp"
+        android:translationY="48dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,13 +96,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_continue_24" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/selection_group"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:constraint_referenced_ids="divider,selected_list"
-        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

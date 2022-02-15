@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/signal_background_primary">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/conversation_activity_unmute_button"
+        style="@style/Signal.Widget.Button.Large.Secondary.NoOutline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:text="@string/conversation_muted__unmute" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="top"
+        android:background="@color/signal_divider_minor" />
+
+</FrameLayout>

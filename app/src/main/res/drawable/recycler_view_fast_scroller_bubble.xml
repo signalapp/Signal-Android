@@ -4,6 +4,6 @@
              android:topRightRadius="44dp"
              android:bottomLeftRadius="44dp"
              android:bottomRightRadius="0dp"/>
-    <solid android:color="#FF0288D1" />
+    <solid android:color="@color/signal_accent_primary" />
     <size android:height="88dp" android:width="88dp" />
 </shape>

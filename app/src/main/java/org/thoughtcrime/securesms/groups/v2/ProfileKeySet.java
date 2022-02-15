@@ -12,6 +12,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKey;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.LinkedHashMap;
@@ -30,8 +31,8 @@ public final class ProfileKeySet {
 
   private static final String TAG = Log.tag(ProfileKeySet.class);
 
-  private final Map<UUID, ProfileKey> profileKeys              = new LinkedHashMap<>();
-  private final Map<UUID, ProfileKey> authoritativeProfileKeys = new LinkedHashMap<>();
+  private final Map<ACI, ProfileKey> profileKeys              = new LinkedHashMap<>();
+  private final Map<ACI, ProfileKey> authoritativeProfileKeys = new LinkedHashMap<>();
 
   /**
    * Add new profile keys from a group change.
@@ -96,20 +97,20 @@ public final class ProfileKeySet {
     }
 
     if (memberUuid.equals(changeSource)) {
-      authoritativeProfileKeys.put(memberUuid, profileKey);
-      profileKeys.remove(memberUuid);
+      authoritativeProfileKeys.put(ACI.from(memberUuid), profileKey);
+      profileKeys.remove(ACI.from(memberUuid));
     } else {
-      if (!authoritativeProfileKeys.containsKey(memberUuid)) {
-        profileKeys.put(memberUuid, profileKey);
+      if (!authoritativeProfileKeys.containsKey(ACI.from(memberUuid))) {
+        profileKeys.put(ACI.from(memberUuid), profileKey);
       }
     }
   }
 
-  public Map<UUID, ProfileKey> getProfileKeys() {
+  public Map<ACI, ProfileKey> getProfileKeys() {
     return profileKeys;
   }
 
-  public Map<UUID, ProfileKey> getAuthoritativeProfileKeys() {
+  public Map<ACI, ProfileKey> getAuthoritativeProfileKeys() {
     return authoritativeProfileKeys;
   }
 }

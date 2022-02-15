@@ -13,7 +13,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="@string/GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links"
-        android:textAppearance="@style/TextAppearance.Signal.Title2"
+        android:textAppearance="@style/TextAppearance.Signal.Title2.Bold"
         android:textColor="@color/signal_text_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -7,12 +7,13 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
-import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.Camera;
+import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
@@ -62,8 +63,8 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
       case CONNECTED:
         if (device.getJoinState() == GroupCall.JoinState.JOINED) {
 
-          webRtcInteractor.startAudioCommunication(true);
-          webRtcInteractor.setWantsBluetoothConnection(true);
+          webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient());
+          webRtcInteractor.startAudioCommunication();
 
           if (currentState.getLocalDeviceState().getCameraState().isEnabled()) {
             webRtcInteractor.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
@@ -71,15 +72,21 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
             webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
           }
 
-          webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, currentState.getCallInfoState().getCallRecipient());
-
           try {
             groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());
             groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
-            groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
+            groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context, device.getNetworkRoute().getLocalAdapterType()));
           } catch (CallException e) {
             Log.e(tag, e);
             throw new RuntimeException(e);
+          }
+
+          if (FeatureFlags.groupCallRinging() && currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).shouldRingGroup()) {
+            try {
+              groupCall.ringAll();
+            } catch (CallException e) {
+              return groupCallFailure(currentState, "Unable to ring group", e);
+            }
           }
 
           builder.changeCallInfoState()
@@ -87,8 +94,9 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
                  .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED)
                  .callConnectedTime(System.currentTimeMillis())
                  .commit()
-                 .actionProcessor(new GroupConnectedActionProcessor(webRtcInteractor))
-                 .build();
+                 .changeLocalDeviceState()
+                 .commit()
+                 .actionProcessor(new GroupConnectedActionProcessor(webRtcInteractor));
         } else if (device.getJoinState() == GroupCall.JoinState.JOINING) {
           builder.changeCallInfoState()
                  .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)
@@ -120,7 +128,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
                                .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
                                .build();
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
     return terminateGroupCall(currentState);
   }
@@ -142,7 +150,7 @@ public class GroupJoiningActionProcessor extends GroupActionProcessor {
                                .cameraState(camera.getCameraState())
                                .build();
 
-    WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor.getWebRtcCallService(), currentState.getCallSetupState().isEnableVideoOnCreate());
+    WebRtcUtil.enableSpeakerPhoneIfNeeded(webRtcInteractor, currentState);
 
     return currentState;
   }

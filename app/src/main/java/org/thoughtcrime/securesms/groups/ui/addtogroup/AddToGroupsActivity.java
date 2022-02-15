@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * Group selection activity, will add a single member to selected groups.
@@ -64,7 +65,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
 
     next = findViewById(R.id.next);
 
-    getToolbar().setHint(contactsFragment.isMulti() ? R.string.AddToGroupActivity_add_to_groups : R.string.AddToGroupActivity_add_to_group);
+    getContactFilterView().setHint(contactsFragment.isMulti() ? R.string.AddToGroupActivity_add_to_groups : R.string.AddToGroupActivity_add_to_group);
 
     next.setVisibility(contactsFragment.isMulti() ? View.VISIBLE : View.GONE);
 
@@ -112,7 +113,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
     if (contactsFragment.isMulti()) {
       throw new UnsupportedOperationException("Not yet built to handle multi-select.");
 //      if (contactsFragment.hasQueryFilter()) {
@@ -128,18 +129,22 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
       }
     }
 
-    return true;
+    callback.accept(true);
   }
 
   @Override
   public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
     if (contactsFragment.hasQueryFilter()) {
-      getToolbar().clear();
+      getContactFilterView().clear();
     }
 
     if (contactsFragment.getSelectedContactsCount() < MINIMUM_GROUP_SELECT_SIZE) {
       disableNext();
     }
+  }
+
+  @Override
+  public void onSelectionChanged() {
   }
 
   private void enableNext() {

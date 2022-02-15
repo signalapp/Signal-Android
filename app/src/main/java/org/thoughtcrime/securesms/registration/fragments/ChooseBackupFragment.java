@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,19 +20,18 @@ import androidx.core.text.HtmlCompat;
 import androidx.navigation.Navigation;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
-public class ChooseBackupFragment extends BaseRegistrationFragment {
+public class ChooseBackupFragment extends LoggingFragment {
 
   private static final String TAG = Log.tag(ChooseBackupFragment.class);
 
   private static final short OPEN_FILE_REQUEST_CODE = 3862;
-
-  private View     chooseBackupButton;
-  private TextView learnMore;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,17 +43,12 @@ public class ChooseBackupFragment extends BaseRegistrationFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    if (BackupUtil.isUserSelectionRequired(requireContext())) {
-      chooseBackupButton = view.findViewById(R.id.choose_backup_fragment_button);
-      chooseBackupButton.setOnClickListener(this::onChooseBackupSelected);
+    View chooseBackupButton = view.findViewById(R.id.choose_backup_fragment_button);
+    chooseBackupButton.setOnClickListener(this::onChooseBackupSelected);
 
-      learnMore = view.findViewById(R.id.choose_backup_fragment_learn_more);
-      learnMore.setText(HtmlCompat.fromHtml(String.format("<a href=\"%s\">%s</a>", getString(R.string.backup_support_url), getString(R.string.ChooseBackupFragment__learn_more)), 0));
-      learnMore.setMovementMethod(LinkMovementMethod.getInstance());
-    } else {
-      Log.i(TAG, "User Selection is not required. Skipping.");
-      Navigation.findNavController(requireView()).navigate(ChooseBackupFragmentDirections.actionSkip());
-    }
+    TextView learnMore = view.findViewById(R.id.choose_backup_fragment_learn_more);
+    learnMore.setText(HtmlCompat.fromHtml(String.format("<a href=\"%s\">%s</a>", getString(R.string.backup_support_url), getString(R.string.ChooseBackupFragment__learn_more)), 0));
+    learnMore.setMovementMethod(LinkMovementMethod.getInstance());
   }
 
   @Override
@@ -62,7 +58,7 @@ public class ChooseBackupFragment extends BaseRegistrationFragment {
 
       restore.setUri(data.getData());
 
-      Navigation.findNavController(requireView()).navigate(restore);
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), restore);
     }
   }
 
@@ -78,6 +74,11 @@ public class ChooseBackupFragment extends BaseRegistrationFragment {
       intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings().getLatestSignalBackupDirectory());
     }
 
-    startActivityForResult(intent, OPEN_FILE_REQUEST_CODE);
+    try {
+      startActivityForResult(intent, OPEN_FILE_REQUEST_CODE);
+    } catch (ActivityNotFoundException e) {
+      Toast.makeText(requireContext(), R.string.ChooseBackupFragment__no_file_browser_available, Toast.LENGTH_LONG).show();
+      Log.w(TAG, "No matching activity!", e);
+    }
   }
 }

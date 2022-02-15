@@ -75,7 +75,10 @@ public class MessageRequestsBottomView extends ConstraintLayout {
 
     switch (messageData.getMessageState()) {
       case BLOCKED_INDIVIDUAL:
-        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them,
+        int message = recipient.isReleaseNotes() ? R.string.MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them
+                                                 : R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them;
+
+        question.setText(HtmlCompat.fromHtml(getContext().getString(message,
                                                                     HtmlUtil.bold(recipient.getShortDisplayName(getContext()))), 0));
         setActiveInactiveGroups(blockedButtons, normalButtons, gv1MigrationButtons);
         break;

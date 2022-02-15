@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.InputAwareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_editor_hud_color_indicator"
+            android:layout_width="68dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0"
+            android:importantForAccessibility="no"
+            android:paddingBottom="12dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/color_indicator_circle"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintStart_toStartOf="@id/image_editor_hud_draw_color_bar"
+            tools:alpha="1"
+            tools:tint="@color/red" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/image_editor_hud_draw_color_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:splitTrack="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_text_style_button"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_text_style_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/circle_tintable_padded"
+            android:contentDescription="@string/ImageEditorHud__toggle_between_text_styles"
+            android:padding="12dp"
+            app:backgroundTint="@color/transparent_black_40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_text_tool_24"
+            app:tint="@color/core_white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</org.thoughtcrime.securesms.components.InputAwareLayout>

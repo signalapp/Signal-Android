@@ -61,7 +61,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     outRect.set(0, headerHeight, 0, 0);
   }
 
-  protected boolean hasHeader(RecyclerView parent, StickyHeaderAdapter adapter, int adapterPos) {
+  protected boolean hasHeader(RecyclerView parent, StickyHeaderAdapter<?> adapter, int adapterPos) {
     long headerId = adapter.getHeaderId(adapterPos);
 
     if (headerId == StickyHeaderAdapter.NO_HEADER_ID) {
@@ -69,7 +69,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     }
 
     boolean isReverse = isReverseLayout(parent);
-    int     itemCount = ((RecyclerView.Adapter)adapter).getItemCount();
+    int     itemCount = adapter.getItemCount();
 
     if ((isReverse && adapterPos == itemCount - 1 && adapter.getHeaderId(adapterPos) != -1) ||
         (!isReverse && adapterPos == 0))
@@ -80,7 +80,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     int  previous         = adapterPos + (isReverse ? 1 : -1);
     long previousHeaderId = adapter.getHeaderId(previous);
 
-    return previousHeaderId != StickyHeaderAdapter.NO_HEADER_ID && headerId != previousHeaderId;
+    return (previousHeaderId == StickyHeaderAdapter.NO_HEADER_ID) || (headerId != previousHeaderId);
   }
 
   protected @NonNull ViewHolder getHeader(RecyclerView parent, StickyHeaderAdapter adapter, int position) {
@@ -140,7 +140,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
       if (adapterPos != RecyclerView.NO_POSITION && ((layoutPos == start && sticky) || hasHeader(parent, adapter, adapterPos))) {
         View header = getHeader(parent, adapter, adapterPos).itemView;
         c.save();
-        final int left = child.getLeft();
+        final int left = parent.getLeft();
         final int top = getHeaderTop(parent, child, header, adapterPos, layoutPos);
         c.translate(left, top);
         header.draw(c);

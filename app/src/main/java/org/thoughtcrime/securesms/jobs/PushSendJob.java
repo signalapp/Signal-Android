@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
@@ -21,7 +23,7 @@ import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -36,6 +38,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -60,6 +63,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.ByteArrayInputStream;
@@ -72,12 +76,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 public abstract class PushSendJob extends SendJob {
 
-  private static final String TAG                           = PushSendJob.class.getSimpleName();
+  private static final String TAG                           = Log.tag(PushSendJob.class);
   private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
+  private static final long   PUSH_CHALLENGE_TIMEOUT        = TimeUnit.SECONDS.toMillis(10);
 
   protected PushSendJob(Job.Parameters parameters) {
     super(parameters);
@@ -99,12 +105,20 @@ public abstract class PushSendJob extends SendJob {
       throw new TextSecureExpiredException("Too many signed prekey rotation failures");
     }
 
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     onPushSend();
+
+    if (SignalStore.rateLimit().needsRecaptcha()) {
+      Log.i(TAG, "Successfully sent message. Assuming reCAPTCHA no longer needed.");
+      SignalStore.rateLimit().onProofAccepted();
+    }
   }
 
   @Override
   public void onRetry() {
-    super.onRetry();
     Log.i(TAG, "onRetry()");
 
     if (getRunAttempt() > 1) {
@@ -124,15 +138,31 @@ public abstract class PushSendJob extends SendJob {
       return false;
     }
 
-    return exception instanceof IOException ||
-           exception instanceof RetryLaterException;
+    if (exception instanceof NotPushRegisteredException) {
+      return false;
+    }
+
+    return exception instanceof IOException         ||
+           exception instanceof RetryLaterException ||
+           exception instanceof ProofRequiredException;
   }
 
   @Override
   public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
-    if (exception instanceof NonSuccessfulResponseCodeException) {
+    if (exception instanceof ProofRequiredException) {
+      long backoff = ((ProofRequiredException) exception).getRetryAfterSeconds();
+      warn(TAG, "[Proof Required] Retry-After is " + backoff + " seconds.");
+      if (backoff >= 0) {
+        return TimeUnit.SECONDS.toMillis(backoff);
+      }
+    } else if (exception instanceof NonSuccessfulResponseCodeException) {
       if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
         return BackoffUtil.exponentialBackoff(pastAttemptCount, FeatureFlags.getServerErrorMaxBackoff());
+      }
+    } else if (exception instanceof RetryLaterException) {
+      long backoff = ((RetryLaterException) exception).getBackoff();
+      if (backoff >= 0) {
+        return backoff;
       }
     }
 
@@ -158,6 +188,7 @@ public abstract class PushSendJob extends SendJob {
                                     .withFileName(attachment.getFileName())
                                     .withVoiceNote(attachment.isVoiceNote())
                                     .withBorderless(attachment.isBorderless())
+                                    .withGif(attachment.isVideoGif())
                                     .withWidth(attachment.getWidth())
                                     .withHeight(attachment.getHeight())
                                     .withCaption(attachment.getCaption())
@@ -247,6 +278,7 @@ public abstract class PushSendJob extends SendJob {
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 attachment.isBorderless(),
+                                                attachment.isVideoGif(),
                                                 Optional.fromNullable(attachment.getCaption()),
                                                 Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash),
                                                 attachment.getUploadTimestamp());
@@ -257,8 +289,8 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected static void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
-    long      threadId  = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId);
-    Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
+    long      threadId  = SignalDatabase.mms().getThreadIdForMessage(messageId);
+    Recipient recipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
     if (threadId != -1 && recipient != null) {
       ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, threadId);
@@ -308,7 +340,7 @@ public abstract class PushSendJob extends SendJob {
           thumbnail = builder.build();
         }
 
-        quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.getContentType(),
+        quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.isVideoGif() ? MediaUtil.IMAGE_GIF : attachment.getContentType(),
                                                                                  attachment.getFileName(),
                                                                                  thumbnail));
       } catch (BitmapDecodingException e) {
@@ -316,9 +348,14 @@ public abstract class PushSendJob extends SendJob {
       }
     }
 
-    Recipient            quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
-    SignalServiceAddress quoteAddress         = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
-    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
+    Recipient quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
+
+    if (quoteAuthorRecipient.isMaybeRegistered()) {
+      SignalServiceAddress quoteAddress = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
+      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
+    } else {
+      return Optional.absent();
+    }
   }
 
   protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {
@@ -332,7 +369,7 @@ public abstract class PushSendJob extends SendJob {
       byte[]                  packId     = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackId());
       byte[]                  packKey    = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackKey());
       int                     stickerId  = stickerAttachment.getSticker().getStickerId();
-      StickerRecord           record     = DatabaseFactory.getStickerDatabase(context).getSticker(stickerAttachment.getSticker().getPackId(), stickerId, false);
+      StickerRecord           record     = SignalDatabase.stickers().getSticker(stickerAttachment.getSticker().getPackId(), stickerId, false);
       String                  emoji      = record != null ? record.getEmoji() : null;
       SignalServiceAttachment attachment = getAttachmentPointerFor(stickerAttachment);
 
@@ -372,7 +409,7 @@ public abstract class PushSendJob extends SendJob {
 
   List<SignalServiceDataMessage.Mention> getMentionsFor(@NonNull List<Mention> mentions) {
     return Stream.of(mentions)
-                 .map(m -> new SignalServiceDataMessage.Mention(Recipient.resolved(m.getRecipientId()).requireUuid(), m.getStart(), m.getLength()))
+                 .map(m -> new SignalServiceDataMessage.Mention(Recipient.resolved(m.getRecipientId()).requireAci(), m.getStart(), m.getLength()))
                  .toList();
   }
 
@@ -409,17 +446,83 @@ public abstract class PushSendJob extends SendJob {
     }
   }
 
-  protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    SignalServiceAddress  localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalUuid(context), TextSecurePreferences.getLocalNumber(context));
-    SentTranscriptMessage transcript   = new SentTranscriptMessage(Optional.of(localAddress),
-                                                                   message.getTimestamp(),
-                                                                   message,
-                                                                   message.getExpiresInSeconds(),
-                                                                   Collections.singletonMap(localAddress, syncAccess.isPresent()),
-                                                                   false);
-    return SignalServiceSyncMessage.forSentTranscript(transcript);
+  protected void handleProofRequiredException(@NonNull ProofRequiredException proofRequired, @Nullable Recipient recipient, long threadId, long messageId, boolean isMms)
+      throws ProofRequiredException, RetryLaterException
+  {
+    Log.w(TAG, "[Proof Required] Options: " + proofRequired.getOptions());
+
+    try {
+      if (proofRequired.getOptions().contains(ProofRequiredException.Option.PUSH_CHALLENGE)) {
+        ApplicationDependencies.getSignalServiceAccountManager().requestRateLimitPushChallenge();
+        log(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to " + PUSH_CHALLENGE_TIMEOUT + " ms.");
+
+        boolean success = new PushChallengeRequest(PUSH_CHALLENGE_TIMEOUT).blockUntilSuccess();
+
+        if (success) {
+          log(TAG, "Successfully responded to a push challenge. Retrying message send.");
+          throw new RetryLaterException(1);
+        } else {
+          warn(TAG, "Failed to respond to the push challenge in time. Falling back.");
+        }
+      }
+    } catch (NonSuccessfulResponseCodeException e) {
+      warn(TAG, "[Proof Required] Could not request a push challenge (" + e.getCode() + "). Falling back.", e);
+    } catch (IOException e) {
+      warn(TAG, "[Proof Required] Network error when requesting push challenge. Retrying later.");
+      throw new RetryLaterException(e);
+    }
+
+    warn(TAG, "[Proof Required] Marking message as rate-limited. (id: " + messageId + ", mms: " + isMms + ", thread: " + threadId + ")");
+    if (isMms) {
+      SignalDatabase.mms().markAsRateLimited(messageId);
+    } else {
+      SignalDatabase.sms().markAsRateLimited(messageId);
+    }
+
+    if (proofRequired.getOptions().contains(ProofRequiredException.Option.RECAPTCHA)) {
+      log(TAG, "[Proof Required] ReCAPTCHA required.");
+      SignalStore.rateLimit().markNeedsRecaptcha(proofRequired.getToken());
+
+      if (recipient != null) {
+        ApplicationDependencies.getMessageNotifier().notifyProofRequired(context, recipient, threadId);
+      } else {
+        warn(TAG, "[Proof Required] No recipient! Couldn't notify.");
+      }
+    }
+
+    throw proofRequired;
   }
 
-
   protected abstract void onPushSend() throws Exception;
+
+  public static class PushChallengeRequest {
+    private final long           timeout;
+    private final CountDownLatch latch;
+    private final EventBus       eventBus;
+
+    private PushChallengeRequest(long timeout) {
+      this.timeout  = timeout;
+      this.latch    = new CountDownLatch(1);
+      this.eventBus = EventBus.getDefault();
+    }
+
+    public boolean blockUntilSuccess() {
+      eventBus.register(this);
+
+      try {
+        return latch.await(timeout, TimeUnit.MILLISECONDS);
+      } catch (InterruptedException e) {
+        Log.w(TAG, "[Proof Required] Interrupted?", e);
+        return false;
+      } finally {
+        eventBus.unregister(this);
+      }
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onSuccessReceived(SubmitRateLimitPushChallengeJob.SuccessEvent event) {
+      Log.i(TAG, "[Proof Required] Received a successful result!");
+      latch.countDown();
+    }
+  }
 }

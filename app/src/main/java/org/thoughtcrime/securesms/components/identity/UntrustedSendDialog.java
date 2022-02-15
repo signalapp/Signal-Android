@@ -8,14 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.util.List;
-
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 public class UntrustedSendDialog extends AlertDialog.Builder implements DialogInterface.OnClickListener {
 
@@ -40,12 +40,12 @@ public class UntrustedSendDialog extends AlertDialog.Builder implements DialogIn
 
   @Override
   public void onClick(DialogInterface dialog, int which) {
-    final IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(getContext());
+    final TextSecureIdentityKeyStore identityStore = ApplicationDependencies.getProtocolStore().aci().identities();
 
     SimpleTask.run(() -> {
-      synchronized (SESSION_LOCK) {
+      try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
         for (IdentityRecord identityRecord : untrustedRecords) {
-          identityDatabase.setApproval(identityRecord.getRecipientId(), true);
+          identityStore.setApproval(identityRecord.getRecipientId(), true);
         }
       }
 

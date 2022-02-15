@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Signal.Text.Body"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/contact_selection_item_height"
-    android:drawablePadding="16dp"
-    android:ellipsize="marquee"
-    android:fontFamily="sans-serif-medium"
-    android:gravity="center_vertical|start"
-    android:labelFor="@id/action_icon"
-    android:paddingStart="@dimen/selection_item_header_width"
-    android:singleLine="true"
-    android:text="@string/contact_selection_activity__invite_to_signal"
-    android:textAlignment="viewStart"
-    app:drawableStartCompat="@drawable/ic_invite_circle"
-    tools:ignore="RtlSymmetry" />
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/contact_selection_item_height"
+    android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingEnd="@dimen/dsl_settings_gutter">
+
+    <ImageView
+        android:id="@+id/invite_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_invite_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/invite_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ellipsize="marquee"
+        android:labelFor="@id/action_icon"
+        android:singleLine="true"
+        android:text="@string/contact_selection_activity__invite_to_signal"
+        android:textAppearance="@style/Signal.Text.Body"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/invite_image"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

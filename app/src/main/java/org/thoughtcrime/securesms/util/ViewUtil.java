@@ -39,7 +39,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.Lifecycle;
 
@@ -101,6 +100,10 @@ public final class ViewUtil {
     return new Stub<>(parent.findViewById(resId));
   }
 
+  public static <T extends View> Stub<T> findStubById(@NonNull View parent, @IdRes int resId) {
+    return new Stub<>(parent.findViewById(resId));
+  }
+
   private static Animation getAlphaAnimation(float from, float to, int duration) {
     final Animation anim = new AlphaAnimation(from, to);
     anim.setInterpolator(new FastOutSlowInInterpolator());
@@ -118,6 +121,10 @@ public final class ViewUtil {
 
   public static ListenableFuture<Boolean> fadeOut(@NonNull View view, int duration, int visibility) {
     return animateOut(view, getAlphaAnimation(1f, 0f, duration), visibility);
+  }
+
+  public static ListenableFuture<Boolean> animateOut(final @NonNull View view, final @NonNull Animation animation) {
+    return animateOut(view, animation, View.GONE);
   }
 
   public static ListenableFuture<Boolean> animateOut(final @NonNull View view, final @NonNull Animation animation, final int visibility) {
@@ -166,7 +173,7 @@ public final class ViewUtil {
 
   @SuppressLint("RtlHardcoded")
   public static void setTextViewGravityStart(final @NonNull TextView textView, @NonNull Context context) {
-    if (DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
+    if (isRtl(context)) {
       textView.setGravity(Gravity.RIGHT);
     } else {
       textView.setGravity(Gravity.LEFT);
@@ -174,9 +181,25 @@ public final class ViewUtil {
   }
 
   public static void mirrorIfRtl(View view, Context context) {
-    if (DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
+    if (isRtl(context)) {
       view.setScaleX(-1.0f);
     }
+  }
+
+  public static boolean isLtr(@NonNull View view) {
+    return isLtr(view.getContext());
+  }
+
+  public static boolean isLtr(@NonNull Context context) {
+    return context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_LTR;
+  }
+
+  public static boolean isRtl(@NonNull View view) {
+    return isRtl(view.getContext());
+  }
+
+  public static boolean isRtl(@NonNull Context context) {
+    return context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
   }
 
   public static float pxToDp(float px) {
@@ -211,22 +234,32 @@ public final class ViewUtil {
     }
   }
 
+  public static void setVisibilityIfNonNull(@Nullable View view, int visibility) {
+    if (view != null) {
+      view.setVisibility(visibility);
+    }
+  }
+
   public static int getLeftMargin(@NonNull View view) {
-    if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+    if (isLtr(view)) {
       return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin;
     }
     return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin;
   }
 
   public static int getRightMargin(@NonNull View view) {
-    if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+    if (isLtr(view)) {
       return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin;
     }
     return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin;
   }
 
+  public static int getTopMargin(@NonNull View view) {
+    return ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin;
+  }
+
   public static void setLeftMargin(@NonNull View view, int margin) {
-    if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+    if (isLtr(view)) {
       ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = margin;
     } else {
       ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin = margin;
@@ -236,7 +269,7 @@ public final class ViewUtil {
   }
 
   public static void setRightMargin(@NonNull View view, int margin) {
-    if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+    if (isLtr(view)) {
       ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin = margin;
     } else {
       ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = margin;
@@ -255,6 +288,10 @@ public final class ViewUtil {
     view.requestLayout();
   }
 
+  public static int getWidth(@NonNull View view) {
+    return view.getLayoutParams().width;
+  }
+
   public static void setPaddingTop(@NonNull View view, int padding) {
     view.setPadding(view.getPaddingLeft(), padding, view.getPaddingRight(), view.getPaddingBottom());
   }
@@ -268,7 +305,7 @@ public final class ViewUtil {
   }
 
   public static void setPaddingStart(@NonNull View view, int padding) {
-    if (view.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
+    if (isLtr(view)) {
       view.setPadding(padding, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
     } else {
       view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), padding, view.getPaddingBottom());
@@ -276,10 +313,10 @@ public final class ViewUtil {
   }
 
   public static void setPaddingEnd(@NonNull View view, int padding) {
-    if (view.getLayoutDirection() != View.LAYOUT_DIRECTION_LTR) {
-      view.setPadding(padding, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
-    } else {
+    if (isLtr(view)) {
       view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), padding, view.getPaddingBottom());
+    } else {
+      view.setPadding(padding, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
     }
   }
 
@@ -298,6 +335,15 @@ public final class ViewUtil {
   public static int getStatusBarHeight(@NonNull View view) {
     int result = 0;
     int resourceId = view.getResources().getIdentifier("status_bar_height", "dimen", "android");
+    if (resourceId > 0) {
+      result = view.getResources().getDimensionPixelSize(resourceId);
+    }
+    return result;
+  }
+
+  public static int getNavigationBarHeight(@NonNull View view) {
+    int result = 0;
+    int resourceId = view.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
     if (resourceId > 0) {
       result = view.getResources().getDimensionPixelSize(resourceId);
     }

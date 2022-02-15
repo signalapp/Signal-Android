@@ -17,8 +17,8 @@ import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Collections;
@@ -55,7 +56,7 @@ public final class LiveGroup {
     Context                        context       = ApplicationDependencies.getApplication();
     MutableLiveData<LiveRecipient> liveRecipient = new MutableLiveData<>();
 
-    this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
+    this.groupDatabase     = SignalDatabase.groups();
     this.recipient         = Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData);
     this.groupRecord       = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient -> groupDatabase.getGroup(groupRecipient.getId()).orNull()));
     this.fullMembers       = mapToFullMembers(this.groupRecord);
@@ -108,7 +109,7 @@ public final class LiveGroup {
 
                                    return Stream.of(requestingMembersList)
                                                 .map(requestingMember -> {
-                                                  Recipient recipient = Recipient.externalPush(ApplicationDependencies.getApplication(), UuidUtil.fromByteString(requestingMember.getUuid()), null, false);
+                                                  Recipient recipient = Recipient.externalPush(ApplicationDependencies.getApplication(), ACI.fromByteString(requestingMember.getUuid()), null, false);
                                                   return new GroupMemberEntry.RequestingMember(recipient, selfAdmin);
                                                 })
                                                 .toList();
@@ -123,6 +124,14 @@ public final class LiveGroup {
       }
       return recipient.getDisplayName(ApplicationDependencies.getApplication());
     });
+  }
+
+  public LiveData<String> getDescription() {
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getDescription);
+  }
+
+  public LiveData<Boolean> isAnnouncementGroup() {
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::isAnnouncementGroup);
   }
 
   public LiveData<Recipient> getGroupRecipient() {
@@ -180,7 +189,7 @@ public final class LiveGroup {
   }
 
   public LiveData<Integer> getExpireMessages() {
-    return Transformations.map(recipient, Recipient::getExpireMessages);
+    return Transformations.map(recipient, Recipient::getExpiresInSeconds);
   }
 
   public LiveData<Boolean> selfCanEditGroupAttributes() {

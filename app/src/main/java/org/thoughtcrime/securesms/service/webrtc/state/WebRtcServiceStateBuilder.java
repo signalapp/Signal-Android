@@ -5,8 +5,11 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.OptionalLong;
 
+import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.GroupCall;
+import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -16,9 +19,10 @@ import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcActionProcessor;
-import org.webrtc.EglBase;
+import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Builder that creates a new {@link WebRtcServiceState} from an existing one and allows
@@ -40,8 +44,8 @@ public class WebRtcServiceStateBuilder {
     return this;
   }
 
-  public @NonNull CallSetupStateBuilder changeCallSetupState() {
-    return new CallSetupStateBuilder();
+  public @NonNull CallSetupStateBuilder changeCallSetupState(@NonNull CallId callId) {
+    return new CallSetupStateBuilder(callId);
   }
 
   public @NonNull CallInfoStateBuilder changeCallInfoState() {
@@ -56,14 +60,15 @@ public class WebRtcServiceStateBuilder {
     return new VideoStateBuilder();
   }
 
-  public @NonNull WebRtcServiceStateBuilder terminate() {
-    toBuild.callSetupState   = new CallSetupState();
+  public @NonNull WebRtcServiceStateBuilder terminate(@NonNull CallId callId) {
     toBuild.localDeviceState = new LocalDeviceState();
     toBuild.videoState       = new VideoState();
 
     CallInfoState newCallInfoState = new CallInfoState();
     newCallInfoState.peerMap.putAll(toBuild.callInfoState.peerMap);
     toBuild.callInfoState = newCallInfoState;
+
+    toBuild.callSetupStates.remove(callId);
 
     return this;
   }
@@ -72,7 +77,7 @@ public class WebRtcServiceStateBuilder {
     private LocalDeviceState toBuild;
 
     public LocalDeviceStateBuilder() {
-      toBuild = new LocalDeviceState(WebRtcServiceStateBuilder.this.toBuild.localDeviceState);
+      toBuild = WebRtcServiceStateBuilder.this.toBuild.localDeviceState.duplicate();
     }
 
     public @NonNull WebRtcServiceStateBuilder commit() {
@@ -86,30 +91,52 @@ public class WebRtcServiceStateBuilder {
     }
 
     public @NonNull LocalDeviceStateBuilder cameraState(@NonNull CameraState cameraState) {
-      toBuild.cameraState = cameraState;
+      toBuild.setCameraState(cameraState);
       return this;
     }
 
     public @NonNull LocalDeviceStateBuilder isMicrophoneEnabled(boolean enabled) {
-      toBuild.microphoneEnabled = enabled;
+      toBuild.setMicrophoneEnabled(enabled);
       return this;
     }
 
-    public @NonNull LocalDeviceStateBuilder isBluetoothAvailable(boolean available) {
-      toBuild.bluetoothAvailable = available;
+    public @NonNull LocalDeviceStateBuilder setOrientation(@NonNull Orientation orientation) {
+      toBuild.setOrientation(orientation);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setLandscapeEnabled(boolean isLandscapeEnabled) {
+      toBuild.setLandscapeEnabled(isLandscapeEnabled);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setDeviceOrientation(@NonNull Orientation deviceOrientation) {
+      toBuild.setDeviceOrientation(deviceOrientation);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setActiveDevice(@NonNull SignalAudioManager.AudioDevice audioDevice) {
+      toBuild.setActiveDevice(audioDevice);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setAvailableDevices(@NonNull Set<SignalAudioManager.AudioDevice> availableDevices) {
+      toBuild.setAvailableDevices(availableDevices);
       return this;
     }
   }
 
   public class CallSetupStateBuilder {
     private CallSetupState toBuild;
+    private CallId         callId;
 
-    public CallSetupStateBuilder() {
-      toBuild = new CallSetupState(WebRtcServiceStateBuilder.this.toBuild.callSetupState);
+    public CallSetupStateBuilder(@NonNull CallId callId) {
+      this.toBuild = WebRtcServiceStateBuilder.this.toBuild.getCallSetupState(callId).duplicate();
+      this.callId  = callId;
     }
 
     public @NonNull WebRtcServiceStateBuilder commit() {
-      WebRtcServiceStateBuilder.this.toBuild.callSetupState = toBuild;
+      WebRtcServiceStateBuilder.this.toBuild.callSetupStates.put(callId, toBuild);
       return WebRtcServiceStateBuilder.this;
     }
 
@@ -119,22 +146,37 @@ public class WebRtcServiceStateBuilder {
     }
 
     public @NonNull CallSetupStateBuilder enableVideoOnCreate(boolean enableVideoOnCreate) {
-      toBuild.enableVideoOnCreate = enableVideoOnCreate;
+      toBuild.setEnableVideoOnCreate(enableVideoOnCreate);
       return this;
     }
 
     public @NonNull CallSetupStateBuilder isRemoteVideoOffer(boolean isRemoteVideoOffer) {
-      toBuild.isRemoteVideoOffer = isRemoteVideoOffer;
+      toBuild.setRemoteVideoOffer(isRemoteVideoOffer);
       return this;
     }
 
     public @NonNull CallSetupStateBuilder acceptWithVideo(boolean acceptWithVideo) {
-      toBuild.acceptWithVideo = acceptWithVideo;
+      toBuild.setAcceptWithVideo(acceptWithVideo);
       return this;
     }
 
     public @NonNull CallSetupStateBuilder sentJoinedMessage(boolean sentJoinedMessage) {
-      toBuild.sentJoinedMessage = sentJoinedMessage;
+      toBuild.setSentJoinedMessage(sentJoinedMessage);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder setRingGroup(boolean ringGroup) {
+      toBuild.setRingGroup(ringGroup);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder ringId(long ringId) {
+      toBuild.setRingId(ringId);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder ringerRecipient(@NonNull Recipient ringerRecipient) {
+      toBuild.setRingerRecipient(ringerRecipient);
       return this;
     }
   }
@@ -156,7 +198,7 @@ public class WebRtcServiceStateBuilder {
       return WebRtcServiceStateBuilder.this.build();
     }
 
-    public @NonNull VideoStateBuilder eglBase(@Nullable EglBase eglBase) {
+    public @NonNull VideoStateBuilder eglBase(@Nullable EglBaseWrapper eglBase) {
       toBuild.eglBase = eglBase;
       return this;
     }
@@ -249,8 +291,8 @@ public class WebRtcServiceStateBuilder {
       return this;
     }
 
-    public @NonNull CallInfoStateBuilder addIdentityChangedRecipient(@NonNull RecipientId id) {
-      toBuild.identityChangedRecipients.add(id);
+    public @NonNull CallInfoStateBuilder addIdentityChangedRecipients(@NonNull Collection<RecipientId> id) {
+      toBuild.identityChangedRecipients.addAll(id);
       return this;
     }
 

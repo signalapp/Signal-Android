@@ -54,7 +54,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(wangsulan)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeri</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">File</string>
   <string name="AttachmentKeyboard_contact">Kontak</string>
   <string name="AttachmentKeyboard_location">Lokasi</string>
@@ -75,7 +75,7 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anggota grup bakal saged minggahaken sampeyan datheng grup niki malih.</string>
   <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">Uculaken blokiranipun</string> -->
   <string name="BlockUnblockDialog_block">Blokir</string>
-  <string name="BlockUnblockDialog_block_and_delete">Blokir lan Brusak</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_block_and_delete">Blokir lan Brusak</string> -->
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Dinten niki</string>
   <string name="BucketedThreadMedia_Yesterday">Wingi</string>
@@ -158,7 +158,7 @@
   <!--ConversationActivity-->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atur malih sesi aman?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tumindak niki bakal mbiantu menawi sampeyan gadhah masalah enkripsi ing obrolan niki. Pesen sampeyan bakal disimpen.</string> -->
-  <string name="ConversationActivity_reset">Atur malih</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset">Atur malih</string> -->
   <string name="ConversationActivity_add_attachment">Minggahaken lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pileh informasi kontak</string>
   <string name="ConversationActivity_compose_message">Serat pesen</string>
@@ -362,15 +362,15 @@
   <string name="ManageGroupActivity_view_all_members">Tingali anggota sedaya</string>
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">Mboten enten</string> -->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">Pesen ngical</string>
-  <string name="ManageRecipientActivity_block">Blokir</string>
-  <string name="ManageRecipientActivity_unblock">Uculaken blokiranipun</string>
-  <string name="ManageRecipientActivity_view_safety_number">Tingali nomer keamanan</string>
-  <string name="ManageRecipientActivity_mute_notifications">Bisuaken prungon</string>
-  <string name="ManageRecipientActivity_custom_notifications">Prungon kustom</string>
-  <string name="ManageRecipientActivity_off">Pejah</string>
-  <string name="ManageRecipientActivity_on">Gesang</string>
-  <string name="ManageRecipientActivity_message_description">Pesen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Pesen ngical</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Uculaken blokiranipun</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Tingali nomer keamanan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Bisuaken prungon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Prungon kustom</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Pejah</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Gesang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Pesen</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Prungon kustom</string>
   <string name="CustomNotificationsDialogFragment__messages">Pesen</string>
@@ -395,21 +395,21 @@
   <string name="InviteActivity_share">Unjukaken</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Pileh kontak</string> -->
   <string name="InviteActivity_share_with_contacts">Unjukaken kaliyan kontak</string>
-  <string name="InviteActivity_choose_how_to_share">Pileh cara kangge ngunjukaken</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Pileh cara kangge ngunjukaken</string> -->
   <string name="InviteActivity_cancel">Batalaken</string>
   <string name="InviteActivity_sending">Taksih ngirimaken…</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Manah</string> -->
   <string name="InviteActivity_invitations_sent">Ulem-ulem dipunkirimaken!</string>
   <string name="InviteActivity_invite_to_signal">Ajak ngginakaken Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">KIRIMAKEN SMS DHATENG %d KANCA</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirimaken SMS ulem-ulem dhateng %d?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Mangga ngginakaken Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kadosipun sampeyan mboten gadhah aplikasi kangge ngunjukaken.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kanca sejatos mboten bakal kersa kanca-kancanipun ngobrol tanpa enkripsi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kanca sejatos mboten bakal kersa kanca-kancanipun ngobrol tanpa enkripsi.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Mlampah ing latar wingking…</string> -->
   <!--LearnMoreTextView-->
@@ -446,12 +446,12 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tampilan kisi-kisi</string>
   <string name="MediaOverviewActivity_List_view_description">Tampilan daftar</string>
   <string name="MediaOverviewActivity_Selected_description">Dipunpileh</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="other">%1$d prakawis %2$s</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="MediaOverviewActivity_d_items">
     <item quantity="other">%1$d prakawis</item>
-  </plurals>
+  </plurals> -->
   <string name="MediaOverviewActivity_file">File</string>
   <string name="MediaOverviewActivity_audio">Suwanten</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -461,7 +461,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dikirimaken dening %1$s kangge %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dikirimaken dening sampeyan kangge %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Nepangaken Tanggepan</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_introducing_reactions">Nepangaken Tanggepan</string> -->
   <string name="Megaphones_remind_me_later">Elingaken malih mangke</string>
   <string name="Megaphones_verify_your_signal_pin">Verifikasi PIN Signal sampeyan</string>
   <string name="Megaphones_verify_pin">Verifikasi PIN</string>
@@ -469,7 +469,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Telepon Signal taksih dipuntumindakaken</string>
   <string name="NotificationBarManager__establishing_signal_call">Netapaken telepon Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Telepon Signal ingkang mlebet</string>
-  <string name="NotificationBarManager__deny_call">Tolak telepon</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Tolak telepon</string> -->
   <string name="NotificationBarManager__answer_call">Angkat telepon</string>
   <string name="NotificationBarManager__end_call">Rampungaken telepon</string>
   <string name="NotificationBarManager__cancel_call">Batalaken telepon</string>
@@ -576,9 +576,9 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal betah izin Kamera kangge ngescan kode QR, nanging izin kesebat sampun dipuntolak sacara permanen. Bikak panatanan aplikasi, pileh \"Izin\", lajeng aktifaken \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Mboten saged ngescan tanpa izin Kamera</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Pesen ngical</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Pesen sampeyan mboten bakal kedaluwarsa.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesen ingkang dipunkirimaken lan dipuntampi ing obrolan niki bakal ngical %s saksampune dipunwaos.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_disappearing_messages">Pesen ngical</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_not_expire">Pesen sampeyan mboten bakal kedaluwarsa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesen ingkang dipunkirimaken lan dipuntampi ing obrolan niki bakal ngical %s saksampune dipunwaos.</string> -->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Lebetaken tembung sandi</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Ikon Signal</string>
@@ -610,7 +610,7 @@
   <string name="RatingManager_rate_now">Sukani peringkat sakmenika!</string>
   <string name="RatingManager_no_thanks">Mboten usah</string>
   <string name="RatingManager_later">Mangke</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aduh, kadosipun aplikasi Play Store mboten dipunpasangaken ing pirantos sampeyan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aduh, kadosipun aplikasi Play Store mboten dipunpasangaken ing pirantos sampeyan.</string> -->
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
   <!--ReactionsRecipientAdapter-->
@@ -876,14 +876,14 @@
   <string name="MessageNotifier_reacted_s_to_your_sticker">Nganggepi stiker sampeyan kangge %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Pesen niki sampun dibrusak</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Default</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_messages">Default</string> -->
   <string name="NotificationChannel_calls">Telepon</string>
   <string name="NotificationChannel_failures">Gagal</string>
   <string name="NotificationChannel_backups">Serep</string>
   <string name="NotificationChannel_locked_status">Kunci status</string>
   <string name="NotificationChannel_app_updates">Pangenggalan aplikasi</string>
   <string name="NotificationChannel_other">Bentenipun</string>
-  <string name="NotificationChannel_group_messages">Pesen</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationChannel_group_messages">Pesen</string> -->
   <string name="NotificationChannel_missing_display_name">Mboten kasumarepan</string>
   <!--ProfileEditNameFragment-->
   <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">Kedadosan netapaken nami profil.</string> -->
@@ -1078,7 +1078,7 @@
     <item quantity="other">%d bentenipun</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Padosi GIF lan stiker</string>
+  <!-- Removed by excludeNonTranslatables <string name="giphy_activity_toolbar__search_gifs_and_stickers">Padosi GIF lan stiker</string> -->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Mboten enten asil</string>
   <!--log_submit_activity-->
@@ -1090,7 +1090,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Ajengaken</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Oke</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Serat email</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Log niki bakal dipunkirimaken sacara online kangge publik supados kontributor saged ningali. Sampeyan saged mriksa lan nggantos log kasebut sadereng dipunajengaken.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Log niki bakal dipunkirimaken sacara online kangge publik supados kontributor saged ningali. Sampeyan saged mriksa lan nggantos log kasebut sadereng dipunajengaken.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Taksih ngunggahi log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Taksih ngenggali log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Pileh aplikasi email</string> -->
@@ -1154,10 +1154,10 @@
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">MINGGAHAKEN DHATENG KONTAK</string> -->
   <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">AMPUN MINGGAHAKEN, NANGING SAGEDAKEN PROFIL KULA DITINGALI</string> -->
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Menawi sampeyan kersa ngeverifikasi keamanan enkripsi sampeyan kaliyan %s, gathukaken nomer ing inggil kaliyan nomer ingkang enten ing pirantos piyambakipun. Sampeyan ugi saged ngescan kode ing telepon piyambakipun utawi tedhakaken supados piyambakipun ngescan kode sampeyan. <a href="https://signal.org/redirect/safety-numbers">Sapepakipun.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Menawi sampeyan kersa ngeverifikasi keamanan enkripsi sampeyan kaliyan %s, gathukaken nomer ing inggil kaliyan nomer ingkang enten ing pirantos piyambakipun. Sampeyan ugi saged ngescan kode ing telepon piyambakipun utawi tedhakaken supados piyambakipun ngescan kode sampeyan. <a href="https://signal.org/redirect/safety-numbers">Sapepakipun.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tutul kangge ngescan</string>
   <string name="verify_display_fragment__loading">Taksih ngunggahi…</string>
-  <string name="verify_display_fragment__verified">Dipunverifikasi</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Dipunverifikasi</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Unjukaken nomer keamanan</string>
   <!--webrtc_answer_decline_button-->
@@ -1199,10 +1199,10 @@
   <string name="arrays__use_default">Ginakaken default</string>
   <string name="arrays__use_custom">Ginakaken kustom</string>
   <string name="arrays__mute_for_one_hour">Bisuaken ngantos 1 jam</string>
-  <string name="arrays__mute_for_two_hours">Bisuaken ngantos 2 jam</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_two_hours">Bisuaken ngantos 2 jam</string> -->
   <string name="arrays__mute_for_one_day">Bisuaken ngantos 1 dinten</string>
   <string name="arrays__mute_for_seven_days">Bisuaken ngantos 7 dinten</string>
-  <string name="arrays__mute_for_one_year">Bisuaken ngantos 1 taun</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__mute_for_one_year">Bisuaken ngantos 1 taun</string> -->
   <string name="arrays__settings_default">Default panatanan</string>
   <string name="arrays__enabled">Aktifaken</string>
   <string name="arrays__disabled">Nonaktifaken</string>
@@ -1307,7 +1307,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Menawi tandha pesen ingkang dipunwaos mboten dipunaktifaken, sampeyan mboten saged ningali tandha pesen ingkang dipunwaos saking tiyang benten.</string>
   <string name="preferences__typing_indicators">Indikator ketikan</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Menawi indikator ketikan mboten dipunaktifaken, sampeyan mboten saged ningali indikator ketikan saking tiyang benten.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Sagedaken keyboard ngenonaktifaken panyinaon ingkang dipunpersonalisasi</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__request_keyboard_to_disable_personalized_learning">Sagedaken keyboard ngenonaktifaken panyinaon ingkang dipunpersonalisasi</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kontak ingkang dipunblokir</string> -->
   <string name="preferences_chats__when_using_mobile_data">Kala ngginakaken data seluler</string>
   <string name="preferences_chats__when_using_wifi">Kala ngginakaken Wi-Fi</string>
@@ -1356,14 +1356,14 @@
   <string name="conversation_callable_secure__menu_call">Telepon Signal</string>
   <string name="conversation_callable_secure__menu_video">Telepon video Signal</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Rincian pesen</string>
-  <string name="conversation_context__menu_copy_text">Salin teks</string>
-  <string name="conversation_context__menu_delete_message">Brusak pesen</string>
-  <string name="conversation_context__menu_forward_message">Terusaken pesen</string>
-  <string name="conversation_context__menu_resend_message">Kirimaken pesen malih</string>
-  <string name="conversation_context__menu_reply_to_message">Wangsuli pesen</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_message_details">Rincian pesen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_copy_text">Salin teks</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_delete_message">Brusak pesen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_forward_message">Terusaken pesen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_resend_message">Kirimaken pesen malih</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__menu_reply_to_message">Wangsuli pesen</string> -->
   <!--conversation_context_reacction-->
-  <string name="conversation_context__reaction_multi_select">Pileh ingkang kathah</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_context__reaction_multi_select">Pileh ingkang kathah</string> -->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Simpen lampiran</string>
   <!--conversation_expiring_off-->
@@ -1461,7 +1461,7 @@
   <string name="Insights__title">Wawasan</string>
   <string name="InsightsDashboardFragment__title">Wawasan</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokol Signal sacara otomatis nglindhungi %1$d%% pesen medal sampeyan ngantos %2$d dinten lajeng. Obrolan antawis panggina Signal bakal tansah dienkripsi sacara end-to-end.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Paningkat Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__boost_your_signal">Paningkat Signal</string> -->
   <string name="InsightsDashboardFragment__not_enough_data">Data mboten cekap</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Persentasi wawasan sampeyan dipunetang berdhasar pesen ingkang medal ngantos %1$d dinten lajeng ingkang mboten ngical utawi dipunbrusak.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Awiti obrolan</string>
@@ -1574,7 +1574,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal betah izin penyimpenan njawi kangge ndamel serep, nanging izin kesebat sampun dipuntolak sacara permanen. Bikak panatanan aplikasi, pileh \"Izin\", lajeng aktifaken \"Penyimpenan\".</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">Serep paling dangu: %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">Taksih dipuntumindakaken</string> -->
-  <string name="LocalBackupJob_creating_backup">Taksih ndamel serep…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Taksih ndamel serep…</string> -->
   <string name="ProgressPreference_d_messages_so_far">Sakmenika enten %d pesen mawon</string>
   <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Lebetaken kode verifikasi ingkang dikirimaken kangge %s.</string> -->
   <string name="RegistrationActivity_wrong_number">Nomer klintu</string>

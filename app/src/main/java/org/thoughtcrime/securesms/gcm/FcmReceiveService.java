@@ -11,22 +11,34 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import java.util.Locale;
 
 public class FcmReceiveService extends FirebaseMessagingService {
 
-  private static final String TAG = FcmReceiveService.class.getSimpleName();
+  private static final String TAG = Log.tag(FcmReceiveService.class);
 
 
   @Override
   public void onMessageReceived(RemoteMessage remoteMessage) {
-    Log.i(TAG, "onMessageReceived() ID: " + remoteMessage.getMessageId() + ", Delay: " + (System.currentTimeMillis() - remoteMessage.getSentTime()) + ", Original Priority: " + remoteMessage.getOriginalPriority());
+    Log.i(TAG, String.format(Locale.US,
+                             "onMessageReceived() ID: %s, Delay: %d, Priority: %d, Original Priority: %d",
+                             remoteMessage.getMessageId(),
+                             (System.currentTimeMillis() - remoteMessage.getSentTime()),
+                             remoteMessage.getPriority(),
+                             remoteMessage.getOriginalPriority()));
 
-    String challenge = remoteMessage.getData().get("challenge");
-    if (challenge != null) {
-      handlePushChallenge(challenge);
-    } else {
+    String registrationChallenge = remoteMessage.getData().get("challenge");
+    String rateLimitChallenge    = remoteMessage.getData().get("rateLimitChallenge");
+
+    if (registrationChallenge != null) {
+      handleRegistrationPushChallenge(registrationChallenge);
+    } else if (rateLimitChallenge != null) {
+      handleRateLimitPushChallenge(rateLimitChallenge);
+    }else {
       handleReceivedNotification(ApplicationDependencies.getApplication());
     }
   }
@@ -41,7 +53,7 @@ public class FcmReceiveService extends FirebaseMessagingService {
   public void onNewToken(String token) {
     Log.i(TAG, "onNewToken()");
 
-    if (!TextSecurePreferences.isPushRegistered(ApplicationDependencies.getApplication())) {
+    if (!SignalStore.account().isRegistered()) {
       Log.i(TAG, "Got a new FCM token, but the user isn't registered.");
       return;
     }
@@ -68,9 +80,13 @@ public class FcmReceiveService extends FirebaseMessagingService {
     }
   }
 
-  private static void handlePushChallenge(@NonNull String challenge) {
-    Log.d(TAG, String.format("Got a push challenge \"%s\"", challenge));
-
+  private static void handleRegistrationPushChallenge(@NonNull String challenge) {
+    Log.d(TAG, "Got a registration push challenge.");
     PushChallengeRequest.postChallengeResponse(challenge);
+  }
+
+  private static void handleRateLimitPushChallenge(@NonNull String challenge) {
+    Log.d(TAG, "Got a rate limit push challenge.");
+    ApplicationDependencies.getJobManager().add(new SubmitRateLimitPushChallengeJob(challenge));
   }
 }

@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment;
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
@@ -69,8 +71,7 @@ public class MainNavigator {
   }
 
   public void goToAppSettings() {
-    Intent intent = new Intent(activity, ApplicationPreferencesActivity.class);
-    activity.startActivityForResult(intent, REQUEST_CONFIG_CHANGES);
+    activity.startActivityForResult(AppSettingsActivity.home(activity), REQUEST_CONFIG_CHANGES);
   }
 
   public void goToArchiveList() {

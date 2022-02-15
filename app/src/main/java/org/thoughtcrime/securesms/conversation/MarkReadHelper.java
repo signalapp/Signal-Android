@@ -3,11 +3,13 @@ package org.thoughtcrime.securesms.conversation;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
@@ -23,18 +25,20 @@ class MarkReadHelper {
   private static final long     DEBOUNCE_TIMEOUT = 100;
   private static final Executor EXECUTOR         = new SerialMonoLifoExecutor(SignalExecutors.BOUNDED);
 
-  private final long      threadId;
-  private final Context   context;
-  private final Debouncer debouncer = new Debouncer(DEBOUNCE_TIMEOUT);
-  private       long      latestTimestamp;
+  private final long           threadId;
+  private final Context        context;
+  private final LifecycleOwner lifecycleOwner;
+  private final Debouncer      debouncer = new Debouncer(DEBOUNCE_TIMEOUT);
+  private       long           latestTimestamp;
 
-  MarkReadHelper(long threadId, @NonNull Context context) {
-    this.threadId = threadId;
-    this.context  = context.getApplicationContext();
+  MarkReadHelper(long threadId, @NonNull Context context, @NonNull LifecycleOwner lifecycleOwner) {
+    this.threadId       = threadId;
+    this.context        = context.getApplicationContext();
+    this.lifecycleOwner = lifecycleOwner;
   }
 
   public void onViewsRevealed(long timestamp) {
-    if (timestamp <= latestTimestamp) {
+    if (timestamp <= latestTimestamp || lifecycleOwner.getLifecycle().getCurrentState() != Lifecycle.State.RESUMED) {
       return;
     }
 
@@ -42,7 +46,7 @@ class MarkReadHelper {
 
     debouncer.publish(() -> {
       EXECUTOR.execute(() -> {
-        ThreadDatabase                          threadDatabase = DatabaseFactory.getThreadDatabase(context);
+        ThreadDatabase                          threadDatabase = SignalDatabase.threads();
         List<MessageDatabase.MarkedMessageInfo> infos          = threadDatabase.setReadSince(threadId, false, timestamp);
 
         Log.d(TAG, "Marking " + infos.size() + " messages as read.");

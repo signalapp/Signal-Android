@@ -2,31 +2,25 @@ package org.thoughtcrime.securesms.registration.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.dd.CircularProgressButton;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
@@ -34,31 +28,50 @@ import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.Task;
-import com.google.i18n.phonenumbers.AsYouTypeFormatter;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.LabeledEditText;
-import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
-import org.thoughtcrime.securesms.registration.service.RegistrationService;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
+import org.thoughtcrime.securesms.registration.util.RegistrationNumberInputController;
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
+import org.thoughtcrime.securesms.util.SupportEmailUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
-public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.showConfirmNumberDialogIfTranslated;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
+
+public final class EnterPhoneNumberFragment extends LoggingFragment implements RegistrationNumberInputController.Callbacks {
 
   private static final String TAG = Log.tag(EnterPhoneNumberFragment.class);
 
   private LabeledEditText        countryCode;
   private LabeledEditText        number;
-  private ArrayAdapter<String>   countrySpinnerAdapter;
-  private AsYouTypeFormatter     countryFormatter;
   private CircularProgressButton register;
   private Spinner                countrySpinner;
   private View                   cancel;
   private ScrollView             scrollView;
+  private RegistrationViewModel  viewModel;
+
+  private final LifecycleDisposable disposables = new LifecycleDisposable();
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,8 +80,7 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_registration_enter_phone_number, container, false);
   }
 
@@ -85,31 +97,30 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
     scrollView     = view.findViewById(R.id.scroll_view);
     register       = view.findViewById(R.id.registerButton);
 
-    initializeSpinner(countrySpinner);
-
-    setUpNumberInput();
+    RegistrationNumberInputController controller = new RegistrationNumberInputController(requireContext(),
+                                                                                         countryCode,
+                                                                                         number,
+                                                                                         countrySpinner,
+                                                                                         true,
+                                                                                         this);
 
     register.setOnClickListener(v -> handleRegister(requireContext()));
 
-    if (isReregister()) {
+    disposables.bindTo(getViewLifecycleOwner().getLifecycle());
+    viewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
+
+    if (viewModel.isReregister()) {
       cancel.setVisibility(View.VISIBLE);
       cancel.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
     } else {
       cancel.setVisibility(View.GONE);
     }
 
-    RegistrationViewModel model  = getModel();
-    NumberViewState       number = model.getNumber();
+    viewModel.getLiveNumber().observe(getViewLifecycleOwner(), controller::updateNumber);
 
-    initNumber(number);
-
-    countryCode.getInput().addTextChangedListener(new CountryCodeChangedListener());
-
-    if (model.hasCaptchaToken()) {
-      handleRegister(requireContext());
+    if (viewModel.hasCaptchaToken()) {
+      ThreadUtil.runOnMainDelayed(() -> handleRegister(requireContext()), 250);
     }
-
-    countryCode.getInput().setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
     Toolbar toolbar = view.findViewById(R.id.toolbar);
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
@@ -124,33 +135,11 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     if (item.getItemId() == R.id.phone_menu_use_proxy) {
-      Navigation.findNavController(requireView()).navigate(EnterPhoneNumberFragmentDirections.actionEditProxy());
+      SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), EnterPhoneNumberFragmentDirections.actionEditProxy());
       return true;
     } else {
       return false;
     }
-  }
-
-  private void setUpNumberInput() {
-    EditText numberInput = number.getInput();
-
-    numberInput.addTextChangedListener(new NumberChangedListener());
-
-    number.setOnFocusChangeListener((v, hasFocus) -> {
-      if (hasFocus) {
-        scrollView.postDelayed(() -> scrollView.smoothScrollTo(0, register.getBottom()), 250);
-      }
-    });
-
-    numberInput.setImeOptions(EditorInfo.IME_ACTION_DONE);
-    numberInput.setOnEditorActionListener((v, actionId, event) -> {
-      if (actionId == EditorInfo.IME_ACTION_DONE) {
-        hideKeyboard(requireContext(), v);
-        handleRegister(requireContext());
-        return true;
-      }
-      return false;
-    });
   }
 
   private void handleRegister(@NonNull Context context) {
@@ -164,31 +153,32 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
       return;
     }
 
-    final NumberViewState number     = getModel().getNumber();
+    final NumberViewState number     = viewModel.getNumber();
     final String          e164number = number.getE164Number();
 
     if (!number.isValid()) {
       Dialogs.showAlertDialog(context,
-        getString(R.string.RegistrationActivity_invalid_number),
-        String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), e164number));
+                              getString(R.string.RegistrationActivity_invalid_number),
+                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), e164number));
       return;
     }
 
     PlayServicesUtil.PlayServicesStatus fcmStatus = PlayServicesUtil.getPlayServicesStatus(context);
 
     if (fcmStatus == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
-      confirmNumberPrompt(context, e164number, () -> handleRequestVerification(context, e164number, true));
+      confirmNumberPrompt(context, e164number, () -> handleRequestVerification(context, true));
     } else if (fcmStatus == PlayServicesUtil.PlayServicesStatus.MISSING) {
-      confirmNumberPrompt(context, e164number, () -> handlePromptForNoPlayServices(context, e164number));
+      confirmNumberPrompt(context, e164number, () -> handlePromptForNoPlayServices(context));
     } else if (fcmStatus == PlayServicesUtil.PlayServicesStatus.NEEDS_UPDATE) {
       GoogleApiAvailability.getInstance().getErrorDialog(requireActivity(), ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED, 0).show();
     } else {
-      Dialogs.showAlertDialog(context, getString(R.string.RegistrationActivity_play_services_error),
-        getString(R.string.RegistrationActivity_google_play_services_is_updating_or_unavailable));
+      Dialogs.showAlertDialog(context,
+                              getString(R.string.RegistrationActivity_play_services_error),
+                              getString(R.string.RegistrationActivity_google_play_services_is_updating_or_unavailable));
     }
   }
 
-  private void handleRequestVerification(@NonNull Context context, @NonNull String e164number, boolean fcmSupported) {
+  private void handleRequestVerification(@NonNull Context context, boolean fcmSupported) {
     setSpinning(register);
     disableAllEntries();
 
@@ -198,16 +188,16 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
 
       task.addOnSuccessListener(none -> {
         Log.i(TAG, "Successfully registered SMS listener.");
-        requestVerificationCode(e164number, RegistrationCodeRequest.Mode.SMS_WITH_LISTENER);
+        requestVerificationCode(Mode.SMS_WITH_LISTENER);
       });
 
       task.addOnFailureListener(e -> {
         Log.w(TAG, "Failed to register SMS listener.", e);
-        requestVerificationCode(e164number, RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER);
+        requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
       });
     } else {
       Log.i(TAG, "FCM is not supported, using no SMS listener");
-      requestVerificationCode(e164number, RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER);
+      requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
     }
   }
 
@@ -222,240 +212,117 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
     countryCode.setEnabled(true);
     number.setEnabled(true);
     countrySpinner.setEnabled(true);
-    if (isReregister()) {
+    if (viewModel.isReregister()) {
       cancel.setVisibility(View.VISIBLE);
     }
   }
 
-  private void requestVerificationCode(String e164number, @NonNull RegistrationCodeRequest.Mode mode) {
-    RegistrationViewModel model   = getModel();
-    String                captcha = model.getCaptchaToken();
-    model.clearCaptchaResponse();
+  private void requestVerificationCode(@NonNull Mode mode) {
+    NavController navController = NavHostFragment.findNavController(this);
 
-    NavController navController = Navigation.findNavController(register);
+    Disposable request = viewModel.requestVerificationCode(mode)
+                                  .doOnSubscribe(unused -> SignalStore.account().setRegistered(false))
+                                  .observeOn(AndroidSchedulers.mainThread())
+                                  .subscribe(processor -> {
+                                    if (processor.hasResult()) {
+                                      SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
+                                    } else if (processor.localRateLimit()) {
+                                      Log.i(TAG, "Unable to request sms code due to local rate limit");
+                                      SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
+                                    } else if (processor.captchaRequired()) {
+                                      Log.i(TAG, "Unable to request sms code due to captcha required");
+                                      SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
+                                    } else if (processor.rateLimit()) {
+                                      Log.i(TAG, "Unable to request sms code due to rate limit");
+                                      Toast.makeText(register.getContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show();
+                                    } else if (processor.isImpossibleNumber()) {
+                                      Log.w(TAG, "Impossible number", processor.getError());
+                                      Dialogs.showAlertDialog(requireContext(),
+                                                              getString(R.string.RegistrationActivity_invalid_number),
+                                                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), viewModel.getNumber().getFullFormattedNumber()));
+                                    } else if (processor.isNonNormalizedNumber()) {
+                                      handleNonNormalizedNumberError(processor.getOriginalNumber(), processor.getNormalizedNumber(), mode);
+                                    } else {
+                                      Log.i(TAG, "Unknown error during verification code request", processor.getError());
+                                      Toast.makeText(register.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
+                                    }
 
-    if (!model.getRequestLimiter().canRequest(mode, e164number, System.currentTimeMillis())) {
-      Log.i(TAG, "Local rate limited");
-      navController.navigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
-      cancelSpinning(register);
-      enableAllEntries();
-      return;
-    }
+                                    cancelSpinning(register);
+                                    enableAllEntries();
+                                  });
 
-    RegistrationService registrationService = RegistrationService.getInstance(e164number, model.getRegistrationSecret());
-
-    registrationService.requestVerificationCode(requireActivity(), mode, captcha,
-      new RegistrationCodeRequest.SmsVerificationCodeCallback() {
-
-        @Override
-        public void onNeedCaptcha() {
-          if (getContext() == null) {
-            Log.i(TAG, "Got onNeedCaptcha response, but fragment is no longer attached.");
-            return;
-          }
-          navController.navigate(EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
-          cancelSpinning(register);
-          enableAllEntries();
-          model.getRequestLimiter().onUnsuccessfulRequest();
-          model.updateLimiter();
-        }
-
-        @Override
-        public void requestSent(@Nullable String fcmToken) {
-          if (getContext() == null) {
-            Log.i(TAG, "Got requestSent response, but fragment is no longer attached.");
-            return;
-          }
-          model.setFcmToken(fcmToken);
-          model.markASuccessfulAttempt();
-          navController.navigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
-          cancelSpinning(register);
-          enableAllEntries();
-          model.getRequestLimiter().onSuccessfulRequest(mode, e164number, System.currentTimeMillis());
-          model.updateLimiter();
-        }
-
-        @Override
-        public void onRateLimited() {
-          Toast.makeText(register.getContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show();
-          cancelSpinning(register);
-          enableAllEntries();
-          model.getRequestLimiter().onUnsuccessfulRequest();
-          model.updateLimiter();
-        }
-
-        @Override
-        public void onError() {
-          Toast.makeText(register.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
-          cancelSpinning(register);
-          enableAllEntries();
-          model.getRequestLimiter().onUnsuccessfulRequest();
-          model.updateLimiter();
-        }
-      });
+    disposables.add(request);
   }
 
-  private void initializeSpinner(Spinner countrySpinner) {
-    countrySpinnerAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item);
-    countrySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-    setCountryDisplay(getString(R.string.RegistrationActivity_select_your_country));
-
-    countrySpinner.setAdapter(countrySpinnerAdapter);
-    countrySpinner.setOnTouchListener((view, event) -> {
-      if (event.getAction() == MotionEvent.ACTION_UP) {
-        pickCountry(view);
-      }
-      return true;
-    });
-    countrySpinner.setOnKeyListener((view, keyCode, event) -> {
-      if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER && event.getAction() == KeyEvent.ACTION_UP) {
-        pickCountry(view);
-        return true;
-      }
-      return false;
-    });
+  @Override
+  public void onNumberFocused() {
+    scrollView.postDelayed(() -> scrollView.smoothScrollTo(0, register.getBottom()), 250);
   }
 
-  private void pickCountry(@NonNull View view) {
-    Navigation.findNavController(view).navigate(R.id.action_pickCountry);
+  @Override
+  public void onNumberInputNext(@NonNull View view) {
+    // Intentionally left blank
   }
 
-  private void initNumber(@NonNull NumberViewState numberViewState) {
-    int    countryCode       = numberViewState.getCountryCode();
-    String number            = numberViewState.getNationalNumber();
-    String regionDisplayName = numberViewState.getCountryDisplayName();
+  @Override
+  public void onNumberInputDone(@NonNull View view) {
+    ViewUtil.hideKeyboard(requireContext(), view);
+    handleRegister(requireContext());
+  }
 
-    this.countryCode.setText(String.valueOf(countryCode));
+  @Override
+  public void onPickCountry(@NonNull View view) {
+    SafeNavigation.safeNavigate(Navigation.findNavController(view), R.id.action_pickCountry);
+  }
 
-    setCountryDisplay(regionDisplayName);
+  @Override
+  public void setNationalNumber(@NonNull String number) {
+    viewModel.setNationalNumber(number);
+  }
 
-    String regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode);
-    setCountryFormatter(regionCode);
+  @Override
+  public void setCountry(int countryCode) {
+    viewModel.onCountrySelected(null, countryCode);
+  }
 
-    if (!TextUtils.isEmpty(number)) {
-      this.number.setText(String.valueOf(number));
+  private void handleNonNormalizedNumberError(@NonNull String originalNumber, @NonNull String normalizedNumber, @NonNull Mode mode) {
+    try {
+      Phonenumber.PhoneNumber phoneNumber = PhoneNumberUtil.getInstance().parse(normalizedNumber, null);
+
+      new MaterialAlertDialogBuilder(requireContext())
+          .setTitle(R.string.RegistrationActivity_non_standard_number_format)
+          .setMessage(getString(R.string.RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard, originalNumber, normalizedNumber))
+          .setNegativeButton(android.R.string.no, (d, i) -> d.dismiss())
+          .setNeutralButton(R.string.RegistrationActivity_contact_signal_support, (d, i) -> {
+            String subject = getString(R.string.RegistrationActivity_signal_android_phone_number_format);
+            String body    = SupportEmailUtil.generateSupportEmailBody(requireContext(), R.string.RegistrationActivity_signal_android_phone_number_format, null, null);
+
+            CommunicationActions.openEmail(requireContext(), SupportEmailUtil.getSupportEmailAddress(requireContext()), subject, body);
+            d.dismiss();
+          })
+          .setPositiveButton(R.string.yes, (d, i) -> {
+            countryCode.setText(String.valueOf(phoneNumber.getCountryCode()));
+            number.setText(String.valueOf(phoneNumber.getNationalNumber()));
+            requestVerificationCode(mode);
+            d.dismiss();
+          })
+          .show();
+    } catch (NumberParseException e) {
+      Log.w(TAG, "Failed to parse number!", e);
+
+      Dialogs.showAlertDialog(requireContext(),
+                              getString(R.string.RegistrationActivity_invalid_number),
+                              String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), viewModel.getNumber().getFullFormattedNumber()));
     }
   }
 
-  private void setCountryDisplay(String regionDisplayName) {
-    countrySpinnerAdapter.clear();
-    if (regionDisplayName == null) {
-      countrySpinnerAdapter.add(getString(R.string.RegistrationActivity_select_your_country));
-    } else {
-      countrySpinnerAdapter.add(regionDisplayName);
-    }
-  }
-
-  private class CountryCodeChangedListener implements TextWatcher {
-    @Override
-    public void afterTextChanged(Editable s) {
-      if (TextUtils.isEmpty(s) || !TextUtils.isDigitsOnly(s)) {
-        setCountryDisplay(null);
-        countryFormatter = null;
-        return;
-      }
-
-      int    countryCode = Integer.parseInt(s.toString());
-      String regionCode  = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode);
-
-      setCountryFormatter(regionCode);
-
-      if (!TextUtils.isEmpty(regionCode) && !regionCode.equals("ZZ")) {
-        number.requestFocus();
-
-        int numberLength = number.getText().length();
-        number.getInput().setSelection(numberLength, numberLength);
-      }
-
-      RegistrationViewModel model = getModel();
-
-      model.onCountrySelected(null, countryCode);
-      setCountryDisplay(model.getNumber().getCountryDisplayName());
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-    }
-  }
-
-  private class NumberChangedListener implements TextWatcher {
-
-    @Override
-    public void afterTextChanged(Editable s) {
-      String number = reformatText(s);
-
-      if (number == null) return;
-
-      RegistrationViewModel model = getModel();
-
-      model.setNationalNumber(number);
-
-      setCountryDisplay(model.getNumber().getCountryDisplayName());
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-  }
-
-  private String reformatText(Editable s) {
-    if (countryFormatter == null) {
-      return null;
-    }
-
-    if (TextUtils.isEmpty(s)) {
-      return null;
-    }
-
-    countryFormatter.clear();
-
-    String        formattedNumber = null;
-    StringBuilder justDigits      = new StringBuilder();
-
-    for (int i = 0; i < s.length(); i++) {
-      char c = s.charAt(i);
-      if (Character.isDigit(c)) {
-        formattedNumber = countryFormatter.inputDigit(c);
-        justDigits.append(c);
-      }
-    }
-
-    if (formattedNumber != null && !s.toString().equals(formattedNumber)) {
-      s.replace(0, s.length(), formattedNumber);
-    }
-
-    if (justDigits.length() == 0) {
-      return null;
-    }
-
-    return justDigits.toString();
-  }
-
-  private void setCountryFormatter(@Nullable String regionCode) {
-    PhoneNumberUtil util = PhoneNumberUtil.getInstance();
-
-    countryFormatter = regionCode != null ? util.getAsYouTypeFormatter(regionCode) : null;
-
-    reformatText(number.getText());
-  }
-
-  private void handlePromptForNoPlayServices(@NonNull Context context, @NonNull String e164number) {
-    new AlertDialog.Builder(context)
-                   .setTitle(R.string.RegistrationActivity_missing_google_play_services)
-                   .setMessage(R.string.RegistrationActivity_this_device_is_missing_google_play_services)
-                   .setPositiveButton(R.string.RegistrationActivity_i_understand, (dialog1, which) -> handleRequestVerification(context, e164number, false))
-                   .setNegativeButton(android.R.string.cancel, null)
-                   .show();
+  private void handlePromptForNoPlayServices(@NonNull Context context) {
+    new MaterialAlertDialogBuilder(context)
+        .setTitle(R.string.RegistrationActivity_missing_google_play_services)
+        .setMessage(R.string.RegistrationActivity_this_device_is_missing_google_play_services)
+        .setPositiveButton(R.string.RegistrationActivity_i_understand, (dialog1, which) -> handleRequestVerification(context, false))
+        .setNegativeButton(android.R.string.cancel, null)
+        .show();
   }
 
   protected final void confirmNumberPrompt(@NonNull Context context,
@@ -466,7 +333,7 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
                                         R.string.RegistrationActivity_a_verification_code_will_be_sent_to,
                                         e164number,
                                         () -> {
-                                          hideKeyboard(context, number.getInput());
+                                          ViewUtil.hideKeyboard(context, number.getInput());
                                           onConfirmed.run();
                                         },
                                         () -> number.focusAndMoveCursorToEndAndOpenKeyboard());

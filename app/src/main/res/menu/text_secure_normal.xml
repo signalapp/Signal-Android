@@ -16,6 +16,9 @@
     <item android:title="@string/text_secure_normal__menu_settings"
           android:id="@+id/menu_settings" />
 
+    <item android:title="@string/ConversationListFragment__notification_profile"
+          android:id="@+id/menu_notification_profile" />
+
     <item android:title="@string/Insights__title"
           android:id="@+id/menu_insights"
           android:visible="false" />

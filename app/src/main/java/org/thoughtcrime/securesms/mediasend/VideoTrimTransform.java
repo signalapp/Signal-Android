@@ -6,13 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 public final class VideoTrimTransform implements MediaTransform {
 
-  private final MediaSendVideoFragment.Data data;
+  private final VideoEditorFragment.Data data;
 
-  VideoTrimTransform(@NonNull MediaSendVideoFragment.Data data) {
+  public VideoTrimTransform(@NonNull VideoEditorFragment.Data data) {
     this.data = data;
   }
 
@@ -27,8 +28,9 @@ public final class VideoTrimTransform implements MediaTransform {
                      media.getSize(),
                      media.getDuration(),
                      media.isBorderless(),
+                     media.isVideoGif(),
                      media.getBucketId(),
                      media.getCaption(),
-                     Optional.of(new AttachmentDatabase.TransformProperties(false, data.durationEdited, data.startTimeUs, data.endTimeUs)));
+                     Optional.of(new AttachmentDatabase.TransformProperties(false, data.durationEdited, data.startTimeUs, data.endTimeUs, SentMediaQuality.STANDARD.getCode())));
   }
 }

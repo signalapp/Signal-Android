@@ -11,7 +11,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
+import org.signal.imageeditor.core.model.EditorModel;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -26,11 +26,11 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
   @NonNull  private final EditorModel modelToRender;
   @Nullable private final Point       size;
 
-  ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender) {
+  public ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender) {
     this(modelToRender, null);
   }
 
-  ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender, @Nullable Point size) {
+  public ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender, @Nullable Point size) {
     this.modelToRender = modelToRender;
     this.size          = size;
   }
@@ -49,7 +49,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
                             .withMimeType(MediaUtil.IMAGE_JPEG)
                             .createForSingleSessionOnDisk(context);
 
-      return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, media.getBucketId(), media.getCaption(), Optional.absent());
+      return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, false, media.getBucketId(), media.getCaption(), Optional.absent());
     } catch (IOException e) {
       Log.w(TAG, "Failed to render image. Using base image.");
       return media;

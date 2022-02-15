@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.messagerequests;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -44,10 +46,16 @@ public class CalleeMustAcceptMessageRequestActivity extends BaseActivity {
     return intent;
   }
 
+  @SuppressLint("SourceLockedOrientationActivity")
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.callee_must_accept_message_request_dialog_fragment);
+
+    boolean callingFixedToPortrait = getResources().getConfiguration().densityDpi < 480;
+    if (callingFixedToPortrait) {
+      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
 
     description = findViewById(R.id.description);
     avatar      = findViewById(R.id.avatar);

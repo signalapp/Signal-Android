@@ -9,7 +9,7 @@
         android:orientation="vertical"
         tools:background="#ff00ff">
 
-        <include layout="@layout/audio_view_circle" />
+        <include layout="@layout/audio_view_circle_small" />
 
         <SeekBar
             android:id="@+id/seek"

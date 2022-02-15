@@ -23,7 +23,7 @@ import org.signal.core.util.logging.Log;
  */
 public class HackyViewPager extends ViewPager {
 
-  private static final String TAG = HackyViewPager.class.getSimpleName();
+  private static final String TAG = Log.tag(HackyViewPager.class);
 
   public HackyViewPager(Context context) {
     super(context);
@@ -40,6 +40,16 @@ public class HackyViewPager extends ViewPager {
     } catch (IllegalArgumentException e) {
       Log.w(TAG, e);
       return false;
+    }
+  }
+
+  @Override
+  public boolean onTouchEvent(MotionEvent ev) {
+    try {
+      return super.onTouchEvent(ev);
+    } catch (IndexOutOfBoundsException | NullPointerException e) {
+      Log.w(TAG, e);
+      return true;
     }
   }
 }

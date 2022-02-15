@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public abstract class MmsMessageRecord extends MessageRecord {
 
@@ -27,16 +28,19 @@ public abstract class MmsMessageRecord extends MessageRecord {
   MmsMessageRecord(long id, String body, Recipient conversationRecipient,
                    Recipient individualRecipient, int recipientDeviceId, long dateSent,
                    long dateReceived, long dateServer, long threadId, int deliveryStatus, int deliveryReceiptCount,
-                   long type, List<IdentityKeyMismatch> mismatches,
-                   List<NetworkFailure> networkFailures, int subscriptionId, long expiresIn,
+                   long type, Set<IdentityKeyMismatch> mismatches,
+                   Set<NetworkFailure> networkFailures, int subscriptionId, long expiresIn,
                    long expireStarted, boolean viewOnce,
                    @NonNull SlideDeck slideDeck, int readReceiptCount,
                    @Nullable Quote quote, @NonNull List<Contact> contacts,
                    @NonNull List<LinkPreview> linkPreviews, boolean unidentified,
                    @NonNull List<ReactionRecord> reactions, boolean remoteDelete, long notifiedTimestamp,
-                   int viewedReceiptCount)
+                   int viewedReceiptCount, long receiptTimestamp)
   {
-    super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, dateServer, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount, unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount);
+    super(id, body, conversationRecipient, individualRecipient, recipientDeviceId,
+          dateSent, dateReceived, dateServer, threadId, deliveryStatus, deliveryReceiptCount,
+          type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount,
+          unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount, receiptTimestamp);
 
     this.slideDeck = slideDeck;
     this.quote     = quote;

@@ -5,9 +5,9 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.StorageKeyDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.storage.StorageSyncValidations;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -72,10 +71,15 @@ public class StorageForcePushJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException {
-    StorageKey                  storageServiceKey  = SignalStore.storageServiceValues().getOrCreateStorageKey();
-    SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
-    RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
-    StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Only the primary device can force push");
+      return;
+    }
+
+    StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
+    SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
+    RecipientDatabase           recipientDatabase = SignalDatabase.recipients();
+    UnknownStorageIdDatabase    storageIdDatabase = SignalDatabase.unknownStorageIds();
 
     long                        currentVersion       = accountManager.getStorageManifestVersion();
     Map<RecipientId, StorageId> oldContactStorageIds = recipientDatabase.getContactStorageSyncIdsMap();
@@ -83,7 +87,7 @@ public class StorageForcePushJob extends BaseJob {
     long                        newVersion           = currentVersion + 1;
     Map<RecipientId, StorageId> newContactStorageIds = generateContactStorageIds(oldContactStorageIds);
     List<SignalStorageRecord>   inserts              = Stream.of(oldContactStorageIds.keySet())
-                                                             .map(recipientDatabase::getRecipientSettingsForSync)
+                                                             .map(recipientDatabase::getRecordForSync)
                                                              .withoutNulls()
                                                              .map(s -> StorageSyncModels.localToRemoteRecord(s, Objects.requireNonNull(newContactStorageIds.get(s.getId())).getRaw()))
                                                              .toList();
@@ -95,17 +99,17 @@ public class StorageForcePushJob extends BaseJob {
     allNewStorageIds.add(accountRecord.getId());
 
     SignalStorageManifest manifest = new SignalStorageManifest(newVersion, allNewStorageIds);
-    StorageSyncValidations.validateForcePush(manifest, inserts);
+    StorageSyncValidations.validateForcePush(manifest, inserts, Recipient.self().fresh());
 
     try {
       if (newVersion > 1) {
-        Log.i(TAG, String.format(Locale.ENGLISH, "Force-pushing data. Inserting %d keys.", inserts.size()));
+        Log.i(TAG, String.format(Locale.ENGLISH, "Force-pushing data. Inserting %d IDs.", inserts.size()));
         if (accountManager.resetStorageRecords(storageServiceKey, manifest, inserts).isPresent()) {
           Log.w(TAG, "Hit a conflict. Trying again.");
           throw new RetryLaterException();
         }
       } else {
-        Log.i(TAG, String.format(Locale.ENGLISH, "First version, normal push. Inserting %d keys.", inserts.size()));
+        Log.i(TAG, String.format(Locale.ENGLISH, "First version, normal push. Inserting %d IDs.", inserts.size()));
         if (accountManager.writeStorageRecords(storageServiceKey, manifest, inserts, Collections.emptyList()).isPresent()) {
           Log.w(TAG, "Hit a conflict. Trying again.");
           throw new RetryLaterException();
@@ -117,10 +121,10 @@ public class StorageForcePushJob extends BaseJob {
     }
 
     Log.i(TAG, "Force push succeeded. Updating local manifest version to: " + newVersion);
-    TextSecurePreferences.setStorageManifestVersion(context, newVersion);
+    SignalStore.storageService().setManifest(manifest);
     recipientDatabase.applyStorageIdUpdates(newContactStorageIds);
     recipientDatabase.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().getId(), accountRecord.getId()));
-    storageKeyDatabase.deleteAll();
+    storageIdDatabase.deleteAll();
   }
 
   @Override

@@ -18,6 +18,9 @@ import java.nio.ByteBuffer;
 
 public class ApngStreamCacheDecoder implements ResourceDecoder<InputStream, APNGDecoder> {
 
+  /** Set to match {@link com.bumptech.glide.load.data.InputStreamRewinder}'s read limit */
+  private static final int READ_LIMIT = 5 * 1024 * 1024;
+
   private final ResourceDecoder<ByteBuffer, APNGDecoder> byteBufferDecoder;
 
   public ApngStreamCacheDecoder(ResourceDecoder<ByteBuffer, APNGDecoder> byteBufferDecoder) {
@@ -27,7 +30,7 @@ public class ApngStreamCacheDecoder implements ResourceDecoder<InputStream, APNG
   @Override
   public boolean handles(@NonNull InputStream source, @NonNull Options options) {
     if (options.get(ApngOptions.ANIMATE)) {
-      return APNGParser.isAPNG(new StreamReader(source));
+      return APNGParser.isAPNG(new LimitedReader(new StreamReader(source), READ_LIMIT));
     } else {
       return false;
     }

@@ -21,6 +21,7 @@ public class UriAttachment extends Attachment {
                        @Nullable String fileName,
                        boolean voiceNote,
                        boolean borderless,
+                       boolean videoGif,
                        boolean quote,
                        @Nullable String caption,
                        @Nullable StickerLocator stickerLocator,
@@ -28,7 +29,7 @@ public class UriAttachment extends Attachment {
                        @Nullable AudioHash audioHash,
                        @Nullable TransformProperties transformProperties)
   {
-    this(uri, contentType, transferState, size, 0, 0, fileName, null, voiceNote, borderless, quote, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    this(uri, contentType, transferState, size, 0, 0, fileName, null, voiceNote, borderless, videoGif, quote, caption, stickerLocator, blurHash, audioHash, transformProperties);
   }
 
   public UriAttachment(@NonNull Uri dataUri,
@@ -41,6 +42,7 @@ public class UriAttachment extends Attachment {
                        @Nullable String fastPreflightId,
                        boolean voiceNote,
                        boolean borderless,
+                       boolean videoGif,
                        boolean quote,
                        @Nullable String caption,
                        @Nullable StickerLocator stickerLocator,
@@ -48,7 +50,7 @@ public class UriAttachment extends Attachment {
                        @Nullable AudioHash audioHash,
                        @Nullable TransformProperties transformProperties)
   {
-    super(contentType, transferState, size, fileName, 0, null, null, null, null, fastPreflightId, voiceNote, borderless, width, height, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
+    super(contentType, transferState, size, fileName, 0, null, null, null, null, fastPreflightId, voiceNote, borderless, videoGif, width, height, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
     this.dataUri = dataUri;
   }
 
@@ -56,6 +58,11 @@ public class UriAttachment extends Attachment {
   @NonNull
   public Uri getUri() {
     return dataUri;
+  }
+
+  @Override
+  public @Nullable Uri getPublicUri() {
+    return null;
   }
 
   @Override

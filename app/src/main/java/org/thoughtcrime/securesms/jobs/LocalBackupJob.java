@@ -5,14 +5,18 @@ import android.Manifest;
 
 import androidx.annotation.NonNull;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupFileIOError;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
+import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -37,7 +41,7 @@ public final class LocalBackupJob extends BaseJob {
 
   private static final String TAG = Log.tag(LocalBackupJob.class);
 
-  private static final String QUEUE = "__LOCAL_BACKUP__";
+  public static final String QUEUE = "__LOCAL_BACKUP__";
 
   public static final String TEMP_BACKUP_FILE_PREFIX = ".backup";
   public static final String TEMP_BACKUP_FILE_SUFFIX = ".tmp";
@@ -85,11 +89,14 @@ public final class LocalBackupJob extends BaseJob {
       throw new IOException("No external storage permission!");
     }
 
+    ProgressUpdater updater = new ProgressUpdater();
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
-                                                                     context.getString(R.string.LocalBackupJob_creating_backup),
+                                                                     context.getString(R.string.LocalBackupJob_creating_signal_backup),
                                                                      NotificationChannels.BACKUPS,
                                                                      R.drawable.ic_signal_backup))
     {
+      updater.setNotification(notification);
+      EventBus.getDefault().register(updater);
       notification.setIndeterminateProgress();
 
       String backupPassword  = BackupPassphrase.get(context);
@@ -113,14 +120,18 @@ public final class LocalBackupJob extends BaseJob {
       try {
         FullBackupExporter.export(context,
                                   AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                                  DatabaseFactory.getBackupDatabase(context),
+                                  SignalDatabase.getBackupDatabase(),
                                   tempFile,
-                                  backupPassword);
+                                  backupPassword,
+                                  this::isCanceled);
 
         if (!tempFile.renameTo(backupFile)) {
           Log.w(TAG, "Failed to rename temp file");
           throw new IOException("Renaming temporary backup file failed!");
         }
+      } catch (FullBackupExporter.BackupCanceledException e) {
+        Log.w(TAG, "Backup cancelled");
+        throw e;
       } catch (IOException e) {
         BackupFileIOError.postNotificationForException(context, e, getRunAttempt());
         throw e;
@@ -135,6 +146,9 @@ public final class LocalBackupJob extends BaseJob {
       }
 
       BackupUtil.deleteOldBackups();
+    } finally {
+      EventBus.getDefault().unregister(updater);
+      updater.setNotification(null);
     }
   }
 
@@ -160,6 +174,29 @@ public final class LocalBackupJob extends BaseJob {
 
   @Override
   public void onFailure() {
+  }
+
+  private static class ProgressUpdater {
+    private NotificationController notification;
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onEvent(FullBackupBase.BackupEvent event) {
+      if (notification == null) {
+        return;
+      }
+
+      if (event.getType() == FullBackupBase.BackupEvent.Type.PROGRESS) {
+        if (event.getEstimatedTotalCount() == 0) {
+          notification.setIndeterminateProgress();
+        } else {
+          notification.setProgress(100, (int) event.getCompletionPercentage());
+        }
+      }
+    }
+
+    public void setNotification(NotificationController notification) {
+      this.notification = notification;
+    }
   }
 
   public static class Factory implements Job.Factory<LocalBackupJob> {

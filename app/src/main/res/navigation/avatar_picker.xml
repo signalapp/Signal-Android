@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/avatar_picker"
+    app:startDestination="@id/avatarPickerFragment">
+
+    <fragment
+        android:id="@+id/avatarPickerFragment"
+        android:name="org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment"
+        android:label="fragment_pick_avatar"
+        tools:layout="@layout/avatar_picker_fragment">
+        <action
+            android:id="@+id/action_avatarPickerFragment_to_textAvatarCreationFragment"
+            app:destination="@id/textAvatarCreationFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="text_avatar"
+                app:argType="android.os.Bundle"
+                app:nullable="true" />
+
+        </action>
+
+        <action
+            android:id="@+id/action_avatarPickerFragment_to_vectorAvatarCreationFragment"
+            app:destination="@id/vectorAvatarCreationFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="vector_avatar"
+                app:argType="android.os.Bundle" />
+
+        </action>
+
+        <action
+            android:id="@+id/action_avatarPickerFragment_to_avatarPhotoEditorFragment"
+            app:destination="@id/avatarPhotoEditorFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+            <argument
+                android:name="photo_avatar"
+                app:argType="android.os.Bundle" />
+        </action>
+
+        <argument
+            android:name="group_id"
+            app:argType="org.thoughtcrime.securesms.groups.ParcelableGroupId"
+            app:nullable="true" />
+
+        <argument
+            android:name="is_new_group"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="group_avatar_media"
+            app:argType="org.thoughtcrime.securesms.mediasend.Media"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/vectorAvatarCreationFragment"
+        android:name="org.thoughtcrime.securesms.avatar.vector.VectorAvatarCreationFragment"
+        android:label="fragment_vector_avatar_creation">
+        <argument
+            android:name="vector_avatar"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/textAvatarCreationFragment"
+        android:name="org.thoughtcrime.securesms.avatar.text.TextAvatarCreationFragment"
+        android:label="fragment_text_avatar_creation">
+        <argument
+            android:name="text_avatar"
+            app:argType="android.os.Bundle"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/avatarPhotoEditorFragment"
+        android:name="org.thoughtcrime.securesms.avatar.photo.PhotoEditorFragment"
+        android:label="fragment_avatar_photo_editor">
+        <argument
+            android:name="photo_avatar"
+            app:argType="android.os.Bundle" />
+    </fragment>
+
+</navigation>

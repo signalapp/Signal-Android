@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ByteUnit;
@@ -33,6 +34,13 @@ public class AvatarHelper {
   public static long AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE = ByteUnit.MEGABYTES.toBytes(10);
 
   private static final String AVATAR_DIRECTORY = "avatars";
+
+  public static long getAvatarCount(@NonNull Context context) {
+    File     avatarDirectory = context.getDir(AVATAR_DIRECTORY, Context.MODE_PRIVATE);
+    String[] results         = avatarDirectory.list();
+
+    return results == null ? 0 : results.length;
+  }
 
   /**
    * Retrieves an iterable set of avatars. Only intended to be used during backup.
@@ -122,7 +130,24 @@ public class AvatarHelper {
 
     OutputStream outputStream = null;
     try {
-      outputStream = getOutputStream(context, recipientId);
+      outputStream = getOutputStream(context, recipientId, false);
+      StreamUtil.copy(inputStream, outputStream);
+    } finally {
+      StreamUtil.close(outputStream);
+    }
+  }
+
+  public static void setSyncAvatar(@NonNull Context context, @NonNull RecipientId recipientId, @Nullable InputStream inputStream)
+      throws IOException
+  {
+    if (inputStream == null) {
+      delete(context, recipientId);
+      return;
+    }
+
+    OutputStream outputStream = null;
+    try {
+      outputStream = getOutputStream(context, recipientId, true);
       StreamUtil.copy(inputStream, outputStream);
     } finally {
       StreamUtil.close(outputStream);
@@ -133,9 +158,9 @@ public class AvatarHelper {
    * Retrieves an output stream you can write to that will be saved as the avatar for the specified
    * recipient. Only intended to be used for backup. Otherwise, use {@link #setAvatar(Context, RecipientId, InputStream)}.
    */
-  public static @NonNull OutputStream getOutputStream(@NonNull Context context, @NonNull RecipientId recipientId) throws IOException {
+  public static @NonNull OutputStream getOutputStream(@NonNull Context context, @NonNull RecipientId recipientId, boolean isSyncAvatar) throws IOException {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
-    File             targetFile       = getAvatarFile(context, recipientId);
+    File             targetFile       = getAvatarFile(context, recipientId, isSyncAvatar);
     return ModernEncryptingPartOutputStream.createFor(attachmentSecret, targetFile, true).second;
   }
 
@@ -172,8 +197,25 @@ public class AvatarHelper {
   }
 
   private static @NonNull File getAvatarFile(@NonNull Context context, @NonNull RecipientId recipientId) {
+    File    profileAvatar       = getAvatarFile(context, recipientId, false);
+    boolean profileAvatarExists = profileAvatar.exists() && profileAvatar.length() > 0;
+    File    syncAvatar          = getAvatarFile(context, recipientId, true);
+    boolean syncAvatarExists    = syncAvatar.exists() && syncAvatar.length() > 0;
+
+    if (SignalStore.settings().isPreferSystemContactPhotos() && syncAvatarExists) {
+      return syncAvatar;
+    } else if (profileAvatarExists) {
+      return profileAvatar;
+    } else if (syncAvatarExists) {
+      return syncAvatar;
+    }
+
+    return profileAvatar;
+  }
+
+  private static @NonNull File getAvatarFile(@NonNull Context context, @NonNull RecipientId recipientId, boolean isSyncAvatar) {
     File directory = context.getDir(AVATAR_DIRECTORY, Context.MODE_PRIVATE);
-    return new File(directory, recipientId.serialize());
+    return new File(directory, recipientId.serialize() + (isSyncAvatar ? "-sync" : ""));
   }
 
   public static class Avatar {

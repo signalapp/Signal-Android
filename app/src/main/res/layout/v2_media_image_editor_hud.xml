@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@color/core_grey_60"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_editor_hud_undo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/ImageEditorHud__undo"
+            android:padding="6dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/image_editor_hud_undo"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/image_editor_hud_clear_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/image_editor_hud_clear_all_background"
+            android:paddingStart="14dp"
+            android:paddingTop="7dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="7dp"
+            android:text="@string/ImageEditorHud__clear_all"
+            android:textAppearance="@style/Signal.Text.Body"
+            android:textColor="@color/core_white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <Space
+            android:id="@+id/image_editor_hud_top_of_button_bar_spacing"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_button_barrier" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/image_editor_hud_button_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="image_editor_hud_cancel_button,image_editor_hud_draw_button,image_editor_hud_text_button,image_editor_hud_sticker_button,image_editor_hud_blur_button,image_editor_hud_done_button" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_cancel_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__cancel"
+            android:padding="6dp"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_goneMarginEnd="10dp"
+            app:srcCompat="@drawable/ic_cancel_36"
+            app:tint="@color/core_white"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_draw_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__draw"
+            android:padding="6dp"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_text_button"
+            app:layout_constraintStart_toEndOf="@id/image_editor_hud_cancel_button"
+            app:layout_goneMarginEnd="10dp"
+            app:layout_goneMarginStart="10dp"
+            app:srcCompat="@drawable/image_editor_hud_draw"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_text_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__write_text"
+            android:padding="6dp"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_sticker_button"
+            app:layout_constraintStart_toEndOf="@id/image_editor_hud_draw_button"
+            app:layout_goneMarginEnd="10dp"
+            app:layout_goneMarginStart="10dp"
+            app:srcCompat="@drawable/image_editor_hud_text"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_sticker_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__add_a_sticker"
+            android:padding="6dp"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_blur_button"
+            app:layout_constraintStart_toEndOf="@id/image_editor_hud_text_button"
+            app:layout_goneMarginEnd="10dp"
+            app:layout_goneMarginStart="10dp"
+            app:srcCompat="@drawable/image_editor_hud_sticker"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_blur_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__blur"
+            android:padding="6dp"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_done_button"
+            app:layout_constraintStart_toEndOf="@id/image_editor_hud_sticker_button"
+            app:layout_goneMarginEnd="10dp"
+            app:layout_goneMarginStart="10dp"
+            app:srcCompat="@drawable/image_editor_hud_blur"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_done_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__done_editing"
+            android:padding="6dp"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_goneMarginStart="10dp"
+            app:srcCompat="@drawable/ic_confirm_36"
+            app:tint="@color/core_white"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_color_indicator"
+            android:layout_width="68dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0"
+            android:importantForAccessibility="no"
+            android:paddingBottom="12dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/color_indicator_circle"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintStart_toStartOf="@id/image_editor_hud_draw_color_bar"
+            tools:alpha="1"
+            tools:tint="@color/red" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/image_editor_hud_draw_color_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:splitTrack="false"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_top_of_button_bar_spacing"
+            app:layout_constraintEnd_toStartOf="@+id/toggle_button_barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/toggle_button_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:barrierDirection="start"
+            app:constraint_referenced_ids="image_editor_hud_draw_brush,image_editor_hud_text_style_button" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_draw_brush"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="0"
+            android:background="@drawable/circle_tintable_padded"
+            android:contentDescription="@string/ImageEditorHud__toggle_between_marker_and_highlighter"
+            android:padding="12dp"
+            android:visibility="gone"
+            app:backgroundTint="@color/transparent_black_40"
+            app:layout_constraintBottom_toBottomOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/image_editor_hud_draw_color_bar"
+            tools:alpha="1"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_text_style_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="0"
+            android:background="@drawable/circle_tintable_padded"
+            android:contentDescription="@string/ImageEditorHud__toggle_between_text_styles"
+            android:padding="12dp"
+            android:visibility="gone"
+            app:backgroundTint="@color/transparent_black_40"
+            app:layout_constraintBottom_toBottomOf="@id/image_editor_hud_draw_color_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/image_editor_hud_draw_color_bar"
+            app:srcCompat="@drawable/ic_text_tool_24"
+            app:tint="@color/core_white"
+            tools:alpha="1"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/image_editor_hud_draw_width_bar"
+            android:layout_width="174dp"
+            android:layout_height="48dp"
+            android:rotation="270"
+            android:splitTrack="false"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_top_of_button_bar_spacing"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <!-- region Crop Tools -->
+
+        <ImageView
+            android:id="@+id/image_editor_hud_rotate_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__draw"
+            android:padding="6dp"
+            android:scaleType="centerInside"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_flip_button"
+            app:layout_constraintStart_toEndOf="@id/image_editor_hud_cancel_button"
+            app:layout_goneMarginEnd="10dp"
+            app:layout_goneMarginStart="10dp"
+            app:srcCompat="@drawable/ic_rotate_outline_24"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_flip_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__draw"
+            android:padding="6dp"
+            android:scaleType="centerInside"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_aspect_lock_button"
+            app:layout_constraintStart_toEndOf="@id/image_editor_hud_rotate_button"
+            app:layout_goneMarginEnd="10dp"
+            app:layout_goneMarginStart="10dp"
+            app:srcCompat="@drawable/ic_flip_outline_24"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/image_editor_hud_aspect_lock_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:contentDescription="@string/ImageEditorHud__draw"
+            android:scaleType="centerInside"
+            android:translationY="56dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_editor_hud_done_button"
+            app:layout_constraintStart_toEndOf="@id/image_editor_hud_flip_button"
+            app:layout_goneMarginEnd="10dp"
+            app:layout_goneMarginStart="10dp"
+            app:srcCompat="@drawable/ic_crop_unlock_24"
+            app:tint="@color/core_white"
+            tools:alpha="1"
+            tools:translationY="0dp"
+            tools:visibility="visible" />
+
+        <org.thoughtcrime.securesms.scribbles.RotationDialView
+            android:id="@+id/image_editor_hud_crop_rotation_dial"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:alpha="0"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_top_of_button_bar_spacing"
+            tools:alpha="1"
+            tools:visibility="visible" />
+
+        <!-- endregion -->
+
+        <!-- region blur stuff -->
+
+        <TextView
+            android:id="@+id/image_editor_hud_blur_help_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="14dp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="15"
+            android:text="@string/ImageEditorHud_draw_anywhere_to_blur"
+            android:textColor="@color/core_white"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_blur_toggle_container" />
+
+        <TextView
+            android:id="@+id/image_editor_hud_blur_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/scribble_toast_background"
+            android:padding="16dp"
+            android:text="@string/ImageEditorHud_draw_to_blur_additional_faces_or_areas"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_blur_toggle_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/image_editor_hud_blur_toggle_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/transparent_black_pill"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/image_editor_hud_button_barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:text="@string/ImageEditorHud_blur_faces"
+                android:textColor="@color/core_white" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/image_editor_hud_blur_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:saveEnabled="false" />
+        </LinearLayout>
+
+        <!-- Delete -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/image_editor_bottom_guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="72dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <org.thoughtcrime.securesms.scribbles.BrushWidthPreviewView
+        android:id="@+id/image_editor_hud_brush_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:visibility="gone"
+        tools:alpha="1"
+        tools:visibility="visible" />
+</merge>

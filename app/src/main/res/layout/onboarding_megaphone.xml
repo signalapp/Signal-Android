@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                style="@style/TextAppearance.Signal.Title2"
+                style="@style/TextAppearance.Signal.Title2.Bold"
                 android:text="@string/Megaphones_get_started"
                 app:layout_constraintTop_toTopOf="parent" />
 

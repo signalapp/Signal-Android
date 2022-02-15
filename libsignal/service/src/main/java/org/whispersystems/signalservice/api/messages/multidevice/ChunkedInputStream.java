@@ -12,63 +12,48 @@ public class ChunkedInputStream {
     this.in = in;
   }
 
-  protected int readRawVarint32() throws IOException {
-    byte tmp = (byte)in.read();
-    if (tmp >= 0) {
-      return tmp;
-    }
-    int result = tmp & 0x7f;
-    if ((tmp = (byte)in.read()) >= 0) {
-      result |= tmp << 7;
-    } else {
-      result |= (tmp & 0x7f) << 7;
-      if ((tmp = (byte)in.read()) >= 0) {
-        result |= tmp << 14;
-      } else {
-        result |= (tmp & 0x7f) << 14;
-        if ((tmp = (byte)in.read()) >= 0) {
-          result |= tmp << 21;
-        } else {
-          result |= (tmp & 0x7f) << 21;
-          result |= (tmp = (byte)in.read()) << 28;
-          if (tmp < 0) {
-            // Discard upper 32 bits.
-            for (int i = 0; i < 5; i++) {
-              if ((byte)in.read() >= 0) {
-                return result;
-              }
-            }
-
-            throw new IOException("Malformed varint!");
-          }
-        }
+  long readRawVarint32() throws IOException {
+    long result = 0;
+    for (int shift = 0; shift < 32; shift += 7) {
+      int tmpInt = in.read();
+      if (tmpInt < 0) {
+        return -1;
+      }
+      final byte b = (byte) tmpInt;
+      result |= (long) (b & 0x7F) << shift;
+      if ((b & 0x80) == 0) {
+        return result;
       }
     }
-
-    return result;
+    throw new IOException("Malformed varint!");
   }
 
-  protected static final class LimitedInputStream extends FilterInputStream {
+  protected static final class LimitedInputStream extends InputStream {
+
+    private final InputStream in;
 
     private long left;
     private long mark = -1;
 
     LimitedInputStream(InputStream in, long limit) {
-      super(in);
-      left = limit;
+      this.in   = in;
+      this.left = limit;
     }
 
-    @Override public int available() throws IOException {
+    @Override
+    public int available() throws IOException {
       return (int) Math.min(in.available(), left);
     }
 
     // it's okay to mark even if mark isn't supported, as reset won't work
-    @Override public synchronized void mark(int readLimit) {
+    @Override
+    public synchronized void mark(int readLimit) {
       in.mark(readLimit);
       mark = left;
     }
 
-    @Override public int read() throws IOException {
+    @Override
+    public int read() throws IOException {
       if (left == 0) {
         return -1;
       }
@@ -80,7 +65,8 @@ public class ChunkedInputStream {
       return result;
     }
 
-    @Override public int read(byte[] b, int off, int len) throws IOException {
+    @Override
+    public int read(byte[] b, int off, int len) throws IOException {
       if (left == 0) {
         return -1;
       }
@@ -93,7 +79,8 @@ public class ChunkedInputStream {
       return result;
     }
 
-    @Override public synchronized void reset() throws IOException {
+    @Override
+    public synchronized void reset() throws IOException {
       if (!in.markSupported()) {
         throw new IOException("Mark not supported");
       }
@@ -105,11 +92,17 @@ public class ChunkedInputStream {
       left = mark;
     }
 
-    @Override public long skip(long n) throws IOException {
+    @Override
+    public long skip(long n) throws IOException {
       n = Math.min(n, left);
       long skipped = in.skip(n);
       left -= skipped;
       return skipped;
+    }
+
+    @Override
+    public void close() throws IOException {
+      // do nothing
     }
   }
 

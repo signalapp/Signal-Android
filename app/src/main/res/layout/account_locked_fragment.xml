@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,10 +27,11 @@
         android:gravity="center_horizontal"
         android:minHeight="66dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        android:textColor="@color/core_grey_60"
+        android:textColor="@color/signal_text_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/account_locked_title" />
+        app:layout_constraintTop_toBottomOf="@id/account_locked_title"
+        tools:text="@string/AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy" />
 
     <Button
         android:id="@+id/account_locked_next"

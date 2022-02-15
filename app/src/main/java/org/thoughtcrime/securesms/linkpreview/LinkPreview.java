@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.linkpreview;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.HtmlCompat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -71,14 +72,15 @@ public class LinkPreview {
   }
 
   public @NonNull String getTitle() {
-    return title;
+    return HtmlCompat.fromHtml(title, 0).toString();
   }
 
   public @NonNull String getDescription() {
     if (description.equals(title)) {
       return "";
+    } else {
+      return HtmlCompat.fromHtml(description, 0).toString();
     }
-    return description;
   }
 
   public long getDate() {

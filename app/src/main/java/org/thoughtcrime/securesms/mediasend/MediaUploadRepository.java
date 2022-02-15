@@ -13,7 +13,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.mms.GifSlide;
@@ -44,7 +45,7 @@ import java.util.concurrent.Executor;
  * This also means that unlike most repositories, the class itself is stateful. Keep that in mind
  * when using it.
  */
-class MediaUploadRepository {
+public class MediaUploadRepository {
 
   private static final String TAG = Log.tag(MediaUploadRepository.class);
 
@@ -52,17 +53,17 @@ class MediaUploadRepository {
   private final LinkedHashMap<Media, PreUploadResult> uploadResults;
   private final Executor                              executor;
 
-  MediaUploadRepository(@NonNull Context context) {
+  public MediaUploadRepository(@NonNull Context context) {
     this.context       = context;
     this.uploadResults = new LinkedHashMap<>();
     this.executor      = SignalExecutors.newCachedSingleThreadExecutor("signal-MediaUpload");
   }
 
-  void startUpload(@NonNull Media media, @Nullable Recipient recipient) {
+  public void startUpload(@NonNull Media media, @Nullable Recipient recipient) {
     executor.execute(() -> uploadMediaInternal(media, recipient));
   }
 
-  void startUpload(@NonNull Collection<Media> mediaItems, @Nullable Recipient recipient) {
+  public void startUpload(@NonNull Collection<Media> mediaItems, @Nullable Recipient recipient) {
     executor.execute(() -> {
       for (Media media : mediaItems) {
         cancelUploadInternal(media);
@@ -75,24 +76,37 @@ class MediaUploadRepository {
    * Given a map of old->new, cancel medias that were changed and upload their replacements. Will
    * also upload any media in the map that wasn't yet uploaded.
    */
-  void applyMediaUpdates(@NonNull Map<Media, Media> oldToNew, @Nullable Recipient recipient) {
+  public void applyMediaUpdates(@NonNull Map<Media, Media> oldToNew, @Nullable Recipient recipient) {
     executor.execute(() -> {
       for (Map.Entry<Media, Media> entry : oldToNew.entrySet()) {
+        Media   oldMedia = entry.getKey();
+        Media   newMedia = entry.getValue();
+        boolean same     = oldMedia.equals(newMedia) && hasSameTransformProperties(oldMedia, newMedia);
 
-        boolean same = entry.getKey().equals(entry.getValue()) && (!entry.getValue().getTransformProperties().isPresent() || !entry.getValue().getTransformProperties().get().isVideoEdited());
-        if (!same || !uploadResults.containsKey(entry.getValue())) {
-          cancelUploadInternal(entry.getKey());
-          uploadMediaInternal(entry.getValue(), recipient);
+        if (!same || !uploadResults.containsKey(newMedia)) {
+          cancelUploadInternal(oldMedia);
+          uploadMediaInternal(newMedia, recipient);
         }
       }
     });
   }
 
-  void cancelUpload(@NonNull Media media) {
+  private boolean hasSameTransformProperties(@NonNull Media oldMedia, @NonNull Media newMedia) {
+    TransformProperties oldProperties = oldMedia.getTransformProperties().orNull();
+    TransformProperties newProperties = newMedia.getTransformProperties().orNull();
+
+    if (oldProperties == null || newProperties == null) {
+      return oldProperties == newProperties;
+    }
+
+    return !newProperties.isVideoEdited() && oldProperties.getSentMediaQuality() == newProperties.getSentMediaQuality();
+  }
+
+  public void cancelUpload(@NonNull Media media) {
     executor.execute(() -> cancelUploadInternal(media));
   }
 
-  void cancelUpload(@NonNull Collection<Media> mediaItems) {
+  public void cancelUpload(@NonNull Collection<Media> mediaItems) {
     executor.execute(() -> {
       for (Media media : mediaItems) {
         cancelUploadInternal(media);
@@ -100,7 +114,7 @@ class MediaUploadRepository {
     });
   }
 
-  void cancelAllUploads() {
+  public void cancelAllUploads() {
     executor.execute(() -> {
       for (Media media : new HashSet<>(uploadResults.keySet())) {
         cancelUploadInternal(media);
@@ -108,21 +122,21 @@ class MediaUploadRepository {
     });
   }
 
-  void getPreUploadResults(@NonNull Callback<Collection<PreUploadResult>> callback) {
+  public void getPreUploadResults(@NonNull Callback<Collection<PreUploadResult>> callback) {
     executor.execute(() -> callback.onResult(uploadResults.values()));
   }
 
-  void updateCaptions(@NonNull List<Media> updatedMedia) {
+  public void updateCaptions(@NonNull List<Media> updatedMedia) {
     executor.execute(() -> updateCaptionsInternal(updatedMedia));
   }
 
-  void updateDisplayOrder(@NonNull List<Media> mediaInOrder) {
+  public void updateDisplayOrder(@NonNull List<Media> mediaInOrder) {
     executor.execute(() -> updateDisplayOrderInternal(mediaInOrder));
   }
 
-  void deleteAbandonedAttachments() {
+  public void deleteAbandonedAttachments() {
     executor.execute(() -> {
-      int deleted = DatabaseFactory.getAttachmentDatabase(context).deleteAbandonedPreuploadedAttachments();
+      int deleted = SignalDatabase.attachments().deleteAbandonedPreuploadedAttachments();
       Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
     });
   }
@@ -151,7 +165,7 @@ class MediaUploadRepository {
 
   @WorkerThread
   private void updateCaptionsInternal(@NonNull List<Media> updatedMedia) {
-    AttachmentDatabase db = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase db = SignalDatabase.attachments();
 
     for (Media updated : updatedMedia) {
       PreUploadResult result = uploadResults.get(updated);
@@ -181,7 +195,7 @@ class MediaUploadRepository {
       }
     }
 
-    DatabaseFactory.getAttachmentDatabase(context).updateDisplayOrder(orderMap);
+    SignalDatabase.attachments().updateDisplayOrder(orderMap);
 
     if (orderedUploadResults.size() == uploadResults.size()) {
       uploadResults.clear();
@@ -191,11 +205,11 @@ class MediaUploadRepository {
 
   public static @NonNull Attachment asAttachment(@NonNull Context context, @NonNull Media media) {
     if (MediaUtil.isVideoType(media.getMimeType())) {
-      return new VideoSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.getCaption().orNull(), media.getTransformProperties().orNull()).asAttachment();
+      return new VideoSlide(context, media.getUri(), media.getSize(), media.isVideoGif(), media.getWidth(), media.getHeight(), media.getCaption().orNull(), media.getTransformProperties().orNull()).asAttachment();
     } else if (MediaUtil.isGif(media.getMimeType())) {
       return new GifSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull()).asAttachment();
     } else if (MediaUtil.isImageType(media.getMimeType())) {
-      return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull(), null).asAttachment();
+      return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull(), null, media.getTransformProperties().orNull()).asAttachment();
     } else if (MediaUtil.isTextType(media.getMimeType())) {
       return new TextSlide(context, media.getUri(), null, media.getSize()).asAttachment();
     } else {
@@ -203,7 +217,7 @@ class MediaUploadRepository {
     }
   }
 
-  interface Callback<E> {
+  public interface Callback<E> {
     void onResult(@NonNull E result);
   }
 }

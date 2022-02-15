@@ -36,10 +36,12 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
+import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public class PinRestoreEntryFragment extends LoggingFragment {
   private static final String TAG = Log.tag(PinRestoreActivity.class);
@@ -66,6 +68,8 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   }
 
   private void initViews(@NonNull View root) {
+    RegistrationViewDelegate.setDebugLogSubmitMultiTapView(root.findViewById(R.id.pin_restore_pin_title));
+
     pinEntry       = root.findViewById(R.id.pin_restore_pin_input);
     pinButton      = root.findViewById(R.id.pin_restore_pin_confirm);
     errorLabel     = root.findViewById(R.id.pin_restore_pin_input_label);
@@ -110,8 +114,8 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private void initViewModel() {
     viewModel = ViewModelProviders.of(this).get(PinRestoreViewModel.class);
 
-    viewModel.getTriesRemaining().observe(this, this::presentTriesRemaining);
-    viewModel.getEvent().observe(this, this::presentEvent);
+    viewModel.getTriesRemaining().observe(getViewLifecycleOwner(), this::presentTriesRemaining);
+    viewModel.getEvent().observe(getViewLifecycleOwner(), this::presentEvent);
   }
 
   private void presentTriesRemaining(PinRestoreViewModel.TriesRemaining triesRemaining) {
@@ -223,7 +227,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   }
 
   private void onAccountLocked() {
-    Navigation.findNavController(requireView()).navigate(PinRestoreEntryFragmentDirections.actionAccountLocked());
+    SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), PinRestoreEntryFragmentDirections.actionAccountLocked());
   }
 
   private void handleSuccess() {

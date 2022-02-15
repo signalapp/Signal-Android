@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+android {
+    buildToolsVersion BUILD_TOOL_VERSION
+    compileSdkVersion COMPILE_SDK
+
+    defaultConfig {
+        applicationId "org.signal.devicetransfer.app"
+        versionCode 1
+        versionName "1.0"
+
+        minSdkVersion MINIMUM_SDK
+        targetSdkVersion TARGET_SDK
+    }
+
+    compileOptions {
+        sourceCompatibility JAVA_VERSION
+        targetCompatibility JAVA_VERSION
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard/proguard.cfg'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard/proguard.cfg'
+        }
+    }
+
+    packagingOptions {
+        exclude '/org/spongycastle/x509/CertPathReviewerMessages.properties'
+        exclude '/org/spongycastle/x509/CertPathReviewerMessages_de.properties'
+    }
+}
+
+dependencies {
+    implementation libs.androidx.appcompat
+    implementation libs.material.material
+    implementation libs.androidx.constraintlayout
+
+    testImplementation testLibs.junit.junit
+
+    implementation project(':device-transfer')
+}

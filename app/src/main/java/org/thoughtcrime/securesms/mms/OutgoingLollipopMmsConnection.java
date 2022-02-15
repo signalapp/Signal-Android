@@ -41,7 +41,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class OutgoingLollipopMmsConnection extends LollipopMmsConnection implements OutgoingMmsConnection {
-  private static final String TAG    = OutgoingLollipopMmsConnection.class.getSimpleName();
+  private static final String TAG    = Log.tag(OutgoingLollipopMmsConnection.class);
   private static final String ACTION = OutgoingLollipopMmsConnection.class.getCanonicalName() + "MMS_SENT_ACTION";
 
   private byte[] response;

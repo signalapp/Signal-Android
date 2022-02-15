@@ -8,7 +8,6 @@ import android.database.Cursor;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
@@ -21,7 +20,7 @@ import java.io.IOException;
 
 public class OneTimePreKeyDatabase extends Database {
 
-  private static final String TAG = OneTimePreKeyDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(OneTimePreKeyDatabase.class);
 
   public  static final String TABLE_NAME  = "one_time_prekeys";
   private static final String ID          = "_id";
@@ -35,12 +34,12 @@ public class OneTimePreKeyDatabase extends Database {
       PUBLIC_KEY + " TEXT NOT NULL, " +
       PRIVATE_KEY + " TEXT NOT NULL);";
 
-  OneTimePreKeyDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
+  OneTimePreKeyDatabase(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);
   }
 
   public @Nullable PreKeyRecord getPreKey(int keyId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
 
     try (Cursor cursor = database.query(TABLE_NAME, null, KEY_ID + " = ?",
                                         new String[] {String.valueOf(keyId)},
@@ -62,7 +61,7 @@ public class OneTimePreKeyDatabase extends Database {
   }
 
   public void insertPreKey(int keyId, PreKeyRecord record) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(KEY_ID, keyId);
@@ -73,7 +72,7 @@ public class OneTimePreKeyDatabase extends Database {
   }
 
   public void removePreKey(int keyId) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, KEY_ID + " = ?", new String[] {String.valueOf(keyId)});
   }
 

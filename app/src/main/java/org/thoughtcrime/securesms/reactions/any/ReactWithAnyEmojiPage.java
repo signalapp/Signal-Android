@@ -27,6 +27,10 @@ class ReactWithAnyEmojiPage {
     this.pageBlocks = pageBlocks;
   }
 
+  public @NonNull String getKey() {
+    return pageBlocks.get(0).getPageModel().getKey();
+  }
+
   public @StringRes int getLabel() {
     return pageBlocks.get(0).getLabel();
   }

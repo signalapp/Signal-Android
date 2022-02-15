@@ -1,9 +1,15 @@
 package org.thoughtcrime.securesms.util;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.text.BidiFormatter;
 
+import org.signal.core.util.BreakIteratorCompat;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
@@ -11,7 +17,10 @@ public final class StringUtil {
 
   private static final Set<Character> WHITESPACE = SetUtil.newHashSet('\u200E',  // left-to-right mark
                                                                       '\u200F',  // right-to-left mark
-                                                                      '\u2007'); // figure space
+                                                                      '\u2007',  // figure space
+                                                                      '\u200B',  // zero-width space
+                                                                      '\u2800'); // braille blank
+
 
   private static final class Bidi {
     /** Override text direction  */
@@ -39,21 +48,33 @@ public final class StringUtil {
 
   /**
    * Trims a name string to fit into the byte length requirement.
+   * <p>
+   * This method treats a surrogate pair and a grapheme cluster a single character
+   * See examples in tests defined in StringUtilText_trimToFit.
    */
-  public static @NonNull String trimToFit(@Nullable String name, int maxLength) {
-    if (name == null) return "";
-
-    // At least one byte per char, so shorten string to reduce loop
-    if (name.length() > maxLength) {
-      name = name.substring(0, maxLength);
+  public static @NonNull String trimToFit(@Nullable String name, int maxByteLength) {
+    if (TextUtils.isEmpty(name)) {
+      return "";
     }
 
-    // Remove one char at a time until fits in byte allowance
-    while (name.getBytes(StandardCharsets.UTF_8).length > maxLength) {
-      name = name.substring(0, name.length() - 1);
+    if (name.getBytes(StandardCharsets.UTF_8).length <= maxByteLength) {
+      return name;
     }
 
-    return name;
+    try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+      for (String graphemeCharacter : new CharacterIterable(name)) {
+        byte[] bytes = graphemeCharacter.getBytes(StandardCharsets.UTF_8);
+
+        if (stream.size() + bytes.length <= maxByteLength) {
+          stream.write(bytes);
+        } else {
+          break;
+        }
+      }
+      return stream.toString();
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
   }
 
   /**
@@ -148,6 +169,33 @@ public final class StringUtil {
   }
 
   /**
+   * @return True if the provided text contains a mix of LTR and RTL characters, otherwise false.
+   */
+  public static boolean hasMixedTextDirection(@Nullable CharSequence text) {
+    if (text == null) {
+      return false;
+    }
+
+    Boolean isLtr = null;
+
+    for (int i = 0, len = Character.codePointCount(text, 0, text.length()); i < len; i++) {
+      int     codePoint = Character.codePointAt(text, i);
+      byte    direction = Character.getDirectionality(codePoint);
+      boolean isLetter  = Character.isLetter(codePoint);
+
+      if (isLtr != null && isLtr && direction != Character.DIRECTIONALITY_LEFT_TO_RIGHT && isLetter) {
+        return true;
+      } else if (isLtr != null && !isLtr && direction != Character.DIRECTIONALITY_RIGHT_TO_LEFT && isLetter) {
+        return true;
+      } else if (isLetter) {
+        isLtr = direction == Character.DIRECTIONALITY_LEFT_TO_RIGHT;
+      }
+    }
+
+    return false;
+  }
+
+  /**
    * Isolates bi-directional text from influencing surrounding text. You should use this whenever
    * you're injecting user-generated text into a larger string.
    *
@@ -215,6 +263,10 @@ public final class StringUtil {
     return text.replaceAll("[\\u2068\\u2069\\u202c]", "");
   }
 
+  public static @NonNull String stripBidiIndicator(@NonNull String text) {
+    return text.replace("\u200F", "");
+  }
+
   /**
    * Trims a {@link CharSequence} of starting and trailing whitespace. Behavior matches
    * {@link String#trim()} to preserve expectations around results.
@@ -230,5 +282,32 @@ public final class StringUtil {
       length--;
     }
     return (startIndex > 0 || length < text.length()) ? text.subSequence(startIndex, length) : text;
+  }
+
+  /**
+   * If the {@param text} exceeds the {@param maxChars} it is trimmed in the middle so that the result is exactly {@param maxChars} long including an added
+   * ellipsis character.
+   * <p>
+   * Otherwise the string is returned untouched.
+   * <p>
+   * When {@param maxChars} is even, one more character is kept from the end of the string than the start.
+   */
+  public static @Nullable CharSequence abbreviateInMiddle(@Nullable CharSequence text, int maxChars) {
+     if (text == null || text.length() <= maxChars) {
+      return text;
+    }
+
+    int start = (maxChars - 1) / 2;
+    int end   = (maxChars - 1) - start;
+    return text.subSequence(0, start) + "…" + text.subSequence(text.length() - end, text.length());
+  }
+
+  /**
+   * @return The number of graphemes in the provided string.
+   */
+  public static int getGraphemeCount(@NonNull CharSequence text) {
+    BreakIteratorCompat iterator = BreakIteratorCompat.getInstance();
+    iterator.setText(text);
+    return iterator.countBreaks();
   }
 }

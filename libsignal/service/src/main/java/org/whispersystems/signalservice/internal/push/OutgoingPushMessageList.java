@@ -6,9 +6,11 @@
 
 package org.whispersystems.signalservice.internal.push;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutgoingPushMessageList {
 
@@ -49,5 +51,10 @@ public class OutgoingPushMessageList {
 
   public boolean isOnline() {
     return online;
+  }
+
+  @JsonIgnore
+  public List<Integer> getDevices() {
+    return messages.stream().map(OutgoingPushMessage::getDestinationDeviceId).collect(Collectors.toList());
   }
 }

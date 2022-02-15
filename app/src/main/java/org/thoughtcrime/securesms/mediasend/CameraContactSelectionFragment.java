@@ -38,7 +38,6 @@ import java.util.List;
 public class CameraContactSelectionFragment extends LoggingFragment implements CameraContactAdapter.CameraContactListener {
 
   private Controller                      controller;
-  private MediaSendViewModel              mediaSendViewModel;
   private CameraContactSelectionViewModel contactViewModel;
   private RecyclerView                    contactList;
   private CameraContactAdapter            contactAdapter;
@@ -60,7 +59,6 @@ public class CameraContactSelectionFragment extends LoggingFragment implements C
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
 
-    this.mediaSendViewModel = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
     this.contactViewModel   = ViewModelProviders.of(requireActivity(), new CameraContactSelectionViewModel.Factory(new CameraContactsRepository(requireContext())))
                                                 .get(CameraContactSelectionViewModel.class);
   }
@@ -107,12 +105,6 @@ public class CameraContactSelectionFragment extends LoggingFragment implements C
     inviteButton.setOnClickListener(v -> onInviteContactsClicked());
 
     initViewModel();
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    mediaSendViewModel.onContactSelectStarted();
   }
 
   @Override

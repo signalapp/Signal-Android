@@ -20,17 +20,17 @@ import java.util.concurrent.Executors;
  * contains it. When invalidations come in, this class will just swap out the active controller with
  * a new one.
  */
-class BufferedPagingController<E> implements PagingController {
+class BufferedPagingController<Key, Data> implements PagingController<Key> {
 
-  private final PagedDataSource<E>       dataSource;
-  private final PagingConfig             config;
-  private final MutableLiveData<List<E>> liveData;
-  private final Executor                 serializationExecutor;
+  private final PagedDataSource<Key, Data>  dataSource;
+  private final PagingConfig                config;
+  private final MutableLiveData<List<Data>> liveData;
+  private final Executor                    serializationExecutor;
 
-  private PagingController activeController;
-  private int              lastRequestedIndex;
+  private PagingController<Key> activeController;
+  private int                   lastRequestedIndex;
 
-  BufferedPagingController(PagedDataSource<E> dataSource, PagingConfig config, @NonNull MutableLiveData<List<E>> liveData) {
+  BufferedPagingController(PagedDataSource<Key, Data> dataSource, PagingConfig config, @NonNull MutableLiveData<List<Data>> liveData) {
     this.dataSource            = dataSource;
     this.config                = config;
     this.liveData              = liveData;
@@ -59,6 +59,24 @@ class BufferedPagingController<E> implements PagingController {
 
       activeController = new FixedSizePagingController<>(dataSource, config, liveData, dataSource.size());
       activeController.onDataNeededAroundIndex(lastRequestedIndex);
+    });
+  }
+
+  @Override
+  public void onDataItemChanged(Key key) {
+    serializationExecutor.execute(() -> {
+      if (activeController != null) {
+        activeController.onDataItemChanged(key);
+      }
+    });
+  }
+
+  @Override
+  public void onDataItemInserted(Key key, int position) {
+    serializationExecutor.execute(() -> {
+      if (activeController != null) {
+        activeController.onDataItemInserted(key, position);
+      }
     });
   }
 }

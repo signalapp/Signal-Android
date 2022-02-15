@@ -18,7 +18,7 @@ import java.util.Set;
 
 public class ContentProxySelector extends ProxySelector {
 
-  private static final String TAG = ContentProxySelector.class.getSimpleName();
+  private static final String TAG = Log.tag(ContentProxySelector.class);
 
   public static final Set<String> WHITELISTED_DOMAINS = new HashSet<>();
   static {

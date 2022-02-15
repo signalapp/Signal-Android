@@ -5,7 +5,6 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -15,18 +14,21 @@ import androidx.lifecycle.ViewModelProvider;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.MappingModel;
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+
+import io.reactivex.rxjava3.core.Single;
 
 public class ShareViewModel extends ViewModel {
 
@@ -63,14 +65,31 @@ public class ShareViewModel extends ViewModel {
     return selectedContacts.getValue().size() > 1;
   }
 
-  boolean onContactSelected(@NonNull ShareContact selectedContact) {
-    Set<ShareContact> contacts = new LinkedHashSet<>(selectedContacts.getValue());
-    if (contacts.add(selectedContact)) {
-      selectedContacts.setValue(contacts);
-      return true;
-    } else {
-      return false;
-    }
+  @NonNull Single<ContactSelectResult> onContactSelected(@NonNull ShareContact selectedContact) {
+    return Single.fromCallable(() -> {
+      if (selectedContact.getRecipientId().isPresent()) {
+        Recipient recipient = Recipient.resolved(selectedContact.getRecipientId().get());
+
+        if (recipient.isPushV2Group()) {
+          Optional<GroupDatabase.GroupRecord> record = SignalDatabase.groups().getGroup(recipient.requireGroupId());
+
+          if (record.isPresent() && record.get().isAnnouncementGroup() && !record.get().isAdmin(Recipient.self())) {
+            return ContactSelectResult.FALSE_AND_SHOW_PERMISSION_TOAST;
+          }
+        } else if (SmsShareRestriction.DISALLOW_SMS_CONTACTS.equals(smsShareRestriction.getValue()) &&
+                   (!recipient.isRegistered() || recipient.isForceSmsSelection())) {
+          return ContactSelectResult.FALSE_AND_SHOW_SMS_MULTISELECT_TOAST;
+        }
+      }
+
+      Set<ShareContact> contacts = new LinkedHashSet<>(selectedContacts.getValue());
+      if (contacts.add(selectedContact)) {
+        selectedContacts.postValue(contacts);
+        return ContactSelectResult.TRUE;
+      } else {
+        return ContactSelectResult.FALSE;
+      }
+    });
   }
 
   void onContactDeselected(@NonNull ShareContact selectedContact) {
@@ -89,10 +108,10 @@ public class ShareViewModel extends ViewModel {
     }
   }
 
-  @NonNull LiveData<List<MappingModel<?>>> getSelectedContactModels() {
+  @NonNull LiveData<MappingModelList> getSelectedContactModels() {
     return Transformations.map(selectedContacts, set -> Stream.of(set)
-                                                              .<MappingModel<?>>mapIndexed((i, c) -> new ShareSelectionMappingModel(c, i == set.size() - 1))
-                                                              .toList());
+                                                              .mapIndexed((i, c) -> new ShareSelectionMappingModel(c, i == 0))
+                                                              .collect(MappingModelList.toMappingModelList()));
   }
 
   @NonNull LiveData<SmsShareRestriction> getSmsShareRestriction() {
@@ -100,10 +119,11 @@ public class ShareViewModel extends ViewModel {
   }
 
   void onNonExternalShare() {
+    shareData.setValue(Optional.absent());
     externalShare = false;
   }
 
-  public void onSuccessulShare() {
+  public void onSuccessfulShare() {
     mediaUsed = true;
   }
 
@@ -130,16 +150,31 @@ public class ShareViewModel extends ViewModel {
       return SmsShareRestriction.NO_RESTRICTIONS;
     } else if (shareContacts.size() == 1) {
       ShareContact shareContact = shareContacts.iterator().next();
-      Recipient    recipient    = Recipient.live(shareContact.getRecipientId().get()).get();
 
-      if (!recipient.isRegistered() || recipient.isForceSmsSelection()) {
-        return SmsShareRestriction.DISALLOW_MULTI_SHARE;
+      if (shareContact.getRecipientId().isPresent()) {
+        Recipient recipient = Recipient.live(shareContact.getRecipientId().get()).get();
+
+        if (!recipient.isRegistered() || recipient.isForceSmsSelection()) {
+          return SmsShareRestriction.DISALLOW_MULTI_SHARE;
+        } else {
+          return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
+        }
       } else {
-        return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
+        return SmsShareRestriction.DISALLOW_MULTI_SHARE;
       }
     } else {
       return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
     }
+  }
+
+  enum ContactSelectResult {
+    TRUE, FALSE, FALSE_AND_SHOW_PERMISSION_TOAST, FALSE_AND_SHOW_SMS_MULTISELECT_TOAST
+  }
+
+  enum SmsShareRestriction {
+    NO_RESTRICTIONS,
+    DISALLOW_SMS_CONTACTS,
+    DISALLOW_MULTI_SHARE
   }
 
   public static class Factory extends ViewModelProvider.NewInstanceFactory {
@@ -148,11 +183,5 @@ public class ShareViewModel extends ViewModel {
       //noinspection ConstantConditions
       return modelClass.cast(new ShareViewModel());
     }
-  }
-
-  enum SmsShareRestriction {
-    NO_RESTRICTIONS,
-    DISALLOW_SMS_CONTACTS,
-    DISALLOW_MULTI_SHARE
   }
 }

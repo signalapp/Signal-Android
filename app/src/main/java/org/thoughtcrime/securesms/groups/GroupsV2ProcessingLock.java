@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.groups;
 
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.Closeable;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +26,7 @@ final class GroupsV2ProcessingLock {
 
   @WorkerThread
   static Closeable acquireGroupProcessingLock(long timeoutMs) throws GroupChangeBusyException {
-    Util.assertNotMainThread();
+    ThreadUtil.assertNotMainThread();
 
     try {
       if (!lock.tryLock(timeoutMs, TimeUnit.MILLISECONDS)) {

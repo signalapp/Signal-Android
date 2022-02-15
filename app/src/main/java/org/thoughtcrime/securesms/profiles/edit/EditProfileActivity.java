@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.navigation.NavDirections;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
@@ -61,10 +62,10 @@ public class EditProfileActivity extends BaseActivity implements EditProfileFrag
     setContentView(R.layout.profile_create_activity);
 
     if (bundle == null) {
-      Bundle   extras = getIntent().getExtras();
-      NavGraph graph  = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
-
-      Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, extras != null ? extras : new Bundle());
+      NavHostFragment fragment = NavHostFragment.create(R.navigation.edit_profile, getIntent().getExtras());
+      getSupportFragmentManager().beginTransaction()
+                                 .add(R.id.fragment_container, fragment)
+                                 .commit();
     }
   }
 

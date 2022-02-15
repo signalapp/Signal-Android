@@ -17,7 +17,7 @@ import java.io.InputStream;
 
 class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
 
-  private static final String TAG = AttachmentStreamLocalUriFetcher.class.getSimpleName();
+  private static final String TAG = Log.tag(AttachmentStreamLocalUriFetcher.class);
 
   private final File             attachment;
   private final byte[]           key;

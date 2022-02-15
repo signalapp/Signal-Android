@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -50,7 +50,7 @@ public class StickerLaunchMigrationJob extends MigrationJob {
 
   private static void installPack(@NonNull Context context, @NonNull BlessedPacks.Pack pack) {
     JobManager      jobManager      = ApplicationDependencies.getJobManager();
-    StickerDatabase stickerDatabase = DatabaseFactory.getStickerDatabase(context);
+    StickerDatabase stickerDatabase = SignalDatabase.stickers();
 
     if (stickerDatabase.isPackAvailableAsReference(pack.getPackId())) {
       stickerDatabase.markPackAsInstalled(pack.getPackId(), false);

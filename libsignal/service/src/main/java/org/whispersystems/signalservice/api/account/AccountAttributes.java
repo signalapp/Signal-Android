@@ -9,8 +9,6 @@ package org.whispersystems.signalservice.api.account;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-
 public class AccountAttributes {
 
   @JsonProperty
@@ -46,6 +44,9 @@ public class AccountAttributes {
   @JsonProperty
   private Capabilities capabilities;
 
+  @JsonProperty
+  private String name;
+
   public AccountAttributes(String signalingKey,
                            int registrationId,
                            boolean fetchesMessages,
@@ -54,7 +55,8 @@ public class AccountAttributes {
                            byte[] unidentifiedAccessKey,
                            boolean unrestrictedUnidentifiedAccess,
                            Capabilities capabilities,
-                           boolean discoverableByPhoneNumber)
+                           boolean discoverableByPhoneNumber,
+                           String name)
   {
     this.signalingKey                   = signalingKey;
     this.registrationId                 = registrationId;
@@ -67,6 +69,7 @@ public class AccountAttributes {
     this.unrestrictedUnidentifiedAccess = unrestrictedUnidentifiedAccess;
     this.capabilities                   = capabilities;
     this.discoverableByPhoneNumber      = discoverableByPhoneNumber;
+    this.name                           = name;
   }
 
   public AccountAttributes() {}
@@ -115,6 +118,10 @@ public class AccountAttributes {
     return capabilities;
   }
 
+  public String getName() {
+    return name;
+  }
+
   public static class Capabilities {
     @JsonProperty
     private boolean uuid;
@@ -128,14 +135,26 @@ public class AccountAttributes {
     @JsonProperty("gv1-migration")
     private boolean gv1Migration;
 
+    @JsonProperty
+    private boolean senderKey;
+
+    @JsonProperty
+    private boolean announcementGroup;
+
+    @JsonProperty
+    private boolean changeNumber;
+
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean uuid, boolean gv2, boolean storage, boolean gv1Migration) {
-      this.uuid         = uuid;
-      this.gv2          = gv2;
-      this.storage      = storage;
-      this.gv1Migration = gv1Migration;
+    public Capabilities(boolean uuid, boolean gv2, boolean storage, boolean gv1Migration, boolean senderKey, boolean announcementGroup, boolean changeNumber) {
+      this.uuid              = uuid;
+      this.gv2               = gv2;
+      this.storage           = storage;
+      this.gv1Migration      = gv1Migration;
+      this.senderKey         = senderKey;
+      this.announcementGroup = announcementGroup;
+      this.changeNumber      = changeNumber;
     }
 
     public boolean isUuid() {
@@ -152,6 +171,18 @@ public class AccountAttributes {
 
     public boolean isGv1Migration() {
       return gv1Migration;
+    }
+
+    public boolean isSenderKey() {
+      return senderKey;
+    }
+
+    public boolean isAnnouncementGroup() {
+      return announcementGroup;
+    }
+
+    public boolean isChangeNumber() {
+      return changeNumber;
     }
   }
 }

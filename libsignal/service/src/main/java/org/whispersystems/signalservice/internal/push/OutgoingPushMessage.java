@@ -30,4 +30,8 @@ public class OutgoingPushMessage {
     this.destinationRegistrationId = destinationRegistrationId;
     this.content                   = content;
   }
+
+  public int getDestinationDeviceId() {
+    return destinationDeviceId;
+  }
 }

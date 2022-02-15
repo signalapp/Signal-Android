@@ -14,7 +14,9 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,9 +49,27 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     }
   }
 
+  public static @Nullable RecipientId fromNullable(@Nullable String id) {
+    return id != null ? from(id) : null;
+  }
+
   @AnyThread
   public static @NonNull RecipientId from(@NonNull SignalServiceAddress address) {
-    return from(address.getUuid().orNull(), address.getNumber().orNull(), false);
+    return from(address.getAci(), address.getNumber().orNull(), false);
+  }
+
+  /**
+   * Used for when you have a string that could be either a UUID or an e164. This was primarily
+   * created for interacting with protocol stores.
+   * @param identifier A UUID or e164
+   */
+  @AnyThread
+  public static @NonNull RecipientId fromExternalPush(@NonNull String identifier) {
+    if (UuidUtil.isUuid(identifier)) {
+      return from(ACI.parseOrThrow(identifier), null);
+    } else {
+      return from(null, identifier);
+    }
   }
 
   /**
@@ -58,7 +78,7 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
    */
   @AnyThread
   public static @NonNull RecipientId fromHighTrust(@NonNull SignalServiceAddress address) {
-    return from(address.getUuid().orNull(), address.getNumber().orNull(), true);
+    return from(address.getAci(), address.getNumber().orNull(), true);
   }
 
   /**
@@ -66,17 +86,19 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
    */
   @AnyThread
   @SuppressLint("WrongThread")
-  public static @NonNull RecipientId from(@Nullable UUID uuid, @Nullable String e164) {
-    return from(uuid, e164, false);
+  public static @NonNull RecipientId from(@Nullable ACI aci, @Nullable String e164) {
+    return from(aci, e164, false);
   }
 
   @AnyThread
   @SuppressLint("WrongThread")
-  private static @NonNull RecipientId from(@Nullable UUID uuid, @Nullable String e164, boolean highTrust) {
-    RecipientId recipientId = RecipientIdCache.INSTANCE.get(uuid, e164);
+  private static @NonNull RecipientId from(@Nullable ACI aci, @Nullable String e164, boolean highTrust) {
+    RecipientId recipientId = RecipientIdCache.INSTANCE.get(aci, e164);
 
     if (recipientId == null) {
-      recipientId = Recipient.externalPush(ApplicationDependencies.getApplication(), uuid, e164, highTrust).getId();
+      Recipient recipient = Recipient.externalPush(ApplicationDependencies.getApplication(), aci, e164, highTrust);
+      RecipientIdCache.INSTANCE.put(recipient);
+      recipientId = recipient.getId();
     }
 
     return recipientId;

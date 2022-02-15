@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.sharing;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public final class ShareIntents {
 
@@ -62,15 +64,21 @@ public final class ShareIntents {
     public boolean isBorderless() {
       return isBorderless;
     }
+
+    public boolean isEmpty() {
+      return extraSticker == null                         &&
+             (extraMedia == null || extraMedia.isEmpty()) &&
+             TextUtils.isEmpty(extraText);
+    }
   }
 
   public static final class Builder {
 
     private final Context context;
 
-    private String           extraText;
-    private ArrayList<Media> extraMedia;
-    private Slide            slide;
+    private String      extraText;
+    private List<Media> extraMedia;
+    private Slide       slide;
 
     public Builder(@NonNull Context context) {
       this.context = context;
@@ -101,7 +109,7 @@ public final class ShareIntents {
       intent.putExtra(Intent.EXTRA_TEXT, extraText);
 
       if (extraMedia != null) {
-        intent.putParcelableArrayListExtra(EXTRA_MEDIA, extraMedia);
+        intent.putParcelableArrayListExtra(EXTRA_MEDIA, new ArrayList<>(extraMedia));
       } else if (slide != null) {
         intent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
         intent.putExtra(EXTRA_BORDERLESS, slide.isBorderless());

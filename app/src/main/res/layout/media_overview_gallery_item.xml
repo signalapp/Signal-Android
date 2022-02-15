@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/media_preview_activity__media_content_description"
-        android:padding="2dp" />
+        app:thumbnail_radius="0dp"
+        app:transparent_overlay_color="@color/transparent_black_08" />
 
     <TextView
         android:id="@+id/image_file_size"
@@ -32,17 +33,20 @@
         android:id="@+id/selected_indicator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/MediaOverview_Media_selected_overlay"
-        android:visibility="gone"
-        tools:showIn="@layout/media_overview_gallery_item"
-        tools:visibility="visible">
+        android:alpha="0"
+        tools:alpha="1"
+        tools:showIn="@layout/media_overview_gallery_item">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_gravity="bottom|end"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/circle_tintable"
             android:contentDescription="@string/MediaOverviewActivity_Selected_description"
+            android:padding="1dp"
+            app:backgroundTint="@color/signal_background_primary"
             app:srcCompat="@drawable/ic_check_circle_solid_20" />
 
     </FrameLayout>

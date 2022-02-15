@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -261,15 +262,14 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
               boolean lastInList,
               boolean allowApngAnimation)
     {
-      title.setText(stickerPack.getTitle().or(itemView.getResources().getString(R.string.StickerManagementAdapter_untitled)));
+      SpannableStringBuilder titleBuilder = new SpannableStringBuilder(stickerPack.getTitle().or(itemView.getResources().getString(R.string.StickerManagementAdapter_untitled)));
+      if (BlessedPacks.contains(stickerPack.getPackId())) {
+        titleBuilder.append(blessedBadge);
+      }
+
+      title.setText(titleBuilder);
       author.setText(stickerPack.getAuthor().or(itemView.getResources().getString(R.string.StickerManagementAdapter_unknown)));
       divider.setVisibility(lastInList ? View.GONE : View.VISIBLE);
-
-      if (BlessedPacks.contains(stickerPack.getPackId())) {
-        title.setOverflowText(blessedBadge);
-      } else {
-        title.setOverflowText(null);
-      }
 
       glideRequests.load(new DecryptableUri(stickerPack.getCover().getUri()))
                    .transition(DrawableTransitionOptions.withCrossFade())

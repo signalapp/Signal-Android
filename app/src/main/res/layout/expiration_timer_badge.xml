@@ -17,8 +17,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="3dp"
         android:scaleType="fitCenter"
-        android:tint="@color/signal_text_toolbar_subtitle"
-        app:srcCompat="@drawable/ic_timer_60_12" />
+        app:srcCompat="@drawable/ic_timer_conversation_badge" />
 
     <TextView
         android:id="@+id/expiration_badge"
@@ -28,7 +27,7 @@
         android:gravity="center_horizontal|bottom"
         android:paddingTop="1dp"
         android:paddingBottom="3dp"
-        android:textColor="@color/signal_text_toolbar_subtitle"
+        android:textColor="@color/signal_inverse_transparent_80"
         android:textSize="14dp"
         tools:text="1w"
         tools:ignore="SpUsage" />

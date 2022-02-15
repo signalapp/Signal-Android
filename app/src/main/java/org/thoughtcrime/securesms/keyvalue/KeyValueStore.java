@@ -1,17 +1,13 @@
 package org.thoughtcrime.securesms.keyvalue;
 
-import android.app.Application;
-import android.content.Context;
-
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 
 import java.util.Collection;
@@ -34,14 +30,14 @@ public final class KeyValueStore implements KeyValueReader {
 
   private static final String TAG = Log.tag(KeyValueStore.class);
 
-  private final ExecutorService  executor;
-  private final KeyValueDatabase database;
+  private final ExecutorService           executor;
+  private final KeyValuePersistentStorage storage;
 
   private KeyValueDataSet dataSet;
 
-  public KeyValueStore(@NonNull Application application) {
+  public KeyValueStore(@NonNull KeyValuePersistentStorage storage) {
     this.executor = SignalExecutors.newCachedSingleThreadExecutor("signal-KeyValueStore");
-    this.database = KeyValueDatabase.getInstance(application);
+    this.storage  = storage;
   }
 
   @AnyThread
@@ -86,6 +82,13 @@ public final class KeyValueStore implements KeyValueReader {
     return dataSet.getString(key, defaultValue);
   }
 
+  @AnyThread
+  @Override
+  public synchronized boolean containsKey(@NonNull String key) {
+    initializeIfNecessary();
+    return dataSet.containsKey(key);
+  }
+
   /**
    * @return A writer that allows writing and removing multiple entries in a single atomic
    *         transaction.
@@ -126,6 +129,15 @@ public final class KeyValueStore implements KeyValueReader {
     }
   }
 
+  /**
+   * Forces the store to re-fetch all of it's data from the database.
+   * Should only be used for testing!
+   */
+  @VisibleForTesting
+  synchronized void resetCache() {
+    dataSet = null;
+    initializeIfNecessary();
+  }
 
   private synchronized void write(@NonNull KeyValueDataSet newDataSet, @NonNull Collection<String> removes) {
     initializeIfNecessary();
@@ -133,12 +145,12 @@ public final class KeyValueStore implements KeyValueReader {
     dataSet.putAll(newDataSet);
     dataSet.removeAll(removes);
 
-    executor.execute(() -> database.writeDataSet(newDataSet, removes));
+    executor.execute(() -> storage.writeDataSet(newDataSet, removes));
   }
 
   private void initializeIfNecessary() {
     if (dataSet != null) return;
-    this.dataSet = database.getDataSet();
+    this.dataSet = storage.getDataSet();
   }
 
   class Writer {

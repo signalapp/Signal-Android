@@ -131,6 +131,17 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   }
 
   @Override
+  public int read() throws IOException {
+    byte[] buffer = new byte[1];
+    int    read;
+
+    //noinspection StatementWithEmptyBody
+    while ((read = read(buffer)) == 0);
+
+    return (read == -1) ? -1 : ((int) buffer[0]) & 0xFF;
+  }
+
+  @Override
   public int read(byte[] buffer) throws IOException {
     return read(buffer, 0, buffer.length);
   }
@@ -162,10 +173,12 @@ public class AttachmentCipherInputStream extends FilterInputStream {
 
   private int readFinal(byte[] buffer, int offset, int length) throws IOException {
     try {
-      int flourish = cipher.doFinal(buffer, offset);
+      byte[] internal = new byte[buffer.length];
+      int actualLength = Math.min(length, cipher.doFinal(internal, 0));
+      System.arraycopy(internal, 0, buffer, offset, actualLength);
 
       done = true;
-      return flourish;
+      return actualLength;
     } catch (IllegalBlockSizeException | BadPaddingException | ShortBufferException e) {
       throw new IOException(e);
     }

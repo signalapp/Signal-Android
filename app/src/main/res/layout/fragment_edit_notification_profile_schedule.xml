@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/dsl_settings_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        tools:ignore="UnusedAttribute">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/edit_notification_profile_schedule_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:gravity="center"
+                android:text="@string/EditNotificationProfileSchedule__add_a_schedule"
+                android:textAppearance="@style/TextAppearance.Signal.Title1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/edit_notification_profile_schedule_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:gravity="center"
+                android:text="@string/EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_notification_profile_schedule_title" />
+
+            <TextView
+                android:id="@+id/edit_notification_profile_schedule_switch_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:gravity="start|center_vertical"
+                android:minHeight="56dp"
+                android:text="@string/EditNotificationProfileSchedule__schedule"
+                android:textAppearance="@style/Signal.Text.Body"
+                app:layout_constraintEnd_toStartOf="@id/edit_notification_profile_schedule_switch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_notification_profile_schedule_description"
+                app:layout_goneMarginTop="0dp" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/edit_notification_profile_schedule_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:enabled="false"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_notification_profile_schedule_switch_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_notification_profile_schedule_switch_description" />
+
+            <TextView
+                android:id="@+id/edit_notification_profile_schedule_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="16dp"
+                android:text="@string/EditNotificationProfileSchedule__start"
+                android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_notification_profile_schedule_switch_description" />
+
+            <TextView
+                android:id="@+id/edit_notification_profile_schedule_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/EditNotificationProfileSchedule__end"
+                android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_notification_profile_schedule_start"
+                app:layout_constraintStart_toStartOf="@id/edit_notification_profile_schedule_end_time"
+                app:layout_constraintTop_toTopOf="@+id/edit_notification_profile_schedule_start" />
+
+            <TextView
+                android:id="@+id/edit_notification_profile_schedule_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:letterSpacing="0.02"
+                android:textColor="@color/text_color_accent_enabled_selector"
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="@+id/edit_notification_profile_schedule_start"
+                app:layout_constraintTop_toBottomOf="@+id/edit_notification_profile_schedule_start"
+                tools:text="9:00" />
+
+            <TextView
+                android:id="@+id/edit_notification_profile_schedule_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:enabled="false"
+                android:letterSpacing="0.02"
+                android:textColor="@color/text_color_accent_enabled_selector"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_notification_profile_schedule_start_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edit_notification_profile_schedule_start_time"
+                tools:text="5:00" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:constraint_referenced_ids="edit_notification_profile_schedule_day_1,edit_notification_profile_schedule_day_2,edit_notification_profile_schedule_day_3,edit_notification_profile_schedule_day_4,edit_notification_profile_schedule_day_5,edit_notification_profile_schedule_day_6,edit_notification_profile_schedule_day_7"
+                app:flow_horizontalStyle="spread_inside"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_notification_profile_schedule_start_time" />
+
+            <CheckedTextView
+                android:id="@+id/edit_notification_profile_schedule_day_1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/notification_profile_day_background"
+                android:enabled="false"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textAlignment="gravity"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__sunday_first_letter" />
+
+            <CheckedTextView
+                android:id="@+id/edit_notification_profile_schedule_day_2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/notification_profile_day_background"
+                android:enabled="false"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textAlignment="gravity"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__monday_first_letter" />
+
+            <CheckedTextView
+                android:id="@+id/edit_notification_profile_schedule_day_3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/notification_profile_day_background"
+                android:enabled="false"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textAlignment="gravity"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__tuesday_first_letter" />
+
+            <CheckedTextView
+                android:id="@+id/edit_notification_profile_schedule_day_4"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/notification_profile_day_background"
+                android:enabled="false"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textAlignment="gravity"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__wednesday_first_letter" />
+
+            <CheckedTextView
+                android:id="@+id/edit_notification_profile_schedule_day_5"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/notification_profile_day_background"
+                android:enabled="false"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textAlignment="gravity"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__thursday_first_letter" />
+
+            <CheckedTextView
+                android:id="@+id/edit_notification_profile_schedule_day_6"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/notification_profile_day_background"
+                android:enabled="false"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textAlignment="gravity"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__friday_first_letter" />
+
+            <CheckedTextView
+                android:id="@+id/edit_notification_profile_schedule_day_7"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/notification_profile_day_background"
+                android:enabled="false"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:padding="6dp"
+                android:textAlignment="gravity"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                android:textColor="@color/notification_profile_schedule_text_selector"
+                tools:text="@string/EditNotificationProfileSchedule__saturday_first_letter" />
+
+            <com.dd.CircularProgressButton
+                android:id="@+id/edit_notification_profile_schedule__next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                android:layout_marginBottom="@dimen/dsl_settings_gutter"
+                android:enabled="false"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/EditNotificationProfileFragment__next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:cornerRadius="80dp"
+                app:cpb_colorIndicator="@color/white"
+                app:cpb_colorProgress="?colorAccent"
+                app:cpb_cornerRadius="28dp"
+                app:cpb_selectorIdle="@drawable/progress_button_state"
+                app:cpb_textIdle="@string/EditNotificationProfileFragment__next"
+                app:elevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

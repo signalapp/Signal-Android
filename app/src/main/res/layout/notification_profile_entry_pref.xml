@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dsl_settings_gutter"
+    android:layout_marginEnd="@dimen/dsl_settings_gutter"
+    android:background="@drawable/notification_entry_pref_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="72dp">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+            android:id="@+id/notification_preference_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/circle_tintable"
+            android:importantForAccessibility="no"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/notification_preference_collapse_barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_profile_circle_outline_24" />
+
+        <TextView
+            android:id="@+id/notification_preference_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="4dp"
+            android:textAppearance="@style/Signal.Text.Body"
+            app:layout_constraintBottom_toTopOf="@id/notification_preference_status"
+            app:layout_constraintEnd_toStartOf="@id/notification_preference_chevron"
+            app:layout_constraintStart_toEndOf="@id/notification_preference_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Downtime" />
+
+        <TextView
+            android:id="@+id/notification_preference_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="4dp"
+            android:enabled="false"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            app:layout_constraintBottom_toBottomOf="@id/notification_preference_collapse_barrier"
+            app:layout_constraintEnd_toStartOf="@id/notification_preference_chevron"
+            app:layout_constraintStart_toEndOf="@id/notification_preference_image"
+            app:layout_constraintTop_toBottomOf="@id/notification_preference_name"
+            tools:text="Off" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notification_preference_chevron"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/notification_preference_collapse_barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/circled_chevron" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/notification_preference_collapse_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:barrierMargin="12dp"
+            app:constraint_referenced_ids="notification_preference_image,notification_preference_status,notification_preference_chevron" />
+
+        <TextView
+            android:id="@+id/notification_preference_1hr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:paddingStart="76dp"
+            android:paddingEnd="56dp"
+            android:text="@string/NotificationProfileSelection__for_1_hour"
+            android:textAppearance="@style/Signal.Text.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notification_preference_collapse_barrier" />
+
+        <TextView
+            tools:visibility="gone"
+            android:id="@+id/notification_preference_6pm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:paddingStart="76dp"
+            android:paddingEnd="56dp"
+            android:textAppearance="@style/Signal.Text.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notification_preference_1hr"
+            tools:text="Until 6pm" />
+
+        <TextView
+            android:id="@+id/notification_preference_view_settings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:paddingStart="76dp"
+            android:paddingEnd="56dp"
+            android:text="@string/NotificationProfileSelection__view_settings"
+            android:textAppearance="@style/Signal.Text.Body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notification_preference_6pm" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/notification_preference_expanded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="notification_preference_1hr,notification_preference_6pm,notification_preference_view_settings" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

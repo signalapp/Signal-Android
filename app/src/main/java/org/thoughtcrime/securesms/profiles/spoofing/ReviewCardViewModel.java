@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.profiles.spoofing;
 
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -10,6 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.LiveGroup;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
@@ -19,16 +25,28 @@ import java.util.Objects;
 public class ReviewCardViewModel extends ViewModel {
 
   private final ReviewCardRepository                   repository;
-  private final boolean                                isGroupThread;
   private final MutableLiveData<List<ReviewRecipient>> reviewRecipients;
   private final LiveData<List<ReviewCard>>             reviewCards;
   private final SingleLiveEvent<Event>                 reviewEvents;
+  private final boolean                                isGroupThread;
 
-  public ReviewCardViewModel(@NonNull ReviewCardRepository repository, boolean isGroupThread) {
+  public ReviewCardViewModel(@NonNull ReviewCardRepository repository, @Nullable GroupId groupId) {
+    final LiveData<Boolean> isSelfGroupAdmin;
+
+    if (groupId != null) {
+      LiveGroup liveGroup = new LiveGroup(groupId);
+      isSelfGroupAdmin = liveGroup.getRecipientIsAdmin(Recipient.self().getId());
+    } else {
+      isSelfGroupAdmin = new DefaultValueLiveData<>(false);
+    }
+
+    this.isGroupThread    = groupId != null;
     this.repository       = repository;
-    this.isGroupThread    = isGroupThread;
     this.reviewRecipients = new MutableLiveData<>();
-    this.reviewCards      = LiveDataUtil.mapAsync(reviewRecipients, this::transformReviewRecipients);
+
+    LiveData<Pair<Boolean, List<ReviewRecipient>>> adminStatusAndReviewRecipients = LiveDataUtil.combineLatest(isSelfGroupAdmin, reviewRecipients, Pair::new);
+
+    this.reviewCards      = LiveDataUtil.mapAsync(adminStatusAndReviewRecipients, pair -> transformReviewRecipients(pair.first, pair.second));
     this.reviewEvents     = new SingleLiveEvent<>();
 
     repository.loadRecipients(new OnRecipientsLoadedListener());
@@ -67,12 +85,12 @@ public class ReviewCardViewModel extends ViewModel {
   }
 
   @WorkerThread
-  private @NonNull List<ReviewCard> transformReviewRecipients(@NonNull List<ReviewRecipient> reviewRecipients) {
+  private @NonNull List<ReviewCard> transformReviewRecipients(boolean isSelfGroupAdmin, @NonNull List<ReviewRecipient> reviewRecipients) {
     return Stream.of(reviewRecipients)
                  .map(r -> new ReviewCard(r,
                                           repository.loadGroupsInCommonCount(r) - (isGroupThread ? 1 : 0),
                                           getCardType(r),
-                                          getPrimaryAction(r),
+                                          getPrimaryAction(r, isSelfGroupAdmin),
                                           getSecondaryAction(r)))
                  .toList();
 
@@ -88,10 +106,10 @@ public class ReviewCardViewModel extends ViewModel {
     }
   }
 
-  private @NonNull ReviewCard.Action getPrimaryAction(@NonNull ReviewRecipient reviewRecipient) {
+  private @NonNull ReviewCard.Action getPrimaryAction(@NonNull ReviewRecipient reviewRecipient, boolean isSelfGroupAdmin) {
     if (reviewRecipient.getRecipient().isSystemContact()) {
       return ReviewCard.Action.UPDATE_CONTACT;
-    } else if (isGroupThread) {
+    } else if (isGroupThread && isSelfGroupAdmin) {
       return ReviewCard.Action.REMOVE_FROM_GROUP;
     } else {
       return ReviewCard.Action.BLOCK;
@@ -139,16 +157,16 @@ public class ReviewCardViewModel extends ViewModel {
   public static class Factory implements ViewModelProvider.Factory {
 
     private final ReviewCardRepository repository;
-    private final boolean              isGroupThread;
+    private final GroupId              groupId;
 
-    public Factory(@NonNull ReviewCardRepository repository, boolean isGroupThread) {
-      this.repository    = repository;
-      this.isGroupThread = isGroupThread;
+    public Factory(@NonNull ReviewCardRepository repository, @Nullable GroupId groupId) {
+      this.repository = repository;
+      this.groupId    = groupId;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return Objects.requireNonNull(modelClass.cast(new ReviewCardViewModel(repository, isGroupThread)));
+      return Objects.requireNonNull(modelClass.cast(new ReviewCardViewModel(repository, groupId)));
     }
   }
 

@@ -1,6 +1,7 @@
 package org.signal.paging;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * Represents a source of data that can be queried.
  */
-public interface PagedDataSource<T> {
+public interface PagedDataSource<Key, Data> {
   /**
    * @return The total size of the data set.
    */
@@ -24,7 +25,13 @@ public interface PagedDataSource<T> {
    *         If you don't have the full range, just populate what you can.
    */
   @WorkerThread
-  @NonNull List<T> load(int start, int length, @NonNull CancellationSignal cancellationSignal);
+  @NonNull List<Data> load(int start, int length, @NonNull CancellationSignal cancellationSignal);
+
+  @WorkerThread
+  @Nullable Data load(Key key);
+
+  @WorkerThread
+  @NonNull Key getKey(@NonNull Data data);
 
   interface CancellationSignal {
     /**

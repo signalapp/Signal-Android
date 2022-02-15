@@ -19,12 +19,14 @@ import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
@@ -98,6 +100,7 @@ final class GroupsV2UpdateMessageProducer {
       describeUnknownEditorRevokedInvitations(change, updates);
       describeUnknownEditorPromotePending(change, updates);
       describeUnknownEditorNewTitle(change, updates);
+      describeUnknownEditorNewDescription(change, updates);
       describeUnknownEditorNewAvatar(change, updates);
       describeUnknownEditorNewTimer(change, updates);
       describeUnknownEditorNewAttributeAccess(change, updates);
@@ -106,6 +109,7 @@ final class GroupsV2UpdateMessageProducer {
       describeRequestingMembers(change, updates);
       describeUnknownEditorRequestingMembersApprovals(change, updates);
       describeUnknownEditorRequestingMembersDeletes(change, updates);
+      describeUnknownEditorAnnouncementGroupChange(change, updates);
 
       describeUnknownEditorMemberRemovals(change, updates);
 
@@ -121,6 +125,7 @@ final class GroupsV2UpdateMessageProducer {
       describeRevokedInvitations(change, updates);
       describePromotePending(change, updates);
       describeNewTitle(change, updates);
+      describeNewDescription(change, updates);
       describeNewAvatar(change, updates);
       describeNewTimer(change, updates);
       describeNewAttributeAccess(change, updates);
@@ -129,6 +134,7 @@ final class GroupsV2UpdateMessageProducer {
       describeRequestingMembers(change, updates);
       describeRequestingMembersApprovals(change, updates);
       describeRequestingMembersDeletes(change, updates);
+      describeAnnouncementGroupChange(change, updates);
 
       describeMemberRemovals(change, updates);
 
@@ -431,9 +437,27 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
+  private void describeNewDescription(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+
+    if (change.hasNewDescription()) {
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_description), R.drawable.ic_update_group_name_16));
+      } else {
+        updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_changed_the_group_description, editor), R.drawable.ic_update_group_name_16));
+      }
+    }
+  }
+
   private void describeUnknownEditorNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.hasNewTitle()) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(change.getNewTitle().getValue())), R.drawable.ic_update_group_name_16));
+    }
+  }
+
+  private void describeUnknownEditorNewDescription(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    if (change.hasNewDescription()) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_description_has_changed), R.drawable.ic_update_group_name_16));
     }
   }
 
@@ -455,7 +479,7 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
-  private void describeNewTimer(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+  void describeNewTimer(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
 
     if (change.hasNewTimer()) {
@@ -692,14 +716,41 @@ final class GroupsV2UpdateMessageProducer {
     }
   }
 
+  private void describeAnnouncementGroupChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+
+    if (change.getNewIsAnnouncementGroup() == EnabledState.ENABLED) {
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
+      } else {
+        updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_allow_only_admins_to_send, editor), R.drawable.ic_update_group_role_16));
+      }
+    } else if (change.getNewIsAnnouncementGroup() == EnabledState.DISABLED) {
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
+      } else {
+        updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_allow_all_members_to_send, editor), R.drawable.ic_update_group_role_16));
+      }
+    }
+  }
+
+  private void describeUnknownEditorAnnouncementGroupChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    if (change.getNewIsAnnouncementGroup() == EnabledState.ENABLED) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
+    } else if (change.getNewIsAnnouncementGroup() == EnabledState.DISABLED) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
+    }
+  }
+
   interface DescribeMemberStrategy {
 
     /**
-     * Map a UUID to a string that describes the group member.
+     * Map an ACI to a string that describes the group member.
+     * @param aci
      */
     @NonNull
     @WorkerThread
-    String describe(@NonNull UUID uuid);
+    String describe(@NonNull ACI aci);
   }
 
   private interface StringFactory1Arg {
@@ -720,9 +771,9 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull StringFactory1Arg stringFactory,
                                               @DrawableRes int iconResource)
   {
-    UUID uuid1 = UuidUtil.fromByteStringOrUnknown(uuid1Bytes);
+    ACI aci1 = ACI.fromByteStringOrUnknown(uuid1Bytes);
 
-    return UpdateDescription.mentioning(Collections.singletonList(uuid1), () -> stringFactory.create(descriptionStrategy.describe(uuid1)), iconResource);
+    return UpdateDescription.mentioning(Collections.singletonList(aci1), () -> stringFactory.create(descriptionStrategy.describe(aci1)), iconResource);
   }
 
   private UpdateDescription updateDescription(@NonNull ByteString uuid1Bytes,
@@ -730,9 +781,9 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull StringFactory2Args stringFactory,
                                               @DrawableRes int iconResource)
   {
-    UUID uuid1 = UuidUtil.fromByteStringOrUnknown(uuid1Bytes);
-    UUID uuid2 = UuidUtil.fromByteStringOrUnknown(uuid2Bytes);
+    ACI aci1 = ACI.fromByteStringOrUnknown(uuid1Bytes);
+    ACI aci2 = ACI.fromByteStringOrUnknown(uuid2Bytes);
 
-    return UpdateDescription.mentioning(Arrays.asList(uuid1, uuid2), () -> stringFactory.create(descriptionStrategy.describe(uuid1), descriptionStrategy.describe(uuid2)), iconResource);
+    return UpdateDescription.mentioning(Arrays.asList(aci1, aci2), () -> stringFactory.create(descriptionStrategy.describe(aci1), descriptionStrategy.describe(aci2)), iconResource);
   }
 }

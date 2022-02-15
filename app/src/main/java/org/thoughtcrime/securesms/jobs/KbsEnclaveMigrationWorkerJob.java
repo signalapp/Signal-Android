@@ -5,10 +5,13 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.KbsEnclaveMigrationJob;
 import org.thoughtcrime.securesms.pin.PinState;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;
@@ -69,6 +72,17 @@ public class KbsEnclaveMigrationWorkerJob extends BaseJob {
   public boolean onShouldRetry(@NonNull Exception e) {
     return e instanceof IOException ||
            e instanceof UnauthenticatedResponseException;
+  }
+
+  @Override
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    if (exception instanceof NonSuccessfulResponseCodeException) {
+      if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
+        return BackoffUtil.exponentialBackoff(pastAttemptCount, FeatureFlags.getServerErrorMaxBackoff());
+      }
+    }
+
+    return super.getNextRunAttemptBackoff(pastAttemptCount, exception);
   }
 
   @Override

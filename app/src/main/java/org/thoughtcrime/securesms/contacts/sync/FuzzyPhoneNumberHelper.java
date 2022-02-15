@@ -1,11 +1,16 @@
 package org.thoughtcrime.securesms.contacts.sync;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import org.whispersystems.signalservice.api.push.ACI;
+
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -18,28 +23,28 @@ import java.util.UUID;
  */
 class FuzzyPhoneNumberHelper {
 
+  private final static List<FuzzyMatcher> FUZZY_MATCHERS = Arrays.asList(new MexicoFuzzyMatcher(), new ArgentinaFuzzyMatcher());
+
   /**
    * This should be run on the list of eligible numbers for contact intersection so that we can
    * create an updated list that has potentially more "fuzzy" number matches in it.
    */
   static @NonNull InputResult generateInput(@NonNull Collection<String> testNumbers, @NonNull Collection<String> storedNumbers) {
-    Set<String>         allNumbers = new HashSet<>(testNumbers);
-    Map<String, String> fuzzies    = new HashMap<>();
+    Set<String>         allNumbers        = new HashSet<>(testNumbers);
+    Map<String, String> originalToVariant = new HashMap<>();
 
     for (String number : testNumbers) {
-      if (mx(number)) {
-        String add1   = mxAdd1(number);
-        String strip1 = mxStrip1(number);
-
-        if (mxMissing1(number) && !storedNumbers.contains(add1) && allNumbers.add(add1)) {
-          fuzzies.put(number, add1);
-        } else if (mxHas1(number) && !storedNumbers.contains(strip1) && allNumbers.add(strip1)) {
-          fuzzies.put(number, strip1);
+      for (FuzzyMatcher matcher : FUZZY_MATCHERS) {
+        if(matcher.matches(number)) {
+          String variant = matcher.getVariant(number);
+          if(variant != null && !storedNumbers.contains(variant) && allNumbers.add(variant)) {
+            originalToVariant.put(number, variant);
+          }
         }
       }
     }
 
-    return new InputResult(allNumbers, fuzzies);
+    return new InputResult(allNumbers, originalToVariant);
   }
 
   /**
@@ -47,124 +52,135 @@ class FuzzyPhoneNumberHelper {
    * these results and our initial input set, we can decide if we need to rewrite which number we
    * have stored locally.
    */
-  static @NonNull OutputResult generateOutput(@NonNull Collection<String> registeredNumbers, @NonNull InputResult inputResult) {
-    Set<String>         allNumbers = new HashSet<>(registeredNumbers);
+  static @NonNull OutputResult generateOutput(@NonNull Map<String, ACI> registeredNumbers, @NonNull InputResult inputResult) {
+    Map<String, ACI>    allNumbers = new HashMap<>(registeredNumbers);
     Map<String, String> rewrites   = new HashMap<>();
 
-    for (Map.Entry<String, String> entry : inputResult.getFuzzies().entrySet()) {
-      if (registeredNumbers.contains(entry.getKey()) && registeredNumbers.contains(entry.getValue())) {
-        if (mxHas1(entry.getKey())) {
-          rewrites.put(entry.getKey(), entry.getValue());
-          allNumbers.remove(entry.getKey());
-        } else {
-          allNumbers.remove(entry.getValue());
+    for (Map.Entry<String, String> entry : inputResult.getMapOfOriginalToVariant().entrySet()) {
+      String original = entry.getKey();
+      String variant  = entry.getValue();
+
+      if (registeredNumbers.containsKey(original) && registeredNumbers.containsKey(variant)) {
+        for (FuzzyMatcher matcher: FUZZY_MATCHERS) {
+          if(matcher.matches(original)) {
+            if (matcher.isPreferredVariant(original)) {
+              allNumbers.remove(variant);
+            } else {
+              rewrites.put(original, variant);
+              allNumbers.remove(original);
+            }
+          }
         }
-      } else if (registeredNumbers.contains(entry.getValue())) {
-        rewrites.put(entry.getKey(), entry.getValue());
-        allNumbers.remove(entry.getKey());
+      } else if (registeredNumbers.containsKey(variant)) {
+        rewrites.put(original, variant);
+        allNumbers.remove(original);
       }
     }
 
     return new OutputResult(allNumbers, rewrites);
   }
 
-  /**
-   * This should be run on the list of numbers we find out are registered with the server. Based on
-   * these results and our initial input set, we can decide if we need to rewrite which number we
-   * have stored locally.
-   */
-  static @NonNull OutputResultV2 generateOutputV2(@NonNull Map<String, UUID> registeredNumbers, @NonNull InputResult inputResult) {
-    Map<String, UUID>   allNumbers = new HashMap<>(registeredNumbers);
-    Map<String, String> rewrites   = new HashMap<>();
+  private interface FuzzyMatcher {
+    boolean matches(@NonNull String number);
+    @Nullable String getVariant(@NonNull String number);
+    boolean isPreferredVariant(@NonNull String number);
+  }
 
-    for (Map.Entry<String, String> entry : inputResult.getFuzzies().entrySet()) {
-      if (registeredNumbers.containsKey(entry.getKey()) && registeredNumbers.containsKey(entry.getValue())) {
-        if (mxHas1(entry.getKey())) {
-          rewrites.put(entry.getKey(), entry.getValue());
-          allNumbers.remove(entry.getKey());
-        } else {
-          allNumbers.remove(entry.getValue());
-        }
-      } else if (registeredNumbers.containsKey(entry.getValue())) {
-        rewrites.put(entry.getKey(), entry.getValue());
-        allNumbers.remove(entry.getKey());
-      }
+  /**
+   * Mexico has an optional 1 after their +52 country code, e.g. both of these numbers are valid and map to the same logical number:
+   * +525512345678
+   * +5215512345678
+   *
+   * Mexico used to require the 1, but has since removed the requirement.
+   */
+  @VisibleForTesting
+  static class MexicoFuzzyMatcher implements FuzzyMatcher {
+
+    @Override
+    public boolean matches(@NonNull String number) {
+      return number.startsWith("+52") && (number.length() == 13 || number.length() == 14);
     }
 
-    return new OutputResultV2(allNumbers, rewrites);
+    @Override
+    public @Nullable String getVariant(String number) {
+      if(number.startsWith("+521") && number.length() == 14) {
+        return "+52" + number.substring("+521".length());
+      }
+
+      if(number.startsWith("+52") && !number.startsWith("+521") && number.length() == 13) {
+        return "+521" + number.substring("+52".length());
+      }
+
+      return null;
+    }
+
+    @Override
+    public boolean isPreferredVariant(@NonNull String number) {
+      return number.startsWith("+52") && !number.startsWith("+521") && number.length() == 13;
+    }
   }
 
+  /**
+   * Argentina has an optional 9 after their +54 country code, e.g. both of these numbers are valid and map to the same logical number:
+   * +545512345678
+   * +5495512345678
+   */
+  @VisibleForTesting
+  static class ArgentinaFuzzyMatcher implements FuzzyMatcher {
 
-  private static boolean mx(@NonNull String number) {
-    return number.startsWith("+52") && (number.length() == 13 || number.length() == 14);
+    @Override
+    public boolean matches(@NonNull String number) {
+      return number.startsWith("+54") && (number.length() == 13 || number.length() == 14);
+    }
+
+    @Override
+    public @Nullable String getVariant(String number) {
+      if(number.startsWith("+549") && number.length() == 14) {
+        return "+54" + number.substring("+549".length());
+      }
+
+      if(number.startsWith("+54") && !number.startsWith("+549") && number.length() == 13) {
+        return "+549" + number.substring("+54".length());
+      }
+
+      return null;
+    }
+
+    @Override
+    public boolean isPreferredVariant(@NonNull String number) {
+      return number.startsWith("+549") && number.length() == 14;
+    }
   }
-
-  private static boolean mxHas1(@NonNull String number) {
-    return number.startsWith("+521") && number.length() == 14;
-  }
-
-  private static boolean mxMissing1(@NonNull String number) {
-    return number.startsWith("+52") && !number.startsWith("+521") && number.length() == 13;
-  }
-
-  private static @NonNull String mxStrip1(@NonNull String number) {
-    return mxHas1(number) ? "+52" + number.substring("+521".length())
-                          : number;
-  }
-
-  private static @NonNull String mxAdd1(@NonNull String number) {
-    return mxMissing1(number) ? "+521" + number.substring("+52".length())
-                              : number;
-  }
-
 
   public static class InputResult {
     private final Set<String>         numbers;
-    private final Map<String, String> fuzzies;
+    private final Map<String, String> originalToVariant;
 
     @VisibleForTesting
-    InputResult(@NonNull Set<String> numbers, @NonNull Map<String, String> fuzzies) {
-      this.numbers = numbers;
-      this.fuzzies = fuzzies;
+    InputResult(@NonNull Set<String> numbers, @NonNull Map<String, String> originalToVariant) {
+      this.numbers           = numbers;
+      this.originalToVariant = originalToVariant;
     }
 
     public @NonNull Set<String> getNumbers() {
       return numbers;
     }
 
-    public @NonNull Map<String, String> getFuzzies() {
-      return fuzzies;
+    public @NonNull Map<String, String> getMapOfOriginalToVariant() {
+      return originalToVariant;
     }
   }
 
   public static class OutputResult {
-    private final Set<String>         numbers;
+    private final Map<String, ACI>   numbers;
     private final Map<String, String> rewrites;
 
-    private OutputResult(@NonNull Set<String> numbers, @NonNull Map<String, String> rewrites) {
+    private OutputResult(@NonNull Map<String, ACI> numbers, @NonNull Map<String, String> rewrites) {
       this.numbers  = numbers;
       this.rewrites = rewrites;
     }
 
-    public @NonNull Set<String> getNumbers() {
-      return numbers;
-    }
-
-    public @NonNull Map<String, String> getRewrites() {
-      return rewrites;
-    }
-  }
-
-  public static class OutputResultV2 {
-    private final Map<String, UUID>   numbers;
-    private final Map<String, String> rewrites;
-
-    private OutputResultV2(@NonNull Map<String, UUID> numbers, @NonNull Map<String, String> rewrites) {
-      this.numbers  = numbers;
-      this.rewrites = rewrites;
-    }
-
-    public @NonNull Map<String, UUID> getNumbers() {
+    public @NonNull Map<String, ACI> getNumbers() {
       return numbers;
     }
 

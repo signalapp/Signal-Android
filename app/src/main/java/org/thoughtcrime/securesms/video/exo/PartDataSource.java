@@ -13,7 +13,7 @@ import com.google.android.exoplayer2.upstream.TransferListener;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 
 import java.io.EOFException;
@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class PartDataSource implements DataSource {
+class PartDataSource implements DataSource {
 
   private final @NonNull  Context          context;
   private final @Nullable TransferListener listener;
@@ -37,14 +37,14 @@ public class PartDataSource implements DataSource {
   }
 
   @Override
-  public void addTransferListener(TransferListener transferListener) {
+  public void addTransferListener(@NonNull TransferListener transferListener) {
   }
 
   @Override
   public long open(DataSpec dataSpec) throws IOException {
     this.uri = dataSpec.uri;
 
-    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase attachmentDatabase = SignalDatabase.attachments();
     PartUriParser      partUri            = new PartUriParser(uri);
     Attachment         attachment         = attachmentDatabase.getAttachment(partUri.getPartId());
 
@@ -62,7 +62,7 @@ public class PartDataSource implements DataSource {
   }
 
   @Override
-  public int read(byte[] buffer, int offset, int readLength) throws IOException {
+  public int read(@NonNull byte[] buffer, int offset, int readLength) throws IOException {
     int read = inputSteam.read(buffer, offset, readLength);
 
     if (read > 0 && listener != null) {
@@ -78,7 +78,7 @@ public class PartDataSource implements DataSource {
   }
 
   @Override
-  public Map<String, List<String>> getResponseHeaders() {
+  public @NonNull Map<String, List<String>> getResponseHeaders() {
     return Collections.emptyMap();
   }
 

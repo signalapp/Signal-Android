@@ -3,28 +3,27 @@ package org.thoughtcrime.securesms.util;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import androidx.lifecycle.Observer;
 
 import org.conscrypt.Conscrypt;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class SignalProxyUtil {
 
@@ -38,9 +37,9 @@ public final class SignalProxyUtil {
   private SignalProxyUtil() {}
 
   public static void startListeningToWebsocket() {
-    if (SignalStore.proxy().isProxyEnabled() && ApplicationDependencies.getPipeListener().getState().getValue() == PipeConnectivityListener.State.FAILURE) {
+    if (SignalStore.proxy().isProxyEnabled() && ApplicationDependencies.getSignalWebSocket().getWebSocketState().firstOrError().blockingGet().isFailure()) {
       Log.w(TAG, "Proxy is in a failed state. Restarting.");
-      ApplicationDependencies.closeConnectionsAfterProxyFailure();
+      ApplicationDependencies.closeConnections();
     }
 
     ApplicationDependencies.getIncomingMessageObserver();
@@ -79,35 +78,21 @@ public final class SignalProxyUtil {
   public static boolean testWebsocketConnection(long timeout) {
     startListeningToWebsocket();
 
-    if (TextSecurePreferences.getLocalNumber(ApplicationDependencies.getApplication()) == null) {
+    if (SignalStore.account().getE164() == null) {
       Log.i(TAG, "User is unregistered! Doing simple check.");
       return testWebsocketConnectionUnregistered(timeout);
     }
 
-    CountDownLatch latch   = new CountDownLatch(1);
-    AtomicBoolean  success = new AtomicBoolean(false);
-
-    Observer<PipeConnectivityListener.State> observer = state -> {
-      if (state == PipeConnectivityListener.State.CONNECTED) {
-        success.set(true);
-        latch.countDown();
-      } else if (state == PipeConnectivityListener.State.FAILURE) {
-        success.set(false);
-        latch.countDown();
-      }
-    };
-
-    Util.runOnMainSync(() -> ApplicationDependencies.getPipeListener().getState().observeForever(observer));
-
-    try {
-      latch.await(timeout, TimeUnit.MILLISECONDS);
-    } catch (InterruptedException e) {
-      Log.w(TAG, "Interrupted!", e);
-    } finally {
-      Util.runOnMainSync(() -> ApplicationDependencies.getPipeListener().getState().removeObserver(observer));
-    }
-
-    return success.get();
+    return ApplicationDependencies.getSignalWebSocket()
+                                  .getWebSocketState()
+                                  .subscribeOn(Schedulers.trampoline())
+                                  .observeOn(Schedulers.trampoline())
+                                  .timeout(timeout, TimeUnit.MILLISECONDS)
+                                  .skipWhile(state -> state != WebSocketConnectionState.CONNECTED && !state.isFailure())
+                                  .firstOrError()
+                                  .flatMap(state -> Single.just(state == WebSocketConnectionState.CONNECTED))
+                                  .onErrorReturn(t -> false)
+                                  .blockingGet();
   }
 
   /**
@@ -168,7 +153,7 @@ public final class SignalProxyUtil {
   private static boolean testWebsocketConnectionUnregistered(long timeout) {
     CountDownLatch              latch          = new CountDownLatch(1);
     AtomicBoolean               success        = new AtomicBoolean(false);
-    SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(ApplicationDependencies.getApplication(), "", "");
+    SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(ApplicationDependencies.getApplication(), "", SignalServiceAddress.DEFAULT_DEVICE_ID, "");
 
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {

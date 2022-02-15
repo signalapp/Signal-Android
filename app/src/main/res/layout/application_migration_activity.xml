@@ -1,46 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:fillViewport="true"
-            android:background="@drawable/background_pattern_repeat">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center" >
+    <TextView
+        android:id="@+id/app_migration_text"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/Signal.Text.Headline"
+        android:text="@string/ApplicationMigrationActivity__signal_is_updating"
+        android:gravity="center"
+        android:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-        <LinearLayout android:paddingEnd="16dip"
-                      android:paddingStart="16dip"
-                      android:paddingTop="10dip"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center"
-                      android:visibility="visible"
-                      android:orientation="vertical">
+    <ProgressBar
+        android:id="@+id/indeterminate_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:indeterminate="true"
+        app:layout_constraintTop_toBottomOf="@id/app_migration_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-                <TextView style="@style/Registration.BigLabel"
-                          android:layout_width="fill_parent"
-                          android:layout_marginBottom="16dip"
-                          android:layout_marginTop="16dip"
-                          android:gravity="center"
-                          android:text="@string/ApplicationMigrationActivity__signal_is_updating"/>
-
-                <ProgressBar android:id="@+id/indeterminate_progress"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"
-                             android:indeterminate="true"
-                             android:layout_gravity="center"/>
-
-            <ProgressBar android:id="@+id/determinate_progress"
-                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                         android:layout_width="fill_parent"
-                         android:layout_height="wrap_content"
-                         android:indeterminate="false"
-                         android:visibility="gone"
-                         android:layout_gravity="center"/>
-
-        </LinearLayout>
-    </FrameLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

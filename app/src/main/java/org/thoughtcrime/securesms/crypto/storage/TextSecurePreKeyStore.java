@@ -4,7 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.PreKeyStore;
@@ -16,9 +17,9 @@ import java.util.List;
 public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
 
   @SuppressWarnings("unused")
-  private static final String TAG = TextSecurePreKeyStore.class.getSimpleName();
+  private static final String TAG = Log.tag(TextSecurePreKeyStore.class);
 
-  private static final Object FILE_LOCK = new Object();
+  private static final Object LOCK = new Object();
 
   @NonNull
   private final Context context;
@@ -29,8 +30,8 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
 
   @Override
   public PreKeyRecord loadPreKey(int preKeyId) throws InvalidKeyIdException {
-    synchronized (FILE_LOCK) {
-      PreKeyRecord preKeyRecord = DatabaseFactory.getPreKeyDatabase(context).getPreKey(preKeyId);
+    synchronized (LOCK) {
+      PreKeyRecord preKeyRecord = SignalDatabase.preKeys().getPreKey(preKeyId);
 
       if (preKeyRecord == null) throw new InvalidKeyIdException("No such key: " + preKeyId);
       else                      return preKeyRecord;
@@ -39,8 +40,8 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
 
   @Override
   public SignedPreKeyRecord loadSignedPreKey(int signedPreKeyId) throws InvalidKeyIdException {
-    synchronized (FILE_LOCK) {
-      SignedPreKeyRecord signedPreKeyRecord = DatabaseFactory.getSignedPreKeyDatabase(context).getSignedPreKey(signedPreKeyId);
+    synchronized (LOCK) {
+      SignedPreKeyRecord signedPreKeyRecord = SignalDatabase.signedPreKeys().getSignedPreKey(signedPreKeyId);
 
       if (signedPreKeyRecord == null) throw new InvalidKeyIdException("No such signed prekey: " + signedPreKeyId);
       else                            return signedPreKeyRecord;
@@ -49,43 +50,42 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
 
   @Override
   public List<SignedPreKeyRecord> loadSignedPreKeys() {
-    synchronized (FILE_LOCK) {
-      return DatabaseFactory.getSignedPreKeyDatabase(context).getAllSignedPreKeys();
+    synchronized (LOCK) {
+      return SignalDatabase.signedPreKeys().getAllSignedPreKeys();
     }
   }
 
   @Override
   public void storePreKey(int preKeyId, PreKeyRecord record) {
-    synchronized (FILE_LOCK) {
-      DatabaseFactory.getPreKeyDatabase(context).insertPreKey(preKeyId, record);
+    synchronized (LOCK) {
+      SignalDatabase.preKeys().insertPreKey(preKeyId, record);
     }
   }
 
   @Override
   public void storeSignedPreKey(int signedPreKeyId, SignedPreKeyRecord record) {
-    synchronized (FILE_LOCK) {
-      DatabaseFactory.getSignedPreKeyDatabase(context).insertSignedPreKey(signedPreKeyId, record);
+    synchronized (LOCK) {
+      SignalDatabase.signedPreKeys().insertSignedPreKey(signedPreKeyId, record);
     }
   }
 
   @Override
   public boolean containsPreKey(int preKeyId) {
-    return DatabaseFactory.getPreKeyDatabase(context).getPreKey(preKeyId) != null;
+    return SignalDatabase.preKeys().getPreKey(preKeyId) != null;
   }
 
   @Override
   public boolean containsSignedPreKey(int signedPreKeyId) {
-    return DatabaseFactory.getSignedPreKeyDatabase(context).getSignedPreKey(signedPreKeyId) != null;
+    return SignalDatabase.signedPreKeys().getSignedPreKey(signedPreKeyId) != null;
   }
 
   @Override
   public void removePreKey(int preKeyId) {
-    DatabaseFactory.getPreKeyDatabase(context).removePreKey(preKeyId);
+    SignalDatabase.preKeys().removePreKey(preKeyId);
   }
 
   @Override
   public void removeSignedPreKey(int signedPreKeyId) {
-    DatabaseFactory.getSignedPreKeyDatabase(context).removeSignedPreKey(signedPreKeyId);
+    SignalDatabase.signedPreKeys().removeSignedPreKey(signedPreKeyId);
   }
-  
 }

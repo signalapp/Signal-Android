@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public final class MentionUtil {
   @WorkerThread
   public static @NonNull CharSequence updateBodyWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull CharSequence body) {
     if (messageRecord.isMms()) {
-      List<Mention> mentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessage(messageRecord.getId());
+      List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage(messageRecord.getId());
       CharSequence  updated  = updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();
       if (updated != null) {
         return updated;
@@ -76,6 +77,10 @@ public final class MentionUtil {
     int bodyIndex = 0;
 
     for (Mention mention : sortedMentions) {
+      if (invalidMention(body, mention)) {
+        continue;
+      }
+
       updatedBody.append(body.subSequence(bodyIndex, mention.getStart()));
       CharSequence replaceWith    = replacementTextGenerator.apply(mention);
       Mention      updatedMention = new Mention(mention.getRecipientId(), updatedBody.length(), replaceWith.length());
@@ -101,7 +106,7 @@ public final class MentionUtil {
     BodyRangeList.Builder builder = BodyRangeList.newBuilder();
 
     for (Mention mention : mentions) {
-      String uuid = Recipient.resolved(mention.getRecipientId()).requireUuid().toString();
+      String uuid = Recipient.resolved(mention.getRecipientId()).requireAci().toString();
       builder.addRanges(BodyRangeList.BodyRange.newBuilder()
                                                .setMentionUuid(uuid)
                                                .setStart(mention.getStart())
@@ -117,7 +122,7 @@ public final class MentionUtil {
         return Stream.of(BodyRangeList.parseFrom(data).getRangesList())
                      .filter(bodyRange -> bodyRange.getAssociatedValueCase() == BodyRangeList.BodyRange.AssociatedValueCase.MENTIONUUID)
                      .map(mention -> {
-                       RecipientId id = Recipient.externalPush(context, UuidUtil.parseOrThrow(mention.getMentionUuid()), null, false).getId();
+                       RecipientId id = Recipient.externalPush(context, ACI.parseOrThrow(mention.getMentionUuid()), null, false).getId();
                        return new Mention(id, mention.getStart(), mention.getLength());
                      })
                      .toList();
@@ -137,6 +142,13 @@ public final class MentionUtil {
         return context.getString(R.string.GroupMentionSettingDialog_dont_notify_me);
     }
     throw new IllegalArgumentException("Unknown mention setting: " + mentionSetting);
+  }
+
+  private static boolean invalidMention(@NonNull CharSequence body, @NonNull Mention mention) {
+    int start  = mention.getStart();
+    int length = mention.getLength();
+
+    return start < 0 || length < 0 || (start + length) > body.length();
   }
 
   public static class UpdatedBodyAndMentions {

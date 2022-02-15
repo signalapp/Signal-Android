@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
 
+import java.util.Collections;
+import java.util.List;
+
 public class UiHints extends SignalStoreValues {
 
   private static final String HAS_SEEN_GROUP_SETTINGS_MENU_TOAST     = "uihints.has_seen_group_settings_menu_toast";
@@ -14,6 +17,11 @@ public class UiHints extends SignalStoreValues {
   @Override
   void onFirstEverAppLaunch() {
     markHasSeenGroupSettingsMenuToast();
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   public void markHasSeenGroupSettingsMenuToast() {

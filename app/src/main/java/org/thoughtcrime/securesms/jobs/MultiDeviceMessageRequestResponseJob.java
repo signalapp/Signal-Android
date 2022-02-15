@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -18,6 +19,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +28,7 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceMessageRequestResponseJob";
 
-  private static final String TAG = MultiDeviceMessageRequestResponseJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceMessageRequestResponseJob.class);
 
   private static final String KEY_THREAD_RECIPIENT = "thread_recipient";
   private static final String KEY_TYPE             = "type";
@@ -50,14 +52,18 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
     return new MultiDeviceMessageRequestResponseJob(threadRecipient, Type.BLOCK_AND_DELETE);
   }
 
-  private MultiDeviceMessageRequestResponseJob(@NonNull RecipientId threadRecipient, @NonNull Type type) {
-    this(new Parameters.Builder()
-                           .setQueue("MultiDeviceMessageRequestResponseJob")
-                           .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(Parameters.UNLIMITED)
-                           .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .build(), threadRecipient, type);
+  public static @NonNull MultiDeviceMessageRequestResponseJob forBlockAndReportSpam(@NonNull RecipientId threadRecipient) {
+    return new MultiDeviceMessageRequestResponseJob(threadRecipient, Type.BLOCK);
+  }
 
+  private MultiDeviceMessageRequestResponseJob(@NonNull RecipientId threadRecipient, @NonNull Type type) {
+    this(new Parameters.Builder().setQueue("MultiDeviceMessageRequestResponseJob")
+                                 .addConstraint(NetworkConstraint.KEY)
+                                 .setMaxAttempts(Parameters.UNLIMITED)
+                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                 .build(),
+         threadRecipient,
+         type);
   }
 
   private MultiDeviceMessageRequestResponseJob(@NonNull Parameters parameters,
@@ -83,6 +89,10 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
@@ -100,26 +110,38 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
 
     if (recipient.isGroup()) {
       response = MessageRequestResponseMessage.forGroup(recipient.getGroupId().get().getDecodedId(), localToRemoteType(type));
-    } else {
+    } else if (recipient.isMaybeRegistered()) {
       response = MessageRequestResponseMessage.forIndividual(RecipientUtil.toSignalServiceAddress(context, recipient), localToRemoteType(type));
+    } else {
+      response = null;
     }
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forMessageRequestResponse(response),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    if (response != null) {
+      messageSender.sendSyncMessage(SignalServiceSyncMessage.forMessageRequestResponse(response),
+                                    UnidentifiedAccessUtil.getAccessForSync(context));
+    } else {
+      Log.w(TAG, recipient.getId() + " not registered!");
+    }
   }
 
   private static MessageRequestResponseMessage.Type localToRemoteType(@NonNull Type type) {
     switch (type) {
-      case ACCEPT:           return MessageRequestResponseMessage.Type.ACCEPT;
-      case DELETE:           return MessageRequestResponseMessage.Type.DELETE;
-      case BLOCK:            return MessageRequestResponseMessage.Type.BLOCK;
-      case BLOCK_AND_DELETE: return MessageRequestResponseMessage.Type.BLOCK_AND_DELETE;
-      default:               return MessageRequestResponseMessage.Type.UNKNOWN;
+      case ACCEPT:
+        return MessageRequestResponseMessage.Type.ACCEPT;
+      case DELETE:
+        return MessageRequestResponseMessage.Type.DELETE;
+      case BLOCK:
+        return MessageRequestResponseMessage.Type.BLOCK;
+      case BLOCK_AND_DELETE:
+        return MessageRequestResponseMessage.Type.BLOCK_AND_DELETE;
+      default:
+        return MessageRequestResponseMessage.Type.UNKNOWN;
     }
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
+    if (e instanceof ServerRejectedException) return false;
     return e instanceof PushNetworkException;
   }
 

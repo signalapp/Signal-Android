@@ -13,8 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.loader.app.LoaderManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -23,6 +22,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
+import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -33,12 +34,12 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   private static final String ARGS_MESSAGE_ID = "reactions.args.message.id";
   private static final String ARGS_IS_MMS     = "reactions.args.is.mms";
 
-  private long                      messageId;
   private ViewPager2                recipientPagerView;
-  private ReactionsLoader           reactionsLoader;
   private ReactionViewPagerAdapter  recipientsAdapter;
   private ReactionsViewModel        viewModel;
   private Callback                  callback;
+
+  private final LifecycleDisposable disposables = new LifecycleDisposable();
 
   public static DialogFragment create(long messageId, boolean isMms) {
     Bundle         args     = new Bundle();
@@ -56,12 +57,17 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
 
-    callback = (Callback) context;
+    if (context instanceof Callback) {
+      callback = (Callback) context;
+    } else if (getParentFragment() instanceof Callback) {
+      callback = (Callback) getParentFragment();
+    } else {
+      throw new IllegalStateException("Parent component does not implement Callback");
+    }
   }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-
     if (ThemeUtil.isDarkTheme(requireContext())) {
       setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Signal_BottomSheetDialog_Fixed_ReactWithAny);
     } else {
@@ -80,9 +86,26 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   @Override
-  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    recipientPagerView = view.findViewById(R.id.reactions_bottom_view_recipient_pager);
 
+    disposables.bindTo(getViewLifecycleOwner());
+
+    setUpRecipientsRecyclerView();
+    setUpTabMediator(savedInstanceState);
+
+    MessageId messageId = new MessageId(requireArguments().getLong(ARGS_MESSAGE_ID), requireArguments().getBoolean(ARGS_IS_MMS));
+    setUpViewModel(messageId);
+  }
+
+  @Override
+  public void onDismiss(@NonNull DialogInterface dialog) {
+    super.onDismiss(dialog);
+
+    callback.onReactionsDialogDismissed();
+  }
+
+  private void setUpTabMediator(@Nullable Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       FrameLayout    container       = requireDialog().findViewById(R.id.container);
       LayoutInflater layoutInflater  = LayoutInflater.from(requireContext());
@@ -112,39 +135,10 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
           text.setText(String.valueOf(emojiCount.getCount()));
         } else {
           emoji.setVisibility(View.GONE);
-          text.setText(requireContext().getString(R.string.ReactionsBottomSheetDialogFragment_all, emojiCount.getCount()));
+          text.setText(customView.getContext().getString(R.string.ReactionsBottomSheetDialogFragment_all, emojiCount.getCount()));
         }
       }).attach();
     }
-
-    setUpViewModel();
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    recipientPagerView = view.findViewById(R.id.reactions_bottom_view_recipient_pager);
-    messageId          = requireArguments().getLong(ARGS_MESSAGE_ID);
-
-    setUpRecipientsRecyclerView();
-
-    reactionsLoader = new ReactionsLoader(requireContext(),
-                                          requireArguments().getLong(ARGS_MESSAGE_ID),
-                                          requireArguments().getBoolean(ARGS_IS_MMS));
-
-    LoaderManager.getInstance(requireActivity()).initLoader((int) messageId, null, reactionsLoader);
-  }
-
-  @Override
-  public void onDestroyView() {
-    LoaderManager.getInstance(requireActivity()).destroyLoader((int) messageId);
-    super.onDestroyView();
-  }
-
-  @Override
-  public void onDismiss(@NonNull DialogInterface dialog) {
-    super.onDismiss(dialog);
-
-    callback.onReactionsDialogDismissed();
   }
 
   private void setUpRecipientsRecyclerView() {
@@ -169,16 +163,16 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
     recipientPagerView.setAdapter(recipientsAdapter);
   }
 
-  private void setUpViewModel() {
-    ReactionsViewModel.Factory factory = new ReactionsViewModel.Factory(reactionsLoader);
+  private void setUpViewModel(@NonNull MessageId messageId) {
+    ReactionsViewModel.Factory factory = new ReactionsViewModel.Factory(messageId);
 
-    viewModel = ViewModelProviders.of(this, factory).get(ReactionsViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(ReactionsViewModel.class);
 
-    viewModel.getEmojiCounts().observe(getViewLifecycleOwner(), emojiCounts -> {
+    disposables.add(viewModel.getEmojiCounts().subscribe(emojiCounts -> {
       if (emojiCounts.size() <= 1) dismiss();
 
       recipientsAdapter.submitList(emojiCounts);
-    });
+    }));
   }
 
   public interface Callback {

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <size android:width="25dp" android:height="25dp" />
+                    <solid android:color="@color/core_white" />
+                    <padding android:left="1.5dp" android:right="1.5dp" android:bottom="1.5dp" android:top="1.5dp" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_check_circle_solid_ultramarine_24" />
+        </layer-list>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <size android:width="25dp" android:height="25dp" />
+            <stroke android:width="1.5dp" android:color="@color/core_white" />
+        </shape>
+    </item>
+</selector>

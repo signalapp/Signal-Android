@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
+            android:scrollbarThumbVertical="@drawable/contact_selection_scrollbar_thumb"
             android:scrollbars="vertical"
             tools:listitem="@layout/contact_selection_list_item" />
 
@@ -110,53 +111,54 @@
 
     </LinearLayout>
 
-    <org.thoughtcrime.securesms.components.emoji.WarningTextView
-        android:id="@+id/group_limit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:warning_text_color="@color/core_red"
-        tools:text="999/999"
-        tools:visibility="visible" />
-
     <HorizontalScrollView
         android:id="@+id/chipGroupScrollContainer"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:paddingBottom="8dp"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
         android:scrollbars="none"
         android:visibility="gone"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/group_limit"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_marginEnd="96dp"
-            android:animateLayoutChanges="true"
-            app:singleLine="true">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.chip.Chip
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                tools:text="Example"
-                tools:visibility="visible" />
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="96dp"
+                android:animateLayoutChanges="true"
+                app:singleLine="true">
 
-        </com.google.android.material.chip.ChipGroup>
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:text="Example"
+                    tools:visibility="visible" />
 
+            </com.google.android.material.chip.ChipGroup>
+        </FrameLayout>
     </HorizontalScrollView>
+
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:alpha="0"
+        android:background="@drawable/toolbar_shadow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/swipe_refresh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,13 +6,16 @@ import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -29,6 +32,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsOut
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +47,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceGroupUpdateJob";
 
-  private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceGroupUpdateJob.class);
 
   public MultiDeviceGroupUpdateJob() {
     this(new Job.Parameters.Builder()
@@ -70,8 +74,17 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
+      return;
+    }
+
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Not primary device, aborting...");
       return;
     }
 
@@ -84,7 +97,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
                                                                                         () -> Log.i(TAG, "Write successful."),
                                                                                         e  -> Log.w(TAG, "Error during write.", e));
 
-    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(context).getGroups()) {
+    try (GroupDatabase.Reader reader = SignalDatabase.groups().getGroups()) {
       DeviceGroupsOutputStream out     = new DeviceGroupsOutputStream(new ParcelFileDescriptor.AutoCloseOutputStream(pipe[1]));
       boolean                  hasData = false;
 
@@ -92,17 +105,18 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
       while ((record = reader.getNext()) != null) {
         if (record.isV1Group()) {
-          List<SignalServiceAddress> members = new LinkedList<>();
+          List<SignalServiceAddress> members           = new LinkedList<>();
+          List<Recipient>            registeredMembers = RecipientUtil.getEligibleForSending(Recipient.resolvedList(record.getMembers()));
 
-          for (RecipientId member : record.getMembers()) {
-            members.add(RecipientUtil.toSignalServiceAddress(context, Recipient.resolved(member)));
+          for (Recipient member : registeredMembers) {
+            members.add(RecipientUtil.toSignalServiceAddress(context, member));
           }
 
-          RecipientId               recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(record.getId());
+          RecipientId               recipientId     = SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(record.getId());
           Recipient                 recipient       = Recipient.resolved(recipientId);
-          Optional<Integer>         expirationTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
-          Map<RecipientId, Integer> inboxPositions  = DatabaseFactory.getThreadDatabase(context).getInboxPositions();
-          Set<RecipientId>          archived        = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
+          Optional<Integer>         expirationTimer = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.absent();
+          Map<RecipientId, Integer> inboxPositions  = SignalDatabase.threads().getInboxPositions();
+          Set<RecipientId>          archived        = SignalDatabase.threads().getArchivedRecipients();
 
           out.write(new DeviceGroup(record.getId().getDecodedId(),
                                     Optional.fromNullable(record.getTitle()),
@@ -110,7 +124,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
                                     getAvatar(record.getRecipientId()),
                                     record.isActive(),
                                     expirationTimer,
-                                    Optional.of(recipient.getColor().serialize()),
+                                    Optional.of(ChatColorsMapper.getMaterialColor(recipient.getChatColors()).serialize()),
                                     recipient.isBlocked(),
                                     Optional.fromNullable(inboxPositions.get(recipientId)),
                                     archived.contains(recipientId)));
@@ -128,7 +142,11 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
                    BlobProvider.getInstance().getStream(context, uri),
                    length);
       } else {
-        Log.w(TAG, "No groups present for sync message...");
+        Log.w(TAG, "No groups present for sync message. Sending an empty update.");
+
+        sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(),
+                   null,
+                   0);
       }
     } finally {
       BlobProvider.getInstance().delete(context, uri);
@@ -137,6 +155,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
+    if (exception instanceof ServerRejectedException) return false;
     if (exception instanceof PushNetworkException) return true;
     return false;
   }
@@ -149,14 +168,20 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
   private void sendUpdate(SignalServiceMessageSender messageSender, InputStream stream, long length)
       throws IOException, UntrustedIdentityException
   {
-    SignalServiceAttachmentStream attachmentStream   = SignalServiceAttachment.newStreamBuilder()
-                                                                              .withStream(stream)
-                                                                              .withContentType("application/octet-stream")
-                                                                              .withLength(length)
-                                                                              .build();
+    SignalServiceAttachmentStream attachmentStream;
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    if (length > 0) {
+      attachmentStream = SignalServiceAttachment.newStreamBuilder()
+                                                .withStream(stream)
+                                                .withContentType("application/octet-stream")
+                                                .withLength(length)
+                                                .build();
+    } else {
+      attachmentStream = SignalServiceAttachment.emptyStream("application/octet-stream");
+    }
+
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forGroups(attachmentStream),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
 

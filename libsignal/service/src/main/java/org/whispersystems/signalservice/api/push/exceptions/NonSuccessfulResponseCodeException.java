@@ -16,11 +16,12 @@ public class NonSuccessfulResponseCodeException extends IOException {
   private final int code;
 
   public NonSuccessfulResponseCodeException(int code) {
+    super("StatusCode: " + code);
     this.code = code;
   }
 
   public NonSuccessfulResponseCodeException(int code, String s) {
-    super(s);
+    super("[" + code + "] " + s);
     this.code = code;
   }
 

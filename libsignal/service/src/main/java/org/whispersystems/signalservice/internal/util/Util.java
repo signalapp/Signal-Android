@@ -150,4 +150,11 @@ public class Util {
     return Collections.unmodifiableList(Arrays.asList(elements.clone()));
   }
 
+  public static int parseInt(String integer, int defaultValue) {
+    try {
+      return Integer.parseInt(integer);
+    } catch (NumberFormatException e) {
+      return defaultValue;
+    }
+  }
 }

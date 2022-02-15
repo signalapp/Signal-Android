@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/deactivate_wallet_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="?actionBarStyle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/DeactivateWalletFragment__deactivate_wallet"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <org.thoughtcrime.securesms.payments.MoneyView
+                android:id="@+id/deactivate_wallet_fragment_balance"
+                android:layout_width="0dp"
+                android:layout_height="48sp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="102dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                app:autoSizeMaxTextSize="48sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:money="MOB:7500000000000" />
+
+            <TextView
+                android:id="@+id/deactivate_wallet_fragment_your_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/DeactivateWalletFragment__your_balance"
+                android:textAppearance="@style/TextAppearance.Signal.Body2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deactivate_wallet_fragment_balance" />
+
+            <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+                android:id="@+id/deactivate_wallet_fragment_notice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="43dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="43dp"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/DeactivateWalletFragment__its_recommended_that_you"
+                android:textAppearance="@style/TextAppearance.Signal.Body2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deactivate_wallet_fragment_your_balance" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deactivate_wallet_fragment_transfer"
+                style="@style/Signal.Widget.Button.Large.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/DeactivateWalletFragment__transfer_remaining_balance"
+                app:layout_constraintBottom_toTopOf="@id/deactivate_wallet_fragment_deactivate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deactivate_wallet_fragment_notice"
+                app:layout_constraintVertical_bias="1"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deactivate_wallet_fragment_deactivate"
+                style="@style/Signal.Widget.Button.Medium.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/DeactivateWalletFragment__deactivate_without_transferring"
+                android:textColor="@color/signal_alert_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deactivate_wallet_fragment_transfer" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

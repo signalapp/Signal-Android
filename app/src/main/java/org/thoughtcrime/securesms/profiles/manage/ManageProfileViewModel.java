@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -20,8 +21,11 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
 import java.io.IOException;
@@ -32,26 +36,30 @@ class ManageProfileViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ManageProfileViewModel.class);
 
-  private final MutableLiveData<AvatarState> avatar;
-  private final MutableLiveData<ProfileName> profileName;
-  private final MutableLiveData<String>      username;
-  private final MutableLiveData<String>      about;
-  private final MutableLiveData<String>      aboutEmoji;
-  private final SingleLiveEvent<Event>       events;
-  private final RecipientForeverObserver     observer;
-  private final ManageProfileRepository      repository;
+  private final MutableLiveData<InternalAvatarState> internalAvatarState;
+  private final MutableLiveData<ProfileName>         profileName;
+  private final MutableLiveData<String>              username;
+  private final MutableLiveData<String>              about;
+  private final MutableLiveData<String>              aboutEmoji;
+  private final LiveData<AvatarState>                avatarState;
+  private final SingleLiveEvent<Event>               events;
+  private final RecipientForeverObserver             observer;
+  private final ManageProfileRepository              repository;
+  private final MutableLiveData<Optional<Badge>>     badge;
 
   private byte[] previousAvatar;
 
   public ManageProfileViewModel() {
-    this.avatar      = new MutableLiveData<>();
-    this.profileName = new MutableLiveData<>();
-    this.username    = new MutableLiveData<>();
-    this.about       = new MutableLiveData<>();
-    this.aboutEmoji  = new MutableLiveData<>();
-    this.events      = new SingleLiveEvent<>();
-    this.repository  = new ManageProfileRepository();
-    this.observer    = this::onRecipientChanged;
+    this.internalAvatarState = new MutableLiveData<>();
+    this.profileName         = new MutableLiveData<>();
+    this.username            = new MutableLiveData<>();
+    this.about               = new MutableLiveData<>();
+    this.aboutEmoji          = new MutableLiveData<>();
+    this.events              = new SingleLiveEvent<>();
+    this.repository          = new ManageProfileRepository();
+    this.badge               = new DefaultValueLiveData<>(Optional.absent());
+    this.observer            = this::onRecipientChanged;
+    this.avatarState         = LiveDataUtil.combineLatest(Recipient.self().live().getLiveData(), internalAvatarState, (self, state) -> new AvatarState(state, self));
 
     SignalExecutors.BOUNDED.execute(() -> {
       onRecipientChanged(Recipient.self().fresh());
@@ -59,13 +67,13 @@ class ManageProfileViewModel extends ViewModel {
       StreamDetails details = AvatarHelper.getSelfProfileAvatarStream(ApplicationDependencies.getApplication());
       if (details != null) {
         try {
-          avatar.postValue(AvatarState.loaded(StreamUtil.readFully(details.getStream())));
+          internalAvatarState.postValue(InternalAvatarState.loaded(StreamUtil.readFully(details.getStream())));
         } catch (IOException e) {
           Log.w(TAG, "Failed to read avatar!");
-          avatar.postValue(AvatarState.none());
+          internalAvatarState.postValue(InternalAvatarState.none());
         }
       } else {
-        avatar.postValue(AvatarState.none());
+        internalAvatarState.postValue(InternalAvatarState.none());
       }
 
       ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(Recipient.self().getId()));
@@ -75,7 +83,7 @@ class ManageProfileViewModel extends ViewModel {
   }
 
   public @NonNull LiveData<AvatarState> getAvatar() {
-    return avatar;
+    return avatarState;
   }
 
   public @NonNull LiveData<ProfileName> getProfileName() {
@@ -94,6 +102,10 @@ class ManageProfileViewModel extends ViewModel {
     return aboutEmoji;
   }
 
+  public @NonNull LiveData<Optional<Badge>> getBadge() {
+    return badge;
+  }
+
   public @NonNull LiveData<Event> getEvents() {
     return events;
   }
@@ -103,18 +115,18 @@ class ManageProfileViewModel extends ViewModel {
   }
 
   public void onAvatarSelected(@NonNull Context context, @Nullable Media media) {
-    previousAvatar = avatar.getValue() != null ? avatar.getValue().getAvatar() : null;
+    previousAvatar = internalAvatarState.getValue() != null ? internalAvatarState.getValue().getAvatar() : null;
 
     if (media == null) {
-      avatar.postValue(AvatarState.loading(null));
+      internalAvatarState.postValue(InternalAvatarState.loading(null));
       repository.clearAvatar(context, result -> {
         switch (result) {
           case SUCCESS:
-            avatar.postValue(AvatarState.loaded(null));
+            internalAvatarState.postValue(InternalAvatarState.loaded(null));
             previousAvatar = null;
             break;
           case FAILURE_NETWORK:
-            avatar.postValue(AvatarState.loaded(previousAvatar));
+            internalAvatarState.postValue(InternalAvatarState.loaded(previousAvatar));
             events.postValue(Event.AVATAR_NETWORK_FAILURE);
             break;
         }
@@ -125,16 +137,16 @@ class ManageProfileViewModel extends ViewModel {
           InputStream stream = BlobProvider.getInstance().getStream(context, media.getUri());
           byte[]      data   = StreamUtil.readFully(stream);
 
-          avatar.postValue(AvatarState.loading(data));
+          internalAvatarState.postValue(InternalAvatarState.loading(data));
 
           repository.setAvatar(context, data, media.getMimeType(), result -> {
             switch (result) {
               case SUCCESS:
-                avatar.postValue(AvatarState.loaded(data));
+                internalAvatarState.postValue(InternalAvatarState.loaded(data));
                 previousAvatar = data;
                 break;
               case FAILURE_NETWORK:
-                avatar.postValue(AvatarState.loaded(previousAvatar));
+                internalAvatarState.postValue(InternalAvatarState.loaded(previousAvatar));
                 events.postValue(Event.AVATAR_NETWORK_FAILURE);
                 break;
             }
@@ -148,7 +160,7 @@ class ManageProfileViewModel extends ViewModel {
   }
 
   public boolean canRemoveAvatar() {
-    return avatar.getValue() != null;
+    return internalAvatarState.getValue() != null;
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {
@@ -156,6 +168,7 @@ class ManageProfileViewModel extends ViewModel {
     username.postValue(recipient.getUsername().orNull());
     about.postValue(recipient.getAbout());
     aboutEmoji.postValue(recipient.getAboutEmoji());
+    badge.postValue(Optional.fromNullable(recipient.getFeaturedBadge()));
   }
 
   @Override
@@ -163,25 +176,49 @@ class ManageProfileViewModel extends ViewModel {
     Recipient.self().live().removeForeverObserver(observer);
   }
 
-  public static class AvatarState {
+  public final static class AvatarState {
+    private final InternalAvatarState internalAvatarState;
+    private final Recipient           self;
+
+    public AvatarState(@NonNull InternalAvatarState internalAvatarState,
+                       @NonNull Recipient self)
+    {
+      this.internalAvatarState = internalAvatarState;
+      this.self                = self;
+    }
+
+    public @Nullable byte[] getAvatar() {
+      return internalAvatarState.avatar;
+    }
+
+    public @NonNull LoadingState getLoadingState() {
+      return internalAvatarState.loadingState;
+    }
+
+    public @NonNull Recipient getSelf() {
+      return self;
+    }
+  }
+
+  private final static class InternalAvatarState {
     private final byte[]       avatar;
     private final LoadingState loadingState;
 
-    public AvatarState(@Nullable byte[] avatar, @NonNull LoadingState loadingState) {
+    public InternalAvatarState(@Nullable byte[] avatar, @NonNull LoadingState loadingState) {
       this.avatar       = avatar;
       this.loadingState = loadingState;
     }
 
-    private static @NonNull AvatarState none() {
-      return new AvatarState(null, LoadingState.LOADED);
+    private static @NonNull InternalAvatarState none() {
+      return new InternalAvatarState(null, LoadingState.LOADED);
     }
 
-    private static @NonNull AvatarState loaded(@Nullable byte[] avatar) {
-      return new AvatarState(avatar, LoadingState.LOADED);
+    private static @NonNull InternalAvatarState loaded(@Nullable byte[] avatar) {
+      return new InternalAvatarState(avatar, LoadingState.LOADED);
     }
 
-    private static @NonNull AvatarState loading(@Nullable byte[] avatar) {
-      return new AvatarState(avatar, LoadingState.LOADING);
+    private static @NonNull InternalAvatarState loading(@Nullable byte[] avatar) {
+      return new InternalAvatarState(avatar, LoadingState.LOADING);
     }
 
     public @Nullable byte[] getAvatar() {

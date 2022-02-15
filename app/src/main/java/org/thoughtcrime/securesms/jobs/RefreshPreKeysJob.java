@@ -26,7 +26,7 @@ public class RefreshPreKeysJob extends BaseJob {
 
   public static final String KEY = "RefreshPreKeysJob";
 
-  private static final String TAG = RefreshPreKeysJob.class.getSimpleName();
+  private static final String TAG = Log.tag(RefreshPreKeysJob.class);
 
   private static final int PREKEY_MINIMUM = 10;
 
@@ -67,7 +67,7 @@ public class RefreshPreKeysJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!SignalStore.account().isRegistered()) {
       Log.w(TAG, "Not registered. Skipping.");
       return;
     }

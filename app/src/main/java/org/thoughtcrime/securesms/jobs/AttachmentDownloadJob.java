@@ -12,15 +12,15 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraint;
 import org.thoughtcrime.securesms.mms.MmsException;
+import org.thoughtcrime.securesms.releasechannel.ReleaseChannel;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Base64;
@@ -39,14 +39,20 @@ import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okio.Okio;
 
 public final class AttachmentDownloadJob extends BaseJob {
 
   public static final String KEY = "AttachmentDownloadJob";
 
   private static final int    MAX_ATTACHMENT_SIZE = 150 * 1024  * 1024;
-  private static final String TAG                  = AttachmentDownloadJob.class.getSimpleName();
+  private static final String TAG                  = Log.tag(AttachmentDownloadJob.class);
 
   private static final String KEY_MESSAGE_ID    = "message_id";
   private static final String KEY_PART_ROW_ID   = "part_row_id";
@@ -97,7 +103,7 @@ public final class AttachmentDownloadJob extends BaseJob {
   public void onAdded() {
     Log.i(TAG, "onAdded() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
 
-    final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
+    final AttachmentDatabase database     = SignalDatabase.attachments();
     final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
     final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
     final boolean            pending      = attachment != null && attachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE;
@@ -117,7 +123,7 @@ public final class AttachmentDownloadJob extends BaseJob {
   public void doWork() throws IOException, RetryLaterException {
     Log.i(TAG, "onRun() messageId: " + messageId + "  partRowId: " + partRowId + "  partUniqueId: " + partUniqueId + "  manual: " + manual);
 
-    final AttachmentDatabase database     = DatabaseFactory.getAttachmentDatabase(context);
+    final AttachmentDatabase database     = SignalDatabase.attachments();
     final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
     final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
 
@@ -140,7 +146,11 @@ public final class AttachmentDownloadJob extends BaseJob {
     Log.i(TAG, "Downloading push part " + attachmentId);
     database.setTransferState(messageId, attachmentId, AttachmentDatabase.TRANSFER_PROGRESS_STARTED);
 
-    retrieveAttachment(messageId, attachmentId, attachment);
+    if (attachment.getCdnNumber() != ReleaseChannel.CDN_NUMBER) {
+      retrieveAttachment(messageId, attachmentId, attachment);
+    } else {
+      retrieveUrlAttachment(messageId, attachmentId, attachment);
+    }
   }
 
   @Override
@@ -163,7 +173,7 @@ public final class AttachmentDownloadJob extends BaseJob {
       throws IOException, RetryLaterException
   {
 
-    AttachmentDatabase database       = DatabaseFactory.getAttachmentDatabase(context);
+    AttachmentDatabase database       = SignalDatabase.attachments();
     File               attachmentFile = database.getOrCreateTransferFile(attachmentId);
 
     try {
@@ -213,6 +223,7 @@ public final class AttachmentDownloadJob extends BaseJob {
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 attachment.isBorderless(),
+                                                attachment.isVideoGif(),
                                                 Optional.absent(),
                                                 Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash),
                                                 attachment.getUploadTimestamp());
@@ -222,9 +233,30 @@ public final class AttachmentDownloadJob extends BaseJob {
     }
   }
 
+  private void retrieveUrlAttachment(long messageId,
+                                     final AttachmentId attachmentId,
+                                     final Attachment attachment)
+      throws IOException
+  {
+    Request request = new Request.Builder()
+        .get()
+        .url(Objects.requireNonNull(attachment.getFileName()))
+        .build();
+
+    try (Response response = ApplicationDependencies.getOkHttpClient().newCall(request).execute()) {
+      ResponseBody body = response.body();
+      if (body != null) {
+        SignalDatabase.attachments().insertAttachmentsForPlaceholder(messageId, attachmentId, Okio.buffer(body.source()).inputStream());
+      }
+    } catch (MmsException e) {
+      Log.w(TAG, "Experienced exception while trying to download an attachment.", e);
+      markFailed(messageId, attachmentId);
+    }
+  }
+
   private void markFailed(long messageId, AttachmentId attachmentId) {
     try {
-      AttachmentDatabase database = DatabaseFactory.getAttachmentDatabase(context);
+      AttachmentDatabase database = SignalDatabase.attachments();
       database.setTransferProgressFailed(attachmentId, messageId);
     } catch (MmsException e) {
       Log.w(TAG, e);

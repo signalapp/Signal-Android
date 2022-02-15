@@ -51,7 +51,7 @@ import java.util.Set;
  */
 public class ContactsDatabase {
 
-  private static final String TAG              = ContactsDatabase.class.getSimpleName();
+  private static final String TAG              = Log.tag(ContactsDatabase.class);
   private static final String CONTACT_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact";
   private static final String CALL_MIMETYPE    = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call";
   private static final String SYNC             = "__TS";

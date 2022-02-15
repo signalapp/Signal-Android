@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +21,7 @@ public final class GroupMemberListView extends RecyclerView {
 
   private GroupMemberListAdapter membersAdapter;
   private int                    maxHeight;
+  private boolean                selectable;
 
   public GroupMemberListView(@NonNull Context context) {
     super(context);
@@ -41,7 +43,6 @@ public final class GroupMemberListView extends RecyclerView {
       setHasFixedSize(true);
     }
 
-    boolean selectable = false;
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.GroupMemberListView, 0, 0);
       try {
@@ -51,9 +52,11 @@ public final class GroupMemberListView extends RecyclerView {
         typedArray.recycle();
       }
     }
+  }
 
-    membersAdapter = new GroupMemberListAdapter(selectable);
-    setLayoutManager(new LinearLayoutManager(context));
+  public void initializeAdapter(@NonNull LifecycleOwner lifecycleOwner) {
+    membersAdapter = new GroupMemberListAdapter(selectable, lifecycleOwner);
+    setLayoutManager(new LinearLayoutManager(getContext()));
     setAdapter(membersAdapter);
   }
 

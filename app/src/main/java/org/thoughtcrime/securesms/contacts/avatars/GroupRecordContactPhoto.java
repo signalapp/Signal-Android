@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.Conversions;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -30,7 +30,7 @@ public final class GroupRecordContactPhoto implements ContactPhoto {
 
   @Override
   public InputStream openInputStream(Context context) throws IOException {
-    GroupDatabase                       groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    GroupDatabase                       groupDatabase = SignalDatabase.groups();
     Optional<GroupDatabase.GroupRecord> groupRecord   = groupDatabase.getGroup(groupId);
 
     if (!groupRecord.isPresent() || !AvatarHelper.hasAvatar(context, groupRecord.get().getRecipientId())) {

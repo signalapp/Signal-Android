@@ -21,12 +21,20 @@ public final class GroupsV2AuthorizationSignalStoreCache implements GroupsV2Auth
 
   private static final String TAG = Log.tag(GroupsV2AuthorizationSignalStoreCache.class);
 
-  private static final String KEY = "gv2:auth_token_cache";
+  private static final String PREFIX  = "gv2:auth_token_cache";
+  private static final int    VERSION = 2;
+  private static final String KEY     = PREFIX + ":" + VERSION;
 
   private final KeyValueStore store;
 
   GroupsV2AuthorizationSignalStoreCache(KeyValueStore store) {
     this.store = store;
+
+    if (store.containsKey(PREFIX)) {
+      store.beginWrite()
+           .remove(PREFIX)
+           .commit();
+    }
   }
 
   @Override

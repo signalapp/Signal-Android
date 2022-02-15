@@ -9,7 +9,7 @@ import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.testutil.ZkGroupLibraryUtil;
+import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,7 +22,7 @@ public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
 
   @Before
   public void setup() throws InvalidInputException {
-    ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS();
+    LibSignalLibraryUtil.assumeLibSignalSupportedOnOS();
 
     TestZkGroupServer  server             = new TestZkGroupServer();
     ClientZkOperations clientZkOperations = new ClientZkOperations(server.getServerPublicParams());
@@ -41,7 +41,7 @@ public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(GroupJoinInfo.class);
 
     assertEquals("GroupOperations and its tests need updating to account for new fields on " + GroupJoinInfo.class.getName(),
-                 7, maxFieldFound);
+                 8, maxFieldFound);
   }
   
   @Test
@@ -130,5 +130,16 @@ public final class GroupsV2Operations_decrypt_groupJoinInfo_Test {
     DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
 
     assertFalse(decryptedGroupJoinInfo.getPendingAdminApproval());
+  }
+
+  @Test
+  public void decrypt_description_field_8() {
+    GroupJoinInfo groupJoinInfo = GroupJoinInfo.newBuilder()
+                                               .setDescription(groupOperations.encryptDescription("Description!"))
+                                               .build();
+
+    DecryptedGroupJoinInfo decryptedGroupJoinInfo = groupOperations.decryptGroupJoinInfo(groupJoinInfo);
+
+    assertEquals("Description!", decryptedGroupJoinInfo.getDescription());
   }
 }

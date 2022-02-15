@@ -11,10 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.service.TimedEventManager;
 
 /**
@@ -30,8 +30,8 @@ public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpiration
   public ViewOnceMessageManager(@NonNull Application application) {
     super(application, "RevealableMessageManager");
 
-    this.mmsDatabase        = DatabaseFactory.getMmsDatabase(application);
-    this.attachmentDatabase = DatabaseFactory.getAttachmentDatabase(application);
+    this.mmsDatabase        = SignalDatabase.mms();
+    this.attachmentDatabase = SignalDatabase.attachments();
     
     scheduleIfNecessary();
   }
@@ -79,7 +79,7 @@ public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpiration
     @Override
     public void onReceive(Context context, Intent intent) {
       Log.d(TAG, "onReceive()");
-      ApplicationContext.getInstance(context).getViewOnceMessageManager().scheduleIfNecessary();
+      ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
     }
   }
 }

@@ -6,11 +6,10 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
 
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 
 /**
@@ -20,10 +19,11 @@ public class Megaphone {
 
   private final Event                  event;
   private final Style                  style;
-  private final Priority               priority;
   private final boolean                canSnooze;
   private final int                    titleRes;
   private final int                    bodyRes;
+  private final int                    imageRes;
+  private final int                    lottieRes;
   private final GlideRequest<Drawable> imageRequest;
   private final int                    buttonTextRes;
   private final EventListener          buttonListener;
@@ -35,10 +35,11 @@ public class Megaphone {
   private Megaphone(@NonNull Builder builder) {
     this.event                   = builder.event;
     this.style                   = builder.style;
-    this.priority                = builder.priority;
     this.canSnooze               = builder.canSnooze;
     this.titleRes                = builder.titleRes;
     this.bodyRes                 = builder.bodyRes;
+    this.imageRes                = builder.imageRes;
+    this.lottieRes               = builder.lottieRes;
     this.imageRequest            = builder.imageRequest;
     this.buttonTextRes           = builder.buttonTextRes;
     this.buttonListener          = builder.buttonListener;
@@ -50,10 +51,6 @@ public class Megaphone {
 
   public @NonNull Event getEvent() {
     return event;
-  }
-
-  public @NonNull Priority getPriority() {
-    return priority;
   }
 
   public boolean canSnooze() {
@@ -70,6 +67,14 @@ public class Megaphone {
 
   public @StringRes int getBody() {
     return bodyRes;
+  }
+
+  public @RawRes int getLottieRes() {
+    return lottieRes;
+  }
+
+  public @DrawableRes int getImageRes() {
+    return imageRes;
   }
 
   public @Nullable GlideRequest<Drawable> getImageRequest() {
@@ -110,13 +115,14 @@ public class Megaphone {
 
   public static class Builder {
 
-    private final Event  event;
-    private final Style  style;
+    private final Event event;
+    private final Style style;
 
-    private Priority               priority;
     private boolean                canSnooze;
     private int                    titleRes;
     private int                    bodyRes;
+    private int                    imageRes;
+    private int                    lottieRes;
     private GlideRequest<Drawable> imageRequest;
     private int                    buttonTextRes;
     private EventListener          buttonListener;
@@ -127,17 +133,8 @@ public class Megaphone {
 
 
     public Builder(@NonNull Event event, @NonNull Style style) {
-      this.event          = event;
-      this.style          = style;
-      this.priority       = Priority.DEFAULT;
-    }
-
-    /**
-     * Prioritizes this megaphone over others that do not set this flag.
-     */
-    public @NonNull Builder setPriority(@NonNull Priority priority) {
-      this.priority = priority;
-      return this;
+      this.event = event;
+      this.style = style;
     }
 
     public @NonNull Builder enableSnooze(@Nullable EventListener listener) {
@@ -163,7 +160,13 @@ public class Megaphone {
     }
 
     public @NonNull Builder setImage(@DrawableRes int imageRes) {
-      return setImageRequest(GlideApp.with(ApplicationDependencies.getApplication()).load(imageRes));
+      this.imageRes = imageRes;
+      return this;
+    }
+
+    public @NonNull Builder setLottie(@RawRes int lottieRes) {
+      this.lottieRes = lottieRes;
+      return this;
     }
 
     public @NonNull Builder setImageRequest(@Nullable GlideRequest<Drawable> imageRequest) {
@@ -194,12 +197,6 @@ public class Megaphone {
   }
 
   enum Style {
-    /** Specialized style for announcing reactions. */
-    REACTIONS,
-
-    /** Specialized style for announcing link previews. */
-    LINK_PREVIEWS,
-
     /** Specialized style for onboarding. */
     ONBOARDING,
 
@@ -218,20 +215,6 @@ public class Megaphone {
      * otherwise, the event will be marked finished (it will not be shown again).
      */
     POPUP
-  }
-
-  enum Priority {
-    DEFAULT(0), HIGH(1), CLIENT_EXPIRATION(1000);
-
-    int priorityValue;
-
-    Priority(int priorityValue) {
-      this.priorityValue = priorityValue;
-    }
-
-    public int getPriorityValue() {
-      return priorityValue;
-    }
   }
 
   public interface EventListener {

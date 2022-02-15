@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewModel> {
 
@@ -75,7 +76,7 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
     action.setKeyboard(keyboard);
     action.setIsPinChange(isPinChange);
 
-    Navigation.findNavController(requireView()).navigate(action);
+    SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), action);
   }
 
   private String getLabelText(@NonNull PinKeyboardType keyboard) {

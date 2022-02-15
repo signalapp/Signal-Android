@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/notification_profile_created_icon"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_marginTop="176dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_notification_profile_done"
+            tools:backgroundTint="@color/blue_200" />
+
+        <TextView
+            android:id="@+id/notification_profile_created_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:text="@string/NotificationProfileCreated__profile_created"
+            android:textAppearance="@style/TextAppearance.Signal.Title1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notification_profile_created_icon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notification_profile_created_top_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/tinted_circle"
+            android:padding="8dp"
+            app:backgroundTint="@color/signal_background_secondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notification_profile_created_title"
+            app:tint="@color/signal_icon_tint_primary"
+            tools:srcCompat="@drawable/ic_recent_20" />
+
+        <TextView
+            android:id="@+id/notification_profile_created_top_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="32dp"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/notification_profile_created_top_image"
+            app:layout_constraintTop_toTopOf="@+id/notification_profile_created_top_image"
+            tools:text="@string/NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/notification_profile_created_top_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="notification_profile_created_top_image,notification_profile_created_top_text" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notification_profile_created_bottom_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/tinted_circle"
+            android:padding="8dp"
+            app:backgroundTint="@color/signal_background_secondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notification_profile_created_top_barrier"
+            app:tint="@color/signal_icon_tint_primary"
+            tools:srcCompat="@drawable/ic_more_vert_24" />
+
+        <TextView
+            android:id="@+id/notification_profile_created_bottom_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="32dp"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/notification_profile_created_bottom_image"
+            app:layout_constraintTop_toTopOf="@+id/notification_profile_created_bottom_image"
+            tools:text="@string/NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/notification_profile_created_bottom_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="notification_profile_created_bottom_image,notification_profile_created_bottom_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/notification_profile_created_done"
+            style="@style/Signal.Widget.Button.Large.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:text="@string/NotificationProfileCreated__done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notification_profile_created_bottom_barrier"
+            app:layout_constraintVertical_bias="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,14 +1,17 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
 import android.content.Context;
+import android.text.Editable;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.StringUtil;
 
 public final class EditProfileNameViewModel extends ViewModel {
 
@@ -22,8 +25,16 @@ public final class EditProfileNameViewModel extends ViewModel {
     this.events     = new SingleLiveEvent<>();
   }
 
+  void onGivenNameChanged(@NonNull String text) {
+    if (StringUtil.isVisuallyEmpty(text)) {
+      saveState.setValue(SaveState.DISABLED);
+    } else {
+      saveState.setValue(SaveState.IDLE);
+    }
+  }
+
   @NonNull LiveData<SaveState> getSaveState() {
-    return saveState;
+    return Transformations.distinctUntilChanged(saveState);
   }
 
   @NonNull LiveData<Event> getEvents() {
@@ -46,7 +57,7 @@ public final class EditProfileNameViewModel extends ViewModel {
   }
 
   enum SaveState {
-    IDLE, IN_PROGRESS, DONE
+    IDLE, IN_PROGRESS, DONE, DISABLED
   }
 
   enum Event {

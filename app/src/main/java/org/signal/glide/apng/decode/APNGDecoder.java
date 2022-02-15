@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class APNGDecoder extends FrameSeqDecoder<APNGReader, APNGWriter> {
 
-    private static final String TAG = APNGDecoder.class.getSimpleName();
+    private static final String TAG = Log.tag(APNGDecoder.class);
 
     private APNGWriter apngWriter;
     private int mLoopCount;

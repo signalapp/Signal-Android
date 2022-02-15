@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/signal_divider_major"
+        app:layout_constraintBottom_toBottomOf="@id/share_confirm"
+        app:layout_constraintTop_toTopOf="@id/share_confirm" />
+
+    <View
+        android:id="@+id/background_helper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/signal_background_dialog"
+        app:layout_constraintBottom_toBottomOf="@id/selected_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/selected_list" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/selected_list"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingEnd="78dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        tools:listitem="@layout/share_contact_selection_item" />
+
+    <FrameLayout
+        android:id="@+id/add_message_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/signal_background_dialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selected_list">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+            android:id="@+id/add_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_rectangle_dialog_secondary"
+            android:hint="@string/MultiselectForwardFragment__add_a_message"
+            android:inputType="textCapSentences"
+            android:minHeight="44dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textAppearance="@style/Signal.Text.Body" />
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/share_confirm"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/ShareActivity__share"
+        app:backgroundTint="@color/signal_accent_primary"
+        app:layout_constraintBottom_toBottomOf="@id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_send_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

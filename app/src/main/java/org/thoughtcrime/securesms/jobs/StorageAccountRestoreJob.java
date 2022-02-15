@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -64,7 +65,7 @@ public class StorageAccountRestoreJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
-    StorageKey                  storageServiceKey = SignalStore.storageServiceValues().getOrCreateStorageKey();
+    StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 
     Log.i(TAG, "Retrieving manifest...");
     Optional<SignalStorageManifest> manifest = accountManager.getStorageManifest(storageServiceKey);
@@ -74,6 +75,9 @@ public class StorageAccountRestoreJob extends BaseJob {
       ApplicationDependencies.getJobManager().add(new StorageForcePushJob());
       return;
     }
+
+    Log.i(TAG, "Resetting the local manifest to an empty state so that it will sync later.");
+    SignalStore.storageService().setManifest(SignalStorageManifest.EMPTY);
 
     Optional<StorageId> accountId = manifest.get().getAccountStorageId();
 
@@ -99,8 +103,13 @@ public class StorageAccountRestoreJob extends BaseJob {
 
 
     Log.i(TAG, "Applying changes locally...");
-    StorageId selfStorageId = StorageId.forAccount(Recipient.self().getStorageServiceId());
-    StorageSyncHelper.applyAccountStorageSyncUpdates(context, selfStorageId, accountRecord, false);
+    SignalDatabase.getRawDatabase().beginTransaction();
+    try {
+      StorageSyncHelper.applyAccountStorageSyncUpdates(context, Recipient.self(), accountRecord, false);
+      SignalDatabase.getRawDatabase().setTransactionSuccessful();
+    } finally {
+      SignalDatabase.getRawDatabase().endTransaction();
+    }
 
     JobManager jobManager = ApplicationDependencies.getJobManager();
 

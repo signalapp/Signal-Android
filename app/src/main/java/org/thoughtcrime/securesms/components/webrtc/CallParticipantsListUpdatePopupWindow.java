@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -29,6 +30,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
 
   private final ViewGroup       parent;
   private final AvatarImageView avatarImageView;
+  private final BadgeImageView  badgeImageView;
   private final TextView        descriptionTextView;
 
   private final Set<CallParticipantListUpdate.Wrapper> pendingAdditions = new HashSet<>();
@@ -43,6 +45,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
 
     this.parent              = parent;
     this.avatarImageView     = getContentView().findViewById(R.id.avatar);
+    this.badgeImageView      = getContentView().findViewById(R.id.badge);
     this.descriptionTextView = getContentView().findViewById(R.id.description);
 
     setOnDismissListener(this::showPending);
@@ -109,6 +112,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
 
   private void setAvatar(@Nullable Recipient recipient) {
     avatarImageView.setAvatarUsingProfile(recipient);
+    badgeImageView.setBadgeFromRecipient(recipient);
     avatarImageView.setVisibility(recipient == null ? View.GONE : View.VISIBLE);
   }
 

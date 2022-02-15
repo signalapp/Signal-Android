@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
 public class SystemProfileUtil {
 
-  private static final String TAG = SystemProfileUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(SystemProfileUtil.class);
 
   @SuppressLint("StaticFieldLeak")
   public  static ListenableFuture<byte[]> getSystemProfileAvatar(final @NonNull Context context, MediaConstraints mediaConstraints) {

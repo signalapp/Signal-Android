@@ -1,7 +1,9 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.google.protobuf'
-apply plugin: 'witness'
-apply from: 'witness-verifications.gradle'
+plugins {
+    id 'com.android.library'
+    id 'com.google.protobuf'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
 
 android {
     buildToolsVersion BUILD_TOOL_VERSION
@@ -10,21 +12,22 @@ android {
     defaultConfig {
         minSdkVersion MINIMUM_SDK
         targetSdkVersion TARGET_SDK
+        multiDexEnabled true
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
     }
-}
-
-dependencyVerification {
-    configuration = '(debug|release)RuntimeClasspath'
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.10.0'
+        artifact = 'com.google.protobuf:protoc:3.18.0'
     }
     generateProtoTasks {
         all().each { task ->
@@ -40,9 +43,13 @@ protobuf {
 dependencies {
     lintChecks project(':lintchecks')
 
-    api 'androidx.annotation:annotation:1.1.0'
+    coreLibraryDesugaring libs.android.tools.desugar
 
-    implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+    api libs.androidx.annotation
 
-    testImplementation 'junit:junit:4.13.1'
+    implementation libs.androidx.core.ktx
+    implementation libs.google.protobuf.javalite
+
+    testImplementation testLibs.junit.junit
+    testImplementation testLibs.mockito.core
 }

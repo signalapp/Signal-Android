@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.InputPanel
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.components.InputPanel xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_panel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@color/signal_background_primary"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/input_panel_sticker_suggestion"
@@ -89,9 +88,9 @@
                             android:layout_height="@dimen/conversation_compose_height"
                             android:layout_gravity="bottom"
                             android:background="?selectableItemBackgroundBorderless"
-                            android:tint="@color/signal_icon_tint_primary"
                             android:contentDescription="@string/conversation_activity__emoji_toggle_description"
-                            android:paddingEnd="6dp" />
+                            android:paddingEnd="6dp"
+                            android:tint="@color/signal_icon_tint_primary" />
 
                         <Space
                             android:layout_width="0dp"
@@ -130,8 +129,8 @@
                                     android:id="@+id/quick_camera_toggle"
                                     android:layout_width="24dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginEnd="12dp"
                                     android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="12dp"
                                     android:background="?selectableItemBackgroundBorderless"
                                     android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_camera_description"
                                     android:scaleType="fitCenter"
@@ -142,8 +141,8 @@
                                     android:id="@+id/recorder_view"
                                     android:layout_width="24dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginEnd="8dp"
                                     android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="8dp"
                                     android:clipChildren="false"
                                     android:clipToPadding="false">
 
@@ -164,8 +163,8 @@
                                     android:id="@+id/inline_attachment_button"
                                     android:layout_width="24dp"
                                     android:layout_height="@dimen/conversation_compose_height"
-                                    android:layout_marginEnd="8dp"
                                     android:layout_gravity="bottom"
+                                    android:layout_marginEnd="8dp"
                                     android:background="?selectableItemBackgroundBorderless"
                                     android:contentDescription="@string/ConversationActivity_add_attachment"
                                     android:scaleType="fitCenter"
@@ -179,6 +178,13 @@
                     </LinearLayout>
 
                     <include layout="@layout/recording_layout" />
+
+                    <org.thoughtcrime.securesms.conversation.VoiceNoteDraftView
+                        android:id="@+id/voice_note_draft_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/conversation_compose_height"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
 
                 </FrameLayout>
 

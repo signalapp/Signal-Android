@@ -11,9 +11,9 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -26,14 +26,14 @@ import java.io.InputStream;
 
 class LongMessageRepository {
 
-  private final static String TAG = LongMessageRepository.class.getSimpleName();
+  private final static String TAG = Log.tag(LongMessageRepository.class);
 
   private final MessageDatabase mmsDatabase;
   private final MessageDatabase smsDatabase;
 
-  LongMessageRepository(@NonNull Context context) {
-    this.mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-    this.smsDatabase = DatabaseFactory.getSmsDatabase(context);
+  LongMessageRepository() {
+    this.mmsDatabase = SignalDatabase.mms();
+    this.smsDatabase = SignalDatabase.sms();
   }
 
   void getMessage(@NonNull Context context, long messageId, boolean isMms, @NonNull Callback<Optional<LongMessage>> callback) {
@@ -54,9 +54,9 @@ class LongMessageRepository {
       TextSlide textSlide = record.get().getSlideDeck().getTextSlide();
 
       if (textSlide != null && textSlide.getUri() != null) {
-        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), readFullBody(context, textSlide.getUri())));
+        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get(), readFullBody(context, textSlide.getUri()))));
       } else {
-        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), ""));
+        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get())));
       }
     } else {
       return Optional.absent();
@@ -68,7 +68,7 @@ class LongMessageRepository {
     Optional<MessageRecord> record = getSmsMessage(smsDatabase, messageId);
 
     if (record.isPresent()) {
-      return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get()), ""));
+      return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get())));
     } else {
       return Optional.absent();
     }
@@ -89,7 +89,7 @@ class LongMessageRepository {
     }
   }
 
-  private String readFullBody(@NonNull Context context, @NonNull Uri uri) {
+  private @NonNull String readFullBody(@NonNull Context context, @NonNull Uri uri) {
     try (InputStream stream = PartAuthority.getAttachmentStream(context, uri)) {
       return StreamUtil.readFullyAsString(stream);
     } catch (IOException e) {

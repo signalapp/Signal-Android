@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.linkpreview;
 
 import android.annotation.SuppressLint;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.URLSpan;
@@ -10,6 +9,8 @@ import android.text.util.Linkify;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
+import androidx.core.text.HtmlCompat;
+import androidx.core.text.util.LinkifyCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -53,7 +54,7 @@ public final class LinkPreviewUtil {
    */
   public static @NonNull Links findValidPreviewUrls(@NonNull String text) {
     SpannableString spannable = new SpannableString(text);
-    boolean         found     = Linkify.addLinks(spannable, Linkify.WEB_URLS);
+    boolean         found     = LinkifyCompat.addLinks(spannable, Linkify.WEB_URLS);
 
     if (!found) {
       return Links.EMPTY;
@@ -99,11 +100,6 @@ public final class LinkPreviewUtil {
   }
 
   public static @NonNull OpenGraph parseOpenGraphFields(@Nullable String html) {
-    return parseOpenGraphFields(html, text -> Html.fromHtml(text).toString());
-  }
-
-  @VisibleForTesting
-  static @NonNull OpenGraph parseOpenGraphFields(@Nullable String html, @NonNull HtmlDecoder htmlDecoder) {
     if (html == null) {
       return new OpenGraph(Collections.emptyMap(), null, null);
     }
@@ -118,7 +114,7 @@ public final class LinkPreviewUtil {
       if (property != null) {
         Matcher contentMatcher = OPEN_GRAPH_CONTENT_PATTERN.matcher(tag);
         if (contentMatcher.find() && contentMatcher.groupCount() > 0) {
-          String content = htmlDecoder.fromEncoded(contentMatcher.group(1));
+          String content = fromDoubleEncoded(contentMatcher.group(1));
           openGraphTags.put(property.toLowerCase(), content);
         }
       }
@@ -133,7 +129,7 @@ public final class LinkPreviewUtil {
       if (property != null) {
         Matcher contentMatcher = OPEN_GRAPH_CONTENT_PATTERN.matcher(tag);
         if (contentMatcher.find() && contentMatcher.groupCount() > 0) {
-          String content = htmlDecoder.fromEncoded(contentMatcher.group(1));
+          String content = fromDoubleEncoded(contentMatcher.group(1));
           openGraphTags.put(property.toLowerCase(), content);
         }
       }
@@ -144,7 +140,7 @@ public final class LinkPreviewUtil {
 
     Matcher titleMatcher = TITLE_PATTERN.matcher(html);
     if (titleMatcher.find() && titleMatcher.groupCount() > 0) {
-      htmlTitle = htmlDecoder.fromEncoded(titleMatcher.group(1));
+      htmlTitle = fromDoubleEncoded(titleMatcher.group(1));
     }
 
     Matcher faviconMatcher = FAVICON_PATTERN.matcher(html);
@@ -168,6 +164,9 @@ public final class LinkPreviewUtil {
     }
   }
 
+  private static @NonNull String fromDoubleEncoded(@NonNull String html) {
+    return HtmlCompat.fromHtml(HtmlCompat.fromHtml(html, 0).toString(), 0).toString();
+  }
 
   public static final class OpenGraph {
 
@@ -213,10 +212,6 @@ public final class LinkPreviewUtil {
     public @NonNull Optional<String> getDescription() {
       return OptionalUtil.absentIfEmpty(values.get(KEY_DESCRIPTION_URL));
     }
-  }
-
-  public interface HtmlDecoder {
-    @NonNull String fromEncoded(@NonNull String html);
   }
 
   public static class Links {

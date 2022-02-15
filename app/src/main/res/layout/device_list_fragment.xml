@@ -38,8 +38,9 @@
               android:layout_height="match_parent"
               android:layout_weight="1"
               android:drawSelectorOnTop="false"
-              android:paddingStart="16dip"
-              android:paddingEnd="16dip"
+              android:paddingStart="@dimen/dsl_settings_gutter"
+              android:paddingEnd="@dimen/dsl_settings_gutter"
+              android:divider="@null"
               tools:visibility="gone"/>
 
     <com.melnykov.fab.FloatingActionButton

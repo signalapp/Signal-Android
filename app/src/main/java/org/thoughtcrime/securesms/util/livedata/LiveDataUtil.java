@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.Transformations;
 
 import com.annimon.stream.function.Predicate;
 
@@ -17,6 +18,7 @@ import org.whispersystems.libsignal.util.guava.Function;
 
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
@@ -77,6 +79,13 @@ public final class LiveDataUtil {
   }
 
   /**
+   * Performs a map operation on the source observable and then only emits the mapped item if it has changed since the previous emission.
+   */
+  public static <A, B> LiveData<B> mapDistinct(@NonNull LiveData<A> source, @NonNull androidx.arch.core.util.Function<A, B> mapFunction) {
+    return Transformations.distinctUntilChanged(Transformations.map(source, mapFunction));
+  }
+
+  /**
    * Once there is non-null data on both input {@link LiveData}, the {@link Combine} function is run
    * and produces a live data of the combined data.
    * <p>
@@ -115,6 +124,10 @@ public final class LiveDataUtil {
    */
   public static <T> LiveData<T> just(@NonNull T item) {
     return new MutableLiveData<>(item);
+  }
+
+  public static <A> LiveData<A> empty() {
+    return new MutableLiveData<>();
   }
 
   /**
@@ -170,6 +183,14 @@ public final class LiveDataUtil {
     };
   }
 
+  public static <T> LiveData<T> never() {
+    return new MutableLiveData<>();
+  }
+
+  public static <T, R> LiveData<T> distinctUntilChanged(@NonNull LiveData<T> source, @NonNull Function<T, R> selector) {
+    return LiveDataUtil.distinctUntilChanged(source, (current, next) -> Objects.equals(selector.apply(current), selector.apply(next)));
+  }
+
   public static <T> LiveData<T> distinctUntilChanged(@NonNull LiveData<T> source, @NonNull EqualityChecker<T> checker) {
     final MediatorLiveData<T> outputLiveData = new MediatorLiveData<>();
     outputLiveData.addSource(source, new Observer<T>() {
@@ -216,6 +237,10 @@ public final class LiveDataUtil {
 
   public interface Combine<A, B, R> {
     @NonNull R apply(@NonNull A a, @NonNull B b);
+  }
+
+  public interface Combine3<A, B, C, R> {
+    @NonNull R apply(@NonNull A a, @NonNull B b, @NonNull C c);
   }
 
   public interface EqualityChecker<T> {

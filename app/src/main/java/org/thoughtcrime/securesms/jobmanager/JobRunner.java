@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 class JobRunner extends Thread {
 
-  private static final String TAG = JobRunner.class.getSimpleName();
+  private static final String TAG = Log.tag(JobRunner.class);
 
   private static long WAKE_LOCK_TIMEOUT = TimeUnit.MINUTES.toMillis(10);
 

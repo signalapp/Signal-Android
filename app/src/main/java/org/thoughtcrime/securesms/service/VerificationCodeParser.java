@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 public class VerificationCodeParser {
 
-  private static final Pattern CHALLENGE_PATTERN = Pattern.compile("(.*\\D|^)([0-9]{3,4})-([0-9]{3,4}).*", Pattern.DOTALL);
+  private static final Pattern CHALLENGE_PATTERN = Pattern.compile("(.*\\D|^)([0-9]{3,4})-?([0-9]{3,4}).*", Pattern.DOTALL);
 
   public static Optional<String> parse(String messageBody) {
     if (messageBody == null) {

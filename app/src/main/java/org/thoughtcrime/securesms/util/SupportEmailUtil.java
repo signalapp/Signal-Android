@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
-import org.signal.core.util.EnglishResourceUtil;
+import org.signal.core.util.ResourceUtil;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -27,21 +27,35 @@ public final class SupportEmailUtil {
    * Generates a support email body with system info near the top.
    */
   public static @NonNull String generateSupportEmailBody(@NonNull Context context,
-                                                         @StringRes int subject,
+                                                         @StringRes int filter,
                                                          @Nullable String prefix,
                                                          @Nullable String suffix)
   {
-    prefix = Util.firstNonNull(prefix, "");
-    suffix = Util.firstNonNull(suffix, "");
-    return String.format("%s\n%s\n%s", prefix, buildSystemInfo(context, subject), suffix);
+    return generateSupportEmailBody(context, filter, null, prefix, suffix);
   }
 
-  private static @NonNull String buildSystemInfo(@NonNull Context context, @StringRes int subject) {
-    Resources englishResources = EnglishResourceUtil.getEnglishResources(context);
+  /**
+   * Generates a support email body with system info near the top.
+   */
+  public static @NonNull String generateSupportEmailBody(@NonNull Context context,
+                                                         @StringRes int filter,
+                                                         @Nullable String filterSuffix,
+                                                         @Nullable String prefix,
+                                                         @Nullable String suffix)
+  {
+    filterSuffix = Util.emptyIfNull(filterSuffix);
+    prefix       = Util.emptyIfNull(prefix);
+    suffix       = Util.emptyIfNull(suffix);
+
+    return String.format("%s\n%s\n%s", prefix, buildSystemInfo(context, filter, filterSuffix), suffix);
+  }
+
+  private static @NonNull String buildSystemInfo(@NonNull Context context, @StringRes int filter, @NonNull String filterSuffix) {
+    Resources englishResources = ResourceUtil.getEnglishResources(context);
 
     return "--- " + context.getString(R.string.HelpFragment__support_info) + " ---" +
            "\n" +
-           context.getString(R.string.SupportEmailUtil_filter) + " " + englishResources.getString(subject) +
+           context.getString(R.string.SupportEmailUtil_filter) + " " + englishResources.getString(filter) + filterSuffix +
            "\n" +
            context.getString(R.string.SupportEmailUtil_device_info) + " " + getDeviceInfo() +
            "\n" +

@@ -1,18 +1,15 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import android.media.AudioManager;
-
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
-import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -22,8 +19,8 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.push.ACI;
 
 import java.util.List;
 
@@ -46,14 +43,16 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     byte[]      groupId = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
-                                                                            BuildConfig.SIGNAL_SFU_URL,
-                                                                            currentState.getVideoState().requireEglBase(),
+                                                                            SignalStore.internalValues().groupCallingServer(),
+                                                                            new byte[0],
+                                                                            null,
+                                                                            AudioProcessingMethodSelector.get(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
     try {
       groupCall.setOutgoingAudioMuted(true);
       groupCall.setOutgoingVideoMuted(true);
-      groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
+      groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
       Log.i(TAG, "Connecting to group call: " + currentState.getCallInfoState().getCallRecipient().getId());
       groupCall.connect();
@@ -66,6 +65,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                        .changeCallInfoState()
                        .groupCall(groupCall)
                        .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
+                       .activePeer(new RemotePeer(currentState.getCallInfoState().getCallRecipient().getId(), RemotePeer.GROUP_CALL_ID))
                        .build();
   }
 
@@ -81,6 +81,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
     }
 
     WebRtcVideoUtil.deinitializeVideo(currentState);
+    EglBaseWrapper.releaseEglBase(RemotePeer.GROUP_CALL_ID.longValue());
 
     return new WebRtcServiceState(new IdleActionProcessor(webRtcInteractor));
   }
@@ -113,7 +114,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
     }
 
     List<Recipient> callParticipants = Stream.of(peekInfo.getJoinedMembers())
-                                             .map(uuid -> Recipient.externalPush(context, uuid, null, false))
+                                             .map(uuid -> Recipient.externalPush(context, ACI.from(uuid), null, false))
                                              .toList();
 
     WebRtcServiceStateBuilder.CallInfoStateBuilder builder = currentState.builder()
@@ -123,7 +124,17 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                          .clearParticipantMap();
 
     for (Recipient recipient : callParticipants) {
-      builder.putParticipant(recipient, CallParticipant.createRemote(new CallParticipantId(recipient), recipient, null, new BroadcastVideoSink(null), true, true, 0, false, 0, CallParticipant.DeviceOrdinal.PRIMARY));
+      builder.putParticipant(recipient, CallParticipant.createRemote(new CallParticipantId(recipient),
+                                                                     recipient,
+                                                                     null,
+                                                                     new BroadcastVideoSink(),
+                                                                     true,
+                                                                     true,
+                                                                     0,
+                                                                     false,
+                                                                     0,
+                                                                     false,
+                                                                     CallParticipant.DeviceOrdinal.PRIMARY));
     }
 
     return builder.build();
@@ -140,19 +151,15 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     currentState = WebRtcVideoUtil.reinitializeCamera(context, webRtcInteractor.getCameraEventListener(), currentState);
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
-    androidAudioManager.setSpeakerphoneOn(false);
-
+    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, currentState.getCallInfoState().getCallRecipient());
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     webRtcInteractor.initializeAudioForCall();
-    webRtcInteractor.setWantsBluetoothConnection(true);
-    webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, currentState.getCallInfoState().getCallRecipient());
 
     try {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());
       groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());
       groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
-      groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
+      groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context, groupCall.getLocalDeviceState().getNetworkRoute().getLocalAdapterType()));
 
       groupCall.join();
     } catch (CallException e) {
@@ -164,6 +171,8 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                        .changeCallInfoState()
                        .callState(WebRtcViewModel.State.CALL_OUTGOING)
                        .groupCallState(WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINING)
+                       .commit()
+                       .changeLocalDeviceState()
                        .build();
   }
 
@@ -173,7 +182,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     currentState.getVideoState().requireCamera().setEnabled(enable);
     return currentState.builder()
-                       .changeCallSetupState()
+                       .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
                        .enableVideoOnCreate(enable)
                        .commit()
                        .changeLocalDeviceState()

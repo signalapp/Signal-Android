@@ -6,20 +6,34 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/empty_conversation_banner"
-        layout="@layout/conversation_item_banner"
-        android:visibility="gone" />
+    <FrameLayout
+        android:id="@+id/video_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@android:id/list"
+        app:layout_constraintEnd_toEndOf="@android:id/list"
+        app:layout_constraintStart_toStartOf="@android:id/list"
+        app:layout_constraintTop_toTopOf="@android:id/list" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <org.thoughtcrime.securesms.conversation.mutiselect.MultiselectRecyclerView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="@color/signal_background_primary"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="2dp"
-        android:scrollbars="vertical" />
+        android:paddingBottom="@dimen/conversation_bottom_padding"
+        android:scrollbars="vertical"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/reactions_shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/reactions_screen_light_shade_color"
+        android:foreground="@color/reactions_screen_dark_shade_color"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/scroll_date_header"
@@ -72,5 +86,16 @@
         app:cstv_scroll_button_src="@drawable/ic_chevron_down_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
+        android:id="@+id/conversation_bottom_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,9 +10,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -51,21 +51,21 @@ final class MessageDetailsRepository {
                                                  messageRecord.getRecipient(),
                                                  getStatusFor(messageRecord),
                                                  messageRecord.isUnidentified(),
-                                                 -1,
+                                                 messageRecord.getReceiptTimestamp(),
                                                  getNetworkFailure(messageRecord, messageRecord.getRecipient()),
                                                  getKeyMismatchFailure(messageRecord, messageRecord.getRecipient())));
     } else {
-      List<GroupReceiptDatabase.GroupReceiptInfo> receiptInfoList = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageRecord.getId());
+      List<GroupReceiptDatabase.GroupReceiptInfo> receiptInfoList = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageRecord.getId());
 
       if (receiptInfoList.isEmpty()) {
-        List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+        List<Recipient> group = SignalDatabase.groups().getGroupMembers(messageRecord.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
         for (Recipient recipient : group) {
           recipients.add(new RecipientDeliveryStatus(messageRecord,
                                                      recipient,
                                                      RecipientDeliveryStatus.Status.UNKNOWN,
                                                      false,
-                                                     -1,
+                                                     messageRecord.getReceiptTimestamp(),
                                                      getNetworkFailure(messageRecord, recipient),
                                                      getKeyMismatchFailure(messageRecord, recipient)));
         }
@@ -113,10 +113,11 @@ final class MessageDetailsRepository {
   }
 
   private @NonNull RecipientDeliveryStatus.Status getStatusFor(MessageRecord messageRecord) {
-    if (messageRecord.isRemoteRead()) return RecipientDeliveryStatus.Status.READ;
-    if (messageRecord.isDelivered())  return RecipientDeliveryStatus.Status.DELIVERED;
-    if (messageRecord.isSent())       return RecipientDeliveryStatus.Status.SENT;
-    if (messageRecord.isPending())    return RecipientDeliveryStatus.Status.PENDING;
+    if (messageRecord.isRemoteViewed()) return RecipientDeliveryStatus.Status.VIEWED;
+    if (messageRecord.isRemoteRead())   return RecipientDeliveryStatus.Status.READ;
+    if (messageRecord.isDelivered())    return RecipientDeliveryStatus.Status.DELIVERED;
+    if (messageRecord.isSent())         return RecipientDeliveryStatus.Status.SENT;
+    if (messageRecord.isPending())      return RecipientDeliveryStatus.Status.PENDING;
 
     return RecipientDeliveryStatus.Status.UNKNOWN;
   }
@@ -128,6 +129,7 @@ final class MessageDetailsRepository {
     else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED && !pending) return RecipientDeliveryStatus.Status.SENT;
     else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED)             return RecipientDeliveryStatus.Status.PENDING;
     else if (groupStatus == GroupReceiptDatabase.STATUS_UNKNOWN)                 return RecipientDeliveryStatus.Status.UNKNOWN;
+    else if (groupStatus == GroupReceiptDatabase.STATUS_VIEWED)                  return RecipientDeliveryStatus.Status.VIEWED;
     throw new AssertionError();
   }
 }

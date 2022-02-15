@@ -4,7 +4,7 @@ Signal is a simple messaging app for private communication with friends.
 
 Signal uses your phone's data connection (WiFi/3G/4G/5G) to communicate securely (end to end encrypted), optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
 
-Currently available on the Play store.
+Currently available on the Play store and [signal.org](https://signal.org/android/apk/).
 
 <a href='https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
 
@@ -63,4 +63,4 @@ Copyright 2013-2022 Signal
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
 
-Google Play and the Google Play logo are trademarks of Google Inc.
+Google Play and the Google Play logo are trademarks of Google LLC.

@@ -23,7 +23,9 @@ import android.content.SharedPreferences.Editor;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.backup.BackupProtos;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -31,6 +33,7 @@ import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECKeyPair;
 import org.whispersystems.libsignal.ecc.ECPrivateKey;
+import org.whispersystems.libsignal.util.guava.Preconditions;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -45,7 +48,7 @@ import java.util.List;
 public class IdentityKeyUtil {
 
   @SuppressWarnings("unused")
-  private static final String TAG = IdentityKeyUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(IdentityKeyUtil.class);
 
   private static final String IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF  = "pref_identity_public_curve25519";
   private static final String IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF = "pref_identity_private_curve25519";
@@ -86,12 +89,27 @@ public class IdentityKeyUtil {
   }
 
   public static void generateIdentityKeys(Context context) {
+    IdentityKeyPair identityKeyPair = generateIdentityKeyPair();
+
+    save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(identityKeyPair.getPublicKey().serialize()));
+    save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(identityKeyPair.getPrivateKey().serialize()));
+  }
+
+  /**
+   * Only call when configuring as a secondary linked device.
+   */
+  public static void setIdentityKeys(Context context, IdentityKeyPair identityKeyPair) {
+    Preconditions.checkState(SignalStore.account().isLinkedDevice(), "Identity keys can only be set directly by a linked device");
+    save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(identityKeyPair.getPublicKey().serialize()));
+    save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(identityKeyPair.getPrivateKey().serialize()));
+  }
+
+  public static IdentityKeyPair generateIdentityKeyPair() {
     ECKeyPair    djbKeyPair     = Curve.generateKeyPair();
     IdentityKey  djbIdentityKey = new IdentityKey(djbKeyPair.getPublicKey());
     ECPrivateKey djbPrivateKey  = djbKeyPair.getPrivateKey();
 
-    save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(djbIdentityKey.serialize()));
-    save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(djbPrivateKey.serialize()));
+    return new IdentityKeyPair(djbIdentityKey, djbPrivateKey);
   }
 
   public static void migrateIdentityKeys(@NonNull Context context,

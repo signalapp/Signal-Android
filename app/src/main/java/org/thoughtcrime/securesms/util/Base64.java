@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.io.IOException;
 
@@ -18,6 +19,18 @@ public final class Base64 {
   }
 
   public static @NonNull byte[] decodeOrThrow(@NonNull String s) {
+    try {
+      return org.whispersystems.util.Base64.decode(s);
+    } catch (IOException e) {
+      throw new AssertionError();
+    }
+  }
+
+  public static @Nullable byte[] decodeNullableOrThrow(@Nullable String s) {
+    if (s == null) {
+      return null;
+    }
+
     try {
       return org.whispersystems.util.Base64.decode(s);
     } catch (IOException e) {

@@ -1,17 +1,16 @@
 package org.thoughtcrime.securesms.conversationlist;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
@@ -30,7 +29,6 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
     super(context, attrs);
   }
 
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   public ConversationListItemAction(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
@@ -46,10 +44,9 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
                    @NonNull GlideRequests glideRequests,
                    @NonNull Locale locale,
                    @NonNull Set<Long> typingThreads,
-                   @NonNull Set<Long> selectedThreads,
-                   boolean batchMode)
+                   @NonNull ConversationSet selectedConversations)
   {
-    this.description.setText(getContext().getString(R.string.ConversationListItemAction_archived_conversations_d, thread.getCount()));
+    this.description.setText(getContext().getString(R.string.ConversationListItemAction_archived_conversations_d, thread.getUnreadCount()));
   }
 
   @Override
@@ -58,7 +55,7 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
   }
 
   @Override
-  public void setBatchMode(boolean batchMode) {
+  public void setSelectedConversations(@NonNull ConversationSet conversations) {
 
   }
 

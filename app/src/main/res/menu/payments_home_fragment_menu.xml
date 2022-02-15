@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/payments_home_fragment_menu_transfer_to_exchange"
+        android:title="@string/PaymentsHomeFragment__transfer_to_exchange" />
+
+    <item android:id="@+id/payments_home_fragment_menu_set_currency"
+        android:title="@string/PaymentsHomeFragment__currency_conversion" />
+
+    <item android:id="@+id/payments_home_fragment_menu_deactivate_wallet"
+        android:title="@string/PaymentsHomeFragment__deactivate_payments" />
+
+    <item android:id="@+id/payments_home_fragment_menu_view_recovery_phrase"
+        android:title="@string/PaymentsHomeFragment__recovery_phrase" />
+
+    <item android:id="@+id/payments_home_fragment_menu_help"
+        android:title="@string/PaymentsHomeFragment__help" />
+</menu>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
@@ -16,15 +17,19 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 /**
  * Activity that manages the local user's profile, as accessed via the settings.
  */
 public class ManageProfileActivity extends PassphraseRequiredActivity implements ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
+  public static final int RESULT_BECOME_A_SUSTAINER = 12382;
+
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   public static final String START_AT_USERNAME = "start_at_username";
+  public static final String START_AT_AVATAR   = "start_at_avatar";
 
   public static @NonNull Intent getIntent(@NonNull Context context) {
     return new Intent(context, ManageProfileActivity.class);
@@ -36,6 +41,12 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
     return intent;
   }
 
+  public static @NonNull Intent getIntentForAvatarEdit(@NonNull Context context) {
+    Intent intent = new Intent(context, ManageProfileActivity.class);
+    intent.putExtra(START_AT_AVATAR, true);
+    return intent;
+  }
+
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
     dynamicTheme.onCreate(this);
@@ -44,13 +55,22 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
 
     if (bundle == null) {
       Bundle   extras = getIntent().getExtras();
-      NavGraph graph  = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
 
-      Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, extras != null ? extras : new Bundle());
+      //noinspection ConstantConditions
+      NavController navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
+
+      NavGraph graph  = navController.getGraph();
+
+      navController.setGraph(graph, extras != null ? extras : new Bundle());
 
       if (extras != null && extras.getBoolean(START_AT_USERNAME, false)) {
-        NavDirections action = ManageProfileFragmentDirections.actionManageUsername();
-        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(action);
+        NavDirections  action = ManageProfileFragmentDirections.actionManageUsername();
+        SafeNavigation.safeNavigate(navController, action);
+      }
+
+      if (extras != null && extras.getBoolean(START_AT_AVATAR, false)) {
+        NavDirections action = ManageProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null);
+        SafeNavigation.safeNavigate(navController, action);
       }
     }
   }
@@ -63,10 +83,6 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
 
   @Override
   public void onReactWithAnyEmojiDialogDismissed() {
-  }
-
-  @Override
-  public void onReactWithAnyEmojiPageChanged(int page) {
   }
 
   @Override
