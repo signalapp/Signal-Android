@@ -124,7 +124,7 @@ public class IncomingRinger {
 
       return mediaPlayer;
     } catch (IOException e) {
-      Log.e(TAG, "Failed to create player for incoming call ringer");
+      Log.e(TAG, "Failed to create player for incoming call ringer", e);
       return null;
     }
   }
