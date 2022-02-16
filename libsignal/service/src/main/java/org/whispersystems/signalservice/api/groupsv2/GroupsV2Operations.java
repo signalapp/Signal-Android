@@ -369,6 +369,38 @@ public final class GroupsV2Operations {
                           .setMember(member);
     }
 
+    public PartialDecryptedGroup partialDecryptGroup(Group group)
+        throws VerificationFailedException, InvalidGroupStateException
+    {
+      List<Member>                 membersList             = group.getMembersList();
+      List<PendingMember>          pendingMembersList      = group.getPendingMembersList();
+      List<DecryptedMember>        decryptedMembers        = new ArrayList<>(membersList.size());
+      List<DecryptedPendingMember> decryptedPendingMembers = new ArrayList<>(pendingMembersList.size());
+
+      for (Member member : membersList) {
+        UUID memberUuid = decryptUuid(member.getUserId());
+        decryptedMembers.add(DecryptedMember.newBuilder()
+                                            .setUuid(UuidUtil.toByteString(memberUuid))
+                                            .setJoinedAtRevision(member.getJoinedAtRevision())
+                                            .build());
+      }
+
+      for (PendingMember member : pendingMembersList) {
+        UUID pendingMemberUuid = decryptUuidOrUnknown(member.getMember().getUserId());
+        decryptedMembers.add(DecryptedMember.newBuilder()
+                                            .setUuid(UuidUtil.toByteString(pendingMemberUuid))
+                                            .build());
+      }
+
+      DecryptedGroup decryptedGroup = DecryptedGroup.newBuilder()
+                                                    .setRevision(group.getRevision())
+                                                    .addAllMembers(decryptedMembers)
+                                                    .addAllPendingMembers(decryptedPendingMembers)
+                                                    .build();
+
+      return new PartialDecryptedGroup(group, decryptedGroup, GroupsV2Operations.this, groupSecretParams);
+    }
+
     public DecryptedGroup decryptGroup(Group group)
         throws VerificationFailedException, InvalidGroupStateException
     {

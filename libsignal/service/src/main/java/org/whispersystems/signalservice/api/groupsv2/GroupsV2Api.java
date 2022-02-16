@@ -20,7 +20,6 @@ import org.signal.zkgroup.auth.AuthCredentialResponse;
 import org.signal.zkgroup.auth.ClientZkAuthOperations;
 import org.signal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.zkgroup.groups.GroupSecretParams;
-import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -30,7 +29,6 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class GroupsV2Api {
@@ -83,6 +81,16 @@ public class GroupsV2Api {
     }
 
     socket.putNewGroupsV2Group(group, authorization);
+  }
+
+  public PartialDecryptedGroup getPartialDecryptedGroup(GroupSecretParams groupSecretParams,
+                                                        GroupsV2AuthorizationString authorization)
+      throws IOException, InvalidGroupStateException, VerificationFailedException
+  {
+    Group group = socket.getGroupsV2Group(authorization);
+
+    return groupsOperations.forGroup(groupSecretParams)
+                           .partialDecryptGroup(group);
   }
 
   public DecryptedGroup getGroup(GroupSecretParams groupSecretParams,

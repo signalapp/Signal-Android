@@ -19,6 +19,7 @@ import org.mockito.Mockito.verify
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
+import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.storageservice.protos.groups.local.DecryptedTimer
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.thoughtcrime.securesms.util.Hex.fromStringCondensed
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
+import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup
 import org.whispersystems.signalservice.api.push.ACI
 import java.util.UUID
 
@@ -92,8 +94,13 @@ class GroupsV2StateProcessorTest {
     doReturn(data.groupRecord).`when`(groupDatabase).getGroup(any(GroupId.V2::class.java))
     doReturn(!data.groupRecord.isPresent).`when`(groupDatabase).isUnknownGroup(any())
 
-    if (data.serverState != null) {
-      doReturn(data.serverState).`when`(groupsV2API).getGroup(any(), any())
+    data.serverState?.let { serverState ->
+      val testPartial = object : PartialDecryptedGroup(null, serverState, null, null) {
+        override fun getFullyDecryptedGroup(): DecryptedGroup {
+          return serverState
+        }
+      }
+      doReturn(testPartial).`when`(groupsV2API).getPartialDecryptedGroup(any(), any())
     }
 
     data.changeSet?.let { changeSet ->
