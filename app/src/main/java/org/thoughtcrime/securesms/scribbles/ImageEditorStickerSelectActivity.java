@@ -18,11 +18,13 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel;
+import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment;
+import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment;
 import org.thoughtcrime.securesms.stickers.StickerEventListener;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public final class ImageEditorStickerSelectActivity extends AppCompatActivity implements StickerEventListener, MediaKeyboard.MediaKeyboardListener {
+public final class ImageEditorStickerSelectActivity extends AppCompatActivity implements StickerEventListener, MediaKeyboard.MediaKeyboardListener, StickerKeyboardPageFragment.Callback {
 
   @Override
   protected void attachBaseContext(@NonNull Context newBase) {
@@ -69,6 +71,12 @@ public final class ImageEditorStickerSelectActivity extends AppCompatActivity im
   @Override
   public void onStickerManagementClicked() {
     startActivity(StickerManagementActivity.getIntent(ImageEditorStickerSelectActivity.this));
+  }
+
+
+  @Override
+  public void openStickerSearch() {
+    StickerSearchDialogFragment.show(getSupportFragmentManager());
   }
 
   @Override
