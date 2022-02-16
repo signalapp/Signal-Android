@@ -107,7 +107,7 @@ public final class Megaphones {
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.BECOME_A_SUSTAINER, shouldShowDonateMegaphone(context, records) ? ShowForDurationSchedule.showForDays(7) : NEVER);
-      put(Event.VALENTINES_DONATIONS_2022, shouldShowValentinesDonationsMegaphone(context, records) ? ShowForDurationSchedule.showForDays(1) : NEVER);
+      put(Event.VALENTINES_DONATIONS_2022, NEVER);
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
 
       // Feature-introduction megaphones should *probably* be added below this divider
@@ -319,24 +319,6 @@ public final class Megaphones {
     return timeSinceLastDonatePrompt > MIN_TIME_BETWEEN_DONATE_MEGAPHONES &&
            VersionTracker.getDaysSinceFirstInstalled(context) >= 7 &&
            LocaleFeatureFlags.isInDonateMegaphone() &&
-           PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesUtil.PlayServicesStatus.SUCCESS &&
-           Recipient.self()
-                    .getBadges()
-                    .stream()
-                    .filter(Objects::nonNull)
-                    .noneMatch(badge -> badge.getCategory() == Badge.Category.Donor);
-  }
-
-  private static boolean shouldShowValentinesDonationsMegaphone(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
-    LocalDateTime now                       = LocalDateTime.now();
-    long          timeSinceLastDonatePrompt = timeSinceLastDonatePrompt(records);
-
-    return timeSinceLastDonatePrompt > MIN_TIME_BETWEEN_DONATE_MEGAPHONES &&
-           VersionTracker.getDaysSinceFirstInstalled(context) >= 7 &&
-           LocaleFeatureFlags.isInValentinesDonateMegaphone() &&
-           now.getMonth() == Month.FEBRUARY &&
-           now.getDayOfMonth() == 14 &&
-           now.getYear() == 2022 &&
            PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesUtil.PlayServicesStatus.SUCCESS &&
            Recipient.self()
                     .getBadges()
