@@ -18,7 +18,9 @@ import org.mockito.Mockito.reset
 import org.mockito.Mockito.verify
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
+import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.storageservice.protos.groups.local.DecryptedTimer
 import org.signal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.SignalStoreRule
@@ -33,7 +35,10 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
+import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
+import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.thoughtcrime.securesms.util.Hex.fromStringCondensed
+import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.push.ACI
 import java.util.UUID
@@ -44,10 +49,10 @@ class GroupsV2StateProcessorTest {
 
   companion object {
     val masterKey = GroupMasterKey(fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"))
-    val selfAci = ACI.from(UUID.randomUUID())
-    val otherAci = ACI.from(UUID.randomUUID())
-    val selfAndOthers = listOf(member(selfAci), member(otherAci))
-    val others = listOf(member(otherAci))
+    val selfAci: ACI = ACI.from(UUID.randomUUID())
+    val otherAci: ACI = ACI.from(UUID.randomUUID())
+    val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherAci))
+    val others: List<DecryptedMember> = listOf(member(otherAci))
   }
 
   private lateinit var groupDatabase: GroupDatabase
@@ -63,6 +68,9 @@ class GroupsV2StateProcessorTest {
 
   @Before
   fun setUp() {
+    Log.initialize(SystemOutLogger())
+    SignalProtocolLoggerProvider.setProvider(CustomSignalProtocolLogger())
+
     groupDatabase = mock(GroupDatabase::class.java)
     recipientDatabase = mock(RecipientDatabase::class.java)
     groupsV2API = mock(GroupsV2Api::class.java)
@@ -371,5 +379,62 @@ class GroupsV2StateProcessorTest {
     assertThat("revision matches revision approved at", result.latestServer!!.revision, `is`(3))
     assertThat("title matches revision approved at", result.latestServer!!.title, `is`("Beam me up"))
     verify(ApplicationDependencies.getJobManager()).add(isA(RequestGroupV2InfoJob::class.java))
+  }
+
+  @Test
+  fun `when failing to update fully to desired revision, then try again forcing inclusion of full group state, and then successfully update from server to latest revision`() {
+    val randomMembers = listOf(member(UUID.randomUUID()), member(UUID.randomUUID()))
+    given {
+      localState(
+        revision = 100,
+        title = "Title",
+        members = others
+      )
+      serverState(
+        extendGroup = localState,
+        revision = 101,
+        members = listOf(others[0], randomMembers[0], member(selfAci, joinedAt = 100))
+      )
+      changeSet {
+        changeLog(100) {
+          change {
+            addNewMembers(member(selfAci, joinedAt = 100))
+          }
+        }
+        changeLog(101) {
+          change {
+            addDeleteMembers(randomMembers[1].uuid)
+            addModifiedProfileKeys(randomMembers[0])
+          }
+        }
+      }
+      apiCallParameters(100, false)
+    }
+
+    val secondApiCallChangeSet = GroupStateTestData(masterKey).apply {
+      changeSet {
+        changeLog(100) {
+          fullSnapshot(
+            extendGroup = localState,
+            members = selfAndOthers + randomMembers[0] + randomMembers[1]
+          )
+          change {
+            addNewMembers(member(selfAci, joinedAt = 100))
+          }
+        }
+        changeLog(101) {
+          change {
+            addDeleteMembers(randomMembers[1].uuid)
+            addModifiedProfileKeys(randomMembers[0])
+          }
+        }
+      }
+    }
+    doReturn(secondApiCallChangeSet.changeSet!!.toApiResponse()).`when`(groupsV2API).getGroupHistoryPage(any(), eq(100), any(), eq(true))
+
+    val result = processor.updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, 0, null)
+
+    assertThat("local should update to server", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_UPDATED))
+    assertThat("revision matches latest revision on server", result.latestServer!!.revision, `is`(101))
   }
 }

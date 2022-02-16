@@ -19,6 +19,7 @@ import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.DistributionId
+import java.util.UUID
 
 fun DecryptedGroupChange.Builder.setNewDescription(description: String) {
   newDescription = DecryptedString.newBuilder().setValue(description).build()
@@ -187,6 +188,10 @@ fun decryptedGroup(
     .addAllRequestingMembers(requestingMembers)
 
   return builder.build()
+}
+
+fun member(aci: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
+  return member(ACI.from(aci), role, joinedAt)
 }
 
 fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {

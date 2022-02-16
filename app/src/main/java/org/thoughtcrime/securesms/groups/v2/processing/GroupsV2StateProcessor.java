@@ -217,7 +217,7 @@ public final class GroupsV2StateProcessor {
 
       if (inputGroupState == null) {
         try {
-          return updateLocalGroupFromServerPaged(revision, localState, timestamp);
+          return updateLocalGroupFromServerPaged(revision, localState, timestamp, false);
         } catch (GroupNotAMemberException e) {
           if (localState != null && signedGroupChange != null) {
             try {
@@ -296,7 +296,7 @@ public final class GroupsV2StateProcessor {
     /**
      * Using network, attempt to bring the local copy of the group up to the revision specified via paging.
      */
-    private GroupUpdateResult updateLocalGroupFromServerPaged(int revision, DecryptedGroup localState, long timestamp) throws IOException, GroupNotAMemberException {
+    private GroupUpdateResult updateLocalGroupFromServerPaged(int revision, DecryptedGroup localState, long timestamp, boolean forceIncludeFirst) throws IOException, GroupNotAMemberException {
       boolean latestRevisionOnly = revision == LATEST && (localState == null || localState.getRevision() == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION);
       ACI     selfAci            = this.selfAci;
 
@@ -324,9 +324,16 @@ public final class GroupsV2StateProcessor {
       } else {
         int     revisionWeWereAdded = GroupProtoUtil.findRevisionWeWereAdded(latestServerGroup, selfAci.uuid());
         int     logsNeededFrom      = localState != null ? Math.max(localState.getRevision(), revisionWeWereAdded) : revisionWeWereAdded;
-        boolean includeFirstState   = localState == null || localState.getRevision() < 0 || (revision == LATEST && localState.getRevision() + 1 < latestServerGroup.getRevision());
+        boolean includeFirstState   = forceIncludeFirst ||
+                                      localState == null ||
+                                      localState.getRevision() < 0 ||
+                                      (revision == LATEST && localState.getRevision() + 1 < latestServerGroup.getRevision());
 
-        Log.i(TAG, "Requesting from server currentRevision: " + (localState != null ? localState.getRevision() : "null") + " logsNeededFrom: " + logsNeededFrom);
+        Log.i(TAG,
+              "Requesting from server currentRevision: " + (localState != null ? localState.getRevision() : "null") +
+              " logsNeededFrom: " + logsNeededFrom +
+              " includeFirstState: " + includeFirstState +
+              " forceIncludeFirst: " + forceIncludeFirst);
         inputGroupState = getFullMemberHistoryPage(localState, selfAci, logsNeededFrom, includeFirstState);
       }
 
@@ -340,6 +347,15 @@ public final class GroupsV2StateProcessor {
         AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(inputGroupState, revision);
         DecryptedGroup          newLocalState           = advanceGroupStateResult.getNewGlobalGroupState().getLocalState();
         Log.i(TAG, "Advanced group to revision: " + (newLocalState != null ? newLocalState.getRevision() : "null"));
+
+        if (newLocalState != null && !inputGroupState.hasMore() && !forceIncludeFirst) {
+          int newLocalRevision = newLocalState.getRevision();
+          int requestRevision = (revision == LATEST) ? latestServerGroup.getRevision() : revision;
+          if (newLocalRevision < requestRevision) {
+            Log.w(TAG, "Paging again with force first snapshot enabled due to error processing changes. New local revision [" + newLocalRevision + "] hasn't reached our desired level [" + requestRevision + "]");
+            return updateLocalGroupFromServerPaged(revision, localState, timestamp, true);
+          }
+        }
 
         if (newLocalState == null || newLocalState == inputGroupState.getLocalState()) {
           return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
