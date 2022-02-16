@@ -184,7 +184,7 @@
   <string name="ConversationItem_to_s">до %s</string>
   <string name="ConversationItem_read_more">  Прочитај повеќе</string>
   <string name="ConversationItem_download_more">  Преземи повеќе</string>
-  <string name="ConversationItem_pending">  Во тек</string>
+  <string name="ConversationItem_pending">  На чекање</string>
   <string name="ConversationItem_this_message_was_deleted">Оваа порака е избришана.</string>
   <string name="ConversationItem_you_deleted_this_message">Ја избришавте оваа порака.</string>
   <!--ConversationActivity-->
@@ -460,8 +460,8 @@
   <string name="ExpiredBuildReminder_update_now">Ажурирај веднаш</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
-    <item quantity="one">%d барање за член во листата на чекање.</item>
-    <item quantity="other">%d барања за членови во листата на чекање.</item>
+    <item quantity="one">%d барање за членство во листата на чекање.</item>
+    <item quantity="other">%d барања за членство во листата на чекање.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Преглед</string>
   <!--ShareActivity-->
@@ -579,13 +579,13 @@
     <item quantity="other">%1$d членови</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">Групни покани во тек</string>
+  <string name="PendingMembersActivity_pending_group_invites">Групни покани на чекање</string>
   <string name="PendingMembersActivity_requests">Барања</string>
   <string name="PendingMembersActivity_invites">Покани</string>
   <string name="PendingMembersActivity_people_you_invited">Луѓе кои ги поканивте</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">Немате покани што чекаат.</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Немате покани на чекање.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Покани од други членови на групата</string>
-  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Нема покани што чекаат од други членови на групата.</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Нема покани на чекање од други членови на групата.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Деталите од луѓе поканети од други членови на групата не се прикажани. Ако поканетите изберат да се приклучат, нивните информации ќе бидат споделени во групата во моментот на прифаќање. Тие нема да видат ниту една порака во групата додека не се приклучат.</string>
   <string name="PendingMembersActivity_revoke_invite">Повлечи покана</string>
   <string name="PendingMembersActivity_revoke_invites">Повлечи покани</string>
@@ -598,9 +598,9 @@
     <item quantity="other">Грешка при повлекување на покани</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">Барања од членови</string>
-  <string name="RequestingMembersFragment_no_member_requests_to_show">Нема барања од членови за приказ.</string>
-  <string name="RequestingMembersFragment_explanation">Луѓе на оваа листа пробуваат да се приклучат на групата преку групниот линк.</string>
+  <string name="RequestingMembersFragment_pending_member_requests">Барања за членство на чекање</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Нема барања за членство.</string>
+  <string name="RequestingMembersFragment_explanation">Луѓето на оваа листа пробуваат да се приклучат на групата преку групниот линк.</string>
   <string name="RequestingMembersFragment_added_s">„%1$s“ е додаден/а.</string>
   <string name="RequestingMembersFragment_denied_s">„%1$s“ е одбиен/а</string>
   <!--AddMembersActivity-->
@@ -649,7 +649,7 @@
     <item quantity="other">Оваа група не може да биде создадена бидејќи %1$d членови користат стара верзија на Signal. Можете да ги отстраните пред да ја создадете групата.</item>
   </plurals>
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_member_requests_and_invites">Барања од членови и покани</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Барања за членство и покани</string>
   <string name="ManageGroupActivity_add_members">Додај членови</string>
   <string name="ManageGroupActivity_edit_group_info">Уреди информации за група</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Кој може да додава нови членови?</string>
@@ -735,7 +735,7 @@
   <string name="ShareableGroupLinkDialogFragment__group_link">Групен линк</string>
   <string name="ShareableGroupLinkDialogFragment__share">Сподели</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Ресетирај линк</string>
-  <string name="ShareableGroupLinkDialogFragment__member_requests">Барања од членови</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Барања за членство</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Одобри нови членови</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Администраторот мора да ги одобри новите членови кои што се приклучуваат преку групниот линк.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Дали сте сигурни дека сакате да го ресетирате групниот линк? Луѓето повеќе нема да можат да се приклучат на групата со употреба на тековниот линк.</string>
@@ -2561,7 +2561,7 @@
   <string name="conversation_activity__enable_signal_messages">ОВОЗМОЖИ SIGNAL ПОРАКИ</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Ја мигрирам базата на Signal</string>
   <string name="PushDecryptJob_new_locked_message">Нова заклучена порака</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">Отклучете за да ги видите пораките што чекаат</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Отклучете за да ги видите пораките на чекање</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Лозинка за резервната копија</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервните копии ќе бидат зачувани на надворешен склад и шифрирани со лозинката подолу. Морате да ја имате оваа лозинка за да ја вратите резервната копија.</string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">Мора да ја имате оваа лозинка за да ја вратите резервната копија.</string>
@@ -3458,7 +3458,7 @@
   <string name="DonationsErrors__still_processing">Сѐ уште се обработува</string>
   <string name="DonationsErrors__couldnt_add_badge">Не може да се додаде беџ</string>
   <string name="DonationsErrors__your_badge_could_not">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со тимот за поддршка.</string>
-  <string name="DonationsErrors__your_payment_is_still">Вашето плаќање сѐ уште се обработува. Ова може да потрае неколку минути, во зависност од Вашата врска.</string>
+  <string name="DonationsErrors__your_payment_is_still">Вашето плаќање сѐ уште се обработува. Ова може да потрае неколку минути, во зависност од Вашата интернет конекција.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay недостапен</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Мора да го поставите Google Pay за да донирате во апликацијата.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Не успеав да ја откажам претплатата</string>
@@ -3475,6 +3475,7 @@
   <!--Stripe decline code contact issuer-->
   <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Проверете дали Вашиот начин на плаќање е ажуриран во Google Pay и обидете се повторно. Ако проблемот продолжи, контактирајте со Вашата банка.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Вашата картичка не поддржува ваков вид на плаќање. Обидете се со друг начин на плаќање.</string>
   <!--Stripe decline code your card has expired-->
   <string name="DeclineCode__your_card_has_expired">Вашата картичка е истечена. Ажурирајте го Вашиот начин на плаќање во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code go to google pay action label-->
@@ -3484,6 +3485,7 @@
   <!--Stripe decline code incorrect cvc-->
   <string name="DeclineCode__your_cards_cvc_number_is_incorrect">CVC-бројот на Вашата картичка е неточен. Ажурирајте го во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">На Вашата картичка нема доволно средства за да се заврши плаќањето. Обидете се со друг начин на плаќање.</string>
   <!--Stripe decline code incorrect expiration month-->
   <string name="DeclineCode__the_expiration_month">Месецот на истекување на Вашиот начин на плаќање е неточен. Ажурирајте го во Google Pay и обидете се повторно.</string>
   <!--Stripe decline code incorrect expiration year-->

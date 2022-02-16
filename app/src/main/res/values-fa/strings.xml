@@ -3443,8 +3443,12 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">اشتراک حامی شما به صورت خودکار لغو گردید چون شما برای مدتی طولانی غیرفعال بودید. نشان %1$s شما دیگر روی پروفایل شما قابل مشاهده نیست.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">اشتراک حمایتی شما لغو شد، چرا که ما نتوانستیم پرداخت شما را پردازش کنیم. نشان شما دیگر روی پروفایل‌تان قابل رؤیت نیست.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">شما می‌توانید به استفاده از سیگنال ادامه دهید اما برای پشتیبانی از برنامه و فعال کردن دوبارهٔ نشان خود، حالا تمدید کنید.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">تمدید اشتراک</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">امکان پردازش پرداخت وجود ندارد</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">ما در جمع‌آوری پرداخت حمایت از سیگنال شما دچار مشکل هستیم. مطمئن شوید که روش پرداختی شما به‌روز است. در غیر این صورت، آن را در Google Play به‌روزرسانی کنید. سیگنال پردازش پرداخت را دوباره طی چند روز آینده امتحان خواهد کرد.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">این را دیگر نمایش نده</string>
   <string name="Subscription__please_contact_support_for_more_information">لطفاً با پشتیبانی برای اطلاعات بیشتر تماس بگیرید.</string>
   <string name="Subscription__contact_support">تماس با پشتیبانی</string>
   <string name="Subscription__earn_a_s_badge">یک نشان %1$s بدست آورید</string>
@@ -3467,7 +3471,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">خطای شبکه. اتصال خود را بررسی و دوباره امتحان کنید.</string>
   <string name="NetworkFailure__retry">تلاش مجدد</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">یک روش پرداختی دیگر را امتحان کنید یا با بانک خود برای اطلاعات بیشتر تماس بگیرید.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">مطمئن شوید که روش پرداختی شما در Google Play به‌روز است و دوباره امتحان کنید.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">بیشتر یاد بگیرید</string>
   <!--Stripe decline code contact issuer-->

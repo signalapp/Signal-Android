@@ -3652,8 +3652,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Vaše předplatné Sustainer bylo automaticky zrušeno, protože jste byli příliš dlouho neaktivní. Váš %1$s odznak již není na vašem profilu viditelný.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Vaše předplatné Sustainer bylo zrušeno, protože jsme nemohli zpracovat vaši platbu. Váš odznak již není na vašem profilu viditelný.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovit předplatné</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nelze zpracovat platbu za předplatné</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Máme potíže s výběrem vaší platby za službu Signal Sustainer. Zkontrolujte, zda je váš způsob platby aktuální. Pokud není, aktualizujte ji v Google Pay. Signal se pokusí platbu za několik dní znovu zpracovat.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Příště nezobrazovat</string>
   <string name="Subscription__please_contact_support_for_more_information">Pro více informací prosím kontaktujte podporu.</string>
   <string name="Subscription__contact_support">Kontaktovat podporu</string>
   <string name="Subscription__earn_a_s_badge">Získat odznak %1$s</string>
@@ -3676,20 +3680,33 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba sítě. Zkontrolujte připojení a zkuste to znovu.</string>
   <string name="NetworkFailure__retry">Zkusit znovu</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Zkuste jiný způsob platby nebo se obraťte na svou banku a požádejte o další informace.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Zkontrolujte, zda je vaše platební metoda v Google Pay aktuální, a zkuste to znovu.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Zjistit více</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Zkontrolujte, zda je vaše platební metoda v Google Pay aktuální, a zkuste to znovu. Pokud problém přetrvává, kontaktujte svou banku.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Vaše karta tento typ nákupu nepodporuje. Zkuste jiný způsob platby.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Platnost vaší karty vypršela. Aktualizujte svůj způsob platby v Google Pay a zkuste to znovu.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Jít do Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Číslo platební karty v Google Pay není správné. Aktualizujte svou kartu v Google Pay a zkuste to znovu.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">CVC kód vaší platební karty není správný. Aktualizujte jej v Google Pay a zkuste to znovu.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Na vaší kartě není dostatek prostředků k dokončení tohoto nákupu. Zkuste jiný způsob platby.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Měsíc platnosti vaší platební metody je nesprávný. Aktualizujte jej v Google Pay a zkuste to znovu.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Rok platnosti u vaší platební metody je nesprávný. Aktualizujte jej v Google Pay a zkuste to znovu.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Zkuste platbu dokončit znovu nebo se obraťte na svou banku a požádejte o další informace.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Zkuste to znovu nebo se obraťte na svou banku a požádejte o další informace.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Pojmenujte svůj profil</string>
   <!--Hint text for create/edit notification profile name-->

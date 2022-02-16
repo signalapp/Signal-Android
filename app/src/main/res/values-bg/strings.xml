@@ -1992,6 +1992,7 @@
   <string name="preferences__help">Помощ</string>
   <string name="preferences__advanced">Допълнителни</string>
   <string name="preferences__donate_to_signal">Дари на Signal</string>
+  <string name="preferences__subscription">Абонамент</string>
   <string name="preferences__privacy">Поверителност</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Ръчни MMS настройки</string>
@@ -2113,6 +2114,7 @@
   <string name="configurable_single_select__customize_option">Опция за персонализиране</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">Всички дейности</string>
   <string name="PaymentsAllActivityFragment__all">Всички</string>
   <string name="PaymentsAllActivityFragment__sent">Изпратен</string>
   <string name="PaymentsAllActivityFragment__received">Получен</string>
@@ -2154,6 +2156,7 @@
   <string name="PaymentsDetailsFragment__from">От</string>
   <string name="PaymentsDetailsFragment__sent_payment">Плащането беше изпратено</string>
   <string name="PaymentsDetailsFragment__received_payment">Плащането беше получено</string>
+  <string name="PaymentsDetailsFragment__block_number">Блокиране на номер</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Прехвърли</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Сканирай QR Код</string>
@@ -2165,7 +2168,9 @@
   <string name="CreatePaymentFragment__request">Искай</string>
   <string name="CreatePaymentFragment__pay">Плати</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">Бележка</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Потвърди плащане</string>
   <string name="ConfirmPayment__to">До</string>
   <string name="ConfirmPayment__payment_failed">Грешка при плащане</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -2824,6 +2829,8 @@
   <string name="ChangeNumber__okay">Добре</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
   <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Промени Номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Вашият стар номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Стар телефонен номер</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Въведеният от вас телефонен номер не съответства на вашия акаунт.</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Промени Номер</string>

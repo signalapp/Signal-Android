@@ -2642,9 +2642,17 @@
   <string name="preferences_app_protection__turn_off">Utskeakelje</string>
   <string name="preferences_app_protection__confirm_pin">Befêstigje dyn pinkoade</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Dyn Signal-pinkoade befêstigje</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Do stiest op it punt it omtinken út te skeakeljen. Soargje derfoar datsto dyn Signal-pinkoade ûnthâldst of op in goed befeilige manier bewarrest, want do kinst dyn pinkoade net langer wizigje of weromlêze as dyn telefoannûmer deregistrearre rekket. Asto dyn pinkoade dochs ferjitten bist wannear’tsto dyn telefoannûmer opnij registrearje moatst, dan ferliesto mooglik dyn ynstellingen en kontaktpersoanen.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Ferkearde pinkoade, probearje it opnij.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">It is net slagge om registraasjebeskoatteling yn te skeakeljen.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">It is net slagge om registraasjebeskoatteling út te skeakeljen.</string>
   <string name="AppProtectionPreferenceFragment_none">Gjin</string>
+  <string name="preferences_app_protection__registration_lock">Registraasjebeskoatteling</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Do moatst dyn Signal-pinkoade ynfiere, omdat registraasjebeskoatteling ynskeakele is</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Dyn pinkoade bestiet op syn minst út %d sifers of karakters</string>
   <string name="RegistrationActivity_too_many_attempts">Te folle besykjen</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Do hast te folle besykjen dien om mei in ûnjildige pinkoade de registraasjebeskoatteling út te skeakeljen, probearje it moarn opnij.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Do hast te folle besykjen dien. Probearje it letter opnij.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Flater by it ferbinen mei Signal-servers</string>
   <string name="preferences_chats__backups">Reservekopyen</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal is beskoattele</string>
@@ -2652,8 +2660,12 @@
   <string name="Recipient_unknown">Unbekend</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Account oersette of werstelle</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Asto dit al op in oar apparaat registrearre hast foar Signal mei itselde telefoannûmer, dan kinsto al dyn Signal-gegevens en berjochten oersette</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Oersette fan in Android-apparaat ôf</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Hjirmei setsto al dyn ynstellingen, profylynformaasje en berjochten oer fan dyn âlde Android-apparaat út. Do kinst dit allinnich dwaan asto dyn âlde apparaat noch brûke kinst.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Do kinst dit allinnich dwaan asto dyn âlde apparaat noch brûke kinst.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens fan in reservekopy út weromstte</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Do hast no de gelegenheid om berjochten út in reservekopy werom te setten. Let op: Werstellen fan in reservekopy kin allinnich wylst de ynstallaasje fan de Signal-app. Asto dizze stap oerslachst, kinsto dit net op in letter momint nochris dwaan.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Iepenj Signal op dyn âlde apparaat</string>
   <string name="NewDeviceTransferInstructions__continue">Trochgean</string>
@@ -2667,9 +2679,22 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Oan it tarieden om ferbining te meitsjen mei dyn âlde Android-apparaat…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">In momint, dit duorret net lang</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Oan it wachtsjen oant dyn âlde Android-apparaat ferbining makket…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om dyn âlde Android-apparaat detektearje te kinnen en om dêr ferbining mei te meitsjen, hat de Signal-app in machtiging nedich om dyn lokaasje te lêzen.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Om dyn âlde Android-apparaat detektearje te kinnen en om dêr ferbining mei te meitsjen, is it nedich dat lokaasjebepaling op dit apparaat ynskeakele is.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal hat wifi op dyn apparaat nedich om ferbining te meitsjen mei dyn âlde Android-apparaat. Wifi moat ynskeakele wêze, mar do hoechst net ferbûn te wêzen mei in wifi-netwurk.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, it liket der op dat dit apparaat gjin stipe biedt foar wifi-direkt. Signal hat wifi-direkt nedich om dyn âlde Android-apparaat te detektearjen en om dêr ferbining mei te meitsjen. Do kinst noch wol dyn gegevens oersette troch op dyn âlde Android-apparaat yn Signal in reservekopy te meitsjen en dernei fan dy reservekopy út te werstellen op dyn nije Android-apparaat.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Reservekopy weromsette</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Der is in ûnferwachte flater bard by it besykjen ferbining te meitsjen mei dyn âlde Android-apparaat.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">Der wurdt socht nei dyn nije Android-apparaat…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Om dyn nije Android-apparaat detektearje te kinnen en om dêr ferbining mei te meitsjen, hat de Signal-app in machtiging nedich om dyn lokaasje te lêSignalzen.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Om dyn nije Android-apparaat detektearje te kinnen en om dêr ferbining mei te meitsjen, is it nedich dat lokaasjebepaling op dit apparaat ynskeakele is.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal hat wifi op dyn apparaat nedich om ferbining te meitsjen mei dyn âlde Android-apparaat. Wifi moat ynskeakele wêze, mar do hoechst net ferbûn te wêzen mei in wifi-netwurk.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, it liket der op dat dit apparaat gjin stipe biedt foar wifi-direkt. Signal hat wifi-direkt nedich om dyn âlde Android-apparaat te detektearjen en om dêr ferbining mei te meitsjen. Do kinst noch wol dyn gegevens oersette troch op dyn âlde Android-apparaat yn Signal in reservekopy te meitsjen en dernei fan dy reservekopy út te werstellen op dyn nije Android-apparaat.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">In reservekopy meitsje</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Der is in ûnferwachte flater bard by it besykjen ferbining te meitsjen mei dyn nije Android-apparaat.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Kin de wifi-ynstellingen net iepenje. Set hânmjittich dyn wifi oan.</string>
   <string name="DeviceTransferSetup__grant_location_permission">Machtigen om lokaasje te lêzen</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Lokaasjegegevens ynskeakelje</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Kin de lokaasjeynstellingen net iepenje.</string>
@@ -2678,8 +2703,16 @@
   <string name="DeviceTransferSetup__retry">Opnij probearje</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Flateropspoaringslochboek ynrsjinje</string>
   <string name="DeviceTransferSetup__verify_code">Ferifikaasjekoade</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Kontrolearje dat de koade hjirûnder itselde is op beide apparaten. As dat sa is, tik dan op ‘Trochgean’.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">De telefoannûmers komme net oerien</string>
   <string name="DeviceTransferSetup__continue">Trochgean</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Telefoannûmer is net itselde</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">As de getallen op dyn apparaten net oerienkomme, dan is it mooglik datsto ferbûn bist mei it ferkearde apparaat. Tik op ‘Oersetten annulearje’ en probearje it opnij. Hâld dyn apparaten by inoar yn de buert.</string>
   <string name="DeviceTransferSetup__stop_transfer">Oersetten annulearje</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Kin it âlde apparaat net detektearje</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Kin it nije apparaat net detektearje</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Kontrolearje dat de folgjende machtigingen en tsjinsten ynskeakele binne:</string>
+  <string name="DeviceTransferSetup__location_permission">Machtiging foar Signal om dyn lokaasje te lêzen</string>
   <string name="DeviceTransferSetup__location_services">Lokaasjebepaling</string>
   <string name="DeviceTransferSetup__wifi">Wifi</string>
   <string name="DeviceTransferSetup__try_again">Opnij probearje</string>
@@ -2707,28 +2740,38 @@
   <string name="DeviceToDeviceTransferService_status_service_connected">Account oersette…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Klear</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annulearje en dit apparaat aktivearje</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB-kredyt oerskriuwe?</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Net oerskriuwe</string>
   <string name="AdvancedPreferenceFragment__transfer">Oerskriuwe</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokkearje</string>
   <string name="RecipientBottomSheet_unblock">Deblokkearje</string>
   <string name="RecipientBottomSheet_add_to_contacts">Oan kontaktelist tafoegje</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Kin gjin app fine om kontaktelist wer te jaan.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Oan in groep tafoegje</string>
+  <string name="RecipientBottomSheet_add_to_another_group">Oan noch in oare groep tafoegje</string>
   <string name="RecipientBottomSheet_view_safety_number">Feilichheidsnûmer werjaan</string>
   <string name="RecipientBottomSheet_make_admin">Behearder meitsje</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Beheardersfoech ynlûke</string>
   <string name="RecipientBottomSheet_remove_from_group">Ut de groep fuortsmite</string>
   <string name="RecipientBottomSheet_message_description">Berjocht</string>
   <string name="RecipientBottomSheet_voice_call_description">Audio-oprop</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Unbefeilige audio-oprop</string>
   <string name="RecipientBottomSheet_video_call_description">Fideo-oprop</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">It beheardersfoech fan %1$s ynlûke?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">‘%1$s’ sil de groepsynformaasje en groepslidmaatskip oanpasse kinne.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s út dizze groep fuortsmite?</string>
   <string name="RecipientBottomSheet_remove">Furt helje</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiearre nei it klamboerd</string>
   <string name="GroupRecipientListItem_admin">Behearder</string>
   <string name="GroupRecipientListItem_approve_description">Tastean</string>
   <string name="GroupRecipientListItem_deny_description">Ofwize</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Ferâldere groepen tsjinoer nij-styl-groepen</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Wat binne ferâldere groepen?</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Ferstjoere fia Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiearje</string>
@@ -2823,67 +2866,140 @@
   <string name="ChatWallpaperFragment__reset_chat_colors">Kleurynstellingen fuortsmite</string>
   <string name="ChatWallpaperFragment__reset_chat_color">Kleurynstelling fuortsmite</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">Kleurynstelling fuortsmite?</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">Peteareftergrûn kieze</string>
   <string name="ChatWallpaperFragment__contact_name">Namme fan kontaktpersoan</string>
   <string name="ChatWallpaperFragment__reset">Opnij ynstelle</string>
   <string name="ChatWallpaperFragment__clear">Fuortsmite</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Eftergrûn-foarbyld</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Wolsto allinnich de standertkleur fuortsmite of wolsto de kleurynstellingen fan alle petearen fuortsmite?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Wolsto allinnich de standerteftergrûn fuortsmite of wolsto alle eftergrûnen fan alle petearen fuortsmite?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Standertkleur fuortsmite</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Alle kleurynstellingen fuortsmite</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Standerteftergrûn fuortsmite</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle eftergrûnen fuortsmite</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Eftergrûnen fuortsmite</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Eftergrûn fuortsmite</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Eftergrûn fuortsmite?</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Ofbylding út galerij kieze</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Al beskikbere eftergrûnen</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Foarbyld</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Peteareftergrûn kieze</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Fei om mear eftergrûnen wer te jaan.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Do stiest op it punt om dizze standert eftergrûn yn te stellen foar al dyn petearen.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Dizze standert eftergrûn ynstelle foar %1$s.</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Om dyn galerij werjaan te kinnen is tastimming nedich om it ûnthâld te brûken.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">In eftergrûn kieze</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Knyp mei twa fingers om te fergrutsjen of te draaien, sleep mei ien finger om te ferskowen.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Do stiest op it punt om dizze eigen eftergrûn yn te stellen foar al dyn petearen.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Dizze eigen eftergrûn ynstelle foar %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Ynstellen fan in eftergrûn is mislearre.</string>
+  <string name="WallpaperCropActivity__blur_photo">Ofbylding ferdizenje</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Oer MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is in nij privacyrjochte digitaal betelmiddel.</string>
   <string name="payment_info_card_adding_funds">Kredyt tafoegje</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Do kinst kredyt oan Signal tafoegje troch in hoemannichte MobileCoin nei dyn portemonnee-adres te stjoeren.</string>
   <string name="payment_info_card_cashing_out">Utbetelje</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Do kinst op elk momint dyn MobileCoin útbetelje litte fia in beurs dy’t MobileCoin stipet. Do hoechst mar oer te skriuwen nei dyn account by dy beurs.</string>
+  <string name="payment_info_card_hide_this_card">Dizze ynformaasje ferstopje?</string>
   <string name="payment_info_card_hide">Ferstopje</string>
+  <string name="payment_info_card_record_recovery_phrase">Werstel-sin foar oerskriuwingen fêstlizze</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Dyn werstel-sin jout dy in ekstra manier om dyn oerskriuwingen-account te werstellen.</string>
+  <string name="payment_info_card_record_your_phrase">Dyn werstel-sin opnimme</string>
+  <string name="payment_info_card_update_your_pin">Nije pinkoade oanmeitsje</string>
+  <string name="payment_info_card_with_a_high_balance">Asto in protte kredyt hast is it miskien ferstannich om dyn numerike pinkoade te ferfangen troch in alfanumerike pinkoade, omdat in alfanumerike pinkoade mear beskerming biedt.</string>
   <string name="payment_info_card_update_pin">Pinkoade bywurkje</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Portemonnee útskeakelje</string>
   <string name="DeactivateWalletFragment__your_balance">Dyn kredyt</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">It wurdt oanrekommandearre om dyn kredyt earst nei in oar portemonnee-adres oer te skriuwen eardatsto oerskriuwingen útskeakelest. Asto der net foar kiest om earst dyn kredyt oer te skriuwen dan bliuwt dyn kredyt bestean op it portemonnee-adres datsto oan Signal keppele hast. Do kinst it dan wer brûke asto oerskriuwingen opnij ynskeakelest.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Restearjend kredyt oerskriuwen</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Utskeakelje sûnder oerskriuwen</string>
   <string name="DeactivateWalletFragment__deactivate">Utskeakelje</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Utskeakelje sûnder oerskriuwen?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Dyn kredyt is, wannear’tsto oerskriuwingen ynskeakelest, wer beskikber yn de portemonnee dy’t oan Signal keppele is.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Flater by it útskeakeljen fan dyn portemonnee</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herstel-sin</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Herstel-sin werjaan</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Folje dyn herstel-sin yn</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Dyn kredyt wurdt automatysk wersteld wannear’tsto Signal opnij ynstallearrest en dêrby dyn Signal-pinkoade ynfierst. Do kinst dyn kredyt ek werstelle mei in unike werstel-sin, dy’t bestiet út %1$d wurden. Skriuw dy sin op en bewarje dy op in feilich plak.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De werstel-sin is foar elkenien unyk en bestiet út %1$d wurden. Do kinst dizze sin brûke om dyn kredyt te werstellen asto de tagong ferlern hast.</string>
   <string name="PaymentsRecoveryStartFragment__start">Begjinne</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Hânmjittich ynfolje</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Fan klamboerd ôf plakke</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Werstel-sin plakke</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Herstel-sin</string>
   <string name="PaymentsRecoveryPasteFragment__next">Folgjende</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Herstel-sin ûnjildich</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Kontrolearje oftsto %1$d wurden ynfierd hast en probearje it opnij.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Folgjende</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Oanpasse</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Foarige</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Dyn herstel-sin</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Skriuw de folgjende %1$d wurden op yn deselde folchoarder en bewarje se op in feilich plak.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Kontrolearje oftsto dyn sin krekt ynfierd hast.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Meitsje gjin skermôfdruk en ferstjoer dit nea fia e-mail (ek net oan dysels).</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Account foar oerskriuwingen is opnij ynsteld.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Herstel-sin ûnjildich</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Kontrolearje oftsto dyn sin krekt ynfierd hast en probearje opnij.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Nei klamboerd kopiearje?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ast der foar kiest om dyn werstel-sin digitaal te bewarjen, soargje der dan foar datsto it befeilige / fersifere bewarrest op in plak wêrfan do witst dat net ien oar der by kin.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopiearje</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Dyn herstel-sin befêstigje</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Folje de folgjende wurden fan dyn werstel-sin yn.</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Wurd %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">De sin opnij werjaan</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Klear</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Werstel-sin befêstige</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Folje dyn herstel-sin yn</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Wurd %1$d ynfolje</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Wurd %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Folgjende</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Wurd ûnjildich</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Klamboerd wiske.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Werjaan</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s hat %2$s nei dy oermakke</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d nije oerskriuwingsmeldingen</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Kin oerskriuwing net ferstjoere</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Dizze persoan moat earst in petearfersyk fan dy akseptearje eardatsto oerskriuwe kinst nei dizze persoan.</string>
+  <string name="CanNotSendPaymentDialog__send_a_message">In berjocht fersjoere</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Do hast gjin mienskiplike groep mei dizze persoan. Betink soarchfâldich oftsto dit petearfersyk akseptearje wolst om net-winske berjochten te mijen.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Der binne gjin leden mei wa’tsto al in petear fierst yn dizze groep. Betink soarchfâldich oftsto dizze groepsútnûging akseptearje wolst om net-winske berjochten te mijen.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">Oer petearfersiken</string>
   <string name="GroupsInCommonMessageRequest__okay">Oké</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hjir sjochsto in foarbyld fan de petearkleur.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">De kleur is allinnich foar dy sichtber.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Groepsomskriuwing</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">Standert</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Flugger, minder gegevensoerdracht</string>
   <string name="QualitySelectorBottomSheetDialog__high">Heech</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Stadiger, mear gegevensoerdracht</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Ofbyldingskwaliteit</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Kennissen útnûgje</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Dyn account</string>
+  <string name="AccountSettingsFragment__change_phone_number">Telefoannûmer wizigje</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__continue">Trochgean</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Dyn telefoannûmer is wizige nei %1$s</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Oké</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -2892,21 +3008,32 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Dyn nije telefoannûmer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Dyn nije nûmer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nij telefoannûmer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Do moatst dyn âlde lânkoade oanjaan</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Do moatst dyn âlde telefoannûmer ynfolje</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Do moatst dyn nije lânkoade oanjaan</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Do moatst dyn nijee telefoannûmer ynfolje</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Nûmer wizigje</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s oan it ferifiearjen</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha fereaske</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Telefoannûmer wizigje</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Telefoannûmer wizigje</string>
   <!--ChangeNumberRegistrationLockFragment-->
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">De pinkoaden komme net oerien</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Alde pinkoade behâlde</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Pinkoade bywurkje</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Alde pinkoade behâlde?</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Telefoannûmer is mei sukses wizige</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Unbekend of telefoannûmer wizige is</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Signal kin net fêststelle oft dyn telefoannûmer wizige is.\n\n(Flater: %1$s)</string>
   <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Opnij probearje</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
@@ -2916,12 +3043,16 @@
   <string name="ChatsSettingsFragment__keyboard">Toetseboerd</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-toets ferstjoert</string>
   <!--SmsSettingsFragment-->
+  <string name="SmsSettingsFragment__use_as_default_sms_app">As standert sms-app brûke</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Berjochten</string>
   <string name="NotificationsSettingsFragment__calls">Oproppen</string>
+  <string name="NotificationsSettingsFragment__notify_when">Jou my in melding wannear…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">In kontaktpersoan út myn kontaktelist fia Signal berikber is</string>
   <!--Notification preference header-->
   <string name="NotificationsSettingsFragment__notification_profiles">Meldingsprofilen</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Meldingsprofilen ynstelle</string>
   <!--Notification preference summary text-->
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
@@ -3164,6 +3295,7 @@
   <string name="SelectRecipientsFragment__add">Tafoegje</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Meldingsprofilen ynstelle</string>
   <!--Button that starts the create new notification profile flow-->
   <string name="NotificationProfilesFragment__new_profile">Nij meldingsprofyl oanmeitsje</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->

@@ -1317,6 +1317,7 @@
   <string name="RedPhone_got_it">Skaidrīte</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Laimīgu 💜 dienu!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Pieskarieties, lai ieslēgtu video</string>
@@ -3541,8 +3542,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Jūsu Uzturētāja abonements tika automātiski atcelts, jo jūs pārāk ilgi bijāt neaktīvs. Jūsu %1$s nozīmīte vairs nav redzama uz jūsu profila.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Jūsu Uzturētāja abonements tika atcelts, jo mēs nevarējām apstrādāt jūsu maksājumu. Jūsu nozīmīte vairs nav redzama uz jūsu profila.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Jūs varat turpināt izmantot Signal, bet lai atbalstītu aplikāciju un atkārtoti aktivizētu jūsu nozīmīti, atjaunojiet tagad.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Atjaunot abonementu</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nevar apstrādāt abonementa maksājumu</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Nerādīt šo atkārtoti</string>
   <string name="Subscription__please_contact_support_for_more_information">Lūdzu, sazinieties ar tehnisko atbalstu, lai saņemtu vairāk informācijas.</string>
   <string name="Subscription__contact_support">Sazināties ar atbalstu</string>
   <string name="Subscription__earn_a_s_badge">Iegūsti %1$s nozīmīti</string>
@@ -3572,8 +3576,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Stripe decline code purchase not supported-->
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Doties uz Google Pay</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Jūsu kartes CVC kods ir nepareizs. Atjauniniet to Google Pay un mēģniet vēlreiz.</string>
   <!--Stripe decline code insufficient funds-->
   <!--Stripe decline code incorrect expiration month-->
   <!--Stripe decline code incorrect expiration year-->

@@ -3337,8 +3337,12 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">你的定期贊助已自動取消，因為你的非活動時間過長。你的%1$s徽章在你的個人資料中已無法看見。</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">你的長期贊助訂閱已取消，因為我們無法處理你的付款。你的個人資料上不再顯示你的徽章。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可以繼續使用 Signal，但要支援該應用程式並重新啟動你的徽章，請立即續約。</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">更新定期贊助</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">無法處理訂閱付款</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">我們在收取您的 Signal 長期贊助付款時遇到問題。 請確保你的付款方式是有效的。 如果不是，請在 Google Pay 中更新付款資訊。 Signal 將在幾天後再次嘗試處理付款。</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">不再顯示</string>
   <string name="Subscription__please_contact_support_for_more_information">請聯絡支援部門以了解更多資訊。</string>
   <string name="Subscription__contact_support">聯絡支援</string>
   <string name="Subscription__earn_a_s_badge">贏得一個 %1$s 徽章</string>
@@ -3361,20 +3365,33 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網路錯誤。 檢查你的網路連接並重試。</string>
   <string name="NetworkFailure__retry">重試</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">嘗試其他付款方式或聯繫你的銀行以獲得更多訊息。</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">驗證你在 Google Pay 中的付款方式是有效的，然後重試。</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">了解更多</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">驗證你在 Google Pay 中的付款方式是有效的，然後重試。 如果問題仍然存在，請聯繫你的銀行。</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">你的卡不支援此類消費。 嘗試其他付款方式。</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">你的卡已過期。請更新你在 Google Pay 中的付款方式，然後重試。</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">前往Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">你的卡號不正確。 請在 Google Pay 中更新並重試。</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">你卡的 CVC 號碼不正確。請在 Google Pay 中更新並重試。</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">你的卡沒有足夠的額度來完成此次消費。 嘗試其他付款方式。</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">你的付款方式的到期月份不正確。請在 Google Pay 中更新並重試。</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">你的付款方式的到期年份不正確。請在 Google Pay 中更新並重試。</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">請嘗試再次付款或聯繫你的銀行以取得更多資訊。</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">請重試或聯繫你的銀行以取得更多資訊。</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">為你的描述取名</string>
   <!--Hint text for create/edit notification profile name-->

@@ -97,7 +97,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_block">തടയുക</string>
   <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത് വിടുക</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">സ്പാം റിപ്പോർട്ട് ചെയ്ത് തടയുക</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">സ്പാം രേഖപ്പെടുത്തി തടയുക</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ഇന്ന്</string>
   <string name="BucketedThreadMedia_Yesterday">ഇന്നലെ</string>
@@ -246,7 +246,7 @@
   <string name="ConversationActivity_join">ചേരുക</string>
   <string name="ConversationActivity_full">പൂർണ്ണമായി</string>
   <string name="ConversationActivity_error_sending_media">മീഡിയ അയയ്‌ക്കുന്നതിൽ പിശക്</string>
-  <string name="ConversationActivity__reported_as_spam_and_blocked">സ്‌പാമായി റിപ്പോർട്ട് ചെയ്‌ത് ബ്ലോക്ക് ചെയ്‌തു.</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">സ്‌പാമായി രേഖപ്പെടുത്തി ബ്ലോക്ക് ചെയ്‌തു.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d വായിക്കാത്ത സന്ദേശം</item>
