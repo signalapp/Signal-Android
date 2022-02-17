@@ -170,6 +170,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -1772,7 +1773,12 @@ public final class MessageContentProcessor {
     RecipientDatabase database          = SignalDatabase.recipients();
     ProfileKey        messageProfileKey = ProfileKeyUtil.profileKeyOrNull(messageProfileKeyBytes);
 
-    if (messageProfileKey != null) {
+    if (senderRecipient.isSelf()) {
+      if (!Objects.equals(ProfileKeyUtil.getSelfProfileKey(), messageProfileKey)) {
+        warn(content.getTimestamp(), "Saw a sync message whose profile key doesn't match our records. Scheduling a storage sync to check.");
+        StorageSyncHelper.scheduleSyncForDataChange();
+      }
+    } else if (messageProfileKey != null) {
       if (database.setProfileKey(senderRecipient.getId(), messageProfileKey)) {
         log(content.getTimestamp(), "Profile key on message from " + senderRecipient.getId() + " didn't match our local store. It has been updated.");
         ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(senderRecipient.getId()));

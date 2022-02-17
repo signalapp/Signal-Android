@@ -933,7 +933,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
     }
 
-    val updateCount = writableDatabase.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", arrayOf(Base64.encodeBytes(update.old.id.raw)))
+    val updateCount = writableDatabase.update(TABLE_NAME, values, "$STORAGE_SERVICE_ID = ?", arrayOf(Base64.encodeBytes(update.old.id.raw)))
     if (updateCount < 1) {
       throw AssertionError("Account update didn't match any rows!")
     }
