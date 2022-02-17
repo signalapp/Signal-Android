@@ -442,7 +442,12 @@ public class FullBackupExporter extends FullBackupBase {
 
       Class<?> type = dataSet.getType(key);
       if (type == byte[].class) {
-        builder.setBlobValue(ByteString.copyFrom(dataSet.getBlob(key, null)));
+        byte[] data = dataSet.getBlob(key, null);
+        if (data != null) {
+          builder.setBlobValue(ByteString.copyFrom(dataSet.getBlob(key, null)));
+        } else {
+          Log.w(TAG, "Skipping storing null blob for key: " + key);
+        }
       } else if (type == Boolean.class) {
         builder.setBooleanValue(dataSet.getBoolean(key, false));
       } else if (type == Float.class) {
@@ -452,7 +457,12 @@ public class FullBackupExporter extends FullBackupBase {
       } else if (type == Long.class) {
         builder.setLongValue(dataSet.getLong(key, 0));
       } else if (type == String.class) {
-        builder.setStringValue(dataSet.getString(key, null));
+        String data = dataSet.getString(key, null);
+        if (data != null) {
+          builder.setStringValue(dataSet.getString(key, null));
+        } else {
+          Log.w(TAG, "Skipping storing null string for key: " + key);
+        }
       } else {
         throw new AssertionError("Unknown type: " + type);
       }
