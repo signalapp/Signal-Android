@@ -1214,7 +1214,7 @@
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Patinka ši nauja ypatybė? Atsidėkokite Signal paskatinimu.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal veikia dėka tokių žmonių kaip jūs. Tapkite remėju jau šiandien.</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal veikia dėka tokių žmonių kaip jūs. Tapkite rėmėju jau šiandien.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
@@ -1387,7 +1387,7 @@
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Laimingos 💜 dienos!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">Išreikškite savo prisirišimą tapdami Signal remėju.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">Išreikškite savo prisirišimą tapdami Signal rėmėju.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Bakstelėkite čia, norėdami įjungti savo vaizdą</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų kameros</string>
@@ -1900,7 +1900,7 @@
   <!--Update item button text to show to boost a feature-->
   <string name="ConversationUpdateItem_signal_boost">Signal paskatinimas</string>
   <!--Update item button text to show to become a sustainer in the release notes channel-->
-  <string name="ConversationUpdateItem_become_a_sustainer">Tapti remėju</string>
+  <string name="ConversationUpdateItem_become_a_sustainer">Tapti rėmėju</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
@@ -2149,7 +2149,7 @@
     <item>Atsiliepimas</item>
     <item>Kita</item>
     <item>Mokėjimai („MobileCoin“)</item>
-    <item>Remėjai ir Signal paskatinimas</item>
+    <item>Rėmėjai ir Signal paskatinimas</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ši žinutė</string>
@@ -2250,7 +2250,7 @@
   <string name="preferences__advanced">Išplėstiniai</string>
   <string name="preferences__donate_to_signal">Paaukokite Signal programėlei</string>
   <string name="preferences__subscription">Prenumerata</string>
-  <string name="preferences__become_a_signal_sustainer">Tapkite Signal remėju</string>
+  <string name="preferences__become_a_signal_sustainer">Tapkite Signal rėmėju</string>
   <string name="preferences__signal_boost">Signal paskatinimas</string>
   <string name="preferences__privacy">Privatumas</string>
   <string name="preferences__mms_user_agent">MMS naudotojo agentas</string>
@@ -3410,7 +3410,7 @@
   <string name="AddAProfilePhotoMegaphone__not_now">Ne dabar</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Pridėti nuotrauką</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__become_a_sustainer">Tapkite remėju</string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Tapkite rėmėju</string>
   <string name="BecomeASustainerMegaphone__signal_is_powered">Signal veikia dėka tokių žmonių kaip jūs. Prisidėkite ir gaukite profilio ženkliuką.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Ne, ačiū</string>
   <string name="BecomeASustainerMegaphone__contribute">Prisidėkite</string>
@@ -3588,7 +3588,7 @@
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Pasirinkti ženkliuką</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Privalote pasirinkti ženkliuką</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Nepavyko atnaujinti profilio</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti remėju</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti rėmėju</string>
   <string name="ImageView__badge">Ženkliukas</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal veikia dėka tokių žmonių kaip jūs.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Palaikykite technologiją, kuri yra sukurta jums — o ne jūsų duomenims — prisijungdami prie ją remiančių žmonių bendruomenės.</string>
@@ -3618,7 +3618,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Jūs pelnėte %s ženkliuką! Padėkite Signal ugdyti supratimą, atvaizduodami šį ženkliuką savo profilyje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Jūs pelnėte paskatinimo ženkliuką! Padėkite Signal ugdyti supratimą, atvaizduodami šį ženkliuką savo profilyje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Be to, galite</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">tapti remėju ir remti kas mėnesį.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">tapti rėmėju ir remti kas mėnesį.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Rodyti profilyje</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Paversti pagrindiniu ženkliuku</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Atlikta</string>
@@ -3646,17 +3646,18 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Prenumerata nutraukta</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Jūsų paskatinimo ženkliukas nebegalioja ir daugiau nebėra matomas jūsų profilyje kitiems žmonėms.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Paaukodami, galite dar 30-čiai dienų iš naujo aktyvuoti paskatinimo ženkliuką.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti remėju ir remti kas mėnesį.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti remėju</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Norėdami palaikyti jums kuriamą technologiją, apsvarstykite galimybę tapti rėmėju ir remti kas mėnesį.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Tapti rėmėju</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Pridėti paskatinimą</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne dabar</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Jūsų remėjo prenumerata buvo automatiškai nutraukta, nes pernelyg ilgą laiką buvote neaktyvūs. Jūsų %1$s ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Jūsų rėmėjo prenumerata buvo automatiškai nutraukta, nes pernelyg ilgą laiką buvote neaktyvūs. Jūsų %1$s ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Jūsų remėjo prenumerata buvo nutraukta, nes nepavyko apdoroti jūsų mokėjimo. Jūsų ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Jūsų rėmėjo prenumerata buvo nutraukta, nes nepavyko apdoroti jūsų mokėjimo. Jūsų ženkliukas yra daugiau nebematomas jūsų profilyje.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Galite ir toliau naudotis Signal programėle, bet norėdami ją paremti ir iš naujo aktyvuoti ženkliuką, atnaujinkite prenumeratą dabar.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Atnaujinti prenumeratą</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nepavyksta apdoroti prenumeratos mokėjimo</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Mums iškilo sunkumų atsiimant jūsų Signal rėmėjo mokėjimą. Įsitikinkite, kad jūsų mokėjimo būdas yra atnaujintas, o jeigu jis pasenęs, atnaujinkite jį „Google Pay“ sistemoje. Po kelių dienų Signal vėl pabandys apdoroti mokėjimą. </string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Daugiau neberodyti</string>
   <string name="Subscription__please_contact_support_for_more_information">Išsamesnei informacijai, susisiekite su palaikymu.</string>
   <string name="Subscription__contact_support">Susisiekti su palaikymu</string>
@@ -3682,20 +3683,27 @@
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Pabandykite naudoti kitą mokėjimo būdą arba susisiekite su savo banku dėl išsamesnės informacijos.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Patikrinkite, ar jūsų mokėjimo būdas „Google Pay“ sistemoje yra atnaujintas ir bandykite dar kartą.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Sužinoti daugiau</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Patikrinkite, ar jūsų mokėjimo būdas „Google Pay“ sistemoje yra atnaujintas ir bandykite dar kartą. Jei problema išlieka, susisiekite su savo banku.</string>
   <!--Stripe decline code purchase not supported-->
   <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Jūsų kortelė nepalaiko šio pirkimo tipo. Pabandykite naudoti kitą mokėjimo būdą.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Jūsų kortelė nebegalioja. Atnaujinkite mokėjimo būdą „Google Pay“ sistemoje ir bandykite dar kartą.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Pereiti į „Google Pay“</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Jūsų kortelės numeris yra neteisingas. Atnaujinkite jį „Google Pay“ sistemoje ir bandykite dar kartą.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Jūsų kortelės CVC kodas yra neteisingas. Atnaujinkite jį „Google Pay“ sistemoje ir bandykite dar kartą.</string>
   <!--Stripe decline code insufficient funds-->
-  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Jūsų kortelėje trūksta lėšų užbaigti šį pirkimą. Pabandykite naudoti kitą mokėjimo metodą.</string>
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Jūsų kortelėje trūksta lėšų užbaigti šį pirkimą. Pabandykite naudoti kitą mokėjimo būdą.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Galiojimo pabaigos mėnuo ant jūsų mokėjimo būdo yra neteisingas. Atnaujinkite jį „Google Pay“ sistemoje ir bandykite dar kartą.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Galiojimo pabaigos metai ant jūsų mokėjimo būdo yra neteisingi. Atnaujinkite juos „Google Pay“ sistemoje ir bandykite dar kartą.</string>
   <!--Stripe decline code issuer not available-->
   <string name="DeclineCode__try_completing_the_payment_again">Bandykite užbaigti pirkimą dar kartą arba susisiekite su savo banku dėl išsamesnės informacijos.</string>
   <!--Stripe decline code processing error-->

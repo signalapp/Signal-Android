@@ -1695,7 +1695,13 @@
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">បើកការជូនដំណឹងការហៅ</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">បើកសកម្មភាពផ្ទៃក្រោយ</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">អ្វីគ្រប់យ៉ាងមើលទៅល្អឥឡូវនេះ!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">ដើម្បីទទួលសារជូនដំណឹងការហៅ​ ចុចទីនេះ និងបើក \"បង្ហាញសារជូនដំណឹង។\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">ដើម្បីទទួលសារជូនដំណឹងការហៅ ចុចទីនេះ និងបើកសារជូនដំណឹង ហើយប្រាកដថា សំឡេង និងការលោតឡើង ត្រូវបានបើក។</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">ដើម្បីទទួលសារជូនដំណឹងការហៅ ចុចទីនេះ និងបើកសកម្មភាពផ្ទៃក្រោយក្នុងការកំណត់ \"ថាមពលថ្ម\"។</string>
   <string name="EnableCallNotificationSettingsDialog__settings">ការកំណត់</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">ដើម្បីទទួលសារជូនដំណឹងការហៅ ចុចការកំណត់ និងបើក \"បង្ហាញសារជូនដំណឹង។\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">ដើម្បីទទួលសារជូនដំណឹងការហៅ ចុចការកំណត់ និងបើកសារជូនដំណឹង ហើយប្រាកដថា សំឡេង និងការលោតឡើង ត្រូវបានបើក។</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">ដើម្បីទទួលសារជូនដំណឹងការហៅ ចុចការកំណត់ និងបើកសកម្មភាពផ្ទៃក្រោយក្នុងការកំណត់ \"ថាមពលថ្ម\"។</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">កំពុងផ្ទុកប្រទេស…</string>
   <string name="country_selection_fragment__search">ស្វែងរក</string>
@@ -1744,6 +1750,7 @@
     <item quantity="other">%dផ្សេង</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">ស្វែករក GIFs</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ពុំរកមិនឃើញអ្វីទេ</string>
   <!--database_migration_activity-->
@@ -1773,6 +1780,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ដើម្បីផ្ញើសារព័ត៌មាន និងសារជាក្រុម ចុច \'ព្រម\' និងបញ្ចប់ការកំណត់ស្នើសុំ។ ការកំណត់ MMS ដោយប្រតិបត្តិករ ជាទូទៅត្រូវបានកំណត់ដោយការស្វែងរក \'APN របស់ប្រតិបត្តិករអ្នក\'។ អ្នកនឹងត្រូវធ្វើដូចនេះតែម្តងទេ។</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">បញ្ហាការបញ្ជូន</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">សារ រូបស្ទីកគ័រ ប្រតិកម្ម និងការទទួលការអាន មិនអាចបញ្ជូនទៅអ្នកពី %s ទេ។​ ពួកគេអាចព្យាយាមបញ្ជូនវាទៅអ្នកផ្ទាល់ ឬនៅក្នុងក្រុម។</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">សារ រូបស្ទីកគ័រ ប្រតិកម្ម និងការទទួលការអាន មិនអាចបញ្ជូនទៅអ្នកពី %s។</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">ឈ្មោះ (ចាំបាច់)</string>
   <string name="CreateProfileActivity_last_name_optional">ត្រកូល (ជម្រើស)</string>
@@ -1780,9 +1789,17 @@
   <string name="CreateProfileActivity__username">ឈ្មោះអ្នកប្រើប្រាស់</string>
   <string name="CreateProfileActivity__create_a_username">បង្កើតឈ្មោះអ្នកប្រើប្រាស់</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ឈ្មោះក្រុម MMS ដែលប្តូរ និងរូបភាព នឹងបង្ហាញទៅអ្នកតែប៉ុណ្ណោះ។</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">ការពណ៌នាក្រុម នឹងត្រូវបង្ហាញទៅសមាជិកនៃក្រុមនេះ និងមនុស្សដែលត្រូវបានអញ្ជើញ។</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">អំពី</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">សរសេរពាក្យមួយចំនួនអំពីខ្លួនអ្នក…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
+  <string name="EditAboutFragment_speak_freely">និយាយដោយសេរី</string>
+  <string name="EditAboutFragment_encrypted">បានកូដនីយកម្ម</string>
+  <string name="EditAboutFragment_be_kind">មានចិត្តល្អ</string>
+  <string name="EditAboutFragment_coffee_lover">អ្នកស្រលាញ់កាហ្វេ</string>
+  <string name="EditAboutFragment_free_to_chat">ឥតគិតថ្លៃជជែក</string>
+  <string name="EditAboutFragment_taking_a_break">សម្រាកបន្ថិច</string>
   <string name="EditAboutFragment_working_on_something_new">ធ្វើការលើអ្វីដែលថ្មី</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">កែប្រែក្រុម</string>
@@ -1995,9 +2012,11 @@
   <string name="preferences__disable_pin">បិទលេខកូដ PIN</string>
   <string name="preferences__enable_pin">បើកលេខកូដ PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">បើអ្នកបានបិទលេខកូដ PIN អ្នកនឹងបាត់បង់ទិន្នន័យទាំងអស់ នៅពេលអ្នកចុះឈ្មោះ Signal ឡើងវិញ លុះត្រាអ្នកបម្រុងទុក និងស្តារឡើងវិញដោយខ្លួនឯង។ អ្នកមិនអាចបើក ការចាក់សោការចុះឈ្មោះ នៅពេលលេខកូដ PIN បានបិទនោះទេ។</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">លេខកូដ​ PINs រក្សាទុកព័ត៌មានជាមួយកូដនីយកម្ម Signal ដូចនេះមានតែអ្នកប៉ុណ្ណោះចូលប្រើប្រាស់វាបាន។ ប្រវត្តិរូប ការកំណត់ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលអ្នកដំឡើងវិញ។ អ្នកនឹងមិនត្រូវការលេខកូដ PIN ដើម្បីបើកកម្មវិធីទេ។</string>
   <string name="preferences__system_default">លំដើមប្រព័ន្ធ</string>
   <string name="preferences__language">ភាសា</string>
   <string name="preferences__signal_messages_and_calls">ការផ្ញើសារ និងការហៅSignal</string>
+  <string name="preferences__advanced_pin_settings">ការកំណត់លេខកូដ PIN ជាន់ខ្ពស់</string>
   <string name="preferences__free_private_messages_and_calls">ការផ្ញើសារ និងការហៅចេញជាឯកជនភាព​ ដោយមិនគិតថ្លៃ​ ទៅកាន់អ្នកប្រើប្រាស់Signal</string>
   <string name="preferences__submit_debug_log">បញ្ជូនកំណត់ហេតុបញ្ហា</string>
   <string name="preferences__delete_account">លុបគណនី</string>
@@ -2008,17 +2027,28 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ប្រសិនបើការទទួលត្រូវបានបិទ អ្នកនឹងមិនអាចមើលការទទួលពីអ្នកផ្សេងទេ។</string>
   <string name="preferences__typing_indicators">វាស់ការវាយអក្សរ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ប្រសិនបើ ការបង្ហាញការវាយត្រូវបានបិទ អ្នកនឹងមិនអាចមើលឃើញការវាយបញ្ចូលរបស់អ្នកដទៃទេ។</string>
+  <string name="preferences__request_keyboard_to_disable">ស្នើសុំក្តារចុច ដើម្បីបិទការសិក្សាបុគ្គល។</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">ការកំណត់នេះ មិនធានាទេ ហើយក្តារចុចរបស់អ្នកប្រហែលជាមិនអើពើវា។</string>
   <string name="preferences_app_protection__blocked_users">ហាមឃាត់អ្នកប្រើនេះ</string>
   <string name="preferences_chats__when_using_mobile_data">នៅពេលប្រើប្រាស់ទិន្នន័យទូរសព្ទ</string>
   <string name="preferences_chats__when_using_wifi">នៅពេលប្រើប្រាស់Wi-Fi</string>
   <string name="preferences_chats__when_roaming">នៅពេលរ៉ូមីង</string>
   <string name="preferences_chats__media_auto_download">ឯកសារទាញយកដោយស្វ័យប្រវត្តិ</string>
+  <string name="preferences_chats__message_history">ប្រវត្តិសារ</string>
   <string name="preferences_storage__storage_usage">ការប្រើប្រាស់ឧបករណ៍ផ្ទុក</string>
   <string name="preferences_storage__photos">រូបភាព</string>
   <string name="preferences_storage__videos">វីដេអូ</string>
   <string name="preferences_storage__files">ឯកសារ</string>
   <string name="preferences_storage__audio">សំឡេង</string>
   <string name="preferences_storage__review_storage">បង្ហាញឧបករណ៍ផ្ទុក</string>
+  <string name="preferences_storage__delete_older_messages">លុបសារចាស់ៗ?</string>
+  <string name="preferences_storage__clear_message_history">សំអាតប្រវត្តិសារ?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">នេះនឹងលុបប្រវត្តិសារ និងឯកសារមេឌៀទាំងអស់ចោលរហូត ចេញពីឧបករណ៍របស់អ្នក ដែលចាស់ជាង %1$s។</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">នេះ នឹងតម្រឹមការសន្ទនាទាំងអស់ទៅ %1$s សារថ្មីៗបំផុត។</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">នេះនឹងលុបប្រវត្តិសារ និងឯកសារមេឌៀទាំងអស់ចោលរហូត។</string>
+  <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">តើអ្នកប្រាកដថាចង់លុបប្រវត្តិសារទាំងអស់?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ប្រវត្តិសារទាំងអស់នឹងត្រូវលុបចោលរហូត។ សកម្មភាពនេះ មិនអាចត្រឡប់ក្រោយទេ។</string>
+  <string name="preferences_storage__delete_all_now">លុបទាំងអស់ឥឡូវនេះ</string>
   <string name="preferences_storage__forever">ជារៀងរហូត</string>
   <string name="preferences_storage__one_year">1 ឆ្នាំ</string>
   <string name="preferences_storage__six_months">6 ខែ</string>
@@ -2110,7 +2140,7 @@
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">ការទូទាត់មិនមាននៅក្នុងតំបន់របស់អ្នកទេ។</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">មិនអាចបើកការទូទាត់។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">បិទដំណើរការ ការទូទាត់?</string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">អ្នកនឹងមិនអាចផ្ញើនិងទទួលកាក់ទូរស័ព្ទក្នុង Signal ​បើអ្នកបិទដំណើរការ ការទូទាត់។</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">អ្នកនឹងមិនអាចផ្ញើនិងទទួល Mobilecoin ក្នុង Signal ​បើអ្នកបិទដំណើរការ ការទូទាត់។</string>
   <string name="PaymentsHomeFragment__deactivate">បិទ</string>
   <string name="PaymentsHomeFragment__continue">បន្ត</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">សមតុល្យ មិនមានទេបច្ចុប្បន្ននេះ។</string>
@@ -2153,14 +2183,23 @@
   <string name="PaymentsTransferFragment__transfer">ការបញ្ជូន</string>
   <string name="PaymentsTransferFragment__scan_qr_code">ស្កេនកូដ QR</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">ទៅ៖ ស្កេន ឬបញ្ចូលអាសយដ្ឋានកាបូបលុយ </string>
+  <string name="PaymentsTransferFragment__you_can_transfer">អ្នកអាចផ្ទេរ MobileCoin ដោយបញ្ចប់ការផ្ទេរទៅអាសយដ្ឋានកាបូប​ ដែលផ្តល់ដោយកន្លែងប្តូរប្រាក់។ អាសយដ្ឋានកាបូប ជាខ្សែអក្សរនៃលេខ និងអក្សរដែលជាទូទៅនៅខាងក្រោមកូដ QR ។ </string>
   <string name="PaymentsTransferFragment__next">បន្ទាប់</string>
   <string name="PaymentsTransferFragment__invalid_address">អាសយដ្ឋានមិនត្រឹមត្រូវ</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">ពិនិត្យអាសយដ្ឋានកាបូប ដែលអ្នកព្យាយាមផ្ទេរទៅ ហើយសាកល្បងម្តងទៀត។</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">អ្នកមិនអាចផ្ទេរទៅអាសយដ្ឋានកាបូប Signal ខ្លួនឯងទេ។ បញ្ចូលអាសយដ្ឋានកាបូបពីគណនីរបស់អ្នក នៅការផ្លាស់ប្តូរដែលគាំទ្រ។</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">ដើម្បីស្កេនកូដ QR Signal ត្រូវការប្រើប្រាស់កាមេរ៉ា។</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បថតកូដ QR ។ ចូលទៅ ការកំណត់​ ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"កាមេរ៉ា\"។</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">ដើម្បីស្កេនកូដ QR Signal ត្រូវការប្រើប្រាស់កាមេរ៉ា។</string>
   <string name="PaymentsTransferFragment__settings">ការកំណត់</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">ស្កេនអាសយដ្ឋានកូដ QR </string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">ស្កេនអាសយដ្ឋានកូដ QR របស់អ្នកទទួលប្រាក់</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">ស្នើសុំ</string>
   <string name="CreatePaymentFragment__pay">ទូទាត់</string>
   <string name="CreatePaymentFragment__available_balance_s">សមតុល្យនៅមាន៖ %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">កុងតាក់</string>
   <string name="CreatePaymentFragment__1">១</string>
   <string name="CreatePaymentFragment__2">២</string>
   <string name="CreatePaymentFragment__3">៣</string>
@@ -2175,6 +2214,7 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">ផ្នែកខាងក្រោយ</string>
   <string name="CreatePaymentFragment__add_note">បន្ថែមកំណត់ត្រា</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">ការបម្លែង ជាការប៉ាន់ស្មាន និងអាចមិនត្រឹមត្រូវ។</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">កំណត់ត្រា</string>
   <!--ConfirmPaymentFragment-->
@@ -2242,6 +2282,8 @@
   <string name="conversation_insecure__invite">អញ្ជើញ</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">លុបការជ្រើសរើស</string>
+  <string name="conversation_list_batch__menu_pin_selected">ខ្ទាស់បានជ្រើសរើស</string>
+  <string name="conversation_list_batch__menu_unpin_selected">ដោះខ្ទាស់បានជ្រើសរើស</string>
   <string name="conversation_list_batch__menu_select_all">ជ្រើសរើសទាំងអស់</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">ដាក់បណ្ណសារដែលបានជ្រើសរើស</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ដកបណ្ណសារដែលបានជ្រើសរើស</string>
@@ -2250,13 +2292,16 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ផ្លូវកាត់ ការកំណត់</string>
   <string name="conversation_list_search_description">ស្វែងរក</string>
+  <string name="conversation_list__pinned">បានខ្ទាស់</string>
   <string name="conversation_list__chats">ការជជែក</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">អ្នកអាចខ្ទាស់ការជជែករហូតដល់ %1$d</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">រូបថតទំនាក់ទំនង</string>
   <string name="conversation_list_item_view__archived">បានដាក់ទុកបណ្ណសារ   </string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ការសន្ទនាថ្មី</string>
   <string name="conversation_list_fragment__open_camera_description">បើកកាមេរ៉ា</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">មិនមានការជជែកទេ។\nចាប់ផ្តើមដោយការផ្ញើសារទៅមិត្តភក្តិ។</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">កំណត់ឡើងវិញការចូលប្រើប្រាស់សុវត្ថិភាព</string>
   <!--conversation_muted-->
@@ -2269,6 +2314,7 @@
   <string name="conversation__menu_view_all_media">ព័ត៌មានទាំងអស់</string>
   <string name="conversation__menu_conversation_settings">កំណត់ការសន្ទនា</string>
   <string name="conversation__menu_add_shortcut">បន្ថែមទៅអេក្រង់ដើម</string>
+  <string name="conversation__menu_create_bubble">បង្កើតពពុះ</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ពង្រីកការផុសឡើង</string>
   <!--conversation_callable_insecure-->
@@ -2342,6 +2388,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">បង្កើតលេខ PIN ថ្មី</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">អ្នកអាចប្តូរលេខ PIN របស់អ្នក លុះត្រាឧបករណ៍នេះត្រូវបានចុះឈ្មោះ។</string>
   <string name="CreateKbsPinFragment__create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">លេខកូដ​ PINs រក្សាទុកព័ត៌មានជាមួយកូដនីយកម្ម Signal ដូចនេះមានតែអ្នកប៉ុណ្ណោះចូលប្រើប្រាស់វាបាន។ ប្រវត្តិរូប ការកំណត់ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលអ្នកដំឡើងវិញ។ អ្នកនឹងមិនត្រូវការលេខកូដ PIN ដើម្បីបើកកម្មវិធីទេ។</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">ជ្រើសរើសលេខ PIN ខ្លាំងជាងនេះ</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINs មិនត្រូវគ្នា។ សាកល្បងម្តងទៀត។</string>
@@ -2353,6 +2400,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">កំពុងបង្កើត PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">ការណែនាំ លេខPINs</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">លេខកូដ​ PINs រក្សាទុកព័ត៌មានជាមួយកូដនីយកម្ម Signal ដូចនេះមានតែអ្នកប៉ុណ្ណោះចូលប្រើប្រាស់វាបាន។ ប្រវត្តិរូប ការកំណត់ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលអ្នកដំឡើងវិញ។ អ្នកនឹងមិនត្រូវការលេខកូដ PIN ដើម្បីបើកកម្មវិធីទេ។</string>
   <string name="KbsSplashFragment__learn_more">ស្វែងយល់បន្ថែម</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">ចាក់សោរការចុះឈ្មោះ = លេខ PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">ការចាក់សោរការចុះឈ្មោះរបស់អ្នក ឥឡូវត្រូវបានហៅថា លេខកូដ PIN និងវាមានមុខងារច្រើន។ ធ្វើបច្ចុប្បន្នភាពវាឥឡូវនេះ។</string>
@@ -2382,6 +2430,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">លេខកូដ PIN មិនត្រឹមត្រូវ</string>
   <string name="RegistrationLockFragment__forgot_your_pin">ភ្លេចលេខ PIN របស់អ្នក?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">ការសាកល្បងនៅសល់តិច!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">ការចុះឈ្មោះ Signal - ត្រូវការជំនួយជាមួយ PIN សម្រាប់ Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">ការចុះឈ្មោះ Signal - ត្រូវការជំនួយជាមួយ PIN សម្រាប់ Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="other">សម្រាប់ឯកជនភាព និងសុវត្ថិភាព គ្មានវិធីដើម្បីស្តារលេខកូដ PIN របស់អ្នកទេ។ បើអ្នកមិនចាំលេខកូដ  PIN របស់អ្នក អ្នកអាចផ្ទៀងផ្ទាត់ម្តងទៀតតាមសារ SMS បន្ទាប់ពី %1$d ថ្ងៃនៃអសកម្មភាព។ ក្នុងករណីនេះ គណនីរបស់អ្នកនឹងត្រូវសំអាត និងខ្លឹមសារទាំងអស់នឹងត្រូវលុបចោល។</item>
   </plurals>
@@ -2417,6 +2467,7 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ដោះសោរដើម្បីមើលសាររង់ចាំ</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">បម្រុងទុកឃ្លាសម្ងាត់</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ការបម្រុងទុក នឹងត្រូវរក្សាទុកនៅលើអង្គរក្សាទុកខាងក្រៅ និងកូដនីយកម្មជាមួយឃ្លាសម្ងាត់ខាងក្រោម។ អ្នកត្រូវមានឃ្លាសម្ងាត់នេះដើម្បីស្តារការបម្រុងទុកឡើងវិញ។</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">អ្នកត្រូវតែមានឃ្លាសម្ងាត់នេះ ដើម្បីស្ដារការបម្រុងទុក។</string>
   <string name="backup_enable_dialog__folder">ថតឯកសារ</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ខ្ញុំបានកត់ឃ្លាសម្ងាត់ទុកហើយ។ បើគ្មានវា ខ្ញុំនឹងមិនអាចស្តារការបម្រុងទុកបានទេ។</string>
   <string name="registration_activity__restore_backup">ស្តារការបម្រុងទុក</string>
@@ -2443,14 +2494,20 @@
   <string name="BackupDialog_delete_backups">លុបការបម្រុងទុក?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">បិទ និងលុបចោលការបម្រុងទុកខាងក្នុងទាំងអស់?</string>
   <string name="BackupDialog_delete_backups_statement">លុបការបម្រុងទុក</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">ដើម្បីបើកការបម្រុងទុក​ ជ្រើសរើសថតឯកសារ។ ការបម្រុងទុក នឹងត្រូវរក្សាទុកនៅទីតាំងនេះ។</string>
   <string name="BackupDialog_choose_folder">ជ្រើសរើសទីតាំងផ្ទុក</string>
   <string name="BackupDialog_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
+  <string name="BackupDialog_no_file_picker_available">មិនមានអ្នករើសឯកសារទេ។</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">បញ្ចូលឃ្លាសម្ងាត់បម្រុងទុករបស់អ្នកដើម្បីផ្ទៀងផ្ទាត់</string>
   <string name="BackupDialog_verify">ផ្ទៀងផ្ទាត់</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">អ្នកបានបញ្ចូលឃ្លាសម្ងាត់បម្រុងទុករបស់អ្នកដោយជោគជ័យ</string>
   <string name="BackupDialog_passphrase_was_not_correct">ឃ្លាសម្ងាត់មិនត្រឹមត្រូវ</string>
   <string name="LocalBackupJob_creating_signal_backup">កំពុងបង្កើតការបម្រុងទុក Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">ការបម្រុងទុកបរាជ័យ</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ថតឯកសារបម្រុងទុករបស់អ្នក ត្រូវបានលុបចោល ឬប្តូរទីតាំង។</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ឯកសារបម្រុងទុករបស់អ្នក រក្សាទុកនៅទីតាំងនេះ​ មានទំហំធំពេក។</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">មិនមានទំហំគ្រប់គ្រាន់ដើម្បីរក្សាទុកការបម្រុងទុករបស់អ្នកទេ។</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">ចុច ដើម្បីគ្រប់គ្រងការបម្រុងទុក។</string>
   <string name="ProgressPreference_d_messages_so_far">ឥឡូវនេះសារ%d</string>
   <string name="RegistrationActivity_wrong_number">ខុសលេខ</string>
   <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំជំនួសវិញ  \n (ទំនេរក្នុងរយៈពេល %1$02d:%2$02d)</string>
@@ -2497,28 +2554,54 @@
   <string name="Recipient_unknown">មិនស្គាល់</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">បញ្ជូន ឬ ស្តារ គណនី</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">បើអ្នកធ្លាប់បានចុះឈ្មោះគណនី Signal ពីមុន អ្នកអាចផ្ទេរ ឬស្តារឡើងវិញ​ គណនីនិងសាររបស់អ្នក</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">បញ្ជូនចេញពីឧបករណ៍ Android</string>
   <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">បញ្ជូនគណនី និងសាររបស់អ្នក ចេញពីឧបករណ៍ Android ចាស់របស់អ្នក។ អ្នកត្រូវចូលប្រើប្រាស់ឧបករណ៍ចាស់របស់អ្នក។</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">អ្នកត្រូវចូលប្រើប្រាស់ឧបករណ៍ចាស់របស់អ្នក។</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">ស្តារចេញពីការបម្រុងទុក</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ស្តារឡើងវិញសាររបស់អ្នកចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥឡូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">បើក Signal នៅលើទូរស័ព្ទ Android ចាស់របស់អ្នក</string>
   <string name="NewDeviceTransferInstructions__continue">បន្ត</string>
   <string name="NewDeviceTransferInstructions__first_bullet">១.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ចុចលើរូបថតប្រវត្តិរូបរបស់អ្នក នៅខាងលើផ្នែកឆ្វេង ដើម្បីបើក ការកំណត់</string>
   <string name="NewDeviceTransferInstructions__second_bullet">២.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">ចុចលើ \"គណនី\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">៣.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">ចុច \"ផ្ទេរគណនី\" និងបន្ទាប់មក \"បន្ត\" នៅលើឧបករណ៍ទាំងពីរ</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">កំពុងរៀបចំតភ្ជាប់ទៅឧបករណ៍​ Android ចាស់…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ចំណាយពេលបន្តិច គួរតែរួចរាល់ឆាប់ៗនេះ</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">កំពុងរង់ចាំឧបករណ៍ Android ចាស់ដើម្បីតភ្ជាប់…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal ត្រូវការការអនុញ្ញាតទីតាំង ដើម្បីរកមើលនិងតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ចាស់របស់អ្នក។</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal ត្រូវការបើកសេវាកម្មទីតាំង ដើម្បីរកមើលនិងតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ចាស់របស់អ្នក។</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal ត្រូវការបើក Wi-Fi ដើម្បីរកមើលនិងតភ្ជាប់ជាមួយឧបករណ៍​ Android ចាស់របស់អ្នក។ Wi-Fi ត្រូវតែបើក ប៉ុន្តែវាមិនចាំបាច់តភ្ជាប់បណ្តាញ Wi-Fi ទេ។</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">សុំទោស ហាក់បីដូចជាឧបករណ៍នេះមិនគាំទ្រ Wi-Fi Direct។ Signal ប្រើប្រាស់ Wi-Fi Direct ដើម្បីរកមើលនិងតភ្ជាប់ឧបករណ៍ Android ចាស់របស់អ្នក។ អ្នកនៅតែអាចស្តារការបម្រុងទុកឡើងវិញ ដើម្បីស្តារគណនីរបស់អ្នកចេញពីឧបករណ៍ Android ចាស់របស់អ្នក។</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">ស្តារការបម្រុងទុកមួយ</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">កំហុសមិនរំពឹងទុកមួយកើតឡើង នៅពេលព្យាយាមតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ចាស់របស់អ្នក។</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">កំពុងស្វែងរកឧបករណ៍ Android ថ្មី…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal ត្រូវការការអនុញ្ញាតទីតាំង ដើម្បីរកមើលនិងតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ថ្មីរបស់អ្នក។</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal ត្រូវការបើកសេវាកម្មទីតាំង ដើម្បីរកមើលនិងតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ថ្មីរបស់អ្នក។</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal ត្រូវការបើក Wi-Fi ដើម្បីរកមើលនិងតភ្ជាប់ជាមួយឧបករណ៍​ Android ថ្មីរបស់អ្នក។ Wi-Fi ត្រូវតែបើក ប៉ុន្តែវាមិនចាំបាច់តភ្ជាប់បណ្តាញ Wi-Fi ទេ។</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">សុំទោស ហាក់បីដូចជាឧបករណ៍នេះមិនគាំទ្រ Wi-Fi Direct។ Signal ប្រើប្រាស់ Wi-Fi Direct ដើម្បីរកមើលនិងតភ្ជាប់ឧបករណ៍ Android ថ្មីរបស់អ្នក។ អ្នកនៅតែអាចស្តារការបម្រុងទុកឡើងវិញ ដើម្បីស្តារគណនីរបស់អ្នកចេញពីឧបករណ៍ Android ថ្មីរបស់អ្នក។</string>
   <string name="OldDeviceTransferSetup__create_a_backup">បង្កើតការបម្រុងទុកមួយ</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">កំហុសមិនរំពឹងទុកមួយកើតឡើង នៅពេលព្យាយាមតភ្ជាប់ទៅកាន់ឧបករណ៍ Android ថ្មីរបស់អ្នក។</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">មិនអាចបើកការកំណត់ Wi-Fi ។ សូមបើក Wi-Fi ដោយខ្លួនឯង។</string>
+  <string name="DeviceTransferSetup__grant_location_permission">បើកការអនុញ្ញាតទីតាំង</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">បើកសេវាកម្មទីតាំង</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">មិនអាចបើកការកំណត់ទីតាំង។</string>
   <string name="DeviceTransferSetup__turn_on_wifi">បើក Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">បញ្ហាការតភ្ជាប់</string>
   <string name="DeviceTransferSetup__retry">ព្យាយាមម្តងទៀត</string>
   <string name="DeviceTransferSetup__submit_debug_logs">បញ្ជូនកំណត់ត្រាបញ្ហា</string>
   <string name="DeviceTransferSetup__verify_code">លេខកូដបញ្ជាក់</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">ផ្ទៀងផ្ទាត់ថា កូដខាងក្រោមត្រូវគ្នានៅលើឧបករណ៍ទាំងពីរ។ បន្ទាប់មក ចុច បន្ត។</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">លេខមិនត្រូវគ្នា</string>
   <string name="DeviceTransferSetup__continue">បន្ត</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">លេខមិនដូចគ្នា</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">បើលេខនៅលើឧបករណ៍របស់អ្នកមិនត្រូវគ្នា វាអាចថាអ្នកបានតភ្ជាប់ទៅឧបករណ៍ខុស។​ ដើម្បីដោះស្រាយ បញ្ឈប់ការផ្ទេរ និងសាកល្បងម្តងទៀត ហើយរក្សាឧបករណ៍ទាំងពីររបស់អ្នកនៅជិតគ្នា។</string>
   <string name="DeviceTransferSetup__stop_transfer">ឈប់ផ្ទេរ</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">មិនអាចរកឃើញឧបករណ៍ចាស់ផ្សេងទៀត</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">មិនអាចរកឃើញឧបករណ៍ថ្មីផ្សេងទៀត</string>
@@ -2526,6 +2609,7 @@
   <string name="DeviceTransferSetup__location_permission">ការអនុញាតិប្រើទីតាំង</string>
   <string name="DeviceTransferSetup__location_services">សេវាកម្មទីតាំង</string>
   <string name="DeviceTransferSetup__wifi">វ៉ាយហ្វាយ</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">នៅលើផ្ទាំង WiFi Direct លុបក្រុមដែលធ្លាប់ចងចាំទាំងអស់ចោល ហើយផ្តាច់ការអញ្ជើញ ឬឧបករណ៍តភ្ជាប់ណាមួយ។</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">ផ្ទាំង WiFi Direct </string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">សូមព្យាយាមបិទ បើកវ៉ាយហ្វាយនៅលើឧបករណ៍ទាំងពីរ</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">អ្នកត្រូវប្រាកដថាឧបករណ៍ទាំងពីរស្ថិតនៅក្នុងការផ្ទេរ</string>
@@ -2764,6 +2848,7 @@
   <string name="payment_info_card_adding_funds">បន្ថែមសាច់ប្រាក់</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">អ្នកអាចដាក់លុយដើម្បីប្រើនៅក្នុង Signal ដោយផ្ញើ MobileCoin ទៅកាន់អាសយដ្ឋានកាបូបរបស់អ្នក។</string>
   <string name="payment_info_card_cashing_out">ដកប្រាក់</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">អ្នកអាចដកប្រាក់ចេញ MobileCoin គ្រប់ពេលវេលានៅកន្លែងប្តូរប្រាក់ដែលគាំទ្រ MobileCoin ។ គ្រាន់តែធ្វើការផ្ទេរប្រាក់ទៅកាន់គណនីរបស់អ្នកនៅកន្លែងប្តូរប្រាក់នោះ។</string>
   <string name="payment_info_card_hide_this_card">លាក់កាតនេះ?</string>
   <string name="payment_info_card_hide">លាក់</string>
   <string name="payment_info_card_record_recovery_phrase">កត់ត្រាឃ្លារបស់អ្នក</string>
@@ -2790,7 +2875,9 @@
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ឃ្លាសង្គ្រោះរបស់អ្នក គឺជា%1$dពាក្យដែលប្លែកសម្រាប់អ្នក។ សូមប្រើឃ្លានេះសម្រាប់ទាញយកសមតុលអ្នកមកវិញ។</string>
   <string name="PaymentsRecoveryStartFragment__start">ចាប់ផ្ដើម</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">បញ្ជូលដោយខ្លួនឯង</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">បិតចេញពី clipboard</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">បិតឃ្លាសង្គ្រោះ</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">ឃ្លាសង្គ្រោះ</string>
   <string name="PaymentsRecoveryPasteFragment__next">បន្ទាប់</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">ឃ្លាសង្គ្រោះមិនត្រឹមត្រូវ</string>
@@ -2806,6 +2893,7 @@
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">គណនីទូទាត់ប្រាក់ត្រូវបានទាញមកវិញ</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">ឃ្លាសង្គ្រោះមិនត្រឹមត្រូវ</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">ត្រូវប្រាកដថាអ្នកបានបញ្ជូលឃ្លារបស់អ្នកត្រឹមត្រូវ ហើយព្យាយាមម្ដងទៀត</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">ចម្លងទៅ clipboard?</string>
   <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">បើអ្នកជ្រើសរើសរក្សាទុកឃ្លាសង្គ្រោះអ្នកលើប្រព័ន្ធឌីជីថល អ្នកត្រូវប្រាកដថាវាត្រូវបានរក្សាទុកកន្លែងដែលអ្នកទុកចិត្ត។</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">ចម្លង</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
@@ -2822,6 +2910,7 @@
   <string name="PaymentsRecoveryEntryFragment__next">បន្ទាប់</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">ពាក្យមិនត្រឹមត្រូវ</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Clipboard ត្រូវបានសំអាត។</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">បង្ហាញ</string>
   <!--UnreadPayments-->
@@ -2931,6 +3020,7 @@
   <string name="PrivacySettingsFragment__disappearing_messages">សារបាត់ទៅវិញ</string>
   <string name="PrivacySettingsFragment__app_security">សន្តិសុខកម្មវិធី</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">បិទថតរូបអេក្រង់ក្នុងបញ្ជីថ្មី និងក្នុងកម្មវិធី</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">សារ និងការហៅ Signal  តែងតែបញ្ជូនការហៅទូរសព្ទ និងអ្នកផ្ញើដែលបិទជិត</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">ពេលវេលាតាមលំនាំដើមសម្រាប់ការសន្ទនាថ្មីៗ</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">កំណត់ថេរវេលានៃការលុបសារសម្រាប់រាល់ការសន្ទនាថ្មីៗដែលចាប់ផ្ដើមដោយអ្នក</string>
   <!--AdvancedPrivacySettingsFragment-->
@@ -2983,6 +3073,10 @@
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">លុបពណ៌នៃការសន្ទនា?</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Solid</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+  <string name="CustomChatColorCreatorFragment__hue">Hue</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturation</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">រក្សាទុក</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">កែរពណ៌</string>
@@ -3099,6 +3193,7 @@
   <string name="VoiceNotePlayerView__change_voice_message_speed">ប្ដូរល្បឿននៃសារជាសម្លេង</string>
   <string name="VoiceNotePlayerView__pause_voice_message">ផ្អាកសារជាសម្លេង</string>
   <string name="VoiceNotePlayerView__play_voice_message">ចាក់សារជាសម្លេង</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">រុករកជាសារសំឡេង</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">ពិនិត្យរូបតំណាងឡើងវិញ</string>
   <string name="AvatarPickerFragment__camera">កាមេរ៉ា</string>
@@ -3122,6 +3217,7 @@
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">រុករក</string>
   <string name="MultiselectForwardFragment__forward_to">បញ្ជូនបន្តទៅកាន់</string>
   <string name="MultiselectForwardFragment__add_a_message">បន្ថែមសារមួយ</string>
   <string name="MultiselectForwardFragment__faster_forwards">ការបញ្ជូនសារបន្តលឿនជាងមុន</string>

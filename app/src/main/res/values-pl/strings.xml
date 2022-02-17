@@ -1680,7 +1680,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Brak numerów bezpieczeństwa do porównania w schowku.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal wymaga pozwolenia na dostęp do aparatu w celu zeskanowania kodu QR, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nie można zeskanować kodu QR bez zezwolenia na dostęp do aparatu</string>
-  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Aby zobaczyć numer bezpieczeństwa dla %1$s, musisz najpierw wymienić wiadomości w tym kontaktem.</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Aby zobaczyć numer bezpieczeństwa dla %1$s, musisz najpierw wymienić wiadomości z tym kontaktem.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->

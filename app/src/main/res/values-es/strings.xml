@@ -1606,7 +1606,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NotificationChannel_app_updates">Actualizaciones de la aplicación</string>
   <string name="NotificationChannel_other">Otros</string>
   <string name="NotificationChannel_group_chats">Chats</string>
-  <string name="NotificationChannel_missing_display_name">Desconocido</string>
+  <string name="NotificationChannel_missing_display_name">Desconocid@</string>
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
   <string name="NotificationChannel_contact_joined_signal">Alguien comienza a usar Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hay actividad disponible para abrir el canal de notificaciones en «Ajustes».</string>
