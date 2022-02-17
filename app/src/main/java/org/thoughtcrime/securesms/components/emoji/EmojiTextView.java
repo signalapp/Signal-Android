@@ -186,16 +186,16 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   /**
-   * Starting from API 30, there can be a rounding error in text layout when a non-default font
-   * scale is used. This causes a line break to be inserted where there shouldn't be one. Force the
-   * width to be larger to work around this problem.
+   * Starting from API 30, there can be a rounding error in text layout when a non-zero letter
+   * spacing is used. This causes a line break to be inserted where there shouldn't be one. Force
+   * the width to be larger to work around this problem.
    * https://issuetracker.google.com/issues/173574230
    *
    * @param widthMeasureSpec the original measure spec passed to {@link #onMeasure(int, int)}
    * @return the measure spec with the workaround, or the original one.
    */
   private int applyWidthMeasureRoundingFix(int widthMeasureSpec) {
-    if (Build.VERSION.SDK_INT >= 30 && Math.abs(getResources().getConfiguration().fontScale - 1f) > 0.01f) {
+    if (Build.VERSION.SDK_INT >= 30 && getLetterSpacing() > 0) {
       CharSequence text = getText();
       if (text != null) {
         int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
