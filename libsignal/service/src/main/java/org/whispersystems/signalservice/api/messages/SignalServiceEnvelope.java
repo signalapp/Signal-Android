@@ -12,7 +12,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope;
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceEnvelopeProto;
 import org.whispersystems.util.Base64;
@@ -71,7 +70,7 @@ public class SignalServiceEnvelope {
                                        .setServerTimestamp(serverReceivedTimestamp);
 
     if (sender.isPresent()) {
-      builder.setSourceUuid(sender.get().getAci().toString());
+      builder.setSourceUuid(sender.get().getServiceId().toString());
 
       if (sender.get().getNumber().isPresent()) {
         builder.setSourceE164(sender.get().getNumber().get());

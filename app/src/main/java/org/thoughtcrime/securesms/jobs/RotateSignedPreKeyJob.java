@@ -11,13 +11,13 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -73,17 +73,17 @@ public class RotateSignedPreKeyJob extends BaseJob {
       return;
     }
 
-    rotate(aci, ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys());
-    rotate(pni, ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys());
+    rotate(ServiceIdType.ACI, ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys());
+    rotate(ServiceIdType.PNI, ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys());
   }
 
-  private void rotate(@NonNull AccountIdentifier accountId, @NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore)
+  private void rotate(@NonNull ServiceIdType serviceIdType, @NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore)
       throws IOException
   {
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, false);
 
-    accountManager.setSignedPreKey(accountId, signedPreKeyRecord);
+    accountManager.setSignedPreKey(serviceIdType, signedPreKeyRecord);
 
     metadataStore.setActiveSignedPreKeyId(signedPreKeyRecord.getId());
     metadataStore.setSignedPreKeyRegistered(true);

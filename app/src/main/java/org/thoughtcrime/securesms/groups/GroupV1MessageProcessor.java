@@ -99,7 +99,7 @@ public final class GroupV1MessageProcessor {
 
     if (group.getMembers().isPresent()) {
       for (SignalServiceAddress member : group.getMembers().get()) {
-        members.add(Recipient.externalGV1Member(context, member).getId());
+        members.add(Recipient.externalGV1Member(member).getId());
       }
     }
 
@@ -131,7 +131,7 @@ public final class GroupV1MessageProcessor {
 
     if (group.getMembers().isPresent()) {
       for (SignalServiceAddress messageMember : group.getMembers().get()) {
-        messageMembers.add(Recipient.externalGV1Member(context, messageMember).getId());
+        messageMembers.add(Recipient.externalGV1Member(messageMember).getId());
       }
     }
 

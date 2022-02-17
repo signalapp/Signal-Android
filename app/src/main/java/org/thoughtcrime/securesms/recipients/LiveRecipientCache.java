@@ -7,8 +7,6 @@ import android.database.Cursor;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
-
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -153,7 +151,7 @@ public final class LiveRecipientCache {
       String localE164 = SignalStore.account().getE164();
 
       if (localAci != null) {
-        selfId = recipientDatabase.getByAci(localAci).or(recipientDatabase.getByE164(localE164)).orNull();
+        selfId = recipientDatabase.getByServiceId(localAci).or(recipientDatabase.getByE164(localE164)).orNull();
       } else if (localE164 != null) {
         selfId = recipientDatabase.getByE164(localE164).orNull();
       } else {
@@ -235,6 +233,6 @@ public final class LiveRecipientCache {
   }
 
   private boolean isValidForCache(@NonNull Recipient recipient) {
-    return !recipient.getId().isUnknown() && (recipient.hasServiceIdentifier() || recipient.getGroupId().isPresent() || recipient.hasSmsAddress());
+    return !recipient.getId().isUnknown() && (recipient.hasServiceId() || recipient.getGroupId().isPresent() || recipient.hasSmsAddress());
   }
 }

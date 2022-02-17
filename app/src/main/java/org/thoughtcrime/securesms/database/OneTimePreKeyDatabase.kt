@@ -9,7 +9,7 @@ import org.whispersystems.libsignal.InvalidKeyException
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.state.PreKeyRecord
-import org.whispersystems.signalservice.api.push.AccountIdentifier
+import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
 
 class OneTimePreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
@@ -34,8 +34,8 @@ class OneTimePreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : 
     """
   }
 
-  fun get(accountId: AccountIdentifier, keyId: Int): PreKeyRecord? {
-    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(accountId, keyId), null, null, null).use { cursor ->
+  fun get(serviceId: ServiceId, keyId: Int): PreKeyRecord? {
+    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId, keyId), null, null, null).use { cursor ->
       if (cursor.moveToFirst()) {
         try {
           val publicKey = Curve.decodePoint(Base64.decode(cursor.requireNonNullString(PUBLIC_KEY)), 0)
@@ -52,9 +52,9 @@ class OneTimePreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : 
     return null
   }
 
-  fun insert(accountId: AccountIdentifier, keyId: Int, record: PreKeyRecord) {
+  fun insert(serviceId: ServiceId, keyId: Int, record: PreKeyRecord) {
     val contentValues = contentValuesOf(
-      ACCOUNT_ID to accountId.toString(),
+      ACCOUNT_ID to serviceId.toString(),
       KEY_ID to keyId,
       PUBLIC_KEY to Base64.encodeBytes(record.keyPair.publicKey.serialize()),
       PRIVATE_KEY to Base64.encodeBytes(record.keyPair.privateKey.serialize())
@@ -63,8 +63,8 @@ class OneTimePreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : 
     writableDatabase.replace(TABLE_NAME, null, contentValues)
   }
 
-  fun delete(accountId: AccountIdentifier, keyId: Int) {
+  fun delete(serviceId: ServiceId, keyId: Int) {
     val database = databaseHelper.signalWritableDatabase
-    database.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(accountId, keyId))
+    database.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId, keyId))
   }
 }

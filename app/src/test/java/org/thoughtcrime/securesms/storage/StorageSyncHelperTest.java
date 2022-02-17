@@ -27,10 +27,8 @@ import org.whispersystems.signalservice.api.storage.StorageId;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -57,7 +55,7 @@ public final class StorageSyncHelperTest {
 
   private static final Recipient SELF = mock(Recipient.class);
   static {
-    when(SELF.getAci()).thenReturn(Optional.of(ACI_SELF));
+    when(SELF.getServiceId()).thenReturn(Optional.of(ACI_SELF));
     when(SELF.getE164()).thenReturn(Optional.of(E164_SELF));
     when(SELF.resolve()).thenReturn(SELF);
   }

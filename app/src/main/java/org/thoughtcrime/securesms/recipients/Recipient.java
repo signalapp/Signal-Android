@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -78,7 +79,7 @@ public class Recipient {
 
   private final RecipientId            id;
   private final boolean                resolving;
-  private final ACI                    aci;
+  private final ServiceId              serviceId;
   private final PNI                    pni;
   private final String                 username;
   private final String                 e164;
@@ -166,8 +167,8 @@ public class Recipient {
    * Returns a fully-populated {@link Recipient} and associates it with the provided username.
    */
   @WorkerThread
-  public static @NonNull Recipient externalUsername(@NonNull Context context, @NonNull ACI aci, @NonNull String username) {
-    Recipient recipient = externalPush(context, aci, null, false);
+  public static @NonNull Recipient externalUsername(@NonNull ServiceId serviceId, @NonNull String username) {
+    Recipient recipient = externalPush(serviceId, null, false);
     SignalDatabase.recipients().setUsername(recipient.getId(), username);
     return recipient;
   }
@@ -175,11 +176,11 @@ public class Recipient {
   /**
    * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
    * creating one in the database if necessary. Convenience overload of
-   * {@link #externalPush(Context, ACI, String, boolean)}
+   * {@link #externalPush(ServiceId, String, boolean)}
    */
   @WorkerThread
-  public static @NonNull Recipient externalPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getAci(), signalServiceAddress.getNumber().orNull(), false);
+  public static @NonNull Recipient externalPush(@NonNull SignalServiceAddress signalServiceAddress) {
+    return externalPush(signalServiceAddress.getServiceId(), signalServiceAddress.getNumber().orNull(), false);
   }
 
   /**
@@ -188,11 +189,11 @@ public class Recipient {
    * prioritize E164 addresses and not use the UUIDs if possible.
    */
   @WorkerThread
-  public static @NonNull Recipient externalGV1Member(@NonNull Context context, @NonNull SignalServiceAddress address) {
+  public static @NonNull Recipient externalGV1Member(@NonNull SignalServiceAddress address) {
     if (address.getNumber().isPresent()) {
-      return externalPush(context, null, address.getNumber().get(), false);
+      return externalPush(null, address.getNumber().get(), false);
     } else {
-      return externalPush(context, address.getAci(), null, false);
+      return externalPush(address.getServiceId(), null, false);
     }
   }
 
@@ -207,7 +208,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalHighTrustPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getAci(), signalServiceAddress.getNumber().orNull(), true);
+    return externalPush(signalServiceAddress.getServiceId(), signalServiceAddress.getNumber().orNull(), true);
   }
 
   /**
@@ -223,13 +224,13 @@ public class Recipient {
    *                  that can be trusted as accurate (like an envelope).
    */
   @WorkerThread
-  public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable ACI aci, @Nullable String e164, boolean highTrust) {
-    if (ACI.UNKNOWN.equals(aci)) {
+  public static @NonNull Recipient externalPush(@Nullable ServiceId serviceId, @Nullable String e164, boolean highTrust) {
+    if (ServiceId.UNKNOWN.equals(serviceId)) {
       throw new AssertionError();
     }
 
     RecipientDatabase db          = SignalDatabase.recipients();
-    RecipientId       recipientId = db.getAndPossiblyMerge(aci, e164, highTrust);
+    RecipientId       recipientId = db.getAndPossiblyMerge(serviceId, e164, highTrust);
 
     Recipient resolved = resolved(recipientId);
 
@@ -237,9 +238,9 @@ public class Recipient {
       Log.w(TAG, "Resolved " + recipientId + ", but got back a recipient with " + resolved.getId());
     }
 
-    if (highTrust && !resolved.isRegistered() && aci != null) {
+    if (highTrust && !resolved.isRegistered() && serviceId != null) {
       Log.w(TAG, "External high-trust push was locally marked unregistered. Marking as registered.");
-      db.markRegistered(recipientId, aci);
+      db.markRegistered(recipientId, serviceId);
     } else if (highTrust && !resolved.isRegistered()) {
       Log.w(TAG, "External high-trust push was locally marked unregistered, but we don't have an ACI, so we can't do anything.", new Throwable());
     }
@@ -305,7 +306,7 @@ public class Recipient {
    * or serialized groupId.
    *
    * If the identifier is a UUID of a Signal user, prefer using
-   * {@link #externalPush(Context, ACI, String, boolean)} or its overload, as this will let us associate
+   * {@link #externalPush(ServiceId, String, boolean)} or its overload, as this will let us associate
    * the phone number with the recipient.
    */
   @WorkerThread
@@ -317,7 +318,7 @@ public class Recipient {
 
     if (UuidUtil.isUuid(identifier)) {
       ACI uuid = ACI.parseOrThrow(identifier);
-      id = db.getOrInsertFromAci(uuid);
+      id = db.getOrInsertFromServiceId(uuid);
     } else if (GroupId.isEncodedGroup(identifier)) {
       id = db.getOrInsertFromGroupId(GroupId.parseOrThrow(identifier));
     } else if (NumberUtil.isValidEmail(identifier)) {
@@ -337,7 +338,7 @@ public class Recipient {
   Recipient(@NonNull RecipientId id) {
     this.id                          = id;
     this.resolving                   = true;
-    this.aci                         = null;
+    this.serviceId                   = null;
     this.pni                         = null;
     this.username                    = null;
     this.e164                        = null;
@@ -392,9 +393,9 @@ public class Recipient {
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
     this.id                          = id;
-    this.resolving                   = !resolved;
-    this.aci                         = details.aci;
-    this.pni                         = details.pni;
+    this.resolving = !resolved;
+    this.serviceId = details.serviceId;
+    this.pni       = details.pni;
     this.username                    = details.username;
     this.e164                        = details.e164;
     this.email                       = details.email;
@@ -614,8 +615,8 @@ public class Recipient {
     return StringUtil.isolateBidi(name);
   }
 
-  public @NonNull Optional<ACI> getAci() {
-    return Optional.fromNullable(aci);
+  public @NonNull Optional<ServiceId> getServiceId() {
+    return Optional.fromNullable(serviceId);
   }
 
   public @NonNull Optional<PNI> getPni() {
@@ -644,16 +645,6 @@ public class Recipient {
 
   public @NonNull Optional<String> getSmsAddress() {
     return Optional.fromNullable(e164).or(Optional.fromNullable(email));
-  }
-
-  public @NonNull ACI requireAci() {
-    ACI resolved = resolving ? resolve().aci : aci;
-
-    if (resolved == null) {
-      throw new MissingAddressError(id);
-    }
-
-    return resolved;
   }
 
   public @NonNull PNI requirePni() {
@@ -706,16 +697,12 @@ public class Recipient {
     return getE164().isPresent();
   }
 
-  public boolean hasAci() {
-    return getAci().isPresent();
+  public boolean hasServiceId() {
+    return getServiceId().isPresent();
   }
 
-  public boolean hasPni() {
-    return getPni().isPresent();
-  }
-
-  public boolean isAciOnly() {
-    return hasAci() && !hasSmsAddress();
+  public boolean isServiceIdOnly() {
+    return hasServiceId() && !hasSmsAddress();
   }
 
   public @NonNull GroupId requireGroupId() {
@@ -728,36 +715,31 @@ public class Recipient {
     return resolved;
   }
 
-  public boolean hasServiceIdentifier() {
-    return aci != null || e164 != null;
-  }
-
   /**
-   * @return A string identifier able to be used with the Signal service. Prefers ACI, and if not
-   * available, will return an E164 number.
+   * The {@link ServiceId} of the user if available, otherwise throw.
    */
-  public @NonNull String requireServiceId() {
-    Recipient resolved = resolving ? resolve() : this;
+  public @NonNull ServiceId requireServiceId() {
+    ServiceId resolved = resolving ? resolve().serviceId : serviceId;
 
-    if (resolved.getAci().isPresent()) {
-      return resolved.requireAci().toString();
-    } else {
-      return getE164().get();
+    if (resolved == null) {
+      throw new MissingAddressError(id);
     }
+
+    return resolved;
   }
 
   /**
    * @return A single string to represent the recipient, in order of precedence:
    *
-   * Group ID > ACI > Phone > Email
+   * Group ID > ServiceId > Phone > Email
    */
   public @NonNull String requireStringId() {
     Recipient resolved = resolving ? resolve() : this;
 
     if (resolved.isGroup()) {
       return resolved.requireGroupId().toString();
-    } else if (resolved.getAci().isPresent()) {
-      return resolved.requireAci().toString();
+    } else if (resolved.getServiceId().isPresent()) {
+      return resolved.requireServiceId().toString();
     }
 
     return requireSmsAddress();
@@ -1214,7 +1196,7 @@ public class Recipient {
            profileSharing == other.profileSharing &&
            lastProfileFetch == other.lastProfileFetch &&
            forceSmsSelection == other.forceSmsSelection &&
-           Objects.equals(aci, other.aci) &&
+           Objects.equals(serviceId, other.serviceId) &&
            Objects.equals(username, other.username) &&
            Objects.equals(e164, other.e164) &&
            Objects.equals(email, other.email) &&

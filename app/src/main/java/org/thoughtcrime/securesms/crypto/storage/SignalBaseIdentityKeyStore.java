@@ -23,6 +23,7 @@ import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,8 +111,8 @@ public class SignalBaseIdentityKeyStore {
                                              boolean nonBlockingApproval)
   {
     Recipient recipient = Recipient.resolved(recipientId);
-    if (recipient.hasServiceIdentifier()) {
-      cache.save(recipient.requireServiceId(), recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
+    if (recipient.hasServiceId()) {
+      cache.save(recipient.requireServiceId().toString(), recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
     } else {
       Log.w(TAG, "[saveIdentity] No serviceId for " + recipient.getId());
     }
@@ -120,7 +121,7 @@ public class SignalBaseIdentityKeyStore {
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, IdentityKeyStore.Direction direction) {
     Recipient self = Recipient.self();
 
-    boolean isSelf = address.getName().equals(self.requireAci().toString()) ||
+    boolean isSelf = address.getName().equals(self.requireServiceId().toString()) ||
                      address.getName().equals(self.requireE164());
 
     if (isSelf) {
@@ -150,19 +151,20 @@ public class SignalBaseIdentityKeyStore {
   }
 
   public @NonNull Optional<IdentityRecord> getIdentityRecord(@NonNull Recipient recipient) {
-    if (recipient.hasServiceIdentifier()) {
-      IdentityStoreRecord record = cache.get(recipient.requireServiceId());
+    if (recipient.hasServiceId()) {
+      IdentityStoreRecord record = cache.get(recipient.requireServiceId().toString());
       return Optional.fromNullable(record).transform(r -> r.toIdentityRecord(recipient.getId()));
     } else {
-      Log.w(TAG, "[getIdentityRecord] No serviceId for " + recipient.getId());
+      Log.w(TAG, "[getIdentityRecord] No ServiceId for " + recipient.getId());
       return Optional.absent();
     }
   }
 
   public @NonNull IdentityRecordList getIdentityRecords(@NonNull List<Recipient> recipients) {
     List<String> addressNames = recipients.stream()
-                                          .filter(Recipient::hasServiceIdentifier)
+                                          .filter(Recipient::hasServiceId)
                                           .map(Recipient::requireServiceId)
+                                          .map(ServiceId::toString)
                                           .collect(Collectors.toList());
 
     if (addressNames.isEmpty()) {
@@ -172,8 +174,8 @@ public class SignalBaseIdentityKeyStore {
     List<IdentityRecord> records = new ArrayList<>(recipients.size());
 
     for (Recipient recipient : recipients) {
-      if (recipient.hasServiceIdentifier()) {
-        IdentityStoreRecord record = cache.get(recipient.requireServiceId());
+      if (recipient.hasServiceId()) {
+        IdentityStoreRecord record = cache.get(recipient.requireServiceId().toString());
 
         if (record != null) {
           records.add(record.toIdentityRecord(recipient.getId()));
@@ -189,8 +191,8 @@ public class SignalBaseIdentityKeyStore {
   public void setApproval(@NonNull RecipientId recipientId, boolean nonBlockingApproval) {
     Recipient recipient = Recipient.resolved(recipientId);
 
-    if (recipient.hasServiceIdentifier()) {
-      cache.setApproval(recipient.requireServiceId(), recipientId, nonBlockingApproval);
+    if (recipient.hasServiceId()) {
+      cache.setApproval(recipient.requireServiceId().toString(), recipientId, nonBlockingApproval);
     } else {
       Log.w(TAG, "[setApproval] No serviceId for " + recipient.getId());
     }
@@ -199,8 +201,8 @@ public class SignalBaseIdentityKeyStore {
   public void setVerified(@NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
     Recipient recipient = Recipient.resolved(recipientId);
 
-    if (recipient.hasServiceIdentifier()) {
-      cache.setVerified(recipient.requireServiceId(), recipientId, identityKey, verifiedStatus);
+    if (recipient.hasServiceId()) {
+      cache.setVerified(recipient.requireServiceId().toString(), recipientId, identityKey, verifiedStatus);
     } else {
       Log.w(TAG, "[setVerified] No serviceId for " + recipient.getId());
     }

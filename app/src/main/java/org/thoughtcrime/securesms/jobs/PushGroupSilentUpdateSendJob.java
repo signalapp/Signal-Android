@@ -74,8 +74,8 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
 
     Set<RecipientId> recipients = Stream.concat(Stream.of(memberUuids), Stream.of(pendingUuids))
                                         .filter(uuid -> !UuidUtil.UNKNOWN_UUID.equals(uuid))
-                                        .filter(uuid -> !Recipient.self().requireAci().uuid().equals(uuid))
-                                        .map(uuid -> Recipient.externalPush(context, ACI.from(uuid), null, false))
+                                        .filter(uuid -> !Recipient.self().requireServiceId().uuid().equals(uuid))
+                                        .map(uuid -> Recipient.externalPush(ACI.from(uuid), null, false))
                                         .filter(recipient -> recipient.getRegistered() != RecipientDatabase.RegisteredState.NOT_REGISTERED)
                                         .map(Recipient::getId)
                                         .collect(Collectors.toSet());

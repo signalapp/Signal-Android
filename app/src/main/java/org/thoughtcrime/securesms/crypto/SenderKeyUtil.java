@@ -22,7 +22,7 @@ public final class SenderKeyUtil {
    */
   public static void rotateOurKey(@NonNull Context context, @NonNull DistributionId distributionId) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
-      ApplicationDependencies.getProtocolStore().aci().senderKeys().deleteAllFor(Recipient.self().requireServiceId(), distributionId);
+      ApplicationDependencies.getProtocolStore().aci().senderKeys().deleteAllFor(SignalStore.account().requireAci().toString(), distributionId);
       SignalDatabase.senderKeyShared().deleteAllFor(distributionId);
     }
   }
@@ -31,7 +31,7 @@ public final class SenderKeyUtil {
    * Gets when the sender key session was created, or -1 if it doesn't exist.
    */
   public static long getCreateTimeForOurKey(@NonNull Context context, @NonNull DistributionId distributionId) {
-    SignalProtocolAddress address = new SignalProtocolAddress(Recipient.self().requireServiceId(), SignalStore.account().getDeviceId());
+    SignalProtocolAddress address = new SignalProtocolAddress(SignalStore.account().requireAci().toString(), SignalStore.account().getDeviceId());
     return SignalDatabase.senderKeys().getCreatedTime(address, distributionId);
   }
 

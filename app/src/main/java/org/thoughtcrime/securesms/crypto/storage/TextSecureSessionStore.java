@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.crypto.storage;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -15,7 +13,7 @@ import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.SignalServiceSessionStore;
-import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,9 +26,9 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
 
   private static final Object LOCK = new Object();
 
-  private final AccountIdentifier accountId;
+  private final ServiceId accountId;
 
-  public TextSecureSessionStore(@NonNull AccountIdentifier accountId) {
+  public TextSecureSessionStore(@NonNull ServiceId accountId) {
     this.accountId = accountId;
   }
 
@@ -135,8 +133,8 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
     synchronized (LOCK) {
       Recipient recipient = Recipient.resolved(recipientId);
 
-      if (recipient.hasAci()) {
-        archiveSession(new SignalProtocolAddress(recipient.requireAci().toString(), deviceId));
+      if (recipient.hasServiceId()) {
+        archiveSession(new SignalProtocolAddress(recipient.requireServiceId().toString(), deviceId));
       }
 
       if (recipient.hasE164()) {

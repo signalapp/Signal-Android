@@ -23,7 +23,7 @@ public final class BucketingUtil {
    * Calculate a user bucket for a given feature flag, uuid, and part per modulus.
    *
    * @param key Feature flag key (e.g., "research.megaphone.1")
-   * @param uuid Current user's UUID (see {@link Recipient#getAci()})
+   * @param uuid Current user's UUID (see {@link Recipient#getServiceId()})
    * @param modulus Drives the bucketing parts per N (e.g., passing 1,000,000 indicates bucketing into parts per million)
    */
   public static long bucket(@NonNull String key, @NonNull UUID uuid, long modulus) {

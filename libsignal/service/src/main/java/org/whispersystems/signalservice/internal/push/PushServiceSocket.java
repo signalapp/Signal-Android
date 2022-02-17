@@ -52,7 +52,8 @@ import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
-import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
@@ -330,7 +331,7 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(makeServiceRequest(WHO_AM_I, "GET", null), WhoAmIResponse.class);
   }
 
-  public boolean isIdentifierRegistered(AccountIdentifier identifier) throws IOException {
+  public boolean isIdentifierRegistered(ServiceId identifier) throws IOException {
     try {
       makeServiceRequestWithoutAuthentication(String.format(IDENTIFIER_REGISTERED_PATH, identifier.toString()), "HEAD", null);
       return true;
@@ -563,7 +564,7 @@ public class PushServiceSocket {
     makeServiceRequest(String.format(UUID_ACK_MESSAGE_PATH, uuid), "DELETE", null);
   }
 
-  public void registerPreKeys(AccountIdentifier accountId,
+  public void registerPreKeys(ServiceIdType serviceIdType,
                               IdentityKey identityKey,
                               SignedPreKeyRecord signedPreKey,
                               List<PreKeyRecord> records)
@@ -582,13 +583,13 @@ public class PushServiceSocket {
                                                                    signedPreKey.getKeyPair().getPublicKey(),
                                                                    signedPreKey.getSignature());
 
-    makeServiceRequest(String.format(Locale.US, PREKEY_PATH, "", accountId.isAci() ? "aci" : "pni"),
+    makeServiceRequest(String.format(Locale.US, PREKEY_PATH, "", serviceIdType.queryParam()),
                        "PUT",
                        JsonUtil.toJson(new PreKeyState(entities, signedPreKeyEntity, identityKey)));
   }
 
-  public int getAvailablePreKeys(AccountIdentifier accountId) throws IOException {
-    String       path         = String.format(PREKEY_METADATA_PATH, accountId.isAci() ? "aci" : "pni");
+  public int getAvailablePreKeys(ServiceIdType serviceIdType) throws IOException {
+    String       path         = String.format(PREKEY_METADATA_PATH, serviceIdType.queryParam());
     String       responseText = makeServiceRequest(path, "GET", null);
     PreKeyStatus preKeyStatus = JsonUtil.fromJson(responseText, PreKeyStatus.class);
 
@@ -678,9 +679,9 @@ public class PushServiceSocket {
     }
   }
 
-  public SignedPreKeyEntity getCurrentSignedPreKey(AccountIdentifier accountId) throws IOException {
+  public SignedPreKeyEntity getCurrentSignedPreKey(ServiceIdType serviceIdType) throws IOException {
     try {
-      String path         = String.format(SIGNED_PREKEY_PATH, accountId.isAci() ? "aci" : "pni");
+      String path         = String.format(SIGNED_PREKEY_PATH, serviceIdType.queryParam());
       String responseText = makeServiceRequest(path, "GET", null);
       return JsonUtil.fromJson(responseText, SignedPreKeyEntity.class);
     } catch (NotFoundException e) {
@@ -689,8 +690,8 @@ public class PushServiceSocket {
     }
   }
 
-  public void setCurrentSignedPreKey(AccountIdentifier accountId, SignedPreKeyRecord signedPreKey) throws IOException {
-    String             path               = String.format(SIGNED_PREKEY_PATH, accountId.isAci() ? "aci" : "pni");
+  public void setCurrentSignedPreKey(ServiceIdType serviceIdType, SignedPreKeyRecord signedPreKey) throws IOException {
+    String             path               = String.format(SIGNED_PREKEY_PATH, serviceIdType.queryParam());
     SignedPreKeyEntity signedPreKeyEntity = new SignedPreKeyEntity(signedPreKey.getId(),
                                                                    signedPreKey.getKeyPair().getPublicKey(),
                                                                    signedPreKey.getSignature());

@@ -26,6 +26,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.thoughtcrime.securesms.testutil.MainThreadUtil;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
@@ -1351,14 +1352,14 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private void assertSingleChangeMentioning(DecryptedGroupChange change, List<UUID> expectedMentions) {
-    List<ACI> expectedMentionAcis = expectedMentions.stream().map(ACI::from).collect(Collectors.toList());
+    List<ServiceId> expectedMentionSids = expectedMentions.stream().map(ServiceId::from).collect(Collectors.toList());
 
     List<UpdateDescription> changes = producer.describeChanges(null, change);
 
     assertThat(changes.size(), is(1));
 
     UpdateDescription description = changes.get(0);
-    assertThat(description.getMentioned(), is(expectedMentionAcis));
+    assertThat(description.getMentioned(), is(expectedMentionSids));
 
     if (expectedMentions.isEmpty()) {
       assertTrue(description.isStringStatic());
@@ -1397,8 +1398,8 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private static @NonNull GroupsV2UpdateMessageProducer.DescribeMemberStrategy createDescriber(@NonNull Map<UUID, String> map) {
-    return aci -> {
-      String name = map.get(aci.uuid());
+    return serviceId -> {
+      String name = map.get(serviceId.uuid());
       assertNotNull(name);
       return name;
     };

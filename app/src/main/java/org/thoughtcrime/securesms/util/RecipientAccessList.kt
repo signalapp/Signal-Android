@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util
 
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 
 /**
@@ -11,10 +11,10 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
  */
 class RecipientAccessList(private val recipients: List<Recipient>) : List<Recipient> by recipients {
 
-  private val byAci: Map<ACI, Recipient> by lazy {
+  private val byServiceId: Map<ServiceId, Recipient> by lazy {
     recipients
-      .filter { it.hasAci() }
-      .associateBy { it.requireAci() }
+      .filter { it.hasServiceId() }
+      .associateBy { it.requireServiceId() }
   }
 
   private val byE164: Map<String, Recipient> by lazy {
@@ -24,8 +24,8 @@ class RecipientAccessList(private val recipients: List<Recipient>) : List<Recipi
   }
 
   fun requireByAddress(address: SignalServiceAddress): Recipient {
-    if (byAci.containsKey(address.aci)) {
-      return byAci[address.aci]!!
+    if (byServiceId.containsKey(address.serviceId)) {
+      return byServiceId[address.serviceId]!!
     } else if (address.number.isPresent && byE164.containsKey(address.number.get())) {
       return byE164[address.number.get()]!!
     } else {

@@ -21,9 +21,9 @@ public class SendGroupMessageResponse {
     Set<ACI> acis = new HashSet<>(uuids404.length);
 
     for (String raw : uuids404) {
-      Optional<ACI> parsed = ACI.parse(raw);
-      if (parsed.isPresent()) {
-        acis.add(parsed.get());
+      ACI parsed = ACI.parseOrNull(raw);
+      if (parsed != null) {
+        acis.add(parsed);
       }
     }
 

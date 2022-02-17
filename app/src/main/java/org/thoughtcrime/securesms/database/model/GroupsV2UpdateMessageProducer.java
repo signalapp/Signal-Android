@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.StringUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
@@ -746,11 +747,11 @@ final class GroupsV2UpdateMessageProducer {
 
     /**
      * Map an ACI to a string that describes the group member.
-     * @param aci
+     * @param serviceId
      */
     @NonNull
     @WorkerThread
-    String describe(@NonNull ACI aci);
+    String describe(@NonNull ServiceId serviceId);
   }
 
   private interface StringFactory1Arg {
@@ -771,9 +772,9 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull StringFactory1Arg stringFactory,
                                               @DrawableRes int iconResource)
   {
-    ACI aci1 = ACI.fromByteStringOrUnknown(uuid1Bytes);
+    ServiceId serviceId = ServiceId.fromByteStringOrUnknown(uuid1Bytes);
 
-    return UpdateDescription.mentioning(Collections.singletonList(aci1), () -> stringFactory.create(descriptionStrategy.describe(aci1)), iconResource);
+    return UpdateDescription.mentioning(Collections.singletonList(serviceId), () -> stringFactory.create(descriptionStrategy.describe(serviceId)), iconResource);
   }
 
   private UpdateDescription updateDescription(@NonNull ByteString uuid1Bytes,
@@ -781,9 +782,9 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull StringFactory2Args stringFactory,
                                               @DrawableRes int iconResource)
   {
-    ACI aci1 = ACI.fromByteStringOrUnknown(uuid1Bytes);
-    ACI aci2 = ACI.fromByteStringOrUnknown(uuid2Bytes);
+    ServiceId sid1 = ServiceId.fromByteStringOrUnknown(uuid1Bytes);
+    ServiceId sid2 = ServiceId.fromByteStringOrUnknown(uuid2Bytes);
 
-    return UpdateDescription.mentioning(Arrays.asList(aci1, aci2), () -> stringFactory.create(descriptionStrategy.describe(aci1), descriptionStrategy.describe(aci2)), iconResource);
+    return UpdateDescription.mentioning(Arrays.asList(sid1, sid2), () -> stringFactory.create(descriptionStrategy.describe(sid1), descriptionStrategy.describe(sid2)), iconResource);
   }
 }

@@ -103,7 +103,7 @@ public final class GroupsV2StateProcessor {
   }
 
   public StateProcessorForGroup forGroup(@NonNull GroupMasterKey groupMasterKey) {
-    ACI                     selfAci                 = Recipient.self().requireAci();
+    ACI                     selfAci                 = SignalStore.account().requireAci();
     ProfileAndMessageHelper profileAndMessageHelper = new ProfileAndMessageHelper(context, selfAci, groupMasterKey, GroupId.v2(groupMasterKey), recipientDatabase);
 
     return new StateProcessorForGroup(selfAci, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, profileAndMessageHelper);
@@ -546,14 +546,14 @@ public final class GroupsV2StateProcessor {
   static class ProfileAndMessageHelper {
 
     private final Context           context;
-    private final ACI               aci;
+    private final ACI               selfAci;
     private final GroupMasterKey    masterKey;
     private final GroupId.V2        groupId;
     private final RecipientDatabase recipientDatabase;
 
-    ProfileAndMessageHelper(@NonNull Context context, @NonNull ACI aci, @NonNull GroupMasterKey masterKey, @NonNull GroupId.V2 groupId, @NonNull RecipientDatabase recipientDatabase) {
+    ProfileAndMessageHelper(@NonNull Context context, @NonNull ACI selfAci, @NonNull GroupMasterKey masterKey, @NonNull GroupId.V2 groupId, @NonNull RecipientDatabase recipientDatabase) {
       this.context           = context;
-      this.aci               = aci;
+      this.selfAci           = selfAci;
       this.masterKey         = masterKey;
       this.groupId           = groupId;
       this.recipientDatabase = recipientDatabase;
@@ -561,14 +561,14 @@ public final class GroupsV2StateProcessor {
 
     void determineProfileSharing(@NonNull GlobalGroupState inputGroupState, @NonNull DecryptedGroup newLocalState) {
       if (inputGroupState.getLocalState() != null) {
-        boolean wasAMemberAlready = DecryptedGroupUtil.findMemberByUuid(inputGroupState.getLocalState().getMembersList(), aci.uuid()).isPresent();
+        boolean wasAMemberAlready = DecryptedGroupUtil.findMemberByUuid(inputGroupState.getLocalState().getMembersList(), selfAci.uuid()).isPresent();
 
         if (wasAMemberAlready) {
           return;
         }
       }
 
-      Optional<DecryptedMember> selfAsMemberOptional = DecryptedGroupUtil.findMemberByUuid(newLocalState.getMembersList(), aci.uuid());
+      Optional<DecryptedMember> selfAsMemberOptional = DecryptedGroupUtil.findMemberByUuid(newLocalState.getMembersList(), selfAci.uuid());
 
       if (selfAsMemberOptional.isPresent()) {
         DecryptedMember selfAsMember     = selfAsMemberOptional.get();
@@ -579,7 +579,7 @@ public final class GroupsV2StateProcessor {
                                                     .filter(c -> c != null && c.getRevision() == revisionJoinedAt)
                                                     .findFirst()
                                                     .map(c -> Optional.fromNullable(UuidUtil.fromByteStringOrNull(c.getEditor()))
-                                                                      .transform(a -> Recipient.externalPush(context, ACI.fromByteStringOrNull(c.getEditor()), null, false)))
+                                                                      .transform(a -> Recipient.externalPush(ACI.fromByteStringOrNull(c.getEditor()), null, false)))
                                                     .orElse(Optional.absent());
 
         if (addedByOptional.isPresent()) {
@@ -652,7 +652,7 @@ public final class GroupsV2StateProcessor {
     void storeMessage(@NonNull DecryptedGroupV2Context decryptedGroupV2Context, long timestamp) {
       Optional<ACI> editor = getEditor(decryptedGroupV2Context).transform(ACI::from);
 
-      boolean outgoing = !editor.isPresent() || aci.equals(editor.get());
+      boolean outgoing = !editor.isPresent() || selfAci.equals(editor.get());
 
       if (outgoing) {
         try {
@@ -690,7 +690,7 @@ public final class GroupsV2StateProcessor {
       if (changeEditor.isPresent()) {
         return changeEditor;
       } else {
-        Optional<DecryptedPendingMember> pendingByUuid = DecryptedGroupUtil.findPendingByUuid(decryptedGroupV2Context.getGroupState().getPendingMembersList(), aci.uuid());
+        Optional<DecryptedPendingMember> pendingByUuid = DecryptedGroupUtil.findPendingByUuid(decryptedGroupV2Context.getGroupState().getPendingMembersList(), selfAci.uuid());
         if (pendingByUuid.isPresent()) {
           return Optional.fromNullable(UuidUtil.fromByteStringOrNull(pendingByUuid.get().getAddedByUuid()));
         }

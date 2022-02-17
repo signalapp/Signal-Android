@@ -138,7 +138,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                        .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
                        .isRemoteVideoOffer(true)
                        .ringId(ringId)
-                       .ringerRecipient(Recipient.externalPush(context, ACI.from(uuid), null, false))
+                       .ringerRecipient(Recipient.externalPush(ACI.from(uuid), null, false))
                        .commit()
                        .changeCallInfoState()
                        .activePeer(new RemotePeer(currentState.getCallInfoState().getCallRecipient().getId(), RemotePeer.GROUP_CALL_ID))

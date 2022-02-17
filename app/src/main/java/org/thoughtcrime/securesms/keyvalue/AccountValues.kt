@@ -88,6 +88,11 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
   val aci: ACI?
     get() = ACI.parseOrNull(getString(KEY_ACI, null))
 
+  /** The local user's [ACI]. Will throw if not present. */
+  fun requireAci(): ACI {
+    return ACI.parseOrThrow(getString(KEY_ACI, null))
+  }
+
   fun setAci(aci: ACI) {
     putString(KEY_ACI, aci.toString())
   }
@@ -95,6 +100,11 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
   /** The local user's [PNI]. */
   val pni: PNI?
     get() = PNI.parseOrNull(getString(KEY_PNI, null))
+
+  /** The local user's [PNI]. Will throw if not present. */
+  fun requirePni(): PNI {
+    return PNI.parseOrThrow(getString(KEY_PNI, null))
+  }
 
   fun setPni(pni: PNI) {
     putString(KEY_PNI, pni.toString())

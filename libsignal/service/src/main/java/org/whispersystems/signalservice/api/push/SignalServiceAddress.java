@@ -20,50 +20,50 @@ public class SignalServiceAddress {
 
   public static final int DEFAULT_DEVICE_ID = 1;
 
-  private final ACI              aci;
+  private final ServiceId        serviceId;
   private final Optional<String> e164;
 
   /**
    * Construct a PushAddress.
    *
-   * @param aci The UUID of the user, if available.
+   * @param serviceId The UUID of the user, if available.
    * @param e164 The phone number of the user, if available.
    */
-  public SignalServiceAddress(ACI aci, Optional<String> e164) {
-    this.aci  = Preconditions.checkNotNull(aci);
-    this.e164 = e164;
+  public SignalServiceAddress(ServiceId serviceId, Optional<String> e164) {
+    this.serviceId = Preconditions.checkNotNull(serviceId);
+    this.e164      = e164;
   }
 
-  public SignalServiceAddress(ACI aci) {
-    this.aci  = Preconditions.checkNotNull(aci);
-    this.e164 = Optional.absent();
+  public SignalServiceAddress(ServiceId serviceId) {
+    this.serviceId = Preconditions.checkNotNull(serviceId);
+    this.e164      = Optional.absent();
   }
 
   /**
    * Convenience constructor that will consider a UUID/E164 string absent if it is null or empty.
    */
-  public SignalServiceAddress(ACI aci, String e164) {
-    this(aci, OptionalUtil.absentIfEmpty(e164));
+  public SignalServiceAddress(ServiceId serviceId, String e164) {
+    this(serviceId, OptionalUtil.absentIfEmpty(e164));
   }
 
   public Optional<String> getNumber() {
     return e164;
   }
 
-  public ACI getAci() {
-    return aci;
+  public ServiceId getServiceId() {
+    return serviceId;
   }
 
-  public boolean hasValidAci() {
-    return !aci.uuid().equals(UuidUtil.UNKNOWN_UUID);
+  public boolean hasValidServiceId() {
+    return !serviceId.isUnknown();
   }
 
   public String getIdentifier() {
-    return aci.toString();
+    return serviceId.toString();
   }
 
   public boolean matches(SignalServiceAddress other) {
-    return this.aci.equals(other.aci);
+    return this.serviceId.equals(other.serviceId);
   }
 
   public static boolean isValidAddress(String rawUuid, String e164) {
@@ -82,10 +82,10 @@ public class SignalServiceAddress {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     final SignalServiceAddress that = (SignalServiceAddress) o;
-    return aci.equals(that.aci) && e164.equals(that.e164);
+    return serviceId.equals(that.serviceId) && e164.equals(that.e164);
   }
 
   @Override public int hashCode() {
-    return Objects.hash(aci, e164);
+    return Objects.hash(serviceId, e164);
   }
 }

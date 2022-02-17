@@ -176,7 +176,7 @@ public class StorageSyncJob extends BaseJob {
       return;
     }
 
-    if (!Recipient.self().hasE164() || !Recipient.self().hasAci()) {
+    if (!Recipient.self().hasE164() || !Recipient.self().hasServiceId()) {
       Log.w(TAG, "Missing E164 or ACI!");
       return;
     }

@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -51,15 +52,15 @@ public class UsernameUtil {
   }
 
   @WorkerThread
-  public static @NonNull Optional<ACI> fetchAciForUsername(@NonNull Context context, @NonNull String username) {
+  public static @NonNull Optional<ServiceId> fetchAciForUsername(@NonNull String username) {
     Optional<RecipientId> localId = SignalDatabase.recipients().getByUsername(username);
 
     if (localId.isPresent()) {
       Recipient recipient = Recipient.resolved(localId.get());
 
-      if (recipient.getAci().isPresent()) {
+      if (recipient.getServiceId().isPresent()) {
         Log.i(TAG, "Found username locally -- using associated UUID.");
-        return recipient.getAci();
+        return recipient.getServiceId();
       } else {
         Log.w(TAG, "Found username locally, but it had no associated UUID! Clearing it.");
         SignalDatabase.recipients().clearUsernameIfExists(username);

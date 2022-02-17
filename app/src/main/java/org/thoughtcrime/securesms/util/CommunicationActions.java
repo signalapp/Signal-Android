@@ -240,7 +240,7 @@ public class CommunicationActions {
       SimpleTask.run(() -> {
         Recipient recipient = Recipient.external(activity, e164);
 
-        if (!recipient.isRegistered() || !recipient.hasAci()) {
+        if (!recipient.isRegistered() || !recipient.hasServiceId()) {
           try {
             DirectoryHelper.refreshDirectoryFor(activity, recipient, false);
             recipient = Recipient.resolved(recipient.getId());

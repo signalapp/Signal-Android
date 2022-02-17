@@ -1554,14 +1554,14 @@ public class ConversationParentFragment extends Fragment
       smsEnabled = false;
     }
 
-    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isAciOnly() && !recipient.get().isReleaseNotes() && smsEnabled) {
+    if (!isSecureText && !isPushGroupConversation() && !recipient.get().isServiceIdOnly() && !recipient.get().isReleaseNotes() && smsEnabled) {
       sendButton.disableTransport(Type.TEXTSECURE);
     }
 
     if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection() && smsEnabled) {
       sendButton.setDefaultTransport(Type.SMS);
     } else {
-      if (isSecureText || isPushGroupConversation() || recipient.get().isAciOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
+      if (isSecureText || isPushGroupConversation() || recipient.get().isServiceIdOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
         sendButton.setDefaultTransport(Type.TEXTSECURE);
       } else {
         sendButton.setDefaultTransport(Type.SMS);
@@ -3013,7 +3013,7 @@ public class ConversationParentFragment extends Fragment
       return new SettableFuture<>(null);
     }
 
-    final boolean sendPush = (isSecureText && !forceSms) || recipient.get().isAciOnly();
+    final boolean sendPush = (isSecureText && !forceSms) || recipient.get().isServiceIdOnly();
     final long    thread   = this.threadId;
 
     if (sendPush) {
@@ -3076,7 +3076,7 @@ public class ConversationParentFragment extends Fragment
     final long    thread      = this.threadId;
     final Context context     = requireContext().getApplicationContext();
     final String  messageBody = getMessage();
-    final boolean sendPush    = (isSecureText && !forceSms) || recipient.get().isAciOnly();
+    final boolean sendPush    = (isSecureText && !forceSms) || recipient.get().isServiceIdOnly();
 
     OutgoingTextMessage message;
 

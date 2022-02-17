@@ -17,8 +17,9 @@ import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -81,19 +82,17 @@ public class RefreshPreKeysJob extends BaseJob {
       return;
     }
 
-    ACI                 aci              = SignalStore.account().getAci();
     SignalProtocolStore aciProtocolStore = ApplicationDependencies.getProtocolStore().aci();
     PreKeyMetadataStore aciPreKeyStore   = SignalStore.account().aciPreKeys();
     
-    PNI                 pni              = SignalStore.account().getPni();
     SignalProtocolStore pniProtocolStore = ApplicationDependencies.getProtocolStore().pni();
     PreKeyMetadataStore pniPreKeyStore   = SignalStore.account().pniPreKeys();
 
-    if (refreshKeys(aci, aciProtocolStore, aciPreKeyStore)) {
+    if (refreshKeys(ServiceIdType.ACI, aciProtocolStore, aciPreKeyStore)) {
       PreKeyUtil.cleanSignedPreKeys(aciProtocolStore, aciPreKeyStore);
     }
     
-    if (refreshKeys(pni, pniProtocolStore, pniPreKeyStore)) {
+    if (refreshKeys(ServiceIdType.PNI, pniProtocolStore, pniPreKeyStore)) {
       PreKeyUtil.cleanSignedPreKeys(pniProtocolStore, pniPreKeyStore);
     }
 
@@ -104,16 +103,12 @@ public class RefreshPreKeysJob extends BaseJob {
   /**
    * @return True if we need to clean prekeys, otherwise false.
    */
-  private boolean refreshKeys(@Nullable AccountIdentifier accountId, @NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) throws IOException {
-    if (accountId == null) {
-      throw new IOException("Unset identifier!");
-    }
-
-    String logPrefix = "[" + (accountId.isAci() ? "ACI" : "PNI") + "] ";
+  private boolean refreshKeys(@NonNull ServiceIdType serviceIdType, @NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) throws IOException {
+    String logPrefix = "[" + serviceIdType + "] ";
 
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
-    int availableKeys = accountManager.getPreKeysCount(accountId);
+    int availableKeys = accountManager.getPreKeysCount(serviceIdType);
     log(TAG, logPrefix + "Available keys: " + availableKeys);
 
     if (availableKeys >= PREKEY_MINIMUM && metadataStore.isSignedPreKeyRegistered()) {
@@ -127,7 +122,7 @@ public class RefreshPreKeysJob extends BaseJob {
 
     log(TAG, logPrefix + "Registering new prekeys...");
 
-    accountManager.setPreKeys(accountId, identityKey.getPublicKey(), signedPreKeyRecord, preKeyRecords);
+    accountManager.setPreKeys(serviceIdType, identityKey.getPublicKey(), signedPreKeyRecord, preKeyRecords);
 
     metadataStore.setActiveSignedPreKeyId(signedPreKeyRecord.getId());
     metadataStore.setSignedPreKeyRegistered(true);

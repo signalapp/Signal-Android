@@ -266,7 +266,7 @@ public final class RecipientIdCacheTest {
     Recipient mock = mock(Recipient.class);
 
     when(mock.getId()).thenReturn(recipientId);
-    when(mock.getAci()).thenReturn(Optional.fromNullable(aci));
+    when(mock.getServiceId()).thenReturn(Optional.fromNullable(aci));
     when(mock.getE164()).thenReturn(Optional.fromNullable(e164));
 
     return mock;

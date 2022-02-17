@@ -26,8 +26,7 @@ import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.PNI
+import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Objects
 
 /**
@@ -61,18 +60,11 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       )
 
       if (!recipient.isGroup) {
-        val aci = recipient.aci.transform(ACI::toString).or("null")
+        val serviceId = recipient.serviceId.transform(ServiceId::toString).or("null")
         longClickPref(
-          title = DSLSettingsText.from("ACI"),
-          summary = DSLSettingsText.from(aci),
-          onLongClick = { copyToClipboard(aci) }
-        )
-
-        val pni = recipient.pni.transform(PNI::toString).or("null")
-        longClickPref(
-          title = DSLSettingsText.from("PNI"),
-          summary = DSLSettingsText.from(pni),
-          onLongClick = { copyToClipboard(pni) }
+          title = DSLSettingsText.from("ServiceId"),
+          summary = DSLSettingsText.from(serviceId),
+          onLongClick = { copyToClipboard(serviceId) }
         )
       }
 
@@ -153,17 +145,8 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               .setTitle("Are you sure?")
               .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
               .setPositiveButton(android.R.string.ok) { _, _ ->
-                if (recipient.hasAci()) {
-                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requireAci(), addressName = recipient.requireAci().toString())
-                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requirePni(), addressName = recipient.requireAci().toString())
-                }
-                if (recipient.hasE164()) {
-                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requireAci(), addressName = recipient.requireE164())
-                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requirePni(), addressName = recipient.requireE164())
-                }
-                if (recipient.hasPni()) {
-                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requireAci(), addressName = recipient.requirePni().toString())
-                  SignalDatabase.sessions.deleteAllFor(accountId = Recipient.self().requirePni(), addressName = recipient.requirePni().toString())
+                if (recipient.hasServiceId()) {
+                  SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account().requireAci(), addressName = recipient.requireServiceId().toString())
                 }
               }
               .show()

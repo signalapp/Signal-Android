@@ -16,6 +16,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
@@ -29,7 +30,6 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketProtos;
 
 import java.security.SecureRandom;
 import java.util.Locale;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.core.Single;
@@ -61,8 +61,8 @@ public final class ProfileService {
                                                                   SignalServiceProfile.RequestType requestType,
                                                                   Locale locale)
   {
-    ACI                                aci   = address.getAci();
-    SecureRandom                       random = new SecureRandom();
+    ServiceId                          serviceId      = address.getServiceId();
+    SecureRandom                       random         = new SecureRandom();
     ProfileKeyCredentialRequestContext requestContext = null;
 
     WebSocketProtos.WebSocketRequestMessage.Builder builder = WebSocketProtos.WebSocketRequestMessage.newBuilder()
@@ -70,18 +70,18 @@ public final class ProfileService {
                                                                                                      .setVerb("GET");
 
     if (profileKey.isPresent()) {
-      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(aci.uuid());
+      ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(serviceId.uuid());
       String            version              = profileKeyIdentifier.serialize();
 
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, aci.uuid(), profileKey.get());
+        requestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, serviceId.uuid(), profileKey.get());
 
         ProfileKeyCredentialRequest request           = requestContext.getRequest();
         String                      credentialRequest = Hex.toStringCondensed(request.serialize());
 
-        builder.setPath(String.format("/v1/profile/%s/%s/%s", aci, version, credentialRequest));
+        builder.setPath(String.format("/v1/profile/%s/%s/%s", serviceId, version, credentialRequest));
       } else {
-        builder.setPath(String.format("/v1/profile/%s/%s", aci, version));
+        builder.setPath(String.format("/v1/profile/%s/%s", serviceId, version));
       }
     } else {
       builder.setPath(String.format("/v1/profile/%s", address.getIdentifier()));

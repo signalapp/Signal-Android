@@ -82,7 +82,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
       while ((recipient = reader.getNext()) != null) {
         if (recipient.isPushGroup()) {
           blockedGroups.add(recipient.requireGroupId().getDecodedId());
-        } else if (recipient.isMaybeRegistered() && (recipient.hasAci() || recipient.hasE164())) {
+        } else if (recipient.isMaybeRegistered() && (recipient.hasServiceId() || recipient.hasE164())) {
           blockedIndividuals.add(RecipientUtil.toSignalServiceAddress(context, recipient));
         }
       }

@@ -9,7 +9,7 @@ import org.whispersystems.libsignal.InvalidKeyException
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.state.SignedPreKeyRecord
-import org.whispersystems.signalservice.api.push.AccountIdentifier
+import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
 import java.util.LinkedList
 
@@ -39,8 +39,8 @@ class SignedPreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : D
     """
   }
 
-  fun get(accountId: AccountIdentifier, keyId: Int): SignedPreKeyRecord? {
-    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(accountId, keyId), null, null, null).use { cursor ->
+  fun get(serviceId: ServiceId, keyId: Int): SignedPreKeyRecord? {
+    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId, keyId), null, null, null).use { cursor ->
       if (cursor.moveToFirst()) {
         try {
           val publicKey = Curve.decodePoint(Base64.decode(cursor.requireNonNullString(PUBLIC_KEY)), 0)
@@ -58,10 +58,10 @@ class SignedPreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : D
     return null
   }
 
-  fun getAll(accountId: AccountIdentifier): List<SignedPreKeyRecord> {
+  fun getAll(serviceId: ServiceId): List<SignedPreKeyRecord> {
     val results: MutableList<SignedPreKeyRecord> = LinkedList()
 
-    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ?", SqlUtil.buildArgs(accountId), null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ?", SqlUtil.buildArgs(serviceId), null, null, null).use { cursor ->
       while (cursor.moveToNext()) {
         try {
           val keyId = cursor.requireInt(KEY_ID)
@@ -81,9 +81,9 @@ class SignedPreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : D
     return results
   }
 
-  fun insert(accountId: AccountIdentifier, keyId: Int, record: SignedPreKeyRecord) {
+  fun insert(serviceId: ServiceId, keyId: Int, record: SignedPreKeyRecord) {
     val contentValues = contentValuesOf(
-      ACCOUNT_ID to accountId.toString(),
+      ACCOUNT_ID to serviceId.toString(),
       KEY_ID to keyId,
       PUBLIC_KEY to Base64.encodeBytes(record.keyPair.publicKey.serialize()),
       PRIVATE_KEY to Base64.encodeBytes(record.keyPair.privateKey.serialize()),
@@ -93,7 +93,7 @@ class SignedPreKeyDatabase(context: Context, databaseHelper: SignalDatabase) : D
     writableDatabase.replace(TABLE_NAME, null, contentValues)
   }
 
-  fun delete(accountId: AccountIdentifier, keyId: Int) {
-    writableDatabase.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(accountId, keyId))
+  fun delete(serviceId: ServiceId, keyId: Int) {
+    writableDatabase.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId, keyId))
   }
 }

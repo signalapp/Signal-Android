@@ -161,7 +161,7 @@ public final class IdentityUtil {
   public static void processVerifiedMessage(Context context, VerifiedMessage verifiedMessage) {
     try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       SignalIdentityKeyStore   identityStore  = ApplicationDependencies.getProtocolStore().aci().identities();
-      Recipient                recipient      = Recipient.externalPush(context, verifiedMessage.getDestination());
+      Recipient                recipient      = Recipient.externalPush(verifiedMessage.getDestination());
       Optional<IdentityRecord> identityRecord = identityStore.getIdentityRecord(recipient.getId());
 
       if (!identityRecord.isPresent() && verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT) {

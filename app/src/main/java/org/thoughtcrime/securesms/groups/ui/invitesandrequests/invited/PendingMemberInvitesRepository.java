@@ -54,7 +54,7 @@ final class PendingMemberInvitesRepository {
       List<DecryptedPendingMember>                 pendingMembersList = decryptedGroup.getPendingMembersList();
       List<SinglePendingMemberInvitedByYou>        byMe               = new ArrayList<>(pendingMembersList.size());
       List<MultiplePendingMembersInvitedByAnother> byOthers           = new ArrayList<>(pendingMembersList.size());
-      ByteString                                   self               = Recipient.self().requireAci().toByteString();
+      ByteString                                   self               = Recipient.self().requireServiceId().toByteString();
       boolean                                      selfIsAdmin        = v2GroupProperties.isAdmin(Recipient.self());
 
       Stream.of(pendingMembersList)

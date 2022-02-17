@@ -652,7 +652,7 @@ public final class MessageContentProcessor {
     }
 
     ApplicationDependencies.getSignalCallManager()
-                           .receivedOpaqueMessage(new WebRtcData.OpaqueMessageMetadata(senderRecipient.requireAci().uuid(),
+                           .receivedOpaqueMessage(new WebRtcData.OpaqueMessageMetadata(senderRecipient.requireServiceId().uuid(),
                                                                                        message.getOpaque(),
                                                                                        content.getSenderDevice(),
                                                                                        messageAgeSeconds));
@@ -734,7 +734,7 @@ public final class MessageContentProcessor {
     long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
     if (!recipient.isGroup()) {
-      ApplicationDependencies.getProtocolStore().aci().deleteAllSessions(recipient.requireServiceId());
+      ApplicationDependencies.getProtocolStore().aci().deleteAllSessions(recipient.requireServiceId().toString());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
@@ -867,7 +867,7 @@ public final class MessageContentProcessor {
       return null;
     }
 
-    Recipient     targetAuthor   = Recipient.externalPush(context, reaction.getTargetAuthor());
+    Recipient     targetAuthor   = Recipient.externalPush(reaction.getTargetAuthor());
     MessageRecord targetMessage  = SignalDatabase.mmsSms().getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
 
     if (targetMessage == null) {
@@ -1019,7 +1019,7 @@ public final class MessageContentProcessor {
     Recipient recipient;
 
     if (response.getPerson().isPresent()) {
-      recipient = Recipient.externalPush(context, response.getPerson().get());
+      recipient = Recipient.externalPush(response.getPerson().get());
     } else if (response.getGroupId().isPresent()) {
       GroupId groupId = GroupId.v1(response.getGroupId().get());
       recipient = Recipient.externalPossiblyMigratedGroup(context, groupId);
@@ -1271,7 +1271,7 @@ public final class MessageContentProcessor {
 
     List<Long> toMarkViewed = Stream.of(viewedMessages)
                                     .map(message -> {
-                                      RecipientId author = Recipient.externalPush(context, message.getSender()).getId();
+                                      RecipientId author = Recipient.externalPush(message.getSender()).getId();
                                       return SignalDatabase.mmsSms().getMessageFor(message.getTimestamp(), author);
                                     })
                                     .filter(message -> message != null && message.isMms())
@@ -1289,7 +1289,7 @@ public final class MessageContentProcessor {
   private void handleSynchronizeViewOnceOpenMessage(@NonNull ViewOnceOpenMessage openMessage, long envelopeTimestamp) {
     log(envelopeTimestamp, "Handling a view-once open for message: " + openMessage.getTimestamp());
 
-    RecipientId   author    = Recipient.externalPush(context, openMessage.getSender()).getId();
+    RecipientId   author    = Recipient.externalPush(openMessage.getSender()).getId();
     long          timestamp = openMessage.getTimestamp();
     MessageRecord record    = SignalDatabase.mmsSms().getMessageFor(timestamp, author);
 
@@ -1547,7 +1547,7 @@ public final class MessageContentProcessor {
     }
 
     List<org.whispersystems.libsignal.util.Pair<RecipientId, Boolean>> unidentifiedStatus = Stream.of(members)
-                                                                                                  .map(m -> new org.whispersystems.libsignal.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId())))
+                                                                                                  .map(m -> new org.whispersystems.libsignal.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId().toString())))
                                                                                                   .toList();
     receiptDatabase.setUnidentified(unidentifiedStatus, messageId);
   }
@@ -1913,7 +1913,7 @@ public final class MessageContentProcessor {
 
     warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + formatSender(senderRecipient, content) + " for message with timestamp " + sentTimestamp + ".");
 
-    if (!senderRecipient.hasAci()) {
+    if (!senderRecipient.hasServiceId()) {
       warn(content.getTimestamp(), "[RetryReceipt] Requester " + senderRecipient.getId() + " somehow has no UUID! timestamp: " + sentTimestamp);
       return;
     }
@@ -1953,7 +1953,7 @@ public final class MessageContentProcessor {
 
     GroupId.V2            groupId          = threadRecipient.requireGroupId().requireV2();
     DistributionId        distributionId   = SignalDatabase.groups().getOrCreateDistributionId(groupId);
-    SignalProtocolAddress requesterAddress = new SignalProtocolAddress(requester.requireAci().toString(), content.getSenderDevice());
+    SignalProtocolAddress requesterAddress = new SignalProtocolAddress(requester.requireServiceId().toString(), content.getSenderDevice());
 
     SignalDatabase.senderKeyShared().delete(distributionId, Collections.singleton(requesterAddress));
 
@@ -2030,7 +2030,7 @@ public final class MessageContentProcessor {
   }
 
   public static boolean ratchetKeyMatches(@NonNull Recipient recipient, int deviceId, @NonNull ECPublicKey ratchetKey) {
-    SignalProtocolAddress address = new SignalProtocolAddress(recipient.resolve().requireServiceId(), deviceId);
+    SignalProtocolAddress address = recipient.resolve().requireServiceId().toProtocolAddress(deviceId);
     SessionRecord         session = ApplicationDependencies.getProtocolStore().aci().loadSession(address);
 
     return session.currentRatchetKeyMatches(ratchetKey);
@@ -2064,7 +2064,7 @@ public final class MessageContentProcessor {
       return Optional.absent();
     }
 
-    RecipientId   author  = Recipient.externalPush(context, quote.get().getAuthor()).getId();
+    RecipientId   author  = Recipient.externalPush(quote.get().getAuthor()).getId();
     MessageRecord message = SignalDatabase.mmsSms().getMessageFor(quote.get().getId(), author);
 
     if (message != null && !message.isRemoteDelete()) {
@@ -2200,7 +2200,7 @@ public final class MessageContentProcessor {
     List<Mention> mentions = new ArrayList<>(signalServiceMentions.size());
 
     for (SignalServiceDataMessage.Mention mention : signalServiceMentions) {
-      mentions.add(new Mention(Recipient.externalPush(context, mention.getAci(), null, false).getId(), mention.getStart(), mention.getLength()));
+      mentions.add(new Mention(Recipient.externalPush(mention.getAci(), null, false).getId(), mention.getStart(), mention.getLength()));
     }
 
     return mentions;
@@ -2223,7 +2223,7 @@ public final class MessageContentProcessor {
   private Recipient getSyncMessageDestination(@NonNull SentTranscriptMessage message)
       throws BadGroupIdException
   {
-    return getGroupRecipient(message.getMessage().getGroupContext()).or(() -> Recipient.externalPush(context, message.getDestination().get()));
+    return getGroupRecipient(message.getMessage().getGroupContext()).or(() -> Recipient.externalPush(message.getDestination().get()));
   }
 
   private Recipient getMessageDestination(@NonNull SignalServiceContent content) throws BadGroupIdException {
@@ -2339,8 +2339,8 @@ public final class MessageContentProcessor {
     if (recipient.hasE164()) {
       unidentified |= message.isUnidentified(recipient.requireE164());
     }
-    if (recipient.hasAci()) {
-      unidentified |= message.isUnidentified(recipient.requireAci());
+    if (recipient.hasServiceId()) {
+      unidentified |= message.isUnidentified(recipient.requireServiceId());
     }
 
     return unidentified;

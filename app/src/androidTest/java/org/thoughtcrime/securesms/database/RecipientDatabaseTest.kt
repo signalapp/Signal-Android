@@ -4,7 +4,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
-import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -30,8 +29,8 @@ class RecipientDatabaseTest {
 
   private lateinit var recipientDatabase: RecipientDatabase
 
-  private val localAci = ACI.from(UUID.randomUUID());
-  private val localPni = PNI.from(UUID.randomUUID());
+  private val localAci = ACI.from(UUID.randomUUID())
+  private val localPni = PNI.from(UUID.randomUUID())
 
   @Before
   fun setup() {
@@ -52,7 +51,7 @@ class RecipientDatabaseTest {
     val recipientId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, null, true)
 
     val recipient = Recipient.resolved(recipientId)
-    assertEquals(ACI_A, recipient.requireAci())
+    assertEquals(ACI_A, recipient.requireServiceId())
     assertFalse(recipient.hasE164())
   }
 
@@ -62,7 +61,7 @@ class RecipientDatabaseTest {
     val recipientId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, null, false)
 
     val recipient = Recipient.resolved(recipientId)
-    assertEquals(ACI_A, recipient.requireAci())
+    assertEquals(ACI_A, recipient.requireServiceId())
     assertFalse(recipient.hasE164())
   }
 
@@ -73,7 +72,7 @@ class RecipientDatabaseTest {
 
     val recipient = Recipient.resolved(recipientId)
     assertEquals(E164_A, recipient.requireE164())
-    assertFalse(recipient.hasAci())
+    assertFalse(recipient.hasServiceId())
   }
 
   /** If all you have is an E164, you can just store that, regardless of trust level. */
@@ -83,7 +82,7 @@ class RecipientDatabaseTest {
 
     val recipient = Recipient.resolved(recipientId)
     assertEquals(E164_A, recipient.requireE164())
-    assertFalse(recipient.hasAci())
+    assertFalse(recipient.hasServiceId())
   }
 
   /** With high trust, you can associate an ACI-e164 pair. */
@@ -92,7 +91,7 @@ class RecipientDatabaseTest {
     val recipientId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
 
     val recipient = Recipient.resolved(recipientId)
-    assertEquals(ACI_A, recipient.requireAci())
+    assertEquals(ACI_A, recipient.requireServiceId())
     assertEquals(E164_A, recipient.requireE164())
   }
 
@@ -102,7 +101,7 @@ class RecipientDatabaseTest {
     val recipientId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, false)
 
     val recipient = Recipient.resolved(recipientId)
-    assertEquals(ACI_A, recipient.requireAci())
+    assertEquals(ACI_A, recipient.requireServiceId())
     assertFalse(recipient.hasE164())
   }
 
@@ -113,26 +112,26 @@ class RecipientDatabaseTest {
   /** With high trust, you can associate an e164 with an existing ACI. */
   @Test
   fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_aciAndE164_highTrust() {
-    val existingId: RecipientId = recipientDatabase.getOrInsertFromAci(ACI_A)
+    val existingId: RecipientId = recipientDatabase.getOrInsertFromServiceId(ACI_A)
 
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, true)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
   }
 
   /** With low trust, you cannot associate an ACI-e164 pair, and therefore cannot store the e164. */
   @Test
   fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_aciAndE164_lowTrust() {
-    val existingId: RecipientId = recipientDatabase.getOrInsertFromAci(ACI_A)
+    val existingId: RecipientId = recipientDatabase.getOrInsertFromServiceId(ACI_A)
 
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, false)
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertFalse(retrievedRecipient.hasE164())
   }
 
@@ -145,7 +144,7 @@ class RecipientDatabaseTest {
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_B, retrievedRecipient.requireE164())
   }
 
@@ -158,7 +157,7 @@ class RecipientDatabaseTest {
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
   }
 
@@ -175,7 +174,7 @@ class RecipientDatabaseTest {
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
   }
 
@@ -188,12 +187,12 @@ class RecipientDatabaseTest {
     assertNotEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertFalse(retrievedRecipient.hasE164())
 
     val existingRecipient = Recipient.resolved(existingId)
     assertEquals(E164_A, existingRecipient.requireE164())
-    assertFalse(existingRecipient.hasAci())
+    assertFalse(existingRecipient.hasServiceId())
   }
 
   /** We never change the ACI of an existing row. New ACI = new person, regardless of trust. But high trust lets us take the e164 from the current holder. */
@@ -207,14 +206,12 @@ class RecipientDatabaseTest {
     assertNotEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_B, retrievedRecipient.requireAci())
+    assertEquals(ACI_B, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
-    assertEquals(PNI_A, retrievedRecipient.pni.get())
 
     val existingRecipient = Recipient.resolved(existingId)
-    assertEquals(ACI_A, existingRecipient.requireAci())
+    assertEquals(ACI_A, existingRecipient.requireServiceId())
     assertFalse(existingRecipient.hasE164())
-    assertNull(existingRecipient.pni.orNull())
   }
 
   /** We never change the ACI of an existing row. New ACI = new person, regardless of trust. And low trust means we can’t take the e164. */
@@ -226,11 +223,11 @@ class RecipientDatabaseTest {
     assertNotEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_B, retrievedRecipient.requireAci())
+    assertEquals(ACI_B, retrievedRecipient.requireServiceId())
     assertFalse(retrievedRecipient.hasE164())
 
     val existingRecipient = Recipient.resolved(existingId)
-    assertEquals(ACI_A, existingRecipient.requireAci())
+    assertEquals(ACI_A, existingRecipient.requireServiceId())
     assertEquals(E164_A, existingRecipient.requireE164())
   }
 
@@ -249,11 +246,11 @@ class RecipientDatabaseTest {
     assertNotEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_B, retrievedRecipient.requireAci())
+    assertEquals(ACI_B, retrievedRecipient.requireServiceId())
     assertFalse(retrievedRecipient.hasE164())
 
     val existingRecipient = Recipient.resolved(existingId)
-    assertEquals(ACI_A, existingRecipient.requireAci())
+    assertEquals(ACI_A, existingRecipient.requireServiceId())
     assertEquals(E164_A, existingRecipient.requireE164())
   }
 
@@ -270,7 +267,7 @@ class RecipientDatabaseTest {
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
   }
 
@@ -287,7 +284,7 @@ class RecipientDatabaseTest {
     assertEquals(existingAciId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
 
     val existingE164Recipient = Recipient.resolved(existingE164Id)
@@ -310,7 +307,7 @@ class RecipientDatabaseTest {
     assertEquals(existingAciId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
 
     val existingE164Recipient = Recipient.resolved(existingE164Id)
@@ -323,19 +320,19 @@ class RecipientDatabaseTest {
   /** Low trust means you can’t merge. If you’re retrieving a user from the table with this data, prefer the ACI one. */
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_lowTrust() {
-    val existingAciId: RecipientId = recipientDatabase.getOrInsertFromAci(ACI_A)
+    val existingAciId: RecipientId = recipientDatabase.getOrInsertFromServiceId(ACI_A)
     val existingE164Id: RecipientId = recipientDatabase.getOrInsertFromE164(E164_A)
 
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A, false)
     assertEquals(existingAciId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertFalse(retrievedRecipient.hasE164())
 
     val existingE164Recipient = Recipient.resolved(existingE164Id)
     assertEquals(E164_A, existingE164Recipient.requireE164())
-    assertFalse(existingE164Recipient.hasAci())
+    assertFalse(existingE164Recipient.hasServiceId())
   }
 
   /** Another high trust case. No new rules here, just a more complex scenario to show how different rules interact. */
@@ -351,11 +348,11 @@ class RecipientDatabaseTest {
     assertEquals(existingId1, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
 
     val existingRecipient2 = Recipient.resolved(existingId2)
-    assertEquals(ACI_B, existingRecipient2.requireAci())
+    assertEquals(ACI_B, existingRecipient2.requireServiceId())
     assertFalse(existingRecipient2.hasE164())
 
     assert(changeNumberListener.numberChangeWasEnqueued)
@@ -371,11 +368,11 @@ class RecipientDatabaseTest {
     assertEquals(existingId1, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_B, retrievedRecipient.requireE164())
 
     val existingRecipient2 = Recipient.resolved(existingId2)
-    assertEquals(ACI_B, existingRecipient2.requireAci())
+    assertEquals(ACI_B, existingRecipient2.requireServiceId())
     assertEquals(E164_A, existingRecipient2.requireE164())
   }
 
@@ -392,7 +389,7 @@ class RecipientDatabaseTest {
     assertEquals(existingId1, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
 
     assertFalse(recipientDatabase.getByE164(E164_B).isPresent)
@@ -417,11 +414,11 @@ class RecipientDatabaseTest {
     assertEquals(existingId2, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertFalse(retrievedRecipient.hasE164())
 
     val recipientWithId1 = Recipient.resolved(existingId1)
-    assertEquals(ACI_B, recipientWithId1.requireAci())
+    assertEquals(ACI_B, recipientWithId1.requireServiceId())
     assertEquals(E164_A, recipientWithId1.requireE164())
   }
 
@@ -440,7 +437,7 @@ class RecipientDatabaseTest {
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
   }
 
@@ -459,7 +456,7 @@ class RecipientDatabaseTest {
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_B, retrievedRecipient.requireE164())
   }
 
@@ -475,7 +472,7 @@ class RecipientDatabaseTest {
     assertEquals(existingId, retrievedId)
 
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_B, retrievedRecipient.requireE164())
 
     changeNumberListener.waitForJobManager()
@@ -506,18 +503,18 @@ class RecipientDatabaseTest {
   @Test
   fun createByUuidSanityCheck() {
     // GIVEN one recipient
-    val recipientId: RecipientId = recipientDatabase.getOrInsertFromAci(ACI_A)
+    val recipientId: RecipientId = recipientDatabase.getOrInsertFromServiceId(ACI_A)
 
     // WHEN I retrieve one by UUID
-    val possible: Optional<RecipientId> = recipientDatabase.getByAci(ACI_A)
+    val possible: Optional<RecipientId> = recipientDatabase.getByServiceId(ACI_A)
 
     // THEN I get it back, and it has the properties I expect
     assertTrue(possible.isPresent)
     assertEquals(recipientId, possible.get())
 
     val recipient = Recipient.resolved(recipientId)
-    assertTrue(recipient.aci.isPresent)
-    assertEquals(ACI_A, recipient.aci.get())
+    assertTrue(recipient.serviceId.isPresent)
+    assertEquals(ACI_A, recipient.serviceId.get())
   }
 
   @Test(expected = IllegalArgumentException::class)

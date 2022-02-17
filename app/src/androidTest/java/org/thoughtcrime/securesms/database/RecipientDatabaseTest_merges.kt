@@ -53,8 +53,8 @@ class RecipientDatabaseTest_merges {
   private lateinit var reactionDatabase: ReactionDatabase
   private lateinit var notificationProfileDatabase: NotificationProfileDatabase
 
-  private val localAci = ACI.from(UUID.randomUUID());
-  private val localPni = PNI.from(UUID.randomUUID());
+  private val localAci = ACI.from(UUID.randomUUID())
+  private val localPni = PNI.from(UUID.randomUUID())
 
   @Before
   fun setup() {
@@ -80,9 +80,9 @@ class RecipientDatabaseTest_merges {
   @Test
   fun getAndPossiblyMerge_general() {
     // Setup
-    val recipientIdAci: RecipientId = recipientDatabase.getOrInsertFromAci(ACI_A)
+    val recipientIdAci: RecipientId = recipientDatabase.getOrInsertFromServiceId(ACI_A)
     val recipientIdE164: RecipientId = recipientDatabase.getOrInsertFromE164(E164_A)
-    val recipientIdAciB: RecipientId = recipientDatabase.getOrInsertFromAci(ACI_B)
+    val recipientIdAciB: RecipientId = recipientDatabase.getOrInsertFromServiceId(ACI_B)
 
     val smsId1: Long = smsDatabase.insertMessageInbox(smsMessage(sender = recipientIdAci, time = 0, body = "0")).get().messageId
     val smsId2: Long = smsDatabase.insertMessageInbox(smsMessage(sender = recipientIdE164, time = 1, body = "1")).get().messageId
@@ -127,7 +127,7 @@ class RecipientDatabaseTest_merges {
 
     // Recipient validation
     val retrievedRecipient = Recipient.resolved(retrievedId)
-    assertEquals(ACI_A, retrievedRecipient.requireAci())
+    assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
 
     val existingE164Recipient = Recipient.resolved(recipientIdE164)

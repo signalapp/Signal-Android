@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
@@ -78,7 +77,7 @@ public final class MessageDecryptionUtil {
    */
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
     SignalServiceAccountDataStore protocolStore = ApplicationDependencies.getProtocolStore().aci();
-    SignalServiceAddress          localAddress  = new SignalServiceAddress(Recipient.self().requireAci(), Recipient.self().requireE164());
+    SignalServiceAddress          localAddress  = new SignalServiceAddress(Recipient.self().requireServiceId(), Recipient.self().requireE164());
     SignalServiceCipher           cipher        = new SignalServiceCipher(localAddress, SignalStore.account().getDeviceId(), protocolStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
     List<Job>                     jobs          = new LinkedList<>();
 

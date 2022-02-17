@@ -18,6 +18,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.groupsv2.GroupCandidate;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -47,13 +48,13 @@ public final class GroupCandidateHelper {
   {
     final Recipient recipient = Recipient.resolved(recipientId);
 
-    ACI aci = recipient.getAci().orNull();
-    if (aci == null) {
+    ServiceId serviceId = recipient.getServiceId().orNull();
+    if (serviceId == null) {
       throw new AssertionError("Non UUID members should have need detected by now");
     }
 
     Optional<ProfileKeyCredential> profileKeyCredential = Optional.fromNullable(recipient.getProfileKeyCredential());
-    GroupCandidate                 candidate            = new GroupCandidate(aci.uuid(), profileKeyCredential);
+    GroupCandidate                 candidate            = new GroupCandidate(serviceId.uuid(), profileKeyCredential);
 
     if (!candidate.hasProfileKeyCredential()) {
       ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
@@ -61,7 +62,7 @@ public final class GroupCandidateHelper {
       if (profileKey != null) {
         Log.i(TAG, String.format("No profile key credential on recipient %s, fetching", recipient.getId()));
 
-        Optional<ProfileKeyCredential> profileKeyCredentialOptional = signalServiceAccountManager.resolveProfileKeyCredential(aci, profileKey, Locale.getDefault());
+        Optional<ProfileKeyCredential> profileKeyCredentialOptional = signalServiceAccountManager.resolveProfileKeyCredential(serviceId, profileKey, Locale.getDefault());
 
         if (profileKeyCredentialOptional.isPresent()) {
           boolean updatedProfileKey = recipientDatabase.setProfileKeyCredential(recipient.getId(), profileKey, profileKeyCredentialOptional.get());

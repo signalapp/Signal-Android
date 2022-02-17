@@ -37,8 +37,9 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
@@ -142,15 +143,15 @@ public final class RegistrationRepository {
     SignalServiceAccountDataStoreImpl aciProtocolStore = ApplicationDependencies.getProtocolStore().aci();
     SignalServiceAccountDataStoreImpl pniProtocolStore = ApplicationDependencies.getProtocolStore().pni();
 
-    generateAndRegisterPreKeys(aci, accountManager, aciProtocolStore, SignalStore.account().aciPreKeys());
-    generateAndRegisterPreKeys(pni, accountManager, pniProtocolStore, SignalStore.account().pniPreKeys());
+    generateAndRegisterPreKeys(ServiceIdType.ACI, accountManager, aciProtocolStore, SignalStore.account().aciPreKeys());
+    generateAndRegisterPreKeys(ServiceIdType.PNI, accountManager, pniProtocolStore, SignalStore.account().pniPreKeys());
 
     if (registrationData.isFcm()) {
       accountManager.setGcmId(Optional.fromNullable(registrationData.getFcmToken()));
     }
 
     RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-    RecipientId       selfId            = Recipient.externalPush(context, aci, registrationData.getE164(), true).getId();
+    RecipientId       selfId            = Recipient.externalPush(aci, registrationData.getE164(), true).getId();
 
     recipientDatabase.setProfileSharing(selfId, true);
     recipientDatabase.markRegisteredOrThrow(selfId, aci);
@@ -175,7 +176,7 @@ public final class RegistrationRepository {
     PinState.onRegistration(context, kbsData, pin, hasPin);
   }
 
-  private void generateAndRegisterPreKeys(@NonNull AccountIdentifier accountId,
+  private void generateAndRegisterPreKeys(@NonNull ServiceIdType serviceIdType,
                                           @NonNull SignalServiceAccountManager accountManager,
                                           @NonNull SignalProtocolStore protocolStore,
                                           @NonNull PreKeyMetadataStore metadataStore)
@@ -184,7 +185,7 @@ public final class RegistrationRepository {
     SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
     List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore);
 
-    accountManager.setPreKeys(accountId, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
+    accountManager.setPreKeys(serviceIdType, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
     metadataStore.setSignedPreKeyRegistered(true);
   }
 

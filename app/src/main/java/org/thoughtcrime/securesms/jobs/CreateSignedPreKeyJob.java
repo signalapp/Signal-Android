@@ -14,7 +14,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -70,27 +71,27 @@ public class CreateSignedPreKeyJob extends BaseJob {
       return;
     }
 
-    createPreKeys(SignalStore.account().getAci(), ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys());
-    createPreKeys(SignalStore.account().getPni(), ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys());
+    createPreKeys(ServiceIdType.ACI, SignalStore.account().getAci(), ApplicationDependencies.getProtocolStore().aci(), SignalStore.account().aciPreKeys());
+    createPreKeys(ServiceIdType.PNI, SignalStore.account().getPni(), ApplicationDependencies.getProtocolStore().pni(), SignalStore.account().pniPreKeys());
   }
 
-  private void createPreKeys(@Nullable AccountIdentifier accountId, @NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore)
+  private void createPreKeys(@NonNull ServiceIdType serviceIdType, @Nullable ServiceId serviceId, @NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore)
       throws IOException
   {
-    if (accountId == null) {
+    if (serviceId == null) {
       warn(TAG, "AccountId not set!");
       return;
     }
 
     if (metadataStore.isSignedPreKeyRegistered()) {
-      warn(TAG, "Signed prekey for " + (accountId.isAci() ? "ACI" : "PNI") + " already registered...");
+      warn(TAG, "Signed prekey for " + serviceIdType + " already registered...");
       return;
     }
 
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     SignedPreKeyRecord          signedPreKeyRecord = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
 
-    accountManager.setSignedPreKey(accountId, signedPreKeyRecord);
+    accountManager.setSignedPreKey(serviceIdType, signedPreKeyRecord);
     metadataStore.setSignedPreKeyRegistered(true);
   }
 

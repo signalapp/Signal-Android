@@ -1208,7 +1208,7 @@ public class ThreadDatabase extends Database {
         Recipient pinnedRecipient;
 
         if (pinned.getContact().isPresent()) {
-          pinnedRecipient = Recipient.externalPush(context, pinned.getContact().get());
+          pinnedRecipient = Recipient.externalPush(pinned.getContact().get());
         } else if (pinned.getGroupV1Id().isPresent()) {
           try {
             pinnedRecipient = Recipient.externalGroupExact(context, GroupId.v1(pinned.getGroupV1Id().get()));

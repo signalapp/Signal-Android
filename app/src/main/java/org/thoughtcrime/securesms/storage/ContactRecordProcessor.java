@@ -13,9 +13,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
 import java.util.Arrays;
@@ -51,10 +51,10 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     if (address == null) {
       Log.w(TAG, "No address on the ContentRecord -- marking as invalid.");
       return true;
-    } else if (!address.hasValidAci()) {
+    } else if (!address.hasValidServiceId()) {
       Log.w(TAG, "Found a ContactRecord without a UUID -- marking as invalid.");
       return true;
-    } else if ((self.getAci().isPresent() && address.getAci().equals(self.requireAci())) ||
+    } else if ((self.getServiceId().isPresent() && address.getServiceId().equals(self.requireServiceId())) ||
                (self.getE164().isPresent() && address.getNumber().equals(self.getE164())))
     {
       Log.w(TAG, "Found a ContactRecord for ourselves -- marking as invalid.");
@@ -67,7 +67,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   @Override
   @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
     SignalServiceAddress  address = remote.getAddress();
-    Optional<RecipientId> byUuid  = recipientDatabase.getByAci(address.getAci());
+    Optional<RecipientId> byUuid  = recipientDatabase.getByServiceId(address.getServiceId());
     Optional<RecipientId> byE164  = address.getNumber().isPresent() ? recipientDatabase.getByE164(address.getNumber().get()) : Optional.absent();
 
     return byUuid.or(byE164).transform(recipientDatabase::getRecordForSync)
@@ -98,9 +98,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     }
 
     byte[]               unknownFields  = remote.serializeUnknownFields();
-    ACI                  aci            = local.getAddress().getAci() == ACI.UNKNOWN ? remote.getAddress().getAci() : local.getAddress().getAci();
+    ServiceId            serviceId      = local.getAddress().getServiceId() == ServiceId.UNKNOWN ? remote.getAddress().getServiceId() : local.getAddress().getServiceId();
     String               e164           = remote.getAddress().getNumber().or(local.getAddress().getNumber()).orNull();
-    SignalServiceAddress address        = new SignalServiceAddress(aci, e164);
+    SignalServiceAddress address        = new SignalServiceAddress(serviceId, e164);
     byte[]               profileKey     = remote.getProfileKey().or(local.getProfileKey()).orNull();
     String               username       = remote.getUsername().or(local.getUsername()).or("");
     IdentityState        identityState  = remote.getIdentityState();
@@ -146,7 +146,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   @Override
   public int compare(@NonNull SignalContactRecord lhs, @NonNull SignalContactRecord rhs) {
-    if (Objects.equals(lhs.getAddress().getAci(), rhs.getAddress().getAci()) ||
+    if (Objects.equals(lhs.getAddress().getServiceId(), rhs.getAddress().getServiceId()) ||
         Objects.equals(lhs.getAddress().getNumber(), rhs.getAddress().getNumber()))
     {
       return 0;

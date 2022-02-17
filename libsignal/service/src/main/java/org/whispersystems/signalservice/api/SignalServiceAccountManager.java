@@ -35,8 +35,9 @@ import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -420,18 +421,18 @@ public class SignalServiceAccountManager {
    *
    * @throws IOException
    */
-  public void setPreKeys(AccountIdentifier accountId, IdentityKey identityKey, SignedPreKeyRecord signedPreKey, List<PreKeyRecord> oneTimePreKeys)
+  public void setPreKeys(ServiceIdType serviceIdType, IdentityKey identityKey, SignedPreKeyRecord signedPreKey, List<PreKeyRecord> oneTimePreKeys)
       throws IOException
   {
-    this.pushServiceSocket.registerPreKeys(accountId, identityKey, signedPreKey, oneTimePreKeys);
+    this.pushServiceSocket.registerPreKeys(serviceIdType, identityKey, signedPreKey, oneTimePreKeys);
   }
 
   /**
    * @return The server's count of currently available (eg. unused) prekeys for this user.
    * @throws IOException
    */
-  public int getPreKeysCount(AccountIdentifier accountId) throws IOException {
-    return this.pushServiceSocket.getAvailablePreKeys(accountId);
+  public int getPreKeysCount(ServiceIdType serviceIdType) throws IOException {
+    return this.pushServiceSocket.getAvailablePreKeys(serviceIdType);
   }
 
   /**
@@ -440,22 +441,22 @@ public class SignalServiceAccountManager {
    * @param signedPreKey The client's new signed prekey.
    * @throws IOException
    */
-  public void setSignedPreKey(AccountIdentifier accountId, SignedPreKeyRecord signedPreKey) throws IOException {
-    this.pushServiceSocket.setCurrentSignedPreKey(accountId, signedPreKey);
+  public void setSignedPreKey(ServiceIdType serviceIdType, SignedPreKeyRecord signedPreKey) throws IOException {
+    this.pushServiceSocket.setCurrentSignedPreKey(serviceIdType, signedPreKey);
   }
 
   /**
    * @return The server's view of the client's current signed prekey.
    * @throws IOException
    */
-  public SignedPreKeyEntity getSignedPreKey(AccountIdentifier accountId) throws IOException {
-    return this.pushServiceSocket.getCurrentSignedPreKey(accountId);
+  public SignedPreKeyEntity getSignedPreKey(ServiceIdType serviceIdType) throws IOException {
+    return this.pushServiceSocket.getCurrentSignedPreKey(serviceIdType);
   }
 
   /**
    * @return True if the identifier corresponds to a registered user, otherwise false.
    */
-  public boolean isIdentifierRegistered(AccountIdentifier identifier) throws IOException {
+  public boolean isIdentifierRegistered(ServiceId identifier) throws IOException {
     return pushServiceSocket.isIdentifierRegistered(identifier);
   }
 
@@ -815,11 +816,11 @@ public class SignalServiceAccountManager {
                                                                              profileAvatarData);
   }
 
-  public Optional<ProfileKeyCredential> resolveProfileKeyCredential(ACI aci, ProfileKey profileKey, Locale locale)
+  public Optional<ProfileKeyCredential> resolveProfileKeyCredential(ServiceId serviceId, ProfileKey profileKey, Locale locale)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     try {
-      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(aci.uuid(), profileKey, Optional.absent(), locale).get(10, TimeUnit.SECONDS);
+      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(serviceId.uuid(), profileKey, Optional.absent(), locale).get(10, TimeUnit.SECONDS);
       return credential.getProfileKeyCredential();
     } catch (InterruptedException | TimeoutException e) {
       throw new PushNetworkException(e);

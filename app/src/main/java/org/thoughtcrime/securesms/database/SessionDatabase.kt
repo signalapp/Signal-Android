@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.util.CursorUtil
 import org.thoughtcrime.securesms.util.SqlUtil
 import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.libsignal.state.SessionRecord
-import org.whispersystems.signalservice.api.push.AccountIdentifier
+import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import java.util.ArrayList
@@ -36,12 +36,12 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     """
   }
 
-  fun store(accountId: AccountIdentifier, address: SignalProtocolAddress, record: SessionRecord) {
+  fun store(serviceId: ServiceId, address: SignalProtocolAddress, record: SessionRecord) {
     require(address.name[0] != '+') { "Cannot insert an e164 into this table!" }
 
     writableDatabase.compileStatement("INSERT INTO $TABLE_NAME ($ACCOUNT_ID, $ADDRESS, $DEVICE, $RECORD) VALUES (?, ?, ?, ?) ON CONFLICT ($ACCOUNT_ID, $ADDRESS, $DEVICE) DO UPDATE SET $RECORD = excluded.$RECORD").use { statement ->
       statement.apply {
-        bindString(1, accountId.toString())
+        bindString(1, serviceId.toString())
         bindString(2, address.name)
         bindLong(3, address.deviceId.toLong())
         bindBlob(4, record.serialize())
@@ -50,10 +50,10 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     }
   }
 
-  fun load(accountId: AccountIdentifier, address: SignalProtocolAddress): SessionRecord? {
+  fun load(serviceId: ServiceId, address: SignalProtocolAddress): SessionRecord? {
     val projection = arrayOf(RECORD)
     val selection = "$ACCOUNT_ID = ? AND $ADDRESS = ? AND $DEVICE = ?"
-    val args = SqlUtil.buildArgs(accountId, address.name, address.deviceId)
+    val args = SqlUtil.buildArgs(serviceId, address.name, address.deviceId)
 
     readableDatabase.query(TABLE_NAME, projection, selection, args, null, null, null).use { cursor ->
       if (cursor.moveToFirst()) {
@@ -68,14 +68,14 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     return null
   }
 
-  fun load(accountId: AccountIdentifier, addresses: List<SignalProtocolAddress>): List<SessionRecord?> {
+  fun load(serviceId: ServiceId, addresses: List<SignalProtocolAddress>): List<SessionRecord?> {
     val projection = arrayOf(ADDRESS, DEVICE, RECORD)
     val query = "$ACCOUNT_ID = ? AND $ADDRESS = ? AND $DEVICE = ?"
     val args: MutableList<Array<String>> = ArrayList(addresses.size)
     val sessions: HashMap<SignalProtocolAddress, SessionRecord?> = LinkedHashMap(addresses.size)
 
     for (address in addresses) {
-      args.add(SqlUtil.buildArgs(accountId, address.name, address.deviceId))
+      args.add(SqlUtil.buildArgs(serviceId, address.name, address.deviceId))
       sessions[address] = null
     }
 
@@ -97,10 +97,10 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     return sessions.values.toList()
   }
 
-  fun getAllFor(accountId: AccountIdentifier, addressName: String): List<SessionRow> {
+  fun getAllFor(serviceId: ServiceId, addressName: String): List<SessionRow> {
     val results: MutableList<SessionRow> = mutableListOf()
 
-    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $ADDRESS = ?", SqlUtil.buildArgs(accountId, addressName), null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $ADDRESS = ?", SqlUtil.buildArgs(serviceId, addressName), null, null, null).use { cursor ->
       while (cursor.moveToNext()) {
         try {
           results.add(
@@ -118,12 +118,12 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     return results
   }
 
-  fun getAllFor(accountId: AccountIdentifier, addressNames: List<String?>): List<SessionRow> {
+  fun getAllFor(serviceId: ServiceId, addressNames: List<String?>): List<SessionRow> {
     val query: SqlUtil.Query = SqlUtil.buildCollectionQuery(ADDRESS, addressNames)
     val results: MutableList<SessionRow> = LinkedList()
 
     val queryString = "$ACCOUNT_ID = ? AND (${query.where})"
-    val queryArgs: Array<String> = arrayOf(accountId.toString()) + query.whereArgs
+    val queryArgs: Array<String> = arrayOf(serviceId.toString()) + query.whereArgs
 
     readableDatabase.query(TABLE_NAME, null, queryString, queryArgs, null, null, null).use { cursor ->
       while (cursor.moveToNext()) {
@@ -143,10 +143,10 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     return results
   }
 
-  fun getAll(accountId: AccountIdentifier): List<SessionRow> {
+  fun getAll(serviceId: ServiceId): List<SessionRow> {
     val results: MutableList<SessionRow> = mutableListOf()
 
-    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ?", SqlUtil.buildArgs(accountId), null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ?", SqlUtil.buildArgs(serviceId), null, null, null).use { cursor ->
       while (cursor.moveToNext()) {
         try {
           results.add(
@@ -164,10 +164,10 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     return results
   }
 
-  fun getSubDevices(accountId: AccountIdentifier, addressName: String): List<Int> {
+  fun getSubDevices(serviceId: ServiceId, addressName: String): List<Int> {
     val projection = arrayOf(DEVICE)
     val selection = "$ACCOUNT_ID = ? AND $ADDRESS = ? AND $DEVICE != ?"
-    val args = SqlUtil.buildArgs(accountId, addressName, SignalServiceAddress.DEFAULT_DEVICE_ID)
+    val args = SqlUtil.buildArgs(serviceId, addressName, SignalServiceAddress.DEFAULT_DEVICE_ID)
 
     val results: MutableList<Int> = mutableListOf()
 
@@ -179,17 +179,17 @@ class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Databa
     return results
   }
 
-  fun delete(accountId: AccountIdentifier, address: SignalProtocolAddress) {
-    writableDatabase.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $ADDRESS = ? AND $DEVICE = ?", SqlUtil.buildArgs(accountId, address.name, address.deviceId))
+  fun delete(serviceId: ServiceId, address: SignalProtocolAddress) {
+    writableDatabase.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $ADDRESS = ? AND $DEVICE = ?", SqlUtil.buildArgs(serviceId, address.name, address.deviceId))
   }
 
-  fun deleteAllFor(accountId: AccountIdentifier, addressName: String) {
-    writableDatabase.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $ADDRESS = ?", SqlUtil.buildArgs(accountId, addressName))
+  fun deleteAllFor(serviceId: ServiceId, addressName: String) {
+    writableDatabase.delete(TABLE_NAME, "$ACCOUNT_ID = ? AND $ADDRESS = ?", SqlUtil.buildArgs(serviceId, addressName))
   }
 
-  fun hasSessionFor(accountId: AccountIdentifier, addressName: String): Boolean {
+  fun hasSessionFor(serviceId: ServiceId, addressName: String): Boolean {
     val query = "$ACCOUNT_ID = ? AND $ADDRESS = ?"
-    val args = SqlUtil.buildArgs(accountId, addressName)
+    val args = SqlUtil.buildArgs(serviceId, addressName)
     readableDatabase.query(TABLE_NAME, arrayOf("1"), query, args, null, null, null, "1").use { cursor ->
       return cursor.moveToFirst()
     }

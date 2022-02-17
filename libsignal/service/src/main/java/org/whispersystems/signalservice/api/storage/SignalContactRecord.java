@@ -9,10 +9,8 @@ import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
-import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -71,7 +69,7 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("E164");
       }
 
-      if (!Objects.equals(this.getAddress().getAci(), that.getAddress().getAci())) {
+      if (!Objects.equals(this.getAddress().getServiceId(), that.getAddress().getServiceId())) {
         diff.add("UUID");
       }
 
@@ -216,7 +214,7 @@ public final class SignalContactRecord implements SignalRecord {
         this.builder = ContactRecord.newBuilder();
       }
 
-      builder.setServiceUuid(address.getAci().toString());
+      builder.setServiceUuid(address.getServiceId().toString());
       builder.setServiceE164(address.getNumber().or(""));
     }
 

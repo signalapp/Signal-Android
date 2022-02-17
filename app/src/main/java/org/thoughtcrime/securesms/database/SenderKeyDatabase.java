@@ -133,7 +133,7 @@ public class SenderKeyDatabase extends Database {
   public Cursor getAllCreatedBySelf() {
     SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
     String         query = ADDRESS + " = ?";
-    String[]       args  = SqlUtil.buildArgs(Recipient.self().requireAci());
+    String[]       args  = SqlUtil.buildArgs(Recipient.self().requireServiceId());
 
     return db.query(TABLE_NAME, new String[]{ ID, DISTRIBUTION_ID, CREATED_AT }, query, args, null, null, CREATED_AT + " DESC");
   }

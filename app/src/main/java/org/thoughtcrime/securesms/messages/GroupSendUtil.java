@@ -42,7 +42,6 @@ import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMess
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
-import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
@@ -176,7 +175,7 @@ public final class GroupSendUtil {
       boolean                          validMembership = groupRecord.isPresent() && groupRecord.get().getMembers().contains(recipient.getId());
 
       if (recipient.getSenderKeyCapability() == Recipient.Capability.SUPPORTED &&
-          recipient.hasAci() &&
+          recipient.hasServiceId() &&
           access.isPresent() &&
           access.get().getTargetUnidentifiedAccess().isPresent() &&
           validMembership)
@@ -311,8 +310,8 @@ public final class GroupSendUtil {
       Log.w(TAG, "There are " + unregisteredTargets.size() + " unregistered targets. Including failure results.");
 
       List<SendMessageResult> unregisteredResults = unregisteredTargets.stream()
-                                                                       .filter(Recipient::hasAci)
-                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireAci(), t.getE164().orNull())))
+                                                                       .filter(Recipient::hasServiceId)
+                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireServiceId(), t.getE164().orNull())))
                                                                        .collect(Collectors.toList());
 
       if (unregisteredResults.size() < unregisteredTargets.size()) {

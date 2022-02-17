@@ -107,7 +107,7 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
       List<SignalProtocolAddress> addresses = result.getSuccess()
                                                     .getDevices()
                                                     .stream()
-                                                    .map(device -> new SignalProtocolAddress(recipient.requireServiceId(), device))
+                                                    .map(device -> recipient.requireServiceId().toProtocolAddress(device))
                                                     .collect(Collectors.toList());
 
       ApplicationDependencies.getProtocolStore().aci().markSenderKeySharedWith(distributionId, addresses);

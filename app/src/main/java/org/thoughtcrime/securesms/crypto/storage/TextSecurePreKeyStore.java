@@ -9,7 +9,7 @@ import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.PreKeyStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
-import org.whispersystems.signalservice.api.push.AccountIdentifier;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class TextSecurePreKeyStore implements PreKeyStore, SignedPreKeyStore {
   private static final Object LOCK = new Object();
 
   @NonNull
-  private final AccountIdentifier accountId;
+  private final ServiceId accountId;
 
-  public TextSecurePreKeyStore(@NonNull AccountIdentifier accountId) {
+  public TextSecurePreKeyStore(@NonNull ServiceId accountId) {
     this.accountId = accountId;
   }
 

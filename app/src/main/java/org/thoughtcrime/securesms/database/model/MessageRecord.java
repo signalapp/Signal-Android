@@ -60,7 +60,7 @@ import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
@@ -253,7 +253,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   private static boolean selfCreatedGroup(@NonNull DecryptedGroupChange change) {
     return change.getRevision() == 0 &&
-           change.getEditor().equals(UuidUtil.toByteString(Recipient.self().requireAci().uuid()));
+           change.getEditor().equals(UuidUtil.toByteString(Recipient.self().requireServiceId().uuid()));
   }
 
   public static @NonNull UpdateDescription getGv2ChangeDescription(@NonNull Context context, @NonNull String body) {
@@ -261,7 +261,7 @@ public abstract class MessageRecord extends DisplayRecord {
       ShortStringDescriptionStrategy descriptionStrategy     = new ShortStringDescriptionStrategy(context);
       byte[]                         decoded                 = Base64.decode(body);
       DecryptedGroupV2Context        decryptedGroupV2Context = DecryptedGroupV2Context.parseFrom(decoded);
-      GroupsV2UpdateMessageProducer  updateMessageProducer   = new GroupsV2UpdateMessageProducer(context, descriptionStrategy, Recipient.self().requireAci().uuid());
+      GroupsV2UpdateMessageProducer  updateMessageProducer   = new GroupsV2UpdateMessageProducer(context, descriptionStrategy, Recipient.self().requireServiceId().uuid());
 
       if (decryptedGroupV2Context.hasChange() && (decryptedGroupV2Context.getGroupState().getRevision() != 0 || decryptedGroupV2Context.hasPreviousGroupState())) {
         return UpdateDescription.concatWithNewLines(updateMessageProducer.describeChanges(decryptedGroupV2Context.getPreviousGroupState(), decryptedGroupV2Context.getChange()));
@@ -292,7 +292,7 @@ public abstract class MessageRecord extends DisplayRecord {
     }
 
     DecryptedGroup groupState = decryptedGroupV2Context.getGroupState();
-    boolean        invited    = DecryptedGroupUtil.findPendingByUuid(groupState.getPendingMembersList(), Recipient.self().requireAci().uuid()).isPresent();
+    boolean        invited    = DecryptedGroupUtil.findPendingByUuid(groupState.getPendingMembersList(), Recipient.self().requireServiceId().uuid()).isPresent();
 
     if (decryptedGroupV2Context.hasChange()) {
       UUID changeEditor = UuidUtil.fromByteStringOrNull(decryptedGroupV2Context.getChange().getEditor());
@@ -314,7 +314,7 @@ public abstract class MessageRecord extends DisplayRecord {
                                                           @NonNull Function<Recipient, String> stringGenerator,
                                                           @DrawableRes int iconResource)
   {
-    return UpdateDescription.mentioning(Collections.singletonList(recipient.getAci().or(ACI.UNKNOWN)),
+    return UpdateDescription.mentioning(Collections.singletonList(recipient.getServiceId().or(ServiceId.UNKNOWN)),
                                         () -> stringGenerator.apply(recipient.resolve()),
                                         iconResource);
   }
@@ -382,11 +382,11 @@ public abstract class MessageRecord extends DisplayRecord {
   public static @NonNull UpdateDescription getGroupCallUpdateDescription(@NonNull Context context, @NonNull String body, boolean withTime) {
     GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(body);
 
-    List<ACI> joinedMembers = Stream.of(groupCallUpdateDetails.getInCallUuidsList())
-                                    .map(UuidUtil::parseOrNull)
-                                    .withoutNulls()
-                                    .map(ACI::from)
-                                    .toList();
+    List<ServiceId> joinedMembers = Stream.of(groupCallUpdateDetails.getInCallUuidsList())
+                                          .map(UuidUtil::parseOrNull)
+                                          .withoutNulls()
+                                          .map(ServiceId::from)
+                                          .toList();
 
     UpdateDescription.StringFactory stringFactory = new GroupCallUpdateMessageFactory(context, joinedMembers, withTime, groupCallUpdateDetails);
 
@@ -421,11 +421,11 @@ public abstract class MessageRecord extends DisplayRecord {
    }
 
    @Override
-   public @NonNull String describe(@NonNull ACI aci) {
-     if (aci.isUnknown()) {
+   public @NonNull String describe(@NonNull ServiceId serviceId) {
+     if (serviceId.isUnknown()) {
        return context.getString(R.string.MessageRecord_unknown);
      }
-     return Recipient.resolved(RecipientId.from(aci, null)).getDisplayName(context);
+     return Recipient.resolved(RecipientId.from(serviceId, null)).getDisplayName(context);
    }
  }
 

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
@@ -85,24 +86,24 @@ public final class GroupProtoUtil {
 
   @WorkerThread
   public static Recipient uuidByteStringToRecipient(@NonNull Context context, @NonNull ByteString uuidByteString) {
-    ACI aci = ACI.fromByteString(uuidByteString);
+    ServiceId serviceId = ACI.fromByteString(uuidByteString);
 
-    if (aci.isUnknown()) {
+    if (serviceId.isUnknown()) {
       return Recipient.UNKNOWN;
     }
 
-    return Recipient.externalPush(context, aci, null, false);
+    return Recipient.externalPush(serviceId, null, false);
   }
 
   @WorkerThread
   public static @NonNull RecipientId uuidByteStringToRecipientId(@NonNull ByteString uuidByteString) {
-    ACI aci = ACI.fromByteString(uuidByteString);
+    ServiceId serviceId = ACI.fromByteString(uuidByteString);
 
-    if (aci.isUnknown()) {
+    if (serviceId.isUnknown()) {
       return RecipientId.UNKNOWN;
     }
 
-    return RecipientId.from(aci, null);
+    return RecipientId.from(serviceId, null);
   }
 
   public static boolean isMember(@NonNull UUID uuid, @NonNull List<DecryptedMember> membersList) {

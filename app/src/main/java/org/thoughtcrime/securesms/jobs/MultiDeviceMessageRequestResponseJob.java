@@ -101,8 +101,8 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                  recipient     = Recipient.resolved(threadRecipient);
 
-    if (!recipient.hasServiceIdentifier()) {
-      Log.i(TAG, "Queued for recipient without service identifier");
+    if (!recipient.hasServiceId()) {
+      Log.i(TAG, "Queued for recipient without ServiceId");
       return;
     }
 

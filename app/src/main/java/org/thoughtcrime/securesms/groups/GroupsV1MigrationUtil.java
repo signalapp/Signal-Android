@@ -232,7 +232,7 @@ public final class GroupsV1MigrationUtil {
    * True if the user meets all the requirements to be auto-migrated, otherwise false.
    */
   public static boolean isAutoMigratable(@NonNull Recipient recipient) {
-    return recipient.hasAci() &&
+    return recipient.hasServiceId() &&
            recipient.getGroupsV2Capability() == Recipient.Capability.SUPPORTED &&
            recipient.getGroupsV1MigrationCapability() == Recipient.Capability.SUPPORTED &&
            recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED &&
