@@ -146,7 +146,6 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       }
     }
 
-    webRtcInteractor.initializeAudioForCall();
     if (shouldDisturbUserWithCall && SignalStore.settings().isCallNotificationsEnabled()) {
       Uri                            ringtone     = recipient.resolve().getCallRingtone();
       RecipientDatabase.VibrateState vibrateState = recipient.resolve().getCallVibrate();

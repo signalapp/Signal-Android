@@ -76,6 +76,7 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
 
     webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_CONNECTING, remotePeer);
     webRtcInteractor.retrieveTurnServers(remotePeer);
+    webRtcInteractor.initializeAudioForCall();
 
     return currentState.builder()
                        .actionProcessor(new IncomingCallActionProcessor(webRtcInteractor))

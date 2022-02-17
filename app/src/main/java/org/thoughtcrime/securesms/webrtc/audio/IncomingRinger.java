@@ -117,8 +117,8 @@ public class IncomingRinger {
       if (Build.VERSION.SDK_INT <= 21) {
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
       } else {
-        mediaPlayer.setAudioAttributes(new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                                                                    .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION_SIGNALLING)
+        mediaPlayer.setAudioAttributes(new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                                                                    .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
                                                                     .build());
       }
 

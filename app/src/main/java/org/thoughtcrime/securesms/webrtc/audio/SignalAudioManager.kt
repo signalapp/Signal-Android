@@ -87,7 +87,10 @@ class SignalAudioManager(private val context: Context, private val eventListener
       savedIsMicrophoneMute = androidAudioManager.isMicrophoneMute
       hasWiredHeadset = androidAudioManager.isWiredHeadsetOn
 
-      androidAudioManager.requestCallAudioFocus()
+      val focusedGained = androidAudioManager.requestCallAudioFocus()
+      if (!focusedGained) {
+        handler.postDelayed({ androidAudioManager.requestCallAudioFocus() }, 500)
+      }
 
       setMicrophoneMute(false)
 
@@ -115,6 +118,11 @@ class SignalAudioManager(private val context: Context, private val eventListener
 
     incomingRinger.stop()
     outgoingRinger.stop()
+
+    val focusedGained = androidAudioManager.requestCallAudioFocus()
+    if (!focusedGained) {
+      handler.postDelayed({ androidAudioManager.requestCallAudioFocus() }, 500)
+    }
 
     state = State.RUNNING
 
