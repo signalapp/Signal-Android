@@ -283,7 +283,8 @@ public class EmojiTextView extends AppCompatTextView {
       int lineCount = getLineCount();
       if (lineCount > maxLines) {
         int          overflowStart = getLayout().getLineStart(maxLines - 1);
-        CharSequence overflow      = getText().subSequence(overflowStart, getText().length());
+        int          overflowEnd   = getLayout().getLineEnd(maxLines - 1);
+        CharSequence overflow      = getText().subSequence(overflowStart, overflowEnd);
         float        adjust        = overflowText != null ? getPaint().measureText(overflowText, 0, overflowText.length()) : 0f;
         CharSequence ellipsized    = TextUtils.ellipsize(overflow, getPaint(), getWidth() - adjust, TextUtils.TruncateAt.END);
 
