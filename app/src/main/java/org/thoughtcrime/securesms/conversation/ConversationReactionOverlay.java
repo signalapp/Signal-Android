@@ -273,16 +273,16 @@ public final class ConversationReactionOverlay extends FrameLayout {
             endY = 0;
           }
           float contextMenuTop = endY + conversationItemSnapshot.getHeight();
-          reactionBarBackgroundY = getReactionBarOffsetForTouch(lastSeenDownPoint, contextMenuTop, reactionBarOffset, reactionBarHeight, reactionBarTopPadding);
+          reactionBarBackgroundY = getReactionBarOffsetForTouch(lastSeenDownPoint, contextMenuTop, menuPadding, reactionBarOffset, reactionBarHeight, reactionBarTopPadding, endY);
 
-          if (reactionBarBackgroundY < reactionBarTopPadding) {
+          if (reactionBarBackgroundY <= reactionBarTopPadding) {
             endY = backgroundView.getHeight() + menuPadding + reactionBarTopPadding;
           }
         } else {
           endY = overlayHeight - contextMenu.getMaxHeight() - menuPadding - conversationItemSnapshot.getHeight();
 
           float contextMenuTop = endY + conversationItemSnapshot.getHeight();
-          reactionBarBackgroundY = getReactionBarOffsetForTouch(lastSeenDownPoint, contextMenuTop, reactionBarOffset, reactionBarHeight, reactionBarTopPadding);
+          reactionBarBackgroundY = getReactionBarOffsetForTouch(lastSeenDownPoint, contextMenuTop, menuPadding, reactionBarOffset, reactionBarHeight, reactionBarTopPadding, endY);
         }
 
         endApparentTop = endY;
@@ -294,7 +294,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
         endY     = spaceForReactionBar - Util.halfOffsetFromScale(conversationItemSnapshot.getHeight(), endScale);
 
         float contextMenuTop = endY + (conversationItemSnapshot.getHeight() * endScale);
-        reactionBarBackgroundY = getReactionBarOffsetForTouch(lastSeenDownPoint, contextMenuTop, reactionBarOffset, reactionBarHeight, reactionBarTopPadding);
+        reactionBarBackgroundY = getReactionBarOffsetForTouch(lastSeenDownPoint, contextMenuTop, menuPadding, reactionBarOffset, reactionBarHeight, reactionBarTopPadding, endY);
         endApparentTop         = endY + Util.halfOffsetFromScale(conversationItemSnapshot.getHeight(), endScale);
       } else {
         contextMenu.setHeight(contextMenu.getMaxHeight() / 2);
@@ -377,8 +377,25 @@ public final class ConversationReactionOverlay extends FrameLayout {
                     .setDuration(revealDuration);
   }
 
-  private float getReactionBarOffsetForTouch(@NonNull PointF lastSeenDownPoint, float contextMenuTop, float reactionBarOffset, int reactionBarHeight, float reactionBarTopPadding) {
-    return Math.max(Math.min(lastSeenDownPoint.y - statusBarHeight, contextMenuTop) - reactionBarOffset - reactionBarHeight, reactionBarTopPadding);
+  private float getReactionBarOffsetForTouch(@NonNull PointF touchPoint,
+                                             float contextMenuTop,
+                                             float contextMenuPadding,
+                                             float reactionBarOffset,
+                                             int reactionBarHeight,
+                                             float spaceNeededBetweenTopOfScreenAndTopOfReactionBar,
+                                             float messageTop)
+  {
+    float adjustedTouchY        = touchPoint.y - statusBarHeight;
+    float reactionStartingPoint = Math.min(adjustedTouchY, contextMenuTop);
+
+    float spaceBetweenTopOfMessageAndTopOfContextMenu = Math.abs(messageTop - contextMenuTop);
+
+    if (spaceBetweenTopOfMessageAndTopOfContextMenu < DimensionUnit.DP.toPixels(150)) {
+      float offsetToMakeReactionBarOffsetMatchMenuPadding = reactionBarOffset - contextMenuPadding;
+      reactionStartingPoint = messageTop + offsetToMakeReactionBarOffsetMatchMenuPadding;
+    }
+
+    return Math.max(reactionStartingPoint - reactionBarOffset - reactionBarHeight, spaceNeededBetweenTopOfScreenAndTopOfReactionBar);
   }
 
   private void updateToolbarShade(@NonNull Activity activity) {
