@@ -1398,6 +1398,8 @@
   <string name="NotificationChannel_voice_notes">အသံမှတ်စုများ</string>
   <string name="NotificationChannel_contact_joined_signal">အဆက်အသွယ်သည် Signal ပေါ်တက်ရောက်လာပါပြီ</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">အသိပေးချက်လိုင်း၏ အပြင်အဆင်များကို ဖွင့်ရန် လှုပ်ရှားမှုမရှိပါ။</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal လော့ခ်ကျသွားသည့်အခါ ချက်ချင်းမတုံ့ပြန်နိုင်ပါ!</string>

@@ -1596,6 +1596,8 @@
   <string name="NotificationChannel_voice_notes">Notes vocales</string>
   <string name="NotificationChannel_contact_joined_signal">Un contact s’est joint à Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Aucune activité n’est disponible pour ouvrir les paramètres du canal de notification.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La réponse rapide n’est pas proposée quand Signal est verrouillée.</string>

@@ -1560,6 +1560,8 @@ broj telefona</string>
   <string name="NotificationChannel_voice_notes">Glasovne bilješke</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt se pridružio/la Signalu</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nema dostupnih aktivnosti za otvaranje postavki kanala za obavijesti.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Signal zaključan!</string>

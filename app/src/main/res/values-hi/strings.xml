@@ -1589,6 +1589,8 @@
   <string name="NotificationChannel_voice_notes">ऑडियो नोट्स</string>
   <string name="NotificationChannel_contact_joined_signal">संपर्क Signal में शामिल हो गए</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">अधिसूचना चैनल सेटिंग्ज़ खोलने के लिए कोई गतिविधि उपलब्ध नहीं है।</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक होने पर त्वरित प्रतिक्रिया अनुपलब्ध है!</string>

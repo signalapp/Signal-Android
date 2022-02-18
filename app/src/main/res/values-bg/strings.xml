@@ -1554,6 +1554,8 @@
   <string name="NotificationChannel_missing_display_name">Непознат</string>
   <string name="NotificationChannel_voice_notes">Гласови бележки</string>
   <string name="NotificationChannel_contact_joined_signal">Един от контактите Ви се присъедини към Signal!</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Signal е заключен!</string>

@@ -1599,6 +1599,8 @@
   <string name="NotificationChannel_voice_notes">व्हॉईस टिपा</string>
   <string name="NotificationChannel_contact_joined_signal">संपर्क Signal मध्ये सामील झाला</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">सूचना चॅनल सेटिंग उघडण्यासाठी कुठलीही अॅक्टिव्हिटी उपलब्ध नाही.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक केलेले असताना जलद प्रतिसाद अनुपलब्ध!</string>

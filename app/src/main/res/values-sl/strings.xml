@@ -1753,6 +1753,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="NotificationChannel_voice_notes">Glasovna sporočila</string>
   <string name="NotificationChannel_contact_joined_signal">Oseba iz imenika se je pridružila Signalu</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Na voljo ni nobene aktivnosti povezane z obvestili.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Povezava v ozadju</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Stanje klica</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hitri odziv ni mogoč, kadar je aplikacija Signal zaklenjena!</string>

@@ -1677,6 +1677,8 @@
   <string name="NotificationChannel_voice_notes">Гласовне белешке</string>
   <string name="NotificationChannel_contact_joined_signal">Контакт се придружио Signalу</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Није доступна активност да би се отворила подешавања канала нотификације.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Signal закључан!</string>

@@ -1610,6 +1610,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NotificationChannel_voice_notes">Notas de voz</string>
   <string name="NotificationChannel_contact_joined_signal">Alguien comienza a usar Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hay actividad disponible para abrir el canal de notificaciones en «Ajustes».</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Estado de conexión</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Estado de llamada</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">¡La respuesta rápida no está disponible cuando Signal está bloqueado!</string>
@@ -3487,9 +3491,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Ve a Google Pay</string>
   <!--Stripe decline code incorrect card number-->
-  <string name="DeclineCode__your_card_number_is_incorrect">Tu número de tarjeta es erróneo. Actualízalo en Google Pay e inténtalo de nuevo.</string>
+  <string name="DeclineCode__your_card_number_is_incorrect">Tu número de tarjeta es incorrecto. Actualízalo en Google Pay e inténtalo de nuevo.</string>
   <!--Stripe decline code incorrect cvc-->
-  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">El número CVV es erróneo. Actualízalo en Google Pay e inténtalo de nuevo.</string>
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">El número CVV es incorrecto. Actualízalo en Google Pay e inténtalo de nuevo.</string>
   <!--Stripe decline code insufficient funds-->
   <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Tu tarjeta no dispone de fondos suficientes para completar la compra. Inténtalo con otro método de pago.</string>
   <!--Stripe decline code incorrect expiration month-->

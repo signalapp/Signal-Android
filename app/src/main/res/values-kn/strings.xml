@@ -1499,6 +1499,8 @@
   <string name="NotificationChannel_voice_notes">ವಾಯ್ಸ್ ನೋಟ್‌ಗಳು</string>
   <string name="NotificationChannel_contact_joined_signal">ಸಂಪರ್ಕ Signal ಗೆ ಸೇರಿದ್ದಾರೆ</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">ನೊಟಿಫಿಕೇಶನ್ ಚಾನೆಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಲು ಯಾವುದೇ ಚಟುವಟಿಕೆ ಲಭ್ಯವಿಲ್ಲ.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">ಯಾವಾಗ  Signal ಲಾಕ್ ಮಾಡಲಾಗಿದೆಯೋ ಆವಾಗ ತ್ವರಿತ ಪ್ರತಿಕ್ರಿಯೆ ಲಭ್ಯವಿಲ್ಲ!</string>

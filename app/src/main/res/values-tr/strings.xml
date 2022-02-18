@@ -1243,6 +1243,7 @@
   <string name="RedPhone_got_it">Anladım</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Kutlu 💜 Olsun!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Görüntünüzü açmak için buraya dokunun</string>
@@ -1600,6 +1601,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NotificationChannel_voice_notes">Sesli Notlar</string>
   <string name="NotificationChannel_contact_joined_signal">Kişi Signal\'e katıldı</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Bildirim kanal ayarlarını açmak için mevcut bir faaliyet yok</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Arkaplan bağlantısı</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Arama durumu</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilitliyken hızlı cevap kullanılamaz!</string>
@@ -3436,6 +3441,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'ı kullanmaya devam edebilirsin ama uygulamaya destek olmak ve rozetini tekrar etkinleştirmek için şimdi yenile.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Aboneliği yenile</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Bunu bir daha gösterme</string>
   <string name="Subscription__please_contact_support_for_more_information">Daha fazla bilgi için lütfen bizimle iletişime geçin.</string>
   <string name="Subscription__contact_support">Destekle İletişime Geçin</string>
   <string name="Subscription__earn_a_s_badge">Bir %1$s rozeti kazanın</string>
@@ -3465,6 +3471,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Stripe decline code purchase not supported-->
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Google Pay\'e git</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->

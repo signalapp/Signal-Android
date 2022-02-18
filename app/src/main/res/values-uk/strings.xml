@@ -1762,6 +1762,10 @@
   <string name="NotificationChannel_voice_notes">Голосові нотатки</string>
   <string name="NotificationChannel_contact_joined_signal">Контакт приєднався до Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Немає доступної активності для відкриття налаштувань категорій повідомлень.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Фонове з\'єднання</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Стан виклику</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Швидка відповідь неможлива, коли Signal заблоковано!</string>

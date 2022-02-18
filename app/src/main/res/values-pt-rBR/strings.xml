@@ -1603,6 +1603,8 @@
   <string name="NotificationChannel_voice_notes">Mensagens de voz</string>
   <string name="NotificationChannel_contact_joined_signal">O contato entrou no Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nenhuma atividade está disponível para ser ajustada nas configurações das categorias de notificações.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está trancado!</string>

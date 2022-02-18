@@ -1599,6 +1599,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationChannel_voice_notes">Sprachnachrichten</string>
   <string name="NotificationChannel_contact_joined_signal">Neuer Signal-Kontakt</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Keine Aktivität verfügbar, um die Einstellungen für den Benachrichtigungskanal zu öffnen.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Hintergrundverbindung</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Anrufstatus</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>

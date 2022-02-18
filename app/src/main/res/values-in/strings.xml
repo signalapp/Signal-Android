@@ -1527,6 +1527,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NotificationChannel_voice_notes">Pesan suara</string>
   <string name="NotificationChannel_contact_joined_signal">Kontak bergabung dengan Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Tidak ada aktivitas yang tersedia untuk membuka pengaturan notifikasi saluran.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>

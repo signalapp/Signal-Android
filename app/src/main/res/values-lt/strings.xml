@@ -1762,6 +1762,10 @@
   <string name="NotificationChannel_voice_notes">Balso pastabos</string>
   <string name="NotificationChannel_contact_joined_signal">Adresatas prisijungė prie Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nėra prieinamos veiklos, kad būtų atverti pranešimų kanalo nustatymai.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Foninis ryšys</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Skambučio būsena</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>

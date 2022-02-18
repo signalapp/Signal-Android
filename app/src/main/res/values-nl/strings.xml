@@ -1613,6 +1613,10 @@
   <string name="NotificationChannel_voice_notes">Audioberichten</string>
   <string name="NotificationChannel_contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Geen ‘activiteit’ beschikbaar om instellingen voor meldingskanalen mee te openen.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Achtergrondverbinding</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Oproepstatus</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal vergrendeld is!</string>

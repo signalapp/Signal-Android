@@ -1609,6 +1609,10 @@ nummer (%s) er ugyldigt</string>
   <string name="NotificationChannel_voice_notes">Stemmenoter</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt bruger nu Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgængelig for at åbne indstillinger for notifikationsskanal.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Forbindelse i baggrunden</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Opkaldsstatus</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig svar utilgængelig når Signal er låst!</string>

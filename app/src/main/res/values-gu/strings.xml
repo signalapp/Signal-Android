@@ -1494,6 +1494,8 @@
   <string name="NotificationChannel_voice_notes">વૉઈસ નોટ્સ</string>
   <string name="NotificationChannel_contact_joined_signal">સંપર્ક Signal સાથે જોડાયો</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">સૂચના ચેનલ સેટિંગ્સ ખોલવા માટે કોઈ પ્રવૃત્તિ ઉપલબ્ધ નથી.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">જ્યારે Signal લૉક થાય ત્યારે ઝડપી પ્રતિસાદ ઉપલબ્ધ નથી!</string>

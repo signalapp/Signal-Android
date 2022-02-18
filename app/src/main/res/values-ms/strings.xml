@@ -1512,6 +1512,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="NotificationChannel_voice_notes">Nota Suara</string>
   <string name="NotificationChannel_contact_joined_signal">Kenalan menyertai Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Tidak ada aktiviti yang tersedia untuk membuka tetapan pemberitahuan.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Respons pantas tidak tersedia apabila Signal dikunci!</string>

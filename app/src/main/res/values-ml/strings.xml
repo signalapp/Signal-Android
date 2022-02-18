@@ -1602,6 +1602,10 @@
   <string name="NotificationChannel_voice_notes">ശബ്ദ കുറിപ്പുകൾ</string>
   <string name="NotificationChannel_contact_joined_signal">കോൺ‌ടാക്റ്റ് Signal-ൽ ചേർന്നു</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">അറിയിപ്പ് ചാനൽ ക്രമീകരണങ്ങൾ തുറക്കാൻ ഒരു പ്രവർത്തനവും ലഭ്യമല്ല.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">പശ്ചാത്തല കണക്ഷൻ</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">കോൾ നില</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal പൂട്ടിയിരിക്കുമ്പോൾ ദ്രുത പ്രതികരണം ലഭ്യമല്ല!</string>

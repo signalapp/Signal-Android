@@ -1538,6 +1538,8 @@
   <string name="NotificationChannel_voice_notes">غږیز یاددښتونه</string>
   <string name="NotificationChannel_contact_joined_signal">مخاطب Signal سره یو ځای شو</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">د چاینل د تنظیماتو د خبرتیاوو د پرانیستلو لپاره هېڅ راز فعالیت نشته.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">کله چې Signal قفل شوی وي نو چټک ځواب موجود نه وي!</string>

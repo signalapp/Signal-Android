@@ -1616,6 +1616,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="NotificationChannel_voice_notes">Talenotat</string>
   <string name="NotificationChannel_contact_joined_signal">Ein kontakt tok i bruk Signal!</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tilgjengeleg for å opna innstillingane for varselkanalen.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Bakgrunnstilkopling</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Samtalestatus</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtigsvar er utilgjengeleg når Signal er låst.</string>

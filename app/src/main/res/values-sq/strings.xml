@@ -1614,6 +1614,10 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="NotificationChannel_voice_notes">Shënime Zanore</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakti zuri të përdorë Signal-in</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">S\’ka veprimtari për hapje rregullimesh kanali njoftimesh.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Lidhje në prapaskenë</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Gjendje thirrjeje</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">S\’bëhet dot përgjigje e shpejtë, kur Signal-i është i kyçur!</string>

@@ -1533,6 +1533,10 @@
   <string name="NotificationChannel_voice_notes">語音備忘</string>
   <string name="NotificationChannel_contact_joined_signal">聯絡人已加入 Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">無可用的活動以開啟通知通道設定。</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">背景連線</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">通話狀態</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 在鎖定時無法使用快速回應！</string>

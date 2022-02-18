@@ -1537,6 +1537,8 @@
   <string name="NotificationChannel_voice_notes">ئاۋازلىق ئەسلەتمە</string>
   <string name="NotificationChannel_contact_joined_signal">ئالاقاداش Signal غا قېتىلدى</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">ئۇقتۇرۇش قانال تەڭشەكلىرىنى ئاچىدىغان پائالىيەت يوق.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal قۇلۇپلانغاندا تېز ئىنكاسنى ئىشلەتكىلى بولمايدۇ!</string>

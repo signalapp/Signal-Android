@@ -1486,6 +1486,8 @@
   <string name="NotificationChannel_voice_notes">음성 노트</string>
   <string name="NotificationChannel_contact_joined_signal">연락처가 Signal에 등록함</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">알림 채널 설정을 열 수 있는 활동이 없습니다.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal가 잠겨 있는 경우 빠른 답장을 사용할 수 없습니다!</string>

@@ -1754,6 +1754,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NotificationChannel_voice_notes">Wiadomości głosowe</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt dołączył do Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Brak dostępnej aktywności, aby otworzyć ustawienia kanału powiadomień.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Połączenie w tle</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Status połączenia telefonicznego</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Szybka odpowiedź jest niedostępna kiedy Signal jest zablokowany!</string>

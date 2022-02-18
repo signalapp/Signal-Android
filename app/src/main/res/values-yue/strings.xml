@@ -1534,6 +1534,10 @@
   <string name="NotificationChannel_voice_notes">語音筆記</string>
   <string name="NotificationChannel_contact_joined_signal">聯絡人開咗 Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">無可用嘅活動去開啟通知類別設定。</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">背景連線</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">通話狀態</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 上鎖嘅時候冇得做快速回應！</string>
@@ -3395,7 +3399,7 @@
   <!--Stripe decline code issuer not available-->
   <string name="DeclineCode__try_completing_the_payment_again">請再試下完成呢次付款，又或者聯絡返您間銀行問清楚。</string>
   <!--Stripe decline code processing error-->
-  <string name="DeclineCode__try_again">請再試一次啦，又或者聯絡返您間銀行問清楚。</string>
+  <string name="DeclineCode__try_again">請再試一次吖，又或者聯絡返您間銀行問清楚。</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">改名吾揀單</string>
   <!--Hint text for create/edit notification profile name-->

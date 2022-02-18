@@ -1520,6 +1520,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="NotificationChannel_voice_notes">Ghi chú Âm thanh</string>
   <string name="NotificationChannel_contact_joined_signal">Liên hệ bắt đầu dùng Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Không có hoạt động này để mở cài đặt kênh thông báo.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả dụng khi Signal bị khoá!</string>

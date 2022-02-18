@@ -1611,6 +1611,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NotificationChannel_voice_notes">Hangjegyzetek</string>
   <string name="NotificationChannel_contact_joined_signal">Ismerős csatlakozott a Signalhoz</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nincs elérhető aktivitás, hogy megnyissuk az értesítési csatorna beállításokat.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Háttér-kapcsolat</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Hívás státusza</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">A gyors válasz nem érhető el, ha a Signal zárolva van!</string>

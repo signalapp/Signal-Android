@@ -801,7 +801,7 @@
   <string name="InviteActivity_send_sms">Испрати SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Испрати %d SMS покана?</item>
-    <item quantity="other">Испрати %d SMS пораки?</item>
+    <item quantity="other">Испрати %d SMS покани?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ајде да се префрлиме на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изгледа дека немате апликации преку кои може да споделите.</string>
@@ -1374,7 +1374,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">Внесете го Вашиот телефонски број</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ќе добиете код за проверка. Можно е да важат цените од операторот.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Внесете го кодот што Ви го испративме на %s</string>
-  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Осигурајте се дека Вашиот телефон има мобилен сигнал за да ја примите вашата SMS порака или повик</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Осигурајте се дека Вашиот телефон има мобилен сигнал за да примите SMS или повик</string>
   <string name="RegistrationActivity_phone_number_description">Телефонски број</string>
   <string name="RegistrationActivity_country_code_description">Повикувачки број на земјата </string>
   <string name="RegistrationActivity_call">Повикај</string>
@@ -1427,7 +1427,7 @@
   <string name="SmsMessageRecord_secure_session_reset">Ја ресетиравте безбедната сесија.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ја ресетираше безбедната сесија.</string>
   <string name="SmsMessageRecord_duplicate_message">Дупла порака.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Оваа порака не може да биде процесирана бидејќи беше испратена од понова верзија на Signal. Можете да го прашате Вашиот контакт да ја испрати пораката повторно откако ќе ажурирате.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Оваа порака не може да биде процесирана бидејќи е испратена од понова верзија на Signal. Можете да го прашате Вашиот контакт да ја испрати пораката повторно откако ќе ја ажурирате апликацијата.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Грешка при справување со доаѓачка порака.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Стикери</string>
@@ -1606,6 +1606,8 @@
   <string name="NotificationChannel_voice_notes">Гласовни белешки</string>
   <string name="NotificationChannel_contact_joined_signal">Кога контакт ќе се приклучи на Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Нема достапна активност за отворање на поставките на каналот за известувања.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брз одговор е недостапен кога Signal е заклучен</string>
@@ -1633,7 +1635,7 @@
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Уредот повеќе не е регистриран</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ова е најверојатно бидејќи го регистриравте Вашиот телефон на Signal со друг уред. Допрете за да се регистрирате повторно.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ова е веројатно бидејќи Вашиот телефонскиот број сте го регистрирале на Signal со друг уред. Допрете за повторно да се регистрирате.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">За да одговорите на повикот, дозволете му на Signal пристап до Вашиот микрофон.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">За да одговорите на повикот од %s, дозволете му на Signal пристап до Вашиот микрофонот.</string>
@@ -1919,7 +1921,7 @@
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Повлечете нагоре за одговор</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Повлечете надолу за одбивање</string>
   <!--message_details_header-->
-  <string name="message_details_header__issues_need_your_attention">Некои проблеми барааат Ваше внимание.</string>
+  <string name="message_details_header__issues_need_your_attention">Некои проблеми бараат Ваше внимание.</string>
   <string name="message_details_header__sent">Испратено:</string>
   <string name="message_details_header__received">Примено:</string>
   <string name="message_details_header__disappears">Исчезнува за:</string>
@@ -1933,7 +1935,7 @@
   <string name="message_details_recipient_header__not_sent">Не е испратено на</string>
   <string name="message_details_recipient_header__viewed">Видено од</string>
   <!--message_Details_recipient-->
-  <string name="message_details_recipient__failed_to_send">Неуспешно праќање</string>
+  <string name="message_details_recipient__failed_to_send">Неуспешно испраќање</string>
   <string name="message_details_recipient__new_safety_number">Нов сигурносен број</string>
   <!--AndroidManifest.xml-->
   <string name="AndroidManifest__create_passphrase">Создај лозинка</string>
@@ -3059,7 +3061,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Мора да наведете повикувачки број на државата за Вашиот стар број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Мора да го наведете Вашиот стар телефонски број</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Мора да наведете повикувачки број на државата за Вашиот нов број</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Мора да го наведете Вашиот нов број</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Мора да го наведете Вашиот нов телефонски број</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Смени го бројот</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Проверувам %1$s</string>

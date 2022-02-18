@@ -1686,6 +1686,10 @@
   <string name="NotificationChannel_voice_notes">Glasovne bilješke</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt je počeo koristiti Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nema aktivnosti za otvaranje postavki obavještenjā.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Konekcija u pozadini</string>
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Status poziva</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovori nisu dostupni kada je Signal zaključan!</string>

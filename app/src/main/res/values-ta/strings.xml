@@ -1525,6 +1525,8 @@
   <string name="NotificationChannel_voice_notes">குரல் குறிப்புகள்</string>
   <string name="NotificationChannel_contact_joined_signal">தொடர்பு  Signal இல் இணைந்தது </string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">இல்லை செயல்பாடு கிடைக்கிறது திறந்த அறிவிப்பு சேனல் அமைப்புகள்.</string>
+  <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal பூட்டப்பட்டிருக்கும் போது விரைவான பதில் கிடைக்காது!</string>
