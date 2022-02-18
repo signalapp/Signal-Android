@@ -23,7 +23,21 @@
     {{/if}}
 
     {{#if queryResult}}
-      <p>{{queryResult.rowCount}} row(s).</p>
+      <p>Viewing rows {{pagingData.startRow}}-{{pagingData.endRow}} of {{pagingData.rowCount}}.</p>
+
+      <!-- Paging Controls -->
+      <form action="browse" method="post">
+        <input type="hidden" name="table" value="{{table}}" />
+        <input type="hidden" name="pageSize" value="{{pagingData.pageSize}}" />
+        <input type="hidden" name="pageIndex" value="{{pagingData.pageIndex}}" />
+
+        <input type="submit" name="action" value="first" {{#if pagingData.firstPage}}disabled{{/if}} />
+        <input type="submit" name="action" value="previous" {{#if pagingData.firstPage}}disabled{{/if}} />
+        <input type="submit" name="action" value="next" {{#if pagingData.lastPage}}disabled{{/if}} />
+        <input type="submit" name="action" value="last" {{#if pagingData.lastPage}}disabled{{/if}} />
+      </form>
+
+      <!-- Data Rows -->
       <table>
         <tr>
           {{#each queryResult.columns}}
@@ -42,6 +56,20 @@
       Select a table from above and click 'browse'.
     {{/if}}
 
-  {{> suffix}}
+    <br />
+
+    <!-- Paging Controls -->
+    <form action="browse" method="post">
+      <input type="hidden" name="table" value="{{table}}" />
+      <input type="hidden" name="pageSize" value="{{pagingData.pageSize}}" />
+      <input type="hidden" name="pageIndex" value="{{pagingData.pageIndex}}" />
+
+      <input type="submit" name="action" value="first" {{#if pagingData.firstPage}}disabled{{/if}} />
+      <input type="submit" name="action" value="previous" {{#if pagingData.firstPage}}disabled{{/if}} />
+      <input type="submit" name="action" value="next" {{#if pagingData.lastPage}}disabled{{/if}} />
+      <input type="submit" name="action" value="last" {{#if pagingData.lastPage}}disabled{{/if}} />
+    </form>
+
+    {{> suffix}}
   </body>
 </html>

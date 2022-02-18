@@ -11,7 +11,9 @@ import fi.iki.elonen.NanoHTTPD
 import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.logging.Log
 import java.lang.IllegalArgumentException
+import kotlin.math.ceil
 import kotlin.math.max
+import kotlin.math.min
 
 /**
  * The workhorse of this lib. Handles all of our our web routing and response generation.
@@ -31,6 +33,7 @@ internal class SpinnerServer(
 
   private val handlebars: Handlebars = Handlebars(AssetTemplateLoader(context)).apply {
     registerHelper("eq", ConditionalHelpers.eq)
+    registerHelper("neq", ConditionalHelpers.neq)
   }
 
   override fun serve(session: IHTTPSession): Response {
@@ -86,7 +89,22 @@ internal class SpinnerServer(
 
   private fun postBrowse(dbName: String, db: SupportSQLiteDatabase, session: IHTTPSession): Response {
     val table: String = session.parameters["table"]?.get(0).toString()
-    val query = "select * from $table"
+    val pageSize: Int = session.parameters["pageSize"]?.get(0)?.toInt() ?: 1000
+    var pageIndex: Int = session.parameters["pageIndex"]?.get(0)?.toInt() ?: 0
+    val action: String? = session.parameters["action"]?.get(0)
+
+    val rowCount = db.getTableRowCount(table)
+    val pageCount = ceil(rowCount.toFloat() / pageSize.toFloat()).toInt()
+
+    when (action) {
+      "first" -> pageIndex = 0
+      "next" -> pageIndex = min(pageIndex + 1, pageCount - 1)
+      "previous" -> pageIndex = max(pageIndex - 1, 0)
+      "last" -> pageIndex = pageCount - 1
+    }
+
+    val query = "select * from $table limit $pageSize offset ${pageSize * pageIndex}"
+    val queryResult = db.query(query).toQueryResult()
 
     return renderTemplate(
       "browse",
@@ -96,7 +114,15 @@ internal class SpinnerServer(
         databases = databases.keys.toList(),
         tableNames = db.getTableNames(),
         table = table,
-        queryResult = db.query(query).toQueryResult()
+        queryResult = queryResult,
+        pagingData = PagingData(
+          rowCount = rowCount,
+          pageSize = pageSize,
+          pageIndex = pageIndex,
+          pageCount = pageCount,
+          startRow = pageSize * pageIndex,
+          endRow = min(pageSize * (pageIndex + 1), rowCount)
+        )
       )
     )
   }
@@ -275,7 +301,8 @@ internal class SpinnerServer(
     val databases: List<String>,
     val tableNames: List<String>,
     val table: String? = null,
-    val queryResult: QueryResult? = null
+    val queryResult: QueryResult? = null,
+    val pagingData: PagingData? = null,
   )
 
   data class QueryPageModel(
@@ -307,5 +334,16 @@ internal class SpinnerServer(
   data class TriggerInfo(
     val name: String,
     val sql: String
+  )
+
+  data class PagingData(
+    val rowCount: Int,
+    val pageSize: Int,
+    val pageIndex: Int,
+    val pageCount: Int,
+    val firstPage: Boolean = pageIndex == 0,
+    val lastPage: Boolean = pageIndex == pageCount - 1,
+    val startRow: Int,
+    val endRow: Int
   )
 }

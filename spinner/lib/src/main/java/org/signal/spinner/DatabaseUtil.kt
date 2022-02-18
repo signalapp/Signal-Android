@@ -25,3 +25,13 @@ fun SupportSQLiteDatabase.getIndexes(): Cursor {
 fun SupportSQLiteDatabase.getTriggers(): Cursor {
   return this.query("SELECT * FROM sqlite_master WHERE type='trigger' ORDER BY name ASC")
 }
+
+fun SupportSQLiteDatabase.getTableRowCount(table: String): Int {
+  return this.query("SELECT COUNT(*) FROM $table").use {
+    if (it.moveToFirst()) {
+      it.getInt(0)
+    } else {
+      0
+    }
+  }
+}
