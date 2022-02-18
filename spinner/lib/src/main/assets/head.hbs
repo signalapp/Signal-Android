@@ -2,13 +2,26 @@
   <title>Spinner - {{ title }}</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌀</text></svg>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+
   <style type="text/css">
     html, body {
-      font-family: monospace;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+
+    select, input {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
     }
 
     table, th, td {
       border: 1px solid black;
+      font-size: 1rem;
     }
 
     th, td {
@@ -36,7 +49,7 @@
       display: inline-block;
       padding: 8px;
       border-bottom: 1px solid black;
-      font-size: 12px;
+      font-size: 1rem;
     }
 
     .tabs li.active {
