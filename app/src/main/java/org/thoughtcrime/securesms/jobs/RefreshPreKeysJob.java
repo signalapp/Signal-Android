@@ -77,7 +77,7 @@ public class RefreshPreKeysJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (!SignalStore.account().isRegistered()) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getAci() == null || SignalStore.account().getPni() == null) {
       Log.w(TAG, "Not registered. Skipping.");
       return;
     }

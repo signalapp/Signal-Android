@@ -58,6 +58,11 @@ public class RotateSignedPreKeyJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getAci() == null || SignalStore.account().getPni() == null) {
+      Log.w(TAG, "Not registered. Skipping.");
+      return;
+    }
+
     Log.i(TAG, "Rotating signed prekey...");
 
     ACI aci = SignalStore.account().getAci();
