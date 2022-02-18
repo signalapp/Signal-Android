@@ -58,7 +58,7 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
   public void performMigration() throws IOException {
     PNI pni = SignalStore.account().getPni();
 
-    if (!Recipient.self().isRegistered() || pni == null) {
+    if (pni == null || SignalStore.account().getAci() == null || !Recipient.self().isRegistered()) {
       Log.w(TAG, "Not yet registered! No need to perform this migration.");
       return;
     }
