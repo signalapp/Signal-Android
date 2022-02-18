@@ -598,7 +598,7 @@ public class NotificationChannels {
     NotificationChannel other        = new NotificationChannel(OTHER, context.getString(R.string.NotificationChannel_other), NotificationManager.IMPORTANCE_LOW);
     NotificationChannel voiceNotes   = new NotificationChannel(VOICE_NOTES, context.getString(R.string.NotificationChannel_voice_notes), NotificationManager.IMPORTANCE_LOW);
     NotificationChannel joinEvents   = new NotificationChannel(JOIN_EVENTS, context.getString(R.string.NotificationChannel_contact_joined_signal), NotificationManager.IMPORTANCE_DEFAULT);
-    NotificationChannel background   = new NotificationChannel(BACKGROUND, context.getString(R.string.NotificationChannel_background_connection), NotificationManager.IMPORTANCE_LOW);
+    NotificationChannel background   = new NotificationChannel(BACKGROUND, context.getString(R.string.NotificationChannel_background_connection), getDefaultBackgroundChannelImportance(notificationManager));
     NotificationChannel callStatus   = new NotificationChannel(CALL_STATUS, context.getString(R.string.NotificationChannel_call_status), NotificationManager.IMPORTANCE_LOW);
 
     messages.setGroup(CATEGORY_MESSAGES);
@@ -625,6 +625,18 @@ public class NotificationChannels {
       notificationManager.deleteNotificationChannel(APP_UPDATES);
     }
   }
+
+  @TargetApi(26)
+  private static int getDefaultBackgroundChannelImportance(NotificationManager notificationManager) {
+    NotificationChannel existingOther = notificationManager.getNotificationChannel(OTHER);
+
+    if (existingOther != null && existingOther.getImportance() != NotificationManager.IMPORTANCE_LOW) {
+      return existingOther.getImportance();
+    } else {
+      return NotificationManager.IMPORTANCE_LOW;
+    }
+  }
+
 
   @TargetApi(26)
   private static void onUpgrade(@NonNull NotificationManager notificationManager, int oldVersion, int newVersion) {
