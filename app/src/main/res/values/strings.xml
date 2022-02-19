@@ -3200,6 +3200,9 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">You must have this passphrase in order to restore a backup.</string>
     <string name="backup_enable_dialog__folder">Folder</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
+    <string name="backup_change_folder_dialog__are_you_sure">Are you sure that you want to change your backup folder?</string>
+    <string name="backup_change_folder_dialog__title">Change backup folder?</string>
+    <string name="backup_change_folder_dialog__change_folder">Change</string>
     <string name="registration_activity__restore_backup">Restore backup</string>
     <string name="registration_activity__transfer_or_restore_account">Transfer or restore account</string>
     <string name="registration_activity__transfer_account">Transfer account</string>

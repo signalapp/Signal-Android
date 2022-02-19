@@ -43,6 +43,7 @@ public class BackupsPreferenceFragment extends Fragment {
   private static final String TAG = Log.tag(BackupsPreferenceFragment.class);
 
   private static final short CHOOSE_BACKUPS_LOCATION_REQUEST_CODE = 26212;
+  private static final short CHANGE_BACKUPS_LOCATION_REQUEST_CODE = 26213;
 
   private View        create;
   private View        folder;
@@ -106,16 +107,33 @@ public class BackupsPreferenceFragment extends Fragment {
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (Build.VERSION.SDK_INT >= 29                         &&
+    if (Build.VERSION.SDK_INT >= 29 &&
         requestCode == CHOOSE_BACKUPS_LOCATION_REQUEST_CODE &&
-        resultCode == Activity.RESULT_OK                    &&
-        data != null                                        &&
+        resultCode == Activity.RESULT_OK &&
+        data != null &&
         data.getData() != null)
     {
       BackupDialog.showEnableBackupDialog(requireContext(),
                                           data,
                                           StorageUtil.getDisplayPath(requireContext(), data.getData()),
                                           this::setBackupsEnabled);
+    } else if (Build.VERSION.SDK_INT >= 29 &&
+               requestCode == CHANGE_BACKUPS_LOCATION_REQUEST_CODE &&
+               resultCode == Activity.RESULT_OK &&
+               data != null &&
+               data.getData() != null)
+    {
+      Uri oldBackupFolder = Objects.requireNonNull(SignalStore.settings().getSignalBackupDirectory());
+      Uri newBackupFolder = data.getData();
+      if (oldBackupFolder.equals(newBackupFolder)) {
+        return;
+      }
+      BackupDialog.showChangeBackupFolderDialog(requireContext(),
+                                                data,
+                                                () -> {
+                                                  setBackupFolderName();
+                                                  setBackupSummary();
+                                                });
     }
   }
 
@@ -175,6 +193,9 @@ public class BackupsPreferenceFragment extends Fragment {
         Uri backupUri = Objects.requireNonNull(SignalStore.settings().getSignalBackupDirectory());
 
         folder.setVisibility(View.VISIBLE);
+        folder.setOnClickListener(v -> {
+          BackupDialog.startChooseFolderActivity(this, CHANGE_BACKUPS_LOCATION_REQUEST_CODE);
+        });
         folderName.setText(StorageUtil.getDisplayPath(requireContext(), backupUri));
       } else if (StorageUtil.canWriteInSignalStorageDir()) {
         try {

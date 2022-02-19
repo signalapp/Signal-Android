@@ -111,6 +111,58 @@ public class BackupDialog {
   }
 
   @RequiresApi(29)
+  public static void startChooseFolderActivity(@NonNull Fragment fragment, int requestCode) {
+    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+
+    if (Build.VERSION.SDK_INT >= 26) {
+      intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings().getLatestSignalBackupDirectory());
+    }
+
+    intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION |
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION       |
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+    try {
+      fragment.startActivityForResult(intent, requestCode);
+    } catch (ActivityNotFoundException e) {
+      Toast.makeText(fragment.requireContext(), R.string.BackupDialog_no_file_picker_available, Toast.LENGTH_LONG)
+           .show();
+    }
+  }
+
+  @RequiresApi(29)
+  public static void showChangeBackupFolderDialog(@NonNull Context context,
+                                                  @Nullable Intent backupDirectorySelectionIntent,
+                                                  @NonNull Runnable runnable) {
+    android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(context)
+        .setTitle(R.string.backup_change_folder_dialog__title)
+        .setView(R.layout.backup_change_folder_dialog)
+        .setPositiveButton(R.string.backup_change_folder_dialog__change_folder, null)
+        .setNegativeButton(android.R.string.cancel, null)
+        .create();
+    dialog.setOnShowListener(created -> {
+      Button button = ((android.app.AlertDialog) created).getButton(android.app.AlertDialog.BUTTON_POSITIVE);
+      button.setOnClickListener(v -> {
+        if (backupDirectorySelectionIntent != null && backupDirectorySelectionIntent.getData() != null) {
+          Uri backupDirectoryUri = backupDirectorySelectionIntent.getData();
+          int takeFlags          = Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                                   Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+
+          SignalStore.settings().setSignalBackupDirectory(backupDirectoryUri);
+          context.getContentResolver()
+                 .takePersistableUriPermission(backupDirectoryUri, takeFlags);
+          TextSecurePreferences.setNextBackupTime(context, 0);
+          LocalBackupListener.schedule(context);
+          runnable.run();
+          created.dismiss();
+        }
+      });
+    });
+
+    dialog.show();
+  }
+
+  @RequiresApi(29)
   public static void showChooseBackupLocationDialog(@NonNull Fragment fragment, int requestCode) {
     new MaterialAlertDialogBuilder(fragment.requireContext())
                    .setView(R.layout.backup_choose_location_dialog)
@@ -119,23 +171,7 @@ public class BackupDialog {
                      dialog.dismiss();
                    })
                    .setPositiveButton(R.string.BackupDialog_choose_folder, ((dialog, which) -> {
-                     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-
-                     if (Build.VERSION.SDK_INT >= 26) {
-                       intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings().getLatestSignalBackupDirectory());
-                     }
-
-                     intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION |
-                                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION       |
-                                     Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                    try {
-                       fragment.startActivityForResult(intent, requestCode);
-                     } catch (ActivityNotFoundException e) {
-                       Toast.makeText(fragment.requireContext(), R.string.BackupDialog_no_file_picker_available, Toast.LENGTH_LONG)
-                            .show();
-                     }
-
+                     startChooseFolderActivity(fragment, requestCode);
                      dialog.dismiss();
                    }))
                    .create()
