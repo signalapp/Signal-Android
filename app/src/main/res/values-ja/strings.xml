@@ -1525,7 +1525,9 @@
   <string name="NotificationChannel_contact_joined_signal">連絡先のSignal参加時</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">通知チャネルの設定を開くためのアクティビティがありません。</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">バックグラウンド接続</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">通話状態</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイックレスポンスを使えません！</string>

@@ -1762,7 +1762,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NotificationChannel_contact_joined_signal">Kontakt se připojil k Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">K otevření nastavení kanálu oznámení není k dispozici žádná aktivita.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Spojení na pozadí</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Stav hovoru</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá odpověď není dostupná, pokud je Signal uzamčen!</string>

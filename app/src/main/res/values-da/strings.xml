@@ -586,7 +586,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">Du har ingen afventende invitationer.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitationer fra andre medlemmer af gruppen</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ingen afventende invitationer fra andre gruppemedlemmer.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Detaljer om personer inviteret af andre medlemmer af gruppen, vises ikke. Hvis de inviterede accepterer at deltage, vil deres information blive delt med gruppen derefter. De vil ingen beskeder se fra gruppen, før de tilmelder sig.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Detaljer om personer inviteret af andre medlemmer af gruppen vises ikke. Hvis de inviterede accepterer at deltage, vil deres information blive delt med gruppen derefter. De vil ingen beskeder se fra gruppen, før de tilmelder sig.</string>
   <string name="PendingMembersActivity_revoke_invite">Tilbagetræk invitation</string>
   <string name="PendingMembersActivity_revoke_invites">Tilbagetræk invitationer</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
