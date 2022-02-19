@@ -98,9 +98,10 @@ public class ApplicationMigrations {
     static final int CHANGE_NUMBER_CAPABILITY_4    = 54;
     static final int KBS_MIGRATION                 = 55;
     static final int PNI_IDENTITY                  = 56;
+    static final int PNI_IDENTITY_2                = 57;
   }
 
-  public static final int CURRENT_VERSION = 56;
+  public static final int CURRENT_VERSION = 57;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -424,6 +425,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.PNI_IDENTITY) {
       jobs.put(Version.PNI_IDENTITY, new PniAccountInitializationMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.PNI_IDENTITY_2) {
+      jobs.put(Version.PNI_IDENTITY_2, new PniAccountInitializationMigrationJob());
     }
 
     return jobs;

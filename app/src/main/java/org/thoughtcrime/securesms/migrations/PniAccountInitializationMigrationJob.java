@@ -63,6 +63,11 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
       return;
     }
 
+    if (SignalStore.account().hasPniIdentityKey()) {
+      Log.w(TAG, "Already generated the PNI identity. Skipping.");
+      return;
+    }
+
     SignalStore.account().generatePniIdentityKey();
 
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();

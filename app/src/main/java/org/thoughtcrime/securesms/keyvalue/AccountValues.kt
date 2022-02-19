@@ -162,6 +162,10 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
       .commit()
   }
 
+  fun hasPniIdentityKey(): Boolean {
+    return store.containsKey(KEY_PNI_IDENTITY_PUBLIC_KEY)
+  }
+
   /** Generates and saves an identity key pair for the PNI identity. Should only be done once. */
   fun generatePniIdentityKey() {
     Log.i(TAG, "Generating a new PNI identity key pair.")
