@@ -1611,7 +1611,9 @@
   <string name="NotificationChannel_contact_joined_signal">Əlaqə Signal-a qoşuldu</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Bildiriş kanalı tənzimləmələrini açmaq üçün mövcud bir fəaliyyət yoxdur</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Arxaplan bağlantısı</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Zəngin vəziyyəti</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilidli ikən cəld cavab əlçatmazdır!</string>

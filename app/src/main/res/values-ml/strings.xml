@@ -3416,7 +3416,9 @@
   <string name="ManageDonationsFragment__manage_subscription">സബ്സ്ക്രിപ്ഷൻ നിയന്ത്രിക്കുക</string>
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
   <string name="ManageDonationsFragment__subscription_faq">സബ്സ്ക്രിപ്ഷൻ FAQ</string>
+  <string name="BoostFragment__give_signal_a_boost">Signal ന് ഒരു ബൂസ്റ്റ് നല്‍കുക</string>
   <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>
+  <string name="Boost__one_time_contribution">ഒറ്റ-തവണ സംഭാവന</string>
   <string name="MySupportPreference__processing_transaction">ഇടപാട് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">നിങ്ങളുടെ ബാഡ്‌ജ് കാലഹരണപ്പെട്ടു</string>
@@ -3572,6 +3574,7 @@
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s വരെ</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">ക്രമീകരണങ്ങൾ കാണുക</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">അറിയിപ്പ് പ്രൊഫൈലുകൾ</string>
@@ -3583,5 +3586,6 @@
   <string name="NotificationProfilesMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal പ്രകാശന കുറിപ്പുകളും വാര്‍ത്തകളും</string>
   <!--EOF-->
 </resources>

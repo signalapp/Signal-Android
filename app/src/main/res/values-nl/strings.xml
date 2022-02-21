@@ -2742,7 +2742,7 @@
   <string name="DeviceTransfer__transfer_failed">Het overzetten van gegevens is mislukt</string>
   <string name="DeviceTransfer__unable_to_transfer">Kan gegevens niet overzetten</string>
   <!--OldDeviceTransferInstructionsFragment-->
-  <string name="OldDeviceTransferInstructions__transfer_account">Instellingen overzetten</string>
+  <string name="OldDeviceTransferInstructions__transfer_account">Gegevens overzetten</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Je kunt al je Signalgegevens en berichten overzetten wanneer je Signal in gebruik neemt op een nieuw apparaat. Volg daarvoor deze stappen:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Download en open Signal op je nieuwe Android-apparaat</string>
