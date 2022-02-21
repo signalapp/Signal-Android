@@ -63,22 +63,27 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
       return;
     }
 
-    if (SignalStore.account().hasPniIdentityKey()) {
-      Log.w(TAG, "Already generated the PNI identity. Skipping.");
-      return;
+    if (!SignalStore.account().hasPniIdentityKey()) {
+      Log.i(TAG, "Generating PNI identity.");
+      SignalStore.account().generatePniIdentityKey();
+    } else {
+      Log.w(TAG, "Already generated the PNI identity. Skipping this step.");
     }
-
-    SignalStore.account().generatePniIdentityKey();
 
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
     SignalProtocolStore         protocolStore  = ApplicationDependencies.getProtocolStore().pni();
     PreKeyMetadataStore         metadataStore  = SignalStore.account().pniPreKeys();
 
-    SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
-    List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore);
+    if (!metadataStore.isSignedPreKeyRegistered()) {
+      Log.i(TAG, "Uploading signed prekey for PNI.");
+      SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
+      List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore);
 
-    accountManager.setPreKeys(ServiceIdType.PNI, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
-    metadataStore.setSignedPreKeyRegistered(true);
+      accountManager.setPreKeys(ServiceIdType.PNI, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
+      metadataStore.setSignedPreKeyRegistered(true);
+    } else {
+      Log.w(TAG, "Already uploaded signed prekey for PNI. Skipping this step.");
+    }
   }
 
   @Override
