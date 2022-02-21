@@ -1,0 +1,50 @@
+<html>
+  {{> partials/head title="Home" }}
+
+  <style type="text/css">
+    h1.collapse-header {
+      font-size: 1.35rem;
+    }
+    h2.collapse-header {
+      font-size: 1.15rem;
+    }
+    table.recent {
+      width: 100%;
+    }
+  </style>
+
+  <body>
+    {{> partials/prefix isRecent=true}}
+
+    {{#if recentSql}}
+      <table class="recent">
+        {{#each recentSql}}
+          <tr>
+            <td>
+              {{formattedTime}}
+            </td>
+            <td>
+              <form action="query" method="post">
+                <input type="hidden" name="db" value="{{database}}" />
+                <input type="hidden" name="query" value="{{query}}" />
+                <input type="submit" name="action" value="run" />
+                <input type="submit" name="action" value="analyze" />
+              </form>
+            </td>
+            <td>{{query}}</td>
+          </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      No recent queries.
+    {{/if}}
+
+    {{> partials/suffix }}
+
+    <script>
+      function onAnalyzeClicked(id) {
+        document.getElementById
+      }
+    </script>
+  </body>
+</html>

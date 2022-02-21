@@ -1,0 +1,89 @@
+html, body {
+  font-family: 'Roboto Mono', monospace;
+  font-variant-ligatures: none;
+  font-size: 12px;
+  width: 100%;
+}
+
+select, input {
+  font-family: 'Roboto Mono', monospace;
+  font-variant-ligatures: none;
+  font-size: 1rem;
+}
+
+table, th, td {
+  border: 1px solid black;
+  font-size: 1rem;
+}
+
+th, td {
+  padding: 8px;
+}
+
+.query-input {
+  width: 100%;
+  height: 10rem;
+  margin-bottom: 8px;
+}
+
+li.active {
+  font-weight: bold;
+}
+
+ol.tabs {
+  margin: 16px 0px 8px 0px;
+  padding: 0px;
+  font-size: 0px;
+}
+
+.tabs li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 8px;
+  border-bottom: 1px solid black;
+  font-size: 1rem;
+}
+
+.tabs li.active {
+  border: 1px solid black;
+  border-bottom: 0;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: black;
+}
+
+.collapse-header {
+  cursor: pointer;
+}
+
+.collapse-header:before {
+  content: "⯈ ";
+  font-size: 1rem;
+}
+
+.collapse-header.active:before {
+  content: "⯆ ";
+  font-size: 1rem;
+}
+
+h2.collapse-header, h2.collapse-header+div {
+  margin-left: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+table.device-info {
+  margin-bottom: 16px;
+}
+
+table.device-info, table.device-info tr, table.device-info td {
+  border: 0;
+  padding: 2px;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+

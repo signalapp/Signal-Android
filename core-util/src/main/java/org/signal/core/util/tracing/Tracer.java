@@ -45,7 +45,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * and we want to create as little overhead as possible. The idea being that it's ok if we don't,
  * for example, keep a perfect circular buffer size if it allows us to reduce overhead. The only
  * cost of screwing up would be dropping a trace packet or something, which, while sad, won't affect
- * how the app functions.
+ * how the app functions
  */
 public final class Tracer {
 

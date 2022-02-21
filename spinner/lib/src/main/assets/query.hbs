@@ -1,8 +1,8 @@
 <html>
-  {{> head title="Query" }}
+  {{> partials/head title="Query" }}
   <body>
 
-    {{> prefix isQuery=true}}
+    {{> partials/prefix isQuery=true}}
 
     <!-- Query Input -->
     <form action="query" method="post">
@@ -11,6 +11,8 @@
       <input type="submit" name="action" value="run" />
       or
       <input type="submit" name="action" value="analyze" />
+      or
+      <button onclick="onFormatClicked(event)">format</button>
     </form>
 
     <!-- Query Result -->
@@ -38,6 +40,15 @@
       No data.
     {{/if}}
 
-    {{> suffix}}
+    {{> partials/suffix}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql-formatter/4.0.2/sql-formatter.min.js" integrity="sha512-JPoVzOHQvXbB4+lOX6GOBM3xOZhwAMKRYn2G0VpfPcwIixAAvPL+HKuaFuevm+i6Q4GktSKY/CxlcB/1BaV/6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+      function onFormatClicked(e) {
+        e.preventDefault();
+        const queryInput = document.querySelector('.query-input')
+        queryInput.value = sqlFormatter.format(queryInput.value).replaceAll("! =", "!=").replaceAll("| |", "||");
+      }
+    </script>
   </body>
 </html>

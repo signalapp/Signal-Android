@@ -1,5 +1,5 @@
 <html>
-  {{> head title="Home" }}
+  {{> partials/head title="Home" }}
 
   <style type="text/css">
     h1.collapse-header {
@@ -12,7 +12,7 @@
 
   <body>
 
-    {{> prefix isOverview=true}}
+    {{> partials/prefix isOverview=true}}
 
     <h1 class="collapse-header active" data-for="table-creates">Tables</h1>
     <div id="table-creates">
@@ -50,6 +50,6 @@
       {{/if}}
     </div>
 
-  {{> suffix }}
+  {{> partials/suffix }}
   </body>
 </html>

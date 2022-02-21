@@ -11,6 +11,9 @@ import fi.iki.elonen.NanoHTTPD
 import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.logging.Log
 import java.lang.IllegalArgumentException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.min
@@ -22,7 +25,7 @@ import kotlin.math.min
  * to [renderTemplate].
  */
 internal class SpinnerServer(
-  context: Context,
+  private val context: Context,
   private val deviceInfo: Spinner.DeviceInfo,
   private val databases: Map<String, SupportSQLiteDatabase>
 ) : NanoHTTPD(5000) {
@@ -36,6 +39,9 @@ internal class SpinnerServer(
     registerHelper("neq", ConditionalHelpers.neq)
   }
 
+  private val recentSql: MutableMap<String, MutableList<QueryItem>> = mutableMapOf()
+  private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz", Locale.US)
+
   override fun serve(session: IHTTPSession): Response {
     if (session.method == Method.POST) {
       // Needed to populate session.parameters
@@ -47,17 +53,31 @@ internal class SpinnerServer(
 
     try {
       return when {
+        session.method == Method.GET && session.uri == "/css/main.css" -> newFileResponse("css/main.css", "text/css")
+        session.method == Method.GET && session.uri == "/js/main.js" -> newFileResponse("js/main.js", "text/javascript")
         session.method == Method.GET && session.uri == "/" -> getIndex(dbParam, db)
         session.method == Method.GET && session.uri == "/browse" -> getBrowse(dbParam, db)
         session.method == Method.POST && session.uri == "/browse" -> postBrowse(dbParam, db, session)
         session.method == Method.GET && session.uri == "/query" -> getQuery(dbParam, db)
         session.method == Method.POST && session.uri == "/query" -> postQuery(dbParam, db, session)
+        session.method == Method.GET && session.uri == "/recent" -> getRecent(dbParam, db)
         else -> newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_HTML, "Not found")
       }
     } catch (t: Throwable) {
       Log.e(TAG, t)
       return internalError(t)
     }
+  }
+
+  fun onSql(dbName: String, sql: String) {
+    val commands: MutableList<QueryItem> = recentSql[dbName] ?: mutableListOf()
+
+    commands += QueryItem(System.currentTimeMillis(), sql)
+    if (commands.size > 100) {
+      commands.removeAt(0)
+    }
+
+    recentSql[dbName] = commands
   }
 
   private fun getIndex(dbName: String, db: SupportSQLiteDatabase): Response {
@@ -139,6 +159,26 @@ internal class SpinnerServer(
     )
   }
 
+  private fun getRecent(dbName: String, db: SupportSQLiteDatabase): Response {
+    val queries: List<RecentQuery>? = recentSql[dbName]
+      ?.map { it ->
+        RecentQuery(
+          formattedTime = dateFormat.format(Date(it.time)),
+          query = it.query
+        )
+      }
+
+    return renderTemplate(
+      "recent",
+      RecentPageModel(
+        deviceInfo = deviceInfo,
+        database = dbName,
+        databases = databases.keys.toList(),
+        recentSql = queries?.reversed()
+      )
+    )
+  }
+
   private fun postQuery(dbName: String, db: SupportSQLiteDatabase, session: IHTTPSession): Response {
     val action: String = session.parameters["action"]?.get(0).toString()
     val rawQuery: String = session.parameters["query"]?.get(0).toString()
@@ -171,6 +211,14 @@ internal class SpinnerServer(
     val template: Template = handlebars.compile(assetName)
     val output: String = template.apply(model)
     return newFixedLengthResponse(output)
+  }
+
+  private fun newFileResponse(assetPath: String, mimeType: String): Response {
+    return newChunkedResponse(
+      Response.Status.OK,
+      mimeType,
+      context.assets.open(assetPath)
+    )
   }
 
   private fun Cursor.toQueryResult(queryStartTime: Long = 0): QueryResult {
@@ -313,6 +361,13 @@ internal class SpinnerServer(
     val queryResult: QueryResult? = null
   )
 
+  data class RecentPageModel(
+    val deviceInfo: Spinner.DeviceInfo,
+    val database: String,
+    val databases: List<String>,
+    val recentSql: List<RecentQuery>?
+  )
+
   data class QueryResult(
     val columns: List<String>,
     val rows: List<List<String>>,
@@ -345,5 +400,15 @@ internal class SpinnerServer(
     val lastPage: Boolean = pageIndex == pageCount - 1,
     val startRow: Int,
     val endRow: Int
+  )
+
+  data class QueryItem(
+    val time: Long,
+    val query: String
+  )
+
+  data class RecentQuery(
+    val formattedTime: String,
+    val query: String
   )
 }

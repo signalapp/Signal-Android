@@ -226,34 +226,42 @@ public class SQLiteDatabase {
   }
 
   public Cursor query(boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+    DatabaseMonitor.onQuery(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
     return traceSql("query(9)", table, selection, false, () -> wrapped.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
   }
 
   public Cursor queryWithFactory(net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory cursorFactory, boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+    DatabaseMonitor.onQuery(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
     return traceSql("queryWithFactory()", table, selection, false, () -> wrapped.queryWithFactory(cursorFactory, distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
   }
 
   public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
+    DatabaseMonitor.onQuery(false, table, columns, selection, selectionArgs, groupBy, having, orderBy, null);
     return traceSql("query(7)", table, selection, false, () -> wrapped.query(table, columns, selection, selectionArgs, groupBy, having, orderBy));
   }
 
   public Cursor query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+    DatabaseMonitor.onQuery(false, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
     return traceSql("query(8)", table, selection, false, () -> wrapped.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
   }
 
   public Cursor rawQuery(String sql, String[] selectionArgs) {
+    DatabaseMonitor.onSql(sql, selectionArgs);
     return traceSql("rawQuery(2a)", sql, false, () -> wrapped.rawQuery(sql, selectionArgs));
   }
 
   public Cursor rawQuery(String sql, Object[] args) {
+    DatabaseMonitor.onSql(sql, args);
     return traceSql("rawQuery(2b)", sql, false,() -> wrapped.rawQuery(sql, args));
   }
 
   public Cursor rawQueryWithFactory(net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory cursorFactory, String sql, String[] selectionArgs, String editTable) {
+    DatabaseMonitor.onSql(sql, selectionArgs);
     return traceSql("rawQueryWithFactory()", sql, false, () -> wrapped.rawQueryWithFactory(cursorFactory, sql, selectionArgs, editTable));
   }
 
   public Cursor rawQuery(String sql, String[] selectionArgs, int initialRead, int maxRead) {
+    DatabaseMonitor.onSql(sql, selectionArgs);
     return traceSql("rawQuery(4)", sql, false, () -> rawQuery(sql, selectionArgs, initialRead, maxRead));
   }
 
@@ -278,10 +286,12 @@ public class SQLiteDatabase {
   }
 
   public int delete(String table, String whereClause, String[] whereArgs) {
+    DatabaseMonitor.onDelete(table, whereClause, whereArgs);
     return traceSql("delete()", table, whereClause, true, () -> wrapped.delete(table, whereClause, whereArgs));
   }
 
   public int update(String table, ContentValues values, String whereClause, String[] whereArgs) {
+    DatabaseMonitor.onUpdate(table, values, whereClause, whereArgs);
     return traceSql("update()", table, whereClause, true, () -> wrapped.update(table, values, whereClause, whereArgs));
   }
 
@@ -290,14 +300,17 @@ public class SQLiteDatabase {
   }
 
   public void execSQL(String sql) throws SQLException {
+    DatabaseMonitor.onSql(sql, null);
     traceSql("execSQL(1)", sql, true, () -> wrapped.execSQL(sql));
   }
 
   public void rawExecSQL(String sql) {
+    DatabaseMonitor.onSql(sql, null);
     traceSql("rawExecSQL()", sql, true, () -> wrapped.rawExecSQL(sql));
   }
 
   public void execSQL(String sql, Object[] bindArgs) throws SQLException {
+    DatabaseMonitor.onSql(sql, null);
     traceSql("execSQL(2)", sql, true, () -> wrapped.execSQL(sql, bindArgs));
   }
 

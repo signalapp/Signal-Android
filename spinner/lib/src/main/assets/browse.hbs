@@ -1,8 +1,8 @@
 <html>
-  {{> head title="Browse" }}
+  {{> partials/head title="Browse" }}
   <body>
 
-    {{> prefix isBrowse=true}}
+    {{> partials/prefix isBrowse=true}}
 
     <!-- Table Selector -->
     <form action="browse" method="post">
@@ -70,6 +70,6 @@
       <input type="submit" name="action" value="last" {{#if pagingData.lastPage}}disabled{{/if}} />
     </form>
 
-    {{> suffix}}
+    {{> partials/suffix}}
   </body>
 </html>
