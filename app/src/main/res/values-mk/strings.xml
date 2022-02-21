@@ -651,7 +651,7 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Барања за членство и покани</string>
   <string name="ManageGroupActivity_add_members">Додај членови</string>
-  <string name="ManageGroupActivity_edit_group_info">Уреди информации за група</string>
+  <string name="ManageGroupActivity_edit_group_info">Уреди информации за групата</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Кој може да додава нови членови?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Кој може да ги уредува информациите за групата?</string>
   <string name="ManageGroupActivity_group_link">Групен линк</string>
@@ -669,11 +669,11 @@
   <string name="ManageGroupActivity_view_all_members">Види ги сите членови</string>
   <string name="ManageGroupActivity_see_all">Види сѐ</string>
   <plurals name="ManageGroupActivity_added">
-    <item quantity="one">%d член е додаден.</item>
-    <item quantity="other">%d членови се додадени.</item>
+    <item quantity="one">Додаден е %d член.</item>
+    <item quantity="other">Додадени се %d членови.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Само администратори можат да го вклучат или исклучат групниот линк.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Само администратор можат да ја вклучат или исклучат опцијата за одобрување на нови членови.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Само администратори можат да ја вклучат или исклучат опцијата за одобрување на нови членови.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Само администратори можат да го ресетираат групниот линк.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Немате права да го правите ова</string>
   <string name="ManageGroupActivity_not_capable">Некој од луѓето што ги додадовте немаат поддршка за нови групи и треба да го ажурираат Signal.</string>
@@ -1308,7 +1308,7 @@
   <string name="WebRtcCallView__flip">Сврти</string>
   <string name="WebRtcCallView__speaker">Звучник</string>
   <string name="WebRtcCallView__camera">Камера</string>
-  <string name="WebRtcCallView__unmute">Вклучи известувања</string>
+  <string name="WebRtcCallView__unmute">Вклучи </string>
   <string name="WebRtcCallView__mute">Исклучи</string>
   <string name="WebRtcCallView__ring">Ѕвони</string>
   <string name="WebRtcCallView__end_call">Спушти</string>
@@ -1607,7 +1607,9 @@
   <string name="NotificationChannel_contact_joined_signal">Кога контакт ќе се приклучи на Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Нема достапна активност за отворање на поставките на каналот за известувања.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Врска во позадина</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Статус на повик</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брз одговор е недостапен кога Signal е заклучен</string>
@@ -3446,6 +3448,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Вашата претплата за поддршка е откажана бидејќи не можевме да го обработиме Вашето плаќање. Вашиот беџ повеќе не е видлив на Вашиот профил.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Можете да продолжите да го користите Signal, но за да ја поддржите апликацијата реактивирајте го беџот, обновете сега.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Обнови претплата</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Не може да се обработи плаќањето</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Наидовме на проблем со прибирање на Вашите средства за Signal поддржувач. Осигурајте се дека Вашиот начин на плаќање е ажуриран. Ако не е, ажурирајте го во Google Pay. Signal ќе се обиде повторно да го обработи плаќањето за неколку дена.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Не го прикажувај ова повторно</string>
   <string name="Subscription__please_contact_support_for_more_information">Ве молиме контактирајте со тимот за поддршка за повеќе информации.</string>
   <string name="Subscription__contact_support">Контакт за поддршка</string>
@@ -3637,6 +3641,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Не успеа да се отвори менито за избор.</string>
   <!--Description shown for the Signal Release Notes channel-->
-  <string name="ReleaseNotes__signal_release_notes_and_news">Белешки за изданието на Signal; Вести</string>
+  <string name="ReleaseNotes__signal_release_notes_and_news">Белешки за нова верзија на Signal и новости</string>
   <!--EOF-->
 </resources>

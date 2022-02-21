@@ -1803,8 +1803,8 @@
   <string name="EditAboutFragment_about">關於</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">共你星光中看着瀑布…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
-  <string name="EditAboutFragment_speak_freely">☝️息尚存</string>
-  <string name="EditAboutFragment_encrypted">清風不識字</string>
+  <string name="EditAboutFragment_speak_freely">其實我只想 棲身☝️抹暖光</string>
+  <string name="EditAboutFragment_encrypted">不說果 不說因</string>
   <string name="EditAboutFragment_be_kind">煩擾中抱著希望 抵消每滴失望</string>
   <string name="EditAboutFragment_coffee_lover">無盛世 無亂世 坐在咖啡店</string>
   <string name="EditAboutFragment_free_to_chat">即使要蒙著我嘴 我亦可高呼</string>
@@ -3392,9 +3392,9 @@
   <!--Stripe decline code insufficient funds-->
   <string name="DeclineCode__your_card_does_not_have_sufficient_funds">您的信用卡款項不足以完成此次購買。請換另一個付款方法試試看。</string>
   <!--Stripe decline code incorrect expiration month-->
-  <string name="DeclineCode__the_expiration_month">您的付款方法所指的到期月份不正確。請到 Google Pay 更新此資訊，然後再試一次。</string>
+  <string name="DeclineCode__the_expiration_month">您的付款方法所述的到期月份不正確。請到 Google Pay 更新此資訊，然後再試一次。</string>
   <!--Stripe decline code incorrect expiration year-->
-  <string name="DeclineCode__the_expiration_year">您的付款方法所指的到期年份不正確。請到 Google Pay 更新此資訊，然後再試一次。</string>
+  <string name="DeclineCode__the_expiration_year">您的付款方法所述的到期年份不正確。請到 Google Pay 更新此資訊，然後再試一次。</string>
   <!--Stripe decline code issuer not available-->
   <string name="DeclineCode__try_completing_the_payment_again">再試試完成付款，又或者聯絡您的銀行取得更多資訊。</string>
   <!--Stripe decline code processing error-->

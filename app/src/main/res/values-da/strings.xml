@@ -3406,8 +3406,8 @@ nummer (%s) er ugyldigt</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/måned · Udløber %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal er en non-profit uden annoncører eller investorer, som kun støttes af de mennesker, der bruger og værdsætter den. Giv et fast månedligt bidrag og få et profilemblem til at vise din støtte.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Hvorfor bidrage?</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal er dedikeret til udviklingen af open source-privatlivsteknologi, der beskytter ytringsfrihed og muliggør sikker global kommunikation.</string>
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Dit bidrag støtter denne sag og betaler for udviklingen og driften af en app, der bruges af millioner til privat kommunikation. Ingen reklamer. Ingen trackere. Ingen spøg.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal er dedikeret til udviklingen af open source-privatlivsteknologi, der beskytter ytringsfriheden og muliggør sikker global kommunikation.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Dit bidrag støtter denne sag og betaler for udviklingen og driften af en app, der bruges af millioner til privat kommunikation. Ingen reklamer. Ingen trackere. Helt seriøst.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tak for din støtte!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tak for boostet!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Du har gjort dig fortjent til et %s-emblem! Hjælp Signal med at skabe opmærksomhed ved at vise dette emblem på din profil.</string>

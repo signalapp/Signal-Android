@@ -1605,7 +1605,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="NotificationChannel_contact_joined_signal">El contacte s\'ha afegit al Signal.</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No hi ha activitat disponible per obrir la configuració del canal de notificacions.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Connexió en segon pla</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Estat de la trucada</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La resposta ràpida no és disponible si el Signal està blocat!</string>

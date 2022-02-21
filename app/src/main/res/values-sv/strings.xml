@@ -331,8 +331,8 @@
     <item quantity="other">Olästa</item>
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
-    <item quantity="one">Fäst</item>
-    <item quantity="other">Fäst</item>
+    <item quantity="one">Nåla</item>
+    <item quantity="other">Nåla</item>
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
     <item quantity="one">Lösgör</item>
@@ -1605,7 +1605,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="NotificationChannel_contact_joined_signal">Kontakt anslöt sig till Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Ingen aktivitet tillgänglig för att öppna inställningar för aviseringskanaler.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Bakgrundsanslutning</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Samtalsstatus</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är otillgängligt när Signal är låst!</string>
@@ -2372,7 +2374,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_insecure__invite">Bjud in</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Ta bort valda</string>
-  <string name="conversation_list_batch__menu_pin_selected">Fästade valda</string>
+  <string name="conversation_list_batch__menu_pin_selected">Nålad vald</string>
   <string name="conversation_list_batch__menu_unpin_selected">Lösgör valda</string>
   <string name="conversation_list_batch__menu_select_all">Markera alla</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiv valt</string>
@@ -2382,9 +2384,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Genvägsinställningar</string>
   <string name="conversation_list_search_description">Sök</string>
-  <string name="conversation_list__pinned">Fastnålade</string>
+  <string name="conversation_list__pinned">Nålade</string>
   <string name="conversation_list__chats">Chattar</string>
-  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bara fästa %1$d chattar</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bara nåla %1$d chattar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkiverad</string>
@@ -3439,10 +3441,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lägg till en Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Ditt upprätthållarabonnemang avslutades automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke är inte längre synligt på din profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Ditt upprätthållarabonnemang avbröts automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke är inte längre synligt på din profil.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Ditt upprätthållarabonnemang avbröts eftersom vi inte kunde behandla din betalning. Ditt märke är inte längre synligt på din profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya abonnemang</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Det går inte att behandla abonnemangsbetalningen</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Visa inte detta igen</string>
   <string name="Subscription__please_contact_support_for_more_information">Vänligen kontakta supporten för mer information.</string>
   <string name="Subscription__contact_support">Kontakta support</string>
@@ -3472,7 +3476,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Läs mer</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Kontrollera att din betalningsmetod är uppdaterad i Google Pay och försök igen. Kontakta din bank om problemet kvarstår.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Ditt kort stöder inte denna typ av köp. Pröva en annan betalningsmetod.</string>
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Gå till Google Pay</string>
