@@ -431,17 +431,17 @@ final class GroupManagerV2 {
           throw new AssertionError(e);
         }
       } else {
-        return ejectMember(self.getId());
+        return ejectMember(self.getId(), true);
       }
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull RecipientId recipientId)
+    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull RecipientId recipientId, boolean allowWhenBlocked)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       Recipient recipient = Recipient.resolved(recipientId);
 
-      return commitChangeWithConflictResolution(groupOperations.createRemoveMembersChange(Collections.singleton(recipient.requireServiceId().uuid())));
+      return commitChangeWithConflictResolution(groupOperations.createRemoveMembersChange(Collections.singleton(recipient.requireServiceId().uuid())), allowWhenBlocked);
     }
 
     @WorkerThread
@@ -555,11 +555,17 @@ final class GroupManagerV2 {
     private @NonNull GroupManager.GroupActionResult commitChangeWithConflictResolution(@NonNull GroupChange.Actions.Builder change)
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
+      return commitChangeWithConflictResolution(change, false);
+    }
+
+    private @NonNull GroupManager.GroupActionResult commitChangeWithConflictResolution(@NonNull GroupChange.Actions.Builder change, boolean allowWhenBlocked)
+        throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
+    {
       change.setSourceUuid(UuidUtil.toByteString(selfAci.uuid()));
 
       for (int attempt = 0; attempt < 5; attempt++) {
         try {
-          return commitChange(change);
+          return commitChange(change, allowWhenBlocked);
         } catch (GroupPatchNotAcceptedException e) {
           throw new GroupChangeFailedException(e);
         } catch (ConflictException e) {
@@ -611,7 +617,7 @@ final class GroupManagerV2 {
       }
     }
 
-    private GroupManager.GroupActionResult commitChange(@NonNull GroupChange.Actions.Builder change)
+    private GroupManager.GroupActionResult commitChange(@NonNull GroupChange.Actions.Builder change, boolean allowWhenBlocked)
         throws GroupNotAMemberException, GroupChangeFailedException, IOException, GroupInsufficientRightsException
     {
       final GroupDatabase.GroupRecord       groupRecord         = groupDatabase.requireGroup(groupId);
@@ -622,7 +628,7 @@ final class GroupManagerV2 {
       final DecryptedGroup                  decryptedGroupState;
       final DecryptedGroup                  previousGroupState;
 
-      if (Recipient.externalGroupExact(context, groupId).isBlocked()) {
+      if (!allowWhenBlocked && Recipient.externalGroupExact(context, groupId).isBlocked()) {
         throw new GroupChangeFailedException("Group is blocked.");
       }
 

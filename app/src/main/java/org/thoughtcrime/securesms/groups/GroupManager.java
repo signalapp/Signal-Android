@@ -161,7 +161,7 @@ public final class GroupManager {
       throws GroupChangeBusyException, GroupChangeFailedException, GroupInsufficientRightsException, GroupNotAMemberException, IOException
   {
     try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      edit.ejectMember(recipient.getId());
+      edit.ejectMember(recipient.getId(), false);
       Log.i(TAG, "Member removed from group " + groupId);
     }
   }
