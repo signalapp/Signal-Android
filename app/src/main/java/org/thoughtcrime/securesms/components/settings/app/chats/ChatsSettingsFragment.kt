@@ -88,6 +88,19 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_backupsPreferenceFragment)
         }
       )
+
+      dividerPref()
+
+      sectionHeaderPref(R.string.preferences_chats__group_control)
+
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences_chats__can_blocked_contacts_add_you_to_groups),
+        summary = DSLSettingsText.from(R.string.preferences_chats__can_blocked_contacts_add_you_to_groups_summary),
+        isChecked = state.blockedContactsCantAddYouToGroups,
+        onClick = {
+          viewModel.setBlockedCanAddYouToGroups(!state.blockedContactsCantAddYouToGroups)
+        }
+      )
     }
   }
 }

@@ -194,6 +194,8 @@ public class TextSecurePreferences {
 
   private static final String ARGON2_TESTED = "argon2_tested";
 
+  public static final String BLOCKED_CANT_ADD_YOU_TO_GROUPS = "pref_blocked_cant_add_you_to_groups";
+
   private static final String[] booleanPreferencesToBackup = {SCREEN_SECURITY_PREF,
                                                               INCOGNITO_KEYBORAD_PREF,
                                                               ALWAYS_RELAY_CALLS_PREF,
@@ -1154,5 +1156,13 @@ public class TextSecurePreferences {
   // NEVER rename these -- they're persisted by name
   public enum MediaKeyboardMode {
     EMOJI, STICKER, GIF
+  }
+
+  public static boolean blockedContactsCantAddYouToGroups(Context context) {
+    return getBooleanPreference(context, BLOCKED_CANT_ADD_YOU_TO_GROUPS, false);
+  }
+
+  public static void setBlockedContactsCantAddYouToGroups(Context context, boolean value) {
+    setBooleanPreference(context, BLOCKED_CANT_ADD_YOU_TO_GROUPS, value);
   }
 }
