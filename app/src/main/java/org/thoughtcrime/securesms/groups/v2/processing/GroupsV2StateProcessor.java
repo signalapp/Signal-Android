@@ -698,7 +698,7 @@ public final class GroupsV2StateProcessor {
         } catch (MmsException e) {
           Log.w(TAG, e);
         }
-      } else if (!Recipient.resolved(RecipientId.from(editor.get(), null)).isBlocked()) {
+      } else if (!TextSecurePreferences.blockedContactsCantAddYouToGroups(context) || !Recipient.resolved(RecipientId.from(editor.get(), null)).isBlocked()) {
         MessageDatabase                        smsDatabase  = SignalDatabase.sms();
         RecipientId                            sender       = RecipientId.from(editor.get(), null);
         IncomingTextMessage                    incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, timestamp, "", Optional.of(groupId), 0, false, null);
