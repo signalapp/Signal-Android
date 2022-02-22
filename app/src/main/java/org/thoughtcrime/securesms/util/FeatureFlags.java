@@ -88,11 +88,13 @@ public final class FeatureFlags {
   private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
-  private static final String HARDWARE_AEC_MODELS               = "android.calling.hardwareAecModels";
-  private static final String FORCE_DEFAULT_AEC                 = "android.calling.forceDefaultAec";
   private static final String STORIES                           = "android.stories";
   private static final String STORIES_TEXT_FUNCTIONS            = "android.stories.text.functions";
   private static final String STORIES_TEXT_POSTS                = "android.stories.text.posts";
+  private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
+  private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
+  private static final String USE_HARDWARE_AEC_IF_OLD           = "android.calling.useHardwareAecIfOlderThanApi29";
+  private static final String USE_AEC3                          = "android.calling.useAec3";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -133,11 +135,13 @@ public final class FeatureFlags {
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES,
       DONOR_BADGES_DISPLAY,
-      HARDWARE_AEC_MODELS,
-      FORCE_DEFAULT_AEC,
       STORIES,
       STORIES_TEXT_FUNCTIONS,
-      STORIES_TEXT_POSTS
+      STORIES_TEXT_POSTS,
+      HARDWARE_AEC_BLOCKLIST_MODELS,
+      SOFTWARE_AEC_BLOCKLIST_MODELS,
+      USE_HARDWARE_AEC_IF_OLD,
+      USE_AEC3
   );
 
   @VisibleForTesting
@@ -192,7 +196,10 @@ public final class FeatureFlags {
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES_DISPLAY,
       DONATE_MEGAPHONE,
-      FORCE_DEFAULT_AEC
+      HARDWARE_AEC_BLOCKLIST_MODELS,
+      SOFTWARE_AEC_BLOCKLIST_MODELS,
+      USE_HARDWARE_AEC_IF_OLD,
+      USE_AEC3
   );
 
   /**
@@ -454,14 +461,24 @@ public final class FeatureFlags {
     return Environment.IS_STAGING && getBoolean(CDSH, false);
   }
 
-  /** A comma-separated list of models that should use hardware AEC for calling. */
-  public static @NonNull String hardwareAecModels() {
-    return getString(HARDWARE_AEC_MODELS, "");
+  /** A comma-separated list of models that should *not* use hardware AEC for calling. */
+  public static @NonNull String hardwareAecBlocklistModels() {
+    return getString(HARDWARE_AEC_BLOCKLIST_MODELS, "");
   }
 
-  /** Whether or not all devices should be forced into using default AEC for calling. */
-  public static boolean forceDefaultAec() {
-    return getBoolean(FORCE_DEFAULT_AEC, false);
+  /** A comma-separated list of models that should *not* use software AEC for calling. */
+  public static @NonNull String softwareAecBlocklistModels() {
+    return getString(SOFTWARE_AEC_BLOCKLIST_MODELS, "");
+  }
+
+  /** Whether or not hardware AEC should be used for calling on devices older than API 29. */
+  public static boolean useHardwareAecIfOlderThanApi29() {
+    return getBoolean(USE_HARDWARE_AEC_IF_OLD, false);
+  }
+
+  /** Whether or not {@link org.signal.ringrtc.CallManager.AudioProcessingMethod#ForceSoftwareAec3} can be used */
+  public static boolean useAec3() {
+    return getBoolean(USE_AEC3, true);
   }
 
   /** Only for rendering debug info. */
