@@ -3532,6 +3532,7 @@
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">എല്ലാം കാണുക</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">ഒരു സമയക്രമം ചേര്‍ക്കുക</string>
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">സമയപ്പട്ടിക</string>
@@ -3540,12 +3541,19 @@
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">അവസാനം</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">ഞാ</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">തി</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">ചൊ</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">ബു</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">വ്യാ</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">വെ</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">ശ</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
   <string name="EditNotificationProfileSchedule__set_start_time">ആരംഭ സമയം സജ്ജമാക്കുക</string>
   <!--Title of select time dialog shown when setting end time for schedule-->

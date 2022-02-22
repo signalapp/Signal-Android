@@ -1089,6 +1089,7 @@
   <string name="MessageRecord_s_changed_their_phone_number">%1$s alterou o número de telefone.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal é mantido por pessoas como você. Torne-se um apoiador hoje.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s começou uma chamada em grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada em grupo · %2$s</string>
@@ -1245,6 +1246,7 @@
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Mostre o seu carinho ao tornar-se um apoiador recorrente do Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toque para ligar seu vídeo</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Para ligar para %1$s, Signal precisa ter acesso à sua câmera</string>
@@ -1300,7 +1302,7 @@
   <string name="WebRtcCallView__flip">Inverter</string>
   <string name="WebRtcCallView__speaker">Alto-falante</string>
   <string name="WebRtcCallView__camera">Câmera</string>
-  <string name="WebRtcCallView__unmute">Reativar notificações</string>
+  <string name="WebRtcCallView__unmute">Ativar microfone</string>
   <string name="WebRtcCallView__mute">Silenciar</string>
   <string name="WebRtcCallView__ring">Ligar</string>
   <string name="WebRtcCallView__end_call">Encerrar</string>
@@ -1604,7 +1606,9 @@
   <string name="NotificationChannel_contact_joined_signal">O contato entrou no Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nenhuma atividade está disponível para ser ajustada nas configurações das categorias de notificações.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Conexão de dados em segundo plano</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Situação da chamada</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está trancado!</string>
@@ -3440,8 +3444,10 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Sua doação como Apoiador mensal foi cancelada automaticamente porque você ficou sem usar o Signal por muito tempo. Seu selo %1$s não é mais visualizado por outras pessoas no seu perfil.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Sua doação como Apoiador mensal foi cancelada porque não foi possível efetuar o seu pagamento. Seu selo não é mais visualizado por outras pessoas no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Você ainda pode usar o Signal, mas para apoiar o aplicativo e ter esse selo novamente, faça uma doação mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Fazer doação mensal</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Não mostrar novamente esta mensagem</string>
   <string name="Subscription__please_contact_support_for_more_information">Entre em contato com o suporte para obter mais informações, por favor.</string>
   <string name="Subscription__contact_support">Entre em contato com o suporte</string>
   <string name="Subscription__earn_a_s_badge">Ganhe um selo %1$s</string>
@@ -3464,6 +3470,7 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua conexão e tente novamente.</string>
   <string name="NetworkFailure__retry">Tentar novamente</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Tente outra forma de pagamento ou entre em contato com seu banco para obter informações sobre o erro.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Saiba mais</string>
@@ -3619,5 +3626,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Falha ao abrir o selecionador de toques.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Notas de lançamento e notícias do Signal</string>
   <!--EOF-->
 </resources>
