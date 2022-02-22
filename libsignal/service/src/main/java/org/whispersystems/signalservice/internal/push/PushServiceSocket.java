@@ -527,15 +527,6 @@ public class PushServiceSocket {
     }
   }
 
-  public Future<SendMessageResponse> submitMessage(OutgoingPushMessageList bundle, Optional<UnidentifiedAccess> unidentifiedAccess) {
-    ListenableFuture<String> response = submitServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
-
-    return FutureTransformers.map(response, body -> {
-      return body == null ? new SendMessageResponse(false, unidentifiedAccess.isPresent())
-          : JsonUtil.fromJson(body, SendMessageResponse.class);
-    });
-  }
-
   public SignalServiceMessagesResult getMessages() throws IOException {
     try (Response response = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", (RequestBody) null, NO_HEADERS, NO_HANDLER, Optional.absent())) {
       validateServiceResponse(response);
