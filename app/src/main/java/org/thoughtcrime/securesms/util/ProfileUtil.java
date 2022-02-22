@@ -191,6 +191,7 @@ public final class ProfileUtil {
    * successfully before persisting the change to disk.
    */
   public static void uploadProfileWithBadges(@NonNull Context context, @NonNull List<Badge> badges) throws IOException {
+    Log.d(TAG, "uploadProfileWithBadges()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
       uploadProfile(context,
                     Recipient.self().getProfileName(),
@@ -208,6 +209,7 @@ public final class ProfileUtil {
    * successfully before persisting the change to disk.
    */
   public static void uploadProfileWithName(@NonNull Context context, @NonNull ProfileName profileName) throws IOException {
+    Log.d(TAG, "uploadProfileWithName()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
       uploadProfile(context,
                     profileName,
@@ -225,6 +227,7 @@ public final class ProfileUtil {
    * successfully before persisting the change to disk.
    */
   public static void uploadProfileWithAbout(@NonNull Context context, @NonNull String about, @NonNull String emoji) throws IOException {
+    Log.d(TAG, "uploadProfileWithAbout()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
       uploadProfile(context,
                     Recipient.self().getProfileName(),
@@ -240,6 +243,7 @@ public final class ProfileUtil {
    * Uploads the profile based on all state that's already written to disk.
    */
   public static void uploadProfile(@NonNull Context context) throws IOException {
+    Log.d(TAG, "uploadProfile()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
       uploadProfileWithAvatar(context, avatar);
     }
@@ -251,13 +255,14 @@ public final class ProfileUtil {
    * successfully before persisting the change to disk.
    */
   public static void uploadProfileWithAvatar(@NonNull Context context, @Nullable StreamDetails avatar) throws IOException {
-      uploadProfile(context,
-                    Recipient.self().getProfileName(),
-                    Optional.fromNullable(Recipient.self().getAbout()).or(""),
-                    Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
-                    getSelfPaymentsAddressProtobuf(),
-                    avatar,
-                    Recipient.self().getBadges());
+    Log.d(TAG, "uploadProfileWithAvatar()");
+    uploadProfile(context,
+                  Recipient.self().getProfileName(),
+                  Optional.fromNullable(Recipient.self().getAbout()).or(""),
+                  Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                  getSelfPaymentsAddressProtobuf(),
+                  avatar,
+                  Recipient.self().getBadges());
   }
 
   private static void uploadProfile(@NonNull Context context,
@@ -275,6 +280,7 @@ public final class ProfileUtil {
                                   .map(Badge::getId)
                                   .collect(Collectors.toList());
 
+    Log.d(TAG, "Uploading " + (!profileName.isEmpty() ? "non-" : "") + "empty profile name.");
     Log.d(TAG, "Uploading " + (!Util.isEmpty(about) ? "non-" : "") + "empty about.");
     Log.d(TAG, "Uploading " + (!Util.isEmpty(aboutEmoji) ? "non-" : "") + "empty emoji.");
     Log.d(TAG, "Uploading " + (paymentsAddress != null ? "non-" : "") + "empty payments address.");

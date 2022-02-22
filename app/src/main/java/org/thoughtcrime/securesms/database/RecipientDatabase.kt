@@ -940,6 +940,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     if (remoteKey != localKey) {
+      Log.w(TAG, "Profile key changed during storage sync! Scheduling jobs to refresh things.")
       ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
     }
 
