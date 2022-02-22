@@ -6,11 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.VisibleForTesting;
 import androidx.documentfile.provider.DocumentFile;
 
 import org.signal.core.util.logging.Log;
@@ -166,14 +166,22 @@ public class BackupUtil {
     return backups;
   }
 
-  public static @Nullable BackupInfo getBackupInfoFromSingleUri(@NonNull Context context, @NonNull Uri singleUri) {
-    DocumentFile documentFile = DocumentFile.fromSingleUri(context, singleUri);
+  public static @Nullable BackupInfo getBackupInfoFromSingleUri(@NonNull Context context, @NonNull Uri singleUri) throws BackupFileException {
+    DocumentFile documentFile = Objects.requireNonNull(DocumentFile.fromSingleUri(context, singleUri));
 
-    if (isBackupFileReadable(documentFile)) {
+    return getBackupInfoFromSingleDocumentFile(documentFile);
+  }
+
+  @VisibleForTesting
+  static @Nullable BackupInfo getBackupInfoFromSingleDocumentFile(@NonNull DocumentFile documentFile) throws BackupFileException {
+    BackupFileState backupFileState = getBackupFileState(documentFile);
+
+    if (backupFileState.isSuccess()) {
       long backupTimestamp = getBackupTimestamp(Objects.requireNonNull(documentFile.getName()));
       return new BackupInfo(backupTimestamp, documentFile.length(), documentFile.getUri());
     } else {
       Log.w(TAG, "Could not load backup info.");
+      backupFileState.throwIfError();
       return null;
     }
   }
@@ -258,21 +266,58 @@ public class BackupUtil {
     return -1;
   }
 
-  private static boolean isBackupFileReadable(@Nullable DocumentFile documentFile) {
-    if (documentFile == null) {
-      throw new AssertionError("We do not support platforms prior to KitKat.");
-    } else if (!documentFile.exists()) {
-      Log.w(TAG, "isBackupFileReadable: The document at the specified Uri cannot be found.");
-      return false;
+  private static BackupFileState getBackupFileState(@NonNull DocumentFile documentFile) {
+    if (!documentFile.exists()) {
+      return BackupFileState.NOT_FOUND;
     } else if (!documentFile.canRead()) {
-      Log.w(TAG, "isBackupFileReadable: The document at the specified Uri cannot be read.");
-      return false;
-    } else if (TextUtils.isEmpty(documentFile.getName()) || !documentFile.getName().endsWith(".backup")) {
-      Log.w(TAG, "isBackupFileReadable: The document at the specified Uri has an unsupported file extension.");
-      return false;
+      return BackupFileState.NOT_READABLE;
+    } else if (Util.isEmpty(documentFile.getName()) || !documentFile.getName().endsWith(".backup")) {
+      return BackupFileState.UNSUPPORTED_FILE_EXTENSION;
     } else {
-      Log.i(TAG, "isBackupFileReadable: The document at the specified Uri looks like a readable backup");
-      return true;
+      return BackupFileState.READABLE;
+    }
+  }
+
+  /**
+   * Describes the validity of a backup file.
+   */
+  public enum BackupFileState {
+    READABLE("The document at the specified Uri looks like a readable backup."),
+    NOT_FOUND("The document at the specified Uri cannot be found."),
+    NOT_READABLE("The document at the specified Uri cannot be read."),
+    UNSUPPORTED_FILE_EXTENSION("The document at the specified Uri has an unsupported file extension.");
+
+    private final String message;
+
+    BackupFileState(String message) {
+      this.message = message;
+    }
+
+    public boolean isSuccess() {
+      return this == READABLE;
+    }
+
+    public void throwIfError() throws BackupFileException {
+      if (!isSuccess()) {
+        throw new BackupFileException(this);
+      }
+    }
+  }
+
+  /**
+   * Wrapping exception for a non-successful BackupFileState.
+   */
+  public static class BackupFileException extends Exception {
+
+    private final BackupFileState state;
+
+    BackupFileException(BackupFileState backupFileState) {
+      super(backupFileState.message);
+      this.state = backupFileState;
+    }
+
+    public @NonNull BackupFileState getState() {
+      return state;
     }
   }
 

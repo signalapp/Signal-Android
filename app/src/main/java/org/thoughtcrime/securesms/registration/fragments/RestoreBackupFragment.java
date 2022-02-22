@@ -26,6 +26,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -37,6 +38,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppInitialization;
 import org.thoughtcrime.securesms.LoggingFragment;
@@ -216,8 +218,34 @@ public final class RestoreBackupFragment extends LoggingFragment {
                          @NonNull Uri backupUri,
                          @NonNull OnBackupSearchResultListener listener)
   {
-    SimpleTask.run(() -> BackupUtil.getBackupInfoFromSingleUri(context, backupUri),
+    SimpleTask.run(() -> {
+                     try {
+                       return BackupUtil.getBackupInfoFromSingleUri(context, backupUri);
+                     } catch (BackupUtil.BackupFileException e) {
+                       Log.w(TAG, "Could not restore backup.", e);
+                       postToastForBackupRestorationFailure(context, e);
+                       return null;
+                     }
+                   },
                    listener::run);
+  }
+
+  private static void postToastForBackupRestorationFailure(@NonNull Context context, @NonNull BackupUtil.BackupFileException exception) {
+    final @StringRes int errorResId;
+    switch (exception.getState()) {
+      case READABLE:
+        throw new AssertionError("Unexpected error state.");
+      case NOT_FOUND:
+        errorResId = R.string.RestoreBackupFragment__backup_not_found;
+        break;
+      case UNSUPPORTED_FILE_EXTENSION:
+        errorResId = R.string.RestoreBackupFragment__backup_has_a_bad_extension;
+        break;
+      default:
+        errorResId = R.string.RestoreBackupFragment__backup_could_not_be_read;
+    }
+
+    ThreadUtil.postToMain(() -> Toast.makeText(context, errorResId, Toast.LENGTH_LONG).show());
   }
 
   private void handleRestore(@NonNull Context context, @NonNull BackupUtil.BackupInfo backup) {

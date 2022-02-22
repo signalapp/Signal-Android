@@ -471,6 +471,12 @@
     <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">To continue using backups, please choose a folder. New backups will be saved to this location.</string>
     <string name="RestoreBackupFragment__choose_folder">Choose folder</string>
     <string name="RestoreBackupFragment__not_now">Not now</string>
+    <!-- Couldn't find the selected backup -->
+    <string name="RestoreBackupFragment__backup_not_found">Backup not found.</string>
+    <!-- Couldn't read the selected backup -->
+    <string name="RestoreBackupFragment__backup_could_not_be_read">Backup could not be read.</string>
+    <!-- Backup has an unsupported file extension -->
+    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Backup has a bad extension.</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Chat backups</string>
