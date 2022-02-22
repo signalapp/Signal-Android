@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.signal.cds";
+option java_outer_classname = "Cds";
+
+package org.signal.cds;
+
+message ClientRequest {
+  // Each ACI/UAK pair is a 32-byte buffer, containing the 16-byte ACI followed
+  // by its 16-byte UAK.
+  bytes aci_uak_pairs = 1;
+
+  // Each E164 is an 8-byte big-endian number, as 8 bytes.
+  bytes prev_e164s = 2;
+  bytes new_e164s = 3;
+  bytes discard_e164s = 4;
+
+  // If true, the client has more pairs or e164s to send.  If false or unset,
+  // this is the client's last request, and processing should commence.
+  bool has_more = 5;
+
+  // If set, a token which allows rate limiting to discount the e164s in
+  // the request's prev_e164s, only counting new_e164s.  If not set, then
+  // rate limiting considers both prev_e164s' and new_e164s' size.
+  bytes token = 6;
+}
+
+message ClientResponse {
+  // Each triple is an 8-byte e164, a 16-byte PNI, and a 16-byte ACI.
+  // If the e164 was not found, PNI and ACI are all zeros.  If the PNI
+  // was found but the ACI was not, the PNI will be non-zero and the ACI
+  // will be all zeros.  ACI will be returned if one of the returned
+  // PNIs has an ACI/UAK pair that matches.
+  //
+  // Should the request be successful (IE: a successful status returned),
+  // |e164_pni_aci_triple| will always equal |e164| of the request,
+  // so the entire marshalled size of the response will be (2+32)*|e164|,
+  // where the additional 2 bytes are the id/type/length additions of the
+  // protobuf marshaling added to each byte array.  This avoids any data
+  // leakage based on the size of the encrypted output.
+  bytes e164_pni_aci_triples = 1;
+
+  // If the user has run out of quota for lookups, they will receive
+  // a response with just the following field set, followed by a websocket
+  // closure of type 4008 (RESOURCE_EXHAUSTED).  Should they retry exactly
+  // the same request after the provided number of seconds has passed,
+  // we expect it should work.
+  int32 retry_after_secs = 2;
+
+  // A token which allows subsequent calls' rate limiting to discount the
+  // e164s sent up in this request, only counting those in the next
+  // request's new_e164s.
+  bytes token = 3;
+}
