@@ -1970,6 +1970,12 @@ public class ConversationParentFragment extends Fragment
     final SettableFuture<Boolean> future  = new SettableFuture<>();
     final Context                 context = requireContext().getApplicationContext();
 
+    if (SignalStore.account().getAci() == null || SignalStore.account().getPni() == null) {
+      Log.w(TAG, "Not registered! Skipping initializeIdentityRecords()");
+      future.set(false);
+      return future;
+    }
+
     new AsyncTask<Recipient, Void, Pair<IdentityRecordList, String>>() {
       @Override
       protected @NonNull Pair<IdentityRecordList, String> doInBackground(Recipient... params) {
