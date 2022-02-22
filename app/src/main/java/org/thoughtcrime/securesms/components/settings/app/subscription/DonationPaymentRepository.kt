@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
@@ -95,7 +96,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(DonationError.boostAmountTooSmall())
           is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(DonationError.boostAmountTooLarge())
           is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(DonationError.invalidCurrencyForBoost())
-          is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(paymentData, result.paymentIntent)
+          is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(price, paymentData, result.paymentIntent)
         }
       }
   }
@@ -139,14 +140,15 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       }
   }
 
-  private fun confirmPayment(paymentData: PaymentData, paymentIntent: StripeApi.PaymentIntent): Completable {
+  private fun confirmPayment(price: FiatMoney, paymentData: PaymentData, paymentIntent: StripeApi.PaymentIntent): Completable {
     Log.d(TAG, "Confirming payment intent...", true)
     val confirmPayment = stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), paymentIntent).onErrorResumeNext {
       Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.BOOST, it))
     }
 
     val waitOnRedemption = Completable.create {
-      Log.d(TAG, "Confirmed payment intent.", true)
+      Log.d(TAG, "Confirmed payment intent. Recording boost receipt and submitting badge reimbursement job chain.", true)
+      SignalDatabase.donationReceipts.addReceipt(DonationReceiptRecord.createForBoost(price))
 
       val countDownLatch = CountDownLatch(1)
       var finalJobState: JobTracker.JobState? = null

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="1916px"
+    android:layout_height="wrap_content"
+    android:background="@color/core_white"
+    tools:ignore="PxUsage">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="400px"
+        android:layout_height="121.6px"
+        android:layout_marginTop="96px"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_signal_logo_type_light" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/core_grey_60"
+        android:textSize="52px"
+        app:layout_constraintBottom_toBottomOf="@id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/logo"
+        tools:text="Tues, Dec 02, 2021" />
+
+    <View
+        android:id="@+id/divider_1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="48px"
+        android:background="@color/core_grey_15"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148px"
+        android:text="@string/DonationReceiptDetailsFragment__donation_receipt"
+        android:textSize="80px"
+        android:textColor="@color/core_grey_90"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_1" />
+
+    <TextView
+        android:id="@+id/amount_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96px"
+        android:text="@string/DonationReceiptDetailsFragment__amount"
+        android:textSize="68px"
+        android:textColor="@color/core_grey_90"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96px"
+        android:textSize="68px"
+        android:textColor="@color/core_grey_90"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        tools:text="$10.00" />
+
+    <View
+        android:id="@+id/divider_2"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="80px"
+        android:background="@color/core_grey_90"
+        app:layout_constraintTop_toBottomOf="@id/amount" />
+
+    <TextView
+        android:id="@+id/donation_type_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88px"
+        android:text="@string/DonationReceiptDetailsFragment__donation_type"
+        android:textSize="68px"
+        android:textColor="@color/core_grey_90"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_2" />
+
+    <TextView
+        android:id="@+id/donation_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/core_grey_45"
+        android:textSize="52px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/donation_type_label"
+        tools:text="Sustainer 2 - Recurring" />
+
+    <View
+        android:id="@+id/divider_3"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="40px"
+        android:background="@color/core_grey_20"
+        app:layout_constraintTop_toBottomOf="@id/donation_type" />
+
+    <TextView
+        android:id="@+id/date_paid_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:text="@string/DonationReceiptDetailsFragment__date_paid"
+        android:textSize="68px"
+        android:textColor="@color/core_grey_90"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_3" />
+
+    <TextView
+        android:id="@+id/date_paid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/core_grey_45"
+        android:textSize="52px"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date_paid_label"
+        tools:text="Nov 10, 2021" />
+
+    <TextView
+        android:id="@+id/thanks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88px"
+        android:text="@string/DonationReceiptDetailsFragment__thank_you_for_supporting"
+        android:textColor="@color/core_grey_60"
+        android:textSize="48px"
+        app:layout_constraintTop_toBottomOf="@id/date_paid" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

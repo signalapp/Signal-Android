@@ -15,6 +15,8 @@ import org.signal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.signal.zkgroup.receipts.ReceiptSerial;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.DonationReceiptRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -168,7 +170,9 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         throw new IOException("Could not validate receipt credential");
       }
 
-      Log.d(TAG, "Validated credential. Handing off to redemption job.", true);
+      Log.d(TAG, "Validated credential. Recording receipt and handing off to redemption job.", true);
+      SignalDatabase.donationReceipts().addReceipt(DonationReceiptRecord.createForSubscription(subscription));
+
       ReceiptCredentialPresentation receiptCredentialPresentation = getReceiptCredentialPresentation(receiptCredential);
       setOutputData(new Data.Builder().putBlobAsString(DonationReceiptRedemptionJob.INPUT_RECEIPT_CREDENTIAL_PRESENTATION,
                                                        receiptCredentialPresentation.serialize())

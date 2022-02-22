@@ -48,9 +48,6 @@ import java.io.ByteArrayInputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
-import java.lang.AssertionError
-import java.util.ArrayList
-import java.util.HashSet
 import java.util.LinkedList
 import java.util.Locale
 
@@ -190,8 +187,9 @@ object SignalDatabaseMigrations {
   private const val MESSAGE_RANGES = 128
   private const val REACTION_TRIGGER_FIX = 129
   private const val PNI_STORES = 130
+  private const val DONATION_RECEIPTS = 131
 
-  const val DATABASE_VERSION = 130
+  const val DATABASE_VERSION = 131
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2396,6 +2394,25 @@ object SignalDatabaseMigrations {
 
       db.execSQL("DROP TABLE sessions")
       db.execSQL("ALTER TABLE sessions_tmp RENAME TO sessions")
+    }
+
+    if (oldVersion < DONATION_RECEIPTS) {
+      db.execSQL(
+        // language=sql
+        """
+          CREATE TABLE donation_receipt (
+            _id INTEGER PRIMARY KEY AUTOINCREMENT,
+            receipt_type TEXT NOT NULL,
+            receipt_date INTEGER NOT NULL,
+            amount TEXT NOT NULL,
+            currency TEXT NOT NULL,
+            subscription_level INTEGER NOT NULL
+          )
+        """.trimIndent()
+      )
+
+      db.execSQL("CREATE INDEX IF NOT EXISTS donation_receipt_type_index ON donation_receipt (receipt_type);")
+      db.execSQL("CREATE INDEX IF NOT EXISTS donation_receipt_date_index ON donation_receipt (receipt_date);")
     }
   }
 

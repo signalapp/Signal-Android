@@ -65,6 +65,12 @@
         <item name="android:textColor">@color/core_white</item>
     </style>
 
+    <style name="Signal.Text.Giant" parent="@style/TextAppearance.AppCompat.Display1">
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">@color/signal_text_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="TextAppearance.Signal.Title1" parent="@style/TextAppearance.AppCompat.Title">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>

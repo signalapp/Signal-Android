@@ -147,6 +147,14 @@ class ManageDonationsFragment : DSLSettingsFragment() {
         icon = DSLSettingsIcon.from(R.drawable.ic_help_24),
         linkId = R.string.donate_url
       )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.ManageDonationsFragment__tax_receipts),
+        icon = DSLSettingsIcon.from(R.drawable.ic_receipt_24),
+        onClick = {
+          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonationReceiptListFragment())
+        }
+      )
     }
   }
 

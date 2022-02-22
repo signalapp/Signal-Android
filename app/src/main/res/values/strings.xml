@@ -4079,6 +4079,8 @@
 
     <string name="ManageDonationsFragment__my_support">My support</string>
     <string name="ManageDonationsFragment__manage_subscription">Manage subscription</string>
+    <!-- Label for Tax Receipts button -->
+    <string name="ManageDonationsFragment__tax_receipts">Tax Receipts</string>
     <string name="ManageDonationsFragment__badges">Badges</string>
     <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
@@ -4323,6 +4325,36 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal Release Notes &amp; News</string>
+
+    <!-- Donation receipts activity title -->
+    <string name="DonationReceiptListFragment__all_activity">All activity</string>
+    <!-- Donation receipts all tab label -->
+    <string name="DonationReceiptListFragment__all">All</string>
+    <!-- Donation receipts recurring tab label -->
+    <string name="DonationReceiptListFragment__recurring">Recurring</string>
+    <!-- Donation receipts one time tab label -->
+    <string name="DonationReceiptListFragment__one_time">One time</string>
+    <!-- Donation receipts boost row label -->
+    <string name="DonationReceiptListFragment__boost">Boost</string>
+    <!-- Donation receipts details title -->
+    <string name="DonationReceiptDetailsFragment__details">Details</string>
+    <!-- Donation receipts donation type heading -->
+    <string name="DonationReceiptDetailsFragment__donation_type">Donation type</string>
+    <!-- Donation receipts date paid heading -->
+    <string name="DonationReceiptDetailsFragment__date_paid">Date paid</string>
+    <!-- Donation receipts share PNG -->
+    <string name="DonationReceiptDetailsFragment__share_receipt">Share receipt</string>
+    <!-- Donation receipts list end note -->
+    <string name="DonationReceiptListFragment__if_you_have">If you have reinstalled Signal, receipts from previous donations will not be available.</string>
+    <!-- Donation receipts document title -->
+    <string name="DonationReceiptDetailsFragment__donation_receipt">Donation receipt</string>
+    <!-- Donation receipts amount title -->
+    <string name="DonationReceiptDetailsFragment__amount">Amount</string>
+    <!-- Donation receipts thanks -->
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Thank you for supporting Signal. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax–exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82–4506840.</string>
+    <!-- Donation receipt type -->
+    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+
 
     <!-- EOF -->
 
