@@ -19,9 +19,16 @@ class DeleteAccountProgressDialog private constructor(private val alertDialog: A
   val message: TextView = alertDialog.findViewById(R.id.delete_account_progress_dialog_message)!!
   val progressBar: ProgressBar = alertDialog.findViewById(R.id.delete_account_progress_dialog_spinner)!!
 
+  fun presentCancelingSubscription() {
+    title.setText(R.string.DeleteAccountFragment__deleting_account)
+    message.setText(R.string.DeleteAccountFragment__canceling_your_subscription)
+    progressBar.isIndeterminate = true
+  }
+
   fun presentLeavingGroups(leaveGroupsProgress: DeleteAccountEvent.LeaveGroupsProgress) {
     title.setText(R.string.DeleteAccountFragment__leaving_groups)
     message.setText(R.string.DeleteAccountFragment__depending_on_the_number_of_groups)
+    progressBar.isIndeterminate = false
     progressBar.max = leaveGroupsProgress.totalCount
     progressBar.progress = leaveGroupsProgress.leaveCount
   }

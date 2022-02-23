@@ -17,6 +17,8 @@ sealed class DeleteAccountEvent(val type: Type) {
 
   object PinDeletionFailed : DeleteAccountEvent(Type.PIN_DELETION_FAILED)
 
+  object CancelSubscriptionFailed : DeleteAccountEvent(Type.CANCEL_SUBSCRIPTION_FAILED)
+
   object LeaveGroupsFailed : DeleteAccountEvent(Type.LEAVE_GROUPS_FAILED)
 
   object ServerDeletionFailed : DeleteAccountEvent(Type.SERVER_DELETION_FAILED)
@@ -24,6 +26,8 @@ sealed class DeleteAccountEvent(val type: Type) {
   object LocalDataDeletionFailed : DeleteAccountEvent(Type.LOCAL_DATA_DELETION_FAILED)
 
   object LeaveGroupsFinished : DeleteAccountEvent(Type.LEAVE_GROUPS_FINISHED)
+
+  object CancelingSubscription : DeleteAccountEvent(Type.CANCELING_SUBSCRIPTION)
 
   /**
    * Progress update for leaving groups
@@ -43,6 +47,8 @@ sealed class DeleteAccountEvent(val type: Type) {
     CONFIRM_DELETION,
     LEAVE_GROUPS_FAILED,
     PIN_DELETION_FAILED,
+    CANCELING_SUBSCRIPTION,
+    CANCEL_SUBSCRIPTION_FAILED,
     SERVER_DELETION_FAILED,
     LOCAL_DATA_DELETION_FAILED,
     LEAVE_GROUPS_PROGRESS,

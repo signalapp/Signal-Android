@@ -246,6 +246,7 @@ public class DeleteAccountFragment extends Fragment {
       case LEAVE_GROUPS_FAILED:
       case PIN_DELETION_FAILED:
       case SERVER_DELETION_FAILED:
+      case CANCEL_SUBSCRIPTION_FAILED:
         dismissDeletionProgressDialog();
         showNetworkDeletionFailedDialog();
         break;
@@ -260,6 +261,9 @@ public class DeleteAccountFragment extends Fragment {
       case LEAVE_GROUPS_FINISHED:
         ensureDeletionProgressDialog();
         deletionProgressDialog.presentDeletingAccount();
+      case CANCELING_SUBSCRIPTION:
+        ensureDeletionProgressDialog();
+        deletionProgressDialog.presentCancelingSubscription();
         break;
       default:
         throw new IllegalStateException("Unknown error type: " + deleteAccountEvent);
