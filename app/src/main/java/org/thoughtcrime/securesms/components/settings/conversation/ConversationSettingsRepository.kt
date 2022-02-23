@@ -65,7 +65,11 @@ class ConversationSettingsRepository(
 
   fun getIdentity(recipientId: RecipientId, consumer: (IdentityRecord?) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      consumer(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orNull())
+      if (SignalStore.account().aci != null && SignalStore.account().pni != null) {
+        consumer(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orNull())
+      } else {
+        consumer(null)
+      }
     }
   }
 
