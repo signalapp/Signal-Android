@@ -849,7 +849,7 @@ public class SmsDatabase extends MessageDatabase {
       }
 
       GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.getBody());
-      boolean                containsSelf           = peekJoinedUuids.contains(Recipient.self().requireServiceId().uuid());
+      boolean                containsSelf           = peekJoinedUuids.contains(SignalStore.account().requireAci().uuid());
 
       sameEraId = groupCallUpdateDetails.getEraId().equals(peekGroupCallEraId) && !Util.isEmpty(peekGroupCallEraId);
 

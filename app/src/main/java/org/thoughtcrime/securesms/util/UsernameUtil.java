@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.util;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -14,7 +13,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
@@ -70,7 +68,7 @@ public class UsernameUtil {
     try {
       Log.d(TAG, "No local user with this username. Searching remotely.");
       SignalServiceProfile profile = ApplicationDependencies.getSignalServiceMessageReceiver().retrieveProfileByUsername(username, Optional.absent(), Locale.getDefault());
-      return Optional.fromNullable(profile.getAci());
+      return Optional.fromNullable(profile.getServiceId());
     } catch (IOException e) {
       return Optional.absent();
     }

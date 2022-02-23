@@ -43,6 +43,7 @@ import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
@@ -52,9 +53,9 @@ class GroupsV2StateProcessorTest {
   companion object {
     val masterKey = GroupMasterKey(fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"))
     val selfAci: ACI = ACI.from(UUID.randomUUID())
-    val otherAci: ACI = ACI.from(UUID.randomUUID())
-    val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherAci))
-    val others: List<DecryptedMember> = listOf(member(otherAci))
+    val otherSid: ServiceId = ServiceId.from(UUID.randomUUID())
+    val selfAndOthers: List<DecryptedMember> = listOf(member(selfAci), member(otherSid))
+    val others: List<DecryptedMember> = listOf(member(otherSid))
   }
 
   private lateinit var groupDatabase: GroupDatabase
@@ -248,7 +249,7 @@ class GroupsV2StateProcessorTest {
         revision = 2,
         title = "Breaking Signal for Science",
         description = "We break stuff, because we must.",
-        members = listOf(member(otherAci), member(selfAci, joinedAt = 2))
+        members = listOf(member(otherSid), member(selfAci, joinedAt = 2))
       )
       changeSet {
         changeLog(2) {
@@ -270,7 +271,7 @@ class GroupsV2StateProcessorTest {
         revision = 3,
         title = "Breaking Signal for Science",
         description = "We break stuff, because we must.",
-        members = listOf(member(otherAci), member(selfAci, joinedAt = 2))
+        members = listOf(member(otherSid), member(selfAci, joinedAt = 2))
       )
       changeSet {
         changeLog(2) {
@@ -327,7 +328,7 @@ class GroupsV2StateProcessorTest {
       serverState(
         revision = 3,
         title = "Beam me up",
-        members = listOf(member(otherAci), member(selfAci, joinedAt = 3))
+        members = listOf(member(otherSid), member(selfAci, joinedAt = 3))
       )
       changeSet {
         changeLog(3) {
@@ -357,7 +358,7 @@ class GroupsV2StateProcessorTest {
       serverState(
         revision = 5,
         title = "Beam me up!",
-        members = listOf(member(otherAci), member(selfAci, joinedAt = 3))
+        members = listOf(member(otherSid), member(selfAci, joinedAt = 3))
       )
       changeSet {
         changeLog(3) {

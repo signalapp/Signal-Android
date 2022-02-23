@@ -77,7 +77,7 @@ public final class MessageDecryptionUtil {
    */
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
     SignalServiceAccountDataStore protocolStore = ApplicationDependencies.getProtocolStore().aci();
-    SignalServiceAddress          localAddress  = new SignalServiceAddress(Recipient.self().requireServiceId(), Recipient.self().requireE164());
+    SignalServiceAddress          localAddress  = new SignalServiceAddress(SignalStore.account().requireAci(), Recipient.self().requireE164());
     SignalServiceCipher           cipher        = new SignalServiceCipher(localAddress, SignalStore.account().getDeviceId(), protocolStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
     List<Job>                     jobs          = new LinkedList<>();
 

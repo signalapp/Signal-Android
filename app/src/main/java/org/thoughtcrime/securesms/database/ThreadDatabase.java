@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
@@ -1470,7 +1471,7 @@ public class ThreadDatabase extends Database {
         if (threadRecipient.isPushV2Group()) {
           MessageRecord.InviteAddState inviteAddState = record.getGv2AddInviteState();
           if (inviteAddState != null) {
-            RecipientId from = RecipientId.from(ACI.from(inviteAddState.getAddedOrInvitedBy()), null);
+            RecipientId from = RecipientId.from(ServiceId.from(inviteAddState.getAddedOrInvitedBy()), null);
             if (inviteAddState.isInvited()) {
               Log.i(TAG, "GV2 invite message request from " + from);
               return Extra.forGroupV2invite(from, individualRecipientId);

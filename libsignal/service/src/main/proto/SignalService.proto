@@ -144,7 +144,7 @@ message DataMessage {
     }
 
     optional uint64           id          = 1;
-    optional string           authorE164  = 2;
+    reserved                /*authorE164*/  2;
     optional string           authorUuid  = 5;
     optional string           text        = 3;
     repeated QuotedAttachment attachments = 4;
@@ -237,7 +237,7 @@ message DataMessage {
   message Reaction {
     optional string emoji               = 1;
     optional bool   remove              = 2;
-    reserved     /* targetAuthorE164 */   3; // removed
+    reserved      /*targetAuthorE164*/    3;
     optional string targetAuthorUuid    = 4;
     optional uint64 targetSentTimestamp = 5;
   }
@@ -363,7 +363,7 @@ message Verified {
     UNVERIFIED = 2;
   }
 
-  optional string destinationE164 = 1;
+  reserved      /*destinationE164*/ 1;
   optional string destinationUuid = 5;
   optional bytes  identityKey     = 2;
   optional State  state           = 3;
@@ -373,12 +373,12 @@ message Verified {
 message SyncMessage {
   message Sent {
     message UnidentifiedDeliveryStatus {
-      optional string destinationE164 = 1;
+      reserved      /*destinationE164*/ 1;
       optional string destinationUuid = 3;
       optional bool   unidentified    = 2;
     }
 
-    optional string                     destinationE164          = 1;
+    reserved                          /*destinationE164*/          1;
     optional string                     destinationUuid          = 7;
     optional uint64                     timestamp                = 2;
     optional DataMessage                message                  = 3;
@@ -417,22 +417,22 @@ message SyncMessage {
   }
 
   message Read {
-    optional string senderE164 = 1;
+    reserved      /*senderE164*/ 1;
     optional string senderUuid = 3;
     optional uint64 timestamp  = 2;
   }
 
   message Viewed {
-    optional string senderE164 = 1;
+    reserved      /*senderE164*/ 1;
     optional string senderUuid = 3;
-    optional uint64 timestamp = 2;
+    optional uint64 timestamp  = 2;
   }
 
   message Configuration {
     optional bool   readReceipts                   = 1;
     optional bool   unidentifiedDeliveryIndicators = 2;
     optional bool   typingIndicators               = 3;
-    reserved     /* linkPreviews */                  4; // removed
+    reserved     /* linkPreviews */                  4;
     optional uint32 provisioningVersion            = 5;
     optional bool   linkPreviews                   = 6;
   }
@@ -449,7 +449,7 @@ message SyncMessage {
   }
 
   message ViewOnceOpen {
-    optional string senderE164 = 1;
+    reserved      /*senderE164*/ 1;
     optional string senderUuid = 3;
     optional uint64 timestamp  = 2;
   }
@@ -483,7 +483,7 @@ message SyncMessage {
       BLOCK_AND_DELETE = 4;
     }
 
-    optional string threadE164 = 1;
+    reserved      /*threadE164*/ 1;
     optional string threadUuid = 2;
     optional bytes  groupId    = 3;
     optional Type   type       = 4;

@@ -12,8 +12,6 @@ import java.util.UUID;
  */
 public final class ACI extends ServiceId {
 
-  public static final ACI UNKNOWN = ACI.from(UuidUtil.UNKNOWN_UUID);
-
   public static ACI from(UUID uuid) {
     return new ACI(uuid);
   }

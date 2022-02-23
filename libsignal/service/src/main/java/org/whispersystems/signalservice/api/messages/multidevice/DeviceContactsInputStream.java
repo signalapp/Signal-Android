@@ -14,7 +14,7 @@ import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -45,7 +45,7 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       throw new IOException("Missing contact address!");
     }
 
-    SignalServiceAddress                    address       = new SignalServiceAddress(ACI.parseOrThrow(details.getUuid()), details.getNumber());
+    SignalServiceAddress                    address       = new SignalServiceAddress(ServiceId.parseOrThrow(details.getUuid()), details.getNumber());
     Optional<String>                        name          = Optional.fromNullable(details.getName());
     Optional<SignalServiceAttachmentStream> avatar        = Optional.absent();
     Optional<String>                        color         = details.hasColor() ? Optional.of(details.getColor()) : Optional.<String>absent();
@@ -66,12 +66,11 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
 
     if (details.hasVerified()) {
       try {
-        if (!SignalServiceAddress.isValidAddress(details.getVerified().getDestinationUuid(), details.getVerified().getDestinationE164())) {
+        if (!SignalServiceAddress.isValidAddress(details.getVerified().getDestinationUuid(), null)) {
           throw new InvalidMessageException("Missing Verified address!");
         }
         IdentityKey          identityKey = new IdentityKey(details.getVerified().getIdentityKey().toByteArray(), 0);
-        SignalServiceAddress destination = new SignalServiceAddress(ACI.parseOrThrow(details.getVerified().getDestinationUuid()),
-                                                                    details.getVerified().getDestinationE164());
+        SignalServiceAddress destination = new SignalServiceAddress(ServiceId.parseOrThrow(details.getVerified().getDestinationUuid()));
 
         VerifiedMessage.VerifiedState state;
 

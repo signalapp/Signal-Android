@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.qr.QrCode;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -213,7 +214,7 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
     if (FeatureFlags.verifyV2() && resolved.getServiceId().isPresent()) {
       Log.i(TAG, "Using UUID (version 2).");
       version  = 2;
-      localId  = Recipient.self().requireServiceId().toByteArray();
+      localId  = SignalStore.account().requireAci().toByteArray();
       remoteId = resolved.requireServiceId().toByteArray();
     } else if (!FeatureFlags.verifyV2() && resolved.getE164().isPresent()) {
       Log.i(TAG, "Using E164 (version 1).");

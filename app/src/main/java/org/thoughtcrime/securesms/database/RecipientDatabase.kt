@@ -1814,7 +1814,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     db.beginTransaction()
     try {
       val id = Recipient.self().id
-      val newId = getAndPossiblyMerge(Recipient.self().requireServiceId(), e164, highTrust = true, changeSelf = true)
+      val newId = getAndPossiblyMerge(SignalStore.account().requireAci(), e164, highTrust = true, changeSelf = true)
 
       if (id == newId) {
         Log.i(TAG, "[updateSelfPhone] Phone updated for self")
@@ -2847,7 +2847,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     return RecipientRecord(
       id = recipientId,
-      serviceId = ACI.parseOrNull(cursor.requireString(SERVICE_ID)),
+      serviceId = ServiceId.parseOrNull(cursor.requireString(SERVICE_ID)),
       pni = PNI.parseOrNull(cursor.requireString(PNI_COLUMN)),
       username = cursor.requireString(USERNAME),
       e164 = cursor.requireString(PHONE),

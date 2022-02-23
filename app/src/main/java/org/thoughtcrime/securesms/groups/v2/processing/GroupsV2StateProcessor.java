@@ -53,6 +53,7 @@ import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
 import org.whispersystems.signalservice.api.groupsv2.PartialDecryptedGroup;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
@@ -579,7 +580,7 @@ public final class GroupsV2StateProcessor {
                                                     .filter(c -> c != null && c.getRevision() == revisionJoinedAt)
                                                     .findFirst()
                                                     .map(c -> Optional.fromNullable(UuidUtil.fromByteStringOrNull(c.getEditor()))
-                                                                      .transform(a -> Recipient.externalPush(ACI.fromByteStringOrNull(c.getEditor()), null, false)))
+                                                                      .transform(a -> Recipient.externalPush(ServiceId.fromByteStringOrNull(c.getEditor()), null, false)))
                                                     .orElse(Optional.absent());
 
         if (addedByOptional.isPresent()) {
@@ -650,7 +651,7 @@ public final class GroupsV2StateProcessor {
     }
 
     void storeMessage(@NonNull DecryptedGroupV2Context decryptedGroupV2Context, long timestamp) {
-      Optional<ACI> editor = getEditor(decryptedGroupV2Context).transform(ACI::from);
+      Optional<ServiceId> editor = getEditor(decryptedGroupV2Context).transform(ServiceId::from);
 
       boolean outgoing = !editor.isPresent() || selfAci.equals(editor.get());
 

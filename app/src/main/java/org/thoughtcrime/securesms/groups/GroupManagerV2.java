@@ -62,6 +62,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -1193,7 +1194,7 @@ final class GroupManagerV2 {
 
   private static @NonNull List<RecipientId> getPendingMemberRecipientIds(@NonNull List<DecryptedPendingMember> newPendingMembersList) {
     return Stream.of(DecryptedGroupUtil.pendingToUuidList(newPendingMembersList))
-                 .map(uuid -> RecipientId.from(ACI.from(uuid), null))
+                 .map(uuid -> RecipientId.from(ServiceId.from(uuid), null))
                  .toList();
   }
 

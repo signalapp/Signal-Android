@@ -17,8 +17,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
-import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.DistributionId
+import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
 
 fun DecryptedGroupChange.Builder.setNewDescription(description: String) {
@@ -190,20 +190,20 @@ fun decryptedGroup(
   return builder.build()
 }
 
-fun member(aci: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
-  return member(ACI.from(aci), role, joinedAt)
+fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
+  return member(ServiceId.from(serviceId), role, joinedAt)
 }
 
-fun member(aci: ACI, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
+fun member(serviceId: ServiceId, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
   return DecryptedMember.newBuilder()
     .setRole(role)
-    .setUuid(aci.toByteString())
+    .setUuid(serviceId.toByteString())
     .setJoinedAtRevision(joinedAt)
     .build()
 }
 
-fun requestingMember(aci: ACI): DecryptedRequestingMember {
+fun requestingMember(serviceId: ServiceId): DecryptedRequestingMember {
   return DecryptedRequestingMember.newBuilder()
-    .setUuid(aci.toByteString())
+    .setUuid(serviceId.toByteString())
     .build()
 }

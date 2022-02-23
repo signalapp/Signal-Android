@@ -72,10 +72,6 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
                                                                                          .setDestinationUuid(contact.getVerified().get().getDestination().getServiceId().toString())
                                                                                          .setState(state);
 
-      if (contact.getVerified().get().getDestination().getNumber().isPresent()) {
-        verifiedBuilder.setDestinationE164(contact.getVerified().get().getDestination().getNumber().get());
-      }
-
       contactDetails.setVerified(verifiedBuilder.build());
     }
 

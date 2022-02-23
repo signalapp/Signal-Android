@@ -352,11 +352,11 @@ public final class ConversationUpdateItem extends FrameLayout
       });
     } else if (conversationMessage.getMessageRecord().isGroupCall()) {
       UpdateDescription     updateDescription = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody(), true);
-      Collection<ServiceId> acis              = updateDescription.getMentioned();
+      Collection<ServiceId> sids              = updateDescription.getMentioned();
 
       int text = 0;
-      if (Util.hasItems(acis)) {
-        if (acis.contains(Recipient.self().requireServiceId())) {
+      if (Util.hasItems(sids)) {
+        if (sids.contains(SignalStore.account().requireAci())) {
           text = R.string.ConversationUpdateItem_return_to_call;
         } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).getIsCallFull()) {
           text = R.string.ConversationUpdateItem_call_is_full;

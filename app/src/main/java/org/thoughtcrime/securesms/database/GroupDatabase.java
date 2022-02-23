@@ -887,7 +887,7 @@ private static final String[] GROUP_PROJECTION = {
       if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
         Log.w(TAG, "Seen unknown UUID in members list");
       } else {
-        RecipientId           id       = RecipientId.from(ACI.from(uuid), null);
+        RecipientId           id       = RecipientId.from(ServiceId.from(uuid), null);
         Optional<RecipientId> remapped = RemappedRecords.getInstance().getRecipient(id);
 
         if (remapped.isPresent()) {
@@ -1319,7 +1319,7 @@ private static final String[] GROUP_PROJECTION = {
     public List<RecipientId> getMemberRecipientIds(@NonNull MemberSet memberSet) {
       boolean           includeSelf    = memberSet.includeSelf;
       DecryptedGroup    groupV2        = getDecryptedGroup();
-      UUID              selfUuid       = Recipient.self().requireServiceId().uuid();
+      UUID              selfUuid       = SignalStore.account().requireAci().uuid();
       List<RecipientId> recipients     = new ArrayList<>(groupV2.getMembersCount() + groupV2.getPendingMembersCount());
       int               unknownMembers = 0;
       int               unknownPending = 0;
@@ -1328,7 +1328,7 @@ private static final String[] GROUP_PROJECTION = {
         if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
           unknownMembers++;
         } else if (includeSelf || !selfUuid.equals(uuid)) {
-          recipients.add(RecipientId.from(ACI.from(uuid), null));
+          recipients.add(RecipientId.from(ServiceId.from(uuid), null));
         }
       }
       if (memberSet.includePending) {
@@ -1336,7 +1336,7 @@ private static final String[] GROUP_PROJECTION = {
           if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
             unknownPending++;
           } else if (includeSelf || !selfUuid.equals(uuid)) {
-            recipients.add(RecipientId.from(ACI.from(uuid), null));
+            recipients.add(RecipientId.from(ServiceId.from(uuid), null));
           }
         }
       }

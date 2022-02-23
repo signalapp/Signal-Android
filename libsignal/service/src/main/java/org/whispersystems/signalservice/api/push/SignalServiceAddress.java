@@ -66,13 +66,17 @@ public class SignalServiceAddress {
     return this.serviceId.equals(other.serviceId);
   }
 
+  public static boolean isValidAddress(String rawUuid) {
+    return isValidAddress(rawUuid, null);
+  }
+
   public static boolean isValidAddress(String rawUuid, String e164) {
     return UuidUtil.parseOrNull(rawUuid) != null;
   }
 
   public static Optional<SignalServiceAddress> fromRaw(String rawUuid, String e164) {
     if (isValidAddress(rawUuid, e164)) {
-      return Optional.of(new SignalServiceAddress(ACI.parseOrThrow(rawUuid), e164));
+      return Optional.of(new SignalServiceAddress(ServiceId.parseOrThrow(rawUuid), e164));
     } else {
       return Optional.absent();
     }

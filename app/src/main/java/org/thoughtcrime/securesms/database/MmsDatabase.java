@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -1564,7 +1565,7 @@ public class MmsDatabase extends MessageDatabase {
         MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
         members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
                              .distinct()
-                             .map(uuid -> RecipientId.from(ACI.from(uuid), null))
+                             .map(uuid -> RecipientId.from(ServiceId.from(uuid), null))
                              .toList());
         members.remove(Recipient.self().getId());
       } else {

@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -121,7 +121,7 @@ public final class MentionUtil {
         return Stream.of(BodyRangeList.parseFrom(data).getRangesList())
                      .filter(bodyRange -> bodyRange.getAssociatedValueCase() == BodyRangeList.BodyRange.AssociatedValueCase.MENTIONUUID)
                      .map(mention -> {
-                       RecipientId id = Recipient.externalPush(ACI.parseOrThrow(mention.getMentionUuid()), null, false).getId();
+                       RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.getMentionUuid()), null, false).getId();
                        return new Mention(id, mention.getStart(), mention.getLength());
                      })
                      .toList();

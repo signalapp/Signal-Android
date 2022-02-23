@@ -12,6 +12,7 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -123,8 +124,8 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     webRtcInteractor.sendGroupCallMessage(currentState.getCallInfoState().getCallRecipient(), eraId);
 
     List<UUID> members = new ArrayList<>(peekInfo.getJoinedMembers());
-    if (!members.contains(Recipient.self().requireServiceId().uuid())) {
-      members.add(Recipient.self().requireServiceId().uuid());
+    if (!members.contains(SignalStore.account().requireAci().uuid())) {
+      members.add(SignalStore.account().requireAci().uuid());
     }
     webRtcInteractor.updateGroupCallUpdateMessage(currentState.getCallInfoState().getCallRecipient().getId(), eraId, members, WebRtcUtil.isCallFull(peekInfo));
 

@@ -6,7 +6,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
@@ -315,7 +315,7 @@ public final class SignalAccountRecord implements SignalRecord {
 
     static PinnedConversation fromRemote(AccountRecord.PinnedConversation remote) {
       if (remote.hasContact()) {
-        return forContact(new SignalServiceAddress(ACI.parseOrThrow(remote.getContact().getUuid()), remote.getContact().getE164()));
+        return forContact(new SignalServiceAddress(ServiceId.parseOrThrow(remote.getContact().getUuid()), remote.getContact().getE164()));
       } else if (!remote.getLegacyGroupId().isEmpty()) {
         return forGroupV1(remote.getLegacyGroupId().toByteArray());
       } else if (!remote.getGroupMasterKey().isEmpty()) {

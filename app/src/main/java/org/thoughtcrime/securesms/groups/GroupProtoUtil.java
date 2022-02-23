@@ -86,7 +86,7 @@ public final class GroupProtoUtil {
 
   @WorkerThread
   public static Recipient uuidByteStringToRecipient(@NonNull Context context, @NonNull ByteString uuidByteString) {
-    ServiceId serviceId = ACI.fromByteString(uuidByteString);
+    ServiceId serviceId = ServiceId.fromByteString(uuidByteString);
 
     if (serviceId.isUnknown()) {
       return Recipient.UNKNOWN;
@@ -97,7 +97,7 @@ public final class GroupProtoUtil {
 
   @WorkerThread
   public static @NonNull RecipientId uuidByteStringToRecipientId(@NonNull ByteString uuidByteString) {
-    ServiceId serviceId = ACI.fromByteString(uuidByteString);
+    ServiceId serviceId = ServiceId.fromByteString(uuidByteString);
 
     if (serviceId.isUnknown()) {
       return RecipientId.UNKNOWN;

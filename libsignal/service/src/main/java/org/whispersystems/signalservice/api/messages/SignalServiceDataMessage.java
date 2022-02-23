@@ -10,7 +10,6 @@ import org.signal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
@@ -611,18 +610,18 @@ public class SignalServiceDataMessage {
   }
 
   public static class Mention {
-    private final ServiceId aci;
+    private final ServiceId serviceId;
     private final int       start;
     private final int       length;
 
-    public Mention(ServiceId aci, int start, int length) {
-      this.aci    = aci;
-      this.start  = start;
-      this.length = length;
+    public Mention(ServiceId serviceId, int start, int length) {
+      this.serviceId = serviceId;
+      this.start     = start;
+      this.length    = length;
     }
 
-    public ServiceId getAci() {
-      return aci;
+    public ServiceId getServiceId() {
+      return serviceId;
     }
 
     public int getStart() {
@@ -678,16 +677,16 @@ public class SignalServiceDataMessage {
   }
 
   public static class StoryContext {
-    private final ACI  authorAci;
-    private final long sentTimestamp;
+    private final ServiceId authorServiceId;
+    private final long      sentTimestamp;
 
-    public StoryContext(ACI authorAci, long sentTimestamp) {
-      this.authorAci     = authorAci;
-      this.sentTimestamp = sentTimestamp;
+    public StoryContext(ServiceId authorServiceId, long sentTimestamp) {
+      this.authorServiceId = authorServiceId;
+      this.sentTimestamp   = sentTimestamp;
     }
 
-    public ACI getAuthorAci() {
-      return authorAci;
+    public ServiceId getAuthorServiceId() {
+      return authorServiceId;
     }
 
     public long getSentTimestamp() {

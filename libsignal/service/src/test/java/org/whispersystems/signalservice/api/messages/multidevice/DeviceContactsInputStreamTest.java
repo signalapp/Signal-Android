@@ -7,7 +7,7 @@ import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECKeyPair;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class DeviceContactsInputStreamTest {
 
@@ -25,8 +24,8 @@ public class DeviceContactsInputStreamTest {
   public void read() throws IOException, InvalidInputException {
     ByteArrayOutputStream      byteArrayOut  = new ByteArrayOutputStream();
     DeviceContactsOutputStream output        = new DeviceContactsOutputStream(byteArrayOut);
-    SignalServiceAddress       addressFirst  = new SignalServiceAddress(ACI.from(UUID.randomUUID()), "+1404555555");
-    SignalServiceAddress       addressSecond = new SignalServiceAddress(ACI.from(UUID.randomUUID()), "+1444555555");
+    SignalServiceAddress       addressFirst  = new SignalServiceAddress(ServiceId.from(UUID.randomUUID()), "+1404555555");
+    SignalServiceAddress       addressSecond = new SignalServiceAddress(ServiceId.from(UUID.randomUUID()), "+1444555555");
 
     DeviceContact first = new DeviceContact(
         addressFirst,

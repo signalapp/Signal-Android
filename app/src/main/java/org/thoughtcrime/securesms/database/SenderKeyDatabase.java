@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.push.DistributionId;
@@ -133,7 +134,7 @@ public class SenderKeyDatabase extends Database {
   public Cursor getAllCreatedBySelf() {
     SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
     String         query = ADDRESS + " = ?";
-    String[]       args  = SqlUtil.buildArgs(Recipient.self().requireServiceId());
+    String[]       args  = SqlUtil.buildArgs(SignalStore.account().requireAci());
 
     return db.query(TABLE_NAME, new String[]{ ID, DISTRIBUTION_ID, CREATED_AT }, query, args, null, null, CREATED_AT + " DESC");
   }
