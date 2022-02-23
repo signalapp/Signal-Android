@@ -1,8 +1,7 @@
 package org.signal.spinner
 
-import android.content.Context
+import android.app.Application
 import android.database.Cursor
-import android.util.Base64
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.github.jknack.handlebars.Handlebars
 import com.github.jknack.handlebars.Template
@@ -10,7 +9,7 @@ import com.github.jknack.handlebars.helper.ConditionalHelpers
 import fi.iki.elonen.NanoHTTPD
 import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.logging.Log
-import org.signal.spinner.MessageUtil.isMessageType
+import org.signal.spinner.Spinner.DatabaseConfig
 import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -26,16 +25,16 @@ import kotlin.math.min
  * to [renderTemplate].
  */
 internal class SpinnerServer(
-  private val context: Context,
+  private val application: Application,
   private val deviceInfo: Spinner.DeviceInfo,
-  private val databases: Map<String, SupportSQLiteDatabase>
+  private val databases: Map<String, DatabaseConfig>
 ) : NanoHTTPD(5000) {
 
   companion object {
     private val TAG = Log.tag(SpinnerServer::class.java)
   }
 
-  private val handlebars: Handlebars = Handlebars(AssetTemplateLoader(context)).apply {
+  private val handlebars: Handlebars = Handlebars(AssetTemplateLoader(application)).apply {
     registerHelper("eq", ConditionalHelpers.eq)
     registerHelper("neq", ConditionalHelpers.neq)
   }
@@ -50,18 +49,18 @@ internal class SpinnerServer(
     }
 
     val dbParam: String = session.queryParam("db") ?: session.parameters["db"]?.toString() ?: databases.keys.first()
-    val db: SupportSQLiteDatabase = databases[dbParam] ?: return internalError(IllegalArgumentException("Invalid db param!"))
+    val dbConfig: DatabaseConfig = databases[dbParam] ?: return internalError(IllegalArgumentException("Invalid db param!"))
 
     try {
       return when {
         session.method == Method.GET && session.uri == "/css/main.css" -> newFileResponse("css/main.css", "text/css")
         session.method == Method.GET && session.uri == "/js/main.js" -> newFileResponse("js/main.js", "text/javascript")
-        session.method == Method.GET && session.uri == "/" -> getIndex(dbParam, db)
-        session.method == Method.GET && session.uri == "/browse" -> getBrowse(dbParam, db)
-        session.method == Method.POST && session.uri == "/browse" -> postBrowse(dbParam, db, session)
-        session.method == Method.GET && session.uri == "/query" -> getQuery(dbParam, db)
-        session.method == Method.POST && session.uri == "/query" -> postQuery(dbParam, db, session)
-        session.method == Method.GET && session.uri == "/recent" -> getRecent(dbParam, db)
+        session.method == Method.GET && session.uri == "/" -> getIndex(dbParam, dbConfig.db)
+        session.method == Method.GET && session.uri == "/browse" -> getBrowse(dbParam, dbConfig.db)
+        session.method == Method.POST && session.uri == "/browse" -> postBrowse(dbParam, dbConfig, session)
+        session.method == Method.GET && session.uri == "/query" -> getQuery(dbParam, dbConfig.db)
+        session.method == Method.POST && session.uri == "/query" -> postQuery(dbParam, dbConfig, session)
+        session.method == Method.GET && session.uri == "/recent" -> getRecent(dbParam, dbConfig.db)
         else -> newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_HTML, "Not found")
       }
     } catch (t: Throwable) {
@@ -108,13 +107,13 @@ internal class SpinnerServer(
     )
   }
 
-  private fun postBrowse(dbName: String, db: SupportSQLiteDatabase, session: IHTTPSession): Response {
+  private fun postBrowse(dbName: String, dbConfig: DatabaseConfig, session: IHTTPSession): Response {
     val table: String = session.parameters["table"]?.get(0).toString()
     val pageSize: Int = session.parameters["pageSize"]?.get(0)?.toInt() ?: 1000
     var pageIndex: Int = session.parameters["pageIndex"]?.get(0)?.toInt() ?: 0
     val action: String? = session.parameters["action"]?.get(0)
 
-    val rowCount = db.getTableRowCount(table)
+    val rowCount = dbConfig.db.getTableRowCount(table)
     val pageCount = ceil(rowCount.toFloat() / pageSize.toFloat()).toInt()
 
     when (action) {
@@ -125,7 +124,7 @@ internal class SpinnerServer(
     }
 
     val query = "select * from $table limit $pageSize offset ${pageSize * pageIndex}"
-    val queryResult = db.query(query).toQueryResult()
+    val queryResult = dbConfig.db.query(query).toQueryResult(columnTransformers = dbConfig.columnTransformers)
 
     return renderTemplate(
       "browse",
@@ -133,7 +132,7 @@ internal class SpinnerServer(
         deviceInfo = deviceInfo,
         database = dbName,
         databases = databases.keys.toList(),
-        tableNames = db.getTableNames(),
+        tableNames = dbConfig.db.getTableNames(),
         table = table,
         queryResult = queryResult,
         pagingData = PagingData(
@@ -180,7 +179,7 @@ internal class SpinnerServer(
     )
   }
 
-  private fun postQuery(dbName: String, db: SupportSQLiteDatabase, session: IHTTPSession): Response {
+  private fun postQuery(dbName: String, dbConfig: DatabaseConfig, session: IHTTPSession): Response {
     val action: String = session.parameters["action"]?.get(0).toString()
     val rawQuery: String = session.parameters["query"]?.get(0).toString()
     val query = if (action == "analyze") "EXPLAIN QUERY PLAN $rawQuery" else rawQuery
@@ -193,7 +192,7 @@ internal class SpinnerServer(
         database = dbName,
         databases = databases.keys.toList(),
         query = rawQuery,
-        queryResult = db.query(query).toQueryResult(startTime)
+        queryResult = dbConfig.db.query(query).toQueryResult(queryStartTime = startTime, columnTransformers = dbConfig.columnTransformers)
       )
     )
   }
@@ -218,20 +217,26 @@ internal class SpinnerServer(
     return newChunkedResponse(
       Response.Status.OK,
       mimeType,
-      context.assets.open(assetPath)
+      application.assets.open(assetPath)
     )
   }
 
-  private fun Cursor.toQueryResult(queryStartTime: Long = 0): QueryResult {
+  private fun Cursor.toQueryResult(queryStartTime: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList()): QueryResult {
     val numColumns = this.columnCount
-
     val columns = mutableListOf<String>()
+    val transformers = mutableListOf<ColumnTransformer>()
+
     for (i in 0 until numColumns) {
       val columnName = getColumnName(i)
-      columns += columnName
-      if (columnName.isMessageType()) {
-        columns += "meta_type"
+      val customTransformer: ColumnTransformer? = columnTransformers.find { it.matches(null, columnName) }
+
+      columns += if (customTransformer != null) {
+        "$columnName *"
+      } else {
+        columnName
       }
+
+      transformers += customTransformer ?: DefaultColumnTransformer
     }
 
     var timeOfFirstRow = 0L
@@ -243,16 +248,10 @@ internal class SpinnerServer(
 
       val row = mutableListOf<String>()
       for (i in 0 until numColumns) {
-        val data: String? = when (getType(i)) {
-          Cursor.FIELD_TYPE_BLOB -> Base64.encodeToString(getBlob(i), 0)
-          else -> getString(i)
-        }
-        row += data ?: "null"
-
-        if (getColumnName(i).isMessageType()) {
-          row += MessageUtil.describeMessageType(getLong(i))
-        }
+        val columnName: String = getColumnName(i)
+        row += transformers[i].transform(null, columnName, this)
       }
+
       rows += row
     }
 

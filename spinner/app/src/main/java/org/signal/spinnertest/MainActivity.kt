@@ -18,13 +18,13 @@ class MainActivity : AppCompatActivity() {
 //    insertMockData(db.writableDatabase)
 
     Spinner.init(
-      this,
+      application,
       Spinner.DeviceInfo(
         name = "${Build.MODEL} (API ${Build.VERSION.SDK_INT})",
         packageName = packageName,
         appVersion = "0.1"
       ),
-      mapOf("main" to db)
+      mapOf("main" to Spinner.DatabaseConfig(db = db))
     )
   }
 

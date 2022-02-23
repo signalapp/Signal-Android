@@ -1,7 +1,7 @@
 package org.signal.spinner
 
+import android.app.Application
 import android.content.ContentValues
-import android.content.Context
 import android.database.sqlite.SQLiteQueryBuilder
 import androidx.sqlite.db.SupportSQLiteDatabase
 import org.signal.core.util.logging.Log
@@ -15,9 +15,9 @@ object Spinner {
 
   private lateinit var server: SpinnerServer
 
-  fun init(context: Context, deviceInfo: DeviceInfo, databases: Map<String, SupportSQLiteDatabase>) {
+  fun init(application: Application, deviceInfo: DeviceInfo, databases: Map<String, DatabaseConfig>) {
     try {
-      server = SpinnerServer(context, deviceInfo, databases)
+      server = SpinnerServer(application, deviceInfo, databases)
       server.start()
     } catch (e: IOException) {
       Log.w(TAG, "Spinner server hit IO exception!", e)
@@ -91,5 +91,10 @@ object Spinner {
     val name: String,
     val packageName: String,
     val appVersion: String
+  )
+
+  data class DatabaseConfig(
+    val db: SupportSQLiteDatabase,
+    val columnTransformers: List<ColumnTransformer> = emptyList()
   )
 }
