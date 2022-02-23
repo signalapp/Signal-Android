@@ -10,6 +10,7 @@ import com.github.jknack.handlebars.helper.ConditionalHelpers
 import fi.iki.elonen.NanoHTTPD
 import org.signal.core.util.ExceptionUtil
 import org.signal.core.util.logging.Log
+import org.signal.spinner.MessageUtil.isMessageType
 import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -226,7 +227,11 @@ internal class SpinnerServer(
 
     val columns = mutableListOf<String>()
     for (i in 0 until numColumns) {
-      columns += getColumnName(i)
+      val columnName = getColumnName(i)
+      columns += columnName
+      if (columnName.isMessageType()) {
+        columns += "meta_type"
+      }
     }
 
     var timeOfFirstRow = 0L
@@ -243,6 +248,10 @@ internal class SpinnerServer(
           else -> getString(i)
         }
         row += data ?: "null"
+
+        if (getColumnName(i).isMessageType()) {
+          row += MessageUtil.describeMessageType(getLong(i))
+        }
       }
       rows += row
     }

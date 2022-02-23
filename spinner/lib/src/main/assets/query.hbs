@@ -31,7 +31,7 @@
         {{#each queryResult.rows}}
           <tr>
             {{#each this}}
-              <td>{{this}}</td>
+              <td>{{{this}}}</td>
             {{/each}}
           </tr>
         {{/each}}
@@ -49,6 +49,15 @@
         const queryInput = document.querySelector('.query-input')
         queryInput.value = sqlFormatter.format(queryInput.value).replaceAll("! =", "!=").replaceAll("| |", "||");
       }
+
+      function submitOnEnter(event){
+        if (event.which === 13 && event.shiftKey) {
+          event.target.form.submit();
+          event.preventDefault();
+        }
+      }
+
+      document.querySelector('.query-input').addEventListener("keypress", submitOnEnter);
     </script>
   </body>
 </html>
