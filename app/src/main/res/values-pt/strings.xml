@@ -2079,7 +2079,7 @@
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__donate_to_signal">Doar ao Signal</string>
   <string name="preferences__subscription">Assinatura</string>
-  <string name="preferences__become_a_signal_sustainer">Torne-se num Apoiante do Signal</string>
+  <string name="preferences__become_a_signal_sustainer">Torne-se um Apoiador do Signal</string>
   <string name="preferences__signal_boost">Apoiar o Signal</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente do utilizador de MMS</string>

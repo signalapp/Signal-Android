@@ -3488,7 +3488,7 @@
   <string name="EditNotificationProfileFragment__driving">വാഹനം ഓടിക്കുന്നു</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__focus">ശ്രദ്ധ കേന്ദ്രീകരിക്കുല്‍</string>
+  <string name="EditNotificationProfileFragment__focus">ശ്രദ്ധ കേന്ദ്രീകരിക്കല്‍</string>
   <!--Error message shown when attempting to next/save without a profile name-->
   <string name="EditNotificationProfileFragment__profile_must_have_a_name">ഒരു പേര് ഉണ്ടായിരിക്കണം</string>
   <!--Title for add recipients to notification profile screen in create flow-->
@@ -3528,7 +3528,7 @@
   <!--Profile exception to allow all calls through the profile restrictions-->
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <!--Section header for showing schedule information-->
-  <string name="NotificationProfileDetails__schedule">സമയപ്പട്ടിക</string>
+  <string name="NotificationProfileDetails__schedule">സമയക്രമം</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">എല്ലാം കാണുക</string>
   <!--Title for add schedule to profile in create flow-->
@@ -3537,7 +3537,7 @@
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">സമയപ്പട്ടിക</string>
   <!--Label for showing the start time for the schedule-->
-  <string name="EditNotificationProfileSchedule__start">ആരംഭിക്കുക</string>
+  <string name="EditNotificationProfileSchedule__start">ആരംഭം</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">അവസാനം</string>
   <!--First letter of Sunday-->

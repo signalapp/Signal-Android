@@ -1913,7 +1913,7 @@
   <string name="verify_display_fragment__failed_to_verify_safety_number">Falha ao verificar o número de segurança</string>
   <string name="verify_display_fragment__loading">Carregando…</string>
   <string name="verify_display_fragment__mark_as_verified">Marcar como verificado</string>
-  <string name="verify_display_fragment__clear_verification">Limpar verificação</string>
+  <string name="verify_display_fragment__clear_verification">Apagar verificação</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartilhar número de segurança</string>
   <!--verity_scan_fragment-->
@@ -2075,7 +2075,7 @@
   <string name="preferences__advanced">Avançadas</string>
   <string name="preferences__donate_to_signal">Doar para o Signal</string>
   <string name="preferences__subscription">Doação mensal</string>
-  <string name="preferences__become_a_signal_sustainer">Torne-se um apoiador recorrente</string>
+  <string name="preferences__become_a_signal_sustainer">Torne-se um Apoiador do Signal</string>
   <string name="preferences__signal_boost">Doação única</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente de usuário MMS</string>
