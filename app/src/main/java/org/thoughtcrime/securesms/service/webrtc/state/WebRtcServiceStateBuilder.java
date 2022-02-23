@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcActionProcessor;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
+import org.webrtc.PeerConnection;
 
 import java.util.Collection;
 import java.util.Set;
@@ -65,7 +66,7 @@ public class WebRtcServiceStateBuilder {
     toBuild.videoState       = new VideoState();
 
     CallInfoState newCallInfoState = new CallInfoState();
-    newCallInfoState.peerMap.putAll(toBuild.callInfoState.peerMap);
+    newCallInfoState.getPeerMap().putAll(toBuild.callInfoState.getPeerMap());
     toBuild.callInfoState = newCallInfoState;
 
     toBuild.callSetupStates.remove(callId);
@@ -179,6 +180,27 @@ public class WebRtcServiceStateBuilder {
       toBuild.setRingerRecipient(ringerRecipient);
       return this;
     }
+
+    public @NonNull CallSetupStateBuilder waitForTelecom(boolean waitForTelecom) {
+      toBuild.setWaitForTelecom(waitForTelecom);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder telecomApproved(boolean telecomApproved) {
+      toBuild.setTelecomApproved(telecomApproved);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder iceServers(Collection<PeerConnection.IceServer> iceServers) {
+      toBuild.getIceServers().clear();
+      toBuild.getIceServers().addAll(iceServers);
+      return this;
+    }
+
+    public @NonNull CallSetupStateBuilder alwaysTurn(boolean isAlwaysTurn) {
+      toBuild.setAlwaysTurnServers(isAlwaysTurn);
+      return this;
+    }
   }
 
   public class VideoStateBuilder {
@@ -218,7 +240,7 @@ public class WebRtcServiceStateBuilder {
     private CallInfoState toBuild;
 
     public CallInfoStateBuilder() {
-      toBuild = new CallInfoState(WebRtcServiceStateBuilder.this.toBuild.callInfoState);
+      toBuild = WebRtcServiceStateBuilder.this.toBuild.callInfoState.duplicate();
     }
 
     public @NonNull WebRtcServiceStateBuilder commit() {
@@ -232,82 +254,82 @@ public class WebRtcServiceStateBuilder {
     }
 
     public @NonNull CallInfoStateBuilder callState(@NonNull WebRtcViewModel.State callState) {
-      toBuild.callState = callState;
+      toBuild.setCallState(callState);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder callRecipient(@NonNull Recipient callRecipient) {
-      toBuild.callRecipient = callRecipient;
+      toBuild.setCallRecipient(callRecipient);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder callConnectedTime(long callConnectedTime) {
-      toBuild.callConnectedTime = callConnectedTime;
+      toBuild.setCallConnectedTime(callConnectedTime);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder putParticipant(@NonNull CallParticipantId callParticipantId, @NonNull CallParticipant callParticipant) {
-      toBuild.remoteParticipants.put(callParticipantId, callParticipant);
+      toBuild.getRemoteCallParticipantsMap().put(callParticipantId, callParticipant);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder putParticipant(@NonNull Recipient recipient, @NonNull CallParticipant callParticipant) {
-      toBuild.remoteParticipants.put(new CallParticipantId(recipient), callParticipant);
+      toBuild.getRemoteCallParticipantsMap().put(new CallParticipantId(recipient), callParticipant);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder clearParticipantMap() {
-      toBuild.remoteParticipants.clear();
+      toBuild.getRemoteCallParticipantsMap().clear();
       return this;
     }
 
     public @NonNull CallInfoStateBuilder putRemotePeer(@NonNull RemotePeer remotePeer) {
-      toBuild.peerMap.put(remotePeer.hashCode(), remotePeer);
+      toBuild.getPeerMap().put(remotePeer.hashCode(), remotePeer);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder clearPeerMap() {
-      toBuild.peerMap.clear();
+      toBuild.getPeerMap().clear();
       return this;
     }
 
     public @NonNull CallInfoStateBuilder removeRemotePeer(@NonNull RemotePeer remotePeer) {
-      toBuild.peerMap.remove(remotePeer.hashCode());
+      toBuild.getPeerMap().remove(remotePeer.hashCode());
       return this;
     }
 
     public @NonNull CallInfoStateBuilder activePeer(@Nullable RemotePeer activePeer) {
-      toBuild.activePeer = activePeer;
+      toBuild.setActivePeer(activePeer);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder groupCall(@Nullable GroupCall groupCall) {
-      toBuild.groupCall = groupCall;
+      toBuild.setGroupCall(groupCall);
       return this;
     }
 
-    public @NonNull CallInfoStateBuilder groupCallState(@Nullable WebRtcViewModel.GroupCallState groupState) {
-      toBuild.groupState = groupState;
+    public @NonNull CallInfoStateBuilder groupCallState(@NonNull WebRtcViewModel.GroupCallState groupState) {
+      toBuild.setGroupState(groupState);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder addIdentityChangedRecipients(@NonNull Collection<RecipientId> id) {
-      toBuild.identityChangedRecipients.addAll(id);
+      toBuild.getIdentityChangedRecipients().addAll(id);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder removeIdentityChangedRecipients(@NonNull Collection<RecipientId> ids) {
-      toBuild.identityChangedRecipients.removeAll(ids);
+      toBuild.getIdentityChangedRecipients().removeAll(ids);
       return this;
     }
 
     public @NonNull CallInfoStateBuilder remoteDevicesCount(long remoteDevicesCount) {
-      toBuild.remoteDevicesCount = OptionalLong.of(remoteDevicesCount);
+      toBuild.setRemoteDevicesCount(OptionalLong.of(remoteDevicesCount));
       return this;
     }
 
     public @NonNull CallInfoStateBuilder participantLimit(@Nullable Long participantLimit) {
-      toBuild.participantLimit = participantLimit;
+      toBuild.setParticipantLimit(participantLimit);
       return this;
     }
   }

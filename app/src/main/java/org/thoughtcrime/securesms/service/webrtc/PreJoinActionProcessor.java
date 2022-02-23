@@ -34,7 +34,7 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
     return new WebRtcServiceState(new IdleActionProcessor(webRtcInteractor));
   }
 
-  protected @NonNull WebRtcServiceState handleStartIncomingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
+  protected @NonNull WebRtcServiceState handleStartIncomingCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer, @NonNull OfferMessage.Type offerType) {
     Log.i(TAG, "handleStartIncomingCall():");
 
     EglBaseWrapper.replaceHolder(EglBaseWrapper.OUTGOING_PLACEHOLDER, remotePeer.getCallId().longValue());
@@ -45,7 +45,7 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
                                   .build();
 
     webRtcInteractor.postStateUpdate(currentState);
-    return beginCallDelegate.handleStartIncomingCall(currentState, remotePeer);
+    return beginCallDelegate.handleStartIncomingCall(currentState, remotePeer, offerType);
   }
 
   @Override

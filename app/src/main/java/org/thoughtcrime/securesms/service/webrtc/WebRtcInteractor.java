@@ -29,12 +29,12 @@ import java.util.UUID;
  */
 public class WebRtcInteractor {
 
-  @NonNull private final Context                        context;
-  @NonNull private final SignalCallManager              signalCallManager;
-  @NonNull private final LockManager                    lockManager;
-  @NonNull private final CameraEventListener            cameraEventListener;
-  @NonNull private final GroupCall.Observer             groupCallObserver;
-  @NonNull private final AppForegroundObserver.Listener foregroundListener;
+  private final Context                        context;
+  private final SignalCallManager              signalCallManager;
+  private final LockManager                    lockManager;
+  private final CameraEventListener            cameraEventListener;
+  private final GroupCall.Observer             groupCallObserver;
+  private final AppForegroundObserver.Listener foregroundListener;
 
   public WebRtcInteractor(@NonNull Context context,
                           @NonNull SignalCallManager signalCallManager,
@@ -151,15 +151,35 @@ public class WebRtcInteractor {
     WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.Start());
   }
 
-  public void setUserAudioDevice(@NonNull SignalAudioManager.AudioDevice userDevice) {
-    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(userDevice));
+  public void setUserAudioDevice(@Nullable RecipientId recipientId, @NonNull SignalAudioManager.AudioDevice userDevice) {
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetUserDevice(recipientId, userDevice));
   }
 
-  public void setDefaultAudioDevice(@NonNull SignalAudioManager.AudioDevice userDevice, boolean clearUserEarpieceSelection) {
-    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetDefaultDevice(userDevice, clearUserEarpieceSelection));
+  public void setDefaultAudioDevice(@NonNull RecipientId recipientId, @NonNull SignalAudioManager.AudioDevice userDevice, boolean clearUserEarpieceSelection) {
+    WebRtcCallService.sendAudioManagerCommand(context, new AudioManagerCommand.SetDefaultDevice(recipientId, userDevice, clearUserEarpieceSelection));
   }
 
   void peekGroupCallForRingingCheck(@NonNull GroupCallRingCheckInfo groupCallRingCheckInfo) {
     signalCallManager.peekGroupCallForRingingCheck(groupCallRingCheckInfo);
+  }
+
+  public void activateCall(RecipientId recipientId) {
+    AndroidTelecomUtil.activateCall(recipientId);
+  }
+
+  public void terminateCall(RecipientId recipientId) {
+    AndroidTelecomUtil.terminateCall(recipientId);
+  }
+
+  public boolean addNewIncomingCall(RecipientId recipientId, long callId, boolean remoteVideoOffer) {
+    return AndroidTelecomUtil.addIncomingCall(recipientId, callId, remoteVideoOffer);
+  }
+
+  public void rejectIncomingCall(RecipientId recipientId) {
+    AndroidTelecomUtil.reject(recipientId);
+  }
+
+  public boolean addNewOutgoingCall(RecipientId recipientId, long callId, boolean isVideoCall) {
+    return AndroidTelecomUtil.addOutgoingCall(recipientId, callId, isVideoCall);
   }
 }

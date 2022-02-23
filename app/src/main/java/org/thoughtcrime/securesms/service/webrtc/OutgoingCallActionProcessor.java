@@ -10,7 +10,6 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -19,10 +18,12 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata;
+import org.thoughtcrime.securesms.service.webrtc.state.CallSetupState;
 import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -68,12 +69,17 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     boolean isVideoCall = offerType == OfferMessage.Type.VIDEO_CALL;
 
     webRtcInteractor.setCallInProgressNotification(TYPE_OUTGOING_RINGING, remotePeer);
-    webRtcInteractor.setDefaultAudioDevice(isVideoCall ? SignalAudioManager.AudioDevice.SPEAKER_PHONE
-                                                       : SignalAudioManager.AudioDevice.EARPIECE,
+    webRtcInteractor.setDefaultAudioDevice(remotePeer.getId(),
+                                           isVideoCall ? SignalAudioManager.AudioDevice.SPEAKER_PHONE : SignalAudioManager.AudioDevice.EARPIECE,
                                            false);
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     webRtcInteractor.initializeAudioForCall();
     webRtcInteractor.startOutgoingRinger();
+
+    if (!webRtcInteractor.addNewOutgoingCall(remotePeer.getId(), remotePeer.getCallId().longValue(), isVideoCall)) {
+      Log.i(TAG, "Unable to add new outgoing call");
+      return handleDropCall(currentState, remotePeer.getCallId().longValue());
+    }
 
     RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), SignalDatabase.threads().getThreadIdIfExistsFor(remotePeer.getId()));
     SignalDatabase.sms().insertOutgoingCall(remotePeer.getId(), isVideoCall);
@@ -84,6 +90,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     return builder.changeCallSetupState(remotePeer.getCallId())
                   .enableVideoOnCreate(isVideoCall)
+                  .waitForTelecom(AndroidTelecomUtil.getTelecomSupported())
+                  .telecomApproved(false)
                   .commit()
                   .changeCallInfoState()
                   .activePeer(remotePeer)
@@ -98,11 +106,40 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                             @NonNull List<PeerConnection.IceServer> iceServers,
                                                             boolean isAlwaysTurn)
   {
-    try {
-      VideoState      videoState      = currentState.getVideoState();
-      RemotePeer      activePeer      = currentState.getCallInfoState().requireActivePeer();
-      CallParticipant callParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
+    RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 
+    Log.i(TAG, "handleTurnServerUpdate(): call_id: " + activePeer.getCallId());
+
+    currentState = currentState.builder()
+                               .changeCallSetupState(activePeer.getCallId())
+                               .iceServers(iceServers)
+                               .alwaysTurn(isAlwaysTurn)
+                               .build();
+
+    return proceed(currentState);
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleSetTelecomApproved(@NonNull WebRtcServiceState currentState, long callId) {
+    return proceed(super.handleSetTelecomApproved(currentState, callId));
+  }
+
+  private @NonNull WebRtcServiceState proceed(@NonNull WebRtcServiceState currentState) {
+    RemotePeer      activePeer      = currentState.getCallInfoState().requireActivePeer();
+    CallSetupState  callSetupState  = currentState.getCallSetupState(activePeer);
+
+    if (callSetupState.getIceServers().isEmpty() || (callSetupState.shouldWaitForTelecomApproval() && !callSetupState.isTelecomApproved())) {
+      Log.i(TAG, "Unable to proceed without ice server and telecom approval" +
+                 " iceServers: " + Util.hasItems(callSetupState.getIceServers()) +
+                 " waitForTelecom: " + callSetupState.shouldWaitForTelecomApproval() +
+                 " telecomApproved: " + callSetupState.isTelecomApproved());
+      return currentState;
+    }
+
+    VideoState      videoState      = currentState.getVideoState();
+    CallParticipant callParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
+
+    try {
       webRtcInteractor.getCallManager().proceed(activePeer.getCallId(),
                                                 context,
                                                 videoState.getLockableEglBase().require(),
@@ -110,8 +147,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 videoState.requireLocalSink(),
                                                 callParticipant.getVideoSink(),
                                                 videoState.requireCamera(),
-                                                iceServers,
-                                                isAlwaysTurn,
+                                                callSetupState.getIceServers(),
+                                                callSetupState.isAlwaysTurnServers(),
                                                 NetworkUtil.getCallingBandwidthMode(context),
                                                 null,
                                                 currentState.getCallSetupState(activePeer).isEnableVideoOnCreate());
@@ -123,6 +160,11 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                        .changeLocalDeviceState()
                        .cameraState(currentState.getVideoState().requireCamera().getCameraState())
                        .build();
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleDropCall(@NonNull WebRtcServiceState currentState, long callId) {
+    return callSetupDelegate.handleDropCall(currentState, callId);
   }
 
   @Override

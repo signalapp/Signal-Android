@@ -31,7 +31,7 @@ public final class WebRtcServiceState {
 
   public WebRtcServiceState(@NonNull WebRtcServiceState toCopy) {
     this.actionProcessor  = toCopy.actionProcessor;
-    this.callInfoState    = new CallInfoState(toCopy.callInfoState);
+    this.callInfoState    = toCopy.callInfoState.duplicate();
     this.localDeviceState = toCopy.localDeviceState.duplicate();
     this.videoState       = new VideoState(toCopy.videoState);
     this.callSetupStates  = new HashMap<>();

@@ -295,6 +295,14 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleSetUserAudioDevice(s, desiredDevice));
   }
 
+  public void setTelecomApproved(long callId) {
+    process((s, p) -> p.handleSetTelecomApproved(s, callId));
+  }
+
+  public void dropCall(long callId) {
+    process((s, p) -> p.handleDropCall(s, callId));
+  }
+
   public void peekGroupCall(@NonNull RecipientId id) {
     if (callManager == null) {
       Log.i(TAG, "Unable to peekGroupCall, call manager is null");
@@ -401,7 +409,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       if (isOutgoing) {
         return p.handleStartOutgoingCall(s, remotePeer, WebRtcUtil.getOfferTypeFromCallMediaType(callMediaType));
       } else {
-        return p.handleStartIncomingCall(s, remotePeer);
+        return p.handleStartIncomingCall(s, remotePeer, WebRtcUtil.getOfferTypeFromCallMediaType(callMediaType));
       }
     });
   }

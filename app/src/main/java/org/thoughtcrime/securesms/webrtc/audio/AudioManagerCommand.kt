@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.webrtc.audio
 import android.net.Uri
 import android.os.Parcel
 import android.os.Parcelable
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ParcelUtil
 
 /**
@@ -74,19 +75,21 @@ sealed class AudioManagerCommand : Parcelable {
     }
   }
 
-  class SetUserDevice(val device: SignalAudioManager.AudioDevice) : AudioManagerCommand() {
+  class SetUserDevice(val recipientId: RecipientId?, val device: SignalAudioManager.AudioDevice) : AudioManagerCommand() {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+      parcel.writeParcelable(recipientId, flags)
       parcel.writeSerializable(device)
     }
 
     companion object {
       @JvmField
-      val CREATOR: Parcelable.Creator<SetUserDevice> = ParcelCheat { SetUserDevice(it.readSerializable() as SignalAudioManager.AudioDevice) }
+      val CREATOR: Parcelable.Creator<SetUserDevice> = ParcelCheat { SetUserDevice(it.readParcelable(RecipientId::class.java.classLoader), it.readSerializable() as SignalAudioManager.AudioDevice) }
     }
   }
 
-  class SetDefaultDevice(val device: SignalAudioManager.AudioDevice, val clearUserEarpieceSelection: Boolean) : AudioManagerCommand() {
+  class SetDefaultDevice(val recipientId: RecipientId?, val device: SignalAudioManager.AudioDevice, val clearUserEarpieceSelection: Boolean) : AudioManagerCommand() {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+      parcel.writeParcelable(recipientId, flags)
       parcel.writeSerializable(device)
       ParcelUtil.writeBoolean(parcel, clearUserEarpieceSelection)
     }
@@ -95,6 +98,7 @@ sealed class AudioManagerCommand : Parcelable {
       @JvmField
       val CREATOR: Parcelable.Creator<SetDefaultDevice> = ParcelCheat { parcel ->
         SetDefaultDevice(
+          recipientId = parcel.readParcelable(RecipientId::class.java.classLoader),
           device = parcel.readSerializable() as SignalAudioManager.AudioDevice,
           clearUserEarpieceSelection = ParcelUtil.readBoolean(parcel)
         )

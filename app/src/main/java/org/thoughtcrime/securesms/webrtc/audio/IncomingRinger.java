@@ -69,7 +69,7 @@ public class IncomingRinger {
         player = null;
       }
     } else {
-      Log.w(TAG, "Not ringing, player: " + (player != null ? "available" : "null") + " mode: " + ringerMode);
+      Log.w(TAG, "Not ringing, player: " + (player != null ? "available" : "null") + " modeInt: " + ringerMode + " mode: " + (ringerMode == AudioManager.RINGER_MODE_SILENT ? "silent" : "vibrate only"));
     }
   }
 

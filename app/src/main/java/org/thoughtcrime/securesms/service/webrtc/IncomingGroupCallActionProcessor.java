@@ -227,8 +227,8 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     long              ringId    = currentState.getCallSetupState(RemotePeer.GROUP_CALL_ID).getRingId();
 
     SignalDatabase.groupCallRings().insertOrUpdateGroupRing(ringId,
-                                                                              System.currentTimeMillis(),
-                                                                              CallManager.RingUpdate.DECLINED_ON_ANOTHER_DEVICE);
+                                                            System.currentTimeMillis(),
+                                                            CallManager.RingUpdate.DECLINED_ON_ANOTHER_DEVICE);
 
     try {
       webRtcInteractor.getCallManager().cancelGroupRing(groupId.get().getDecodedId(),

@@ -110,8 +110,7 @@ object MessageUtil {
       isChangeNumber:${type == CHANGE_NUMBER_TYPE}
       isBoostRequest:${type == BOOST_REQUEST_TYPE}
       isGroupV2LeaveOnly:${type and GROUP_V2_LEAVE_BITS == GROUP_V2_LEAVE_BITS}
-      """.trimIndent()
-
+    """.trimIndent()
 
     return describe.replace(Regex("is[A-Z][A-Za-z0-9]*:false\n?"), "").replace("\n", "<br>")
   }
