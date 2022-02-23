@@ -168,11 +168,15 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
     return store.containsKey(KEY_PNI_IDENTITY_PUBLIC_KEY)
   }
 
-  /** Generates and saves an identity key pair for the PNI identity. Should only be done once. */
-  fun generatePniIdentityKey() {
+  /** Generates and saves an identity key pair for the PNI identity if one doesn't already exist. */
+  fun generatePniIdentityKeyIfNecessary() {
     synchronized(this) {
+      if (store.containsKey(KEY_PNI_IDENTITY_PUBLIC_KEY)) {
+        Log.w(TAG, "Tried to generate a PNI identity, but one was already set!", Throwable())
+        return
+      }
+
       Log.i(TAG, "Generating a new PNI identity key pair.")
-      require(!store.containsKey(KEY_PNI_IDENTITY_PUBLIC_KEY)) { "Already generated!" }
 
       val key: IdentityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
       store

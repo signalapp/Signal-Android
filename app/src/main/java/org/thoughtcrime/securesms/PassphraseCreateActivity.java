@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -63,7 +62,7 @@ public class PassphraseCreateActivity extends PassphraseActivity {
 
       MasterSecretUtil.generateAsymmetricMasterSecret(PassphraseCreateActivity.this, masterSecret);
       SignalStore.account().generateAciIdentityKey();
-      SignalStore.account().generatePniIdentityKey();
+      SignalStore.account().generatePniIdentityKeyIfNecessary();
       VersionTracker.updateLastSeenVersion(PassphraseCreateActivity.this);
 
       return null;

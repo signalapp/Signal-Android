@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.jobs.KbsEnclaveMigrationWorkerJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.state.PreKeyRecord;
@@ -65,7 +64,7 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
 
     if (!SignalStore.account().hasPniIdentityKey()) {
       Log.i(TAG, "Generating PNI identity.");
-      SignalStore.account().generatePniIdentityKey();
+      SignalStore.account().generatePniIdentityKeyIfNecessary();
     } else {
       Log.w(TAG, "Already generated the PNI identity. Skipping this step.");
     }

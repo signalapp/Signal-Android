@@ -291,7 +291,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     }
 
     if (!SignalStore.account().hasPniIdentityKey()) {
-      SignalStore.account().generatePniIdentityKey();
+      SignalStore.account().generatePniIdentityKeyIfNecessary();
       CreateSignedPreKeyJob.enqueueIfNeeded();
     }
 
