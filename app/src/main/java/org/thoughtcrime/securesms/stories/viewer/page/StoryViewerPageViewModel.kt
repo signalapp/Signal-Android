@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +29,10 @@ class StoryViewerPageViewModel(
   private val storyViewerDialogSubject: Subject<Optional<StoryViewerDialog>> = BehaviorSubject.createDefault(Optional.empty())
   private val dismissSubject = PublishSubject.create<StoryViewerDialog.Type>()
 
+  private val storyViewerPlaybackStore = Store(StoryViewerPlaybackState())
+
+  val storyViewerPlaybackState: LiveData<StoryViewerPlaybackState> = storyViewerPlaybackStore.stateLiveData
+
   val groupDirectReplyObservable: Observable<Optional<StoryViewerDialog>> = Observable.combineLatest(storyViewerDialogSubject, dismissSubject) { sheet, dismissed ->
     if (sheet.isPresent && sheet.get().type != dismissed) {
       sheet
@@ -48,6 +53,12 @@ class StoryViewerPageViewModel(
 
   init {
     refresh()
+  }
+
+  fun setDuration(uri: Uri, duration: Long) {
+    store.update {
+      it.copy(durations = it.durations + (uri to duration))
+    }
   }
 
   fun refresh() {
@@ -95,32 +106,36 @@ class StoryViewerPageViewModel(
     storyViewerDialogSubject.onNext(Optional.of(StoryViewerDialog.GroupDirectReply(recipientId, storyId)))
   }
 
-  fun startForward() {
-    storyViewerDialogSubject.onNext(Optional.of(StoryViewerDialog.Forward))
+  fun setIsDisplayingContextMenu(isDisplayingContextMenu: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingContextMenu = isDisplayingContextMenu) }
   }
 
-  fun startDelete() {
-    storyViewerDialogSubject.onNext(Optional.of(StoryViewerDialog.Delete))
+  fun setIsDisplayingForwardDialog(isDisplayingForwardDialog: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingForwardDialog = isDisplayingForwardDialog) }
   }
 
-  fun onForwardDismissed() {
-    dismissSubject.onNext(StoryViewerDialog.Type.FORWARD)
+  fun setIsDisplayingDeleteDialog(isDisplayingDeleteDialog: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingDeleteDialog = isDisplayingDeleteDialog) }
   }
 
-  fun onDeleteDismissed() {
-    dismissSubject.onNext(StoryViewerDialog.Type.DELETE)
+  fun setIsDisplayingViewsAndRepliesDialog(isDisplayingViewsAndRepliesDialog: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingViewsAndRepliesDialog = isDisplayingViewsAndRepliesDialog) }
   }
 
-  fun onDismissContextMenu() {
-    dismissSubject.onNext(StoryViewerDialog.Type.CONTEXT_MENU)
+  fun setIsDisplayingDirectReplyDialog(isDisplayingDirectReplyDialog: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingDirectReplyDialog = isDisplayingDirectReplyDialog) }
   }
 
-  fun onViewsAndRepliesSheetDismissed() {
-    dismissSubject.onNext(StoryViewerDialog.Type.VIEWS_AND_REPLIES)
+  fun setIsDisplayingCaptionOverlay(isDisplayingCaptionOverlay: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingCaptionOverlay = isDisplayingCaptionOverlay) }
   }
 
-  fun onDirectReplyDismissed() {
-    dismissSubject.onNext(StoryViewerDialog.Type.DIRECT_REPLY)
+  fun setIsUserTouching(isUserTouching: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isUserTouching = isUserTouching) }
+  }
+
+  fun setAreSegmentsInitialized(areSegmentsInitialized: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(areSegmentsInitialized = areSegmentsInitialized) }
   }
 
   private fun resolveSwipeToReplyState(state: StoryViewerPageState, index: Int = state.selectedPostIndex): StoryViewerPageState.ReplyState {

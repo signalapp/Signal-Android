@@ -122,7 +122,7 @@ class StoryDirectReplyDialogFragment :
 
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
-    storyViewerPageViewModel.onDirectReplyDismissed()
+    storyViewerPageViewModel.setIsDisplayingDirectReplyDialog(false)
   }
 
   companion object {

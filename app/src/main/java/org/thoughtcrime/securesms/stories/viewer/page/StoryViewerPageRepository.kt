@@ -66,8 +66,7 @@ class StoryViewerPageRepository(context: Context) {
           viewCount = record.viewedReceiptCount,
           replyCount = SignalDatabase.mms.getNumberOfStoryReplies(record.id),
           dateInMilliseconds = record.dateSent,
-          durationMillis = getDurationMillis(record as MmsMessageRecord),
-          attachment = record.slideDeck.firstSlide!!.asAttachment(),
+          attachment = (record as MmsMessageRecord).slideDeck.firstSlide!!.asAttachment(),
           conversationMessage = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, record)
         )
 
@@ -123,16 +122,6 @@ class StoryViewerPageRepository(context: Context) {
           Observable.combineLatest(posts) { it.toList() as List<StoryPost> }
         }
       }.observeOn(Schedulers.io())
-  }
-
-  private fun getDurationMillis(record: MmsMessageRecord): Long {
-    val slide = record.slideDeck.firstSlide!!
-    return if (slide.hasVideo()) {
-      // TODO [stories] Remove duration from this stuff... Videos will need to actually start playback before we know how long they are...
-      5000
-    } else {
-      5000
-    }
   }
 
   fun hideStory(recipientId: RecipientId): Completable {

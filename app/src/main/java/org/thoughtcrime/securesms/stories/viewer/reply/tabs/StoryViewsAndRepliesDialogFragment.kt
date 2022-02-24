@@ -102,7 +102,7 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
 
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
-    storyViewerPageViewModel.onViewsAndRepliesSheetDismissed()
+    storyViewerPageViewModel.setIsDisplayingViewsAndRepliesDialog(false)
   }
 
   override fun onStartDirectReply(recipientId: RecipientId) {

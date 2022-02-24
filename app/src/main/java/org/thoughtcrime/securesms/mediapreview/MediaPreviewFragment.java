@@ -101,5 +101,8 @@ public abstract class MediaPreviewFragment extends Fragment {
   public interface Events {
     boolean singleTapOnMedia();
     void mediaNotAvailable();
+    default @Nullable VideoControlsDelegate getVideoControlsDelegate() {
+      return null;
+    }
   }
 }

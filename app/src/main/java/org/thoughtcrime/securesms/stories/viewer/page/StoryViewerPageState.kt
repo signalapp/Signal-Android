@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
+import android.net.Uri
+
 data class StoryViewerPageState(
   val posts: List<StoryPost> = emptyList(),
+  val durations: Map<Uri, Long> = emptyMap(),
   val selectedPostIndex: Int = 0,
   val replyState: ReplyState = ReplyState.NONE
 ) {

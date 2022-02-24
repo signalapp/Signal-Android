@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
+import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
@@ -48,6 +49,7 @@ import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
 class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page), MediaPreviewFragment.Events, MultiselectForwardBottomSheet.Callback {
@@ -64,6 +66,8 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       StoryViewerPageViewModel.Factory(storyRecipientId, StoryViewerPageRepository(requireContext()))
     }
   )
+
+  private val videoControlsDelegate = VideoControlsDelegate()
 
   private val lifecycleDisposable = LifecycleDisposable()
 
@@ -122,10 +126,10 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     cardWrapper.setOnTouchListener { _, event ->
       val result = gestureDetector.onTouchEvent(event)
       if (event.actionMasked == MotionEvent.ACTION_DOWN) {
-        progressBar.pause()
+        viewModel.setIsUserTouching(true)
         hideChrome()
       } else if (event.actionMasked == MotionEvent.ACTION_UP || event.actionMasked == MotionEvent.ACTION_CANCEL) {
-        resumeProgressIfNotDisplayingDialog()
+        viewModel.setIsUserTouching(false)
         showChrome()
       }
 
@@ -147,6 +151,10 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
             .replace(R.id.story_content_container, createFragmentForPost(viewModel.getPostAt(newPageIndex)))
             .commit()
         }
+
+        if (oldPageIndex == newPageIndex) {
+          videoControlsDelegate.restart()
+        }
       }
 
       override fun onFinished() {
@@ -166,27 +174,45 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
         presentDistributionList(distributionList, post)
         presentCaption(caption, largeCaption, largeCaptionOverlay, post)
 
-        if (progressBar.segmentCount != state.posts.size) {
+        val durations: Map<Int, Long> = state.posts
+          .mapIndexed { index, storyPost ->
+            index to (storyPost.attachment.uri?.let { state.durations[it] } ?: TimeUnit.SECONDS.toMillis(5))
+          }
+          .toMap()
+
+        if (progressBar.segmentCount != state.posts.size || progressBar.segmentDurations != durations) {
           progressBar.segmentCount = state.posts.size
-          progressBar.segmentDurations = state.posts.mapIndexed { index, storyPost -> index to storyPost.durationMillis }.toMap()
-          progressBar.start()
+          progressBar.segmentDurations = durations
         }
+
+        viewModel.setAreSegmentsInitialized(true)
       } else if (state.selectedPostIndex >= state.posts.size) {
         callback.onFinishedPosts(storyRecipientId)
+      }
+    }
+
+    viewModel.storyViewerPlaybackState.observe(viewLifecycleOwner) { state ->
+      if (state.isPaused) {
+        pauseProgress()
+      } else {
+        resumeProgress()
       }
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.groupDirectReplyObservable.subscribe { opt ->
       if (opt.isPresent) {
-        progressBar.pause()
         when (val sheet = opt.get()) {
           is StoryViewerDialog.GroupDirectReply -> {
             onStartDirectReply(sheet.storyId, sheet.recipientId)
           }
         }
-      } else {
-        resumeProgress()
+      }
+    }
+
+    lifecycleDisposable += videoControlsDelegate.playerUpdates.subscribe { update ->
+      if (update.duration > 0L) {
+        viewModel.setDuration(update.mediaUri, update.duration)
       }
     }
 
@@ -195,7 +221,6 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
 
   override fun onPause() {
     super.onPause()
-    progressBar.pause()
   }
 
   override fun onResume() {
@@ -205,14 +230,12 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       progressBar.reset()
       progressBar.setPosition(viewModel.getRestartIndex())
     }
-
-    resumeProgressIfNotDisplayingDialog()
   }
 
   override fun onFinishForwardAction() = Unit
 
   override fun onDismissForwardSheet() {
-    viewModel.onForwardDismissed()
+    viewModel.setIsDisplayingForwardDialog(false)
   }
 
   private fun hideChrome() {
@@ -264,16 +287,16 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     constraintSet.applyTo(requireView() as ConstraintLayout)
   }
 
-  private fun resumeProgressIfNotDisplayingDialog() {
-    if (childFragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
-      resumeProgress()
-    }
-  }
-
   private fun resumeProgress() {
     if (progressBar.segmentCount != 0) {
       progressBar.start()
+      videoControlsDelegate.resume(viewModel.getPost().attachment.uri!!)
     }
+  }
+
+  private fun pauseProgress() {
+    progressBar.pause()
+    videoControlsDelegate.pause()
   }
 
   private fun startReply() {
@@ -285,12 +308,17 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       StoryViewerPageState.ReplyState.GROUP_SELF -> StoryViewsAndRepliesDialogFragment.create(viewModel.getPost().id, viewModel.getPost().group!!.id, getViewsAndRepliesDialogStartPage())
     }
 
-    progressBar.pause()
+    if (viewModel.getSwipeToReplyState() == StoryViewerPageState.ReplyState.PRIVATE) {
+      viewModel.setIsDisplayingDirectReplyDialog(true)
+    } else {
+      viewModel.setIsDisplayingViewsAndRepliesDialog(true)
+    }
+
     replyFragment.showNow(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
   }
 
   private fun onStartDirectReply(storyId: Long, recipientId: RecipientId) {
-    progressBar.pause()
+    viewModel.setIsDisplayingDirectReplyDialog(true)
     StoryDirectReplyDialogFragment.create(
       storyId = storyId,
       recipientId = recipientId
@@ -359,7 +387,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     largeCaptionOverlay.setOnClickListener {
       onHideCaptionOverlay(caption, largeCaption, largeCaptionOverlay)
     }
-    progressBar.pause()
+    viewModel.setIsDisplayingCaptionOverlay(true)
   }
 
   private fun onHideCaptionOverlay(caption: TextView, largeCaption: TextView, largeCaptionOverlay: View) {
@@ -367,7 +395,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     largeCaption.visible = false
     largeCaptionOverlay.visible = false
     largeCaptionOverlay.setOnClickListener(null)
-    resumeProgress()
+    viewModel.setIsDisplayingCaptionOverlay(false)
   }
 
   private fun presentFrom(from: TextView, storyPost: StoryPost) {
@@ -420,20 +448,24 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
   }
 
   private fun createFragmentForPost(storyPost: StoryPost): Fragment {
-    return MediaPreviewFragment.newInstance(storyPost.attachment, true)
+    return MediaPreviewFragment.newInstance(storyPost.attachment, false)
+  }
+
+  override fun getVideoControlsDelegate(): VideoControlsDelegate {
+    return videoControlsDelegate
   }
 
   private fun displayMoreContextMenu(anchor: View) {
-    progressBar.pause()
+    viewModel.setIsDisplayingContextMenu(true)
     StoryContextMenu.show(
       context = requireContext(),
       anchorView = anchor,
       storyViewerPageState = viewModel.getStateSnapshot(),
       onDismiss = {
-        viewModel.onDismissContextMenu()
+        viewModel.setIsDisplayingContextMenu(false)
       },
       onForward = { storyPost ->
-        viewModel.startForward()
+        viewModel.setIsDisplayingForwardDialog(true)
         MultiselectForwardFragmentArgs.create(
           requireContext(),
           storyPost.conversationMessage.multiselectCollection.toSet(),
@@ -456,9 +488,9 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
         StoryContextMenu.save(requireContext(), it.conversationMessage.messageRecord)
       },
       onDelete = {
-        viewModel.startDelete()
+        viewModel.setIsDisplayingDeleteDialog(true)
         lifecycleDisposable += StoryContextMenu.delete(requireContext(), setOf(it.conversationMessage.messageRecord)).subscribe { _ ->
-          viewModel.onDeleteDismissed()
+          viewModel.setIsDisplayingDeleteDialog(false)
           viewModel.refresh()
         }
       }

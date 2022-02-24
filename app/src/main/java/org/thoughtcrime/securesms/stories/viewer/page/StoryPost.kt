@@ -15,7 +15,6 @@ class StoryPost(
   val viewCount: Int,
   val replyCount: Int,
   val dateInMilliseconds: Long,
-  val durationMillis: Long,
   val attachment: Attachment,
   val conversationMessage: ConversationMessage
 )

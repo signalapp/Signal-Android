@@ -40,7 +40,7 @@ class StoryViewsBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogF
 
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
-    storyViewerPageViewModel.onViewsAndRepliesSheetDismissed()
+    storyViewerPageViewModel.setIsDisplayingViewsAndRepliesDialog(false)
   }
 
   companion object {
