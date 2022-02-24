@@ -52,8 +52,12 @@ object StoriesLandingItem {
   private class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
 
     private val avatarView: AvatarView = itemView.findViewById(R.id.avatar)
-    private val storyPreview: ThumbnailView = itemView.findViewById(R.id.story)
-    private val storyMulti: ThumbnailView = itemView.findViewById(R.id.story_multi)
+    private val storyPreview: ThumbnailView = itemView.findViewById<ThumbnailView>(R.id.story).apply {
+      isClickable = false
+    }
+    private val storyMulti: ThumbnailView = itemView.findViewById<ThumbnailView>(R.id.story_multi).apply {
+      isClickable = false
+    }
     private val sender: TextView = itemView.findViewById(R.id.sender)
     private val date: TextView = itemView.findViewById(R.id.date)
     private val icon: ImageView = itemView.findViewById(R.id.icon)
