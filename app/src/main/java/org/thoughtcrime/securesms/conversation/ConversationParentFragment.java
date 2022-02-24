@@ -108,6 +108,7 @@ import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
@@ -441,8 +442,9 @@ public class ConversationParentFragment extends Fragment
 
   private volatile boolean screenInitialized = false;
 
-  private IdentityRecordList identityRecords = new IdentityRecordList(Collections.emptyList());
-  private Callback           callback;
+  private IdentityRecordList   identityRecords = new IdentityRecordList(Collections.emptyList());
+  private Callback             callback;
+  private RecentEmojiPageModel recentEmojis;
 
   @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -3409,6 +3411,10 @@ public class ConversationParentFragment extends Fragment
   public void onEmojiSelected(String emoji) {
     if (inputPanel != null) {
       inputPanel.onEmojiSelected(emoji);
+      if (recentEmojis == null) {
+        recentEmojis = new RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY);
+      }
+      recentEmojis.onCodePointSelected(emoji);
     }
   }
 

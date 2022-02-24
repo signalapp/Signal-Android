@@ -79,6 +79,7 @@ class KeyboardPagerFragment : Fragment() {
 
   private inline fun <reified F : Fragment> displayPage(fragmentFactory: () -> F) {
     if (currentFragment is F) {
+      (currentFragment as? KeyboardPageSelected)?.onPageSelected()
       return
     }
 
@@ -92,6 +93,7 @@ class KeyboardPagerFragment : Fragment() {
       transaction.add(R.id.fragment_container, fragment)
       fragments[F::class] = fragment
     } else {
+      (fragment as? KeyboardPageSelected)?.onPageSelected()
       transaction.show(fragment)
     }
 

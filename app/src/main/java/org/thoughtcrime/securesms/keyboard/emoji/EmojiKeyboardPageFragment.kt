@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader
+import org.thoughtcrime.securesms.keyboard.KeyboardPageSelected
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.ThemedFragment.themedInflate
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -24,7 +25,7 @@ import java.util.Optional
 
 private val DELETE_KEY_EVENT: KeyEvent = KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL)
 
-class EmojiKeyboardPageFragment : Fragment(), EmojiEventListener, EmojiPageViewGridAdapter.VariationSelectorListener {
+class EmojiKeyboardPageFragment : Fragment(), EmojiEventListener, EmojiPageViewGridAdapter.VariationSelectorListener, KeyboardPageSelected {
 
   private lateinit var viewModel: EmojiKeyboardPageViewModel
   private lateinit var emojiPageView: EmojiPageView
@@ -95,6 +96,15 @@ class EmojiKeyboardPageFragment : Fragment(), EmojiEventListener, EmojiPageViewG
     eventListener = requireListener()
   }
 
+  override fun onResume() {
+    super.onResume()
+    viewModel.refreshRecentEmoji()
+  }
+
+  override fun onPageSelected() {
+    viewModel.refreshRecentEmoji()
+  }
+
   private fun updateCategoryTab(key: String) {
     emojiCategoriesRecycler.post {
       val index: Int = categoriesAdapter.indexOfFirst(EmojiKeyboardPageCategoryMappingModel::class.java) { it.key == key }
@@ -119,7 +129,6 @@ class EmojiKeyboardPageFragment : Fragment(), EmojiEventListener, EmojiPageViewG
   override fun onEmojiSelected(emoji: String) {
     SignalStore.emojiValues().setPreferredVariation(emoji)
     eventListener.onEmojiSelected(emoji)
-    viewModel.addToRecents(emoji)
   }
 
   override fun onKeyEvent(keyEvent: KeyEvent?) {
