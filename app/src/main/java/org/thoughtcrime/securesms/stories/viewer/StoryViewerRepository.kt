@@ -19,7 +19,22 @@ class StoryViewerRepository {
 
       val myStory: RecipientId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
 
-      listOf(myStory) + doNotCollapse
+      val myStoriesCount = SignalDatabase.mms.allOutgoingStories.use {
+        var count = 0
+        while (it.next != null) {
+          if (!it.current.recipient.isGroup) {
+            count++
+          }
+        }
+
+        count
+      }
+
+      if (myStoriesCount > 0) {
+        listOf(myStory) + doNotCollapse
+      } else {
+        doNotCollapse
+      }
     }.subscribeOn(Schedulers.io())
   }
 }
