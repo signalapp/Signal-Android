@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
-        <org.thoughtcrime.securesms.components.AvatarImageView
+        <org.thoughtcrime.securesms.avatar.view.AvatarView
             android:id="@+id/bio_preference_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"

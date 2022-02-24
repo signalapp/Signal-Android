@@ -43,6 +43,7 @@ public final class LogSectionCapabilities implements LogSection {
                               .append("GV1 Migration      : ").append(self.getGroupsV1MigrationCapability()).append("\n")
                               .append("Sender Key         : ").append(self.getSenderKeyCapability()).append("\n")
                               .append("Announcement Groups: ").append(self.getAnnouncementGroupCapability()).append("\n")
-                              .append("Change Number      : ").append(self.getChangeNumberCapability()).append("\n");
+                              .append("Change Number      : ").append(self.getChangeNumberCapability()).append("\n")
+                              .append("Stories            : ").append(self.getStoriesCapability()).append("\n");
   }
 }

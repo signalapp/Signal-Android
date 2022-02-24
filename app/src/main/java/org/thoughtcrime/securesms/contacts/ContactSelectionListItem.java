@@ -115,14 +115,14 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
 
     Recipient recipientSnapshot = recipient != null ? recipient.get() : null;
 
-    if (recipientSnapshot != null && !recipientSnapshot.isResolving()) {
+    if (recipientSnapshot != null && !recipientSnapshot.isResolving() && !recipientSnapshot.isMyStory()) {
       contactName = recipientSnapshot.getDisplayName(getContext());
       name        = contactName;
     } else if (recipient != null) {
       name = "";
     }
 
-    if (recipientSnapshot == null || recipientSnapshot.isResolving() || recipientSnapshot.isRegistered()) {
+    if (recipientSnapshot == null || recipientSnapshot.isResolving() || recipientSnapshot.isRegistered() || recipientSnapshot.isDistributionList()) {
       smsTag.setVisibility(GONE);
     } else {
       smsTag.setVisibility(VISIBLE);
@@ -131,6 +131,9 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     if (recipientSnapshot == null || recipientSnapshot.isResolving()) {
       this.contactPhotoImage.setAvatar(glideRequests, null, false);
       setText(null, type, name, number, label, about);
+    } else if (recipientSnapshot.isMyStory()) {
+      this.contactPhotoImage.setRecipient(Recipient.self(), false);
+      setText(recipientSnapshot, type, name, number, label, about);
     } else {
       this.contactPhotoImage.setAvatar(glideRequests, recipientSnapshot, false);
       setText(recipientSnapshot, type, name, number, label, about);
@@ -180,6 +183,9 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
       this.nameView.setEnabled(true);
       this.labelView.setText(label);
       this.labelView.setVisibility(View.VISIBLE);
+    } else if (recipient != null && recipient.isDistributionList()) {
+      this.numberView.setText(getViewerCount(number));
+      this.labelView.setVisibility(View.GONE);
     } else {
       this.numberView.setText(!Util.isEmpty(about) ? about : number);
       this.nameView.setEnabled(true);
@@ -212,6 +218,11 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     return getContext().getResources().getQuantityString(R.plurals.contact_selection_list_item__number_of_members, memberCount, memberCount);
   }
 
+  private String getViewerCount(@NonNull String number) {
+    int viewerCount = Integer.parseInt(number);
+    return getContext().getResources().getQuantityString(R.plurals.contact_selection_list_item__number_of_viewers, viewerCount, viewerCount);
+  }
+
   public @Nullable LiveRecipient getRecipient() {
     return recipient;
   }
@@ -234,13 +245,18 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
         contactNumber = recipient.getGroupId().get().toString();
       } else if (recipient.hasE164()) {
         contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
-      } else {
+      } else if (!recipient.isDistributionList()) {
         contactNumber = recipient.getEmail().or("");
       }
 
-      contactPhotoImage.setAvatar(glideRequests, recipient, false);
+      if (recipient.isMyStory()) {
+        contactPhotoImage.setRecipient(Recipient.self(), false);
+      } else {
+        contactPhotoImage.setAvatar(glideRequests, recipient, false);
+      }
+
       setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
-      smsTag.setVisibility(recipient.isRegistered() ? GONE : VISIBLE);
+      smsTag.setVisibility(recipient.isRegistered() || recipient.isDistributionList() ? GONE : VISIBLE);
       badge.setBadgeFromRecipient(recipient);
     } else {
       Log.w(TAG, "Bad change! Local recipient doesn't match. Ignoring. Local: " + (this.recipient == null ? "null" : this.recipient.getId()) + ", Changed: " + recipient.getId());

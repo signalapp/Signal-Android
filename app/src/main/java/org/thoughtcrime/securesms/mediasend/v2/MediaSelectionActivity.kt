@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -17,11 +20,15 @@ import org.thoughtcrime.securesms.TransportOptions
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
+import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.visible
 
 class MediaSelectionActivity :
   PassphraseRequiredActivity(),
@@ -32,24 +39,46 @@ class MediaSelectionActivity :
 
   lateinit var viewModel: MediaSelectionViewModel
 
+  private val textViewModel: TextStoryPostCreationViewModel by viewModels()
+
+  private val destination: MediaSelectionDestination
+    get() = MediaSelectionDestination.fromBundle(requireNotNull(intent.getBundleExtra(DESTINATION)))
+
   override fun attachBaseContext(newBase: Context) {
     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
     super.attachBaseContext(newBase)
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    setContentView(R.layout.fragment_container)
+    setContentView(R.layout.media_selection_activity)
 
     val transportOption: TransportOption = requireNotNull(intent.getParcelableExtra(TRANSPORT_OPTION))
     val initialMedia: List<Media> = intent.getParcelableArrayListExtra(MEDIA) ?: listOf()
-    val destination: MediaSelectionDestination = MediaSelectionDestination.fromBundle(requireNotNull(intent.getBundleExtra(DESTINATION)))
     val message: CharSequence? = intent.getCharSequenceExtra(MESSAGE)
     val isReply: Boolean = intent.getBooleanExtra(IS_REPLY, false)
 
     val factory = MediaSelectionViewModel.Factory(destination, transportOption, initialMedia, message, isReply, MediaSelectionRepository(this))
     viewModel = ViewModelProvider(this, factory)[MediaSelectionViewModel::class.java]
 
+    val textStoryToggle: ViewGroup = findViewById(R.id.switch_widget)
+    val textSwitch: View = findViewById(R.id.text_switch)
+    val cameraSwitch: View = findViewById(R.id.camera_switch)
+
+    textSwitch.setOnClickListener {
+      textSwitch.isSelected = true
+      cameraSwitch.isSelected = false
+      viewModel.sendCommand(HudCommand.GoToText)
+    }
+
+    cameraSwitch.setOnClickListener {
+      textSwitch.isSelected = false
+      cameraSwitch.isSelected = true
+      viewModel.sendCommand(HudCommand.GoToCapture)
+    }
+
     if (savedInstanceState == null) {
+      cameraSwitch.isSelected = true
+
       val navHostFragment = NavHostFragment.create(R.navigation.media)
 
       supportFragmentManager
@@ -60,14 +89,33 @@ class MediaSelectionActivity :
       navigateToStartDestination()
     } else {
       viewModel.onRestoreState(savedInstanceState)
+      textViewModel.restoreFromInstanceState(savedInstanceState)
+    }
+
+    (supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as NavHostFragment).navController.addOnDestinationChangedListener { _, d, _ ->
+      when (d.id) {
+        R.id.mediaCaptureFragment -> textStoryToggle.visible = canDisplayStorySwitch()
+        R.id.textStoryPostCreationFragment -> textStoryToggle.visible = canDisplayStorySwitch()
+        else -> textStoryToggle.visible = false
+      }
     }
 
     onBackPressedDispatcher.addCallback(OnBackPressed())
   }
 
+  private fun canDisplayStorySwitch(): Boolean {
+    return FeatureFlags.stories() &&
+      FeatureFlags.storiesTextPosts() &&
+      !SignalStore.storyValues().isFeatureDisabled &&
+      isCameraFirst() &&
+      !viewModel.hasSelectedMedia() &&
+      destination == MediaSelectionDestination.ChooseAfterMediaSelection
+  }
+
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
     viewModel.onSaveState(outState)
+    textViewModel.saveToInstanceState(outState)
   }
 
   override fun onSentWithResult(mediaSendActivityResult: MediaSendActivityResult) {

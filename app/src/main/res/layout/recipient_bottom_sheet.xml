@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
 
-        <org.thoughtcrime.securesms.components.AvatarImageView
+        <org.thoughtcrime.securesms.avatar.view.AvatarView
             android:id="@+id/rbs_recipient_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"

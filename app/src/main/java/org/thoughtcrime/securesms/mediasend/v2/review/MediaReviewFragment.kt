@@ -23,6 +23,8 @@ import androidx.viewpager2.widget.ViewPager2
 import app.cash.exhaustive.Exhaustive
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
@@ -35,7 +37,6 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -135,14 +136,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
 
     setFragmentResultListener(MultiselectForwardFragment.RESULT_SELECTION) { _, bundle ->
-      val recipientIds: List<RecipientId> = requireNotNull(bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION_RECIPIENTS))
-      performSend(recipientIds)
+      val parcelizedKeys: List<ContactSearchKey.ParcelableContactSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION_RECIPIENTS)!!
+      val contactSearchKeys = parcelizedKeys.map { it.asContactSearchKey() }
+      performSend(contactSearchKeys)
     }
 
     sendButton.setOnClickListener {
       if (sharedViewModel.isContactSelectionRequired) {
         val args = MultiselectForwardFragmentArgs(false, title = R.string.MediaReviewFragment__send_to)
-        MultiselectForwardFragment.show(parentFragmentManager, args)
+        MultiselectForwardFragment.showFullScreen(parentFragmentManager, args)
       } else {
         performSend()
       }
@@ -248,7 +250,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
   }
 
-  private fun performSend(selection: List<RecipientId> = listOf()) {
+  private fun performSend(selection: List<ContactSearchKey> = listOf()) {
     progressWrapper.visible = true
     progressWrapper.animate()
       .setStartDelay(300)
@@ -256,7 +258,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       .alpha(1f)
 
     sharedViewModel
-      .send(selection)
+      .send(selection.filterIsInstance(RecipientSearchKey::class.java))
       .subscribe(
         { result -> callback.onSentWithResult(result) },
         { error -> callback.onSendError(error) },

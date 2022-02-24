@@ -195,6 +195,8 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       colorize("SenderKey", recipient.senderKeyCapability),
       ", ",
       colorize("ChangeNumber", recipient.changeNumberCapability),
+      ", ",
+      colorize("Stories", recipient.storiesCapability),
     )
   }
 

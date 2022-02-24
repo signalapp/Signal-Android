@@ -88,6 +88,8 @@
     <dimen name="quote_corner_radius_bottom">4dp</dimen>
     <dimen name="quote_corner_radius_preview">18dp</dimen>
     <dimen name="quote_thumb_size">60dp</dimen>
+    <dimen name="quote_story_thumb_width">40dp</dimen>
+    <dimen name="quote_story_thumb_height">64dp</dimen>
 
     <dimen name="mention_corner_radius">4dp</dimen>
 
@@ -210,6 +212,9 @@
     <dimen name="verify_identity_vertical_margin">16dp</dimen>
 
     <dimen name="signal_context_menu_corner_radius">18dp</dimen>
-
     <dimen name="webrtc_button_size">48dp</dimen>
+
+    <dimen name="segmentedprogressbar_default_segment_margin">8dp</dimen>
+    <dimen name="segmentedprogressbar_default_corner_radius">0dp</dimen>
+    <dimen name="segmentedprogressbar_default_segment_stroke_width">0dp</dimen>
 </resources>

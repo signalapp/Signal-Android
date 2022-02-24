@@ -94,7 +94,7 @@ public class SignalServiceCipher {
                                 SenderCertificate senderCertificate,
                                 byte[] unpaddedMessage,
                                 ContentHint contentHint,
-                                byte[] groupId)
+                                Optional<byte[]> groupId)
       throws NoSessionException, UntrustedIdentityException, InvalidKeyException, InvalidRegistrationIdException
   {
     PushTransportDetails             transport            = new PushTransportDetails();
@@ -105,7 +105,7 @@ public class SignalServiceCipher {
     UnidentifiedSenderMessageContent messageContent       = new UnidentifiedSenderMessageContent(message,
                                                                                                  senderCertificate,
                                                                                                  contentHint.getType(),
-                                                                                                 Optional.of(groupId));
+                                                                                                 groupId);
 
     return sessionCipher.multiRecipientEncrypt(destinations, messageContent);
   }

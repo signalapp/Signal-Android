@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.components.settings.conversation.preferences
 import android.view.View
 import androidx.core.view.ViewCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto
@@ -39,7 +39,7 @@ object AvatarPreference {
   }
 
   private class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
-    private val avatar: AvatarImageView = itemView.findViewById<AvatarImageView>(R.id.bio_preference_avatar).apply {
+    private val avatar: AvatarView = itemView.findViewById<AvatarView>(R.id.bio_preference_avatar).apply {
       setFallbackPhotoProvider(AvatarPreferenceFallbackPhotoProvider())
     }
 
@@ -63,7 +63,7 @@ object AvatarPreference {
         }
       }
 
-      avatar.setAvatar(model.recipient)
+      avatar.displayChatAvatar(model.recipient)
       avatar.disableQuickContact()
       avatar.setOnClickListener { model.onAvatarClick(avatar) }
     }

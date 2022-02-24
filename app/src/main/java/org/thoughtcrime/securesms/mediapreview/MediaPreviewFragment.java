@@ -62,11 +62,14 @@ public abstract class MediaPreviewFragment extends Fragment {
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
-    if (!(context instanceof Events)) {
-      throw new AssertionError("Activity must support " + Events.class);
-    }
 
-    events = (Events) context;
+    if (context instanceof Events) {
+      events = (Events) context;
+    } else if (getParentFragment() instanceof Events) {
+      events = (Events) getParentFragment();
+    } else {
+      throw new AssertionError("Parent component must support " + Events.class);
+    }
   }
 
   @Override

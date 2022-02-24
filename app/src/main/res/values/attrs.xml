@@ -15,9 +15,25 @@
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
 
+    <attr name="mediaKeyboardBackgroundColor" format="color" />
+
     <attr name="settingsToolbarStyle" format="reference" />
 
+    <attr name="contactCheckboxBackground" format="reference" />
+
     <attr name="contact_filter_toolbar_icon_tint" format="color" />
+
+    <declare-styleable name="SegmentedProgressBar">
+        <attr name="totalSegments" format="integer" />
+        <attr name="timePerSegment" format="integer" />
+        <attr name="segmentMargins" format="dimension" />
+        <attr name="segmentCornerRadius" format="dimension" />
+        <attr name="segmentStrokeWidth" format="dimension" />
+        <attr name="segmentBackgroundColor" format="color" />
+        <attr name="segmentSelectedBackgroundColor" format="color" />
+        <attr name="segmentStrokeColor" format="color" />
+        <attr name="segmentSelectedStrokeColor" format="color" />
+    </declare-styleable>
 
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>
@@ -151,6 +167,7 @@
             <enum name="preview" value="0" />
             <enum name="outgoing" value="1" />
             <enum name="incoming" value="2" />
+            <enum name="story_reply" value="3" />
         </attr>
         <attr name="quote_colorPrimary" format="color" />
         <attr name="quote_colorSecondary" format="color" />
@@ -221,6 +238,7 @@
             <enum name="bottom" value="0" />
             <enum name="top" value="1" />
         </attr>
+        <attr name="media_keyboard_theme" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="CameraXFlashState">
@@ -245,6 +263,8 @@
 
     <declare-styleable name="OutlinedThumbnailView">
         <attr name="otv_cornerRadius" format="dimension|reference" />
+        <attr name="otv_strokeColor" format="color" />
+        <attr name="otv_strokeWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="ReactionsConversationView">

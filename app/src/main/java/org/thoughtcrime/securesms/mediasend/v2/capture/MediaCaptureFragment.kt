@@ -14,11 +14,14 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.CameraFragment
 import org.thoughtcrime.securesms.mediasend.Media
+import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion.requestPermissionsForGallery
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.libsignal.util.guava.Optional
 import java.io.FileDescriptor
 
@@ -39,6 +42,8 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
 
   private lateinit var captureChildFragment: CameraFragment
   private lateinit var navigator: MediaSelectionNavigator
+
+  private val lifecycleDisposable = LifecycleDisposable()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     captureChildFragment = CameraFragment.newInstance() as CameraFragment
@@ -73,6 +78,13 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
 
     sharedViewModel.state.observe(viewLifecycleOwner) { state ->
       captureChildFragment.presentHud(state.selectedMedia.size)
+    }
+
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+    lifecycleDisposable += sharedViewModel.hudCommands.subscribe { command ->
+      if (command == HudCommand.GoToText) {
+        findNavController().safeNavigate(R.id.action_mediaCaptureFragment_to_textStoryPostCreationFragment)
+      }
     }
 
     if (isFirst()) {

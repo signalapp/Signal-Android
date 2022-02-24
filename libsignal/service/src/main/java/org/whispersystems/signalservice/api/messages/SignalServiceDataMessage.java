@@ -33,7 +33,7 @@ public class SignalServiceDataMessage {
   private final boolean                                 profileKeyUpdate;
   private final Optional<Quote>                         quote;
   private final Optional<List<SharedContact>>           contacts;
-  private final Optional<List<Preview>>                 previews;
+  private final Optional<List<SignalServicePreview>>    previews;
   private final Optional<List<Mention>>                 mentions;
   private final Optional<Sticker>                       sticker;
   private final boolean                                 viewOnce;
@@ -66,7 +66,7 @@ public class SignalServiceDataMessage {
                            boolean profileKeyUpdate,
                            Quote quote,
                            List<SharedContact> sharedContacts,
-                           List<Preview> previews,
+                           List<SignalServicePreview> previews,
                            List<Mention> mentions,
                            Sticker sticker,
                            boolean viewOnce,
@@ -217,7 +217,7 @@ public class SignalServiceDataMessage {
     return contacts;
   }
 
-  public Optional<List<Preview>> getPreviews() {
+  public Optional<List<SignalServicePreview>> getPreviews() {
     return previews;
   }
 
@@ -271,7 +271,7 @@ public class SignalServiceDataMessage {
 
     private List<SignalServiceAttachment> attachments    = new LinkedList<>();
     private List<SharedContact>           sharedContacts = new LinkedList<>();
-    private List<Preview>                 previews       = new LinkedList<>();
+    private List<SignalServicePreview>    previews       = new LinkedList<>();
     private List<Mention>                 mentions       = new LinkedList<>();
 
     private long                 timestamp;
@@ -378,7 +378,7 @@ public class SignalServiceDataMessage {
       return this;
     }
 
-    public Builder withPreviews(List<Preview> previews) {
+    public Builder withPreviews(List<SignalServicePreview> previews) {
       this.previews.addAll(previews);
       return this;
     }
@@ -492,42 +492,6 @@ public class SignalServiceDataMessage {
       public SignalServiceAttachment getThumbnail() {
         return thumbnail;
       }
-    }
-  }
-
-  public static class Preview {
-    private final String                            url;
-    private final String                            title;
-    private final String                            description;
-    private final long                              date;
-    private final Optional<SignalServiceAttachment> image;
-
-    public Preview(String url, String title, String description, long date, Optional<SignalServiceAttachment> image) {
-      this.url         = url;
-      this.title       = title;
-      this.description = description;
-      this.date        = date;
-      this.image       = image;
-    }
-
-    public String getUrl() {
-      return url;
-    }
-
-    public String getTitle() {
-      return title;
-    }
-
-    public String getDescription() {
-      return description;
-    }
-
-    public long getDate() {
-      return date;
-    }
-
-    public Optional<SignalServiceAttachment> getImage() {
-      return image;
     }
   }
 

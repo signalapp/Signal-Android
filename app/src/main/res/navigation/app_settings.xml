@@ -322,7 +322,34 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettings_to_myStorySettings"
+            app:destination="@id/my_story_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettings_to_newPrivateStory"
+            app:destination="@id/new_story"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettings_to_privateStorySettings"
+            app:destination="@id/private_story_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
 
+            <argument
+                android:name="private_story"
+                app:argType="org.thoughtcrime.securesms.database.model.DistributionListId"
+                app:nullable="false" />
+
+        </action>
     </fragment>
 
     <activity
@@ -815,4 +842,10 @@
 
     </fragment>
 
+
+    <include app:graph="@navigation/my_story_settings" />
+
+    <include app:graph="@navigation/private_story_settings" />
+
+    <include app:graph="@navigation/new_story" />
 </navigation>

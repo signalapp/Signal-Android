@@ -34,6 +34,8 @@ object TestMms {
       expiresIn,
       viewOnce,
       distributionType,
+      false,
+      null,
       null,
       emptyList(),
       emptyList(),

@@ -15,10 +15,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import mobi.upod.timedurationpicker.TimeDurationPicker
 import mobi.upod.timedurationpicker.TimeDurationPickerDialog
+import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseChangeActivity
 import org.thoughtcrime.securesms.R
@@ -34,7 +36,11 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberListingMode
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
+import org.thoughtcrime.securesms.stories.settings.custom.PrivateStorySettingsFragmentArgs
+import org.thoughtcrime.securesms.stories.settings.story.PrivateStoryItem
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
@@ -71,6 +77,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     adapter.registerFactory(ValueClickPreference::class.java, LayoutFactory(::ValueClickPreferenceViewHolder, R.layout.value_click_preference_item))
+    PrivateStoryItem.register(adapter)
 
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val repository = PrivacySettingsRepository()
@@ -287,6 +294,55 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
       textPref(
         summary = DSLSettingsText.from(incognitoSummary),
       )
+
+      if (FeatureFlags.stories()) {
+
+        dividerPref()
+
+        sectionHeaderPref(R.string.ConversationListTabs__stories)
+
+        if (!SignalStore.storyValues().isFeatureDisabled) {
+          customPref(
+            PrivateStoryItem.RecipientModel(
+              recipient = Recipient.self(),
+              onClick = { findNavController().safeNavigate(R.id.action_privacySettings_to_myStorySettings) }
+            )
+          )
+
+          space(DimensionUnit.DP.toPixels(24f).toInt())
+
+          customPref(
+            PrivateStoryItem.NewModel(
+              onClick = {
+                findNavController().safeNavigate(R.id.action_privacySettings_to_newPrivateStory)
+              }
+            )
+          )
+
+          state.privateStories.forEach {
+            customPref(
+              PrivateStoryItem.PartialModel(
+                privateStoryItemData = it,
+                onClick = { model ->
+                  findNavController().safeNavigate(
+                    R.id.action_privacySettings_to_privateStorySettings,
+                    PrivateStorySettingsFragmentArgs.Builder(model.privateStoryItemData.id).build().toBundle()
+                  )
+                }
+              )
+            )
+          }
+        }
+
+        switchPref(
+          title = DSLSettingsText.from(R.string.PrivacySettingsFragment__share_and_view_stories),
+          summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__you_will_no_longer_be_able),
+          isChecked = state.isStoriesEnabled,
+          onClick = {
+            viewModel.setStoriesEnabled(!state.isStoriesEnabled)
+          }
+        )
+      }
 
       dividerPref()
 

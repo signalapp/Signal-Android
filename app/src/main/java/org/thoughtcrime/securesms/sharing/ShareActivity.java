@@ -188,7 +188,7 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   @Override
-  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, java.util.function.Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull java.util.function.Consumer<Boolean> callback) {
     if (disallowMultiShare) {
       Toast.makeText(this, R.string.ShareActivity__sharing_to_multiple_chats_is, Toast.LENGTH_LONG).show();
       callback.accept(false);
@@ -527,7 +527,7 @@ public class ShareActivity extends PassphraseRequiredActivity
                                                                                           .toArray(RecipientId[]::new));
 
     return Stream.of(recipients)
-                 .map(recipient -> new ShareContactAndThread(recipient.getId(), Util.getOrDefault(existingThreads, recipient.getId(), -1L), recipient.isForceSmsSelection() || !recipient.isRegistered()))
+                 .map(recipient -> new ShareContactAndThread(recipient.getId(), Util.getOrDefault(existingThreads, recipient.getId(), -1L), recipient.isForceSmsSelection() || !recipient.isRegistered(), recipient.isDistributionList()))
                  .collect(Collectors.toSet());
   }
 
@@ -542,7 +542,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     }
 
     long existingThread = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
-    return new ShareContactAndThread(recipient.getId(), existingThread, recipient.isForceSmsSelection() || !recipient.isRegistered());
+    return new ShareContactAndThread(recipient.getId(), existingThread, recipient.isForceSmsSelection() || !recipient.isRegistered(), recipient.isDistributionList());
   }
 
   private void validateAvailableRecipients() {

@@ -57,6 +57,11 @@ object HSVColorSlider {
     )
   }.toIntArray()
 
+  @ColorInt
+  fun getLastColor(): Int {
+    return colors.last()
+  }
+
   fun AppCompatSeekBar.getColor(): Int {
     return colors[progress]
   }

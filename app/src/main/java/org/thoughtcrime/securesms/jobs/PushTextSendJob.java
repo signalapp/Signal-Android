@@ -136,7 +136,7 @@ public class PushTextSendJob extends PushSendJob {
       database.markAsPush(record.getId());
       RetrieveProfileJob.enqueue(recipientId);
     } catch (ProofRequiredException e) {
-      handleProofRequiredException(e, record.getRecipient(), record.getThreadId(), messageId, false);
+      handleProofRequiredException(context, e, record.getRecipient(), record.getThreadId(), messageId, false);
     }
 
     SignalLocalMetrics.IndividualMessageSend.onJobFinished(messageId);

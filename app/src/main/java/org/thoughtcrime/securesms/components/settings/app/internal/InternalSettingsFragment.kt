@@ -366,6 +366,17 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           SignalStore.releaseChannelValues().highestVersionNoteReceived = max(SignalStore.releaseChannelValues().highestVersionNoteReceived - 10, 0)
         }
       )
+
+      dividerPref()
+
+      sectionHeaderPref(R.string.ConversationListTabs__stories)
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_disable_stories),
+        isChecked = state.disableStories,
+        onClick = {
+          viewModel.toggleStories()
+        }
+      )
     }
   }
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/text_story_post_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Story.Text" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/text_story_post_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:background="@drawable/rounded_rectangle_secondary_18"
+        android:gravity="center"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="13dp"
+        android:text="@string/TextStoryPostCreationFragment__tap_to_add_text"
+        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        android:textColor="@color/core_white"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpUsage"
+        tools:text="THIS IS SOME TEXT THAT I AM ENTERING" />
+
+    <org.thoughtcrime.securesms.stories.StoryLinkPreviewView
+        android:id="@+id/text_story_post_link_preview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</merge>

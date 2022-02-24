@@ -4,4 +4,7 @@
     <integer name="reaction_scrubber_reveal_offset">100</integer>
     <integer name="reaction_scrubber_hide_duration">150</integer>
     <integer name="reaction_scrubber_emoji_reveal_duration_start_delay_factor">10</integer>
+
+    <integer name="segmentedprogressbar_default_segments_count">4</integer>
+    <integer name="segmentedprogressbar_default_time_per_segment_ms">5000</integer>
 </resources>

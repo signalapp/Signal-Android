@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.keyvalue.StoryValues;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
 
 import java.io.IOException;
@@ -91,6 +92,9 @@ public final class FeatureFlags {
   private static final String CDSH                              = "android.cdsh";
   private static final String HARDWARE_AEC_MODELS               = "android.calling.hardwareAecModels";
   private static final String FORCE_DEFAULT_AEC                 = "android.calling.forceDefaultAec";
+  private static final String STORIES                           = "android.stories";
+  private static final String STORIES_TEXT_FUNCTIONS            = "android.stories.text.functions";
+  private static final String STORIES_TEXT_POSTS                = "android.stories.text.posts";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -134,7 +138,10 @@ public final class FeatureFlags {
       CHANGE_NUMBER_ENABLED,
       HARDWARE_AEC_MODELS,
       FORCE_DEFAULT_AEC,
-      VALENTINES_DONATE_MEGAPHONE
+      VALENTINES_DONATE_MEGAPHONE,
+      STORIES,
+      STORIES_TEXT_FUNCTIONS,
+      STORIES_TEXT_POSTS
   );
 
   @VisibleForTesting
@@ -209,12 +216,13 @@ public final class FeatureFlags {
    * These can be called on any thread, including the main thread, so be careful!
    *
    * Also note that this doesn't play well with {@link #FORCED_VALUES} -- changes there will not
-   * trigger changes in this map, so you'll have to do some manually hacking to get yourself in the
+   * trigger changes in this map, so you'll have to do some manual hacking to get yourself in the
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
     put(SENDER_KEY, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
+    put(STORIES, change -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -427,6 +435,27 @@ public final class FeatureFlags {
     } else {
       return getBoolean(DONOR_BADGES, true) || SignalStore.donationsValues().getSubscriber() != null;
     }
+  }
+
+  /**
+   * Whether or not stories are available
+   */
+  public static boolean stories() {
+    return getBoolean(STORIES, false);
+  }
+
+  /**
+   * Whether users can apply alignment and scale to text posts
+   */
+  public static boolean storiesTextFunctions() {
+    return getBoolean(STORIES_TEXT_FUNCTIONS, false);
+  }
+
+  /**
+   * Whether the user supports sending Story text posts
+   */
+  public static boolean storiesTextPosts() {
+    return getBoolean(STORIES_TEXT_POSTS, false);
   }
 
   /**

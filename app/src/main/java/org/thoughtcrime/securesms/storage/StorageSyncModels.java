@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.subscription.Subscriber;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -97,6 +96,7 @@ public final class StorageSyncModels {
     }
 
     ServiceId serviceId = recipient.getServiceId() != null ? recipient.getServiceId() : ServiceId.UNKNOWN;
+    boolean   hideStory = recipient.getExtras() != null && recipient.getExtras().hideStory();
 
     return new SignalContactRecord.Builder(rawStorageId, new SignalServiceAddress(serviceId, recipient.getE164()), recipient.getSyncExtras().getStorageProto())
                                   .setProfileKey(recipient.getProfileKey())
@@ -109,6 +109,7 @@ public final class StorageSyncModels {
                                   .setArchived(recipient.getSyncExtras().isArchived())
                                   .setForcedUnread(recipient.getSyncExtras().isForcedUnread())
                                   .setMuteUntil(recipient.getMuteUntil())
+                                  .setHideStory(hideStory)
                                   .build();
   }
 
@@ -147,6 +148,8 @@ public final class StorageSyncModels {
       throw new AssertionError("Group master key not on recipient record");
     }
 
+    boolean hideStory = recipient.getExtras() != null && recipient.getExtras().hideStory();
+
     return new SignalGroupV2Record.Builder(rawStorageId, groupMasterKey, recipient.getSyncExtras().getStorageProto())
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing())
@@ -154,6 +157,7 @@ public final class StorageSyncModels {
                                   .setForcedUnread(recipient.getSyncExtras().isForcedUnread())
                                   .setMuteUntil(recipient.getMuteUntil())
                                   .setNotifyForMentionsWhenMuted(recipient.getMentionSetting() == RecipientDatabase.MentionSetting.ALWAYS_NOTIFY)
+                                  .setHideStory(hideStory)
                                   .build();
   }
 

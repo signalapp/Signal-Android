@@ -196,6 +196,10 @@
     <string name="ContactsCursorLoader_groups">Groups</string>
     <string name="ContactsCursorLoader_phone_number_search">Phone number search</string>
     <string name="ContactsCursorLoader_username_search">Username search</string>
+    <!-- Label for my stories when selecting who to send media to -->
+    <string name="ContactsCursorLoader_my_stories">My Stories</string>
+    <!-- Action for creating a new story -->
+    <string name="ContactsCursorLoader_new_story">New Story</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>
@@ -1444,6 +1448,8 @@
 
     <!-- Recipient -->
     <string name="Recipient_you">You</string>
+    <!-- Name of recipient representing user's 'My Story' -->
+    <string name="Recipient_my_story">My Story</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Block</string>
@@ -1998,6 +2004,11 @@
         <item quantity="one">%1$d member</item>
         <item quantity="other">%1$d members</item>
     </plurals>
+    <!-- Displays number of viewers for a story -->
+    <plurals name="contact_selection_list_item__number_of_viewers">
+        <item quantity="one">%1$d viewer</item>
+        <item quantity="other">%1$d viewers</item>
+    </plurals>
 
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">Signal message</string>
@@ -2063,6 +2074,8 @@
     <string name="QuoteView_sticker">Sticker</string>
     <string name="QuoteView_you">You</string>
     <string name="QuoteView_original_missing">Original message not found</string>
+    <!-- Author formatting for group stories -->
+    <string name="QuoteView_s_story">%1$s Story</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
@@ -2665,6 +2678,8 @@
     <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
     <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
     <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
+    <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
+
 
     <!-- Payments -->
     <string name="PaymentsActivityFragment__all_activity">All activity</string>
@@ -4357,6 +4372,227 @@
     <!-- Donation receipt type -->
     <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
 
+    <!-- region "Stories Tab" -->
+
+    <!-- Label for Chats tab in home app screen -->
+    <string name="ConversationListTabs__chats">Chats</string>
+    <!-- Label for Stories tab in home app screen -->
+    <string name="ConversationListTabs__stories">Stories</string>
+    <!-- String for counts above 99 in conversation list tabs -->
+    <string name="ConversationListTabs__99p">99+</string>
+    <!-- Title for "My Stories" row item in Stories landing page -->
+    <string name="StoriesLandingFragment__my_stories">My Stories</string>
+    <!-- Subtitle for "My Stories" row item when user has not added stories -->
+    <string name="StoriesLandingFragment__add_a_story">Add a story</string>
+    <!-- Displayed when there are no stories to display -->
+    <string name="StoriesLandingFragment__no_recent_updates">No recent updates to show right now.</string>
+    <!-- Context menu option to hide a story -->
+    <string name="StoriesLandingItem__hide_story">Hide story</string>
+    <!-- Context menu option to unhide a story -->
+    <string name="StoriesLandingItem__unhide_story">Unhide story</string>
+    <!-- Context menu option to forward a story -->
+    <string name="StoriesLandingItem__forward">Forward</string>
+    <!-- Context menu option to share a story -->
+    <string name="StoriesLandingItem__share">Share…</string>
+    <!-- Context menu option to go to story chat -->
+    <string name="StoriesLandingItem__go_to_chat">Go to chat</string>
+    <!-- Title of dialog confirming decision to hide a story -->
+    <string name="StoriesLandingFragment__hide_story">Hide story?</string>
+    <!-- Message of dialog confirming decision to hide a story -->
+    <string name="StoriesLandingFragment__new_story_updates">New story updates from %1$s won\'t appear at the top of the stories list anymore.</string>
+    <!-- Positive action of dialog confirming decision to hide a story -->
+    <string name="StoriesLandingFragment__hide">Hide</string>
+    <!-- Displayed in Snackbar after story is hidden -->
+    <string name="StoriesLandingFragment__story_hidden">Story hidden</string>
+    <!-- Section header for hidden stories -->
+    <string name="StoriesLandingFragment__hidden_stories">Hidden stories</string>
+    <!-- Displayed on each sent story under My Stories -->
+    <plurals name="MyStories__d_views">
+        <item quantity="one">%1$d view</item>
+        <item quantity="other">%1$d views</item>
+    </plurals>
+    <!-- Forward story label, displayed in My Stories context menu -->
+    <string name="MyStories_forward">Forward</string>
+    <!-- Label for stories for a single user. Format is {given name}'s Story -->
+    <string name="MyStories__ss_story">%1$s\'s Story</string>
+    <!-- Title of dialog to confirm deletion of story -->
+    <string name="MyStories__delete_story">Delete story?</string>
+    <!-- Message of dialog to confirm deletion of story -->
+    <string name="MyStories__this_story_will_be_deleted">This story will be deleted for you and everyone who received it.</string>
+    <!-- Displayed at bottom of story viewer when current item has views -->
+    <plurals name="StoryViewerFragment__d_views">
+        <item quantity="one">%1$d view</item>
+        <item quantity="other">%1$d views</item>
+    </plurals>
+    <!-- Displayed at bottom of story viewer when current item has replies -->
+    <plurals name="StoryViewerFragment__d_replies">
+        <item quantity="one">%1$d reply</item>
+        <item quantity="other">%1$d replies</item>
+    </plurals>
+    <!-- Used to join views and replies when both exist on a story item -->
+    <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
+    <!-- Displayed when viewing a post you sent -->
+    <string name="StoryViewerPageFragment__you">You</string>
+    <!-- Displayed when viewing a post displayed to a group -->
+    <string name="StoryViewerPageFragment__s_to_s">%1$s to %2$s</string>
+    <!-- Displayed when viewing a post from another user with no replies -->
+    <string name="StoryViewerPageFragment__reply">Reply</string>
+    <!-- Displayed when a story has no views -->
+    <string name="StoryViewsFragment__no_views_yet">No views yet</string>
+    <!-- Displayed when a story has no replies yet -->
+    <string name="StoryGroupReplyFragment__no_replies_yet">No replies yet</string>
+    <!-- Displayed for each user that reacted to a story when viewing replies -->
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reacted to the story</string>
+    <!-- Label for story views tab -->
+    <string name="StoryViewsAndRepliesDialogFragment__views">Views</string>
+    <!-- Label for story replies tab -->
+    <string name="StoryViewsAndRepliesDialogFragment__replies">Replies</string>
+    <!-- Description of action for reaction button -->
+    <string name="StoryReplyComposer__react_to_this_story">React to this story</string>
+    <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
+    <string name="StoryReplyComposer__replying_privately_to_s">Replying privately to %1$s</string>
+    <!-- Context menu item to privately reply to a story response -->
+    <string name="StoryGroupReplyItem__private_reply">Private Reply</string>
+    <!-- Context menu item to copy a story response -->
+    <string name="StoryGroupReplyItem__copy">Copy</string>
+    <!-- Context menu item to delete a story response -->
+    <string name="StoryGroupReplyItem__delete">Delete</string>
+    <!-- Story settings page title -->
+    <string name="StorySettingsFragment__story_settings">Story settings</string>
+    <!-- Story settings private stories heading -->
+    <string name="StorySettingsFragment__private_stories">Private stories</string>
+    <!-- Option label for creating a new private story -->
+    <string name="StorySettingsFragment__new_private_story">New private story</string>
+    <!-- Page title for My Story options -->
+    <string name="MyStorySettingsFragment__my_story">My Story</string>
+    <!-- Section heading for story visibility -->
+    <string name="MyStorySettingsFragment__who_can_see_this_story">Who can see this story</string>
+    <!-- Clickable option for selecting people to hide your story from -->
+    <string name="MyStorySettingsFragment__hide_story_from">Hide story from</string>
+    <!-- Summary of clickable option displaying how many people you have hidden your story from -->
+    <plurals name="MyStorySettingsFragment__d_people">
+        <item quantity="one">%1$d person</item>
+        <item quantity="other">%1$d people</item>
+    </plurals>
+    <!-- Section header for options related to replies and reactions -->
+    <string name="MyStorySettingsFragment__replies_amp_reactions">Replies &amp; reactions</string>
+    <!-- Switchable option for allowing replies and reactions on your stories -->
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Allow replies &amp; reactions</string>
+    <!-- Summary for switchable option allowing replies and reactions on your story -->
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Let people who can view your story react and reply</string>
+    <!-- Note about default sharing -->
+    <string name="MyStorySettingsFragment__hide_your_story_from">Hide your story from specific people. By default, your story is shared with your %1$s</string>
+    <!-- Signal connections linked text that opens the Signal Connections sheet -->
+    <string name="MyStorySettingsFragment__signal_connections">Signal connections.</string>
+    <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Signal Connections</strong> are people you\'ve chosen to trust, either by:</string>
+    <!-- Signal connections sheet bullet point 1 -->
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a conversation</string>
+    <!-- Signal connections sheet bullet point 2 -->
+    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Accepting a message request</string>
+    <!-- Signal connections sheet bullet point 3 -->
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your system contacts</string>
+    <!-- Note at the bottom of the Signal connections sheet -->
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Your connections can see your name and photo, and can see posts to "My Story" unless you hide it from them.</string>
+    <!-- Clickable option to add a viewer to a private story -->
+    <string name="PrivateStorySettingsFragment__add_viewer">Add viewer</string>
+    <!-- Clickable option to delete a custom story -->
+    <string name="PrivateStorySettingsFragment__delete_private_story">Delete private story</string>
+    <!-- Dialog title when attempting to remove someone from a private story -->
+    <string name="PrivateStorySettingsFragment__remove_s">Remove %1$s?</string>
+    <!-- Dialog message when attempting to remove someone from a private story -->
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">This person will no longer see your story.</string>
+    <!-- Positive action label when attempting to remove someone from a private story -->
+    <string name="PrivateStorySettingsFragment__remove">Remove</string>
+    <!-- Dialog title when deleting a private story -->
+    <string name="PrivateStorySettingsFragment__are_you_sure">Are you sure?</string>
+    <!-- Dialog message when deleting a private story -->
+    <string name="PrivateStorySettingsFragment__this_action_cannot">This action cannot be undone.</string>
+    <!-- Page title for editing a private story name -->
+    <string name="EditPrivateStoryNameFragment__edit_story_name">Edit story name</string>
+    <!-- Input field hint when editing a private story name -->
+    <string name="EditPrivateStoryNameFragment__story_name">Story name</string>
+    <!-- Save button label when editing a private story name -->
+    <string name="EditPrivateStoryNameFragment__save">Save</string>
+    <!-- Displayed in text post creator before user enters text -->
+    <string name="TextStoryPostCreationFragment__tap_to_add_text">Tap to add text</string>
+    <!-- Button label for changing font when creating a text post -->
+    <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
+    <!-- Displayed in text post creator when prompting user to enter text -->
+    <string name="TextStoryPostTextEntryFragment__add_text">Add text</string>
+    <!-- Content description for 'done' button when adding text to a story post -->
+    <string name="TextStoryPostTextEntryFragment__done_adding_text">Done adding text</string>
+    <!-- Text label for media selection toggle -->
+    <string name="MediaSelectionActivity__text">Text</string>
+    <!-- Camera label for media selection toggle -->
+    <string name="MediaSelectionActivity__camera">Camera</string>
+    <!-- Hint for entering a URL for a text post -->
+    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Type or paste a URL</string>
+    <!-- Displayed prior to the user entering a URL for a text post -->
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Share a link with viewers of your story</string>
+    <!-- Hint text for searching for a story text post recipient. -->
+    <string name="TextStoryPostSendFragment__search">Search</string>
+    <!-- Title for screen allowing user to hide "My Story" entries from specific people -->
+    <string name="HideStoryFromFragment__hide_story_from">Hide story from…</string>
+    <!-- Done button label for hide story from screen -->
+    <string name="HideStoryFromFragment__done">Done</string>
+    <!-- Dialog title for first time adding something to a story -->
+    <string name="StoryDialogs__add_to_story_q">Add to story?</string>
+    <!-- Dialog message for first time adding something to a story -->
+    <string name="StoryDialogs__adding_content">Adding content to your story allows your Signal connections to view it for 24 hours. You can change who can view your story in Setttings.</string>
+    <!-- First time share to story dialog: Positive action to go ahead and add to story -->
+    <string name="StoryDialogs__add_to_story">Add to story</string>
+    <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
+    <string name="StoryDialogs__edit_viewers">Edit viewers</string>
+    <!-- Privacy Settings toggle title for stories -->
+    <string name="PrivacySettingsFragment__share_and_view_stories">Share &amp; View Stories</string>
+    <!-- Privacy Settings toggle summary for stories -->
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">You will no longer be able to share or view Stories when this option is turned off.</string>
+    <!-- New story viewer selection screen title -->
+    <string name="CreateStoryViewerSelectionFragment__choose_viewers">Choose viewers</string>
+    <!-- New story viewer selection action button label -->
+    <string name="CreateStoryViewerSelectionFragment__next">Next</string>
+    <!-- New story viewer selection screen title as recipients are selected -->
+    <plurals name="SelectViewersFragment__d_viewers">
+        <item quantity="one">%1$d viewer</item>
+        <item quantity="other">%1$d viewers</item>
+    </plurals>
+    <!-- Name story screen title -->
+    <string name="CreateStoryWithViewersFragment__name_story">Name story</string>
+    <!-- Name story screen label hint -->
+    <string name="CreateStoryWithViewersFragment__story_name_required">Story name (required)</string>
+    <!-- Name story screen viewers subheading -->
+    <string name="CreateStoryWithViewersFragment__viewers">Viewers</string>
+    <!-- Name story screen create button label -->
+    <string name="CreateStoryWithViewersFragment__create">Create</string>
+    <!-- Name story screen error when save attempted with no label -->
+    <string name="CreateStoryWithViewersFragment__this_field_is_required">This field is required.</string>
+    <!-- Name story screen error when save attempted but label is duplicate -->
+    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">There is already a story with this name.</string>
+    <!-- Text for select all action when editing recipients for a story -->
+    <string name="BaseStoryRecipientSelectionFragment__select_all">Select all</string>
+    <!-- Choose story type bottom sheet title -->
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Choose your story type</string>
+    <!-- Choose story type bottom sheet new story row title -->
+    <string name="ChooseStoryTypeBottomSheet__new_private_story">New private story</string>
+    <!-- Choose story type bottom sheet new story row summary -->
+    <string name="ChooseStoryTypeBottomSheet__visible_only_to">Visible only to specific people</string>
+    <!-- Choose story type bottom sheet group story title -->
+    <string name="ChooseStoryTypeBottomSheet__group_story">Group story</string>
+    <!-- Choose story type bottom sheet group story summary -->
+    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Share to an existing group</string>
+    <!-- Choose groups bottom sheet title -->
+    <string name="ChooseGroupStoryBottomSheet__choose_groups">Choose groups</string>
+    <!-- Displayed when copying group story reply text to clipboard -->
+    <string name="StoryGroupReplyFragment__copied_to_clipboard">Copied to clipboard</string>
+    <!-- Displayed in story caption when content is longer than 5 lines -->
+    <string name="StoryViewerPageFragment__see_more">… See More</string>
+    <!-- Displayed in toast after sending a direct reply -->
+    <string name="StoryDirectReplyDialogFragment__reply_sent">Reply sent</string>
+
+    <!-- endregion -->
+    <!-- Content description for expand contacts chevron -->
+    <string name="ExpandModel__show_more">Show more</string>
 
     <!-- EOF -->
 

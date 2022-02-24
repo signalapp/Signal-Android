@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/private_story_settings"
+    app:startDestination="@id/privateStorySettings">
+    <fragment
+        android:id="@+id/privateStorySettings"
+        android:name="org.thoughtcrime.securesms.stories.settings.custom.PrivateStorySettingsFragment"
+        android:label="private_story_settings_fragment">
+
+        <argument
+            android:name="distribution_list_id"
+            app:argType="org.thoughtcrime.securesms.database.model.DistributionListId"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_privateStorySettings_to_editStoryNameFragment"
+            app:destination="@id/editStoryNameFragment" />
+        <action
+            android:id="@+id/action_privateStorySettings_to_editStoryViewers"
+            app:destination="@id/addStoryViewers" />
+    </fragment>
+    <fragment
+        android:id="@+id/editStoryNameFragment"
+        android:name="org.thoughtcrime.securesms.stories.settings.custom.name.EditStoryNameFragment"
+        android:label="edit_story_name_fragment"
+        tools:layout="@layout/stories_edit_story_name_fragment">
+
+        <argument
+            android:name="distribution_list_id"
+            app:argType="org.thoughtcrime.securesms.database.model.DistributionListId"
+            app:nullable="false" />
+
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStoryViewers"
+        android:name="org.thoughtcrime.securesms.stories.settings.custom.viewers.AddViewersFragment"
+        android:label="add_viewers_fragment"
+        tools:layout="@layout/stories_base_recipient_selection_fragment">
+
+        <argument
+            android:name="distribution_list_id"
+            app:argType="org.thoughtcrime.securesms.database.model.DistributionListId" />
+    </fragment>
+</navigation>

@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.payments.Payments;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
+import org.thoughtcrime.securesms.service.ExpiringStoriesManager;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.PendingRetryReceiptManager;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
@@ -90,6 +91,7 @@ public class ApplicationDependencies {
   private static volatile DatabaseObserver             databaseObserver;
   private static volatile TrimThreadsByDateManager     trimThreadsByDateManager;
   private static volatile ViewOnceMessageManager       viewOnceMessageManager;
+  private static volatile ExpiringStoriesManager       expiringStoriesManager;
   private static volatile ExpiringMessageManager       expiringMessageManager;
   private static volatile Payments                     payments;
   private static volatile SignalCallManager            signalCallManager;
@@ -382,6 +384,18 @@ public class ApplicationDependencies {
     return viewOnceMessageManager;
   }
 
+  public static @NonNull ExpiringStoriesManager getExpireStoriesManager() {
+    if (expiringStoriesManager == null) {
+      synchronized (LOCK) {
+        if (expiringStoriesManager == null) {
+          expiringStoriesManager = provider.provideExpiringStoriesManager();
+        }
+      }
+    }
+
+    return expiringStoriesManager;
+  }
+
   public static @NonNull PendingRetryReceiptManager getPendingRetryReceiptManager() {
     if (pendingRetryReceiptManager == null) {
       synchronized (LOCK) {
@@ -615,6 +629,7 @@ public class ApplicationDependencies {
     @NonNull IncomingMessageObserver provideIncomingMessageObserver();
     @NonNull TrimThreadsByDateManager provideTrimThreadsByDateManager();
     @NonNull ViewOnceMessageManager provideViewOnceMessageManager();
+    @NonNull ExpiringStoriesManager provideExpiringStoriesManager();
     @NonNull ExpiringMessageManager provideExpiringMessageManager();
     @NonNull TypingStatusRepository provideTypingStatusRepository();
     @NonNull TypingStatusSender provideTypingStatusSender();

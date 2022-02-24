@@ -9,8 +9,11 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 /**
  * Helper utility for generating cursors and cursor rows for subclasses of {@link AbstractContactsCursorLoader}.
@@ -83,6 +86,16 @@ public final class ContactsCursorRows {
                         ""};
   }
 
+  public static @NonNull Object[] forDistributionList(@NonNull DistributionListPartialRecord distributionListPartialRecord) {
+    return new Object[]{ distributionListPartialRecord.getRecipientId().serialize(),
+                         distributionListPartialRecord.getName(),
+                         SignalDatabase.distributionLists().getMemberCount(distributionListPartialRecord.getId()),
+                         ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
+                         "",
+                         ContactRepository.NORMAL_TYPE,
+                         ""};
+  }
+
   /**
    * Create a row for a contacts cursor for a new number the user is entering or has entered.
    */
@@ -115,6 +128,10 @@ public final class ContactsCursorRows {
                                      ""});
 
     return matrixCursor;
+  }
+
+  public static @NonNull MatrixCursor forStoriesHeader(@NonNull Context context) {
+    return forHeader(context.getString(R.string.ContactsCursorLoader_my_stories));
   }
 
   public static @NonNull MatrixCursor forUsernameSearchHeader(@NonNull Context context) {

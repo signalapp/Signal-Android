@@ -111,6 +111,7 @@
     <color name="debuglog_color_error">@color/debuglog_light_error</color>
 
     <color name="conversation_mention_background_color">@color/core_grey_20</color>
+    <color name="story_bullet_color">@color/core_grey_20</color>
 
     <color name="login_top_background">@color/core_ultramarine</color>
 

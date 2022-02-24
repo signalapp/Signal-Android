@@ -87,7 +87,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   }
 
   @Override
-  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
     final String displayName = recipientId.transform(id -> Recipient.resolved(id).getDisplayName(this)).or(number);
 
     AlertDialog confirmationDialog = new MaterialAlertDialogBuilder(this)
@@ -116,7 +116,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   }
 
   @Override
-  public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
+  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number) {
 
   }
 

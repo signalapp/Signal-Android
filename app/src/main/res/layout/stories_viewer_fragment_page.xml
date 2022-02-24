@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".stories.viewer.StoryViewerActivity">
+
+    <org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
+        android:id="@+id/story_content_card_touch_interceptor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="9:16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/story_content_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="0dp">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/story_content_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:background="@drawable/test_gradient" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@drawable/story_gradient_top" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/story_gradient_bottom" />
+        </androidx.cardview.widget.CardView>
+    </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
+
+    <TextView
+        android:id="@+id/views_and_replies_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:background="?selectableItemBackground"
+        android:gravity="center"
+        android:textAppearance="@style/Signal.Text.Body"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/story_content_card_touch_interceptor"
+        app:layout_constraintVertical_bias="0"
+        tools:text="6 views 4 replies" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/replies_bar_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="progress, story_content_card_touch_interceptor" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/story_from_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="from,sender_avatar,group_avatar,more" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/story_caption"
+        android:layout_width="0dp"
+        android:layout_height="95sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="bottom"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeMinTextSize="16sp"
+        app:autoSizeStepGranularity="4sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        tools:text="Ugh." />
+
+    <View
+        android:id="@+id/story_large_caption_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/transparent_black_40" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/story_large_caption"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="bottom"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textStyle="bold"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/close"
+        app:layout_constraintVertical_bias="1"
+        tools:text="Ugh." />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/story_content_card_touch_interceptor"
+        app:srcCompat="@drawable/ic_x_24"
+        app:tint="@color/core_white" />
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/sender_avatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/distribution_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/from"
+        app:layout_goneMarginBottom="16dp" />
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/group_avatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@id/sender_avatar"
+        app:layout_constraintStart_toStartOf="@id/sender_avatar"
+        app:layout_constraintTop_toTopOf="@id/sender_avatar" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/avatar_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="sender_avatar,group_avatar" />
+
+    <TextView
+        android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+        android:textColor="@color/core_white"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/distribution_list"
+        app:layout_constraintEnd_toStartOf="@id/date"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/avatar_barrier"
+        app:layout_goneMarginBottom="20dp"
+        tools:text="Matthew Hall to Crazy Family I only see on Holiday" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="12dp"
+        android:alpha="0.8"
+        android:textAppearance="@style/TextAppearance.Signal.Caption"
+        app:layout_constraintBottom_toBottomOf="@id/from"
+        app:layout_constraintEnd_toStartOf="@id/more"
+        app:layout_constraintStart_toEndOf="@id/from"
+        tools:text="20m" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/distribution_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="14dp"
+        android:drawablePadding="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+        android:visibility="gone"
+        app:drawableStartCompat="@drawable/ic_update_group_16"
+        app:drawableTint="@color/transparent_white_80"
+        app:layout_constraintBottom_toTopOf="@id/progress"
+        app:layout_constraintEnd_toStartOf="@id/more"
+        app:layout_constraintStart_toStartOf="@id/from"
+        tools:text="My crazy distribution group" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/more"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="4dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_more_vert_24"
+        app:tint="@color/core_white" />
+
+    <org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/views_and_replies_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:segmentBackgroundColor="@color/transparent_white_40"
+        app:segmentCornerRadius="10dp"
+        app:segmentMargins="2dp"
+        app:segmentSelectedBackgroundColor="@color/core_white"
+        app:segmentSelectedStrokeColor="@color/core_white"
+        app:segmentStrokeColor="@color/core_white"
+        app:totalSegments="0"
+        tools:totalSegments="5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

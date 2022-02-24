@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_story_settings"
+    app:startDestination="@id/myStorySettings">
+    <fragment
+        android:id="@+id/hideStoryFromFragment"
+        android:name="org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromFragment"
+        android:label="hide_story_from_fragment" />
+    <fragment
+        android:id="@+id/myStorySettings"
+        android:name="org.thoughtcrime.securesms.stories.settings.my.MyStorySettingsFragment"
+        android:label="my_story_settings_fragment">
+        <action
+            android:id="@+id/action_myStorySettings_to_signalConnectionsBottomSheet"
+            app:destination="@id/signalConnectionsBottomSheet" />
+        <action
+            android:id="@+id/action_myStorySettings_to_hideStoryFromFragment"
+            app:destination="@id/hideStoryFromFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/signalConnectionsBottomSheet"
+        android:name="org.thoughtcrime.securesms.stories.settings.my.SignalConnectionsBottomSheetDialogFragment"
+        android:label="signal_connections_bottom_sheet"
+        tools:layout="@layout/stories_signal_connection_bottom_sheet" />
+</navigation>

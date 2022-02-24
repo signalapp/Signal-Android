@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment;
@@ -17,8 +16,11 @@ import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment;
 
 public class MainNavigator {
+
+  public static final String STORIES_TAG = "STORIES";
 
   public static final int REQUEST_CONFIG_CHANGES = 901;
 
@@ -80,6 +82,21 @@ public class MainNavigator {
                         .replace(R.id.fragment_container, ConversationListArchiveFragment.newInstance())
                         .addToBackStack(null)
                         .commit();
+  }
+
+  public void goToStories() {
+    if (getFragmentManager().findFragmentByTag(STORIES_TAG) == null) {
+      getFragmentManager().beginTransaction()
+                          .replace(R.id.fragment_container, new StoriesLandingFragment(), STORIES_TAG)
+                          .addToBackStack(null)
+                          .commit();
+    }
+  }
+
+  public void goToChats() {
+    if (getFragmentManager().findFragmentByTag(STORIES_TAG) != null) {
+      getFragmentManager().popBackStack();
+    }
   }
 
   public void goToGroupCreation() {

@@ -1,8 +1,9 @@
-
 package org.thoughtcrime.securesms.keyboard
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.R
@@ -10,11 +11,14 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
+import org.thoughtcrime.securesms.util.ThemedFragment.themeResId
+import org.thoughtcrime.securesms.util.ThemedFragment.themedInflate
+import org.thoughtcrime.securesms.util.ThemedFragment.withTheme
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 import kotlin.reflect.KClass
 
-class KeyboardPagerFragment : Fragment(R.layout.keyboard_pager_fragment) {
+class KeyboardPagerFragment : Fragment() {
 
   private lateinit var emojiButton: View
   private lateinit var stickerButton: View
@@ -23,6 +27,10 @@ class KeyboardPagerFragment : Fragment(R.layout.keyboard_pager_fragment) {
 
   private val fragments: MutableMap<KClass<*>, Fragment> = mutableMapOf()
   private var currentFragment: Fragment? = null
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    return themedInflate(R.layout.keyboard_pager_fragment, inflater, container)
+  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     emojiButton = view.findViewById(R.id.keyboard_pager_fragment_emoji)
@@ -80,7 +88,7 @@ class KeyboardPagerFragment : Fragment(R.layout.keyboard_pager_fragment) {
 
     var fragment = fragments[F::class]
     if (fragment == null) {
-      fragment = fragmentFactory()
+      fragment = fragmentFactory().withTheme(themeResId)
       transaction.add(R.id.fragment_container, fragment)
       fragments[F::class] = fragment
     } else {

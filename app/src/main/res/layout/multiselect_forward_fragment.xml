@@ -5,23 +5,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
-        android:id="@+id/anchor"
-        android:layout_width="48dp"
-        android:layout_height="2dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:background="@color/signal_icon_tint_tab_unselected" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:gravity="center"
-        android:text="@string/MultiselectForwardFragment__forward_to"
-        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold" />
-
     <org.thoughtcrime.securesms.components.ContactFilterView
         android:id="@+id/contact_filter_edit_text"
         android:layout_width="match_parent"
@@ -33,12 +16,13 @@
         app:cfv_autoFocus="false"
         app:cfv_background="@drawable/rounded_rectangle_dialog_secondary" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/contact_selection_list_fragment"
-        android:name="org.thoughtcrime.securesms.ContactSelectionListFragment"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contact_selection_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:paddingBottom="44dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

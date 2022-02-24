@@ -495,6 +495,19 @@ public class ThreadDatabase extends Database {
     }
   }
 
+  public long getUnreadThreadCount() {
+    SQLiteDatabase db         = databaseHelper.getSignalReadableDatabase();
+    String[]       projection = SqlUtil.buildArgs("COUNT(*)");
+    String         where      = READ + " != 1";
+
+    try (Cursor cursor = db.query(TABLE_NAME, projection, where, null, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(0);
+      } else {
+        return 0;
+      }
+    }
+  }
 
   public void incrementUnread(long threadId, int amount) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
@@ -1607,6 +1620,7 @@ public class ThreadDatabase extends Database {
                                                           recipientSettings,
                                                           null,
                                                           false);
+
           recipient = new Recipient(recipientId, details, false);
         } else {
           recipient = Recipient.live(recipientId).get();

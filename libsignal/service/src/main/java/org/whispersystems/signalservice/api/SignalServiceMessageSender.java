@@ -41,7 +41,10 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
+import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceTextAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
@@ -102,8 +105,11 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMe
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.NullMessage;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Preview;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.ReceiptMessage;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.StoryMessage;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.TextAttachment;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.TypingMessage;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Verified;
 import org.whispersystems.signalservice.internal.push.StaleDevices;
@@ -219,22 +225,8 @@ public class SignalServiceMessageSender {
   }
 
   /**
-   * Send a typing indicator.
-   *
-   * @param recipient The destination
-   * @param message The typing indicator to deliver
+   * Sends a typing indicator using client-side fanout. Doesn't bother with return results, since these are best-effort.
    */
-  public void sendTyping(SignalServiceAddress recipient,
-                         Optional<UnidentifiedAccessPair> unidentifiedAccess,
-                         SignalServiceTypingMessage message)
-      throws IOException, UntrustedIdentityException
-  {
-    Content         content         = createTypingContent(message);
-    EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.absent());
-
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), envelopeContent, true, null);
-  }
-
   public void sendTyping(List<SignalServiceAddress>             recipients,
                          List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
                          SignalServiceTypingMessage             message,
@@ -248,7 +240,7 @@ public class SignalServiceMessageSender {
   }
 
   /**
-   * Send a typing indicator a group. Doesn't bother with return results, since these are best-effort.
+   * Send a typing indicator to a group using sender key. Doesn't bother with return results, since these are best-effort.
    */
   public void sendGroupTyping(DistributionId              distributionId,
                               List<SignalServiceAddress>  recipients,
@@ -257,7 +249,35 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Content content = createTypingContent(message);
-    sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, ContentHint.IMPLICIT, message.getGroupId().orNull(), true, SenderKeyGroupEvents.EMPTY);
+    sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, ContentHint.IMPLICIT, message.getGroupId(), true, SenderKeyGroupEvents.EMPTY);
+  }
+
+  public List<SendMessageResult> sendStory(List<SignalServiceAddress>             recipients,
+                                           List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
+                                           SignalServiceStoryMessage              message,
+                                           long                                   timestamp)
+      throws IOException, UntrustedIdentityException
+  {
+    Content         content         = createStoryContent(message);
+    EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.absent());
+
+    return sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null, null);
+  }
+
+  /**
+   * Send a typing indicator to a group using sender key. Doesn't bother with return results, since these are best-effort.
+   * @return
+   */
+  public List<SendMessageResult> sendGroupStory(DistributionId              distributionId,
+                                                Optional<byte[]>            groupId,
+                                                List<SignalServiceAddress>  recipients,
+                                                List<UnidentifiedAccess>    unidentifiedAccess,
+                                                SignalServiceStoryMessage   message,
+                                                long                        timestamp)
+      throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
+  {
+    Content content = createStoryContent(message);
+    return sendGroupMessage(distributionId, recipients, unidentifiedAccess, timestamp, content, ContentHint.RESENDABLE, groupId, false, SenderKeyGroupEvents.EMPTY);
   }
 
 
@@ -297,7 +317,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Content content = createCallContent(message);
-    return sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId().get(), false, SenderKeyGroupEvents.EMPTY);
+    return sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId(), false, SenderKeyGroupEvents.EMPTY);
   }
 
   /**
@@ -369,12 +389,12 @@ public class SignalServiceMessageSender {
                                                                   List<SignalServiceAddress>             recipients,
                                                                   List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
                                                                   SenderKeyDistributionMessage           message,
-                                                                  byte[]                                 groupId)
+                                                                  Optional<byte[]>                       groupId)
       throws IOException
   {
     ByteString      distributionBytes = ByteString.copyFrom(message.serialize());
     Content         content           = Content.newBuilder().setSenderKeyDistributionMessage(distributionBytes).build();
-    EnvelopeContent envelopeContent   = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.of(groupId));
+    EnvelopeContent envelopeContent   = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, groupId);
     long            timestamp         = System.currentTimeMillis();
 
     Log.d(TAG, "[" + timestamp + "] Sending SKDM to " + recipients.size() + " recipients for DistributionId " + distributionId);
@@ -421,7 +441,7 @@ public class SignalServiceMessageSender {
 
     Content                 content = createMessageContent(message);
     Optional<byte[]>        groupId = message.getGroupId();
-    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId.orNull(), false, sendEvents);
+    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId, false, sendEvents);
 
     sendEvents.onMessageSent();
 
@@ -725,6 +745,33 @@ public class SignalServiceMessageSender {
     return container.setTypingMessage(builder).build();
   }
 
+  private Content createStoryContent(SignalServiceStoryMessage message) throws IOException {
+    Content.Builder      container = Content.newBuilder();
+    StoryMessage.Builder builder   = StoryMessage.newBuilder();
+
+    if (message.getProfileKey().isPresent()) {
+      builder.setProfileKey(ByteString.copyFrom(message.getProfileKey().get()));
+    }
+
+    if (message.getGroupContext().isPresent()) {
+      builder.setGroup(createGroupContent(message.getGroupContext().get()));
+    }
+
+    if (message.getFileAttachment().isPresent()) {
+      if (message.getFileAttachment().get().isStream()) {
+        builder.setFileAttachment(createAttachmentPointer(message.getFileAttachment().get().asStream()));
+      } else {
+        builder.setFileAttachment(createAttachmentPointer(message.getFileAttachment().get().asPointer()));
+      }
+    }
+
+    if (message.getTextAttachment().isPresent()) {
+      builder.setTextAttachment(createTextAttachment(message.getTextAttachment().get()));
+    }
+
+    return container.setStoryMessage(builder).build();
+  }
+
   private Content createReceiptContent(SignalServiceReceiptMessage message) {
     Content.Builder        container = Content.newBuilder();
     ReceiptMessage.Builder builder   = ReceiptMessage.newBuilder();
@@ -832,22 +879,8 @@ public class SignalServiceMessageSender {
     }
 
     if (message.getPreviews().isPresent()) {
-      for (SignalServiceDataMessage.Preview preview : message.getPreviews().get()) {
-        DataMessage.Preview.Builder previewBuilder = DataMessage.Preview.newBuilder();
-        previewBuilder.setTitle(preview.getTitle());
-        previewBuilder.setDescription(preview.getDescription());
-        previewBuilder.setDate(preview.getDate());
-        previewBuilder.setUrl(preview.getUrl());
-
-        if (preview.getImage().isPresent()) {
-          if (preview.getImage().get().isStream()) {
-            previewBuilder.setImage(createAttachmentPointer(preview.getImage().get().asStream()));
-          } else {
-            previewBuilder.setImage(createAttachmentPointer(preview.getImage().get().asPointer()));
-          }
-        }
-
-        builder.addPreview(previewBuilder.build());
+      for (SignalServicePreview preview : message.getPreviews().get()) {
+        builder.addPreview(createPreview(preview));
       }
     }
 
@@ -934,6 +967,24 @@ public class SignalServiceMessageSender {
     builder.setTimestamp(message.getTimestamp());
 
     return enforceMaxContentSize(container.setDataMessage(builder).build());
+  }
+
+  private Preview createPreview(SignalServicePreview preview) throws IOException {
+    Preview.Builder previewBuilder = Preview.newBuilder()
+                                            .setTitle(preview.getTitle())
+                                            .setDescription(preview.getDescription())
+                                            .setDate(preview.getDate())
+                                            .setUrl(preview.getUrl());
+
+    if (preview.getImage().isPresent()) {
+      if (preview.getImage().get().isStream()) {
+        previewBuilder.setImage(createAttachmentPointer(preview.getImage().get().asStream()));
+      } else {
+        previewBuilder.setImage(createAttachmentPointer(preview.getImage().get().asPointer()));
+      }
+    }
+
+    return previewBuilder.build();
   }
 
   private Content createCallContent(SignalServiceCallMessage callMessage) {
@@ -1700,7 +1751,7 @@ public class SignalServiceMessageSender {
                                                    long                       timestamp,
                                                    Content                    content,
                                                    ContentHint                contentHint,
-                                                   byte[]                     groupId,
+                                                   Optional<byte[]>           groupId,
                                                    boolean                    online,
                                                    SenderKeyGroupEvents       sendEvents)
       throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException, InvalidRegistrationIdException
@@ -1922,6 +1973,54 @@ public class SignalServiceMessageSender {
     return createAttachmentPointer(uploadAttachment(attachment));
   }
 
+  private TextAttachment createTextAttachment(SignalServiceTextAttachment attachment) throws IOException {
+    TextAttachment.Builder builder = TextAttachment.newBuilder();
+
+    if (attachment.getStyle().isPresent()) {
+      switch (attachment.getStyle().get()) {
+        case DEFAULT:
+          builder.setTextStyle(TextAttachment.Style.DEFAULT);
+          break;
+        case REGULAR:
+          builder.setTextStyle(TextAttachment.Style.REGULAR);
+          break;
+        case BOLD:
+          builder.setTextStyle(TextAttachment.Style.BOLD);
+          break;
+        case SERIF:
+          builder.setTextStyle(TextAttachment.Style.SERIF);
+          break;
+        case SCRIPT:
+          builder.setTextStyle(TextAttachment.Style.SCRIPT);
+          break;
+        case CONDENSED:
+          builder.setTextStyle(TextAttachment.Style.CONDENSED);
+          break;
+        default:
+          throw new AssertionError("Unknown type: " + attachment.getStyle().get());
+      }
+    }
+
+    TextAttachment.Gradient.Builder gradientBuilder = TextAttachment.Gradient.newBuilder();
+
+    if (attachment.getBackgroundGradient().isPresent()) {
+      SignalServiceTextAttachment.Gradient gradient = attachment.getBackgroundGradient().get();
+
+      if (gradient.getStartColor().isPresent()) gradientBuilder.setStartColor(gradient.getStartColor().get());
+      if (gradient.getEndColor().isPresent())   gradientBuilder.setEndColor(gradient.getEndColor().get());
+      if (gradient.getAngle().isPresent())      gradientBuilder.setAngle(gradient.getAngle().get());
+
+      builder.setGradient(gradientBuilder.build());
+    }
+
+    if (attachment.getText().isPresent())                builder.setText(attachment.getText().get());
+    if (attachment.getTextForegroundColor().isPresent()) builder.setTextForegroundColor(attachment.getTextForegroundColor().get());
+    if (attachment.getTextBackgroundColor().isPresent()) builder.setTextBackgroundColor(attachment.getTextBackgroundColor().get());
+    if (attachment.getPreview().isPresent())             builder.setPreview(createPreview(attachment.getPreview().get()));
+    if (attachment.getBackgroundColor().isPresent())     builder.setColor(attachment.getBackgroundColor().get());
+
+    return builder.build();
+  }
 
   private OutgoingPushMessageList getEncryptedMessages(PushServiceSocket            socket,
                                                        SignalServiceAddress         recipient,

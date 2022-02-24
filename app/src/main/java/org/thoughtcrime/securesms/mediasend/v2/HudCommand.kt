@@ -7,6 +7,9 @@ sealed class HudCommand {
   object StartCropAndRotate : HudCommand()
   object SaveMedia : HudCommand()
 
+  object GoToText : HudCommand()
+  object GoToCapture : HudCommand()
+
   object ResumeEntryTransition : HudCommand()
 
   object OpenEmojiSearch : HudCommand()

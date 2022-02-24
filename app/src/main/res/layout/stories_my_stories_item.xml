@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingEnd="@dimen/dsl_settings_gutter">
+
+    <org.thoughtcrime.securesms.components.ThumbnailView
+        android:id="@+id/story"
+        android:layout_width="56dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/red" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/view_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        app:layout_constraintBottom_toTopOf="@id/date"
+        app:layout_constraintStart_toEndOf="@id/story"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="12 views" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintStart_toEndOf="@id/story"
+        app:layout_constraintTop_toBottomOf="@id/view_count"
+        tools:text="10m" />
+
+    <View
+        android:id="@+id/download_touch"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@id/download"
+        app:layout_constraintEnd_toEndOf="@id/download"
+        app:layout_constraintStart_toStartOf="@id/download"
+        app:layout_constraintTop_toTopOf="@id/download" />
+
+    <View
+        android:id="@+id/more_touch"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@id/more"
+        app:layout_constraintEnd_toEndOf="@id/more"
+        app:layout_constraintStart_toStartOf="@id/more"
+        app:layout_constraintTop_toTopOf="@id/more" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/download"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/circle_tintable"
+        android:scaleType="centerInside"
+        app:backgroundTint="@color/signal_background_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/more"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_download_24"
+        app:tint="@color/signal_icon_tint_primary" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/more"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/circle_tintable"
+        android:scaleType="centerInside"
+        app:backgroundTint="@color/signal_background_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_more_vert_24"
+        app:tint="@color/signal_icon_tint_primary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

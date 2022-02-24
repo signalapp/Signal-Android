@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_x_24"
+        app:title="@string/EditPrivateStoryNameFragment__edit_story_name" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/story_name_wrapper"
+        style="@style/Widget.Signal.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="@string/EditPrivateStoryNameFragment__story_name"
+        android:minHeight="56dp"
+        android:theme="@style/ThemeOverlay.Signal.EditProfileInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+            android:id="@+id/story_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
+            tools:text="Close Friends" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/EditProfileNameFragment_save"
+        android:textColor="@color/white"
+        app:cornerRadius="80dp"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="?colorAccent"
+        app:cpb_cornerRadius="28dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/EditProfileNameFragment_save"
+        app:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

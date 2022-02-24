@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.model.IdentityRecord
-import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.sharing.ShareContact
 
 data class MultiselectForwardState(
-  val selectedContacts: List<ShareContact> = emptyList(),
   val stage: Stage = Stage.Selection
 ) {
   sealed class Stage {
@@ -17,6 +15,6 @@ data class MultiselectForwardState(
     object SomeFailed : Stage()
     object AllFailed : Stage()
     object Success : Stage()
-    data class SelectionConfirmed(val recipients: List<RecipientId>) : Stage()
+    data class SelectionConfirmed(val selectedContacts: Set<ContactSearchKey>) : Stage()
   }
 }

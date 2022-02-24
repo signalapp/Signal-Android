@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -52,6 +53,12 @@ public final class GroupUtil {
                content.getSyncMessage().get().getSent().get().getMessage().getGroupContext().isPresent())
     {
       return content.getSyncMessage().get().getSent().get().getMessage().getGroupContext().get();
+    } else if (content.getStoryMessage().isPresent() && content.getStoryMessage().get().getGroupContext().isPresent()) {
+      try {
+        return SignalServiceGroupContext.create(null, content.getStoryMessage().get().getGroupContext().get());
+      } catch (InvalidMessageException e) {
+        throw new AssertionError(e);
+      }
     } else {
       return null;
     }

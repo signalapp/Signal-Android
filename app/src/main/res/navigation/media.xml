@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mediaCaptureFragment_to_mediaGalleryFragment"
             app:destination="@id/mediaGalleryFragment" />
+        <action
+            android:id="@+id/action_mediaCaptureFragment_to_textStoryPostCreationFragment"
+            app:destination="@id/textStoryPostCreationFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +38,28 @@
             android:id="@+id/action_mediaGalleryFragment_to_mediaCaptureFragment"
             app:destination="@id/mediaCaptureFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/textStoryPostCreationFragment"
+        android:name="org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationFragment"
+        android:label="text_story_post_creation_fragment"
+        tools:layout="@layout/stories_text_post_creation_fragment" >
+        <action
+            android:id="@+id/action_textStoryPostCreationFragment_to_textStoryPostSendFragment"
+            app:destination="@id/textStoryPostSendFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/textStoryPostSendFragment"
+        android:name="org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendFragment"
+        android:label="text_story_post_send_fragment"
+        tools:layout="@layout/stories_send_text_post_fragment">
+        <action
+            android:id="@+id/action_textStoryPostSendFragment_to_newStory"
+            app:destination="@+id/new_story" />
+    </fragment>
+
+    <include app:graph="@navigation/new_story" />
 
     <action
         android:id="@+id/action_directly_to_mediaCaptureFragment"

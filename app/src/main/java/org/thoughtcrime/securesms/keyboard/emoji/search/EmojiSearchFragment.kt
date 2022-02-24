@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.keyboard.emoji.search
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -15,10 +17,11 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
+import org.thoughtcrime.securesms.util.ThemedFragment.themedInflate
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 
-class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageViewGridAdapter.VariationSelectorListener {
+class EmojiSearchFragment : Fragment(), EmojiPageViewGridAdapter.VariationSelectorListener {
 
   private lateinit var viewModel: EmojiSearchViewModel
   private lateinit var callback: Callback
@@ -27,6 +30,10 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
     super.onAttach(context)
 
     callback = requireListener()
+  }
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    return themedInflate(R.layout.emoji_search_fragment, inflater, container)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

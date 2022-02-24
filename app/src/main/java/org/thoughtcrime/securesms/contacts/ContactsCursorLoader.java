@@ -27,13 +27,18 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * CursorLoader that initializes a ContactsDatabase instance
@@ -55,13 +60,14 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
     public static final int FLAG_HIDE_NEW              = 1 << 6;
     public static final int FLAG_HIDE_RECENT_HEADER    = 1 << 7;
     public static final int FLAG_GROUPS_AFTER_CONTACTS = 1 << 8;
-    public static final int FLAG_ALL                   = FLAG_PUSH | FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS | FLAG_SELF;
+    public static final int FLAG_STORIES               = 1 << 9;
+    public static final int FLAG_ALL                   = FLAG_PUSH | FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS | FLAG_SELF | FLAG_STORIES;
   }
 
   private static final int RECENT_CONVERSATION_MAX = 25;
 
-  private final int     mode;
-  private final boolean recents;
+  private final int              mode;
+  private final boolean          recents;
 
   private final ContactRepository contactRepository;
 
@@ -85,6 +91,7 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
       addRecentGroupsSection(cursorList);
       addGroupsSection(cursorList);
     } else {
+      addStoriesSection(cursorList);
       addRecentsSection(cursorList);
       addContactsSection(cursorList);
       if (addGroupsAfterContacts(mode)) {
@@ -163,6 +170,19 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
     }
   }
 
+  private void addStoriesSection(@NonNull List<Cursor> cursorList) {
+    if (!FeatureFlags.stories() || !storiesEnabled(mode) || SignalStore.storyValues().isFeatureDisabled()) {
+      return;
+    }
+
+    Cursor stories = getStoriesCursor();
+
+    if (stories.getCount() > 0) {
+      cursorList.add(ContactsCursorRows.forStoriesHeader(getContext()));
+      cursorList.add(stories);
+    }
+  }
+
   private void addNewNumberSection(@NonNull List<Cursor> cursorList) {
     if (FeatureFlags.usernames() && NumberUtil.isVisuallyValidNumberOrEmail(getFilter())) {
       cursorList.add(ContactsCursorRows.forPhoneNumberSearchHeader(getContext()));
@@ -221,6 +241,16 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
       }
     }
     return groupContacts;
+  }
+
+  private Cursor getStoriesCursor() {
+    MatrixCursor                        distributionListsCursor = ContactsCursorRows.createMatrixCursor();
+    List<DistributionListPartialRecord> distributionLists       = SignalDatabase.distributionLists().getAllListsForContactSelectionUi(null, true);
+    for (final DistributionListPartialRecord distributionList : distributionLists) {
+      distributionListsCursor.addRow(ContactsCursorRows.forDistributionList(distributionList));
+    }
+
+    return distributionListsCursor;
   }
 
   private Cursor getNewNumberCursor() {
@@ -293,16 +323,20 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
     return flagSet(mode, DisplayMode.FLAG_GROUPS_AFTER_CONTACTS);
   }
 
+  private static boolean storiesEnabled(int mode) {
+    return flagSet(mode, DisplayMode.FLAG_STORIES);
+  }
+
   private static boolean flagSet(int mode, int flag) {
     return (mode & flag) > 0;
   }
 
   public static class Factory implements AbstractContactsCursorLoader.Factory {
 
-    private final Context context;
-    private final int     displayMode;
-    private final String  cursorFilter;
-    private final boolean displayRecents;
+    private final Context          context;
+    private final int              displayMode;
+    private final String           cursorFilter;
+    private final boolean          displayRecents;
 
     public Factory(Context context, int displayMode, String cursorFilter, boolean displayRecents) {
       this.context        = context;

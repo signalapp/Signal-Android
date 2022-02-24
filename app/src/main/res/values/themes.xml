@@ -10,6 +10,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+        <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox</item>
     </style>
 
     <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar">
@@ -146,6 +147,9 @@
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
+        <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox</item>
+        <item name="mediaKeyboardBackgroundColor">@color/signal_background_secondary</item>
+
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="actionModeBackground">@color/signal_background_primary</item>
@@ -223,6 +227,9 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
 
         <item name="settingsToolbarStyle">@style/TextSecure.DarkActionBar.Settings</item>
+
+        <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox</item>
+        <item name="mediaKeyboardBackgroundColor">@color/signal_background_secondary</item>
 
         <item name="contact_filter_toolbar_icon_tint">@color/signal_icon_tint_primary</item>
 
@@ -408,6 +415,7 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet</item>
+        <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox_dialog</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
@@ -415,12 +423,37 @@
         <item name="backgroundTint">@color/signal_background_dialog</item>
     </style>
 
+    <style name="Widget.Signal.FixedRoundedCorners.Stories">
+        <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet.Stories</item>
+    </style>
+
+    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet.Stories">
+        <item name="backgroundTint">@color/signal_background_tertiary</item>
+    </style>
+
+
     <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">18dp</item>
         <item name="cornerSizeTopLeft">18dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Signal.Story.Preview" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">12dp</item>
+        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeBottomLeft">12dp</item>
+        <item name="cornerSizeBottomRight">12dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Signal.Story.Text" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">18dp</item>
+        <item name="cornerSizeTopLeft">18dp</item>
+        <item name="cornerSizeBottomLeft">18dp</item>
+        <item name="cornerSizeBottomRight">18dp</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.Signal.WallpaperPreview" parent="">
@@ -476,6 +509,20 @@
         <item name="colorAccent">@color/core_ultramarine_light</item>
 
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_grey_75</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
+    </style>
+
+    <style name="Theme.Signal.RoundedBottomSheet.Stories">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet.Stories</item>
+        <item name="mediaKeyboardBackgroundColor">@color/signal_background_tertiary</item>
+
+        <item name="android:textColorPrimary">@color/core_grey_05</item>
+
+        <item name="colorAccent">@color/core_ultramarine_light</item>
+
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/signal_background_primary</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
     </style>

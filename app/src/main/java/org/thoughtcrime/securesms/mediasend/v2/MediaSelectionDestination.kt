@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.mediasend.v2
 
 import android.os.Bundle
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 sealed class MediaSelectionDestination {
@@ -28,7 +30,7 @@ sealed class MediaSelectionDestination {
   }
 
   class SingleRecipient(private val id: RecipientId) : MediaSelectionDestination() {
-    override fun getRecipientId(): RecipientId = id
+    override fun getRecipientSearchKey(): RecipientSearchKey = ContactSearchKey.KnownRecipient(id)
 
     override fun toBundle(): Bundle {
       return Bundle().apply {
@@ -38,7 +40,7 @@ sealed class MediaSelectionDestination {
   }
 
   class MultipleRecipients(val recipientIds: List<RecipientId>) : MediaSelectionDestination() {
-    override fun getRecipientIdList(): List<RecipientId> = recipientIds
+    override fun getRecipientSearchKeyList(): List<RecipientSearchKey> = recipientIds.map { ContactSearchKey.KnownRecipient(it) }
 
     override fun toBundle(): Bundle {
       return Bundle().apply {
@@ -47,8 +49,8 @@ sealed class MediaSelectionDestination {
     }
   }
 
-  open fun getRecipientId(): RecipientId? = null
-  open fun getRecipientIdList(): List<RecipientId> = emptyList()
+  open fun getRecipientSearchKey(): RecipientSearchKey? = null
+  open fun getRecipientSearchKeyList(): List<RecipientSearchKey> = emptyList()
 
   abstract fun toBundle(): Bundle
 

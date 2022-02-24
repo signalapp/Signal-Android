@@ -55,7 +55,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
+import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -395,10 +395,10 @@ public abstract class PushSendJob extends SendJob {
     return sharedContacts;
   }
 
-  List<Preview> getPreviewsFor(OutgoingMediaMessage mediaMessage) {
+  List<SignalServicePreview> getPreviewsFor(OutgoingMediaMessage mediaMessage) {
     return Stream.of(mediaMessage.getLinkPreviews()).map(lp -> {
       SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
-      return new Preview(lp.getUrl(), lp.getTitle(), lp.getDescription(), lp.getDate(), Optional.fromNullable(attachment));
+      return new SignalServicePreview(lp.getUrl(), lp.getTitle(), lp.getDescription(), lp.getDate(), Optional.fromNullable(attachment));
     }).toList();
   }
 
@@ -441,7 +441,7 @@ public abstract class PushSendJob extends SendJob {
     }
   }
 
-  protected void handleProofRequiredException(@NonNull ProofRequiredException proofRequired, @Nullable Recipient recipient, long threadId, long messageId, boolean isMms)
+  protected static void handleProofRequiredException(@NonNull Context context, @NonNull ProofRequiredException proofRequired, @Nullable Recipient recipient, long threadId, long messageId, boolean isMms)
       throws ProofRequiredException, RetryLaterException
   {
     Log.w(TAG, "[Proof Required] Options: " + proofRequired.getOptions());
@@ -449,25 +449,25 @@ public abstract class PushSendJob extends SendJob {
     try {
       if (proofRequired.getOptions().contains(ProofRequiredException.Option.PUSH_CHALLENGE)) {
         ApplicationDependencies.getSignalServiceAccountManager().requestRateLimitPushChallenge();
-        log(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to " + PUSH_CHALLENGE_TIMEOUT + " ms.");
+        Log.i(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to " + PUSH_CHALLENGE_TIMEOUT + " ms.");
 
         boolean success = new PushChallengeRequest(PUSH_CHALLENGE_TIMEOUT).blockUntilSuccess();
 
         if (success) {
-          log(TAG, "Successfully responded to a push challenge. Retrying message send.");
+          Log.i(TAG, "Successfully responded to a push challenge. Retrying message send.");
           throw new RetryLaterException(1);
         } else {
-          warn(TAG, "Failed to respond to the push challenge in time. Falling back.");
+          Log.w(TAG, "Failed to respond to the push challenge in time. Falling back.");
         }
       }
     } catch (NonSuccessfulResponseCodeException e) {
-      warn(TAG, "[Proof Required] Could not request a push challenge (" + e.getCode() + "). Falling back.", e);
+      Log.w(TAG, "[Proof Required] Could not request a push challenge (" + e.getCode() + "). Falling back.", e);
     } catch (IOException e) {
-      warn(TAG, "[Proof Required] Network error when requesting push challenge. Retrying later.");
+      Log.w(TAG, "[Proof Required] Network error when requesting push challenge. Retrying later.");
       throw new RetryLaterException(e);
     }
 
-    warn(TAG, "[Proof Required] Marking message as rate-limited. (id: " + messageId + ", mms: " + isMms + ", thread: " + threadId + ")");
+    Log.w(TAG, "[Proof Required] Marking message as rate-limited. (id: " + messageId + ", mms: " + isMms + ", thread: " + threadId + ")");
     if (isMms) {
       SignalDatabase.mms().markAsRateLimited(messageId);
     } else {
@@ -475,13 +475,13 @@ public abstract class PushSendJob extends SendJob {
     }
 
     if (proofRequired.getOptions().contains(ProofRequiredException.Option.RECAPTCHA)) {
-      log(TAG, "[Proof Required] ReCAPTCHA required.");
+      Log.i(TAG, "[Proof Required] ReCAPTCHA required.");
       SignalStore.rateLimit().markNeedsRecaptcha(proofRequired.getToken());
 
       if (recipient != null) {
         ApplicationDependencies.getMessageNotifier().notifyProofRequired(context, recipient, threadId);
       } else {
-        warn(TAG, "[Proof Required] No recipient! Couldn't notify.");
+        Log.w(TAG, "[Proof Required] No recipient! Couldn't notify.");
       }
     }
 

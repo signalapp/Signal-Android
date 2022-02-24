@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="56dp"
+    tools:layout_width="56dp"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/avatar_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/avatar_story_ring"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/avatar_story_ring"
+        android:importantForAccessibility="no"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</merge>

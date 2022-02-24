@@ -180,6 +180,20 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
   public abstract void ensureMigration();
 
+  public abstract boolean isStory(long messageId);
+  public abstract @NonNull Reader getOutgoingStoriesTo(@NonNull RecipientId recipientId);
+  public abstract @NonNull Reader getAllOutgoingStories();
+  public abstract @NonNull Reader getAllStories();
+  public abstract @NonNull List<RecipientId> getAllStoriesRecipientsList();
+  public abstract @NonNull Reader getAllStoriesFor(@NonNull RecipientId recipientId);
+  public abstract @NonNull MessageId getStoryId(@NonNull RecipientId authorId, long sentTimestamp) throws NoSuchMessageException;
+  public abstract int getNumberOfStoryReplies(long parentStoryId);
+  public abstract boolean hasSelfReplyInStory(long parentStoryId);
+  public abstract @NonNull Cursor getStoryReplies(long parentStoryId);
+  public abstract long getUnreadStoryCount();
+  public abstract @Nullable Long getOldestStorySendTimestamp();
+  public abstract int deleteStoriesOlderThan(long timestamp);
+
   final @NonNull String getOutgoingTypeClause() {
     List<String> segments = new ArrayList<>(Types.OUTGOING_MESSAGE_TYPES.length);
     for (long outgoingMessageType : Types.OUTGOING_MESSAGE_TYPES) {

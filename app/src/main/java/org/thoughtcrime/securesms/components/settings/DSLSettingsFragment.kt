@@ -25,35 +25,44 @@ abstract class DSLSettingsFragment(
   protected var layoutManagerProducer: (Context) -> RecyclerView.LayoutManager = { context -> LinearLayoutManager(context) }
 ) : Fragment(layoutId) {
 
-  private var recyclerView: RecyclerView? = null
+  protected var recyclerView: RecyclerView? = null
+    private set
+
   private var scrollAnimationHelper: OnScrollAnimationHelper? = null
 
   @CallSuper
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val toolbar: Toolbar = view.findViewById(R.id.toolbar)
-    val toolbarShadow: View = view.findViewById(R.id.toolbar_shadow)
+    val toolbar: Toolbar? = view.findViewById(R.id.toolbar)
+    val toolbarShadow: View? = view.findViewById(R.id.toolbar_shadow)
 
     if (titleId != -1) {
-      toolbar.setTitle(titleId)
+      toolbar?.setTitle(titleId)
     }
 
-    toolbar.setNavigationOnClickListener {
+    toolbar?.setNavigationOnClickListener {
       requireActivity().onBackPressed()
     }
 
     if (menuId != -1) {
-      toolbar.inflateMenu(menuId)
-      toolbar.setOnMenuItemClickListener { onOptionsItemSelected(it) }
+      toolbar?.inflateMenu(menuId)
+      toolbar?.setOnMenuItemClickListener { onOptionsItemSelected(it) }
     }
 
-    scrollAnimationHelper = getOnScrollAnimationHelper(toolbarShadow)
+    if (toolbarShadow != null) {
+      scrollAnimationHelper = getOnScrollAnimationHelper(toolbarShadow)
+    }
+
     val settingsAdapter = DSLSettingsAdapter()
 
     recyclerView = view.findViewById<RecyclerView>(R.id.recycler).apply {
       edgeEffectFactory = EdgeEffectFactory()
       layoutManager = layoutManagerProducer(requireContext())
       adapter = settingsAdapter
-      addOnScrollListener(scrollAnimationHelper!!)
+
+      val helper = scrollAnimationHelper
+      if (helper != null) {
+        addOnScrollListener(helper)
+      }
     }
 
     bindAdapter(settingsAdapter)

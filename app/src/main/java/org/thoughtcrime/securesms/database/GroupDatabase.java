@@ -67,7 +67,7 @@ public class GroupDatabase extends Database {
           static final String TABLE_NAME            = "groups";
   private static final String ID                    = "_id";
           static final String GROUP_ID              = "group_id";
-          static final String RECIPIENT_ID          = "recipient_id";
+  public  static final String RECIPIENT_ID          = "recipient_id";
   private static final String TITLE                 = "title";
           static final String MEMBERS               = "members";
   private static final String AVATAR_ID             = "avatar_id";
@@ -737,7 +737,7 @@ private static final String[] GROUP_PROJECTION = {
 
       if (removed.size() > 0) {
         Log.i(TAG, removed.size() + " members were removed from group " + groupId + ". Rotating the DistributionId " + distributionId);
-        SenderKeyUtil.rotateOurKey(context, distributionId);
+        SenderKeyUtil.rotateOurKey(distributionId);
       }
     }
 
@@ -961,7 +961,7 @@ private static final String[] GROUP_PROJECTION = {
 
   public static class Reader implements Closeable {
 
-    private final Cursor cursor;
+    public final Cursor cursor;
 
     public Reader(Cursor cursor) {
       this.cursor = cursor;

@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/signal_background_secondary">
+        android:background="?mediaKeyboardBackgroundColor">
 
         <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
             android:id="@+id/emoji_search_view"

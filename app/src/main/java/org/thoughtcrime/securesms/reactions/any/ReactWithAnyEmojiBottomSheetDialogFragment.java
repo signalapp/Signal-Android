@@ -73,6 +73,20 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
 
   private final UpdateCategorySelectionOnScroll categoryUpdateOnScroll = new UpdateCategorySelectionOnScroll();
 
+  public static DialogFragment createForStory() {
+    DialogFragment fragment = new ReactWithAnyEmojiBottomSheetDialogFragment();
+    Bundle         args     = new Bundle();
+
+    args.putLong(ARG_MESSAGE_ID, -1);
+    args.putBoolean(ARG_IS_MMS, false);
+    args.putInt(ARG_START_PAGE, -1);
+    args.putString(ARG_RECENT_KEY, REACTION_STORAGE_KEY);
+    args.putBoolean(ARG_EDIT, false);
+    fragment.setArguments(args);
+
+    return fragment;
+  }
+
   public static DialogFragment createForMessageRecord(@NonNull MessageRecord messageRecord, int startingPage) {
     DialogFragment fragment = new ReactWithAnyEmojiBottomSheetDialogFragment();
     Bundle         args     = new Bundle();

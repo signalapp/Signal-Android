@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:enterFadeDuration="250" android:exitFadeDuration="250">
+    <item android:state_checked="true" android:state_enabled="false">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/core_grey_60" />
+                    <stroke android:width="2dp" android:color="@color/signal_background_dialog" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_check_outline_22" />
+        </layer-list>
+    </item>
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/core_ultramarine" />
+                    <stroke android:width="2dp" android:color="@color/signal_background_dialog" />
+                </shape>
+            </item>
+            <item android:drawable="@drawable/ic_check_outline_22" />
+        </layer-list>
+    </item>
+    <item android:state_checked="false">
+        <shape android:shape="oval">
+            <stroke android:width="2dp" android:color="@color/signal_background_dialog_secondary" />
+        </shape>
+    </item>
+</selector>

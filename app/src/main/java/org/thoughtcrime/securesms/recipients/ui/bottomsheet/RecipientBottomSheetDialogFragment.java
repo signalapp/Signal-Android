@@ -29,6 +29,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.view.AvatarView;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -69,7 +70,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private static final String ARGS_GROUP_ID     = "GROUP_ID";
 
   private RecipientDialogViewModel viewModel;
-  private AvatarImageView          avatar;
+  private AvatarView               avatar;
   private TextView                 fullName;
   private TextView                 about;
   private TextView                 usernameNumber;
@@ -160,7 +161,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
           return new FallbackPhoto80dp(R.drawable.ic_note_80, recipient.getAvatarColor());
         }
       });
-      avatar.setAvatar(recipient);
+      avatar.displayChatAvatar(recipient);
 
       if (!recipient.isSelf()) {
         badgeImageView.setBadgeFromRecipient(recipient);

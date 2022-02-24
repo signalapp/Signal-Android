@@ -12,6 +12,11 @@ public final class ShareContact {
   private final Optional<RecipientId> recipientId;
   private final String                number;
 
+  public ShareContact(@NonNull RecipientId recipientId) {
+    this.recipientId = Optional.of(recipientId);
+    this.number      = null;
+  }
+
   public ShareContact(@NonNull Optional<RecipientId> recipientId, @Nullable String number) {
     this.recipientId = recipientId;
     this.number      = number;

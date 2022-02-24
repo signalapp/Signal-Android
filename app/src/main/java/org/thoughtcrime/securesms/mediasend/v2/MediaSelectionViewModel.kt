@@ -12,13 +12,13 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
+import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.Util
@@ -67,9 +67,9 @@ class MediaSelectionViewModel(
   private var lastMediaDrag: Pair<Int, Int> = Pair(0, 0)
 
   init {
-    val recipientId = destination.getRecipientId()
-    if (recipientId != null) {
-      store.update(Recipient.live(recipientId).liveData) { r, s ->
+    val recipientSearchKey = destination.getRecipientSearchKey()
+    if (recipientSearchKey != null) {
+      store.update(Recipient.live(recipientSearchKey.recipientId).liveData) { r, s ->
         s.copy(
           recipient = r,
           isPreUploadEnabled = shouldPreUpload(s.isMeteredConnection, s.transportOption.isSms, r)
@@ -278,7 +278,7 @@ class MediaSelectionViewModel(
   }
 
   fun send(
-    selectedRecipientIds: List<RecipientId> = emptyList(),
+    selectedContacts: List<RecipientSearchKey> = emptyList(),
   ): Maybe<MediaSendActivityResult> {
     return repository.send(
       store.state.selectedMedia,
@@ -287,8 +287,8 @@ class MediaSelectionViewModel(
       store.state.message,
       store.state.transportOption.isSms,
       isViewOnceEnabled(),
-      destination.getRecipientId(),
-      if (selectedRecipientIds.isNotEmpty()) selectedRecipientIds else destination.getRecipientIdList(),
+      destination.getRecipientSearchKey(),
+      if (selectedContacts.isNotEmpty()) selectedContacts else destination.getRecipientSearchKeyList(),
       MentionAnnotation.getMentionsFromAnnotations(store.state.message),
       store.state.transportOption
     )
@@ -330,6 +330,10 @@ class MediaSelectionViewModel(
 
     val editorStates: List<Bundle> = store.state.editorStateMap.entries.map { it.toBundleStateEntry() }
     outState.putParcelableArrayList(STATE_EDITORS, ArrayList(editorStates))
+  }
+
+  fun hasSelectedMedia(): Boolean {
+    return store.state.selectedMedia.isNotEmpty()
   }
 
   fun onRestoreState(savedInstanceState: Bundle) {

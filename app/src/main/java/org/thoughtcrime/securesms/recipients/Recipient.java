@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.DistributionListId;
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -48,8 +49,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -70,7 +71,7 @@ public class Recipient {
 
   private static final String TAG = Log.tag(Recipient.class);
 
-  public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails(), true);
+  public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, RecipientDetails.forUnknown(), true);
 
   public static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
 
@@ -84,6 +85,7 @@ public class Recipient {
   private final String                 e164;
   private final String                 email;
   private final GroupId                groupId;
+  private final DistributionListId     distributionListId;
   private final List<Recipient>        participants;
   private final Optional<Long>         groupAvatarId;
   private final boolean                isSelf;
@@ -115,6 +117,7 @@ public class Recipient {
   private final Capability             senderKeyCapability;
   private final Capability             announcementGroupCapability;
   private final Capability             changeNumberCapability;
+  private final Capability             storiesCapability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
@@ -160,6 +163,12 @@ public class Recipient {
     }
 
     return recipients;
+  }
+
+  @WorkerThread
+  public static @NonNull Recipient distributionList(@NonNull DistributionListId distributionListId) {
+    RecipientId id = SignalDatabase.recipients().getOrInsertFromDistributionListId(distributionListId);
+    return resolved(id);
   }
 
   /**
@@ -343,6 +352,7 @@ public class Recipient {
     this.e164                        = null;
     this.email                       = null;
     this.groupId                     = null;
+    this.distributionListId          = null;
     this.participants                = Collections.emptyList();
     this.groupAvatarId               = Optional.absent();
     this.isSelf                      = false;
@@ -375,6 +385,7 @@ public class Recipient {
     this.senderKeyCapability         = Capability.UNKNOWN;
     this.announcementGroupCapability = Capability.UNKNOWN;
     this.changeNumberCapability      = Capability.UNKNOWN;
+    this.storiesCapability           = Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
@@ -399,6 +410,7 @@ public class Recipient {
     this.e164                        = details.e164;
     this.email                       = details.email;
     this.groupId                     = details.groupId;
+    this.distributionListId          = details.distributionListId;
     this.participants                = details.participants;
     this.groupAvatarId               = details.groupAvatarId;
     this.isSelf                      = details.isSelf;
@@ -431,6 +443,7 @@ public class Recipient {
     this.senderKeyCapability         = details.senderKeyCapability;
     this.announcementGroupCapability = details.announcementGroupCapability;
     this.changeNumberCapability      = details.changeNumberCapability;
+    this.storiesCapability           = details.storiesCapability;
     this.storageId                   = details.storageId;
     this.mentionSetting              = details.mentionSetting;
     this.wallpaper                   = details.wallpaper;
@@ -492,6 +505,8 @@ public class Recipient {
       }
 
       return Util.join(names, ", ");
+    } else if (isMyStory()) {
+      return context.getString(R.string.Recipient_my_story);
     } else {
       return this.groupName;
     }
@@ -642,6 +657,10 @@ public class Recipient {
     return Optional.fromNullable(groupId);
   }
 
+  public @NonNull Optional<DistributionListId> getDistributionListId() {
+    return Optional.fromNullable(distributionListId);
+  }
+
   public @NonNull Optional<String> getSmsAddress() {
     return Optional.fromNullable(e164).or(Optional.fromNullable(email));
   }
@@ -704,8 +723,22 @@ public class Recipient {
     return hasServiceId() && !hasSmsAddress();
   }
 
+  public boolean shouldHideStory() {
+    return extras.transform(Extras::hideStory).or(false);
+  }
+
   public @NonNull GroupId requireGroupId() {
     GroupId resolved = resolving ? resolve().groupId : groupId;
+
+    if (resolved == null) {
+      throw new MissingAddressError(id);
+    }
+
+    return resolved;
+  }
+
+  public @NonNull DistributionListId requireDistributionListId() {
+    DistributionListId resolved = resolving ? resolve().distributionListId : distributionListId;
 
     if (resolved == null) {
       throw new MissingAddressError(id);
@@ -796,6 +829,14 @@ public class Recipient {
     return groupId != null && groupId.isV2();
   }
 
+  public boolean isDistributionList() {
+    return resolve().distributionListId != null;
+  }
+
+  public boolean isMyStory() {
+    return Objects.equals(resolve().distributionListId, DistributionListId.from(DistributionListId.MY_STORY_ID));
+  }
+
   public boolean isActiveGroup() {
     return Stream.of(getParticipants()).anyMatch(Recipient::isSelf);
   }
@@ -835,6 +876,7 @@ public class Recipient {
   public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider, int targetSize) {
     if      (isSelf)                                return fallbackPhotoProvider.getPhotoForLocalNumber();
     else if (isResolving())                         return fallbackPhotoProvider.getPhotoForResolvingRecipient();
+    else if (isDistributionList())                  return fallbackPhotoProvider.getPhotoForDistributionList();
     else if (isGroupInternal())                     return fallbackPhotoProvider.getPhotoForGroup();
     else if (isGroup())                             return fallbackPhotoProvider.getPhotoForGroup();
     else if (!TextUtils.isEmpty(groupName))         return fallbackPhotoProvider.getPhotoForRecipientWithName(groupName, targetSize);
@@ -945,6 +987,10 @@ public class Recipient {
 
   public @NonNull Capability getChangeNumberCapability() {
     return changeNumberCapability;
+  }
+
+  public @NonNull Capability getStoriesCapability() {
+    return storiesCapability;
   }
 
   /**
@@ -1170,17 +1216,21 @@ public class Recipient {
       return recipientExtras.getManuallyShownAvatar();
     }
 
+    public boolean hideStory() {
+      return recipientExtras.getHideStory();
+    }
+
     @Override
     public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       final Extras that = (Extras) o;
-      return manuallyShownAvatar() == that.manuallyShownAvatar();
+      return manuallyShownAvatar() == that.manuallyShownAvatar() && hideStory() == that.hideStory();
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(manuallyShownAvatar());
+      return Objects.hash(manuallyShownAvatar(), hideStory());
     }
   }
 
@@ -1268,6 +1318,10 @@ public class Recipient {
 
     public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
       return new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20, R.drawable.ic_profile_outline_48);
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForDistributionList() {
+      return new ResourceContactPhoto(R.drawable.ic_group_outline_34, R.drawable.ic_group_outline_20, R.drawable.ic_group_outline_48);
     }
   }
 

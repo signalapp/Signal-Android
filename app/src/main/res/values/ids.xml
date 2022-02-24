@@ -17,4 +17,6 @@
 
     <item name="status_bar_guideline" type="id" />
     <item name="navigation_bar_guideline" type="id" />
+
+    <item name="reaction_bar" type="id" />
 </resources>

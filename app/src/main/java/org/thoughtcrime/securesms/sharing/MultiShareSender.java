@@ -102,8 +102,10 @@ public final class MultiShareSender {
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.MMS_NOT_ENABLED));
       } else if (isMediaMessage) {
-        sendMediaMessage(context, multiShareArgs, recipient, slideDeck, transport, shareContactAndThread.getThreadId(), forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId, mentions);
+        sendMediaMessage(context, multiShareArgs, recipient, slideDeck, transport, shareContactAndThread.getThreadId(), forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId, mentions, shareContactAndThread.isStory());
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.SUCCESS));
+      } else if (shareContactAndThread.isStory()) {
+        results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.INVALID_SHARE_TO_STORY));
       } else {
         sendTextMessage(context, multiShareArgs, recipient, shareContactAndThread.getThreadId(), forceSms, expiresIn, subscriptionId);
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.SUCCESS));
@@ -152,7 +154,8 @@ public final class MultiShareSender {
                                        long expiresIn,
                                        boolean isViewOnce,
                                        int subscriptionId,
-                                       @NonNull List<Mention> validatedMentions)
+                                       @NonNull List<Mention> validatedMentions,
+                                       boolean isStory)
   {
     String body = multiShareArgs.getDraftText();
     if (transportOption.isType(TransportOption.Type.TEXTSECURE) && !forceSms && body != null) {
@@ -164,26 +167,64 @@ public final class MultiShareSender {
       }
     }
 
-    OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient,
-                                                                         slideDeck,
-                                                                         body,
-                                                                         System.currentTimeMillis(),
-                                                                         subscriptionId,
-                                                                         expiresIn,
-                                                                         isViewOnce,
-                                                                         ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                         null,
-                                                                         Collections.emptyList(),
-                                                                         multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())
-                                                                                                                 : Collections.emptyList(),
-                                                                         validatedMentions);
+    List<OutgoingMediaMessage> outgoingMessages = new ArrayList<>();
 
-    if (recipient.isRegistered() && !forceSms) {
-      MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMediaMessage), threadId, false, null, null);
+    if (isStory && slideDeck.getSlides().size() > 1) {
+      for (final Slide slide : slideDeck.getSlides()) {
+        SlideDeck singletonDeck = new SlideDeck();
+        singletonDeck.addSlide(slide);
+
+        OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient,
+                                                                             singletonDeck,
+                                                                             body,
+                                                                             System.currentTimeMillis(),
+                                                                             subscriptionId,
+                                                                             expiresIn,
+                                                                             isViewOnce,
+                                                                             ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                             true,
+                                                                             null,
+                                                                             null,
+                                                                             Collections.emptyList(),
+                                                                             multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())
+                                                                                                                     : Collections.emptyList(),
+                                                                             validatedMentions);
+
+        outgoingMessages.add(outgoingMediaMessage);
+
+        // XXX We must do this to avoid sending out messages to the same recipient with the same
+        //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
+        ThreadUtil.sleep(5);
+      }
     } else {
-      MessageSender.send(context, outgoingMediaMessage, threadId, forceSms, null, null);
+      OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient,
+                                                                           slideDeck,
+                                                                           body,
+                                                                           System.currentTimeMillis(),
+                                                                           subscriptionId,
+                                                                           expiresIn,
+                                                                           isViewOnce,
+                                                                           ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                           isStory,
+                                                                           null,
+                                                                           null,
+                                                                           Collections.emptyList(),
+                                                                           multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())
+                                                                                                                   : Collections.emptyList(),
+                                                                           validatedMentions);
+
+      outgoingMessages.add(outgoingMediaMessage);
     }
 
+    if (recipient.isRegistered() && !forceSms) {
+      for (final OutgoingMediaMessage outgoingMessage : outgoingMessages) {
+        MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMessage), threadId, false, null, null);
+      }
+    } else {
+      for (final OutgoingMediaMessage outgoingMessage : outgoingMessages) {
+        MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMessage), threadId, forceSms, null, null);
+      }
+    }
   }
 
   private static void sendTextMessage(@NonNull Context context,
@@ -280,6 +321,7 @@ public final class MultiShareSender {
 
     private enum Type {
       GENERIC_ERROR,
+      INVALID_SHARE_TO_STORY,
       MMS_NOT_ENABLED,
       SUCCESS
     }

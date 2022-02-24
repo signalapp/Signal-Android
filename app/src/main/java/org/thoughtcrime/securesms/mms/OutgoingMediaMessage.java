@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -29,6 +30,8 @@ public class OutgoingMediaMessage {
   private   final long                      expiresIn;
   private   final boolean                   viewOnce;
   private   final QuoteModel                outgoingQuote;
+  private   final boolean                   isStory;
+  private   final MessageId                 parentStoryId;
 
   private   final Set<NetworkFailure>      networkFailures       = new HashSet<>();
   private   final Set<IdentityKeyMismatch> identityKeyMismatches = new HashSet<>();
@@ -36,10 +39,16 @@ public class OutgoingMediaMessage {
   private   final List<LinkPreview>        linkPreviews          = new LinkedList<>();
   private   final List<Mention>            mentions              = new LinkedList<>();
 
-  public OutgoingMediaMessage(Recipient recipient, String message,
-                              List<Attachment> attachments, long sentTimeMillis,
-                              int subscriptionId, long expiresIn, boolean viewOnce,
+  public OutgoingMediaMessage(Recipient recipient,
+                              String message,
+                              List<Attachment> attachments,
+                              long sentTimeMillis,
+                              int subscriptionId,
+                              long expiresIn,
+                              boolean viewOnce,
                               int distributionType,
+                              boolean isStory,
+                              @Nullable MessageId parentStoryId,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
@@ -56,6 +65,8 @@ public class OutgoingMediaMessage {
     this.expiresIn             = expiresIn;
     this.viewOnce              = viewOnce;
     this.outgoingQuote         = outgoingQuote;
+    this.isStory               = isStory;
+    this.parentStoryId         = parentStoryId;
 
     this.contacts.addAll(contacts);
     this.linkPreviews.addAll(linkPreviews);
@@ -64,9 +75,16 @@ public class OutgoingMediaMessage {
     this.identityKeyMismatches.addAll(identityKeyMismatches);
   }
 
-  public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message,
-                              long sentTimeMillis, int subscriptionId, long expiresIn,
-                              boolean viewOnce, int distributionType,
+  public OutgoingMediaMessage(Recipient recipient,
+                              SlideDeck slideDeck,
+                              String message,
+                              long sentTimeMillis,
+                              int subscriptionId,
+                              long expiresIn,
+                              boolean viewOnce,
+                              int distributionType,
+                              boolean isStory,
+                              @Nullable MessageId parentStoryId,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
@@ -75,9 +93,19 @@ public class OutgoingMediaMessage {
     this(recipient,
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
-         sentTimeMillis, subscriptionId,
-         expiresIn, viewOnce, distributionType, outgoingQuote,
-         contacts, linkPreviews, mentions, new HashSet<>(), new HashSet<>());
+         sentTimeMillis,
+         subscriptionId,
+         expiresIn,
+         viewOnce,
+         distributionType,
+         isStory,
+         parentStoryId,
+         outgoingQuote,
+         contacts,
+         linkPreviews,
+         mentions,
+         new HashSet<>(),
+         new HashSet<>());
   }
 
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
@@ -90,6 +118,8 @@ public class OutgoingMediaMessage {
     this.expiresIn           = that.expiresIn;
     this.viewOnce            = that.viewOnce;
     this.outgoingQuote       = that.outgoingQuote;
+    this.isStory             = that.isStory;
+    this.parentStoryId       = that.parentStoryId;
 
     this.identityKeyMismatches.addAll(that.identityKeyMismatches);
     this.networkFailures.addAll(that.networkFailures);
@@ -108,6 +138,8 @@ public class OutgoingMediaMessage {
         expiresIn,
         viewOnce,
         distributionType,
+        isStory,
+        parentStoryId,
         outgoingQuote,
         contacts,
         linkPreviews,
@@ -161,6 +193,14 @@ public class OutgoingMediaMessage {
     return viewOnce;
   }
 
+  public boolean isStory() {
+    return isStory;
+  }
+
+  public @Nullable MessageId getParentStoryId() {
+    return parentStoryId;
+  }
+
   public @Nullable QuoteModel getOutgoingQuote() {
     return outgoingQuote;
   }
@@ -194,5 +234,4 @@ public class OutgoingMediaMessage {
       return slideDeck.getBody();
     }
   }
-
 }

@@ -29,13 +29,17 @@ public class OutlinedThumbnailView extends ThumbnailView {
     cornerMask = new CornerMask(this);
     outliner   = new Outliner();
 
-    outliner.setColor(ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_20));
+    int defaultOutlinerColor = ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_20);
+    outliner.setColor(defaultOutlinerColor);
 
     int radius = 0;
 
     if (attrs != null) {
       TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.OutlinedThumbnailView, 0, 0);
       radius = typedArray.getDimensionPixelOffset(R.styleable.OutlinedThumbnailView_otv_cornerRadius, 0);
+
+      outliner.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.OutlinedThumbnailView_otv_strokeWidth, 1));
+      outliner.setColor(typedArray.getColor(R.styleable.OutlinedThumbnailView_otv_strokeColor, defaultOutlinerColor));
     }
 
     setRadius(radius);

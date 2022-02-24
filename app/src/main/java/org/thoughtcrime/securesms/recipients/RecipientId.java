@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.database.model.DatabaseId;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -22,7 +23,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class RecipientId implements Parcelable, Comparable<RecipientId> {
+public class RecipientId implements Parcelable, Comparable<RecipientId>, DatabaseId {
 
   private static final long UNKNOWN_ID = -1;
   private static final char DELIMITER  = ',';
@@ -141,6 +142,7 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     return id == UNKNOWN_ID;
   }
 
+  @Override
   public @NonNull String serialize() {
     return String.valueOf(id);
   }

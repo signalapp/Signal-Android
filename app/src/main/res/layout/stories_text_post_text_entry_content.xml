@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scene"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/core_black">
+
+    <FrameLayout
+        android:id="@+id/text_parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/alignment_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.mediasend.v2.text.AutoSizeEmojiEditText
+            android:id="@+id/input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_rectangle_secondary_18"
+            android:gravity="center"
+            android:hint="@string/TextStoryPostTextEntryFragment__add_text"
+            android:inputType="textMultiLine"
+            android:maxLength="700"
+            android:maxLines="12"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="13dp"
+            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+            android:textColor="@color/core_white"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            tools:ignore="SpUsage"
+            tools:text="Miles" />
+    </FrameLayout>
+
+    <org.thoughtcrime.securesms.mediasend.v2.text.TextAlignmentButton
+        android:id="@+id/alignment_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="6dp"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/color_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/color_bar"
+        app:tint="@color/core_white"
+        tools:srcCompat="@drawable/ic_text_start"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.mediasend.v2.text.TextColorStyleButton
+        android:id="@+id/background_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@id/color_bar"
+        app:layout_constraintStart_toEndOf="@id/alignment_button"
+        app:layout_constraintTop_toTopOf="@id/color_bar"
+        app:tint="@color/core_white"
+        tools:srcCompat="@drawable/ic_text_effect" />
+
+    <ImageView
+        android:id="@+id/confirm"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/TextStoryPostTextEntryFragment__done_adding_text"
+        android:padding="6dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@id/color_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/color_bar"
+        app:srcCompat="@drawable/ic_done_button" />
+
+    <org.thoughtcrime.securesms.mediasend.v2.text.TextFontButton
+        android:id="@+id/font_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@id/color_bar"
+        app:layout_constraintEnd_toStartOf="@id/confirm"
+        app:layout_constraintTop_toTopOf="@id/color_bar"
+        app:tint="@color/core_white"
+        tools:srcCompat="@drawable/ic_font_bold" />
+
+    <ImageView
+        android:id="@+id/color_indicator"
+        android:layout_width="68dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="0"
+        android:importantForAccessibility="no"
+        android:paddingBottom="12dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/color_indicator_circle"
+        app:layout_constraintBottom_toTopOf="@id/color_bar"
+        app:layout_constraintEnd_toStartOf="@id/color_bar"
+        app:layout_constraintStart_toStartOf="@id/color_bar"
+        tools:alpha="1"
+        tools:tint="@color/red" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/color_bar"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="16dp"
+        android:splitTrack="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/font_button"
+        app:layout_constraintStart_toEndOf="@id/background_button" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/width_bar"
+        android:layout_width="174dp"
+        android:layout_height="48dp"
+        android:rotation="270"
+        android:splitTrack="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/alignment_button"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

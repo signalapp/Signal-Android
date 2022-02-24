@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.InputAwareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/input_aware_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mentions_picker_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/stories_reply_to_story_composer_content" />
+
+    <org.thoughtcrime.securesms.components.emoji.MediaKeyboard
+        android:id="@+id/emoji_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:media_keyboard_theme="@style/Theme.Signal.RoundedBottomSheet.Stories" />
+
+</org.thoughtcrime.securesms.components.InputAwareLayout>

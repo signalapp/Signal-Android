@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:importantForAccessibility="no"
+        app:srcCompat="@drawable/bottom_sheet_handle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/ChooseGroupStoryBottomSheet__choose_groups"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textStyle="bold" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+        android:id="@+id/search_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rounded_rectangle_secondary_18"
+        android:hint="@string/TextStoryPostSendFragment__search"
+        android:minHeight="44dp"
+        android:paddingHorizontal="16dp"
+        android:textAppearance="@style/Signal.Text.Body"
+        app:backgroundTint="@color/core_grey_65" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contact_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="44dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+</LinearLayout>

@@ -129,7 +129,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   }
 
   private fun initializeMentions() {
-    val recipientId: RecipientId = viewModel.destination.getRecipientId() ?: return
+    val recipientId: RecipientId = viewModel.destination.getRecipientSearchKey()?.recipientId ?: return
 
     mentionsContainer = requireView().findViewById(R.id.mentions_picker_container)
 

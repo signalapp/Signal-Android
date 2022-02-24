@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scene"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.thoughtcrime.securesms.stories.StoryTextPostView
+        android:id="@+id/story_text_post"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintDimensionRatio="9:16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/background_selector"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="6dp"
+        android:padding="6dp"
+        android:src="@drawable/story_text_background_button_overlay"
+        app:layout_constraintBottom_toBottomOf="@id/story_text_post"
+        app:layout_constraintStart_toStartOf="@id/story_text_post"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+        tools:background="@color/signal_alert_primary" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/add_link"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/story_text_circle_button_background_inset_6"
+        android:scaleType="centerInside"
+        app:backgroundTint="@color/transparent_black_40"
+        app:layout_constraintBottom_toBottomOf="@id/story_text_post"
+        app:layout_constraintStart_toEndOf="@id/background_selector"
+        app:srcCompat="@drawable/ic_link_24"
+        app:tint="@color/core_white" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/send"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/story_text_circle_button_background_inset_5"
+        android:scaleType="centerInside"
+        app:backgroundTint="@color/core_ultramarine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_arrow_end_24"
+        app:tint="@color/core_white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

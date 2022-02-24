@@ -96,6 +96,12 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun toggleStories() {
+    val newState = !SignalStore.storyValues().isFeatureDisabled
+    SignalStore.storyValues().isFeatureDisabled = newState
+    store.update { getState().copy(disableStories = newState) }
+  }
+
   private fun refresh() {
     store.update { getState().copy(emojiVersion = it.emojiVersion) }
   }
@@ -116,7 +122,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),
     delayResends = SignalStore.internalValues().delayResends(),
-    disableStorageService = SignalStore.internalValues().storageServiceDisabled()
+    disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
+    disableStories = SignalStore.storyValues().isFeatureDisabled
   )
 
   class Factory(private val repository: InternalSettingsRepository) : ViewModelProvider.Factory {

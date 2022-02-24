@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/story_settings"
+    app:startDestination="@id/storySettings">
+
+    <fragment
+        android:id="@+id/storySettings"
+        android:name="org.thoughtcrime.securesms.stories.settings.story.StorySettingsFragment"
+        android:label="story_settings_fragment">
+        <action
+            android:id="@+id/action_storySettings_to_myStorySettings"
+            app:destination="@id/my_story_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_storySettings_to_privateStorySettings"
+            app:destination="@id/private_story_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="distribution_list_id"
+                app:argType="org.thoughtcrime.securesms.database.model.DistributionListId"
+                app:nullable="false" />
+
+        </action>
+        <action
+            android:id="@+id/action_storySettings_to_newStory"
+            app:destination="@id/new_story"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <include app:graph="@navigation/my_story_settings" />
+
+    <include app:graph="@navigation/private_story_settings" />
+
+    <include app:graph="@navigation/new_story" />
+
+</navigation>

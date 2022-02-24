@@ -5,19 +5,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Transformations;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferLockedDialog;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository;
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsState;
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 public class MainActivity extends PassphraseRequiredActivity implements VoiceNoteMediaControllerOwner {
 
@@ -26,13 +35,14 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
   private final DynamicTheme  dynamicTheme = new DynamicNoActionBarTheme();
   private final MainNavigator navigator    = new MainNavigator(this);
 
-  private VoiceNoteMediaController mediaController;
+  private VoiceNoteMediaController      mediaController;
+  private ConversationListTabsViewModel conversationListTabsViewModel;
 
   public static @NonNull Intent clearTop(@NonNull Context context) {
     Intent intent = new Intent(context, MainActivity.class);
 
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_NEW_TASK  |
+                    Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
     return intent;
@@ -42,9 +52,14 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     AppStartup.getInstance().onCriticalRenderEventStart();
     super.onCreate(savedInstanceState, ready);
+
     setContentView(R.layout.main_activity);
 
     mediaController = new VoiceNoteMediaController(this);
+
+    ConversationListTabRepository         repository = new ConversationListTabRepository();
+    ConversationListTabsViewModel.Factory factory    = new ConversationListTabsViewModel.Factory(repository);
+
     navigator.onCreate(savedInstanceState);
 
     handleGroupLinkInIntent(getIntent());
@@ -52,12 +67,27 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     handleSignalMeIntent(getIntent());
 
     CachedInflater.from(this).clear();
+
+    conversationListTabsViewModel = new ViewModelProvider(this, factory).get(ConversationListTabsViewModel.class);
+    Transformations.map(conversationListTabsViewModel.getState(), ConversationListTabsState::getTab)
+                   .observe(this, tab -> {
+                     switch (tab) {
+                       case CHATS:
+                         getSupportFragmentManager().popBackStack();
+                         break;
+                       case STORIES:
+                         navigator.goToStories();
+                         break;
+                     }
+                   });
+
+    updateTabVisibility();
   }
 
   @Override
   public Intent getIntent() {
     return super.getIntent().setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                      Intent.FLAG_ACTIVITY_NEW_TASK  |
+                                      Intent.FLAG_ACTIVITY_NEW_TASK |
                                       Intent.FLAG_ACTIVITY_SINGLE_TOP);
   }
 
@@ -82,6 +112,8 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     if (SignalStore.misc().isOldDeviceTransferLocked()) {
       OldDeviceTransferLockedDialog.show(getSupportFragmentManager());
     }
+
+    updateTabVisibility();
   }
 
   @Override
@@ -96,6 +128,17 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == MainNavigator.REQUEST_CONFIG_CHANGES && resultCode == RESULT_CONFIG_CHANGED) {
       recreate();
+    }
+  }
+
+  private void updateTabVisibility() {
+    if (FeatureFlags.stories() && !SignalStore.storyValues().isFeatureDisabled()) {
+      findViewById(R.id.conversation_list_tabs).setVisibility(View.VISIBLE);
+      WindowUtil.setNavigationBarColor(getWindow(), ContextCompat.getColor(this, R.color.signal_background_secondary));
+    } else {
+      findViewById(R.id.conversation_list_tabs).setVisibility(View.GONE);
+      WindowUtil.setNavigationBarColor(getWindow(), ContextCompat.getColor(this, R.color.signal_background_primary));
+      navigator.goToChats();
     }
   }
 

@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.annotation.CallSuper;
+
 import java.lang.ref.WeakReference;
 
 public abstract class ProgressDialogAsyncTask<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> {
@@ -30,6 +32,7 @@ public abstract class ProgressDialogAsyncTask<Params, Progress, Result> extends 
     if (context != null) progress = ProgressDialog.show(context, title, message, true);
   }
 
+  @CallSuper
   @Override
   protected void onPostExecute(Result result) {
     if (progress != null) progress.dismiss();

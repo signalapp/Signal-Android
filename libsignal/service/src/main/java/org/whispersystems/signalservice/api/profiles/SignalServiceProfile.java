@@ -193,6 +193,9 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean changeNumber;
 
+    @JsonProperty
+    private boolean stories;
+
     @JsonCreator
     public Capabilities() {}
 
@@ -218,6 +221,10 @@ public class SignalServiceProfile {
 
     public boolean isChangeNumber() {
       return changeNumber;
+    }
+
+    public boolean isStories() {
+      return stories;
     }
   }
 

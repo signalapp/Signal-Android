@@ -7,23 +7,22 @@
     android:layout_gravity="bottom">
 
     <View
+        android:id="@+id/background_helper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?android:windowBackground"
+        app:layout_constraintBottom_toBottomOf="@id/selected_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/selected_list" />
+
+    <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/signal_divider_major"
         app:layout_constraintBottom_toBottomOf="@id/share_confirm"
         app:layout_constraintTop_toTopOf="@id/share_confirm" />
-
-    <View
-        android:id="@+id/background_helper"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/signal_background_dialog"
-        app:layout_constraintBottom_toBottomOf="@id/selected_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/selected_list" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/selected_list"

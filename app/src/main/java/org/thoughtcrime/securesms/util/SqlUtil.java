@@ -10,6 +10,7 @@ import com.annimon.stream.Stream;
 
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
+import org.thoughtcrime.securesms.database.model.DatabaseId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 
@@ -89,8 +90,8 @@ public final class SqlUtil {
     for (int i = 0; i < objects.length; i++) {
       if (objects[i] == null) {
         throw new NullPointerException("Cannot have null arg!");
-      } else if (objects[i] instanceof RecipientId) {
-        args[i] = ((RecipientId) objects[i]).serialize();
+      } else if (objects[i] instanceof DatabaseId) {
+        args[i] = ((DatabaseId) objects[i]).serialize();
       } else {
         args[i] = objects[i].toString();
       }

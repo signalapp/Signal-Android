@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="48dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/section_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingTop="16dp"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:paddingBottom="12dp"
+        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        android:textStyle="bold"
+        tools:text="Section Header" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/section_header_action"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?selectableItemBackground"
+        android:drawablePadding="4dp"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingTop="16dp"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:paddingBottom="12dp"
+        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:drawableStartCompat="@drawable/ic_plus_20"
+        app:drawableTint="@color/signal_inverse_primary"
+        tools:text="New Story"
+        tools:visibility="visible" />
+</LinearLayout>

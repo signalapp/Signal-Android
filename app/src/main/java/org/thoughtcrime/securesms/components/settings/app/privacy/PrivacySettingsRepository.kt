@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.privacy
 import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -19,6 +20,12 @@ class PrivacySettingsRepository {
       val recipientDatabase = SignalDatabase.recipients
 
       consumer(recipientDatabase.getBlocked().count)
+    }
+  }
+
+  fun getPrivateStories(consumer: (List<DistributionListPartialRecord>) -> Unit) {
+    SignalExecutors.BOUNDED.execute {
+      consumer(SignalDatabase.distributionLists.getCustomListsForUi())
     }
   }
 

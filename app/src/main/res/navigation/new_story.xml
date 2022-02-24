@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/new_story"
+    app:startDestination="@id/createStoryViewerSelection">
+
+    <fragment
+        android:id="@+id/createStoryViewerSelection"
+        android:name="org.thoughtcrime.securesms.stories.settings.create.CreateStoryViewerSelectionFragment"
+        android:label="create_story_viewer_selection" >
+        <action
+            android:id="@+id/action_createStoryViewerSelection_to_createStoryWithViewers"
+            app:destination="@id/createStoryWithViewers"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createStoryWithViewers"
+        android:name="org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment"
+        android:label="create_story_with_viewers">
+
+        <argument
+            android:name="recipients"
+            app:argType="org.thoughtcrime.securesms.recipients.RecipientId[]" />
+
+    </fragment>
+</navigation>

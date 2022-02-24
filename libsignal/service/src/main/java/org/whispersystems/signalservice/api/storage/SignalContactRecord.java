@@ -118,6 +118,10 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("MuteUntil");
       }
 
+      if (shouldHideStory() != that.shouldHideStory()) {
+        diff.add("HideStory");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -182,6 +186,10 @@ public final class SignalContactRecord implements SignalRecord {
 
   public long getMuteUntil() {
     return proto.getMutedUntilTimestamp();
+  }
+
+  public boolean shouldHideStory() {
+    return proto.getHideStory();
   }
 
   ContactRecord toProto() {
@@ -271,6 +279,11 @@ public final class SignalContactRecord implements SignalRecord {
 
     public Builder setMuteUntil(long muteUntil) {
       builder.setMutedUntilTimestamp(muteUntil);
+      return this;
+    }
+
+    public Builder setHideStory(boolean hideStory) {
+      builder.setHideStory(hideStory);
       return this;
     }
 

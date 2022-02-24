@@ -1372,6 +1372,71 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public boolean isStory(long messageId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull MessageDatabase.Reader getOutgoingStoriesTo(@NonNull RecipientId recipientId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull MessageDatabase.Reader getAllOutgoingStories() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull MessageDatabase.Reader getAllStories() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull List<RecipientId> getAllStoriesRecipientsList() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull MessageDatabase.Reader getAllStoriesFor(@NonNull RecipientId recipientId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull MessageId getStoryId(@NonNull RecipientId authorId, long sentTimestamp) throws NoSuchMessageException {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public int getNumberOfStoryReplies(long parentStoryId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public boolean hasSelfReplyInStory(long parentStoryId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull Cursor getStoryReplies(long parentStoryId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public long getUnreadStoryCount() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @Nullable Long getOldestStorySendTimestamp() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public int deleteStoriesOlderThan(long timestamp) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public MessageRecord getMessageRecord(long messageId) throws NoSuchMessageException {
     return getSmsMessage(messageId);
   }

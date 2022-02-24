@@ -110,8 +110,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean              archived       = remote.isArchived();
     boolean              forcedUnread   = remote.isForcedUnread();
     long                 muteUntil      = remote.getMuteUntil();
-    boolean              matchesRemote  = doParamsMatch(remote, unknownFields, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil);
-    boolean              matchesLocal   = doParamsMatch(local, unknownFields, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil);
+    boolean              hideStory      = remote.shouldHideStory();
+    boolean              matchesRemote  = doParamsMatch(remote, unknownFields, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory);
+    boolean              matchesLocal   = doParamsMatch(local, unknownFields, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory);
 
     if (matchesRemote) {
       return remote;
@@ -130,6 +131,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setArchived(archived)
                                     .setForcedUnread(forcedUnread)
                                     .setMuteUntil(muteUntil)
+                                    .setHideStory(hideStory)
                                     .build();
     }
   }
@@ -168,7 +170,8 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean profileSharing,
                                        boolean archived,
                                        boolean forcedUnread,
-                                       long muteUntil)
+                                       long muteUntil,
+                                       boolean hideStory)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields) &&
            Objects.equals(contact.getAddress(), address)                  &&
@@ -182,6 +185,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.isProfileSharingEnabled() == profileSharing            &&
            contact.isArchived() == archived                               &&
            contact.isForcedUnread() == forcedUnread                       &&
-           contact.getMuteUntil() == muteUntil;
+           contact.getMuteUntil() == muteUntil                            &&
+           contact.shouldHideStory() == hideStory;
   }
 }

@@ -13,17 +13,20 @@ public final class ShareContactAndThread implements Parcelable {
   private final RecipientId recipientId;
   private final long        threadId;
   private final boolean     forceSms;
+  private final boolean     isStory;
 
-  public ShareContactAndThread(@NonNull RecipientId recipientId, long threadId, boolean forceSms) {
+  public ShareContactAndThread(@NonNull RecipientId recipientId, long threadId, boolean forceSms, boolean isStory) {
     this.recipientId = recipientId;
     this.threadId    = threadId;
     this.forceSms    = forceSms;
+    this.isStory     = isStory;
   }
 
   protected ShareContactAndThread(@NonNull Parcel in) {
     recipientId = in.readParcelable(RecipientId.class.getClassLoader());
     threadId    = in.readLong();
     forceSms    = in.readByte() == 1;
+    isStory     = in.readByte() == 1;
   }
 
   public @NonNull RecipientId getRecipientId() {
@@ -38,6 +41,10 @@ public final class ShareContactAndThread implements Parcelable {
     return forceSms;
   }
 
+  public boolean isStory() {
+    return isStory;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -45,12 +52,13 @@ public final class ShareContactAndThread implements Parcelable {
     ShareContactAndThread that = (ShareContactAndThread) o;
     return threadId == that.threadId &&
            forceSms == that.forceSms &&
+           isStory == that.isStory &&
            recipientId.equals(that.recipientId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(recipientId, threadId, forceSms);
+    return Objects.hash(recipientId, threadId, forceSms, isStory);
   }
 
   @Override
@@ -63,6 +71,7 @@ public final class ShareContactAndThread implements Parcelable {
     dest.writeParcelable(recipientId, flags);
     dest.writeLong(threadId);
     dest.writeByte((byte) (forceSms ? 1 : 0));
+    dest.writeByte((byte) (isStory ? 1 : 0));
   }
 
   public static final Creator<ShareContactAndThread> CREATOR = new Creator<ShareContactAndThread>() {

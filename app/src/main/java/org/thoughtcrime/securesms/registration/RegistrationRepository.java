@@ -137,7 +137,7 @@ public final class RegistrationRepository {
 
     ApplicationDependencies.getProtocolStore().aci().sessions().archiveAllSessions();
     ApplicationDependencies.getProtocolStore().pni().sessions().archiveAllSessions();
-    SenderKeyUtil.clearAllState(context);
+    SenderKeyUtil.clearAllState();
 
     SignalServiceAccountManager       accountManager   = AccountManagerFactory.createAuthenticated(context, aci, pni, registrationData.getE164(), SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.getPassword());
     SignalServiceAccountDataStoreImpl aciProtocolStore = ApplicationDependencies.getProtocolStore().aci();

@@ -26,6 +26,10 @@ public final class SelectedContact {
     return new SelectedContact(recipientId, null, username);
   }
 
+  public static @NonNull SelectedContact forRecipientId(@NonNull RecipientId recipientId) {
+    return new SelectedContact(recipientId, null, null);
+  }
+
   private SelectedContact(@Nullable RecipientId recipientId, @Nullable String number, @Nullable String username) {
     this.recipientId = recipientId;
     this.number      = number;

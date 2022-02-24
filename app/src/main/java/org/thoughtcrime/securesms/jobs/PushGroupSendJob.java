@@ -16,12 +16,14 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -49,9 +51,10 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Quote;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
+import org.whispersystems.signalservice.api.messages.SignalServicePreview;
+import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
@@ -187,73 +190,10 @@ public final class PushGroupSendJob extends PushSendJob {
       else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
       else                                         target = Stream.of(getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId)).distinctBy(Recipient::getId).toList();
 
-      RecipientAccessList accessList = new RecipientAccessList(target);
-
       List<SendMessageResult> results = deliver(message, groupRecipient, target);
+      processGroupMessageResults(context, messageId, threadId, groupRecipient, message, results, target, existingNetworkFailures, existingIdentityMismatches);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
-      List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(accessList.requireIdByAddress(result.getAddress()))).toList();
-      List<IdentityKeyMismatch>        identityMismatches        = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(accessList.requireIdByAddress(result.getAddress()), result.getIdentityFailure().getIdentityKey())).toList();
-      ProofRequiredException           proofRequired             = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).findLast().map(SendMessageResult::getProofRequiredFailure).orElse(null);
-      List<SendMessageResult>          successes                 = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
-      List<Pair<RecipientId, Boolean>> successUnidentifiedStatus = Stream.of(successes).map(result -> new Pair<>(accessList.requireIdByAddress(result.getAddress()), result.getSuccess().isUnidentified())).toList();
-      Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::first).collect(Collectors.toSet());
-      List<NetworkFailure>             resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
-      List<IdentityKeyMismatch>        resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
-      List<RecipientId>                unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).toList();
-
-      if (networkFailures.size() > 0 || identityMismatches.size() > 0 || proofRequired != null || unregisteredRecipients.size() > 0) {
-        Log.w(TAG,  String.format(Locale.US, "Failed to send to some recipients. Network: %d, Identity: %d, ProofRequired: %s, Unregistered: %d",
-                                  networkFailures.size(), identityMismatches.size(), proofRequired != null, unregisteredRecipients.size()));
-      }
-
-      RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-      for (RecipientId unregistered : unregisteredRecipients) {
-        recipientDatabase.markUnregistered(unregistered);
-      }
-
-      existingNetworkFailures.removeAll(resolvedNetworkFailures);
-      existingNetworkFailures.addAll(networkFailures);
-      database.setNetworkFailures(messageId, existingNetworkFailures);
-
-      existingIdentityMismatches.removeAll(resolvedIdentityFailures);
-      existingIdentityMismatches.addAll(identityMismatches);
-      database.setMismatchedIdentities(messageId, existingIdentityMismatches);
-
-      SignalDatabase.groupReceipts().setUnidentified(successUnidentifiedStatus, messageId);
-
-      if (proofRequired != null) {
-        handleProofRequiredException(proofRequired, groupRecipient, threadId, messageId, true);
-      }
-
-      if (existingNetworkFailures.isEmpty() && networkFailures.isEmpty() && identityMismatches.isEmpty() && existingIdentityMismatches.isEmpty()) {
-        database.markAsSent(messageId, true);
-
-        markAttachmentsUploaded(messageId, message);
-
-        if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
-          database.markExpireStarted(messageId);
-          ApplicationDependencies.getExpiringMessageManager()
-                                 .scheduleDeletion(messageId, true, message.getExpiresIn());
-        }
-
-        if (message.isViewOnce()) {
-          SignalDatabase.attachments().deleteAttachmentFilesForViewOnceMessage(messageId);
-        }
-      } else if (!identityMismatches.isEmpty()) {
-        Log.w(TAG, "Failing because there were " + identityMismatches.size() + " identity mismatches.");
-        database.markAsSentFailed(messageId);
-        notifyMediaMessageDeliveryFailed(context, messageId);
-
-        Set<RecipientId> mismatchRecipientIds = Stream.of(identityMismatches)
-                                                      .map(mismatch -> mismatch.getRecipientId(context))
-                                                      .collect(Collectors.toSet());
-
-        RetrieveProfileJob.enqueue(mismatchRecipientIds);
-      } else if (!networkFailures.isEmpty()) {
-        Log.w(TAG, "Retrying because there were " + networkFailures.size() + " network failures.");
-        throw new RetryLaterException();
-      }
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
       database.markAsSentFailed(messageId);
@@ -285,14 +225,30 @@ public final class PushGroupSendJob extends PushSendJob {
       Optional<Quote>                            quote              = getQuoteFor(message);
       Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
-      List<Preview>                              previews           = getPreviewsFor(message);
+      List<SignalServicePreview>                 previews           = getPreviewsFor(message);
       List<SignalServiceDataMessage.Mention>     mentions           = getMentionsFor(message.getMentions());
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
       boolean                                    isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
                                                                             .anyMatch(info -> info.getStatus() > GroupReceiptDatabase.STATUS_UNDELIVERED);
 
-      if (message.isGroup()) {
+      if (message.isStory()) {
+        // TODO [stories] Filter based off of stories capability
+        Optional<GroupDatabase.GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupId);
+
+        if (groupRecord.isPresent()) {
+          GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.get().requireV2GroupProperties();
+          SignalServiceGroupV2            groupContext      = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
+                                                                                  .withRevision(v2GroupProperties.getGroupRevision())
+                                                                                  .build();
+
+          SignalServiceStoryMessage storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), groupContext, attachmentPointers.get(0));
+
+          return GroupSendUtil.sendGroupStoryMessage(context, groupId.requireV2(), destinations, isRecipientUpdate, new MessageId(messageId, true), message.getSentTimeMillis(), storyMessage);
+        } else {
+          throw new UndeliverableMessageException("No group found! " + groupId);
+        }
+      } else if (message.isGroup()) {
         OutgoingGroupUpdateMessage groupMessage = (OutgoingGroupUpdateMessage) message;
 
         if (groupMessage.isV2Group()) {
@@ -328,18 +284,30 @@ public final class PushGroupSendJob extends PushSendJob {
 
         GroupUtil.setDataMessageGroupContext(context, builder, groupId);
 
-        SignalServiceDataMessage groupMessage = builder.withAttachments(attachmentPointers)
-                                                       .withBody(message.getBody())
-                                                       .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                       .withViewOnce(message.isViewOnce())
-                                                       .asExpirationUpdate(message.isExpirationUpdate())
-                                                       .withProfileKey(profileKey.orNull())
-                                                       .withQuote(quote.orNull())
-                                                       .withSticker(sticker.orNull())
-                                                       .withSharedContacts(sharedContacts)
-                                                       .withPreviews(previews)
-                                                       .withMentions(mentions)
-                                                       .build();
+        SignalServiceDataMessage.Builder groupMessageBuilder = builder.withAttachments(attachmentPointers)
+                                                                      .withBody(message.getBody())
+                                                                      .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                      .withViewOnce(message.isViewOnce())
+                                                                      .asExpirationUpdate(message.isExpirationUpdate())
+                                                                      .withProfileKey(profileKey.orNull())
+                                                                      .withQuote(quote.orNull())
+                                                                      .withSticker(sticker.orNull())
+                                                                      .withSharedContacts(sharedContacts)
+                                                                      .withPreviews(previews)
+                                                                      .withMentions(mentions);
+
+        if (message.getParentStoryId() != null) {
+          try {
+            MessageRecord storyRecord = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().getId());
+            Recipient     recipient   = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getIndividualRecipient();
+
+            groupMessageBuilder.withStoryContext(new SignalServiceDataMessage.StoryContext(recipient.requireServiceId(), storyRecord.getDateSent()));
+          } catch (NoSuchMessageException e) {
+            // The story has probably expired
+            // TODO [stories] check what should happen in this case
+            throw new UndeliverableMessageException(e);
+          }
+        }
 
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));
 
@@ -349,21 +317,107 @@ public final class PushGroupSendJob extends PushSendJob {
                                                        isRecipientUpdate,
                                                        ContentHint.RESENDABLE,
                                                        new MessageId(messageId, true),
-                                                       groupMessage);
+                                                       groupMessageBuilder.build());
       }
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     }
   }
 
-  private @NonNull List<Recipient> getGroupMessageRecipients(@NonNull GroupId groupId, long messageId) {
+  public static long getMessageId(@NonNull Data data) {
+    return data.getLong(KEY_MESSAGE_ID);
+  }
+
+  static void processGroupMessageResults(@NonNull Context context,
+                                         long messageId,
+                                         long threadId,
+                                         @Nullable Recipient groupRecipient,
+                                         @NonNull OutgoingMediaMessage message,
+                                         @NonNull List<SendMessageResult> results,
+                                         @NonNull List<Recipient> target,
+                                         @NonNull Set<NetworkFailure> existingNetworkFailures,
+                                         @NonNull Set<IdentityKeyMismatch> existingIdentityMismatches)
+      throws RetryLaterException, ProofRequiredException
+  {
+    MmsDatabase         database   = SignalDatabase.mms();
+    RecipientAccessList accessList = new RecipientAccessList(target);
+
+    List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(accessList.requireIdByAddress(result.getAddress()))).toList();
+    List<IdentityKeyMismatch>        identityMismatches        = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(accessList.requireIdByAddress(result.getAddress()), result.getIdentityFailure().getIdentityKey())).toList();
+    ProofRequiredException           proofRequired             = Stream.of(results).filter(r -> r.getProofRequiredFailure() != null).findLast().map(SendMessageResult::getProofRequiredFailure).orElse(null);
+    List<SendMessageResult>          successes                 = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
+    List<Pair<RecipientId, Boolean>> successUnidentifiedStatus = Stream.of(successes).map(result -> new Pair<>(accessList.requireIdByAddress(result.getAddress()), result.getSuccess().isUnidentified())).toList();
+    Set<RecipientId>                 successIds                = Stream.of(successUnidentifiedStatus).map(Pair::first).collect(Collectors.toSet());
+    List<NetworkFailure>             resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
+    List<IdentityKeyMismatch>        resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
+    List<RecipientId>                unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).toList();
+
+    if (networkFailures.size() > 0 || identityMismatches.size() > 0 || proofRequired != null || unregisteredRecipients.size() > 0) {
+      Log.w(TAG,  String.format(Locale.US, "Failed to send to some recipients. Network: %d, Identity: %d, ProofRequired: %s, Unregistered: %d",
+                                networkFailures.size(), identityMismatches.size(), proofRequired != null, unregisteredRecipients.size()));
+    }
+
+    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
+    for (RecipientId unregistered : unregisteredRecipients) {
+      recipientDatabase.markUnregistered(unregistered);
+    }
+
+    existingNetworkFailures.removeAll(resolvedNetworkFailures);
+    existingNetworkFailures.addAll(networkFailures);
+    database.setNetworkFailures(messageId, existingNetworkFailures);
+
+    existingIdentityMismatches.removeAll(resolvedIdentityFailures);
+    existingIdentityMismatches.addAll(identityMismatches);
+    database.setMismatchedIdentities(messageId, existingIdentityMismatches);
+
+    SignalDatabase.groupReceipts().setUnidentified(successUnidentifiedStatus, messageId);
+
+    if (proofRequired != null) {
+      handleProofRequiredException(context, proofRequired, groupRecipient, threadId, messageId, true);
+    }
+
+    if (existingNetworkFailures.isEmpty() && networkFailures.isEmpty() && identityMismatches.isEmpty() && existingIdentityMismatches.isEmpty()) {
+      database.markAsSent(messageId, true);
+
+      markAttachmentsUploaded(messageId, message);
+
+      if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
+        database.markExpireStarted(messageId);
+        ApplicationDependencies.getExpiringMessageManager()
+                               .scheduleDeletion(messageId, true, message.getExpiresIn());
+      }
+
+      if (message.isViewOnce()) {
+        SignalDatabase.attachments().deleteAttachmentFilesForViewOnceMessage(messageId);
+      }
+
+      if (message.isStory()) {
+        ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary();
+      }
+    } else if (!identityMismatches.isEmpty()) {
+      Log.w(TAG, "Failing because there were " + identityMismatches.size() + " identity mismatches.");
+      database.markAsSentFailed(messageId);
+      notifyMediaMessageDeliveryFailed(context, messageId);
+
+      Set<RecipientId> mismatchRecipientIds = Stream.of(identityMismatches)
+                                                    .map(mismatch -> mismatch.getRecipientId(context))
+                                                    .collect(Collectors.toSet());
+
+      RetrieveProfileJob.enqueue(mismatchRecipientIds);
+    } else if (!networkFailures.isEmpty()) {
+      Log.w(TAG, "Retrying because there were " + networkFailures.size() + " network failures.");
+      throw new RetryLaterException();
+    }
+  }
+
+  private static @NonNull List<Recipient> getGroupMessageRecipients(@NonNull GroupId groupId, long messageId) {
     List<GroupReceiptInfo> destinations = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId);
 
     if (!destinations.isEmpty()) {
-        return RecipientUtil.getEligibleForSending(Stream.of(destinations)
-                                                         .map(GroupReceiptInfo::getRecipientId)
-                                                         .map(Recipient::resolved)
-                                                         .toList());
+      return RecipientUtil.getEligibleForSending(Stream.of(destinations)
+                                                       .map(GroupReceiptInfo::getRecipientId)
+                                                       .map(Recipient::resolved)
+                                                       .toList());
     }
 
     List<Recipient> members = Stream.of(SignalDatabase.groups().getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
@@ -375,10 +429,6 @@ public final class PushGroupSendJob extends PushSendJob {
     }
 
     return RecipientUtil.getEligibleForSending(members);
-  }
-
-  public static long getMessageId(@NonNull Data data) {
-    return data.getLong(KEY_MESSAGE_ID);
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {

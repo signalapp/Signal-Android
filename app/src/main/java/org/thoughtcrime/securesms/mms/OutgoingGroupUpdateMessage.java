@@ -31,8 +31,19 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
                                     @NonNull List<LinkPreview> previews,
                                     @NonNull List<Mention> mentions)
   {
-    super(recipient, groupContext.getEncodedGroupContext(), avatar, sentTimeMillis,
-          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, viewOnce, quote, contacts, previews, mentions);
+    super(recipient,
+          groupContext.getEncodedGroupContext(),
+          avatar,
+          sentTimeMillis,
+          ThreadDatabase.DistributionTypes.CONVERSATION,
+          expiresIn,
+          viewOnce,
+          false,
+          null,
+          quote,
+          contacts,
+          previews,
+          mentions);
 
     this.messageGroupContext = groupContext;
   }

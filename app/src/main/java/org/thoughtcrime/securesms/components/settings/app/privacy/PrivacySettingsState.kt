@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy
 
+import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 
 data class PrivacySettingsState(
@@ -15,5 +16,7 @@ data class PrivacySettingsState(
   val isObsoletePasswordEnabled: Boolean,
   val isObsoletePasswordTimeoutEnabled: Boolean,
   val obsoletePasswordTimeout: Int,
-  val universalExpireTimer: Int
+  val universalExpireTimer: Int,
+  val privateStories: List<DistributionListPartialRecord>,
+  val isStoriesEnabled: Boolean
 )

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/signal_background_secondary"
+    android:paddingTop="8dp"
+    android:paddingHorizontal="@dimen/dsl_settings_gutter"
+    android:paddingBottom="8dp">
+
+    <View
+        android:id="@+id/chats_tab_touch_point"
+        android:layout_width="58dp"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/chats_tab_icon"
+        app:layout_constraintStart_toStartOf="@id/chats_tab_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/stories_tab_touch_point"
+        android:layout_width="58dp"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/stories_tab_icon"
+        app:layout_constraintStart_toStartOf="@id/stories_tab_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/chats_tab_icon"
+        android:layout_width="56dp"
+        android:layout_height="32dp"
+        android:background="@drawable/conversation_tab_icon_background"
+        android:importantForAccessibility="no"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/chats_tab_label"
+        app:layout_constraintEnd_toStartOf="@id/tabs_center_guide"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_message_24" />
+
+    <TextView
+        android:id="@+id/chats_tab_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/ConversationListTabs__chats"
+        android:textAppearance="@style/TextAppearance.Signal.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/chats_tab_icon"
+        app:layout_constraintStart_toStartOf="@id/chats_tab_icon"
+        app:layout_constraintTop_toBottomOf="@id/chats_tab_icon" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tabs_center_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/stories_tab_icon"
+        android:layout_width="56dp"
+        android:layout_height="32dp"
+        android:background="@drawable/conversation_tab_icon_background"
+        android:importantForAccessibility="no"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@id/stories_tab_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tabs_center_guide"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_wallpaper_24" />
+
+    <TextView
+        android:id="@+id/stories_tab_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/ConversationListTabs__stories"
+        android:textAppearance="@style/TextAppearance.Signal.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/stories_tab_icon"
+        app:layout_constraintStart_toStartOf="@id/stories_tab_icon"
+        app:layout_constraintTop_toBottomOf="@id/stories_tab_icon" />
+
+    <TextView
+        android:id="@+id/chats_unread_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="16sp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/tab_unread_circle"
+        android:gravity="center_horizontal"
+        android:minWidth="16sp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textAppearance="@style/Signal.Text.Caption"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/chats_tab_icon"
+        app:layout_constraintEnd_toEndOf="@id/chats_tab_touch_point"
+        tools:text="3" />
+
+    <TextView
+        android:id="@+id/stories_unread_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="16sp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/tab_unread_circle"
+        android:gravity="center_horizontal"
+        android:minWidth="16sp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textAppearance="@style/Signal.Text.Caption"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/stories_tab_icon"
+        app:layout_constraintEnd_toEndOf="@id/stories_tab_touch_point"
+        tools:text="99+" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
