@@ -1350,8 +1350,8 @@
   <string name="RegistrationActivity_play_services_error">Play Services പിശക്</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services അപ്‌ഡേറ്റുചെയ്യുന്നു അല്ലെങ്കിൽ താൽക്കാലികമായി ലഭ്യമല്ല. ദയവായി വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_terms_and_privacy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">സുഹൃത്തുക്കളുമായി ബന്ധപ്പെടാനും സന്ദേശങ്ങള്‍ അയക്കാനും നിങ്ങളെ സഹായിക്കുന്നതിന് Signal-ന് കോൺ‌ടാക്റ്റുകൾ, മീഡിയ അനുമതികൾ ആവശ്യമാണ്. Signal-ന്റെ സ്വകാര്യ കോൺടാക്റ്റ് കണ്ടെത്തൽ ഉപയോഗിച്ചാണ് നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ അപ്‌ലോഡ് ചെയ്‌തിരിക്കുന്നത്, അതിനർത്ഥം അവ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്‌തതും Signal സേവനത്തിന് ഒരിക്കലും ദൃശ്യമാകാത്തതുമാണ്.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">സുഹൃത്തുക്കളുമായി ബന്ധപ്പെടാൻ നിങ്ങളെ സഹായിക്കുന്നതിന് Signal-ന് കോൺ‌ടാക്റ്റുകൾ അനുമതി ആവശ്യമാണ്. Signal-ന്റെ സ്വകാര്യ കോൺടാക്റ്റ് കണ്ടെത്തൽ ഉപയോഗിച്ചാണ് നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ അപ്‌ലോഡ് ചെയ്‌തിരിക്കുന്നത്, അതിനർത്ഥം അവ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്‌തതും Signal സേവനത്തിന് ഒരിക്കലും ദൃശ്യമാകാത്തതുമാണ്.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">സുഹൃത്തുക്കളുമായി ബന്ധപ്പെടാനും സന്ദേശങ്ങള്‍ അയക്കാനും നിങ്ങളെ സഹായിക്കുന്നതിന് Signal-ന് കോൺ‌ടാക്റ്റുകൾ, മീഡിയ അനുമതികൾ ആവശ്യമാണ്. Signal-ന്റെ സ്വകാര്യ കോൺടാക്റ്റ് കണ്ടെത്തൽ ഉപയോഗിച്ചാണ് നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ അപ്‌ലോഡ് ചെയ്‌തിരിക്കുന്നത്, അതിനർത്ഥം അവ ആദ്യാവസാന എൻക്രിപ്റ്റ് ചെയ്‌തതും Signal സേവനത്തിന് ഒരിക്കലും ദൃശ്യമാകാത്തതുമാണ്.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">സുഹൃത്തുക്കളുമായി ബന്ധപ്പെടാൻ നിങ്ങളെ സഹായിക്കുന്നതിന് Signal-ന് കോൺ‌ടാക്റ്റുകൾ അനുമതി ആവശ്യമാണ്. Signal-ന്റെ സ്വകാര്യ കോൺടാക്റ്റ് കണ്ടെത്തൽ ഉപയോഗിച്ചാണ് നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ അപ്‌ലോഡ് ചെയ്‌തിരിക്കുന്നത്, അതിനർത്ഥം അവ ആദ്യാവസാന എൻക്രിപ്റ്റ് ചെയ്‌തതും Signal സേവനത്തിന് ഒരിക്കലും ദൃശ്യമാകാത്തതുമാണ്.</string>
   <string name="RegistrationActivity_rate_limited_to_service">ഈ നമ്പർ രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങൾ വളരെയധികം ശ്രമങ്ങൾ നടത്തി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യാനായില്ല. നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_non_standard_number_format">അംഗീകൃതമല്ലാത്ത നമ്പര്‍ രൂപം</string>
@@ -1904,7 +1904,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ഒരു പേരോ നമ്പറോ നൽകുക</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s-മായുള്ള നിങ്ങളുടെ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്ഷന്റെ സുരക്ഷ പരിശോധിക്കാൻ, മുകളിലെ നമ്പറുകൾ അവരുടെ ഉപകരണവുമായി താരതമ്യം ചെയ്യുക. നിങ്ങൾക്ക് അവരുടെ ഫോണിലെ കോഡ് സ്കാൻ ചെയ്യാനും കഴിയും.<a href="https://signal.org/redirect/safety-numbers">കൂടുതല്‍ അറിയുക</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s-മായുള്ള നിങ്ങളുടെ ആദ്യാവസാന എൻക്രിപ്ഷന്റെ സുരക്ഷ പരിശോധിക്കാൻ, മുകളിലെ നമ്പറുകൾ അവരുടെ ഉപകരണവുമായി താരതമ്യം ചെയ്യുക. നിങ്ങൾക്ക് അവരുടെ ഫോണിലെ കോഡ് സ്കാൻ ചെയ്യാനും കഴിയും.<a href="https://signal.org/redirect/safety-numbers">കൂടുതല്‍ അറിയുക</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">സ്കാൻ ചെയ്യാൻ തൊടുക</string>
   <string name="verify_display_fragment__successful_match">വിജയകരമായ ചേര്‍ച്ച</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">സുരക്ഷാ നമ്പർ പരിശോധിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
@@ -2444,7 +2444,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">ഉള്‍ക്കാഴ്‌ച</string>
   <string name="InsightsDashboardFragment__title">ഉള്‍ക്കാഴ്‌ച</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">കഴിഞ്ഞ %2$d ദിവസങ്ങളിൽ നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ നിന്ന് സിഗ്നൽ പ്രോട്ടോക്കോൾ യാന്ത്രികമായി %1$d%%പരിരക്ഷിച്ചു. സിഗ്നൽ ഉപയോക്താക്കൾ തമ്മിലുള്ള സംഭാഷണങ്ങൾ എല്ലായ്പ്പോഴും എൻഡ് ടു എൻഡ് എൻ‌ക്രിപ്റ്റ് ആണ്.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">കഴിഞ്ഞ %2$d ദിവസങ്ങളിൽ നിങ്ങളുടെ ഔട്ട്ഗോയിംഗ് സന്ദേശങ്ങളിൽ നിന്ന് സിഗ്നൽ പ്രോട്ടോക്കോൾ യാന്ത്രികമായി %1$d%% പരിരക്ഷിച്ചു. സിഗ്നൽ ഉപയോക്താക്കൾ തമ്മിലുള്ള സംഭാഷണങ്ങൾ എല്ലായ്പ്പോഴും  ആദ്യാവസാന എൻക്രിപ്റ്റഡാണ്.</string>
   <string name="InsightsDashboardFragment__spread_the_word">എല്ലാവരിലേക്കും എത്തിക്കൂ</string>
   <string name="InsightsDashboardFragment__not_enough_data">മതിയായ ഡാറ്റയില്ല</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">അപ്രത്യക്ഷമായതോ ഇല്ലാതാക്കാത്തതോ ആയ കഴിഞ്ഞ %1$d ദിവസങ്ങളിൽ ഔറ്റ്ഗോിങ് സന്ദേശങ്ങളെ അടിസ്ഥാനമാക്കിയാണ് നിങ്ങളുടെ ഉള്‍ക്കാഴ്‌ച ശതമാനം കണക്കാക്കുന്നത്.</string>
@@ -2720,7 +2720,7 @@
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ട്രാൻസ്ഫർ ചെയ്യാൻ സാധ്യമല്ല</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">ഡാറ്റ കൈമാറുന്നു</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">രണ്ട് ഉപകരണങ്ങളും പരസ്പരം അടുത്ത് വയ്ക്കുക. ഉപകരണങ്ങൾ ഓഫ് ചെയ്യരുത്, Signal തുറന്നിടുക. ട്രാൻസ്ഫറുകൾ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്തിരിക്കുന്നു.</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">രണ്ട് ഉപകരണങ്ങളും പരസ്പരം അടുത്ത് വയ്ക്കുക. ഉപകരണങ്ങൾ ഓഫ് ചെയ്യരുത്, Signal തുറന്നിടുക. ട്രാൻസ്ഫറുകൾ ആദ്യാവസാനം എൻക്രിപ്റ്റ് ചെയ്തിരിക്കുന്നു.</string>
   <string name="DeviceTransfer__d_messages_so_far">ഇതുവരെ %1$d സന്ദേശങ്ങൾ</string>
   <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__s_of_messages_so_far">ഇതുവരെ %1$s %% സന്ദേശങ്ങള്‍ …</string>
@@ -3396,6 +3396,8 @@
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount">പുതിയ വരിസംഖ്യ നിരക്കിന്റെ മുഴുവൻ തുകയും നിങ്ങളിൽ നിന്ന് ഇന്ന് ഈടാക്കും. നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ %1$s പുതുക്കും.</string>
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">പുതിയ വരിസംഖ്യ നിരക്കിന്റെ മുഴുവൻ തുകയും (%1$s) നിങ്ങളിൽ നിന്ന് ഇന്ന് ഈടാക്കും. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ പ്രതിമാസം പുതുക്കും..</string>
   <string name="Subscription__s_per_month">%s/ മാസം</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/മാസം · പുതുക്കല്‍ %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/മാസം · കാലഹരണം %2$s</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാത്ത ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒന്നാണ് Signal, അത് ഉപയോഗിക്കുകയും വിലമതിക്കുകയും ചെയ്യുന്ന ആളുകളാല്‍ മാത്രമാണ് അത് നിലനിൽക്കുന്നത്. ആവർത്തിച്ചുള്ള പ്രതിമാസ സംഭാവന നൽകുകയും നിങ്ങളുടെ പിന്തുണ പങ്കിടുന്നതിന് ഒരു പ്രൊഫൈൽ ബാഡ്ജ് സ്വീകരിക്കുകയും ചെയ്യുക.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">എന്തുകൊണ്ട് സംഭാവന ചെയ്യണം?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">സ്വതന്ത്രമായ ആവിഷ്‌കാരത്തെ പരിരക്ഷിക്കുകയും സുരക്ഷിതമായ ആഗോള ആശയവിനിമയം സാധ്യമാക്കുകയും ചെയ്യുന്ന ഓപ്പൺ സോഴ്‌സ് സ്വകാര്യതാ സാങ്കേതികവിദ്യ വികസിപ്പിക്കുന്നതില്‍ Signal പ്രതിജ്ഞാബദ്ധമാണ്.</string>

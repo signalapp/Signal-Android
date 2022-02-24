@@ -2658,7 +2658,7 @@
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ако имате претходно регистрирана Signal сметка, можета да ја префрлите или вратите Вашата сметка и пораки</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Префрли од Android уред</string>
   <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Префрлете ја Вашата сметка и пораки од Вашиот стар Android уред. Потребен ви е пристап до стариот уред.</string>
-  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Ви треба пристап до стариот уред.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Потребен ви е пристап до стариот уред.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Врати од резервна копија</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Вратете ги Вашите пораки од локална резервна копија. Ако не ги вратите сега нема да можете да го направите тоа подоцна.</string>
   <!--NewDeviceTransferInstructionsFragment-->

@@ -2848,7 +2848,7 @@
   <string name="ReviewCardDialogFragment__remove">Verwijderen</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Het verwijderen van een groepslid is mislukt.</string>
   <!--ReviewCard-->
-  <string name="ReviewCard__member">Lid van deze groep maar niet in je contactenlijst</string>
+  <string name="ReviewCard__member">Lid van deze groep maar staat niet in je contactenlijst</string>
   <string name="ReviewCard__request">Wil een gesprek met je beginnen</string>
   <string name="ReviewCard__your_contact">Persoon die in je contactenlijst staat</string>
   <string name="ReviewCard__remove_from_group">Van de groep verwijderen</string>

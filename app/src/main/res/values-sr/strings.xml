@@ -92,7 +92,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Моћи ћете да размењујете поруке и позиве и Ваше име и фотографија ће бити подељени са тим контактом.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Блокиране особе неће бити у могућности да Вас зову или да Вам шаљу поруке.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Блкирати ажурирање Signal-а и вести.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Поново примати Signal ажурирања и вести.</string>
   <string name="BlockUnblockDialog_unblock_s">Одблокирати контакт %1$s?</string>
   <string name="BlockUnblockDialog_block">Блокирај</string>
   <string name="BlockUnblockDialog_block_and_leave">Блокирај и напусти</string>
@@ -1149,7 +1151,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порука од %s није могла да се испоручи</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s су променили свој број телефона</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Свиђа Вам се нова способност? Кажите хвала са Boost.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal покрећу особе попут Вас. Покажите своју подршку већ данас.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s покренуо/ла групни позив · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s је у групном позиву · %2$s</string>
@@ -1180,6 +1184,7 @@
   <string name="MessageRequestBottomView_unblock">Одблокирај</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Да ли дозвољавате да вам %1$s шаље поруке и да подели ваше име и слику са њима? Неће знати да сте прочитали њихове поруке док не прихватите.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Да ли дозвољавате да вам %1$s шаље поруке и да подели ваше име и слику са њима? Нећете примати поруке док их не деблокирате.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Добијајте ажурирања и вести од %1$s? Нећете добијати ажурирања док их не деблокирате.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Наставити разговор са овом групом и поделите своје име и слику са њеним члановима?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Надоградите ову групу да бисте активирали нове функције попут @помињања и администратора. Чланови који нису поделили своје име или слику у овој групи биће позвани да се придруже.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ова Стара Група не може више да се користи јер је превелика. Максимална величина групе је %1$d.</string>
@@ -1312,6 +1317,7 @@
   <string name="RedPhone_got_it">Важи</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Happy 💜 Day!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Кликните овде да укључите вашу камеру</string>
@@ -1678,7 +1684,9 @@
   <string name="NotificationChannel_contact_joined_signal">Контакт се придружио Signalу</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Није доступна активност да би се отворила подешавања канала нотификације.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Позадинска веза</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Статус позива</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Брзи одговор није доступан ако је Signal закључан!</string>
@@ -3544,8 +3552,12 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Ваша претплата за подршку је аутоматско поништена пошто сте били превише неактивни. Ваша значка %1$s није више видљива на вашем профилу.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Ваша претплата је отказана јер нисмо могли да обрадимо вашу уплату. Ваша значка више није видљива на вашем профилу.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Још увек можете да кориситите Signal али да подржите апликацију и поново активирате своју значку, обновите сада.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Обновити претплату</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Није могуће обрадити плаћање претплате</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Имамо проблема са прикупљањем ваше уплате. Уверите се да је ваш начин плаћања ажуран. Ако није, ажурирајте га у Google Pay-у. Signal ће поново покушати да обради уплату за неколико дана.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Не показуј ово поново</string>
   <string name="Subscription__please_contact_support_for_more_information">Молимо контактирајте подршку за више информација.</string>
   <string name="Subscription__contact_support">Контактирајте подршку</string>
   <string name="Subscription__earn_a_s_badge">Добијте %1$s значку</string>
@@ -3568,20 +3580,33 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Мрежна грешка. Проверите да ли сте повезани и покушајте поново.</string>
   <string name="NetworkFailure__retry">Покушај поново</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Покушајте са другим начином плаћања или контактирајте своју банку за више информација.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Проверите да ли је ваш начин плаћања ажуриран у Google Pay-у и покушајте поново.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Сазнај више</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Проверите да ли је ваш начин плаћања ажуриран у Google Pay-у и покушајте поново. Ако се проблем настави, контактирајте своју банку.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Ваша картица не подржава ову врсту куповине. Покушајте са другим начином плаћања.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Ваша картица је истекла. Ажурирајте начин плаћања у Google Pay-у и покушајте поново.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Ићи на Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Број ваше картице је нетачан. Ажурирајте га у Google Pay-у и покушајте поново.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Кôд ваше картице је нетачан. Ажурирајте га у Google Pay-у и покушајте поново.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Ваша картица нема довољно средстава да заврши ову куповину. Покушајте са другим начином плаћања.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Месец истека на вашем начину плаћања је нетачан. Ажурирајте га у Google Pay-у и покушајте поново.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Година истека на вашем начину плаћања је нетачан. Ажурирајте га у Google Pay-у и покушајте поново.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Покушајте поново да извршите уплату или контактирајте своју банку за више информација.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Покушајте поново или контактирајте своју банку за више информација.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Именовати ваш профил</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3723,5 +3748,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Неуспешно отварање бирача.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal Напомене о издању &amp; Новости</string>
   <!--EOF-->
 </resources>

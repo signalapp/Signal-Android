@@ -1609,7 +1609,9 @@
   <string name="NotificationChannel_contact_joined_signal">مخاطب به سیگنال پیوست</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">هیچ فعالیتی برای باز کردن تنظیمات کانال اعلان‌ها در دسترس نیست.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">اتصال پس‌زمینه</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">وضعیت تماس</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخ سریع هنگام قفل بودن سیگنال در دسترس نیست!</string>
@@ -3479,9 +3481,13 @@
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">بیشتر یاد بگیرید</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">تأیید کنید که روش پرداخت شما در Google Pay به‌روز است و دوباره تلاش کنید. اگر مشکل ادامه پیدا کرد، با بانک خود تماس بگیرید.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">کارت شما از این نوع از خرید پشتیبانی نمی‌کند. از روش پرداخت دیگری استفاده کنید.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">کارت شما منقضی شده است. روش پرداخت خود را در Google Pay به‌روزرسانی کرده و دوباره تلاش کنید.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">به Google Pay بروید</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->
