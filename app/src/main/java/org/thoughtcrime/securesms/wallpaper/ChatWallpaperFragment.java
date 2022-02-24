@@ -37,9 +37,10 @@ import java.util.Collections;
 
 public class ChatWallpaperFragment extends Fragment {
 
-  private boolean  isSettingDimFromViewModel;
+  private boolean isSettingDimFromViewModel;
 
   private ChatWallpaperViewModel viewModel;
+  private SwitchCompat           dimInNightMode;
 
   @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,18 +51,19 @@ public class ChatWallpaperFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     viewModel = ViewModelProviders.of(requireActivity()).get(ChatWallpaperViewModel.class);
 
-    AvatarImageView        portrait             = view.findViewById(R.id.chat_wallpaper_preview_top_bar_portrait);
-    Toolbar                toolbar              = view.findViewById(R.id.toolbar);
-    ImageView              chatWallpaperPreview = view.findViewById(R.id.chat_wallpaper_preview_background);
-    View                   setWallpaper         = view.findViewById(R.id.chat_wallpaper_set_wallpaper);
-    SwitchCompat           dimInNightMode       = view.findViewById(R.id.chat_wallpaper_dark_theme_dims_wallpaper);
-    View                   chatWallpaperDim     = view.findViewById(R.id.chat_wallpaper_dim);
-    TextView               setChatColor         = view.findViewById(R.id.chat_wallpaper_set_chat_color);
-    TextView               resetChatColors      = view.findViewById(R.id.chat_wallpaper_reset_chat_colors);
-    ImageView              sentBubble           = view.findViewById(R.id.chat_wallpaper_preview_bubble_2);
-    ColorizerView          colorizerView        = view.findViewById(R.id.colorizer);
-    TextView               resetAllWallpaper    = view.findViewById(R.id.chat_wallpaper_reset_all_wallpapers);
-    AppCompatImageView     recvBubble           = view.findViewById(R.id.chat_wallpaper_preview_bubble_1);
+    AvatarImageView    portrait             = view.findViewById(R.id.chat_wallpaper_preview_top_bar_portrait);
+    Toolbar            toolbar              = view.findViewById(R.id.toolbar);
+    ImageView          chatWallpaperPreview = view.findViewById(R.id.chat_wallpaper_preview_background);
+    View               setWallpaper         = view.findViewById(R.id.chat_wallpaper_set_wallpaper);
+    View               chatWallpaperDim     = view.findViewById(R.id.chat_wallpaper_dim);
+    TextView           setChatColor         = view.findViewById(R.id.chat_wallpaper_set_chat_color);
+    TextView           resetChatColors      = view.findViewById(R.id.chat_wallpaper_reset_chat_colors);
+    ImageView          sentBubble           = view.findViewById(R.id.chat_wallpaper_preview_bubble_2);
+    ColorizerView      colorizerView        = view.findViewById(R.id.colorizer);
+    TextView           resetAllWallpaper    = view.findViewById(R.id.chat_wallpaper_reset_all_wallpapers);
+    AppCompatImageView recvBubble           = view.findViewById(R.id.chat_wallpaper_preview_bubble_1);
+
+    dimInNightMode = view.findViewById(R.id.chat_wallpaper_dark_theme_dims_wallpaper);
 
     toolbar.setTitle(R.string.preferences__chat_color_and_wallpaper);
     toolbar.setNavigationOnClickListener(nav -> {
@@ -173,12 +175,6 @@ public class ChatWallpaperFragment extends Fragment {
       });
     }
 
-    dimInNightMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
-      if (!isSettingDimFromViewModel) {
-        viewModel.setDimInDarkTheme(isChecked);
-      }
-    });
-
     viewModel.getCurrentChatColors().observe(getViewLifecycleOwner(), chatColors -> {
       sentBubble.getDrawable().setColorFilter(chatColors.getChatBubbleColorFilter());
       colorizerView.setBackground(chatColors.getChatBubbleMask());
@@ -191,6 +187,17 @@ public class ChatWallpaperFragment extends Fragment {
     });
 
     sentBubble.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> viewModel.refreshChatColors());
+  }
+
+  @Override
+  public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+    super.onViewStateRestored(savedInstanceState);
+
+    dimInNightMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+      if (!isSettingDimFromViewModel) {
+        viewModel.setDimInDarkTheme(isChecked);
+      }
+    });
   }
 
   @Override
