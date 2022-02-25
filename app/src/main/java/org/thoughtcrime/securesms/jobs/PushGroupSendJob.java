@@ -201,6 +201,7 @@ public final class PushGroupSendJob extends PushSendJob {
       List<NetworkFailure>             resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
       List<IdentityKeyMismatch>        resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
       List<RecipientId>                unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).toList();
+      List<RecipientId>                blockedIds                = Stream.of(SignalDatabase.groups().getGroupMembers(groupRecipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).filter(Recipient::isBlocked).map(Recipient::getId).toList();
 
       if (networkFailures.size() > 0 || identityMismatches.size() > 0 || proofRequired != null || unregisteredRecipients.size() > 0) {
         Log.w(TAG,  String.format(Locale.US, "Failed to send to some recipients. Network: %d, Identity: %d, ProofRequired: %s, Unregistered: %d",
@@ -221,6 +222,7 @@ public final class PushGroupSendJob extends PushSendJob {
       database.setMismatchedIdentities(messageId, existingIdentityMismatches);
 
       SignalDatabase.groupReceipts().setUnidentified(successUnidentifiedStatus, messageId);
+      SignalDatabase.groupReceipts().setSkipped(blockedIds, messageId);
 
       if (proofRequired != null) {
         handleProofRequiredException(proofRequired, groupRecipient, threadId, messageId, true);
