@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -44,6 +45,14 @@ class AvatarView @JvmOverloads constructor(
 
     avatar.scaleX = 1f
     avatar.scaleY = 1f
+  }
+
+  fun setStoryRingFromState(storyViewState: StoryViewState) {
+    when (storyViewState) {
+      StoryViewState.NONE -> hideStoryRing()
+      StoryViewState.UNVIEWED -> showStoryRing(true)
+      StoryViewState.VIEWED -> showStoryRing(false)
+    }
   }
 
   /**

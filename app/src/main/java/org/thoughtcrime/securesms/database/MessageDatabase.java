@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -193,6 +194,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract long getUnreadStoryCount();
   public abstract @Nullable Long getOldestStorySendTimestamp();
   public abstract int deleteStoriesOlderThan(long timestamp);
+  public abstract @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId);
 
   final @NonNull String getOutgoingTypeClause() {
     List<String> segments = new ArrayList<>(Types.OUTGOING_MESSAGE_TYPES.length);

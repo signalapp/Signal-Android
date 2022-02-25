@@ -4,12 +4,14 @@ import android.database.Cursor
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
 import org.thoughtcrime.securesms.database.model.IdentityRecord
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
 import org.thoughtcrime.securesms.recipients.Recipient
 
 data class ConversationSettingsState(
   val threadId: Long = -1,
+  val storyViewState: StoryViewState = StoryViewState.NONE,
   val recipient: Recipient = Recipient.UNKNOWN,
   val buttonStripState: ButtonStripPreference.State = ButtonStripPreference.State(),
   val disappearingMessagesLifespan: Int = 0,

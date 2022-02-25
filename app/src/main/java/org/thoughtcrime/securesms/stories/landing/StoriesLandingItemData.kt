@@ -1,13 +1,14 @@
 package org.thoughtcrime.securesms.stories.landing
 
 import org.thoughtcrime.securesms.conversation.ConversationMessage
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
  * Data required by each row of the Stories Landing Page for proper rendering.
  */
 data class StoriesLandingItemData(
-  val hasUnreadStory: Boolean,
+  val storyViewState: StoryViewState,
   val hasReplies: Boolean,
   val hasRepliesFromSelf: Boolean,
   val isHidden: Boolean,

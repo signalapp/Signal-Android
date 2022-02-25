@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.view.AvatarView;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -122,6 +123,10 @@ public class ConversationTitleView extends RelativeLayout {
     }
 
     updateVerifiedSubtitleVisibility();
+  }
+
+  public void setStoryRingFromState(@NonNull StoryViewState storyViewState) {
+    avatar.setStoryRingFromState(storyViewState);
   }
 
   public void setVerified(boolean verified) {

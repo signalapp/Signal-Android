@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
@@ -66,7 +67,7 @@ class StoriesLandingRepository(context: Context) {
       fun refresh() {
         val itemData = StoriesLandingItemData(
           storyRecipient = sender,
-          hasUnreadStory = messageRecords.any { it.viewedReceiptCount == 0 && !it.isOutgoing },
+          storyViewState = getStoryViewState(messageRecords),
           hasReplies = messageRecords.any { SignalDatabase.mms.getNumberOfStoryReplies(it.id) > 0 },
           hasRepliesFromSelf = messageRecords.any { SignalDatabase.mms.hasSelfReplyInStory(it.id) },
           isHidden = Recipient.resolved(messageRecords.first().recipient.id).shouldHideStory(),
@@ -104,5 +105,18 @@ class StoriesLandingRepository(context: Context) {
     return Completable.fromAction {
       SignalDatabase.recipients.setHideStory(recipientId, hideStory)
     }.subscribeOn(Schedulers.io())
+  }
+
+  private fun getStoryViewState(messageRecords: List<MessageRecord>): StoryViewState {
+    val incoming = messageRecords.filterNot { it.isOutgoing }
+    if (incoming.isEmpty()) {
+      return StoryViewState.NONE
+    }
+
+    if (incoming.any { it.viewedReceiptCount == 0 }) {
+      return StoryViewState.UNVIEWED
+    }
+
+    return StoryViewState.VIEWED
   }
 }

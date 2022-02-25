@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -1428,6 +1429,11 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public @Nullable Long getOldestStorySendTimestamp() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId) {
     throw new UnsupportedOperationException();
   }
 

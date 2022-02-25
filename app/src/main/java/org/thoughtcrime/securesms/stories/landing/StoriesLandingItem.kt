@@ -79,7 +79,7 @@ object StoriesLandingItem {
 
       val record = model.data.primaryStory.messageRecord as MediaMmsMessageRecord
 
-      avatarView.showStoryRing(model.data.hasUnreadStory)
+      avatarView.setStoryRingFromState(model.data.storyViewState)
       storyPreview.setImageResource(GlideApp.with(storyPreview), record.slideDeck.thumbnailSlide!!, false, true)
 
       if (model.data.secondaryStory != null) {

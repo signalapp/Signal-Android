@@ -6,12 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -45,6 +48,8 @@ sealed class ConversationSettingsViewModel(
 
   val state: LiveData<ConversationSettingsState> = store.stateLiveData
   val events: LiveData<ConversationSettingsEvent> = internalEvents
+
+  protected val disposable = CompositeDisposable()
 
   init {
     val threadId: LiveData<Long> = Transformations.distinctUntilChanged(Transformations.map(state) { it.threadId })
@@ -105,6 +110,7 @@ sealed class ConversationSettingsViewModel(
     cleared = true
     openedMediaCursors.forEach { it.ensureClosed() }
     store.clear()
+    disposable.clear()
   }
 
   private fun Cursor?.ensureClosed() {
@@ -126,6 +132,10 @@ sealed class ConversationSettingsViewModel(
     private val liveRecipient = Recipient.live(recipientId)
 
     init {
+      disposable += StoryViewState.getForRecipientId(recipientId).subscribe { storyViewState ->
+        store.update { it.copy(storyViewState = storyViewState) }
+      }
+
       store.update(liveRecipient.liveData) { recipient, state ->
         state.copy(
           recipient = recipient,
@@ -240,6 +250,10 @@ sealed class ConversationSettingsViewModel(
     private val liveGroup = LiveGroup(groupId)
 
     init {
+      disposable += repository.getStoryViewState(groupId).subscribe { storyViewState ->
+        store.update { it.copy(storyViewState = storyViewState) }
+      }
+
       val recipientAndIsActive = LiveDataUtil.combineLatest(liveGroup.groupRecipient, liveGroup.isActive) { r, a -> r to a }
       store.update(recipientAndIsActive) { (recipient, isActive), state ->
         state.copy(

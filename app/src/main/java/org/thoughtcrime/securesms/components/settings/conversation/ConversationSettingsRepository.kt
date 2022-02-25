@@ -4,6 +4,8 @@ import android.content.Context
 import android.database.Cursor
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
@@ -13,6 +15,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
@@ -42,6 +45,14 @@ class ConversationSettingsRepository(
     } else {
       Optional.of(SignalDatabase.media.getGalleryMediaForThread(threadId, MediaDatabase.Sorting.Newest))
     }
+  }
+
+  fun getStoryViewState(groupId: GroupId): Observable<StoryViewState> {
+    return Observable.fromCallable {
+      SignalDatabase.recipients.getByGroupId(groupId)
+    }.flatMap {
+      StoryViewState.getForRecipientId(it.get())
+    }.observeOn(Schedulers.io())
   }
 
   fun getThreadId(recipientId: RecipientId, consumer: (Long) -> Unit) {

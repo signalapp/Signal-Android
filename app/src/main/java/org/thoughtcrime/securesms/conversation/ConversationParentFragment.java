@@ -553,6 +553,8 @@ public class ConversationParentFragment extends Fragment
     initializeInsightObserver();
     initializeActionBar();
 
+    viewModel.getStoryViewState(getViewLifecycleOwner()).observe(getViewLifecycleOwner(), titleView::setStoryRingFromState);
+
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
       @Override
       public void handleOnBackPressed() {

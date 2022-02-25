@@ -23,6 +23,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
@@ -74,6 +76,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.CursorUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -589,6 +592,46 @@ public class MmsDatabase extends MessageDatabase {
     Cursor   cursor    = rawQuery(where, whereArgs, true, -1L);
 
     return new Reader(cursor);
+  }
+
+  @Override
+  public @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId) {
+    if (!FeatureFlags.stories() || SignalStore.storyValues().isFeatureDisabled()) {
+      return StoryViewState.NONE;
+    }
+
+    long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipientId);
+
+    return getStoryViewState(threadId);
+  }
+
+  @VisibleForTesting
+  @NonNull StoryViewState getStoryViewState(long threadId) {
+    final String   hasStoryQuery = "SELECT EXISTS(SELECT 1 FROM " + TABLE_NAME + " WHERE " + IS_STORY_CLAUSE + " AND " + THREAD_ID_WHERE + " LIMIT 1)";
+    final String[] hasStoryArgs  = SqlUtil.buildArgs(1, 0, threadId);
+    final boolean  hasStories;
+
+    try (Cursor cursor = getReadableDatabase().rawQuery(hasStoryQuery, hasStoryArgs)) {
+      hasStories = cursor != null && cursor.moveToFirst() && !cursor.isNull(0) && cursor.getInt(0) == 1;
+    }
+
+    if (!hasStories) {
+      return StoryViewState.NONE;
+    }
+
+    final String   hasUnviewedStoriesQuery = "SELECT EXISTS(SELECT 1 FROM " + TABLE_NAME + " WHERE " + IS_STORY_CLAUSE + " AND " + THREAD_ID_WHERE + " AND " + VIEWED_RECEIPT_COUNT + " = ? " + "AND NOT (" + getOutgoingTypeClause() + ") LIMIT 1)";
+    final String[] hasUnviewedStoriesArgs  = SqlUtil.buildArgs(1, 0, threadId, 0);
+    final boolean  hasUnviewedStories;
+
+    try (Cursor cursor = getReadableDatabase().rawQuery(hasUnviewedStoriesQuery, hasUnviewedStoriesArgs)) {
+      hasUnviewedStories = cursor != null && cursor.moveToFirst() && !cursor.isNull(0) && cursor.getInt(0) == 1;
+    }
+
+    if (hasUnviewedStories) {
+      return StoryViewState.UNVIEWED;
+    } else {
+      return StoryViewState.VIEWED;
+    }
   }
 
   @Override

@@ -18,10 +18,10 @@ import androidx.lifecycle.ViewModelProvider;
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
@@ -32,8 +32,12 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 
 import java.util.Objects;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 final class RecipientDialogViewModel extends ViewModel {
 
@@ -44,6 +48,8 @@ final class RecipientDialogViewModel extends ViewModel {
   private final LiveData<AdminActionStatus>     adminActionStatus;
   private final LiveData<Boolean>               canAddToAGroup;
   private final MutableLiveData<Boolean>        adminActionBusy;
+  private final MutableLiveData<StoryViewState> storyViewState;
+  private final CompositeDisposable             disposables;
 
   private RecipientDialogViewModel(@NonNull Context context,
                                    @NonNull RecipientDialogRepository recipientDialogRepository)
@@ -52,6 +58,8 @@ final class RecipientDialogViewModel extends ViewModel {
     this.recipientDialogRepository = recipientDialogRepository;
     this.identity                  = new MutableLiveData<>();
     this.adminActionBusy           = new MutableLiveData<>(false);
+    this.storyViewState            = new MutableLiveData<>();
+    this.disposables               = new CompositeDisposable();
 
     boolean recipientIsSelf = recipientDialogRepository.getRecipientId().equals(Recipient.self().getId());
 
@@ -87,6 +95,20 @@ final class RecipientDialogViewModel extends ViewModel {
                                                 (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isSelf() && !r.isBlocked());
 
     recipientDialogRepository.getActiveGroupCount(localGroupCount::postValue);
+
+    Disposable storyViewStateDisposable = StoryViewState.getForRecipientId(recipientDialogRepository.getRecipientId())
+                                                        .subscribe(storyViewState::postValue);
+
+    disposables.add(storyViewStateDisposable);
+  }
+
+  @Override protected void onCleared() {
+    super.onCleared();
+    disposables.clear();
+  }
+
+  LiveData<StoryViewState> getStoryViewState() {
+    return storyViewState;
   }
 
   LiveData<Recipient> getRecipient() {

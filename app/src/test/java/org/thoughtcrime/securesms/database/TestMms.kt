@@ -23,7 +23,9 @@ object TestMms {
     distributionType: Int = ThreadDatabase.DistributionTypes.DEFAULT,
     type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
     unread: Boolean = false,
-    threadId: Long = 1
+    viewed: Boolean = false,
+    threadId: Long = 1,
+    isStory: Boolean = false
   ): Long {
     val message = OutgoingMediaMessage(
       recipient,
@@ -34,7 +36,7 @@ object TestMms {
       expiresIn,
       viewOnce,
       distributionType,
-      false,
+      isStory,
       null,
       null,
       emptyList(),
@@ -50,6 +52,7 @@ object TestMms {
       body = body,
       type = type,
       unread = unread,
+      viewed = viewed,
       threadId = threadId,
       receivedTimestampMillis = receivedTimestampMillis
     )
@@ -61,6 +64,7 @@ object TestMms {
     body: String = message.body,
     type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
     unread: Boolean = false,
+    viewed: Boolean = false,
     threadId: Long = 1,
     receivedTimestampMillis: Long = System.currentTimeMillis(),
   ): Long {
@@ -78,6 +82,8 @@ object TestMms {
       put(MmsSmsColumns.RECIPIENT_ID, message.recipient.id.serialize())
       put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
       put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
+      put(MmsSmsColumns.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
+      put(MmsDatabase.IS_STORY, if (message.isStory) 1 else 0)
 
       put(MmsSmsColumns.BODY, body)
       put(MmsDatabase.PART_COUNT, 0)

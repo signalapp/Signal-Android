@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto
+import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -26,6 +27,7 @@ object AvatarPreference {
 
   class Model(
     val recipient: Recipient,
+    val storyViewState: StoryViewState,
     val onAvatarClick: (View) -> Unit,
     val onBadgeClick: (Badge) -> Unit
   ) : PreferenceModel<Model>() {
@@ -63,6 +65,7 @@ object AvatarPreference {
         }
       }
 
+      avatar.setStoryRingFromState(model.storyViewState)
       avatar.displayChatAvatar(model.recipient)
       avatar.disableQuickContact()
       avatar.setOnClickListener { model.onAvatarClick(avatar) }

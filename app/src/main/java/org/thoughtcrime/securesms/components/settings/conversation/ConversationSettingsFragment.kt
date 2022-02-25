@@ -266,6 +266,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       customPref(
         AvatarPreference.Model(
           recipient = state.recipient,
+          storyViewState = state.storyViewState,
           onAvatarClick = { avatar ->
             if (!state.recipient.isSelf) {
               // startActivity(StoryViewerActivity.createIntent(requireContext(), state.recipient.id))
