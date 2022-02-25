@@ -43,7 +43,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
-import org.whispersystems.signalservice.api.services.CdshService;
+import org.whispersystems.signalservice.api.services.CdshV1Service;
 import org.whispersystems.signalservice.api.storage.SignalStorageCipher;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageModels;
@@ -509,7 +509,7 @@ public class SignalServiceAccountManager {
       throws IOException
   {
     CdshAuthResponse                          auth    = pushServiceSocket.getCdshAuth();
-    CdshService                               service = new CdshService(configuration, hexPublicKey, hexCodeHash);
+    CdshV1Service                             service = new CdshV1Service(configuration, hexPublicKey, hexCodeHash);
     Single<ServiceResponse<Map<String, ACI>>> result  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), e164numbers);
 
     ServiceResponse<Map<String, ACI>> response;
