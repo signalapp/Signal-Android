@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
+import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.tabs.StoryViewsAndRepliesDialogFragment
@@ -65,6 +66,10 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     factoryProducer = {
       StoryViewerPageViewModel.Factory(storyRecipientId, StoryViewerPageRepository(requireContext()))
     }
+  )
+
+  private val sharedViewModel: StoryViewerViewModel by viewModels(
+    ownerProducer = { requireParentFragment() }
   )
 
   private val videoControlsDelegate = VideoControlsDelegate()
@@ -162,6 +167,25 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       }
     }
 
+    sharedViewModel.isScrolling.observe(viewLifecycleOwner) { isScrolling ->
+      viewModel.setIsUserScrollingParent(isScrolling)
+    }
+
+    sharedViewModel.state.observe(viewLifecycleOwner) { parentState ->
+      if (parentState.pages.size <= parentState.page) {
+        viewModel.setIsSelectedPage(false)
+      } else if (storyRecipientId == parentState.pages[parentState.page]) {
+        if (progressBar.segmentCount != 0) {
+          progressBar.reset()
+          progressBar.setPosition(viewModel.getRestartIndex())
+          videoControlsDelegate.restart()
+        }
+        viewModel.setIsSelectedPage(true)
+      } else {
+        viewModel.setIsSelectedPage(false)
+      }
+    }
+
     viewModel.state.observe(viewLifecycleOwner) { state ->
       if (state.posts.isNotEmpty() && state.selectedPostIndex < state.posts.size) {
         val post = state.posts[state.selectedPostIndex]
@@ -221,15 +245,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
 
   override fun onPause() {
     super.onPause()
-  }
-
-  override fun onResume() {
-    super.onResume()
-
-    if (progressBar.segmentCount != 0) {
-      progressBar.reset()
-      progressBar.setPosition(viewModel.getRestartIndex())
-    }
+    pauseProgress()
   }
 
   override fun onFinishForwardAction() = Unit

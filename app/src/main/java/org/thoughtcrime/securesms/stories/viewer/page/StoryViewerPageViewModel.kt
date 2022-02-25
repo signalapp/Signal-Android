@@ -73,6 +73,10 @@ class StoryViewerPageViewModel(
     }
   }
 
+  fun kickPlaybackState() {
+    storyViewerPlaybackStore.update { it }
+  }
+
   override fun onCleared() {
     disposables.clear()
   }
@@ -105,6 +109,14 @@ class StoryViewerPageViewModel(
 
   fun startDirectReply(storyId: Long, recipientId: RecipientId) {
     storyViewerDialogSubject.onNext(Optional.of(StoryViewerDialog.GroupDirectReply(recipientId, storyId)))
+  }
+
+  fun setIsUserScrollingParent(isUserScrollingParent: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isUserScrollingParent = isUserScrollingParent) }
+  }
+
+  fun setIsSelectedPage(isSelectedPage: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isSelectedPage = isSelectedPage) }
   }
 
   fun setIsDisplayingContextMenu(isDisplayingContextMenu: Boolean) {

@@ -47,11 +47,13 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   override fun onResume() {
     super.onResume()
+    viewModel.setIsScrolling(false)
     storyPager.registerOnPageChangeCallback(onPageChanged)
   }
 
   override fun onPause() {
     super.onPause()
+    viewModel.setIsScrolling(false)
     storyPager.unregisterOnPageChangeCallback(onPageChanged)
   }
 
@@ -66,6 +68,10 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
   inner class OnPageChanged : ViewPager2.OnPageChangeCallback() {
     override fun onPageSelected(position: Int) {
       viewModel.setSelectedPage(position)
+    }
+
+    override fun onPageScrollStateChanged(state: Int) {
+      viewModel.setIsScrolling(state == ViewPager2.SCROLL_STATE_DRAGGING)
     }
   }
 

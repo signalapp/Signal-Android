@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.stories.viewer
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -18,8 +19,15 @@ class StoryViewerViewModel(
 
   val state: LiveData<StoryViewerState> = store.stateLiveData
 
+  private val scrollStatePublisher: MutableLiveData<Boolean> = MutableLiveData(false)
+  val isScrolling: LiveData<Boolean> = scrollStatePublisher
+
   init {
     refresh()
+  }
+
+  fun setIsScrolling(isScrolling: Boolean) {
+    scrollStatePublisher.value = isScrolling
   }
 
   private fun refresh() {
