@@ -2304,6 +2304,7 @@
     <string name="message_details_recipient_header__read_by">Read by</string>
     <string name="message_details_recipient_header__not_sent">Not sent</string>
     <string name="message_details_recipient_header__viewed">Viewed by</string>
+    <string name="message_details_recipient_header__skipped">Skipped</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Failed to send</string>

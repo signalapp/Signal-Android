@@ -312,26 +312,26 @@ data class CallParticipantsState(
       @PluralsRes multipleParticipants: Int,
       members: List<GroupMemberEntry.FullMember>
     ): String {
-      val membersWithoutYou: List<GroupMemberEntry.FullMember> = members.filterNot { it.member.isSelf }
+      val eligibleMembers: List<GroupMemberEntry.FullMember> = members.filterNot { it.member.isSelf || it.member.isBlocked }
 
-      return when (membersWithoutYou.size) {
+      return when (eligibleMembers.size) {
         0 -> ""
         1 -> context.getString(
           oneParticipant,
-          membersWithoutYou[0].member.getShortDisplayName(context)
+          eligibleMembers[0].member.getShortDisplayName(context)
         )
         2 -> context.getString(
           twoParticipants,
-          membersWithoutYou[0].member.getShortDisplayName(context),
-          membersWithoutYou[1].member.getShortDisplayName(context)
+          eligibleMembers[0].member.getShortDisplayName(context),
+          eligibleMembers[1].member.getShortDisplayName(context)
         )
         else -> {
-          val others = membersWithoutYou.size - 2
+          val others = eligibleMembers.size - 2
           context.resources.getQuantityString(
             multipleParticipants,
             others,
-            membersWithoutYou[0].member.getShortDisplayName(context),
-            membersWithoutYou[1].member.getShortDisplayName(context),
+            eligibleMembers[0].member.getShortDisplayName(context),
+            eligibleMembers[1].member.getShortDisplayName(context),
             others
           )
         }

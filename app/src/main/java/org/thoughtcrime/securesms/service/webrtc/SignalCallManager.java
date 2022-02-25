@@ -648,7 +648,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
         recipients = RecipientUtil.getEligibleForSending((recipients.stream()
                                                                     .map(Recipient::resolve)
-                                                                    .filter(r -> !r.isBlocked())
                                                                     .collect(Collectors.toList())));
 
         OpaqueMessage            opaqueMessage = new OpaqueMessage(message, getUrgencyFromCallUrgency(urgency));

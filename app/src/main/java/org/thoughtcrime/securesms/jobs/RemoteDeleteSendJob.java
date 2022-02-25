@@ -187,6 +187,9 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                                    new MessageId(messageId, isMms),
                                                                                    dataMessage);
 
+    List<RecipientId> blockedIds = Stream.of(conversationRecipient.getParticipants()).filter(Recipient::isBlocked).map(Recipient::getId).toList();
+    SignalDatabase.groupReceipts().setSkipped(blockedIds, messageId);
+
     return GroupSendJobHelper.getCompletedSends(destinations, results);
   }
 

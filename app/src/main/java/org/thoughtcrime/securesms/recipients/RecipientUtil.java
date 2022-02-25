@@ -117,6 +117,7 @@ public class RecipientUtil {
   public static List<Recipient> getEligibleForSending(@NonNull List<Recipient> recipients) {
     return Stream.of(recipients)
                  .filter(r -> r.getRegistered() != RegisteredState.NOT_REGISTERED)
+                 .filter(r -> !r.isBlocked())
                  .toList();
   }
 
