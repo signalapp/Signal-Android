@@ -114,7 +114,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
 
     for (SerializableSyncMessageId messageId : messageIds) {
       Recipient recipient = Recipient.resolved(RecipientId.from(messageId.recipientId));
-      if (!recipient.isGroup() && recipient.isMaybeRegistered()) {
+      if (!recipient.isGroup() && !recipient.isDistributionList() && recipient.isMaybeRegistered()) {
         readMessages.add(new ReadMessage(RecipientUtil.toSignalServiceAddress(context, recipient), messageId.timestamp));
       }
     }

@@ -81,7 +81,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
@@ -650,8 +649,8 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public long getUnreadStoryCount() {
     String[] columns   = new String[]{"COUNT(*)"};
-    String   where     = IS_STORY_CLAUSE + " AND NOT (" + getOutgoingTypeClause() + ") AND " + READ_RECEIPT_COUNT + " = ?";
-    String[] whereArgs = SqlUtil.buildArgs(1, 0, 0);
+    String   where     = IS_STORY_CLAUSE + " AND NOT (" + getOutgoingTypeClause() + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
+    String[] whereArgs = SqlUtil.buildArgs(1, 0);
 
     try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, columns, where, whereArgs, null, null, null, null)) {
       return cursor != null && cursor.moveToFirst() ? cursor.getInt(0) : 0;
@@ -1165,20 +1164,20 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public List<MarkedMessageInfo> setMessagesReadSince(long threadId, long sinceTimestamp) {
     if (sinceTimestamp == -1) {
-      return setMessagesRead(THREAD_ID + " = ? AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + ")))", new String[] {String.valueOf(threadId)});
+      return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " = 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + ")))", new String[] {String.valueOf(threadId)});
     } else {
-      return setMessagesRead(THREAD_ID + " = ? AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND ( " + getOutgoingTypeClause() + " ))) AND " + DATE_RECEIVED + " <= ?", new String[]{String.valueOf(threadId), String.valueOf(sinceTimestamp)});
+      return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " = 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND ( " + getOutgoingTypeClause() + " ))) AND " + DATE_RECEIVED + " <= ?", new String[]{String.valueOf(threadId), String.valueOf(sinceTimestamp)});
     }
   }
 
   @Override
   public List<MarkedMessageInfo> setEntireThreadRead(long threadId) {
-    return setMessagesRead(THREAD_ID + " = ?", new String[] {String.valueOf(threadId)});
+    return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " = 0", new String[] {String.valueOf(threadId)});
   }
 
   @Override
   public List<MarkedMessageInfo> setAllMessagesRead() {
-    return setMessagesRead(READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + "))", null);
+    return setMessagesRead(IS_STORY+ " = 0 AND " + PARENT_STORY_ID + " = 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + ")))", null);
   }
 
   private List<MarkedMessageInfo> setMessagesRead(String where, String[] arguments) {

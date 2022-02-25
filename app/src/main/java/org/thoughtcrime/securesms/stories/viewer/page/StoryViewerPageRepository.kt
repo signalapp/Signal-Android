@@ -9,9 +9,12 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob
+import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -130,9 +133,23 @@ class StoryViewerPageRepository(context: Context) {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun markRead(storyPost: StoryPost) {
-    // TODO [stories] -- Implementation
-    SignalExecutors.BOUNDED.execute {
+  fun markViewed(storyPost: StoryPost) {
+    if (!storyPost.conversationMessage.messageRecord.isOutgoing) {
+      SignalExecutors.BOUNDED.execute {
+        val markedMessageInfo = SignalDatabase.mms.setIncomingMessageViewed(storyPost.id)
+        if (markedMessageInfo != null) {
+          ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
+          ApplicationDependencies.getJobManager().add(
+            SendViewedReceiptJob(
+              markedMessageInfo.threadId,
+              storyPost.sender.id,
+              markedMessageInfo.syncMessageId.timetamp,
+              MessageId(storyPost.id, true)
+            )
+          )
+          MultiDeviceViewedUpdateJob.enqueue(listOf(markedMessageInfo.syncMessageId))
+        }
+      }
     }
   }
 }

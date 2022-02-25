@@ -66,7 +66,7 @@ class StoriesLandingRepository(context: Context) {
       fun refresh() {
         val itemData = StoriesLandingItemData(
           storyRecipient = sender,
-          hasUnreadStory = messageRecords.any { it.readReceiptCount == 0 && !it.isOutgoing },
+          hasUnreadStory = messageRecords.any { it.viewedReceiptCount == 0 && !it.isOutgoing },
           hasReplies = messageRecords.any { SignalDatabase.mms.getNumberOfStoryReplies(it.id) > 0 },
           hasRepliesFromSelf = messageRecords.any { SignalDatabase.mms.hasSelfReplyInStory(it.id) },
           isHidden = Recipient.resolved(messageRecords.first().recipient.id).shouldHideStory(),

@@ -82,6 +82,7 @@ class StoryViewerPageViewModel(
   }
 
   fun setSelectedPostIndex(index: Int) {
+    repository.markViewed(getPostAt(index))
     store.update {
       it.copy(
         selectedPostIndex = index,
