@@ -5,12 +5,6 @@
 
     <application
         android:name=".SpinnerApplicationContext"
-        tools:replace="android:name">
-
-        <activity
-            android:name="com.facebook.flipper.android.diagnostics.FlipperDiagnosticActivity"
-            android:exported="true" />
-
-    </application>
+        tools:replace="android:name" />
 
 </manifest>
