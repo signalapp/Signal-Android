@@ -100,6 +100,7 @@ public final class DefaultErrorMapper implements ErrorMapper {
           return e;
         }
       case 413:
+      case 429:
         return new RateLimitException("Rate limit exceeded: " + status);
       case 417:
         return new ExpectationFailedException();

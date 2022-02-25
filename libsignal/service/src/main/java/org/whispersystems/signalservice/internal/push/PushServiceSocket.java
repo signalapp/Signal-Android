@@ -1678,6 +1678,7 @@ public class PushServiceSocket {
 
     switch (responseCode) {
       case 413:
+      case 429:
         throw new RateLimitException("Rate limit exceeded: " + responseCode);
       case 401:
       case 403:
