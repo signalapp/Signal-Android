@@ -25,6 +25,7 @@ final class MessageDetails {
   private final Collection<RecipientDeliveryStatus> read;
   private final Collection<RecipientDeliveryStatus> notSent;
   private final Collection<RecipientDeliveryStatus> viewed;
+  private final Collection<RecipientDeliveryStatus> skipped;
 
   MessageDetails(@NonNull ConversationMessage conversationMessage, @NonNull List<RecipientDeliveryStatus> recipients) {
     this.conversationMessage = conversationMessage;
@@ -35,6 +36,7 @@ final class MessageDetails {
     read      = new TreeSet<>(RECIPIENT_COMPARATOR);
     notSent   = new TreeSet<>(RECIPIENT_COMPARATOR);
     viewed    = new TreeSet<>(RECIPIENT_COMPARATOR);
+    skipped   = new TreeSet<>(RECIPIENT_COMPARATOR);
 
     if (conversationMessage.getMessageRecord().getRecipient().isSelf()) {
       read.addAll(recipients);
@@ -58,6 +60,9 @@ final class MessageDetails {
             break;
           case VIEWED:
             viewed.add(status);
+            break;
+          case SKIPPED:
+            skipped.add(status);
         }
       }
     } else {
@@ -76,6 +81,8 @@ final class MessageDetails {
   @NonNull Collection<RecipientDeliveryStatus> getSent() {
     return sent;
   }
+
+  @NonNull Collection<RecipientDeliveryStatus> getSkipped() {return  skipped;}
 
   @NonNull Collection<RecipientDeliveryStatus> getDelivered() {
     return delivered;

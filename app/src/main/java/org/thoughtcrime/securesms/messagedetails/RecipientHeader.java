@@ -11,6 +11,7 @@ enum RecipientHeader {
   DELIVERED(R.string.message_details_recipient_header__delivered_to),
   READ(R.string.message_details_recipient_header__read_by),
   NOT_SENT(R.string.message_details_recipient_header__not_sent),
+  SKIPPED(R.string.message_details_recipient_header__skipped),
   VIEWED(R.string.message_details_recipient_header__viewed);
 
   private final int headerText;

@@ -138,6 +138,7 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
       addRecipients(list, RecipientHeader.DELIVERED, details.getDelivered());
       addRecipients(list, RecipientHeader.SENT_TO, details.getSent());
       addRecipients(list, RecipientHeader.PENDING, details.getPending());
+      addRecipients(list, RecipientHeader.SKIPPED, details.getSkipped());
     } else {
       addRecipients(list, RecipientHeader.SENT_FROM, details.getSent());
     }
