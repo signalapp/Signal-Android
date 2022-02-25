@@ -71,7 +71,7 @@ import java.util.stream.Collectors;
 /**
  * Advances a groups state to a specified revision.
  */
-public final class GroupsV2StateProcessor {
+public class GroupsV2StateProcessor {
 
   private static final String TAG = Log.tag(GroupsV2StateProcessor.class);
 

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import com.google.protobuf.ByteString
 import org.signal.storageservice.protos.groups.AccessControl
+import org.signal.storageservice.protos.groups.GroupChange
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
@@ -17,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage
+import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
@@ -69,12 +71,39 @@ class ChangeSet {
   }
 }
 
-class GroupStateTestData(private val masterKey: GroupMasterKey) {
+class GroupChangeData(private val revision: Int, private val groupOperations: GroupsV2Operations.GroupOperations) {
+  private val groupChangeBuilder: GroupChange.Builder = GroupChange.newBuilder()
+  private val actionsBuilder: GroupChange.Actions.Builder = GroupChange.Actions.newBuilder()
+  var changeEpoch: Int = GroupsV2Operations.HIGHEST_KNOWN_EPOCH
+
+  val groupChange: GroupChange
+    get() {
+      return groupChangeBuilder
+        .setChangeEpoch(changeEpoch)
+        .setActions(actionsBuilder.setRevision(revision).build().toByteString())
+        .build()
+    }
+
+  fun source(serviceId: ServiceId) {
+    actionsBuilder.sourceUuid = groupOperations.encryptUuid(serviceId.uuid())
+  }
+
+  fun deleteMember(serviceId: ServiceId) {
+    actionsBuilder.addDeleteMembers(GroupChange.Actions.DeleteMemberAction.newBuilder().setDeletedUserId(groupOperations.encryptUuid(serviceId.uuid())))
+  }
+
+  fun modifyRole(serviceId: ServiceId, role: Member.Role) {
+    actionsBuilder.addModifyMemberRoles(GroupChange.Actions.ModifyMemberRoleAction.newBuilder().setUserId(groupOperations.encryptUuid(serviceId.uuid())).setRole(role))
+  }
+}
+
+class GroupStateTestData(private val masterKey: GroupMasterKey, private val groupOperations: GroupsV2Operations.GroupOperations? = null) {
 
   var localState: DecryptedGroup? = null
   var groupRecord: Optional<GroupDatabase.GroupRecord> = Optional.absent()
   var serverState: DecryptedGroup? = null
   var changeSet: ChangeSet? = null
+  var groupChange: GroupChange? = null
   var includeFirst: Boolean = false
   var requestedRevision: Int = 0
 
@@ -119,6 +148,12 @@ class GroupStateTestData(private val masterKey: GroupMasterKey) {
   fun apiCallParameters(requestedRevision: Int, includeFirst: Boolean) {
     this.requestedRevision = requestedRevision
     this.includeFirst = includeFirst
+  }
+
+  fun groupChange(revision: Int, init: GroupChangeData.() -> Unit) {
+    val groupChangeData = GroupChangeData(revision, groupOperations!!)
+    groupChangeData.init()
+    this.groupChange = groupChangeData.groupChange
   }
 }
 

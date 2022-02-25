@@ -732,7 +732,8 @@ public final class GroupsV2Operations {
       return UuidUtil.toByteString(decryptUuid(userId));
     }
 
-    ByteString encryptUuid(UUID uuid) {
+    // Visible for Testing
+    public ByteString encryptUuid(UUID uuid) {
       return ByteString.copyFrom(clientZkGroupCipher.encryptUuid(uuid).serialize());
     }
 

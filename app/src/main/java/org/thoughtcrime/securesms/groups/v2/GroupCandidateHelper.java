@@ -26,7 +26,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-public final class GroupCandidateHelper {
+public class GroupCandidateHelper {
   private final SignalServiceAccountManager signalServiceAccountManager;
   private final RecipientDatabase           recipientDatabase;
 
