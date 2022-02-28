@@ -44,6 +44,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.services.CdshV1Service;
+import org.whispersystems.signalservice.api.services.CdshV2Service;
 import org.whispersystems.signalservice.api.storage.SignalStorageCipher;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageModels;
@@ -505,7 +506,7 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Map<String, ACI> getRegisteredUsersWithCdsh(Set<String> e164numbers, String hexPublicKey, String hexCodeHash)
+  public Map<String, ACI> getRegisteredUsersWithCdshV1(Set<String> e164numbers, String hexPublicKey, String hexCodeHash)
       throws IOException
   {
     CdshAuthResponse                          auth    = pushServiceSocket.getCdshAuth();
@@ -525,6 +526,32 @@ public class SignalServiceAccountManager {
       throw new IOException(response.getApplicationError().get());
     } else if (response.getExecutionError().isPresent()) {
       throw new IOException(response.getExecutionError().get());
+    } else {
+      throw new IOException("Missing result!");
+    }
+  }
+
+  public CdshV2Service.Response getRegisteredUsersWithCdshV2(Set<String> previousE164s, Set<String> newE164s, Map<ServiceId, ProfileKey> serviceIds, Optional<byte[]> token, String hexPublicKey, String hexCodeHash)
+      throws IOException
+  {
+    CdshAuthResponse                                auth    = pushServiceSocket.getCdshAuth();
+    CdshV2Service                                   service = new CdshV2Service(configuration, hexPublicKey, hexCodeHash);
+    CdshV2Service.Request                           request = new CdshV2Service.Request(previousE164s, newE164s, serviceIds, token);
+    Single<ServiceResponse<CdshV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request);
+
+    ServiceResponse<CdshV2Service.Response> serviceResponse;
+    try {
+      serviceResponse = single.blockingGet();
+    } catch (Exception e) {
+      throw new RuntimeException("Unexpected exception when retrieving registered users!", e);
+    }
+
+    if (serviceResponse.getResult().isPresent()) {
+      return serviceResponse.getResult().get();
+    } else if (serviceResponse.getApplicationError().isPresent()) {
+      throw new IOException(serviceResponse.getApplicationError().get());
+    } else if (serviceResponse.getExecutionError().isPresent()) {
+      throw new IOException(serviceResponse.getExecutionError().get());
     } else {
       throw new IOException("Missing result!");
     }

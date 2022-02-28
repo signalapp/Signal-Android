@@ -233,7 +233,7 @@ public class DirectoryHelper {
 
     DirectoryResult result;
     if (FeatureFlags.cdsh()) {
-      result = ContactDiscoveryV3.getDirectoryResult(databaseNumbers, systemNumbers);
+      result = ContactDiscoveryHsmV1.getDirectoryResult(databaseNumbers, systemNumbers);
     } else {
       result = ContactDiscoveryV2.getDirectoryResult(context, databaseNumbers, systemNumbers);
     }

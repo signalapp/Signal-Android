@@ -18,15 +18,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
- * Uses CDS to map E164's to UUIDs.
+ * Uses CDSHv1 to map E164's to UUIDs.
  */
-class ContactDiscoveryV3 {
+class ContactDiscoveryHsmV1 {
 
-  private static final String TAG = Log.tag(ContactDiscoveryV3.class);
+  private static final String TAG = Log.tag(ContactDiscoveryHsmV1.class);
 
   private static final int MAX_NUMBERS = 20_500;
 
@@ -47,7 +46,7 @@ class ContactDiscoveryV3 {
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
     try {
-      Map<String, ACI>                    results      = accountManager.getRegisteredUsersWithCdsh(sanitizedNumbers, BuildConfig.CDSH_PUBLIC_KEY, BuildConfig.CDSH_CODE_HASH);
+      Map<String, ACI>                    results      = accountManager.getRegisteredUsersWithCdshV1(sanitizedNumbers, BuildConfig.CDSH_PUBLIC_KEY, BuildConfig.CDSH_CODE_HASH);
       FuzzyPhoneNumberHelper.OutputResult outputResult = FuzzyPhoneNumberHelper.generateOutput(results, inputResult);
 
       return new DirectoryResult(outputResult.getNumbers(), outputResult.getRewrites(), ignoredNumbers);

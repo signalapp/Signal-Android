@@ -1,31 +1,28 @@
 package org.whispersystems.signalservice.api.services;
 
+import org.signal.cds.ClientRequest;
 import org.signal.cds.ClientResponse;
 import org.signal.libsignal.hsmenclave.HsmEnclaveClient;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
-import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -40,6 +37,9 @@ import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 
+/**
+ * Handles the websocket and general lifecycle of a CDSH request.
+ */
 final class CdshSocket {
 
   private static final String TAG = CdshSocket.class.getSimpleName();
@@ -49,11 +49,13 @@ final class CdshSocket {
   private final String           baseUrl;
   private final String           hexPublicKey;
   private final String           hexCodeHash;
+  private final Version          version;
 
-  CdshSocket(SignalServiceConfiguration configuration, String hexPublicKey, String hexCodeHash) {
+  CdshSocket(SignalServiceConfiguration configuration, String hexPublicKey, String hexCodeHash, Version version) {
     this.baseUrl      = configuration.getSignalCdshUrls()[0].getUrl();
     this.hexPublicKey = hexPublicKey;
     this.hexCodeHash  = hexCodeHash;
+    this.version      = version;
 
     Pair<SSLSocketFactory, X509TrustManager> socketFactory = createTlsSocketFactory(configuration.getSignalCdshUrls()[0].getTrustStore());
 
@@ -73,11 +75,11 @@ final class CdshSocket {
     }
   }
 
-  Observable<ClientResponse> connect(String username, String password, List<byte[]> requests) {
+  Observable<ClientResponse> connect(String username, String password, List<ClientRequest> requests) {
     return Observable.create(emitter -> {
-      AtomicReference<Stage> stage       = new AtomicReference<>(Stage.WAITING_TO_INITIALIZE);
+      AtomicReference<Stage> stage = new AtomicReference<>(Stage.WAITING_TO_INITIALIZE);
 
-      String    url   = String.format("%s/discovery/%s/%s", baseUrl, hexPublicKey, hexCodeHash);
+      String  url     = String.format("%s/discovery/%s/%s", baseUrl, hexPublicKey, hexCodeHash);
       Request request = new Request.Builder()
                                    .url(url)
                                    .addHeader("Authorization", basicAuth(username, password))
@@ -91,8 +93,10 @@ final class CdshSocket {
               enclave.completeHandshake(bytes.toByteArray());
 
               stage.set(Stage.WAITING_FOR_RESPONSE);
-              for (byte[] request : requests) {
-                webSocket.send(okio.ByteString.of(enclave.establishedSend(request)));
+              for (ClientRequest request : requests) {
+                byte[] plaintextBytes  = requestToBytes(request, version);
+                byte[] ciphertextBytes = enclave.establishedSend(plaintextBytes);
+                webSocket.send(okio.ByteString.of(ciphertextBytes));
               }
 
               break;
@@ -139,6 +143,17 @@ final class CdshSocket {
     });
   }
 
+  private static byte[] requestToBytes(ClientRequest request, Version version) {
+    ByteArrayOutputStream requestStream = new ByteArrayOutputStream();
+    try {
+      requestStream.write(version.getValue());
+      requestStream.write(request.toByteArray());
+    } catch (IOException e) {
+      throw new AssertionError("Failed to write bytes!");
+    }
+    return requestStream.toByteArray();
+  }
+
   private static String basicAuth(String username, String password) {
     return "Basic " + Base64.encodeBytes((username + ":" + password).getBytes(StandardCharsets.UTF_8));
   }
@@ -157,5 +172,19 @@ final class CdshSocket {
 
   private enum Stage {
     WAITING_TO_INITIALIZE, WAITING_FOR_RESPONSE, FAILURE
+  }
+
+  enum Version {
+    V1(1), V2(2);
+
+    private final int value;
+
+    Version(int value) {
+      this.value = value;
+    }
+
+    public int getValue() {
+      return value;
+    }
   }
 }

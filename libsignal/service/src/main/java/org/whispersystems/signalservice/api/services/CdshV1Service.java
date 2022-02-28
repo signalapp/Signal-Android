@@ -30,7 +30,6 @@ public final class CdshV1Service {
 
   private static final String TAG = CdshV1Service.class.getSimpleName();
 
-  private static final int  VERSION               = 1;
   private static final int  MAX_E164S_PER_REQUEST = 5000;
   private static final UUID EMPTY_ACI             = new UUID(0, 0);
   private static final int  RESPONSE_ITEM_SIZE    = 8 + 16 + 16; // 1 uint64 + 2 UUIDs
@@ -38,14 +37,14 @@ public final class CdshV1Service {
   private final CdshSocket cdshSocket;
 
   public CdshV1Service(SignalServiceConfiguration configuration, String hexPublicKey, String hexCodeHash) {
-    this.cdshSocket = new CdshSocket(configuration, hexPublicKey, hexCodeHash);
+    this.cdshSocket = new CdshSocket(configuration, hexPublicKey, hexCodeHash, CdshSocket.Version.V1);
   }
 
   public Single<ServiceResponse<Map<String, ACI>>> getRegisteredUsers(String username, String password, Set<String> e164Numbers) {
     List<String> addressBook = e164Numbers.stream().map(e -> e.substring(1)).collect(Collectors.toList());
 
     return cdshSocket
-        .connect(username, password, buildPlaintextRequests(addressBook))
+        .connect(username, password, buildClientRequests(addressBook))
         .map(CdshV1Service::parseEntries)
         .collect(Collectors.toList())
         .flatMap(pages -> {
@@ -83,10 +82,10 @@ public final class CdshV1Service {
     return out;
   }
 
-  private static List<byte[]> buildPlaintextRequests(List<String> addressBook) {
-    List<byte[]>      out      = new ArrayList<>((addressBook.size() / MAX_E164S_PER_REQUEST) + 1);
-    ByteString.Output e164Page = ByteString.newOutput();
-    int               pageSize = 0;
+  private static List<ClientRequest> buildClientRequests(List<String> addressBook) {
+    List<ClientRequest> out      = new ArrayList<>((addressBook.size() / MAX_E164S_PER_REQUEST) + 1);
+    ByteString.Output   e164Page = ByteString.newOutput();
+    int                 pageSize = 0;
 
     for (String address : addressBook) {
       if (pageSize >= MAX_E164S_PER_REQUEST) {
@@ -111,17 +110,10 @@ public final class CdshV1Service {
     return out;
   }
 
-  private static byte[] e164sToRequest(ByteString e164s, boolean more) {
-    try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-      outputStream.write(VERSION);
-      ClientRequest.newBuilder()
-                   .setNewE164S(e164s)
-                   .setHasMore(more)
-                   .build()
-                   .writeTo(outputStream);
-      return outputStream.toByteArray();
-    } catch (IOException e) {
-      throw new AssertionError("Failed to write protobuf to the output stream?");
-    }
+  private static ClientRequest e164sToRequest(ByteString e164s, boolean more) {
+    return ClientRequest.newBuilder()
+                        .setNewE164S(e164s)
+                        .setHasMore(more)
+                        .build();
   }
 }
