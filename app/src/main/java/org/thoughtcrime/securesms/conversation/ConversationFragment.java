@@ -224,7 +224,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private Animation                   scrollButtonOutAnimation;
   private Animation                   mentionButtonOutAnimation;
   private OnScrollListener            conversationScrollListener;
-  private int                         pulsePosition = -1;
   private int                         lastSeenScrollOffset;
   private View                        toolbarShadow;
   private Stopwatch                   startupStopwatch;
@@ -1190,17 +1189,13 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                if (Math.abs(layoutManager.findFirstVisibleItemPosition() - p) < SCROLL_ANIMATION_THRESHOLD) {
                                  View child = layoutManager.findViewByPosition(position);
 
-                                 if (child != null && layoutManager.isViewPartiallyVisible(child, true, false)) {
-                                   getListAdapter().pulseAtPosition(position);
-                                 } else {
-                                   pulsePosition = position;
+                                 if (child == null || !layoutManager.isViewPartiallyVisible(child, true, false)) {
+                                   layoutManager.scrollToPositionWithOffset(p, list.getHeight() / 4);
                                  }
-
-                                 layoutManager.scrollToPositionWithOffset(p, list.getHeight() / 4);
                                } else {
                                  layoutManager.scrollToPositionWithOffset(p, list.getHeight() / 4);
-                                 getListAdapter().pulseAtPosition(position);
                                }
+                               getListAdapter().pulseAtPosition(position);
                              })
                          ))
                          .withOnInvalidPosition(() -> {
@@ -1381,11 +1376,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         conversationDateHeader.show();
       } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
         conversationDateHeader.hide();
-
-        if (pulsePosition != -1) {
-          getListAdapter().pulseAtPosition(pulsePosition);
-          pulsePosition = -1;
-        }
       }
     }
 
