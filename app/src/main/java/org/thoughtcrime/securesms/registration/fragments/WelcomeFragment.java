@@ -102,7 +102,7 @@ public final class WelcomeFragment extends LoggingFragment {
 
       Log.i(TAG, "Skipping restore because this is a reregistration.");
       viewModel.setWelcomeSkippedOnRestore();
-      SafeNavigation.safeNavigate(Navigation.findNavController(view),
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
                                   WelcomeFragmentDirections.actionSkipRestore());
     } else {
 
@@ -180,10 +180,10 @@ public final class WelcomeFragment extends LoggingFragment {
 
       if (backup == null) {
         Log.i(TAG, "Skipping backup. No backup found, or no permission to look.");
-        SafeNavigation.safeNavigate(Navigation.findNavController(view),
+        SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
                                     WelcomeFragmentDirections.actionSkipRestore());
       } else {
-        SafeNavigation.safeNavigate(Navigation.findNavController(view),
+        SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
                                     WelcomeFragmentDirections.actionRestore());
       }
     });
@@ -194,7 +194,7 @@ public final class WelcomeFragment extends LoggingFragment {
 
     initializeNumber();
 
-    SafeNavigation.safeNavigate(Navigation.findNavController(view),
+    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
                                 WelcomeFragmentDirections.actionTransferOrRestore());
   }
 
