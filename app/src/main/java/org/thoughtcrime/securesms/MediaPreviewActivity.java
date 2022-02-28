@@ -611,6 +611,8 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
         viewModel.setActiveAlbumRailItem(MediaPreviewActivity.this, position);
         initializeActionBar();
+
+        restartItem = position;
       }
     }
 
@@ -626,6 +628,8 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
         }
 
         adapter.pause(position);
+
+        restartItem = -1;
       }
     }
   }
