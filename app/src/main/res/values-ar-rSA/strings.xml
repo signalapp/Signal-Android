@@ -5,7 +5,6 @@
     <string name="no">لا</string>
     <string name="delete">حذف</string>
     <string name="ban">حظر</string>
-    <string name="please_wait">الرجاء الانتظار...</string>
     <string name="save">حفظ</string>
     <string name="note_to_self">ملاحظة لنفسي</string>
     <string name="version_s">النسخة %s</string>
@@ -42,7 +41,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Session إلى إذن سعة التخزين من أجل إضافة الصور والمرفقات ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Session إلى إذن جهات الاتصال من أجل إرفاق بيانات جهة اتصال ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">يحتاج Session إلى إذن الكاميرا من أجل التقاط صور ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">خطأ في تشغيل الصوت!</string>
@@ -58,7 +56,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">فشل الإرسال , اضغط للحصول على معلومات</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل مفاتيح، أنقر للمتابعة.</string>
-    <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، انقر للرد الغير آمن</string>
     <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
     <string name="ConversationItem_copied_text">تم نسخ %s</string>
@@ -87,26 +84,13 @@
     <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة هذا الرابط.</string>
     <string name="ConversationActivity_invite_to_open_group">إضافة أعضاء</string>
-    <string name="ConversationActivity_join_open_group">انضم %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">هل انت متأكد من انك تريد الإنضمام إلى المجموعة المفتوحة <b>%s</b>؟</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">لإرسال رسالة صوتية, برجاء السماح لSession بالوصول إلي المايكروفون</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج Session إلى إذن الميكروفون من أجل الرسائل الصوتية ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لإلتقاط صور و فيديوهات, برجاء السماح لSession بالوصول إلي الكاميرا.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">يحتاج Session إلي إذن الكاميرا لالتقاط صور أو تسجيل فيديو</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج Session إلى إذن الكاميرا من أجل التقاط صور وفيديو  ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج Session إلي إذن الكاميرا لالتقاط صور أو تسجيل فيديو</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
     <string name="ConversationActivity_search_position">%1$d من %2$d</string>
-    <string name="ConversationActivity_no_results">لا توجد نتائج</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="zero">رسالة %d غير مقرؤة</item>
-        <item quantity="one">رسالة %d غير مقرؤة</item>
-        <item quantity="two">رسالتين %d غير مقرؤة</item>
-        <item quantity="few">%dرسائل غير مقرؤة </item>
-        <item quantity="many">%dرسائل غير مقرؤة </item>
-        <item quantity="other">%dرسائل غير مقرؤة</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="zero">حذف المختار؟</item>
@@ -150,26 +134,6 @@
         <item quantity="many">جارٍ حفظ %1$d مرفق</item>
         <item quantity="other">جارٍ حفظ %1$d مرفق</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="zero">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-        <item quantity="one">جارٍ حفظ المرفق في الذاكرة...</item>
-        <item quantity="two">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-        <item quantity="few">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-        <item quantity="many">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-        <item quantity="other">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">معلق...</string>
-    <string name="ConversationFragment_push">بيانات (Session)</string>
-    <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
-    <string name="ConversationFragment_sms">رسالة نصية</string>
-    <string name="ConversationFragment_deleting">جارٍ الحذف</string>
-    <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
-    <string name="ConversationFragment_banning">حظر</string>
-    <string name="ConversationFragment_banning_user">حظر المستخدم…</string>
-    <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">الصورة الشخصية</string>
     <!-- CustomDefaultPreference -->
@@ -211,7 +175,7 @@
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="zero">سوف يؤدي هذا إلى حذف الرسائل المحددة بشكل نهائي.</item>
         <item quantity="one">سيؤدي هذا الى حذف الرسالة نهائيا.</item>
-        <item quantity="two">سيؤدي هذا الى حذف الرسالتان نهائيا.</item>
+        <item quantity="two">سيؤدي هذا إلىحذف الرسالتان نهائيا.</item>
         <item quantity="few">سيؤدي هذا الى حذف %1$d رسالة نهائيا.</item>
         <item quantity="many">سيؤدي هذا الى حذف %1$d رسالة نهائيا.</item>
         <item quantity="other">سوف يؤدي هذا إلى حذف رسائل %1$d بشكل نهائي.</item>
@@ -267,7 +231,6 @@
     <string name="Slide_video">فيديو</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">تم استلام رسالة تبادل مفاتيح تالفة.</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">تم استلام رسالة تبادل مفاتيح مع إصدارة بروتوكول غير صحيحة.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">تم استلام رسالة برقم أمان جديد. انقر للمعالجة والعرض.</string>
     <string name="SmsMessageRecord_secure_session_reset">لقد قمت بإعادة ضبط تأمين المحادثة.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s أعاد ضبط تأمين المحادثة.</string>
@@ -663,10 +626,10 @@
     <string name="activity_path_resolving_progress">جار ربط الاِتصال…</string>
     <string name="activity_create_private_chat_title">جلسة جديدة</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">أدخِل معرّف الجلسة</string>
-    <string name="activity_create_private_chat_scan_qr_code_tab_title">فحص كود QR</string>
-    <string name="activity_create_private_chat_scan_qr_code_explanation">إمسح كود QR المستخدم لبدء جلسة معه. يمكن الحصول على اكواد الـQR بالضغط على ايقونة كود الـQR في إعدادات الحساب.</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">مسح رمز الاستجابة السريع\"QR\"</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">امسح رمز QR المستخدم لبدء جلسة معه. يمكن الحصول على رموز الـQR بالضغط على أيقونة رمز الـQR في إعدادات الحساب.</string>
     <string name="fragment_enter_public_key_edit_text_hint">أدخل عنوان التعريف أو اسم ONS</string>
-    <string name="fragment_enter_public_key_explanation">يمكن للمستخدمين مشاركة معرّف سيشن الخاص بهم بالذهاب إلى إعدادات حسابهم و الضغط على \"مشاركة معرف سيشن\"، او عبر مشاركة كود QR الخاص بهم.</string>
+    <string name="fragment_enter_public_key_explanation">يُمكن للمستخدمين مشاركة مُعرّف الجلسة الخاص بهم بالذهاب إلى إعدادات حسابهم و الضغط على \"مشاركة مُعرّف الجلسة\"، أو عبر مشاركة رمز QR الخاص بهم.</string>
     <string name="fragment_enter_public_key_error_message">تحقق من عنوان التعريف أو اِسم ONS و حاول مجددًا.</string>
     <string name="fragment_scan_qr_code_camera_access_explanation">تحتاج الجلسة إلى الوصول إلى الكاميرا لمسح رموز QR</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">منح صلاحية الكاميرا</string>
@@ -681,8 +644,8 @@
     <string name="activity_join_public_chat_title">الإنضمام إلى مجموعة مفتوحة</string>
     <string name="activity_join_public_chat_error">تعذر الإنضمام إلى المجموعة</string>
     <string name="activity_join_public_chat_enter_group_url_tab_title">فتح رابط المجموعة</string>
-    <string name="activity_join_public_chat_scan_qr_code_tab_title">فحص كود QR</string>
-    <string name="activity_join_public_chat_scan_qr_code_explanation">امسح كود QR المجموعة اللتي تريد الإنضمام إليها</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">فحص رمز QR</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">امسح رمز QR المجموعة التي تريد الإنضمام إليها</string>
     <string name="fragment_enter_chat_url_edit_text_hint">ادخل رابط المجموعة المفتوحة</string>
     <string name="activity_settings_title">الإعدادات</string>
     <string name="activity_settings_display_name_edit_text_hint">ادخِل إسم العرض</string>
@@ -717,9 +680,9 @@
     <string name="dialog_clear_all_data_clear_network">الحساب كليا</string>
     <string name="activity_qr_code_title">رمز QR</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">اظهِر رمز QR الخاص بي</string>
-    <string name="activity_qr_code_view_scan_qr_code_tab_title">اِفحص رمز QR</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">افحص رمز QR</string>
     <string name="activity_qr_code_view_scan_qr_code_explanation">اِفحص رمز QR لبدء المحادثة</string>
-    <string name="fragment_view_my_qr_code_title">اِفحصني</string>
+    <string name="fragment_view_my_qr_code_title">امسحني</string>
     <string name="fragment_view_my_qr_code_explanation">هذا هو رمز QR الخاص بك. يمكن للمستخدمين الآخرين فحصه لبدء محادثتك.</string>
     <string name="fragment_view_my_qr_code_share_title">شارك رمز QR</string>
     <string name="fragment_contact_selection_contacts_title">متصلين</string>
@@ -777,8 +740,9 @@
     <string name="dialog_open_url_title">اِفتح الرابط ؟</string>
     <string name="dialog_open_url_explanation">هل أنت متأكد من فتح %s ؟</string>
     <string name="open">اِفتح</string>
+    <string name="copy_url">انسخ الرابط</string>
     <string name="dialog_link_preview_title">تفعيل معاينة الروابط ؟</string>
-    <string name="dialog_link_preview_explanation">تفعيل معاينة الروابط سيسمح بمعاينة الروابط المرسلة و المستلمة. يمكن لهذا أن يكون مفيد لكن سيتوجب على Session الاِتصال بالمواقع لاِنشاء المعاينة. يمكن تعطيل هذه الخاصية في التعديلات.</string>
+    <string name="dialog_link_preview_explanation">تفعيل معاينة الروابط سيسمح بمعاينة الروابط المُرسلة و المُستلمة. يمكن لهذا أن يكون مفيداً لكن سيتوجب على تطبيق الجلسة الإتصال بالمواقع لإنشاء المعاينة. يمكن تعطيل هذه الخاصية في التعديلات.</string>
     <string name="dialog_link_preview_enable_button_title">تفعيل</string>
     <string name="dialog_download_title">هل تثق في %s؟</string>
     <string name="dialog_download_explanation">هل انت متأكد من تنزيل الوسيط المرسل من طرف %s؟</string>
@@ -797,4 +761,10 @@
     <string name="delete_message_for_me">اِحذف من عندي</string>
     <string name="delete_message_for_everyone">اِحذف من عند الجميع</string>
     <string name="delete_message_for_me_and_recipient">أحذف من عندي و من عند %s</string>
+    <string name="activity_settings_survey_feedback">أستبيان / سبر رأي</string>
+    <string name="activity_settings_support">سجل تصحيح الأخطاء</string>
+    <string name="dialog_share_logs_title">شارك السجل</string>
+    <string name="dialog_share_logs_explanation">هل ترغب في تصدير سجلات ليتم مشاركتها من أجل اكتشاف الأخطاء وتصحيحها؟</string>
+    <string name="conversation_pin">ًًًُُثَبت</string>
+    <string name="conversation_unpin">الغ التثبيت</string>
 </resources>

@@ -5,7 +5,6 @@
     <string name="no">Ne</string>
     <string name="delete">Smazat</string>
     <string name="ban">Zabanovat</string>
-    <string name="please_wait">Prosím čekejte…</string>
     <string name="save">Uložit</string>
     <string name="note_to_self">Poznámka sobě</string>
     <string name="version_s">Verze %s</string>
@@ -38,7 +37,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signál potřebuje oprávnění pro přístup k úložišti aby mohl připojovat fotky, videa nebo zvuky, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\",</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signál potřebuje oprávnění pro přístup ke kontaktům aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\",</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k fotoaparátu aby mohl pořizovat fotografie, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Chyba při přehrávání audia!</string>
@@ -54,7 +52,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Odeslání se nezdařilo, klikněte pro podrobnosti</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Byl vám doručen klíč, klikněte pro jeho zpracování.</string>
-    <string name="ConversationItem_group_action_left">%1$s opustil(a) skupinu.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Odeslání se nezdařilo, klikněte pro odeslání nezabepečeným způsobem</string>
     <string name="ConversationItem_unable_to_open_media">Nemohu nalézt aplikaci pro otevření tohoto typu dat.</string>
     <string name="ConversationItem_copied_text">Zkopírováno %s</string>
@@ -83,24 +80,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Nemohu nahrávat audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Není zde žádná aplikace která by dokázala zpracovat tento odkaz.</string>
     <string name="ConversationActivity_invite_to_open_group">Přidat členy</string>
-    <string name="ConversationActivity_join_open_group">Připojit se k %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Opravdu se chcete připojit k otevřené skupině <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pro posílání audio zpráv potřebuje Signál přístup k mikrofonu.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signál potřebuje oprávnění pro přístup k mikrofonu aby mohl poslat audio zprávu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Mikrofon\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pro pořizování fotografií nebo videa potřebuje Signál přístup k fotoaparátu.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">K pořizování fotografií a videa potřebuje Session přístup k úložišti.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signál potřebuje oprávnění pro přístup k fotoaparátu aby mohl pořizovat fotografie nebo video, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signál potřebuje přístup k fotoaparátu aby mohl pořizovat fotografie nebo videa.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d z %2$d</string>
-    <string name="ConversationActivity_no_results">Žádné výsledky.</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d nepřečtená zpráva</item>
-        <item quantity="few">%d nepřečtené zprávy</item>
-        <item quantity="many">%d nepřečtených zpráv</item>
-        <item quantity="other">%d nepřečtených zpráv</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Smazat označenou zprávu?</item>
@@ -134,24 +120,6 @@
         <item quantity="many">Ukládám %1$d příloh</item>
         <item quantity="other">Ukládám %1$d příloh</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Příloha uložena do úložiště</item>
-        <item quantity="few">Uloženo %1$d přílohy do úložiště</item>
-        <item quantity="many">Uloženo %1$d příloh do úložiště</item>
-        <item quantity="other">Uloženo %1$d příloh do úložiště</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Probíhající:</string>
-    <string name="ConversationFragment_push">Data(Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Mažu</string>
-    <string name="ConversationFragment_deleting_messages">Mažu zprávy...</string>
-    <string name="ConversationFragment_banning">Vykazuji</string>
-    <string name="ConversationFragment_banning_user">Vykazuji uživatele…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Zpráva o výměně klíčů</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
     <!-- CustomDefaultPreference -->
@@ -243,7 +211,6 @@
     <string name="Slide_video">Video</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Obdržen neplatný požadavek na výměnu klíčů.</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Přijata zpráva s novým bezpečnostním kódem. Klikněte pro její zpracování a zobrazení.</string>
     <string name="SmsMessageRecord_secure_session_reset">Resetujete zabezpečenou konverzaci</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s resetuje zabezpečenou konverzaci</string>
@@ -623,20 +590,29 @@
     <string name="activity_seed_reveal_button_title">Podrž pro zobrazení</string>
     <string name="view_seed_reminder_title">Jste skoro u konce! 80 %</string>
     <string name="view_seed_reminder_subtitle_1">Zabezpečte svůj účet uložením Vašich klíčových slov</string>
+    <string name="view_seed_reminder_subtitle_2">Pro zobrazení fráze pro obnovení klepněte a podržte redigovaná slova a poté ji bezpečně uložte, abyste si ochránili své Session ID.</string>
+    <string name="view_seed_reminder_subtitle_3">Uchovejte svou frázi pro obnovení na bezpečném místě</string>
     <string name="activity_path_title">Cesta</string>
+    <string name="activity_path_explanation">Session skrývá IP adresu tak, že přesouvá zprávy mezi několika provozními uzly ve své vlastní decentralizované síti. Spojení probíhá v tuto chvíli mezi následujícími státy:</string>
     <string name="activity_path_device_row_title">Vy</string>
     <string name="activity_path_guard_node_row_title">Vstupní uzel</string>
     <string name="activity_path_service_node_row_title">Provozní uzel</string>
     <string name="activity_path_destination_row_title">Cíl</string>
     <string name="activity_path_learn_more_button_title">Další informace</string>
     <string name="activity_path_resolving_progress">Připojování…</string>
+    <string name="activity_create_private_chat_title">Nová relace</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Zadejte Session ID</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Naskenovat QR kód</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Pro zahájení relace naskenujte QR kód uživatele. QR kódy lze nalézt po klepnutí na QR kód v nastavení účtu.</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Zadejte Session ID nebo název ONS</string>
+    <string name="fragment_enter_public_key_explanation">Uživatelé mohou sdílet Session ID po klepnutí na \"Sdílet Session ID\" v nastavení účtu nebo sdílením svého QR kódu.</string>
+    <string name="fragment_enter_public_key_error_message">Zkontrolujte prosím své Session ID nebo název ONS a zkuste to znovu.</string>
     <string name="fragment_scan_qr_code_camera_access_explanation">Session potřebuje přístup ke kameře, aby bylo možné skenovat QR kódy</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Udělit přístup k fotoaparátu</string>
     <string name="activity_create_closed_group_title">Nová uzavřená skupina</string>
     <string name="activity_create_closed_group_edit_text_hint">Zadejte název skupiny</string>
     <string name="activity_create_closed_group_empty_state_message">Zatím nemáte žádné kontakty</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Zahájit relaci</string>
     <string name="activity_create_closed_group_group_name_missing_error">Zadejte prosím název skupiny</string>
     <string name="activity_create_closed_group_group_name_too_long_error">Zadejte prosím kratší název skupiny</string>
     <string name="activity_create_closed_group_not_enough_group_members_error">Vyberte prosím alespoň jednoho člena skupiny</string>
@@ -645,6 +621,8 @@
     <string name="activity_join_public_chat_error">Nelze se připojit ke skupině</string>
     <string name="activity_join_public_chat_enter_group_url_tab_title">Otevřít URL adresu skupiny</string>
     <string name="activity_join_public_chat_scan_qr_code_tab_title">Naskenovat QR kód</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Naskenujte QR kód otevřené skupiny, ke které se chcete připojit</string>
+    <string name="fragment_enter_chat_url_edit_text_hint">Zadejte URL adresu otevřené skupiny</string>
     <string name="activity_settings_title">Nastavení</string>
     <string name="activity_settings_display_name_edit_text_hint">Zadejte zobrazované jméno</string>
     <string name="activity_settings_display_name_missing_error">Vyberte prosím zobrazované jméno</string>
@@ -657,17 +635,20 @@
     <string name="activity_settings_faq_button_title">Často kladené dotazy</string>
     <string name="activity_settings_recovery_phrase_button_title">Fráze pro obnovení</string>
     <string name="activity_settings_clear_all_data_button_title">Vymazat data</string>
+    <string name="activity_settings_clear_all_data_and_network_button_title">Smazat data včetně sítě</string>
     <string name="activity_settings_help_translate_session">Pomozte nám přeložit Session</string>
     <string name="activity_notification_settings_title">Oznámení</string>
     <string name="activity_notification_settings_style_section_title">Styl oznámení</string>
     <string name="activity_notification_settings_content_section_title">Obsah oznámení</string>
     <string name="activity_privacy_settings_title">Soukromí</string>
     <string name="activity_chat_settings_title">Konverzace</string>
+    <string name="preferences_notifications_strategy_category_title">Styl oznámení</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Použít rychlý režim</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Budete spolehlivě a okamžitě informováni o nových zprávách pomocí oznamovacích serverů Google.</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Změnit jméno</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Odpojit zařízení</string>
     <string name="dialog_seed_title">Vaše fráze pro obnovení</string>
+    <string name="dialog_seed_explanation">Toto je vaše fráze pro obnovení. S její pomocí můžete obnovit nebo přesunout své Session ID na nové zařízení.</string>
     <string name="dialog_clear_all_data_title">Vymazat všechna data</string>
     <string name="dialog_clear_all_data_explanation">Tímto trvale odstraníte vaše zprávy, relace a kontakty.</string>
     <string name="dialog_clear_all_data_network_explanation">Chcete vymazat data pouze na tomto zařízení, nebo odstranit celý účet?</string>
@@ -696,16 +677,21 @@
     <string name="activity_edit_closed_group_not_enough_group_members_error">Skupiny musí mít alespoň jednoho člena</string>
     <string name="fragment_edit_group_bottom_sheet_remove">Odebrat uživatele ze skupiny</string>
     <string name="activity_select_contacts_title">Vyber kontakty</string>
+    <string name="view_reset_secure_session_done_message">Zabezpečená relace byla obnovena</string>
     <string name="dialog_ui_mode_title">Motiv</string>
     <string name="dialog_ui_mode_option_day">Den</string>
     <string name="dialog_ui_mode_option_night">Noc</string>
     <string name="dialog_ui_mode_option_system_default">Výchozí nastavení</string>
+    <string name="activity_conversation_menu_copy_session_id">Kopírovat Session ID</string>
     <string name="attachment">Příloha</string>
     <string name="attachment_type_voice_message">Hlasová zpráva</string>
     <string name="details">Detaily</string>
     <string name="dialog_backup_activation_failed">Nepodařilo se aktivovat zálohy. Zkuste to prosím znovu nebo kontaktujte podporu.</string>
     <string name="activity_backup_restore_title">Obnovit zálohu</string>
     <string name="activity_backup_restore_select_file">Vybrat soubor</string>
+    <string name="activity_backup_restore_explanation_1">Vyberte soubor se zálohou a vložte frázi pro obnovení, s níž byl vytvořen.</string>
+    <string name="activity_backup_restore_passphrase">Přístupové heslo o délce 30 čísel</string>
+    <string name="activity_link_device_skip_prompt">Trvá to trochu déle, chcete přeskočit?</string>
     <string name="activity_link_device_link_device">Propojit zařízení</string>
     <string name="activity_link_device_recovery_phrase">Fráze pro obnovení</string>
     <string name="activity_link_device_scan_qr_code">Naskenovat QR kód</string>
@@ -730,7 +716,9 @@
     <string name="dialog_open_url_title">Otevřít odkaz?</string>
     <string name="dialog_open_url_explanation">Opravdu chcete otevřít %s?</string>
     <string name="open">Otevřít</string>
+    <string name="copy_url">Zkopírovat URL</string>
     <string name="dialog_link_preview_title">Povolit náhledy odkazů?</string>
+    <string name="dialog_link_preview_explanation">Povolením náhledů odkazu budou zobrazeny náhledy URL adres, které odesíláte a přijímáte. To může být užitečné, ale Session se bude muset spojit s danou webovou stránkou pro vygenerování náhledů. Náhled odkazů můžete kdykoli zakázat v nastavení Session.</string>
     <string name="dialog_link_preview_enable_button_title">Povolit</string>
     <string name="dialog_download_title">Důvěřovat %s?</string>
     <string name="dialog_download_explanation">Opravdu chcete stahovat média od %s?</string>
@@ -749,4 +737,10 @@
     <string name="delete_message_for_me">Smazat pouze pro mě</string>
     <string name="delete_message_for_everyone">Smazat pro všechny</string>
     <string name="delete_message_for_me_and_recipient">Odstranit pro mě a %s</string>
+    <string name="activity_settings_survey_feedback">Zpětná vazba/Průzkum</string>
+    <string name="activity_settings_support">Protokol ladění</string>
+    <string name="dialog_share_logs_title">Sdílet protokoly</string>
+    <string name="dialog_share_logs_explanation">Chcete exportovat záznamy aplikace, abyste je mohl sdílet pro řešení problémů?</string>
+    <string name="conversation_pin">Připnout</string>
+    <string name="conversation_unpin">Odepnout</string>
 </resources>

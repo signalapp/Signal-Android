@@ -45,7 +45,11 @@ class GlobalSearchInputLayout @JvmOverloads constructor(
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
         if (v === binding.searchInput) {
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(windowToken, 0)
+            if (!hasFocus) {
+                imm.hideSoftInputFromWindow(windowToken, 0)
+            } else {
+                imm.showSoftInput(v, 0)
+            }
             listener?.onInputFocusChanged(hasFocus)
         }
     }

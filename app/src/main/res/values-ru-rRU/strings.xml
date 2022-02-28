@@ -5,7 +5,6 @@
     <string name="no">Нет</string>
     <string name="delete">Удалить</string>
     <string name="ban">Заблокировать</string>
-    <string name="please_wait">Пожалуйста, подождите...</string>
     <string name="save">Сохранить</string>
     <string name="note_to_self">Заметка для себя</string>
     <string name="version_s">Версия %s</string>
@@ -38,7 +37,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Ошибка выбора вложения: соответствующее приложение не найдено.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Требуется разрешение на доступ к хранилищу для возможности прикрепления фото, видео и аудио, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Session, затем выберите Разрешения и включите Хранилище.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Для прикрепления контактной информации Signal требуется разрешение на доступ к контактам, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Session, затем выберите Разрешения и включите Контакты.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Чтобы сделать фото требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите Настройки, выберите Приложения, найдите Session, затем выберите Разрешения и включите Камеру.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Ошибка при воспроизведении аудио!</string>
@@ -54,7 +52,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Ошибка отправки. Нажмите для подробностей</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получено сообщение обмена ключами. Нажмите, чтобы его обработать.</string>
-    <string name="ConversationItem_group_action_left">%1$s покинул(a) группу.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Отправка не удалась, нажмите для негарантированного отката</string>
     <string name="ConversationItem_unable_to_open_media">Не найдено приложение, которое может открыть этот медиа-файл.</string>
     <string name="ConversationItem_copied_text">Скопировано: %s</string>
@@ -83,24 +80,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Невозможно записать аудио!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве не найдено приложение для открытия этой ссылки.</string>
     <string name="ConversationActivity_invite_to_open_group">Добавить участников</string>
-    <string name="ConversationActivity_join_open_group">Присоединиться к «%s»</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Вы уверены, что хотите присоединиться к открытой группе <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Для отправки аудиосообщений разрешите Session доступ к микрофону.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Для отправки аудиосообщений требуется разрешение на доступ к микрофону, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите в «Настройки», выберите «Приложения», найдите Session, затем выберите «Разрешения» и включите Микрофон.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Для съемки фото и видео Session требуется доступ к камере.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Для отправки фотографий и видео Session требуется доступ к хранилищу.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Чтобы сделать фото или видео требуется разрешение на доступ к камере, но оно было вами отклонено. Чтобы предоставить разрешение вручную, перейдите в «Настройки», выберите «Приложения», найдите Session, затем выберите «Разрешения» и включите Камеру.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Для съемки фото или видео Session требуется доступ к камере.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d из %2$d</string>
-    <string name="ConversationActivity_no_results">Нет результатов</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d непрочитанное сообщение</item>
-        <item quantity="few">%d непрочитанных сообщения</item>
-        <item quantity="many">%d непрочитанных сообщений</item>
-        <item quantity="other">%d непрочитанных сообщений</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Удалить сообщение?</item>
@@ -134,24 +120,6 @@
         <item quantity="many">Сохранение %1$d вложений</item>
         <item quantity="other">Сохранение %1$d вложений</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Сохранение вложения в память устройства...</item>
-        <item quantity="few">Сохранение %1$d вложений в память устройства...</item>
-        <item quantity="many">Сохранение %1$d вложений в память устройства...</item>
-        <item quantity="other">Сохранение %1$d вложений в память устройства...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Ожидание...</string>
-    <string name="ConversationFragment_push">Интернет (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Удаление</string>
-    <string name="ConversationFragment_deleting_messages">Удаление сообщения...</string>
-    <string name="ConversationFragment_banning">Блокировка</string>
-    <string name="ConversationFragment_banning_user">Блокировка пользователя…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Сообщение не найдено</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Исходное сообщение больше не доступно</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Сообщение обмена ключами</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Фото профиля</string>
     <!-- CustomDefaultPreference -->
@@ -245,7 +213,6 @@
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Получено поврежденное
         сообщение обмена ключами!
     </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Получено сообщение обмена ключами для неверной версии протокола.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Получено сообщение с новым кодом безопасности. Нажмите, чтобы обработать и отобразить сообщение. </string>
     <string name="SmsMessageRecord_secure_session_reset">Вы сбросили защищенный сеанс.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s сбросил(а) защищенный сеанс.</string>
@@ -751,6 +718,7 @@
     <string name="dialog_open_url_title">Открыть ссылку?</string>
     <string name="dialog_open_url_explanation">Вы уверены, что хотите открыть %s?</string>
     <string name="open">Открыть</string>
+    <string name="copy_url">Копировать ссылку</string>
     <string name="dialog_link_preview_title">Включить предварительный просмотр ссылок?</string>
     <string name="dialog_link_preview_explanation">Включение предпросмотра ссылок добавит эскиз содержимого для отправляемых и получаемых ссылок. При этом Session будет необходимо соединиться с сайтами, связанными с ссылками, чтобы сгенерировать предпросмотр. Вы всегда можете отключить предпросмотр ссылок в настройках Session.</string>
     <string name="dialog_link_preview_enable_button_title">Включить</string>
@@ -771,4 +739,10 @@
     <string name="delete_message_for_me">Удалить только для меня</string>
     <string name="delete_message_for_everyone">Удалить для всех</string>
     <string name="delete_message_for_me_and_recipient">Удалить для меня и %s</string>
+    <string name="activity_settings_survey_feedback">Отзыв-опрос</string>
+    <string name="activity_settings_support">Журнал отладки</string>
+    <string name="dialog_share_logs_title">Поделиться логами</string>
+    <string name="dialog_share_logs_explanation">Вы хотите экспортировать журналы приложений, чтобы иметь возможность делиться для устранения неполадок?</string>
+    <string name="conversation_pin">Закрепить</string>
+    <string name="conversation_unpin">Открепить</string>
 </resources>

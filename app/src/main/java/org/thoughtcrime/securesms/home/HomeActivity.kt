@@ -270,7 +270,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
 
     private fun setupHeaderImage() {
         val isDayUiMode = UiModeUtilities.isDayUiMode(this)
-        val headerTint = if (isDayUiMode) R.color.black else R.color.accent
+        val headerTint = if (isDayUiMode) R.color.black else R.color.white
         binding.sessionHeaderImage.setColorFilter(getColor(headerTint))
     }
 

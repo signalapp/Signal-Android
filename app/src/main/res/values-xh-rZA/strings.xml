@@ -3,7 +3,6 @@
     <string name="yes">Yee</string>
     <string name="no">Nedda</string>
     <string name="delete">Sangula</string>
-    <string name="please_wait">Bambi lindako</string>
     <string name="save">Tereka</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">Obubaka obupya</string>
@@ -27,7 +26,6 @@
     <!-- ContactsCursorLoader -->
     <!-- ConversationItem -->
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Key  exchange message efuniddwa, kwata okugenda mumaso</string>
-    <string name="ConversationItem_group_action_left">%1$s avudde mu kibinja</string>
     <string name="ConversationItem_unable_to_open_media">tosobodde kufuna app esobola kugulawo kiwandiiko kyo</string>
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Gatako ekigatiddwako</string>
@@ -42,7 +40,6 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">ekigatiddwako kiyissawo ku bunene bwe kikia ky\'obubaka bw\'osindika</string>
     <string name="ConversationActivity_unable_to_record_audio">Tesobodde kukwata ddoboozi!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tewali App kukwasaganya </string>
-    <!-- ConversationAdapter -->
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">siimuula obubaka obulondedwako?</item>
@@ -61,15 +58,6 @@
         <item quantity="one">ekigatibwaako kiterekebwa</item>
         <item quantity="other">ebigattibwako %1$d biterekebwa </item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">ekigattibwako kiterekebwa mu terekero</item>
-        <item quantity="other">ebigattibwako %1$d biterekebwa mu terekero</item>
-    </plurals>
-    <string name="ConversationFragment_pending">kirindirirwa</string>
-    <string name="ConversationFragment_sms">Obubaka</string>
-    <string name="ConversationFragment_deleting">Kisangulwa</string>
-    <string name="ConversationFragment_deleting_messages">Obubabaka busangulwa</string>
-    <!-- ConversationListItem -->
     <!-- CreateProfileActivity -->
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_none">tewali</string>
@@ -119,7 +107,6 @@
     <string name="Slide_audio">edoboozi</string>
     <string name="Slide_video">Olutambi</string>
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Received key exchange message for invalid protocol version.</string>
     <string name="SmsMessageRecord_secure_session_reset">Resetinga akadde akekusifu</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%sresettinga akade akekusifu</string>
     <string name="SmsMessageRecord_duplicate_message">Ddamu message</string>

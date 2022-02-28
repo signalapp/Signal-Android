@@ -5,7 +5,6 @@
     <string name="no">Non</string>
     <string name="delete">Borrar</string>
     <string name="ban">Bloquear</string>
-    <string name="please_wait">Por favor, agarda...</string>
     <string name="save">Gardar</string>
     <string name="note_to_self">Notificarmo</string>
     <string name="version_s">Versión %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Non se atopa unha app para seleccionar contido multimedia.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session require permiso de almacenamento para poder anexar fotografías, vídeos ou ficheiros de audio, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session require permiso para poder anexar información dos contactos, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Contactos\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session require permiso para poder tirar fotografías, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Erro ao reproducir o audio!</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Erro ao enviar; toca para máis detalles</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Recibida a mensaxe de intercambio de chaves; toca para continuar.</string>
-    <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Erro ao enviar, toca para volver a un modo non seguro</string>
     <string name="ConversationItem_unable_to_open_media">Non se atopa unha aplicación con que abrir este contido multimedia.</string>
     <string name="ConversationItem_copied_text">Copiouse %s</string>
@@ -78,22 +75,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Non é posible gravar audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Non hai ningunha app que poida abrir esta ligazón no teu dispositivo.</string>
     <string name="ConversationActivity_invite_to_open_group">Engadir membros</string>
-    <string name="ConversationActivity_join_open_group">Entrar no grupo %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Tes a certeza de querer entrar no grupo aberto <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensaxes de audio, Session necesita acceder ao teu micrófono.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session require permiso para poder enviar mensaxes de audio, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotografías e facer vídeos, Session necesita acceder á cámara.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Para enviar fotografías e vídeos, Session necesita acceder ao almacenamento.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session necesita permiso para acceder á cámara e poder tirar fotografías, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session necesita permiso para acceder á cámara e tirar fotografías ou facer vídeos.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d de %2$d</string>
-    <string name="ConversationActivity_no_results">Sen resultados</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d mensaxe sen ler</item>
-        <item quantity="other">%d mensaxes sen ler</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Borrar a mensaxe seleccionada?</item>
@@ -117,22 +105,6 @@
         <item quantity="one">Gardando anexo</item>
         <item quantity="other">Gardando %1$d anexos</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Gardando anexo no almacenamento...</item>
-        <item quantity="other">Gardando %1$d anexos no almacenamento...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Pendente...</string>
-    <string name="ConversationFragment_push">Datos (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Borrando</string>
-    <string name="ConversationFragment_deleting_messages">Borrando mensaxes...</string>
-    <string name="ConversationFragment_banning">Bloqueando</string>
-    <string name="ConversationFragment_banning_user">Bloqueando usuario…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Non se atopou a mensaxe orixinal</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">A mensaxe orixinal xa non está dispoñible</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Mensaxe de intercambio de chaves</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Foto de perfil</string>
     <!-- CustomDefaultPreference -->
@@ -217,8 +189,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Recibida unha mensaxe de
         intercambio de chaves danada!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        Recibida unha mensaxe de intercambio de chaves para unha versión de protocolo non válida.
     </string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Mensaxe recibida co novo número de seguranza. Toca para continuar e mostrar.</string>
     <string name="SmsMessageRecord_secure_session_reset">Restableciches a sesión segura.</string>

@@ -1,19 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">செஸ்ஸன்</string>
+    <string name="yes">ஆம்</string>
+    <string name="no">இல்லை</string>
+    <string name="delete">நீக்கு</string>
+    <string name="ban">தடை</string>
+    <string name="save">சேமி</string>
+    <string name="note_to_self">சுய குறிப்பு</string>
+    <string name="version_s">பதிப்பு: %s</string>
     <!-- AbstractNotificationBuilder -->
+    <string name="AbstractNotificationBuilder_new_message">புதிய செய்தி</string>
     <!-- AlbumThumbnailView -->
     <!-- ApplicationPreferencesActivity -->
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">அனைத்து பழைய செய்திகளை நீக்க வேண்டுமா?</string>
+    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+        <item quantity="one">இது உடனடியாக அனைத்து உரையாடல்களையும் மிக சமீபத்திய செய்திகளுக்கு ஒழுங்கமைக்கும்.</item>
+        <item quantity="other">இது உடனடியாக அனைத்து உரையாடல்களையும் %d மிக சமீபத்திய செய்திகளுக்கு ஒழுங்கமைக்கும்.</item>
+    </plurals>
+    <string name="ApplicationPreferencesActivity_delete">நீக்கு</string>
+    <string name="ApplicationPreferencesActivity_On">இயக்கவும்</string>
     <!-- DraftDatabase -->
+    <string name="DraftDatabase_Draft_image_snippet">படம்</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(ஆடியோ)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(காணொளி)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(பதிலளிக்க)</string>
     <!-- AttachmentManager -->
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">புகைப்படங்கள், வீடியோக்கள் அல்லது ஆடியோவை இணைக்க செஸ்ஸன்னுக்கு சேமிப்பக அனுமதி தேவை. ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டுள்ளது. தயவு செய்து செயலின் ஸெடிங்ஸ் மெனுவில் \"அனுமதியை\" தேர்ந்தெடுக்கவும். அதில் \"சேமிப்பகத்தை\" தேர்ந்தெடுக்க.</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">புகைப்படங்கள், வீடியோக்கள் அல்லது ஆடியோவை இணைக்க செஸ்ஸன்னுக்கு சேமிப்பக அனுமதி தேவை. ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டுள்ளது. தயவு செய்து செயலின் ஸெடிங்ஸ் மெனுவில் \"அனுமதியை\" தேர்ந்தெடுக்கவும். அதில் \"சேமிப்பகத்தை\" தேர்ந்தெடுக்க.</string>
     <!-- AudioSlidePlayer -->
+    <string name="AudioSlidePlayer_error_playing_audio">ஆடியோவை இயக்குவதில் பிழை!</string>
     <!-- BucketedThreadMedia -->
+    <string name="BucketedThreadMedia_Today">இன்று</string>
+    <string name="BucketedThreadMedia_Yesterday">நேற்று</string>
+    <string name="BucketedThreadMedia_This_week">இந்த வாரம்</string>
+    <string name="BucketedThreadMedia_This_month">இந்த மாதம்</string>
     <!-- CommunicationActions -->
+    <string name="CommunicationActions_no_browser_found">இணைய உலாவி கிடைக்கவில்லை.</string>
     <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">குழுக்கள்</string>
     <!-- ConversationItem -->
+    <string name="ConversationItem_error_not_delivered">அனுப்ப முடியவில்லை. விவரங்களுக்கு தட்டவும்</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">முக்கிய பரிமாற்ற செய்தி கிடைத்தது, செயலாக்க தட்டவும்.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">அனுப்பமுடியவில்லை, பாதுகாப்பற்ற பின்னடைவுக்கு தட்டவும்</string>
+    <string name="ConversationItem_unable_to_open_media">இந்த மீடியாவைத் திறக்கக்கூடிய பயன்பாட்டைக் கண்டறிய முடியவில்லை.</string>
+    <string name="ConversationItem_copied_text">நகலெடுக்கப்பட்டது%s</string>
+    <string name="ConversationItem_read_more">மேலும் படிக்க</string>
+    <string name="ConversationItem_download_more">&#160; மேலும் பதிவிறக்கவும்</string>
+    <string name="ConversationItem_pending">&#160; வரையில்</string>
     <!-- ConversationActivity -->
-    <!-- ConversationAdapter -->
+    <string name="ConversationActivity_add_attachment">இணைப்பை சேர்க்கவும்</string>
+    <string name="ConversationActivity_select_contact_info">தொடர்புத் தகவலைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">மன்னிக்கவும், உங்கள் இணைப்பை இணைப்பதில் பிழை ஏற்பட்டது.</string>
+    <string name="ConversationActivity_message">செய்தி</string>
+    <string name="ConversationActivity_compose">எழுது</string>
+    <string name="ConversationActivity_muted_until_date">%1$s வரை முடக்கப்பட்டுள்ளது</string>
+    <string name="ConversationActivity_muted_forever">முடக்கப்பட்டடுள்ளது</string>
+    <string name="ConversationActivity_member_count">%1$d உறுப்பினர்கள்</string>
+    <string name="ConversationActivity_open_group_guidelines">சமூக வழிகாட்டுதல்கள்</string>
+    <string name="ConversationActivity_invalid_recipient">தவறான பெறுநர்!</string>
+    <string name="ConversationActivity_added_to_home_screen">முகப்பு திரையில் சேர்க்கப்பட்டது</string>
+    <string name="ConversationActivity_leave_group">குழுவிலிருந்து வெளியேறு?</string>
+    <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">இந்த தளத்திலிருந்து வெளியேற விரும்புகின்றீர்களா?</string>
+    <string name="ConversationActivity_error_leaving_group">குழுவிலிருந்து வெளியேறுவதில் பிழை</string>
     <!-- ConversationFragment -->
-    <!-- ConversationListItem -->
     <!-- CreateProfileActivity -->
     <!-- CustomDefaultPreference -->
     <!-- DateUtils -->

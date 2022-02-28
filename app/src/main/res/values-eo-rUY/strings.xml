@@ -5,7 +5,6 @@
     <string name="no">Ne</string>
     <string name="delete">Forviŝi</string>
     <string name="ban">Forbari</string>
-    <string name="please_wait">Bonvolu atendi...</string>
     <string name="save">Konservi</string>
     <string name="note_to_self">Noto al Mi mem</string>
     <string name="version_s">Versio %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Ne eblas trovi aplikaĵon por malfermi aŭdvidaĵon.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session bezonas la Konservejo-permeson por almeti bildojn, videojn aŭ aŭdaĵojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session bezonas permeson legi kontaktojn por kunligi kontaktajn informojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Kontaktoj“.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session bezonas la Fotilo-permeson por preni fotojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Eraro dum ludo de sonaĵo!</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Sendado malsukcesis, tuŝetu por detaloj</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ricevis mesaĝon pri interŝanĝo de ŝlosiloj, tuŝetu por daŭrigi.</string>
-    <string name="ConversationItem_group_action_left">%1$s estas forlasinta la grupon.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Sendado malsukcesis, tuŝeti por nesekura retropaŝo</string>
     <string name="ConversationItem_unable_to_open_media">Ne povas trovi aplikaĵon, kiu kapablas malfermi ĉi tiun aŭdvidaĵon.</string>
     <string name="ConversationItem_copied_text">Kopiinta %s</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Ne eblas registri sonaĵon!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Estas neniu aplikaĵo disponebla por trakti ĉi tiun ligilon ĉe via aparato.</string>
     <string name="ConversationActivity_invite_to_open_group">Aldoni membrojn</string>
-    <string name="ConversationActivity_join_open_group">Aliĝi al %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Ĉu vi certas, ke vi volas aliĝi al la <b>%s</b> publika grupo?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Por registri aŭdajn mesaĝojn, donu al Session permeson uzi vian mikrofonon.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session bezonas la Mikrofono-permeson por sendi aŭdajn mesaĝojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Mikrofono“.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Por registri bildojn kaj videaĵojn, donu al Session aliron al la fotilo.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session bezonas aliron al la memoro por sendi bildojn kaj filmetojn.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session bezonas la Fotilo-permeson por preni fotojn aŭ videojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session bezonas la Fotilo-permeson por preni fotojn aŭ videaĵojn</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d el %2$d</string>
-    <string name="ConversationActivity_no_results">Neniu rezulto</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d nelegita mesaĝo</item>
-        <item quantity="other">%d nelegitaj mesaĝoj</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Ĉu forviŝi elektitan mesaĝon?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Konservado de kunsendaĵo</item>
         <item quantity="other">Konservado de %1$d kunsendaĵoj</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Konservado de kunsendaĵo al konservejo...</item>
-        <item quantity="other">Konservado de %1$d kunsendaĵoj al konservejo...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Okazonte...</string>
-    <string name="ConversationFragment_push">Datumoj (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Forviŝante</string>
-    <string name="ConversationFragment_deleting_messages">Forviŝante mesaĝojn...</string>
-    <string name="ConversationFragment_banning">Forbarante</string>
-    <string name="ConversationFragment_banning_user">Forbarante uzanton…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Origina mesaĝo ne troveblas</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Origina mesaĝo ne plu disponeblas</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profila foto</string>
     <!-- CustomDefaultPreference -->
@@ -220,8 +192,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Ricevis difektitan mesaĝon
         pri interŝanĝo de ŝlosiloj!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
-   </string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Ricevis mesaĝon kun nova sekuriga numero. Tuŝetu por trakti kaj montri ĝin.</string>
     <string name="SmsMessageRecord_secure_session_reset">Vi restarigis la sekuran seancon.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s restarigis la sekuran seancon.</string>

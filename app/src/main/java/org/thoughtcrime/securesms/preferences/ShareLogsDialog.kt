@@ -14,8 +14,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import network.loki.messenger.BuildConfig
 import network.loki.messenger.R
 import network.loki.messenger.databinding.DialogShareLogsBinding
@@ -93,7 +95,9 @@ class ShareLogsDialog : BaseDialog() {
 
                 startActivity(Intent.createChooser(shareIntent, getString(R.string.share)))
             } catch (e: Exception) {
-                Toast.makeText(context,"Error saving logs", Toast.LENGTH_LONG).show()
+                withContext(Main) {
+                    Toast.makeText(context,"Error saving logs", Toast.LENGTH_LONG).show()
+                }
                 dismiss()
             }
         }

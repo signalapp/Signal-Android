@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Session</string>
+    <string name="app_name">Sesión</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
-    <string name="delete">Eliminar</string>
+    <string name="delete">Borrar</string>
     <string name="ban">Bloquear</string>
-    <string name="please_wait">Por favor, espera ...</string>
     <string name="save">Guardar</string>
-    <string name="note_to_self">Notas personales</string>
+    <string name="note_to_self">Nota personal</string>
     <string name="version_s">Versión %s</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">Nuevo mensaje</string>
@@ -15,29 +14,28 @@
     <string name="AlbumThumbnailView_plus">\+%d</string>
     <!-- ApplicationPreferencesActivity -->
     <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-        <item quantity="one">%d mensaje por chat</item>
-        <item quantity="other">%d mensajes por chat</item>
+        <item quantity="one">%d mensaje por conversación</item>
+        <item quantity="other">%d mensajes por conversación</item>
     </plurals>
-    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar ahora todos los mensajes antiguos?</string>
+    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">¿Eliminar todos los mensajes antiguos ahora?</string>
     <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="one">Esto reducirá todos los chats al mensaje más reciente.</item>
         <item quantity="other">Esto reducirá todos los chats a los %d mensajes más recientes.</item>
     </plurals>
-    <string name="ApplicationPreferencesActivity_delete">Eliminar</string>
+    <string name="ApplicationPreferencesActivity_delete">Borrar</string>
     <string name="ApplicationPreferencesActivity_On">Activo</string>
     <string name="ApplicationPreferencesActivity_Off">Inactivo</string>
     <!-- DraftDatabase -->
-    <string name="DraftDatabase_Draft_image_snippet">(imagen)</string>
+    <string name="DraftDatabase_Draft_image_snippet">(imágen)</string>
     <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
     <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(responder)</string>
     <!-- AttachmentManager -->
-    <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session necesita acceso al almacenamiento de tu teléfono para adjuntar fotos, vídeos o audio. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Almacenamiento».</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session necesita acceso a los contactos en tu teléfono para adjuntar información de contactos en tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Contactos».</string>
+    <string name="AttachmentManager_cant_open_media_selection">No se puede encontrar una aplicación para el contenido seleccionado.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session requiere el permiso de Almacenamiento para poder adjuntar fotos, vídeos o audio, pero se ha denegado permanentemente. Por favor, vaya al menú de configuración de la aplicación, seleccione \"Permisos\" y habilite \"Almacenamiento\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session necesita acceso a la cámara para tomar fotos y verificar las cifras de seguridad de tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Cámara».</string>
     <!-- AudioSlidePlayer -->
-    <string name="AudioSlidePlayer_error_playing_audio">¡Fallo al reproducir el audio!</string>
+    <string name="AudioSlidePlayer_error_playing_audio">¡Error al reproducir audio!</string>
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Hoy</string>
     <string name="BucketedThreadMedia_Yesterday">Ayer</string>
@@ -50,21 +48,20 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Fallo al enviar. Toca para más detalles</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Se recibió un mensaje de intercambio de claves, toca para proceder.</string>
-    <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Fallo al enviar. Toca para enviar sin cifrar</string>
     <string name="ConversationItem_unable_to_open_media">No se pudo encontrar la aplicación para mostrar este contenido.</string>
     <string name="ConversationItem_copied_text">%s copiado(s)</string>
     <string name="ConversationItem_read_more">Leer Más</string>
-    <string name="ConversationItem_download_more">  Descargar más</string>
-    <string name="ConversationItem_pending">  Pendiente</string>
+    <string name="ConversationItem_download_more">&#160; Descargar más</string>
+    <string name="ConversationItem_pending">&#160; pendiente</string>
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
     <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Lo sentimos, ha habido un fallo al adjuntar el archivo.</string>
     <string name="ConversationActivity_message">Mensaje</string>
-    <string name="ConversationActivity_compose">Escribir</string>
+    <string name="ConversationActivity_compose">Redactar</string>
     <string name="ConversationActivity_muted_until_date">Silenciado hasta %1$s</string>
-    <string name="ConversationActivity_muted_forever">Muted</string>
+    <string name="ConversationActivity_muted_forever">Silenciado</string>
     <string name="ConversationActivity_member_count">%1$d miembros</string>
     <string name="ConversationActivity_open_group_guidelines">Normas de la Comunidad</string>
     <string name="ConversationActivity_invalid_recipient">¡Destinatario inválido!</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar la nota de voz!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hay ninguna aplicación disponible para abrir este enlace.</string>
     <string name="ConversationActivity_invite_to_open_group">Añadir miembros</string>
-    <string name="ConversationActivity_join_open_group">Unirse a %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">¿Estás seguro de que quieres unirte al grupo abierto <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar notas de voz y hacer llamadas, permite a Session acceder al micrófono.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session necesita acceso al micrófono para enviar notas de voz. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Micrófono».</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para hacer fotos y vídeos, permite el acceso de Session a la cámara.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session necesita permiso de almacenamiento para enviar fotos y videos.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session necesita acceso a la cámara para tomar fotos o vídeos. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y habilita «Cámara».</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session necesita acceder a la cámara para tomar fotos o vídeo.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d de %2$d</string>
-    <string name="ConversationActivity_no_results">Sin resultados</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d mensaje no leído</item>
-        <item quantity="other">%d mensajes no leídos</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">¿Eliminar este mensaje?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Guardando adjunto</item>
         <item quantity="other">Guardando %1$d adjuntos</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Guardando adjunto en el teléfono ...</item>
-        <item quantity="other">Guardando %1$d adjuntos en el teléfono ...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Procesando ...</string>
-    <string name="ConversationFragment_push">Datos (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Eliminar</string>
-    <string name="ConversationFragment_deleting_messages">Eliminando mensajes ...</string>
-    <string name="ConversationFragment_banning">Baneando</string>
-    <string name="ConversationFragment_banning_user">Baneando usuario…</string>
-    <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original </string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Foto de perfil</string>
     <!-- CustomDefaultPreference -->
@@ -142,7 +114,7 @@
     <string name="CustomDefaultPreference_none">Ninguno</string>
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Ahora</string>
-    <string name="DateUtils_minutes_ago">%d m</string>
+    <string name="DateUtils_minutes_ago">%d min</string>
     <string name="DateUtils_today">Hoy</string>
     <string name="DateUtils_yesterday">Ayer</string>
     <!-- DeviceListItem -->
@@ -165,8 +137,8 @@
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Multimedia</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">¿Eliminar el mensaje seleccionado?</item>
-        <item quantity="other">¿Eliminar los mensajes seleccionados?</item>
+        <item quantity="one">¿Borrar el mensaje seleccionado?</item>
+        <item quantity="other">¿Borrar los mensajes seleccionados?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="one">Esto eliminará permanentemente el mensaje seleccionado.</item>
@@ -200,7 +172,7 @@
     <string name="MessageRecord_you_updated_group">Has actualizado el grupo.</string>
     <string name="MessageRecord_s_updated_group">%s ha actualizado el grupo.</string>
     <!-- ExpirationDialog -->
-    <string name="ExpirationDialog_disappearing_messages">Desaparición de mensajes</string>
+    <string name="ExpirationDialog_disappearing_messages">Autodestrucción de mensajes</string>
     <string name="ExpirationDialog_your_messages_will_not_expire">Los mensajes no caducarán.</string>
     <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Los mensajes enviados y recibidos en este chat desaparecerán %s después de que se hayan enviado.</string>
     <!-- PassphrasePromptActivity -->
@@ -212,7 +184,7 @@
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">¿Desbloquear este contacto?</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Podrás volver a recibir mensajes y llamadas de este contacto.</string>
     <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
-    <string name="RecipientPreferenceActivity_notification_settings">Notification settings</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Ajustes de notificación</string>
     <!-- Slide -->
     <string name="Slide_image">Imagen</string>
     <string name="Slide_audio">Audio</string>
@@ -220,7 +192,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">¡Se recibió un mensaje corrupto
 de intercambio de claves!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Se recibió un mensaje de intercambio de claves para una versión no válida del protocolo.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Has recibido un mensaje con unas cifras de seguridad nuevas. Toca para procesarlo y mostrarlo.</string>
     <string name="SmsMessageRecord_secure_session_reset">Has reiniciado la sesión segura.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s reinició la sesión segura.</string>
@@ -404,7 +375,7 @@ de intercambio de claves!</string>
     <string name="arrays__mute_for_one_day">Silenciar durante 1 día</string>
     <string name="arrays__mute_for_seven_days">Silenciar durante 7 días</string>
     <string name="arrays__mute_for_one_year">Silenciar durante 1 año</string>
-    <string name="arrays__mute_forever">Mute forever</string>
+    <string name="arrays__mute_forever">Silenciar para siempre</string>
     <string name="arrays__settings_default">Configuración predeterminada</string>
     <string name="arrays__enabled">Activado</string>
     <string name="arrays__disabled">Desactivado</string>
@@ -675,10 +646,10 @@ de intercambio de claves!</string>
     <string name="menu_apply_button">Aplicar</string>
     <string name="menu_done_button">Hecho</string>
     <string name="activity_edit_closed_group_title">Editar grupo</string>
-    <string name="activity_edit_closed_group_edit_text_hint">Ingresa el nombre del nuevo grupo</string>
+    <string name="activity_edit_closed_group_edit_text_hint">Ingresa un nuevo nombre de grupo</string>
     <string name="activity_edit_closed_group_edit_members">Miembros</string>
     <string name="activity_edit_closed_group_add_members">Añadir miembros</string>
-    <string name="activity_edit_closed_group_group_name_missing_error">El nombre del grupo no puede estar vacío</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">El nombre de grupo no puede estar vacío</string>
     <string name="activity_edit_closed_group_group_name_too_long_error">Por favor, ingresa un nombre de grupo más corto</string>
     <string name="activity_edit_closed_group_not_enough_group_members_error">Los grupos deben tener al menos 1 miembro</string>
     <string name="fragment_edit_group_bottom_sheet_remove">Eliminar usuario del grupo</string>
@@ -722,6 +693,7 @@ de intercambio de claves!</string>
     <string name="dialog_open_url_title">¿Abrir URL?</string>
     <string name="dialog_open_url_explanation">¿Estás seguro de que quieres abrir %s?</string>
     <string name="open">Abrir</string>
+    <string name="copy_url">Copiar la dirección URL</string>
     <string name="dialog_link_preview_title">¿Habilitar Previsualización de Enlaces?</string>
     <string name="dialog_link_preview_explanation">Activar la vista previa de enlaces mostrará las vistas previas de las URL que envíes y recibas. Esto puede ser útil, pero Session tendrá que ponerse en contacto con los sitios web enlazados para generar vistas previas. Siempre puedes desactivar las vistas previas de enlaces en la configuración de Session.</string>
     <string name="dialog_link_preview_enable_button_title">Activar</string>
@@ -736,10 +708,16 @@ de intercambio de claves!</string>
     <string name="dialog_send_seed_title">Alerta</string>
     <string name="dialog_send_seed_explanation">Esta es tu frase de recuperación. Si se la envias a alguien, tendrá acceso completo a tu cuenta.</string>
     <string name="dialog_send_seed_send_button_title">Enviar</string>
-    <string name="notify_type_all">All</string>
-    <string name="notify_type_mentions">Mentions</string>
-    <string name="deleted_message">This message has been deleted</string>
-    <string name="delete_message_for_me">Delete just for me</string>
-    <string name="delete_message_for_everyone">Delete for everyone</string>
-    <string name="delete_message_for_me_and_recipient">Delete for me and %s</string>
+    <string name="notify_type_all">Todas</string>
+    <string name="notify_type_mentions">Menciónes</string>
+    <string name="deleted_message">Este mensaje ha sido borrado</string>
+    <string name="delete_message_for_me">Borrar solo para mí</string>
+    <string name="delete_message_for_everyone">Borrar para todos</string>
+    <string name="delete_message_for_me_and_recipient">Borrar para mí y %s</string>
+    <string name="activity_settings_survey_feedback">Comentarios/Encuesta</string>
+    <string name="activity_settings_support">Registro de depuración</string>
+    <string name="dialog_share_logs_title">Compartir registros</string>
+    <string name="dialog_share_logs_explanation">¿Le gustaría exportar los registros de su aplicación para poder compartirlos para la resolución de problemas?</string>
+    <string name="conversation_pin">Fijar</string>
+    <string name="conversation_unpin">Desfijar</string>
 </resources>

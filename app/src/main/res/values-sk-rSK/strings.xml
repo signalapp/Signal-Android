@@ -4,7 +4,6 @@
     <string name="no">Nie</string>
     <string name="delete">Zmazať</string>
     <string name="ban">Ban</string>
-    <string name="please_wait">Čakajte prosím...</string>
     <string name="save">Uložiť</string>
     <string name="note_to_self">Poznámka pre seba</string>
     <string name="version_s">Verzia %s</string>
@@ -37,7 +36,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nenašla sa aplikácia pre výber médií.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session potrebuje prístup k úložisku aby k správam mohol pridať obrázkové, video a zvukové prílohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session potrebuje prístup ku kontaktom aby k správam mohol pripojiť informácie o kontakte, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Chyba pri prehrávaní zvuku!</string>
@@ -53,7 +51,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Odosielanie zlyhalo, ťuknutím zobrazíte podrobnosti</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Správa výmeny kľúčov prijatá, ťuknutím pokračujte.</string>
-    <string name="ConversationItem_group_action_left">%1$s opustil/a skupinu.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Odosielanie zlyhalo, ťuknutím pošlete nezabezpečenú správu</string>
     <string name="ConversationItem_unable_to_open_media">Nepodarilo sa nájst aplikáciu schopnú otvoriť tento typ súboru.</string>
     <string name="ConversationItem_copied_text">Skopírovaných %s</string>
@@ -80,22 +77,12 @@
     <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Vo vašom zariadení nie je aplikácia schopná otvoriť tento odkaz.</string>
     <string name="ConversationActivity_invite_to_open_group">Pridať členov</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Naozaj sa chcete pripojiť k otvorenej skupine <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pre posielanie zvukových správ potrebuje Session prístup k mikrofónu.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session potrebuje prístup k mikrofónu aby mohol posielať zvukové správy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pre fotenie a nahrávanie videa potrebuje Session prístup k fotoaparátu.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie a video, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session potrebuje prístup k Fotoaparátu, aby mohol vytvárať fotografie a videá</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d z %2$d</string>
-    <string name="ConversationActivity_no_results">Žiadne výsledky.</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d neprečítaná správa</item>
-        <item quantity="few">%d neprečítané správy</item>
-        <item quantity="many">%d neprečítaných správ</item>
-        <item quantity="other">%d neprečítaných správ</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Zmazať vybranú správu?</item>
@@ -129,22 +116,6 @@
         <item quantity="many">Ukladám %1$d príloh</item>
         <item quantity="other">Ukladám %1$d príloh</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Ukladanie prílohy na úložisko...</item>
-        <item quantity="few">Ukladanie %1$d príloh na úložisko...</item>
-        <item quantity="many">Ukladanie %1$d príloh na úložisko...</item>
-        <item quantity="other">Ukladanie %1$d príloh na úložisko...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
-    <string name="ConversationFragment_push">Dáta (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Mazanie</string>
-    <string name="ConversationFragment_deleting_messages">Mažú sa správy...</string>
-    <string name="ConversationFragment_quoted_message_not_found">Pôvodná správa sa nenašla</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Pôvodná správa už nie je k dispozícii</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Správa výmeny kľúčov</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profilová fotka</string>
     <!-- CustomDefaultPreference -->
@@ -236,7 +207,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Bola prijatá poškodená správa
 výmeny kľúčov.</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Prijatá správa s novým bezpečnostným číslom. Ťuknite pre spracovanie a zobrazenie.</string>
     <string name="SmsMessageRecord_secure_session_reset">Obnovili ste bezpečnú reláciu.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval/a zabezpečenú reláciu.</string>

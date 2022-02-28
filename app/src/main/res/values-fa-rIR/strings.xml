@@ -5,10 +5,9 @@
     <string name="no">خیر</string>
     <string name="delete">حذف</string>
     <string name="ban">مسدود</string>
-    <string name="please_wait">لطفاً صبر کنید...</string>
     <string name="save">ذخیره</string>
     <string name="note_to_self">یادداشت به خود</string>
-    <string name="version_s">نگارش %s</string>
+    <string name="version_s">نسخه</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
     <!-- AlbumThumbnailView -->
@@ -20,7 +19,7 @@
     </plurals>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">همه‌ی پیام‌های قدیمی حذف شوند؟</string>
     <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">این گزینه ، بلافاصله تمامی مکالمات شما را به %d پیام آخر ، کاهش خواهد داد.</item>
+        <item quantity="one">این گزینه فورا تمامی مکالمات شما را به پیام آخر کاهش خواهد داد.</item>
         <item quantity="other">این گزینه فورا تمامی مکالمات شما را به %d پیام آخر کاهش خواهد داد.</item>
     </plurals>
     <string name="ApplicationPreferencesActivity_delete">حذف</string>
@@ -34,10 +33,9 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب رسانه وجود ندارد.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session برای ارسال فایل‌های تصویری و صوتی نیاز به دسترسی به حافظه دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه در تنظیمات تلفن همراه خود رفته و پس از یافتن Session وارد بخش دسترسی ها شده و گزینه حافظه را فعال کنید.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session برای جستجو مخاطبان نیاز به دسترسی به مجوز مخاطبان دارد اما این دسترسی به Session داده نشده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه پس از یافتن Session وارد بخش دسترسی ها شده و گزینه مخاطبان را فعال کنید.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session جهت گرفتن عکس نیاز به دسترسی دوربین دارد، اما به طور دائم رد شده است. لطفاً به منوی تنظیمات برنامه ها رفته، \"Permissions\" را انتخاب کرده، و \"Camera\" را فعال کنید.</string>
     <!-- AudioSlidePlayer -->
-    <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش صوتی!</string>
+    <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش فایل صوتی!</string>
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">امروز</string>
     <string name="BucketedThreadMedia_Yesterday">دیروز</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">ارسال نشد، برای جزئیات بیشتر ضربه بزنید</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">پیام تبادل کلید رمز دریافت شد ، برای ادامه ، صفحه را لمس کنید.</string>
-    <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرد.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">ارسال نشد, برای روش جایگزین ناامن لمس کنید</string>
     <string name="ConversationItem_unable_to_open_media">برنامه ای برای بازکردن این رسانه وجود ندارد.</string>
     <string name="ConversationItem_copied_text">%s کپی شد</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">عدم توانایی ضبط صدا!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه ای برای اجرای این لینک روی دستگاه شما در دسترس نیست.</string>
     <string name="ConversationActivity_invite_to_open_group">افزودن اعضا</string>
-    <string name="ConversationActivity_join_open_group">پیوستن به %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">آیا اطمینان دارید که می‌خواهید به گروه باز <b>%s</b> بپیوندید؟</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">برای ارسال صدا، به Session اجازه دهید به میکروفن شما دسترسی پیدا کند.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session برای ارسال صدا، نیازمند دسترسی به میکروفن دارد ولی این دسترسی قطع شده است. لطفا برای ادامه دادن، به بخش منوی تنظیمات برنامه رفته، \"اجازه ها\" را انتخاب کرده و گزینه ی \"میکروفن\" را فعال نمایید.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">برای گرفتن تصاویر و ویدیو، به Session اجازه دسترسی دوربین را بدهید.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session برای ارسال تصاویر و ویدئوها نیاز به دسترسی حافظه دارد.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session برای گرفتن عکس و فیلم، نیازمند دسترسی به دوربین دارد ولی این دسترسی برای همیشه قطع شده است. لطفا برای ادامه دادن، به بخش منوی تنظیمات برنامه رفته، \"اجازه ها\" را انتخاب کرده و گزینه ی \"دوربین\" را فعال نمایید.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session برای عکس گرفتن یا ضبط ویدیو نیاز به دسترسی به دوربین دارد</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d از %2$d</string>
-    <string name="ConversationActivity_no_results">بدون نتیجه</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d پیام ناخوانده</item>
-        <item quantity="other">%d پیام ناخوانده</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">پیام های انتخاب شده حذف شوند؟</item>
@@ -118,22 +106,6 @@
         <item quantity="one">در حال ذخیره‌ %1$d پیوست</item>
         <item quantity="other">در حال ذخیره‌ %1$d پیوست</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">در حال ذخیره‌ %1$d پیوست در حافظه...</item>
-        <item quantity="other">در حال ذخیره‌ %1$d پیوست در حافظه...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">درحال انتظار...</string>
-    <string name="ConversationFragment_push">داده‌ها (Session)</string>
-    <string name="ConversationFragment_mms">پیام چندرسانه‌ای</string>
-    <string name="ConversationFragment_sms">پیامک</string>
-    <string name="ConversationFragment_deleting">در حال حذف کردن</string>
-    <string name="ConversationFragment_deleting_messages">حذف پیام ها...</string>
-    <string name="ConversationFragment_banning">مسدودسازی</string>
-    <string name="ConversationFragment_banning_user">مسدودسازی…</string>
-    <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">پیام تبادل کلید</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">عکس پروفایل</string>
     <!-- CustomDefaultPreference -->
@@ -220,7 +192,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">دریافت کلید خراب
 تبادل پیام!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">یک پیام تبادل کلید برای نسخه اشتباه پروتوکل دریافت شد.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">پيامی با شماره امنیتی تازه دريافت شد. برای پردازش و شناسايی، لمس کنيد.</string>
     <string name="SmsMessageRecord_secure_session_reset">شما نشست امن را ریست نموده اید.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s نشست امن را ریست نمود.</string>
@@ -722,6 +693,7 @@
     <string name="dialog_open_url_title">URL باز شود ؟</string>
     <string name="dialog_open_url_explanation">آیا مطمئن هستید که میخواهید %s را باز کنید؟</string>
     <string name="open">باز کردن</string>
+    <string name="copy_url">کپی URL</string>
     <string name="dialog_link_preview_title">فعال‌سازی پیش‌نمایش لینک؟</string>
     <string name="dialog_link_preview_explanation">با فعال کردن این گزینه، پیش‌نمایش لینک‌ها در پیام‌های ارسالی و دریافتی دیده می‌شود. این گزینه می‌تواند مفید باشد اما Session باید با سایت ارتباط برقرار کند. شما می‌توانید همیشه در تنظیمات این پیش‌نمایش را غیرفعال کنید.</string>
     <string name="dialog_link_preview_enable_button_title">فعال کردن</string>
@@ -742,4 +714,10 @@
     <string name="delete_message_for_me">حذف برای من</string>
     <string name="delete_message_for_everyone">حذف برای همه</string>
     <string name="delete_message_for_me_and_recipient">حذف برای من و %s</string>
+    <string name="activity_settings_survey_feedback">بازخورد/نظرسنجی</string>
+    <string name="activity_settings_support">گزارش خطا</string>
+    <string name="dialog_share_logs_title">اشتراک لاگ ها</string>
+    <string name="dialog_share_logs_explanation">آیا می خواهید از گزارشات برنامه خود خروجی بگیرید تا بتوانید برای عیب یابی به اشتراک بگذارید؟</string>
+    <string name="conversation_pin">سنجاق کردن</string>
+    <string name="conversation_unpin">برداشتن سنجاق</string>
 </resources>

@@ -4,7 +4,6 @@
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="delete">Xóa</string>
-    <string name="please_wait">Xin chờ</string>
     <string name="save">Lưu</string>
     <string name="note_to_self">Gửi lời nhắc cho chính mình</string>
     <string name="version_s">Phiên bản %s</string>
@@ -43,7 +42,6 @@
     <string name="ContactsCursorLoader_groups">Nhóm</string>
     <!-- ConversationItem -->
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Đã nhận được yêu cầu trao đổi khoá, chạm để xử lý.</string>
-    <string name="ConversationItem_group_action_left">%1$s đã rời khỏi nhóm.</string>
     <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở dữ liệu truyền thông này.</string>
     <string name="ConversationItem_copied_text">Đã sao chép %s</string>
     <string name="ConversationItem_download_more">&#160; Tải thêm</string>
@@ -65,7 +63,6 @@
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Thiết bị của bạn không có ứng dụng nào tương ứng để mở đường dẫn này.</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Session cần được truy cập microphone để gửi tin nhắn thoại.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session cần truy cập microphone để gửi tin nhắn thoại, nhưng quyền này đã bị chặn. Hãy đến phần cài đặt, chọn \"Quyền truy cập\" và kích hoạt \"Microphone\".</string>
-    <!-- ConversationAdapter -->
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="other">Xóa các tin nhắn đã chọn?</item>
@@ -80,11 +77,6 @@
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="other">Đang lưu %1$d đính kèm</item>
     </plurals>
-    <string name="ConversationFragment_pending">Chờ giải quyết...</string>
-    <string name="ConversationFragment_push">Dữ liệu (Session)</string>
-    <string name="ConversationFragment_deleting">Đang xóa</string>
-    <string name="ConversationFragment_deleting_messages">Đang xóa tin nhắn...</string>
-    <!-- ConversationListItem -->
     <!-- CreateProfileActivity -->
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
@@ -135,7 +127,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Nhận được thông tin
 trao đổi chìa khóa bị hỏng!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không hợp lệ.</string>
     <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lập.</string>
     <!-- ThreadRecord -->
     <string name="ThreadRecord_secure_session_reset">Đã tái thiết lập phiên bảo mật.</string>

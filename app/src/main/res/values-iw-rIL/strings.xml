@@ -5,7 +5,6 @@
     <string name="no">לא</string>
     <string name="delete">מחק</string>
     <string name="ban">הסר</string>
-    <string name="please_wait">אנא המתן...</string>
     <string name="save">שמור</string>
     <string name="note_to_self">הערה לעצמי</string>
     <string name="version_s">גרסה %s</string>
@@ -38,7 +37,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">לא ניתן למצוא יישום לבחירת מדיה.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session דורש את הרשאת האחסון על מנת לצרף תצלומים, וידיאוים, או שמע, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\", אפשר את \"אחסון\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session דורש הרשאת אנשי קשר על מנת לצרף מידע איש קשר, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session דורש את הרשאת המצלמה על מנת לצלם תצלומים, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">שגיאה בניגון שמע!</string>
@@ -54,7 +52,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">שליחה נכשלה, הקש לפרטים</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">התקבלה הודעת החלפת מפתח, הקש כדי להמשיך.</string>
-    <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">שליחה נכשלה, הקש לנסיגה בלתי מאובטחת</string>
     <string name="ConversationItem_unable_to_open_media">לא ניתן למצוא יישום המסוגל לפתוח מדיה זו.</string>
     <string name="ConversationItem_copied_text">הועתק %s</string>
@@ -81,23 +78,13 @@
     <string name="ConversationActivity_unable_to_record_audio">לא היה ניתן להקליט שמע!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין יישום זמין לטיפול בקישור זה במכשיר שלך.</string>
     <string name="ConversationActivity_invite_to_open_group">הוסף משתמשים</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">האם ברצונך להצטרף לקבוצה <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">כדי לשלוח הודעות שמע, אפשר ל-Session לקבל גישה אל המיקרופון שלך.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session דורש את הרשאת המיקרופון על מנת לשלוח הודעות שמע, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקרופון\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">כדי ללכוד תצלומים ווידיאו, אפשר ל-Session גישה אל המצלמה.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session צריך הרשאות גישה לאחסון על מנת לשלוח תמונות ווידיאו.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session צריך את הרשאת המצלמה כדי לצלם תצלומים או וידיאו, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session צריך הרשאות מצלמה כדי לצלם תצלומים או להקליט וידיאו</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
     <string name="ConversationActivity_search_position">%1$d מתוך %2$d</string>
-    <string name="ConversationActivity_no_results">אין תוצאות</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">הודעה %d לא נקראה</item>
-        <item quantity="two">%d הודעות לא נקראו</item>
-        <item quantity="many">%d הודעות לא נקראו</item>
-        <item quantity="other">%d הודעות לא נקראו</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">למחוק ההודעה שנבחרה?</item>
@@ -131,21 +118,6 @@
         <item quantity="many">שומר %1$d צרופות</item>
         <item quantity="other">שומר %1$d צרופות</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">שומר צרופה באחסון...</item>
-        <item quantity="two">שומר %1$d צרופות באחסון...</item>
-        <item quantity="many">שומר %1$d צרופות באחסון...</item>
-        <item quantity="other">שומר %1$d צרופות באחסון...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">ממתין...</string>
-    <string name="ConversationFragment_push">נתונים (Session)</string>
-    <string name="ConversationFragment_sms">מסרון</string>
-    <string name="ConversationFragment_deleting">מוחק</string>
-    <string name="ConversationFragment_deleting_messages">מוחק הודעות...</string>
-    <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">הודעה מקורית כבר אינה זמינה</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">תצלום פרופיל</string>
     <!-- CustomDefaultPreference -->
@@ -237,7 +209,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">התקבל מפתח פגום
 החלף הודעה!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">התקבלה הודעת החלפת מפתח עבור גרסת פרוטוקול בלתי־תקפה.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">התקבלה הודעה עם מספר ביטחון חדש. הקש כדי לעבד ולהציג.</string>
     <string name="SmsMessageRecord_secure_session_reset">איפסת את השיח המאובטח.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">ההתחברות המאובטחת אותחלה על־ידי %s.</string>

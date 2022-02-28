@@ -157,8 +157,8 @@ dependencies {
     testImplementation 'org.robolectric:shadows-multidex:4.4'
 }
 
-def canonicalVersionCode = 252
-def canonicalVersionName = "1.11.17"
+def canonicalVersionCode = 254
+def canonicalVersionName = "1.11.18"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,

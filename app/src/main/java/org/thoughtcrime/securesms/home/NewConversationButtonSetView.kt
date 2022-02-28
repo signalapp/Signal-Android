@@ -8,15 +8,29 @@ import android.content.res.ColorStateList
 import android.graphics.PointF
 import android.os.Build
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
+import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.util.*
+import org.thoughtcrime.securesms.util.GlowViewUtilities
+import org.thoughtcrime.securesms.util.NewConversationButtonImageView
+import org.thoughtcrime.securesms.util.UiModeUtilities
+import org.thoughtcrime.securesms.util.animateSizeChange
+import org.thoughtcrime.securesms.util.contains
+import org.thoughtcrime.securesms.util.disableClipping
+import org.thoughtcrime.securesms.util.distanceTo
+import org.thoughtcrime.securesms.util.getColorWithID
+import org.thoughtcrime.securesms.util.isAbove
+import org.thoughtcrime.securesms.util.isLeftOf
+import org.thoughtcrime.securesms.util.isRightOf
+import org.thoughtcrime.securesms.util.toPx
 
 class NewConversationButtonSetView : RelativeLayout {
     private var expandedButton: Button? = null
@@ -26,9 +40,27 @@ class NewConversationButtonSetView : RelativeLayout {
 
     // region Convenience
     private val sessionButtonExpandedPosition: PointF get() { return PointF(width.toFloat() / 2 - sessionButton.expandedSize / 2 - sessionButton.shadowMargin, 0.0f) }
+    private val sessionTooltipExpandedPosition: PointF get() {
+        val x = sessionButtonExpandedPosition.x + sessionButton.width / 2 - sessionTooltip.width / 2
+        val y = sessionButtonExpandedPosition.y + sessionButton.height - sessionTooltip.height / 2
+        return PointF(x, y)
+    }
     private val closedGroupButtonExpandedPosition: PointF get() { return PointF(width.toFloat() - closedGroupButton.expandedSize - 2 * closedGroupButton.shadowMargin, height.toFloat() - bottomMargin - closedGroupButton.expandedSize - 2 * closedGroupButton.shadowMargin) }
+    private val closedGroupTooltipExpandedPosition: PointF get() {
+        val x = closedGroupButtonExpandedPosition.x + closedGroupButton.width / 2 - closedGroupTooltip.width / 2
+        val y = closedGroupButtonExpandedPosition.y + closedGroupButton.height - closedGroupTooltip.height / 2
+        return PointF(x, y)
+    }
     private val openGroupButtonExpandedPosition: PointF get() { return PointF(0.0f, height.toFloat() - bottomMargin - openGroupButton.expandedSize - 2 * openGroupButton.shadowMargin) }
+    private val openGroupTooltipExpandedPosition: PointF get() {
+        val x = openGroupButtonExpandedPosition.x + openGroupButton.width / 2 - openGroupTooltip.width / 2
+        val y = openGroupButtonExpandedPosition.y + openGroupButton.height - openGroupTooltip.height / 2
+        return PointF(x, y)
+    }
     private val buttonRestPosition: PointF get() { return PointF(width.toFloat() / 2 - mainButton.expandedSize / 2 - mainButton.shadowMargin, height.toFloat() - bottomMargin - mainButton.expandedSize - 2 * mainButton.shadowMargin) }
+    private fun tooltipRestPosition(viewWidth: Int): PointF {
+        return PointF(width.toFloat() / 2 - viewWidth / 2, height.toFloat() - bottomMargin)
+    }
     // endregion
 
     // region Settings
@@ -41,8 +73,29 @@ class NewConversationButtonSetView : RelativeLayout {
     // region Components
     private val mainButton by lazy { Button(context, true, R.drawable.ic_plus) }
     private val sessionButton by lazy { Button(context, false, R.drawable.ic_message) }
+    private val sessionTooltip by lazy {
+        TextView(context).apply {
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
+            setText(R.string.NewConversationButton_SessionTooltip)
+            isAllCaps = true
+        }
+    }
     private val closedGroupButton by lazy { Button(context, false, R.drawable.ic_group) }
+    private val closedGroupTooltip by lazy {
+        TextView(context).apply {
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
+            setText(R.string.NewConversationButton_ClosedGroupTooltip)
+            isAllCaps = true
+        }
+    }
     private val openGroupButton by lazy { Button(context, false, R.drawable.ic_globe) }
+    private val openGroupTooltip by lazy {
+        TextView(context).apply {
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
+            setText(R.string.NewConversationButton_OpenGroupTooltip)
+            isAllCaps = true
+        }
+    }
     // endregion
 
     // region Button
@@ -163,21 +216,27 @@ class NewConversationButtonSetView : RelativeLayout {
         isHapticFeedbackEnabled = true
         // Set up session button
         addView(sessionButton)
+        addView(sessionTooltip)
         sessionButton.alpha = 0.0f
+        sessionTooltip.alpha = 0.0f
         val sessionButtonLayoutParams = sessionButton.layoutParams as LayoutParams
         sessionButtonLayoutParams.addRule(CENTER_IN_PARENT, TRUE)
         sessionButtonLayoutParams.addRule(ALIGN_PARENT_BOTTOM, TRUE)
         sessionButtonLayoutParams.bottomMargin = bottomMargin.toInt()
         // Set up closed group button
         addView(closedGroupButton)
+        addView(closedGroupTooltip)
         closedGroupButton.alpha = 0.0f
+        closedGroupTooltip.alpha = 0.0f
         val closedGroupButtonLayoutParams = closedGroupButton.layoutParams as LayoutParams
         closedGroupButtonLayoutParams.addRule(CENTER_IN_PARENT, TRUE)
         closedGroupButtonLayoutParams.addRule(ALIGN_PARENT_BOTTOM, TRUE)
         closedGroupButtonLayoutParams.bottomMargin = bottomMargin.toInt()
         // Set up open group button
         addView(openGroupButton)
+        addView(openGroupTooltip)
         openGroupButton.alpha = 0.0f
+        openGroupTooltip.alpha = 0.0f
         val openGroupButtonLayoutParams = openGroupButton.layoutParams as LayoutParams
         openGroupButtonLayoutParams.addRule(CENTER_IN_PARENT, TRUE)
         openGroupButtonLayoutParams.addRule(ALIGN_PARENT_BOTTOM, TRUE)
@@ -260,24 +319,57 @@ class NewConversationButtonSetView : RelativeLayout {
 
     private fun expand() {
         val buttonsExcludingMainButton = listOf( sessionButton, closedGroupButton, openGroupButton )
+        val allTooltips = listOf(sessionTooltip, closedGroupTooltip, openGroupTooltip)
+
         sessionButton.animatePositionChange(buttonRestPosition, sessionButtonExpandedPosition)
+        sessionTooltip.animatePositionChange(tooltipRestPosition(sessionTooltip.width), sessionTooltipExpandedPosition)
         closedGroupButton.animatePositionChange(buttonRestPosition, closedGroupButtonExpandedPosition)
+        closedGroupTooltip.animatePositionChange(tooltipRestPosition(closedGroupTooltip.width), closedGroupTooltipExpandedPosition)
         openGroupButton.animatePositionChange(buttonRestPosition, openGroupButtonExpandedPosition)
+        openGroupTooltip.animatePositionChange(tooltipRestPosition(openGroupTooltip.width), openGroupTooltipExpandedPosition)
         buttonsExcludingMainButton.forEach { it.animateAlphaChange(0.0f, 1.0f) }
+        allTooltips.forEach { it.animateAlphaChange(0.0f, 1.0f) }
         postDelayed({ isExpanded = true }, Button.animationDuration)
     }
 
     private fun collapse() {
         val allButtons = listOf( mainButton, sessionButton, closedGroupButton, openGroupButton )
+        val allTooltips = listOf(sessionTooltip, closedGroupTooltip, openGroupTooltip)
+
         allButtons.forEach {
             val currentPosition = PointF(it.x, it.y)
             it.animatePositionChange(currentPosition, buttonRestPosition)
             val endAlpha = if (it == mainButton) 1.0f else 0.0f
             it.animateAlphaChange(it.alpha, endAlpha)
         }
+        allTooltips.forEach {
+            it.animateAlphaChange(1.0f, 0.0f)
+            it.animatePositionChange(PointF(it.x, it.y), tooltipRestPosition(it.width))
+        }
         postDelayed({ isExpanded = false }, Button.animationDuration)
     }
     // endregion
+
+    fun View.animatePositionChange(startPosition: PointF, endPosition: PointF) {
+        val animation = ValueAnimator.ofObject(PointFEvaluator(), startPosition, endPosition)
+        animation.duration = Button.animationDuration
+        animation.addUpdateListener { animator ->
+            val point = animator.animatedValue as PointF
+            x = point.x
+            y = point.y
+        }
+        animation.start()
+    }
+
+    fun View.animateAlphaChange(startAlpha: Float, endAlpha: Float) {
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), startAlpha, endAlpha)
+        animation.duration = Button.animationDuration
+        animation.addUpdateListener { animator ->
+            alpha = animator.animatedValue as Float
+        }
+        animation.start()
+    }
+
 }
 
 // region Delegate

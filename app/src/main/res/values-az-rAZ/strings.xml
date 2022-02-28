@@ -5,7 +5,6 @@
     <string name="no">Xeyr</string>
     <string name="delete">Sil</string>
     <string name="ban">Qadağa qoy</string>
-    <string name="please_wait">Zəhmət olmasa gözləyin...</string>
     <string name="save">Yaddaşda saxla</string>
     <string name="note_to_self">Özümə qeyd</string>
     <string name="version_s">Versiya %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Media seçə biləcək bir tətbiq tapıla bilmir.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session, foto, video və ya səs əlavə etmək üçün Anbar icazəsi tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa \"İcazələr\" tənzimləmələrindən \"Anbar\" icazəsini fəallaşdırın.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session, əlaqə məlumatlarını əlavə etmək üçün Əlaqələr icazəsini tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa \"İcazələr\" tənzimləmələrindən \"Əlaqələr\" icazəsini fəallaşdırın.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session, foto çəkmək üçün Kamera icazəsini tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa \"İcazələr\" tənzimləmələrindən \"Kamera\" icazəsini fəallaşdırın.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Səs oxutma xətası!</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Göndərilmədi, təfsilatlar üçün toxunun</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Açar mübadilə mesajı alındı, emal etmək üçün toxunun.</string>
-    <string name="ConversationItem_group_action_left">%1$s qrupu tərk etdi.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Göndərə bilmədik, zəmanətsiz alternativ variant üçün kliklə</string>
     <string name="ConversationItem_unable_to_open_media">Bu medianı aça biləcək tətbiq tapıla bilmədi.</string>
     <string name="ConversationItem_copied_text">%s kopyalandı</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Səs yaza bilmirik!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazında bu linkin öhdəsindən gələ biləcək aplikasiya yoxdur.</string>
     <string name="ConversationActivity_invite_to_open_group">Üzv əlavə et</string>
-    <string name="ConversationActivity_join_open_group">%s - qoşul</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message"><b>%s</b> açıq qrupuna qoşulmaq istədiyinizə əminsiniz?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Session, səsli mesaj göndərmək üçün mikrofona müraciət etməlidir.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session, səsli mesaj göndərmək üçün mikrofona müraciət etməlidir, ancaq icazə birdəfəlik rədd edilib. Zəhmət olmasa \"İcazələr\" tənzimləmələrindən \"Mikrofon\"u fəallaşdırın.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Session, foto və video çəkmək üçün kameraya müraciət etməlidir.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session, foto və video göndərmək üçün anbara müraciət etməlidir.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session, foto və video çəkmək üçün kameraya müraciət etməlidir, ancaq icazə birdəfəlik rədd edilib. Zəhmət olmasa \"İcazələr\" tənzimləmələrindən \"Kamera\"nı fəallaşdırın.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session, foto və ya video çəkmək üçün kameraya müraciət etməlidir.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d / %2$d</string>
-    <string name="ConversationActivity_no_results">Nəticə yoxdur</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d oxunmamış mesaj</item>
-        <item quantity="other">%d oxunmamış mesaj</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Seçilmiş mesaj silinsin?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Qoşma saxlanılır</item>
         <item quantity="other">%1$d qoşma saxlanılır</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Qoşma anbarda saxlanılır...</item>
-        <item quantity="other">%1$d qoşma anbarda saxlanılır...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Gözlənilir...</string>
-    <string name="ConversationFragment_push">Verilənlər (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Silinir</string>
-    <string name="ConversationFragment_deleting_messages">Mesajlar silinir...</string>
-    <string name="ConversationFragment_banning">Qadağa qoyulur</string>
-    <string name="ConversationFragment_banning_user">İstifadəçiyə qadağa qoyulur…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Orijinal mesaj tapılmadı</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Orijinal mesaj artıq mövcud deyil</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Açar mübadilə mesajı</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profil şəkli</string>
     <!-- CustomDefaultPreference -->
@@ -220,8 +192,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Zədəli açar mübadilə
          mesajı alındı!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        Etibarsız protokol versiyası üçün açar mübadilə mesajı alındı.
     </string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Yeni güvənli nömrəsi ilə mesaj alındı. Emal edib görüntüləmək üçün toxunun.</string>
     <string name="SmsMessageRecord_secure_session_reset">Güvənli seansı sıfırladınız.</string>
@@ -724,6 +694,7 @@
     <string name="dialog_open_url_title">URL açılsın?</string>
     <string name="dialog_open_url_explanation">%s URL-sini açmaq istədiyinizə əminsiniz?</string>
     <string name="open">Aç</string>
+    <string name="copy_url">URL-ni kopyala</string>
     <string name="dialog_link_preview_title">Bağlantı önbaxışları fəallaşdırılsın?</string>
     <string name="dialog_link_preview_explanation">Bağlantı önbaxışlarını fəallaşdırmaq, göndərdiyiniz və aldığınız URL-lər üçün önbaxışları göstərəcək. Bu faydalı ola bilər, ancaq Session-un önbaxışları yaratmaq üçün veb saytlarla əlaqə qurmasına ehtiyac yaranacaq. Bağlantı önbaxışlarını istənilən vaxt Session tənzimləmələrində sıradan çıxarda bilərsiniz.</string>
     <string name="dialog_link_preview_enable_button_title">Fəallaşdır</string>
@@ -744,4 +715,10 @@
     <string name="delete_message_for_me">Yalnız mənim üçün sil</string>
     <string name="delete_message_for_everyone">Hər kəs üçün sil</string>
     <string name="delete_message_for_me_and_recipient">Mən və %s üçün sil</string>
+    <string name="activity_settings_survey_feedback">Əks əlaqə/Anket</string>
+    <string name="activity_settings_support">Sazlama jurnalı</string>
+    <string name="dialog_share_logs_title">Jurnalları paylaş</string>
+    <string name="dialog_share_logs_explanation">Problemlərin aradan qaldırılması məqsədilə paylaşmaq üçün tətbiqetmə jurnallarını ixrac etmək istəyirsiniz?</string>
+    <string name="conversation_pin">Sancaqla</string>
+    <string name="conversation_unpin">Sancağı götür</string>
 </resources>

@@ -3,7 +3,6 @@
     <string name="yes">ဟုတ်ကဲ့</string>
     <string name="no">မလုပ်ပါ</string>
     <string name="delete">ဖျက်ပါ</string>
-    <string name="please_wait">ခဏစောင့်ပါ</string>
     <string name="save">သိမ်းသည် </string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">စာအသစ်</string>
@@ -21,7 +20,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">ရုပ်သံကိုဖွင့်ရန်သင့်တော်သည့် app မတွေ့ပါ </string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန် Sessionမှ အဆက်အသွယ်များအား အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ဖိုင်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန် Sessionမှ အဆက်အသွယ်များအား အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ အဆက်အသွယ်များကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ဓါတ်ပုံရိုက်နိုင်ရန် မိမိ ကင်မရာကို Sessionမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">အသံဖွင့် မရပါ!</string>
@@ -35,7 +33,6 @@
     <string name="ContactsCursorLoader_groups">အဖွဲ့များ</string>
     <!-- ConversationItem -->
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">အလဲအလှယ်စာတိုသော့ရရှိပါသည်၊ ဆက်လက်လုပ်ဆောင်ရန် နှိပ်ပါ။ </string>
-    <string name="ConversationItem_group_action_left">%1$s အဖွဲ့မှထွက်သွားသည်။ </string>
     <string name="ConversationItem_unable_to_open_media">ရုပ်သံ ကိုဖွင့်နိုင်သည့် app မရှိပါ။ </string>
     <string name="ConversationItem_copied_text">ကူးပြီးပါပြီ %s </string>
     <!-- ConversationActivity -->
@@ -57,15 +54,8 @@
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ဓါတ်ပုံနှင့် ဗီဒီယိုရိုက်နိုင်ရန် Session မှ မိမိကင်မရာကို အသုံးပြုခွင့်ပေးပါ။</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ဓါတ်ပုံနှင့် ဗီဒီယိုရိုက်နိုင်ရန် Session မှ မိမိကင်မရာကို အသုံးပြုခွင့်ပေးထားရန်လိုသည်။  သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ဓါတ်ပုံနှင့် ဗီဒီယိုရိုက်နိုင်ရန် Session မှ မိမိကင်မရာကို အသုံးပြုခွင့်ပေးထားရန်လိုသည်</string>
-    <!-- ConversationAdapter -->
     <!-- ConversationFragment -->
     <string name="ConversationFragment_save_to_sd_card">သိမ်းမည်လား?</string>
-    <string name="ConversationFragment_pending">ဆိုင်းငံ့ထားသည်...</string>
-    <string name="ConversationFragment_push">ဒေတာ (Session)</string>
-    <string name="ConversationFragment_deleting">ဖျက်နေသည်</string>
-    <string name="ConversationFragment_deleting_messages">စာများဖျက်နေသည်</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">ကီးအလဲအလှယ် စာသား</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">ကိုယ့်ပုံ </string>
     <!-- CustomDefaultPreference -->
@@ -128,7 +118,6 @@
     <string name="Slide_video">ဗီဒီယို</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">အလဲအလှယ်စာတိုသော့ အလွဲများလက်ခံရရှိပါသည်။</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">အကျံုးမဝင်သော protocol ဗားရှင်းအသုံးပြုသော အလဲအလှယ်စာတိုသော့များ လက်ခံရရှိပါသည်။</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">လုံခြုံရေးနံပါတ်အသစ်ပါသောစာ လက်ခံရရှိပါသည်။ ကြည့်ရန်နှိပ်ပါ။</string>
     <string name="SmsMessageRecord_secure_session_reset">သင်သည် လုံခြုံသောဆက်ရှင်များကို ပြန်ညှိလိုက်ပါသည်။</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s သည် လုံခြုံသောဆက်ရှင်ကို ပြန်ညှိလိုက်ပါသည်။</string>

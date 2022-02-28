@@ -44,12 +44,11 @@
 
                 <ImageView
                     android:id="@+id/sessionHeaderImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
                     android:layout_centerInParent="true"
                     android:layout_toStartOf="@+id/searchViewContainer"
                     android:layout_toEndOf="@+id/profileButton"
-                    android:padding="@dimen/medium_spacing"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_session"
                     app:tint="@color/black" />
@@ -162,8 +161,8 @@
             android:id="@+id/newConversationButtonSet"
             android:layout_width="276dp"
             android:layout_height="236dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

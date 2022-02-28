@@ -5,7 +5,6 @@
     <string name="no">Не</string>
     <string name="delete">Выдаліць</string>
     <string name="ban">Заблакаваць</string>
-    <string name="please_wait">Пачакайце, калі ласка...</string>
     <string name="save">Захаваць</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">Новыя паведамленні</string>
@@ -19,9 +18,7 @@
     <!-- ContactsCursorLoader -->
     <!-- ConversationItem -->
     <!-- ConversationActivity -->
-    <!-- ConversationAdapter -->
     <!-- ConversationFragment -->
-    <!-- ConversationListItem -->
     <!-- CreateProfileActivity -->
     <!-- CustomDefaultPreference -->
     <!-- DateUtils -->

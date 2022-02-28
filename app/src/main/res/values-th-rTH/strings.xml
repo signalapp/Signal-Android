@@ -3,7 +3,6 @@
     <string name="yes">ใช่</string>
     <string name="no">ไม่</string>
     <string name="delete">ลบ</string>
-    <string name="please_wait">โปรดรอ...</string>
     <string name="save">บันทึก</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">ข้อความใหม่</string>
@@ -27,7 +26,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับสื่อที่เลือก</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียงได้ Session ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อได้ Session ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูปได้ Session ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">เกิดข้อผิดพลาดในการเล่นเสียง</string>
@@ -42,7 +40,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">การส่งล้มเหลว แตะเพื่อดูรายละเอียด</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">ได้รับข้อความแลกเปลี่ยนคีย์ แตะเพื่อประมวลผล</string>
-    <string name="ConversationItem_group_action_left">%1$s ได้ออกจากกลุ่ม</string>
     <string name="ConversationItem_click_to_approve_unencrypted">การส่งล้มเหลว แตะเพื่อกลับไปใช้วิธีที่ไม่ปลอดภัยแทน</string>
     <string name="ConversationItem_unable_to_open_media">ไม่พบแอปที่สามารถเปิดสื่อนี้</string>
     <string name="ConversationItem_copied_text">คัดลอกแล้ว %s</string>
@@ -66,10 +63,6 @@
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">อนุญาต Session ให้ใช้กล้องเพื่อถ่ายรูปและวิดีโอ</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">เพื่อที่จะถ่ายรูปหรือวิดีโอได้ Session ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session ต้องได้รับอนุญาตให้เข้าถึงกล้องเพื่อถ่ายรูปและวิดีโอ</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="other">%d ข้อความที่ยังไม่ได้อ่าน</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="other">ลบข้อความที่เลือกหรือไม่</item>
@@ -87,17 +80,6 @@
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="other">บันทึกไฟล์แนบแล้ว %1$d</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="other">บันทึกไฟล์แนบไปยังที่เก็บข้อมูลแล้ว %1$d...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">รอดำเนินการ...</string>
-    <string name="ConversationFragment_push">ข้อมูล (Session)</string>
-    <string name="ConversationFragment_deleting">กำลังลบ</string>
-    <string name="ConversationFragment_deleting_messages">กำลังลบข้อความ...</string>
-    <string name="ConversationFragment_quoted_message_not_found">ไม่พบข้อความดั้งเดิม</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">ข้อความดั้งเดิมไม่มีอยู่แล้ว</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนคีย์</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">รูปโปรไฟล์</string>
     <!-- CustomDefaultPreference -->
@@ -169,8 +151,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">ได้รับข้อความแลกเปลี่ยน
         คีย์ที่เสียหาย
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        ได้รับข้อความแลกเปลี่ยนคีย์ซึ่งใช้โปรโตคอลเวอร์ชันที่ไม่ถูกต้อง
     </string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">ได้รับข้อความที่มีรหัสความปลอดภัยชุดใหม่ แตะเพื่อประมวลผลและแสดง</string>
     <string name="SmsMessageRecord_secure_session_reset">คุณได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>

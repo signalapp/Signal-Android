@@ -5,7 +5,6 @@
     <string name="no">No</string>
     <string name="delete">Suprimeix</string>
     <string name="ban">Bloca</string>
-    <string name="please_wait">Espereu, si us plau...</string>
     <string name="save">Desa</string>
     <string name="note_to_self">Notifica-m\'ho</string>
     <string name="version_s">Versió %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">No s\'ha trobat cap aplicació compatible.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">El Session necessita el permís de l\'emmagatzematge per tal d\'adjuntar fotografies, vídeos o àudio, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'emmagatzematge.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">El Session necessita el permís dels contactes per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">El Session necessita el permís de la càmera per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi la càmera.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">S\'ha produït un error en reproduir l\'àudio.</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Ha fallat l\'enviament. Toqueu per a saber-ne més</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">S\'ha rebut el missatge de l\'intercanvi de la clau, toqueu per a processar-lo.</string>
-    <string name="ConversationItem_group_action_left">%1$s ha abandonat el grup.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Ha fallat l\'enviament. Toqueu per al mode no segur.</string>
     <string name="ConversationItem_unable_to_open_media">No s\'ha trobat una aplicació que pugui obrir aquest fitxer.</string>
     <string name="ConversationItem_copied_text">S\'ha copiat %s</string>
@@ -77,21 +74,12 @@
     <string name="ConversationActivity_unable_to_record_audio">No s\'ha pogut enregistrar l\'àudio.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hi ha cap aplicació que pugui obrir aquest enllaç.</string>
     <string name="ConversationActivity_invite_to_open_group">Afegeix membres</string>
-    <string name="ConversationActivity_join_open_group">Uneix-t\'hi %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Estàs segur que vols unir-te el grup obert <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Per enviar missatges d\'àudio, permeteu que el Session tingui accés al micròfon.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">El Session necessita el permís del micròfon per tal d\'enviar missatges d\'àudio, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi el micròfon.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Per captar fotografies i vídeos, permeteu que el Session tingui accés a la càmera.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">El Session necessita el permís de la càmera per tal de fer fotografies i vídeos, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi la càmera.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">El Session necessita el permís de la càmera per fer fotografies i vídeos.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d de %2$d</string>
-    <string name="ConversationActivity_no_results">No hi ha cap resultat.</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d missatge sense llegir</item>
-        <item quantity="other">%d missatges sense llegir</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Voleu suprimir el missatge seleccionat?</item>
@@ -115,22 +103,6 @@
         <item quantity="one">S\'està desant el fitxer</item>
         <item quantity="other">S\'estan desant els %1$d fitxers</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">S\'està desant el fitxer a l\'emmagatzematge...</item>
-        <item quantity="other">S\'estan desant els %1$d fitxers a l\'emmagatzematge...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">S\'està esperant...</string>
-    <string name="ConversationFragment_push">Dades (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Suprimint</string>
-    <string name="ConversationFragment_deleting_messages">Suprimint missatges...</string>
-    <string name="ConversationFragment_banning">Blocant</string>
-    <string name="ConversationFragment_banning_user">Blocant usuari…</string>
-    <string name="ConversationFragment_quoted_message_not_found">No s\'ha trobat el missatge original.</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">El missatge original ja no està disponible.</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Foto del perfil</string>
     <!-- CustomDefaultPreference -->
@@ -216,7 +188,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">S\'ha rebut un missatge corromput
 d\'intercanvi de claus!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no vàlida.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">S\'ha rebut un missatge amb un número de seguretat nou. Toqueu per processar-lo i mostrar-lo.</string>
     <string name="SmsMessageRecord_secure_session_reset">Heu restablit la sessió segura.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s ha restablit la sessió segura.</string>

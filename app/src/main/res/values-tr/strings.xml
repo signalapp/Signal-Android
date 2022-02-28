@@ -5,7 +5,6 @@
     <string name="no">Hayır</string>
     <string name="delete">Sil</string>
     <string name="ban">Yasakla</string>
-    <string name="please_wait">Lütfen bekleyin...</string>
     <string name="save">Kaydet</string>
     <string name="note_to_self">Kendime Not</string>
     <string name="version_s">Sürüm %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Medya seçebilecek uygulama bulunamıyor.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session, fotoğraflar, videolar, veya ses ekleyebilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session, iletişim bilgilerini eklemek için Kişiler iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kişiler\"i etkinleştirin.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session, fotoğraf çekmek için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Ses oynatılırken hata!</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Gönderme başarısız, ayrıntılar için dokunun</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Anahtar takas iletisi alındı, işlemek için dokunun.</string>
-    <string name="ConversationItem_group_action_left">%1$s gruptan ayrıldı.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Gönderme başarısız oldu, şifresiz göndermek için dokunun</string>
     <string name="ConversationItem_unable_to_open_media">Bu medyayı açabilen bir uygulama bulunamadı.</string>
     <string name="ConversationItem_copied_text">%s kopyalandı</string>
@@ -64,7 +61,7 @@
     <string name="ConversationActivity_message">İleti</string>
     <string name="ConversationActivity_compose">Oluştur</string>
     <string name="ConversationActivity_muted_until_date">%1$s\'e kadar sessiz</string>
-    <string name="ConversationActivity_muted_forever">Muted</string>
+    <string name="ConversationActivity_muted_forever">Sessize alındı</string>
     <string name="ConversationActivity_member_count">%1$d üye</string>
     <string name="ConversationActivity_open_group_guidelines">Topluluk İlkeleri</string>
     <string name="ConversationActivity_invalid_recipient">Geçersiz alıcı!</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Ses kaydedilemedi!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu bağlantıyı işleyebilecek uygulama bulunmamaktadır.</string>
     <string name="ConversationActivity_invite_to_open_group">Üye ekle</string>
-    <string name="ConversationActivity_join_open_group">%s\'e katıl</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message"><b>%s</b> açık gurubuna katılmak istediğinize emin misiniz?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Sesli ileti göndermek için Session\'in mikrofonunuza erişmesine izin verin.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session, sesli iletiler göndermek için Mikrofon iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Mikrofon\"u etkinleştirin.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotoğraf veya video çekmek için, Session\'in kameraya erişmesine izin verin.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session, fotoğraf ve video göndermek için depolama erişimine ihtiyaç duyar.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session, fotoğraf veya video çekmek için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session fotoğraf veya video çekebilmek için kamera erişimine ihtiyaç duyar</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d / %2$d</string>
-    <string name="ConversationActivity_no_results">Sonuç yok</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d okunmamış ileti</item>
-        <item quantity="other">%d okunmamış ileti</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Seçilen iletileri sil?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Eklenti kaydediliyor</item>
         <item quantity="other">%1$d eklenti kaydediliyor</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Eklenti hafızaya kaydediliyor...</item>
-        <item quantity="other">%1$d eklenti hafızaya kaydediliyor...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Beklemede...</string>
-    <string name="ConversationFragment_push">Veri (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Siliniyor</string>
-    <string name="ConversationFragment_deleting_messages">İletiler siliniyor...</string>
-    <string name="ConversationFragment_banning">Yasaklama</string>
-    <string name="ConversationFragment_banning_user">Kullanıcı Yasaklanıyor...</string>
-    <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profil fotoğrafı</string>
     <!-- CustomDefaultPreference -->
@@ -212,7 +184,7 @@
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Bu kişinin engellemesini kaldır?</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bu kişiden gelen iletileri ve aramaları almak bir kez daha mümkün olacak.</string>
     <string name="RecipientPreferenceActivity_unblock">Engeli kaldır</string>
-    <string name="RecipientPreferenceActivity_notification_settings">Notification settings</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Bildirim ayarları</string>
     <!-- Slide -->
     <string name="Slide_image">Görüntü</string>
     <string name="Slide_audio">Ses</string>
@@ -220,7 +192,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Bozulmuş anahtar takas
 iletisi alındı!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Yeni güvenlik numarası ile ileti alındı. İşlemek ve görüntülemek için dokunun.</string>
     <string name="SmsMessageRecord_secure_session_reset">Güvenli oturumu sıfırladınız.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s güvenli oturumu sıfırladı.</string>
@@ -404,7 +375,7 @@ iletisi alındı!</string>
     <string name="arrays__mute_for_one_day">1 günlüğüne sustur</string>
     <string name="arrays__mute_for_seven_days">7 günlüğüne sustur</string>
     <string name="arrays__mute_for_one_year">1 yıllığına sustur</string>
-    <string name="arrays__mute_forever">Mute forever</string>
+    <string name="arrays__mute_forever">Sonsuza kadar sessiz</string>
     <string name="arrays__settings_default">Varsayılan ayarlar</string>
     <string name="arrays__enabled">Etkin</string>
     <string name="arrays__disabled">Devre dışı</string>
@@ -573,7 +544,7 @@ iletisi alındı!</string>
     <string name="view_fake_chat_bubble_4">Gelişmiş anonim yönlendirme ve uçtan uca şifreleme teknolojilerinin bir kombinasyonunu kullan.</string>
     <string name="view_fake_chat_bubble_5">Arkadaşlar, arkadaşlarının güvenliği ihlal edilmiş mesajlaşma programlarını kullanmasına izin vermez. Rica ederim.</string>
     <string name="activity_register_title">Yeni Session kimliğinize merhaba deyin.</string>
-    <string name="activity_register_explanation">Oturum Kimliğiniz, kişilerin Session\'da sizinle iletişim kurmak için kullanabileceği benzersiz adrestir. Gerçek kimliğinizle hiçbir bağlantısı olmadan, Oturum Kimliğiniz tasarım gereği tamamen anonim ve özeldir.</string>
+    <string name="activity_register_explanation">Session Kimliğiniz, kişilerin Session\'da sizinle iletişim kurmak için kullanabileceği benzersiz adrestir. Gerçek kimliğinizle hiçbir bağlantısı olmadan, Session Kimliğiniz tasarım gereği tamamen anonim ve özeldir.</string>
     <string name="activity_restore_title">Hesabınızı geri yükleyin</string>
     <string name="activity_restore_explanation">Hesabınızı geri yüklemek için kaydolduğunuzda size verilen kurtarma ifadesini girin.</string>
     <string name="activity_restore_seed_edit_text_hint">Kurtarma ifadenizi girin</string>
@@ -607,13 +578,13 @@ iletisi alındı!</string>
     <string name="activity_path_learn_more_button_title">Fazlasını Öğrenin</string>
     <string name="activity_path_resolving_progress">Çözümleniyor…</string>
     <string name="activity_create_private_chat_title">Yeni Oturum</string>
-    <string name="activity_create_private_chat_enter_session_id_tab_title">Oturum Kimliğini Girin</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Session Kimliğini Girin</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">QR Kodunu Tara</string>
     <string name="activity_create_private_chat_scan_qr_code_explanation">Bir oturumu başlatmak için bir kullanıcının QR kodunu tarayın. QR kodları, hesap ayarlarındaki QR kodu simgesine dokunarak bulunabilir.</string>
-    <string name="fragment_enter_public_key_edit_text_hint">Oturum kimliğini veya ONS adını girin</string>
-    <string name="fragment_enter_public_key_explanation">Kullanıcılar, hesap ayarlarına gidip \"Oturum Kimliğini Paylaş\"a dokunarak veya QR kodlarını paylaşarak Oturum Kimliklerini paylaşabilirler.</string>
-    <string name="fragment_enter_public_key_error_message">Lütfen oturum kimliğini veya ONS adını kontrol edin ve tekrar deneyin.</string>
-    <string name="fragment_scan_qr_code_camera_access_explanation">Oturumun QR kodlarını taramak için kamera erişimine ihtiyacı var</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Session kimliğini veya ONS adını girin</string>
+    <string name="fragment_enter_public_key_explanation">Kullanıcılar, hesap ayarlarına gidip \"Session Kimliğini Paylaş\"a dokunarak veya QR kodlarını paylaşarak Session Kimliklerini paylaşabilirler.</string>
+    <string name="fragment_enter_public_key_error_message">Lütfen Session kimliğini veya ONS adını kontrol edin ve tekrar deneyin.</string>
+    <string name="fragment_scan_qr_code_camera_access_explanation">Session’ın QR kodlarını taramak için kamera erişimine ihtiyacı var</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Kameraya erişim izni ver</string>
     <string name="activity_create_closed_group_title">Yeni Kapalı Grup</string>
     <string name="activity_create_closed_group_edit_text_hint">Yeni grup adı girin</string>
@@ -710,7 +681,7 @@ iletisi alındı!</string>
     <string name="activity_pn_mode_fast_mode_explanation">Google\'ın bildirim sunucularını kullanarak yeni iletilerden güvenilir ve anında haberdar olacaksınız.</string>
     <string name="activity_pn_mode_slow_mode_explanation">Session ara sıra arka planda yeni mesajları kontrol eder.</string>
     <string name="fragment_recovery_phrase_title">Kurtarma Sözcük Grubu</string>
-    <string name="activity_prompt_passphrase_session_locked">Oturum kilitli</string>
+    <string name="activity_prompt_passphrase_session_locked">Session kilitli</string>
     <string name="activity_prompt_passphrase_tap_to_unlock">Açmak için dokun</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Bir kullanıcı adı girin</string>
     <string name="invalid_public_key">Geçersiz ortak anahtar</string>
@@ -722,8 +693,9 @@ iletisi alındı!</string>
     <string name="dialog_open_url_title">URL açılsın mı?</string>
     <string name="dialog_open_url_explanation">%s açmak istediğinizden emin misiniz?</string>
     <string name="open">Aç</string>
+    <string name="copy_url">Bağlantıyı kopyala</string>
     <string name="dialog_link_preview_title">Bağlantı Önizlemeleri Etkinleştirilsin mi?</string>
-    <string name="dialog_link_preview_explanation">Bağlantı önizlemelerini etkinleştirmek, gönderdiğiniz ve aldığınız URL\'lerin önizlemelerini gösterir. Bu yararlı olabilir, ancak Oturum\'un önizleme oluşturmak için bağlantılı web siteleriyle iletişim kurması gerekir. Bağlantı önizlemelerini her zaman Session ayarlarından devre dışı bırakabilirsiniz.</string>
+    <string name="dialog_link_preview_explanation">Bağlantı önizlemelerini etkinleştirmek, gönderdiğiniz ve aldığınız URL\'lerin önizlemelerini gösterir. Bu yararlı olabilir, ancak Session’ın önizleme oluşturmak için bağlantılı web siteleriyle iletişim kurması gerekir. Bağlantı önizlemelerini her zaman Session ayarlarından devre dışı bırakabilirsiniz.</string>
     <string name="dialog_link_preview_enable_button_title">Etkinleştir</string>
     <string name="dialog_download_title">Güven %s?</string>
     <string name="dialog_download_explanation">%s tarafından gönderilen medyayı indirmek istediğinizden emin misiniz?</string>
@@ -736,10 +708,16 @@ iletisi alındı!</string>
     <string name="dialog_send_seed_title">Uyarı</string>
     <string name="dialog_send_seed_explanation">Bu sizin kurtarma ifadenizdir. Birine gönderirseniz, hesabınızda tam erişime sahip olurlar.</string>
     <string name="dialog_send_seed_send_button_title">Gönder</string>
-    <string name="notify_type_all">All</string>
-    <string name="notify_type_mentions">Mentions</string>
-    <string name="deleted_message">This message has been deleted</string>
-    <string name="delete_message_for_me">Delete just for me</string>
-    <string name="delete_message_for_everyone">Delete for everyone</string>
-    <string name="delete_message_for_me_and_recipient">Delete for me and %s</string>
+    <string name="notify_type_all">Hepsi</string>
+    <string name="notify_type_mentions">Etiketler</string>
+    <string name="deleted_message">Bu mesaj silindi</string>
+    <string name="delete_message_for_me">Sadece benim için sil</string>
+    <string name="delete_message_for_everyone">Herkesten sil</string>
+    <string name="delete_message_for_me_and_recipient">Ben ve %s için sil</string>
+    <string name="activity_settings_survey_feedback">Geribildirim/Anket</string>
+    <string name="activity_settings_support">Hata Ayıklama Raporu</string>
+    <string name="dialog_share_logs_title">Kayıtları Paylaş</string>
+    <string name="dialog_share_logs_explanation">Sorun giderme amacıyla paylaşabilmek için uygulama kayıtlarını dışa aktarmak ister misiniz?</string>
+    <string name="conversation_pin">Sabitle</string>
+    <string name="conversation_unpin">Sabitlemeyi kaldır</string>
 </resources>

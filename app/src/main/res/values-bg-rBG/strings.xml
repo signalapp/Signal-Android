@@ -5,7 +5,6 @@
     <string name="no">Не</string>
     <string name="delete">Изтрий</string>
     <string name="ban">Забрана</string>
-    <string name="please_wait">Моля, изчакайте...</string>
     <string name="save">Запази</string>
     <string name="note_to_self">Бележка за Мен</string>
     <string name="version_s">Версия %s</string>
@@ -33,7 +32,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Неуспешно откриване на папка за избор на файл.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session се нуждае от достъп до вградения диск, за да може да прикачва снимки, видеота или аудио, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Дискове\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session се нуждае от достъп до контактите Ви, за да може да прикачва информация за тях, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Контакти\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session се нуждае от достъп до камерта Ви, за да може да прави снимки, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Грешка при възпроизвеждане на аудио!</string>
@@ -49,7 +47,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Неуспешно изпращане, натиснете за повече информация</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Получи се съобщение за обмяна на ключове, натисни, за да продължиш.</string>
-    <string name="ConversationItem_group_action_left">%1$s напусна групата.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Неуспешно изпращане, натиснете за изпращане по несигурен начин</string>
     <string name="ConversationItem_unable_to_open_media">Неуспешно откриване на приложение за отваряне на този файл.</string>
     <string name="ConversationItem_copied_text">%s e копирано</string>
@@ -72,20 +69,13 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Размерът на прикачения файл надминава допустимия лимит за типа съобщение, който изпращате.</string>
     <string name="ConversationActivity_unable_to_record_audio">Не може да бъде записано аудио!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нямате инсталирано приложение, което да може да използва тази препратка.</string>
-    <string name="ConversationActivity_join_open_group">Присъединяване %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Сигурни ли сте, че искате да се присъедините към <b>%s</b> отворената група?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">За да изпратите аудио съобщение, разрешете достъпа на Session до микрофона.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session се нуждае от достъп до микрофона Ви, за да може да изпраща аудио съобщения, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Микрофон\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">За прави снимки и видеота, Session се нуждае от достъп до камерта Ви.</string>
+    <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session се нуждае от достъп до файловете Ви за да пращате снимки и видеа.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session се нуждае от достъп до камерта Ви, за да може да прави снимки или видеота, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session се нуждае от достъп до камерата, за да прави снимки и видеота</string>
     <string name="ConversationActivity_search_position">%1$d от %2$d</string>
-    <string name="ConversationActivity_no_results">Няма резултати</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d непрочетено съобщение</item>
-        <item quantity="other">%d непрочетени съобщения</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Изтриване на избраното съобщение?</item>
@@ -108,18 +98,6 @@
         <item quantity="one">Запазване на прикачения файл</item>
         <item quantity="other">Запазване на %1$d прикачени файла</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Запазване на прикачения файл в хранилището...</item>
-        <item quantity="other">Запазване на %1$d прикачени файла в хранилището...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Предстоящ...</string>
-    <string name="ConversationFragment_push">Данни (Session)</string>
-    <string name="ConversationFragment_deleting">Изтриване</string>
-    <string name="ConversationFragment_deleting_messages">Изтриване на съобщения...</string>
-    <string name="ConversationFragment_quoted_message_not_found">Оригиналното съобщение не е открито</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Оригиналното съобщение вече не е налично</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Съобщение за Изменя на ключожете</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Снимка на профила</string>
     <!-- CustomDefaultPreference -->
@@ -205,7 +183,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Съобщението за обмяна на ключ
 е объркано!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Съобщението за обмяна на ключа е с грешна версия на протокола.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Получихте съобщение с нови числа за сигурност. Натиснете, за да ги видите и обработите.</string>
     <string name="SmsMessageRecord_secure_session_reset">Вие рестартирахте сигурната сесия.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s рестартира сигурната сесия.</string>

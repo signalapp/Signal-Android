@@ -5,7 +5,6 @@
     <string name="no">Nee</string>
     <string name="delete">Skrap</string>
     <string name="ban">Verbod</string>
-    <string name="please_wait">Wag asseblief...</string>
     <string name="save">Stoor</string>
     <string name="note_to_self">Nota aan jouself</string>
     <string name="version_s">Weergawe %s</string>
@@ -35,11 +34,7 @@
     <string name="ConversationActivity_select_contact_info">Kies kontak besonderhede</string>
     <string name="ConversationActivity_message">Boodskap</string>
     <string name="ConversationActivity_leave_group">Verlaat groep?</string>
-    <!-- ConversationAdapter -->
     <!-- ConversationFragment -->
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <!-- ConversationListItem -->
     <!-- CreateProfileActivity -->
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_none">Geen</string>

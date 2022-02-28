@@ -5,7 +5,6 @@
     <string name="no">Nein</string>
     <string name="delete">Löschen</string>
     <string name="ban">Sperren</string>
-    <string name="please_wait">Bitte warten …</string>
     <string name="save">Speichern</string>
     <string name="note_to_self">Notiz an mich</string>
     <string name="version_s">Version %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Keine App zum Auswählen von Medien gefunden.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session benötigt die Berechtigung »Speicher« für das Anhängen von Fotos, Videos oder Audiodateien, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session benötigt die Berechtigung »Kontakte« für das Anhängen von Kontaktinformationen, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Fehler bei der Audiowiedergabe</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Senden fehlgeschlagen, für Details tippen</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Schlüsselaustausch-Nachricht empfangen. Tippen zum Verarbeiten.</string>
-    <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Senden fehlgeschlagen, tippen für ungesicherte Alternative</string>
     <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen dieser Medieninhalte gefunden.</string>
     <string name="ConversationItem_copied_text">%s kopiert</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Es ist keine App verfügbar, um diesem Link auf deinem Gerät zu folgen.</string>
     <string name="ConversationActivity_invite_to_open_group">Mitglieder hinzufügen</string>
-    <string name="ConversationActivity_join_open_group">%s beitreten</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Bist du sicher, dass du der offenen Gruppe <b>%s</b> beitreten möchtest?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Erlaube Session zum Versenden von Sprachnachrichten Zugriff auf dein Mikrofon.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session benötigt die Berechtigung »Mikrofon« für das Senden von Sprachnachrichten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon«.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Erlaube Session zum Aufnehmen von Fotos und Videos Zugriff auf deine Kamera.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session benötigt Speicherzugriff, um Fotos und Videos zu versenden.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos oder Videos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session benötigt die Berechtigung »Kamera«, um Fotos oder Videos aufzunehmen.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d von %2$d</string>
-    <string name="ConversationActivity_no_results">Keine Ergebnisse</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d ungelesene Nachricht</item>
-        <item quantity="other">%d ungelesene Nachrichten</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Ausgewählte Nachricht löschen?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Anhang speichern</item>
         <item quantity="other">%1$d Anhänge speichern</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Anhang wird im Gerätespeicher gespeichert …</item>
-        <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Ausstehend...</string>
-    <string name="ConversationFragment_push">Daten (Sitzung)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Wird gelöscht</string>
-    <string name="ConversationFragment_deleting_messages">Nachrichten werden gelöscht …</string>
-    <string name="ConversationFragment_banning">Sperren</string>
-    <string name="ConversationFragment_banning_user">Sperre Benutzer…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Originalnachricht nicht gefunden</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Originalnachricht nicht mehr verfügbar</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profilbild</string>
     <!-- CustomDefaultPreference -->
@@ -219,7 +191,6 @@
     <string name="Slide_video">Video</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Fehlerhafte Schlüsselaustausch-Nachricht empfangen</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Nachricht mit neuer Sicherheitsnummer empfangen. Zum Verarbeiten und Anzeigen antippen.</string>
     <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet</string>
@@ -721,6 +692,7 @@
     <string name="dialog_open_url_title">URL öffnen?</string>
     <string name="dialog_open_url_explanation">Bist du sicher, dass du %s öffnen möchtest?</string>
     <string name="open">Öffnen</string>
+    <string name="copy_url">Link kopieren</string>
     <string name="dialog_link_preview_title">Linkvorschau aktivieren?</string>
     <string name="dialog_link_preview_explanation">Wenn du die Linkvorschau aktivierst, werden Vorschauen für URLs angezeigt, die du sendest und empfängst. Dies kann nützlich sein, aber Session muss die verlinkten Webseiten kontaktieren, um Vorschauen zu generieren. Du kannst die Linkvorschau jederzeit in den Einstellungen von Session deaktivieren.</string>
     <string name="dialog_link_preview_enable_button_title">Aktivieren</string>
@@ -741,4 +713,10 @@
     <string name="delete_message_for_me">Nur für mich löschen</string>
     <string name="delete_message_for_everyone">Für alle löschen</string>
     <string name="delete_message_for_me_and_recipient">Für mich und %s löschen</string>
+    <string name="activity_settings_survey_feedback">Feedback/Umfrage</string>
+    <string name="activity_settings_support">Debug-Protokoll</string>
+    <string name="dialog_share_logs_title">Logs teilen</string>
+    <string name="dialog_share_logs_explanation">Möchten Sie Ihre Anwendungsprotokolle exportieren, um sie später zur Fehlerbehebung teilen zu können?</string>
+    <string name="conversation_pin">Anheften</string>
+    <string name="conversation_unpin">Abheften</string>
 </resources>

@@ -3,7 +3,6 @@
     <string name="yes">Ari</string>
     <string name="no">Mana</string>
     <string name="delete">Pichana</string>
-    <string name="please_wait">Ashata shuyapay...</string>
     <string name="save">Allichina</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">Mushuk chaski</string>
@@ -29,7 +28,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Kayta rikuchinkapakka mana aplicacionta taririnchu.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session ari nichun munanmi shuyuman, uyayman, shuyukuyurikmanpash yaykunkapak, shinapash mana arinirishkachu.  \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Almacenamiento\" paskarichun.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session ari nichun munanmi kikinpa yupaymashikunapaman yaykunkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Contactos\" paskarichun.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session ari nichun munanmi kikinpa shuyullukchikman yaykunkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">¡Uyayta mana uyay usharinchu!</string>
@@ -44,7 +42,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Mana rirkachu, ashtawan yachankapak munashpaka kaypi llapipay</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Paskachik killkashkata ranti chaskirkanki, katinkapakka kaypi llapipay.</string>
-    <string name="ConversationItem_group_action_left">%1$s tantanakuy mashikunamanta llukshirkami.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Mana rirkachu, ashtawan yachankapak munashpaka kaypi llapipay</string>
     <string name="ConversationItem_unable_to_open_media">Kayta paskankapakka mana aplicacionta taririnchu.</string>
     <string name="ConversationItem_copied_text">Chayshinayarka %s</string>
@@ -68,12 +65,6 @@
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Shuyuta, shinallata shuyukuyurikta hapinkapakka, shuyullukchikman Sessionta yaykuchun sakipay.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session ari nichun munanmi kikinpa shuyullukchikman yaykunkapak, shuyukunata, shuyukuyurikkunatapash llukchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session ari nichun munanmi shuyullukchikman yaykunkapak, shuyuta shinallata shuyukurikta llukchinkapak.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d chaski mana killkakatishka</item>
-        <item quantity="other">%d chaskikuna mana killkakatishka</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Kay chaskita pichankapak munankichu.</item>
@@ -96,18 +87,6 @@
         <item quantity="one">Allichirirka kimichishkakuna.</item>
         <item quantity="other">Allichirikun %1$d kimichishkakunata</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Kimichichishkata allichik ukupi allichirikun</item>
-        <item quantity="other">%1$d kimichichishkakunata  allichik ukupi allichirikun...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Paktarinara...</string>
-    <string name="ConversationFragment_push">Tukuywillay (Session)</string>
-    <string name="ConversationFragment_deleting">Pichanakunchik</string>
-    <string name="ConversationFragment_deleting_messages">Chaskita pichanakunchik...</string>
-    <string name="ConversationFragment_quoted_message_not_found">Mana kallari chaskita taririnchu</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Kallari chaski ña mana tiyanchu</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Ranti paskachik chaski</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Ñawishuyu</string>
     <!-- CustomDefaultPreference -->
@@ -178,7 +157,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Shuk mana alli chaski chayamurka 
 ranti pakalla yupaykunamanta</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashka.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Mushuk chaski chayamurka, mushuk pakalla yupaywan. Llapipay katichinkapak, shinallata rikuchinkapakpash.</string>
     <string name="SmsMessageRecord_secure_session_reset">Kutinlla kallarirkanki </string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s kutinlla kallarirkanki</string>

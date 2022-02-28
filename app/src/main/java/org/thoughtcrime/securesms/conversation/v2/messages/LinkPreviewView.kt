@@ -7,7 +7,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
@@ -16,7 +15,6 @@ import network.loki.messenger.databinding.ViewLinkPreviewBinding
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.ModalUrlBottomSheet
 import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
-import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.ImageSlide
@@ -26,7 +24,6 @@ class LinkPreviewView : LinearLayout {
     private lateinit var binding: ViewLinkPreviewBinding
     private val cornerMask by lazy { CornerMask(this) }
     private var url: String? = null
-    lateinit var bodyTextView: TextView
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -87,11 +84,6 @@ class LinkPreviewView : LinearLayout {
         if (previewRect.contains(hitRect)) {
             openURL()
             return
-        }
-        // intersectedModalSpans should only be a list of one item
-        val hitSpans = bodyTextView.getIntersectedModalSpans(hitRect)
-        hitSpans.iterator().forEach { span ->
-            span.onClick(bodyTextView)
         }
     }
 

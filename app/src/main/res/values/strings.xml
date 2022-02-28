@@ -39,7 +39,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session requires the Storage permission in order to attach photos, videos, or audio, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session requires Contacts permission in order to attach contact information, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session requires the Camera permission in order to take photos, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
 
     <!-- AudioSlidePlayer -->
@@ -60,7 +59,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Send failed, tap for details</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Received key exchange message, tap to process.</string>
-    <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Send failed, tap for unsecured fallback</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
     <string name="ConversationItem_copied_text">Copied %s</string>
@@ -91,8 +89,6 @@
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
     <string name="ConversationActivity_invite_to_open_group">Add members</string>
-    <string name="ConversationActivity_join_open_group">Join %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Session needs microphone access to send audio messages.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session needs microphone access to send audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
@@ -101,15 +97,7 @@
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session needs camera access to take photos and videos, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session needs camera access to take photos or videos.</string>
 
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d of %2$d</string>
-    <string name="ConversationActivity_no_results">No results</string>
-
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d unread message</item>
-        <item quantity="other">%d unread messages</item>
-    </plurals>
 
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
@@ -135,22 +123,9 @@
         <item quantity="other">Saving %1$d attachments</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage...</item>
-        <item quantity="other">Saving %1$d attachments to storage...</item>
+        <item quantity="one">Saving attachment to storage…</item>
+        <item quantity="other">Saving %1$d attachments to storage…</item>
     </plurals>
-    <string name="ConversationFragment_pending">Pending...</string>
-    <string name="ConversationFragment_push">Data (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Deleting</string>
-    <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
-    <string name="ConversationFragment_banning">Banning</string>
-    <string name="ConversationFragment_banning_user">Banning user…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
-
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Key exchange message</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>
@@ -907,5 +882,8 @@
     <string name="mark_all_as_read">Mark all as read</string>
     <string name="global_search_contacts_groups">Contacts and Groups</string>
     <string name="global_search_messages">Messages</string>
+    <string name="NewConversationButton_SessionTooltip">Direct Message</string>
+    <string name="NewConversationButton_ClosedGroupTooltip">Closed Group</string>
+    <string name="NewConversationButton_OpenGroupTooltip">Open Group</string>
 
 </resources>

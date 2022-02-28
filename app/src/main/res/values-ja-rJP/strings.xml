@@ -4,7 +4,6 @@
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
     <string name="delete">削除</string>
-    <string name="please_wait">お待ち下さい…</string>
     <string name="save">保存</string>
     <string name="note_to_self">自分用メモ</string>
     <string name="version_s">バージョン %s</string>
@@ -31,7 +30,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">ファイルを開くアプリが見つかりません。</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Sessionに写真や動画、音声データを添付するには、ストレージへのアクセスを許可する必要がありますが、無効になっています。アプリ設定から、アプリの権限を選び、ストレージへのアクセス許可を有効にしてください。</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Sessionで連絡先を添付するには、連絡先へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、アプリの権限を選び、連絡先へのアクセス許可を有効にしてください。</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Sessionで写真を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">音声再生中にエラーがありました！</string>
@@ -47,7 +45,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">送信失敗、タップして詳細を見る</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">鍵交換のメッセージを受信しました。タップして手続きを行ってください。</string>
-    <string name="ConversationItem_group_action_left">%1$sがグループを抜けました。</string>
     <string name="ConversationItem_click_to_approve_unencrypted">送信失敗、タップして安全でない通信を行う</string>
     <string name="ConversationItem_unable_to_open_media">このメディアを開けるアプリが見つかりません。</string>
     <string name="ConversationItem_copied_text">%sをコピーしました </string>
@@ -76,21 +73,13 @@
     <string name="ConversationActivity_unable_to_record_audio">録音できません！</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">このリンクを扱えるアプリがインストールされていません</string>
     <string name="ConversationActivity_invite_to_open_group">メンバーを追加</string>
-    <string name="ConversationActivity_join_open_group">%sに参加</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message"><b>%s</b>の公開グループに本当に参加しますか?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">音声メッセージを送るには、Sessionのマイクへのアクセスを許可してください。</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Sessionで音声メッセージを添付するには、『マイク』へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『マイク』へのアクセス許可を有効にしてください。</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">写真や動画を撮るには、Sessionのカメラへのアクセスを許可してください。</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">セッションは写真やビデオを送信するためにストレージへのアクセスが必要です。</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Sessionで写真や動画を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Sessionで写真や動画を撮るには、カメラへのアクセス許可が必要です。</string>
-    <string name="ConversationActivity_quoted_contact_message">%2$s%1$s</string>
     <string name="ConversationActivity_search_position">%1$d / %2$d</string>
-    <string name="ConversationActivity_no_results">見つかりません</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="other">%d通の未読メッセージ</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="other">選択中のメッセージを削除しますか？</item>
@@ -109,21 +98,6 @@
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="other">%1$d個の添付ファイルを保存</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="other">%1$d個の添付ファイルを外部メモリに保存...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">保留中...</string>
-    <string name="ConversationFragment_push">データ (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">削除中</string>
-    <string name="ConversationFragment_deleting_messages">メッセージを削除しています...</string>
-    <string name="ConversationFragment_banning">バン中</string>
-    <string name="ConversationFragment_banning_user">ユーザーをバン中…</string>
-    <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">プロフィール画像</string>
     <!-- CustomDefaultPreference -->
@@ -206,7 +180,6 @@
     <string name="Slide_video">動画</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">無効な鍵交換メッセージを受信しました</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">受信した鍵交換メッセージのプロトコルバージョンが無効です</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">新しい安全番号が付いたメッセージを受け取りました。処理や表示を行うにはタップしてください。</string>
     <string name="SmsMessageRecord_secure_session_reset">セキュアセッションを設定し直しました</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%sがセキュアセッションを設定し直しました。</string>

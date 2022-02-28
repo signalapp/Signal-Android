@@ -4,7 +4,6 @@
     <string name="yes">មែន</string>
     <string name="no">ទេ</string>
     <string name="delete">លុប</string>
-    <string name="please_wait">សូមរង់ចាំ...</string>
     <string name="save">រក្សាទុក</string>
     <string name="note_to_self">កំណត់ចំណាំខ្លួនឯង</string>
     <!-- AbstractNotificationBuilder -->
@@ -29,7 +28,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">មិនអាចស្វែងរកកម្មវិធីដើម្បីជ្រើសរើសព័ត៌មាន</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session ទាមទារសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកដើម្បីភ្ជាប់រូបថត វីដេអូ ឬសំឡេង ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់របស់ប្រព័ន្ធ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\" ។</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session ទាមទារសិទ្ធិប្រើប្រាស់បញ្ជីទំនាក់ទំនងដើម្បីភ្ជាប់ព័ត៌មានបញ្ជីទំនាក់ទំនង ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់របស់ប្រព័ន្ធ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"បញ្ជីទំនាក់ទំនង\" ។</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Sessionត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីថតរូប ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"កាមេរ៉ា\"។</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">បញ្ហាការចាក់សំឡេង!</string>
@@ -45,7 +43,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">ផ្ញើបរាជ័យ ចុច សម្រាប់ព័ត៌មានលម្អិត</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">ទទួលបានសារ ផ្លាស់ប្តូរសោរ សូមចុច ដើម្បីដំណើរការ។</string>
-    <string name="ConversationItem_group_action_left">%1$s នាក់បានចាកចេញពីក្រុម។</string>
     <string name="ConversationItem_click_to_approve_unencrypted">ផ្ញើបរាជ័យ ចុច សម្រាប់ជំនួសគ្មានសុវត្ថិភាព</string>
     <string name="ConversationItem_unable_to_open_media">មិនអាចស្វែករកកម្មវិធី ដើម្បីបើកព័ត៌មាននេះទេ។</string>
     <string name="ConversationItem_copied_text">បានចម្លង %s</string>
@@ -72,11 +69,6 @@
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Sessionត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីថតរូប ឬវីដេអូ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"កាមេរ៉ា\"។</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session​ សុំសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីថតរូបភាព ឬវីដេអូ</string>
     <string name="ConversationActivity_search_position">%1$d នៃ%2$d</string>
-    <string name="ConversationActivity_no_results">គ្មានលទ្ធផល</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="other">%d សារមិនទាន់អាន</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="other">លុបសារដែលបានជ្រើសរើស?</item>
@@ -94,17 +86,6 @@
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="other">កំពុងរក្សា %1$d ឯកសារភ្ជាប់</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="other">កំពុងរក្សា %1$d ឯកសារភ្ជាប់ទៅកាន់ថាសផ្ទុក...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">មិនទាន់សម្រេច...</string>
-    <string name="ConversationFragment_push">ទិន្នន័យ (Session)</string>
-    <string name="ConversationFragment_deleting">កំពុងលុប</string>
-    <string name="ConversationFragment_deleting_messages">កំពុងលុបសារ...</string>
-    <string name="ConversationFragment_quoted_message_not_found">រកមិនឃើញសារដើម</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">សារដើមលែងមានទៀតហើយ</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">សារផ្លាស់ប្តូរសោរ</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">រូបថតប្រវត្តិរូប</string>
     <!-- CustomDefaultPreference -->
@@ -186,7 +167,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">បានទទួលសារផ្លាស់ប្តូរ
 សោរមានបញ្ហា!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">ទទួលបានសារផ្លាស់ប្តូរសោរ សម្រាប់កំណែប្រូតូកូលមិនត្រឹមត្រូវ។</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">ទទួលបានសារជាមួយលេខសុវត្ថិភាពថ្មី។ ចុច ដើម្បីដំណើការនិងបង្ហាញ។</string>
     <string name="SmsMessageRecord_secure_session_reset">អ្នកកំណត់ការចូលប្រើប្រាស់សុវត្ថិភាពឡើងវិញ។</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s កំណត់ការចូលប្រើប្រាស់សុវត្ថិភាពឡើងវិញ។</string>

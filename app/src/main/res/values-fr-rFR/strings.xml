@@ -5,7 +5,6 @@
     <string name="no">Non</string>
     <string name="delete">Supprimer</string>
     <string name="ban">Bannir</string>
-    <string name="please_wait">Veuillez patienter…</string>
     <string name="save">Enregistrer</string>
     <string name="note_to_self">Note à mon intention</string>
     <string name="version_s">Version %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session exige l’autorisation « Stockage » afin de joindre des photos, des vidéos ou du contenu audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session exige l’autorisation Contacts afin de joindre des renseignements de contact, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session exige l’autorisation « Appareil photo » afin de prendre des photos, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Appareil photo ».</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Erreur de lecture du fichier audio !</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Échec d’envoi, touchez pour obtenir des détails</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Vous avez reçu un message d’échange de clés. Touchez pour le traiter.</string>
-    <string name="ConversationItem_group_action_left">%1$s a quitté le groupe.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Échec de l’envoi, touchez pour utiliser la solution de rechange non sécurisée</string>
     <string name="ConversationItem_unable_to_open_media">Impossible de trouver une appli pour ouvrir ce média.</string>
     <string name="ConversationItem_copied_text">Copié %s</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Impossible d’enregistrer du son !</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
     <string name="ConversationActivity_invite_to_open_group">Ajouter des membres</string>
-    <string name="ConversationActivity_join_open_group">Rejoindre %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Êtes-vous sûr de vouloir rejoindre le groupe public <b>%s</b> ?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, Session a besoin d’accéder à votre microphone.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session exige l’autorisation Microphone afin d’envoyer des messages audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Microphone ».</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour capturer des photos et des vidéos, autorisez Session à accéder à l’appareil photo.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session a besoin d\'un accès au stockage pour envoyer des photos et des vidéos.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session a besoin de l’autorisation Appareil photo afin de prendre des photos ou des vidéos, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner Autorisations et activer Appareil photo.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session a besoin de l’autorisation Appareil photo pour prendre des photos ou des vidéos</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d de %2$d</string>
-    <string name="ConversationActivity_no_results">Il n’y a aucun résultat</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d message non lu</item>
-        <item quantity="other">%d messages non lus</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Supprimer le message sélectionné ?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Enregistrement de la pièce jointe</item>
         <item quantity="other">Enregistrement de %1$d pièces jointes</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Enregistrement de la pièce jointe dans la mémoire…</item>
-        <item quantity="other">Enregistrement de %1$d pièces jointes dans la mémoire…</item>
-    </plurals>
-    <string name="ConversationFragment_pending">En attente…</string>
-    <string name="ConversationFragment_push">Données (Session)</string>
-    <string name="ConversationFragment_mms">Messagerie multimédia (MMS)</string>
-    <string name="ConversationFragment_sms">Textos (SMS)</string>
-    <string name="ConversationFragment_deleting">Suppression</string>
-    <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
-    <string name="ConversationFragment_banning">Bannissement</string>
-    <string name="ConversationFragment_banning_user">Bannissement de l\'utilisateur…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Message d’échange de clés</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Photo de profil</string>
     <!-- CustomDefaultPreference -->
@@ -219,7 +191,6 @@
     <string name="Slide_video">Vidéo</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Vous avez reçu un message d’échange de clés corrompu !</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Vous avez reçu un message d’échange de clés pour une version de protocole invalide.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Vous avez reçu un message avec un nouveau numéro de sécurité. Touchez pour le traiter et l’afficher.</string>
     <string name="SmsMessageRecord_secure_session_reset">Vous avez réinitialisé la session sécurisée.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s a réinitialisé la session sécurisée.</string>
@@ -721,6 +692,7 @@
     <string name="dialog_open_url_title">Ouvrir l\'URL ?</string>
     <string name="dialog_open_url_explanation">Êtes-vous sûr de vouloir ouvrir %s?</string>
     <string name="open">Ouvrir</string>
+    <string name="copy_url">Copier l\'adresse URL</string>
     <string name="dialog_link_preview_title">Activer les aperçus de liens ?</string>
     <string name="dialog_link_preview_explanation">L\'activation des aperçus de liens affichera des aperçus des URL que vous envoyez et recevez. Cela peut être utile, mais Session devra contacter les sites Web liés pour générer des aperçus. Vous pouvez toujours désactiver les aperçus de liens dans les paramètres de Session.</string>
     <string name="dialog_link_preview_enable_button_title">Activer</string>
@@ -741,4 +713,10 @@
     <string name="delete_message_for_me">Supprimer pour moi uniquement</string>
     <string name="delete_message_for_everyone">Supprimer pour tout le monde</string>
     <string name="delete_message_for_me_and_recipient">Supprimer pour moi et %s</string>
+    <string name="activity_settings_survey_feedback">Retours / Sondage</string>
+    <string name="activity_settings_support">Journal de débogage</string>
+    <string name="dialog_share_logs_title">Partager les logs</string>
+    <string name="dialog_share_logs_explanation">Voulez-vous exporter les logs de votre application pour pouvoir partager pour le dépannage ?</string>
+    <string name="conversation_pin">Code pin</string>
+    <string name="conversation_unpin">Désépingler</string>
 </resources>

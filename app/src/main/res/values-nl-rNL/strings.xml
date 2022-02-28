@@ -5,7 +5,6 @@
     <string name="no">Nee</string>
     <string name="delete">Wissen</string>
     <string name="ban">Verbannen</string>
-    <string name="please_wait">Even geduld…</string>
     <string name="save">Opslaan</string>
     <string name="note_to_self">Notitie aan mezelf</string>
     <string name="version_s">Versie %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session heeft toegang nodig tot de externe opslagruimte om foto\'s, video\'s of audio te kunnen verzenden, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, selecteer \"Toestemmingen\" en schakel \"Opslagruimte\" in.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toegang nodig tot de contacten om contactinformatie in Session weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session heeft toegang nodig tot de camera om foto\'s te kunnen maken, maar deze toegang is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Camera’ in.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Fout bij afspelen van audio!</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Verzenden is mislukt, tik voor details</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik om te verwerken.</string>
-    <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Verzenden is mislukt, tik om onbeveiligd te verzenden</string>
     <string name="ConversationItem_unable_to_open_media">Geen app gevonden waarmee dit bestand geopend kan openen.</string>
     <string name="ConversationItem_copied_text">%s gekopieerd</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Kan audio niet opnemen!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze koppeling te openen.</string>
     <string name="ConversationActivity_invite_to_open_group">Leden toevoegen</string>
-    <string name="ConversationActivity_join_open_group">Deelnemen %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Weet u zeker dat u zich bij de <b>%s</b> open groep wilt aansluiten?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om audioberichten op te nemen, moet je Session toegang geven tot je microfoon.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session heeft toegang nodig tot de microfoon om audioberichten te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ in.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Session toegang tot de camera om foto\'s en video\'s te maken.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Sessie heeft toegang nodig tot de opslag om foto\'s en video\'s te kunnen versturen.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session heeft toegang nodig tot de camera om foto’s en video’s te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session heeft toegang tot de camera nodig om foto’s en video’s te kunnen opnemen</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d van %2$d</string>
-    <string name="ConversationActivity_no_results">Geen resultaten</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d ongelezen bericht</item>
-        <item quantity="other">%d ongelezen berichten</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Geselecteerd bericht wissen?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Bijlage aan het opslaan</item>
         <item quantity="other">%1$d bijlagen aan het opslaan</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Bijlage aan het opslaan naar SD-kaart…</item>
-        <item quantity="other">%1$d bijlagen aan het opslaan naar SD-kaart…</item>
-    </plurals>
-    <string name="ConversationFragment_pending">In afwachting…</string>
-    <string name="ConversationFragment_push">Internet (Session Protocol)</string>
-    <string name="ConversationFragment_mms">Mms (onbeveiligd)</string>
-    <string name="ConversationFragment_sms">Sms (onbeveiligd)</string>
-    <string name="ConversationFragment_deleting">Aan het wissen</string>
-    <string name="ConversationFragment_deleting_messages">Berichten aan het wissen…</string>
-    <string name="ConversationFragment_banning">Aan het verbannen</string>
-    <string name="ConversationFragment_banning_user">Gebruiker aan het verbannen... </string>
-    <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Het oorspronkelijke bericht is niet langer beschikbaar</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
     <!-- CustomDefaultPreference -->
@@ -220,8 +192,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Beschadigd sleuteluitwisselingsbericht
         ontvangen!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocolversie.
     </string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Er is een bericht met een nieuw veiligheidsnummer ontvangen. Tik om te verwerken en te tonen.</string>
     <string name="SmsMessageRecord_secure_session_reset">Je hebt de beveiligde sessie opnieuw ingesteld.</string>
@@ -652,12 +622,16 @@
     <string name="activity_chat_settings_title">Gesprekken</string>
     <string name="preferences_notifications_strategy_category_title">Notificatie strategie</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Gebruik snelle modus</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_summary">U wordt op een op een betrouwbare manier direct op de hoogte gebracht van nieuwe berichten via de notificatieservers van Google.</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Naam wijzigen</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Apparaat ontkoppelen</string>
     <string name="dialog_seed_title">Uw herstel zin</string>
     <string name="dialog_seed_explanation">Dit is uw herstel zin, Hiermee kun je je Sessie-ID herstellen of migreren naar een nieuw apparaat.</string>
     <string name="dialog_clear_all_data_title">Wis alle gegevens</string>
     <string name="dialog_clear_all_data_explanation">Hiermee worden uw berichten, sessies en contacten permanent verwijderd.</string>
+    <string name="dialog_clear_all_data_network_explanation">Wilt u alleen de data op dit apparaat verwijderen, of wilt u uw hele account verwijderen?</string>
+    <string name="dialog_clear_all_data_local_only">Verwijder alleen</string>
+    <string name="dialog_clear_all_data_clear_network">Gehele account</string>
     <string name="activity_qr_code_title">QR-code</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">Bekijk mijn QR-code</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Scan QR-code</string>
@@ -697,6 +671,9 @@
     <string name="activity_backup_restore_passphrase">Wachtwoordzin met 30 tekens</string>
     <string name="activity_link_device_skip_prompt">Dit duurt een tijdje, wilt u het overslaan?</string>
     <string name="activity_link_device_link_device">Koppel een apparaat</string>
+    <string name="activity_link_device_recovery_phrase">Herstel zin</string>
+    <string name="activity_link_device_scan_qr_code">QR-code scannen</string>
+    <string name="activity_link_device_qr_message">Navigeer naar Instellingen → Herstel zin op je andere apparaat om je QR-code te tonen.</string>
     <string name="activity_join_public_chat_join_rooms">Of neem deel aan een van deze...</string>
     <string name="activity_pn_mode_message_notifications">Berichtmeldingen</string>
     <string name="activity_pn_mode_explanation">Er zijn twee manieren waarop de Sessie u op de hoogte kan stellen van nieuwe berichten.</string>
@@ -709,4 +686,39 @@
     <string name="activity_prompt_passphrase_tap_to_unlock">Tik om te ontgrendelen</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Bijnaam invoeren</string>
     <string name="invalid_public_key">Ongeldige publieke sleutel</string>
+    <string name="document">Document</string>
+    <string name="dialog_blocked_title">Deblokkeer %s?</string>
+    <string name="dialog_blocked_explanation">Weet u zeker dat u %s wilt deblokkeren?</string>
+    <string name="dialog_join_open_group_title">Deelnemen %s?</string>
+    <string name="dialog_join_open_group_explanation">Weet u zeker dat u zich bij de %s open groep wilt aansluiten?</string>
+    <string name="dialog_open_url_title">URL openen?</string>
+    <string name="dialog_open_url_explanation">Weet u zeker dat u %s wilt openen?</string>
+    <string name="open">Open</string>
+    <string name="copy_url">Kopieer URL</string>
+    <string name="dialog_link_preview_title">Linkvoorbeeld inschakelen?</string>
+    <string name="dialog_link_preview_explanation">Link previews inschakelen zal previews tonen voor URLs die u verstuurt en ontvangt. Dit kan nuttig zijn, maar Session moet contact opnemen met gekoppelde websites om previews te genereren. U kunt links altijd uitschakelen in de Session’s-instellingen.</string>
+    <string name="dialog_link_preview_enable_button_title">Inschakelen</string>
+    <string name="dialog_download_title">Vertrouw %s?</string>
+    <string name="dialog_download_explanation">Weet je zeker dat je deze media van %s wilt downloaden?</string>
+    <string name="dialog_download_button_title">Download</string>
+    <string name="activity_conversation_blocked_banner_text">%s is geblokkeerd. Deblokkeer ze?</string>
+    <string name="activity_conversation_attachment_prep_failed">Kon bijlage niet voorbereiden voor verzending.</string>
+    <string name="media">Media</string>
+    <string name="UntrustedAttachmentView_download_attachment">Tik om te downloaden%s</string>
+    <string name="message_details_header__error">Error</string>
+    <string name="dialog_send_seed_title">Waarschuwing</string>
+    <string name="dialog_send_seed_explanation">Dit is je herstelzin. Als je het naar iemand stuurt hebben ze volledige toegang tot je account.</string>
+    <string name="dialog_send_seed_send_button_title">Versturen</string>
+    <string name="notify_type_all">Alle</string>
+    <string name="notify_type_mentions">Vermeldingen</string>
+    <string name="deleted_message">Dit bericht is verwijderd</string>
+    <string name="delete_message_for_me">Verwijder alleen voor mij</string>
+    <string name="delete_message_for_everyone">Verwijder voor iedereen</string>
+    <string name="delete_message_for_me_and_recipient">Verwijderen voor mij en %s</string>
+    <string name="activity_settings_survey_feedback">Tips / Vragen</string>
+    <string name="activity_settings_support">Foutopsporingslogboek</string>
+    <string name="dialog_share_logs_title">Deel logs</string>
+    <string name="dialog_share_logs_explanation">Wil je je applicatie logboeken exporteren om te kunnen delen bij het oplossen van problemen?</string>
+    <string name="conversation_pin">Vastzetten</string>
+    <string name="conversation_unpin">Losmaken</string>
 </resources>

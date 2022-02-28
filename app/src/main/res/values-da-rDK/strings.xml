@@ -5,7 +5,6 @@
     <string name="no">Nej</string>
     <string name="delete">Slet</string>
     <string name="ban">Udeluk</string>
-    <string name="please_wait">Vent venligst...</string>
     <string name="save">Gem</string>
     <string name="note_to_self">Egen note</string>
     <string name="version_s">Version %s</string>
@@ -21,7 +20,7 @@
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Slet alle gamle beskeder nu?</string>
     <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="one">Dette vil øjeblikkeligt reducere alle samtaler til den nyeste besked.</item>
-        <item quantity="other">Dette vil øjeblikkeligt reducere alle samtaler til de %d nyeste beskeder</item>
+        <item quantity="other">Dette vil øjeblikkeligt reducere alle samtaler til de %d nyeste beskeder.</item>
     </plurals>
     <string name="ApplicationPreferencesActivity_delete">Slet</string>
     <string name="ApplicationPreferencesActivity_On">Tændt</string>
@@ -32,10 +31,9 @@
     <string name="DraftDatabase_Draft_video_snippet">(video)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
     <!-- AttachmentManager -->
-    <string name="AttachmentManager_cant_open_media_selection">Ingen app tilgængelig til valg af data</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session kræver tilladelse til at tilgå din hukommelse, for at kunne vedhæfte billeder, videoer eller lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session kræver tilladelse til at tilgå dine kontakter, for at kunne vedhæfte kontakt informationer, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
-    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session kræver tilladelse til at tilgå dit kamera for at kunne tage billeder, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
+    <string name="AttachmentManager_cant_open_media_selection">Kan ikke finde en app til at vælge medier.</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session kræver tilladelse til lagring for at kunne vedhæfte billeder, videoer eller lyd, men den er blevet permanent nægtet. Fortsæt til menuen for appindstillinger, vælg \"Tilladelser\", og aktiver \"Lagring\".</string>
+    <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session kræver tilladelse til kameraet for at kunne tage billeder, men den er blevet permanent nægtet. Fortsæt til app-indstillingerne, vælg \"Tilladelser\", og aktiver \"Kamera\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Fejl ved afspilning af lyd!</string>
     <!-- BucketedThreadMedia -->
@@ -44,25 +42,24 @@
     <string name="BucketedThreadMedia_This_week">Denne uge</string>
     <string name="BucketedThreadMedia_This_month">Denne måned</string>
     <!-- CommunicationActions -->
-    <string name="CommunicationActions_no_browser_found">Ingen Webbrowser fundet</string>
+    <string name="CommunicationActions_no_browser_found">Ingen webbrowser fundet.</string>
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_groups">Grupper</string>
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_delivered">Fejl ved afsendelse, tap for detaljer</string>
-    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Udvekslingsnøgle er modtaget. Tap for at fortsætte</string>
-    <string name="ConversationItem_group_action_left">%1$s har forladt gruppen</string>
-    <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse, tap for at sende usikret</string>
-    <string name="ConversationItem_unable_to_open_media">Kan ikke finde en app, der kan åbne mediet</string>
-    <string name="ConversationItem_copied_text">Kopieret %s</string>
+    <string name="ConversationItem_error_not_delivered">Afsendelse mislykkedes, tryk for detaljer</string>
+    <string name="ConversationItem_received_key_exchange_message_tap_to_process">Udvekslingsnøgle er modtaget. Tryk for at behandle.</string>
+    <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse, tryk for at sende usikret</string>
+    <string name="ConversationItem_unable_to_open_media">Kan ikke finde en app, der kan åbne dette medie.</string>
+    <string name="ConversationItem_copied_text">Kopierede %s</string>
     <string name="ConversationItem_read_more">Læs mere</string>
-    <string name="ConversationItem_download_more">  Download mere</string>
-    <string name="ConversationItem_pending">  Afventer </string>
+    <string name="ConversationItem_download_more">  &#160; Download mere</string>
+    <string name="ConversationItem_pending">&#160; Afventer</string>
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Vedhæft fil</string>
     <string name="ConversationActivity_select_contact_info">Vælg kontaktinformation</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, der opstod en fejl ved vedhæftning af fil</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Beklager, der opstod en fejl ved vedhæftning af fil.</string>
     <string name="ConversationActivity_message">Besked</string>
-    <string name="ConversationActivity_compose">Ny meddelelse</string>
+    <string name="ConversationActivity_compose">Skriv</string>
     <string name="ConversationActivity_muted_until_date">Lydløs indtil %1$s</string>
     <string name="ConversationActivity_muted_forever">Lyden slået fra</string>
     <string name="ConversationActivity_member_count">%1$d medlemmer</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Fejl ved lydoptagelse!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app tilgængelig på enheden, der kan åbne linket</string>
     <string name="ConversationActivity_invite_to_open_group">Tilføj medlemmer</string>
-    <string name="ConversationActivity_join_open_group">Tilmeld dig %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Er du sikker på, at du vil deltage i den åbne gruppe <b>%s</b>?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Session tilladelse til at tilgå mikrofonen</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session kræver tilladelse til at tilgå mikrofonen for at kunne sende lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\"</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Session kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder og optage video</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session har brug for lageradgang for at sende billeder og videoer.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder eller optage video, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session kræver tilladelse til at tilgå kameraet, for at kunne tage billeder eller videoer.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
     <string name="ConversationActivity_search_position">%1$d af %2$d</string>
-    <string name="ConversationActivity_no_results">Ingen resultater</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d ulæst besked</item>
-        <item quantity="other">%d ulæste beskeder</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Slet valgte besked?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Gemmer vedhæftning</item>
         <item quantity="other">Gemmer %1$d vedhæftninger</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Gemmer vedhæftning...</item>
-        <item quantity="other">Gemmer %1$d vedhæftninger til hukommelsen...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Afventer...</string>
-    <string name="ConversationFragment_push">Data (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Sletter</string>
-    <string name="ConversationFragment_deleting_messages">Sletter beskeder...</string>
-    <string name="ConversationFragment_banning">Udelukker</string>
-    <string name="ConversationFragment_banning_user">Udelukker bruger…</string>
-    <string name="ConversationFragment_quoted_message_not_found">Original besked blev ikke fundet</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Original besked er ikke længere tilgængelig</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Besked med udvekslingsnøgle</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profilbillede</string>
     <!-- CustomDefaultPreference -->
@@ -220,7 +192,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Modtog ugyldig nøgle
 udveksel besked!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Modtog en nøgle besked, for en ugyldig protokol-version.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Besked med nyt sikkerhedsnummer modtaget. Tap for at behandle og vise</string>
     <string name="SmsMessageRecord_secure_session_reset">Nulstillet sikker forbindelse</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s har nulstillet den sikre session</string>
@@ -403,6 +374,7 @@ udveksel besked!</string>
     <string name="arrays__mute_for_one_day">Udsæt 1 dag</string>
     <string name="arrays__mute_for_seven_days">Udsæt 7 dage</string>
     <string name="arrays__mute_for_one_year">Udsæt 1 år</string>
+    <string name="arrays__mute_forever">Lydløs for evigt</string>
     <string name="arrays__settings_default">Standardindstillinger</string>
     <string name="arrays__enabled">Aktiveret</string>
     <string name="arrays__disabled">Deaktiverét</string>
@@ -451,6 +423,7 @@ udveksel besked!</string>
     <string name="preferences__blue">Blå</string>
     <string name="preferences__orange">Orange</string>
     <string name="preferences__cyan">Turkis</string>
+    <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Hvid</string>
     <string name="preferences__none">Ingen</string>
     <string name="preferences__fast">Hurtig</string>
@@ -490,6 +463,7 @@ udveksel besked!</string>
     <string name="conversation_context__menu_copy_text">Kopiér tekst</string>
     <string name="conversation_context__menu_delete_message">Slet besked</string>
     <string name="conversation_context__menu_ban_user">Udeluk bruger</string>
+    <string name="conversation_context__menu_ban_and_delete_all">Bandlys og slet alle</string>
     <string name="conversation_context__menu_resend_message">Send besked igen</string>
     <string name="conversation_context__menu_reply_to_message">Svar på besked</string>
     <!-- conversation_context_image -->
@@ -576,21 +550,28 @@ udveksel besked!</string>
     <string name="activity_display_name_title_2">Vælg dit visningsnavn</string>
     <string name="activity_display_name_explanation">Dette vil være dit navn, når du bruger Session. Det kan være dit rigtige navn, et alias eller noget helt andet.</string>
     <string name="activity_display_name_edit_text_hint">Tast et visningsnavn</string>
+    <string name="activity_display_name_display_name_missing_error">Vælg venligst et display navn</string>
+    <string name="activity_display_name_display_name_too_long_error">Vælg venligst et kortere display navn</string>
     <string name="activity_pn_mode_recommended_option_tag">Anbefalet</string>
     <string name="activity_home_empty_state_message">Du har ingen kontakter endnu</string>
+    <string name="activity_home_empty_state_button_title">Start en Session</string>
     <string name="activity_home_leave_group_dialog_message">Er du sikker på, at du vil forlade denne gruppe?</string>
     <string name="activity_home_leaving_group_failed_message">"Kunne ikke forlade gruppen"</string>
     <string name="activity_home_delete_conversation_dialog_message">Er du sikker på, at du vil slette denne samtale?</string>
     <string name="activity_home_conversation_deleted_message">Samtale slettet</string>
     <string name="activity_seed_title">Din gendannelsessætning</string>
+    <string name="activity_seed_title_2">Mød din gendannelsessætning</string>
     <string name="activity_seed_explanation">Din gendannelsessætning er hovednøglen til dit Session ID - du kan bruge den til at gendanne dit Session ID, hvis du mister adgang til din enhed. Gem din gendannelsessætning på et sikkert sted, og giv det ikke til nogen.</string>
     <string name="activity_seed_reveal_button_title">Hold nede for at se</string>
     <string name="view_seed_reminder_title">Du er næsten færdig! 80%</string>
     <string name="view_seed_reminder_subtitle_1">Sikre din konto ved at gemme din gendannelsessætning</string>
     <string name="view_seed_reminder_subtitle_2">Tryk og hold de redigerede ord for at afsløre din gendannelsessætning, og gem det derefter et sikkert sted for at sikre dit Session ID.</string>
     <string name="view_seed_reminder_subtitle_3">Sørg for at gemme din gendannelsessætning et sikkert sted</string>
+    <string name="activity_path_title">Sti</string>
+    <string name="activity_path_device_row_title">Dig</string>
     <string name="activity_path_destination_row_title">Destination</string>
     <string name="activity_path_learn_more_button_title">Læs mere</string>
+    <string name="activity_create_private_chat_title">Ny Session</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Indtast Session ID</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Skan QR-kode</string>
     <string name="fragment_enter_public_key_edit_text_hint">Indtast Session ID eller ONS navn</string>
@@ -598,6 +579,7 @@ udveksel besked!</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Tildel Adgang Til Kamera</string>
     <string name="activity_create_closed_group_edit_text_hint">Indtast et gruppenavn</string>
     <string name="activity_create_closed_group_empty_state_message">Du har ingen kontakter endnu</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Start en Session</string>
     <string name="activity_create_closed_group_too_many_group_members_error">En lukket gruppe kan ikke have over 100 medlemmer</string>
     <string name="activity_join_public_chat_error">Kunne ikke joine gruppen</string>
     <string name="activity_join_public_chat_enter_group_url_tab_title">Åbn Gruppe URL</string>
@@ -670,7 +652,10 @@ udveksel besked!</string>
     <string name="activity_pn_mode_explanation">Der er to måder Session kan underrette dig om nye beskeder.</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Indtast et kaldenavn</string>
     <string name="invalid_public_key">Ugyldig public key</string>
+    <string name="document">Dokument</string>
+    <string name="dialog_open_url_title">Åben URL?</string>
     <string name="dialog_open_url_explanation">Er du sikker på, at du vil åbne %s?</string>
+    <string name="copy_url">Kopier URL</string>
     <string name="dialog_link_preview_title">Aktiver Forhåndsvisning Af Links?</string>
     <string name="dialog_link_preview_enable_button_title">Aktivér</string>
     <string name="dialog_download_button_title">Hent</string>
@@ -678,8 +663,14 @@ udveksel besked!</string>
     <string name="message_details_header__error">Fejl</string>
     <string name="dialog_send_seed_title">Advarsel</string>
     <string name="dialog_send_seed_send_button_title">Send</string>
+    <string name="notify_type_all">Alle</string>
     <string name="deleted_message">Denne besked er blevet slettet</string>
     <string name="delete_message_for_me">Slet kun for mig</string>
     <string name="delete_message_for_everyone">Slet for alle</string>
     <string name="delete_message_for_me_and_recipient">Slet for mig og %s</string>
+    <string name="activity_settings_support">Debug log</string>
+    <string name="dialog_share_logs_title">Del Logfiler</string>
+    <string name="dialog_share_logs_explanation">Ønsker du at eksportere dine applikationslogs for at kunne dele for fejlfinding?</string>
+    <string name="conversation_pin">Fastgør</string>
+    <string name="conversation_unpin">Frigør</string>
 </resources>

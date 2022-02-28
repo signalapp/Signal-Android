@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sesija</string>
+    <string name="app_name">Session</string>
     <string name="yes">Jā</string>
     <string name="no">Nē</string>
     <string name="delete">Dzēst</string>
-    <string name="please_wait">Lūdzu, uzgaidiet...</string>
+    <string name="ban">Aizliegt</string>
     <string name="save">Saglabāt</string>
     <string name="note_to_self">Piezīme sev</string>
     <string name="version_s">Versija %s</string>
@@ -30,17 +30,25 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nevar atrast programmu multivides atlasīšanai.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Sesijai ir nepieciešama krātuves atļauja, lai pievienotu fotoattēlus, videoklipus vai audio, bet tā ir pastāvīgi aizliegta. Lūdzu, pārejiet uz programmu iestatījumu izvēlni, atlasiet “Atļaujas” un iespējojiet “Krātuve”.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Sesijai ir nepieciešama atļauja piekļūt Kontaktpersonām, lai pievienotu kotaktpersonu datus, bet tā ir pastāvīgi aizliegta. Lūdzu, pārejiet uz programmu iestatījumu izvēlni, atlasiet “Atļaujas” un iespējojiet “Kontaktpersonas”.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Sesijai ir nepieciešama atļauja piekļūt Kamerai, lai pievienotu fotoattēlus, bet tā ir pastāvīgi aizliegta. Lūdzu, pārejiet uz programmu iestatījumu izvēlni, atlasiet “Atļaujas” un iespējojiet “Kamera”.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Audio atskaņošanas kļūda!</string>
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Šodien</string>
     <string name="BucketedThreadMedia_Yesterday">Vakar</string>
+    <string name="BucketedThreadMedia_This_week">Šonedēļ</string>
+    <string name="BucketedThreadMedia_This_month">Šomēnes</string>
     <!-- CommunicationActions -->
     <!-- ContactsCursorLoader -->
+    <string name="ContactsCursorLoader_groups">Grupas</string>
     <!-- ConversationItem -->
+    <string name="ConversationItem_read_more">Rādīt vairāk</string>
     <!-- ConversationActivity -->
+    <string name="ConversationActivity_add_attachment">Pievienot pielikumu</string>
+    <string name="ConversationActivity_select_contact_info">Izvēlieties kontaktinformāciju</string>
+    <string name="ConversationActivity_message">Paziņojums</string>
+    <string name="ConversationActivity_member_count">%1$d biedri</string>
+    <string name="ConversationActivity_open_group_guidelines">Kopienas vadlīnijas</string>
     <string name="ConversationActivity_invalid_recipient">Nederīgs adresāts!</string>
     <string name="ConversationActivity_added_to_home_screen">Pievienots sākuma ekrānam</string>
     <string name="ConversationActivity_leave_group">Pamest grupu?</string>
@@ -52,20 +60,13 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Pielikums pārsniedz nosūtāmā ziņojuma tipa apjoma ierobežojumus.</string>
     <string name="ConversationActivity_unable_to_record_audio">Neizdodas ierakstīt audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Jūsu ierīcē nav pieejama neviena programma šīs saites apstrādei.</string>
+    <string name="ConversationActivity_invite_to_open_group">Pievienot dalībniekus</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Sesijai ir nepieciešama piekļuve mikrofonam, lai nosūtītu balss ziņas.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Sesijai ir nepieciešama atļauja piekļūt mikrofonam, lai sūtītu balss ziņas, bet tā ir pastāvīgi aizliegta. Lūdzu, ejiet uz programmu iestatījumiem, izvēlieties “Atļaujas” un iespējojiet “Mikrofons”.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Sesijai nepieciešama piekļuve kamerai, lai uzņemtu attēlus un video.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Sesijai ir nepieciešama atļauja piekļūt kamerai, lai uzņemtu attēlus un video, bet tā ir pastāvīgi aizliegta. Lūdzu, ejiet uz programmu iestatījumiem, izvēlieties “Atļaujas” un iespējojiet “Kamera”.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Sesijai nepieciešama piekļuve kamerai, lai uzņemtu attēlus un video.</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d no %2$d</string>
-    <string name="ConversationActivity_no_results">Nav rezultātu</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="zero">%d nelasītu ziņojumu</item>
-        <item quantity="one">%d nelasīts ziņojums</item>
-        <item quantity="other">%d nelasīti ziņojumi</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="zero">Dzēst izvēlēto ziņu?</item>
@@ -77,28 +78,47 @@
         <item quantity="one">Izvēlētais ziņojums tiks neatgriezeniski dzēsts.</item>
         <item quantity="other">Visi %1$d izvēlētie ziņojumi tiks neatgriezeniski dzēsti.</item>
     </plurals>
+    <string name="ConversationFragment_ban_selected_user">Aizliegt šī lietotāja darbību?</string>
     <string name="ConversationFragment_save_to_sd_card">Saglabāt krātuvē?</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <!-- ConversationListItem -->
     <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity_profile_photo">Profila bilde</string>
     <!-- CustomDefaultPreference -->
+    <string name="CustomDefaultPreference_none">Neviens</string>
     <!-- DateUtils -->
+    <string name="DateUtils_just_now">Tagad</string>
+    <string name="DateUtils_today">Šodien</string>
+    <string name="DateUtils_yesterday">Vakar</string>
     <!-- DeviceListItem -->
+    <string name="DeviceListItem_today">Šodien</string>
     <!-- DocumentView -->
+    <string name="DocumentView_unknown_file">Nezināms fails</string>
     <!-- GiphyActivity -->
     <!-- GiphyFragmentPageAdapter -->
+    <string name="GiphyFragmentPagerAdapter_gifs">GIFi</string>
+    <string name="GiphyFragmentPagerAdapter_stickers">Uzlīmes</string>
     <!-- CropImageActivity -->
+    <string name="CropImageActivity_profile_avatar">Attēls</string>
     <!-- InputPanel -->
     <!-- LongMessageActivity -->
+    <string name="LongMessageActivity_message_from_s">Īsziņa no %1$s</string>
     <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Multivide</string>
     <!-- NotificationMmsMessageRecord -->
     <!-- MediaPickerActivity -->
     <!-- MediaSendActivity -->
     <!-- MediaRepository -->
+    <string name="MediaRepository_all_media">Visa multivide</string>
     <!-- MessageRecord -->
+    <string name="MessageRecord_left_group">Tu esi atstājis grupu.</string>
+    <string name="MessageRecord_you_updated_group">Jūs aktualizējāt grupu.</string>
+    <string name="MessageRecord_s_updated_group">%s aktualizēja grupu.</string>
     <!-- ExpirationDialog -->
     <!-- PassphrasePromptActivity -->
     <!-- RecipientPreferencesActivity -->
+    <string name="RecipientPreferenceActivity_block_this_contact_question">Bloķēt šo kontaktpersonu?</string>
+    <string name="RecipientPreferenceActivity_block">Bloķēt</string>
+    <string name="RecipientPreferenceActivity_unblock_this_contact_question">Atbloķēt šo kontaktpersonu?</string>
+    <string name="RecipientPreferenceActivity_unblock">Atbloķēt</string>
     <!-- Slide -->
     <!-- SmsMessageRecord -->
     <!-- ThreadRecord -->
@@ -135,6 +155,7 @@
     <!-- media_overview_activity -->
     <!-- message_recipients_list_item -->
     <!-- recipient_preferences -->
+    <string name="recipient_preferences__block">Bloķēt</string>
     <!-- message_details_header -->
     <!-- AndroidManifest.xml -->
     <!-- arrays.xml -->
@@ -160,5 +181,74 @@
     <!-- transport_selection_list_item -->
     <!-- Conversation activity -->
     <!-- Session -->
+    <string name="activity_join_public_chat_title">Pievienojies atvērtajai grupai</string>
+    <string name="activity_settings_title">Iestatījumi</string>
+    <string name="activity_settings_notifications_button_title">Paziņojumi</string>
+    <string name="activity_settings_devices_button_title">Ierīces</string>
+    <string name="activity_settings_invite_button_title">Uzaicināt draugu</string>
+    <string name="activity_settings_faq_button_title">Biežāk uzdotie jautājumi</string>
+    <string name="activity_settings_recovery_phrase_button_title">Atjaunošanas frāze</string>
+    <string name="activity_settings_clear_all_data_button_title">Izdzēst datus</string>
+    <string name="activity_settings_help_translate_session">Palīdzi mums pārtulkot Session</string>
+    <string name="activity_notification_settings_title">Paziņojumi</string>
+    <string name="activity_notification_settings_style_section_title">Paziņojuma izskats</string>
+    <string name="activity_notification_settings_content_section_title">Paziņojuma saturs</string>
+    <string name="dialog_clear_all_data_title">Izdzēst visus datus</string>
+    <string name="dialog_clear_all_data_local_only">Dzēst tikai</string>
+    <string name="dialog_clear_all_data_clear_network">Visu kontu</string>
+    <string name="activity_qr_code_title">QR kods</string>
+    <string name="activity_qr_code_view_my_qr_code_tab_title">Skatīt manu QR kodu</string>
+    <string name="activity_qr_code_view_scan_qr_code_tab_title">Skenēt QR kodu</string>
+    <string name="fragment_view_my_qr_code_title">Skanē mani</string>
+    <string name="fragment_view_my_qr_code_explanation">Šis ir tavs QR kods. Lai uzsāktu sesiju ar tevi, citi lietotāji var noskenēt to.</string>
+    <string name="fragment_view_my_qr_code_share_title">Dalīties ar QR kodu</string>
+    <string name="fragment_contact_selection_contacts_title">Kontakti</string>
+    <string name="fragment_contact_selection_closed_groups_title">Slēgtās grupas</string>
+    <string name="fragment_contact_selection_open_groups_title">Atvērtās grupas</string>
     <!-- Next round of translation -->
+    <string name="menu_done_button">Pabeigts</string>
+    <string name="activity_edit_closed_group_title">Rediģēt grupu</string>
+    <string name="activity_edit_closed_group_edit_members">Dalībnieki</string>
+    <string name="activity_edit_closed_group_add_members">Pievienot dalībniekus</string>
+    <string name="activity_edit_closed_group_group_name_missing_error">Grupas nosakukums nevar būt tukšs</string>
+    <string name="activity_edit_closed_group_group_name_too_long_error">Lūdzu, ievadiet īsāku grupas nosaukumu</string>
+    <string name="fragment_edit_group_bottom_sheet_remove">Dzēst lietotāju no grupas</string>
+    <string name="activity_select_contacts_title">Izvēlieties kontaktus</string>
+    <string name="dialog_ui_mode_title">Izskats</string>
+    <string name="dialog_ui_mode_option_day">Diena</string>
+    <string name="dialog_ui_mode_option_night">Nakts</string>
+    <string name="activity_conversation_menu_copy_session_id">Kopēt Session ID</string>
+    <string name="attachment">Pielikums</string>
+    <string name="attachment_type_voice_message">Balss ziņojums</string>
+    <string name="details">Papildu informācija</string>
+    <string name="activity_pn_mode_fast_mode">Ātrais režīms</string>
+    <string name="activity_pn_mode_slow_mode">Lēnais režīms</string>
+    <string name="activity_pn_mode_fast_mode_explanation">Jūs saņemsiet paziņojumus par jauniem ziņojumiem droši un nekavējoties, izmantojot Google paziņojumu serverus.</string>
+    <string name="activity_pn_mode_slow_mode_explanation">Session laiku pa laikam fonā pārbaudīs, vai nav jaunu ziņojumu.</string>
+    <string name="invalid_public_key">Nederīga publiskā atslēga</string>
+    <string name="document">Dokuments</string>
+    <string name="dialog_blocked_title">Atbloķēt %s?</string>
+    <string name="dialog_blocked_explanation">Vai esi pārliecināts, ka vēlies atbloķēt %s?</string>
+    <string name="dialog_join_open_group_title">Pievienoties %s?</string>
+    <string name="dialog_open_url_title">Atvērt URL?</string>
+    <string name="open">Atvērt</string>
+    <string name="copy_url">Nokopēt URL</string>
+    <string name="dialog_link_preview_enable_button_title">Ieslēgt</string>
+    <string name="dialog_download_title">Uzticēties %s?</string>
+    <string name="dialog_download_explanation">Vai esi pārliecināts, ka vēlies lejupielādēt mediju, ko atsūtījis %s?</string>
+    <string name="dialog_download_button_title">Lejupielādēt</string>
+    <string name="media">Multivide</string>
+    <string name="message_details_header__error">Kļūda</string>
+    <string name="dialog_send_seed_title">Brīdinājums</string>
+    <string name="dialog_send_seed_send_button_title">Sūtīt</string>
+    <string name="notify_type_all">Viss</string>
+    <string name="notify_type_mentions">Pieminējumi</string>
+    <string name="deleted_message">Šis ziņojums tika izdzēsts</string>
+    <string name="delete_message_for_me">Dzēst tikai man</string>
+    <string name="delete_message_for_everyone">Dzēst visiem</string>
+    <string name="delete_message_for_me_and_recipient">Dzēst man un %s</string>
+    <string name="activity_settings_survey_feedback">Atsauksmes/Aptauja</string>
+    <string name="activity_settings_support">Atkļūdošanas žurnāls</string>
+    <string name="conversation_pin">Piespraust</string>
+    <string name="conversation_unpin">Atspraust</string>
 </resources>

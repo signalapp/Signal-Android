@@ -16,7 +16,6 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-2dp"
         android:orientation="vertical">
 
         <TextView
@@ -24,8 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginBottom="-4dp"
-            android:text="Elon"
+            tools:text="@tools:sample/full_names"
             android:textColor="@color/text"
             android:textStyle="bold"
             android:textSize="@dimen/very_large_font_size"

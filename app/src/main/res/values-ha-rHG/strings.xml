@@ -3,7 +3,6 @@
     <string name="yes">Erê</string>
     <string name="no">Na</string>
     <string name="delete">Jê bibe</string>
-    <string name="please_wait">Ji kerema xwe bisekine...</string>
     <string name="save">Tomar bike</string>
     <string name="note_to_self">Bo min Nîşe</string>
     <!-- AbstractNotificationBuilder -->
@@ -31,7 +30,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Sepana ji bo bijartina medyayê nehate dîtin.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Ji bo zêdekirina wêne, vidyo yan deng, Session destûra Bîrbarê pêwîst dike, lê ew bi awayekî mayinde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û  \"Bîrbar\"ê çalak bike.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Ji bo tevllîkirina agahiyên berdenga Session destûra Navnivîskê pêwîst dike, lê ew bi awayekî mayînde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Navnivîsk\"ê çalak bike.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Ji bo kişandina wêneyan Session destûra Kamera pêwîst dike, lê ew bi awayekî mayînde hate redkirin. Ji kerema xwe biçe menuya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Kamera\"yê çalak bike.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Di lêdana deng de çewtî rû da!</string>
@@ -47,7 +45,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Şandin têk çû, ji bo hûrgiliyên bêhtir, bitepîne</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Peyama veguhastina kilîdê hate stendin, ji bo pêvajoyê bitepîne.</string>
-    <string name="ConversationItem_group_action_left">%1$s ji komê veqetiya.</string>
     <string name="ConversationItem_unable_to_open_media">Sepena vê medyayê veke nehat dîtin.</string>
     <string name="ConversationItem_copied_text">%s ji ber girtî</string>
     <string name="ConversationItem_download_more">Bêhtir Daxîne  </string>
@@ -73,12 +70,6 @@
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Ji bo kişandina vîdyo an jî wêneyan Session destûra kamera pêwîst dike, lê ew bi awayekî mayinde hate redkirin. Ji kerema xwe biçe sazkariyên sepanê \"Destûr\"ê bibijêre û \"Kamera\"yê çalak bike.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Ji bo kişandina vîdyo an jî wêneyan pêdiviya Sessionê bi destûra kamera heye</string>
     <string name="ConversationActivity_search_position">%1$d ji %2$d</string>
-    <string name="ConversationActivity_no_results">Encam nîn e</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d peyama nexwendî</item>
-        <item quantity="other">%d peyamên nexwendî</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Bila peyama bijartî were rakirin?</item>
@@ -101,18 +92,6 @@
         <item quantity="one">Servehî tê tomarkirin</item>
         <item quantity="other">%1$d servehî tên tomarkirin</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Servehî li bîrbarê tê tomarkirin...</item>
-        <item quantity="other">%1$d servehî li bîrbarê tê tomarkirin...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Hilawîstiye...</string>
-    <string name="ConversationFragment_push">Dane (Session)</string>
-    <string name="ConversationFragment_deleting">Tê jêbirin</string>
-    <string name="ConversationFragment_deleting_messages">Peyam tên jêbirin...</string>
-    <string name="ConversationFragment_quoted_message_not_found">Peyama resen nehate dîtin</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Peyama resen êdî ne li berdest e</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Peyama guherandina kilîdê</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Wêneyê profîlê</string>
     <!-- CustomDefaultPreference -->
@@ -192,8 +171,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Peyama veguhastina
         mifteyê xirabe hat!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        Peyama veguhastina kilît ji bo versiyona protokola netêw hat.
     </string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Bii hejmara ewlehiyê ya nû peyam hat. Ji bo vekirin û nîşandanê bitepîne.</string>
     <string name="SmsMessageRecord_secure_session_reset">Te danişîna parastî nûsazand.</string>

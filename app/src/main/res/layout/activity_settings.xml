@@ -111,7 +111,7 @@
                 android:layout_marginTop="@dimen/large_spacing"
                 android:background="?android:dividerHorizontal" />
 
-            <com.google.android.flexbox.FlexboxLayout
+            <RelativeLayout
                 android:id="@+id/pathButton"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -120,15 +120,18 @@
                 android:layout_height="@dimen/setting_button_height"
                 android:background="@drawable/setting_button_background">
                 <TextView
+                    android:id="@+id/pathText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textColor="@color/text"
                     android:textSize="@dimen/medium_font_size"
-                    android:layout_gravity="center"
+                    android:layout_centerInParent="true"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:text="@string/activity_path_title" />
                 <FrameLayout
+                    android:layout_toEndOf="@+id/pathText"
+                    android:layout_centerVertical="true"
                     android:id="@+id/pathContainer"
                     android:layout_width="@dimen/small_profile_picture_size"
                     android:layout_height="@dimen/small_profile_picture_size">
@@ -137,7 +140,7 @@
                         android:layout_width="@dimen/path_status_view_size"
                         android:layout_height="@dimen/path_status_view_size"/>
                 </FrameLayout>
-            </com.google.android.flexbox.FlexboxLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"

@@ -5,7 +5,6 @@
     <string name="no">Ne</string>
     <string name="delete">Ištrinti</string>
     <string name="ban">Užblokuoti</string>
-    <string name="please_wait">Prašome palaukti...</string>
     <string name="save">Įrašyti</string>
     <string name="note_to_self">Pastabos sau</string>
     <string name="version_s">Versija %s</string>
@@ -38,7 +37,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nerasta programėlė medijos pasirinkimui.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Norint pridėti nuotraukas, vaizdo įrašus ar garsą, Session reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Saugyklą“.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Norint pridėti kontaktinę informaciją, Session reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Adresatus“.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Norint fotografuoti, Session reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
@@ -54,7 +52,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Siuntimas nepavyko, bakstelėkite išsamesnei informacijai</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Gauta šifro apsikeitimo žinutė, bakstelėkite norėdami tęsti.</string>
-    <string name="ConversationItem_group_action_left">%1$s išėjo iš grupės.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Siuntimas nepavyko, bakstelėkite, norėdami sugrįžti nesaugaus surogato</string>
     <string name="ConversationItem_unable_to_open_media">Nepavyksta rasti programėlės, galinčios atverti šią mediją.</string>
     <string name="ConversationItem_copied_text">%s nukopijuota</string>
@@ -83,23 +80,12 @@
     <string name="ConversationActivity_unable_to_record_audio">Nepavyksta įrašyti garso!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nėra prieinamos programėlės, kuri galėtų apdoroti šią nuorodą jūsų įrenginyje.</string>
     <string name="ConversationActivity_invite_to_open_group">Pridėti dalyvius</string>
-    <string name="ConversationActivity_join_open_group">Prisijungti prie %s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">Ar tikrai norite prisijungti prie <b>%s</b> atviros grupės?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Norėdami siųsti garso žinutes, leiskite Session prieigą prie mikrofono.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Norint siųsti garso žinutes, Session reikia mikrofono leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite „Leidimai“ ir įjunkite „Mikrofoną“.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Norėdami fotografuoti ir filmuoti vaizdo įrašus, leiskite Session prieigą prie kameros.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Session reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite „Leidimai“ ir įjunkite „Kamerą“.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Norint fotografuoti ar filmuoti, Session reikalinga prieiga prie kameros</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_search_position">%1$d iš %2$d</string>
-    <string name="ConversationActivity_no_results">Nėra rezultatų</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d neskaityta žinutė</item>
-        <item quantity="few">%d neskaitytos žinutės</item>
-        <item quantity="many">%d neskaitytų žinučių</item>
-        <item quantity="other">%d neskaitytų žinučių</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Ištrinti pažymėtą žinutę?</item>
@@ -132,22 +118,6 @@
         <item quantity="many">Įrašoma %1$d priedų</item>
         <item quantity="other">Įrašoma %1$d priedų</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Įrašomas į atmintį %1$d priedas...</item>
-        <item quantity="few">Įrašomi į atmintį %1$d priedai...</item>
-        <item quantity="many">Įrašoma į atmintį %1$d priedų...</item>
-        <item quantity="other">Įrašoma į atmintį %1$d priedų...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Laukiama...</string>
-    <string name="ConversationFragment_push">Duomenys (Session)</string>
-    <string name="ConversationFragment_mms">MMS</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Ištrinama</string>
-    <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės...</string>
-    <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Profilio nuotrauka</string>
     <!-- CustomDefaultPreference -->
@@ -240,8 +210,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Gauta sugadinta šifro
         apsikeitimo žinutė!
-    </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        Gauta, neteisingai protokolo versijai skirta, šifro apsiketimo žinutė.
     </string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Gauta žinutė su nauju saugumo numeriu. Bakstelėkite, norėdami apdoroti ir rodyti.</string>
     <string name="SmsMessageRecord_secure_session_reset">Jūs atstatėte saugųjį seansą.</string>

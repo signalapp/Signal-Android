@@ -5,7 +5,6 @@
     <string name="no">Jo</string>
     <string name="delete">Fshije</string>
     <string name="ban">Dëbim</string>
-    <string name="please_wait">Ju lutemi, pritni...</string>
     <string name="save">Ruaje</string>
     <string name="note_to_self">Shënim për Veten</string>
     <string name="version_s">Versioni_%s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">S\’gjendet dot aplikacion për përzgjedhje mediash.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Që të mund të bashkëngjisë foto, video, ose audio, Session-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Që të mund të bashkëngjisë të dhëna kontakti, Session-i lyp leje përdorimi Kontaktesh, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kontakte\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Që të mund të bëjë foto, Session-i lyp leje përdorimi Kamere, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerë\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Gabim në luajtjen e audios!</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Dërgimi dështoi, për hollësi, prekeni</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">U mor mesazh shkëmbimi kyçesh, prekeni që të bëhet.</string>
-    <string name="ConversationItem_group_action_left">%1$s e la grupin.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, prekeni për dërgim të pasigurt</string>
     <string name="ConversationItem_unable_to_open_media">S\’gjendet dot një aplikacion i aftë për hapjen e kësaj medie.</string>
     <string name="ConversationItem_copied_text">U kopjua %s</string>
@@ -79,22 +76,13 @@
     <string name="ConversationActivity_unable_to_record_audio">S\’arrihet të incizohet audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
     <string name="ConversationActivity_invite_to_open_group">Shtoni anëtarë</string>
-    <string name="ConversationActivity_join_open_group">Bashkohuni%s</string>
-    <string name="ConversationActivity_join_open_group_confirmation_message">A jeni i sigurt që deshironi ti bashkoheni grupit te hapur <b>%s</b> ?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanorë, lejojeni Session-in të përdorë mikrofonin tuaj.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Që të mund të dërgojë mesazhe audio, Session-i lyp leje përdorimi të Mikrofonit, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të bërë foto dhe dhe video, lejojini Session-it të përdorë kamerën.</string>
     <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session ka nevojë për leje hyrje ne bazën e të dhënave për të dërguar foto dhe video</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Që të bëjë foto ose video, Session-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Që të bëjë foto ose video, Session-i lyp leje përdorimi të Kamerës</string>
-    <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
     <string name="ConversationActivity_search_position">%1$d nga %2$d</string>
-    <string name="ConversationActivity_no_results">S\’ka përfundime</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d mesazh i palexuar</item>
-        <item quantity="other">%d mesazhe të palexuara</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Të fshihet mesazhi i përzgjedhur?</item>
@@ -118,22 +106,6 @@
         <item quantity="one">Po ruhet bashkëngjitja</item>
         <item quantity="other">Po ruhen %1$d bashkëngjitje</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Po ruhet bashkëngjitja në depozitë…</item>
-        <item quantity="other">Po ruhet %1$d në depozitë…</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Pezull…</string>
-    <string name="ConversationFragment_push">Të dhëna (Session)</string>
-    <string name="ConversationFragment_mms">Mms</string>
-    <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">Po fshihet</string>
-    <string name="ConversationFragment_deleting_messages">Po fshihen mesazhe…</string>
-    <string name="ConversationFragment_banning">Duke bllokuar</string>
-    <string name="ConversationFragment_banning_user">Duke bllokuar përdoruesin...</string>
-    <string name="ConversationFragment_quoted_message_not_found">S\’u gjet mesazhi origjinal</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Mesazhi origjinal s\’gjendet më</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Mesazh shkëmbimi kyçesh</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Foto profili</string>
     <!-- CustomDefaultPreference -->
@@ -220,7 +192,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">U mor mesazh dëmtuar
         shkëmbimi kyçesh!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">        U mor mesazh shkëmbimi kyçesh për version të pavlefshëm protokolli.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">U mor mesazh me numër të ri sigurie. Prekeni që të vazhdohet dhe shfaqet.</string>
     <string name="SmsMessageRecord_secure_session_reset">E kthyet te parazgjedhjet sesionin e sigurt.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s e ktheu te parazgjedhjet sesionin e sigurt.</string>

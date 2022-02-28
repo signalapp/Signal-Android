@@ -5,7 +5,6 @@
     <string name="no">కాదు</string>
     <string name="delete">తొలగించండి</string>
     <string name="ban">Nishedham</string>
-    <string name="please_wait">దయచేసి వేచి ఉండండి...</string>
     <string name="save">భద్రపరుచు</string>
     <string name="note_to_self">Sviya gamanika</string>
     <string name="version_s">Sanskarana %s</string>
@@ -34,7 +33,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">మీడియా ఎంచుకోవడానికి అనువర్తనం దొరకదు.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ఫోటోలు, వీడియోలు లేదా ఆడియోను అటాచ్ చేయడానికి Sessionకు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకు కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"నిల్వ\" ను ప్రారంభించండి.</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">సంప్రదింపు సమాచారాన్ని అటాచ్ చేయడానికి Session కాంటాక్ట్స్ అనుమతి అవసరం, కానీ అది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ఫోటోలను తీయడానికి Sessionకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">ఆడియో ప్రదర్శనా లోపం!</string>
@@ -50,7 +48,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">విఫలమైంది పంపండి, వివరాల కోసం నొక్కండి</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">స్వీకరించు మీట మార్పిడి సందేశం, తట్టు తో క్రమణం</string>
-    <string name="ConversationItem_group_action_left">%1$s సమూహం వదిలి వెళ్లారు</string>
     <string name="ConversationItem_click_to_approve_unencrypted">పంపడం విఫలమైంది, అసురక్షిత తిరిగి పొందడం కోసం నొక్కండి</string>
     <string name="ConversationItem_unable_to_open_media">మీడియా ఎంచుకోవడానికి అనువర్తనం దొరకదు.</string>
     <string name="ConversationItem_copied_text">ప్రతి  తీసుకోబడింది %s</string>
@@ -79,11 +76,6 @@
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ఫోటోలు మరియు వీడియోలను సంగ్రహించడానికి, కెమెరాకి Session ప్రాప్తిని అనుమతించండి.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ఫోటోలను లేదా వీడియోను తీసుకోవడానికి Sessionకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ఛాయాచిత్రాలను లేదా వీడియోను తీసుకోవడానికి కెమెరా అనుమతులను Sessionకి అవసరం</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d చదవని సందేశం </item>
-        <item quantity="other">%d చదవని సందేశాలు </item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">ఎంపికైన సందేశం తొలగించాలా?</item>
@@ -110,20 +102,6 @@
         <item quantity="one">జత పరిచినది దాచిపెడుతున్నాము</item>
         <item quantity="other">%1$d జత పరిచినది దాచిపెడుతున్నాము</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">జత పరిచినది నిల్వలొ దాచిపెడుతున్నాము...</item>
-        <item quantity="other">%1$d జత పరిచినది నిల్వలొ దాచిపెడుతున్నాము...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">పెండింగ్...</string>
-    <string name="ConversationFragment_push">సమాచారం(Session)</string>
-    <string name="ConversationFragment_mms">ఎమ్మెమ్మెస్</string>
-    <string name="ConversationFragment_sms">ఎస్సెమ్మెస్</string>
-    <string name="ConversationFragment_deleting">తొలగిపోతున్నాయ్</string>
-    <string name="ConversationFragment_deleting_messages">సందేశాలను తొలగిస్తోంది ...</string>
-    <string name="ConversationFragment_quoted_message_not_found">అసలు సందేశం కనుగొనబడలేదు</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">అసలు సందేశం ఇకపై అందుబాటులో లేదు</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">కీ  సందేశం మార్పిడి</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">ప్రొఫైల్ ఫోటో</string>
     <!-- CustomDefaultPreference -->
@@ -196,7 +174,6 @@
     <string name="Slide_video">వీడియో</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">తప్ఫు కీ స్వీకరించబడినది , సందేసమును మర్చండి </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">చెల్లని ప్రొటోకాల్ వర్షన్  కీ మార్పిడి సందేశాన్ని అందుకున్నారు</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">నూతన భద్రతా సంఖ్యను సందేశంలో అందుకునాం . ప్రాసెస్ మరియు ప్రదర్శనకు నొక్కండి.</string>
     <string name="SmsMessageRecord_secure_session_reset">మీ సెషన్ సురక్షిత ంగ పునరుద్ధరించు.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s సురక్షిత భాగాన్ని మరలా మార్చు</string>

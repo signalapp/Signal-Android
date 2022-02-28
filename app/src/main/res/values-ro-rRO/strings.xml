@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Sesiune</string>
     <string name="yes">Da</string>
     <string name="no">Nu</string>
     <string name="delete">Ștergeți</string>
-    <string name="please_wait">Vă rugăm să așteptați...</string>
+    <string name="ban">Interzice</string>
+    <string name="please_wait">Vă rugăm să așteptați…</string>
     <string name="save">Salvează</string>
     <string name="note_to_self">Notă personală</string>
     <string name="version_s">Versiunea %s</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
     <!-- AlbumThumbnailView -->
+    <string name="AlbumThumbnailView_plus">\+%d</string>
     <!-- ApplicationPreferencesActivity -->
     <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
         <item quantity="one">%d mesaj per conversație</item>
@@ -27,11 +30,12 @@
     <string name="ApplicationPreferencesActivity_Off">Dezactivate</string>
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(imagine)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
+    <string name="DraftDatabase_Draft_video_snippet">(video)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(răspuns)</string>
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session are nevoie de permisiunea pentru spațiul de stocare pentru a putea atașa poze, filme sau audio, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session are nevoie de permisiunea pentru Contacte pentru a putea atașa informații despre contacte dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session are nevoie de permisiunea pentru Cameră pentru a putea face poze dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Eroare la redarea audio!</string>
@@ -47,16 +51,20 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Trimitere eșuată, apăsați pentru detalii</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Am primit un mesaj pentru schimbul de chei, apăsați pentru a-l procesa.</string>
-    <string name="ConversationItem_group_action_left">%1$s a părăsit grupul.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, apăsați pentru varianta nesecurizată</string>
     <string name="ConversationItem_unable_to_open_media">Nu a fost găsită nici o aplicație pentru a deschide acest tip media.</string>
     <string name="ConversationItem_copied_text">Copiat %s</string>
+    <string name="ConversationItem_read_more">Informații suplimentare</string>
     <string name="ConversationItem_download_more">  Descărcați mai multe</string>
     <string name="ConversationItem_pending">  În curs</string>
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Adăugați atașament</string>
     <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Ne pare rău, a apărut o eroare în setarea atașamentului dvs.</string>
+    <string name="ConversationActivity_message">Mesaj</string>
+    <string name="ConversationActivity_compose">Scrie</string>
+    <string name="ConversationActivity_muted_until_date">Amuțit până la %1$s</string>
+    <string name="ConversationActivity_muted_forever">Ignoră</string>
     <string name="ConversationActivity_member_count">%1$d membri</string>
     <string name="ConversationActivity_open_group_guidelines">Regulamentul Comunității</string>
     <string name="ConversationActivity_invalid_recipient">Destinatar invalid!</string>
@@ -74,16 +82,10 @@
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pentru a trimite mesaje audio, permite-i aplicației Session accesul la microfonul tău.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session are nevoie de permisiunea pentru Microfon pentru a putea trimite mesaje audio dar i-a fost refuzat accesul permanent. Vă rugăm să navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pentru a captura poze sau filme, permite-i Session accesul la cameră.</string>
+    <string name="ConversationActivity_to_send_photos_and_video_allow_signal_access_to_storage">Session are nevoie de acces la stocare pentru a trimite fotografii și videoclipuri.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme</string>
     <string name="ConversationActivity_search_position">%1$d din %2$d</string>
-    <string name="ConversationActivity_no_results">Niciun rezultat</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%d mesaj necitit</item>
-        <item quantity="few">%d mesaje necitite</item>
-        <item quantity="other">%d mesaje necitite</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Șterg mesajul selectat?</item>
@@ -95,6 +97,7 @@
         <item quantity="few">Această acțiune va șterge permanent toate cele %1$d mesaje selectate.</item>
         <item quantity="other">Această acțiune va șterge permanent toate cele %1$d mesaje selectate.</item>
     </plurals>
+    <string name="ConversationFragment_ban_selected_user">Blocați acest utilizator?</string>
     <string name="ConversationFragment_save_to_sd_card">Salvez pe spațiul de stocare?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="one">Salvarea acestui fişier pe spaţiul de stocare va permite altor aplicaţii de pe dispozitivul tău să le acceseze.\n\nContinui?</item>
@@ -111,19 +114,6 @@
         <item quantity="few">Se salvează %1$d atașamente</item>
         <item quantity="other">Se salvează %1$d atașamente</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Se salvează atașamentul pe spațiul de stocare...</item>
-        <item quantity="few">Se salvează %1$d atașamente pe spațiul de stocare...</item>
-        <item quantity="other">Se salvează %1$d atașamente pe spațiul de stocare...</item>
-    </plurals>
-    <string name="ConversationFragment_pending">În așteptare...</string>
-    <string name="ConversationFragment_push">Date (Session)</string>
-    <string name="ConversationFragment_deleting">Se șterge</string>
-    <string name="ConversationFragment_deleting_messages">Se șterg mesajele...</string>
-    <string name="ConversationFragment_quoted_message_not_found">Mesajul original nu a fost găsit</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Mesajul original nu mai este disponibil</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Mesaj pentru schimbul de chei</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Poză profil</string>
     <!-- CustomDefaultPreference -->
@@ -132,6 +122,7 @@
     <string name="CustomDefaultPreference_none">Niciuna</string>
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Acum</string>
+    <string name="DateUtils_minutes_ago">%d min</string>
     <string name="DateUtils_today">Azi</string>
     <string name="DateUtils_yesterday">Ieri</string>
     <!-- DeviceListItem -->
@@ -152,6 +143,7 @@
     <string name="LongMessageActivity_message_from_s">Mesaj de la %1$s</string>
     <string name="LongMessageActivity_your_message">Mesajul dvs.</string>
     <!-- MediaOverviewActivity -->
+    <string name="MediaOverviewActivity_Media">Media</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">Șterg mesajul selectat?</item>
         <item quantity="few">Șterg mesajele selectate?</item>
@@ -203,12 +195,16 @@
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Deblochez acest contact?</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">O să poți primi din nou mesaje și apeluri de la acest contact.</string>
     <string name="RecipientPreferenceActivity_unblock">Deblochează</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Setări notificări</string>
     <!-- Slide -->
     <string name="Slide_image">Imagine</string>
+    <string name="Slide_audio">Audio</string>
+    <string name="Slide_video">Video</string>
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Primit mesajul conform caruia
 schimbul de chei este corupt </string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune de protocol invalidă.</string>
+    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">Mesaj de schimb de chei primit pentru o versiune de protocol invalidă.
+    </string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">A fost primit un mesaj cu noul număr de siguranță. Apasă pentru a fi procesat și afișat.</string>
     <string name="SmsMessageRecord_secure_session_reset">Ai resetat sesiunea securizată.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s a resetat sesiunea securizată.</string>
@@ -225,10 +221,14 @@ schimbul de chei este corupt </string>
     <string name="ThreadRecord_s_is_on_signal">%s folosește Session!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Mesajele care dispar sunt dezactivate</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
+    <string name="ThreadRecord_s_took_a_screenshot">%s a efectuat o captură de ecran.</string>
+    <string name="ThreadRecord_media_saved_by_s">Media salvată de %s.</string>
     <string name="ThreadRecord_safety_number_changed">Numărul de siguranță s-a schimbat</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Numărul tău de siguranță pentru %s s-a schimbat.</string>
     <string name="ThreadRecord_you_marked_verified">Ați marcat ca și verificat</string>
     <string name="ThreadRecord_you_marked_unverified">Ați marcat ca și neverificat</string>
+    <string name="ThreadRecord_empty_message">Această conversaţie este goală</string>
+    <string name="ThreadRecord_open_group_invitation">Deschide invitația în grup</string>
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Actualizare Session</string>
     <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">O nouă versiune de Session este disponibilă, apasă pentru actualizare</string>
@@ -248,6 +248,7 @@ schimbul de chei este corupt </string>
     <string name="MediaPreviewActivity_you">Tu</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
     <string name="MediaPreviewActivity_draft">Ciornă</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session are nevoie de permisiune la spațiul de stocarea externa pentru a salva pe spațiul de stocare extern, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicațiilor, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nu se poate salva pe spațiu de stocare extern fără permisiune</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Șterg mesajul?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
@@ -263,6 +264,8 @@ schimbul de chei este corupt </string>
     <string name="MessageNotifier_reply">Răspunde</string>
     <string name="MessageNotifier_pending_signal_messages">Mesaje Session în așteptare</string>
     <string name="MessageNotifier_you_have_pending_signal_messages">Ai mesaje Session în așteptare, apasă pentru deschidere și recuperare</string>
+    <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+    <string name="MessageNotifier_unknown_contact_message">Contact</string>
     <!-- Notification Channels -->
     <string name="NotificationChannel_messages">Implicit</string>
     <string name="NotificationChannel_calls">Apeluri</string>
@@ -284,6 +287,7 @@ schimbul de chei este corupt </string>
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">Scurtătură invalidă</string>
     <!-- SingleRecipientNotificationBuilder -->
+    <string name="SingleRecipientNotificationBuilder_signal">Session</string>
     <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
@@ -294,10 +298,16 @@ schimbul de chei este corupt </string>
     <!-- VideoPlayer -->
     <string name="VideoPlayer_error_playing_video">Eroare la redarea video!</string>
     <!-- attachment_type_selector -->
+    <string name="attachment_type_selector__audio">Audio</string>
+    <string name="attachment_type_selector__audio_description">Audio</string>
+    <string name="attachment_type_selector__contact">Contact</string>
+    <string name="attachment_type_selector__contact_description">Contact</string>
     <string name="attachment_type_selector__camera">Cameră</string>
     <string name="attachment_type_selector__camera_description">Cameră</string>
     <string name="attachment_type_selector__location">Locație</string>
     <string name="attachment_type_selector__location_description">Locație</string>
+    <string name="attachment_type_selector__gif">GIF</string>
+    <string name="attachment_type_selector__gif_description">Gif</string>
     <string name="attachment_type_selector__gallery_description">Imagine sau video</string>
     <string name="attachment_type_selector__file_description">Fișier</string>
     <string name="attachment_type_selector__gallery">Galerie</string>
@@ -332,7 +342,14 @@ schimbul de chei este corupt </string>
     <string name="audio_view__pause_accessibility_description">Pauză</string>
     <string name="audio_view__download_accessibility_description">Descarcă</string>
     <!-- open_group_invitation_view -->
+    <string name="open_group_invitation_view__join_accessibility_description">Alătură-te</string>
+    <string name="open_group_invitation_view__open_group_invitation">Deschide invitația în grup</string>
+    <string name="open_group_guidelines_pinned_message">Mesaje fixate</string>
+    <string name="open_group_guidelines_community_guidelines">Regulile comunității</string>
+    <string name="open_group_guidelines_read">Citește</string>
     <!-- QuoteView -->
+    <string name="QuoteView_audio">Audio</string>
+    <string name="QuoteView_video">Video</string>
     <string name="QuoteView_photo">Poză</string>
     <string name="QuoteView_you">Tu</string>
     <string name="QuoteView_original_missing">Mesajul original nu a fost găsit</string>
@@ -372,6 +389,7 @@ schimbul de chei este corupt </string>
     <string name="arrays__mute_for_one_day">Fără sunet pentru o zi</string>
     <string name="arrays__mute_for_seven_days">Fără sunet pentru 7 zile</string>
     <string name="arrays__mute_for_one_year">Fără sunet pentru un an</string>
+    <string name="arrays__mute_forever">Amuțește pentru totdeauna</string>
     <string name="arrays__settings_default">Setări implicite</string>
     <string name="arrays__enabled">Activat</string>
     <string name="arrays__disabled">Dezactivat</string>
@@ -379,8 +397,11 @@ schimbul de chei este corupt </string>
     <string name="arrays__name_only">Doar numele</string>
     <string name="arrays__no_name_or_message">Niciun nume sau mesaj</string>
     <string name="arrays__images">Imagini</string>
+    <string name="arrays__audio">Audio</string>
+    <string name="arrays__video">Video</string>
     <string name="arrays__documents">Documente</string>
     <string name="arrays__small">Mic</string>
+    <string name="arrays__normal">Normal</string>
     <string name="arrays__large">Mare</string>
     <string name="arrays__extra_large">Foarte mare</string>
     <string name="arrays__default">Implicit</string>
@@ -422,6 +443,7 @@ schimbul de chei este corupt </string>
     <string name="preferences__white">Alb</string>
     <string name="preferences__none">Niciuna</string>
     <string name="preferences__fast">Rapid</string>
+    <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Încet</string>
     <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Șterge automat mesajele vechi când conversația depășește mărimea specificată</string>
     <string name="preferences__delete_old_messages">Șterge mesajele vechi</string>
@@ -456,6 +478,8 @@ schimbul de chei este corupt </string>
     <string name="conversation_context__menu_message_details">Detalii mesaj</string>
     <string name="conversation_context__menu_copy_text">Copiază textul</string>
     <string name="conversation_context__menu_delete_message">Şterge mesajul</string>
+    <string name="conversation_context__menu_ban_user">Blochează utilizator</string>
+    <string name="conversation_context__menu_ban_and_delete_all">Interzice și șterge toate</string>
     <string name="conversation_context__menu_resend_message">Retrimite mesajul</string>
     <string name="conversation_context__menu_reply_to_message">Răspunde la mesaj</string>
     <!-- conversation_context_image -->
@@ -515,6 +539,43 @@ schimbul de chei este corupt </string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
     <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
     <!-- Conversation activity -->
+    <string name="activity_conversation_copy_public_key_button_title">Copie cheia publică</string>
     <!-- Session -->
+    <string name="continue_2">Continuă</string>
+    <string name="copy">Copiază</string>
+    <string name="invalid_url">URL invalid</string>
+    <string name="copied_to_clipboard">Copiat în clipboard</string>
+    <string name="next">Următorul</string>
+    <string name="share">Distribuie</string>
+    <string name="invalid_session_id">ID sesiune nevalid</string>
+    <string name="cancel">Anulare</string>
+    <string name="your_session_id">ID-ul sesiunii dvs</string>
+    <string name="activity_landing_title_2">Sesiunea dvs. începe aici...</string>
+    <string name="activity_landing_register_button_title">Creați ID sesiune</string>
+    <string name="activity_landing_restore_button_title">Continuați sesiunea</string>
+    <string name="view_fake_chat_bubble_1">Ce este Session?</string>
+    <string name="view_fake_chat_bubble_2">Este o aplicație de mesagerie descentralizată, criptată</string>
+    <string name="view_fake_chat_bubble_3">Deci nu colectează informaţii personale sau metadatele conversaţiei? Cum funcţionează?</string>
+    <string name="view_fake_chat_bubble_4">Utilizarea unei combinații avansate de rutare anonimă și de tehnologii de criptare capăt-la-capăt.</string>
+    <string name="view_fake_chat_bubble_5">Prietenii nu-și lasă prietenii să folosească mesageri compromiși. Cu plăcere.</string>
+    <string name="activity_register_title">Bun venit la noul tău ID Session</string>
+    <string name="activity_register_explanation">ID-ul de sesiune este adresa ta unică pe care persoanele o pot folosi pentru a te contacta în Session. Neavând conexiune la identitatea ta reală, ID-ul tău Session este complet anonim și privat prin design.</string>
+    <string name="activity_restore_title">Recuperează-ți contul</string>
+    <string name="activity_restore_explanation">Introduceți fraza de recuperare care v-a fost dată atunci când v-ați înregistrat pentru a vă restaura contul.</string>
+    <string name="activity_restore_seed_edit_text_hint">Introduceți fraza de recuperare</string>
+    <string name="activity_display_name_title_2">Alegeți numele afișat</string>
+    <string name="activity_display_name_explanation">Acesta va fi numele tău când folosești Session. Poate fi numele tău, un pseudonim, sau orice altceva dorești.</string>
+    <string name="activity_display_name_edit_text_hint">Alege un nume de afișat</string>
+    <string name="activity_display_name_display_name_missing_error">Vă rugăm să alegeți un nume de afișare</string>
+    <string name="activity_path_guard_node_row_title">Nod de intrare</string>
+    <string name="activity_path_service_node_row_title">Nod servicii</string>
+    <string name="activity_path_destination_row_title">Destinație</string>
+    <string name="activity_path_learn_more_button_title">Aflați mai multe</string>
+    <string name="activity_path_resolving_progress">Se rezolvă…</string>
+    <string name="activity_create_private_chat_title">Sesiune Nouă</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Introduceți ID-ul Session</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Scanați codul QR</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Scanați codul QR al unui utilizator pentru a începe o sesiune. Codurile QR pot fi găsite prin atingerea pictogramei de cod QR din setările contului.</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Introduceți ID-ul Session sau numele ONS</string>
     <!-- Next round of translation -->
 </resources>

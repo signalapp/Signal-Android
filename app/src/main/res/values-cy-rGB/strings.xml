@@ -3,7 +3,6 @@
     <string name="yes">Iawn</string>
     <string name="no">Na</string>
     <string name="delete">Dileu</string>
-    <string name="please_wait">Arhoswch...</string>
     <string name="save">Cadw</string>
     <string name="note_to_self">Nodyn i Fi Fy Hun</string>
     <!-- AbstractNotificationBuilder -->
@@ -38,7 +37,6 @@
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Methu canfod rhaglen i ddewis cyfryngau.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Mae ar Session angen caniatâd Storio er mwyn atodi lluniau, fideos neu sain, ond mae wedi\'i wrthod yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Storio\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Mae ar Session angen caniatâd Cysylltiadau er mwyn atodi gwybodaeth gyswllt, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Cysylltiadau\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Mae ar Session angen caniatâd Camera er mwyn atodi tynnu lluniau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Camera\".</string>
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Gwall chwarae sain!</string>
@@ -54,7 +52,6 @@
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_delivered">Methodd yr anfon, tapiwch am fanylion</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Wedi derbyn neges cyfnewid allwedd, tapiwch i brosesu.</string>
-    <string name="ConversationItem_group_action_left">Mae %1$s wedi gadael y grŵp.</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Methodd yr anfon, tapiwch am gam nôl anniogel</string>
     <string name="ConversationItem_unable_to_open_media">Methu canfod app sy\'n gallu agor y cyfryngau hwn.</string>
     <string name="ConversationItem_copied_text">Copïwyd %s</string>
@@ -81,16 +78,6 @@
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Mae ar Session angen caniatâd Camera er mwyn atodi tynnu lluniau neu fideos, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis \"Caniatâd\", a galluogi \"Camera\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Angen Session angen caniatâd camera i dynnu lluniau neu fideo</string>
     <string name="ConversationActivity_search_position">%1$d o %2$d</string>
-    <string name="ConversationActivity_no_results">Dim canlyniadau</string>
-    <!-- ConversationAdapter -->
-    <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="zero">%d neges heb ei ddarllen</item>
-        <item quantity="one">%d neges heb eu darllen</item>
-        <item quantity="two">%d neges heb eu darllen</item>
-        <item quantity="few">%d neges heb eu darllen</item>
-        <item quantity="many">%d neges heb eu darllen</item>
-        <item quantity="other">%d neges heb eu darllen</item>
-    </plurals>
     <!-- ConversationFragment -->
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="zero">Dileu\'r negeseuon hyn?</item>
@@ -133,21 +120,6 @@
         <item quantity="many">Cadw %1$d atodiad</item>
         <item quantity="other">Cadw %1$d atodiad</item>
     </plurals>
-    <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="zero">Cadw atodiad i\'r storfa...</item>
-        <item quantity="one">Cadw %1$d atodiad i\'r storfa</item>
-        <item quantity="two">Cadw %1$d atodiad i\'r storfa</item>
-        <item quantity="few">Cadw %1$d atodiad i\'r storfa</item>
-        <item quantity="many">Cadw %1$d atodiad i\'r storfa</item>
-        <item quantity="other">Cadw %1$d atodiad i\'r storfa</item>
-    </plurals>
-    <string name="ConversationFragment_pending">Yn aros...</string>
-    <string name="ConversationFragment_deleting">Wrthi\'n dileu</string>
-    <string name="ConversationFragment_deleting_messages">Dileu negeseuon...</string>
-    <string name="ConversationFragment_quoted_message_not_found">Heb ganfod y neges wreiddiol</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Nid yw\'r neges wreiddiol bellach ar gael</string>
-    <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Neges cyfnewid allwedd</string>
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_profile_photo">Llun proffil</string>
     <!-- CustomDefaultPreference -->
@@ -245,7 +217,6 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Wedi derbyn neges cyfnewid
                      allwedd llygredig!</string>
-    <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">         Wedi derbyn neges cyfnewid allwedd ar gyfer fersiwn protocol annilys.</string>
     <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Derbyn neges gyda rhif diogelwch newydd. Tapiwch i brosesu a dangos.</string>
     <string name="SmsMessageRecord_secure_session_reset">Rydych yn ailosod y sesiwn ddiogel.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%s ailosod y sesiwn ddiogel.</string>
