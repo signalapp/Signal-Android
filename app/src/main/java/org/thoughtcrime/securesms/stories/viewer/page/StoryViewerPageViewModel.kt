@@ -8,7 +8,6 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
-import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -26,26 +25,13 @@ class StoryViewerPageViewModel(
 
   private val store = Store(StoryViewerPageState())
   private val disposables = CompositeDisposable()
-  private val storyViewerDialogSubject: Subject<Optional<StoryViewerDialog>> = BehaviorSubject.createDefault(Optional.empty())
-  private val dismissSubject = PublishSubject.create<StoryViewerDialog.Type>()
+  private val storyViewerDialogSubject: Subject<Optional<StoryViewerDialog>> = PublishSubject.create()
 
   private val storyViewerPlaybackStore = Store(StoryViewerPlaybackState())
 
   val storyViewerPlaybackState: LiveData<StoryViewerPlaybackState> = storyViewerPlaybackStore.stateLiveData
 
-  val groupDirectReplyObservable: Observable<Optional<StoryViewerDialog>> = Observable.combineLatest(storyViewerDialogSubject, dismissSubject) { sheet, dismissed ->
-    if (sheet.isPresent && sheet.get().type != dismissed) {
-      sheet
-    } else {
-      Optional.empty()
-    }
-  }.distinctUntilChanged { previous, current ->
-    if (current.isPresent) {
-      previous == current
-    } else {
-      false
-    }
-  }
+  val groupDirectReplyObservable: Observable<Optional<StoryViewerDialog>> = storyViewerDialogSubject
 
   val state: LiveData<StoryViewerPageState> = store.stateLiveData
 

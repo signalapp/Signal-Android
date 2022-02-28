@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -53,7 +54,7 @@ class StoryDirectReplyRepository {
           false,
           0,
           false,
-          null,
+          ParentStoryId.DirectReply(storyId),
           QuoteModel(message.dateSent, quoteAuthor.id, "", false, message.slideDeck.asAttachments(), null),
           emptyList(),
           emptyList(),

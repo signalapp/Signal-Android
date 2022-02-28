@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.Mention;
-import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -31,7 +31,7 @@ public class OutgoingMediaMessage {
   private   final boolean                   viewOnce;
   private   final QuoteModel                outgoingQuote;
   private   final boolean                   isStory;
-  private   final MessageId                 parentStoryId;
+  private   final ParentStoryId             parentStoryId;
 
   private   final Set<NetworkFailure>      networkFailures       = new HashSet<>();
   private   final Set<IdentityKeyMismatch> identityKeyMismatches = new HashSet<>();
@@ -48,7 +48,7 @@ public class OutgoingMediaMessage {
                               boolean viewOnce,
                               int distributionType,
                               boolean isStory,
-                              @Nullable MessageId parentStoryId,
+                              @Nullable ParentStoryId parentStoryId,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
@@ -84,7 +84,7 @@ public class OutgoingMediaMessage {
                               boolean viewOnce,
                               int distributionType,
                               boolean isStory,
-                              @Nullable MessageId parentStoryId,
+                              @Nullable ParentStoryId parentStoryId,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
@@ -197,7 +197,7 @@ public class OutgoingMediaMessage {
     return isStory;
   }
 
-  public @Nullable MessageId getParentStoryId() {
+  public @Nullable ParentStoryId getParentStoryId() {
     return parentStoryId;
   }
 

@@ -118,7 +118,7 @@ public class MmsSmsDatabase extends Database {
                                               "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + SmsDatabase.TYPE + " NOT IN (" + SmsDatabase.Types.PROFILE_CHANGE_TYPE + ", " + SmsDatabase.Types.GV1_MIGRATION_TYPE + ", " + SmsDatabase.Types.CHANGE_NUMBER_TYPE + ", " + SmsDatabase.Types.BOOST_REQUEST_TYPE + ") AND " + SmsDatabase.TYPE + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " " +
                                               "UNION ALL " +
                                               "SELECT " + MmsSmsColumns.ID + ", 1 AS " + TRANSPORT + ", " + MmsDatabase.MESSAGE_BOX + " AS " + MmsSmsColumns.NORMALIZED_TYPE + ", " + MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " FROM " + MmsDatabase.TABLE_NAME + " " +
-                                              "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + MmsDatabase.MESSAGE_BOX + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " = 0 " +
+                                              "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + MmsDatabase.MESSAGE_BOX + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 " +
                                               "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
                                               "LIMIT 1";
 
@@ -202,7 +202,7 @@ public class MmsSmsDatabase extends Database {
   public Cursor getConversation(long threadId, long offset, long limit) {
     SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String         order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " = 0";
+    String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
     String         limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
     String         query     = buildQuery(PROJECTION, selection, order, limitStr, false);
 
@@ -264,19 +264,16 @@ public class MmsSmsDatabase extends Database {
     }
 
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery.toString() + ")" : "") + ")";
+    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery.toString() + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null);
   }
 
   public int getUnreadCount(long threadId) {
-    String selection = MmsSmsColumns.READ + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId;
-    Cursor cursor    = queryTables(PROJECTION, selection, null, null);
+    String selection = MmsSmsColumns.READ + " = 0 AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
-    try {
+    try (Cursor cursor = queryTables(PROJECTION, selection, null, null)) {
       return cursor != null ? cursor.getCount() : 0;
-    } finally {
-      if (cursor != null) cursor.close();
     }
   }
 

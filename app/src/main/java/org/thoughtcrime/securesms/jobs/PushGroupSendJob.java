@@ -222,7 +222,6 @@ public final class PushGroupSendJob extends PushSendJob {
 
       GroupId.Push                               groupId            = groupRecipient.requireGroupId().requirePush();
       Optional<byte[]>                           profileKey         = getProfileKey(groupRecipient);
-      Optional<Quote>                            quote              = getQuoteFor(message);
       Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews           = getPreviewsFor(message);
@@ -290,7 +289,6 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                       .withViewOnce(message.isViewOnce())
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withProfileKey(profileKey.orNull())
-                                                                      .withQuote(quote.orNull())
                                                                       .withSticker(sticker.orNull())
                                                                       .withSharedContacts(sharedContacts)
                                                                       .withPreviews(previews)
@@ -298,7 +296,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
         if (message.getParentStoryId() != null) {
           try {
-            MessageRecord storyRecord = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().getId());
+            MessageRecord storyRecord = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().asMessageId().getId());
             Recipient     recipient   = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getIndividualRecipient();
 
             groupMessageBuilder.withStoryContext(new SignalServiceDataMessage.StoryContext(recipient.requireServiceId(), storyRecord.getDateSent()));
@@ -307,6 +305,8 @@ public final class PushGroupSendJob extends PushSendJob {
             // TODO [stories] check what should happen in this case
             throw new UndeliverableMessageException(e);
           }
+        } else {
+          groupMessageBuilder.withQuote(getQuoteFor(message).orNull());
         }
 
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));

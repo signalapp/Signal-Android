@@ -208,7 +208,6 @@ public class PushMediaSendJob extends PushSendJob {
       List<Attachment>                           attachments         = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              serviceAttachments  = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey          = getProfileKey(messageRecipient);
-      Optional<SignalServiceDataMessage.Quote>   quote               = getQuoteFor(message);
       Optional<SignalServiceDataMessage.Sticker> sticker             = getStickerFor(message);
       List<SharedContact>                        sharedContacts      = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews            = getPreviewsFor(message);
@@ -219,7 +218,6 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                                .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                                                .withViewOnce(message.isViewOnce())
                                                                                                .withProfileKey(profileKey.orNull())
-                                                                                               .withQuote(quote.orNull())
                                                                                                .withSticker(sticker.orNull())
                                                                                                .withSharedContacts(sharedContacts)
                                                                                                .withPreviews(previews)
@@ -227,13 +225,15 @@ public class PushMediaSendJob extends PushSendJob {
 
       if (message.getParentStoryId() != null) {
         try {
-          MessageRecord storyRecord = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().getId());
+          MessageRecord storyRecord = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().asMessageId().getId());
           mediaMessageBuilder.withStoryContext(new SignalServiceDataMessage.StoryContext(address.getServiceId(), storyRecord.getDateSent()));
         } catch (NoSuchMessageException e) {
           // The story has probably expired
           // TODO [stories] check what should happen in this case
           throw new UndeliverableMessageException(e);
         }
+      } else {
+        mediaMessageBuilder.withQuote(getQuoteFor(message).orNull());
       }
 
       SignalServiceDataMessage mediaMessage = mediaMessageBuilder.build();

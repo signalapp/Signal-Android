@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageLogEntry;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
@@ -1376,11 +1377,20 @@ public final class MessageContentProcessor {
     database.beginTransaction();
 
     try {
-      // TODO [stories] check if this works for group stories
-      RecipientId storyAuthorRecipient = RecipientId.from(storyContext.getAuthorServiceId(), null);
-      MessageId storyId;
+      RecipientId   storyAuthorRecipient = RecipientId.from(storyContext.getAuthorServiceId(), null);
+      ParentStoryId parentStoryId;
+      QuoteModel    quoteModel = null;
       try {
-        storyId = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
+        MessageId storyMessageId = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
+
+        if (message.getGroupContext().isPresent()) {
+          parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
+        } else {
+          MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
+
+          parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
+          quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+        }
       } catch (NoSuchMessageException e) {
         warn(content.getTimestamp(), "Couldn't find story for reply.", e);
         return;
@@ -1391,7 +1401,7 @@ public final class MessageContentProcessor {
                                                                    content.getServerReceivedTimestamp(),
                                                                    System.currentTimeMillis(),
                                                                    false,
-                                                                   storyId,
+                                                                   parentStoryId,
                                                                    -1,
                                                                    0,
                                                                    false,
@@ -1400,7 +1410,7 @@ public final class MessageContentProcessor {
                                                                    message.getBody(),
                                                                    Optional.fromNullable(GroupUtil.getGroupContextIfPresent(content)),
                                                                    Optional.absent(),
-                                                                   Optional.absent(),
+                                                                   Optional.fromNullable(quoteModel),
                                                                    Optional.absent(),
                                                                    Optional.absent(),
                                                                    Optional.absent(),

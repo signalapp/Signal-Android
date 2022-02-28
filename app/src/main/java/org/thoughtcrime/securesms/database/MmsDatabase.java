@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
+import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
@@ -813,7 +814,7 @@ public class MmsDatabase extends MessageDatabase {
   public int getMessageCountForThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
-    String   query = THREAD_ID + " = ? AND " + IS_STORY + " = ? AND " + PARENT_STORY_ID + " = ?";
+    String   query = THREAD_ID + " = ? AND " + IS_STORY + " = ? AND " + PARENT_STORY_ID + " <= ?";
     String[] args  = SqlUtil.buildArgs(threadId, 0, 0);
 
     try (Cursor cursor = db.query(TABLE_NAME, COUNT, query, args, null, null, null)) {
@@ -829,7 +830,7 @@ public class MmsDatabase extends MessageDatabase {
   public int getMessageCountForThread(long threadId, long beforeTime) {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
-    String   query = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < ? AND " + IS_STORY + " = ? AND " + PARENT_STORY_ID + " = ?";
+    String   query = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < ? AND " + IS_STORY + " = ? AND " + PARENT_STORY_ID + " <= ?";
     String[] args  = SqlUtil.buildArgs(threadId, beforeTime, 0, 0);
 
     try (Cursor cursor = db.query(TABLE_NAME, COUNT, query, args, null, null, null)) {
@@ -1207,20 +1208,20 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public List<MarkedMessageInfo> setMessagesReadSince(long threadId, long sinceTimestamp) {
     if (sinceTimestamp == -1) {
-      return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " = 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + ")))", new String[] {String.valueOf(threadId)});
+      return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " <= 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + ")))", new String[] {String.valueOf(threadId)});
     } else {
-      return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " = 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND ( " + getOutgoingTypeClause() + " ))) AND " + DATE_RECEIVED + " <= ?", new String[]{String.valueOf(threadId), String.valueOf(sinceTimestamp)});
+      return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " <= 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND ( " + getOutgoingTypeClause() + " ))) AND " + DATE_RECEIVED + " <= ?", new String[]{String.valueOf(threadId), String.valueOf(sinceTimestamp)});
     }
   }
 
   @Override
   public List<MarkedMessageInfo> setEntireThreadRead(long threadId) {
-    return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " = 0", new String[] {String.valueOf(threadId)});
+    return setMessagesRead(THREAD_ID + " = ? AND " + IS_STORY + " = 0 AND " + PARENT_STORY_ID + " <= 0", new String[] {String.valueOf(threadId)});
   }
 
   @Override
   public List<MarkedMessageInfo> setAllMessagesRead() {
-    return setMessagesRead(IS_STORY+ " = 0 AND " + PARENT_STORY_ID + " = 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + ")))", null);
+    return setMessagesRead(IS_STORY+ " = 0 AND " + PARENT_STORY_ID + " <= 0 AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + ")))", null);
   }
 
   private List<MarkedMessageInfo> setMessagesRead(String where, String[] arguments) {
@@ -1419,7 +1420,7 @@ public class MmsDatabase extends MessageDatabase {
         String           mismatchDocument   = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
         String           networkDocument    = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
         boolean          isStory            = CursorUtil.requireBoolean(cursor, IS_STORY);
-        MessageId        parentStoryId      = MessageId.fromNullable(CursorUtil.requireLong(cursor, PARENT_STORY_ID), true);
+        ParentStoryId    parentStoryId      = ParentStoryId.deserialize(CursorUtil.requireLong(cursor, PARENT_STORY_ID));
 
         long              quoteId            = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_ID));
         long              quoteAuthor        = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR));
@@ -1590,7 +1591,7 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());
     contentValues.put(VIEW_ONCE, retrieved.isViewOnce() ? 1 : 0);
     contentValues.put(IS_STORY, retrieved.isStory() ? 1 : 0);
-    contentValues.put(PARENT_STORY_ID, retrieved.getParentStoryId() != null ? retrieved.getParentStoryId().getId() : 0);
+    contentValues.put(PARENT_STORY_ID, retrieved.getParentStoryId() != null ? retrieved.getParentStoryId().serialize() : 0);
     contentValues.put(READ, retrieved.isExpirationUpdate() ? 1 : 0);
     contentValues.put(UNIDENTIFIED, retrieved.isUnidentified());
     contentValues.put(SERVER_GUID, retrieved.getServerGuid());
@@ -1785,7 +1786,7 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(EarlyReceiptCache.Receipt::getCount).sum());
     contentValues.put(RECEIPT_TIMESTAMP, Stream.of(earlyDeliveryReceipts.values()).mapToLong(EarlyReceiptCache.Receipt::getTimestamp).max().orElse(-1));
     contentValues.put(IS_STORY, message.isStory() ? 1 : 0);
-    contentValues.put(PARENT_STORY_ID, message.getParentStoryId() != null ? message.getParentStoryId().getId() : 0);
+    contentValues.put(PARENT_STORY_ID, message.getParentStoryId() != null ? message.getParentStoryId().serialize() : 0);
 
     if (message.getRecipient().isSelf() && hasAudioAttachment(message.getAttachments())) {
       contentValues.put(VIEWED_RECEIPT_COUNT, 1L);
