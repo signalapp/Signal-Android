@@ -14,7 +14,7 @@ class StoryViewsRepository {
       fun refresh() {
         emitter.onNext(
           SignalDatabase.groupReceipts.getGroupReceiptInfo(storyId).filter {
-            it.status == GroupReceiptDatabase.STATUS_READ
+            it.status == GroupReceiptDatabase.STATUS_VIEWED
           }.map {
             StoryViewItemData(
               recipient = Recipient.resolved(it.recipientId),
