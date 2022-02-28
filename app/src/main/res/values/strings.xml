@@ -2678,6 +2678,7 @@
     <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
     <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
     <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
+    <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
     <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
 
 

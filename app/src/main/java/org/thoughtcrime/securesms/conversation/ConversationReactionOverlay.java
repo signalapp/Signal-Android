@@ -642,6 +642,10 @@ public final class ConversationReactionOverlay extends FrameLayout {
   private int getSelectedIndexViaMotionEvent(@NonNull MotionEvent motionEvent, @NonNull Boundary boundary) {
     int selected = -1;
 
+    if (backgroundView.getVisibility() != View.VISIBLE) {
+      return selected;
+    }
+
     for (int i = 0; i < emojiViews.length; i++) {
       final float emojiLeft = (segmentSize * i) + emojiStripViewBounds.left;
       horizontalEmojiBoundary.update(emojiLeft, emojiLeft + segmentSize);

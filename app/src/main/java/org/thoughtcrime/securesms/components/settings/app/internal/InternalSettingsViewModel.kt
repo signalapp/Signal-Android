@@ -102,6 +102,10 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     store.update { getState().copy(disableStories = newState) }
   }
 
+  fun addSampleReleaseNote() {
+    repository.addSampleReleaseNote()
+  }
+
   private fun refresh() {
     store.update { getState().copy(emojiVersion = it.emojiVersion) }
   }

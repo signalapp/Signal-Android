@@ -353,6 +353,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       sectionHeaderPref(R.string.preferences__internal_release_channel)
 
       clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_release_channel_set_last_version),
+        onClick = {
+          SignalStore.releaseChannelValues().highestVersionNoteReceived = max(SignalStore.releaseChannelValues().highestVersionNoteReceived - 10, 0)
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from(R.string.preferences__internal_fetch_release_channel),
         onClick = {
           SignalStore.releaseChannelValues().previousManifestMd5 = ByteArray(0)
@@ -361,9 +368,9 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_release_channel_set_last_version),
+        title = DSLSettingsText.from(R.string.preferences__internal_add_sample_note),
         onClick = {
-          SignalStore.releaseChannelValues().highestVersionNoteReceived = max(SignalStore.releaseChannelValues().highestVersionNoteReceived - 10, 0)
+          viewModel.addSampleReleaseNote()
         }
       )
 
