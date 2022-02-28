@@ -1192,10 +1192,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                                  if (child != null && layoutManager.isViewPartiallyVisible(child, true, false)) {
                                    getListAdapter().pulseAtPosition(position);
                                  } else {
-                                   pulsePosition = position;
+                                   layoutManager.scrollToPositionWithOffset(p, list.getHeight() / 4);
+                                   getListAdapter().pulseAtPosition(position);
                                  }
-
-                                 layoutManager.scrollToPositionWithOffset(p, list.getHeight() / 4);
                                } else {
                                  layoutManager.scrollToPositionWithOffset(p, list.getHeight() / 4);
                                  getListAdapter().pulseAtPosition(position);
