@@ -223,7 +223,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private Animation                   scrollButtonOutAnimation;
   private Animation                   mentionButtonOutAnimation;
   private OnScrollListener            conversationScrollListener;
-  private int                         pulsePosition = -1;
   private int                         lastSeenScrollOffset;
   private View                        toolbarShadow;
   private Stopwatch                   startupStopwatch;
@@ -1373,11 +1372,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         conversationDateHeader.show();
       } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
         conversationDateHeader.hide();
-
-        if (pulsePosition != -1) {
-          getListAdapter().pulseAtPosition(pulsePosition);
-          pulsePosition = -1;
-        }
       }
     }
 
