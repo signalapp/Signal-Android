@@ -405,8 +405,13 @@ public final class PushGroupSendJob extends PushSendJob {
 
       RetrieveProfileJob.enqueue(mismatchRecipientIds);
     } else if (!networkFailures.isEmpty()) {
-      Log.w(TAG, "Retrying because there were " + networkFailures.size() + " network failures.");
-      throw new RetryLaterException();
+      long retryAfter = results.stream()
+                               .filter(r -> r.getRateLimitFailure() != null)
+                               .map(r -> r.getRateLimitFailure().getRetryAfterMilliseconds().or(-1L))
+                               .max(Long::compare)
+                               .orElse(-1L);
+      Log.w(TAG, "Retrying because there were " + networkFailures.size() + " network failures. retryAfter: " + retryAfter);
+      throw new RetryLaterException(retryAfter);
     }
   }
 

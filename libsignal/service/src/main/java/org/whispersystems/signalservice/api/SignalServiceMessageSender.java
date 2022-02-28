@@ -75,6 +75,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.services.AttachmentService;
@@ -1623,6 +1624,9 @@ public class SignalServiceMessageSender {
         } else if (e.getCause() instanceof ProofRequiredException) {
           Log.w(TAG, e);
           results.add(SendMessageResult.proofRequiredFailure(recipient, (ProofRequiredException) e.getCause()));
+        } else if (e.getCause() instanceof RateLimitException) {
+          Log.w(TAG, e);
+          results.add(SendMessageResult.rateLimitFailure(recipient, (RateLimitException) e.getCause()));
         } else {
           throw new IOException(e);
         }
