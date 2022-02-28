@@ -77,7 +77,7 @@ class StoriesLandingFragment :
 
     viewModel.state.observe(viewLifecycleOwner) {
       adapter.submitList(getConfiguration(it).toMappingModelList())
-      emptyNotice.visible = it.storiesLandingItems.isEmpty()
+      emptyNotice.visible = it.hasNoStories
     }
   }
 
