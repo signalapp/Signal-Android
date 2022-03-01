@@ -553,6 +553,8 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
       }
       cursor = Objects.requireNonNull(data.first);
 
+      viewModel.setCursor(this, cursor, leftIsRecent);
+
       int mediaPosition = Objects.requireNonNull(data.second);
 
       CursorPagerAdapter oldAdapter = (CursorPagerAdapter) mediaPager.getAdapter();
@@ -565,13 +567,13 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
         oldAdapter.setActive(true);
       }
 
-      viewModel.setCursor(this, cursor, leftIsRecent);
+      if (oldAdapter == null || restartItem >= 0) {
+        int item = restartItem >= 0 ? restartItem : mediaPosition;
+        mediaPager.setCurrentItem(item);
 
-      int item = restartItem >= 0 ? restartItem : mediaPosition;
-      mediaPager.setCurrentItem(item);
-
-      if (item == 0) {
-        viewPagerListener.onPageSelected(0);
+        if (item == 0) {
+          viewPagerListener.onPageSelected(0);
+        }
       }
     } else {
       mediaNotAvailable();
