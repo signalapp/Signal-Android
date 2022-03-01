@@ -120,6 +120,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">আপনি যাকে খুঁজছেন তাকে খুঁজে পাচ্ছেন না?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Signal -এ যোগ দিতে একটি পরিচিতিকে আমন্ত্রণ জানান</string>
   <string name="CameraContacts__menu_search">খুঁজুন</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">বন্ধ করুন</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">না ধন্যবাদ</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">সরান</string>
   <string name="ClearProfileActivity_remove_profile_photo">প্রোফাইলের ছবিটি সরিয়ে ফেলবেন?</string>
@@ -2146,6 +2153,17 @@
   <string name="preferences_chats__message_text_size">বার্তার হরফের আকার</string>
   <string name="preferences_events__contact_joined_signal">পরিচিতি Signal এ যোগ দিয়েছে</string>
   <string name="preferences_notifications__priority">অগ্রাধিকার</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">যদি সক্ষম করা থাকে তবে Signal সেন্সরশিপকে ছিন্ন করার চেষ্টা করবে। আপনি যদি এমন কোনও স্থানে না থাকেন যেখানে Signal সেন্সর করা রয়েছে তবে এই বৈশিষ্ট্যটি সচল করবেন না।</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">আপনার অ্যাকাউন্ট ফোন নাম্বার এর ভিত্তিতে সেন্সরশিপ এড়ানো সক্রিয় করা হয়েছে।</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">আপনি ম্যানুয়ালি সেন্সরশিপ এড়ানো অচল করেছেন।</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">সেন্সরশিপ এড়ানো প্রয়োজনীয় নয়; আপনি ইতিমধ্যে Signal পরিষেবাতে সংযুক্ত আছেন।</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">সেন্সরশিপ এড়ানো কেবলমাত্র ইন্টারনেটে সংযুক্ত থাকা অবস্থায় সক্রিয় করা যায়।</string>
   <string name="preferences_communication__category_sealed_sender">সিলযুক্ত প্রেরক</string>
   <string name="preferences_communication__sealed_sender_display_indicators">প্রদর্শন সূচকসমূহ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">যখন আপনি সিলযুক্ত প্রেরক ব্যবহার করে পৌছে দেয়া হয়েছে এমন বার্তাগুলিতে \"বার্তা খুঁটিনাটি\" নির্বাচন করেন তখন একটি স্থিতি আইকন দেখান।</string>

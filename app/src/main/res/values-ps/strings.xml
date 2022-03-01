@@ -120,6 +120,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">د هغه کس په لټه کې چې یاست هغه مو پیدا نه کړ؟</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">د مخاطبینو له لیست څخه یو کس په Signal کې د یو ځای کېدو لپاره راوبولئ</string>
   <string name="CameraContacts__menu_search">پلټنه</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">خاموشه یې کړئ</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">نه مننه</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ایسته کول</string>
   <string name="ClearProfileActivity_remove_profile_photo">غواړئ د پروفایل انځور لري کړئ؟</string>
@@ -2091,6 +2098,17 @@
   <string name="preferences_chats__message_text_size">د پیغام د فونټ اندازه</string>
   <string name="preferences_events__contact_joined_signal">مخاطب Signal سره یو ځای شو</string>
   <string name="preferences_notifications__priority">لومړیتوب</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">که چیرته فعال شي، نو Signal به هڅه وکړي چې سانسور ودروي. دا ځانګړنه مه فعاله کوئ، مګر دا چې تاسې په داسې یوه موقعیت کې یاست چیرته چې Signal سانسور وي.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">د سانسور بندول ستاسې د اکاونټ د ټلیفون شمېرې له مخې فعال شوی دی.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">تاسې په لاسي ډول د سانسور بندول غیرفعال کړی دی.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">د سانسور د بندولو کار ته اړتیا نشته؛ تاسې له پخوا څخه د Signal خدماتو سره وصل شوي یاست.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">د سانسور بندول یوازې هغه وخت فعاله کېدای شي کله چې له انټرنېټ سره وصل شي.</string>
   <string name="preferences_communication__category_sealed_sender">ناپیژانده لیږونکی</string>
   <string name="preferences_communication__sealed_sender_display_indicators">د شاخصونو ښودل</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">کله چې تاسې پر هغو پیغامونو باندې د \"پیغام جزئیات\" ټاکئ کوم چې مو د ناپیژانده لیږونکي په توګه لیږلي، نو د وضعیت ایکن یې وښیئ.</string>

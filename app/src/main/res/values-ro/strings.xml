@@ -123,6 +123,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nu poți găsi pe cine cauți?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Invită un contact să se alăture pe Signal</string>
   <string name="CameraContacts__menu_search">Caută</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Dezactivezi ocolirea cenzurii?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Acum te poți conecta la serviciul Signal direct, pentru o experiență mai bună.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Dezactivare</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Nu, mulțumesc</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Elimină</string>
   <string name="ClearProfileActivity_remove_profile_photo">Elimini poza de profil?</string>
@@ -2262,6 +2271,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_chats__message_text_size">Mărimea textului</string>
   <string name="preferences_events__contact_joined_signal">Un contact s-a alăturat pe Signal</string>
   <string name="preferences_notifications__priority">Prioritate</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Ocolire cenzură</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Ocolire cenzură</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Dacă este activată, Signal va încerca să ocolească cenzura. Nu activa această funcționalitate doar dacă ești într-o locație unde Signal este cenzurat.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Ocolirea cenzurii a fost activată pe baza numărului tău de telefon.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ai dezactivat manual ocolirea cenzurii.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Ocolirea cenzurii nu este necesară; ești deja conectat la serviciul Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Ocolirea cenzurii poate fi activată numai atunci când ești conectat la internet.</string>
   <string name="preferences_communication__category_sealed_sender">Expeditor ascuns</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Afișează indicatoare</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Afișează un icon de status când selectezi \"Detalii mesaj\" pentru mesaje ce au fost trimise folosind funcția expeditor ascuns.</string>

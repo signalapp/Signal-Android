@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">നിങ്ങൾ ആരെയാണ് തിരയുന്നതെന്ന് കണ്ടെത്താൻ കഴിയുന്നില്ലേ?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Signal-ൽ ചേരാൻ ഒരു കോൺടാക്റ്റിനെ ക്ഷണിക്കുക</string>
   <string name="CameraContacts__menu_search">തിരയൽ</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">സെൻസർഷിപ്പ് മറികടക്കൽ ഓഫാക്കണോ?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">മികച്ച അനുഭവത്തിനായി നിങ്ങൾക്ക് ഇപ്പോൾ Signal സേവനത്തിലേക്ക് നേരിട്ട് ബന്ധിപ്പിക്കാനാകും.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">ഓഫ് ആക്കുക</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">നീക്കംചെയ്യൂ</string>
   <string name="ClearProfileActivity_remove_profile_photo">പ്രൊഫൈല്‍ ഫോട്ടോ നീക്കംചെയ്യണോ?</string>
@@ -2171,6 +2180,19 @@
   <string name="preferences_chats__message_text_size">സന്ദേശ ഫോണ്ട് വലുപ്പം</string>
   <string name="preferences_events__contact_joined_signal">കോൺ‌ടാക്റ്റ് Signal-ൽ ചേർന്നു</string>
   <string name="preferences_notifications__priority">മുൻഗണന</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">സെൻസർഷിപ്പ് ഒഴിവാക്കൽ</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">സെൻസർഷിപ്പ് ഒഴിവാക്കൽ</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">പ്രാപ്യമാക്കിയിട്ടുണ്ടെങ്കിൽ, സെൻസർഷിപ്പ് ഒഴിവാക്കാൻ Signal ശ്രമം നടത്തും.  Signal സെൻസർ ചെയ്യുന്ന ഒരു ലൊക്കേഷനിൽ ആണ് നിങ്ങളെങ്കിൽ ഈ ഫീച്ചർ പ്രാപ്യമാക്കരുത്.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">നിങ്ങളുടെ അക്കൗണ്ടിലെ ഫോൺ നമ്പർ അടിസ്ഥാനമാക്കി സെൻസർഷിപ്പ് ഒഴിവാക്കൽ പ്രാപ്തമാക്കിയിട്ടുണ്ട്.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">സെൻസർഷിപ്പ് ഒഴിവാക്കൽ നിങ്ങൾ  മാന്വൽ ആയി പ്രാപ്തമല്ലാതാക്കിയിരിക്കുന്നു.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">സെൻസർഷിപ്പ് ഒഴിവാക്കൽ നിർബന്ധമല്ല; നിങ്ങൾ ഇതിനകം തന്നെ Signal സേവനങ്ങളുമായി കണക്ട് ആയിരിക്കുന്നു.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ഇൻ്റർനെറ്റുമായി കണക്ട് ചെയ്യുമ്പോൾ മാത്രമേ സെൻസർഷിപ്പ് ഒഴിവാക്കൽ പ്രാപ്തമാക്കാൻ സാധിക്കുകയുള്ളൂ.</string>
   <string name="preferences_communication__category_sealed_sender">സീൽഡ് സെൻഡർ</string>
   <string name="preferences_communication__sealed_sender_display_indicators">സൂചകങ്ങൾ കാണിക്കുക</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">സീൽഡ് സെൻഡർ ഉപയോഗിച്ച് കൈമാറിയ സന്ദേശങ്ങളിൽ \"സന്ദേശ വിശദാംശങ്ങൾ\" തിരഞ്ഞെടുക്കുമ്പോൾ ഒരു സ്റ്റാറ്റസ് ഐക്കൺ കാണിക്കുക.</string>
@@ -3418,21 +3440,39 @@
   <string name="ManageDonationsFragment__manage_subscription">സബ്സ്ക്രിപ്ഷൻ നിയന്ത്രിക്കുക</string>
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
   <string name="ManageDonationsFragment__subscription_faq">സബ്സ്ക്രിപ്ഷൻ FAQ</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">സബ്‌സ്ക്രിപ്‌ഷൻ ലഭിക്കുന്നതിൽ പിശക്.</string>
   <string name="BoostFragment__give_signal_a_boost">Signal ന് ഒരു ബൂസ്റ്റ് നല്‍കുക</string>
+  <string name="BoostFragment__say_thanks_and_earn">\"നന്ദി!\" പറയൂ %1$d ദിവസത്തേക്ക് ബൂസ്റ്റ് ബാഡ്ജ് നേടൂ.</string>
   <string name="Boost__enter_custom_amount">ഇഷ്ടാനുസൃത തുക നൽകുക</string>
   <string name="Boost__one_time_contribution">ഒറ്റ-തവണ സംഭാവന</string>
+  <string name="MySupportPreference__add_a_signal_boost">ഒരു Signal ബൂസ്റ്റ് ചേർക്കുക</string>
+  <string name="MySupportPreference__s_per_month">%1$s/മാസം</string>
+  <string name="MySupportPreference__renews_s">%1$s പുതുക്കുന്നു</string>
   <string name="MySupportPreference__processing_transaction">ഇടപാട് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">ബാഡ്ജ് ചേർക്കാനായില്ല. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">ദയവായി പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">നിങ്ങളുടെ ബാഡ്‌ജ് കാലഹരണപ്പെട്ടു</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ബാഡ്ജ് കാലഹരണപ്പെട്ടു</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കി</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">നിങ്ങളുടെ ബൂസ്റ്റ് ബാഡ്‌ജ് കാലഹരണപ്പെട്ടു ഇനി അത് നിങ്ങളുടെ പ്രൊഫൈലിൽ മറ്റുള്ളവർക്ക് ദൃശ്യമാകില്ല.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">നിങ്ങൾക്ക് ഒറ്റ-തവണ സംഭാവനയിലൂടെ 30 ദിവസത്തേക്ക് ബൂസ്റ്റ് ബാഡ്ജ് വീണ്ടും സജീവമാക്കാം.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">നിങ്ങൾക്കായി നിർമ്മിച്ച സാങ്കേതികവിദ്യയെ പിന്തുണയ്‌ക്കുന്നത് തുടരുന്നതിന്, പ്രതിമാസ പരിപാലകർ ആകുന്നത് പരിഗണിക്കുക.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">പരിപാലകര്‍ ആകുക</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ഒരു ബൂസ്റ്റ് ചേർക്കുക</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">നിങ്ങൾ വളരെക്കാലം നിഷ്‌ക്രിയമായിരുന്നതിനാൽ നിങ്ങളുടെ പരിപാലക സബ്‌സ്ക്രിപ്‌ഷൻ സ്വയമേവ റദ്ദാക്കപ്പെട്ടു. നിങ്ങളുടെ %1$s ബാഡ്‌ജ് ഇനി നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമാകില്ല.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">ഞങ്ങൾക്ക് നിങ്ങളുടെ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യാൻ കഴിയാത്തതിനാൽ നിങ്ങളുടെ പരിപാലക സബ്‌സ്‌ക്രിപ്‌ഷൻ റദ്ദാക്കപ്പെട്ടു. നിങ്ങളുടെ ബാഡ്‌ജ് ഇനി നിങ്ങളുടെ പ്രൊഫൈലിൽ ദൃശ്യമാകില്ല.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">നിങ്ങൾക്ക് Signal ഉപയോഗിക്കുന്നത് തുടരാം, എന്നാൽ ആപ്പിനെ പിന്തുണയ്‌ക്കാനും നിങ്ങളുടെ ബാഡ്‌ജ് വീണ്ടും സജീവമാക്കാനും, ഇപ്പോൾ പുതുക്കുക.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">സബ്സ്ക്രിപ്ഷൻ പുതുക്കുക</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">സബ്‌സ്ക്രിപ്‌ഷൻ പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യാനാകില്ല</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">നിങ്ങളുടെ Signal പരിപാലക പേയ്‌മെന്റ് ശേഖരിക്കുന്നതിൽ ഞങ്ങൾ ബുദ്ധിമുട്ട് നേരിടുന്നു. നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി കാലികമാണെന്ന് ഉറപ്പാക്കുക. അങ്ങനെയല്ലെങ്കിൽ, അത് Google Pay-യിൽ പുതുക്കുക. കുറച്ച് ദിവസത്തിനകം പേയ്‌മെന്റ് വീണ്ടും പ്രോസസ്സ് ചെയ്യാൻ Signal ശ്രമിക്കും.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">ഇത് വീണ്ടും കാണിക്കരുത്</string>
+  <string name="Subscription__please_contact_support_for_more_information">കൂടുതൽ വിവരങ്ങൾക്ക് പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
   <string name="Subscription__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
+  <string name="Subscription__earn_a_s_badge">ഒരു %1$s ബാഡ്ജ് നേടൂ</string>
   <string name="SubscribeFragment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
   <string name="DonationsErrors__error_processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നതിൽ പിശക്.</string>
@@ -3452,20 +3492,33 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">നെറ്റ്‌വർക്ക് പിശക്. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കൂ</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">മറ്റൊരു പേയ്‌മെന്റ് രീതി പരീക്ഷിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി കാലികമാണെന്ന് Google Pay-യിൽ പരിശോധിച്ചുറപ്പിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">കൂടുതൽ അറിയുക</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി കാലികമാണെന്ന് Google Pay-യിൽ പരിശോധിച്ചുറപ്പിച്ച് വീണ്ടും ശ്രമിക്കുക. പ്രശ്നം തുടരുകയാണെങ്കിൽ, നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">നിങ്ങളുടെ കാർഡ് ഇത്തരത്തിലുള്ള വാങ്ങലിനെ പിന്തുണയ്ക്കുന്നില്ല. മറ്റൊരു പേയ്‌മെന്റ് രീതി പരീക്ഷിക്കുക.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">നിങ്ങളുടെ കാർഡ് കാലഹരണപ്പെട്ടു. Google Pay-യിൽ നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി പുതുക്കിയ ശേ‍ഷം വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Google Pay-യിലേക്ക് പോകുക</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">നിങ്ങളുടെ കാർഡ് നമ്പർ തെറ്റാണ്. അത് Google Pay-യിൽ പുതുക്കിയ ശേ‍ഷം വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">നിങ്ങളുടെ കാർഡിന്റെ CVC നമ്പർ തെറ്റാണ്. അത് Google Pay-യിൽ പുതുക്കിയ ശേ‍ഷം വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">ഈ വാങ്ങൽ പൂർത്തിയാക്കാൻ നിങ്ങളുടെ കാർഡില്‍ മതിയായ ധനം ഇല്ല. മറ്റൊരു പേയ്‌മെന്റ് രീതി പരീക്ഷിക്കുക.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">നിങ്ങളുടെ പേയ്‌മെന്റ് രീതിയുടെ കാലഹരണപ്പെടുന്ന മാസം തെറ്റാണ്. അത് Google Pay-യിൽ പുതുക്കിയ ശേ‍ഷം വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">നിങ്ങളുടെ പേയ്‌മെന്റ് രീതിയുടെ കാലഹരണപ്പെടുന്ന വർഷം തെറ്റാണ്. അത് Google Pay-യിൽ പുതുക്കിയ ശേ‍ഷം വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">പേയ്‌മെന്റ് വീണ്ടും പൂർത്തിയാക്കാൻ ശ്രമിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ കൂടുതൽ വിവരങ്ങൾക്ക് നിങ്ങളുടെ ബാങ്കുമായി ബന്ധപ്പെടുക.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">പ്രൊഫൈലിന് പേര് നൽകുക</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3489,6 +3542,7 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">വാഹനം ഓടിക്കുന്നു</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">ദുഃഖകാലം</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">ശ്രദ്ധ കേന്ദ്രീകരിക്കല്‍</string>
   <!--Error message shown when attempting to next/save without a profile name-->
@@ -3502,6 +3556,7 @@
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">ചേർക്കുക</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">നിങ്ങൾ കേൾക്കാൻ ആഗ്രഹിക്കുന്ന ആളുകളിൽ നിന്നും ഗ്രൂപ്പുകളിൽ നിന്നും മാത്രം അറിയിപ്പുകളും വിളികളും സ്വീകരിക്കുന്നതിന് ഒരു രൂപരേഖ സൃഷ്‌ടിക്കുക.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">പ്രൊഫൈലുകൾ</string>
   <!--Button that starts the create new notification profile flow-->
@@ -3511,6 +3566,7 @@
   <!--Button use to permanently delete a notification profile-->
   <string name="NotificationProfileDetails__delete_profile">പ്രൊഫൈൽ ഇല്ലാതാക്കൂ</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" നീക്കം ചെയ്തിരിക്കുന്നു.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">തിരിച്ചാക്കുക</string>
   <!--Dialog message shown to confirm deleting a profile-->
@@ -3518,6 +3574,7 @@
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">ഇല്ലാതാക്കൂ</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">അറിയിപ്പ് രൂപരേഖ തിരുത്തുക</string>
   <!--Schedule description if all days are selected-->
   <string name="NotificationProfileDetails__everyday">ദിവസേന</string>
   <!--Profile status on if it is the active profile-->
@@ -3527,8 +3584,11 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s %2$s-നോട്</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">ഉള്‍പ്പെടാത്തവ</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">എല്ലാ വിളികളും അനുവദിക്കുക</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">എല്ലാ സൂചനകളും അറിയിക്കുക</string>
   <!--Section header for showing schedule information-->
   <string name="NotificationProfileDetails__schedule">സമയക്രമം</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
@@ -3536,6 +3596,7 @@
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">ഒരു സമയക്രമം ചേര്‍ക്കുക</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">ഈ അറിയിപ്പ് രൂപരേഖ സ്വയമേവ പ്രവർത്തനക്ഷമമാക്കാൻ ഒരു സമയക്രമം സജ്ജീകരിക്കുക.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">സമയപ്പട്ടിക</string>
   <!--Label for showing the start time for the schedule-->
@@ -3567,7 +3628,7 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">അടുത്തത്</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
-  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">ഷെഡ്യൂളിന് കുറഞ്ഞത് ഒരു ദിവസമെങ്കിലും ഉണ്ടായിരിക്കണം</string>
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">സമയക്രമത്തില്‍ കുറഞ്ഞത് ഒരു ദിവസമെങ്കിലും ഉണ്ടായിരിക്കണം</string>
   <!--Title for final screen shown after completing a profile creation-->
   <string name="NotificationProfileCreated__profile_created">പ്രൊഫൈൽ സൃഷ്ടിച്ചു</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
@@ -3575,17 +3636,19 @@
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">ചാറ്റ് ലിസ്റ്റിലെ മെനു വഴി നിങ്ങളുടെ പ്രൊഫൈൽ സ്വമേധയാ ഓണാക്കുകയോ ഓഫാക്കുകയോ ചെയ്യാം.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
-  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ ഓട്ടോമേറ്റ് ചെയ്യാൻ ക്രമീകരണങ്ങളിൽ ഒരു ഷെഡ്യൂൾ ചേർക്കുക.</string>
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">നിങ്ങളുടെ രൂപരേഖ യാന്ത്രികമാക്കാൻ ക്രമീകരണങ്ങളിൽ ഒരു സമയക്രമം ചേർക്കുക.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
-  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">നിങ്ങളുടെ ഷെഡ്യൂൾ അനുസരിച്ച് നിങ്ങളുടെ പ്രൊഫൈൽ സ്വയമേവ ഓണും ഓഫും ആകും.</string>
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">നിങ്ങളുടെ സമയക്രമം അനുസരിച്ച് നിങ്ങളുടെ രൂപരേഖ സ്വയമേവ ഓണും ഓഫും ആകും.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">പുതിയ പ്രൊഫൈൽ</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">1 മണിക്കൂർ</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">%1$s വരെ</string>
   <!--Option to view profile details-->
   <string name="NotificationProfileSelection__view_settings">ക്രമീകരണങ്ങൾ കാണുക</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">%1$s വരെ സജീവം</string>
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">അറിയിപ്പ് പ്രൊഫൈലുകൾ</string>
   <!--Description for notification profile megaphone-->
@@ -3595,6 +3658,7 @@
   <!--Button to dismiss notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">പിക്കർ തുറക്കുന്നത് പരാജയപ്പെട്ടു.</string>
   <!--Description shown for the Signal Release Notes channel-->
   <string name="ReleaseNotes__signal_release_notes_and_news">Signal പ്രകാശന കുറിപ്പുകളും വാര്‍ത്തകളും</string>
   <!--EOF-->

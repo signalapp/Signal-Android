@@ -119,6 +119,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Không tìm thấy người bạn cần tìm?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Mời một liên hệ dùng Signal</string>
   <string name="CameraContacts__menu_search">Tìm kiếm</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Tắt</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Không, cảm ơn</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Xoá</string>
   <string name="ClearProfileActivity_remove_profile_photo">Gỡ ảnh đại diện?</string>
@@ -2076,6 +2083,17 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_chats__message_text_size">Cỡ chữ tin nhắn</string>
   <string name="preferences_events__contact_joined_signal">Liên hệ bắt đầu dùng Signal</string>
   <string name="preferences_notifications__priority">Mức ưu tiên</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Nếu được bật, Signal sẽ thử tránh kiểm duyệt. Không bật tính năng này trừ khi bạn đang ở một nơi đang chặn Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Tránh Kiểm duyệt đã được bật dựa trên số điện thoại trong tài khoản của bạn.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Bạn vừa tắt tính năng tránh kiểm duyệt theo cách thủ công.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Tránh kiểm duyệt là không cần thiết; bạn đã được kết nối với dịch vụ của Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Chỉ có thể bật Tránh Kiểm duyệt khi bạn đang được kết nối internet.</string>
   <string name="preferences_communication__category_sealed_sender">Lá thư không chủ</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Hiện biểu tượng</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Hiện một biểu tượng khi bạn xem \"Chi tiết tin nhắn\" trên các tin nhắn được gửi bằng Lá thư không chủ.</string>

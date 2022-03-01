@@ -119,6 +119,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">သင်ရှာတဲ့သူကို မတွေ့ဘူးလား</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Signal အသုံးပြုရန် ဖိတ်ခေါ်ပါ</string>
   <string name="CameraContacts__menu_search">ရှာရန်</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">ပိတ်မည်</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">မလုပ်လိုပါ။</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ဖယ်ရှားသည် </string>
   <string name="ClearProfileActivity_remove_profile_photo">ဓါတ်ပုံ ဖယ်ရှားမှာလား ?</string>
@@ -1918,6 +1925,17 @@
   <string name="preferences_chats__message_text_size">စာလုံးအရွယ်အစား</string>
   <string name="preferences_events__contact_joined_signal">Signal ကို လာသုံးနေပြီ</string>
   <string name="preferences_notifications__priority">ဦးစားပေး</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">ဒါကိုဖွင့်ထားပါက signal အနေဖြင့် ပိတ်ထားခြင်းများကို ကျော်သွားရန်ကြိုးစားပါလိမ့်မည်။ Signal အားပိတ်ထားသောနေရာတွင်အသုံးပြုနေခြင်းမဟုတ်ပါက ဒါကိုသုံးရန်မလိုပါ။</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">သင့်ကိုယ်ပိုင်စာရင်း ၏ဖုန်းနံပါတ်အပေါ် မူတည်၍ ဆင်ဆာဖြတ်တောက်မှုရှောင်ကွင်းခြင်းကို ပြုလုပ်ပြီး ဖြစ်သည်။</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">သင်ကိုယ်တိုင် ဆင်ဆာခံခြင်းကို ရှောင်ကျင်ရန် ပိတ်ထားခဲ့ပါသည်။</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Signal ကို ချိတ်ဆက်ပြီးသား ဖြစ်သောကြောင့် ဆင်ဆာဖြတ်တောက်မှု ရှောင်ကွင်းခြင်းကို မလိုအပ်ပါ။</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ဆင်ဆာဖြတ်တောက်မှု ရှောင်ကွင်းခြင်းကို အင်တာနက် ချိတ်ထားမှသာ သုံးလို့ရမည်။</string>
   <string name="preferences_communication__category_sealed_sender">ဖုံးကွယ်ထားသော ပေးပို့သူ</string>
   <string name="preferences_communication__sealed_sender_display_indicators">ပြသမှု ညွှန်ကိန်းများ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">ဖုံးကွယ်ထားသော ပေးပို့သူ ကိုသုံး၍ ပေးပို့သော မက်ဆေ့ချ်များအတွက် \"မက်ဆေ့ချ် အချက်အလက်များ\" ကိုရွေးလျှင် အခြေအနေအိုင်ကွန် ကိုပြသပါ။</string>

@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je de persoon die je zoekt niet vinden?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Signal te gebruiken</string>
   <string name="CameraContacts__menu_search">Zoeken</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Censuuromzeiling uitschakelen?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Je kunt vanaf nu weer een directe verbinding maken met Signals servers, Signal werkt dan beter.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Uitschakelen</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Nee bedankt</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Verwijderen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
@@ -2182,6 +2191,19 @@
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
   <string name="preferences_events__contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
   <string name="preferences_notifications__priority">Dringendheid instellen</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Censuuromzeiling</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Censuuromzeiling</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Indien ingeschakeld zal Signal proberen censuur te omzeilen. Schakel deze functie niet in tenzij je je op een locatie bevindt waar Signal gecensureerd wordt.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Censuuromzeiling is automatisch ingeschakeld omdat je telefoonnummer bij een risicoregio hoort.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Je hebt censuuromzeiling handmatig uitgeschakeld.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Censuuromzeiling is niet nodig, je bent al verbonden met Signals servers.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censuuromzeiling kan alleen worden ingeschakeld als je verbonden bent met het internet.</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictogram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender</string>
@@ -2617,7 +2639,7 @@
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte om je back-upbestand op te slaan.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hier om het maken van back-upbestanden in te stellen.</string>
   <string name="ProgressPreference_d_messages_so_far">%d berichten tot nu toe</string>
-  <string name="RegistrationActivity_wrong_number">Verkeerd nummer</string>
+  <string name="RegistrationActivity_wrong_number">Verkeerd telefoonnummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Bel me \n (beschikbaar over %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal-ondersteuning</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
@@ -2855,7 +2877,7 @@
   <string name="ReviewCard__update_contact">Contactpersoon aanpassen</string>
   <string name="ReviewCard__block">Blokkeren</string>
   <string name="ReviewCard__delete">Contactpersoon wissen</string>
-  <string name="ReviewCard__recently_changed">“%1$s” heeft recentelijk zijn of haar profielnaam naar “%2$s” gewijzigd</string>
+  <string name="ReviewCard__recently_changed">Heette kort geleden nog “%1$s” maar heeft zijn of haar profielnaam naar “%2$s” gewijzigd</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s neemt nu deel aan deze oproep</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s en %2$s nemen nu deel</string>
@@ -3054,17 +3076,17 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">Gebruik je pincode voor twee-factor-authenticatie. Ieder die je telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij Signal-berichten verzenden of ontvangen met jouw telefoonnummer.</string>
   <string name="AccountSettingsFragment__change_phone_number">Telefoonnummer wijzigen</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit als Signal wilt blijven gebruiken met een ander telefoonnummer. Je kunt overstappen naar een nieuw telefoonnummer niet ongedaan maken.\n\nGa voordat je verder gaat na dat je op het nieuwe telefoonnummer sms-berichten of oproepen kunt ontvangen.</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit als Signal wilt blijven gebruiken met een ander telefoonnummer. Je kunt het overstappen naar een nieuw telefoonnummer niet ongedaan maken.\n\nGa voordat je verder gaat na dat je op het nieuwe telefoonnummer sms-berichten of oproepen kunt ontvangen.</string>
   <string name="ChangeNumberFragment__continue">Doorgaan</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
   <string name="ChangeNumber__your_phone_number_has_changed_to_s">Je telefoonnummer is gewijzigd naar %1$s</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Oké</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
-  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Nummer veranderen</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Telefoonnummer wijzigen</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Je oude telefoonnummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Je nieuwe telefoonnummer</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Je nieuwe nummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Je nieuwe telefoonnummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nieuw telefoonnummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Je moet je oude landcode aangeven</string>
@@ -3072,15 +3094,15 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Je moet je nieuwe landcode aangeven</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Je moet je nieuwe telefoonnummer invullen</string>
   <!--ChangeNumberVerifyFragment-->
-  <string name="ChangeNumberVerifyFragment__change_number">Nummer veranderen</string>
+  <string name="ChangeNumberVerifyFragment__change_number">Telefoonnummer wijzigen</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">%1$s aan het verifiëren</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha vereist</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Telefoonnummer wijzigen</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Je staat op het punt om het telefoonnummer waarmee je geregistreert staat te veranderen van %1$s naar %2$s.\n\nGa na dat het telefoonnummer hieronder correct is.</string>
-  <string name="ChangeNumberConfirmFragment__edit_number">Telefoonnummer wijzigen</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Je staat op het punt het telefoonnummer waarmee je geregistreerd staat te wijzigen van %1$s naar %2$s.\n\nGa na dat het telefoonnummer hieronder juist is voordat je verder gaat.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Onjuist telefoonnummer aanpassen</string>
   <!--ChangeNumberRegistrationLockFragment-->
-  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Telefoonnummer voor Signal veranderen - Hulp nodig bij met de pincode (pincode versie 2)</string>
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Telefoonnummer voor Signal veranderen - Hulp nodig bij met de pincode (pincode-versie 2)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">De pincodes komen niet overeen</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">De pincode voor je nieuwe telefoonnummer is anders dan de pincode voor je oude telefoonnummer. Wil je de oude pincode behouden of een nieuwe pincode aanmaken?</string>

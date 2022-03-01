@@ -117,6 +117,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Ei leia, keda otsid?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu kontakt Signaliga liituma</string>
   <string name="CameraContacts__menu_search">Otsi</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Lülita välja</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Tänan, ei</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eemalda</string>
   <string name="ClearProfileActivity_remove_profile_photo">Eemaldad profiilipildi?</string>
@@ -2123,6 +2130,17 @@
   <string name="preferences_chats__message_text_size">Sõnumi fondisuurus</string>
   <string name="preferences_events__contact_joined_signal">Kontakt liitus Signaliga</string>
   <string name="preferences_notifications__priority">Prioriteet</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Kui on lubatud, siis püüab Signal tsenseerimisest mööda hiilida. Luba see funktsioon vaid siis, kui oled kohas, kus Signal on tsenseeritud.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Tsenseerimisest möödahiilimine on aktiveeritud sinu konto telefoninumbri järgi.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Sa oled käsitsi keelanud tsenseerimisest möödahiilimise</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Tsenseerimisest möödahiilimine pole vajalik, sa oled juba Signali teenusega ühendatud.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Tsenseerimisest möödahiilimist saab aktiveerida ainult Internetis olles.</string>
   <string name="preferences_communication__category_sealed_sender">Kaetud saatja</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Kuva indikaatoreid</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Kuva olekuikooni, kui vajutad valikule \"Sõnumi andmed\" sõnumitel, mis saadeti kaetud saatja abil.</string>

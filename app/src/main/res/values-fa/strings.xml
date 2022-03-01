@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">نمی‌توانید فردی را که بدنبالش هستید پیدا کنید؟</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">دعوت یک مخاطب برای پیوستن به سیگنال</string>
   <string name="CameraContacts__menu_search">جستجو</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">خاموش کردن عبور از فیلترینگ؟</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">شما حالا می‌توانید برای تجربهٔ بهتر به طور مستقیم به سرویس سیگنال متصل شوید.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">خاموش</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">نه ممنون</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">حذف</string>
   <string name="ClearProfileActivity_remove_profile_photo">حذف عکس پروفایل؟</string>
@@ -2177,6 +2186,19 @@
   <string name="preferences_chats__message_text_size">اندازهٔ قلم پیام</string>
   <string name="preferences_events__contact_joined_signal">مخاطب به سیگنال پیوست</string>
   <string name="preferences_notifications__priority">اولویت</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">عبور از فیلترینگ</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">عبور از فیلترینگ</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">اگر فعال شود، سیگنال اقدام به دور زدن فیلترینگ خواهد کرد. تنها در صورتی این قابلیت را فعال کنید که سیگنال در محل شما مسدود شده است.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">عبور از فیلترینگ بر اساس شماره‌تلفن شما فعال شد.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">شما عبور از فیلترینگ را به صورت دستی غیرفعال کردید.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">نیازی به دورزدن سانسور نیست؛ شما به سرویس سیگنال دسترسی مستقیم دارید.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">عبور از فیلترینگ تنها زمانی می‌تواند فعال شود که اینترنت متصل باشد.</string>
   <string name="preferences_communication__category_sealed_sender">فرستندهٔ ناشناس</string>
   <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگرها</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش آیکون وضعیت هنگامی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند انتخاب می‌کنید.</string>
@@ -3489,12 +3511,19 @@
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">به Google Pay بروید</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">شمارهٔ کارت شما اشتباه است آن را در Google Pay به‌روزرسانی کنید و دوباره امتحان کنید.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">شمارهٔ CVC کارت شما اشتباه است. آن را در گوگل Pay به‌روزرسانی کنید و دوباره امتحان کنید.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">کارت شما موجودی کافی برای تکمیل این خرید را ندارد. روش پرداخت دیگری را امتحان کنید.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">ماه انقضای روش پرداخت شما نادرست است. آن را در Google Pay به‌روزرسانی کنید و دوباره امتحان کنید.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">سال انقضای روش پرداخت شما نادرست است. آن را در Google Pay به‌روزرسانی کنید و دوباره امتحان کنید.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">دوباره تکمیل پرداخت را امتحان کنید یا برای اطلاعات بیشتر با بانک خود تماس بگیرید.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">دوباره امتحان کنید یا برای اطلاعات بیشتر با بانک خود تماس بگیرید.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">پروفایل خود را نام‌گذاری کنید</string>
   <!--Hint text for create/edit notification profile name-->

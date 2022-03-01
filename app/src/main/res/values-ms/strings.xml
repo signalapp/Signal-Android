@@ -119,6 +119,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Tidak dapat mencari siapa yang anda sedang cari?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Jemput kenalan untuk sertai Signal</string>
   <string name="CameraContacts__menu_search">Cari</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Matikan</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Tidak, terima kasih</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Alih keluar</string>
   <string name="ClearProfileActivity_remove_profile_photo">Alih keluar foto profil?</string>
@@ -2066,6 +2073,17 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_chats__message_text_size">Saiz huruf mesej</string>
   <string name="preferences_events__contact_joined_signal">Kenalan menyertai Signal</string>
   <string name="preferences_notifications__priority">Keutamaan</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Jika didayakan, Signal akan cuba memintas penapisan. Jangan mendayakan ciri ini melainkan jika anda berada di lokasi di mana Signal ditapis.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Pemintasan penapisan telah diaktifkan berdasarkan nombor telefon akaun anda.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Anda telah menyahdayakan pemintasan penapisan secara manual.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Pemintasan penapisan tidak perlu; anda sudah disambungkan ke perkhidmatan Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Pemintasan penapisan hanya boleh diaktifkan semasa menyambung ke internet.</string>
   <string name="preferences_communication__category_sealed_sender">Penghantar dimeretai</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Penunjuk paparan</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Memaparkan ikon status apabila anda memilih \"Butiran mesej\" pada mesej yang dihantar menggunakan penghantar terlindung.</string>

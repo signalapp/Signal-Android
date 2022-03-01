@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">¿No encuentras a quién buscas?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Invita a una amistad a usar Signal.</string>
   <string name="CameraContacts__menu_search">Buscar</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">¿Desactivar la opción de evitar la censura?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Desde ahora te puedes conectar a Signal directamente sin necesidad de evitar la censura.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Desactivar</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">No gracias</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eliminar</string>
   <string name="ClearProfileActivity_remove_profile_photo">¿Eliminar foto de perfil?</string>
@@ -2179,6 +2188,19 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_chats__message_text_size">Tamaño de fuente del mensaje</string>
   <string name="preferences_events__contact_joined_signal">Alguien comienza a usar Signal</string>
   <string name="preferences_notifications__priority">Prioridad</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Evitar censura</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Evitar censura</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Al activar la opción, Signal intentará enviar mensajes evitando la censura. Activa la opción solo si te encuentras en un país que bloquee Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">La opción para evitar censura se ha activado automáticamente basándose en el número de teléfono de tu cuenta de Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Has desactivado manualmente la opción de evitar la censura.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">La opción para evitar censura no es necesaria: Signal está conectada con su servidor.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">La opción para evitar censura solo se puede activar con acceso a internet.</string>
   <string name="preferences_communication__category_sealed_sender">Remitente confidencial</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Mostrar indicadores</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Muestra el icono de estado al tocar sobre «Detalles del mensaje» en mensajes entregados con «remitente confidencial». «Remitente confidencial» es una función por defecto del protocolo de Signal que impide saber al servidor quién envía mensajes. Solo la persona que los reciba sabrá quién los envía.</string>

@@ -152,6 +152,16 @@
     <string name="CameraContacts_invite_a_contact_to_join_signal">Invite a contact to join Signal</string>
     <string name="CameraContacts__menu_search">Search</string>
 
+    <!-- Censorship Circumvention Megaphone -->
+    <!-- Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
+    <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Turn off censorship circumvention?</string>
+    <!-- Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
+    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">You can now connect to the Signal service directly for a better experience.</string>
+    <!-- Action to prompt the user to disable circumvention since it is no longer needed -->
+    <string name="CensorshipCircumventionMegaphone_turn_off">Turn off</string>
+    <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
+    <string name="CensorshipCircumventionMegaphone_no_thanks">No thanks</string>
+
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
     <string name="ClearProfileActivity_remove_profile_photo">Remove profile photo?</string>
@@ -2536,6 +2546,19 @@
     <string name="preferences_chats__message_text_size">Message font size</string>
     <string name="preferences_events__contact_joined_signal">Contact joined Signal</string>
     <string name="preferences_notifications__priority">Priority</string>
+    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
+    <string name="preferences_communication__category_censorship_circumvention">Censorship circumvention</string>
+    <!-- Title of the \'censorship circumvention\' toggle switch -->
+    <string name="preferences_communication__censorship_circumvention">Censorship circumvention</string>
+    <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">If enabled, Signal will attempt to circumvent censorship. Do not enable this feature unless you are in a location where Signal is censored.</string>
+    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Censorship circumvention has been activated based on your account\'s phone number.</string>
+    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">You have manually disabled censorship circumvention.</string>
+    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
+    <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Censorship circumvention is not necessary; you are already connected to the Signal service.</string>
+    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censorship circumvention can only be activated when connected to the internet.</string>
     <string name="preferences_communication__category_sealed_sender">Sealed Sender</string>
     <string name="preferences_communication__sealed_sender_display_indicators">Display indicators</string>
     <string name="preferences_communication__sealed_sender_display_indicators_description">Show a status icon when you select "Message details" on messages that were delivered using sealed sender.</string>
@@ -2600,8 +2623,8 @@
     <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
     <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
     <string name="preferences__internal_network" translatable="false">Network</string>
-    <string name="preferences__internal_force_censorship" translatable="false">Force censorship</string>
-    <string name="preferences__internal_force_censorship_description" translatable="false">Force the app to behave as if it is in a country where Signal is censored.</string>
+    <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
+    <string name="preferences__internal_allow_censorship_toggle_description" translatable="false">Allow changing the censorship circumvention toggle regardless of network connectivity.</string>
     <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
     <string name="preferences__internal_emoji" translatable="false">Emoji</string>
     <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>

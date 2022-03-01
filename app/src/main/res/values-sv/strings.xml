@@ -122,6 +122,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kan du inte hitta den du letar efter?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Bjud in en kontakt för att gå med i Signal</string>
   <string name="CameraContacts__menu_search">Sök</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Inaktivera</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Nej tack</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ta bort</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ta bort profilbild?</string>
@@ -2173,6 +2180,17 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_chats__message_text_size">Teckenstorlek för meddelanden</string>
   <string name="preferences_events__contact_joined_signal">Kontakt anslöt sig till Signal</string>
   <string name="preferences_notifications__priority">Prioritet</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Om påslaget så kommer Signal försöka kringgå censur. Slå bara på denna funktion om du är på en plats där Signal censureras.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Kringgå censur har aktiverats baserat på ditt kontos telefonnummer</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Du har manuellt inaktiverat kringgående av censur.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Kringgå censur är inte nödvändigt; du är redan ansluten till Signal-tjänsten.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Kringgå censur kan bara aktiveras när då internet är tillgängligt</string>
   <string name="preferences_communication__category_sealed_sender">Dold avsändare</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Visa indikatorer</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Visa en statusikon när du väljer \"Meddelandedetaljer\" på meddelanden som levererades med dold avsändare.</string>

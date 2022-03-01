@@ -198,11 +198,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       sectionHeaderPref(R.string.preferences__internal_network)
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_force_censorship),
-        summary = DSLSettingsText.from(R.string.preferences__internal_force_censorship_description),
-        isChecked = state.forceCensorship,
+        title = DSLSettingsText.from(R.string.preferences__internal_allow_censorship_toggle),
+        summary = DSLSettingsText.from(R.string.preferences__internal_allow_censorship_toggle_description),
+        isChecked = state.allowCensorshipSetting,
         onClick = {
-          viewModel.setForceCensorship(!state.forceCensorship)
+          viewModel.setAllowCensorshipSetting(!state.allowCensorshipSetting)
         }
       )
 

@@ -122,6 +122,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Axtardığınızı tapa bilmirsiniz?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Əlaqəni Signal-a qoşulmağa dəvət edin</string>
   <string name="CameraContacts__menu_search">Axtar</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Söndür</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Xeyr, təşəkkürlər</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Çıxart</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profil fotosu çıxarılsın? </string>
@@ -2179,6 +2186,17 @@
   <string name="preferences_chats__message_text_size">Mesaj şrift ölçüsü</string>
   <string name="preferences_events__contact_joined_signal">Əlaqə Signal-a qoşuldu</string>
   <string name="preferences_notifications__priority">Üstünlük</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Fəal olsa, Singal, senzuradan yayınmağa cəhd edəcək. Singal senzurasının olduğu bir yerdə deyilsəniz, bu özəlliyi fəallaşdırmayın.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Senzuradan yayınma, hesabınızın telefon nömrəsinə görə aktivləşdirildi.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Senzuradan yayınmanı, əllə sıradan çıxartdınız.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Senzuradan yayınmağa ehtiyac yoxdur: artıq Signal xidmətinə bağlanmısınız.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Senzuradan yayınma, yalnız internetə bağlananda aktivləşdirilə bilər.</string>
   <string name="preferences_communication__category_sealed_sender">Gizli Göndərən</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Göstəriciləri görüntülə</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Gizli göndərən seçimini istifadə edərək çatdırılan mesajlarda \"Mesaj təfsilatları\"nı seçərkən bir status nişanı göstər.</string>
@@ -2226,7 +2244,7 @@
   <string name="PaymentsHomeFragment__currency_conversion">Pul vahidi çevirmə</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Ödənişləri deaktiv et</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Bərpa parolu</string>
-  <string name="PaymentsHomeFragment__help">Kömək et</string>
+  <string name="PaymentsHomeFragment__help">Kömək</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Xırda pul təmizləmə haqqı</string>
   <string name="PaymentsHomeFragment__sent_payment">Ödəniş göndərildi</string>
   <string name="PaymentsHomeFragment__received_payment">Ödəniş alındı</string>
@@ -2237,7 +2255,7 @@
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Ödənişlər bölgənizdə əlçatmazdır.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Ödənişlər fəallaşdırıla bilmir. Daha sonra yenidən sınayın.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Ödənişlər deaktiv edilsin?</string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Ödənişləri deaktiv etsəniz, Signal-da MobileCoin göndərə və ya ala bilməzsiniz.</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Ödənişləri deaktiv etsəniz, Signal-da MobileCoin göndərə və ya ala bilməyəcəksiniz.</string>
   <string name="PaymentsHomeFragment__deactivate">Deaktiv et</string>
   <string name="PaymentsHomeFragment__continue">Davam et</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">Balans hal-hazırda əlçatmazdır.</string>
@@ -2979,7 +2997,7 @@
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Bərpa parolu</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Bərpa paroluna bax</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Bərpa parolunu daxil edin</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal PIN-inizi təsdiqlədinizsə, Signal-ı yenidən quraşdıranda balansınız avtomatik geri yüklənəcək. Həmçinin sizə xas olan %1$d sözdən ibarət bir bərpa parolunu istifadə edərək balansınızı geri yükləyə bilərsiniz. Bunu bir yerə yazın və etibarlı bir yerdə saxlayın.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal PIN-inizi təsdiqləmisinizsə, Signal-ı yenidən quraşdıranda balansınız avtomatik geri yüklənəcək. Həmçinin sizə xas olan %1$d sözdən ibarət bir bərpa parolunu istifadə edərək balansınızı geri yükləyə bilərsiniz. Bunu bir yerə yazın və etibarlı bir yerdə saxlayın.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Bərpa parolunuz, sizə xas %1$d sözdən ibarət bir paroldur. Balansınızı geri yükləmək üçün bu parolu istifadə edin.</string>
   <string name="PaymentsRecoveryStartFragment__start">Başla</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Əllə daxil edin</string>
