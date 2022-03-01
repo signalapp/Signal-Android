@@ -126,6 +126,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">لم تجدون من تبحثون عنه؟</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">إرسال دعوة لجهة اتصال للانضمام الى Signal</string>
   <string name="CameraContacts__menu_search">بحث</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">أطفىء</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">لا شكراً</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">إزالة</string>
   <string name="ClearProfileActivity_remove_profile_photo">حذف صورة الملف الشخصي؟</string>
@@ -2522,6 +2529,17 @@
   <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
   <string name="preferences_events__contact_joined_signal">انضمّت جهة الاتصال إلى Signal</string>
   <string name="preferences_notifications__priority">الأولوية</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">في حالة التفعيل، سيُحاول تطبيق Signal تجاوز الرقابة. لا تُفعِّل هذه الميزة إلا إذا كنتَ في مكان يخضع فيه Signal للرقابة.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">تمَّ تنشيط تجاوز الرقابة إستنادًا على رقم الهاتف الخاص بحسابك.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">أنتَ قَد عطَّلتَ يدويًا تجاوز الرقابة.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">تجاوز الرقابة ليس ضُروريًا ؛ أنت بالفعل مُتصل بخدمة Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">لا يمكن تفعيل تجاوز الرقابة إلا عند الاتصال بالإنترنت.</string>
   <string name="preferences_communication__category_sealed_sender">المُرسِل المختوم</string>
   <string name="preferences_communication__sealed_sender_display_indicators">عرض المؤشرات</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">عرض أيقونة الحالة عند اختيار \"تفاصيل الرسالة\" لتلك الرسائل التي تمّ إيصالها باستخدام المُرسِل المختوم.</string>

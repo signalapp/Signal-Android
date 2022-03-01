@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">S\’gjeni dot atë që po kërkoni?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Ftoni një kontakt të bëhet pjesë e Signal-it</string>
   <string name="CameraContacts__menu_search">Kërko</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Të çaktivizohet anashkalimi i censurimit?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Tani mund të lidheni te shërbimi Signal drejtpërsëdrejti, për punim më të mirë.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Çaktivizoje</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Jo, faleminderit</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Hiqe</string>
   <string name="ClearProfileActivity_remove_profile_photo">Të hiqet foto profili?</string>
@@ -2185,6 +2194,19 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_chats__message_text_size">Madhësi shkronjash mesazhi</string>
   <string name="preferences_events__contact_joined_signal">Kontakti zuri të përdorë Signal-in</string>
   <string name="preferences_notifications__priority">Përparësi</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Anashkalim censurimi</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Anashkalim censurimi</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Në u aktivizoftë, Signal-i do të përpiqet të anashkalojë censurime. Mos e aktivizoni këtë veçori, po qe se nuk gjendeni diku ku Signal-i censurohet.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Anashkalimi i censurimit është aktivizuar për numrin e telefonit të llogarisë tuaj.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Anashkalimin e censurës e keni çaktivizuar dorazi.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Anashkalimi i censurimit s’është i nevojshëm; jeni tashmë i lidhur me shërbimin Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Anashkalimi i censurimit mund të aktivizohet vetëm kur jeni i lidhur në internet.</string>
   <string name="preferences_communication__category_sealed_sender">Dërgues i Vulosur</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Shfaq tregues</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Shfaq një ikonë gjendjesh, kur përzgjidhni \"Hollësi mesazhi\" për mesazhe që qenë dërguar duke përdorur dërgues të vulosur.</string>

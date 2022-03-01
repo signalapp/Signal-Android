@@ -120,6 +120,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">जिसे ढूँढ रहे वो नहीं मिला?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">संपर्क को Signal में जुड़ने के लिए आमंत्रित करें</string>
   <string name="CameraContacts__menu_search">सर्च</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">बंद करें</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">नहीं धन्यवाद </string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">हटा दें </string>
   <string name="ClearProfileActivity_remove_profile_photo">प्रोफ़ाइल फ़ोटो निकालें?</string>
@@ -2155,6 +2162,17 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="preferences_chats__message_text_size">मेसेज फ़ॉन्ट आकार</string>
   <string name="preferences_events__contact_joined_signal">संपर्क Signal में शामिल हो गए</string>
   <string name="preferences_notifications__priority">प्राथमिकता</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">यदि चालू किया गया तो Signal आपके लिए सेंसर-कार्य तोड़ने की कोशिश करेगा। यदि आप किसी सेन्सरशिप वाली जगह पर नहीं हैं तो इस फ़ीचर को चालू ना करें।</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">आपके खाते के फ़ोन नंबर के आधार पर  सेंसरशिप से बचाव सक्षम कर दिया गया है।</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">आपने खुद सेंसरशिप से बचाव अक्षम कर दिया है।</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">सेंसरशिप से बचाव ज़रूरी नहीं है; आप पहले से Signal सर्विस से जुङे हैं। </string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">सेंसरशिप से बचाव तभी सक्षम किया जा सकता है जब आप इंटरनेट से जुङे हों।</string>
   <string name="preferences_communication__category_sealed_sender">सील्ड सेंडर</string>
   <string name="preferences_communication__sealed_sender_display_indicators">सूचक दिखाएँ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">जब आप सील्ड सेंडर द्वारा भेजे गये मेसेजों का \"मेसेज विवरण\" देखें तो स्टेटस आइकॉन दिखना चाहिऐ।</string>

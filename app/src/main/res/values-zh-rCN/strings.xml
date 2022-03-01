@@ -119,6 +119,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">未找到联系人？</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">邀请联系人加入 Signal</string>
   <string name="CameraContacts__menu_search">搜索</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">关闭</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">不，谢谢。</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">删除</string>
   <string name="ClearProfileActivity_remove_profile_photo">删除头像</string>
@@ -1963,6 +1970,17 @@
   <string name="preferences_chats__message_text_size">消息字体大小</string>
   <string name="preferences_events__contact_joined_signal">联系人加入 Signal</string>
   <string name="preferences_notifications__priority">优先级</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">若启用，Signal 会尝试规避审查。除非 Signal 在您所在地受到审查，否则不要打开该功能。</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">已根据您的电话号码启动审查规避。</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">您已手动禁用了审查规避功能</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">不需要规避审查；您已连接上了 Signal 服务。</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">审查规避只能在联网时启动。</string>
   <string name="preferences_communication__category_sealed_sender">密封发送人</string>
   <string name="preferences_communication__sealed_sender_display_indicators">显示状态</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">对于使用密封发送人送达的消息，在“消息详情”内显示状态图标。</string>

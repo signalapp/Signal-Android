@@ -124,6 +124,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nemůžete najít, koho jste hledali?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Pozvěte kontakt do Signal</string>
   <string name="CameraContacts__menu_search">Hledat</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Zapnout obcházení cenzury?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Nyní se můžete připojit přímo ke službě Signal a získat tak lepší zážitek.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Vypnout</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Ne, díky</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odebrat</string>
   <string name="ClearProfileActivity_remove_profile_photo">Odebrat profilovou fotografii?</string>
@@ -2352,6 +2361,19 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_chats__message_text_size">Velikost písma zprávy</string>
   <string name="preferences_events__contact_joined_signal">Kontakt se připojil k Signal</string>
   <string name="preferences_notifications__priority">Priorita</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Obcházení cenzury</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Obcházení cenzury</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Pokud je povoleno, Signal se pokusí obejít cenzuru. Nepovolujte v místech, kde Signal není cenzurován.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Obcházení cenzury bylo aktivováno na základě vašeho telefonního čísla.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Ručně jste zakázal(a) obcházení cenzury.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Obcházení cenzury není nutné; již jste připojeni ke službě Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Obcházení cenzury může být povoleno pouze pokud jste připojeni k internetu.</string>
   <string name="preferences_communication__category_sealed_sender">Utajený odesílatel</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Zobrazit indikátory</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Zobrazit stavovou ikonu v podrobnostech zprávy doručené s použitím funkce utajený odesílatel.</string>

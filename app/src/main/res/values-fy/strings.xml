@@ -124,6 +124,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kinsto de persoan dy’tsto sikest net fine?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Kontaken uitnoegje om Signal te brûken</string>
   <string name="CameraContacts__menu_search">Sykje</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Utskeakelje</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Nee, tankewol</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Furt helje</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profylfoto furt helje?</string>
@@ -2182,6 +2189,12 @@
   <string name="preferences_chats__message_text_size">Tekstgrutte foar berjochten</string>
   <string name="preferences_events__contact_joined_signal">Nij persoan berikber fia Signal</string>
   <string name="preferences_notifications__priority">Prioriteit</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
   <string name="preferences_communication__category_sealed_sender">Fersegele ôfstjoerder</string>
   <string name="preferences_communication__sealed_sender_display_indicators">‘Fersegele ôfstjoerder’-piktogram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Lit in steatikoan sjen asto tikkest op ‘Berjochtdetails’ by berjochten dy’t ôflevere binne mei in fersegele ôfstjoerder</string>

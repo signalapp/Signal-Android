@@ -122,6 +122,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Etkö löydä etsimääsi?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu kavereita Signaliin</string>
   <string name="CameraContacts__menu_search">Hae</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Poista käytöstä</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Ei kiitos</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Poista</string>
   <string name="ClearProfileActivity_remove_profile_photo">Poistetaanko profiilikuva?</string>
@@ -2173,6 +2180,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_chats__message_text_size">Viestien tekstin koko</string>
   <string name="preferences_events__contact_joined_signal">Yhteystieto liittyi Signaliin</string>
   <string name="preferences_notifications__priority">Prioriteetti</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Signal yrittää kiertää sensuuria toiminnon ollessa käytössä. Käytä toimintoa vain paikassa, jossa Signal on sensuroitu.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Puhelinnumerosi sijaintiin perustuva sensuurin kiertäminen otettu käyttöön.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Olet manuaalisesti poistanut käytöstä sensuurin kiertämisen.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Sensuurin kiertäminen ei ole tarpeellista, sillä laite on jo yhdistetty Signal-palvelimeen.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Sensuurin kiertäminen toimii ainoastaan laitteen ollessa Internet-yhteydessä.</string>
   <string name="preferences_communication__category_sealed_sender">Lähettäjäsinetti</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Näytä tilailmaisin</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Näytä viestin lisätiedoissa kuvake niille viesteille, jotka toimitettiin lähettäjäsinetillä. </string>

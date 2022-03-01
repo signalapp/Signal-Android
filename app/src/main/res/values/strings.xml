@@ -2546,18 +2546,18 @@
     <string name="preferences_chats__message_text_size">Message font size</string>
     <string name="preferences_events__contact_joined_signal">Contact joined Signal</string>
     <string name="preferences_notifications__priority">Priority</string>
-    <!-- Heading for the 'censorship circumvention' section of privacy preferences -->
+    <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Censorship circumvention</string>
-    <!-- Title of the 'censorship circumvention' toggle switch -->
+    <!-- Title of the \'censorship circumvention\' toggle switch -->
     <string name="preferences_communication__censorship_circumvention">Censorship circumvention</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">If enabled, Signal will attempt to circumvent censorship. Do not enable this feature unless you are in a location where Signal is censored.</string>
-    <!-- Summary text for 'censorship circumvention' toggle. Indicates that we automatically enabled it because we believe you're in a censored country -->
+    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Censorship circumvention has been activated based on your account\'s phone number.</string>
-    <!-- Summary text for 'censorship circumvention' toggle. Indicates that you disabled it even though we believe you're in a censored country -->
+    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">You have manually disabled censorship circumvention.</string>
-    <!-- Summary text for 'censorship circumvention' toggle. Indicates that you cannot use it because you're already connected to the Signal service -->
+    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
     <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Censorship circumvention is not necessary; you are already connected to the Signal service.</string>
-    <!-- Summary text for 'censorship circumvention' toggle. Indicates that you cannot use it because you're not connected to the internet -->
+    <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censorship circumvention can only be activated when connected to the internet.</string>
     <string name="preferences_communication__category_sealed_sender">Sealed Sender</string>
     <string name="preferences_communication__sealed_sender_display_indicators">Display indicators</string>

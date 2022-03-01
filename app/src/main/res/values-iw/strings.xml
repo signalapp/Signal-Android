@@ -124,6 +124,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">אינך מוצא מה שאתה מחפש?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">הזמן איש קשר להצטרף אל Signal</string>
   <string name="CameraContacts__menu_search">חפש</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">כבה</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">לא תודה</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">הסר</string>
   <string name="ClearProfileActivity_remove_profile_photo">להסיר תמונת פרופיל?</string>
@@ -2353,6 +2360,17 @@
   <string name="preferences_chats__message_text_size">גודל גופן הודעה</string>
   <string name="preferences_events__contact_joined_signal">איש קשר הצטרף אל Signal</string>
   <string name="preferences_notifications__priority">עדיפות</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">אם מאופשר, Signal ינסה לעקוף צנזורה. אל תאפשר מאפיין זה אלא אם אתה במיקום שבו Signal מצונזר.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">עקיפת צנזורה הופעלה על סמך מספר הטלפון של החשבון שלך.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">הִשְׁבַּתָּ באופן ידני עקיפת צנזורה.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">עקיפת צנזורה אינה הכרחית; אתה מחובר כבר אל שירות Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">עקיפת צנזורה יכולה להיפעל בעת התחברות אל האינטרנט.</string>
   <string name="preferences_communication__category_sealed_sender">שולח אטום</string>
   <string name="preferences_communication__sealed_sender_display_indicators">הצג מחוונים</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">הראה איקון מעמד כאשר אתה בוחר \"פרטי הודעה\" בהודעות שנמסרו ע״י שימוש בשולח אטום.</string>

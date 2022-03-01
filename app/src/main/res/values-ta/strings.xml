@@ -120,6 +120,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">நீங்கள் யாரைத் தேடுகிறீர்கள் என்று கண்டுபிடிக்க முடியவில்லையா?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Signal லில் சேர ஒரு தொடர்பை அழைக்கவும்</string>
   <string name="CameraContacts__menu_search">தேடல்</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">அணைக்க</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">தேவையில்லை,நன்றி</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">நீக்கு</string>
   <string name="ClearProfileActivity_remove_profile_photo">சுயவிவர படத்தை நீக்கவா?</string>
@@ -2068,6 +2075,17 @@
   <string name="preferences_chats__message_text_size">செய்தி எழுத்துரு அளவு</string>
   <string name="preferences_events__contact_joined_signal">தொடர்பு  Signal இல் இணைந்தது </string>
   <string name="preferences_notifications__priority">முன்னுரிமை</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">இயக்கப்பட்டால், தணிக்கை தவிர்க்க Signal முயற்சிக்கும். நீங்கள் Signal தணிக்கை செய்யப்பட்ட இடத்தில் இல்லாவிட்டால் இந்த அம்சத்தை இயக்க வேண்டாம்.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">உங்கள் கணக்கு தொலைபேசி எண்ணின் அடிப்படையில் தணிக்கை சுற்றளவு செயல்படுத்தப்பட்டுள்ளது.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">நீங்கள் தணிக்கை சுற்றளவை கைமுறையாக முடக்கியுள்ளீர்கள்.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">தணிக்கை சுற்றளவு தேவையில்லை; நீங்கள் ஏற்கனவே Signal சேவையுடன் இணைக்கப்பட்டுள்ளீர்கள்.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">இணையத்துடன் இணைக்கப்படும்போது மட்டுமே தணிக்கை சுற்றறிக்கை செயல்படுத்தப்படும்.</string>
   <string name="preferences_communication__category_sealed_sender">சீல் அனுப்பியவர்</string>
   <string name="preferences_communication__sealed_sender_display_indicators">காட்சி குறிகாட்டிகள்</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">சீல் செய்யப்பட்ட அனுப்புநரைப் பயன்படுத்தி வழங்கப்பட்ட செய்திகளில் \"செய்தி விவரங்களை\" தேர்ந்தெடுக்கும்போது நிலை ஐகானைக் காட்டு.</string>
@@ -3090,7 +3108,7 @@
   <string name="ConversationSettingsFragment__search">தேடு </string>
   <string name="ConversationSettingsFragment__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">ஒலிகள் &amp; அறிவிப்புகள்</string>
-  <string name="ConversationSettingsFragment__contact_details">தொடர்பு கொள்ளுங்கள் விவரங்கள்</string>
+  <string name="ConversationSettingsFragment__contact_details">தொடர்பு விவரங்கள்</string>
   <string name="ConversationSettingsFragment__view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
   <string name="ConversationSettingsFragment__block">தடு </string>
   <string name="ConversationSettingsFragment__block_group">குழுவைத் தடு</string>

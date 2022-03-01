@@ -122,6 +122,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Ĉu vi ne trovas tiun, kiun vi serĉas?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Inviti kontakton uzi Signal-on</string>
   <string name="CameraContacts__menu_search">Serĉi</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Malaktivigi</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Ne, dankon</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Forviŝi</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ĉu forviŝi la profilfoton?</string>
@@ -2179,6 +2186,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_chats__message_text_size">Mesaĝa tipargrando</string>
   <string name="preferences_events__contact_joined_signal">Kontakto aliĝis al Signal</string>
   <string name="preferences_notifications__priority">Prioritato</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
   <string name="preferences_communication__category_sealed_sender">Sekretigo de la sendinto</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Montri indikilojn</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Montri stato-piktogramon, kiam vi elektas eron „Detaloj de la mesaĝo“ ĉe mesaĝoj, kiuj liveriĝis uzante la funkcion „Sekretigo de la sendinto“.</string>
