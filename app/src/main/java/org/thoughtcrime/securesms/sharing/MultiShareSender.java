@@ -90,18 +90,19 @@ public final class MultiShareSender {
       boolean         needsSplit     = !transport.isSms() &&
                                        message != null    &&
                                        message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
-      boolean         isMediaMessage = !multiShareArgs.getMedia().isEmpty()                                              ||
+      boolean         hasMmsMedia    = !multiShareArgs.getMedia().isEmpty()                                              ||
                                        (multiShareArgs.getDataUri() != null && multiShareArgs.getDataUri() != Uri.EMPTY) ||
                                        multiShareArgs.getStickerLocator() != null                                        ||
-                                       multiShareArgs.getLinkPreview() != null                                           ||
                                        recipient.isGroup()                                                               ||
-                                       recipient.getEmail().isPresent()                                                  ||
-                                       !mentions.isEmpty()                                                               ||
+                                       recipient.getEmail().isPresent();
+      boolean         hasPushMedia   = hasMmsMedia                             ||
+                                       multiShareArgs.getLinkPreview() != null ||
+                                       !mentions.isEmpty()                     ||
                                        needsSplit;
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.MMS_NOT_ENABLED));
-      } else if (isMediaMessage) {
+      } else if (hasMmsMedia && transport.isSms() || hasPushMedia && !transport.isSms()) {
         sendMediaMessage(context, multiShareArgs, recipient, slideDeck, transport, shareContactAndThread.getThreadId(), forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId, mentions, shareContactAndThread.isStory());
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.SUCCESS));
       } else if (shareContactAndThread.isStory()) {
