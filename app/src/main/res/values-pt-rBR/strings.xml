@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vocês poderão trocar mensagens e fazer chamadas entre si, e o seu nome e foto serão compartilhados com essa pessoa..</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">As pessoas bloqueadas não poderão mais fazer chamadas ou enviar mensagens para você.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloqueie o recebimento de atualizações e notícias do Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Voltar a receber atualizações e notícias do Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Desbloquear %1$s ?</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquear e sair</string>
@@ -120,6 +122,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Não achou quem você estava procurando?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Convidar um contato para entrar no Signal</string>
   <string name="CameraContacts__menu_search">Buscar</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Desativar</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Não, obrigado</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
   <string name="ClearProfileActivity_remove_profile_photo">Remover foto do perfil?</string>
@@ -699,7 +708,7 @@
   <string name="ManageProfileFragment_profile_name">Nome do perfil</string>
   <string name="ManageProfileFragment_username">Nome de usuário</string>
   <string name="ManageProfileFragment_about">Sobre mim</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escreva algumas palavras sobre você</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escreva algo sobre você</string>
   <string name="ManageProfileFragment_your_name">Seu nome</string>
   <string name="ManageProfileFragment_your_username">Seu nome de usuário</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao salvar foto de perfil</string>
@@ -1088,6 +1097,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Uma mensagem de %s não pôde ser entregue</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s alterou o número de telefone.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Gostou desta funcionalidade? Agradeça com seu apoio.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal é mantido por pessoas como você. Torne-se um apoiador hoje.</string>
   <!--Group Calling update messages-->
@@ -1118,6 +1128,7 @@
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Você aceita que %1$s lhe envie uma mensagem, saiba seu nome e veja sua foto? Essa pessoa não saberá que você viu a mensagem dela ao menos que você aceite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permita %1$s enviar uma mensagem para você e compartilhar seu nome e foto com outros? Você não receberá nenhumas mensagens até que os desbloqueie.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Receba atualizações e notícias de %1$s? Você não receberá nenhuma atualização até que as desbloqueie.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar sua conversa com este grupo e exibir seu nome e foto para os membros?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Atualize este grupo para ativar novos recursos como @menções e administradores. Os membros que não compartilharam seus nomes ou fotos neste grupo serão convidados a participar.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este Grupo Legado não pode mais ser usado porque é muito grande. O tamanho máximo de grupos é %1$d.</string>
@@ -1245,6 +1256,7 @@
   <string name="RedPhone_got_it">Entendi</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">Feliz dia 💜!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <string name="ValentinesDayMegaphone_show_your_affection">Mostre o seu carinho ao tornar-se um apoiador recorrente do Signal.</string>
   <!--WebRtcCallActivity-->
@@ -1883,7 +1895,7 @@
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">A descrição do grupo estará visível para os membros deste grupo e pessoas que foram convidadas.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Sobre mim</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras sobre você…</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algo sobre você…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Fale livremente</string>
   <string name="EditAboutFragment_encrypted">Criptografado</string>
@@ -2174,6 +2186,17 @@
   <string name="preferences_chats__message_text_size">Tamanho da fonte da mensagem</string>
   <string name="preferences_events__contact_joined_signal">O contato entrou no Signal!</string>
   <string name="preferences_notifications__priority">Prioridade</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Se ativado, Signal tentará contornar a censura. Não habilite esta função ao menos que você esteja em um lugar onde Signal é censurado. </string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">A driblagem de censura foi ativada tendo como base o número de telefone da sua conta.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Você desabilitou manualmente a driblagem de censura.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">A driblagem de censura não é necessária. Você já se conectou ao serviço Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">A driblagem de censura pode ser habilitada somente durante uma conexão à Internet.</string>
   <string name="preferences_communication__category_sealed_sender">Remetente Oculto</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Exibir indicadores</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Mostrar ícone de status quando selecionar \"Detalhes da mensagem\" em mensagens que foram entregue usando remetente oculto.</string>
@@ -3422,7 +3445,7 @@
   <string name="ManageDonationsFragment__subscription_faq">Perguntas frequentes sobre doação</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Ocorreu um erro ao carregar informações sobre a doação mensal.</string>
   <string name="BoostFragment__give_signal_a_boost">Fazer uma doação ao Signal</string>
-  <string name="BoostFragment__say_thanks_and_earn">Diga “Obrigado!” e ganhe o selo Boost por %1$d dias.</string>
+  <string name="BoostFragment__say_thanks_and_earn">Mostre que você adora o Signal e ganhe o selo Boost por %1$d dias.</string>
   <string name="Boost__enter_custom_amount">Insira o valor</string>
   <string name="Boost__one_time_contribution">Doação única</string>
   <string name="MySupportPreference__add_a_signal_boost">Fazer uma doação ao Signal</string>
@@ -3447,6 +3470,8 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Sua doação como Apoiador mensal foi cancelada porque não foi possível efetuar o seu pagamento. Seu selo não é mais visualizado por outras pessoas no seu perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Você ainda pode usar o Signal, mas para apoiar o aplicativo e ter esse selo novamente, faça uma doação mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Fazer doação mensal</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Não foi possível processar o pagamento da assinatura</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Estamos tendo problemas para receber seu pagamento do Colaborador do Signal. Certifique-se de que seu método de pagamento esteja atualizado. Se não estiver, atualize-o no Google Pay. O Signal tentará processar o pagamento novamente dentro de alguns dias.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Não mostrar novamente esta mensagem</string>
   <string name="Subscription__please_contact_support_for_more_information">Entre em contato com o suporte para obter mais informações, por favor.</string>
   <string name="Subscription__contact_support">Entre em contato com o suporte</string>
@@ -3472,19 +3497,31 @@
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Tente outra forma de pagamento ou entre em contato com seu banco para obter informações sobre o erro.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Verifique se seu método de pagamento está em dia no Google Pay e tente novamente.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Saiba mais</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Verifique se seu método de pagamento está em dia no Google Pay e tente novamente. Se o problema continuar, entre em contato com seu banco.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Seu cartão não tem suporte para este tipo de compra. Tente outra forma de pagamento.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Seu cartão expirou. Atualize seu método de pagamento no Google Pay e tente novamente.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Vá ao Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">O número do seu cartão está incorreto. Atualize-o no Google Pay e tente novamente.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">O número de verificação CVC do seu cartão está incorreto. Atualize-o no Google Pay e tente novamente.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Seu cartão não tem saldo suficiente para completar esta compra. Tente outra forma de pagamento.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">O mês da validade do seu método de pagamento está incorreto. Atualize-o no Google Pay e tente novamente.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">O ano da validade do seu método de pagamento está incorreto. Atualize-o no Google Pay e tente novamente.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Tente completar o pagamento novamente ou entre em contato com seu banco para mais detalhes.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Tente novamente ou entre em contato com seu banco para mais detalhes.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Nomeie este perfil de notificações</string>
   <!--Hint text for create/edit notification profile name-->

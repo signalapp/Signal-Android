@@ -120,6 +120,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">یہ پتہ نہیں چلا سکتے کہ آپ کسے تلاش کر رہے ہیں؟</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">کسی رابطے کو Signal میں شامل ہونے کے لیے دعوت دیں۔</string>
   <string name="CameraContacts__menu_search">تلا ‎ش کر یں</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">بند کریں</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">نہیں شکریہ</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ہٹا دیں</string>
   <string name="ClearProfileActivity_remove_profile_photo">پروفائل کی تصویر کو ہٹا دیں؟</string>
@@ -2039,6 +2046,17 @@
   <string name="preferences_chats__message_text_size">پیغام فونٹ سائز</string>
   <string name="preferences_events__contact_joined_signal">رابطہ Signal میں شامل ہو گیا</string>
   <string name="preferences_notifications__priority">ترجیح دینا</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">اگر فعال کریں،Signal بائی پاس سنسرشپ کی کوشش کے گا۔ اس خصوصیت کو تب تک فعال نہ کریں جب تک آپ ایک لوکیشن میں ہیں جہاں Signal سنسر ہے۔</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">بائی پاس سنسرشپ آپ کے اکاؤنٹ فون نمبر کی بنا پر چالو کر دیا گیا ہے۔</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">آپ نے دستی طور پر بائی پاس سنسرشپ غیر فعال کر دیا ہے۔</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">بائی پاس سنسرشپ ضروری نہیں ہے؛آپ پہلے سے Signal سروس کیساتھ رابطے میں ہیں۔</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">بائی پاس سنسرشپ صرف اس وقت محرک ہوں گی جب انٹرنیٹ کیساتھ منسلک ہوں گے۔</string>
   <string name="preferences_communication__category_sealed_sender">مہر بند بھیجنے والا</string>
   <string name="preferences_communication__sealed_sender_display_indicators">ڈسپلے انڈیکیٹرز</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">جب آپ مہر بند مرسل کو استعمال کرکے بھیجے گئے پیغامات پر \"پیغام کی تفصیلات\" منتخب کرتے ہیں تو اس وقت ایک سٹیٹس آئیکن دکھائیں۔</string>

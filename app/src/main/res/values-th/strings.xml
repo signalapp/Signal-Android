@@ -119,6 +119,13 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">ไม่พบรายชื่อที่คุณมองหาหรือ?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">ส่งคำเชิญให้รายชื่อผู้ติดต่อมาใช้ Signal</string>
   <string name="CameraContacts__menu_search">ค้นหา</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">ปิด</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">ไม่ ขอบคุณ</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ลบ</string>
   <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่?</string>
@@ -1972,6 +1979,17 @@
   <string name="preferences_chats__message_text_size">ขนาดอักษรของข้อความ</string>
   <string name="preferences_events__contact_joined_signal">มีผู้ติดต่อเริ่มใช้ Signal</string>
   <string name="preferences_notifications__priority">ความสำคัญ</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">หากเปิดใช้ Signal จะพยายามหลบเลี่ยงการปิดกั้นข้อมูล อย่าเปิดใช้ความสามารถนี้ เว้นแต่ว่าคุณอยู่ในที่ที่ Signal ถูกปิดกั้น</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">การหลบเลี่ยงการปิดกั้นถูกเปิดใช้ เนื่องจากหมายเลขโทรศัพท์ของบัญชีของคุณ</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">คุณได้ปิดใช้งานระบบหลีกเลี่ยงการปิดกั้น</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ไม่จำเป็นต้องใช้การหลบเลี่ยงการปิดกั้น คุณเชื่อมต่อกับเซิร์ฟเวอร์ Signal อยู่แล้ว</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">การหลบเลี่ยงการปิดกั้นข้อมูลจะใช้ได้ก็ต่อเมื่อเชื่อมต่อกับอินเทอร์เน็ต</string>
   <string name="preferences_communication__category_sealed_sender">ผู้ส่งที่ปกปิดตัวตน</string>
   <string name="preferences_communication__sealed_sender_display_indicators">แสดงสถานะการส่ง</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">แสดงสถานะไอคอนเมื่อคุณเลือก \"รายละเอียดข้อความ\" ในข้อความที่มาจากผู้ส่งที่ปิดบังตัวตน</string>

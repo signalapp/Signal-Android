@@ -124,6 +124,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете найти нужного человека?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Пригласите контакт в Signal</string>
   <string name="CameraContacts__menu_search">Поиск</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Отключить обход цензуры?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Теперь вы можете подключаться к сервису Signal напрямую для лучшего опыта использования.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Отключить</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Нет, спасибо</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Удалить</string>
   <string name="ClearProfileActivity_remove_profile_photo">Удалить фото профиля?</string>
@@ -2346,6 +2355,19 @@
   <string name="preferences_chats__message_text_size">Размер шрифта сообщения</string>
   <string name="preferences_events__contact_joined_signal">Контакт присоединился к Signal</string>
   <string name="preferences_notifications__priority">Приоритет</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Обход цензуры</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Обход цензуры</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Если включить эту опцию, Signal будет пытаться обойти цензуру (блокировку провайдером). Не включайте её, если там, где вы находитесь, Signal не блокируется.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Обход цензуры был автоматически активирован на основе номера телефона вашей учётной записи.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Вы вручную отключили обход цензуры.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Обход цензуры не требуется; вы уже подключены к сервису Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Обход цензуры (блокировки провайдером) может быть активирован, только когда есть подключение к интернету.</string>
   <string name="preferences_communication__category_sealed_sender">Запечатанный отправитель</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Показывать индикаторы</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Показывать значок в «Подробностях сообщения» для сообщений, доставленных с использованием запечатанного отправителя.</string>

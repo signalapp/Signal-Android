@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Não consegue encontrar quem procura?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Convide um contacto para se juntar ao Signal</string>
   <string name="CameraContacts__menu_search">Procurar</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Desativar a circunscrição de censura?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Agora pode ligar-se diretamente ao serviço Signal para uma melhor experiência.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Desativar</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Não, obrigado</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
   <string name="ClearProfileActivity_remove_profile_photo">Remover a fotografia do perfil?</string>
@@ -2178,6 +2187,19 @@
   <string name="preferences_chats__message_text_size">Tamanho da letra da mensagem</string>
   <string name="preferences_events__contact_joined_signal">Um contacto juntou-se ao Signal</string>
   <string name="preferences_notifications__priority">Prioridade</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention"> Circunscrição de censura</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention"> Circunscrição de censura</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Se ativo, o Signal irá tentar circunscrever a censura. Apenas ative esta opção em locais onde o Signal é censurado.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">A circunscrição de censura foi ativada baseada no número de telefone da sua conta.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Desativou manualmente a circunscrição de censura.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">A circunscrição de censura não é necessária, já se encontra ligado(a) ao serviço do Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Circunscrição de censura só pode ser ativada enquanto existe ligação à internet.</string>
   <string name="preferences_communication__category_sealed_sender">Emissor selado</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Indicadores de visualização</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Exibe um ícone de estado quando você seleciona \"Detalhes da mensagem\" em mensagens que foram entregues utilizando o emissor selado.</string>

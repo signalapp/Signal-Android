@@ -66,8 +66,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setForceCensorship(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.FORCE_CENSORSHIP, enabled)
+  fun setAllowCensorshipSetting(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.ALLOW_CENSORSHIP_SETTING, enabled)
     refresh()
   }
 
@@ -109,7 +109,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     gv2ignoreP2PChanges = SignalStore.internalValues().gv2IgnoreP2PChanges(),
     disableAutoMigrationInitiation = SignalStore.internalValues().disableGv1AutoMigrateInitiation(),
     disableAutoMigrationNotification = SignalStore.internalValues().disableGv1AutoMigrateNotification(),
-    forceCensorship = SignalStore.internalValues().forcedCensorship(),
+    allowCensorshipSetting = SignalStore.internalValues().allowChangingCensorshipSetting(),
     callingServer = SignalStore.internalValues().groupCallingServer(),
     audioProcessingMethod = SignalStore.internalValues().audioProcessingMethod(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),

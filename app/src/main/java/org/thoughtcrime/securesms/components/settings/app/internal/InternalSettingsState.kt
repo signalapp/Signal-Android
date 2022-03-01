@@ -12,7 +12,7 @@ data class InternalSettingsState(
   val gv2ignoreP2PChanges: Boolean,
   val disableAutoMigrationInitiation: Boolean,
   val disableAutoMigrationNotification: Boolean,
-  val forceCensorship: Boolean,
+  val allowCensorshipSetting: Boolean,
   val callingServer: String,
   val audioProcessingMethod: CallManager.AudioProcessingMethod,
   val useBuiltInEmojiSet: Boolean,

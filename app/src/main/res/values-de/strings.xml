@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Die gesuchte Person nicht gefunden?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Lade einen Kontakt zu Signal ein</string>
   <string name="CameraContacts__menu_search">Suchen</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Zensurumgehung deaktivieren?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Du kannst dich jetzt mit dem Signal-Dienst, für eine bessere Erfahrung, direkt verbinden.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Ausschalten</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Nein danke</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Entfernen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profilfoto entfernen?</string>
@@ -2168,6 +2177,19 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__message_text_size">Schriftgröße für Nachrichten</string>
   <string name="preferences_events__contact_joined_signal">Neue Signal-Kontakte</string>
   <string name="preferences_notifications__priority">Priorität</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Zensurumgehung</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Zensurumgehung</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Bei Aktivierung wird Signal versuchen, Zensurmaßnahmen zu umgehen. Aktiviere diese Funktion nur dann, wenn du dich an einem Ort befindest, an dem Signal zensiert wird.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Die Zensurumgehung wurde aufgrund der Rufnummer deines Nutzerkontos aktiviert.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Du hast die Zensurumgehung manuell deaktiviert.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Die Zensurumgehung ist nicht notwendig, da bereits eine Verbindung mit dem Signal-Dienst besteht.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Die Zensurumgehung kann nur bei bestehender Internetverbindung aktiviert werden.</string>
   <string name="preferences_communication__category_sealed_sender">Vertraulicher Absender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Indikatoren anzeigen</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Bei Nachrichten von vertraulichen Absendern ein Statussymbol unter »Nachrichtendetails« anzeigen</string>

@@ -124,6 +124,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nerandate ieškomo žmogaus?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Pakvieskite adresatą prisijungti prie Signal</string>
   <string name="CameraContacts__menu_search">Ieškoti</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Išjungti cenzūravimo apėjimą?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Geresniam patyrimui, dabar galite prisijungti tiesiogiai prie Signal paslaugos.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Išjungti</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Ne, ačiū</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Šalinti</string>
   <string name="ClearProfileActivity_remove_profile_photo">Šalinti profilio nuotrauką?</string>
@@ -2353,6 +2362,19 @@
   <string name="preferences_chats__message_text_size">Žinučių šrifto dydis</string>
   <string name="preferences_events__contact_joined_signal">Adresatas prisijungė prie Signal</string>
   <string name="preferences_notifications__priority">Pirmenybė</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Cenzūravimo apėjimas</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Cenzūravimo apėjimas</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Jei įjungta, Signal bandys apeiti cenzūravimą. Neįjunkite šios ypatybės, nebent esate vietoje, kurioje Signal yra cenzūruojama.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Cenzūravimo apėjimas buvo aktyvuotas pagal jūsų paskyros telefono numerį.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Jūs esate rankiniu būdu išjungę cenzūros apėjimą.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Cenzūravimo apėjimas nėra būtinas; jūs jau esate prisijungę prie Signal paslaugos.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Cenzūravimo apėjimas gali būti aktyvuotas tik prisijungus prie interneto.</string>
   <string name="preferences_communication__category_sealed_sender">Užantspauduotas siuntėjas</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Rodyti indikatorius</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Rodyti būsenos piktogramą, kai pasirenkate „Išsamesnė žinutės informacija“ žinutėse, kurios buvo pristatytos, naudojant užantspauduotą siuntėją.</string>

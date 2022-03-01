@@ -138,6 +138,28 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
 
       dividerPref()
 
+      sectionHeaderPref(R.string.preferences_communication__category_censorship_circumvention)
+
+      val censorshipSummaryResId: Int = when (state.censorshipCircumventionState) {
+        CensorshipCircumventionState.AVAILABLE -> R.string.preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship
+        CensorshipCircumventionState.AVAILABLE_MANUALLY_DISABLED -> R.string.preferences_communication__censorship_circumvention_you_have_manually_disabled
+        CensorshipCircumventionState.AVAILABLE_AUTOMATICALLY_ENABLED -> R.string.preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number
+        CensorshipCircumventionState.UNAVAILABLE_CONNECTED -> R.string.preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected
+        CensorshipCircumventionState.UNAVAILABLE_NO_INTERNET -> R.string.preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet
+      }
+
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences_communication__censorship_circumvention),
+        summary = DSLSettingsText.from(censorshipSummaryResId),
+        isChecked = state.censorshipCircumventionEnabled,
+        isEnabled = state.censorshipCircumventionState.available,
+        onClick = {
+          viewModel.setCensorshipCircumventionEnabled(!state.censorshipCircumventionEnabled)
+        }
+      )
+
+      dividerPref()
+
       sectionHeaderPref(R.string.preferences_communication__category_sealed_sender)
 
       switchPref(

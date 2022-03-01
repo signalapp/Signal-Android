@@ -14,7 +14,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Núna: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Þú hefur ekki valið lykilorð!</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Gera lykilsetningu (passphrase) óvirka?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Gera lykilorð óvirkt?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Þessi aðgerð mun varanlega aflæsa Signal og tilkynningar frá Signal.</string>
   <string name="ApplicationPreferencesActivity_disable">Gera óvirkt</string>
   <string name="ApplicationPreferencesActivity_unregistering">Verið er að afskrá þig</string>
@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Finnurðu ekki það sem þú leitar að?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Bjóddu tengilið að koma á Signal</string>
   <string name="CameraContacts__menu_search">Leita</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Slökkva á leiðum framhjá ritskoðun?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Núna er hægt að tengjast Signal-þjónustum beint.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Slökkva</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Nei, takk</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjarlægja</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjarlægja auðkennismynd?</string>
@@ -403,12 +412,12 @@
   <string name="RestoreBackupFragment__not_now">Ekki núna</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Öryggisafrit af spjalli</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Öryggisafrit eru dulrituð með aðgangskóða og geymd á tækinu þínu.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Öryggisafrit eru dulrituð með lykilorði og geymd á tækinu þínu.</string>
   <string name="BackupsPreferenceFragment__create_backup">Útbúa öryggisafrit</string>
   <string name="BackupsPreferenceFragment__last_backup">Síðasta öryggisafrit: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Mappa fyrir öryggisafrit</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Sannreyna lykilorð öryggisafritsins</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prófaðu aðgangskóða öryggisafritsins til að staðfesta að hann sé réttur</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prófaðu lykilorð öryggisafritsins til að staðfesta að það sé rétt</string>
   <string name="BackupsPreferenceFragment__turn_on">Kveikja</string>
   <string name="BackupsPreferenceFragment__turn_off">Slökkva</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Til að endurheimta öryggisafrit, skaltu setja upp nýtt tilvik af Signal. Opnaðu forritið og ýttu á \"Endurheimta öryggisafrit\", síðan skaltu finna skrá með öryggisafriti. %1$s</string>
@@ -1177,7 +1186,7 @@
     <item quantity="other">Þessi útgáfa Signal rennur út eftir %d daga. Uppfærðu í nýjustu útgáfuna.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Settu inn lykilsetningu (passphrase)</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">Settu inn lykilorð</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-táknmynd</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Senda inn lykilorð</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ógilt lykilorð!</string>
@@ -2178,6 +2187,19 @@
   <string name="preferences_chats__message_text_size">Leturstærð skilaboða</string>
   <string name="preferences_events__contact_joined_signal">Tengiliður skráði sig á Signal</string>
   <string name="preferences_notifications__priority">Forgangur</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Leiðir framhjá ritskoðun</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Leiðir framhjá ritskoðun</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ef þetta er virkt, mun Signal reyna að fara framhjá ritskoðun. Ekki virkja þetta nema þú sért á slóðum þar sem ritskoðun Signal fer fram.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Leið framhjá ritskoðun var virkjuð út frá símanúmerinu sem tengt er notandaaðgangnum þínum.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Þú hefur handvirkt gert leiðir framhjá ritskoðun óvirkar.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Það þarf engar leiðir framhjá ritskoðun; þú ert þegar með tengingu við Signal-þjónustu.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Hjáleiðir vegna ritskoðunar er aðeins hægt að virkja þegar tengt er við internetið.</string>
   <string name="preferences_communication__category_sealed_sender">Innsiglaður sendandi</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Skjámerki</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Birta stöðutákn þegar þú velur \"Nánar um skilaboð\" á skilaboðum sem borist hafa frá innsigluðum notanda (sealed sender).</string>
@@ -2573,10 +2595,10 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="PushDecryptJob_new_locked_message">Ný læst skilaboð</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Aflæsa til að skoða skilaboð í bið</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Lykilorð öryggisafritunar</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Öryggisafrit verða vistuð yfir á ytri gagnageymslu og dulrituð með aðgangskóðanum hér fyrir neðan. Þú verður að hafa þennan aðgangskóða til að endurheimta öryggisafrit.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Þú verður að hafa þennan aðgangskóða til að endurheimta öryggisafrit.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Öryggisafrit verða vistuð yfir á ytri gagnageymslu og dulrituð með lykilorðinu hér fyrir neðan. Þú verður að hafa þetta lykilorð til að endurheimta öryggisafrit.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Þú verður að hafa þetta lykilorð til að endurheimta öryggisafrit.</string>
   <string name="backup_enable_dialog__folder">Mappa</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ég hef skrifað niður þennan aðgangskóða. Án hans mun ég ekki getað endurheimt öryggisafrit.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ég hef skrifað niður þetta lykilorð. Án þess mun ég ekki geta endurheimt öryggisafrit.</string>
   <string name="registration_activity__restore_backup">Endurheimta úr öryggisafriti</string>
   <string name="registration_activity__transfer_or_restore_account">Yfirfæra eða endurheimta aðgang</string>
   <string name="registration_activity__transfer_account">Flytja aðgang</string>
@@ -2605,9 +2627,9 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="BackupDialog_choose_folder">Veldu möppu</string>
   <string name="BackupDialog_copied_to_clipboard">Afritað á klippispjald</string>
   <string name="BackupDialog_no_file_picker_available">Ekkert skráaval tiltækt.</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">Settu inn aðgangskóða öryggisafritsins til að staðfesta</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Settu inn lykilorð öryggisafritsins til að staðfesta</string>
   <string name="BackupDialog_verify">Sannreyna</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Þér tókst að setja inn aðgangskóða öryggisafritsins</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Þér tókst að setja inn lykilorð öryggisafritsins</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lykilorðið var ekki rétt</string>
   <string name="LocalBackupJob_creating_signal_backup">Útbý öryggisafrit af Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Öryggisafritun mistókst</string>

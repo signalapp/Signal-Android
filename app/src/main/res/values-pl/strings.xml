@@ -124,6 +124,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nie możesz znaleźć kontaktu?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Zaproś kontakt do korzystania z Signal</string>
   <string name="CameraContacts__menu_search">Szukaj</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Wyłączyć omijanie cenzury?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Teraz możesz połączyć się bezpośrednio z usługami Signal, co zapewni lepsze doświadczenie.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Wyłącz</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Nie, dzięki</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Usuń</string>
   <string name="ClearProfileActivity_remove_profile_photo">Usunąć zdjęcie profilowe?</string>
@@ -2345,6 +2354,19 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_chats__message_text_size">Rozmiar czcionki dla wiadomości</string>
   <string name="preferences_events__contact_joined_signal">Kontakt dołączył do Signal</string>
   <string name="preferences_notifications__priority">Priorytet</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Omijanie cenzury</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Omijanie cenzury</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Włączenie uruchamia mechanizmy omijania cenzury. Nie włączaj, jeśli kraj w którym się znajdujesz nie blokuje Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Omijanie cenzury włączone dla Twojego numeru telefonu i konta Signal. </string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Omijanie cenzury zostało ręcznie wyłączone.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Omijanie cenzury niewymagane, jesteś połączony(a) z usługami Signal.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Aktywacja omijania cenzury wymaga połączenia z Internetem.</string>
   <string name="preferences_communication__category_sealed_sender">Ukryty nadawca</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Wyświetl wskaźniki</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Pokaż ikonę stanu po wybraniu \"Szczegóły wiadomości\" w wiadomościach dostarczonych za pomocą Ukrytego nadawcy.</string>

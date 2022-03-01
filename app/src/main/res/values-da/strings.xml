@@ -122,6 +122,15 @@
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kan du ikke finde den du leder efter?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter en kontakt til at bruge Signal</string>
   <string name="CameraContacts__menu_search">Søg</string>
+  <!--Censorship Circumvention Megaphone-->
+  <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Slå omgåelse af censur fra?</string>
+  <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Du kan nu forbinde direkte til Signal-tjenesten for at få en bedre oplevelse.</string>
+  <!--Action to prompt the user to disable circumvention since it is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off">Deaktiver</string>
+  <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
+  <string name="CensorshipCircumventionMegaphone_no_thanks">Nej tak</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbillede?</string>
@@ -2178,6 +2187,19 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
   <string name="preferences_events__contact_joined_signal">Kontakt er nu tilmeldt Signal</string>
   <string name="preferences_notifications__priority">Prioritet</string>
+  <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Omgåelse af censur</string>
+  <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Omgåelse af censur</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Hvis aktiveret vil Signal forsøge at omgå censur. Aktivér ikke denne funktion, medmindre du er på et sted hvor Signal er censureret</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Omgåelse af censur er blevet aktiveret baseret på din kontos telefonnummer.</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Du har manuelt deaktiveret omgåelse af censur</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Omgåelse af censur er ikke nødvendigt; du har allerede forbindelse til Signal tjenesten</string>
+  <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Omgåelse af censur kan kun aktiveres, når den er tilsluttet internettet</string>
   <string name="preferences_communication__category_sealed_sender">Forseglet afsender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Vis indikator</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Vis statusikon når du vælger \"Beskeddetaljer\" på beskeder, som er modtaget ved brug af forseglet afsender.</string>
