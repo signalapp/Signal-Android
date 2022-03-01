@@ -65,7 +65,7 @@ class StoriesLandingFragment :
     cameraFab = requireView().findViewById(R.id.camera_fab)
 
     cameraFab.setOnClickListener {
-      Permissions.with(requireActivity())
+      Permissions.with(this)
         .request(Manifest.permission.CAMERA)
         .ifNecessary()
         .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
@@ -191,5 +191,9 @@ class StoriesLandingFragment :
     } else {
       false
     }
+  }
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 }
