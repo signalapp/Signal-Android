@@ -111,14 +111,14 @@ public class MmsSmsDatabase extends Database {
                                               MmsSmsColumns.VIEWED_RECEIPT_COUNT,
                                               MmsSmsColumns.RECEIPT_TIMESTAMP,
                                               MmsDatabase.MESSAGE_RANGES,
-                                              MmsDatabase.IS_STORY,
+                                              MmsDatabase.STORY_TYPE,
                                               MmsDatabase.PARENT_STORY_ID};
 
   private static final String SNIPPET_QUERY = "SELECT " + MmsSmsColumns.ID + ", 0 AS " + TRANSPORT + ", " + SmsDatabase.TYPE + " AS " + MmsSmsColumns.NORMALIZED_TYPE + ", " + SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " FROM " + SmsDatabase.TABLE_NAME + " " +
                                               "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + SmsDatabase.TYPE + " NOT IN (" + SmsDatabase.Types.PROFILE_CHANGE_TYPE + ", " + SmsDatabase.Types.GV1_MIGRATION_TYPE + ", " + SmsDatabase.Types.CHANGE_NUMBER_TYPE + ", " + SmsDatabase.Types.BOOST_REQUEST_TYPE + ") AND " + SmsDatabase.TYPE + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " " +
                                               "UNION ALL " +
                                               "SELECT " + MmsSmsColumns.ID + ", 1 AS " + TRANSPORT + ", " + MmsDatabase.MESSAGE_BOX + " AS " + MmsSmsColumns.NORMALIZED_TYPE + ", " + MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " FROM " + MmsDatabase.TABLE_NAME + " " +
-                                              "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + MmsDatabase.MESSAGE_BOX + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 " +
+                                              "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + MmsDatabase.MESSAGE_BOX + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " AND " + MmsDatabase.STORY_TYPE + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 " +
                                               "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
                                               "LIMIT 1";
 
@@ -202,7 +202,7 @@ public class MmsSmsDatabase extends Database {
   public Cursor getConversation(long threadId, long offset, long limit) {
     SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String         order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
+    String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.STORY_TYPE + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
     String         limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
     String         query     = buildQuery(PROJECTION, selection, order, limitStr, false);
 
@@ -264,13 +264,13 @@ public class MmsSmsDatabase extends Database {
     }
 
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery.toString() + ")" : "") + ")";
+    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND " + MmsDatabase.PARENT_STORY_ID + " <= 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery.toString() + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null);
   }
 
   public int getUnreadCount(long threadId) {
-    String selection = MmsSmsColumns.READ + " = 0 AND " + MmsDatabase.IS_STORY + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
+    String selection = MmsSmsColumns.READ + " = 0 AND " + MmsDatabase.STORY_TYPE + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(PROJECTION, selection, null, null)) {
       return cursor != null ? cursor.getCount() : 0;
@@ -729,7 +729,7 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.VIEWED_RECEIPT_COUNT,
                               MmsSmsColumns.RECEIPT_TIMESTAMP,
                               MmsDatabase.MESSAGE_RANGES,
-                              MmsDatabase.IS_STORY,
+                              MmsDatabase.STORY_TYPE,
                               MmsDatabase.PARENT_STORY_ID};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
@@ -765,8 +765,8 @@ public class MmsSmsDatabase extends Database {
                               MmsSmsColumns.VIEWED_RECEIPT_COUNT,
                               MmsSmsColumns.RECEIPT_TIMESTAMP,
                               MmsDatabase.MESSAGE_RANGES,
-                              "0 AS " + MmsDatabase.IS_STORY,
-                              "0 AS " + MmsDatabase.PARENT_STORY_ID };
+                              "0 AS " + MmsDatabase.STORY_TYPE,
+                              "0 AS " + MmsDatabase.PARENT_STORY_ID};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -829,7 +829,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsSmsColumns.VIEWED_RECEIPT_COUNT);
     mmsColumnsPresent.add(MmsSmsColumns.RECEIPT_TIMESTAMP);
     mmsColumnsPresent.add(MmsDatabase.MESSAGE_RANGES);
-    mmsColumnsPresent.add(MmsDatabase.IS_STORY);
+    mmsColumnsPresent.add(MmsDatabase.STORY_TYPE);
     mmsColumnsPresent.add(MmsDatabase.PARENT_STORY_ID);
 
     Set<String> smsColumnsPresent = new HashSet<>();
@@ -858,7 +858,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(MmsSmsColumns.REMOTE_DELETED);
     smsColumnsPresent.add(MmsSmsColumns.NOTIFIED_TIMESTAMP);
     smsColumnsPresent.add(MmsSmsColumns.RECEIPT_TIMESTAMP);
-    smsColumnsPresent.add("0 AS " + MmsDatabase.IS_STORY);
+    smsColumnsPresent.add("0 AS " + MmsDatabase.STORY_TYPE);
     smsColumnsPresent.add("0 AS " + MmsDatabase.PARENT_STORY_ID);
 
     String mmsGroupBy = includeAttachments ? MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID : null;

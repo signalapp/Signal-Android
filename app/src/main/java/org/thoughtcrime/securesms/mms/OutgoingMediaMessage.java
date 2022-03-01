@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -30,7 +31,7 @@ public class OutgoingMediaMessage {
   private   final long                      expiresIn;
   private   final boolean                   viewOnce;
   private   final QuoteModel                outgoingQuote;
-  private   final boolean                   isStory;
+  private   final StoryType                 storyType;
   private   final ParentStoryId             parentStoryId;
 
   private   final Set<NetworkFailure>      networkFailures       = new HashSet<>();
@@ -47,7 +48,7 @@ public class OutgoingMediaMessage {
                               long expiresIn,
                               boolean viewOnce,
                               int distributionType,
-                              boolean isStory,
+                              @NonNull StoryType storyType,
                               @Nullable ParentStoryId parentStoryId,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
@@ -65,7 +66,7 @@ public class OutgoingMediaMessage {
     this.expiresIn             = expiresIn;
     this.viewOnce              = viewOnce;
     this.outgoingQuote         = outgoingQuote;
-    this.isStory               = isStory;
+    this.storyType             = storyType;
     this.parentStoryId         = parentStoryId;
 
     this.contacts.addAll(contacts);
@@ -83,7 +84,7 @@ public class OutgoingMediaMessage {
                               long expiresIn,
                               boolean viewOnce,
                               int distributionType,
-                              boolean isStory,
+                              @NonNull StoryType storyType,
                               @Nullable ParentStoryId parentStoryId,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
@@ -98,7 +99,7 @@ public class OutgoingMediaMessage {
          expiresIn,
          viewOnce,
          distributionType,
-         isStory,
+         storyType,
          parentStoryId,
          outgoingQuote,
          contacts,
@@ -118,7 +119,7 @@ public class OutgoingMediaMessage {
     this.expiresIn           = that.expiresIn;
     this.viewOnce            = that.viewOnce;
     this.outgoingQuote       = that.outgoingQuote;
-    this.isStory             = that.isStory;
+    this.storyType           = that.storyType;
     this.parentStoryId       = that.parentStoryId;
 
     this.identityKeyMismatches.addAll(that.identityKeyMismatches);
@@ -138,7 +139,7 @@ public class OutgoingMediaMessage {
         expiresIn,
         viewOnce,
         distributionType,
-        isStory,
+        storyType,
         parentStoryId,
         outgoingQuote,
         contacts,
@@ -193,8 +194,8 @@ public class OutgoingMediaMessage {
     return viewOnce;
   }
 
-  public boolean isStory() {
-    return isStory;
+  public @NonNull StoryType getStoryType() {
+    return storyType;
   }
 
   public @Nullable ParentStoryId getParentStoryId() {

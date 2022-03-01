@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.ParentStoryId
+import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 
@@ -30,7 +31,7 @@ object StoryGroupReplySender {
           0L,
           false,
           0,
-          false,
+          StoryType.NONE,
           ParentStoryId.GroupReply(message.id),
           null,
           emptyList(),

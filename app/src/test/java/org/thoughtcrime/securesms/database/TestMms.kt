@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import com.google.android.mms.pdu_alt.PduHeaders
+import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 
@@ -25,7 +26,7 @@ object TestMms {
     unread: Boolean = false,
     viewed: Boolean = false,
     threadId: Long = 1,
-    isStory: Boolean = false
+    storyType: StoryType = StoryType.NONE
   ): Long {
     val message = OutgoingMediaMessage(
       recipient,
@@ -36,7 +37,7 @@ object TestMms {
       expiresIn,
       viewOnce,
       distributionType,
-      isStory,
+      storyType,
       null,
       null,
       emptyList(),
@@ -83,7 +84,7 @@ object TestMms {
       put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
       put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
       put(MmsSmsColumns.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
-      put(MmsDatabase.IS_STORY, if (message.isStory) 1 else 0)
+      put(MmsDatabase.STORY_TYPE, message.storyType.code)
 
       put(MmsSmsColumns.BODY, body)
       put(MmsDatabase.PART_COUNT, 0)

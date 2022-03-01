@@ -87,7 +87,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       OutgoingMediaMessage message = SignalDatabase.mms().getOutgoingMessage(messageId);
 
-      if (!message.isStory()) {
+      if (!message.getStoryType().isStory()) {
         throw new AssertionError("Only story messages are currently supported! MessageId: " + messageId);
       }
 
@@ -125,7 +125,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
     Set<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
     Set<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
 
-    if (!message.isStory()) {
+    if (!message.getStoryType().isStory()) {
       throw new MmsException("Only story sends are currently supported!");
     }
 
@@ -176,7 +176,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
       boolean                       isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
                                                                .anyMatch(info -> info.getStatus() > GroupReceiptDatabase.STATUS_UNDELIVERED);
 
-      SignalServiceStoryMessage storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), null, attachmentPointers.get(0));
+      SignalServiceStoryMessage storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), null, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies());
       return GroupSendUtil.sendStoryMessage(context, message.getRecipient().requireDistributionListId(), destinations, isRecipientUpdate, new MessageId(messageId, true), message.getSentTimeMillis(), storyMessage);
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);

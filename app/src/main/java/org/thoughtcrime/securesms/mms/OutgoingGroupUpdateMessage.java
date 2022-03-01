@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -38,7 +39,7 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
           ThreadDatabase.DistributionTypes.CONVERSATION,
           expiresIn,
           viewOnce,
-          false,
+          StoryType.NONE,
           null,
           quote,
           contacts,

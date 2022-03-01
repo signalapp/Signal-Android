@@ -5,8 +5,10 @@ import org.junit.Before
 import org.junit.Test
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
+import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ACI
+import java.lang.IllegalStateException
 import java.util.UUID
 
 class DistributionListDatabaseTest {
@@ -60,9 +62,53 @@ class DistributionListDatabaseTest {
     Assert.assertEquals(members, foundMembers)
   }
 
-  fun createRecipients(count: Int) {
+  @Test
+  fun givenStoryExists_getStoryType_returnsStoryWithReplies() {
+    val id: DistributionListId? = distributionDatabase.createList("test", recipientList(1, 2, 3))
+    Assert.assertNotNull(id)
+
+    val storyType = distributionDatabase.getStoryType(id!!)
+    Assert.assertEquals(StoryType.STORY_WITH_REPLIES, storyType)
+  }
+
+  @Test
+  fun givenStoryExistsAndMarkedNoReplies_getStoryType_returnsStoryWithoutReplies() {
+    val id: DistributionListId? = distributionDatabase.createList("test", recipientList(1, 2, 3))
+    Assert.assertNotNull(id)
+    distributionDatabase.setAllowsReplies(id!!, false)
+
+    val storyType = distributionDatabase.getStoryType(id)
+    Assert.assertEquals(StoryType.STORY_WITHOUT_REPLIES, storyType)
+  }
+
+  @Test
+  fun givenStoryExistsAndMarkedNoReplies_getAllListsForContactSelectionUi_returnsStoryWithoutReplies() {
+    val id: DistributionListId? = distributionDatabase.createList("test", recipientList(1, 2, 3))
+    Assert.assertNotNull(id)
+    distributionDatabase.setAllowsReplies(id!!, false)
+
+    val records = distributionDatabase.getAllListsForContactSelectionUi(null, false)
+    Assert.assertFalse(records.first().allowsReplies)
+  }
+
+  @Test
+  fun givenStoryExists_getAllListsForContactSelectionUi_returnsStoryWithReplies() {
+    val id: DistributionListId? = distributionDatabase.createList("test", recipientList(1, 2, 3))
+    Assert.assertNotNull(id)
+
+    val records = distributionDatabase.getAllListsForContactSelectionUi(null, false)
+    Assert.assertTrue(records.first().allowsReplies)
+  }
+
+  @Test(expected = IllegalStateException::class)
+  fun givenStoryDoesNotExist_getStoryType_throwsIllegalStateException() {
+    distributionDatabase.getStoryType(DistributionListId.from(12))
+    Assert.fail("Expected an assertion error.")
+  }
+
+  private fun createRecipients(count: Int) {
     for (i in 0 until count) {
-      SignalDatabase.recipients.getOrInsertFromAci(ACI.from(UUID.randomUUID()))
+      SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID()))
     }
   }
 

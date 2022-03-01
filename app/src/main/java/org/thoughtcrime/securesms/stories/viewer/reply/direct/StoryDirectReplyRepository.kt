@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
+import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -53,7 +54,7 @@ class StoryDirectReplyRepository {
           0L,
           false,
           0,
-          false,
+          StoryType.NONE,
           ParentStoryId.DirectReply(storyId),
           QuoteModel(message.dateSent, quoteAuthor.id, "", false, message.slideDeck.asAttachments(), null),
           emptyList(),

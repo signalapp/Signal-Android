@@ -14,8 +14,10 @@ import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mediasend.CompositeMediaTransform
 import org.thoughtcrime.securesms.mediasend.ImageEditorModelRenderMediaTransform
 import org.thoughtcrime.securesms.mediasend.Media
@@ -95,9 +97,15 @@ class MediaSelectionRepository(context: Context) {
       }
 
       val singleRecipient: Recipient? = singleContact?.let { Recipient.resolved(it.recipientId) }
+      val storyType: StoryType = if (singleRecipient?.isDistributionList == true) {
+        SignalDatabase.distributionLists.getStoryType(singleRecipient.requireDistributionListId())
+      } else {
+        StoryType.NONE
+      }
+
       if (isSms || MessageSender.isLocalSelfSend(context, singleRecipient, isSms)) {
         Log.i(TAG, "SMS or local self-send. Skipping pre-upload.")
-        emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, transport, isViewOnce, trimmedMentions, false))
+        emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, transport, isViewOnce, trimmedMentions, StoryType.NONE))
       } else {
         val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody, transport.calculateCharacters(trimmedBody).maxPrimaryMessageSize)
         val splitBody = splitMessage.body
@@ -126,10 +134,10 @@ class MediaSelectionRepository(context: Context) {
             uploadRepository.deleteAbandonedAttachments()
             emitter.onComplete()
           } else if (uploadResults.isNotEmpty()) {
-            emitter.onSuccess(MediaSendActivityResult.forPreUpload(singleRecipient!!.id, uploadResults, splitBody, transport, isViewOnce, trimmedMentions, singleContact.isStory))
+            emitter.onSuccess(MediaSendActivityResult.forPreUpload(singleRecipient!!.id, uploadResults, splitBody, transport, isViewOnce, trimmedMentions, storyType))
           } else {
             Log.w(TAG, "Got empty upload results! isSms: $isSms, updatedMedia.size(): ${updatedMedia.size}, isViewOnce: $isViewOnce, target: $singleContact")
-            emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, transport, isViewOnce, trimmedMentions, singleContact.isStory))
+            emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, transport, isViewOnce, trimmedMentions, storyType))
           }
         }
       }
@@ -196,6 +204,13 @@ class MediaSelectionRepository(context: Context) {
     for (contact in contacts) {
       val recipient = Recipient.resolved(contact.recipientId)
       val isStory = contact is ContactSearchKey.Story || recipient.isDistributionList
+
+      val storyType: StoryType = when {
+        recipient.isDistributionList -> SignalDatabase.distributionLists.getStoryType(recipient.requireDistributionListId())
+        isStory -> StoryType.STORY_WITH_REPLIES
+        else -> StoryType.NONE
+      }
+
       val message = OutgoingMediaMessage(
         recipient,
         body,
@@ -205,7 +220,7 @@ class MediaSelectionRepository(context: Context) {
         TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
         isViewOnce,
         ThreadDatabase.DistributionTypes.DEFAULT,
-        isStory,
+        storyType,
         null,
         null,
         emptyList(),

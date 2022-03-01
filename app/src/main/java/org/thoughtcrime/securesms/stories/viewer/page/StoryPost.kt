@@ -16,5 +16,6 @@ class StoryPost(
   val replyCount: Int,
   val dateInMilliseconds: Long,
   val attachment: Attachment,
-  val conversationMessage: ConversationMessage
+  val conversationMessage: ConversationMessage,
+  val allowsReplies: Boolean
 )

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult;
 import org.thoughtcrime.securesms.util.ParcelUtil;
@@ -32,7 +33,7 @@ public class MediaSendActivityResult implements Parcelable {
   private final TransportOption             transport;
   private final boolean                     viewOnce;
   private final Collection<Mention>         mentions;
-  private final boolean                     isStory;
+  private final StoryType                   storyType;
 
   public static @NonNull MediaSendActivityResult fromData(@NonNull Intent data) {
     MediaSendActivityResult result = data.getParcelableExtra(MediaSendActivityResult.EXTRA_RESULT);
@@ -49,10 +50,10 @@ public class MediaSendActivityResult implements Parcelable {
                                                               @NonNull TransportOption transport,
                                                               boolean viewOnce,
                                                               @NonNull List<Mention> mentions,
-                                                              boolean isStory)
+                                                              @NonNull StoryType storyType)
   {
     Preconditions.checkArgument(uploadResults.size() > 0, "Must supply uploadResults!");
-    return new MediaSendActivityResult(recipientId, uploadResults, Collections.emptyList(), body, transport, viewOnce, mentions, isStory);
+    return new MediaSendActivityResult(recipientId, uploadResults, Collections.emptyList(), body, transport, viewOnce, mentions, storyType);
   }
 
   public static @NonNull MediaSendActivityResult forTraditionalSend(@NonNull RecipientId recipientId,
@@ -61,10 +62,10 @@ public class MediaSendActivityResult implements Parcelable {
                                                                     @NonNull TransportOption transport,
                                                                     boolean viewOnce,
                                                                     @NonNull List<Mention> mentions,
-                                                                    boolean isStory)
+                                                                    @NonNull StoryType storyType)
   {
     Preconditions.checkArgument(nonUploadedMedia.size() > 0, "Must supply media!");
-    return new MediaSendActivityResult(recipientId, Collections.emptyList(), nonUploadedMedia, body, transport, viewOnce, mentions, isStory);
+    return new MediaSendActivityResult(recipientId, Collections.emptyList(), nonUploadedMedia, body, transport, viewOnce, mentions, storyType);
   }
 
   private MediaSendActivityResult(@NonNull RecipientId recipientId,
@@ -74,7 +75,7 @@ public class MediaSendActivityResult implements Parcelable {
                                   @NonNull TransportOption transport,
                                   boolean viewOnce,
                                   @NonNull List<Mention> mentions,
-                                  boolean isStory)
+                                  @NonNull StoryType storyType)
   {
     this.recipientId      = recipientId;
     this.uploadResults    = uploadResults;
@@ -83,7 +84,7 @@ public class MediaSendActivityResult implements Parcelable {
     this.transport        = transport;
     this.viewOnce         = viewOnce;
     this.mentions         = mentions;
-    this.isStory          = isStory;
+    this.storyType        = storyType;
   }
 
   private MediaSendActivityResult(Parcel in) {
@@ -94,7 +95,7 @@ public class MediaSendActivityResult implements Parcelable {
     this.transport        = in.readParcelable(TransportOption.class.getClassLoader());
     this.viewOnce         = ParcelUtil.readBoolean(in);
     this.mentions         = ParcelUtil.readParcelableCollection(in, Mention.class);
-    this.isStory          = ParcelUtil.readBoolean(in);
+    this.storyType        = StoryType.fromCode(in.readInt());
   }
 
   public @NonNull RecipientId getRecipientId() {
@@ -129,8 +130,8 @@ public class MediaSendActivityResult implements Parcelable {
     return mentions;
   }
 
-  public boolean isStory() {
-    return isStory;
+  public @NonNull StoryType getStoryType() {
+    return storyType;
   }
 
   public static final Creator<MediaSendActivityResult> CREATOR = new Creator<MediaSendActivityResult>() {
@@ -159,6 +160,6 @@ public class MediaSendActivityResult implements Parcelable {
     dest.writeParcelable(transport, 0);
     ParcelUtil.writeBoolean(dest, viewOnce);
     ParcelUtil.writeParcelableCollection(dest, mentions);
-    ParcelUtil.writeBoolean(dest, isStory);
+    dest.writeInt(storyType.getCode());
   }
 }

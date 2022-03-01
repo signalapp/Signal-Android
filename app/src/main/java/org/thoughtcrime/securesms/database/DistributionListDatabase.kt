@@ -7,6 +7,7 @@ import androidx.core.content.contentValuesOf
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
+import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.Base64
@@ -55,13 +56,15 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     const val NAME = "name"
     const val DISTRIBUTION_ID = "distribution_id"
     const val RECIPIENT_ID = "recipient_id"
+    const val ALLOWS_REPLIES = "allows_replies"
 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
         $NAME TEXT UNIQUE NOT NULL,
         $DISTRIBUTION_ID TEXT UNIQUE NOT NULL,
-        $RECIPIENT_ID INTEGER UNIQUE REFERENCES ${RecipientDatabase.TABLE_NAME} (${RecipientDatabase.ID})
+        $RECIPIENT_ID INTEGER UNIQUE REFERENCES ${RecipientDatabase.TABLE_NAME} (${RecipientDatabase.ID}),
+        $ALLOWS_REPLIES INTEGER DEFAULT 1
       )
     """
   }
@@ -106,6 +109,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
           DistributionListPartialRecord(
             id = DistributionListId.from(CursorUtil.requireLong(it, ListTable.ID)),
             name = CursorUtil.requireString(it, ListTable.NAME),
+            allowsReplies = CursorUtil.requireBoolean(it, ListTable.ALLOWS_REPLIES),
             recipientId = RecipientId.from(CursorUtil.requireLong(it, ListTable.RECIPIENT_ID))
           )
         )
@@ -117,7 +121,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
 
   fun getAllListsForContactSelectionUiCursor(query: String?, includeMyStory: Boolean): Cursor? {
     val db = readableDatabase
-    val projection = arrayOf(ListTable.ID, ListTable.NAME, ListTable.RECIPIENT_ID)
+    val projection = arrayOf(ListTable.ID, ListTable.NAME, ListTable.RECIPIENT_ID, ListTable.ALLOWS_REPLIES)
 
     val where = when {
       query.isNullOrEmpty() && includeMyStory -> null
@@ -137,7 +141,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
 
   fun getCustomListsForUi(): List<DistributionListPartialRecord> {
     val db = readableDatabase
-    val projection = SqlUtil.buildArgs(ListTable.ID, ListTable.NAME, ListTable.RECIPIENT_ID)
+    val projection = SqlUtil.buildArgs(ListTable.ID, ListTable.NAME, ListTable.RECIPIENT_ID, ListTable.ALLOWS_REPLIES)
     val selection = "${ListTable.ID} != ${DistributionListId.MY_STORY_ID}"
 
     return db.query(ListTable.TABLE_NAME, projection, selection, null, null, null, null)?.use {
@@ -147,6 +151,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
           DistributionListPartialRecord(
             id = DistributionListId.from(CursorUtil.requireLong(it, ListTable.ID)),
             name = CursorUtil.requireString(it, ListTable.NAME),
+            allowsReplies = CursorUtil.requireBoolean(it, ListTable.ALLOWS_REPLIES),
             recipientId = RecipientId.from(CursorUtil.requireLong(it, ListTable.RECIPIENT_ID))
           )
         )
@@ -194,6 +199,24 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     }
   }
 
+  fun getStoryType(listId: DistributionListId): StoryType {
+    readableDatabase.query(ListTable.TABLE_NAME, arrayOf(ListTable.ALLOWS_REPLIES), "${ListTable.ID} = ?", SqlUtil.buildArgs(listId), null, null, null).use { cursor ->
+      return if (cursor.moveToFirst()) {
+        if (CursorUtil.requireBoolean(cursor, ListTable.ALLOWS_REPLIES)) {
+          StoryType.STORY_WITH_REPLIES
+        } else {
+          StoryType.STORY_WITHOUT_REPLIES
+        }
+      } else {
+        error("Distribution list not in database.")
+      }
+    }
+  }
+
+  fun setAllowsReplies(listId: DistributionListId, allowsReplies: Boolean) {
+    writableDatabase.update(ListTable.TABLE_NAME, contentValuesOf(ListTable.ALLOWS_REPLIES to allowsReplies), "${ListTable.ID} = ?", SqlUtil.buildArgs(listId))
+  }
+
   fun getList(listId: DistributionListId): DistributionListRecord? {
     readableDatabase.query(ListTable.TABLE_NAME, null, "${ListTable.ID} = ?", SqlUtil.buildArgs(listId), null, null, null).use { cursor ->
       return if (cursor.moveToFirst()) {
@@ -203,6 +226,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
           id = id,
           name = cursor.requireNonNullString(ListTable.NAME),
           distributionId = DistributionId.from(cursor.requireNonNullString(ListTable.DISTRIBUTION_ID)),
+          allowsReplies = CursorUtil.requireBoolean(cursor, ListTable.ALLOWS_REPLIES),
           members = getMembers(id)
         )
       } else {

@@ -51,7 +51,6 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Quote;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
@@ -231,7 +230,7 @@ public final class PushGroupSendJob extends PushSendJob {
       boolean                                    isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
                                                                             .anyMatch(info -> info.getStatus() > GroupReceiptDatabase.STATUS_UNDELIVERED);
 
-      if (message.isStory()) {
+      if (message.getStoryType().isStory()) {
         // TODO [stories] Filter based off of stories capability
         Optional<GroupDatabase.GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupId);
 
@@ -241,7 +240,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                                   .withRevision(v2GroupProperties.getGroupRevision())
                                                                                   .build();
 
-          SignalServiceStoryMessage storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), groupContext, attachmentPointers.get(0));
+          SignalServiceStoryMessage storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), groupContext, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies());
 
           return GroupSendUtil.sendGroupStoryMessage(context, groupId.requireV2(), destinations, isRecipientUpdate, new MessageId(messageId, true), message.getSentTimeMillis(), storyMessage);
         } else {
@@ -391,7 +390,7 @@ public final class PushGroupSendJob extends PushSendJob {
         SignalDatabase.attachments().deleteAttachmentFilesForViewOnceMessage(messageId);
       }
 
-      if (message.isStory()) {
+      if (message.getStoryType().isStory()) {
         ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary();
       }
     } else if (!identityMismatches.isEmpty()) {

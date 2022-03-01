@@ -146,7 +146,11 @@ class StoryViewerPageViewModel(
     val isFromSelf = post.sender.isSelf
     val isToGroup = post.group != null
 
-    return StoryViewerPageState.ReplyState.resolve(isFromSelf, isToGroup)
+    return when {
+      post.allowsReplies -> StoryViewerPageState.ReplyState.resolve(isFromSelf, isToGroup)
+      isFromSelf -> StoryViewerPageState.ReplyState.SELF
+      else -> StoryViewerPageState.ReplyState.NONE
+    }
   }
 
   fun getPostAt(index: Int): StoryPost {

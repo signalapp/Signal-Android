@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
@@ -830,7 +831,7 @@ public final class MessageContentProcessor {
                                                                    content.getTimestamp(),
                                                                    content.getServerReceivedTimestamp(),
                                                                    receivedTime,
-                                                                   false,
+                                                                   StoryType.NONE,
                                                                    null,
                                                                    -1,
                                                                    expiresInSeconds * 1000L,
@@ -1324,11 +1325,18 @@ public final class MessageContentProcessor {
     database.beginTransaction();
 
     try {
+      final StoryType storyType;
+      if (message.getAllowsReplies().or(false)) {
+        storyType = StoryType.STORY_WITH_REPLIES;
+      } else {
+        storyType = StoryType.STORY_WITHOUT_REPLIES;
+      }
+
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
                                                                    content.getTimestamp(),
                                                                    content.getServerReceivedTimestamp(),
                                                                    System.currentTimeMillis(),
-                                                                   true,
+                                                                   storyType,
                                                                    null,
                                                                    -1,
                                                                    0,
@@ -1388,6 +1396,11 @@ public final class MessageContentProcessor {
         } else {
           MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
 
+          if (!story.getStoryType().isStoryWithReplies()) {
+            warn(content.getTimestamp(), "Story has replies disabled. Dropping reply.");
+            return;
+          }
+
           parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
           quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
         }
@@ -1400,7 +1413,7 @@ public final class MessageContentProcessor {
                                                                    content.getTimestamp(),
                                                                    content.getServerReceivedTimestamp(),
                                                                    System.currentTimeMillis(),
-                                                                   false,
+                                                                   StoryType.NONE,
                                                                    parentStoryId,
                                                                    -1,
                                                                    0,
@@ -1457,7 +1470,7 @@ public final class MessageContentProcessor {
                                                                    message.getTimestamp(),
                                                                    content.getServerReceivedTimestamp(),
                                                                    receivedTime,
-                                                                   false,
+                                                                   StoryType.NONE,
                                                                    null,
                                                                    -1,
                                                                    TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
@@ -1563,7 +1576,7 @@ public final class MessageContentProcessor {
                                                                  TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds()),
                                                                  viewOnce,
                                                                  ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                 false,
+                                                                 StoryType.NONE,
                                                                  null,
                                                                  quote.orNull(),
                                                                  sharedContacts.or(Collections.emptyList()),
@@ -1757,7 +1770,7 @@ public final class MessageContentProcessor {
                                                                            expiresInMillis,
                                                                            false,
                                                                            ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                           false,
+                                                                           StoryType.NONE,
                                                                            null,
                                                                            null,
                                                                            Collections.emptyList(),

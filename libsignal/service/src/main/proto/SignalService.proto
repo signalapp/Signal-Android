@@ -350,12 +350,13 @@ message TypingMessage {
 }
 
 message StoryMessage {
-  optional bytes             profileKey = 1;
-  optional GroupContextV2    group      = 2;
+  optional bytes             profileKey    = 1;
+  optional GroupContextV2    group         = 2;
   oneof attachment {
     AttachmentPointer fileAttachment = 3;
     TextAttachment    textAttachment = 4;
   }
+  optional bool              allowsReplies = 5;
 }
 
 message Preview {

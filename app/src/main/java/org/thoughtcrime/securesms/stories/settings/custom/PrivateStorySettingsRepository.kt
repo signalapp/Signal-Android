@@ -26,4 +26,16 @@ class PrivateStorySettingsRepository {
       SignalDatabase.distributionLists.deleteList(distributionListId)
     }.subscribeOn(Schedulers.io())
   }
+
+  fun getRepliesAndReactionsEnabled(distributionListId: DistributionListId): Single<Boolean> {
+    return Single.fromCallable {
+      SignalDatabase.distributionLists.getStoryType(distributionListId).isStoryWithReplies
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun setRepliesAndReactionsEnabled(distributionListId: DistributionListId, repliesAndReactionsEnabled: Boolean): Completable {
+    return Completable.fromAction {
+      SignalDatabase.distributionLists.setAllowsReplies(distributionListId, repliesAndReactionsEnabled)
+    }.subscribeOn(Schedulers.io())
+  }
 }

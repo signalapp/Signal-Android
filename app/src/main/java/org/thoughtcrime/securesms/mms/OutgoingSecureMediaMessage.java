@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -22,14 +23,14 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                     int distributionType,
                                     long expiresIn,
                                     boolean viewOnce,
-                                    boolean isStory,
+                                    @NonNull StoryType storyType,
                                     @Nullable ParentStoryId parentStoryId,
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts,
                                     @NonNull List<LinkPreview> previews,
                                     @NonNull List<Mention> mentions)
   {
-    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, isStory, parentStoryId, quote, contacts, previews, mentions, Collections.emptySet(), Collections.emptySet());
+    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, storyType, parentStoryId, quote, contacts, previews, mentions, Collections.emptySet(), Collections.emptySet());
   }
 
   public OutgoingSecureMediaMessage(OutgoingMediaMessage base) {
@@ -50,7 +51,7 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           getDistributionType(),
                                           expiresIn,
                                           isViewOnce(),
-                                          isStory(),
+                                          getStoryType(),
                                           getParentStoryId(),
                                           getOutgoingQuote(),
                                           getSharedContacts(),

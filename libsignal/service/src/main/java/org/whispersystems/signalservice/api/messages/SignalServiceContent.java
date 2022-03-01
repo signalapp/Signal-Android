@@ -958,11 +958,13 @@ public final class SignalServiceContent {
     if (content.hasFileAttachment()) {
       return SignalServiceStoryMessage.forFileAttachment(profileKey,
                                                          createGroupV2Info(content),
-                                                         createAttachmentPointer(content.getFileAttachment()));
+                                                         createAttachmentPointer(content.getFileAttachment()),
+                                                         content.getAllowsReplies());
     } else {
       return SignalServiceStoryMessage.forTextAttachment(profileKey,
                                                          createGroupV2Info(content),
-                                                         createTextAttachment(content.getTextAttachment()));
+                                                         createTextAttachment(content.getTextAttachment()),
+                                                         content.getAllowsReplies());
     }
   }
 

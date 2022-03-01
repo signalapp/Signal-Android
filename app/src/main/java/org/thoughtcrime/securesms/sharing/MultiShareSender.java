@@ -14,8 +14,10 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -30,6 +32,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.MessageUtil;
+import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
@@ -170,7 +173,16 @@ public final class MultiShareSender {
 
     List<OutgoingMediaMessage> outgoingMessages = new ArrayList<>();
 
+    StoryType storyType = StoryType.NONE;
+    if (isStory && recipient.isDistributionList()) {
+      storyType = SignalDatabase.distributionLists().getStoryType(recipient.requireDistributionListId());
+    }
+
     if (isStory && slideDeck.getSlides().size() > 1) {
+      if (storyType == StoryType.NONE) {
+        storyType = StoryType.STORY_WITH_REPLIES;
+      }
+
       for (final Slide slide : slideDeck.getSlides()) {
         SlideDeck singletonDeck = new SlideDeck();
         singletonDeck.addSlide(slide);
@@ -183,7 +195,7 @@ public final class MultiShareSender {
                                                                              expiresIn,
                                                                              isViewOnce,
                                                                              ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                             true,
+                                                                             storyType,
                                                                              null,
                                                                              null,
                                                                              Collections.emptyList(),
@@ -206,7 +218,7 @@ public final class MultiShareSender {
                                                                            expiresIn,
                                                                            isViewOnce,
                                                                            ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                           isStory,
+                                                                           storyType,
                                                                            null,
                                                                            null,
                                                                            Collections.emptyList(),

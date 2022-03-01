@@ -23,9 +23,14 @@ class PrivateStorySettingsViewModel(private val distributionListId: Distribution
   }
 
   fun refresh() {
+    disposables.clear()
     disposables += repository.getRecord(distributionListId)
       .subscribe { record ->
         store.update { it.copy(privateStory = record) }
+      }
+    disposables += repository.getRepliesAndReactionsEnabled(distributionListId)
+      .subscribe { repliesAndReactionsEnabled ->
+        store.update { it.copy(areRepliesAndReactionsEnabled = repliesAndReactionsEnabled) }
       }
   }
 
@@ -41,7 +46,9 @@ class PrivateStorySettingsViewModel(private val distributionListId: Distribution
   }
 
   fun setRepliesAndReactionsEnabled(repliesAndReactionsEnabled: Boolean) {
-    // TODO [stories] impl
+    disposables += repository.setRepliesAndReactionsEnabled(distributionListId, repliesAndReactionsEnabled)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { refresh() }
   }
 
   fun delete(): Completable {

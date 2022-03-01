@@ -770,6 +770,8 @@ public class SignalServiceMessageSender {
       builder.setTextAttachment(createTextAttachment(message.getTextAttachment().get()));
     }
 
+    builder.setAllowsReplies(message.getAllowsReplies().or(true));
+
     return container.setStoryMessage(builder).build();
   }
 

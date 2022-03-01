@@ -70,7 +70,8 @@ class StoryViewerPageRepository(context: Context) {
           replyCount = SignalDatabase.mms.getNumberOfStoryReplies(record.id),
           dateInMilliseconds = record.dateSent,
           attachment = (record as MmsMessageRecord).slideDeck.firstSlide!!.asAttachment(),
-          conversationMessage = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, record)
+          conversationMessage = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, record),
+          allowsReplies = record.storyType.isStoryWithReplies
         )
 
         emitter.onNext(story)
