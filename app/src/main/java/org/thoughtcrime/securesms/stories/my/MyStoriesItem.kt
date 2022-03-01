@@ -25,6 +25,7 @@ object MyStoriesItem {
 
   class Model(
     val distributionStory: ConversationMessage,
+    val onClick: (Model) -> Unit,
     val onSaveClick: (Model) -> Unit,
     val onDeleteClick: (Model) -> Unit,
     val onForwardClick: (Model) -> Unit,
@@ -48,6 +49,7 @@ object MyStoriesItem {
     private val date: TextView = itemView.findViewById(R.id.date)
 
     override fun bind(model: Model) {
+      itemView.setOnClickListener { model.onClick(model) }
       downloadTarget.setOnClickListener { model.onSaveClick(model) }
       moreTarget.setOnClickListener { showContextMenu(model) }
       viewCount.text = context.resources.getQuantityString(R.plurals.MyStories__d_views, model.distributionStory.messageRecord.readReceiptCount, model.distributionStory.messageRecord.readReceiptCount)

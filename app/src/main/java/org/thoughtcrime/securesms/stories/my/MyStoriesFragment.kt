@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
+import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 
 class MyStoriesFragment : DSLSettingsFragment(
@@ -54,6 +55,10 @@ class MyStoriesFragment : DSLSettingsFragment(
             customPref(
               MyStoriesItem.Model(
                 distributionStory = conversationMessage,
+                onClick = {
+                  // TODO [stories] pass in something more specific to start with the correct progress
+                  startActivity(StoryViewerActivity.createIntent(requireContext(), Recipient.self().id))
+                },
                 onSaveClick = {
                   StoryContextMenu.save(requireContext(), it.distributionStory.messageRecord)
                 },
