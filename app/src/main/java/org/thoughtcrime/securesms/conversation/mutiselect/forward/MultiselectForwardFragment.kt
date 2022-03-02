@@ -269,16 +269,18 @@ class MultiselectForwardFragment :
     return ContactSearchConfiguration.build {
       query = contactSearchState.query
 
-      addSection(
-        ContactSearchConfiguration.Section.Stories(
-          groupStories = contactSearchState.groupStories,
-          includeHeader = true,
-          headerAction = getHeaderAction(),
-          expandConfig = ContactSearchConfiguration.ExpandConfig(
-            isExpanded = contactSearchState.expandedSections.contains(ContactSearchConfiguration.SectionKey.STORIES)
+      if (FeatureFlags.stories() && isSelectedMediaValidForStories()) {
+        addSection(
+          ContactSearchConfiguration.Section.Stories(
+            groupStories = contactSearchState.groupStories,
+            includeHeader = true,
+            headerAction = getHeaderAction(),
+            expandConfig = ContactSearchConfiguration.ExpandConfig(
+              isExpanded = contactSearchState.expandedSections.contains(ContactSearchConfiguration.SectionKey.STORIES)
+            )
           )
         )
-      )
+      }
 
       if (query.isNullOrEmpty()) {
         addSection(
@@ -307,6 +309,10 @@ class MultiselectForwardFragment :
 
   private fun includeSms(): Boolean {
     return Util.isDefaultSmsProvider(requireContext()) && requireArguments().getBoolean(ARG_CAN_SEND_TO_NON_PUSH)
+  }
+
+  private fun isSelectedMediaValidForStories(): Boolean {
+    return getMultiShareArgs().all { it.isValidForStories }
   }
 
   override fun onGroupStoryClicked() {
