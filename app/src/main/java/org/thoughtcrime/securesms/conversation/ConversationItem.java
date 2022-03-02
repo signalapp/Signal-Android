@@ -808,6 +808,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private void startPulseOutlinerAnimation() {
     pulseOutlinerAlphaAnimator = ValueAnimator.ofInt(0, 0x66, 0).setDuration(600);
+    pulseOutlinerAlphaAnimator.setRepeatCount(1);
     pulseOutlinerAlphaAnimator.addUpdateListener(animator -> {
       pulseOutliner.setAlpha((Integer) animator.getAnimatedValue());
       bodyBubble.invalidate();
