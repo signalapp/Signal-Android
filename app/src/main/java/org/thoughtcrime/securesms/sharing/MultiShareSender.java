@@ -173,13 +173,11 @@ public final class MultiShareSender {
 
     List<OutgoingMediaMessage> outgoingMessages = new ArrayList<>();
 
-    StoryType storyType = StoryType.NONE;
-    if (isStory && recipient.isDistributionList()) {
-      storyType = SignalDatabase.distributionLists().getStoryType(recipient.requireDistributionListId());
-    }
-
-    if (isStory && slideDeck.getSlides().size() > 1) {
-      if (storyType == StoryType.NONE) {
+    if (isStory) {
+      final StoryType storyType;
+      if (recipient.isDistributionList()) {
+        storyType = SignalDatabase.distributionLists().getStoryType(recipient.requireDistributionListId());
+      } else {
         storyType = StoryType.STORY_WITH_REPLIES;
       }
 
@@ -218,7 +216,7 @@ public final class MultiShareSender {
                                                                            expiresIn,
                                                                            isViewOnce,
                                                                            ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                           storyType,
+                                                                           StoryType.NONE,
                                                                            null,
                                                                            null,
                                                                            Collections.emptyList(),
