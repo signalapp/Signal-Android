@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
+import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -60,6 +61,7 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -183,14 +185,22 @@ public final class PushGroupSendJob extends PushSendJob {
         RecipientUtil.shareProfileIfFirstSecureMessage(context, groupRecipient);
       }
 
-      List<Recipient> target;
+      List<Recipient>   target;
+      List<RecipientId> skipped = new ArrayList<>();
 
-      if      (filterRecipient != null)            target = Collections.singletonList(Recipient.resolved(filterRecipient));
-      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
-      else                                         target = Stream.of(getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId)).distinctBy(Recipient::getId).toList();
+      if (filterRecipient != null) {
+        target = Collections.singletonList(Recipient.resolved(filterRecipient));
+      } else if (!existingNetworkFailures.isEmpty()) {
+        target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
+      } else {
+        GroupRecipientResult result = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
+
+        target  = result.target;
+        skipped = result.skipped;
+      }
 
       List<SendMessageResult> results = deliver(message, groupRecipient, target);
-      processGroupMessageResults(context, messageId, threadId, groupRecipient, message, results, target, existingNetworkFailures, existingIdentityMismatches);
+      processGroupMessageResults(context, messageId, threadId, groupRecipient, message, results, target, skipped, existingNetworkFailures, existingIdentityMismatches);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
@@ -334,6 +344,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                          @NonNull OutgoingMediaMessage message,
                                          @NonNull List<SendMessageResult> results,
                                          @NonNull List<Recipient> target,
+                                         @NonNull List<RecipientId> skipped,
                                          @NonNull Set<NetworkFailure> existingNetworkFailures,
                                          @NonNull Set<IdentityKeyMismatch> existingIdentityMismatches)
       throws RetryLaterException, ProofRequiredException
@@ -350,6 +361,9 @@ public final class PushGroupSendJob extends PushSendJob {
     List<NetworkFailure>             resolvedNetworkFailures   = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
     List<IdentityKeyMismatch>        resolvedIdentityFailures  = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
     List<RecipientId>                unregisteredRecipients    = Stream.of(results).filter(SendMessageResult::isUnregisteredFailure).map(result -> RecipientId.from(result.getAddress())).toList();
+    List<RecipientId>                skippedRecipients         = new ArrayList<>(unregisteredRecipients);
+
+    skippedRecipients.addAll(skipped);
 
     if (networkFailures.size() > 0 || identityMismatches.size() > 0 || proofRequired != null || unregisteredRecipients.size() > 0) {
       Log.w(TAG,  String.format(Locale.US, "Failed to send to some recipients. Network: %d, Identity: %d, ProofRequired: %s, Unregistered: %d",
@@ -379,6 +393,10 @@ public final class PushGroupSendJob extends PushSendJob {
       database.markAsSent(messageId, true);
 
       markAttachmentsUploaded(messageId, message);
+
+      if (skippedRecipients.size() > 0) {
+        SignalDatabase.groupReceipts().setSkipped(skippedRecipients, messageId);
+      }
 
       if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
         database.markExpireStarted(messageId);
@@ -414,25 +432,40 @@ public final class PushGroupSendJob extends PushSendJob {
     }
   }
 
-  private static @NonNull List<Recipient> getGroupMessageRecipients(@NonNull GroupId groupId, long messageId) {
+  private static @NonNull GroupRecipientResult getGroupMessageRecipients(@NonNull GroupId groupId, long messageId) {
     List<GroupReceiptInfo> destinations = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId);
 
+    List<Recipient>   possible;
+
     if (!destinations.isEmpty()) {
-      return RecipientUtil.getEligibleForSending(Stream.of(destinations)
-                                                       .map(GroupReceiptInfo::getRecipientId)
-                                                       .map(Recipient::resolved)
-                                                       .toList());
-    }
-
-    List<Recipient> members = Stream.of(SignalDatabase.groups().getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
-                                    .map(Recipient::resolve)
-                                    .toList();
-
-    if (members.size() > 0) {
+      possible = Stream.of(destinations)
+                       .map(GroupReceiptInfo::getRecipientId)
+                       .map(Recipient::resolved)
+                       .distinctBy(Recipient::getId)
+                       .toList();
+    } else {
       Log.w(TAG, "No destinations found for group message " + groupId + " using current group membership");
+      possible = Stream.of(SignalDatabase.groups()
+                                         .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
+                                         .map(Recipient::resolve)
+                                         .distinctBy(Recipient::getId)
+                                         .toList();
     }
 
-    return RecipientUtil.getEligibleForSending(members);
+    List<Recipient>   eligible = RecipientUtil.getEligibleForSending(possible);
+    List<RecipientId> skipped  = Stream.of(SetUtil.difference(possible, eligible)).map(Recipient::getId).toList();
+
+    return new GroupRecipientResult(eligible, skipped);
+  }
+
+  private static class GroupRecipientResult {
+    private final List<Recipient>   target;
+    private final List<RecipientId> skipped;
+
+    private GroupRecipientResult(@NonNull List<Recipient> target, @NonNull List<RecipientId> skipped) {
+      this.target  = target;
+      this.skipped = skipped;
+    }
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {

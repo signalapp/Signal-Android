@@ -38,6 +38,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -151,7 +152,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
       List<SendMessageResult> results = deliver(message, target);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
-      PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, target, existingNetworkFailures, existingIdentityMismatches);
+      PushGroupSendJob.processGroupMessageResults(context, messageId, -1, null, message, results, target, Collections.emptyList(), existingNetworkFailures, existingIdentityMismatches);
     } catch (UntrustedIdentityException | UndeliverableMessageException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
       database.markAsSentFailed(messageId);

@@ -248,7 +248,7 @@ public class ReactionSendJob extends BaseJob {
       results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));
     }
 
-    return GroupSendJobHelper.getCompletedSends(destinations, results);
+    return GroupSendJobHelper.getCompletedSends(destinations, results).completed;
   }
 
   private static SignalServiceDataMessage.Reaction buildReaction(@NonNull Context context,

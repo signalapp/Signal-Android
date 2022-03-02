@@ -97,7 +97,7 @@ public class GroupReceiptDatabase extends Database {
   }
 
   public void setSkipped(Collection<RecipientId> recipients, long mmsId) {
-    SQLiteDatabase db  = databaseHelper.getSignalWritableDatabase();
+    SQLiteDatabase db  = getWritableDatabase();
 
     db.beginTransaction();
     try {

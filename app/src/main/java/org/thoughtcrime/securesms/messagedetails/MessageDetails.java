@@ -63,6 +63,7 @@ final class MessageDetails {
             break;
           case SKIPPED:
             skipped.add(status);
+            break;
         }
       }
     } else {
