@@ -1,6 +1,7 @@
 import groovy.io.FileType
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
+import org.signal.StaticIpResolver
 
 ext {
     autoResConfig = this.&autoResConfig
@@ -129,8 +130,25 @@ task postTranslateQa {
     mustRunAfter excludeNonTranslatables
 }
 
+task postTranslateIpFetch {
+    group 'Translate'
+    description 'Fetches static IPs for core hosts and writes them to static-ips.gradle'
+    doLast {
+        new File(projectDir, "static-ips.gradle").text = """
+            ext.service_ips='${StaticIpResolver.resolveToBuildConfig("chat.signal.org")}'
+            ext.storage_ips='${StaticIpResolver.resolveToBuildConfig("storage.signal.org")}'
+            ext.cdn_ips='${StaticIpResolver.resolveToBuildConfig("cdn.signal.org")}'
+            ext.cdn2_ips='${StaticIpResolver.resolveToBuildConfig("cdn2.signal.org")}'
+            ext.cds_ips='${StaticIpResolver.resolveToBuildConfig("api.directory.signal.org")}'
+            ext.kbs_ips='${StaticIpResolver.resolveToBuildConfig("api.backup.signal.org")}'
+            ext.sfu_ips='${StaticIpResolver.resolveToBuildConfig("sfu.voip.signal.org")}'
+            ext.content_proxy_ips='${StaticIpResolver.resolveToBuildConfig("contentproxy.signal.org")}'
+        """.stripIndent().trim()
+    }
+}
+
 task translate {
     group 'Translate'
     description 'Pull translations and post-process for ellipsis, apostrophes and non-translatables.'
-    dependsOn pullTranslations, replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables, postTranslateQa
+    dependsOn pullTranslations, replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables, postTranslateIpFetch, postTranslateQa
 }
