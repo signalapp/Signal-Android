@@ -79,7 +79,8 @@ public class InputPanel extends LinearLayout
   private ComposeText     composeText;
   private View            quickCameraToggle;
   private View            quickAudioToggle;
-  private View            buttonToggle;
+  private AnimatingToggle buttonToggle;
+  private SendButton      sendButton;
   private View            recordingContainer;
   private View            recordLockCancel;
   private ViewGroup       composeContainer;
@@ -127,6 +128,7 @@ public class InputPanel extends LinearLayout
     this.quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
     this.quickAudioToggle       = findViewById(R.id.quick_audio_toggle);
     this.buttonToggle           = findViewById(R.id.button_toggle);
+    this.sendButton             = findViewById(R.id.send_button);
     this.recordingContainer     = findViewById(R.id.recording_container);
     this.recordLockCancel       = findViewById(R.id.record_cancel);
     this.voiceNoteDraftView     = findViewById(R.id.voice_note_draft_view);
@@ -475,6 +477,7 @@ public class InputPanel extends LinearLayout
       voiceNoteDraftView.setDraft(voiceNoteDraft);
       voiceNoteDraftView.setVisibility(VISIBLE);
       hideNormalComposeViews();
+      buttonToggle.displayQuick(sendButton);
     } else {
       voiceNoteDraftView.clearDraft();
       ViewUtil.fadeOut(voiceNoteDraftView, FADE_TIME);
@@ -492,7 +495,7 @@ public class InputPanel extends LinearLayout
       mediaKeyboard.setAlpha(0f);
     }
 
-    for (View view : Arrays.asList(composeText, quickCameraToggle, quickAudioToggle, buttonToggle)) {
+    for (View view : Arrays.asList(composeText, quickCameraToggle, quickAudioToggle)) {
       view.animate().cancel();
       view.setAlpha(0f);
     }
