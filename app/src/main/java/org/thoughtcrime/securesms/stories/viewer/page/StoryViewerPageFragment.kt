@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -18,6 +19,8 @@ import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -31,11 +34,13 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardBottomSheet
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
+import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.StorySlateView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
@@ -53,9 +58,11 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
-class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page), MediaPreviewFragment.Events, MultiselectForwardBottomSheet.Callback {
+class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page), MediaPreviewFragment.Events, MultiselectForwardBottomSheet.Callback, StorySlateView.Callback {
 
   private lateinit var progressBar: SegmentedProgressBar
+  private lateinit var storySlate: StorySlateView
+  private lateinit var viewsAndReplies: TextView
 
   private lateinit var callback: Callback
 
@@ -75,6 +82,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
   private val videoControlsDelegate = VideoControlsDelegate()
 
   private val lifecycleDisposable = LifecycleDisposable()
+  private val timeoutDisposable = LifecycleDisposable()
 
   private val storyRecipientId: RecipientId
     get() = requireArguments().getParcelable(ARG_STORY_RECIPIENT_ID)!!
@@ -90,14 +98,17 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     val date: TextView = view.findViewById(R.id.date)
     val moreButton: View = view.findViewById(R.id.more)
     val distributionList: TextView = view.findViewById(R.id.distribution_list)
-    val viewsAndReplies: TextView = view.findViewById(R.id.views_and_replies_bar)
     val cardWrapper: TouchInterceptingFrameLayout = view.findViewById(R.id.story_content_card_touch_interceptor)
     val card: CardView = view.findViewById(R.id.story_content_card)
     val caption: TextView = view.findViewById(R.id.story_caption)
     val largeCaption: TextView = view.findViewById(R.id.story_large_caption)
     val largeCaptionOverlay: View = view.findViewById(R.id.story_large_caption_overlay)
 
+    storySlate = view.findViewById(R.id.story_slate)
     progressBar = view.findViewById(R.id.progress)
+    viewsAndReplies = view.findViewById(R.id.views_and_replies_bar)
+
+    storySlate.callback = this
 
     chrome = listOf(
       closeView,
@@ -122,12 +133,13 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       requireContext(),
       StoryGestureListener(
         cardWrapper,
-        progressBar,
+        viewModel::goToNextPost,
+        viewModel::goToPreviousPost,
         this::startReply
       )
     )
 
-    cardWrapper.setOnInterceptTouchEventListener { true }
+    cardWrapper.setOnInterceptTouchEventListener { storySlate.state == StorySlateView.State.HIDDEN }
     cardWrapper.setOnTouchListener { _, event ->
       val result = gestureDetector.onTouchEvent(event)
       if (event.actionMasked == MotionEvent.ACTION_DOWN) {
@@ -151,10 +163,6 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       override fun onPage(oldPageIndex: Int, newPageIndex: Int) {
         if (oldPageIndex != newPageIndex && context != null) {
           viewModel.setSelectedPostIndex(newPageIndex)
-
-          childFragmentManager.beginTransaction()
-            .replace(R.id.story_content_container, createFragmentForPost(viewModel.getPostAt(newPageIndex)))
-            .commit()
         }
 
         if (oldPageIndex == newPageIndex) {
@@ -163,7 +171,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       }
 
       override fun onFinished() {
-        callback.onFinishedPosts(storyRecipientId)
+        viewModel.goToNextPost()
       }
     }
 
@@ -190,7 +198,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       if (state.posts.isNotEmpty() && state.selectedPostIndex < state.posts.size) {
         val post = state.posts[state.selectedPostIndex]
 
-        presentViewsAndReplies(viewsAndReplies, post)
+        presentViewsAndReplies(post)
         presentSenderAvatar(senderAvatar, post)
         presentGroupAvatar(groupAvatar, post)
         presentFrom(from, post)
@@ -209,6 +217,9 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
           progressBar.segmentDurations = durations
         }
 
+        presentStory(post, state.selectedPostIndex)
+        presentSlate(post)
+
         viewModel.setAreSegmentsInitialized(true)
       } else if (state.selectedPostIndex >= state.posts.size) {
         callback.onFinishedPosts(storyRecipientId)
@@ -223,6 +234,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       }
     }
 
+    timeoutDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.groupDirectReplyObservable.subscribe { opt ->
       if (opt.isPresent) {
@@ -304,9 +316,12 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
   }
 
   private fun resumeProgress() {
-    if (progressBar.segmentCount != 0) {
-      progressBar.start()
-      videoControlsDelegate.resume(viewModel.getPost().attachment.uri!!)
+    if (progressBar.segmentCount != 0 && viewModel.hasPost()) {
+      val postUri = viewModel.getPost().attachment.uri
+      if (postUri != null) {
+        progressBar.start()
+        videoControlsDelegate.resume(postUri)
+      }
     }
   }
 
@@ -347,6 +362,64 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     } else {
       StoryViewsAndRepliesDialogFragment.StartPage.VIEWS
     }
+  }
+
+  private fun presentStory(post: StoryPost, index: Int) {
+    val fragment = childFragmentManager.findFragmentById(R.id.story_content_container)
+    if (fragment != null && fragment.requireArguments().getParcelable<Uri>(MediaPreviewFragment.DATA_URI) == post.attachment.uri) {
+      progressBar.setPosition(index)
+      return
+    }
+
+    if (post.attachment.uri == null) {
+      progressBar.setPosition(index)
+      progressBar.invalidate()
+    } else {
+      progressBar.setPosition(index)
+      storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
+      viewModel.setIsDisplayingSlate(false)
+      childFragmentManager.beginTransaction()
+        .replace(R.id.story_content_container, createFragmentForPost(post))
+        .commitNow()
+    }
+  }
+
+  private fun presentSlate(post: StoryPost) {
+    when (post.attachment.transferState) {
+      AttachmentDatabase.TRANSFER_PROGRESS_DONE -> {
+        storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
+        viewModel.setIsDisplayingSlate(false)
+      }
+      AttachmentDatabase.TRANSFER_PROGRESS_PENDING -> {
+        storySlate.moveToState(StorySlateView.State.LOADING, post.id)
+        viewModel.setIsDisplayingSlate(true)
+      }
+      AttachmentDatabase.TRANSFER_PROGRESS_STARTED -> {
+        storySlate.moveToState(StorySlateView.State.LOADING, post.id)
+        viewModel.setIsDisplayingSlate(true)
+      }
+      AttachmentDatabase.TRANSFER_PROGRESS_FAILED -> {
+        storySlate.moveToState(StorySlateView.State.NOT_FOUND, post.id)
+        viewModel.setIsDisplayingSlate(true)
+      }
+    }
+  }
+
+  override fun onStateChanged(state: StorySlateView.State, postId: Long) {
+    if (state == StorySlateView.State.LOADING || state == StorySlateView.State.RETRY) {
+      timeoutDisposable.disposables.clear()
+      timeoutDisposable += Observable.interval(10, TimeUnit.SECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe {
+          storySlate.moveToState(StorySlateView.State.ERROR, postId)
+        }
+
+      viewModel.forceDownloadSelectedPost()
+    } else {
+      timeoutDisposable.disposables.clear()
+    }
+
+    viewsAndReplies.visible = state == StorySlateView.State.HIDDEN
   }
 
   private fun presentDistributionList(distributionList: TextView, storyPost: StoryPost) {
@@ -445,7 +518,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     }
   }
 
-  private fun presentViewsAndReplies(viewsAndReplies: TextView, post: StoryPost) {
+  private fun presentViewsAndReplies(post: StoryPost) {
     val views = resources.getQuantityString(R.plurals.StoryViewerFragment__d_views, post.viewCount, post.viewCount)
     val replies = resources.getQuantityString(R.plurals.StoryViewerFragment__d_replies, post.replyCount, post.replyCount)
 
@@ -527,7 +600,8 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
 
   private class StoryGestureListener(
     private val container: View,
-    private val progress: SegmentedProgressBar,
+    private val onGoToNext: () -> Unit,
+    private val onGoToPrevious: () -> Unit,
     private val onReplyToPost: () -> Unit
   ) : GestureDetector.SimpleOnGestureListener() {
 
@@ -561,18 +635,18 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
     }
 
     private fun performLeftAction() {
-      if (progress.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-        progress.next()
+      if (container.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
+        onGoToNext()
       } else {
-        progress.previous()
+        onGoToPrevious()
       }
     }
 
     private fun performRightAction() {
-      if (progress.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-        progress.previous()
+      if (container.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
+        onGoToPrevious()
       } else {
-        progress.next()
+        onGoToNext()
       }
     }
   }
@@ -610,7 +684,6 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
   }
 
   override fun mediaNotAvailable() {
-    // TODO [stories] -- Display appropriate error slate
   }
 
   interface Callback {

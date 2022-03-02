@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Optional
+import kotlin.math.max
 import kotlin.math.min
 
 /**
@@ -59,10 +60,6 @@ class StoryViewerPageViewModel(
     }
   }
 
-  fun kickPlaybackState() {
-    storyViewerPlaybackStore.update { it }
-  }
-
   override fun onCleared() {
     disposables.clear()
   }
@@ -72,13 +69,28 @@ class StoryViewerPageViewModel(
   }
 
   fun setSelectedPostIndex(index: Int) {
-    repository.markViewed(getPostAt(index))
+    val selectedPost = getPostAt(index)
+
+    if (selectedPost != null) {
+      repository.markViewed(selectedPost)
+    }
+
     store.update {
       it.copy(
         selectedPostIndex = index,
         replyState = resolveSwipeToReplyState(it, index)
       )
     }
+  }
+
+  fun goToNextPost() {
+    val postIndex = store.state.selectedPostIndex
+    setSelectedPostIndex(postIndex + 1)
+  }
+
+  fun goToPreviousPost() {
+    val postIndex = store.state.selectedPostIndex
+    setSelectedPostIndex(max(0, postIndex - 1))
   }
 
   fun getRestartIndex(): Int {
@@ -89,8 +101,16 @@ class StoryViewerPageViewModel(
     return store.state.replyState
   }
 
+  fun hasPost(): Boolean {
+    return store.state.selectedPostIndex in store.state.posts.indices
+  }
+
   fun getPost(): StoryPost {
     return store.state.posts[store.state.selectedPostIndex]
+  }
+
+  fun forceDownloadSelectedPost() {
+    repository.forceDownload(getPost())
   }
 
   fun startDirectReply(storyId: Long, recipientId: RecipientId) {
@@ -99,6 +119,10 @@ class StoryViewerPageViewModel(
 
   fun setIsUserScrollingParent(isUserScrollingParent: Boolean) {
     storyViewerPlaybackStore.update { it.copy(isUserScrollingParent = isUserScrollingParent) }
+  }
+
+  fun setIsDisplayingSlate(isDisplayingSlate: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingSlate = isDisplayingSlate) }
   }
 
   fun setIsSelectedPage(isSelectedPage: Boolean) {
@@ -153,8 +177,8 @@ class StoryViewerPageViewModel(
     }
   }
 
-  fun getPostAt(index: Int): StoryPost {
-    return store.state.posts[index]
+  fun getPostAt(index: Int): StoryPost? {
+    return store.state.posts.getOrNull(index)
   }
 
   class Factory(private val recipientId: RecipientId, private val repository: StoryViewerPageRepository) : ViewModelProvider.Factory {

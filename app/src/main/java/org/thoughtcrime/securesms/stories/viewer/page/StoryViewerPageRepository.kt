@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.NoSuchMessageException
@@ -13,6 +14,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -94,6 +96,11 @@ class StoryViewerPageRepository(context: Context) {
         }
       }
 
+      val conversationObserver = DatabaseObserver.Observer {
+        refresh(SignalDatabase.mms.getMessageRecord(record.id))
+      }
+
+      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(record.threadId, conversationObserver)
       ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageUpdateObserver)
 
       val messageInsertObserver = DatabaseObserver.MessageObserver {
@@ -105,6 +112,7 @@ class StoryViewerPageRepository(context: Context) {
       }
 
       emitter.setCancellable {
+        ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver)
         ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageUpdateObserver)
 
         if (recipient.isGroup) {
@@ -114,6 +122,12 @@ class StoryViewerPageRepository(context: Context) {
 
       refresh(record)
     }
+  }
+
+  fun forceDownload(post: StoryPost) {
+    ApplicationDependencies.getJobManager().add(
+      AttachmentDownloadJob(post.id, (post.attachment as DatabaseAttachment).attachmentId, true)
+    )
   }
 
   fun getStoryPostsFor(recipientId: RecipientId): Observable<List<StoryPost>> {

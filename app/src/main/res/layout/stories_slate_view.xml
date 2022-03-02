@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/core_grey_80"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loading_spinner"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/core_grey_05"
+        app:indicatorInset="0dp"
+        app:indicatorSize="64dp"
+        app:trackColor="@color/transparent"
+        app:trackThickness="3dp"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/error_circle"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:background="@drawable/stories_slate_indicator_ring"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/unavailable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:alpha="0.6"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="46dp"
+        android:text="@string/StorySlateView__this_story_is_no_longer_available"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/core_grey_05"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/stories_slate_view_error_message_background"
+        android:drawablePadding="13dp"
+        android:paddingHorizontal="13dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:drawableStartCompat="@drawable/ic_error_outline_24"
+        app:drawableTint="@color/core_white"
+        tools:text="@string/StorySlateView__couldnt_load_content"
+        tools:visibility="visible" />
+</merge>

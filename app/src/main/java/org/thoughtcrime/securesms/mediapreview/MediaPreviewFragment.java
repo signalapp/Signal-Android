@@ -20,7 +20,8 @@ import java.util.Objects;
 
 public abstract class MediaPreviewFragment extends Fragment {
 
-  static final String DATA_URI          = "DATA_URI";
+  public static final String DATA_URI = "DATA_URI";
+
   static final String DATA_SIZE         = "DATA_SIZE";
   static final String DATA_CONTENT_TYPE = "DATA_CONTENT_TYPE";
   static final String AUTO_PLAY         = "AUTO_PLAY";

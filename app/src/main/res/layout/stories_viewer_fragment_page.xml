@@ -38,6 +38,12 @@
                 android:layout_height="160dp"
                 android:layout_gravity="bottom"
                 android:background="@drawable/story_gradient_bottom" />
+
+            <org.thoughtcrime.securesms.stories.StorySlateView
+                android:id="@+id/story_slate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </androidx.cardview.widget.CardView>
     </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
 
@@ -95,12 +101,11 @@
         android:id="@+id/story_large_caption_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:background="@color/transparent_black_40" />
+        android:background="@color/transparent_black_40"
+        android:visibility="gone" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/story_large_caption"
-        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -110,6 +115,7 @@
         android:gravity="bottom"
         android:textAppearance="@style/Signal.Text.Body"
         android:textStyle="bold"
+        android:visibility="gone"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
         app:layout_constraintEnd_toEndOf="parent"
