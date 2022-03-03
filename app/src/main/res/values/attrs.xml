@@ -140,6 +140,10 @@
         <attr name="emoji_forceJumbo" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="EmojiImageView">
+        <attr name="forceJumbo" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="RingtonePreference">
         <attr name="showAdd" format="boolean" />
         <attr name="summaryHasRingtone" format="string|reference" />
