@@ -27,7 +27,7 @@ object AudioProcessingMethodSelector {
     return when {
       FeatureFlags.forceDefaultAec() -> AudioProcessingMethod.Default
       hardwareModels.contains(Build.MODEL) -> AudioProcessingMethod.ForceHardware
-      else -> AudioProcessingMethod.ForceSoftware
+      else -> AudioProcessingMethod.ForceSoftwareAecM
     }
   }
 }
