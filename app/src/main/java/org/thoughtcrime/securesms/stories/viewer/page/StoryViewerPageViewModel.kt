@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -40,12 +39,6 @@ class StoryViewerPageViewModel(
 
   init {
     refresh()
-  }
-
-  fun setDuration(uri: Uri, duration: Long) {
-    store.update {
-      it.copy(durations = it.durations + (uri to duration))
-    }
   }
 
   fun refresh() {
@@ -115,6 +108,10 @@ class StoryViewerPageViewModel(
 
   fun startDirectReply(storyId: Long, recipientId: RecipientId) {
     storyViewerDialogSubject.onNext(Optional.of(StoryViewerDialog.GroupDirectReply(recipientId, storyId)))
+  }
+
+  fun setIsFragmentResumed(isFragmentResumed: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isFragmentResumed = isFragmentResumed) }
   }
 
   fun setIsUserScrollingParent(isUserScrollingParent: Boolean) {

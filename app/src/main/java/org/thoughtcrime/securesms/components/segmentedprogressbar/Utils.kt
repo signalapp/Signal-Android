@@ -78,7 +78,7 @@ fun SegmentedProgressBar.getDrawingComponents(
       RectF(
         startBound + stroke,
         height - stroke,
-        startBound + segment.progressPercentage * segmentWidth,
+        startBound + segment.animationProgressPercentage * segmentWidth,
         stroke
       )
     )

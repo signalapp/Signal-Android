@@ -37,4 +37,6 @@ interface SegmentedProgressBarListener {
    * Notifies when last segment finished animating
    */
   fun onFinished()
+
+  fun onRequestSegmentProgressPercentage(): Float?
 }

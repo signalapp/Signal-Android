@@ -29,14 +29,14 @@ package org.thoughtcrime.securesms.components.segmentedprogressbar
  */
 class Segment(val animationDurationMillis: Long) {
 
-  private var animationProgress: Int = 0
+  var animationProgressPercentage: Float = 0f
 
   var animationState: AnimationState = AnimationState.IDLE
     set(value) {
-      animationProgress = when (value) {
-        AnimationState.ANIMATED -> 100
-        AnimationState.IDLE -> 0
-        else -> animationProgress
+      animationProgressPercentage = when (value) {
+        AnimationState.ANIMATED -> 1f
+        AnimationState.IDLE -> 0f
+        else -> animationProgressPercentage
       }
       field = value
     }
@@ -49,9 +49,4 @@ class Segment(val animationDurationMillis: Long) {
     ANIMATING,
     IDLE
   }
-
-  val progressPercentage: Float
-    get() = animationProgress.toFloat() / 100
-
-  fun progress() = animationProgress++
 }

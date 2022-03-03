@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
@@ -173,6 +174,25 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       override fun onFinished() {
         viewModel.goToNextPost()
       }
+
+      override fun onRequestSegmentProgressPercentage(): Float? {
+        val attachmentUri = if (viewModel.hasPost() && MediaUtil.isVideo(viewModel.getPost().attachment)) {
+          viewModel.getPost().attachment.uri
+        } else {
+          null
+        }
+
+        return if (attachmentUri != null) {
+          val playerState = videoControlsDelegate.getPlayerState(attachmentUri)
+          if (playerState != null) {
+            playerState.position.toFloat() / playerState.duration
+          } else {
+            null
+          }
+        } else {
+          null
+        }
+      }
     }
 
     sharedViewModel.isScrolling.observe(viewLifecycleOwner) { isScrolling ->
@@ -208,7 +228,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
 
         val durations: Map<Int, Long> = state.posts
           .mapIndexed { index, storyPost ->
-            index to (storyPost.attachment.uri?.let { state.durations[it] } ?: TimeUnit.SECONDS.toMillis(5))
+            index to if (MediaUtil.isVideo(storyPost.attachment)) -1L else TimeUnit.SECONDS.toMillis(5)
           }
           .toMap()
 
@@ -246,18 +266,17 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       }
     }
 
-    lifecycleDisposable += videoControlsDelegate.playerUpdates.subscribe { update ->
-      if (update.duration > 0L) {
-        viewModel.setDuration(update.mediaUri, update.duration)
-      }
-    }
-
     adjustConstraintsForScreenDimensions(viewsAndReplies, cardWrapper, card)
+  }
+
+  override fun onResume() {
+    super.onResume()
+    viewModel.setIsFragmentResumed(true)
   }
 
   override fun onPause() {
     super.onPause()
-    pauseProgress()
+    viewModel.setIsFragmentResumed(false)
   }
 
   override fun onFinishForwardAction() = Unit

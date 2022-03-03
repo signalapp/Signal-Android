@@ -1,10 +1,7 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.net.Uri
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import io.reactivex.rxjava3.subjects.PublishSubject
 import org.thoughtcrime.securesms.video.VideoPlayer
 
 /**
@@ -14,12 +11,15 @@ class VideoControlsDelegate {
 
   private val playWhenReady: MutableMap<Uri, Boolean> = mutableMapOf()
   private val playerSubject = BehaviorSubject.create<Player>()
-  private val playerReadySignal = PublishSubject.create<Unit>()
-  val playerUpdates: Observable<PlayerUpdate> = playerReadySignal
-    .observeOn(AndroidSchedulers.mainThread())
-    .flatMap { playerSubject }
-    .filter { it.videoPlayer != null }
-    .map { PlayerUpdate(it.uri, it.videoPlayer?.duration!!) }
+
+  fun getPlayerState(uri: Uri): PlayerState? {
+    val player = playerSubject.value
+    return if (player?.uri == uri && player.videoPlayer != null) {
+      PlayerState(uri, player.videoPlayer.playbackPosition, player.videoPlayer.duration)
+    } else {
+      null
+    }
+  }
 
   fun pause() = playerSubject.value?.videoPlayer?.pause()
 
@@ -41,14 +41,6 @@ class VideoControlsDelegate {
   fun attachPlayer(uri: Uri, videoPlayer: VideoPlayer?) {
     playerSubject.onNext(Player(uri, videoPlayer))
 
-    if ((videoPlayer?.duration ?: -1L) > 0L) {
-      playerReadySignal.onNext(Unit)
-    } else {
-      videoPlayer?.setPlayerStateCallbacks {
-        playerReadySignal.onNext(Unit)
-      }
-    }
-
     if (playWhenReady[uri] == true) {
       playWhenReady[uri] = false
       videoPlayer?.play()
@@ -64,8 +56,9 @@ class VideoControlsDelegate {
     val videoPlayer: VideoPlayer? = null
   )
 
-  data class PlayerUpdate(
+  data class PlayerState(
     val mediaUri: Uri,
+    val position: Long,
     val duration: Long
   )
 }

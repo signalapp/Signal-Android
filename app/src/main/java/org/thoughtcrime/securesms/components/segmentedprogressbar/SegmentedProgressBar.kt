@@ -28,13 +28,12 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Path
-import android.os.Handler
-import android.os.Looper
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import org.thoughtcrime.securesms.R
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Tiago Ornelas on 18/04/2020.
@@ -42,7 +41,14 @@ import org.thoughtcrime.securesms.R
  * @see Segment
  * And the progress of each segment is animated based on a set speed
  */
-class SegmentedProgressBar : View, Runnable, ViewPager.OnPageChangeListener, View.OnTouchListener {
+class SegmentedProgressBar : View, ViewPager.OnPageChangeListener, View.OnTouchListener {
+
+  companion object {
+    /**
+     * It is common now for devices to run at 60FPS
+     */
+    val MILLIS_PER_FRAME = TimeUnit.MILLISECONDS.toMillis(17)
+  }
 
   private val path = Path()
   private val corners = floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
@@ -57,7 +63,10 @@ class SegmentedProgressBar : View, Runnable, ViewPager.OnPageChangeListener, Vie
     }
 
   /**
-   * Mapping of segment index -> duration in millis
+   * Mapping of segment index -> duration in millis. Negative durations
+   * ARE valid but they'll result in a call to SegmentedProgressBarListener#onRequestSegmentProgressPercentage
+   * which should return the current % position for the currently playing item. This helps
+   * to avoid synchronizing the seek bar to playback.
    */
   var segmentDurations: Map<Int, Long> = mapOf()
     set(value) {
@@ -93,8 +102,6 @@ class SegmentedProgressBar : View, Runnable, ViewPager.OnPageChangeListener, Vie
   private val selectedSegmentIndex: Int
     get() = segments.indexOf(this.selectedSegment)
 
-  private val animationHandler = Handler(Looper.getMainLooper())
-
   // Drawing
   val strokeApplicable: Boolean
     get() = segmentStrokeWidth * 4 <= measuredHeight
@@ -120,6 +127,8 @@ class SegmentedProgressBar : View, Runnable, ViewPager.OnPageChangeListener, Vie
    * @see SegmentedProgressBarListener
    */
   var listener: SegmentedProgressBarListener? = null
+
+  private var lastFrameTimeMillis: Long = 0L
 
   constructor(context: Context) : super(context)
 
@@ -225,6 +234,8 @@ class SegmentedProgressBar : View, Runnable, ViewPager.OnPageChangeListener, Vie
         }
       }
     }
+
+    onFrame(System.currentTimeMillis())
   }
 
   /**
@@ -233,17 +244,20 @@ class SegmentedProgressBar : View, Runnable, ViewPager.OnPageChangeListener, Vie
   fun start() {
     pause()
     val segment = selectedSegment
-    if (segment == null)
+    if (segment == null) {
       next()
-    else
-      animationHandler.postDelayed(this, segment.animationDurationMillis / 100)
+    } else {
+      isPaused = false
+      invalidate()
+    }
   }
 
   /**
    * Pauses the animation process
    */
   fun pause() {
-    animationHandler.removeCallbacks(this)
+    isPaused = true
+    lastFrameTimeMillis = 0L
   }
 
   /**
@@ -327,12 +341,21 @@ class SegmentedProgressBar : View, Runnable, ViewPager.OnPageChangeListener, Vie
     if (nextSegment != null) {
       pause()
       nextSegment.animationState = Segment.AnimationState.ANIMATING
-      animationHandler.postDelayed(this, nextSegment.animationDurationMillis / 100)
+      isPaused = false
+      invalidate()
       this.listener?.onPage(oldSegmentIndex, this.selectedSegmentIndex)
       viewPager?.currentItem = this.selectedSegmentIndex
     } else {
-      animationHandler.removeCallbacks(this)
+      pause()
       this.listener?.onFinished()
+    }
+  }
+
+  private fun getSegmentProgressPercentage(segment: Segment, timeSinceLastFrameMillis: Long): Float {
+    return if (segment.animationDurationMillis > 0) {
+      segment.animationProgressPercentage + timeSinceLastFrameMillis.toFloat() / segment.animationDurationMillis
+    } else {
+      listener?.onRequestSegmentProgressPercentage() ?: 0f
     }
   }
 
@@ -348,12 +371,30 @@ class SegmentedProgressBar : View, Runnable, ViewPager.OnPageChangeListener, Vie
     reset()
   }
 
-  override fun run() {
-    if (this.selectedSegment?.progress() ?: 0 >= 100) {
+  private var isPaused = true
+
+  private fun onFrame(frameTimeMillis: Long) {
+    if (isPaused) {
+      return
+    }
+
+    val lastFrameTimeMillis = this.lastFrameTimeMillis
+
+    this.lastFrameTimeMillis = frameTimeMillis
+
+    val selectedSegment = this.selectedSegment
+    if (selectedSegment == null) {
       loadSegment(offset = 1, userAction = false)
+    } else if (lastFrameTimeMillis > 0L) {
+      val segmentProgressPercentage = getSegmentProgressPercentage(selectedSegment, frameTimeMillis - lastFrameTimeMillis)
+      selectedSegment.animationProgressPercentage = segmentProgressPercentage
+      if (selectedSegment.animationProgressPercentage >= 1f) {
+        loadSegment(offset = 1, userAction = false)
+      } else {
+        this.invalidate()
+      }
     } else {
       this.invalidate()
-      animationHandler.postDelayed(this, this.selectedSegment?.animationDurationMillis?.let { it / 100 } ?: (timePerSegmentMs / 100))
     }
   }
 
