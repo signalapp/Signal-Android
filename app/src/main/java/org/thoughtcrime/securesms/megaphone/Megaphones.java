@@ -66,7 +66,7 @@ public final class Megaphones {
   private static final MegaphoneSchedule ALWAYS = new ForeverSchedule(true);
   private static final MegaphoneSchedule NEVER  = new ForeverSchedule(false);
 
-  private static final Set<Event> DONATE_EVENTS                      = SetUtil.newHashSet(Event.VALENTINES_DONATIONS_2022, Event.BECOME_A_SUSTAINER);
+  private static final Set<Event> DONATE_EVENTS                      = SetUtil.newHashSet(Event.BECOME_A_SUSTAINER);
   private static final long       MIN_TIME_BETWEEN_DONATE_MEGAPHONES = TimeUnit.DAYS.toMillis(30);
 
   private Megaphones() {}
@@ -107,7 +107,6 @@ public final class Megaphones {
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.BECOME_A_SUSTAINER, shouldShowDonateMegaphone(context, records) ? ShowForDurationSchedule.showForDays(7) : NEVER);
-      put(Event.VALENTINES_DONATIONS_2022, NEVER);
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
 
       // Feature-introduction megaphones should *probably* be added below this divider
@@ -135,8 +134,6 @@ public final class Megaphones {
         return buildAddAProfilePhotoMegaphone(context);
       case BECOME_A_SUSTAINER:
         return buildBecomeASustainerMegaphone(context);
-      case VALENTINES_DONATIONS_2022:
-        return buildValentinesDonationsMegaphone(context);
       case NOTIFICATION_PROFILES:
         return buildNotificationProfilesMegaphone(context);
       default:
@@ -281,21 +278,6 @@ public final class Megaphones {
           listener.onMegaphoneCompleted(Event.BECOME_A_SUSTAINER);
         })
         .build();
-  }
-
-  private static @NonNull Megaphone buildValentinesDonationsMegaphone(@NonNull Context context) {
-    return new Megaphone.Builder(Event.VALENTINES_DONATIONS_2022, Megaphone.Style.BASIC)
-                        .setTitle(R.string.ValentinesDayMegaphone_happy_heart_day)
-                        .setImage(R.drawable.ic_valentines_donor_megaphone_64)
-                        .setBody(R.string.ValentinesDayMegaphone_show_your_affection)
-                        .setActionButton(R.string.BecomeASustainerMegaphone__contribute, (megaphone, listener) -> {
-                          listener.onMegaphoneNavigationRequested(AppSettingsActivity.subscriptions(context));
-                          listener.onMegaphoneCompleted(Event.VALENTINES_DONATIONS_2022);
-                        })
-                        .setSecondaryButton(R.string.BecomeASustainerMegaphone__no_thanks, (megaphone, listener) -> {
-                          listener.onMegaphoneCompleted(Event.VALENTINES_DONATIONS_2022);
-                        })
-                        .build();
   }
 
   private static @NonNull Megaphone buildNotificationProfilesMegaphone(@NonNull Context context) {
