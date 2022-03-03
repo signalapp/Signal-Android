@@ -315,7 +315,7 @@ public class GroupsV2StateProcessor {
         throw new IOException(e);
       }
 
-      if (localState != null && localState.getRevision() >= latestServerGroup.getRevision()) {
+      if (localState != null && localState.getRevision() >= latestServerGroup.getRevision() && GroupProtoUtil.isMember(selfAci.uuid(), localState.getMembersList())) {
         Log.i(TAG, "Local state is at or later than server");
         return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
       }
@@ -329,6 +329,8 @@ public class GroupsV2StateProcessor {
         boolean includeFirstState   = forceIncludeFirst ||
                                       localState == null ||
                                       localState.getRevision() < 0 ||
+                                      localState.getRevision() == revisionWeWereAdded ||
+                                      !GroupProtoUtil.isMember(selfAci.uuid(), localState.getMembersList()) ||
                                       (revision == LATEST && localState.getRevision() + 1 < latestServerGroup.getRevision());
 
         Log.i(TAG,
