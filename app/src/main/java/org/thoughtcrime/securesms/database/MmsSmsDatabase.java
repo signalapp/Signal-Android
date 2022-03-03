@@ -535,7 +535,7 @@ public class MmsSmsDatabase extends Database {
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.STORY_TYPE + " = 0" + " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
@@ -558,7 +558,7 @@ public class MmsSmsDatabase extends Database {
 
   public int getMessagePositionInConversation(long threadId, long receivedTimestamp, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsDatabase.STORY_TYPE + " = 0" + " AND " + MmsDatabase.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();

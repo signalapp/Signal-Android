@@ -2076,6 +2076,8 @@
     <string name="QuoteView_original_missing">Original message not found</string>
     <!-- Author formatting for group stories -->
     <string name="QuoteView_s_story">%1$s Story</string>
+    <!-- Label indicating that a quote is for a reply to a story you created -->
+    <string name="QuoteView_your_story">Your Story</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
