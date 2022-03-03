@@ -86,7 +86,6 @@ public final class FeatureFlags {
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
-  private static final String CHANGE_NUMBER_ENABLED             = "android.changeNumber.3";
   private static final String DONOR_BADGES                      = "android.donorBadges.6";
   private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String CDSH                              = "android.cdsh";
@@ -135,7 +134,6 @@ public final class FeatureFlags {
       SENDER_KEY_MAX_AGE,
       DONOR_BADGES,
       DONOR_BADGES_DISPLAY,
-      CHANGE_NUMBER_ENABLED,
       HARDWARE_AEC_MODELS,
       FORCE_DEFAULT_AEC,
       VALENTINES_DONATE_MEGAPHONE,
@@ -419,11 +417,6 @@ public final class FeatureFlags {
   /** Whether or not to show the group call ring toggle in the UI. */
   public static boolean groupCallRinging() {
     return getBoolean(GROUP_CALL_RINGING, false);
-  }
-
-  /** Whether or not to show change number in the UI. */
-  public static boolean changeNumber() {
-    return getBoolean(CHANGE_NUMBER_ENABLED, false);
   }
 
   /**
