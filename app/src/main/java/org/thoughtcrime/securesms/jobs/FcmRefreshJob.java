@@ -1,16 +1,16 @@
 /**
  * Copyright (C) 2014 Open Whisper Systems
- *
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -54,12 +54,12 @@ public class FcmRefreshJob extends BaseJob {
 
   public FcmRefreshJob() {
     this(new Job.Parameters.Builder()
-                           .setQueue("FcmRefreshJob")
-                           .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(1)
-                           .setLifespan(TimeUnit.MINUTES.toMillis(5))
-                           .setMaxInstancesForFactory(1)
-                           .build());
+             .setQueue("FcmRefreshJob")
+             .addConstraint(NetworkConstraint.KEY)
+             .setMaxAttempts(1)
+             .setLifespan(TimeUnit.MINUTES.toMillis(5))
+             .setMaxInstancesForFactory(1)
+             .build());
   }
 
   private FcmRefreshJob(@NonNull Job.Parameters parameters) {
@@ -87,7 +87,14 @@ public class FcmRefreshJob extends BaseJob {
     if (result != ConnectionResult.SUCCESS) {
       notifyFcmFailure();
     } else {
-      Optional<String> token = FcmUtil.getToken();
+      Optional<String> token;
+
+      try {
+        token = FcmUtil.getToken();
+      } catch (FcmUtil.FCMDisabledException e) {
+        SignalStore.account().setFcmEnabled(false);
+        throw e;
+      }
 
       if (token.isPresent()) {
         String oldToken = SignalStore.account().getFcmToken();
@@ -129,10 +136,10 @@ public class FcmRefreshJob extends BaseJob {
     builder.setContentTitle(context.getString(R.string.GcmRefreshJob_Permanent_Signal_communication_failure));
     builder.setContentText(context.getString(R.string.GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services));
     builder.setTicker(context.getString(R.string.GcmRefreshJob_Permanent_Signal_communication_failure));
-    builder.setVibrate(new long[] {0, 1000});
+    builder.setVibrate(new long[] { 0, 1000 });
     builder.setContentIntent(pendingIntent);
 
-    ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+    ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
         .notify(NotificationIds.FCM_FAILURE, builder.build());
   }
 
