@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/signal_background_secondary"
-    android:paddingTop="8dp"
     android:paddingHorizontal="@dimen/dsl_settings_gutter"
+    android:paddingTop="8dp"
     android:paddingBottom="8dp">
 
     <View
@@ -29,13 +29,14 @@
         app:layout_constraintStart_toStartOf="@id/stories_tab_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/chats_tab_icon"
         android:layout_width="56dp"
         android:layout_height="32dp"
         android:background="@drawable/conversation_tab_icon_background"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
+        android:tint="@color/signal_icon_tint_primary"
         app:layout_constraintBottom_toTopOf="@id/chats_tab_label"
         app:layout_constraintEnd_toStartOf="@id/tabs_center_guide"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,13 +63,14 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/stories_tab_icon"
         android:layout_width="56dp"
         android:layout_height="32dp"
         android:background="@drawable/conversation_tab_icon_background"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
+        android:tint="@color/signal_icon_tint_primary"
         app:layout_constraintBottom_toTopOf="@id/stories_tab_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tabs_center_guide"
