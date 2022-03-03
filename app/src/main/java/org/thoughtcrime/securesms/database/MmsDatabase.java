@@ -77,8 +77,8 @@ import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.CursorUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -593,7 +593,7 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId) {
-    if (!FeatureFlags.stories() || SignalStore.storyValues().isFeatureDisabled()) {
+    if (!Stories.isFeatureEnabled()) {
       return StoryViewState.NONE;
     }
 

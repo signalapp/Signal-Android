@@ -115,6 +115,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
@@ -1319,6 +1320,11 @@ public final class MessageContentProcessor {
   private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story message.");
 
+    if (Stories.isFeatureAvailable()) {
+      warn(content.getTimestamp(), "Dropping unsupported story.");
+      return;
+    }
+
     Optional<InsertResult> insertResult;
 
     MessageDatabase database = SignalDatabase.mms();
@@ -1378,6 +1384,11 @@ public final class MessageContentProcessor {
 
   private void handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story reply.");
+
+    if (!Stories.isFeatureAvailable()) {
+      warn(content.getTimestamp(), "Dropping unsupported story reply.");
+      return;
+    }
 
     SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
 

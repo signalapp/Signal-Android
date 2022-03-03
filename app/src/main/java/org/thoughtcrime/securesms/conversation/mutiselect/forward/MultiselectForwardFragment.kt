@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -269,7 +270,7 @@ class MultiselectForwardFragment :
     return ContactSearchConfiguration.build {
       query = contactSearchState.query
 
-      if (FeatureFlags.stories() && isSelectedMediaValidForStories()) {
+      if (Stories.isFeatureEnabled() && isSelectedMediaValidForStories()) {
         addSection(
           ContactSearchConfiguration.Section.Stories(
             groupStories = contactSearchState.groupStories,

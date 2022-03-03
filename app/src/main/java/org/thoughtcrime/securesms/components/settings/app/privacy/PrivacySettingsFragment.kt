@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberL
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.settings.custom.PrivateStorySettingsFragmentArgs
 import org.thoughtcrime.securesms.stories.settings.story.PrivateStoryItem
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -295,7 +296,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         summary = DSLSettingsText.from(incognitoSummary),
       )
 
-      if (FeatureFlags.stories()) {
+      if (Stories.isFeatureAvailable()) {
 
         dividerPref()
 

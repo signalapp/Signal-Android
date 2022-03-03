@@ -168,7 +168,6 @@ public final class PushDistributionListSendJob extends PushSendJob {
   private List<SendMessageResult> deliver(@NonNull OutgoingMediaMessage message, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
-    // TODO [stories] Filter based off of stories capability
     try {
       rotateSenderCertificateIfNecessary();
 

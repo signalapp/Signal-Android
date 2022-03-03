@@ -241,7 +241,6 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                             .anyMatch(info -> info.getStatus() > GroupReceiptDatabase.STATUS_UNDELIVERED);
 
       if (message.getStoryType().isStory()) {
-        // TODO [stories] Filter based off of stories capability
         Optional<GroupDatabase.GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupId);
 
         if (groupRecord.isPresent()) {
@@ -307,6 +306,10 @@ public final class PushGroupSendJob extends PushSendJob {
           try {
             MessageRecord storyRecord = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().asMessageId().getId());
             Recipient     recipient   = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getIndividualRecipient();
+
+            destinations = destinations.stream()
+                                       .filter(r -> r.getStoriesCapability() == Recipient.Capability.SUPPORTED)
+                                       .collect(java.util.stream.Collectors.toList());
 
             groupMessageBuilder.withStoryContext(new SignalServiceDataMessage.StoryContext(recipient.requireServiceId(), storyRecord.getDateSent()));
           } catch (NoSuchMessageException e) {

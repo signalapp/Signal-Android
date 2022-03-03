@@ -29,16 +29,13 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 /**
  * CursorLoader that initializes a ContactsDatabase instance
@@ -171,7 +168,7 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
   }
 
   private void addStoriesSection(@NonNull List<Cursor> cursorList) {
-    if (!FeatureFlags.stories() || !storiesEnabled(mode) || SignalStore.storyValues().isFeatureDisabled()) {
+    if (!Stories.isFeatureEnabled() ||!storiesEnabled(mode)) {
       return;
     }
 

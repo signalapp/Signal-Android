@@ -160,7 +160,15 @@ public final class GroupSendUtil {
                                                          @NonNull SignalServiceStoryMessage message)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, null, getDistributionId(distributionListId), messageId, allTargets, isRecipientUpdate, new StorySendOperation(messageId, null, sentTimestamp, message), null);
+    return sendMessage(
+        context,
+        null,
+        getDistributionId(distributionListId),
+        messageId,
+        allTargets,
+        isRecipientUpdate,
+        new StorySendOperation(messageId, null, sentTimestamp, message),
+        null);
   }
 
   /**
@@ -178,7 +186,15 @@ public final class GroupSendUtil {
                                                               @NonNull SignalServiceStoryMessage message)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), messageId, allTargets, isRecipientUpdate, new StorySendOperation(messageId, groupId, sentTimestamp, message), null);
+    return sendMessage(
+        context,
+        groupId,
+        getDistributionId(groupId),
+        messageId,
+        allTargets,
+        isRecipientUpdate,
+        new StorySendOperation(messageId, groupId, sentTimestamp, message),
+        null);
   }
 
   /**

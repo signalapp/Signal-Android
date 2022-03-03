@@ -20,12 +20,12 @@ import org.thoughtcrime.securesms.TransportOptions
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaReviewFragment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationViewModel
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -104,9 +104,8 @@ class MediaSelectionActivity :
   }
 
   private fun canDisplayStorySwitch(): Boolean {
-    return FeatureFlags.stories() &&
+    return Stories.isFeatureEnabled() &&
       FeatureFlags.storiesTextPosts() &&
-      !SignalStore.storyValues().isFeatureDisabled &&
       isCameraFirst() &&
       !viewModel.hasSelectedMedia() &&
       destination == MediaSelectionDestination.ChooseAfterMediaSelection

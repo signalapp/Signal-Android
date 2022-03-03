@@ -7,10 +7,9 @@ import android.widget.FrameLayout
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.database.model.StoryViewState
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -28,8 +27,8 @@ class AvatarView @JvmOverloads constructor(
   private val avatar: AvatarImageView = findViewById(R.id.avatar_image_view)
   private val storyRing: View = findViewById(R.id.avatar_story_ring)
 
-  fun showStoryRing(hasUnreadStory: Boolean) {
-    if (!FeatureFlags.stories() || SignalStore.storyValues().isFeatureDisabled) {
+  private fun showStoryRing(hasUnreadStory: Boolean) {
+    if (!Stories.isFeatureEnabled()) {
       return
     }
 
@@ -40,7 +39,7 @@ class AvatarView @JvmOverloads constructor(
     avatar.scaleY = 0.82f
   }
 
-  fun hideStoryRing() {
+  private fun hideStoryRing() {
     storyRing.visible = false
 
     avatar.scaleX = 1f
