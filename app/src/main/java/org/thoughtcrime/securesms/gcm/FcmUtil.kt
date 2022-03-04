@@ -1,39 +1,41 @@
 package org.thoughtcrime.securesms.gcm;
 
-import android.text.TextUtils;
+import androidx.annotation.WorkerThread
 
-import androidx.annotation.WorkerThread;
+import com.google.android.gms.tasks.Tasks
+import com.google.firebase.messaging.FirebaseMessaging
 
-import com.google.android.gms.tasks.Tasks;
-import com.google.firebase.messaging.FirebaseMessaging;
+import org.signal.core.util.logging.Log
+import org.whispersystems.libsignal.util.guava.Optional
 
-import org.signal.core.util.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
+import java.io.IOException
+import java.util.concurrent.ExecutionException
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
+object FcmUtil {
 
-public final class FcmUtil {
-
-  private static final String TAG = Log.tag(FcmUtil.class);
+  private val TAG: String = Log.tag(FcmUtil.javaClass)
 
   /**
    * Retrieves the current FCM token. If one isn't available, it'll be generated.
    */
+  @JvmStatic
   @WorkerThread
-  public static Optional<String> getToken() throws FCMDisabledException {
-    String token = null;
+  @Throws(FCMDisabledException::class)
+  fun getToken(): Optional<String> {
+    var token: String? = null
+
     try {
-      token = Tasks.await(FirebaseMessaging.getInstance().getToken());
-    } catch (InterruptedException e) {
-      Log.w(TAG, "Was interrupted while waiting for the token.");
-    } catch (IOException e) { // IGNORE THIS WARNING
-      throw new FCMDisabledException();
-    } catch (ExecutionException e) {
-      Log.w(TAG, "Failed to get the token.", e.getCause());
+      token = Tasks.await(FirebaseMessaging.getInstance().token)
+    } catch (e: InterruptedException) {
+      Log.w(TAG, "Was interrupted while waiting for the token.")
+    } catch (e: IOException) { // IGNORE THIS WARNING
+      throw FCMDisabledException()
+    } catch (e: ExecutionException) {
+      Log.w(TAG, "Failed to get the token.", e.cause)
     }
 
-    return Optional.fromNullable(TextUtils.isEmpty(token) ? null : token);
+
+    return Optional.fromNullable(token?.takeIf { token.isNotEmpty() })
   }
 
   /**
@@ -43,9 +45,5 @@ public final class FcmUtil {
    *
    * To respond properly, set [AccountValues.fcmEnabled] to false and not use FCM again.
    */
-  public static class FCMDisabledException extends Exception {
-    public FCMDisabledException() {
-      super("MicroG disabled this functionality");
-    }
-  }
+  class FCMDisabledException : Exception("MicroG disabled this functionality")
 }
