@@ -1468,6 +1468,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     private final int archiveColorStart;
     private final int archiveColorEnd;
 
+    private final float ESCAPE_VELOCITY    = ViewUtil.dpToPx(1000);
+    private final float VELOCITY_THRESHOLD = ViewUtil.dpToPx(1000);
+
     private WeakReference<RecyclerView.ViewHolder> lastTouched;
 
     ArchiveListenerCallback(@ColorInt int archiveColorStart, @ColorInt int archiveColorEnd) {
@@ -1482,6 +1485,16 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                           @NonNull RecyclerView.ViewHolder target)
     {
       return false;
+    }
+
+    @Override
+    public float getSwipeEscapeVelocity(float defaultValue) {
+      return Math.min(ESCAPE_VELOCITY, VELOCITY_THRESHOLD);
+    }
+
+    @Override
+    public float getSwipeVelocityThreshold(float defaultValue) {
+      return VELOCITY_THRESHOLD;
     }
 
     @Override
