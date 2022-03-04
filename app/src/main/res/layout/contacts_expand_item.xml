@@ -3,15 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="56dp"
+    android:background="?selectableItemBackground"
     android:paddingHorizontal="@dimen/dsl_settings_gutter">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/ExpandModel__show_more"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@color/signal_button_secondary_ripple"
+        android:importantForAccessibility="no"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_chevron_down_20" />
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Circle"
+        app:srcCompat="@drawable/ic_chevron_down_20"
+        app:tint="@color/signal_icon_tint_primary" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:text="@string/ExpandModel__view_more"
+        android:textAppearance="@style/Signal.Text.Body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

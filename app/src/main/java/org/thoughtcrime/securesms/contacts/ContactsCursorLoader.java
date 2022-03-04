@@ -58,7 +58,7 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
     public static final int FLAG_HIDE_RECENT_HEADER    = 1 << 7;
     public static final int FLAG_GROUPS_AFTER_CONTACTS = 1 << 8;
     public static final int FLAG_STORIES               = 1 << 9;
-    public static final int FLAG_ALL                   = FLAG_PUSH | FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS | FLAG_SELF | FLAG_STORIES;
+    public static final int FLAG_ALL                   = FLAG_PUSH | FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS | FLAG_SELF;
   }
 
   private static final int RECENT_CONVERSATION_MAX = 25;
