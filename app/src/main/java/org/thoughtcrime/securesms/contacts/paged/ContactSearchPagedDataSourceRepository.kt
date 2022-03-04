@@ -72,6 +72,13 @@ open class ContactSearchPagedDataSourceRepository(
     return SignalDatabase.distributionLists.getMemberCount(recipient.requireDistributionListId())
   }
 
+  open fun getGroupStories(): Set<ContactSearchData.Story> {
+    return SignalDatabase.groups.groupsToDisplayAsStories.map {
+      val recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromGroupId(it))
+      ContactSearchData.Story(recipient, recipient.participants.size)
+    }.toSet()
+  }
+
   open fun recipientNameContainsQuery(recipient: Recipient, query: String?): Boolean {
     return query.isNullOrBlank() || recipient.getDisplayName(context).contains(query)
   }

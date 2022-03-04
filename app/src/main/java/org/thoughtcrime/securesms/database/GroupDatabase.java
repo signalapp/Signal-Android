@@ -23,14 +23,13 @@ import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
-import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.DistributionId;
+import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
+import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
+import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
@@ -41,6 +40,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -81,6 +82,7 @@ public class GroupDatabase extends Database {
   private static final String EXPECTED_V2_ID        = "expected_v2_id";
   private static final String UNMIGRATED_V1_MEMBERS = "former_v1_members";
   private static final String DISTRIBUTION_ID       = "distribution_id";
+  private static final String DISPLAY_AS_STORY      = "display_as_story";
 
 
   /* V2 Group columns */
@@ -109,13 +111,14 @@ public class GroupDatabase extends Database {
                                                                                   V2_DECRYPTED_GROUP    + " BLOB, " +
                                                                                   EXPECTED_V2_ID        + " TEXT DEFAULT NULL, " +
                                                                                   UNMIGRATED_V1_MEMBERS + " TEXT DEFAULT NULL, " +
-                                                                                  DISTRIBUTION_ID       + " TEXT DEFAULT NULL);";
+                                                                                  DISTRIBUTION_ID       + " TEXT DEFAULT NULL, " +
+                                                                                  DISPLAY_AS_STORY      + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
       "CREATE UNIQUE INDEX IF NOT EXISTS group_recipient_id_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
       "CREATE UNIQUE INDEX IF NOT EXISTS expected_v2_id_index ON " + TABLE_NAME + " (" + EXPECTED_V2_ID + ");",
-      "CREATE UNIQUE INDEX IF NOT EXISTS group_distribution_id_index ON " + TABLE_NAME + "(" + DISTRIBUTION_ID + ")"
+      "CREATE UNIQUE INDEX IF NOT EXISTS group_distribution_id_index ON " + TABLE_NAME + "(" + DISTRIBUTION_ID + ");"
 };
 
 private static final String[] GROUP_PROJECTION = {
@@ -1347,6 +1350,32 @@ private static final String[] GROUP_PROJECTION = {
 
       return recipients;
     }
+  }
+
+  public @NonNull List<GroupId> getGroupsToDisplayAsStories() throws BadGroupIdException {
+    String[] selection = SqlUtil.buildArgs(GROUP_ID);
+    String   where     = DISPLAY_AS_STORY + " = ? AND " + ACTIVE + " = ?";
+    String[] whereArgs = SqlUtil.buildArgs(1, 1);
+
+    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, selection, where, whereArgs, null, null, null, null)) {
+      if (cursor == null || cursor.getCount() == 0) {
+        return Collections.emptyList();
+      }
+
+      List<GroupId> results = new ArrayList<>(cursor.getCount());
+      while (cursor.moveToNext()) {
+        results.add(GroupId.parse(CursorUtil.requireString(cursor, GROUP_ID)));
+      }
+
+      return results;
+    }
+  }
+
+  public void markDisplayAsStory(@NonNull GroupId groupId) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(DISPLAY_AS_STORY, true);
+
+    getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID + " = ?", SqlUtil.buildArgs(groupId.toString()));
   }
 
   public enum MemberSet {

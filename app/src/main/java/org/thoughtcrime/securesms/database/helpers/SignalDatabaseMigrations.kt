@@ -193,8 +193,9 @@ object SignalDatabaseMigrations {
   private const val DONATION_RECEIPTS = 131
   private const val STORIES = 132
   private const val ALLOW_STORY_REPLIES = 133
+  private const val GROUP_STORIES = 134
 
-  const val DATABASE_VERSION = 133
+  const val DATABASE_VERSION = 134
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2475,6 +2476,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < ALLOW_STORY_REPLIES) {
       db.execSQL("ALTER TABLE distribution_list ADD COLUMN allows_replies INTEGER DEFAULT 1")
+    }
+
+    if (oldVersion < GROUP_STORIES) {
+      db.execSQL("ALTER TABLE groups ADD COLUMN display_as_story INTEGER DEFAULT 0")
     }
   }
 

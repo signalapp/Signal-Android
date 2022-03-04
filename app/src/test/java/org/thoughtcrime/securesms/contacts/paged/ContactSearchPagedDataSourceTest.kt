@@ -28,6 +28,7 @@ class ContactSearchPagedDataSourceTest {
     `when`(repository.getRecipientFromRecipientCursor(cursor)).thenReturn(Recipient.UNKNOWN)
     `when`(repository.getRecipientFromThreadCursor(cursor)).thenReturn(Recipient.UNKNOWN)
     `when`(repository.getRecipientFromDistributionListCursor(cursor)).thenReturn(Recipient.UNKNOWN)
+    `when`(repository.getGroupStories()).thenReturn(emptySet())
     `when`(cursor.moveToPosition(anyInt())).thenCallRealMethod()
     `when`(cursor.moveToNext()).thenCallRealMethod()
     `when`(cursor.position).thenCallRealMethod()

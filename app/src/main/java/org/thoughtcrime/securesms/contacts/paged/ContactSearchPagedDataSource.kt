@@ -90,7 +90,8 @@ class ContactSearchPagedDataSource(
   }
 
   private fun getFilteredGroupStories(section: ContactSearchConfiguration.Section.Stories, query: String?): List<ContactSearchData> {
-    return section.groupStories.filter { contactSearchPagedDataSourceRepository.recipientNameContainsQuery(it.recipient, query) }
+    return (contactSearchPagedDataSourceRepository.getGroupStories() + section.groupStories)
+      .filter { contactSearchPagedDataSourceRepository.recipientNameContainsQuery(it.recipient, query) }
   }
 
   private fun getSectionData(section: ContactSearchConfiguration.Section, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {

@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.util.MessageUtil
-import java.util.ArrayList
 import java.util.Collections
 import java.util.concurrent.TimeUnit
 
@@ -204,6 +203,10 @@ class MediaSelectionRepository(context: Context) {
     for (contact in contacts) {
       val recipient = Recipient.resolved(contact.recipientId)
       val isStory = contact is ContactSearchKey.Story || recipient.isDistributionList
+
+      if (isStory && recipient.isActiveGroup) {
+        SignalDatabase.groups.markDisplayAsStory(recipient.requireGroupId())
+      }
 
       val storyType: StoryType = when {
         recipient.isDistributionList -> SignalDatabase.distributionLists.getStoryType(recipient.requireDistributionListId())

@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.MessageUtil;
-import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
@@ -179,6 +178,10 @@ public final class MultiShareSender {
         storyType = SignalDatabase.distributionLists().getStoryType(recipient.requireDistributionListId());
       } else {
         storyType = StoryType.STORY_WITH_REPLIES;
+      }
+
+      if (recipient.isActiveGroup()) {
+        SignalDatabase.groups().markDisplayAsStory(recipient.requireGroupId());
       }
 
       for (final Slide slide : slideDeck.getSlides()) {
