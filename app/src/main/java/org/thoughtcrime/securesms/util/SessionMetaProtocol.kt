@@ -48,8 +48,8 @@ object SessionMetaProtocol {
     }
 
     @JvmStatic
-    fun shouldSendReadReceipt(address: Address): Boolean {
-        return !address.isGroup
+    fun shouldSendReadReceipt(recipient: Recipient): Boolean {
+        return !recipient.isGroupRecipient && recipient.isApproved
     }
 
     @JvmStatic

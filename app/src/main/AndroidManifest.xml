@@ -125,6 +125,11 @@
             android:launchMode="singleTask"
             android:theme="@style/Theme.Session.DayNight.NoActionBar" />
         <activity
+            android:name="org.thoughtcrime.securesms.messagerequests.MessageRequestsActivity"
+            android:exported="false"
+            android:label="@string/activity_message_requests_title"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="org.thoughtcrime.securesms.preferences.SettingsActivity"
             android:screenOrientation="portrait"
             android:label="@string/activity_settings_title" />

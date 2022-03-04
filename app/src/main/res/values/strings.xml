@@ -730,6 +730,7 @@
     <string name="activity_settings_display_name_too_long_error">Please pick a shorter display name</string>
     <string name="activity_settings_privacy_button_title">Privacy</string>
     <string name="activity_settings_notifications_button_title">Notifications</string>
+    <string name="activity_settings_message_requests_button_title">Message Requests</string>
     <string name="activity_settings_chats_button_title">Chats</string>
     <string name="activity_settings_devices_button_title">Devices</string>
     <string name="activity_settings_invite_button_title">Invite a Friend</string>
@@ -795,7 +796,7 @@
     <string name="activity_select_contacts_title">Select Contacts</string>
 
     <string name="view_reset_secure_session_done_message">Secure session reset done</string>
-    
+
     <string name="dialog_ui_mode_title">Theme</string>
     <string name="dialog_ui_mode_option_day">Day</string>
     <string name="dialog_ui_mode_option_night">Night</string>
@@ -882,8 +883,21 @@
     <string name="mark_all_as_read">Mark all as read</string>
     <string name="global_search_contacts_groups">Contacts and Groups</string>
     <string name="global_search_messages">Messages</string>
+    <string name="activity_message_requests_title">Message Requests</string>
+    <string name="message_requests_send_notice">Sending a message to this user will automatically accept their message request and reveal your Session ID.</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="message_requests_clear_all">Clear All</string>
+    <string name="message_requests_delete_message">Are you sure you want to delete this message request?</string>
+    <string name="message_requests_deleted">Message request deleted</string>
+    <string name="message_requests_clear_all_message">Are you sure you want to clear all message requests?</string>
+    <string name="message_requests_cleared">Message requests deleted</string>
+    <string name="message_requests_accepted">Your message request has been accepted.</string>
+    <string name="message_requests_pending">Your message request is currently pending.</string>
+    <string name="message_request_empty_state_message">No pending message requests</string>
     <string name="NewConversationButton_SessionTooltip">Direct Message</string>
     <string name="NewConversationButton_ClosedGroupTooltip">Closed Group</string>
     <string name="NewConversationButton_OpenGroupTooltip">Open Group</string>
+    <string name="message_requests_notification">You have a new message request</string>
 
 </resources>

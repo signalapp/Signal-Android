@@ -171,6 +171,8 @@ class RecipientProvider {
     @Nullable final VibrateState           messageVibrateState;
     @Nullable final VibrateState           callVibrateState;
               final boolean                blocked;
+              final boolean                approved;
+              final boolean                approvedMe;
               final int                    expireMessages;
     @NonNull  final List<Recipient>        participants;
     @Nullable final String                 profileName;
@@ -201,6 +203,8 @@ class RecipientProvider {
       this.messageVibrateState             = settings     != null ? settings.getMessageVibrateState() : null;
       this.callVibrateState                = settings     != null ? settings.getCallVibrateState() : null;
       this.blocked                         = settings     != null && settings.isBlocked();
+      this.approved                        = settings     != null && settings.isApproved();
+      this.approvedMe                      = settings     != null && settings.hasApprovedMe();
       this.expireMessages                  = settings     != null ? settings.getExpireMessages() : 0;
       this.participants                    = participants == null ? new LinkedList<>() : participants;
       this.profileName                     = settings     != null ? settings.getProfileName() : null;

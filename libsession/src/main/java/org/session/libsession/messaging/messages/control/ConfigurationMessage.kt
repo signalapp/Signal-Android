@@ -60,19 +60,22 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
         }
     }
 
-    class Contact(var publicKey: String, var name: String, var profilePicture: String?, var profileKey: ByteArray?) {
+    class Contact(var publicKey: String, var name: String, var profilePicture: String?, var profileKey: ByteArray?, var isApproved: Boolean?, var isBlocked: Boolean?, var didApproveMe: Boolean?) {
 
-        internal constructor() : this("", "", null, null)
+        internal constructor() : this("", "", null, null, null, null, null)
 
         companion object {
 
             fun fromProto(proto: SignalServiceProtos.ConfigurationMessage.Contact): Contact? {
-                if (!proto.hasName() || !proto.hasProfileKey()) return null
+                if (!proto.hasName()) return null
                 val publicKey = proto.publicKey.toByteArray().toHexString()
                 val name = proto.name
                 val profilePicture = if (proto.hasProfilePicture()) proto.profilePicture else null
                 val profileKey = if (proto.hasProfileKey()) proto.profileKey.toByteArray() else null
-                return Contact(publicKey, name, profilePicture, profileKey)
+                val isApproved = if (proto.hasIsApproved()) proto.isApproved else null
+                val isBlocked = if (proto.hasIsBlocked()) proto.isBlocked else null
+                val didApproveMe = if (proto.hasDidApproveMe()) proto.didApproveMe else null
+                return Contact(publicKey, name, profilePicture, profileKey, isApproved, isBlocked, didApproveMe)
             }
         }
 
@@ -91,6 +94,18 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
             val profileKey = profileKey
             if (profileKey != null) {
                 result.profileKey = ByteString.copyFrom(profileKey)
+            }
+            val isApproved = isApproved
+            if (isApproved != null) {
+                result.isApproved = isApproved
+            }
+            val isBlocked = isBlocked
+            if (isBlocked != null) {
+                result.isBlocked = isBlocked
+            }
+            val didApproveMe = didApproveMe
+            if (didApproveMe != null) {
+                result.didApproveMe = didApproveMe
             }
             return result.build()
         }

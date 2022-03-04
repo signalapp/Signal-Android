@@ -180,6 +180,22 @@
                 android:background="?android:dividerHorizontal" />
 
             <TextView
+                android:id="@+id/messageRequestsButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@drawable/setting_button_background"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/activity_settings_message_requests_button_title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="?android:dividerHorizontal" />
+
+            <TextView
                 android:id="@+id/chatsButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/setting_button_height"

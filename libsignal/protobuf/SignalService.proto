@@ -49,6 +49,7 @@ message Content {
   optional ConfigurationMessage       configurationMessage       = 7;
   optional DataExtractionNotification dataExtractionNotification = 8;
   optional UnsendRequest              unsendRequest              = 9;
+  optional MessageRequestResponse     messageRequestResponse     = 10;
 }
 
 message KeyPair {
@@ -179,6 +180,9 @@ message ConfigurationMessage {
     required string name              = 2;
     optional string profilePicture    = 3;
     optional bytes  profileKey        = 4;
+    optional bool isApproved          = 5;
+    optional bool isBlocked           = 6;
+    optional bool didApproveMe        = 7;
   }
 
   repeated ClosedGroup closedGroups   = 1;
@@ -187,6 +191,11 @@ message ConfigurationMessage {
   optional string      profilePicture = 4;
   optional bytes       profileKey     = 5;
   repeated Contact     contacts       = 6;
+}
+
+message MessageRequestResponse {
+  // @required
+  required bool   isApproved  = 1; // Whether the request was approved
 }
 
 message ReceiptMessage {

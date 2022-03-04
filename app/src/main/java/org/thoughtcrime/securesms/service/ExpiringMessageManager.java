@@ -110,6 +110,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(address, sentTimestamp, -1,
               duration * 1000L, true,
               false,
+              false,
               Optional.absent(),
               groupInfo,
               Optional.absent(),

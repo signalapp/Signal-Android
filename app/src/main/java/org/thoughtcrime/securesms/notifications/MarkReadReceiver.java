@@ -16,6 +16,7 @@ import org.session.libsession.messaging.messages.control.ReadReceipt;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
@@ -83,7 +84,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     for (Address address : addressMap.keySet()) {
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
-      if (!SessionMetaProtocol.shouldSendReadReceipt(address)) { continue; }
+      if (!SessionMetaProtocol.shouldSendReadReceipt(Recipient.from(context, address, false))) { continue; }
       ReadReceipt readReceipt = new ReadReceipt(timestamps);
       readReceipt.setSentTimestamp(System.currentTimeMillis());
       MessageSender.send(readReceipt, address);

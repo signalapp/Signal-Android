@@ -19,7 +19,7 @@ object MentionManagerUtilities {
             result.addAll(members)
         } else {
             val messageDatabase = DatabaseComponent.get(context).mmsSmsDatabase()
-            val reader = messageDatabase.readerFor(messageDatabase.getConversation(threadID, 0, 200))
+            val reader = messageDatabase.readerFor(messageDatabase.getConversation(threadID, true, 0, 200))
             var record: MessageRecord? = reader.next
             while (record != null) {
                 result.add(record.individualRecipient.address.serialize())

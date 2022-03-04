@@ -171,35 +171,33 @@ public class DefaultMessageNotifier implements MessageNotifier {
   }
 
   private void cancelOrphanedNotifications(@NonNull Context context, NotificationState notificationState) {
-    if (Build.VERSION.SDK_INT >= 23) {
-      try {
-        NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
-        StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
+    try {
+      NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
+      StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
 
-        for (StatusBarNotification notification : activeNotifications) {
-          boolean validNotification = false;
+      for (StatusBarNotification notification : activeNotifications) {
+        boolean validNotification = false;
 
-          if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
-              notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
-              notification.getId() != FOREGROUND_ID         &&
-              notification.getId() != PENDING_MESSAGES_ID)
-          {
-            for (NotificationItem item : notificationState.getNotifications()) {
-              if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {
-                validNotification = true;
-                break;
-              }
-            }
-
-            if (!validNotification) {
-              notifications.cancel(notification.getId());
+        if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
+            notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
+            notification.getId() != FOREGROUND_ID         &&
+            notification.getId() != PENDING_MESSAGES_ID)
+        {
+          for (NotificationItem item : notificationState.getNotifications()) {
+            if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {
+              validNotification = true;
+              break;
             }
           }
+
+          if (!validNotification) {
+            notifications.cancel(notification.getId());
+          }
         }
-      } catch (Throwable e) {
-        // XXX Android ROM Bug, see #6043
-        Log.w(TAG, e);
       }
+    } catch (Throwable e) {
+      // XXX Android ROM Bug, see #6043
+      Log.w(TAG, e);
     }
   }
 
@@ -229,15 +227,19 @@ public class DefaultMessageNotifier implements MessageNotifier {
     boolean    isVisible  = visibleThread == threadId;
 
     ThreadDatabase threads    = DatabaseComponent.get(context).threadDatabase();
-    Recipient      recipients = threads.getRecipientForThreadId(threadId);
+    Recipient      recipient = threads.getRecipientForThreadId(threadId);
 
-    if (isVisible && recipients != null) {
+    if (!recipient.isGroupRecipient() && threads.getMessageCount(threadId) == 1 &&
+            !(recipient.isApproved() || threads.getLastSeenAndHasSent(threadId).second())) {
+      TextSecurePreferences.removeHasHiddenMessageRequests(context);
+    }
+    if (isVisible && recipient != null) {
       List<MarkedMessageInfo> messageIds = threads.setRead(threadId, false);
-      if (SessionMetaProtocol.shouldSendReadReceipt(recipients.getAddress())) { MarkReadReceiver.process(context, messageIds); }
+      if (SessionMetaProtocol.shouldSendReadReceipt(recipient)) { MarkReadReceiver.process(context, messageIds); }
     }
 
     if (!TextSecurePreferences.isNotificationsEnabled(context) ||
-        (recipients != null && recipients.isMuted()))
+        (recipient != null && recipient.isMuted()))
     {
       return;
     }
@@ -484,7 +486,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   {
     NotificationState     notificationState = new NotificationState();
     MmsSmsDatabase.Reader reader            = DatabaseComponent.get(context).mmsSmsDatabase().readerFor(cursor);
-
+    ThreadDatabase        threadDatabase    = DatabaseComponent.get(context).threadDatabase();
     MessageRecord record;
 
     while ((record = reader.getNext()) != null) {
@@ -497,13 +499,20 @@ public class DefaultMessageNotifier implements MessageNotifier {
       Recipient    threadRecipients      = null;
       SlideDeck    slideDeck             = null;
       long         timestamp             = record.getTimestamp();
+      boolean      messageRequest        = false;
 
 
       if (threadId != -1) {
-        threadRecipients = DatabaseComponent.get(context).threadDatabase().getRecipientForThreadId(threadId);
+        threadRecipients = threadDatabase.getRecipientForThreadId(threadId);
+        messageRequest = threadRecipients != null && !threadRecipients.isGroupRecipient() &&
+                !threadRecipients.isApproved() && !threadDatabase.getLastSeenAndHasSent(threadId).second();
+        if (messageRequest && (threadDatabase.getMessageCount(threadId) > 1 || !TextSecurePreferences.hasHiddenMessageRequests(context))) {
+          continue;
+        }
       }
-
-      if (KeyCachingService.isLocked(context)) {
+      if (messageRequest) {
+        body = SpanUtil.italic(context.getString(R.string.message_requests_notification));
+      } else if (KeyCachingService.isLocked(context)) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
       } else if (record.isMms() && !((MmsMessageRecord) record).getSharedContacts().isEmpty()) {
         Contact contact = ((MmsMessageRecord) record).getSharedContacts().get(0);

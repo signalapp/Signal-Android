@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.database;
 
+import static org.session.libsession.utilities.GroupUtil.OPEN_GROUP_PREFIX;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -34,7 +36,9 @@ public class RecipientDatabase extends Database {
           static final String TABLE_NAME               = "recipient_preferences";
   private static final String ID                       = "_id";
   public  static final String ADDRESS                  = "recipient_ids";
-  private static final String BLOCK                    = "block";
+          static final String BLOCK                    = "block";
+          static final String APPROVED                 = "approved";
+  private static final String APPROVED_ME              = "approved_me";
   private static final String NOTIFICATION             = "notification";
   private static final String VIBRATE                  = "vibrate";
   private static final String MUTE_UNTIL               = "mute_until";
@@ -59,7 +63,7 @@ public class RecipientDatabase extends Database {
   private static final String NOTIFY_TYPE              = "notify_type"; // all, mentions only, none
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
-      BLOCK, NOTIFICATION, CALL_RINGTONE, VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
+      BLOCK, APPROVED, APPROVED_ME, NOTIFICATION, CALL_RINGTONE, VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
       PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_CONTACT_URI,
       SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
@@ -102,6 +106,22 @@ public class RecipientDatabase extends Database {
             "ADD COLUMN " + NOTIFY_TYPE + " INTEGER DEFAULT 0;";
   }
 
+  public static String getCreateApprovedCommand() {
+    return "ALTER TABLE "+ TABLE_NAME + " " +
+            "ADD COLUMN " + APPROVED + " INTEGER DEFAULT 0;";
+  }
+
+  public static String getCreateApprovedMeCommand() {
+    return "ALTER TABLE "+ TABLE_NAME + " " +
+            "ADD COLUMN " + APPROVED_ME + " INTEGER DEFAULT 0;";
+  }
+
+  public static String getUpdateApprovedCommand() {
+    return "UPDATE "+ TABLE_NAME + " " +
+            "SET " + APPROVED + " = 1, " + APPROVED_ME + " = 1 " +
+            "WHERE " + ADDRESS + " NOT LIKE '" + OPEN_GROUP_PREFIX + "%'";
+  }
+
   public static final int NOTIFY_TYPE_ALL = 0;
   public static final int NOTIFY_TYPE_MENTIONS = 1;
   public static final int NOTIFY_TYPE_NONE = 2;
@@ -137,6 +157,8 @@ public class RecipientDatabase extends Database {
 
   Optional<RecipientSettings> getRecipientSettings(@NonNull Cursor cursor) {
     boolean blocked                = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCK))                == 1;
+    boolean approved               = cursor.getInt(cursor.getColumnIndexOrThrow(APPROVED))             == 1;
+    boolean approvedMe             = cursor.getInt(cursor.getColumnIndexOrThrow(APPROVED_ME))          == 1;
     String  messageRingtone        = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION));
     String  callRingtone           = cursor.getString(cursor.getColumnIndexOrThrow(CALL_RINGTONE));
     int     messageVibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
@@ -178,7 +200,7 @@ public class RecipientDatabase extends Database {
       }
     }
 
-    return Optional.of(new RecipientSettings(blocked, muteUntil,
+    return Optional.of(new RecipientSettings(blocked, approved, approvedMe, muteUntil,
                                              notifyType,
                                              Recipient.VibrateState.fromId(messageVibrateState),
                                              Recipient.VibrateState.fromId(callVibrateState),
@@ -211,6 +233,15 @@ public class RecipientDatabase extends Database {
     contentValues.put(FORCE_SMS_SELECTION, forceSmsSelection ? 1 : 0);
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.resolve().setForceSmsSelection(forceSmsSelection);
+  }
+
+  public void setApproved(@NonNull Recipient recipient, boolean approved) {
+    ContentValues values = new ContentValues();
+    values.put(APPROVED, approved ? 1 : 0);
+    values.put(APPROVED_ME, approved ? 1 : 0);
+    updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setApproved(approved);
+    recipient.resolve().setHasApprovedMe(approved);
   }
 
   public void setBlocked(@NonNull Recipient recipient, boolean blocked) {

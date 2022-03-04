@@ -81,6 +81,8 @@ public class Recipient implements RecipientModifiedListener {
   public            long                 mutedUntil            = 0;
   public            int                  notifyType            = 0;
   private           boolean              blocked               = false;
+  private           boolean              approved              = false;
+  private           boolean              approvedMe            = false;
   private           VibrateState         messageVibrate        = VibrateState.DEFAULT;
   private           VibrateState         callVibrate           = VibrateState.DEFAULT;
   private           int                  expireMessages        = 0;
@@ -141,6 +143,8 @@ public class Recipient implements RecipientModifiedListener {
       this.callRingtone           = stale.callRingtone;
       this.mutedUntil             = stale.mutedUntil;
       this.blocked                = stale.blocked;
+      this.approved               = stale.approved;
+      this.approvedMe             = stale.approvedMe;
       this.messageVibrate         = stale.messageVibrate;
       this.callVibrate            = stale.callVibrate;
       this.expireMessages         = stale.expireMessages;
@@ -169,6 +173,8 @@ public class Recipient implements RecipientModifiedListener {
       this.callRingtone           = details.get().callRingtone;
       this.mutedUntil             = details.get().mutedUntil;
       this.blocked                = details.get().blocked;
+      this.approved               = details.get().approved;
+      this.approvedMe             = details.get().approvedMe;
       this.messageVibrate         = details.get().messageVibrateState;
       this.callVibrate            = details.get().callVibrateState;
       this.expireMessages         = details.get().expireMessages;
@@ -570,6 +576,30 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
+  public synchronized boolean isApproved() {
+    return approved;
+  }
+
+  public void setApproved(boolean approved) {
+    synchronized (this) {
+      this.approved = approved;
+    }
+
+    notifyListeners();
+  }
+
+  public synchronized boolean hasApprovedMe() {
+    return approvedMe;
+  }
+
+  public void setHasApprovedMe(boolean approvedMe) {
+    synchronized (this) {
+      this.approvedMe = approvedMe;
+    }
+
+    notifyListeners();
+  }
+
   public synchronized VibrateState getMessageVibrate() {
     return messageVibrate;
   }
@@ -779,6 +809,8 @@ public class Recipient implements RecipientModifiedListener {
 
   public static class RecipientSettings {
     private final boolean                blocked;
+    private final boolean                approved;
+    private final boolean                approvedMe;
     private final long                   muteUntil;
     private final int                    notifyType;
     private final VibrateState           messageVibrateState;
@@ -801,7 +833,7 @@ public class Recipient implements RecipientModifiedListener {
     private final UnidentifiedAccessMode unidentifiedAccessMode;
     private final boolean                forceSmsSelection;
 
-    public RecipientSettings(boolean blocked, long muteUntil,
+    public RecipientSettings(boolean blocked, boolean approved, boolean approvedMe, long muteUntil,
                       int notifyType,
                       @NonNull VibrateState messageVibrateState,
                       @NonNull VibrateState callVibrateState,
@@ -824,6 +856,8 @@ public class Recipient implements RecipientModifiedListener {
                       boolean forceSmsSelection)
     {
       this.blocked                = blocked;
+      this.approved               = approved;
+      this.approvedMe             = approvedMe;
       this.muteUntil              = muteUntil;
       this.notifyType             = notifyType;
       this.messageVibrateState    = messageVibrateState;
@@ -853,6 +887,14 @@ public class Recipient implements RecipientModifiedListener {
 
     public boolean isBlocked() {
       return blocked;
+    }
+
+    public boolean isApproved() {
+      return approved;
+    }
+
+    public boolean hasApprovedMe() {
+      return approvedMe;
     }
 
     public long getMuteUntil() {

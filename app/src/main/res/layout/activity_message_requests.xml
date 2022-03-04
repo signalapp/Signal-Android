@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="172dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="6"
+            tools:listitem="@layout/view_conversation" />
+
+        <View
+            android:id="@+id/gradientView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/home_activity_gradient" />
+
+        <LinearLayout
+            android:id="@+id/emptyStateContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="32dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/message_request_empty_state_message"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/clearAllMessageRequestsButton"
+            style="@style/Widget.Session.Button.Common.DestructiveOutline"
+            android:layout_width="196dp"
+            android:layout_height="@dimen/medium_button_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_spacing"
+            android:layout_marginBottom="@dimen/massive_spacing"
+            android:text="@string/message_requests_clear_all" />
+
+    </RelativeLayout>
+
+</LinearLayout>

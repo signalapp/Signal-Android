@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 
+import java.io.Closeable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -111,8 +112,8 @@ public class MmsSmsDatabase extends Database {
     return getMessageFor(timestamp, author.serialize());
   }
 
-  public Cursor getConversation(long threadId, long offset, long limit) {
-    String order     = MmsSmsColumns.NORMALIZED_DATE_SENT + " DESC";
+  public Cursor getConversation(long threadId, boolean reverse, long offset, long limit) {
+    String order     = MmsSmsColumns.NORMALIZED_DATE_SENT + (reverse ? " DESC" : " ASC");
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
     String limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
 
@@ -122,8 +123,8 @@ public class MmsSmsDatabase extends Database {
     return cursor;
   }
 
-  public Cursor getConversation(long threadId) {
-    return getConversation(threadId, 0, 0);
+  public Cursor getConversation(long threadId, boolean reverse) {
+    return getConversation(threadId, reverse, 0, 0);
   }
 
   public Cursor getConversationSnippet(long threadId) {
@@ -406,7 +407,7 @@ public class MmsSmsDatabase extends Database {
     return new Reader(cursor);
   }
 
-  public class Reader {
+  public class Reader implements Closeable {
 
     private final Cursor                 cursor;
     private       SmsDatabase.Reader     smsReader;
@@ -448,7 +449,9 @@ public class MmsSmsDatabase extends Database {
     }
 
     public void close() {
-      cursor.close();
+      if (cursor != null) {
+        cursor.close();
+      }
     }
   }
 }

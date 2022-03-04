@@ -21,6 +21,8 @@ class InputBarEditText : AppCompatEditText {
     private val screenWidth get() = Resources.getSystem().displayMetrics.widthPixels
     var delegate: InputBarEditTextDelegate? = null
 
+    var showMediaControls: Boolean = true
+
     private val snMinHeight = toPx(40.0f, resources)
     private val snMaxHeight = toPx(80.0f, resources)
 
@@ -47,7 +49,9 @@ class InputBarEditText : AppCompatEditText {
 
     override fun onCreateInputConnection(editorInfo: EditorInfo): InputConnection? {
         val ic = super.onCreateInputConnection(editorInfo) ?: return null
-        EditorInfoCompat.setContentMimeTypes(editorInfo, arrayOf("image/png", "image/gif", "image/jpg"))
+        EditorInfoCompat.setContentMimeTypes(editorInfo,
+            if (showMediaControls) arrayOf("image/png", "image/gif", "image/jpg") else null
+        )
 
         val callback =
                 InputConnectionCompat.OnCommitContentListener { inputContentInfo, flags, opts ->

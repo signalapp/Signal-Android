@@ -24,8 +24,10 @@
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_marginBottom="@dimen/small_spacing"
+        android:visibility="gone"
         app:tint="@color/text"
-        tools:src="@drawable/ic_timer" />
+        tools:src="@drawable/ic_timer"
+        tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/textView"

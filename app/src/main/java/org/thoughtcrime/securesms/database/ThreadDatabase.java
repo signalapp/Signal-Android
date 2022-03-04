@@ -253,7 +253,7 @@ public class ThreadDatabase extends Database {
     Cursor cursor = null;
 
     try {
-      cursor = DatabaseComponent.get(context).mmsSmsDatabase().getConversation(threadId);
+      cursor = DatabaseComponent.get(context).mmsSmsDatabase().getConversation(threadId, true);
 
       if (cursor != null && length > 0 && cursor.getCount() > length) {
         Log.w("ThreadDatabase", "Cursor count is greater than length!");
@@ -388,20 +388,88 @@ public class ThreadDatabase extends Database {
     return db.rawQuery(query, null);
   }
 
+  public int getUnapprovedConversationCount() {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor     = null;
+
+    try {
+      String query    = "SELECT COUNT (*) FROM " + TABLE_NAME +
+              " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
+              " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
+              " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
+              " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GROUP_ID +
+              " WHERE " + MESSAGE_COUNT + " != 0 AND " + ARCHIVED + " = 0 AND " + HAS_SENT + " = 0 AND " + MESSAGE_COUNT + " = " + UNREAD_COUNT + " AND " +
+              RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.BLOCK + " = 0 AND " +
+              RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.APPROVED + " = 0 AND " +
+              GroupDatabase.TABLE_NAME + "." + GROUP_ID + " IS NULL";
+      cursor          = db.rawQuery(query, null);
+
+      if (cursor != null && cursor.moveToFirst())
+        return cursor.getInt(0);
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    return 0;
+  }
+
+  public long getLatestUnapprovedConversationTimestamp() {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor     = null;
+
+    try {
+      String where    = "SELECT " + DATE + " FROM " + TABLE_NAME +
+              " LEFT OUTER JOIN " + RecipientDatabase.TABLE_NAME +
+              " ON " + TABLE_NAME + "." + ADDRESS + " = " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.ADDRESS +
+              " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME +
+              " ON " + TABLE_NAME + "." + ADDRESS + " = " + GroupDatabase.TABLE_NAME + "." + GROUP_ID +
+              " WHERE " + MESSAGE_COUNT + " != 0 AND " + ARCHIVED + " = 0 AND " + HAS_SENT + " = 0 AND " +
+              RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.BLOCK + " = 0 AND " +
+              RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.APPROVED + " = 0 AND " +
+              GroupDatabase.TABLE_NAME + "." + GROUP_ID + " IS NULL ORDER BY " + DATE + " DESC LIMIT 1";
+      cursor          = db.rawQuery(where, null);
+
+      if (cursor != null && cursor.moveToFirst())
+        return cursor.getLong(0);
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    return 0;
+  }
+
   public Cursor getConversationList() {
-    return getConversationList("0");
+    String where  = "(" + MESSAGE_COUNT + " != 0 OR " + GroupDatabase.TABLE_NAME + "." + GROUP_ID + " LIKE '" + OPEN_GROUP_PREFIX + "%') " +
+            "AND " + ARCHIVED + " = 0 ";
+    return getConversationList(where);
+  }
+
+  public Cursor getApprovedConversationList() {
+    String where  = "((" + MESSAGE_COUNT + " != 0 AND (" + HAS_SENT + " = 1 OR " + RecipientDatabase.APPROVED + " = 1)) OR " + GroupDatabase.TABLE_NAME + "." + GROUP_ID + " LIKE '" + OPEN_GROUP_PREFIX + "%') " +
+            "AND " + ARCHIVED + " = 0 ";
+    return getConversationList(where);
+  }
+
+  public Cursor getUnapprovedConversationList() {
+    String where  = MESSAGE_COUNT + " != 0 AND " + ARCHIVED + " = 0 AND " + HAS_SENT + " = 0 AND " +
+            RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.APPROVED + " = 0 AND " +
+            RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.BLOCK + " = 0 AND " +
+            GroupDatabase.TABLE_NAME + "." + GROUP_ID + " IS NULL";
+    return getConversationList(where);
   }
 
   public Cursor getArchivedConversationList() {
-    return getConversationList("1");
+    String where  = "(" + MESSAGE_COUNT + " != 0 OR " + GroupDatabase.TABLE_NAME + "." + GROUP_ID + " LIKE '" + OPEN_GROUP_PREFIX + "%') " +
+            "AND " + ARCHIVED + " = 1 ";
+    return getConversationList(where);
   }
 
-  private Cursor getConversationList(String archived) {
+  private Cursor getConversationList(String where) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         where  = "(" + MESSAGE_COUNT + " != 0 OR " + GroupDatabase.TABLE_NAME + "." + GROUP_ID + " LIKE '" + OPEN_GROUP_PREFIX + "%') " +
-                            "AND " + ARCHIVED + " = ?";
     String         query  = createQuery(where, 0);
-    Cursor         cursor = db.rawQuery(query, new String[]{archived});
+    Cursor         cursor = db.rawQuery(query, null);
 
     setNotifyConverationListListeners(cursor);
 
@@ -451,6 +519,19 @@ public class ThreadDatabase extends Database {
       return -1L;
     } finally {
       if (cursor != null) cursor.close();
+    }
+  }
+
+  public int getMessageCount(long threadId) {
+    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
+    String[]       columns = new String[]{MESSAGE_COUNT};
+    String[]       args    = new String[]{String.valueOf(threadId)};
+    try (Cursor cursor = db.query(TABLE_NAME, columns, ID_WHERE, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+
+      return 0;
     }
   }
 

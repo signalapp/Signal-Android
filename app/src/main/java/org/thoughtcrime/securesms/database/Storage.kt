@@ -6,6 +6,7 @@ import org.session.libsession.database.StorageProtocol
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.*
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
+import org.session.libsession.messaging.messages.control.MessageRequestResponse
 import org.session.libsession.messaging.messages.signal.*
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.visible.Attachment
@@ -25,6 +26,7 @@ import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.utilities.KeyHelper
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -581,7 +583,19 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             recipientDatabase.setProfileSharing(recipient, true)
             recipientDatabase.setRegistered(recipient, Recipient.RegisteredState.REGISTERED)
             // create Thread if needed
-            threadDatabase.getOrCreateThreadIdFor(recipient)
+            val threadId = threadDatabase.getOrCreateThreadIdFor(recipient)
+            if (contact.didApproveMe == true) {
+                recipientDatabase.setApproved(recipient, true)
+                threadDatabase.setHasSent(threadId, true)
+            }
+            if (contact.isApproved == true) {
+                recipientDatabase.setApproved(recipient, true)
+                threadDatabase.setHasSent(threadId, true)
+            }
+            if (contact.isBlocked == true) {
+                recipientDatabase.setBlocked(recipient, true)
+                threadDatabase.deleteConversation(threadId)
+            }
         }
         if (contacts.isNotEmpty()) {
             threadDatabase.notifyConversationListListeners()
@@ -613,17 +627,63 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
         if (recipient.isBlocked) return
 
-        val mediaMessage = IncomingMediaMessage(address, sentTimestamp, -1,
-                0, false,
-                false,
-                Optional.absent(),
-                Optional.absent(),
-                Optional.absent(),
-                Optional.absent(),
-                Optional.absent(),
-                Optional.absent(),
-                Optional.of(message))
+        val mediaMessage = IncomingMediaMessage(
+            address,
+            sentTimestamp,
+            -1,
+            0,
+            false,
+            false,
+            false,
+            Optional.absent(),
+            Optional.absent(),
+            Optional.absent(),
+            Optional.absent(),
+            Optional.absent(),
+            Optional.absent(),
+            Optional.of(message)
+        )
 
         database.insertSecureDecryptedMessageInbox(mediaMessage, -1)
     }
+
+    override fun insertMessageRequestResponse(response: MessageRequestResponse) {
+        val userPublicKey = getUserPublicKey()
+        val senderPublicKey = response.sender!!
+        val recipientPublicKey = response.recipient!!
+        if (userPublicKey == null || (userPublicKey != recipientPublicKey && userPublicKey != senderPublicKey)) return
+        val recipientDb = DatabaseComponent.get(context).recipientDatabase()
+        val threadDB = DatabaseComponent.get(context).threadDatabase()
+        if (userPublicKey == senderPublicKey) {
+            val requestRecipient = Recipient.from(context, fromSerialized(recipientPublicKey), false)
+            recipientDb.setApproved(requestRecipient, true)
+            val threadId = threadDB.getOrCreateThreadIdFor(requestRecipient)
+            threadDB.setHasSent(threadId, true)
+        } else {
+            val mmsDb = DatabaseComponent.get(context).mmsDatabase()
+            val senderAddress = fromSerialized(senderPublicKey)
+            val requestSender = Recipient.from(context, senderAddress, false)
+            recipientDb.setApproved(requestSender, true)
+
+            val message = IncomingMediaMessage(
+                senderAddress,
+                response.sentTimestamp!!,
+                -1,
+                0,
+                false,
+                false,
+                true,
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent(),
+                Optional.absent()
+            )
+            val threadId = getOrCreateThreadIdFor(senderAddress)
+            mmsDb.insertSecureDecryptedMessageInbox(message, threadId)
+        }
+    }
+
 }

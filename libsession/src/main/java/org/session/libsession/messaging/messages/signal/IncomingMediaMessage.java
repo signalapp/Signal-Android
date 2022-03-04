@@ -28,6 +28,7 @@ public class IncomingMediaMessage {
   private final long          expiresIn;
   private final boolean       expirationUpdate;
   private final boolean       unidentified;
+  private final boolean       messageRequestResponse;
 
   private final DataExtractionNotificationInfoMessage dataExtractionNotification;
   private final QuoteModel                            quote;
@@ -42,6 +43,7 @@ public class IncomingMediaMessage {
                               long expiresIn,
                               boolean expirationUpdate,
                               boolean unidentified,
+                              boolean messageRequestResponse,
                               Optional<String> body,
                               Optional<SignalServiceGroup> group,
                               Optional<List<SignalServiceAttachment>> attachments,
@@ -60,6 +62,7 @@ public class IncomingMediaMessage {
     this.dataExtractionNotification = dataExtractionNotification.orNull();
     this.quote                      = quote.orNull();
     this.unidentified               = unidentified;
+    this.messageRequestResponse     = messageRequestResponse;
 
     if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.INSTANCE.getEncodedId(group.get()));
     else                   this.groupId = null;
@@ -78,7 +81,7 @@ public class IncomingMediaMessage {
                                           Optional<List<LinkPreview>> linkPreviews)
   {
     return new IncomingMediaMessage(from, message.getSentTimestamp(), -1, expiresIn, false,
-            false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews, Optional.absent());
+            false, false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews, Optional.absent());
   }
 
   public int getSubscriptionId() {
@@ -149,5 +152,9 @@ public class IncomingMediaMessage {
 
   public boolean isUnidentified() {
     return unidentified;
+  }
+
+  public boolean isMessageRequestResponse() {
+    return messageRequestResponse;
   }
 }

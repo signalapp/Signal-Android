@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:visibility="gone"
-        android:layout_above="@+id/inputBar"
+        android:layout_above="@+id/messageRequestBar"
         />
 
     <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
@@ -91,9 +91,9 @@
         android:visibility="gone"
         android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_above="@+id/inputBar"
-        android:layout_marginRight="12dp"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/messageRequestBar"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="32dp">
 
         <RelativeLayout
@@ -167,5 +167,53 @@
             tools:text="Elon is blocked. Unblock them?" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/messageRequestBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/inputBar"
+        android:layout_marginBottom="@dimen/large_spacing"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/sendAcceptsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_margin="@dimen/medium_spacing"
+            android:text="@string/message_requests_send_notice"
+            android:textColor="@color/text"
+            android:alpha="0.6"
+            android:textSize="@dimen/small_font_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/medium_spacing"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/acceptMessageRequestButton"
+                style="@style/Widget.Session.Button.Common.ProminentOutline"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_weight="1"
+                android:text="@string/accept" />
+
+            <Button
+                android:id="@+id/declineMessageRequestButton"
+                style="@style/Widget.Session.Button.Common.DestructiveOutline"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_marginStart="@dimen/medium_spacing"
+                android:layout_weight="1"
+                android:text="@string/decline" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.repository
 
 import org.session.libsession.database.MessageDataProvider
+import org.session.libsession.messaging.messages.Destination
+import org.session.libsession.messaging.messages.control.MessageRequestResponse
 import org.session.libsession.messaging.messages.control.UnsendRequest
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
@@ -17,10 +19,13 @@ import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.LokiMessageDatabase
 import org.thoughtcrime.securesms.database.LokiThreadDatabase
 import org.thoughtcrime.securesms.database.MmsDatabase
+import org.thoughtcrime.securesms.database.MmsSmsDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.SessionJobDatabase
 import org.thoughtcrime.securesms.database.SmsDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.ThreadRecord
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -51,6 +56,17 @@ interface ConversationRepository {
     suspend fun banUser(threadId: Long, recipient: Recipient): ResultOf<Unit>
 
     suspend fun banAndDeleteAll(threadId: Long, recipient: Recipient): ResultOf<Unit>
+
+    suspend fun deleteMessageRequest(thread: ThreadRecord): ResultOf<Unit>
+
+    suspend fun clearAllMessageRequests(): ResultOf<Unit>
+
+    suspend fun acceptMessageRequest(threadId: Long, recipient: Recipient): ResultOf<Unit>
+
+    fun declineMessageRequest(threadId: Long, recipient: Recipient)
+
+    fun hasReceived(threadId: Long): Boolean
+
 }
 
 class DefaultConversationRepository @Inject constructor(
@@ -61,8 +77,10 @@ class DefaultConversationRepository @Inject constructor(
     private val lokiThreadDb: LokiThreadDatabase,
     private val smsDb: SmsDatabase,
     private val mmsDb: MmsDatabase,
+    private val mmsSmsDb: MmsSmsDatabase,
     private val recipientDb: RecipientDatabase,
-    private val lokiMessageDb: LokiMessageDatabase
+    private val lokiMessageDb: LokiMessageDatabase,
+    private val sessionJobDb: SessionJobDatabase
 ) : ConversationRepository {
 
     override fun isOxenHostedOpenGroup(threadId: Long): Boolean {
@@ -225,5 +243,48 @@ class DefaultConversationRepository @Inject constructor(
                     continuation.resumeWithException(error)
                 }
         }
+
+    override suspend fun deleteMessageRequest(thread: ThreadRecord): ResultOf<Unit> {
+        sessionJobDb.cancelPendingMessageSendJobs(thread.threadId)
+        recipientDb.setBlocked(thread.recipient, true)
+        return ResultOf.Success(Unit)
+    }
+
+    override suspend fun clearAllMessageRequests(): ResultOf<Unit> {
+        threadDb.readerFor(threadDb.unapprovedConversationList).use { reader ->
+            while (reader.next != null) {
+                deleteMessageRequest(reader.current)
+            }
+        }
+        return ResultOf.Success(Unit)
+    }
+
+    override suspend fun acceptMessageRequest(threadId: Long, recipient: Recipient): ResultOf<Unit> = suspendCoroutine { continuation ->
+        recipientDb.setApproved(recipient, true)
+        val message = MessageRequestResponse(true)
+        MessageSender.send(message, Destination.from(recipient.address))
+            .success {
+                threadDb.setHasSent(threadId, true)
+                continuation.resume(ResultOf.Success(Unit))
+            }.fail { error ->
+                continuation.resumeWithException(error)
+            }
+    }
+
+    override fun declineMessageRequest(threadId: Long, recipient: Recipient) {
+        recipientDb.setBlocked(recipient, true)
+    }
+
+    override fun hasReceived(threadId: Long): Boolean {
+        val cursor = mmsSmsDb.getConversation(threadId, true)
+        mmsSmsDb.readerFor(cursor).use { reader ->
+            while (reader.next != null) {
+                if (!reader.current.isOutgoing) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 
 }

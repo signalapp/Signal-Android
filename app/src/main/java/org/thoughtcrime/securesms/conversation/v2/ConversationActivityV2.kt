@@ -44,6 +44,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.annimon.stream.Stream
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ActivityConversationV2ActionBarBinding
 import network.loki.messenger.databinding.ActivityConversationV2Binding
@@ -126,6 +128,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.ActivityDispatcher
+import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
@@ -220,7 +223,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private val adapter by lazy {
-        val cursor = mmsSmsDb.getConversation(viewModel.threadId)
+        val cursor = mmsSmsDb.getConversation(viewModel.threadId, !isIncomingMessageRequestThread())
         val adapter = ConversationAdapter(
             this,
             cursor,
@@ -310,6 +313,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpSearchResultObserver()
         scrollToFirstUnreadMessageIfNeeded()
         showOrHideInputIfNeeded()
+        setUpMessageRequestsBar()
         if (viewModel.recipient.isOpenGroupRecipient) {
             val openGroup = lokiThreadDb.getOpenGroupChat(viewModel.threadId)
             if (openGroup == null) {
@@ -349,13 +353,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     // called from onCreate
     private fun setUpRecyclerView() {
         binding!!.conversationRecyclerView.adapter = adapter
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+        val reverseLayout = !isIncomingMessageRequestThread()
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, reverseLayout)
         binding!!.conversationRecyclerView.layoutManager = layoutManager
         // Workaround for the fact that CursorRecyclerViewAdapter doesn't auto-update automatically (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
             override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
-                return ConversationLoader(viewModel.threadId, this@ConversationActivityV2)
+                return ConversationLoader(viewModel.threadId, reverseLayout, this@ConversationActivityV2)
             }
 
             override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
@@ -539,6 +544,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                     viewModel.messageShown(it.id)
                 }
                 addOpenGroupGuidelinesIfNeeded(uiState.isOxenHostedOpenGroup)
+                if (uiState.isMessageRequestAccepted == true) {
+                    binding?.messageRequestBar?.visibility = View.GONE
+                }
             }
         }
     }
@@ -551,7 +559,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, viewModel.recipient, viewModel.threadId, this) { onOptionsItemSelected(it) }
+        if (!isMessageRequestThread()) {
+            ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, viewModel.recipient, viewModel.threadId, this) { onOptionsItemSelected(it) }
+        }
         super.onPrepareOptionsMenu(menu)
         return true
     }
@@ -585,6 +595,49 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         } else {
             binding?.inputBar?.showInput = true
         }
+    }
+
+    private fun setUpMessageRequestsBar() {
+        binding?.inputBar?.showMediaControls = !isOutgoingMessageRequestThread()
+        binding?.messageRequestBar?.isVisible = isIncomingMessageRequestThread()
+        binding?.acceptMessageRequestButton?.setOnClickListener {
+            acceptMessageRequest()
+        }
+        binding?.declineMessageRequestButton?.setOnClickListener {
+            viewModel.declineMessageRequest()
+            lifecycleScope.launch(Dispatchers.IO) {
+                ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(this@ConversationActivityV2)
+            }
+            finish()
+        }
+    }
+
+    private fun acceptMessageRequest() {
+        binding?.messageRequestBar?.isVisible = false
+        binding?.conversationRecyclerView?.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+        viewModel.acceptMessageRequest()
+        lifecycleScope.launch(Dispatchers.IO) {
+            ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(this@ConversationActivityV2)
+        }
+    }
+
+    private fun isMessageRequestThread(): Boolean {
+        val hasSent = threadDb.getLastSeenAndHasSent(viewModel.threadId).second()
+        return (!viewModel.recipient.isGroupRecipient && !hasSent) ||
+                (!viewModel.recipient.isGroupRecipient && hasSent && !(viewModel.recipient.hasApprovedMe() || viewModel.hasReceived()))
+    }
+
+    private fun isOutgoingMessageRequestThread(): Boolean {
+        return !viewModel.recipient.isGroupRecipient &&
+                !(viewModel.recipient.hasApprovedMe() || viewModel.hasReceived())
+    }
+
+    private fun isIncomingMessageRequestThread(): Boolean {
+        return !viewModel.recipient.isGroupRecipient &&
+                !viewModel.recipient.isApproved &&
+                !threadDb.getLastSeenAndHasSent(viewModel.threadId).second() &&
+                threadDb.getMessageCount(viewModel.threadId) > 0
     }
 
     override fun inputBarEditTextContentChanged(newContent: CharSequence) {
@@ -946,6 +999,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun sendMessage() {
+        if (isIncomingMessageRequestThread()) {
+            acceptMessageRequest()
+        }
         if (viewModel.recipient.isContactRecipient && viewModel.recipient.isBlocked) {
             BlockedDialog(viewModel.recipient).show(supportFragmentManager, "Blocked Dialog")
             return

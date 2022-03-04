@@ -29,19 +29,26 @@ class ControlMessageView : LinearLayout {
     // region Updating
     fun bind(message: MessageRecord, previous: MessageRecord?) {
         binding.dateBreakTextView.showDateBreak(message, previous)
-        binding.iconImageView.visibility = View.GONE
-        if (message.isExpirationTimerUpdate) {
-            binding.iconImageView.setImageDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_timer, context.theme)
-            )
-            binding.iconImageView.visibility = View.VISIBLE
-        } else if (message.isMediaSavedNotification) {
-            binding.iconImageView.setImageDrawable(
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_file_download_white_36dp, context.theme)
-            )
-            binding.iconImageView.visibility = View.VISIBLE
+        var messageBody: CharSequence = message.getDisplayBody(context)
+        when {
+            message.isExpirationTimerUpdate -> {
+                binding.iconImageView.setImageDrawable(
+                    ResourcesCompat.getDrawable(resources, R.drawable.ic_timer, context.theme)
+                )
+                binding.iconImageView.visibility = View.VISIBLE
+            }
+            message.isMediaSavedNotification -> {
+                binding.iconImageView.setImageDrawable(
+                    ResourcesCompat.getDrawable(resources, R.drawable.ic_file_download_white_36dp, context.theme)
+                )
+                binding.iconImageView.visibility = View.VISIBLE
+            }
+            message.isMessageRequestResponse -> {
+                messageBody = context.getString(R.string.message_requests_accepted)
+            }
         }
-        binding.textView.text = message.getDisplayBody(context)
+
+        binding.textView.text = messageBody
     }
 
     fun recycle() {

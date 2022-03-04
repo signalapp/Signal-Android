@@ -22,9 +22,8 @@ class ConversationViewModel(
     private val _uiState = MutableStateFlow(ConversationUiState())
     val uiState: StateFlow<ConversationUiState> = _uiState
 
-    val recipient: Recipient by lazy {
-        repository.getRecipientForThreadId(threadId)
-    }
+    val recipient: Recipient
+        get() = repository.getRecipientForThreadId(threadId)
 
     init {
         _uiState.update {
@@ -88,6 +87,22 @@ class ConversationViewModel(
             }
     }
 
+    fun acceptMessageRequest() = viewModelScope.launch {
+        repository.acceptMessageRequest(threadId, recipient)
+            .onSuccess {
+                _uiState.update {
+                    it.copy(isMessageRequestAccepted = true)
+                }
+            }
+            .onFailure {
+                showMessage("Couldn't accept message request due to error: $it")
+            }
+    }
+
+    fun declineMessageRequest() {
+        repository.declineMessageRequest(threadId, recipient)
+    }
+
     private fun showMessage(message: String) {
         _uiState.update { currentUiState ->
             val messages = currentUiState.uiMessages + UiMessage(
@@ -103,6 +118,10 @@ class ConversationViewModel(
             val messages = currentUiState.uiMessages.filterNot { it.id == messageId }
             currentUiState.copy(uiMessages = messages)
         }
+    }
+
+    fun hasReceived(): Boolean {
+        return repository.hasReceived(threadId)
     }
 
     @dagger.assisted.AssistedFactory
@@ -126,5 +145,6 @@ data class UiMessage(val id: Long, val message: String)
 
 data class ConversationUiState(
     val isOxenHostedOpenGroup: Boolean = false,
-    val uiMessages: List<UiMessage> = emptyList()
+    val uiMessages: List<UiMessage> = emptyList(),
+    val isMessageRequestAccepted: Boolean? = null
 )
