@@ -1,16 +1,17 @@
 package org.thoughtcrime.securesms.payments;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.Util;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public final class GeographicalRestrictions {
 
@@ -18,32 +19,23 @@ public final class GeographicalRestrictions {
 
   private GeographicalRestrictions() {}
 
-  private static final Set<Integer> BLACKLIST;
-
-  static {
-    Set<Integer> set = new HashSet<>(BuildConfig.MOBILE_COIN_BLACKLIST.length);
-
-    for (int i = 0; i < BuildConfig.MOBILE_COIN_BLACKLIST.length; i++) {
-      set.add(BuildConfig.MOBILE_COIN_BLACKLIST[i]);
-    }
-
-    BLACKLIST = Collections.unmodifiableSet(set);
-  }
-
-  public static boolean regionAllowed(int regionCode) {
-    return !BLACKLIST.contains(regionCode);
-  }
-
   public static boolean e164Allowed(@Nullable String e164) {
-    try {
-      int countryCode = PhoneNumberUtil.getInstance()
-                                       .parse(e164, null)
-                                       .getCountryCode();
-
-      return GeographicalRestrictions.regionAllowed(countryCode);
-    } catch (NumberParseException e) {
-      Log.w(TAG, e);
+    if (e164 == null) {
       return false;
     }
+
+    String bareE164 = e164.startsWith("+") ? e164.substring(1) : e164;
+
+    return parsePrefixes(FeatureFlags.paymentsCountryBlocklist())
+        .stream()
+        .noneMatch(bareE164::startsWith);
+  }
+
+  private static List<String> parsePrefixes(@NonNull String serializedList) {
+    return Arrays.stream(serializedList.split(","))
+        .map(v -> v.replaceAll(" ", ""))
+        .map(String::trim)
+        .filter(v -> !Util.isEmpty(v))
+        .collect(Collectors.toList());
   }
 }

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.util;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
@@ -18,7 +17,6 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.keyvalue.StoryValues;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
 
 import java.io.IOException;
@@ -95,6 +93,7 @@ public final class FeatureFlags {
   private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
   private static final String USE_HARDWARE_AEC_IF_OLD           = "android.calling.useHardwareAecIfOlderThanApi29";
   private static final String USE_AEC3                          = "android.calling.useAec3";
+  private static final String PAYMENTS_COUNTRY_BLOCKLIST        = "android.payments.blocklist";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -141,7 +140,8 @@ public final class FeatureFlags {
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
-      USE_AEC3
+      USE_AEC3,
+      PAYMENTS_COUNTRY_BLOCKLIST
   );
 
   @VisibleForTesting
@@ -199,7 +199,8 @@ public final class FeatureFlags {
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
       USE_HARDWARE_AEC_IF_OLD,
-      USE_AEC3
+      USE_AEC3,
+      PAYMENTS_COUNTRY_BLOCKLIST
   );
 
   /**
@@ -416,6 +417,11 @@ public final class FeatureFlags {
   /** Whether or not to show the group call ring toggle in the UI. */
   public static boolean groupCallRinging() {
     return getBoolean(GROUP_CALL_RINGING, false);
+  }
+
+  /** A comma-separated list of country codes where payments should be disabled. */
+  public static String paymentsCountryBlocklist() {
+    return getString(PAYMENTS_COUNTRY_BLOCKLIST, "98,963,53,850,7");
   }
 
   /**
