@@ -5,6 +5,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -28,6 +29,14 @@ class ChatsSettingsRepository {
           isLinkPreviewsEnabled
         )
       )
+    }
+  }
+
+  fun syncPreferSystemContactPhotos() {
+    SignalExecutors.BOUNDED.execute {
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      ApplicationDependencies.getJobManager().add(MultiDeviceContactUpdateJob(true))
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
 }

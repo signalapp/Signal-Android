@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
@@ -36,10 +34,9 @@ class ChatsSettingsViewModel(private val repository: ChatsSettingsRepository) : 
 
   fun setUseAddressBook(enabled: Boolean) {
     store.update { it.copy(useAddressBook = enabled) }
-    SignalStore.settings().isPreferSystemContactPhotos = enabled
     refreshDebouncer.publish { ConversationUtil.refreshRecipientShortcuts() }
-    ApplicationDependencies.getJobManager().add(MultiDeviceContactUpdateJob(true))
-    StorageSyncHelper.scheduleSyncForDataChange()
+    SignalStore.settings().isPreferSystemContactPhotos = enabled
+    repository.syncPreferSystemContactPhotos()
   }
 
   fun setUseSystemEmoji(enabled: Boolean) {
