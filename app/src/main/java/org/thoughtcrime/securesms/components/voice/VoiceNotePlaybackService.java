@@ -24,6 +24,7 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.audio.AudioAttributes;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 
@@ -203,6 +204,19 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     @Override
     public void onPlayerError(@NonNull PlaybackException error) {
       Log.w(TAG, "ExoPlayer error occurred:", error);
+    }
+
+    @Override
+    public void onAudioAttributesChanged(AudioAttributes audioAttributes) {
+      final int stream;
+      if (audioAttributes.usage == C.USAGE_VOICE_COMMUNICATION) {
+        stream = AudioManager.STREAM_VOICE_CALL;
+      } else {
+        stream = AudioManager.STREAM_MUSIC;
+      }
+
+      Log.i(TAG, "onAudioAttributesChanged: Setting audio stream to " + stream);
+      mediaSession.setPlaybackToLocal(stream);
     }
   }
 
