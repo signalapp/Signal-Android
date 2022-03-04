@@ -4600,6 +4600,15 @@
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
     <string name="StorySlateView__couldnt_load_content">Couldn\'t Load Content</string>
 
+    <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
+    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Turn off censorship circumvention?</string>
+    <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
+    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">You can now connect to the Signal service directly for a better experience.</string>
+    <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
+    <string name="TurnOffCircumventionMegaphone_no_thanks">No thanks</string>
+    <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
+    <string name="TurnOffCircumventionMegaphone_turn_off">Turn off</string>
+
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
     <string name="ExpandModel__view_more">View more</string>

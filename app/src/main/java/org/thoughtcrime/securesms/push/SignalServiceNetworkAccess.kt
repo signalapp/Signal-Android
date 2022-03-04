@@ -211,7 +211,7 @@ class SignalServiceNetworkAccess(context: Context) {
     COUNTRY_CODE_UZBEKISTAN,
   )
 
-  private val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
+  val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
     arrayOf(SignalServiceUrl(BuildConfig.SIGNAL_URL, serviceTrustStore)),
     mapOf(
       0 to arrayOf(SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, serviceTrustStore)),

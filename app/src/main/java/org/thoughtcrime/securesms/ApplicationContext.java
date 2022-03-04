@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
+import org.thoughtcrime.securesms.jobs.CheckServiceReachabilityJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
@@ -199,6 +200,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(RetrieveReleaseChannelJob::enqueue)
                             .addPostRender(() -> AndroidTelecomUtil.registerPhoneAccount())
                             .addPostRender(() -> ApplicationDependencies.getJobManager().add(new FontDownloaderJob()))
+                            .addPostRender(CheckServiceReachabilityJob::enqueueIfNecessary)
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");

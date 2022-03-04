@@ -106,6 +106,7 @@ public final class Megaphones {
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
+      put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
       put(Event.BECOME_A_SUSTAINER, shouldShowDonateMegaphone(context, records) ? ShowForDurationSchedule.showForDays(7) : NEVER);
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
 
@@ -136,6 +137,8 @@ public final class Megaphones {
         return buildBecomeASustainerMegaphone(context);
       case NOTIFICATION_PROFILES:
         return buildNotificationProfilesMegaphone(context);
+      case TURN_OFF_CENSORSHIP_CIRCUMVENTION:
+        return buildTurnOffCircumventionMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -295,6 +298,21 @@ public final class Megaphones {
         .build();
   }
 
+  private static @NonNull Megaphone buildTurnOffCircumventionMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, Megaphone.Style.BASIC)
+        .setTitle(R.string.CensorshipCircumventionMegaphone_turn_off_censorship_circumvention)
+        .setImage(R.drawable.ic_censorship_megaphone_64)
+        .setBody(R.string.CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service)
+        .setActionButton(R.string.CensorshipCircumventionMegaphone_turn_off, (megaphone, listener) -> {
+          SignalStore.settings().setCensorshipCircumventionEnabled(false);
+          listener.onMegaphoneSnooze(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION);
+        })
+        .setSecondaryButton(R.string.CensorshipCircumventionMegaphone_no_thanks, (megaphone, listener) -> {
+          listener.onMegaphoneSnooze(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION);
+        })
+        .build();
+  }
+
   private static boolean shouldShowDonateMegaphone(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
     long timeSinceLastDonatePrompt = timeSinceLastDonatePrompt(records);
 
@@ -311,6 +329,11 @@ public final class Megaphones {
 
   private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {
     return SignalStore.onboarding().hasOnboarding(context);
+  }
+
+  private static boolean shouldShowTurnOffCircumventionMegaphone() {
+    return ApplicationDependencies.getSignalServiceNetworkAccess().isCensored() &&
+           SignalStore.misc().isServiceReachableWithoutCircumvention();
   }
 
   private static boolean shouldShowNotificationsMegaphone(@NonNull Context context) {
@@ -374,7 +397,8 @@ public final class Megaphones {
     ADD_A_PROFILE_PHOTO("add_a_profile_photo"),
     BECOME_A_SUSTAINER("become_a_sustainer"),
     VALENTINES_DONATIONS_2022("valentines_donations_2022"),
-    NOTIFICATION_PROFILES("notification_profiles");
+    NOTIFICATION_PROFILES("notification_profiles"),
+    TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention");
 
     private final String key;
 
