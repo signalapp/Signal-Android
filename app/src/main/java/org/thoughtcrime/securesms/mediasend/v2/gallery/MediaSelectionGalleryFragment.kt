@@ -52,13 +52,21 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
       )
     }
 
-    sharedViewModel.mediaErrors.observe(viewLifecycleOwner) { error: MediaValidator.FilterError ->
-      @Exhaustive
-      when (error) {
-        MediaValidator.FilterError.ITEM_TOO_LARGE -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
-        MediaValidator.FilterError.ITEM_INVALID_TYPE -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
-        MediaValidator.FilterError.TOO_MANY_ITEMS -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
-        MediaValidator.FilterError.NO_ITEMS -> {}
+    sharedViewModel.mediaErrors.observe(viewLifecycleOwner, this::handleError)
+  }
+
+  private fun handleError(error: MediaValidator.FilterError) {
+    @Exhaustive
+    when (error) {
+      MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
+      MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
+      MediaValidator.FilterError.TooManyItems -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
+      is MediaValidator.FilterError.NoItems -> {
+        if (error.cause != null) {
+          handleError(error.cause)
+        } else {
+          Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
+        }
       }
     }
   }

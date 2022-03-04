@@ -206,18 +206,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       computeViewStateAndAnimate(state)
     }
 
-    sharedViewModel.mediaErrors.observe(viewLifecycleOwner) { error: MediaValidator.FilterError ->
-      @Exhaustive
-      when (error) {
-        MediaValidator.FilterError.ITEM_TOO_LARGE -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
-        MediaValidator.FilterError.ITEM_INVALID_TYPE -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
-        MediaValidator.FilterError.TOO_MANY_ITEMS -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
-        MediaValidator.FilterError.NO_ITEMS -> {
-          Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
-          callback.onNoMediaSelected()
-        }
-      }
-    }
+    sharedViewModel.mediaErrors.observe(viewLifecycleOwner, this::handleMediaValidatorFilterError)
 
     requireActivity().onBackPressedDispatcher.addCallback(
       viewLifecycleOwner,
@@ -241,6 +230,23 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   override fun onDestroyView() {
     disposables?.dispose()
     super.onDestroyView()
+  }
+
+  private fun handleMediaValidatorFilterError(error: MediaValidator.FilterError) {
+    @Exhaustive
+    when (error) {
+      MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
+      MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
+      MediaValidator.FilterError.TooManyItems -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
+      is MediaValidator.FilterError.NoItems -> {
+        if (error.cause != null) {
+          handleMediaValidatorFilterError(error)
+        } else {
+          Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
+        }
+        callback.onNoMediaSelected()
+      }
+    }
   }
 
   private fun launchGallery() {

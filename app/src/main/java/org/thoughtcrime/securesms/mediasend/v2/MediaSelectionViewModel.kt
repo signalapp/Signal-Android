@@ -202,7 +202,7 @@ class MediaSelectionViewModel(
     }
 
     if (newMediaList.isEmpty() && !suppressEmptyError) {
-      mediaErrors.postValue(MediaValidator.FilterError.NO_ITEMS)
+      mediaErrors.postValue(MediaValidator.FilterError.NoItems())
     }
 
     repository.deleteBlobs(listOf(media))
