@@ -30,6 +30,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -545,7 +546,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     boolean      isSelf             = Recipient.self().equals(recipient);
     int          memberCount        = recipientInfo.getGroupMemberCount();
     int          pendingMemberCount = recipientInfo.getGroupPendingMemberCount();
-    List<String> groups             = recipientInfo.getSharedGroups();
+    List<String> escapedGroups      = Stream.of(recipientInfo.getSharedGroups()).map(Html::escapeHtml).toList();
 
     conversationBanner.setBadge(recipient);
 
@@ -580,7 +581,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }
     }
 
-    if (groups.isEmpty() || isSelf) {
+    if (escapedGroups.isEmpty() || isSelf) {
       if (TextUtils.isEmpty(recipientInfo.getGroupDescription())) {
         conversationBanner.setLinkifyDescription(false);
         conversationBanner.hideDescription();
@@ -600,21 +601,21 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     } else {
       final String description;
 
-      switch (groups.size()) {
+      switch (escapedGroups.size()) {
         case 1:
-          description = context.getString(R.string.MessageRequestProfileView_member_of_one_group, HtmlUtil.bold(groups.get(0)));
+          description = context.getString(R.string.MessageRequestProfileView_member_of_one_group, HtmlUtil.bold(escapedGroups.get(0)));
           break;
         case 2:
-          description = context.getString(R.string.MessageRequestProfileView_member_of_two_groups, HtmlUtil.bold(groups.get(0)), HtmlUtil.bold(groups.get(1)));
+          description = context.getString(R.string.MessageRequestProfileView_member_of_two_groups, HtmlUtil.bold(escapedGroups.get(0)), HtmlUtil.bold(escapedGroups.get(1)));
           break;
         case 3:
-          description = context.getString(R.string.MessageRequestProfileView_member_of_many_groups, HtmlUtil.bold(groups.get(0)), HtmlUtil.bold(groups.get(1)), HtmlUtil.bold(groups.get(2)));
+          description = context.getString(R.string.MessageRequestProfileView_member_of_many_groups, HtmlUtil.bold(escapedGroups.get(0)), HtmlUtil.bold(escapedGroups.get(1)), HtmlUtil.bold(escapedGroups.get(2)));
           break;
         default:
-          int others = groups.size() - 2;
+          int others = escapedGroups.size() - 2;
           description = context.getString(R.string.MessageRequestProfileView_member_of_many_groups,
-                                          HtmlUtil.bold(groups.get(0)),
-                                          HtmlUtil.bold(groups.get(1)),
+                                          HtmlUtil.bold(escapedGroups.get(0)),
+                                          HtmlUtil.bold(escapedGroups.get(1)),
                                           context.getResources().getQuantityString(R.plurals.MessageRequestProfileView_member_of_d_additional_groups, others, others));
       }
 
