@@ -103,7 +103,9 @@ public class KeyCachingService extends Service {
   }
 
   public static void onAppForegrounded(@NonNull Context context) {
-    ServiceUtil.getAlarmManager(context).cancel(buildExpirationPendingIntent(context));
+    if (TextSecurePreferences.isScreenLockEnabled(context) || !TextSecurePreferences.isPasswordDisabled(context)) {
+      ServiceUtil.getAlarmManager(context).cancel(buildExpirationPendingIntent(context));
+    }
   }
 
   public static void onAppBackgrounded(@NonNull Context context) {
