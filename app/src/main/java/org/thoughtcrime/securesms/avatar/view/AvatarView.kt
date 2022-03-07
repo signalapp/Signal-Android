@@ -22,6 +22,8 @@ class AvatarView @JvmOverloads constructor(
 
   init {
     inflate(context, R.layout.avatar_view, this)
+
+    isClickable = false
   }
 
   private val avatar: AvatarImageView = findViewById(R.id.avatar_image_view)
