@@ -132,28 +132,6 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
             )
           )
         )
-
-        if (query.isNullOrEmpty()) {
-          addSection(
-            ContactSearchConfiguration.Section.Recents(
-              includeHeader = true
-            )
-          )
-        }
-
-        addSection(
-          ContactSearchConfiguration.Section.Individuals(
-            includeHeader = true,
-            transportType = ContactSearchConfiguration.TransportType.PUSH,
-            includeSelf = true
-          )
-        )
-
-        addSection(
-          ContactSearchConfiguration.Section.Groups(
-            includeHeader = true
-          )
-        )
       }
     }
 

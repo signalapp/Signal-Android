@@ -1320,7 +1320,7 @@ public final class MessageContentProcessor {
   private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story message.");
 
-    if (Stories.isFeatureAvailable()) {
+    if (!Stories.isFeatureAvailable()) {
       warn(content.getTimestamp(), "Dropping unsupported story.");
       return;
     }
