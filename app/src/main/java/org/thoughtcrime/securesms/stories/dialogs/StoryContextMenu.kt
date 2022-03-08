@@ -51,7 +51,7 @@ object StoryContextMenu {
     val saveAttachment = SaveAttachmentTask.Attachment(
       uri,
       contentType,
-      System.currentTimeMillis(),
+      mediaMessageRecord.dateSent,
       null
     )
 
