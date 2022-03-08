@@ -124,7 +124,9 @@
   <string name="CameraContacts__menu_search">Axtar</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Senzuradan yayınma söndürülsün?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Artıq daha yaxşı bir xidmət üçün birbaşa Signal xidməti ilə bağlantı qura bilərsiniz.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Söndür</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -2187,14 +2189,16 @@
   <string name="preferences_events__contact_joined_signal">Əlaqə Signal-a qoşuldu</string>
   <string name="preferences_notifications__priority">Üstünlük</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Senzuradan yayınma</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Senzuradan yayınma</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Fəal olsa, Singal, senzuradan yayınmağa cəhd edəcək. Singal senzurasının olduğu bir yerdə deyilsəniz, bu özəlliyi fəallaşdırmayın.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Senzuradan yayınma, hesabınızın telefon nömrəsinə görə aktivləşdirildi.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
-  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Senzuradan yayınmanı, əllə sıradan çıxartdınız.</string>
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Senzuradan yayınmanı əllə sıradan çıxartdınız.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Senzuradan yayınmağa ehtiyac yoxdur: artıq Signal xidmətinə bağlanmısınız.</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Senzuradan yayınmağa ehtiyac yoxdur; artıq Signal xidmətinə bağlanmısınız.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
   <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Senzuradan yayınma, yalnız internetə bağlananda aktivləşdirilə bilər.</string>
   <string name="preferences_communication__category_sealed_sender">Gizli Göndərən</string>

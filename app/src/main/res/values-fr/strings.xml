@@ -146,7 +146,7 @@
   <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
   <string name="CommunicationActions_send_email">Envoyer un courriel</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Un appel cellulaire est déjà en cours.</string>
-  <string name="CommunicationActions_start_voice_call">Lancer un appel vocal ?</string>
+  <string name="CommunicationActions_start_voice_call">Lancer un appel audio ?</string>
   <string name="CommunicationActions_cancel">Annuler</string>
   <string name="CommunicationActions_call">Appeler</string>
   <string name="CommunicationActions_insecure_call">Appel non sécurisé</string>
@@ -937,7 +937,7 @@
   <string name="MessageRecord_you_updated_group">Vous avez mis le groupe à jour.</string>
   <string name="MessageRecord_the_group_was_updated">Le groupe a été mis à jour.</string>
   <string name="MessageRecord_you_called_date">Vous avez appelé – %1$s</string>
-  <string name="MessageRecord_missed_audio_call_date">Appel vocal manqué –· %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Appel audio manqué –· %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Appel vidéo manqué – %1$s</string>
   <string name="MessageRecord_s_updated_group">%s a mis le groupe à jour.</string>
   <string name="MessageRecord_s_called_you_date">%1$s vous a appelé – %2$s</string>
@@ -1475,7 +1475,7 @@
   <string name="ThreadRecord_draft">Brouillon :</string>
   <string name="ThreadRecord_called">Vous avez appelé</string>
   <string name="ThreadRecord_called_you">Vous a appelé</string>
-  <string name="ThreadRecord_missed_audio_call">Appel vocal manqué</string>
+  <string name="ThreadRecord_missed_audio_call">Appel audio manqué</string>
   <string name="ThreadRecord_missed_video_call">Appel vidéo manqué</string>
   <string name="ThreadRecord_media_message">Message multimédia</string>
   <string name="ThreadRecord_sticker">Autocollant</string>
@@ -2802,8 +2802,8 @@
   <string name="RecipientBottomSheet_remove_as_admin">Supprimer en tant qu’administrateur</string>
   <string name="RecipientBottomSheet_remove_from_group">Supprimer du groupe</string>
   <string name="RecipientBottomSheet_message_description">Message</string>
-  <string name="RecipientBottomSheet_voice_call_description">Appel vocal</string>
-  <string name="RecipientBottomSheet_insecure_voice_call_description">Appel vocal non sécurisé</string>
+  <string name="RecipientBottomSheet_voice_call_description">Appel audio</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Appel audio non sécurisé</string>
   <string name="RecipientBottomSheet_video_call_description">Appel vidéo</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Supprimer %1$s en tant qu’administrateur du groupe ?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s pourra modifier ce groupe et ses membres.</string>
@@ -3255,10 +3255,10 @@ Nouvelle tentative…</string>
   <!--ConversationSettingsFragment-->
   <string name="ConversationSettingsFragment__send_message">Envoyer un message</string>
   <string name="ConversationSettingsFragment__start_video_call">Lancer un appel vidéo</string>
-  <string name="ConversationSettingsFragment__start_audio_call">Lancer un appel vocal</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Lancer un appel audio</string>
   <string name="ConversationSettingsFragment__message">Message</string>
   <string name="ConversationSettingsFragment__video">Vidéo</string>
-  <string name="ConversationSettingsFragment__audio">Vocal</string>
+  <string name="ConversationSettingsFragment__audio">Audio</string>
   <string name="ConversationSettingsFragment__call">Appeler</string>
   <string name="ConversationSettingsFragment__mute">Sourdine</string>
   <string name="ConversationSettingsFragment__muted">En sourdine</string>

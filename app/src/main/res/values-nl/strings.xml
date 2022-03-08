@@ -74,7 +74,9 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Contactpersoon aan blokkeerlijst toevoegen</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd.
+Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt.
+In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt geblokkeerd.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
   <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan jou nog steeds bellen of berichten sturen en weet dus niet dat hij of zijn geblokkeerd is, maar je zult die oproepen en berichten niet zien.</string>
@@ -89,7 +91,9 @@
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Groepsleden zullen je niet langer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden zullen je weer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen weer berichten naar elkaar kunnen verzenden, kunnen bellen, en je profielnaam, -foto en -omschrijving zullen voor hem of haar weer worden bijgewerkt.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden ze niet bijgewerkt als je een nieuwe foto of naam instelt.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat en alsof berichten worden afgeleverd.
+Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden ze niet bijgewerkt als je een nieuwe foto of naam instelt.
+In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt geblokkeerd.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Nieuwsberichten over Signal blokkeren.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
@@ -710,7 +714,7 @@
   <string name="ManageProfileFragment_profile_name">Profielnaam</string>
   <string name="ManageProfileFragment_username">Gebruikersnaam</string>
   <string name="ManageProfileFragment_about">Over mij</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Schrijf een paar woorden over jezelf</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Schrijf iets over jezelf</string>
   <string name="ManageProfileFragment_your_name">Je naam</string>
   <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
@@ -1387,11 +1391,11 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Voer je telefoonnummer in om te beginnen</string>
   <string name="RegistrationActivity_enter_your_phone_number">Voer je telefoonnummer in</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen.</string>
-  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer de code in die we hebben verzonden naar %s</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer de code in die we naar %s hebben verzonden</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verzeker je ervan dat je telefoon netwerkbereik heeft zodat je een sms of oproep kunt ontvangen</string>
   <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
   <string name="RegistrationActivity_country_code_description">Landcode</string>
-  <string name="RegistrationActivity_call">Bellen</string>
+  <string name="RegistrationActivity_call">Bel me</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Registratievergrendeling inschakelen?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Registratievergrendeling uitschakelen?</string>
@@ -1589,7 +1593,7 @@
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifieer je telefoonnummer om door te kunnen gaan met het verzenden en ontvangen van berichten via Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Alles markeren als gelezen</string>
   <string name="MessageNotifier_mark_read">Markeren als gelezen</string>
-  <string name="MessageNotifier_turn_off_these_notifications">Dit soort meldingen uitschakelen</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Dit nooit melden</string>
   <string name="MessageNotifier_view_once_photo">Eenmaligeweergave-afbeelding</string>
   <string name="MessageNotifier_view_once_video">Eenmaligeweergave-video</string>
   <string name="MessageNotifier_reply">Reageren</string>
@@ -1902,12 +1906,12 @@
   <string name="EditAboutFragment_about">Over mij</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf …</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
-  <string name="EditAboutFragment_speak_freely">Spreek vrijuit</string>
+  <string name="EditAboutFragment_speak_freely">Voel je vrij om een berichtje te sturen</string>
   <string name="EditAboutFragment_encrypted">Versleuteld</string>
-  <string name="EditAboutFragment_be_kind">Wees aardig</string>
+  <string name="EditAboutFragment_be_kind">Wees lief voor me</string>
   <string name="EditAboutFragment_coffee_lover">Koffieliefhebber</string>
-  <string name="EditAboutFragment_free_to_chat">Beschikbaar om te spreken</string>
-  <string name="EditAboutFragment_taking_a_break">Ik neem even een pauze</string>
+  <string name="EditAboutFragment_free_to_chat">Beschikbaar om te praten</string>
+  <string name="EditAboutFragment_taking_a_break">Ik wil even offline zijn</string>
   <string name="EditAboutFragment_working_on_something_new">Ik werk aan iets nieuws</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">Groep aanpassen</string>
@@ -2197,13 +2201,13 @@
   <string name="preferences_communication__censorship_circumvention">Censuuromzeiling</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Indien ingeschakeld zal Signal proberen censuur te omzeilen. Schakel deze functie niet in tenzij je je op een locatie bevindt waar Signal gecensureerd wordt.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
-  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Censuuromzeiling is automatisch ingeschakeld omdat je telefoonnummer bij een risicoregio hoort.</string>
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Omdat je telefoonnummer bij een risicoregio hoort is censuuromzeiling automatisch ingeschakeld.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Je hebt censuuromzeiling handmatig uitgeschakeld.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Censuuromzeiling is niet nodig, je bent al verbonden met Signals servers.</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Censuuromzeiling is voor jou op dit moment niet nodig, want je bent al verbonden met Signals servers.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
-  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censuuromzeiling kan alleen worden ingeschakeld als je verbonden bent met het internet.</string>
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Censuuromzeiling kan alleen worden ingeschakeld als je apparaat met het internet is verbonden.</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictogram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender</string>
@@ -2639,8 +2643,8 @@
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte om je back-upbestand op te slaan.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hier om het maken van back-upbestanden in te stellen.</string>
   <string name="ProgressPreference_d_messages_so_far">%d berichten tot nu toe</string>
-  <string name="RegistrationActivity_wrong_number">Verkeerd telefoonnummer</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Bel me \n (beschikbaar over %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_wrong_number">Verkeerd telefoon­nummer</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Bel me \n (beschik­baar over %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal-ondersteuning</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
   <string name="RegistrationActivity_incorrect_code">Onjuiste code</string>
@@ -2752,7 +2756,7 @@
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Je kunt gegevens niet overzetten vanuit een nieuwere versie van Signal</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Gegevens aan het overzetten</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">Houd de apparaten bij elkaar in de buurt. Schakel ze niet uit, en laat houd de Signal-app open. Het overzetten is goed beveiligd, want dit gebeurd altijd over een eind-tot-eind-versleutelde verbinding.</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Houd de apparaten bij elkaar in de buurt. Schakel ze niet uit, en houd de Signal-app open. Het overzetten is goed beveiligd, want dit gebeurt altijd over een eind-tot-eind-versleutelde verbinding.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d berichten tot nu toe …</string>
   <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% van de berichten tot nu toe …</string>
@@ -2765,7 +2769,7 @@
   <string name="DeviceTransfer__unable_to_transfer">Kan gegevens niet overzetten</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Gegevens overzetten</string>
-  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Je kunt al je Signalgegevens en berichten overzetten wanneer je Signal in gebruik neemt op een nieuw apparaat. Volg daarvoor deze stappen:</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Je kunt al je Signal-gegevens en -berichten overzetten wanneer je Signal in gebruik neemt op een nieuw apparaat. Volg daarvoor deze stappen:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Download en open Signal op je nieuwe Android-apparaat</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -2793,7 +2797,7 @@
   <string name="DeviceToDeviceTransferService_status_service_connected">Alle Signalgegevens aan het overzetten …</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Rond op je nieuwe Android-apparaat de stappen voor registratie af.</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Je Signalgegevens zijn overgezet naar je nieuwe apparaat, maar om oh overzetten te voltooien moet je eerst nog de registratie van je telefoonnummer op je nieuwe apparaat afronden.</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Je Signal-gegevens zijn overgezet naar je nieuwe apparaat, maar om het overzetten te voltooien moet je eerst nog de registratie van je telefoonnummer op je nieuwe apparaat afronden.</string>
   <string name="OldDeviceTransferLockedDialog__done">Klaar</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuleren en dit apparaat activeren</string>
   <!--AdvancedPreferenceFragment-->
@@ -3076,7 +3080,7 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">Gebruik je pincode voor twee-factor-authenticatie. Ieder die je telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij Signal-berichten verzenden of ontvangen met jouw telefoonnummer.</string>
   <string name="AccountSettingsFragment__change_phone_number">Telefoonnummer wijzigen</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit als Signal wilt blijven gebruiken met een ander telefoonnummer. Je kunt het overstappen naar een nieuw telefoonnummer niet ongedaan maken.\n\nGa voordat je verder gaat na dat je op het nieuwe telefoonnummer sms-berichten of oproepen kunt ontvangen.</string>
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit als je Signal met een ander telefoonnummer wilt blijven gebruiken. Je kunt het overstappen naar een nieuw telefoonnummer niet ongedaan maken.\n\nGa voordat je verder gaat na dat je op het nieuwe telefoonnummer sms-berichten of oproepen kunt ontvangen.</string>
   <string name="ChangeNumberFragment__continue">Doorgaan</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
   <string name="ChangeNumber__your_phone_number_has_changed_to_s">Je telefoonnummer is gewijzigd naar %1$s</string>

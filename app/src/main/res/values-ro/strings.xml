@@ -925,7 +925,7 @@
   <string name="MediaOverviewActivity_sent_by_s">Trimis de %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Trimis de tine</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Trimis de %1$s către %2$s</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de time către %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de tine către %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_remind_me_later">Amintește-mi mai târziu</string>
   <string name="Megaphones_verify_your_signal_pin">Verifică PIN-ul tău Signal.</string>

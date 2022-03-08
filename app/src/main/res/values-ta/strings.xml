@@ -327,6 +327,14 @@
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">படித்தது</item>
+    <item quantity="other">படித்தவை</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">படிக்காதது</item>
+    <item quantity="other">படிக்காதவை</item>
+  </plurals>
   <plurals name="ConversationListFragment_mute_plural">
     <item quantity="one">முடக்கு</item>
     <item quantity="other">முடக்கு</item>

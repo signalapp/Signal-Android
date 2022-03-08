@@ -76,7 +76,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokirani_e uporabniki_ce</string>
   <string name="BlockedUsersActivity__add_blocked_user">Dodaj blokiranega uporabnika_co</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Blokirani_e uporabniki_ce vas ne bodo mogli_e klicati, oziroma vam pošiljati sporočil.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Blokirani_e uporabniki_ce vas ne bodo mogli_e klicati ali vam pošiljati sporočila.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Ni blokiranih uporabnikov_ic</string>
   <string name="BlockedUsersActivity__block_user">Želite blokirati uporabnika_co?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vas ne bo mogel_la klicati ali vam pošiljati sporočil.</string>
@@ -126,7 +126,9 @@
   <string name="CameraContacts__menu_search">Iskanje</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Želite izklopiti zaščito pred cenzuro?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Za boljšo izkušnjo se lahko odslej priklopite direktno na storitev Signal.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Izklopi</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -787,7 +789,7 @@
   <string name="ManageGroupActivity_add_group_description">Dodaj opis skupine …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščajte me o omembah</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Želite prejemati obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Želite prejemati obvestila, kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Vedno me obveščaj</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Ne obveščaj me</string>
   <!--ManageProfileFragment-->
@@ -2295,7 +2297,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__read_receipts">Potrdila o ogledu</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Če izklopite poročila o ogledu, tudi sami ne boste obveščeni, ko bo prejemnik_ca prebral_a vaše sporočilo.</string>
   <string name="preferences__typing_indicators">Kazalniki tipkanja</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Če nimate vklopljenih kazalnikov tipkanja zase, tudi ne morete videti kdaj vaš_a partner_ka tipka svoje sporočilo.</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Če nimate vklopljenih kazalnikov tipkanja zase, tudi ne morete videti, kdaj vaš_a partner_ka tipka svoje sporočilo.</string>
   <string name="preferences__request_keyboard_to_disable">Zahteva tipkovnici za izklop personaliziranega učenja.</string>
   <string name="preferences__this_setting_is_not_a_guarantee">Ta nastavitev ne zagotavlja, da bo tipkovnica tudi upoštevala zahtevo.</string>
   <string name="preferences_app_protection__blocked_users">Blokirani_ne uporabniki_ce</string>
@@ -2352,7 +2354,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_events__contact_joined_signal">Oseba iz imenika se je pridružila Signalu</string>
   <string name="preferences_notifications__priority">Pomembnost</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Zaščita pred cenzuro</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Zaščita pred cenzuro</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ob vklopu bo aplikacija Signal skušala zaobiti cenzuro. Ne vklapljajte, če niste na lokaciji, kjer je aplikacija Signal blokirana.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Zaščita pred cenzuro je bila vklopljena v povezavi s telefonsko številko vašega računa.</string>
@@ -2361,7 +2365,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
   <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Zaščita pred cenzuro ni potrebna, saj je naprava že uspešno povezana s strežniki Signal</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
-  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Zaščito pred cenzuro je mogoče vklopiti le kadar ste povezani z internetom.</string>
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Zaščito pred cenzuro je mogoče vklopiti le, kadar ste povezani z internetom.</string>
   <string name="preferences_communication__category_sealed_sender">Zakriti pošiljatelj</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Prikaz indikatorjev</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Prikaz ikone v statusni vrstici, kadar izberete \"Podrobnosti sporočila\" za sporočila, ki so bila dostavljana z uporabo zakritega pošiljatelja.</string>
@@ -2643,7 +2647,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Pregled je narejen na podlagi vaših odhodnih sporočil v zadnjih %1$d dneh, z izjemo izginjajočih in izbrisanih.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Začni s pogovorom</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Začnite komunicirati varno in vklopite zasebnosti prijazne funkcije, ki sežejo prek omejitev nešifriranih sporočil SMS. Povabite še več svojih stikov k uporabi aplikacije Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ta analiza je bila generirana lokalno na vaši napravi, lahko jo vidite le vi in ne bo posredovana nikamor.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ta analiza je bila ustvarjena lokalno na vaši napravi. Vidite jo lahko le vi in nikoli ne bo posredovana  nikamor.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Šifrirana sporočila</string>
   <string name="InsightsDashboardFragment__cancel">Prekliči</string>
   <string name="InsightsDashboardFragment__send">Pošlji</string>
@@ -3338,7 +3342,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavite privzet čas poteka sporočil za vse nove pogovore, ki jih začnete sami.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaži statusno ikono</string>
-  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaz ikone v detajlih sporočil kadar so ta dostavljena s pomočjo zakritega pošiljatelja.</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaz ikone v detajlih sporočil, kadar so ta dostavljena s pomočjo zakritega pošiljatelja.</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Nova sporočila, poslana in prejeta v novih pogovorih, ki ste jih pričeli sami, bodo izginila, ko bodo videna s strani prejemnika_ce.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nova sporočila, poslana in prejeta v tem pogovoru bodo izginila, ko bodo videna s strani prejemnika_ce.</string>
@@ -3603,9 +3607,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Posodobitev profila ni uspela</string>
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Postani podpornik_ca</string>
   <string name="ImageView__badge">Značka</string>
-  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal podpirajo ljudje kot ste vi.</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal podpirajo ljudje, kot ste vi.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podprite tehnologijo, ki je bila izdelana zaradi vas -- ne zaradi vaših osebnih podatkov -- in se pridružite skupnosti podpornikov_ic.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podprite tehnologijo, ki je bila izdelana zaradi vas, ne zaradi vaših osebnih podatkov, in se pridružite skupnosti podpornikov_ic Signala.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podprite tehnologijo, ki je bila izdelana zaradi vas in ne zaradi vaših osebnih podatkov, ter se pridružite skupnosti podpornikov_ic Signala.</string>
   <string name="SubscribeFragment__currency">Valuta</string>
   <string name="SubscribeFragment__more_payment_options">Več opcij za plačilo</string>
   <string name="SubscribeFragment__cancel_subscription">Prekini naročnino</string>
@@ -3758,7 +3762,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Dodaj</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
-  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Ustvarite profil za prejemanje obvestil in klicev le od uporabnikov, oziroma skupin, ki so v njem.</string>
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Ustvarite profil za prejemanje obvestil in klicev le od uporabnikov ali skupin, ki so v njem.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">Profili</string>
   <!--Button that starts the create new notification profile flow-->

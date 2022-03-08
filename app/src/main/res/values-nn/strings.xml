@@ -47,7 +47,7 @@
     <item quantity="other">%d minutt</item>
   </plurals>
   <!--DraftDatabase-->
-  <string name="DraftDatabase_Draft_image_snippet">(bilde)</string>
+  <string name="DraftDatabase_Draft_image_snippet">(bilete)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(lyd)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(stad)</string>
@@ -59,13 +59,13 @@
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Plassering</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal treng tilgang for å visa bilde eller film.</string>
-  <string name="AttachmentKeyboard_give_access">Gi tilgang</string>
+  <string name="AttachmentKeyboard_give_access">Gje tilgang</string>
   <string name="AttachmentKeyboard_payment">Betaling</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Fann ingen program for valt medium.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal treng tilgang til lagring for å legga ved bilde, film eller lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal treng tilgang til kontaktar for å legga til kontaktinformasjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal treng tilgang til posisjon for å legga til posisjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Posisjon».</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal treng tilgang til lagring for å leggja ved bilete, film eller lydklipp, men tilgangen er permanent skrudd av. Opn app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal treng tilgang til kontaktar for å leggja til kontaktinformasjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal treng tilgang til posisjon for å leggja til posisjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Posisjon».</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Lastar opp media …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video …</string>
@@ -74,22 +74,22 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokkerte brukarar</string>
   <string name="BlockedUsersActivity__add_blocked_user">Legg til blokkert brukar</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Blokkerte brukarar vil ikkje kunna ringa deg eller senda deg meldingar.</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Blokkerte brukarar vil ikkje kunna ringja deg eller senda deg meldingar.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Ingen blokkerte brukarar</string>
   <string name="BlockedUsersActivity__block_user">Blokker brukar?</string>
-  <string name="BlockedUserActivity__s_will_not_be_able_to">«%1$s» vil ikkje kunna ringa deg eller senda deg meldingar.</string>
-  <string name="BlockedUsersActivity__block">Blokker</string>
-  <string name="BlockedUsersActivity__unblock_user">Avblokker brukar?</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">«%1$s» vil ikkje kunna ringja deg eller senda deg meldingar.</string>
+  <string name="BlockedUsersActivity__block">Blokkér</string>
+  <string name="BlockedUsersActivity__unblock_user">Avblokkér brukar?</string>
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Vil du ikkje lenger blokkera «%1$s»?</string>
   <string name="BlockedUsersActivity__unblock">Fjern blokkering</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">Blokker og forlat %1$s?</string>
-  <string name="BlockUnblockDialog_block_s">Blokker %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikkje lenger motta meldingar eller oppdateringar frå denne gruppa, og medlemmar vil ikkje lenger kunna legga deg til gruppa igjen.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppemedlemmar vil ikkje kunna legga deg til i gruppa igjen.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlemmar vil kunna legga deg til i gruppa igjen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Dokker vil kunna senda meldingar og ringa til kvarandre, og namnet og bildet ditt blir delt med dei.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokkerte kontaktar vil ikkje kunna ringa deg eller senda deg meldingar.</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">Blokkér og forlat %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">Blokkér %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikkje lenger motta meldingar eller oppdateringar frå denne gruppa, og medlemmar vil ikkje lenger kunna leggja deg til gruppa att.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppemedlemmar vil ikkje kunna leggja deg til i gruppa att.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlemmar vil kunna leggja deg til i gruppa att.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">De vil kunna senda meldingar og ringja til kvarandre, og namnet og biletet ditt vert delt med dei.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokkerte kontaktar vil ikkje kunna ringja deg eller senda deg meldingar.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokker oppdateringar og nyheiter frå Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->

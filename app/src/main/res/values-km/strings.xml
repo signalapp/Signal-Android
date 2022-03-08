@@ -15,7 +15,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">ពេលនេះ %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">អ្នកមិនទាន់បានកំណត់ឃ្លាសម្ងាត់ទេ!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">បិទឃ្លាសម្ងាត់?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">វានឹងដោះសោរ Signal  និងសារជូនដំណឹងជាអចិន្ត្រៃយ៍។</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">វានឹងដោះសោ Signal  និងសារជូនដំណឹងជាអចិន្ត្រៃយ៍។</string>
   <string name="ApplicationPreferencesActivity_disable">បិទចោល</string>
   <string name="ApplicationPreferencesActivity_unregistering">កំពុងលុបការចុះឈ្មោះ</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">កំពុងលុបការចុះឈ្មោះចេញពីសារ​ និងការហៅចេញរបស់Signal</string>
@@ -123,7 +123,9 @@
   <string name="CameraContacts__menu_search">ស្វែងរក</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">បិទការចៀសវាងការឃ្លាំមើល</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">អ្នកអាចភ្ជាប់ទៅកាន់សេវាកម្ម Signal ដោយផ្ទាល់ជាមួយនឹងបទពិសោធន៍កាន់តែប្រសើរ។</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">បិទ</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -513,7 +515,7 @@
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="other">សមាជិក %1$d នាក់មិនអាចបន្ថែមម្តងទៀតចូលក្រុមថ្មី។ តើអ្នកចង់បន្ថែមពួកគេឥឡូវនេះ?</item>
+    <item quantity="other">សមាជិក %1$d មិនអាចបន្ថែមម្តងទៀតចូលក្រុមថ្មី។ តើអ្នកចង់បន្ថែមពួកគេឥឡូវនេះ?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="other">បន្ថែមសមាជិក</item>
@@ -605,13 +607,13 @@
     <item quantity="other">សមាជិក %d នាក់មិនគាំទ្រក្រុមថ្មី ដូច្នេះក្រុមនេះមិនអាចបង្កើតបានទេ។</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">ក្រុមជំនាន់មុនមួយនឹងត្រូវបង្កើត ដោយសារ “%1$s” កំពុងប្រើប្រាស់ Signal ជំនាន់ចាស់។ អ្នកអាចបង្កើតក្រុមស្ទាយថ្មី ជាមួយពួកគេ បន្ទាប់ពីពួកគេធ្វើបច្ចុប្បន្នភាព Signal ឬលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">ក្រុមជំនាន់មុនមួយនឹងត្រូវបង្កើត ដោយសារ “%1$s” កំពុងប្រើប្រាស់ Signal កំណែចាស់។ អ្នកអាចបង្កើតក្រុមស្ទាយថ្មី ជាមួយពួកគេ បន្ទាប់ពីពួកគេធ្វើបច្ចុប្បន្នភាព Signal ឬលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="other">ក្រុមជំនាន់មុនមួយនឹងត្រូវបង្កើត ដោយសារសមាជិក %1$d នាក់កំពុងប្រើប្រាស់ Signal ជំនាន់ចាស់។ អ្នកអាចបង្កើតក្រុមស្ទាយថ្មី ជាមួយពួកគេ បន្ទាប់ពីពួកគេធ្វើបច្ចុប្បន្នភាព Signal ឬលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។</item>
+    <item quantity="other">ក្រុមជំនាន់មុនមួយនឹងត្រូវបង្កើត ដោយសារសមាជិក %1$d នាក់កំពុងប្រើប្រាស់ Signal កំណែចាស់។ អ្នកអាចបង្កើតក្រុមស្ទាយថ្មី ជាមួយពួកគេ បន្ទាប់ពីពួកគេធ្វើបច្ចុប្បន្នភាព Signal ឬលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ក្រុមនេះមិនអាចបង្កើតបាន ដោយសារ “%1$s” កំពុងប្រើប្រាស់ Signal​ ជំនាន់ចាស់។ អ្នកត្រូវលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។ </string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ក្រុមនេះមិនអាចបង្កើតបាន ដោយសារ “%1$s” កំពុងប្រើប្រាស់ Signal​ កំណែចាស់។ អ្នកត្រូវលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។ </string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="other">ក្រុមនេះមិនអាចបង្កើតបាន ដោយសារសមាជិក %1$d នាក់កំពុងប្រើប្រាស់ Signal​ ជំនាន់ចាស់។ អ្នកត្រូវលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។ </item>
+    <item quantity="other">ក្រុមនេះមិនអាចបង្កើតបាន ដោយសារសមាជិក %1$d នាក់កំពុងប្រើប្រាស់ Signal​ កំណែចាស់។ អ្នកត្រូវលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។ </item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">ការស្នើសុំសមាជិក &amp; ការអញ្ជើញ</string>
@@ -636,12 +638,12 @@
   <plurals name="ManageGroupActivity_added">
     <item quantity="other">បានបន្ថែមសមាជិក %d នាក់។</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">មានតែអ្នកគ្រប់គ្រង អាចបើក ឬបិទ តំណចែករំលែកក្រុម។</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">មានតែអ្នកគ្រប់គ្រង អាចបើក ឬបិទជម្រើសអនុម័តសមាជិកថ្មី។</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">មានតែអ្នកគ្រប់គ្រង អាចកំណត់ឡើងវិញ តំណចែករំលែកក្រុម។</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">មានតែអភិបាលទេ អាចបើក ឬបិទ តំណចែករំលែកក្រុម។</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">មានតែអភិបាលទេ អាចបើក ឬបិទជម្រើសអនុម័តសមាជិកថ្មី។</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">មានតែអភិបាលទេ អាចកំណត់ឡើងវិញ តំណចែករំលែកក្រុម។</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">អ្នកមិនមានសិទ្ធិធ្វើដូចនេះទេ</string>
   <string name="ManageGroupActivity_not_capable">សមាជិកដែលអ្នកដាក់បញ្ចូលមិនគាំទ្រក្រុមថ្មី និងត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
-  <string name="ManageGroupActivity_not_announcement_capable">នរណាម្នាក់ដែលអ្នកបានបន្ថែម មិនគាំទ្រក្រុមប្រកាសដំណឹង និងត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">បុគ្គលដែលអ្នកបានបន្ថែមចូល មិនមានមុខងារទទួលដំណឹងរបស់ក្រុម និងគាត់ត្រូវធ្វើបច្ចុប្បន្នភាព Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">អ្នកមិនមែនជាសមាជិកនៃក្រុម</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពក្រុម សូមព្យាយាមម្តងទៀត</string>
@@ -650,15 +652,15 @@
   <string name="ManageGroupActivity_legacy_group">ក្រុមមុន</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">នេះជាក្រុមជំនាន់មុនមួយ។ មុខងារដូចជា អ្នកគ្រប់គ្រងក្រុម មានតែសម្រាប់ក្រុមថ្មីប៉ុណ្ណោះ។</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">នេះជាក្រុមជំនាន់មុន។ ដើម្បីចូលប្រើប្រាស់មុខងារថ្មី ដូចជា @mentions និងអ្នកគ្រប់គ្រង</string>
-  <string name="ManageGroupActivity_legacy_group_too_large">នេះជាក្រុមជំនាន់មុន មិនអាចដំឡើងទៅក្រុមថ្មីបាន ដោយសារវាមានទំហំធំពេក។ ទំហំអតិបរមាក្រុមគឺ  %1$d។</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">នេះជាក្រុមជំនាន់មុន មិនអាចដំឡើងទៅក្រុមថ្មីបាន ដោយសារវាមានទំហំធំពេក។ ទំហំអតិបរមារបស់ក្រុមគឺ  %1$d។</string>
   <string name="ManageGroupActivity_upgrade_this_group">ដំឡើងក្រុមនេះ។</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">នេះគឺជាក្រុម MMS ដែលមិនមានសុវត្ថិភាព។ ដើម្បីជជែកជាឯកជន សូមអញ្ជើញទំនាក់ទំនងរបស់អ្នកមកកាន់ Signal ។</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">នេះគឺជាក្រុម MMS ដែលមិនមានសុវត្ថិភាព។ ដើម្បីឈែតជាឯកជន សូមអញ្ជើញទំនាក់ទំនងរបស់អ្នកមកកាន់ Signal ។</string>
   <string name="ManageGroupActivity_invite_now">អញ្ជើញឥឡូវ</string>
   <string name="ManageGroupActivity_more">បន្ថែម</string>
   <string name="ManageGroupActivity_add_group_description">បន្ថែមការពណ៌នាក្រុម…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ទទួលបានការជូនដំណឹងនៅពេលដែលអ្នកត្រូវបានគេហៅនៅក្នុងការសន្ទនាស្ងាត់ ៗ ?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ទទួលបានការជូនដំណឹងនៅពេលដែលអ្នកត្រូវបានគេហៅនៅក្នុងការសន្ទនាស្ងាត់ៗ ?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">ជូនដំណឹងខ្ញុំជានិច្ច</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">កុំជូនដំណឹងខ្ញុំ</string>
   <!--ManageProfileFragment-->
@@ -699,7 +701,7 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">កំណត់តំណភ្ជាប់ឡើងវិញ</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">ការស្នើសុំសមាជិក</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">អនុម័តសមាជិកថ្មី</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ទាមទារអ្នកគ្រប់គ្រង ដើម្បីអនុម័តសមាជិកថ្មី ចូលរួមតាមតំណភ្ជាប់ក្រុម។</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ទាមទារអភិបាល ដើម្បីអនុម័តសមាជិកថ្មី ចូលរួមតាមតំណភ្ជាប់ក្រុម។</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">តើអ្នកប្រាកដថាចង់កំណត់តំណភ្ជាប់ក្រុមឡើងវិញ? អ្នកដទៃ នឹងមិនអាចចូលរួមក្រុម ដោយប្រើប្រាស់តំណភ្ជាប់បច្ចុប្បន្នបានទេ។</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">កូដ QR</string>
@@ -718,8 +720,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">តំណភ្ជាប់របស់ក្រុមនេះមិនដំណើរការទេ</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">មិនអាចទទួលព័ត៌មានក្រុម សូមសាកល្បងម្តងទៀតពេលក្រោយ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">តើអ្នកចង់ចូលរួមក្រុមនេះ និងចែករំលែកឈ្មោះអ្នក និងរូបភាពជាមួយសមាជិកក្រុម?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">អ្នកគ្រប់គ្រងនៃក្រុមនេះ ត្រូវអនុម័តសំណើរបស់អ្នក មុនពេលអ្នកអាចចូលរួមក្រុមនេះ។ នៅពេលអ្នកបានស្នើចូលរួម ឈ្មោះនិងរូបភាពរបស់អ្នក នឹងត្រូវចែករំលែកជាមួយសមាជិកក្រុម។</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">តើអ្នកចង់ចូលរួមក្រុមនេះ និងចែករំលែកឈ្មោះអ្នក និងរូបភាពជាមួយសមាជិកក្រុមឬទេ?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">អភិបាលនៃក្រុមនេះ ត្រូវអនុម័តសំណើរបស់អ្នក មុនពេលអ្នកអាចចូលរួមក្រុមនេះ។ នៅពេលអ្នកបានស្នើចូលរួម ឈ្មោះនិងរូបភាពរបស់អ្នក នឹងត្រូវចែករំលែកជាមួយសមាជិកក្រុម។</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="other">ក្រុម · %1$d សមាជិក</item>
   </plurals>
@@ -736,7 +738,7 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">ចែករំលែកតំណភ្ជាប់</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">មិនអាចបើកតំណភ្ជាប់ក្រុម។ សូមសាកល្បងម្តងទៀតពេលក្រោយ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">អ្នកមិនមានសិទ្ធិក្នុងការបើកតំណភ្ជាប់ក្រុម។ សូមសួរអ្នកគ្រប់គ្រង។</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">អ្នកមិនមានសិទ្ធិក្នុងការបើកតំណភ្ជាប់ក្រុម។ សូមសួរអភិបាល។</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">ឥឡូវនេះ អ្នកមិនមែនជាសមាជិកនៃក្រុមនេះទេ។</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">បន្ថែម “%1$s” ចូលក្នុងក្រុម?</string>
@@ -893,7 +895,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">រយៈពេលសារបាត់ទៅវិញត្រូវបានកំណត់ទៅ %1$s។</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">ក្រុមនេះ ត្រូវបានធ្វើបច្ចុប្បន្នភាពទៅក្រុមថ្មី។</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">អ្នកមិនអាចបន្ថែមចូលក្រុមថ្មី និងត្រូវបានអញ្ជើញចូលរួម។</string>
-  <string name="MessageRecord_chat_session_refreshed">វគ្គជជែកត្រូវបានផ្ទុកឡើងវិញ</string>
+  <string name="MessageRecord_chat_session_refreshed">វគ្គឈែតត្រូវបានផ្ទុកឡើងវិញ</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="other">សមាជិក %1$s នាក់មិនអាចបន្ថែមចូលក្រុមថ្មី និងត្រូវបានអញ្ជើញឲ្យចូលរួម។</item>
   </plurals>
@@ -901,8 +903,8 @@
     <item quantity="other">សមាជិក %1$s នាក់មិនអាចបន្ថែមចូលក្រុមថ្មី និងត្រូវបានលុបចេញ។</item>
   </plurals>
   <!--Profile change updates-->
-  <string name="MessageRecord_changed_their_profile_name_to">%1$s បានផ្លាស់ប្តូរឈ្មោះប្រវត្តិរូបទៅ %2$s។</string>
-  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s បានផ្លាស់ប្តូរឈ្មោះប្រវត្តិរូបពី %2$s ទៅ %3$s។</string>
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s បានផ្លាស់ប្តូរឈ្មោះ​គណនី​ទៅ %2$s។</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s បានផ្លាស់ប្តូរឈ្មោះ​គណនី​ពី %2$s ទៅ %3$s។</string>
   <string name="MessageRecord_changed_their_profile">%1$s បានផ្លាស់ប្តូររូប​គណនីរបស់ពួកគេ។</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">អ្នកបានបង្កើតក្រុមនេះ។</string>
@@ -993,18 +995,18 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">អ្នកបានបើកតំណភ្ជាប់ក្រុម ជាមួយការអនុម័តពីអ្នកគ្រប់គ្រង បិទ។</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">អ្នកបានបើកតំណភ្ជាប់ក្រុម ជាមួយការអនុម័តពីអ្នកគ្រប់គ្រង បើក។</string>
   <string name="MessageRecord_you_turned_off_the_group_link">អ្នកបានបិទតំណភ្ជាប់ក្រុម។</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s បានបើកតំណភ្ជាប់ក្រុម ជាមួយការអនុម័តពីអ្នកគ្រប់គ្រង បិទ។</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s បានបើកតំណភ្ជាប់ក្រុម ជាមួយការអនុម័តពីអ្នកគ្រប់គ្រង បើក។</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s បានបើកតំណភ្ជាប់ក្រុម ជាមួយការអនុម័តពីអភិបាល បិទ។</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s បានបើកតំណភ្ជាប់ក្រុម ជាមួយការអនុម័តពីអភិបាល បើក។</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s បានបិទតំណភ្ជាប់ក្រុម។</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">តំណភ្ជាប់ក្រុមត្រូវបានបើក ជាមួយការអនុម័តពីអ្នកគ្រប់គ្រង បិទ។</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">តំណភ្ជាប់ក្រុមត្រូវបានបើក ជាមួយការអនុម័តពីអ្នកគ្រប់គ្រង បើក។</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">តំណភ្ជាប់ក្រុមត្រូវបានបើក ជាមួយការអនុម័តពីអភិបាល បិទ។</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">តំណភ្ជាប់ក្រុមត្រូវបានបើក ជាមួយការអនុម័តពីអភិបាល បើក។</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">តំណភ្ជាប់ក្រុមត្រូវបានបិទ។</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">អ្នកបានបិទការអនុម័តពីអ្នកគ្រប់គ្រង សម្រាប់តំណភ្ជាប់ក្រុម។</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s បានបិទការអនុម័តពីអ្នកគ្រប់គ្រង សម្រាប់តំណភ្ជាប់ក្រុម។</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">អ្នកបានបិទការអនុម័តពីអភិបាល សម្រាប់តំណភ្ជាប់ក្រុម។</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s បានបិទការអនុម័តពីអភិបាល សម្រាប់តំណភ្ជាប់ក្រុម។</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">ការអនុម័តពីអ្នកគ្រប់គ្រង សម្រាប់តំណភ្ជាប់ក្រុមត្រូវបានបិទ។</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">អ្នកបានបើកការអនុម័តពីអ្នកគ្រប់គ្រង សម្រាប់តំណភ្ជាប់ក្រុម។</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s បានបើកការអនុម័តពីអ្នកគ្រប់គ្រង សម្រាប់តំណភ្ជាប់ក្រុម។</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">ការអនុម័តពីអ្នកគ្រប់គ្រង សម្រាប់តំណភ្ជាប់ក្រុមត្រូវបានបើក។</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">អ្នកបានបើកការអនុម័តពីអភិបាល សម្រាប់តំណភ្ជាប់ក្រុម។</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s បានបើកការអនុម័តពីអភិបាល សម្រាប់តំណភ្ជាប់ក្រុម។</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">ការអនុម័តពីអភិបាល សម្រាប់តំណភ្ជាប់ក្រុមត្រូវបានបើក។</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">អ្នកបានកំណត់តំណភ្ជាប់សារឡើងវិញ។</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s បានកំណត់តំណភ្ជាប់ក្រុមឡើងវិញ។</string>
@@ -1533,7 +1535,7 @@
   <string name="NotificationChannel_group_chats">ការជជែក</string>
   <string name="NotificationChannel_missing_display_name">មិនស្គាល់</string>
   <string name="NotificationChannel_voice_notes">កំណត់ត្រាសំឡេង</string>
-  <string name="NotificationChannel_contact_joined_signal">ចូលរួមទំនាក់ទំនងតាមSignal</string>
+  <string name="NotificationChannel_contact_joined_signal">ចូលរួមទំនាក់ទំនងតាម Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">មិនមានសកម្មភាព ដើម្បីបើកការកំណត់បណ្តាញជូនដំណឹង។</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
   <string name="NotificationChannel_background_connection">ការតភ្ជាប់ពីក្រោយ</string>
@@ -1685,7 +1687,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">អូសចុះក្រោម</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
-  <string name="BubbleOptOutTooltip__description">ពពុះ ជាមុខងារមួយរបស់ Android ដែលអ្នកអាចបិទសម្រាប់ការជជែក Signal។</string>
+  <string name="BubbleOptOutTooltip__description">Bubbles ជាមុខងារមួយរបស់ Android ដែលអ្នកអាចបិទសម្រាប់ការជជែក Signal។</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">ពេលក្រោយ</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2094,16 +2096,18 @@
   <string name="preferences_events__contact_joined_signal">ចូលរួមទំនាក់ទំនងតាមSignal</string>
   <string name="preferences_notifications__priority">អទិភាព</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">ការចៀសវាងការឃ្លាំមើល</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
-  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">បើសិនបើក Signalនឹងព្យាយាមចៀសវាងការឃ្លាំមើល។ កុំបើកមុខងារនេះ លុះត្រាអ្នកកំពុងស្ថិតនៅទីតាំងដែល Signalត្រូវបានឃ្លាំមើល។</string>
+  <string name="preferences_communication__censorship_circumvention">ការចៀសវាងការឃ្លាំមើល</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">បើសិនបើក Signalនឹងព្យាយាមចៀសវាងការឃ្លាំមើល។ កុំបើកមុខងារនេះ លុះត្រាអ្នកកំពុងស្ថិតនៅទីតាំងដែល Signal ត្រូវបានឃ្លាំមើល។</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">ការចៀសវាងការឃ្លាំមើល ត្រូវបានដំណើរការ ផ្អែកលើលេខទូរស័ព្ទរបស់គណនីអ្នក។</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">អ្នកបានបិទការបង្ការការត្រួតពិនិត្យ។</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ការចៀសវាងការឃ្លាំមើលមិនចាំបាច់ទេ  អ្នកបានតភ្ជាប់សេវាកម្ម Signalរួចរាល់ហើយ។</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">ការចៀសវាងការឃ្លាំមើលមិនចាំបាច់ទេ  អ្នកបានតភ្ជាប់សេវាកម្ម Signal រួចរាល់ហើយ។</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
-  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ការចៀសវាងការឃ្លាំមើល អាចត្រូវបានដំណើរការ ពេលភ្ជាប់អ៊ីនធើណេតតែប៉ុណ្ណោះ។</string>
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ការចៀសវាងការឃ្លាំមើល អាចត្រូវបានដំណើរការ ពេលភ្ជាប់​អុីនធឺណិត​តែប៉ុណ្ណោះ។</string>
   <string name="preferences_communication__category_sealed_sender">សញ្ញាអ្នកផ្ញើ</string>
   <string name="preferences_communication__sealed_sender_display_indicators">បង្ហាញសូចនាករ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">បង្ហាញស្ថានភាពរូបដំណាងនៅពេលអ្នកជ្រើសរើស \"ព័ត៌មានលម្អិតសាររបស់អ្នក\" នៅលើសារដែលត្រូវបានបញ្ជូនដោយប្រើឧបករណ៍បញ្ចូន</string>
@@ -2200,7 +2204,7 @@
   <string name="PaymentsDetailsFragment__sent_payment">ការទូទាត់បានផ្ញើ</string>
   <string name="PaymentsDetailsFragment__received_payment">ការទូទាត់បានទទួល</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">ការទូទាត់បានបញ្ចប់ %1$s</string>
-  <string name="PaymentsDetailsFragment__block_number">ហាមឃាត់លេខ</string>
+  <string name="PaymentsDetailsFragment__block_number">ប្លក់លេខ</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">ការបញ្ជូន</string>
   <string name="PaymentsTransferFragment__scan_qr_code">ស្កេនកូដ QR</string>
@@ -2211,7 +2215,7 @@
   <string name="PaymentsTransferFragment__check_the_wallet_address">ពិនិត្យអាសយដ្ឋានកាបូប ដែលអ្នកព្យាយាមផ្ទេរទៅ ហើយសាកល្បងម្តងទៀត។</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">អ្នកមិនអាចផ្ទេរទៅអាសយដ្ឋានកាបូប Signal ខ្លួនឯងទេ។ បញ្ចូលអាសយដ្ឋានកាបូបពីគណនីរបស់អ្នក នៅការផ្លាស់ប្តូរដែលគាំទ្រ។</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">ដើម្បីស្កេនកូដ QR Signal ត្រូវការប្រើប្រាស់កាមេរ៉ា។</string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បថតកូដ QR ។ ចូលទៅ ការកំណត់​ ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"កាមេរ៉ា\"។</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal​ត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បថតកូដ QR ។ ចូលទៅ ការកំណត់​ ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"កាមេរ៉ា\"។</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal ត្រូវការប្រើប្រាស់កាមេរ៉ា ដើម្បីស្គែន QR Code។</string>
   <string name="PaymentsTransferFragment__settings">ការកំណត់</string>
   <!--PaymentsTransferQrScanFragment-->
@@ -2641,7 +2645,7 @@
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ចុចពាក្យ បន្ត លើឧបករណ៍មួយទៀតរបស់អ្នកដើម្បីចាប់ផ្ដើមការផ្ទេរ</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device">ចុចពាក្យ បន្ត លើឧបករណ៍មួយទៀតរបស់អ្នក</string>
   <!--NewDeviceTransferFragment-->
-  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">មិនអាចផ្ទេរចេញពី Signal ជំនាន់ថ្មីជាងនោះទេ</string>
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">មិនអាចផ្ទេរចេញពី Signal កំណែថ្មីជាងនោះទេ</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">កំពុងផ្ទេរទិន្នន័យ</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">សូមទុកឧបករណ៍ទាំងពីរនៅជិតគ្នា។ កុំបិទឧបករណ៍ណាមួយ ហើយបើកកម្មវិធី Signal ។ ការផ្ទេរគឺមានកូដនីយកម្មសងខាង។</string>
@@ -3186,7 +3190,7 @@
   <string name="PermissionsSettingsFragment__all_members">សមាជិកទាំងអស់</string>
   <string name="PermissionsSettingsFragment__only_admins">តែអ្នកគ្រប់គ្រង</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">នរណាអាចបន្ថែមសមាជិកថ្មីឯ</string>
-  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">នរណាអាចកែប្រែព័ត៌មានក្រុមនេះឯ</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">នរណាអាចកែប្រែព័ត៌មានក្រុមនេះ?</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">អ្នកណាអាចផ្ញើសារបានខ្លះ?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
@@ -3349,7 +3353,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">ស្លាកសម្គាល់អស់សុពលភាព</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">ការជាវត្រូវបានផ្ដាច់</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">ស្លាកសម្គាល់ជំរុញរបស់អ្នកផុតសុពលភាព ហើយអ្នកដទៃមិនអាចមើលឃើញលើគណនីរបស់អ្នកទេ</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">អ្នកអាចដាក់ស្លាកសម្គាល់ជំរុញរបស់អោយសកម្មឡើងវិញសម្រាប់រយៈពេល ៣០ថ្ងៃដោយការចូលរួមចំណែកម្ដង</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">អ្នកអាចដាក់ស្លាកសម្គាល់ជំរុញរបស់អោយសកម្មឡើងវិញសម្រាប់រយៈពេល ​៣០​ថ្ងៃដោយការចូលរួមចំណែកម្ដង</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">ដើម្បីបន្តគាំទ្របច្ចេកវិទ្យាដែលត្រូវបានបង្កើតឡើងសម្រាប់អ្នក សូមពិចារណាក្នុងការក្លាយជា Sustainer​ ម្នាក់ប្រចាំខែរបស់យើង។</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ធ្វើជាអ្នកគាំទ្រ​</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">បន្ថែមការជំរុញ</string>
@@ -3535,7 +3539,7 @@
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">គណនីថ្មី</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
-  <string name="NotificationProfileSelection__for_1_hour">សម្រាប់រយៈពេល ១ម៉ោង</string>
+  <string name="NotificationProfileSelection__for_1_hour">សម្រាប់រយៈពេល ១​ម៉ោង</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">រហូតដល់ %1$s</string>
   <!--Option to view profile details-->

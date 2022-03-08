@@ -124,7 +124,9 @@
   <string name="CameraContacts__menu_search">Serĉi</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Ĉu malŝati Cenzur-preterpason?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Vi povas nun konektiĝi rekte al Signal-servoj por pli bona sperto.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Malaktivigi</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -2187,11 +2189,18 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_events__contact_joined_signal">Kontakto aliĝis al Signal</string>
   <string name="preferences_notifications__priority">Prioritato</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Cenzur-preterpaso</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Cenzur-preterpaso</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Se ŝaltita, Signal provos eviti cenzuron. Ne ŝaltu tiun funkcion, krom se vi estas ie, kie Signal estas cenzurita.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Cenzur-preterpaso estis ŝaltita surbaze de la telefonnumero de via konto.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Vi permane malŝaltis cenzur-preterpason.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Cenzur-preterpaso ne necesas: vi jam konektiĝas al Signal-servoj.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Cenzur-preterpaso estas aktivigebla, nur se la aparato estas konektita al la interreto.</string>
   <string name="preferences_communication__category_sealed_sender">Sekretigo de la sendinto</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Montri indikilojn</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Montri stato-piktogramon, kiam vi elektas eron „Detaloj de la mesaĝo“ ĉe mesaĝoj, kiuj liveriĝis uzante la funkcion „Sekretigo de la sendinto“.</string>

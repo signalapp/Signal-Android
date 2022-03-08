@@ -126,7 +126,9 @@
   <string name="CameraContacts__menu_search">Sykje</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Sensueromlieding útskeakelje?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Do kinst fan no ôf wer in direkte ferbining meitsje mei Signal-servers, Signal wurket dan better.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Utskeakelje</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -152,7 +154,7 @@
   <string name="CommunicationActions_insecure_call">Unfeilich petear</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Dy mobiletelefony-oanbieder bringt miskien ekstra kosten yn rekkening. It nûmer watsto op it punt stiest te beljen is net registrearre by Signal. Dit petear sil fia it telefonynetwurk rinne, net oer ynternet.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Dy feilichheidsnûmer mei %1$s is wizige. Dit kin betsjutte dat ien dyn kommunikaasje probearret te ûnderskeppen, of gewoan dat %2$s Signal opnij ynstallearre hat.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Dyn feilichheidsnûmer mei %1$s is wizige. Dit kin betsjutte dat ien dyn kommunikaasje probearret te ûnderskeppen, of gewoan dat %2$s Signal opnij ynstallearre hat.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Do wolst miskien dyn feilichheidsnûmer by dizze kontaktpersoan ferifiearje.</string>
   <string name="ConfirmIdentityDialog_accept">Akseptearje</string>
   <!--ContactsCursorLoader-->
@@ -1623,7 +1625,9 @@
   <string name="NotificationChannel_contact_joined_signal">Nij persoan berikber fia Signal</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Gjin ‘aktiviteit’ beskikber om ynstellingen foar meldingskanalen mei te iepenjen.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">Eftergrûnferbining</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">Opropsteat</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Fluch reagearje net beskikber wannear Signal beskoattele is!</string>
@@ -2190,11 +2194,18 @@
   <string name="preferences_events__contact_joined_signal">Nij persoan berikber fia Signal</string>
   <string name="preferences_notifications__priority">Prioriteit</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Sensueromlieding</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Sensueromlieding</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Wannear ynskeakele sil Signal probearje sensuer om te lieden. Skeakelje dizze funksje net yn útsein asto op in lokaasje bist dêr’t Signal sensurearre wurdt.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Omdat dyn telefoannûmer by in risikogebiet heart is sensueromlieding automatysk ynskeakele.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Do hast sensueromlieding hânmjittich útskeakele.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Sensueromlieding is foar dy op dit stuit net nedich, want do bist al ferbûn mei Signal-servers.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Sensueromlieding kin allinnich ynskeakele wurde as dyn apparaat mei it ynternet ferbûn is.</string>
   <string name="preferences_communication__category_sealed_sender">Fersegele ôfstjoerder</string>
   <string name="preferences_communication__sealed_sender_display_indicators">‘Fersegele ôfstjoerder’-piktogram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Lit in steatikoan sjen asto tikkest op ‘Berjochtdetails’ by berjochten dy’t ôflevere binne mei in fersegele ôfstjoerder</string>
@@ -2730,9 +2741,20 @@
   <string name="DeviceTransferSetup__location_permission">Machtiging foar Signal om dyn lokaasje te lêzen</string>
   <string name="DeviceTransferSetup__location_services">Lokaasjebepaling</string>
   <string name="DeviceTransferSetup__wifi">Wifi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Smyt yn it wifi-direkt-skerm alle ûnthâlden groepen fuort en ferbrek de ferbining mei alle ferbûne of útnûge apparaten.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Wifi-direkt-skerm</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Probearje ris oft it helpt om wifi út te skeakeljen en wer yn te skeakeljen op beide apparaten.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Kontrolearje dat beide apparaten yn oerset-modus stean.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Gean nei de stipeside</string>
   <string name="DeviceTransferSetup__try_again">Opnij probearje</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Oan it wachtsjen op it oare apparaat…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Tik om it oersetten te begjinnen op dyn oare apparaat op ‘Trochgean’.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tik op dyn oare apparaat op ‘Trochgean’.</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Do kinst gegevens net oersette fan in nijere ferzje fan Signal út</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Gegevens oan it oersetten</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Hâld de apparaten deun by inoar. Skeakelje se net út, en hâld de Signal-app iepen. It oersetten is goed befeilige, want dit bart altyd oer in ein-ta-ein-fersifere ferbining.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d berjochten oant no ta…</string>
   <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% fan de berjochten oant no ta…</string>
@@ -2740,24 +2762,45 @@
   <string name="DeviceTransfer__try_again">Opnij probearje</string>
   <string name="DeviceTransfer__stop_transfer_question">Oersetten annulearje?</string>
   <string name="DeviceTransfer__stop_transfer">Oersetten annulearje</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Alle foarútgong fan it oersetten sil ferlern gean.</string>
+  <string name="DeviceTransfer__transfer_failed">It oersetten fan gegevens is mislearre</string>
+  <string name="DeviceTransfer__unable_to_transfer">Kin gegevens net oersette</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Account oersette</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Do kinst al dyn Signal-gegevens en -berichten oersette wannear’tsto Signal yn gebrûk nimst op in nij apparaat. Folgje dêrfoar dizze stappen:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Download en iepenje Signal op dyn nije Android-apparaat</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tik op ‘Signal-gegevens werstelle of oersette’</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Kies ‘Oersetten fan in Android-apparaat ôf’ wannear’t de opsje werjûn wurdt. Tik dan op ‘Trochgean’. Hâld de apparaten deun by inoar.</string>
   <string name="OldDeviceTransferInstructions__continue">Trochgean</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Oersetten foltôge</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Gean troch op dyn nije apparaat</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Dy Signal-gegevens binne oerset nei dyn nije apparaat. Om it oersetten te foltôgjen moatsto earst noch de registraasje fan dyn telefoannûmer op dyn nije apparaat dien meitsje.</string>
   <string name="OldDeviceTransferComplete__close">Slute</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Oersetten mei sukses foltôge</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Oersetten foltôge</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Om it oersetten te foltôgjen moatsto earst noch de registraasje dien meitsje.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Trochgean mei registraasje</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Account oersette</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Oan it tarieden om ferbining te meitsjen mei dyn oare Android-apparaat…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Oan it tarieden om ferbining te meitsjen mei dyn oare Android-apparaat…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Der wurdt socht nei dyn oare Android-apparaat…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Ferbining oan it meitsjen mei dyn oare Android-apparaat…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Ferifikaasje fereaske</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Account oersette…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Meitsje op dyn nije Android-apparaat de stappen foar registraasje dien.</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Dyn Signal-gegevens binne oerset nei dyn nije apparaat, mar om it oersetten te foltôgjen moatsto earst noch de registraasje fan dyn telefoannûmer op dyn nije apparaat dien meitsje.</string>
   <string name="OldDeviceTransferLockedDialog__done">Klear</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annulearje en dit apparaat aktivearje</string>
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB-kredyt oerskriuwe?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Do hast noch in kredyt fan %1$s. Asto dit kredyt net nei in oar portemonnee-adres oersertst, dan rekkesto dyn kredyt permanint kwyt.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Net oerskriuwe</string>
   <string name="AdvancedPreferenceFragment__transfer">Oerskriuwe</string>
   <!--RecipientBottomSheet-->
@@ -2787,7 +2830,13 @@
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Ferâldere groepen tsjinoer nij-styl-groepen</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Wat binne ferâldere groepen?</string>
+  <string name="GroupsLearnMore_paragraph_1">Ferâldere groepen binne groepen wêryn\'tsto gjin gebrûk meitsje kinst fan nije funksjonaliteiten, lykas behearders en mear detaillearre meldingen.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kin ik in ferâldere groep omsette yn in nije groep?</string>
+  <string name="GroupsLearnMore_paragraph_2">Ferâldere groepen kinne net omset wurde yn nije groepen, mar do kinst wol in nije groep oanmeitsje mei deselde leden, mits se allegearre de meast resinte ferzje fan Signal brûke.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal sil yn de takomst in manier oanbiede om ferâldere groepen om te setten yn nije groepen.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Elk dy’t oer dizze ferwizing beskikt kin de namme, ôfbylding en it oantal leden fan dizze groep sjen en kin ek in fersyk yntsjinje om lid wurde te meien. Diel dizze ferwizing allinnich mei persoanen dy’tsto fertroust.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Elk dy’t oer dizze ferwizing beskikt kin de namme, ôfbylding en it oantal leden fan dizze groep sjen en kin daliks lid wurde. Diel dizze ferwizing allinnich mei persoanen dy’tsto fertroust.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Ferstjoere fia Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiearje</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-koade</string>
@@ -2807,6 +2856,8 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Groepsleden fergelykje</string>
   <string name="ReviewCardDialogFragment__review_request">Persoanen fergelykje</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d groepsleden hawwe deselde namme. Fergelykje dizze groepsleden hjirûnder en ûndernim aksje asto tinkst dat ien fan harren probearret harren foar te dwaan as de oar.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Fergelykje, asto net wis bist fan wa’t it petearfersyk ôfkomstich is, de persoanen hjirûnder en ûndernim aksje asto tinkst dat ien fan harren probearret harren foar te dwaan as de oar.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Gjin oare mienskiplike groepen</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Gjin mienskiplike groepen</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2837,6 +2888,7 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s hat de oprop ferlitten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s en %2$s hawwe de oprop ferlitten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s en %3$s hawwe de oprop ferlitten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s en %3$d oar hawwe de oprop ferlitten</string>
   <string name="CallParticipant__you">Do</string>
   <string name="CallParticipant__you_on_another_device">Do (fan in oar apparaat ôf)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (fan in oar apparaat ôf)</string>
@@ -2849,16 +2901,24 @@
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s wiskje fan dyn oerskriuwingsaccount</string>
   <string name="DeleteAccountFragment__no_country_code">Der is gjin lânkoade spesifisearre</string>
   <string name="DeleteAccountFragment__no_number">Der is gjin telefosnnûmer ynfierd</string>
+  <string name="DeleteAccountFragment__the_phone_number">It telefoannûmer datsto ynfolle hast komt net oerien mei it telefoannûmer wêrmei’tsto registrearre bist by Signal.</string>
+  <string name="DeleteAccountFragment__are_you_sure">Bisto wis datsto dyn registraasje opsizze wolst en al dyn gegevens en petearen wiskje wolst?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hjirmei wiskesto al dyn Signal-gegevens, sawol fan de servers as fan dyn telefoan. De app sil himsels slute neidatsto dit dochst.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">It wiskjen fan dyn gegevens is mislearre. Hasto in wurkjende netwurkferbining?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">It wiskjen fan lokale gegevens is mislearre. Do kinst de lokale gegevens sels wiskje fia it \'apps\'-menu yn de ynstellingen fan dyn bestjoeringssysteem.</string>
   <string name="DeleteAccountFragment__launch_app_settings">App-ynstellingen iepenje</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
   <string name="DeleteAccountFragment__leaving_groups">Groepen oan it ferlitten…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Gegevens oan it wiskjen…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Ofhinklik fan it oantal groepen wêrfan\'tsto lid bist kin dit in oantal minuten duorje</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Brûkersgegevens wurde wiske</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">Dyn gegevens binne net wiske</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Der is in probleem mei it wiskjen fan dyn gegevens. Kontrolearje dat dyn apparaat mei it ynternet ferbûn is en probearje it opnij.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Lân sykje</string>
   <!--CreateGroupActivity-->
@@ -2871,7 +2931,10 @@
   <string name="ShareActivity__share">Mei oaren diele</string>
   <string name="ShareActivity__send">Ferstjoere</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Trochstjoeren nei meardere petearen kin allinnich foar Signal-berjochten.</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">It ferstjoeren is nei guon persoanen mislearre</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Do kinst dit net nei mear as %1$d petearen tagelyk trochstjoere</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Berjocht trochstjoere</string>
   <!--ChatWallpaperActivity-->
@@ -2882,6 +2945,7 @@
   <string name="ChatWallpaperFragment__reset_chat_color">Kleurynstelling fuortsmite</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">Kleurynstelling fuortsmite?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Peteareftergrûn kieze</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Eftergrûn dimme by donkere modus</string>
   <string name="ChatWallpaperFragment__contact_name">Namme fan kontaktpersoan</string>
   <string name="ChatWallpaperFragment__reset">Opnij ynstelle</string>
   <string name="ChatWallpaperFragment__clear">Fuortsmite</string>
@@ -3010,8 +3074,11 @@
   <string name="AppSettingsFragment__invite_your_friends">Kennissen útnûgje</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Dyn account</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Omtinkens helpe dy om dyn Signal-pinkoade te ûnthâlden. Dit is wichtich, omdatsto dy pinkoade letter net wizigje of weromlêze kinst en omdatsto de pinkoade nedich hawwe silst om dyn gegevens te werstellen wannear’tsto dyn telefoannûmer opnij registrearrest. Neidatsto dyn pinkoade in oantal kear krekt ynfierst, silsto minder faak omtinkens te sjen krije.</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Brûk dyn pinkoade foar twa-faktor-autentikaasje. Elke dy’t dyn telefoannûmer opnij probearret te registrearjen by Signal moat ferplicht dyn Signal-pinkoade ynfiere. Hjirtroch kin net ien útsein do de Signal-berjochten ferstjoere of ûntfange mei dyn telefoannûmer.</string>
   <string name="AccountSettingsFragment__change_phone_number">Telefoannûmer wizigje</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Brûk dit asto Signal mei in oar telefoannûmer brûke bliuwe wolst. Do kinst it oerstappen nei in nij telefoannûmer net ûngedien meitsje.\n\nKontrolearje eardatsto fierder giest datsto op it nije telefoannûmer sms-berjochten of oproppen ûntfange kinst.</string>
   <string name="ChangeNumberFragment__continue">Trochgean</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
   <string name="ChangeNumber__your_phone_number_has_changed_to_s">Dyn telefoannûmer is wizige nei %1$s</string>
@@ -3023,6 +3090,7 @@
   <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Dyn nije telefoannûmer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Dyn nije nûmer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nij telefoannûmer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">It telefoannûmer datsto ynfolle hast komt net oerien mei it telefoannûmer wêrmei’tsto registrearre bist by Signal.</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Do moatst dyn âlde lânkoade oanjaan</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Do moatst dyn âlde telefoannûmer ynfolje</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Do moatst dyn nije lânkoade oanjaan</string>
@@ -3033,18 +3101,23 @@
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha fereaske</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Telefoannûmer wizigje</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Do stiest op it punt it telefoannûmer wêrmei’tsto registrearre stiest te wizigjen fan %1$s nei %2$s.\n\nKontrolearje dat it telefoannûmer hjirûnder krekt is eardatsto fierder giest.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Telefoannûmer wizigje</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Telefoannûmer foar Signal wizigje – Help nedich mei de pinkoade foar Android (pinkoade-ferzje 2)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">De pinkoaden komme net oerien</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">De pinkoade foar dyn nije telefoannûmer is oars as de pinkoade foar dyn âlde telefoannûmer. Wolsto de âlde pinkoade behâlde of in nije pinkoade oanmeitsje?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Alde pinkoade behâlde</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Pinkoade bywurkje</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Alde pinkoade behâlde?</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">It liket der op datsto probearre hast om dyn telefoannûmer te wizigjen, mar Signal kin net fêststelle oft dat slagge is.\n\nSignal kontrolearret no opnij oft dyn telefoannûmer wizige is…</string>
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_confirmed">Telefoannûmer is mei sukses wizige</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Dyn nije telefoannûmer %1$s is no befêstige. Start it ‘telefoannûmer wizigje’-proses opnij as dit net dyn nije telefoannûmer is.</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Unbekend of telefoannûmer wizige is</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
@@ -3069,10 +3142,12 @@
   <!--Notification preference option header-->
   <string name="NotificationsSettingsFragment__profiles">Meldingsprofilen ynstelle</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Meitsje in meldingsprofyl oan wêrtroch dyn meldingen fan bepaalde persoanen of groepen allinnich krigest op mominten datsto dêr nocht oan hast</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
   <string name="NotificationProfilesFragment__notification_profiles">Meldingsprofilen</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Meldingsprofyl oanmeitsje</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokkearre</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d persoanen</string>
@@ -3080,7 +3155,12 @@
   <string name="PrivacySettingsFragment__disappearing_messages">Ferrinnende berjochten</string>
   <string name="PrivacySettingsFragment__app_security">App-befeiliging</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Beskermje dyn petearen op dyn eigen telefoan tsjin skermopnamen fan oare apps út troch Signals ynhâld te ferstopjen yn de list fan resint iepene apps en troch skermôfdrukken te blokkearjen</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berjochten en -oproppen, alle oproppen omliede en fersegele ôfstjoerder</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standert tiidrek foar alle nije petearen</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel yn dat berjochten yn alle nije petearen dy’tsto sels begjinst in bepaalde tiid neidat se sjoen binne foar sawol do as dyn petearpartner fansels wiske wurde.</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Piktogram werjaan</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Lit yn de berjochtdetails in piktogram sjen by berjochten dy’t ôflevere binne mei in fersegele ôfstjoerder</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">Ut</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 wiken</string>
@@ -3104,9 +3184,11 @@
   <string name="HelpSettingsFragment__version">Ferzje</string>
   <string name="HelpSettingsFragment__debug_log">Flateropspoaringslogboek</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Gebrûksbetingsten &amp; privacybelied</string>
+  <string name="HelpFragment__copyright_signal_messenger">Auteursrjocht Signal-berjochte-app</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Utjûn ûnder in GPLv3 lisinsje</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Media-ferstjoerkwaliteit</string>
   <string name="DataAndStorageSettingsFragment__high">Heech</string>
   <string name="DataAndStorageSettingsFragment__standard">Standert</string>
   <string name="DataAndStorageSettingsFragment__calls">Oproppen</string>
@@ -3118,43 +3200,73 @@
   <string name="ChatColorSelectionFragment__duplicate">Kopy meitsje</string>
   <string name="ChatColorSelectionFragment__delete">Ferwiderje</string>
   <string name="ChatColorSelectionFragment__delete_color">Kleur fuortsmite</string>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Petearkleur fuortsmite?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Effen</string>
   <string name="CustomChatColorCreatorFragment__gradient">Ferrin</string>
   <string name="CustomChatColorCreatorFragment__hue">Tint</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Sêding</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Opslaan</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Kleur oanpasse</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Dizze kleur wurdt yn %1$d petear brûkt. Wolsto de wiziging ek op dat petear tapasse?</item>
+    <item quantity="other">Dizze kleur wurdt yn %1$d petearen brûkt. Wolsto de wiziging ek op dy petearen tapasse?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Skowknop foar de bopperâne</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Skowknop foar de ûnderrâne</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Reaksje-balke personalisearje</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tik op in emoji om dy te ferfangen</string>
   <string name="EditReactionsFragment__reset">Opnij ynstelle</string>
   <string name="EditReactionsFragment_save">Opslaan</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">‘Auto’ betsjut dat der automatysk in kleur keazen wurdt dy’t past by de eftergrûn</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Sleep om de rjochting fan it ferrin te wizigjen</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nije petearkleuren</string>
   <string name="ChatColorsMegaphone__appearance">Uterlik</string>
   <string name="ChatColorsMegaphone__not_now">No net</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Foegje in profylfoto ta</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Meitsje dysels werkenber troch in profylfoto yn te stellen of pas de kleur of tekst oan.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">No net</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Foegje in foto ta</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Wurdt in stiper</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Nee, tankewol</string>
+  <string name="BecomeASustainerMegaphone__contribute">Bydrage</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Emoji sykje</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Stikker sykje</string>
   <string name="KeyboardPagerFragment_open_gif_search">GIF sykje</string>
   <string name="KeyboardPagerFragment_stickers">Stikkers</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
   <string name="KeyboardPagerFragment_gifs">GIF’s</string>
   <string name="KeyboardPagerFragment_search_emoji">Emoji sykje</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Tebek nei emoji-oersjoch</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Sykfjild leechmeitsje</string>
+  <string name="KeyboardPagerFragment_search_giphy">By GIPHY sykje</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Stikkers sykje</string>
   <string name="StickerSearchDialogFragment_no_results_found">Gjin emoji fûn</string>
   <string name="EmojiSearchFragment__no_results_found">Gjin emoji fûn</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Unbekend lûd</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Berjocht ferstjoere</string>
+  <string name="ConversationSettingsFragment__start_video_call">Fideopetear begjinne</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Audio-oprop begjinne</string>
   <string name="ConversationSettingsFragment__message">Berjocht</string>
   <string name="ConversationSettingsFragment__video">Fideo</string>
   <string name="ConversationSettingsFragment__audio">Audio</string>
   <string name="ConversationSettingsFragment__call">Skilje</string>
   <string name="ConversationSettingsFragment__mute">Meldingen dôvje</string>
+  <string name="ConversationSettingsFragment__muted">Meldingen net langer dôvje</string>
   <string name="ConversationSettingsFragment__search">Sykje</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Ferrinnende berjochten</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Lûd &amp; meldingen</string>
+  <string name="ConversationSettingsFragment__contact_details">Details oer dizze kontaktpersoan</string>
   <string name="ConversationSettingsFragment__view_safety_number">Feilichheidsnûmer werjaan</string>
   <string name="ConversationSettingsFragment__block">Blokkearje</string>
   <string name="ConversationSettingsFragment__block_group">Groep blokkearje en ferlitte</string>
@@ -3164,33 +3276,50 @@
   <string name="ConversationSettingsFragment__see_all">Alles werjaan</string>
   <string name="ConversationSettingsFragment__add_members">Groepsleden tafoegje</string>
   <string name="ConversationSettingsFragment__permissions">Machtigingen</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Fersiken &amp; útnûgingen</string>
   <string name="ConversationSettingsFragment__group_link">Groepsferwizing</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">As kontaktpersoan tafoegje</string>
   <string name="ConversationSettingsFragment__unmute">Meldingen net langer dôvje</string>
   <string name="ConversationSettingsFragment__phone_number">Telefoannûmer</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Groepsleden tafoegje</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Groepsynformaasje oanpasse</string>
+  <string name="PermissionsSettingsFragment__send_messages">Berjochten ferstjoere</string>
   <string name="PermissionsSettingsFragment__all_members">Alle groepsleden</string>
   <string name="PermissionsSettingsFragment__only_admins">Allinnich behearders</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Wa mei nije leden tafoegje?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wa mei de groepsynformaasje oanpasse?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Wa kinne berjochten ferstjoere?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Meldingen dôvje</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Net dôve</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Dôve oant %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Fermeldingen</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Altyd in melding by fermeldingen</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Gjin meldingen oer fermeldingen</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Oanpaste meldingen</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Resintlik brûkt</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__1p5x">1,5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nije oerskriuwing</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nij berjocht</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Sykje op namme of telefoannûmer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Audioberjocht ôfspyljen stopje</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Audioôfspylsnelheid oanpasse</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Audioberjocht pauzearje</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Audioberjocht ôfspylje</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Nei audioberjocht navigearje</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Foarbyld fan profylôfbylding</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__take_a_picture">Nim in foto</string>
   <string name="AvatarPickerFragment__choose_a_photo">Kies in ôfbylding</string>
@@ -3229,20 +3358,56 @@
     <item quantity="one">Berjocht ferstjoere is mislearre</item>
     <item quantity="other">Berjochten ferstjoere is mislearre</item>
   </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Koe in berjocht net trochstjoere, omdat dy net langer beskikber is.</item>
+    <item quantity="other">Koe guon berjochten net trochstjoere, omdat dy net langer beskikber binne.</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limyt berikt</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">In berjocht tafoegje</string>
   <string name="MediaReviewFragment__add_a_reply">In reaksje tafoegje</string>
   <string name="MediaReviewFragment__send_to">Ferstjoerd oan</string>
+  <string name="MediaReviewFragment__view_once_message">Ienmaligewerjefte-berjocht</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ien of meardere items binne te grut</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ien of meardere items binne ûnjildich</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Te folle items selektearre</string>
   <string name="ImageEditorHud__cancel">Annulearje</string>
   <string name="ImageEditorHud__draw">Tekenje</string>
+  <string name="ImageEditorHud__write_text">Tekst skriuwe</string>
+  <string name="ImageEditorHud__add_a_sticker">In stikker tafoegje</string>
+  <string name="ImageEditorHud__blur">Ferdizenje</string>
+  <string name="ImageEditorHud__done_editing">Oanpassingen klear</string>
+  <string name="ImageEditorHud__clear_all">Alles wiskje</string>
   <string name="ImageEditorHud__undo">Ungedien meitsje</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Skeakelje tusken stift en markearstift</string>
   <string name="ImageEditorHud__delete">Fuortsmite</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Wikselje tusken tekststilen</string>
   <string name="MediaCountIndicatorButton__send">Ferstjoere</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Tik om fuort te smiten</string>
+  <string name="MediaReviewSelectedItem__tap_to_select">Tik om te selektearjen</string>
+  <string name="MediaReviewImagePageFragment__discard">Annulearje</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Oanpassingen annulearje?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Wizigingen dy’tsto oan dizze ôfbylding makke hast, sille ferlern gean.</string>
+  <string name="CameraFragment__failed_to_open_camera">Kamera iepenje is mislearre</string>
+  <string name="BadgesOverviewFragment__my_badges">Dyn badges</string>
+  <string name="BadgesOverviewFragment__featured_badge">Sichtbere badge</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Meitsje badges sichtber op myn profyl</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Profyl bywurkjen mislearre</string>
+  <string name="BadgeSelectionFragment__select_badges">Badges selektearje</string>
   <string name="SelectFeaturedBadgeFragment__preview">Foarbyld</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Kies in badge</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Do moast in badge kieze</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profyl bywurkjen mislearre</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mooglik meitsjen</string>
+  <string name="ImageView__badge">Badge</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal wurdt ûnder oare finansiere troch donaasjes fan minsken lykas do.</string>
   <string name="SubscribeFragment__currency">Faluta</string>
+  <string name="SubscribeFragment__cancel_subscription">Moanlikse donaasje annulearje</string>
+  <string name="SubscribeFragment__confirm_cancellation">Moanlikse donaasje annulearje?</string>
   <string name="SubscribeFragment__not_now">No net</string>
   <string name="SubscribeFragment__confirm">Befêstigje</string>
+  <string name="SubscribeFragment__update_subscription">Moanlikse donaasje bywurkje</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dyn moanlikse donaasje is annulearre.</string>
   <string name="SubscribeFragment__update">Bywurkje</string>
   <string name="Subscription__s_per_month">%s/moanne</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/moanne · Wurdt %2$s fernijd</string>

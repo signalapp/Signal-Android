@@ -3095,7 +3095,7 @@
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">チャットの色を削除しますか？</string>
   <!--CustomChatColorCreatorFragment-->
-  <string name="CustomChatColorCreatorFragment__solid">無地</string>
+  <string name="CustomChatColorCreatorFragment__solid">単色</string>
   <string name="CustomChatColorCreatorFragment__gradient">グラデーション</string>
   <string name="CustomChatColorCreatorFragment__hue">色相</string>
   <string name="CustomChatColorCreatorFragment__saturation">彩度</string>

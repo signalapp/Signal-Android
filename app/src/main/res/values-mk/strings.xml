@@ -124,7 +124,9 @@
   <string name="CameraContacts__menu_search">Барај</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Да се ​​исклучи заобиколувањето на цензурата?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Сега можете директно да се поврзете со Signal услугата за подобро искуство.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Исклучи</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -415,7 +417,7 @@
   <string name="BackupsPreferenceFragment__last_backup">Последна резервна копија: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Папка за резервна копија</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Провери лозинка за резервна копија</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Тестирајте ја лозинката за резервната копија и проверете дека е точна</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Тестирајте ја лозинката за резервната копија и проверете дали е точна</string>
   <string name="BackupsPreferenceFragment__turn_on">Вклучи</string>
   <string name="BackupsPreferenceFragment__turn_off">Исклучи</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">За да вратите резервна копија, инсталирајте нова копија на Signal. Отворете ја апликацијата и допрете „Врати резервна копија“, потоа лоцирајте ја датотеката со резервната копија. %1$s</string>
@@ -451,7 +453,7 @@
   <string name="DeviceListActivity_try_again">Обиди се повторно </string>
   <string name="DeviceListActivity_unlinking_device">Одврзувам уред…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Одврзувам уред</string>
-  <string name="DeviceListActivity_network_failed">Мрежата  падна!</string>
+  <string name="DeviceListActivity_network_failed">Мрежата падна!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Неименуван уред</string>
   <string name="DeviceListItem_linked_s">Поврзан %s</string>
@@ -1094,7 +1096,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Го обележавте сигурносниот број со %s како проверен од друг уред</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте сигурносниот број со %s како непроверен</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте сигурносен број со %s како непроверен од друг уред</string>
-  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порака од %s не може да биде испорачана</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Пораката од %s не може да биде испорачана</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s го промени телефонскиот број</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Ви се допаѓа оваа нова опција? Речете благодарам со „Поттик“.</string>
@@ -1103,7 +1105,7 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групен повик · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е во групниот повик · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s1">Вие сте во групен повик · %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Вие сте во групниот повик · %1$s</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s и %2$s се во групниот повик · %3$s</string>
   <string name="MessageRecord_group_call_s">Групен повик · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">%1$s започна групен повик</string>
@@ -1113,16 +1115,16 @@
   <string name="MessageRecord_group_call">Групен повик</string>
   <string name="MessageRecord_you">Вие</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-    <item quantity="one">%1$s, %2$s, и %3$d друг се на групниот повик · %4$s</item>
+    <item quantity="one">%1$s, %2$s, и %3$d друг е во групниот повик · %4$s</item>
     <item quantity="other">%1$s, %2$s, и %3$d други се во групниот повик · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-    <item quantity="one">%1$s, %2$s, и %3$d друг се во групниот повик</item>
+    <item quantity="one">%1$s, %2$s, и %3$d друг е во групниот повик</item>
     <item quantity="other">%1$s, %2$s, и %3$d други се во групниот повик</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Прифати </string>
-  <string name="MessageRequestBottomView_continue">Продолжете</string>
+  <string name="MessageRequestBottomView_continue">Продолжи</string>
   <string name="MessageRequestBottomView_delete">Избриши</string>
   <string name="MessageRequestBottomView_block">Блокирај</string>
   <string name="MessageRequestBottomView_unblock">Одблокирај</string>
@@ -1130,8 +1132,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Дали дозволувате %1$s да Ви испраќа пораки и да го гледа Вашето име и слика? Нема да примате пораки додека не го/ја одблокирате.</string>
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Дали сакате да добивате ажурирања и новости од %1$s? Нема да примате пораки додека не го/ја одблокирате.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Дали сакате да го продолжите разговорот во оваа група и да го споделите Вашето име и слика со нејзините членови?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Надградете ја оваа група за да активирате нови опции како @спомнувања и администратори. Членови кои што не го споделиле нивното име и слика со оваа група, ќе бидат поканети да се приклучат.</string>
-  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ова е застарена група и не може дасе користи повеќе бидејќи е преголема. Максималната големина за група е %1$d.</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Надградете ја оваа група за да активирате нови опции како @спомнувања и администратори. Членови кои не го споделиле нивното име и слика со оваа група, ќе бидат поканети да се приклучат.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ова е застарена група и не може да се користи повеќе бидејќи е преголема. Максималната големина на група е %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Дали сакате да го продолжите разговорот со %1$s и да го споделите Вашето име и слика? </string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Дали сакате да и се приклучите на оваа група и да ги споделите Вашето име и слика со нејзните членови? Тие нема да знаат дека сте ги виделе нивните пораки додека не прифатите.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Дали сакате да и се приклучите на оваа група?Тие нема да знаат дека сте ги виделе нивните пораки додека не прифатите.</string>
@@ -1139,7 +1141,7 @@
   <string name="MessageRequestProfileView_view">Поглед</string>
   <string name="MessageRequestProfileView_member_of_one_group">Член на %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Член на %1$s и %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Член на%1$s, %2$s и %3$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Член на %1$s, %2$s и %3$s</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d член</item>
     <item quantity="other">%1$d членови</item>
@@ -1159,35 +1161,34 @@
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Да го поврзам овој уред?</string>
   <string name="DeviceProvisioningActivity_continue">ПРОДОЛЖИ</string>
-  <string name="DeviceProvisioningActivity_content_intro">Ќе може</string>
+  <string name="DeviceProvisioningActivity_content_intro">Ќе може да</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-
-• Прочитајте ги сите Ваши пораки
-
-\n• Испратете пораки во Ваше име</string>
+        • Прочитате сите Ваши пораки
+        \n• Испраќате пораки во Ваше име
+    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Поврзување на уред</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Поврзувам нов уред…</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Се поврзува нов уред…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Уредот е одобрен!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Уредот не е пронајден.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Мрежна грешка.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Погрешен QR код.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Извинете, но имате премногу врзани уреди, пробајте да отстраните неколку</string>
-  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Извинете, но ова не е валиден QR код за уред.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Извинете, имате премногу поврзани уреди, обидете се да отстраните некои од нив</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Извинете, ова не е валиден QR код за поврзување со уредот.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Да поврзам уред со Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа дека сакате да поврзете Signal уред користејќи скенер од 3та страна. За Ваша заштита, Ве молиме повторно скенирајте го кодот преку Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера“.</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не успеав да го скенирам QR кодот без дозвола за камерата.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не може да се скенира QR кодот без дозвола до камерата</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Ажурирај веднаш</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Оваа верзија на Signal ќе истече денес. Ажурирајте до најновата верзија.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Оваа верзија на Signal ќе истече денес. Ажурирајте на најновата верзија.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="one">Оваа верзија на Signal ќе истече утре. Ажурирајте до најновата верзија.</item>
-    <item quantity="other">Оваа верзија на Signal ќе истече за %d дена. Ажурирајте до најновата верзија.</item>
+    <item quantity="one">Оваа верзија на Signal ќе истече утре. Ажурирајте на најновата верзија.</item>
+    <item quantity="other">Оваа верзија на Signal ќе истече за %d дена. Ажурирајте на најновата верзија.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Внесете лозинка</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal иконка</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">Пратете лозинка</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Испрати лозинка</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Погрешна лозинка!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Отклучи го Signal</string>
   <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Заклучувен екран</string>
@@ -1201,17 +1202,17 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Погрешен PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Да го прескокнам PIN-от за влез?</string>
   <string name="PinRestoreEntryFragment_need_help">Потребна Ви е помош?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Вашиот PIN е%1$d+ цифрен код содаден така што може да биде нумерички или алфанумерички.\n\nАко не можете да го запомните Вашиот PIN, можете да создадете нов. Можете да ја регистрирате и користите Вашата сметка, но ќе ги изгубите некои од зачуваните поставувања како што се Вашите информации за профилот.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Ако не можете да го запомните Вашиот PIN, можете да создадете нов. Можете да се регистрирате и да ја користите Вашата сметка но ќе ги изгубите некои од зачуваните поставувања како Вашите информации за профилот.</string>
-  <string name="PinRestoreEntryFragment_create_new_pin">Создадете нов PIN</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Вашиот PIN е %1$d+ цифрен код содаден така што може да биде нумерички или алфанумерички.\n\nАко не можете да го запомните Вашиот PIN, можете да создадете нов. Можете да ја регистрирате и користите Вашата сметка, но ќе ги изгубите некои од зачуваните поставувања како што се Вашите информации за профилот.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Ако не можете да го запомните Вашиот PIN, можете да создадете нов. Можете да се регистрирате и да ја користите Вашата сметка но ќе ги изгубите некои од зачуваните поставувања како што се Вашите информации за профилот.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Создај нов PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Контакт за поддршка</string>
   <string name="PinRestoreEntryFragment_cancel">Откажи</string>
   <string name="PinRestoreEntryFragment_skip">Прескокни</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="one">Ви преостанува уште %1$d обид. Ако пробавте премногу пати, можете да создадете нов PIN. Можете да ја регистрирате и користите Вашата сметка, но ќе ги изгубите некои од зачуваните поставувања како што се Вашите информации за профилот.</item>
-    <item quantity="other">Ви преостануваат уште %1$d обиди. Ако пробавте премногу пати, можете да создадете нов PIN. Можете да ја регистрирате и користите Вашата сметка, но ќе ги изгубите некои од зачуваните поставувања како што се Вашите информации за профилот.</item>
+    <item quantity="one">Ви преостанува уште %1$d обид. Ако ги искористите сите обиди, можете да создадете нов PIN. Можете да ја регистрирате и користите Вашата сметка, но ќе ги изгубите некои од зачуваните поставувања како што се Вашите информации за профилот.</item>
+    <item quantity="other">Ви преостануваат уште %1$d обиди. Ако ги искористите сите обиди, можете да создадете нов PIN. Можете да ја регистрирате и користите Вашата сметка, но ќе ги изгубите некои од зачуваните поставувања како што се Вашите информации за профилот.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal регистрација - Потребна е помош со PIN кодот за Android</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal регистрација - Потребна Ви е помош со PIN кодот за Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Внесете алфанумерички PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Внесете нумерички PIN</string>
   <!--PinRestoreLockedFragment-->
@@ -1220,12 +1221,12 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Создади нов PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Предупредување</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ако го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистрирате на Signal, освен ако рачно не направите резервна копија и ги вратите податоците. Не можете да вклучите „Заклучување на регистрација“ додека PIN-от е исклучен.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ако го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистрирате на Signal, освен ако рачно направите резервна копија и ги вратите податоците. Не можете да вклучите „Заклучување на регистрација“ додека PIN-от е исклучен.</string>
   <string name="PinOptOutDialog_disable_pin">Исклучи PIN</string>
   <!--RatingManager-->
-  <string name="RatingManager_rate_this_app">Оценете ја апликацијата</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Доколку ви се допаѓа апликацијата, ве молиме одвоите еден момент да ни помогнете, со тоа што ќе оценете апликацијата.</string>
-  <string name="RatingManager_rate_now">Оцени веднаш!</string>
+  <string name="RatingManager_rate_this_app">Оцени ја апликацијата</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Доколку уживате во користењето на оваа апликација, Ве молиме одвојте еден момент за да ни помогнете со тоа што ќе ја оцените апликацијата.</string>
+  <string name="RatingManager_rate_now">Оцени сега!</string>
   <string name="RatingManager_no_thanks">Не, благодарам</string>
   <string name="RatingManager_later">Подоцна</string>
   <!--ReactionsBottomSheetDialogFragment-->
@@ -1235,7 +1236,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Вие</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
-  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Потврдете за да продолжите со разговорот</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Потврдете за да продолжите со испраќање пораки</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">За да спречите несакани пораки на Signal, Ве молиме завршете ја проверката.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">По проверката, можете да продолжите со испраќање пораки. Сите паузирани пораки ќе бидат испратени автоматски.</string>
   <!--Recipient-->
@@ -1262,7 +1263,7 @@
   <string name="ValentinesDayMegaphone_show_your_affection">Покажете ја Вашата приврзаност со тоа што ќе станате поддржувач на Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Допрете овде за да го вклучите Вашето видео</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">За да го/ја повикате %1$s, на Signal му е потребен пристап до Вашата камера.</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">За да го/ја повикате %1$s, на Signal му е потребен пристап до Вашата камера</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Повикувам…</string>
   <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Групата е преголема за да се јавите на учесниците.</string>
@@ -1373,7 +1374,7 @@
     <item quantity="one">Сега сте %d чекор оддалечени од испраќање на лог за грешки.</item>
     <item quantity="other">Сега сте %d чекори оддалечени од испраќање на записот за грешки.</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Треба да провериме дали си човек.</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Треба да провериме дали сте човек.</string>
   <string name="RegistrationActivity_next">Следно</string>
   <string name="RegistrationActivity_continue">Продолжи</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Понесете ја приватноста со Вас.\nБидете свои во секоја порака. </string>
@@ -1416,7 +1417,7 @@
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Ќе Ве потсетиме повторно подоцна.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ќе Ве потсетиме повторно утре.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Ќе Ве потсетиме повторно за неколку дена.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Повторно ќе Ве потсетиме за неколку дена.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Ќе Ве потсетиме повторно за една недела.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Ќе Ве потсетиме повторно за неколку недели.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_month">Ќе Ве потсетиме повторно за еден месец.</string>
@@ -2111,7 +2112,7 @@
   <string name="preferences__chat_color_and_wallpaper">Боја и позадина за разговор</string>
   <string name="preferences__disable_pin">Исклучи PIN</string>
   <string name="preferences__enable_pin">Вклучи PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистрирате на Signal, освен ако рачно не направите резервна копија и ги вратите податоците. Не можете да вклучите „Заклучување на регистрација“ додека PIN-от е исклучен.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистрирате на Signal, освен ако рачно направите резервна копија и ги вратите податоците. Не можете да вклучите „Заклучување на регистрација“ додека PIN-от е исклучен.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе го реинсталирате Signal. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
   <string name="preferences__system_default">Стандардно</string>
   <string name="preferences__language">Јазик</string>
@@ -2183,16 +2184,18 @@
   <string name="preferences_events__contact_joined_signal">Кога контакт ќе се приклучи на Signal</string>
   <string name="preferences_notifications__priority">Приоритет</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Заобиколување на цензура</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
-  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ако е овозможено, Signal ќе се обиде да ја заобиколи цензурата. Не ја овозможувајте оваа можност освен ако сте на локација каде Signal е цензуриран.</string>
+  <string name="preferences_communication__censorship_circumvention">Заобиколување на цензура</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ако е вклучено, Signal ќе се обиде да ја заобиколи цензурата. Вклучете ја оваа опција само ако сте на локација каде Signal е цензуриран.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
-  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Заобиколувањето на цензурата беше активирано врз база на вашиот телефонски број на сметката.</string>
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Заобиколувањето на цензурата е активирано врз основа на телефонскиот број на Вашата сметка.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
-  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Рачно го оневозможивте заобиколувањето на цензурата.</string>
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Рачно го исклучивте заобиколувањето на цензурата.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Заобиколувањето на цензурата не е неопходно; вие сте веќе поврзани на Signal сервисот.</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Заобиколувањето на цензурата не е потребно; веќе сте поврзани со Signal услугата.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
-  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Заобиколувањето на цензурата може да биде активирано само кога сте поврзани на Интернет.</string>
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Заобиколувањето на цензурата може да се активира само кога сте поврзани на интернет.</string>
   <string name="preferences_communication__category_sealed_sender">Запечатен испраќач</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Индикатори за приказ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Покажува икона за статус кога ќе изберете „Детали за порака“ на пораки испорачани со употреба на запечатен испраќач.</string>
@@ -2544,8 +2547,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">Погрешен PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Го заборавивте Вашиот PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Не ви преостанаа повеќе обиди!</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal регистрација - Помош со PIN за Android (v1 PIN)</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal регистрација - Помош со PIN за Android (v2 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal регистрација - Потребна Ви е помош со PIN кодот за Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal регистрација - Потребна Ви е помош со PIN кодот за Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">За вашата приватност и безбедност, нема начин да го повратите вашиот ПИН. Ако не можете да се сетите на вашиот ПИН, можете да го ре-верификувате со СМС после %1$d ден на неактивност. Во овој случај, вашата сметка со целата нејзина содржина ќе биде избришана.</item>
     <item quantity="other">За Вашата приватност и безбедност, нема начин да го повратите Вашиот PIN. Ако не можете да се сетите на Вашиот PIN, можете да го проверите со SMS по %1$d денови неактивност. Во овој случај, Вашата сметка со целата нејзина содржина ќе биде избришана.</item>
@@ -2629,7 +2632,7 @@
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Допрете за управување со резервните копии.</string>
   <string name="ProgressPreference_d_messages_so_far">%d пораки до сега</string>
   <string name="RegistrationActivity_wrong_number">Погрешен број</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Повикајте ме наместо \n (Достапно за %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Повикај ме \n (Достапно за %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Контактирај Signal Поддршка</string>
   <string name="RegistrationActivity_code_support_subject">Регистрација на Signal - Код за проверка за Android</string>
   <string name="RegistrationActivity_incorrect_code">Погрешен код</string>
@@ -2655,7 +2658,7 @@
   <string name="preferences_app_protection__turn_off">Исклучи</string>
   <string name="preferences_app_protection__confirm_pin">Потврди PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Потврдете го Вашиот Signal PIN</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Осигурајте се дека ќе го запомните или безбедно ќе го складирате Вашиот PIN бидејќи истиот не може да биде вратен доколку го изгубите. Ако го заборавите Вашиот PIN, може да изгувите податоци кога повторно ќе ја регистриате Вашата сметка на Signal.</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Осигурајте се дека ќе го запомните или безбедно ќе го зачувате Вашиот PIN бидејќи истиот не може да биде вратен доколку го изгубите. Ако го заборавите Вашиот PIN, може да изгубите податоци кога повторно ќе ја регистрирате Вашата сметка на Signal.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Погрешен PIN. Обидете се повторно.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Не успеа вклучувањето на заклучување на регистрацијата.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Не успеа оневозможувањето на заклучување на регистрацијата.</string>
@@ -2692,8 +2695,8 @@
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Се припрема за да се поврзам на стариот Android уред…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Само момент, би требало да е готово наскоро</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Чекам да се поврзе стариот Android уред…</string>
-  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">На Signal му е потребна дозвола за локацијата за да го открие и да се поврзе на стариот Android уред.</string>
-  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">На Signal му е потребно да се вклучени локациските сервиси за да го открие и да се поврзе на Вашиот стар Android уред.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">На Signal му е потребна дозвола за локација за да го открие и да се поврзе со Вашиот стар Android уред.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">На Signal му е потребно да се вклучени локациските сервиси за да го открие и да се поврзе со Вашиот стар Android уред.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">На Signal му е потребно Wi-Fi за да го открие и за да се поврзе на Вашиот стар Android уред. Wi-Fi треба да е вклучено, но не мора да сте поврзани на Wi-Fi мрежа.</string>
   <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извинете, изгледа дека овој уред не поддржува Wi-Fi Direct. Signal користи Wi-Fi Direct за откривање и поврзување со Вашиот стар Android уред. Сѐ уште можете да ги вратите податоците од резервна копија за да ја префрлите сметката од Вашиот стар Android уред.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Врати резервна копија</string>
@@ -2708,9 +2711,9 @@
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Се случи неочекувана грешка при обидот за поврзување со Вашиот нов Android уред.</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Не можам да ги отворам поставувањата за Wi-Fi. Ве молиме вклучете Wi-Fi рачно.</string>
-  <string name="DeviceTransferSetup__grant_location_permission">Дозволи прикажување на локација</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Додели дозвола за локација</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Вклучи локациски сервиси</string>
-  <string name="DeviceTransferSetup__unable_to_open_location_settings">Не успеав да ги отворам поставувањата.</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Не може да се отворат поставувањата за локација.</string>
   <string name="DeviceTransferSetup__turn_on_wifi">Вклучи Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Грешка при поврзувањето</string>
   <string name="DeviceTransferSetup__retry">Обидете се повторно</string>
@@ -2725,7 +2728,7 @@
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Не успеав да го откријам стариот уред</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Не успеав да го откријам новиот уред</string>
   <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Осигурајте се дека следниве дозволи и сервиси се овозможени:</string>
-  <string name="DeviceTransferSetup__location_permission">Дозволи за локацијата</string>
+  <string name="DeviceTransferSetup__location_permission">Дозвола за локација</string>
   <string name="DeviceTransferSetup__location_services">Локациски сервиси</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На WiFi Direct екранот, отстранете ги сите запаметени групи и откачете ги сите поканети или поврзани уреди.</string>
@@ -2760,7 +2763,7 @@
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Допрете „Трансфер или враќање на сметка“</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Допрете „Трансфер од Android уред“ и потоа допрете „Продолжи“. Држете ги двата уреди близу еден до друг.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Изберете „Трансфер од Android уред“ и потоа „Продолжи“. Држете ги двата уреди близу еден до друг.</string>
   <string name="OldDeviceTransferInstructions__continue">Продолжи</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Трансферот е завршен</string>
@@ -3087,11 +3090,11 @@
   <string name="ChangeNumberVerifyFragment__verifying_s">Проверувам %1$s</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Потребна е проверка</string>
   <!--ChangeNumberConfirmFragment-->
-  <string name="ChangeNumberConfirmFragment__change_number">Променете го бројот</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Наскоро ќе го смените Вашиот телефонски број од %1$s на %2$s.\n\nПред да продолжите, Ве молиме проверете дали бројот подолу е точен.</string>
-  <string name="ChangeNumberConfirmFragment__edit_number">Уреди број</string>
+  <string name="ChangeNumberConfirmFragment__change_number">Промени го бројот</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Наскоро ќе го смените Вашиот телефонски број од %1$s во %2$s.\n\nПред да продолжите, Ве молиме проверете дали бројот подолу е точен.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Уреди го бројот</string>
   <!--ChangeNumberRegistrationLockFragment-->
-  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal промена на број - Потребна Ви е помош со PIN за Android (v2 PIN)</string>
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal промена на број - Потребна Ви е помош со PIN кодот за Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-кодовите не се совпаѓаат</string>
   <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-от поврзан со Вашиот нов број е различен од PIN-от поврзан со Вашиот стар. Дали сакате да го задржите стариот PIN или да го ажурирате? </string>
@@ -3165,7 +3168,7 @@
   <string name="CustomExpireTimerSelectorView__seconds">секунди</string>
   <string name="CustomExpireTimerSelectorView__minutes">минути</string>
   <string name="CustomExpireTimerSelectorView__hours">часа</string>
-  <string name="CustomExpireTimerSelectorView__days">денови</string>
+  <string name="CustomExpireTimerSelectorView__days">дена</string>
   <string name="CustomExpireTimerSelectorView__weeks">недели</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">Центар за поддршка</string>

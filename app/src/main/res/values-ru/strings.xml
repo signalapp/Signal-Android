@@ -363,7 +363,7 @@
     <item quantity="one">Не прочитан</item>
     <item quantity="few">Не прочитаны</item>
     <item quantity="many">Не прочитаны</item>
-    <item quantity="other">Не прочитаны</item>
+    <item quantity="other">Не прочитано</item>
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
     <item quantity="one">Прикрепить</item>
@@ -1799,7 +1799,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Устройство больше не зарегистрировано</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Это может быть вызвано тем, что вы зарегистрировали свой номер телефона в Signal на другом устройстве. Нажмите для повторной регистрации.</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Для ответа на звонок разрешите Signal доступ к микрофону.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Для ответа на звонок предоставьте Signal доступ к микрофону.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Для ответа на звонок от %s разрешите Signal доступ к микрофону.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal требуются разрешения на доступ к микрофону и камере для совершения или принятия звонков, но они были вами отклонены. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Микрофон» и «Камера».</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Принят на привязанном устройстве.</string>
@@ -3420,7 +3420,7 @@
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Перетащите для изменения направления градиента</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Новые цвета чатов</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Мы поменяли цвета чатов, чтобы предоставить вам больше опций и сделать чаты более удобными для чтения.</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Мы изменили цвета чата, чтобы предоставить вам больше возможностей и повысить удобность чтения чатов.</string>
   <string name="ChatColorsMegaphone__appearance">Внешний вид</string>
   <string name="ChatColorsMegaphone__not_now">Не сейчас</string>
   <!--AddAProfilePhotoMegaphone-->

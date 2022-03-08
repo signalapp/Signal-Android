@@ -124,7 +124,9 @@
   <string name="CameraContacts__menu_search">Keresés</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Kikapcsolod a cenzúramegkerülést?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Most már közvetlenül is csatlakozhatsz a Signal-hoz a jobb élmény érdekében.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Kikapcsolás</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -1619,7 +1621,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="NotificationChannel_contact_joined_signal">Ismerős csatlakozott a Signalhoz</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Nincs elérhető aktivitás, hogy megnyissuk az értesítési csatorna beállításokat.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
-  <string name="NotificationChannel_background_connection">Háttér-kapcsolat</string>
+  <string name="NotificationChannel_background_connection">Háttérben futó kapcsolat</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
   <string name="NotificationChannel_call_status">Hívás státusza</string>
   <!--ProfileEditNameFragment-->
@@ -2188,16 +2190,18 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_events__contact_joined_signal">Ismerős csatlakozott a Signalhoz</string>
   <string name="preferences_notifications__priority">Prioritás</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Cenzúramegkerülés</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
-  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ha engedélyezed, a Signal megpróbálja megkerülni az állami blokkolást. Ne engedélyezd ezt a funkciót, ha a tartózkodási helyeden a Signal nincs cenzúrázva.</string>
+  <string name="preferences_communication__censorship_circumvention">Cenzúramegkerülés</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ha engedélyezed, a Signal megpróbálja megkerülni a cenzúrát. Ne engedélyezd ezt a funkciót, ha tartózkodási helyeden nem cenzúrázzák a Signalt!</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
-  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">A cenzúra megkerülés funkció aktiválva lett a telefonszámod alapján.</string>
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Telefonszámod alapján bekapcsoltuk számodra a cenzúramegkerülés-funkciót.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
-  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Cenzúra megkerülés funkció manuálisan letiltva.</string>
+  <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Cenzúramegkerülés manuálisan letiltva.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Cenzúra megkerülés funkció nem szükséges; a Signal szolgáltatás aktív.</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">A cenzúramegkerülés használata nem szükséges, mert sikeresen csatlakoztál a Signal hálózatához.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
-  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">A cenzúra megkerülés funkció csak aktív internetkapcsolat esetén aktiválható.</string>
+  <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">A cenzúramegkerülés csak aktív internetkapcsolat esetén aktiválható.</string>
   <string name="preferences_communication__category_sealed_sender">Rejtett feladó</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Indikátorok megjelenítése</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Jelenítsen meg egy státuszikont a rejtett feladóval kézbesített üzenetek \"Üzenet részletei\" menüpontjában.</string>

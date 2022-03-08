@@ -475,9 +475,9 @@
     <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">To continue using backups, please choose a folder. New backups will be saved to this location.</string>
     <string name="RestoreBackupFragment__choose_folder">Choose folder</string>
     <string name="RestoreBackupFragment__not_now">Not now</string>
-    <!-- Couldn't find the selected backup -->
+    <!-- Couldn\'t find the selected backup -->
     <string name="RestoreBackupFragment__backup_not_found">Backup not found.</string>
-    <!-- Couldn't read the selected backup -->
+    <!-- Couldn\'t read the selected backup -->
     <string name="RestoreBackupFragment__backup_could_not_be_read">Backup could not be read.</string>
     <!-- Backup has an unsupported file extension -->
     <string name="RestoreBackupFragment__backup_has_a_bad_extension">Backup has a bad extension.</string>
@@ -1448,7 +1448,7 @@
 
     <!-- Recipient -->
     <string name="Recipient_you">You</string>
-    <!-- Name of recipient representing user's 'My Story' -->
+    <!-- Name of recipient representing user\'s \'My Story\' -->
     <string name="Recipient_my_story">My Story</string>
 
     <!-- RecipientPreferencesActivity -->
@@ -4417,7 +4417,7 @@
     </plurals>
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Forward</string>
-    <!-- Label for stories for a single user. Format is {given name}'s Story -->
+    <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">%1$s\'s Story</string>
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">Delete story?</string>
@@ -4524,7 +4524,7 @@
     <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Add text</string>
-    <!-- Content description for 'done' button when adding text to a story post -->
+    <!-- Content description for \'done\' button when adding text to a story post -->
     <string name="TextStoryPostTextEntryFragment__done_adding_text">Done adding text</string>
     <!-- Text label for media selection toggle -->
     <string name="MediaSelectionActivity__text">Text</string>

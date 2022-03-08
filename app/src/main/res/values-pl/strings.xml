@@ -2364,7 +2364,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Omijanie cenzury zostało ręcznie wyłączone.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Omijanie cenzury niewymagane, jesteś połączony(a) z usługami Signal.</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Omijanie cenzury nie jest wymagane. Jesteś połączony(a) z usługami Signal.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
   <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Aktywacja omijania cenzury wymaga połączenia z Internetem.</string>
   <string name="preferences_communication__category_sealed_sender">Ukryty nadawca</string>
