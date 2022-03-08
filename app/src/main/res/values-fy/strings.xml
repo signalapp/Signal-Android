@@ -3408,26 +3408,58 @@
   <string name="SubscribeFragment__confirm">Befêstigje</string>
   <string name="SubscribeFragment__update_subscription">Moanlikse donaasje bywurkje</string>
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Dyn moanlikse donaasje is annulearre.</string>
+  <string name="SubscribeFragment__update_subscription_question">Moanlikse donaasje bywurkje?</string>
   <string name="SubscribeFragment__update">Bywurkje</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Hjoed wurdt it folsleine bedrach foar de moanlikse donaasje ôfskreaun. Dyn donaasje wurdt fernijd op %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Hjoed wurdt it folsleine bedrach (%1$s) foar de moanlikse donaasje ôfskreaun.</string>
   <string name="Subscription__s_per_month">%s/moanne</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/moanne · Wurdt %2$s fernijd</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/moanne · Ferrint %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is in organisaasje sûnder winsteachmerk sûnder advertearders en sûnder ynvestearders, útslutend mooglik makke troch minsken dy’t de app brûke en dy’t wearde oan hechtsje. Jou in moanlikse donaasje en ûntfang in profylbadge dy’tsto — asto dat wolst — werjaan kinst op dyn profyl om sjen te litten datsto Signal stipest.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Wêrom bydrage?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Wy ûntwikkelje iepen-boarnekoade privacytechnologyen wêrmei frijheid fan mieningsutering beskerme wurdt en wêrmei op in befeilige manier oer de hiele wrâld kommunisearre wurde kin.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mei mei dyn bydrage wurdt dizze misje mooglik makke en wurdt betelle foar de ûntwikkeling en it yn wurking hâlden fan apps wêrtroch miljoenen minsken wrâldwiid yn frijheid petearen fiere kinne. Gjin advertinsjes, gjin folgers, gjin grapke.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tank foar dyn stipe!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tank foar dyn bydrage!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Do hast de ‘%s’-badge fertsjinne! Help Signal om bewustwurding te kreëarjen troch dizze badge op dyn profyl wer te jaan.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Do hast de ‘Ienmalige donateur’-badge fertsjinne! Help Signal om bewustwurding te kreëarjen troch dizze badge op dyn profyl wer te jaan.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Do kinst ek</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">moanliks donearje.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profyl werjaan</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Badge op dyn profyl werjaan</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klear</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Asto meardere badges hast, dan kinsto der ien kieze om foar oaren op dyn profyl wer te jaan.</string>
+  <string name="BecomeASustainerFragment__get_badges">Troch Signal te stypjen fertsjinnesto badges om op dyn profyl wer te jaan.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is in organisaasje sûnder winsteachmerk, sûnder advertinsjes en sûnder ynvestearders. Signal wurdt útslutend mooglik makke troch donaasjes fan minsken lykas do.</string>
   <string name="ManageDonationsFragment__my_support">Myn bydrage</string>
   <string name="ManageDonationsFragment__manage_subscription">Moanlikse donaasje beheare</string>
   <string name="ManageDonationsFragment__badges">Badges</string>
   <string name="ManageDonationsFragment__subscription_faq">Ynformaasje oer moanlikse donaasjes</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Flater by it opheljen fan ynformaasje oer moanlikse donaasjes.</string>
+  <string name="BoostFragment__give_signal_a_boost">Help Signal mei in ienmalige bydrage</string>
+  <string name="BoostFragment__say_thanks_and_earn">Betankje Signal en fertsjinje de ‘Ienmalige donateur’-badge foar %1$d dagen.</string>
+  <string name="Boost__enter_custom_amount">Folje in sels keazen bedrach yn</string>
+  <string name="Boost__one_time_contribution">Ienmalige bydrage</string>
+  <string name="MySupportPreference__add_a_signal_boost">Jou Signal in oppepper</string>
   <string name="MySupportPreference__s_per_month">%1$s/moanne</string>
   <string name="MySupportPreference__renews_s">Wurdt %1$s fernijd</string>
+  <string name="MySupportPreference__processing_transaction">Oerskriuwing oan it ferwurkjen…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Kin badge net tafoegje. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Nim kontakt op mei stipe.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Dyn badge is ferrûn</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge ferrûn</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Moanlikse donaasjes annulearre</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Dyn ‘Ienmalige donateur’-badge is ferrûn en is dêrom net langer foar oaren te sjen op dyn profyl.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Do kinst dyn ‘Ienmalige donateur’-badge opnij foar 30 dagen aktivearje mei in nije ienmalige donaasje.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Oerweagje moanlikse donaasjes yn te stellen om technology dy’t makke is foar dy yn stee fan foar it sammeljen fan gegevens stypje te bliuwen.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Wurdt in stiper</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nochris ienmalich donearje</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">No net</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Dyn moanlikse donaasjes binne automatysk annulearre, omdatsto te lang ynaktyf west bist. Dyn ‘%1$s’-badge is net langer foar oaren te sjen op dyn profyl.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Dyn moanlikse donaasjes binne stopset, omdat Signal dyn betelling net ferwurkje koe. Dyn badge is net langer op dyn profyl sichtber.</string>
   <string name="Subscription__contact_support">Nim kontakt op mei stipe</string>
   <string name="SubscribeFragment__processing_payment">Oerskriuwing oan it ferwurkjen…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
@@ -3441,6 +3473,7 @@
   <!--Stripe decline code purchase not supported-->
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Google Pay iepenje</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->
@@ -3449,6 +3482,7 @@
   <!--Stripe decline code issuer not available-->
   <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Jou dyn meldingsprofyl in namme</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profylnamme</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3460,20 +3494,31 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Net fersifere bewarje</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Dit meldingsprofyl oanpasse</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Der bestiet al in meldingsprofyl mei dizze namme</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Wurk</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Wannear’t ik sliep</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Wylst ik oan it riden bin</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Efkes nearne mei dwaande</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">No efkes fokusje</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Dyn meldingsprofyl moat in namme hawwe</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Meldingen trochlitte</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Foegje minsken en groepen ta wêrfan\'tsto meldingen ûntfange wolst wylst dit meldingsprofyl aktyf is</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Persoanen of groepen tafoegje</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Tafoegje</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Meitsje in meldingsprofyl oan wêrtroch\'tsto meldingen fan bepaalde persoanen of groepen allinnich krigest op mominten datsto dêr noch oan hast.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">Meldingsprofilen ynstelle</string>
   <!--Button that starts the create new notification profile flow-->
@@ -3481,6 +3526,7 @@
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Oan</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Meldingsprofyl wiskje</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
   <string name="NotificationProfileDetails__s_removed">‘%1$s’ fuortsmiten.</string>
   <!--Snackbar button text that will undo the recipient remove-->
@@ -3512,6 +3558,7 @@
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Tiidsplanning tafoegje</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Stel eventueel in tiidrek yn, sadat dit meldingsprofyl automatysk op bepaalde mominten aktivearre en deäktivearre wurdt.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Tiidsplanning</string>
   <!--Label for showing the start time for the schedule-->
@@ -3549,8 +3596,11 @@
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Klear</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Do kinst in meldingsprofyl hânmjittich yn- en útskeakelje fia it menu yn de petearlist.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Foegje eventueel in tiidrek ta oan dit meldingsprofyl om it automatysk op bepaalde mominten te aktivearjen en te deäktivearjen.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Dyn meldingsprofyl wurdt automatysk aktivearre en deäktivearre neffens dyn planning.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">Nij meldingsprofyl oanmeitsje</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
@@ -3564,6 +3614,7 @@
   <!--Title for notification profile megaphone-->
   <string name="NotificationProfilesMegaphone__notification_profiles">Meldingsprofilen</string>
   <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Untfang allinnich meldingen fan persoanen en groepen fan wa’tsto dat wolst, wannear’tsto dat wolst.</string>
   <!--Call to action button to create a profile from megaphone-->
   <string name="NotificationProfilesMegaphone__create_a_profile">Meldingsprofyl oanmeitsje</string>
   <!--Button to dismiss notification profile megaphone-->
@@ -3571,5 +3622,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">It iepenjen fan it bellûd-karmenu is mislearre.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Utjefteopmerkingen &amp; nijs fan Signal</string>
   <!--EOF-->
 </resources>
