@@ -70,7 +70,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     CachedInflater.from(this).clear();
 
     conversationListTabsViewModel = new ViewModelProvider(this, factory).get(ConversationListTabsViewModel.class);
-    Transformations.map(conversationListTabsViewModel.getState(), ConversationListTabsState::getTab)
+    Transformations.distinctUntilChanged(Transformations.map(conversationListTabsViewModel.getState(), ConversationListTabsState::getTab))
                    .observe(this, tab -> {
                      switch (tab) {
                        case CHATS:
