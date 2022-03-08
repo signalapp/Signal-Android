@@ -437,6 +437,8 @@ public final class FeatureFlags {
 
   /**
    * Whether or not stories are available
+   *
+   * NOTE: This feature is still under ongoing development, do not enable.
    */
   public static boolean stories() {
     return getBoolean(STORIES, false);
@@ -444,6 +446,8 @@ public final class FeatureFlags {
 
   /**
    * Whether users can apply alignment and scale to text posts
+   *
+   * NOTE: This feature is still under ongoing development, do not enable.
    */
   public static boolean storiesTextFunctions() {
     return getBoolean(STORIES_TEXT_FUNCTIONS, false);
@@ -451,6 +455,8 @@ public final class FeatureFlags {
 
   /**
    * Whether the user supports sending Story text posts
+   *
+   * NOTE: This feature is still under ongoing development, do not enable.
    */
   public static boolean storiesTextPosts() {
     return getBoolean(STORIES_TEXT_POSTS, false);
