@@ -124,13 +124,18 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         && !TextSecurePreferences.shouldUpdateProfile(context, message.sentTimestamp!!)) return
     val userPublicKey = storage.getUserPublicKey()
     if (userPublicKey == null || message.sender != storage.getUserPublicKey()) return
+
+    val firstTimeSync = !TextSecurePreferences.getConfigurationMessageSynced(context)
+
     TextSecurePreferences.setConfigurationMessageSynced(context, true)
     TextSecurePreferences.setLastProfileUpdateTime(context, message.sentTimestamp!!)
-    val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
-    for (closedGroup in message.closedGroups) {
-        if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) continue
-        handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closedGroup.publicKey, closedGroup.name,
-            closedGroup.encryptionKeyPair!!, closedGroup.members, closedGroup.admins, message.sentTimestamp!!, closedGroup.expirationTimer)
+    if (firstTimeSync) {
+        val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
+        for (closedGroup in message.closedGroups) {
+            if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) continue
+            handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closedGroup.publicKey, closedGroup.name,
+                closedGroup.encryptionKeyPair!!, closedGroup.members, closedGroup.admins, message.sentTimestamp!!, closedGroup.expirationTimer)
+        }
     }
     val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.joinURL }
     for (openGroup in message.openGroups) {
