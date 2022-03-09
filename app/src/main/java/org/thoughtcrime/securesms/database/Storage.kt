@@ -4,11 +4,22 @@ import android.content.Context
 import android.net.Uri
 import org.session.libsession.database.StorageProtocol
 import org.session.libsession.messaging.contacts.Contact
-import org.session.libsession.messaging.jobs.*
+import org.session.libsession.messaging.jobs.AttachmentUploadJob
+import org.session.libsession.messaging.jobs.GroupAvatarDownloadJob
+import org.session.libsession.messaging.jobs.Job
+import org.session.libsession.messaging.jobs.JobQueue
+import org.session.libsession.messaging.jobs.MessageReceiveJob
+import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.jobs.TrimThreadJob
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.MessageRequestResponse
-import org.session.libsession.messaging.messages.signal.*
+import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage
+import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
+import org.session.libsession.messaging.messages.signal.IncomingMediaMessage
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
+import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessage
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupV2
@@ -19,14 +30,17 @@ import org.session.libsession.messaging.sending_receiving.link_preview.LinkPrevi
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.utilities.UpdateMessageData
 import org.session.libsession.snode.OnionRequestAPI
-import org.session.libsession.utilities.*
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
+import org.session.libsession.utilities.GroupRecord
+import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.ProfileKeyUtil
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.utilities.KeyHelper
-import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -110,6 +124,14 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             senderAddress
         }
         val targetRecipient = Recipient.from(context, targetAddress, false)
+        if (!targetRecipient.isGroupRecipient) {
+            val recipientDb = DatabaseComponent.get(context).recipientDatabase()
+            if (isUserSender) {
+                recipientDb.setApproved(targetRecipient, true)
+            } else {
+                recipientDb.setApprovedMe(targetRecipient, true)
+            }
+        }
         if (message.isMediaMessage() || attachments.isNotEmpty()) {
             val quote: Optional<QuoteModel> = if (quotes != null) Optional.of(quotes) else Optional.absent()
             val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
@@ -585,7 +607,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             // create Thread if needed
             val threadId = threadDatabase.getOrCreateThreadIdFor(recipient)
             if (contact.didApproveMe == true) {
-                recipientDatabase.setApproved(recipient, true)
+                recipientDatabase.setApprovedMe(recipient, true)
                 threadDatabase.setHasSent(threadId, true)
             }
             if (contact.isApproved == true) {
@@ -663,7 +685,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val mmsDb = DatabaseComponent.get(context).mmsDatabase()
             val senderAddress = fromSerialized(senderPublicKey)
             val requestSender = Recipient.from(context, senderAddress, false)
-            recipientDb.setApproved(requestSender, true)
+            recipientDb.setApprovedMe(requestSender, true)
 
             val message = IncomingMediaMessage(
                 senderAddress,
@@ -684,6 +706,14 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val threadId = getOrCreateThreadIdFor(senderAddress)
             mmsDb.insertSecureDecryptedMessageInbox(message, threadId)
         }
+    }
+
+    override fun setRecipientApproved(recipient: Recipient, approved: Boolean) {
+        DatabaseComponent.get(context).recipientDatabase().setApproved(recipient, approved)
+    }
+
+    override fun setRecipientApprovedMe(recipient: Recipient, approvedMe: Boolean) {
+        DatabaseComponent.get(context).recipientDatabase().setApprovedMe(recipient, approvedMe)
     }
 
 }

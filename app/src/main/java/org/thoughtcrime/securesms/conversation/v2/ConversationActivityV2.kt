@@ -151,7 +151,7 @@ import kotlin.math.sqrt
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
         InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
         ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener,
-        SearchBottomBar.EventListener, VoiceMessageViewDelegate {
+        SearchBottomBar.EventListener, VoiceMessageViewDelegate, LoaderManager.LoaderCallbacks<Cursor> {
 
     private var binding: ActivityConversationV2Binding? = null
     private var actionBarBinding: ActivityConversationV2ActionBarBinding? = null
@@ -350,34 +350,32 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         baseDialog.show(supportFragmentManager, tag)
     }
 
+    override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
+        return ConversationLoader(viewModel.threadId, !isIncomingMessageRequestThread(), this@ConversationActivityV2)
+    }
+
+    override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
+        adapter.changeCursor(cursor)
+        if (cursor != null) {
+            val messageTimestamp = messageToScrollTimestamp.getAndSet(-1)
+            val author = messageToScrollAuthor.getAndSet(null)
+            if (author != null && messageTimestamp >= 0) {
+                jumpToMessage(author, messageTimestamp, null)
+            }
+        }
+    }
+
+    override fun onLoaderReset(cursor: Loader<Cursor>) {
+        adapter.changeCursor(null)
+    }
+
     // called from onCreate
     private fun setUpRecyclerView() {
         binding!!.conversationRecyclerView.adapter = adapter
-        val reverseLayout = !isIncomingMessageRequestThread()
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, reverseLayout)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, !isIncomingMessageRequestThread())
         binding!!.conversationRecyclerView.layoutManager = layoutManager
         // Workaround for the fact that CursorRecyclerViewAdapter doesn't auto-update automatically (even though it says it will)
-        LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
-
-            override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
-                return ConversationLoader(viewModel.threadId, reverseLayout, this@ConversationActivityV2)
-            }
-
-            override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
-                adapter.changeCursor(cursor)
-                if (cursor != null) {
-                    val messageTimestamp = messageToScrollTimestamp.getAndSet(-1)
-                    val author = messageToScrollAuthor.getAndSet(null)
-                    if (author != null && messageTimestamp >= 0) {
-                        jumpToMessage(author, messageTimestamp, null)
-                    }
-                }
-            }
-
-            override fun onLoaderReset(cursor: Loader<Cursor>) {
-                adapter.changeCursor(null)
-            }
-        })
+        LoaderManager.getInstance(this).restartLoader(0, null, this)
         binding!!.conversationRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -388,7 +386,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // called from onCreate
     private fun setUpToolBar() {
-        val actionBar = supportActionBar!!
+        val actionBar = supportActionBar ?: return
         actionBarBinding = ActivityConversationV2ActionBarBinding.inflate(layoutInflater)
         actionBar.title = ""
         actionBar.customView = actionBarBinding!!.root
@@ -581,9 +579,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             if (viewModel.recipient.isContactRecipient) {
                 binding?.blockedBanner?.isVisible = viewModel.recipient.isBlocked
             }
+            invalidateOptionsMenu()
             updateSubtitle()
             showOrHideInputIfNeeded()
             actionBarBinding?.profilePictureView?.update(recipient)
+            actionBarBinding?.conversationTitleView?.text = recipient.toShortString()
         }
     }
 
@@ -616,16 +616,16 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         binding?.messageRequestBar?.isVisible = false
         binding?.conversationRecyclerView?.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+        adapter.notifyDataSetChanged()
         viewModel.acceptMessageRequest()
+        LoaderManager.getInstance(this).restartLoader(0, null, this)
         lifecycleScope.launch(Dispatchers.IO) {
             ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(this@ConversationActivityV2)
         }
     }
 
     private fun isMessageRequestThread(): Boolean {
-        val hasSent = threadDb.getLastSeenAndHasSent(viewModel.threadId).second()
-        return (!viewModel.recipient.isGroupRecipient && !hasSent) ||
-                (!viewModel.recipient.isGroupRecipient && hasSent && !(viewModel.recipient.hasApprovedMe() || viewModel.hasReceived()))
+        return !viewModel.recipient.isGroupRecipient && !viewModel.recipient.isApproved
     }
 
     private fun isOutgoingMessageRequestThread(): Boolean {
@@ -999,9 +999,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun sendMessage() {
-        if (isIncomingMessageRequestThread()) {
-            acceptMessageRequest()
-        }
         if (viewModel.recipient.isContactRecipient && viewModel.recipient.isBlocked) {
             BlockedDialog(viewModel.recipient).show(supportFragmentManager, "Blocked Dialog")
             return
@@ -1019,7 +1016,17 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         startActivityForResult(MediaSendActivity.buildEditorIntent(this, listOf( media ), viewModel.recipient, getMessageBody()), PICK_FROM_LIBRARY)
     }
 
+    private fun processMessageRequestApproval() {
+        if (isIncomingMessageRequestThread()) {
+            acceptMessageRequest()
+        } else if (!viewModel.recipient.isApproved) {
+            // edge case for new outgoing thread on new recipient without sending approval messages
+            viewModel.setRecipientApproved()
+        }
+    }
+
     private fun sendTextOnlyMessage(hasPermissionToSendSeed: Boolean = false) {
+        processMessageRequestApproval()
         val text = getMessageBody()
         val userPublicKey = textSecurePreferences.getLocalNumber()
         val isNoteToSelf = (viewModel.recipient.isContactRecipient && viewModel.recipient.address.toString() == userPublicKey)
@@ -1049,6 +1056,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun sendAttachments(attachments: List<Attachment>, body: String?, quotedMessage: MessageRecord? = null, linkPreview: LinkPreview? = null) {
+        processMessageRequestApproval()
         // Create the message
         val message = VisibleMessage()
         message.sentTimestamp = System.currentTimeMillis()

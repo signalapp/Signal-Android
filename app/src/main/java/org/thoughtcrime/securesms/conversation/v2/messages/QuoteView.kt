@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
 import org.thoughtcrime.securesms.database.SessionContactDatabase
 import org.thoughtcrime.securesms.database.model.Quote
-import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -184,10 +183,10 @@ class QuoteView : LinearLayout {
     @ColorInt private fun getTextColor(isOutgoingMessage: Boolean): Int {
         if (mode == Mode.Draft) { return ResourcesCompat.getColor(resources, R.color.text, context.theme) }
         val isLightMode = UiModeUtilities.isDayUiMode(context)
-        return if ((isOutgoingMessage && !isLightMode) || (!isOutgoingMessage && isLightMode)) {
-            ResourcesCompat.getColor(resources, R.color.black, context.theme)
-        } else {
+        return if (!isOutgoingMessage && !isLightMode) {
             ResourcesCompat.getColor(resources, R.color.white, context.theme)
+        } else  {
+            ResourcesCompat.getColor(resources, R.color.black, context.theme)
         }
     }
 

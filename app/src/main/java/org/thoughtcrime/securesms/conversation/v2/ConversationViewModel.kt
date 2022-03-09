@@ -53,6 +53,10 @@ class ConversationViewModel(
         repository.deleteLocally(recipient, message)
     }
 
+    fun setRecipientApproved() {
+        repository.setApproved(recipient, true)
+    }
+
     fun deleteForEveryone(message: MessageRecord) = viewModelScope.launch {
         repository.deleteForEveryone(threadId, recipient, message)
             .onFailure {

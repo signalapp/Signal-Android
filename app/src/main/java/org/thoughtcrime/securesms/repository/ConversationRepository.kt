@@ -39,6 +39,7 @@ interface ConversationRepository {
     fun inviteContacts(threadId: Long, contacts: List<Recipient>)
     fun unblock(recipient: Recipient)
     fun deleteLocally(recipient: Recipient, message: MessageRecord)
+    fun setApproved(recipient: Recipient, isApproved: Boolean)
 
     suspend fun deleteForEveryone(
         threadId: Long,
@@ -136,6 +137,10 @@ class DefaultConversationRepository @Inject constructor(
             }
         }
         messageDataProvider.deleteMessage(message.id, !message.isMms)
+    }
+
+    override fun setApproved(recipient: Recipient, isApproved: Boolean) {
+        recipientDb.setApproved(recipient, isApproved)
     }
 
     override suspend fun deleteForEveryone(

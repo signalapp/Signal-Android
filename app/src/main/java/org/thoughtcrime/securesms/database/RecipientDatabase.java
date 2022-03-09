@@ -238,10 +238,15 @@ public class RecipientDatabase extends Database {
   public void setApproved(@NonNull Recipient recipient, boolean approved) {
     ContentValues values = new ContentValues();
     values.put(APPROVED, approved ? 1 : 0);
-    values.put(APPROVED_ME, approved ? 1 : 0);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setApproved(approved);
-    recipient.resolve().setHasApprovedMe(approved);
+  }
+
+  public void setApprovedMe(@NonNull Recipient recipient, boolean approvedMe) {
+    ContentValues values = new ContentValues();
+    values.put(APPROVED_ME, approvedMe ? 1 : 0);
+    updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setHasApprovedMe(approvedMe);
   }
 
   public void setBlocked(@NonNull Recipient recipient, boolean blocked) {

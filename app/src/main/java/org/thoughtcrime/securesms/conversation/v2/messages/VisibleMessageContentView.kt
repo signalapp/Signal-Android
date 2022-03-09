@@ -296,7 +296,7 @@ class VisibleMessageContentView : LinearLayout {
         fun getTextColor(context: Context, message: MessageRecord): Int {
             val isDayUiMode = UiModeUtilities.isDayUiMode(context)
             val colorID = if (message.isOutgoing) {
-                if (isDayUiMode) R.color.white else R.color.black
+                R.color.black
             } else {
                 if (isDayUiMode) R.color.black else R.color.white
             }

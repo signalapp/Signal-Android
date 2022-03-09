@@ -75,6 +75,7 @@
 
                 <org.thoughtcrime.securesms.conversation.v2.components.ExpirationTimerView
                     android:id="@+id/expirationTimerView"
+                    android:layout_marginHorizontal="@dimen/small_spacing"
                     android:layout_width="12dp"
                     android:layout_height="12dp"
                     android:layout_gravity="center_vertical" />
