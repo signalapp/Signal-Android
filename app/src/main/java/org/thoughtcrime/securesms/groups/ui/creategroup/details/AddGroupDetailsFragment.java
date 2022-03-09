@@ -35,9 +35,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
 import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireTimerSettingsFragment;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
-import org.thoughtcrime.securesms.groups.ui.creategroup.dialogs.NonGv2MemberDialog;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -130,12 +128,6 @@ public class AddGroupDetailsFragment extends LoggingFragment {
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);
       name.setHint(isMms ? R.string.AddGroupDetailsFragment__group_name_optional : R.string.AddGroupDetailsFragment__group_name_required);
       toolbar.setTitle(isMms ? R.string.AddGroupDetailsFragment__create_group : R.string.AddGroupDetailsFragment__name_this_group);
-    });
-    viewModel.getNonGv2CapableMembers().observe(getViewLifecycleOwner(), nonGv2CapableMembers -> {
-      gv2Warning.setVisibility(nonGv2CapableMembers.isEmpty() ? View.GONE : View.VISIBLE);
-      gv2Warning.setText(requireContext().getResources().getQuantityString(R.plurals.AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created, nonGv2CapableMembers.size(), nonGv2CapableMembers.size()));
-      gv2Warning.setLearnMoreVisible(true);
-      gv2Warning.setOnLinkClickListener(v -> NonGv2MemberDialog.showNonGv2Members(requireContext(), getViewLifecycleOwner(), nonGv2CapableMembers));
     });
     viewModel.getAvatar().observe(getViewLifecycleOwner(), avatarBytes -> {
       if (avatarBytes == null) {

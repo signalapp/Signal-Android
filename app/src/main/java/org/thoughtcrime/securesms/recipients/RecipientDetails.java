@@ -69,7 +69,6 @@ public class RecipientDetails {
   final String                     notificationChannel;
   final UnidentifiedAccessMode     unidentifiedAccessMode;
   final boolean                    forceSmsSelection;
-  final Recipient.Capability       groupsV2Capability;
   final Recipient.Capability       groupsV1MigrationCapability;
   final Recipient.Capability       senderKeyCapability;
   final Recipient.Capability       announcementGroupCapability;
@@ -132,7 +131,6 @@ public class RecipientDetails {
     this.notificationChannel         = record.getNotificationChannel();
     this.unidentifiedAccessMode      = record.getUnidentifiedAccessMode();
     this.forceSmsSelection           = record.isForceSmsSelection();
-    this.groupsV2Capability          = record.getGroupsV2Capability();
     this.groupsV1MigrationCapability = record.getGroupsV1MigrationCapability();
     this.senderKeyCapability         = record.getSenderKeyCapability();
     this.announcementGroupCapability = record.getAnnouncementGroupCapability();
@@ -159,9 +157,9 @@ public class RecipientDetails {
     this.groupAvatarId               = null;
     this.systemContactPhoto          = null;
     this.customLabel                 = null;
-    this.contactUri = null;
-    this.serviceId  = null;
-    this.pni        = null;
+    this.contactUri                  = null;
+    this.serviceId                   = null;
+    this.pni                         = null;
     this.username                    = null;
     this.e164                        = null;
     this.email                       = null;
@@ -191,7 +189,6 @@ public class RecipientDetails {
     this.unidentifiedAccessMode      = UnidentifiedAccessMode.UNKNOWN;
     this.forceSmsSelection           = false;
     this.groupName                   = null;
-    this.groupsV2Capability          = Recipient.Capability.UNKNOWN;
     this.groupsV1MigrationCapability = Recipient.Capability.UNKNOWN;
     this.senderKeyCapability         = Recipient.Capability.UNKNOWN;
     this.announcementGroupCapability = Recipient.Capability.UNKNOWN;

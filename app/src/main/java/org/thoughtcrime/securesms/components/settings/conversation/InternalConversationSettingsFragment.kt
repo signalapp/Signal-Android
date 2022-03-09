@@ -186,8 +186,6 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
   private fun buildCapabilitySpan(recipient: Recipient): CharSequence {
     return TextUtils.concat(
-      colorize("GV2", recipient.groupsV2Capability),
-      ", ",
       colorize("GV1Migration", recipient.groupsV1MigrationCapability),
       ", ",
       colorize("AnnouncementGroup", recipient.announcementGroupCapability),

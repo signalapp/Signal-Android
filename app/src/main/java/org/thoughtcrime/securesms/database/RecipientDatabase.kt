@@ -1395,7 +1395,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   fun setCapabilities(id: RecipientId, capabilities: SignalServiceProfile.Capabilities) {
     var value: Long = 0
-    value = Bitmask.update(value, Capabilities.GROUPS_V2, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv2).serialize().toLong())
     value = Bitmask.update(value, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv1Migration).serialize().toLong())
     value = Bitmask.update(value, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isSenderKey).serialize().toLong())
     value = Bitmask.update(value, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isAnnouncementGroup).serialize().toLong())
@@ -2910,7 +2909,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       unidentifiedAccessMode = UnidentifiedAccessMode.fromMode(cursor.requireInt(UNIDENTIFIED_ACCESS_MODE)),
       forceSmsSelection = cursor.requireBoolean(FORCE_SMS_SELECTION),
       rawCapabilities = capabilities,
-      groupsV2Capability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GROUPS_V2, Capabilities.BIT_LENGTH).toInt()),
       groupsV1MigrationCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH).toInt()),
       senderKeyCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH).toInt()),
       announcementGroupCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH).toInt()),
@@ -3297,7 +3295,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    */
   internal object Capabilities {
     const val BIT_LENGTH = 2
-    const val GROUPS_V2 = 0
+//    const val GROUPS_V2 = 0
     const val GROUPS_V1_MIGRATION = 1
     const val SENDER_KEY = 2
     const val ANNOUNCEMENT_GROUPS = 3

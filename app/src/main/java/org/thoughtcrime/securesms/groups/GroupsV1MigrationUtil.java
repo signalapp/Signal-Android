@@ -223,8 +223,7 @@ public final class GroupsV1MigrationUtil {
    */
   private static @NonNull List<Recipient> getMigratableManualMigrationMembers(@NonNull List<Recipient> registeredMembers) {
     return Stream.of(registeredMembers)
-                 .filter(r -> r.getGroupsV2Capability() == Recipient.Capability.SUPPORTED &&
-                     r.getGroupsV1MigrationCapability() == Recipient.Capability.SUPPORTED)
+                 .filter(r -> r.getGroupsV1MigrationCapability() == Recipient.Capability.SUPPORTED)
                  .toList();
   }
 
@@ -233,7 +232,6 @@ public final class GroupsV1MigrationUtil {
    */
   public static boolean isAutoMigratable(@NonNull Recipient recipient) {
     return recipient.hasServiceId() &&
-           recipient.getGroupsV2Capability() == Recipient.Capability.SUPPORTED &&
            recipient.getGroupsV1MigrationCapability() == Recipient.Capability.SUPPORTED &&
            recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED &&
            recipient.getProfileKey() != null;

@@ -176,9 +176,6 @@ public class SignalServiceProfile {
 
   public static class Capabilities {
     @JsonProperty
-    private boolean gv2;
-
-    @JsonProperty
     private boolean storage;
 
     @JsonProperty("gv1-migration")
@@ -198,10 +195,6 @@ public class SignalServiceProfile {
 
     @JsonCreator
     public Capabilities() {}
-
-    public boolean isGv2() {
-      return gv2;
-    }
 
     public boolean isStorage() {
       return storage;

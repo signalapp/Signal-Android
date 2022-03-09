@@ -66,7 +66,6 @@ data class RecipientRecord(
   @get:JvmName("isForceSmsSelection")
   val forceSmsSelection: Boolean,
   val rawCapabilities: Long,
-  val groupsV2Capability: Recipient.Capability,
   val groupsV1MigrationCapability: Recipient.Capability,
   val senderKeyCapability: Recipient.Capability,
   val announcementGroupCapability: Recipient.Capability,

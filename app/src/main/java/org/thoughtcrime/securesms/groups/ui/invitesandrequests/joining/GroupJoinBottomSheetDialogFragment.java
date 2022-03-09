@@ -110,26 +110,15 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
         updateGroupDescription(details.getGroupName(), details.getGroupDescription());
       }
 
-      switch (getGroupJoinStatus()) {
-        case UPDATE_LINKED_DEVICE_TO_JOIN:
-          groupJoinExplain.setText(R.string.GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message);
-          groupCancelButton.setText(android.R.string.ok);
-          groupJoinButton.setVisibility(View.GONE);
-          ApplicationDependencies.getJobManager()
-                                 .add(RetrieveProfileJob.forRecipient(Recipient.self().getId()));
-          break;
-        case LOCAL_CAN_JOIN:
-          groupJoinExplain.setText(details.joinRequiresAdminApproval() ? R.string.GroupJoinBottomSheetDialogFragment_admin_approval_needed
-                                                                       : R.string.GroupJoinBottomSheetDialogFragment_direct_join);
-          groupJoinButton.setText(details.joinRequiresAdminApproval() ? R.string.GroupJoinBottomSheetDialogFragment_request_to_join
-                                                                      : R.string.GroupJoinBottomSheetDialogFragment_join);
-          groupJoinButton.setOnClickListener(v -> {
-            Log.i(TAG, details.joinRequiresAdminApproval() ? "Attempting to direct join group" : "Attempting to request to join group");
-            viewModel.join(details);
-          });
-          groupJoinButton.setVisibility(View.VISIBLE);
-          break;
-      }
+      groupJoinExplain.setText(details.joinRequiresAdminApproval() ? R.string.GroupJoinBottomSheetDialogFragment_admin_approval_needed
+                                                                   : R.string.GroupJoinBottomSheetDialogFragment_direct_join);
+      groupJoinButton.setText(details.joinRequiresAdminApproval() ? R.string.GroupJoinBottomSheetDialogFragment_request_to_join
+                                                                  : R.string.GroupJoinBottomSheetDialogFragment_join);
+      groupJoinButton.setOnClickListener(v -> {
+        Log.i(TAG, details.joinRequiresAdminApproval() ? "Attempting to direct join group" : "Attempting to request to join group");
+        viewModel.join(details);
+      });
+      groupJoinButton.setVisibility(View.VISIBLE);
 
       avatar.setImageBytesForGroup(details.getAvatarBytes(), new FallbackPhotoProvider(), AvatarColor.UNKNOWN);
 
@@ -167,14 +156,6 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
                                  () -> GroupDescriptionDialog.show(getChildFragmentManager(), name, description, true));
   }
 
-  private static ExtendedGroupJoinStatus getGroupJoinStatus() {
-    if (Recipient.self().getGroupsV2Capability() != Recipient.Capability.SUPPORTED) {
-      return ExtendedGroupJoinStatus.UPDATE_LINKED_DEVICE_TO_JOIN;
-    } else {
-      return ExtendedGroupJoinStatus.LOCAL_CAN_JOIN;
-    }
-  }
-
   private @NonNull String errorToMessage(@NonNull FetchGroupDetailsError error) {
     if (error == FetchGroupDetailsError.GroupLinkNotActive) {
       return getString(R.string.GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active);
@@ -209,13 +190,5 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
     public @NonNull FallbackContactPhoto getPhotoForGroup() {
       return new ResourceContactPhoto(R.drawable.ic_group_outline_48);
     }
-  }
-
-  public enum ExtendedGroupJoinStatus {
-    /** Locally we're using a version that can use group links, but one or more linked devices needs updating for GV2. */
-    UPDATE_LINKED_DEVICE_TO_JOIN,
-
-    /** This version of the client allows joining via GV2 group links. */
-    LOCAL_CAN_JOIN
   }
 }

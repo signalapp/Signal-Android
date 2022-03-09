@@ -329,7 +329,7 @@ final class GroupManagerV2 {
     @NonNull GroupManager.GroupActionResult addMembers(@NonNull Collection<RecipientId> newMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, MembershipNotSuitableForV2Exception
     {
-      if (!GroupsV2CapabilityChecker.allHaveUuidAndSupportGroupsV2(newMembers)) {
+      if (!GroupsV2CapabilityChecker.allHaveServiceId(newMembers)) {
         throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 or UUID capabilities");
       }
 
@@ -736,7 +736,7 @@ final class GroupManagerV2 {
                                                       int disappearingMessageTimerSeconds)
       throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception, GroupAlreadyExistsException
   {
-    if (!GroupsV2CapabilityChecker.allAndSelfHaveUuidAndSupportGroupsV2(members)) {
+    if (!GroupsV2CapabilityChecker.allAndSelfHaveServiceId(members)) {
       throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 capability or we don't have their UUID");
     }
 
@@ -976,7 +976,7 @@ final class GroupManagerV2 {
     private @NonNull GroupChange joinGroupOnServer(boolean requestToJoin, int currentRevision)
         throws GroupChangeFailedException, IOException, MembershipNotSuitableForV2Exception, GroupLinkNotActiveException, GroupJoinAlreadyAMemberException
     {
-      if (!GroupsV2CapabilityChecker.allAndSelfHaveUuidAndSupportGroupsV2(Collections.singleton(Recipient.self().getId()))) {
+      if (!GroupsV2CapabilityChecker.allAndSelfHaveServiceId(Collections.singleton(Recipient.self().getId()))) {
         throw new MembershipNotSuitableForV2Exception("Self does not support GV2 or UUID capabilities");
       }
 

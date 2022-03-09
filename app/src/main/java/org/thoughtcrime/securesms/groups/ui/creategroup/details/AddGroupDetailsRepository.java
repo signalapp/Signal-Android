@@ -78,17 +78,4 @@ final class AddGroupDetailsRepository {
       }
     });
   }
-
-  @WorkerThread
-  List<Recipient> checkCapabilities(@NonNull Collection<RecipientId> newPotentialMemberList) {
-    try {
-        GroupsV2CapabilityChecker.refreshCapabilitiesIfNecessary(Recipient.resolvedList(newPotentialMemberList));
-      } catch (IOException e) {
-        Log.w(TAG, "Could not get latest profiles for users, using known gv2 capability state", e);
-      }
-
-      return Stream.of(Recipient.resolvedList(newPotentialMemberList))
-                   .filter(m -> m.getGroupsV2Capability() != Recipient.Capability.SUPPORTED)
-                   .toList();
-  }
 }

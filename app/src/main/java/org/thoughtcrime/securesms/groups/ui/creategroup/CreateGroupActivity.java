@@ -4,14 +4,11 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
-import com.annimon.stream.Stream;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -22,9 +19,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.groups.GroupsV2CapabilityChecker;
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -36,8 +31,6 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -189,60 +182,13 @@ public class CreateGroupActivity extends ContactSelectionActivity {
         }
       }
 
-      if (registeredChecks.size() > 0) {
-        resolved = Recipient.resolvedList(ids);
-      }
-
       stopwatch.split("registered");
 
-      List<Recipient> recipientsAndSelf = new ArrayList<>(resolved);
-      recipientsAndSelf.add(Recipient.self().resolve());
-
-      boolean neededRefresh = false;
-
-      if (!SignalStore.internalValues().gv2DoNotCreateGv2Groups()) {
-        try {
-          neededRefresh = GroupsV2CapabilityChecker.refreshCapabilitiesIfNecessary(recipientsAndSelf);
-        } catch (IOException e) {
-          Log.w(TAG, "Failed to refresh all recipient capabilities.", e);
-        }
-      }
-
-      if (neededRefresh) {
-        resolved = Recipient.resolvedList(ids);
-      }
-
-      stopwatch.split("capabilities");
-
-
-      Pair<Boolean, List<RecipientId>> result;
-
-      boolean gv2 = Stream.of(recipientsAndSelf).allMatch(r -> r.getGroupsV2Capability() == Recipient.Capability.SUPPORTED);
-      if (!gv2 && Stream.of(resolved).anyMatch(r -> !r.hasE164()))
-      {
-        Log.w(TAG, "Invalid GV1 group...");
-        ids = Collections.emptyList();
-        result = Pair.create(false, ids);
-      } else {
-        result = Pair.create(true, ids);
-      }
-
-      stopwatch.split("gv1-check");
-
-      return result;
-    }, result -> {
+      return ids;
+    }, recipientIds -> {
       dismissibleDialog.dismiss();
-
       stopwatch.stop(TAG);
-
-      if (result.first) {
-        startActivityForResult(AddGroupDetailsActivity.newIntent(this, result.second), REQUEST_CODE_ADD_DETAILS);
-      } else {
-        new AlertDialog.Builder(this)
-                       .setMessage(R.string.CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups)
-                       .setPositiveButton(android.R.string.ok, (d, w) -> d.dismiss())
-                       .show();
-      }
+      startActivityForResult(AddGroupDetailsActivity.newIntent(this, recipientIds), REQUEST_CODE_ADD_DETAILS);
     });
   }
 }

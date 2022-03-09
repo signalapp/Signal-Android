@@ -112,7 +112,6 @@ public class Recipient {
   private final String                 notificationChannel;
   private final UnidentifiedAccessMode unidentifiedAccessMode;
   private final boolean                forceSmsSelection;
-  private final Capability             groupsV2Capability;
   private final Capability             groupsV1MigrationCapability;
   private final Capability             senderKeyCapability;
   private final Capability             announcementGroupCapability;
@@ -380,7 +379,6 @@ public class Recipient {
     this.notificationChannel         = null;
     this.unidentifiedAccessMode      = UnidentifiedAccessMode.DISABLED;
     this.forceSmsSelection           = false;
-    this.groupsV2Capability          = Capability.UNKNOWN;
     this.groupsV1MigrationCapability = Capability.UNKNOWN;
     this.senderKeyCapability         = Capability.UNKNOWN;
     this.announcementGroupCapability = Capability.UNKNOWN;
@@ -438,7 +436,6 @@ public class Recipient {
     this.notificationChannel         = details.notificationChannel;
     this.unidentifiedAccessMode      = details.unidentifiedAccessMode;
     this.forceSmsSelection           = details.forceSmsSelection;
-    this.groupsV2Capability          = details.groupsV2Capability;
     this.groupsV1MigrationCapability = details.groupsV1MigrationCapability;
     this.senderKeyCapability         = details.senderKeyCapability;
     this.announcementGroupCapability = details.announcementGroupCapability;
@@ -969,10 +966,6 @@ public class Recipient {
     return forceSmsSelection;
   }
 
-  public @NonNull Capability getGroupsV2Capability() {
-    return groupsV2Capability;
-  }
-
   public @NonNull Capability getGroupsV1MigrationCapability() {
     return groupsV1MigrationCapability;
   }
@@ -1269,7 +1262,6 @@ public class Recipient {
            Objects.equals(profileAvatar, other.profileAvatar) &&
            Objects.equals(notificationChannel, other.notificationChannel) &&
            unidentifiedAccessMode == other.unidentifiedAccessMode &&
-           groupsV2Capability == other.groupsV2Capability &&
            groupsV1MigrationCapability == other.groupsV1MigrationCapability &&
            insightsBannerTier == other.insightsBannerTier &&
            Arrays.equals(storageId, other.storageId) &&

@@ -69,8 +69,7 @@ final class GroupsV1MigrationRepository {
     }
 
     Set<RecipientId> needsRefresh = Stream.of(group.getParticipants())
-                                          .filter(r -> r.getGroupsV2Capability() != Recipient.Capability.SUPPORTED ||
-                                                       r.getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED)
+                                          .filter(r -> r.getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED)
                                           .map(Recipient::getId)
                                           .collect(Collectors.toSet());
 
@@ -96,7 +95,6 @@ final class GroupsV1MigrationRepository {
 
     List<Recipient> ineligible = Stream.of(group.getParticipants())
                                        .filter(r -> !r.hasServiceId() ||
-                                                    r.getGroupsV2Capability() != Recipient.Capability.SUPPORTED ||
                                                     r.getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED ||
                                                     r.getRegistered() != RecipientDatabase.RegisteredState.REGISTERED)
                                        .toList();
