@@ -52,7 +52,7 @@ public class ConversationMessage {
       this.body = null;
     }
 
-    if (!this.mentions.isEmpty() && this.body != null) {
+    if (!this.mentions.isEmpty() && this.body != null && this.messageRecord.isGroupV2()) {
       MentionAnnotation.setMentionAnnotations(this.body, this.mentions);
     }
 

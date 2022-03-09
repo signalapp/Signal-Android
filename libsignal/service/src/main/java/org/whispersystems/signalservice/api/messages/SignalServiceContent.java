@@ -1041,7 +1041,7 @@ public final class SignalServiceContent {
     }
 
     if (mentions.size() > 0 && !isGroupV2) {
-      throw new InvalidMessageStructureException("Mentions received in non-GV2 message");
+      Log.w(TAG, "Mentions received in non-GV2 message");
     }
 
     return mentions;
