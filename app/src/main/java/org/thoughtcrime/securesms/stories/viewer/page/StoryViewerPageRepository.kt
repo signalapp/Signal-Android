@@ -172,7 +172,7 @@ class StoryViewerPageRepository(context: Context) {
   }
 
   private fun getContent(record: MmsMessageRecord): StoryPost.Content {
-    return if (record.storyType.isTextStory) {
+    return if (record.storyType.isTextStory || record.slideDeck.asAttachments().isEmpty()) {
       StoryPost.Content.TextContent(
         uri = Uri.parse("story_text_post://${record.id}"),
         recordId = record.id

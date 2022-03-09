@@ -18,24 +18,28 @@ class StoryTextPostViewModel(recordId: Long, repository: StoryTextPostRepository
   val state: LiveData<StoryTextPostState> = store.stateLiveData
 
   init {
-    disposables += repository.getRecord(recordId).subscribeBy(
-      onSuccess = { record ->
-        store.update { state ->
-          state.copy(
-            storyTextPost = StoryTextPost.parseFrom(Base64.decode(record.body)),
-            linkPreview = record.linkPreviews.firstOrNull(),
-            loadState = StoryTextPostState.LoadState.LOADED
-          )
-        }
-      },
-      onError = {
-        store.update { state ->
-          state.copy(
-            loadState = StoryTextPostState.LoadState.FAILED
-          )
-        }
+    disposables += repository.getRecord(recordId)
+      .map { record ->
+        StoryTextPost.parseFrom(Base64.decode(record.body)) to record.linkPreviews.firstOrNull()
       }
-    )
+      .subscribeBy(
+        onSuccess = { (post, previews) ->
+          store.update { state ->
+            state.copy(
+              storyTextPost = post,
+              linkPreview = previews,
+              loadState = StoryTextPostState.LoadState.LOADED
+            )
+          }
+        },
+        onError = {
+          store.update { state ->
+            state.copy(
+              loadState = StoryTextPostState.LoadState.FAILED
+            )
+          }
+        }
+      )
   }
 
   override fun onCleared() {
