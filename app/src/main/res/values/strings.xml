@@ -2652,6 +2652,8 @@
     <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
     <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
     <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\'s newer than what we have.</string>
+    <string name="preferences__internal_force_search_index_download" translatable="false">Force search index download</string>
+    <string name="preferences__internal_force_search_index_download_description" translatable="false">Download the latest emoji search index if it\'s newer than what we have.</string>
     <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
     <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
     <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>

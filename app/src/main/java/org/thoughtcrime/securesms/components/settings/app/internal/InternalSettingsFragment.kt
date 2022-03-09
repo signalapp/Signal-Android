@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
+import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -246,6 +247,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from(R.string.preferences__internal_force_emoji_download_description),
         onClick = {
           ApplicationDependencies.getJobManager().add(DownloadLatestEmojiDataJob(true))
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_force_search_index_download),
+        summary = DSLSettingsText.from(R.string.preferences__internal_force_search_index_download_description),
+        onClick = {
+          EmojiSearchIndexDownloadJob.scheduleImmediately()
         }
       )
 
