@@ -26,7 +26,7 @@ import kotlin.math.min
  */
 internal class SpinnerServer(
   private val application: Application,
-  private val deviceInfo: Spinner.DeviceInfo,
+  private val deviceInfo: Map<String, String>,
   private val databases: Map<String, DatabaseConfig>
 ) : NanoHTTPD(5000) {
 
@@ -342,7 +342,7 @@ internal class SpinnerServer(
   }
 
   data class OverviewPageModel(
-    val deviceInfo: Spinner.DeviceInfo,
+    val deviceInfo: Map<String, String>,
     val database: String,
     val databases: List<String>,
     val tables: List<TableInfo>,
@@ -352,7 +352,7 @@ internal class SpinnerServer(
   )
 
   data class BrowsePageModel(
-    val deviceInfo: Spinner.DeviceInfo,
+    val deviceInfo: Map<String, String>,
     val database: String,
     val databases: List<String>,
     val tableNames: List<String>,
@@ -362,7 +362,7 @@ internal class SpinnerServer(
   )
 
   data class QueryPageModel(
-    val deviceInfo: Spinner.DeviceInfo,
+    val deviceInfo: Map<String, String>,
     val database: String,
     val databases: List<String>,
     val query: String = "",
@@ -370,7 +370,7 @@ internal class SpinnerServer(
   )
 
   data class RecentPageModel(
-    val deviceInfo: Spinner.DeviceInfo,
+    val deviceInfo: Map<String, String>,
     val database: String,
     val databases: List<String>,
     val recentSql: List<RecentQuery>?

@@ -1,18 +1,12 @@
 <h1>SPINNER</h1>
 
 <table class="device-info">
-  <tr>
-    <td>Device</td>
-    <td>{{deviceInfo.name}}</td>
-  </tr>
-  <tr>
-    <td>Package</td>
-    <td>{{deviceInfo.packageName}}</td>
-  </tr>
-  <tr>
-    <td>App Version</td>
-    <td>{{deviceInfo.appVersion}}</td>
-  </tr>
+  {{#each deviceInfo}}
+    <tr>
+      <td>{{@key}}</td>
+      <td>{{this}}</td>
+    </tr>
+  {{/each}}
 </table>
 
 <div>

@@ -15,7 +15,7 @@ object Spinner {
 
   private lateinit var server: SpinnerServer
 
-  fun init(application: Application, deviceInfo: DeviceInfo, databases: Map<String, DatabaseConfig>) {
+  fun init(application: Application, deviceInfo: Map<String, String>, databases: Map<String, DatabaseConfig>) {
     try {
       server = SpinnerServer(application, deviceInfo, databases)
       server.start()
@@ -86,12 +86,6 @@ object Spinner {
 
     return builder.toString()
   }
-
-  data class DeviceInfo(
-    val name: String,
-    val packageName: String,
-    val appVersion: String
-  )
 
   data class DatabaseConfig(
     val db: SupportSQLiteDatabase,

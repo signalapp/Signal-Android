@@ -19,10 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     Spinner.init(
       application,
-      Spinner.DeviceInfo(
-        name = "${Build.MODEL} (API ${Build.VERSION.SDK_INT})",
-        packageName = packageName,
-        appVersion = "0.1"
+      mapOf(
+        "Name" to "${Build.MODEL} (API ${Build.VERSION.SDK_INT})",
+        "Package" to packageName
       ),
       mapOf("main" to Spinner.DatabaseConfig(db = db))
     )
