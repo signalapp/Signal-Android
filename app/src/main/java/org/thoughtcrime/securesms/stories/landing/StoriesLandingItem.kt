@@ -10,9 +10,12 @@ import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
+import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -80,11 +83,23 @@ object StoriesLandingItem {
       val record = model.data.primaryStory.messageRecord as MediaMmsMessageRecord
 
       avatarView.setStoryRingFromState(model.data.storyViewState)
-      storyPreview.setImageResource(GlideApp.with(storyPreview), record.slideDeck.thumbnailSlide!!, false, true)
+
+      if (record.storyType.isTextStory) {
+        storyPreview.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel(StoryTextPost.parseFrom(Base64.decode(record.body))), 0, 0)
+      } else if (record.slideDeck.thumbnailSlide != null) {
+        storyPreview.setImageResource(GlideApp.with(storyPreview), record.slideDeck.thumbnailSlide!!, false, true)
+      } else {
+        storyPreview.clear(GlideApp.with(storyPreview))
+      }
 
       if (model.data.secondaryStory != null) {
         val secondaryRecord = model.data.secondaryStory.messageRecord as MediaMmsMessageRecord
-        storyMulti.setImageResource(GlideApp.with(storyPreview), secondaryRecord.slideDeck.thumbnailSlide!!, false, true)
+
+        if (secondaryRecord.storyType.isTextStory) {
+          storyMulti.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel(StoryTextPost.parseFrom(Base64.decode(secondaryRecord.body))), 0, 0)
+        } else {
+          storyMulti.setImageResource(GlideApp.with(storyPreview), secondaryRecord.slideDeck.thumbnailSlide!!, false, true)
+        }
         storyMulti.visible = true
       } else {
         storyMulti.visible = false

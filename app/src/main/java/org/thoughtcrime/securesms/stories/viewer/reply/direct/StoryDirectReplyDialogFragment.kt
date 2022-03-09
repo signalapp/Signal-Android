@@ -37,7 +37,7 @@ class StoryDirectReplyDialogFragment :
 
   private val viewModel: StoryDirectReplyViewModel by viewModels(
     factoryProducer = {
-      StoryDirectReplyViewModel.Factory(storyId, recipientId, StoryDirectReplyRepository())
+      StoryDirectReplyViewModel.Factory(storyId, recipientId, StoryDirectReplyRepository(requireContext()))
     }
   )
 

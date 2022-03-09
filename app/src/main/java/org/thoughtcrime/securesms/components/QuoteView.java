@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -209,7 +210,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     this.author.observeForever(this);
     setQuoteAuthor(author);
     setQuoteText(body, attachments);
-    setQuoteAttachment(glideRequests, attachments);
+    setQuoteAttachment(glideRequests, body, attachments);
     setQuoteMissingFooter(originalMissing);
 
     if (Build.VERSION.SDK_INT < 21 && messageType == MessageType.INCOMING && chatColors != null) {
@@ -264,7 +265,9 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   }
 
   private void setQuoteText(@Nullable CharSequence body, @NonNull SlideDeck attachments) {
-    if (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide()) {
+    boolean isTextStory = !attachments.containsMediaSlide() && messageType == MessageType.STORY_REPLY;
+
+    if (!isTextStory && (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide())) {
       bodyView.setVisibility(VISIBLE);
       bodyView.setText(body == null ? "" : body);
       mediaDescriptionText.setVisibility(GONE);
@@ -273,6 +276,11 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
     bodyView.setVisibility(GONE);
     mediaDescriptionText.setVisibility(VISIBLE);
+
+    if (isTextStory) {
+      // TODO [alex] -- Media description.
+      return;
+    }
 
     Slide audioSlide    = attachments.getSlides().stream().filter(Slide::hasAudio).findFirst().orElse(null);
     Slide documentSlide = attachments.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
@@ -305,7 +313,20 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     }
   }
 
-  private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull SlideDeck slideDeck) {
+  private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull CharSequence body, @NonNull SlideDeck slideDeck) {
+    if (!attachments.containsMediaSlide() && messageType == MessageType.STORY_REPLY) {
+      StoryTextPostModel model = StoryTextPostModel.parseFrom(body.toString());
+      attachmentVideoOverlayView.setVisibility(GONE);
+      attachmentContainerView.setVisibility(GONE);
+      thumbnailView.setVisibility(VISIBLE);
+      glideRequests.load(model)
+                   .centerCrop()
+                   .override(thumbWidth, thumbHeight)
+                   .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                   .into(thumbnailView);
+      return;
+    }
+
     Slide imageVideoSlide = slideDeck.getSlides().stream().filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).findFirst().orElse(null);
     Slide documentSlide   = slideDeck.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
     Slide viewOnceSlide   = slideDeck.getSlides().stream().filter(Slide::hasViewOnce).findFirst().orElse(null);

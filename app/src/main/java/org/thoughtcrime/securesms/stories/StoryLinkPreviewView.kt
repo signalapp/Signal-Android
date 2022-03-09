@@ -33,12 +33,10 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   private val title: TextView = findViewById(R.id.link_preview_title)
   private val url: TextView = findViewById(R.id.link_preview_url)
 
-  fun bind(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int = View.INVISIBLE) {
-    if (linkPreviewState.linkPreview.isPresent) {
+  fun bind(linkPreview: LinkPreview?, hiddenVisibility: Int = View.INVISIBLE) {
+    if (linkPreview != null) {
       visibility = View.VISIBLE
       isClickable = true
-
-      val linkPreview: LinkPreview = linkPreviewState.linkPreview.get()
 
       val corners = DimensionUnit.DP.toPixels(18f).toInt()
       image.setCorners(corners, corners, corners, corners)
@@ -58,6 +56,10 @@ class StoryLinkPreviewView @JvmOverloads constructor(
       visibility = hiddenVisibility
       isClickable = false
     }
+  }
+
+  fun bind(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int = View.INVISIBLE) {
+    bind(linkPreviewState.linkPreview.orNull(), hiddenVisibility)
   }
 
   private fun formatUrl(linkPreview: LinkPreview) {

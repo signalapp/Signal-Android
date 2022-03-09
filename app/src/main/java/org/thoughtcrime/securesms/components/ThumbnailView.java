@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -372,6 +373,31 @@ public class ThumbnailView extends FrameLayout {
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
 
     GlideRequest request = glideRequests.load(new DecryptableUri(uri))
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .transition(withCrossFade());
+
+    if (width > 0 && height > 0) {
+      request = request.override(width, height);
+    }
+
+    if (radius > 0) {
+      request = request.transforms(new CenterCrop(), new RoundedCorners(radius));
+    } else {
+      request = request.transforms(new CenterCrop());
+    }
+
+    request.into(new GlideDrawableListeningTarget(image, future));
+    blurhash.setImageDrawable(null);
+
+    return future;
+  }
+
+  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull StoryTextPostModel model, int width, int height) {
+    SettableFuture<Boolean> future = new SettableFuture<>();
+
+    if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
+
+    GlideRequest request = glideRequests.load(model)
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                                         .transition(withCrossFade());
 

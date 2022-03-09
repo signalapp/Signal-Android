@@ -5,6 +5,7 @@ import androidx.core.util.Consumer
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
@@ -30,7 +31,7 @@ class MultiselectForwardRepository(context: Context) {
   fun checkForBadIdentityRecords(contactSearchKeys: Set<ContactSearchKey>, consumer: Consumer<List<IdentityRecord>>) {
     SignalExecutors.BOUNDED.execute {
       val recipients: List<Recipient> = contactSearchKeys
-        .filterIsInstance<ContactSearchKey.KnownRecipient>()
+        .filterIsInstance<RecipientSearchKey>()
         .map { Recipient.resolved(it.recipientId) }
       val identityRecordList: IdentityRecordList = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients)
 

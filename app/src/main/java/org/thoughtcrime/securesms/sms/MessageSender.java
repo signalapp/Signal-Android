@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -85,7 +86,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class MessageSender {
 
@@ -229,6 +232,7 @@ public class MessageSender {
 
       attachmentDatabase.updateMessageId(preUploadAttachmentIds, primaryMessageId);
       messageIds.add(primaryMessageId);
+      uploadLinkPreviews(primaryMessage, primaryMessageId, jobManager, preUploadJobIds, messageDependsOnIds);
 
       if (messages.size() > 0) {
         List<OutgoingSecureMediaMessage> secondaryMessages    = messages.subList(1, messages.size());
@@ -257,6 +261,7 @@ public class MessageSender {
 
           attachmentDatabase.updateMessageId(attachmentIds, messageId);
           messageIds.add(messageId);
+          uploadLinkPreviews(secondaryMessage, messageId, jobManager, preUploadJobIds, messageDependsOnIds);
         }
 
         for (int i = 0; i < attachmentCopies.size(); i++) {
@@ -288,6 +293,31 @@ public class MessageSender {
       Log.w(TAG, "Failed to send messages.", e);
     } finally {
       mmsDatabase.endTransaction();
+    }
+  }
+
+  @WorkerThread
+  private static void uploadLinkPreviews(@NonNull OutgoingMediaMessage mediaMessage,
+                                         long outgoingMessageId,
+                                         @NonNull JobManager jobManager,
+                                         @NonNull List<String> preUploadJobIds,
+                                         @NonNull List<String> messageDependsOnIds)
+  {
+    if (!mediaMessage.getLinkPreviews().isEmpty()) {
+      try {
+        MmsMessageRecord freshRecord = (MmsMessageRecord) SignalDatabase.mms().getMessageRecord(outgoingMessageId);
+        freshRecord.getLinkPreviews()
+                   .stream()
+                   .map(LinkPreview::getAttachmentId)
+                   .filter(Objects::nonNull)
+                   .forEach(previewId -> {
+                     Job job = new AttachmentUploadJob(previewId);
+                     jobManager.add(job, preUploadJobIds);
+                     messageDependsOnIds.add(job.getId());
+                   });
+      } catch (NoSuchMessageException e) {
+        throw new AssertionError("Cannot fetch record we just inserted");
+      }
     }
   }
 

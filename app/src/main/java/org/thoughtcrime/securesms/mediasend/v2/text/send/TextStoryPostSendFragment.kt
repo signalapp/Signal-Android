@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseGroupStoryBottomSheet
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
@@ -45,7 +46,7 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
 
   private val viewModel: TextStoryPostSendViewModel by viewModels(
     factoryProducer = {
-      TextStoryPostSendViewModel.Factory(TextStoryPostSendRepository())
+      TextStoryPostSendViewModel.Factory(TextStoryPostSendRepository(requireContext()))
     }
   )
 
@@ -97,6 +98,10 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
       } else {
         send()
       }
+    }
+
+    disposables += viewModel.untrustedIdentities.subscribe {
+      SafetyNumberChangeDialog.show(childFragmentManager, it)
     }
 
     searchField.doAfterTextChanged {
@@ -158,9 +163,8 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
     shareConfirmButton.isEnabled = false
 
     val textStoryPostCreationState = creationViewModel.state.value
-    val linkPreviewState = linkPreviewViewModel.linkPreviewState.value
 
-    viewModel.onSend(contactSearchMediator.getSelectedContacts(), textStoryPostCreationState!!, linkPreviewState!!)
+    viewModel.onSend(contactSearchMediator.getSelectedContacts(), textStoryPostCreationState!!, linkPreviewViewModel.onSend().firstOrNull())
   }
 
   private fun animateInSelection() {

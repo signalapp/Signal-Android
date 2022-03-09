@@ -158,6 +158,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(areSegmentsInitialized = areSegmentsInitialized) }
   }
 
+  fun setIsDisplayingLinkPreviewTooltip(isDisplayingLinkPreviewTooltip: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingLinkPreviewTooltip = isDisplayingLinkPreviewTooltip) }
+  }
+
   private fun resolveSwipeToReplyState(state: StoryViewerPageState, index: Int = state.selectedPostIndex): StoryViewerPageState.ReplyState {
     if (index !in state.posts.indices) {
       return StoryViewerPageState.ReplyState.NONE

@@ -92,7 +92,7 @@ class StoryReplyComposer @JvmOverloads constructor(
       GlideApp.with(this),
       messageRecord.dateSent,
       messageRecord.recipient,
-      null,
+      messageRecord.body,
       false,
       messageRecord.slideDeck,
       null

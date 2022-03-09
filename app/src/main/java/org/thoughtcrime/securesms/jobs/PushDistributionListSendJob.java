@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
+import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -59,11 +60,11 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
   public PushDistributionListSendJob(long messageId, @NonNull RecipientId destination, boolean hasMedia) {
     this(new Parameters.Builder()
-                       .setQueue(destination.toQueueKey(hasMedia))
-                       .addConstraint(NetworkConstraint.KEY)
-                       .setLifespan(TimeUnit.DAYS.toMillis(1))
-                       .setMaxAttempts(Parameters.UNLIMITED)
-                       .build(),
+             .setQueue(destination.toQueueKey(hasMedia))
+             .addConstraint(NetworkConstraint.KEY)
+             .setLifespan(TimeUnit.DAYS.toMillis(1))
+             .setMaxAttempts(Parameters.UNLIMITED)
+             .build(),
          messageId);
 
   }
@@ -147,7 +148,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
       List<Recipient> target;
 
       if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).distinct().map(Recipient::resolved).toList();
-      else                                    target = Stream.of(getFullRecipients(listRecipient.requireDistributionListId(), messageId)).distinctBy(Recipient::getId).toList();
+      else target = Stream.of(getFullRecipients(listRecipient.requireDistributionListId(), messageId)).distinctBy(Recipient::getId).toList();
 
       List<SendMessageResult> results = deliver(message, target);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
@@ -173,10 +174,15 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       List<Attachment>              attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(attachments);
-      boolean                       isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
-                                                               .anyMatch(info -> info.getStatus() > GroupReceiptDatabase.STATUS_UNDELIVERED);
+      boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
+                                        .anyMatch(info -> info.getStatus() > GroupReceiptDatabase.STATUS_UNDELIVERED);
 
-      SignalServiceStoryMessage storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), null, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies());
+      final SignalServiceStoryMessage storyMessage;
+      if (message.getStoryType().isTextStory()) {
+        storyMessage = SignalServiceStoryMessage.forTextAttachment(Recipient.self().getProfileKey(), null, StorySendUtil.deserializeBodyToStoryTextAttachment(message, this::getPreviewsFor), message.getStoryType().isStoryWithReplies());
+      } else {
+        storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), null, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies());
+      }
       return GroupSendUtil.sendStoryMessage(context, message.getRecipient().requireDistributionListId(), destinations, isRecipientUpdate, new MessageId(messageId, true), message.getSentTimeMillis(), storyMessage);
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);

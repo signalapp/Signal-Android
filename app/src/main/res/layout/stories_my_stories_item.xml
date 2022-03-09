@@ -8,7 +8,7 @@
     android:paddingEnd="@dimen/dsl_settings_gutter"
     android:background="?selectableItemBackground">
 
-    <org.thoughtcrime.securesms.components.ThumbnailView
+    <org.thoughtcrime.securesms.components.OutlinedThumbnailView
         android:id="@+id/story"
         android:layout_width="56dp"
         android:layout_height="84dp"
@@ -17,6 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:otv_cornerRadius="12dp"
+        app:otv_strokeColor="@color/signal_background_primary"
         tools:background="@color/red" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView

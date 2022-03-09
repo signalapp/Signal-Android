@@ -1,0 +1,58 @@
+package org.thoughtcrime.securesms.messages
+
+import com.google.protobuf.InvalidProtocolBufferException
+import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.util.Base64
+import org.whispersystems.libsignal.util.guava.Optional
+import org.whispersystems.signalservice.api.messages.SignalServicePreview
+import org.whispersystems.signalservice.api.messages.SignalServiceTextAttachment
+import kotlin.math.roundToInt
+
+object StorySendUtil {
+  @JvmStatic
+  @Throws(InvalidProtocolBufferException::class)
+  fun deserializeBodyToStoryTextAttachment(message: OutgoingMediaMessage, getPreviewsFor: (OutgoingMediaMessage) -> List<SignalServicePreview>): SignalServiceTextAttachment {
+    val storyTextPost = StoryTextPost.parseFrom(Base64.decode(message.body))
+    val preview = if (message.linkPreviews.isEmpty()) {
+      Optional.absent()
+    } else {
+      Optional.of(getPreviewsFor(message)[0])
+    }
+
+    return if (storyTextPost.background.hasLinearGradient()) {
+      SignalServiceTextAttachment.forGradientBackground(
+        Optional.fromNullable(storyTextPost.body),
+        Optional.fromNullable(getStyle(storyTextPost.style)),
+        Optional.of(storyTextPost.textForegroundColor),
+        Optional.of(storyTextPost.textBackgroundColor),
+        preview,
+        SignalServiceTextAttachment.Gradient(
+          Optional.of(storyTextPost.background.linearGradient.getColors(0)),
+          Optional.of(storyTextPost.background.linearGradient.getColors(1)),
+          Optional.of(storyTextPost.background.linearGradient.rotation.roundToInt())
+        )
+      )
+    } else {
+      SignalServiceTextAttachment.forSolidBackground(
+        Optional.fromNullable(storyTextPost.body),
+        Optional.fromNullable(getStyle(storyTextPost.style)),
+        Optional.of(storyTextPost.textForegroundColor),
+        Optional.of(storyTextPost.textBackgroundColor),
+        preview,
+        storyTextPost.background.singleColor.color
+      )
+    }
+  }
+
+  private fun getStyle(style: StoryTextPost.Style): SignalServiceTextAttachment.Style {
+    return when (style) {
+      StoryTextPost.Style.REGULAR -> SignalServiceTextAttachment.Style.REGULAR
+      StoryTextPost.Style.BOLD -> SignalServiceTextAttachment.Style.BOLD
+      StoryTextPost.Style.SERIF -> SignalServiceTextAttachment.Style.SERIF
+      StoryTextPost.Style.SCRIPT -> SignalServiceTextAttachment.Style.SCRIPT
+      StoryTextPost.Style.CONDENSED -> SignalServiceTextAttachment.Style.CONDENSED
+      else -> SignalServiceTextAttachment.Style.DEFAULT
+    }
+  }
+}

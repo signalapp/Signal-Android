@@ -52,6 +52,9 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor;
+import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost;
+import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPostOrBuilder;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -116,6 +119,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.stories.Stories;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
@@ -139,6 +143,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceTextAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
@@ -165,10 +170,12 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -1333,9 +1340,9 @@ public final class MessageContentProcessor {
     try {
       final StoryType storyType;
       if (message.getAllowsReplies().or(false)) {
-        storyType = StoryType.STORY_WITH_REPLIES;
+        storyType = StoryType.withReplies(message.getTextAttachment().isPresent());
       } else {
-        storyType = StoryType.STORY_WITHOUT_REPLIES;
+        storyType = StoryType.withoutReplies(message.getTextAttachment().isPresent());
       }
 
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
@@ -1349,12 +1356,15 @@ public final class MessageContentProcessor {
                                                                    false,
                                                                    false,
                                                                    content.isNeedsReceipt(),
-                                                                   Optional.absent(),
+                                                                   message.getTextAttachment().transform(this::serializeTextAttachment),
                                                                    Optional.fromNullable(GroupUtil.getGroupContextIfPresent(content)),
                                                                    message.getFileAttachment().transform(Collections::singletonList),
                                                                    Optional.absent(),
                                                                    Optional.absent(),
-                                                                   Optional.absent(),
+                                                                   getLinkPreviews(OptionalUtil.flatMap(message.getTextAttachment(),
+                                                                                                        t -> t.getPreview().transform(Collections::singletonList)),
+                                                                                   "",
+                                                                                   true),
                                                                    Optional.absent(),
                                                                    Optional.absent(),
                                                                    content.getServerUuid());
@@ -1380,6 +1390,64 @@ public final class MessageContentProcessor {
 
       ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary();
     }
+  }
+
+  private @NonNull String serializeTextAttachment(@NonNull SignalServiceTextAttachment textAttachment) {
+    StoryTextPost.Builder builder = StoryTextPost.newBuilder();
+
+    if (textAttachment.getText().isPresent()) {
+      builder.setBody(textAttachment.getText().get());
+    }
+
+    if (textAttachment.getStyle().isPresent()) {
+      switch (textAttachment.getStyle().get()) {
+        case DEFAULT:
+          builder.setStyle(StoryTextPost.Style.DEFAULT);
+          break;
+        case REGULAR:
+          builder.setStyle(StoryTextPost.Style.REGULAR);
+          break;
+        case BOLD:
+          builder.setStyle(StoryTextPost.Style.BOLD);
+          break;
+        case SERIF:
+          builder.setStyle(StoryTextPost.Style.SERIF);
+          break;
+        case SCRIPT:
+          builder.setStyle(StoryTextPost.Style.SCRIPT);
+          break;
+        case CONDENSED:
+          builder.setStyle(StoryTextPost.Style.CONDENSED);
+          break;
+      }
+    }
+
+    if (textAttachment.getTextBackgroundColor().isPresent()) {
+      builder.setTextBackgroundColor(textAttachment.getTextBackgroundColor().get());
+    }
+
+    if (textAttachment.getTextForegroundColor().isPresent()) {
+      builder.setTextForegroundColor(textAttachment.getTextForegroundColor().get());
+    }
+
+    ChatColor.Builder chatColorBuilder = ChatColor.newBuilder();
+    if (textAttachment.getBackgroundColor().isPresent()) {
+      chatColorBuilder.setSingleColor(ChatColor.SingleColor.newBuilder().setColor(textAttachment.getBackgroundColor().get()));
+    } else if (textAttachment.getBackgroundGradient().isPresent()) {
+      SignalServiceTextAttachment.Gradient gradient              = textAttachment.getBackgroundGradient().get();
+      ChatColor.LinearGradient.Builder     linearGradientBuilder = ChatColor.LinearGradient.newBuilder();
+
+      linearGradientBuilder.setRotation(gradient.getAngle().or(0).floatValue());
+      linearGradientBuilder.addColors(gradient.getStartColor().get());
+      linearGradientBuilder.addColors(gradient.getEndColor().get());
+      linearGradientBuilder.addAllPositions(Arrays.asList(0f, 1f));
+
+      chatColorBuilder.setLinearGradient(linearGradientBuilder);
+    }
+
+    builder.setBackground(chatColorBuilder);
+
+    return Base64.encodeBytes(builder.build().toByteArray());
   }
 
   private void handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
@@ -1473,7 +1541,7 @@ public final class MessageContentProcessor {
     try {
       Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
       Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
-      Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
+      Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""), false);
       Optional<List<Mention>>     mentions       = getMentions(message.getMentions());
       Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
 
@@ -1569,7 +1637,7 @@ public final class MessageContentProcessor {
     Optional<QuoteModel>        quote           = getValidatedQuote(message.getMessage().getQuote());
     Optional<Attachment>        sticker         = getStickerAttachment(message.getMessage().getSticker());
     Optional<List<Contact>>     sharedContacts  = getContacts(message.getMessage().getSharedContacts());
-    Optional<List<LinkPreview>> previews        = getLinkPreviews(message.getMessage().getPreviews(), message.getMessage().getBody().or(""));
+    Optional<List<LinkPreview>> previews        = getLinkPreviews(message.getMessage().getPreviews(), message.getMessage().getBody().or(""), false);
     Optional<List<Mention>>     mentions        = getMentions(message.getMessage().getMentions());
     boolean                     viewOnce        = message.getMessage().isViewOnce();
     List<Attachment>            syncAttachments = viewOnce ? Collections.singletonList(new TombstoneAttachment(MediaUtil.VIEW_ONCE, false))
@@ -2314,7 +2382,7 @@ public final class MessageContentProcessor {
     return Optional.of(contacts);
   }
 
-  private Optional<List<LinkPreview>> getLinkPreviews(Optional<List<SignalServicePreview>> previews, @NonNull String message) {
+  private Optional<List<LinkPreview>> getLinkPreviews(Optional<List<SignalServicePreview>> previews, @NonNull String message, boolean isStoryEmbed) {
     if (!previews.isPresent() || previews.get().isEmpty()) return Optional.absent();
 
     List<LinkPreview>     linkPreviews  = new ArrayList<>(previews.get().size());
@@ -2329,7 +2397,7 @@ public final class MessageContentProcessor {
       boolean              presentInBody = url.isPresent() && urlsInMessage.containsUrl(url.get());
       boolean              validDomain   = url.isPresent() && LinkPreviewUtil.isValidPreviewUrl(url.get());
 
-      if (hasTitle && presentInBody && validDomain) {
+      if (hasTitle && (presentInBody || isStoryEmbed) && validDomain) {
         LinkPreview linkPreview = new LinkPreview(url.get(), title.or(""), description.or(""), preview.getDate(), thumbnail);
         linkPreviews.add(linkPreview);
       } else {

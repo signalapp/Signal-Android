@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -18,12 +19,18 @@ import androidx.core.widget.doAfterTextChanged
 import com.airbnb.lottie.SimpleColorFilter
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
+import org.thoughtcrime.securesms.fonts.Fonts
+import org.thoughtcrime.securesms.fonts.TextFont
+import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mediasend.v2.text.TextAlignment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
+import java.util.Locale
 
 class StoryTextPostView @JvmOverloads constructor(
   context: Context,
@@ -116,10 +123,8 @@ class StoryTextPostView @JvmOverloads constructor(
 
     setPostBackground(state.backgroundColor.chatBubbleMask)
     setText(
-      if (state.body.isEmpty()) {
+      state.body.ifEmpty {
         context.getString(R.string.TextStoryPostCreationFragment__tap_to_add_text)
-      } else {
-        state.body
       },
       state.body.isEmpty()
     )
@@ -134,6 +139,32 @@ class StoryTextPostView @JvmOverloads constructor(
     postAdjustLinkPreviewTranslationY()
   }
 
+  fun bindFromStoryTextPost(storyTextPost: StoryTextPost) {
+    linkPreviewView.visible = false
+
+    textAlignment = TextAlignment.CENTER
+
+    setPostBackground(ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background).chatBubbleMask)
+    setText(storyTextPost.body, false)
+    setTextColor(storyTextPost.textForegroundColor)
+    setTextBackgroundColor(storyTextPost.textBackgroundColor)
+    setTextGravity(TextAlignment.CENTER)
+
+    when (val fontResult = Fonts.resolveFont(context, Locale.getDefault(), TextFont.fromStyle(storyTextPost.style))) {
+      is Fonts.FontResult.Immediate -> setTypeface(fontResult.typeface)
+      is Fonts.FontResult.Async -> setTypeface(fontResult.future.get())
+    }
+
+    hideCloseButton()
+
+    postAdjustTextTranslationX(TextAlignment.CENTER)
+    postAdjustLinkPreviewTranslationY()
+  }
+
+  fun bindLinkPreview(linkPreview: LinkPreview?) {
+    linkPreviewView.bind(linkPreview, View.GONE)
+  }
+
   fun bindLinkPreviewState(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int) {
     linkPreviewView.bind(linkPreviewState, hiddenVisibility)
   }
@@ -145,7 +176,7 @@ class StoryTextPostView @JvmOverloads constructor(
     }
   }
 
-  fun postAdjustTextTranslationX(textAlignment: TextAlignment) {
+  private fun postAdjustTextTranslationX(textAlignment: TextAlignment) {
     doOnNextLayout {
       adjustTextTranslationX(textAlignment)
     }
@@ -157,6 +188,10 @@ class StoryTextPostView @JvmOverloads constructor(
 
   fun setLinkPreviewCloseListener(onClickListener: OnClickListener) {
     linkPreviewView.setOnCloseClickListener(onClickListener)
+  }
+
+  fun setLinkPreviewClickListener(onClickListener: OnClickListener?) {
+    linkPreviewView.setOnClickListener(onClickListener)
   }
 
   fun showPostContent() {

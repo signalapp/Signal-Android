@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="275dp"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingBottom="5dp">
+
+    <View
+        android:id="@+id/bottom_arrow"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/core_black"
+        android:rotation="45"
+        app:layout_constraintBottom_toBottomOf="@id/bubble"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bubble" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bubble"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.9"
+        app:cardBackgroundColor="@color/core_black"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/url"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/visit_link" />
+
+    <TextView
+        android:id="@+id/visit_link"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="14dp"
+        android:text="@string/StoriesLinkPopup__visit_link"
+        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+        android:textColor="@color/core_white"
+        app:layout_constraintEnd_toStartOf="@id/chevron"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/url"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="15dp"
+        android:textAppearance="@style/TextAppearance.Signal.Caption"
+        android:textColor="@color/core_white"
+        app:layout_constraintEnd_toStartOf="@id/chevron"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/visit_link"
+        tools:text="https://www.signal.org/blog/entry/20/20/20/20/20" />
+
+    <ImageView
+        android:id="@+id/chevron"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="16dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/bubble"
+        app:layout_constraintEnd_toEndOf="@id/bubble"
+        app:layout_constraintTop_toTopOf="@id/bubble"
+        app:srcCompat="@drawable/exo_ic_chevron_right" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,12 +46,12 @@ import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.tabs.StoryViewsAndRepliesDialogFragment
+import org.thoughtcrime.securesms.stories.viewer.text.StoryTextPostPreviewFragment
 import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.LifecycleDisposable
-import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
@@ -59,7 +59,12 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
-class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page), MediaPreviewFragment.Events, MultiselectForwardBottomSheet.Callback, StorySlateView.Callback {
+class StoryViewerPageFragment :
+  Fragment(R.layout.stories_viewer_fragment_page),
+  MediaPreviewFragment.Events,
+  MultiselectForwardBottomSheet.Callback,
+  StorySlateView.Callback,
+  StoryTextPostPreviewFragment.Callback {
 
   private lateinit var progressBar: SegmentedProgressBar
   private lateinit var storySlate: StorySlateView
@@ -140,7 +145,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       )
     )
 
-    cardWrapper.setOnInterceptTouchEventListener { storySlate.state == StorySlateView.State.HIDDEN }
+    cardWrapper.setOnInterceptTouchEventListener { storySlate.state == StorySlateView.State.HIDDEN && childFragmentManager.findFragmentById(R.id.story_content_container) !is StoryTextPostPreviewFragment }
     cardWrapper.setOnTouchListener { _, event ->
       val result = gestureDetector.onTouchEvent(event)
       if (event.actionMasked == MotionEvent.ACTION_DOWN) {
@@ -176,8 +181,8 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
       }
 
       override fun onRequestSegmentProgressPercentage(): Float? {
-        val attachmentUri = if (viewModel.hasPost() && MediaUtil.isVideo(viewModel.getPost().attachment)) {
-          viewModel.getPost().attachment.uri
+        val attachmentUri = if (viewModel.hasPost() && viewModel.getPost().content.isVideo()) {
+          viewModel.getPost().content.uri
         } else {
           null
         }
@@ -228,7 +233,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
 
         val durations: Map<Int, Long> = state.posts
           .mapIndexed { index, storyPost ->
-            index to if (MediaUtil.isVideo(storyPost.attachment)) -1L else TimeUnit.SECONDS.toMillis(5)
+            index to if (storyPost.content.isVideo()) -1L else TimeUnit.SECONDS.toMillis(5)
           }
           .toMap()
 
@@ -336,7 +341,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
 
   private fun resumeProgress() {
     if (progressBar.segmentCount != 0 && viewModel.hasPost()) {
-      val postUri = viewModel.getPost().attachment.uri
+      val postUri = viewModel.getPost().content.uri
       if (postUri != null) {
         progressBar.start()
         videoControlsDelegate.resume(postUri)
@@ -385,12 +390,12 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
 
   private fun presentStory(post: StoryPost, index: Int) {
     val fragment = childFragmentManager.findFragmentById(R.id.story_content_container)
-    if (fragment != null && fragment.requireArguments().getParcelable<Uri>(MediaPreviewFragment.DATA_URI) == post.attachment.uri) {
+    if (fragment != null && fragment.requireArguments().getParcelable<Uri>(MediaPreviewFragment.DATA_URI) == post.content.uri) {
       progressBar.setPosition(index)
       return
     }
 
-    if (post.attachment.uri == null) {
+    if (post.content.uri == null) {
       progressBar.setPosition(index)
       progressBar.invalidate()
     } else {
@@ -404,7 +409,7 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
   }
 
   private fun presentSlate(post: StoryPost) {
-    when (post.attachment.transferState) {
+    when (post.content.transferState) {
       AttachmentDatabase.TRANSFER_PROGRESS_DONE -> {
         storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
         viewModel.setIsDisplayingSlate(false)
@@ -448,7 +453,12 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
 
   @SuppressLint("SetTextI18n")
   private fun presentCaption(caption: TextView, largeCaption: TextView, largeCaptionOverlay: View, storyPost: StoryPost) {
-    val displayBody = storyPost.conversationMessage.getDisplayBody(requireContext())
+    val displayBody = if (storyPost.content is StoryPost.Content.AttachmentContent) {
+      storyPost.conversationMessage.getDisplayBody(requireContext())
+    } else {
+      ""
+    }
+
     caption.text = displayBody
     largeCaption.text = displayBody
     caption.visible = displayBody.isNotEmpty()
@@ -556,7 +566,14 @@ class StoryViewerPageFragment : Fragment(R.layout.stories_viewer_fragment_page),
   }
 
   private fun createFragmentForPost(storyPost: StoryPost): Fragment {
-    return MediaPreviewFragment.newInstance(storyPost.attachment, false)
+    return when (storyPost.content) {
+      is StoryPost.Content.AttachmentContent -> MediaPreviewFragment.newInstance(storyPost.content.attachment, false)
+      is StoryPost.Content.TextContent -> StoryTextPostPreviewFragment.create(storyPost.content)
+    }
+  }
+
+  override fun setIsDisplayingLinkPreviewTooltip(isDisplayingLinkPreviewTooltip: Boolean) {
+    viewModel.setIsDisplayingLinkPreviewTooltip(isDisplayingLinkPreviewTooltip)
   }
 
   override fun getVideoControlsDelegate(): VideoControlsDelegate {

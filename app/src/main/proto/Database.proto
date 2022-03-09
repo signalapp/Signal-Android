@@ -205,3 +205,20 @@ message CustomAvatar {
         Photo  photo  = 3;
     }
 }
+
+message StoryTextPost {
+    enum Style {
+        DEFAULT   = 0;
+        REGULAR   = 1;
+        BOLD      = 2;
+        SERIF     = 3;
+        SCRIPT    = 4;
+        CONDENSED = 5;
+    }
+
+    string    body                = 1;
+    Style     style               = 2;
+    int32     textForegroundColor = 3;
+    int32     textBackgroundColor = 4;
+    ChatColor background          = 5;
+}

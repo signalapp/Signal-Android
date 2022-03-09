@@ -4614,6 +4614,7 @@
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
     <string name="ExpandModel__view_more">View more</string>
+    <string name="StoriesLinkPopup__visit_link">Visit link</string>
 
     <!-- EOF -->
 
