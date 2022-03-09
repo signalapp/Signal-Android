@@ -30,7 +30,7 @@
 
     <dimen name="camera_contacts_horizontal_margin">16dp</dimen>
 
-    <dimen name="message_corner_radius">16dp</dimen>
+    <dimen name="message_corner_radius">18dp</dimen>
     <dimen name="message_corner_collapse_radius">4dp</dimen>
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
