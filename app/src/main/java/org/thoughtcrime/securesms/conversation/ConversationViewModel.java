@@ -155,7 +155,7 @@ public class ConversationViewModel extends ViewModel {
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(data.getThreadId(), conversationObserver);
       ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(data.getThreadId(), messageInsertObserver);
 
-      ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId(), messageRequestData, data.showUniversalExpireTimerMessage(), data.getThreadSize());
+      ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId(), messageRequestData, data.showUniversalExpireTimerMessage());
       PagingConfig config = new PagingConfig.Builder().setPageSize(25)
                                                       .setBufferPages(3)
                                                       .setStartIndex(Math.max(startPosition, 0))
