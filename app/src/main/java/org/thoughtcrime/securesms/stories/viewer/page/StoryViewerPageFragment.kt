@@ -641,6 +641,11 @@ class StoryViewerPageFragment :
     private val onReplyToPost: () -> Unit
   ) : GestureDetector.SimpleOnGestureListener() {
 
+    companion object {
+      private const val BOUNDARY_NEXT = 0.80f
+      private const val BOUNDARY_PREV = 1f - BOUNDARY_NEXT
+    }
+
     override fun onDown(e: MotionEvent?): Boolean {
       return true
     }
@@ -658,11 +663,27 @@ class StoryViewerPageFragment :
       return true
     }
 
+    private fun getLeftBoundary(): Float {
+      return if (container.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
+        BOUNDARY_PREV
+      } else {
+        BOUNDARY_NEXT
+      }
+    }
+
+    private fun getRightBoundary(): Float {
+      return if (container.layoutDirection == View.LAYOUT_DIRECTION_LTR) {
+        BOUNDARY_NEXT
+      } else {
+        BOUNDARY_PREV
+      }
+    }
+
     override fun onSingleTapUp(e: MotionEvent): Boolean {
-      if (e.x < container.measuredWidth * 0.25) {
+      if (e.x < container.measuredWidth * getLeftBoundary()) {
         performLeftAction()
         return true
-      } else if (e.x > container.measuredWidth - (container.measuredWidth * 0.25)) {
+      } else if (e.x > container.measuredWidth - (container.measuredWidth * getRightBoundary())) {
         performRightAction()
         return true
       }
