@@ -69,6 +69,17 @@ public class FullBackupImporter extends FullBackupBase {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(FullBackupImporter.class);
 
+  private static final String[] TABLES_TO_DROP_FIRST = {
+      "distribution_list_member",
+      "distribution_list",
+      "message_send_log_recipients",
+      "msl_recipient",
+      "msl_message",
+      "reaction",
+      "notification_profile_schedule",
+      "notification_profile_allowed_members"
+  };
+
   public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
                                 @NonNull SQLiteDatabase db, @NonNull Uri uri, @NonNull String passphrase)
       throws IOException
@@ -272,6 +283,10 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
   private static void dropAllTables(@NonNull SQLiteDatabase db) {
+    for (String name : TABLES_TO_DROP_FIRST) {
+      db.execSQL("DROP TABLE IF EXISTS " + name);
+    }
+
     try (Cursor cursor = db.rawQuery("SELECT name, type FROM sqlite_master", null)) {
       while (cursor != null && cursor.moveToNext()) {
         String name = cursor.getString(0);
