@@ -38,10 +38,12 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
   abstract val distributionListId: DistributionListId?
 
   private lateinit var toolbar: Toolbar
+  private lateinit var searchField: EditText
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val searchField: EditText = view.findViewById(R.id.search_field)
     val actionButton: MaterialButton = view.findViewById(R.id.action_button)
+
+    searchField = view.findViewById(R.id.search_field)
 
     toolbar = view.findViewById(R.id.toolbar)
     toolbar.setNavigationOnClickListener {
@@ -114,6 +116,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
 
   override fun onBeforeContactSelected(recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {
     viewModel.addRecipient(recipientId.get())
+    searchField.setText("")
     callback.accept(true)
   }
 
