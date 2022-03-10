@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories.my
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.components.menu.ActionItem
@@ -16,12 +17,16 @@ import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
+import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 
 object MyStoriesItem {
+
+  private const val STATUS_CHANGE = 0
 
   fun register(mappingAdapter: MappingAdapter) {
     mappingAdapter.registerFactory(Model::class.java, LayoutFactory(::ViewHolder, R.layout.stories_my_stories_item))
@@ -40,7 +45,30 @@ object MyStoriesItem {
     }
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return distributionStory == newItem.distributionStory && super.areContentsTheSame(newItem)
+      return distributionStory == newItem.distributionStory &&
+        !hasStatusChange(newItem) &&
+        super.areContentsTheSame(newItem)
+    }
+
+    override fun getChangePayload(newItem: Model): Any? {
+      return if (isSameRecord(newItem) && hasStatusChange(newItem)) {
+        STATUS_CHANGE
+      } else {
+        null
+      }
+    }
+
+    private fun isSameRecord(newItem: Model): Boolean {
+      return distributionStory.messageRecord.id == newItem.distributionStory.messageRecord.id
+    }
+
+    private fun hasStatusChange(newItem: Model): Boolean {
+      val oldRecord = distributionStory.messageRecord
+      val newRecord = newItem.distributionStory.messageRecord
+
+      return oldRecord.isOutgoing &&
+        newRecord.isOutgoing &&
+        (oldRecord.isPending != newRecord.isPending || oldRecord.isSent != newRecord.isSent || oldRecord.isFailed != newRecord.isFailed)
     }
   }
 
@@ -51,13 +79,23 @@ object MyStoriesItem {
     private val storyPreview: ThumbnailView = itemView.findViewById(R.id.story)
     private val viewCount: TextView = itemView.findViewById(R.id.view_count)
     private val date: TextView = itemView.findViewById(R.id.date)
+    private val errorIndicator: View = itemView.findViewById(R.id.error_indicator)
 
     override fun bind(model: Model) {
       itemView.setOnClickListener { model.onClick(model) }
       downloadTarget.setOnClickListener { model.onSaveClick(model) }
       moreTarget.setOnClickListener { showContextMenu(model) }
-      viewCount.text = context.resources.getQuantityString(R.plurals.MyStories__d_views, model.distributionStory.messageRecord.readReceiptCount, model.distributionStory.messageRecord.readReceiptCount)
-      date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.distributionStory.messageRecord.dateSent)
+      presentDateOrStatus(model)
+
+      viewCount.text = context.resources.getQuantityString(
+        R.plurals.MyStories__d_views,
+        model.distributionStory.messageRecord.readReceiptCount,
+        model.distributionStory.messageRecord.readReceiptCount
+      )
+
+      if (STATUS_CHANGE in payload) {
+        return
+      }
 
       val record: MmsMessageRecord = model.distributionStory.messageRecord as MmsMessageRecord
       val thumbnail: Slide? = record.slideDeck.thumbnailSlide
@@ -69,6 +107,19 @@ object MyStoriesItem {
         storyPreview.setImageResource(GlideApp.with(itemView), thumbnail, false, true)
       } else {
         storyPreview.clear(GlideApp.with(itemView))
+      }
+    }
+
+    private fun presentDateOrStatus(model: Model) {
+      if (model.distributionStory.messageRecord.isPending || model.distributionStory.messageRecord.isMediaPending) {
+        errorIndicator.visible = false
+        date.setText(R.string.StoriesLandingItem__sending)
+      } else if (model.distributionStory.messageRecord.isFailed) {
+        errorIndicator.visible = true
+        date.text = SpanUtil.color(ContextCompat.getColor(context, R.color.signal_alert_primary), context.getString(R.string.StoriesLandingItem__couldnt_send))
+      } else {
+        errorIndicator.visible = false
+        date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), model.distributionStory.messageRecord.dateSent)
       }
     }
 

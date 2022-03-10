@@ -4381,6 +4381,10 @@
     <string name="StoriesLandingItem__share">Share…</string>
     <!-- Context menu option to go to story chat -->
     <string name="StoriesLandingItem__go_to_chat">Go to chat</string>
+    <!-- Label when a story is pending sending -->
+    <string name="StoriesLandingItem__sending">Sending…</string>
+    <!-- Label when a story fails to send -->
+    <string name="StoriesLandingItem__couldnt_send">Couldn\'t send</string>
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">Hide story?</string>
     <!-- Message of dialog confirming decision to hide a story -->

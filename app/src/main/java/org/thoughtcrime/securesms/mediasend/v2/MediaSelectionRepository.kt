@@ -236,7 +236,7 @@ class MediaSelectionRepository(context: Context) {
       if (isStory && preUploadResults.size > 1) {
         preUploadResults.forEach {
           val list = storyMessages[it] ?: mutableListOf()
-          list.add(OutgoingSecureMediaMessage(message))
+          list.add(OutgoingSecureMediaMessage(message).withSentTimestamp(System.currentTimeMillis()))
           storyMessages[it] = list
 
           // XXX We must do this to avoid sending out messages to the same recipient with the same

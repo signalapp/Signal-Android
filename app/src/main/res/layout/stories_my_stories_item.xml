@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
     android:paddingStart="@dimen/dsl_settings_gutter"
-    android:paddingEnd="@dimen/dsl_settings_gutter"
-    android:background="?selectableItemBackground">
+    android:paddingEnd="@dimen/dsl_settings_gutter">
 
     <org.thoughtcrime.securesms.components.OutlinedThumbnailView
         android:id="@+id/story"
@@ -35,16 +35,31 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="12 views" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/error_indicator"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="16dp"
+        android:importantForAccessibility="no"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/date"
+        app:layout_constraintStart_toEndOf="@id/story"
+        app:layout_constraintTop_toTopOf="@id/date"
+        app:srcCompat="@drawable/ic_error_outline_24"
+        app:tint="@color/signal_alert_primary"
+        tools:visibility="visible" />
+
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="7dp"
         android:layout_marginEnd="16dp"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
-        app:layout_constraintStart_toEndOf="@id/story"
+        app:layout_constraintStart_toEndOf="@id/error_indicator"
         app:layout_constraintTop_toBottomOf="@id/view_count"
+        app:layout_goneMarginStart="16dp"
         tools:text="10m" />
 
     <View

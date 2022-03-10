@@ -58,4 +58,20 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           getLinkPreviews(),
                                           getMentions());
   }
+
+  public @NonNull OutgoingSecureMediaMessage withSentTimestamp(long sentTimestamp) {
+    return new OutgoingSecureMediaMessage(getRecipient(),
+                                          getBody(),
+                                          getAttachments(),
+                                          sentTimestamp,
+                                          getDistributionType(),
+                                          getExpiresIn(),
+                                          isViewOnce(),
+                                          getStoryType(),
+                                          getParentStoryId(),
+                                          getOutgoingQuote(),
+                                          getSharedContacts(),
+                                          getLinkPreviews(),
+                                          getMentions());
+  }
 }
