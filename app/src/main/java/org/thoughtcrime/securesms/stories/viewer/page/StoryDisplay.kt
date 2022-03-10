@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
-import android.content.res.Resources
-
 /**
  * Given the size of our display, we render the story overlay / crop in one of 3 ways.
  */
@@ -24,13 +22,13 @@ enum class StoryDisplay {
     private const val LARGE_AR = 9 / 18f
     private const val SMALL_AR = 9 / 16f
 
-    fun getStoryDisplay(resources: Resources): StoryDisplay {
-      val aspectRatio = resources.displayMetrics.widthPixels.toFloat() / resources.displayMetrics.heightPixels
+    fun getStoryDisplay(screenWidth: Float, screenHeight: Float): StoryDisplay {
+      val aspectRatio = screenWidth / screenHeight
 
       return when {
         aspectRatio >= LANDSCAPE -> MEDIUM
-        aspectRatio >= LARGE_AR -> LARGE
-        aspectRatio <= SMALL_AR -> SMALL
+        aspectRatio <= LARGE_AR -> LARGE
+        aspectRatio >= SMALL_AR -> SMALL
         else -> MEDIUM
       }
     }

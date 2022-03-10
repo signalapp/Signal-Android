@@ -318,7 +318,7 @@ class StoryViewerPageFragment :
     val constraintSet = ConstraintSet()
     constraintSet.clone(requireView() as ConstraintLayout)
 
-    when (StoryDisplay.getStoryDisplay(resources)) {
+    when (StoryDisplay.getStoryDisplay(resources.displayMetrics.widthPixels.toFloat(), resources.displayMetrics.heightPixels.toFloat())) {
       StoryDisplay.LARGE -> {
         constraintSet.connect(viewsAndReplies.id, ConstraintSet.TOP, cardWrapper.id, ConstraintSet.BOTTOM)
         constraintSet.connect(viewsAndReplies.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
