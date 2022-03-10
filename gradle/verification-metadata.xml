@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Run the following command to update this file after adding or updating a dependency:
+
+./gradlew -\-write-verification-metadata sha256 qa -\-rerun-tasks
+
+(remove the backslashes before running)
+
+For more information, see:
+https://docs.gradle.org/current/userguide/dependency_verification.html
+-->
 <verification-metadata xmlns="https://schema.gradle.org/dependency-verification" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://schema.gradle.org/dependency-verification https://schema.gradle.org/dependency-verification/dependency-verification-1.1.xsd">
    <configuration>
       <verify-metadata>true</verify-metadata>
