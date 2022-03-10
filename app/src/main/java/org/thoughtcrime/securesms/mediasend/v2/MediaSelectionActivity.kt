@@ -18,6 +18,9 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.TransportOption
 import org.thoughtcrime.securesms.TransportOptions
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.mediasend.Media
@@ -35,7 +38,8 @@ class MediaSelectionActivity :
   MediaReviewFragment.Callback,
   EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
-  EmojiSearchFragment.Callback {
+  EmojiSearchFragment.Callback,
+  SearchConfigurationProvider {
 
   lateinit var viewModel: MediaSelectionViewModel
 
@@ -43,6 +47,9 @@ class MediaSelectionActivity :
 
   private val destination: MediaSelectionDestination
     get() = MediaSelectionDestination.fromBundle(requireNotNull(intent.getBundleExtra(DESTINATION)))
+
+  private val isStory: Boolean
+    get() = intent.getBooleanExtra(IS_STORY, false)
 
   override fun attachBaseContext(newBase: Context) {
     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
@@ -201,6 +208,24 @@ class MediaSelectionActivity :
     viewModel.sendCommand(HudCommand.CloseEmojiSearch)
   }
 
+  override fun getSearchConfiguration(contactSearchState: ContactSearchState): ContactSearchConfiguration? {
+    return if (isStory) {
+      ContactSearchConfiguration.build {
+        query = contactSearchState.query
+
+        addSection(
+          ContactSearchConfiguration.Section.Stories(
+            groupStories = contactSearchState.groupStories,
+            includeHeader = true,
+            headerAction = Stories.getHeaderAction(supportFragmentManager)
+          )
+        )
+      }
+    } else {
+      null
+    }
+  }
+
   private inner class OnBackPressed : OnBackPressedCallback(true) {
     override fun handleOnBackPressed() {
       val navController = Navigation.findNavController(this@MediaSelectionActivity, R.id.fragment_container)
@@ -221,12 +246,19 @@ class MediaSelectionActivity :
     private const val MESSAGE = "message"
     private const val DESTINATION = "destination"
     private const val IS_REPLY = "is_reply"
+    private const val IS_STORY = "is_story"
 
     @JvmStatic
     fun camera(context: Context): Intent {
+      return camera(context, false)
+    }
+
+    @JvmStatic
+    fun camera(context: Context, isStory: Boolean): Intent {
       return buildIntent(
         context = context,
-        startAction = R.id.action_directly_to_mediaCaptureFragment
+        startAction = R.id.action_directly_to_mediaCaptureFragment,
+        isStory = isStory
       )
     }
 
@@ -307,7 +339,8 @@ class MediaSelectionActivity :
       media: List<Media> = listOf(),
       destination: MediaSelectionDestination = MediaSelectionDestination.ChooseAfterMediaSelection,
       message: CharSequence? = null,
-      isReply: Boolean = false
+      isReply: Boolean = false,
+      isStory: Boolean = false
     ): Intent {
       return Intent(context, MediaSelectionActivity::class.java).apply {
         putExtra(START_ACTION, startAction)
@@ -316,6 +349,7 @@ class MediaSelectionActivity :
         putExtra(MESSAGE, message)
         putExtra(DESTINATION, destination.toBundle())
         putExtra(IS_REPLY, isReply)
+        putExtra(IS_STORY, isStory)
       }
     }
   }

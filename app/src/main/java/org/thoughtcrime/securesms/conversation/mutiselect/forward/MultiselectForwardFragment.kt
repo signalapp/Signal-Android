@@ -267,7 +267,7 @@ class MultiselectForwardFragment :
   }
 
   private fun getConfiguration(contactSearchState: ContactSearchState): ContactSearchConfiguration {
-    return ContactSearchConfiguration.build {
+    return findListener<SearchConfigurationProvider>()?.getSearchConfiguration(contactSearchState) ?: ContactSearchConfiguration.build {
       query = contactSearchState.query
 
       if (Stories.isFeatureEnabled() && isSelectedMediaValidForStories()) {

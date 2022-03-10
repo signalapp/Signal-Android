@@ -70,7 +70,7 @@ class StoriesLandingFragment :
         .ifNecessary()
         .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
         .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
-        .onAllGranted { startActivity(MediaSelectionActivity.camera(requireContext())) }
+        .onAllGranted { startActivity(MediaSelectionActivity.camera(requireContext(), isStory = true)) }
         .onAnyDenied { Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show() }
         .execute()
     }
