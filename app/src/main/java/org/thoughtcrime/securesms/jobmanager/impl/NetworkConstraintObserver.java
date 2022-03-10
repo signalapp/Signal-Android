@@ -27,6 +27,7 @@ import java.util.Set;
 public class NetworkConstraintObserver implements ConstraintObserver {
 
   private static final String REASON = Log.tag(NetworkConstraintObserver.class);
+  private static final String TAG    = Log.tag(NetworkConstraintObserver.class);
 
   private final Application application;
 
@@ -54,7 +55,9 @@ public class NetworkConstraintObserver implements ConstraintObserver {
 
   @Override
   public void register(@NonNull Notifier notifier) {
-    this.notifier = notifier;
+    this.notifier    = notifier;
+    this.hasInternet = isActiveNetworkConnected(application);
+
     requestNetwork(0);
   }
 
@@ -67,6 +70,8 @@ public class NetworkConstraintObserver implements ConstraintObserver {
   }
 
   private void requestNetwork(int retryCount) {
+    optimisticallyUpdateNetworkState();
+
     if (Build.VERSION.SDK_INT < 24 || retryCount > 5) {
       hasInternet = isActiveNetworkConnected(application);
 
@@ -76,8 +81,12 @@ public class NetworkConstraintObserver implements ConstraintObserver {
           hasInternet = isActiveNetworkConnected(context);
 
           if (hasInternet) {
+            Log.i(TAG, logPrefix() + "Network available.");
             notifier.onConstraintMet(REASON);
+          } else {
+            Log.w(TAG, logPrefix() + "Network unavailable.");
           }
+
           notifyListeners();
         }
       }, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
@@ -86,7 +95,12 @@ public class NetworkConstraintObserver implements ConstraintObserver {
                                                            .build();
 
       ConnectivityManager connectivityManager = Objects.requireNonNull(ContextCompat.getSystemService(application, ConnectivityManager.class));
-      connectivityManager.requestNetwork(request, Build.VERSION.SDK_INT >= 26 ? new NetworkStateListener26(retryCount) : new NetworkStateListener24());
+
+      if (Build.VERSION.SDK_INT >= 26) {
+        connectivityManager.requestNetwork(request, new NetworkStateListener26(retryCount), 1000);
+      } else {
+        connectivityManager.requestNetwork(request, new NetworkStateListener24());
+      }
     }
   }
 
@@ -110,6 +124,22 @@ public class NetworkConstraintObserver implements ConstraintObserver {
     }
   }
 
+  /**
+   * The newer API methods are occasionally unreliable. This lets us assume the best case scenario, by using both new and old methods and taking the most
+   * optimistic result.
+   */
+  private void optimisticallyUpdateNetworkState() {
+    final boolean currentState = hasInternet;
+    final boolean newState     = isActiveNetworkConnected(application);
+
+    if (newState && !currentState) {
+      Log.w(TAG, logPrefix() + "isActiveNetworkConnected() thinks we're connected, but other methods indicate we're not. Assuming we have internet and notifying listeners.");
+      this.hasInternet = newState;
+      notifier.onConstraintMet(REASON);
+      notifyListeners();
+    }
+  }
+
   private void notifyListeners() {
     synchronized (networkListeners) {
       //noinspection SimplifyStreamApiCallChains
@@ -117,11 +147,15 @@ public class NetworkConstraintObserver implements ConstraintObserver {
     }
   }
 
+  private static String logPrefix() {
+    return "[API " + Build.VERSION.SDK_INT + "] ";
+  }
+
   @TargetApi(24)
   private class NetworkStateListener24 extends ConnectivityManager.NetworkCallback {
     @Override
     public void onAvailable(@NonNull Network network) {
-      Log.i(REASON, "Network available: " + network.hashCode());
+      Log.i(TAG, logPrefix() + "Network available. " + network.hashCode());
       hasInternet = true;
       notifier.onConstraintMet(REASON);
       notifyListeners();
@@ -129,7 +163,7 @@ public class NetworkConstraintObserver implements ConstraintObserver {
 
     @Override
     public void onLost(@NonNull Network network) {
-      Log.i(REASON, "Network loss: " + network.hashCode());
+      Log.w(TAG, logPrefix() + "Network unavailable. " + network.hashCode());
       hasInternet = false;
       notifyListeners();
     }
@@ -137,7 +171,8 @@ public class NetworkConstraintObserver implements ConstraintObserver {
 
   @TargetApi(26)
   private class NetworkStateListener26 extends NetworkStateListener24 {
-    private final int retryCount;
+    private final int  retryCount;
+    private final long createTime = System.currentTimeMillis();
 
     public NetworkStateListener26(int retryCount) {
       this.retryCount = retryCount;
@@ -145,7 +180,7 @@ public class NetworkConstraintObserver implements ConstraintObserver {
 
     @Override
     public void onUnavailable() {
-      Log.w(REASON, "No networks available");
+      Log.w(TAG, logPrefix() + "No networks available or timeout hit. Retry count: " + retryCount + ", Time since creation: " + (System.currentTimeMillis() - createTime) + " ms");
       requestNetwork(retryCount + 1);
     }
   }
