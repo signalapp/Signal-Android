@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
@@ -71,7 +72,7 @@ class AdvancedPrivacySettingsViewModel(
 
   fun setAllowSealedSenderFromAnyone(enabled: Boolean) {
     sharedPreferences.edit().putBoolean(TextSecurePreferences.UNIVERSAL_UNIDENTIFIED_ACCESS, enabled).apply()
-    ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+    ApplicationDependencies.getJobManager().startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
     refresh()
   }
 

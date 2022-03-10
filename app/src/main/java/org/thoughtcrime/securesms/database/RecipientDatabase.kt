@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.identities
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.notificationProfiles
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.reactions
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSuccessfulTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -54,7 +55,6 @@ import org.thoughtcrime.securesms.groups.GroupId.V2
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.jobs.RecipientChangedNumberJob
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -69,6 +69,7 @@ import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Bitmask
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.IdentityUtil
+import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.SqlUtil
 import org.thoughtcrime.securesms.util.StringUtil
 import org.thoughtcrime.securesms.util.Util
@@ -966,8 +967,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     if (remoteKey != localKey) {
-      Log.w(TAG, "Profile key changed during storage sync! Scheduling jobs to refresh things.")
-      ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+      Log.i(TAG, "Our own profile key was changed during a storage sync.", Throwable())
+      runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
     }
 
     threads.applyStorageSyncUpdate(Recipient.self().id, update.new)
@@ -1446,6 +1447,12 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       rotateStorageId(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
       StorageSyncHelper.scheduleSyncForDataChange()
+
+      if (id == Recipient.self().id) {
+        Log.i(TAG, "Our own profile key was changed.", Throwable())
+        runPostSuccessfulTransaction { ProfileUtil.handleSelfProfileKeyChange() }
+      }
+
       return true
     }
     return false

@@ -232,6 +232,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     }
 
     @JvmStatic
+    fun runPostSuccessfulTransaction(task: Runnable) {
+      instance!!.signalReadableDatabase.runPostSuccessfulTransaction(task)
+    }
+
+    @JvmStatic
     fun databaseFileExists(context: Context): Boolean {
       return context.getDatabasePath(DATABASE_NAME).exists()
     }

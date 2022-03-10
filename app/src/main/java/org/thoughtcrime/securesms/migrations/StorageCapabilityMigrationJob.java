@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStorageSyncRequestJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -50,7 +51,7 @@ public class StorageCapabilityMigrationJob extends MigrationJob {
   public void performMigration() {
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
-    jobManager.add(new RefreshAttributesJob());
+    jobManager.startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue();
 
     if (TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Multi-device.");

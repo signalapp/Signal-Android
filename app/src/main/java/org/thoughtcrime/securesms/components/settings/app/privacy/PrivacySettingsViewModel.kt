@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -69,7 +70,7 @@ class PrivacySettingsViewModel(
   fun setPhoneNumberListingMode(phoneNumberListingMode: PhoneNumberPrivacyValues.PhoneNumberListingMode) {
     SignalStore.phoneNumberPrivacy().phoneNumberListingMode = phoneNumberListingMode
     StorageSyncHelper.scheduleSyncForDataChange()
-    ApplicationDependencies.getJobManager().add(RefreshAttributesJob())
+    ApplicationDependencies.getJobManager().startChain(RefreshAttributesJob()).then(RefreshOwnProfileJob()).enqueue()
     refresh()
   }
 

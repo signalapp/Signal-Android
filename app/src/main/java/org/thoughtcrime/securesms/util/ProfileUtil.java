@@ -6,15 +6,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.google.protobuf.ByteString;
+
 import org.signal.core.util.logging.Log;
+import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddressProfileUtil;
@@ -38,6 +49,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.StreamDetails;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
@@ -56,6 +68,28 @@ public final class ProfileUtil {
   private static final String TAG = Log.tag(ProfileUtil.class);
 
   private ProfileUtil() {
+  }
+
+  /**
+   * Should be called after a change to our own profile key as been persisted to the database.
+   */
+  @WorkerThread
+  public static void handleSelfProfileKeyChange() {
+    List<Job> gv2UpdateJobs = SignalDatabase.groups()
+                                            .getAllGroupV2Ids()
+                                            .stream()
+                                            .map(GroupV2UpdateSelfProfileKeyJob::withoutLimits)
+                                            .collect(Collectors.toList());
+
+    Log.w(TAG, "[handleSelfProfileKeyChange] Scheduling jobs, including " + gv2UpdateJobs.size() + " group update jobs.");
+
+    ApplicationDependencies.getJobManager()
+                           .startChain(new RefreshAttributesJob())
+                           .then(new ProfileUploadJob())
+                           .then(new RefreshOwnProfileJob())
+                           .then(new MultiDeviceProfileKeyUpdateJob())
+                           .then(gv2UpdateJobs)
+                           .enqueue();
   }
 
   @WorkerThread

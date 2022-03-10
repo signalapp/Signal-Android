@@ -122,8 +122,6 @@ public class RefreshAttributesJob extends BaseJob {
                                               phoneNumberDiscoverable,
                                               encryptedDeviceName);
 
-    ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
-
     hasRefreshedThisAppCycle = true;
   }
 

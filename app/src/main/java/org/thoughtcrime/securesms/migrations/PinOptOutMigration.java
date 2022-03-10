@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
@@ -40,8 +41,10 @@ public final class PinOptOutMigration extends MigrationJob {
       Log.w(TAG, "Discovered a legacy opt-out user! Resetting the state.");
 
       SignalStore.kbsValues().optOut();
-      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
-      ApplicationDependencies.getJobManager().add(new StorageForcePushJob());
+      ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob())
+                                             .then(new RefreshOwnProfileJob())
+                                             .then(new StorageForcePushJob())
+                                             .enqueue();
     } else if (SignalStore.kbsValues().hasOptedOut()) {
       Log.i(TAG, "Discovered an opt-out user, but they're already in a good state. No action required.");
     } else {

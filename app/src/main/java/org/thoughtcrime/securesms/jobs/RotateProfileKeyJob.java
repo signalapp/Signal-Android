@@ -5,13 +5,9 @@ import androidx.annotation.NonNull;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.recipients.Recipient;
-
-import java.util.List;
 
 public class RotateProfileKeyJob extends BaseJob {
 
@@ -44,20 +40,6 @@ public class RotateProfileKeyJob extends BaseJob {
     Recipient  self          = Recipient.self();
 
     SignalDatabase.recipients().setProfileKey(self.getId(), newProfileKey);
-
-    ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
-    ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
-    ApplicationDependencies.getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
-
-    updateProfileKeyOnAllV2Groups();
-  }
-
-  private void updateProfileKeyOnAllV2Groups() {
-    List<GroupId.V2> allGv2Groups = SignalDatabase.groups().getAllGroupV2Ids();
-
-    for (GroupId.V2 groupId : allGv2Groups) {
-      ApplicationDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withoutLimits(groupId));
-    }
   }
 
   @Override
