@@ -14,22 +14,19 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsignal.database.LokiOpenGroupDatabaseProtocol;
+import org.session.libsignal.messages.SignalServiceAttachmentPointer;
+import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.GroupRecord;
-import org.session.libsession.utilities.Util;
-
-import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.messages.SignalServiceAttachmentPointer;
-import org.session.libsignal.database.LokiOpenGroupDatabaseProtocol;
-
 import java.io.Closeable;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -58,7 +55,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
 
   // Loki
   private static final String AVATAR_URL          = "avatar_url";
-  private static final String ADMINS              = "admins";
+  public static final String ADMINS              = "admins";
 
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
