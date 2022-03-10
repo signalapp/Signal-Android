@@ -211,7 +211,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="ConversationActivity__tap_here_to_start_a_group_call">Tik hier om een groepsoproep te starten</string>
   <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
   <string name="ConversationActivity_added_to_home_screen">Aan thuisscherm toegevoegd</string>
-  <string name="ConversationActivity_calls_not_supported">Bellen niet ondersteund</string>
+  <string name="ConversationActivity_calls_not_supported">Bellen wordt niet ondersteund</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt belacties niet te ondersteunen.</string>
   <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde sms</string>
   <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
@@ -936,7 +936,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tik hier op een foutopsporingslog te uploaden</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Gebruiker niet bekend</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer wordt ondersteund. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_you_updated_group">Je hebt de groep aangepast.</string>
   <string name="MessageRecord_the_group_was_updated">De groep is aangepast.</string>
@@ -2282,7 +2282,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Het adres van je portemonnee</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiëren</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Gekopieerd naar het klembord</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">Maak een account bij een beurs die MobileCoin ondersteund. Stuur vervolgens vanaf je beurs-account MobileCoin naar je Signal portemonnee-adres door de QR-code te scannen of door het adres te kopiëren om op Signal krediet toe te voegen.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Maak een account bij een beurs die MobileCoin ondersteunt. Stuur vervolgens vanaf je beurs-account MobileCoin naar je Signal portemonnee-adres door de QR-code te scannen of door het adres te kopiëren om op Signal krediet toe te voegen.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Details</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
@@ -2985,7 +2985,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="payment_info_card_adding_funds">Krediet toevoegen</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Je kunt krediet aan Signal toevoegen door een hoeveelheid MobileCoin naar je portemonnee-adres te sturen.</string>
   <string name="payment_info_card_cashing_out">Uitbetalen</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">Je kunt op elk moment je MobileCoin laten uitbetalen via een beurs die MobileCoin ondersteund. Je hoeft slechts over te schrijven naar jouw account bij die beurs.</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Je kunt op elk moment je MobileCoin laten uitbetalen via een beurs die MobileCoin ondersteunt. Je hoeft slechts over te schrijven naar jouw account bij die beurs.</string>
   <string name="payment_info_card_hide_this_card">Deze informatie verbergen?</string>
   <string name="payment_info_card_hide">Verbergen</string>
   <string name="payment_info_card_record_recovery_phrase">Herstel-zin voor overschrijvingen vastleggen</string>

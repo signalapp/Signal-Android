@@ -1258,7 +1258,7 @@
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Herzlichen 💜-Tag!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">Zeig deine Zuneigung, indem du ein Signal-Unterstützer wirst.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">Zeig deine Zuneigung und werde ein Signal-Unterstützer.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Hier antippen, um deine Videoübertragung anzuschalten</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Um %1$s anzurufen, benötigt Signal Zugriff auf deine Kamera</string>
@@ -3398,8 +3398,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Werde Unterstützer</string>
   <string name="ImageView__badge">Abzeichen</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal existiert dank Menschen wie dir.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze eine Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, indem du dich der Gemeinschaft von Menschen anschließt, die sie aufrechterhalten.</string>
-  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Unterstütze eine Technologie, die für dich — nicht für deine Daten — entwickelt wurde, indem du dich der Gemeinschaft anschließt, die sie aufrechterhält.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Unterstütze Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, und schließe dich der Gemeinschaft an, die Signal aufrechterhält.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Unterstütze Technologie, die für dich — und nicht für deine Daten — entwickelt wurde, und schließe dich der Gemeinschaft an, die Signal aufrechterhält.</string>
   <string name="SubscribeFragment__currency">Währung</string>
   <string name="SubscribeFragment__more_payment_options">Weitere Zahlungsoptionen</string>
   <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>

@@ -2294,7 +2294,7 @@
   <string name="conversation_expiring_off__disappearing_messages">過眼雲煙訊息</string>
   <!--conversation_selection-->
   <!--Button to view detailed information for a message-->
-  <string name="conversation_selection__menu_message_details">資訊</string>
+  <string name="conversation_selection__menu_message_details">詳細</string>
   <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_selection__menu_copy">複製</string>
   <!--Button to delete a message-->

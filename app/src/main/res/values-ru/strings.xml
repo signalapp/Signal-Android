@@ -3090,13 +3090,13 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Не удалось удалить локальные данные. Вы можете удалить их вручную в системных настройках приложения.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Открыть настройки приложения</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
-  <string name="DeleteAccountFragment__leaving_groups">Покидаем группы…</string>
+  <string name="DeleteAccountFragment__leaving_groups">Выход из групп…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_account">Удаляем учётную запись…</string>
+  <string name="DeleteAccountFragment__deleting_account">Удаление учётной записи…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">В зависимости от количества групп, в которых вы состоите, это может занять несколько минут</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Удаляем данные пользователя и сбрасываем приложение</string>
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Удаление данных пользователя и сброс приложения</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">Учётная запись не удалена</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
@@ -3430,7 +3430,7 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Добавить фото</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Станьте Поддерживающим</string>
-  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal существует благодаря таким людям, как вы. Поддержите нас и получите значок для профиля.</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal существует благодаря таким людям, как вы. Поддержите нас и получите значок в профиль.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Нет, спасибо</string>
   <string name="BecomeASustainerMegaphone__contribute">Поддержать</string>
   <!--KeyboardPagerFragment-->
@@ -3647,7 +3647,7 @@
   <string name="ManageDonationsFragment__my_support">Моя поддержка</string>
   <string name="ManageDonationsFragment__manage_subscription">Управлять подпиской</string>
   <string name="ManageDonationsFragment__badges">Значки</string>
-  <string name="ManageDonationsFragment__subscription_faq">ЧаВО по подписке</string>
+  <string name="ManageDonationsFragment__subscription_faq">ЧаВо о подписке</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Не удалось получить информацию о подписке.</string>
   <string name="BoostFragment__give_signal_a_boost">Дайте «Ускорение» приложению Signal</string>
   <string name="BoostFragment__say_thanks_and_earn">Скажите «Спасибо!» и получите значок «Ускорение» на %1$d дней.</string>

@@ -3162,6 +3162,8 @@
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Piktogram werjaan</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Lit yn de berjochtdetails in piktogram sjen by berjochten dy’t ôflevere binne mei in fersegele ôfstjoerder</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Foar alle nije petearen dy’tsto sels begjinst sille berjochten foar elkenien wiske wurde, neidat de ynstelde tiid ferrûn is. It tiidrek begjint foar elke persoan yndividueel pas te rinnen fan it momint ôf dat dyjinge it berjocht sjoen hat. Brûk dit net ta befeiliging, want Signal kin net garandearje dat berjochten op it apparaat fan in oar ek wurklik wiske wurde.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nije berjochten yn dit petear sille foar elkenien wiske wurde, neidat it ynstelde tiidrek ferrûn is. It tiidrek begjint foar elke persoan yndividueel pas te rinnen fan it momint ôf dat dyjinge it berjocht sjoen hat. Brûk dit net ta befeiliging, want Signal kin net garandearje dat berjochten op it apparaat fan in oar ek wurklik wiske wurde.</string>
   <string name="ExpireTimerSettingsFragment__off">Ut</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 wiken</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 wike</string>
@@ -3189,6 +3191,7 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
   <string name="DataAndStorageSettingsFragment__sent_media_quality">Media-ferstjoerkwaliteit</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Troch hege kwaliteit media te ferstjoeren ferbrûksto mear dataoerdracht. As dyn provider dyn dataferbrûk yn rekkening bringt kin dat dus djoerder wêze.</string>
   <string name="DataAndStorageSettingsFragment__high">Heech</string>
   <string name="DataAndStorageSettingsFragment__standard">Standert</string>
   <string name="DataAndStorageSettingsFragment__calls">Oproppen</string>
@@ -3200,6 +3203,10 @@
   <string name="ChatColorSelectionFragment__duplicate">Kopy meitsje</string>
   <string name="ChatColorSelectionFragment__delete">Ferwiderje</string>
   <string name="ChatColorSelectionFragment__delete_color">Kleur fuortsmite</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Dizze selskeazen kleur wurdt yn %1$d petear brûkt. Wolsto it foar dat petear wiskje?</item>
+    <item quantity="other">Dizze selskeazen kleur wurdt yn %1$d petearen brûkt. Wolsto it foar dy petearen wiskje?</item>
+  </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Petearkleur fuortsmite?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Effen</string>
@@ -3225,6 +3232,7 @@
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Sleep om de rjochting fan it ferrin te wizigjen</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nije petearkleuren</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Wy hawwe de kleuren fan berjochtebubbels omwiksele, sadatsto mear mooglikheden hast om sels kleuren te kiezen en sadat petearen makliker te lêzen binne.</string>
   <string name="ChatColorsMegaphone__appearance">Uterlik</string>
   <string name="ChatColorsMegaphone__not_now">No net</string>
   <!--AddAProfilePhotoMegaphone-->
@@ -3234,6 +3242,7 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">Foegje in foto ta</string>
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">Wurdt in stiper</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal wurdt finansiere troch donaasjes fan minsken lykas do. Asto ús stipest krigesto in profyl-badge.</string>
   <string name="BecomeASustainerMegaphone__no_thanks">Nee, tankewol</string>
   <string name="BecomeASustainerMegaphone__contribute">Bydrage</string>
   <!--KeyboardPagerFragment-->
@@ -3280,7 +3289,11 @@
   <string name="ConversationSettingsFragment__group_link">Groepsferwizing</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">As kontaktpersoan tafoegje</string>
   <string name="ConversationSettingsFragment__unmute">Meldingen net langer dôvje</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Do hast dit petear yn it ferline ta %1$s dôve</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Do hast dit petear yn it ferline foar ûnbepaalde tiid dôve</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoannûmer nei klamboerd kopiearre.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefoannûmer</string>
+  <string name="ConversationSettingsFragment__get_badges">Troch Signal te stypjen fertsjinnesto badges om op dyn profyl wer te jaan. Tik op in badge om der mear oer te learen.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Groepsleden tafoegje</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Groepsynformaasje oanpasse</string>
@@ -3401,9 +3414,13 @@
   <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mooglik meitsjen</string>
   <string name="ImageView__badge">Badge</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal wurdt ûnder oare finansiere troch donaasjes fan minsken lykas do.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Stypje technology dy’t makke is foar dy — net foar it sammeljen fan dyn gegevens — troch mei te dwaan mei de mienskip dy’t it mooglik makket.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Stypje technology dy’t makke is foar dy, net foar it sammeljen fan dyn gegevens, troch ien fan de donateurs te wurden dy’t Signal mooglik meitsje.</string>
   <string name="SubscribeFragment__currency">Faluta</string>
+  <string name="SubscribeFragment__more_payment_options">Mear oerskriuwingsopsjes (Let op: do kinst de badge allinnich krije asto fia Google Pay donearrest)</string>
   <string name="SubscribeFragment__cancel_subscription">Moanlikse donaasje annulearje</string>
   <string name="SubscribeFragment__confirm_cancellation">Moanlikse donaasje annulearje?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Der sil net opnij jild ôfskreaun wurde. Dyn badge sil fuortsmiten wurde fan dyn profyl wannear’t dyn lêste betellingsperioade ôfrûn is.</string>
   <string name="SubscribeFragment__not_now">No net</string>
   <string name="SubscribeFragment__confirm">Befêstigje</string>
   <string name="SubscribeFragment__update_subscription">Moanlikse donaasje bywurkje</string>
@@ -3460,27 +3477,60 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">Dyn moanlikse donaasjes binne automatysk annulearre, omdatsto te lang ynaktyf west bist. Dyn ‘%1$s’-badge is net langer foar oaren te sjen op dyn profyl.</string>
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">Dyn moanlikse donaasjes binne stopset, omdat Signal dyn betelling net ferwurkje koe. Dyn badge is net langer op dyn profyl sichtber.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Do kinst Signal gewoan brûke bliuwe, mar asto Signal stypje wolst en dyn badge wer werjaan wolst, dan kinsto no dyn donaasjes fernije.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Moanlikse donaasjes fernije</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Signal kin dyn moanlikse donaasje net ferwurkje</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">It slagget Signal net om dyn moanlikse donaasje ôf te skriuwen. Kontrolearje dat dyn betellingsmetoade noch hieltyd korrekt is. Wurkje dyn betellingsynformaasje by yn Google Pay as dat nedich is. Signal sil dyn donaasje binnen in pear dagen opnij probearje ôf te skriuwen.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Dit net opnij werjaan</string>
+  <string name="Subscription__please_contact_support_for_more_information">Nim kontakt op mei de stipe foar mear ynformaasje.</string>
   <string name="Subscription__contact_support">Nim kontakt op mei stipe</string>
+  <string name="Subscription__earn_a_s_badge">Fertsjinje in ‘%1$s’-badge</string>
   <string name="SubscribeFragment__processing_payment">Oerskriuwing oan it ferwurkjen…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Flater by it ferwurkjen fan in oerskriuwing</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Flater by it ferwurkjen fan in oerskriuwing. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">It is net slagge om de badge ta te foegjen oan dyn profyl, mar do hast miskien al wol betelle. Nim kontakt op mei stipe.</string>
+  <string name="DonationsErrors__your_payment">Dyn oerskriuwing koe net ferwurke wurde, dêrom is der gjin jild oermakke. Probearje it opnij.</string>
+  <string name="DonationsErrors__still_processing">Wurdt noch ferwurke</string>
+  <string name="DonationsErrors__couldnt_add_badge">Kin badge net tafoegje</string>
+  <string name="DonationsErrors__your_badge_could_not">It is net slagge om de badge ta te foegjen oan dyn profyl, mar do hast miskien al wol betelle. Nim kontakt op mei stipe.</string>
+  <string name="DonationsErrors__your_payment_is_still">Dy oerskriuwing wurdt noch ferwurke. Dit kin in pear minuten duorje ôfhinklik fan dyn ynternetferbining.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay is net beskikber</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Do moast ‘Google Pay’ ynstelle om fan de Signal-app út donaasjes dwaan te kinnen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">It annulearjen fan dyn moanlikse donaasje is mislearre</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om dyn moanlikse donaasje te annulearjen moatsto tagong hawwe ta ynternet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dyn apparaat biedt gjin stipe foar Google Play, dêrom kinsto fia de app gjin moanlikse donaasje meitsje en kinsto gjin badge fertsjinje. Do kinst noch wel donearje fia de Signal-website.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwurkflater. Kontrolearje dat dyn apparaat mei it ynternet ferbûn is en probearje it opnij.</string>
   <string name="NetworkFailure__retry">Opnij probearje</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Probearje it fia in oare betellingsmetoade of nim kontakt op mei dyn bank om harren om mear ynformaasje te freegjen.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Kontrolearje dat dyn betellingsmetoade noch hieltyd korrekt is. Wurkje dyn betellingsynformaasje by yn Google Pay as dat nedich is. Probearje it dêrnei opnij.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Mear lêze</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Kontrolearje dat dyn betellingsmetoade noch hieltyd korrekt is. Wurkje dyn betellingsynformaasje by yn Google Pay as dat nedich is. Probearje it dêrnei opnij. Nim kontakt op mei dyn bank om harren om mear ynformaasje te freegjen as dit probleem oanhâld.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Dyn betelkaart stipet dit type oerskriuwing net. Probearje it fia in oare betellingsmetoade opnij.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Dyn betelkaart is ferrûn. Wurkje earst dyn betellingsynformaasje by yn Google Pay en probearje it dêrnei opnij.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Google Pay iepenje</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Dyn betelkaartnûmer is net korrekt. Wurkje earst dyn betellingsynformaasje by yn Google Pay en probearje it dêrnei opnij.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Dyn betelkaart-CVC-koade is net korrekt. Wurkje earst dyn betellingsynformaasje by yn Google Pay en probearje it dêrnei opnij.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Der stiet net genôch kredyt op dyn betelkaart om te donearjen. Probearje it fia in oare betellingsmetoade opnij.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">De moanne wêrop dyn betelmetoade ferrint is net korrekt. Wurkje earst dyn betellingsynformaasje by yn Google Pay en probearje it dêrnei opnij.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">It jier wêrop dyn betelmetoade ferrint is net korrekt. Wurkje earst dyn betellingsynformaasje by yn Google Pay en probearje it dêrnei opnij.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Probearje opnij om de betelling te dwaan of nim kontakt op mei dyn bank om harren om mear ynformaasje te freegjen.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Probearje it opnij of nim kontakt op mei dyn bank om harren om mear ynformaasje te freegjen.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Jou dyn meldingsprofyl in namme</string>
   <!--Hint text for create/edit notification profile name-->

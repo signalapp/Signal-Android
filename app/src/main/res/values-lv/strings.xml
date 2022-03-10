@@ -125,7 +125,9 @@
   <string name="CameraContacts__menu_search">Meklēt</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Atslēgt cenzūras apiešanu?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Labākai pieredzei jūs tagad varat tieši pieslēgties Signal servisam.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Izslēgt</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -2268,7 +2270,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_events__contact_joined_signal">Kontaktpersona pievienojās Signal</string>
   <string name="preferences_notifications__priority">Prioritāte</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Cenzūras apiešana</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Cenzūras apiešana</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ja šī funkcija ir iespējota, Signal mēģinās apiet cenzūru. Neieslēdziet šo funkciju, ja atrodaties vietā, kur Signal tiek cenzēta.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Cenzūras apiešana ir aktivizēta, pamatojoties uz jūsu konta tālruņa numuru.</string>
