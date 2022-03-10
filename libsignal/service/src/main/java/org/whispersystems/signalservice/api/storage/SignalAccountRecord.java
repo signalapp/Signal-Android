@@ -315,7 +315,13 @@ public final class SignalAccountRecord implements SignalRecord {
 
     static PinnedConversation fromRemote(AccountRecord.PinnedConversation remote) {
       if (remote.hasContact()) {
-        return forContact(new SignalServiceAddress(ServiceId.parseOrThrow(remote.getContact().getUuid()), remote.getContact().getE164()));
+        ServiceId serviceId = ServiceId.parseOrNull(remote.getContact().getUuid());
+        if (serviceId != null) {
+          return forContact(new SignalServiceAddress(serviceId, remote.getContact().getE164()));
+        } else {
+          Log.w(TAG, "Bad serviceId on pinned contact! Length: " + remote.getContact().getUuid());
+          return PinnedConversation.forEmpty();
+        }
       } else if (!remote.getLegacyGroupId().isEmpty()) {
         return forGroupV1(remote.getLegacyGroupId().toByteArray());
       } else if (!remote.getGroupMasterKey().isEmpty()) {
