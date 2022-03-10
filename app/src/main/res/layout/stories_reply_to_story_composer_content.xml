@@ -103,7 +103,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/StoryReplyComposer__react_to_this_story"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/ic_heart_24" />
+            app:srcCompat="@drawable/ic_add_reaction_outline_24" />
 
         <ImageView
             android:id="@+id/reply"
@@ -116,13 +116,5 @@
             app:backgroundTint="@color/core_ultramarine"
             app:srcCompat="@drawable/ic_send_24" />
     </ViewSwitcher>
-
-    <!--    <androidx.fragment.app.FragmentContainerView-->
-    <!--        android:id="@+id/mentions_picker_container"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_gravity="bottom"-->
-    <!--        app:layout_constraintBottom_toTopOf="@id/input_barrier"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -78,8 +78,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/date"
-        tools:srcCompat="@drawable/ic_reply"
-        tools:tint="@color/signal_text_secondary" />
+        app:srcCompat="@drawable/ic_messages_solid_20"
+        app:tint="@color/signal_text_secondary" />
 
     <org.thoughtcrime.securesms.components.ThumbnailView
         android:id="@+id/story_multi"

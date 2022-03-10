@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/ic_message_24" />
+        app:srcCompat="@drawable/ic_chat_message_24" />
 
     <TextView
         android:id="@+id/chats_tab_label"
@@ -76,7 +76,7 @@
         app:layout_constraintStart_toEndOf="@id/tabs_center_guide"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/ic_wallpaper_24" />
+        app:srcCompat="@drawable/ic_stories_24" />
 
     <TextView
         android:id="@+id/stories_tab_label"

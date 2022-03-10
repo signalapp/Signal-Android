@@ -138,8 +138,6 @@ object StoriesLandingItem {
       }
 
       icon.visible = model.data.hasReplies || model.data.hasRepliesFromSelf
-      // TODO [stories] -- Set actual image resource
-      icon.setImageDrawable(ColorDrawable(Color.RED))
 
       listOf(avatarView, storyPreview, storyMulti, sender, date, icon).forEach {
         it.alpha = if (model.data.isHidden) 0.5f else 1f
