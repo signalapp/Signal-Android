@@ -6,7 +6,7 @@
     android:layout_marginStart="@dimen/dsl_settings_gutter"
     android:layout_marginEnd="@dimen/dsl_settings_gutter">
 
-    <org.thoughtcrime.securesms.components.FromTextView
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/sender"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
