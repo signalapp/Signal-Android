@@ -23,6 +23,10 @@
 
     <attr name="contact_filter_toolbar_icon_tint" format="color" />
 
+    <declare-styleable name="AutoSizeEmojiEditText">
+        <attr name="aseet_EnforceLineCount" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="SegmentedProgressBar">
         <attr name="totalSegments" format="integer" />
         <attr name="timePerSegment" format="integer" />

@@ -130,7 +130,6 @@ class StoryTextPostView @JvmOverloads constructor(
     )
 
     setTextColor(state.textForegroundColor)
-    setTextSize(state.textSize)
     setTextBackgroundColor(state.textBackgroundColor)
     setTextGravity(state.textAlignment)
     setTextScale(state.textScale)

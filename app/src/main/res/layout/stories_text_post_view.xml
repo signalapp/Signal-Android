@@ -12,9 +12,10 @@
         android:layout_height="match_parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Story.Text" />
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+    <org.thoughtcrime.securesms.mediasend.v2.text.AutoSizeEmojiEditText
+        android:focusable="false"
         android:id="@+id/text_story_post_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center_vertical"
         android:background="@drawable/rounded_rectangle_secondary_18"
@@ -25,13 +26,13 @@
         android:text="@string/TextStoryPostCreationFragment__tap_to_add_text"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
         android:textColor="@color/core_white"
-        android:textSize="32dp"
         android:textStyle="bold"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:aseet_EnforceLineCount="false"
         tools:ignore="SpUsage"
         tools:text="THIS IS SOME TEXT THAT I AM ENTERING" />
 

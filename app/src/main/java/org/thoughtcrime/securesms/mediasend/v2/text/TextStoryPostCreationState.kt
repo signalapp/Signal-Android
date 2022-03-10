@@ -6,7 +6,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.IntRange
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
-import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.scribbles.HSVColorSlider
@@ -18,7 +17,6 @@ data class TextStoryPostCreationState(
   val textColor: Int = HSVColorSlider.getLastColor(),
   val textColorStyle: TextColorStyle = TextColorStyle.NO_BACKGROUND,
   val textAlignment: TextAlignment = if (FeatureFlags.storiesTextFunctions()) TextAlignment.START else TextAlignment.CENTER,
-  val textSize: Float = DimensionUnit.DP.toPixels(32f),
   val textFont: TextFont = TextFont.REGULAR,
   @IntRange(from = 0, to = 100) val textScale: Int = 50,
   val backgroundColor: ChatColors = TextStoryBackgroundColors.getInitialBackgroundColor(),

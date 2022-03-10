@@ -5,9 +5,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.TypedValue
+import androidx.core.content.res.use
 import androidx.core.view.doOnNextLayout
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.EditTextUtil
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText
 import kotlin.math.abs
 import kotlin.math.max
@@ -50,19 +52,22 @@ class AutoSizeEmojiEditText @JvmOverloads constructor(
 
   init {
     EditTextUtil.addGraphemeClusterLimitFilter(this, 700)
-    addTextChangedListener(watcher)
+
+    if (attrs != null) {
+      context.obtainStyledAttributes(attrs, R.styleable.AutoSizeEmojiEditText).use { typedArray ->
+        if (typedArray.getBoolean(R.styleable.AutoSizeEmojiEditText_aseet_EnforceLineCount, true)) {
+          addTextChangedListener(watcher)
+        }
+      }
+    } else {
+      addTextChangedListener(watcher)
+    }
   }
 
   override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
     if (isInEditMode) return
-
-    if (checkCountAndAddListener()) {
-      // TODO [stories] infinite measure loop when font change pushes us over the line count limit
-      measure(widthMeasureSpec, heightMeasureSpec)
-      return
-    }
 
     try {
       val operation = getNextAutoSizeOperation()
