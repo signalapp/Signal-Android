@@ -78,7 +78,7 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
 
     ViewCompat.setNestedScrollingEnabled(tabs, false)
     pager.adapter = StoryViewsAndRepliesPagerAdapter(this, storyId, groupRecipientId)
-    pager.currentItem = startPageIndex
+    pager.setCurrentItem(startPageIndex, false)
 
     TabLayoutMediator(tabs, pager) { tab, position ->
       when (position) {
