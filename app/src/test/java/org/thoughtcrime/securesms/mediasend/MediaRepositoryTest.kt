@@ -10,11 +10,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers
-import org.powermock.api.mockito.PowerMockito
-import org.powermock.api.mockito.PowerMockito.mockStatic
-import org.powermock.core.classloader.annotations.PowerMockIgnore
-import org.powermock.core.classloader.annotations.PrepareForTest
-import org.powermock.modules.junit4.rule.PowerMockRule
+import org.mockito.Mock
+import org.mockito.MockedStatic
+import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
@@ -25,13 +25,13 @@ import org.whispersystems.libsignal.util.guava.Optional
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
-@PowerMockIgnore("org.mockito.*", "org.robolectric.*", "android.*", "androidx.*")
-@PrepareForTest(MediaUtil::class)
 class MediaRepositoryTest {
 
   @Rule
-  @JvmField
-  val rule = PowerMockRule()
+  @JvmField val mockitoRule: MockitoRule = MockitoJUnit.rule()
+
+  @Mock
+  private lateinit var staticMediaUtilMock: MockedStatic<MediaUtil>
 
   private lateinit var context: Context
 
@@ -40,8 +40,7 @@ class MediaRepositoryTest {
     Log.initialize(EmptyLogger())
 
     context = ApplicationProvider.getApplicationContext()
-    mockStatic(MediaUtil::class.java)
-    PowerMockito.`when`(MediaUtil.isOctetStream(MediaUtil.OCTET)).thenReturn(true)
+    `when`(MediaUtil.isOctetStream(MediaUtil.OCTET)).thenReturn(true)
   }
 
   @Test
@@ -62,7 +61,7 @@ class MediaRepositoryTest {
     val media = buildMedia(mimeType = MediaUtil.OCTET)
 
     // WHEN
-    PowerMockito.`when`(MediaUtil.getMimeType(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(MediaUtil.IMAGE_JPEG)
+    `when`(MediaUtil.getMimeType(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(MediaUtil.IMAGE_JPEG)
     val result: Media = MediaRepository.fixMimeType(context, media)
 
     // THEN

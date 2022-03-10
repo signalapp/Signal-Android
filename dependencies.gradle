@@ -125,22 +125,17 @@ dependencyResolutionManagement {
 
         testLibs {
             version('robolectric', '4.4')
-            version('powermock', '2.0.9')
 
             alias('junit-junit').to('junit:junit:4.13.2')
             alias('androidx-test-core').to('androidx.test:core:1.2.0')
             alias('androidx-test-ext-junit').to('androidx.test.ext:junit:1.1.1')
             alias('espresso-core').to('androidx.test.espresso:espresso-core:3.2.0')
-            alias('mockito-core').to('org.mockito:mockito-core:2.23.4')
+            alias('mockito-core').to('org.mockito:mockito-inline:4.4.0')
             alias('robolectric-robolectric').to('org.robolectric', 'robolectric').versionRef('robolectric')
             alias('robolectric-shadows-multidex').to('org.robolectric', 'shadows-multidex').versionRef('robolectric')
             alias('bouncycastle-bcprov-jdk15on').to('org.bouncycastle:bcprov-jdk15on:1.70')
             alias('hamcrest-hamcrest').to('org.hamcrest:hamcrest:2.2')
             alias('assertj-core').to('org.assertj:assertj-core:3.11.1')
-            alias('powermock-api-mockito').to('org.powermock', 'powermock-api-mockito2').versionRef('powermock')
-            alias('powermock-module-junit4-core').to('org.powermock', 'powermock-module-junit4').versionRef('powermock')
-            alias('powermock-module-junit4-rule').to('org.powermock', 'powermock-module-junit4-rule').versionRef('powermock')
-            alias('powermock-classloading-xstream').to('org.powermock', 'powermock-classloading-xstream').versionRef('powermock')
 
             alias('conscrypt-openjdk-uber').to('org.conscrypt:conscrypt-openjdk-uber:2.0.0')
         }

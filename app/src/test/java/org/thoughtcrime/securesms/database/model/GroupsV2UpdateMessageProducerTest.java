@@ -9,13 +9,15 @@ import androidx.test.core.app.ApplicationProvider;
 import com.annimon.stream.Stream;
 import com.google.common.collect.ImmutableMap;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.rule.PowerMockRule;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.signal.core.util.ThreadUtil;
@@ -24,8 +26,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.thoughtcrime.securesms.testutil.MainThreadUtil;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -35,22 +35,21 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static java.util.Collections.emptyList;
-import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mockStatic;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeBy;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeByUnknown;
 import static org.thoughtcrime.securesms.util.StringUtil.isolateBidi;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
-@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "androidx.*" })
-@PrepareForTest(ThreadUtil.class)
 public final class GroupsV2UpdateMessageProducerTest {
 
   private UUID you;
@@ -60,7 +59,10 @@ public final class GroupsV2UpdateMessageProducerTest {
   private GroupsV2UpdateMessageProducer producer;
 
   @Rule
-  public PowerMockRule powerMockRule = new PowerMockRule();
+  public MockitoRule rule = MockitoJUnit.rule();
+
+  @Mock
+  public MockedStatic<ThreadUtil> threadUtilMockedStatic;
 
   @Before
   public void setup() {
@@ -69,6 +71,9 @@ public final class GroupsV2UpdateMessageProducerTest {
     bob   = UUID.randomUUID();
     GroupsV2UpdateMessageProducer.DescribeMemberStrategy describeMember = createDescriber(ImmutableMap.of(alice, "Alice", bob, "Bob"));
     producer = new GroupsV2UpdateMessageProducer(ApplicationProvider.getApplicationContext(), describeMember, you);
+
+    threadUtilMockedStatic.when(ThreadUtil::assertMainThread).thenCallRealMethod();
+    threadUtilMockedStatic.when(ThreadUtil::assertNotMainThread).thenCallRealMethod();
   }
 
   @Test
@@ -1332,7 +1337,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   private @NonNull List<String> describeChange(@Nullable DecryptedGroup previousGroupState,
                                                @NonNull DecryptedGroupChange change)
   {
-    MainThreadUtil.setMainThread(false);
+    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(false);
     return Stream.of(producer.describeChanges(previousGroupState, change))
                  .map(UpdateDescription::getString)
                  .toList();
@@ -1343,7 +1348,7 @@ public final class GroupsV2UpdateMessageProducerTest {
   }
 
   private @NonNull String describeNewGroup(@NonNull DecryptedGroup group, @NonNull DecryptedGroupChange groupChange) {
-    MainThreadUtil.setMainThread(false);
+    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(false);
     return producer.describeNewGroup(group, groupChange).getString();
   }
 

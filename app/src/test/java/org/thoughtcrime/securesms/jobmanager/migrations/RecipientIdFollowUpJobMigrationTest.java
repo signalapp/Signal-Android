@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobMigration.JobData;
@@ -15,18 +17,18 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.mockito.Mockito.mock;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ Recipient.class, Job.Parameters.class })
 public class RecipientIdFollowUpJobMigrationTest {
 
-  @Before
-  public void init() {
-    mockStatic(Recipient.class);
-    mockStatic(Job.Parameters.class);
-  }
+  @Rule
+  public MockitoRule rule = MockitoJUnit.rule();
+
+  @Mock
+  private MockedStatic<Recipient> recipientMockedStatic;
+
+  @Mock
+  private MockedStatic<Job.Parameters> jobParametersMockedStatic;
 
   @Test
   public void migrate_requestGroupInfoJob_good() throws Exception {

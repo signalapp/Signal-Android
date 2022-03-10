@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.recipients
 import android.graphics.Color
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
-import org.powermock.api.mockito.PowerMockito
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.database.RecipientDatabaseTestUtils.createRecipient
@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.WallpaperValues
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 
-@Ignore("PowerMock failing")
 @Suppress("ClassName")
 class Recipient_getChatColorsTest : BaseRecipientTest() {
 
@@ -27,14 +26,14 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
 
   @Before
   fun setUp() {
-    wallpaperValues = PowerMockito.mock(WallpaperValues::class.java)
-    chatColorsValues = PowerMockito.mock(ChatColorsValues::class.java)
+    wallpaperValues = mock(WallpaperValues::class.java)
+    chatColorsValues = mock(ChatColorsValues::class.java)
 
     val globalWallpaper = createWallpaper(globalWallpaperChatColor)
-    PowerMockito.`when`(wallpaperValues.wallpaper).thenReturn(globalWallpaper)
-    PowerMockito.`when`(chatColorsValues.chatColors).thenReturn(globalChatColor)
-    PowerMockito.`when`(SignalStore.wallpaper()).thenReturn(wallpaperValues)
-    PowerMockito.`when`(SignalStore.chatColorsValues()).thenReturn(chatColorsValues)
+    `when`(wallpaperValues.wallpaper).thenReturn(globalWallpaper)
+    `when`(chatColorsValues.chatColors).thenReturn(globalChatColor)
+    `when`(SignalStore.wallpaper()).thenReturn(wallpaperValues)
+    `when`(SignalStore.chatColorsValues()).thenReturn(chatColorsValues)
   }
 
   @Test
@@ -94,7 +93,7 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   @Test
   fun `Given recipient has auto chat color set and no wallpaper set and no global wallpaper set, when I getChatColors, then I expect the default chat color`() {
     // GIVEN
-    PowerMockito.`when`(wallpaperValues.wallpaper).thenReturn(null)
+    `when`(wallpaperValues.wallpaper).thenReturn(null)
     val auto = ChatColors.forColor(ChatColors.Id.Auto, Color.BLACK)
     val recipient = createRecipient(chatColors = auto)
 
@@ -109,7 +108,7 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   fun `Given recipient has no chat color set and there is a custom global chat color, when I getChatColors, then I expect the global chat color`() {
     // GIVEN
     val expected = globalChatColor.withId(ChatColors.Id.Custom(12))
-    PowerMockito.`when`(chatColorsValues.chatColors).thenReturn(expected)
+    `when`(chatColorsValues.chatColors).thenReturn(expected)
     val recipient = createRecipient()
 
     // WHEN
@@ -134,7 +133,7 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   @Test
   fun `Given recipient has no chat color set and there is an auto global chat color and the recipient has a wallpaper, when I getChatColors, then I expect the wallpaper chat color`() {
     // GIVEN
-    PowerMockito.`when`(chatColorsValues.chatColors).thenReturn(globalChatColor.withId(ChatColors.Id.Auto))
+    `when`(chatColorsValues.chatColors).thenReturn(globalChatColor.withId(ChatColors.Id.Auto))
     val color = ChatColors.forColor(ChatColors.Id.BuiltIn, Color.CYAN)
     val recipient = createRecipient(wallpaper = createWallpaper(color))
 
@@ -148,7 +147,7 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   @Test
   fun `Given recipient has no chat color set and there is no global chat color and the recipient has a wallpaper, when I getChatColors, then I expect the wallpaper chat color`() {
     // GIVEN
-    PowerMockito.`when`(chatColorsValues.chatColors).thenReturn(null)
+    `when`(chatColorsValues.chatColors).thenReturn(null)
     val color = ChatColors.forColor(ChatColors.Id.BuiltIn, Color.CYAN)
     val recipient = createRecipient(wallpaper = createWallpaper(color))
 
@@ -162,7 +161,7 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   @Test
   fun `Given recipient has no chat color set and there is an auto global chat color and the recipient has no wallpaper and global wallpaper set, when I getChatColors, then I expect the global wallpaper chat color`() {
     // GIVEN
-    PowerMockito.`when`(chatColorsValues.chatColors).thenReturn(globalChatColor.withId(ChatColors.Id.Auto))
+    `when`(chatColorsValues.chatColors).thenReturn(globalChatColor.withId(ChatColors.Id.Auto))
     val recipient = createRecipient()
 
     // WHEN
@@ -175,7 +174,7 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   @Test
   fun `Given recipient has no chat color set and there is no global chat color and the recipient has no wallpaper and global wallpaper set, when I getChatColors, then I expect the global wallpaper chat color`() {
     // GIVEN
-    PowerMockito.`when`(chatColorsValues.chatColors).thenReturn(null)
+    `when`(chatColorsValues.chatColors).thenReturn(null)
     val recipient = createRecipient()
 
     // WHEN
@@ -188,8 +187,8 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   @Test
   fun `Given no recipient colors and auto global colors and no wallpaper set, when I getChatColors, then I expect default blue`() {
     // GIVEN
-    PowerMockito.`when`(wallpaperValues.wallpaper).thenReturn(null)
-    PowerMockito.`when`(chatColorsValues.chatColors).thenReturn(globalChatColor.withId(ChatColors.Id.Auto))
+    `when`(wallpaperValues.wallpaper).thenReturn(null)
+    `when`(chatColorsValues.chatColors).thenReturn(globalChatColor.withId(ChatColors.Id.Auto))
     val recipient = createRecipient()
 
     // WHEN
@@ -202,8 +201,8 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   @Test
   fun `Given no colors or wallpaper set, when I getChatColors, then I expect default blue`() {
     // GIVEN
-    PowerMockito.`when`(wallpaperValues.wallpaper).thenReturn(null)
-    PowerMockito.`when`(chatColorsValues.chatColors).thenReturn(null)
+    `when`(wallpaperValues.wallpaper).thenReturn(null)
+    `when`(chatColorsValues.chatColors).thenReturn(null)
     val recipient = createRecipient()
 
     // WHEN
@@ -215,7 +214,7 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
 
   private fun createWallpaper(
     chatColors: ChatColors?
-  ): ChatWallpaper = PowerMockito.mock(ChatWallpaper::class.java).apply {
-    PowerMockito.`when`(autoChatColors).thenReturn(chatColors)
+  ): ChatWallpaper = mock(ChatWallpaper::class.java).apply {
+    `when`(autoChatColors).thenReturn(chatColors)
   }
 }

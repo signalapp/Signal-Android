@@ -7,11 +7,14 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Stream;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.mockito.stubbing.Answer;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -31,15 +34,21 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.powermock.api.mockito.PowerMockito.doAnswer;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ApplicationDependencies.class, Recipient.class})
 public class MarkReadReceiverTest {
+
+  @Rule
+  public MockitoRule rule = MockitoJUnit.rule();
+
+  @Mock
+  private MockedStatic<ApplicationDependencies> applicationDependenciesMockedStatic;
+
+  @Mock
+  private MockedStatic<Recipient> recipientMockedStatic;
 
   private final Context    mockContext    = mock(Context.class);
   private final JobManager mockJobManager = mock(JobManager.class);
@@ -48,14 +57,12 @@ public class MarkReadReceiverTest {
 
   @Before
   public void setUp() {
-    mockStatic(ApplicationDependencies.class);
-    mockStatic(Recipient.class);
-    when(ApplicationDependencies.getJobManager()).thenReturn(mockJobManager);
+    applicationDependenciesMockedStatic.when(ApplicationDependencies::getJobManager).thenReturn(mockJobManager);
     doAnswer((Answer<Void>) invocation -> {
       jobs.add((Job) invocation.getArguments()[0]);
       return null;
     }).when(mockJobManager).add(any());
-    when(Recipient.self()).thenReturn(mockSelf);
+    recipientMockedStatic.when(Recipient::self).thenReturn(mockSelf);
     when(mockSelf.getId()).thenReturn(RecipientId.from(-1));
   }
 

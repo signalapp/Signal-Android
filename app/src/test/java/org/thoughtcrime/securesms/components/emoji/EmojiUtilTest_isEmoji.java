@@ -8,10 +8,11 @@ import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.rule.PowerMockRule;
+import org.mockito.Mock;
+import org.mockito.MockedConstruction;
+import org.mockito.MockedStatic;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.robolectric.ParameterizedRobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
@@ -25,15 +26,15 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-@Ignore("PowerMock failing")
 @RunWith(ParameterizedRobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
-@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*", "androidx.*", "org.powermock.*" })
-@PrepareForTest({ApplicationDependencies.class, AttachmentSecretProvider.class, SignalStore.class, InternalValues.class})
 public class EmojiUtilTest_isEmoji {
 
-  public @Rule PowerMockRule rule = new PowerMockRule();
+  @Rule
+  public MockitoRule rule = MockitoJUnit.rule();
 
   private final String  input;
   private final boolean output;
@@ -60,6 +61,17 @@ public class EmojiUtilTest_isEmoji {
     });
   }
 
+  @Mock
+  private MockedStatic<ApplicationDependencies> applicationDependenciesMockedStatic;
+
+  @Mock
+  private MockedStatic<AttachmentSecretProvider> attachmentSecretProviderMockedStatic;
+
+  @Mock
+  private MockedStatic<SignalStore> signalStoreMockedStatic;
+
+  @Mock
+  private MockedConstruction<SignalStore> signalStoreMockedConstruction;
 
   public EmojiUtilTest_isEmoji(String input, boolean output) {
     this.input  = input;
@@ -70,13 +82,9 @@ public class EmojiUtilTest_isEmoji {
   public void isEmoji() throws Exception {
     Application application = ApplicationProvider.getApplicationContext();
 
-    PowerMockito.mockStatic(ApplicationDependencies.class);
-    PowerMockito.when(ApplicationDependencies.getApplication()).thenReturn(application);
-    PowerMockito.mockStatic(AttachmentSecretProvider.class);
-    PowerMockito.when(AttachmentSecretProvider.getInstance(any())).thenThrow(RuntimeException.class);
-    PowerMockito.whenNew(SignalStore.class).withAnyArguments().thenReturn(null);
-    PowerMockito.mockStatic(SignalStore.class);
-    PowerMockito.when(SignalStore.internalValues()).thenReturn(PowerMockito.mock(InternalValues.class));
+    when(ApplicationDependencies.getApplication()).thenReturn(application);
+    when(AttachmentSecretProvider.getInstance(any())).thenThrow(RuntimeException.class);
+    when(SignalStore.internalValues()).thenReturn(mock(InternalValues.class));
     EmojiSource.refresh();
 
     assertEquals(output, EmojiUtil.isEmoji(input));

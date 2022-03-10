@@ -524,10 +524,6 @@ dependencies {
     testImplementation testLibs.junit.junit
     testImplementation testLibs.assertj.core
     testImplementation testLibs.mockito.core
-    testImplementation testLibs.powermock.api.mockito
-    testImplementation testLibs.powermock.module.junit4.core
-    testImplementation testLibs.powermock.module.junit4.rule
-    testImplementation testLibs.powermock.classloading.xstream
 
     testImplementation testLibs.androidx.test.core
     testImplementation (testLibs.robolectric.robolectric) {

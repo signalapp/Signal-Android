@@ -3,13 +3,14 @@ package org.thoughtcrime.securesms.storage;
 import com.annimon.stream.Stream;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.IdDifferenceResult;
@@ -34,17 +35,12 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.assertContentsEqual;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.byteArray;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.byteListOf;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ Recipient.class, FeatureFlags.class})
-@PowerMockIgnore("javax.crypto.*")
-@PowerMockRunnerDelegate(JUnit4.class)
 public final class StorageSyncHelperTest {
 
   private static final ServiceId SID_A    = ServiceId.parseOrThrow("ebef429e-695e-4f51-bcc4-526a60ac68c7");
@@ -60,12 +56,19 @@ public final class StorageSyncHelperTest {
     when(SELF.resolve()).thenReturn(SELF);
   }
 
+  @Rule
+  public MockitoRule rule = MockitoJUnit.rule();
+
+  @Mock
+  private MockedStatic<Recipient> recipientMockedStatic;
+
+  @Mock
+  private MockedStatic<FeatureFlags> featureFlagsMockedStatic;
+
   @Before
   public void setup() {
-    mockStatic(Recipient.class);
-    when(Recipient.self()).thenReturn(SELF);
+    recipientMockedStatic.when(Recipient::self).thenReturn(SELF);
     Log.initialize(new Log.Logger[0]);
-    mockStatic(FeatureFlags.class);
     StorageSyncHelper.setTestKeyGenerator(null);
   }
 

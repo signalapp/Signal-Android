@@ -6,36 +6,42 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers
-import org.powermock.api.mockito.PowerMockito
-import org.powermock.core.classloader.annotations.PowerMockIgnore
-import org.powermock.core.classloader.annotations.PrepareForTest
-import org.powermock.modules.junit4.rule.PowerMockRule
+import org.mockito.Mock
+import org.mockito.MockedConstruction
+import org.mockito.MockedStatic
+import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.keyvalue.ChatColorsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.WallpaperValues
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
-@PowerMockIgnore("org.mockito.*", "org.robolectric.*", "android.*", "androidx.*", "org.powermock.*")
-@PrepareForTest(ApplicationDependencies::class, AttachmentSecretProvider::class, SignalStore::class, WallpaperValues::class, ChatColorsValues::class)
 abstract class BaseRecipientTest {
+
   @Rule
-  @JvmField
-  var rule = PowerMockRule()
+  @JvmField val mockitoRule: MockitoRule = MockitoJUnit.rule()
+
+  @Mock
+  private lateinit var applicationDependenciesStaticMock: MockedStatic<ApplicationDependencies>
+
+  @Mock
+  private lateinit var attachmentSecretProviderStaticMock: MockedStatic<AttachmentSecretProvider>
+
+  @Mock
+  private lateinit var signalStoreStaticMock: MockedStatic<SignalStore>
+
+  @Mock
+  private lateinit var mockedSignalStoreConstruction: MockedConstruction<SignalStore>
 
   @Before
   fun superSetUp() {
     val application = ApplicationProvider.getApplicationContext<Application>()
 
-    PowerMockito.mockStatic(ApplicationDependencies::class.java)
-    PowerMockito.`when`(ApplicationDependencies.getApplication()).thenReturn(application)
-    PowerMockito.mockStatic(AttachmentSecretProvider::class.java)
-    PowerMockito.`when`(AttachmentSecretProvider.getInstance(ArgumentMatchers.any())).thenThrow(RuntimeException::class.java)
-    PowerMockito.whenNew(SignalStore::class.java).withAnyArguments().thenReturn(null)
-    PowerMockito.mockStatic(SignalStore::class.java)
+    `when`(ApplicationDependencies.getApplication()).thenReturn(application)
+    `when`(AttachmentSecretProvider.getInstance(ArgumentMatchers.any())).thenThrow(RuntimeException::class.java)
   }
 }

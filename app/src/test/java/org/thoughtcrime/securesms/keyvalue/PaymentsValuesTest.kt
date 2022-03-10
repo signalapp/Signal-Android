@@ -7,10 +7,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.powermock.api.mockito.PowerMockito
-import org.powermock.core.classloader.annotations.PowerMockIgnore
-import org.powermock.core.classloader.annotations.PrepareForTest
-import org.powermock.modules.junit4.rule.PowerMockRule
+import org.mockito.Mock
+import org.mockito.MockedStatic
+import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -19,20 +20,19 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
-@PowerMockIgnore("org.mockito.*", "org.robolectric.*", "android.*", "androidx.*", "org.powermock.*")
-@PrepareForTest(FeatureFlags::class)
 class PaymentsValuesTest {
 
-  @get:Rule
-  val powerMockRule = PowerMockRule()
+  @Rule
+  @JvmField val mockitoRule: MockitoRule = MockitoJUnit.rule()
+
+  @Mock
+  private lateinit var featureFlags: MockedStatic<FeatureFlags>
 
   @Before
   fun setup() {
     if (!ApplicationDependencies.isInitialized()) {
       ApplicationDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
-
-    PowerMockito.mockStatic(FeatureFlags::class.java)
   }
 
   @Test
@@ -56,8 +56,8 @@ class PaymentsValuesTest {
       }
     )
 
-    PowerMockito.`when`(FeatureFlags.payments()).thenReturn(false)
-    PowerMockito.`when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    `when`(FeatureFlags.payments()).thenReturn(false)
+    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
 
     assertEquals(PaymentsAvailability.DISABLED_REMOTELY, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -72,8 +72,8 @@ class PaymentsValuesTest {
       }
     )
 
-    PowerMockito.`when`(FeatureFlags.payments()).thenReturn(false)
-    PowerMockito.`when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    `when`(FeatureFlags.payments()).thenReturn(false)
+    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
 
     assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -88,8 +88,8 @@ class PaymentsValuesTest {
       }
     )
 
-    PowerMockito.`when`(FeatureFlags.payments()).thenReturn(true)
-    PowerMockito.`when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    `when`(FeatureFlags.payments()).thenReturn(true)
+    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
 
     assertEquals(PaymentsAvailability.REGISTRATION_AVAILABLE, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -104,8 +104,8 @@ class PaymentsValuesTest {
       }
     )
 
-    PowerMockito.`when`(FeatureFlags.payments()).thenReturn(true)
-    PowerMockito.`when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
+    `when`(FeatureFlags.payments()).thenReturn(true)
+    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("")
 
     assertEquals(PaymentsAvailability.WITHDRAW_AND_SEND, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -120,8 +120,8 @@ class PaymentsValuesTest {
       }
     )
 
-    PowerMockito.`when`(FeatureFlags.payments()).thenReturn(true)
-    PowerMockito.`when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("1")
+    `when`(FeatureFlags.payments()).thenReturn(true)
+    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("1")
 
     assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.paymentsValues().paymentsAvailability)
   }
@@ -136,8 +136,8 @@ class PaymentsValuesTest {
       }
     )
 
-    PowerMockito.`when`(FeatureFlags.payments()).thenReturn(true)
-    PowerMockito.`when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("1")
+    `when`(FeatureFlags.payments()).thenReturn(true)
+    `when`(FeatureFlags.paymentsCountryBlocklist()).thenReturn("1")
 
     assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.paymentsValues().paymentsAvailability)
   }

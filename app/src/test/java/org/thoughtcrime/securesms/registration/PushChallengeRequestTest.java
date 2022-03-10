@@ -18,13 +18,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
@@ -87,7 +87,7 @@ public final class PushChallengeRequestTest {
 
     Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, Optional.absent(), "+123456", 500L);
 
-    verifyZeroInteractions(signal);
+    verifyNoInteractions(signal);
     assertFalse(challenge.isPresent());
   }
 
