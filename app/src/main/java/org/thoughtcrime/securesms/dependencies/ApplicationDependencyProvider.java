@@ -296,8 +296,19 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
       throw new IllegalStateException("No PNI set!");
     }
 
+    boolean needsPreKeyJob = false;
+
+    if (!SignalStore.account().hasAciIdentityKey()) {
+      SignalStore.account().generateAciIdentityKeyIfNecessary();
+      needsPreKeyJob = true;
+    }
+
     if (!SignalStore.account().hasPniIdentityKey()) {
       SignalStore.account().generatePniIdentityKeyIfNecessary();
+      needsPreKeyJob = true;
+    }
+
+    if (needsPreKeyJob) {
       CreateSignedPreKeyJob.enqueueIfNeeded();
     }
 

@@ -150,11 +150,19 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
       )
     }
 
+  fun hasAciIdentityKey(): Boolean {
+    return store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)
+  }
+
   /** Generates and saves an identity key pair for the ACI identity. Should only be done once. */
-  fun generateAciIdentityKey() {
+  fun generateAciIdentityKeyIfNecessary() {
     synchronized(this) {
+      if (store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) {
+        Log.w(TAG, "Tried to generate an ANI identity, but one was already set!", Throwable())
+        return
+      }
+
       Log.i(TAG, "Generating a new ACI identity key pair.")
-      require(!store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) { "Already generated!" }
 
       val key: IdentityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
       store
