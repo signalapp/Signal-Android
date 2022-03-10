@@ -26,7 +26,10 @@ class AvatarView @JvmOverloads constructor(
     isClickable = false
   }
 
-  private val avatar: AvatarImageView = findViewById(R.id.avatar_image_view)
+  private val avatar: AvatarImageView = findViewById<AvatarImageView>(R.id.avatar_image_view).apply {
+    initialize(context, attrs)
+  }
+
   private val storyRing: View = findViewById(R.id.avatar_story_ring)
 
   private fun showStoryRing(hasUnreadStory: Boolean) {

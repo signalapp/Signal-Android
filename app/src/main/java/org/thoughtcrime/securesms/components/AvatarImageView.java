@@ -95,7 +95,7 @@ public final class AvatarImageView extends AppCompatImageView {
     initialize(context, attrs);
   }
 
-  private void initialize(@NonNull Context context, @Nullable AttributeSet attrs) {
+  public void initialize(@NonNull Context context, @Nullable AttributeSet attrs) {
     setScaleType(ScaleType.CENTER_CROP);
 
     if (attrs != null) {

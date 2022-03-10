@@ -31,8 +31,8 @@ class TextAvatarDrawable(
   }
 
   override fun draw(canvas: Canvas) {
-    val textSize = Avatars.getTextSizeForLength(context, avatar.text, size * 0.8f, size * 0.45f)
     val width = bounds.width()
+    val textSize = Avatars.getTextSizeForLength(context, avatar.text, width * 0.8f, width * 0.45f)
     val candidates = EmojiProvider.getCandidates(avatar.text)
 
     textPaint.textSize = textSize
