@@ -18,6 +18,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String CHANGE_NUMBER_LOCK              = "misc.change_number.lock";
   private static final String CENSORSHIP_LAST_CHECK_TIME      = "misc.censorship.last_check_time";
   private static final String CENSORSHIP_SERVICE_REACHABLE    = "misc.censorship.service_reachable";
+  private static final String LAST_GV2_PROFILE_CHECK_TIME     = "misc.last_gv2_profile_check_time";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -127,5 +128,13 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void setServiceReachableWithoutCircumvention(boolean value) {
     putBoolean(CENSORSHIP_SERVICE_REACHABLE, value);
+  }
+
+  public long getLastGv2ProfileCheckTime() {
+    return getLong(LAST_GV2_PROFILE_CHECK_TIME, 0);
+  }
+
+  public void setLastGv2ProfileCheckTime(long value) {
+    putLong(LAST_GV2_PROFILE_CHECK_TIME, value);
   }
 }

@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.FontDownloaderJob;
+import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
@@ -201,6 +202,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(() -> AndroidTelecomUtil.registerPhoneAccount())
                             .addPostRender(() -> ApplicationDependencies.getJobManager().add(new FontDownloaderJob()))
                             .addPostRender(CheckServiceReachabilityJob::enqueueIfNecessary)
+                            .addPostRender(GroupV2UpdateSelfProfileKeyJob::enqueueForGroupsIfNecessary)
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
