@@ -13,7 +13,8 @@ class DataStatus {
   private static final Pools.Pool<BitSet> POOL = new Pools.SynchronizedPool<>(1);
 
   private final BitSet state;
-  private final int    size;
+
+  private int size;
 
   public static DataStatus obtain(int size) {
     BitSet bitset = POOL.acquire();
@@ -29,6 +30,10 @@ class DataStatus {
   private DataStatus(int size, @NonNull BitSet bitset) {
     this.size  = size;
     this.state = bitset;
+  }
+
+  void mark(int position) {
+    state.set(position, true);
   }
 
   void markRange(int startInclusive, int endExclusive) {
@@ -51,6 +56,24 @@ class DataStatus {
       }
     }
     return -1;
+  }
+
+  boolean get(int position) {
+    return state.get(position);
+  }
+
+  void insertState(int position, boolean value) {
+    if (position < 0 || position > size + 1) {
+      throw new IndexOutOfBoundsException();
+    }
+
+    for (int i = size; i > position; i--) {
+      state.set(i, state.get(i - 1));
+    }
+
+    state.set(position, value);
+
+    this.size = size + 1;
   }
 
   int size() {

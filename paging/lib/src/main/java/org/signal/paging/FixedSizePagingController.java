@@ -62,37 +62,42 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
       return;
     }
 
-    if (loadState.size() == 0) {
-      liveData.postValue(Collections.emptyList());
-      return;
+    final int loadStart;
+    final int loadEnd;
+
+    synchronized (loadState) {
+      if (loadState.size() == 0) {
+        liveData.postValue(Collections.emptyList());
+        return;
+      }
+
+      int leftPageBoundary  = (aroundIndex / config.pageSize()) * config.pageSize();
+      int rightPageBoundary = leftPageBoundary + config.pageSize();
+      int buffer            = config.bufferPages() * config.pageSize();
+
+      int leftLoadBoundary  = Math.max(0, leftPageBoundary - buffer);
+      int rightLoadBoundary = Math.min(loadState.size(), rightPageBoundary + buffer);
+
+      loadStart = loadState.getEarliestUnmarkedIndexInRange(leftLoadBoundary, rightLoadBoundary);
+
+      if (loadStart < 0) {
+        if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "loadStart < 0"));
+        return;
+      }
+
+      loadEnd = loadState.getLatestUnmarkedIndexInRange(Math.max(leftLoadBoundary, loadStart), rightLoadBoundary) + 1;
+
+      if (loadEnd <= loadStart) {
+        if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "loadEnd <= loadStart, loadEnd: " + loadEnd + ", loadStart: " + loadStart));
+        return;
+      }
+
+      int totalSize = loadState.size();
+
+      loadState.markRange(loadStart, loadEnd);
+
+      if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "start: " + loadStart + ", end: " + loadEnd + ", totalSize: " + totalSize));
     }
-
-    int leftPageBoundary  = (aroundIndex / config.pageSize()) * config.pageSize();
-    int rightPageBoundary = leftPageBoundary + config.pageSize();
-    int buffer            = config.bufferPages() * config.pageSize();
-
-    int leftLoadBoundary  = Math.max(0, leftPageBoundary - buffer);
-    int rightLoadBoundary = Math.min(loadState.size(), rightPageBoundary + buffer);
-
-    int loadStart = loadState.getEarliestUnmarkedIndexInRange(leftLoadBoundary, rightLoadBoundary);
-
-    if (loadStart < 0) {
-      if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "loadStart < 0"));
-      return;
-    }
-
-    int loadEnd = loadState.getLatestUnmarkedIndexInRange(Math.max(leftLoadBoundary, loadStart), rightLoadBoundary) + 1;
-
-    if (loadEnd <= loadStart) {
-      if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "loadEnd <= loadStart, loadEnd: " + loadEnd + ", loadStart: " + loadStart));
-      return;
-    }
-
-    int totalSize = loadState.size();
-
-    loadState.markRange(loadStart, loadEnd);
-
-    if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "start: " + loadStart + ", end: " + loadEnd + ", totalSize: " + totalSize));
 
     FETCH_EXECUTOR.execute(() -> {
       if (invalidated) {
@@ -147,6 +152,10 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
         return;
       }
 
+      synchronized (loadState) {
+        loadState.mark(position);
+      }
+
       Data item = dataSource.load(key);
 
       if (item == null) {
@@ -178,6 +187,10 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
       if (invalidated) {
         Log.w(TAG, "Invalidated! Just before individual insert was loaded for position " + position);
         return;
+      }
+
+      synchronized (loadState) {
+        loadState.insertState(position, true);
       }
 
       Data item = dataSource.load(key);
