@@ -1041,7 +1041,7 @@ final class GroupManagerV2 {
         throw new GroupChangeFailedException(e);
       } catch (AuthorizationFailedException e) {
         Log.w(TAG, e);
-        throw new GroupLinkNotActiveException(e);
+        throw new GroupLinkNotActiveException(e, Optional.absent());
       }
     }
 

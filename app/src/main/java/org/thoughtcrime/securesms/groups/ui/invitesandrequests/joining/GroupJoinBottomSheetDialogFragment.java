@@ -127,10 +127,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
 
     viewModel.isBusy().observe(getViewLifecycleOwner(), isBusy -> busy.setVisibility(isBusy ? View.VISIBLE : View.GONE));
 
-    viewModel.getErrors().observe(getViewLifecycleOwner(), error -> {
-      Toast.makeText(requireContext(), errorToMessage(error), Toast.LENGTH_SHORT).show();
-      dismiss();
-    });
+    viewModel.getErrors().observe(getViewLifecycleOwner(), this::showError);
 
     viewModel.getJoinErrors().observe(getViewLifecycleOwner(), error -> Toast.makeText(requireContext(), errorToMessage(error), Toast.LENGTH_SHORT).show());
 
@@ -156,16 +153,34 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
                                  () -> GroupDescriptionDialog.show(getChildFragmentManager(), name, description, true));
   }
 
-  private @NonNull String errorToMessage(@NonNull FetchGroupDetailsError error) {
-    if (error == FetchGroupDetailsError.GroupLinkNotActive) {
-      return getString(R.string.GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active);
+  private void showError(FetchGroupDetailsError error) {
+    avatar.setVisibility(View.INVISIBLE);
+    groupCancelButton.setVisibility(View.GONE);
+    groupDetails.setVisibility(View.VISIBLE);
+    groupJoinButton.setVisibility(View.VISIBLE);
+    groupJoinButton.setText(getString(android.R.string.ok));
+    groupJoinButton.setOnClickListener(v -> dismissAllowingStateLoss());
+
+    switch (error) {
+      case GroupLinkNotActive:
+        groupName.setText(R.string.GroupJoinBottomSheetDialogFragment_cant_join_group);
+        groupDetails.setText(R.string.GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid);
+        break;
+      case BannedFromGroup:
+        groupName.setText(R.string.GroupJoinBottomSheetDialogFragment_cant_join_group);
+        groupDetails.setText(R.string.GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you);
+        break;
+      case NetworkError:
+        groupName.setText(R.string.GroupJoinBottomSheetDialogFragment_link_error);
+        groupDetails.setText(R.string.GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later);
+        break;
     }
-    return getString(R.string.GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later);
   }
 
   private @NonNull String errorToMessage(@NonNull JoinGroupError error) {
     switch (error) {
       case GROUP_LINK_NOT_ACTIVE: return getString(R.string.GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active);
+      case BANNED               : return getString(R.string.GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you);
       case NETWORK_ERROR        : return getString(R.string.GroupJoinBottomSheetDialogFragment_encountered_a_network_error);
       default                   : return getString(R.string.GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later);
     }

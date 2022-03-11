@@ -36,6 +36,7 @@ import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
@@ -1968,7 +1969,7 @@ public class PushServiceSocket {
 
     ResponseBody responseBody = response.body();
     try {
-      responseCodeHandler.handle(response.code(), responseBody);
+      responseCodeHandler.handle(response.code(), responseBody, response::header);
 
       switch (response.code()) {
         case 204:
@@ -2293,6 +2294,10 @@ public class PushServiceSocket {
 
   private interface ResponseCodeHandler {
     void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException;
+
+    default void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
+      handle(responseCode, body);
+    }
   }
 
   private static class EmptyResponseCodeHandler implements ResponseCodeHandler {
@@ -2328,8 +2333,18 @@ public class PushServiceSocket {
   private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = (responseCode, body) -> {
     if (responseCode == 400) throw new GroupPatchNotAcceptedException();
   };
-  private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = (responseCode, body) -> {
-    if (responseCode == 403) throw new ForbiddenException();
+  private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = new ResponseCodeHandler() {
+    @Override
+    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException {
+      if (responseCode == 403) throw new ForbiddenException();
+    }
+
+    @Override
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException {
+      if (responseCode == 403) {
+        throw new ForbiddenException(Optional.fromNullable(getHeader.apply("X-Signal-Forbidden-Reason")));
+      }
+    }
   };
 
   public void putNewGroupsV2Group(Group group, GroupsV2AuthorizationString authorization)

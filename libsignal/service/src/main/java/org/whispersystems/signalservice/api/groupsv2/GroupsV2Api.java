@@ -134,7 +134,7 @@ public class GroupsV2Api {
 
       return groupOperations.decryptGroupJoinInfo(joinInfo);
     } catch (ForbiddenException e) {
-      throw new GroupLinkNotActiveException();
+      throw new GroupLinkNotActiveException(null, e.getReason());
     }
   }
 
