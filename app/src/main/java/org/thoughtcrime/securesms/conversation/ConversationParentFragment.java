@@ -1063,6 +1063,7 @@ public class ConversationParentFragment extends Fragment
       @Override
       public boolean onMenuItemActionExpand(MenuItem item) {
         searchView.setOnQueryTextListener(queryListener);
+        isSearchRequested = true;
         searchViewModel.onSearchOpened();
         searchNav.setVisibility(View.VISIBLE);
         searchNav.setData(0, 0);
@@ -1140,6 +1141,8 @@ public class ConversationParentFragment extends Fragment
       reactionDelegate.hide();
     } else if (container.isInputOpen()) {
       container.hideCurrentInput(composeText);
+    } else if (isSearchRequested) {
+      searchViewItem.collapseActionView();
     } else {
       requireActivity().finish();
     }
@@ -3820,6 +3823,10 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void handleReplyMessage(ConversationMessage conversationMessage) {
+    if (isSearchRequested) {
+      searchViewItem.collapseActionView();
+    }
+
     MessageRecord messageRecord = conversationMessage.getMessageRecord();
 
     Recipient author;
