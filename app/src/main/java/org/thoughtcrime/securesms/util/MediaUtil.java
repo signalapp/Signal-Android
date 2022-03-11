@@ -320,6 +320,10 @@ public class MediaUtil {
     return isImageType(contentType) || isVideoType(contentType);
   }
 
+  public static boolean isStorySupportedType(String contentType) {
+    return isImageOrVideoType(contentType) && !isGif(contentType);
+  }
+
   public static boolean isImageVideoOrAudioType(String contentType) {
     return isImageOrVideoType(contentType) || isAudioType(contentType);
   }

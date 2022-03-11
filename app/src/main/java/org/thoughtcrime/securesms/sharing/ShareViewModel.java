@@ -76,8 +76,7 @@ public class ShareViewModel extends ViewModel {
           if (record.isPresent() && record.get().isAnnouncementGroup() && !record.get().isAdmin(Recipient.self())) {
             return ContactSelectResult.FALSE_AND_SHOW_PERMISSION_TOAST;
           }
-        } else if (SmsShareRestriction.DISALLOW_SMS_CONTACTS.equals(smsShareRestriction.getValue()) &&
-                   (!recipient.isRegistered() || recipient.isForceSmsSelection())) {
+        } else if (SmsShareRestriction.DISALLOW_SMS_CONTACTS.equals(smsShareRestriction.getValue()) && isRecipientAnSmsContact(recipient)) {
           return ContactSelectResult.FALSE_AND_SHOW_SMS_MULTISELECT_TOAST;
         }
       }
@@ -154,7 +153,7 @@ public class ShareViewModel extends ViewModel {
       if (shareContact.getRecipientId().isPresent()) {
         Recipient recipient = Recipient.live(shareContact.getRecipientId().get()).get();
 
-        if (!recipient.isRegistered() || recipient.isForceSmsSelection()) {
+        if (isRecipientAnSmsContact(recipient)) {
           return SmsShareRestriction.DISALLOW_MULTI_SHARE;
         } else {
           return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
@@ -165,6 +164,10 @@ public class ShareViewModel extends ViewModel {
     } else {
       return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
     }
+  }
+
+  private static boolean isRecipientAnSmsContact(@NonNull Recipient recipient) {
+    return !recipient.isDistributionList() && (!recipient.isRegistered() || recipient.isForceSmsSelection());
   }
 
   enum ContactSelectResult {

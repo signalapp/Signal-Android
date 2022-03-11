@@ -124,7 +124,7 @@ public final class MultiShareSender {
 
   public static @NonNull TransportOption getWorstTransportOption(@NonNull Context context, @NonNull Set<ShareContactAndThread> shareContactAndThreads) {
     for (ShareContactAndThread shareContactAndThread : shareContactAndThreads) {
-      TransportOption option = resolveTransportOption(context, shareContactAndThread.isForceSms());
+      TransportOption option = resolveTransportOption(context, shareContactAndThread.isForceSms() && !shareContactAndThread.isStory());
       if (option.isSms()) {
         return option;
       }
@@ -134,7 +134,7 @@ public final class MultiShareSender {
   }
 
   private static @NonNull TransportOption resolveTransportOption(@NonNull Context context, @NonNull Recipient recipient) {
-    return resolveTransportOption(context, recipient.isForceSmsSelection() || !recipient.isRegistered());
+    return resolveTransportOption(context, !recipient.isDistributionList() && (recipient.isForceSmsSelection() || !recipient.isRegistered()));
   }
 
   public static @NonNull TransportOption resolveTransportOption(@NonNull Context context, boolean forceSms) {

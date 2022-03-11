@@ -5,6 +5,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
@@ -68,5 +69,15 @@ class ShareData {
 
   public boolean isMmsOrSmsSupported() {
     return isMmsOrSmsSupported;
+  }
+
+  public boolean isStoriesSupported() {
+    if (isForIntent()) {
+      return MediaUtil.isStorySupportedType(getMimeType());
+    } else if (isForMedia()) {
+      return getMedia().stream().allMatch(media -> MediaUtil.isStorySupportedType(media.getMimeType()));
+    } else {
+      return false;
+    }
   }
 }

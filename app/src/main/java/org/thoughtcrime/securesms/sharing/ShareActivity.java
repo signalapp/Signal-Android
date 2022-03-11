@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity;
+import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -68,6 +69,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -501,6 +503,11 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   private void onConfirmSingleDestination(@NonNull ShareContact shareContact) {
+    if (shareContact.getRecipientId().isPresent() && Recipient.resolved(shareContact.getRecipientId().get()).isDistributionList()) {
+      onConfirmMultipleDestinations(Collections.singleton(shareContact));
+      return;
+    }
+
     shareConfirm.setClickable(false);
     SimpleTask.run(this.getLifecycle(),
                    () -> resolveShareContact(shareContact),
@@ -552,8 +559,10 @@ public class ShareActivity extends PassphraseRequiredActivity
       if (mode == -1) return;
 
       boolean isMmsOrSmsSupported = data != null ? data.isMmsOrSmsSupported() : Util.isDefaultSmsProvider(this);
+      boolean isStoriesSupported = Stories.isFeatureEnabled() && data != null && data.isStoriesSupported();
 
       mode = isMmsOrSmsSupported ? mode | DisplayMode.FLAG_SMS : mode & ~DisplayMode.FLAG_SMS;
+      mode = isStoriesSupported ? mode | DisplayMode.FLAG_STORIES : mode & ~DisplayMode.FLAG_STORIES;
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, mode);
 
       contactsFragment.reset();
