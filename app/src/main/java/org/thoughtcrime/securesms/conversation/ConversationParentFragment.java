@@ -1063,6 +1063,7 @@ public class ConversationParentFragment extends Fragment
       @Override
       public boolean onMenuItemActionExpand(MenuItem item) {
         searchView.setOnQueryTextListener(queryListener);
+        isSearchRequested = true;
         searchViewModel.onSearchOpened();
         searchNav.setVisibility(View.VISIBLE);
         searchNav.setData(0, 0);
