@@ -187,7 +187,13 @@ public class InputPanel extends LinearLayout
                                                                    : 0;
 
     this.quoteView.setVisibility(VISIBLE);
-    this.quoteView.measure(0, 0);
+
+    int maxWidth = composeContainer.getWidth();
+    if (quoteView.getLayoutParams() instanceof MarginLayoutParams) {
+      MarginLayoutParams layoutParams = (MarginLayoutParams) quoteView.getLayoutParams();
+      maxWidth -= layoutParams.leftMargin + layoutParams.rightMargin;
+    }
+    this.quoteView.measure(MeasureSpec.makeMeasureSpec(maxWidth, MeasureSpec.AT_MOST), 0);
 
     if (quoteAnimator != null) {
       quoteAnimator.cancel();
