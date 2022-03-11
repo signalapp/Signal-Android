@@ -913,6 +913,8 @@
     <!-- GV2 Request confirmation dialog -->
     <string name="RequestConfirmationDialog_add_s_to_the_group">Add “%1$s” to the group?</string>
     <string name="RequestConfirmationDialog_deny_request_from_s">Deny request from “%1$s”?</string>
+    <!-- Confirm dialog message shown when deny a group link join request and group link is enabled. -->
+    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Deny request from “%1$s”? They will not be able to request to join via the group link again.</string>
     <string name="RequestConfirmationDialog_add">Add</string>
     <string name="RequestConfirmationDialog_deny">Deny</string>
 
@@ -3350,6 +3352,8 @@
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s" will be able to edit this group and its members.</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Remove %1$s from the group?</string>
+    <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Remove %1$s from the group? They will not be able to rejoin via the group link.</string>
     <string name="RecipientBottomSheet_remove">Remove</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Copied to clipboard</string>
 

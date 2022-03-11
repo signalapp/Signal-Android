@@ -5,6 +5,7 @@ import com.google.protobuf.ByteString;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
+import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
@@ -297,6 +298,10 @@ public final class DecryptedGroupUtil {
 
     applyInviteLinkPassword(builder, change);
 
+    applyAddBannedMembersActions(builder, change.getNewBannedMembersList());
+
+    applyDeleteBannedMembersActions(builder, change.getDeleteBannedMembersList());
+
     return builder.build();
   }
 
@@ -505,6 +510,31 @@ public final class DecryptedGroupUtil {
     }
   }
 
+  private static void applyAddBannedMembersActions(DecryptedGroup.Builder builder, List<DecryptedBannedMember> newBannedMembersList) {
+    Set<ByteString> bannedMemberUuidSet = getBannedMemberUuidSet(builder.getBannedMembersList());
+
+    for (DecryptedBannedMember member : newBannedMembersList) {
+      if (bannedMemberUuidSet.contains(member.getUuid())) {
+        Log.w(TAG, "Banned member already in banned list");
+      } else {
+        builder.addBannedMembers(member);
+      }
+    }
+  }
+
+  private static void applyDeleteBannedMembersActions(DecryptedGroup.Builder builder, List<DecryptedBannedMember> deleteMembersList) {
+    for (DecryptedBannedMember removedMember : deleteMembersList) {
+      int index = indexOfUuidInBannedMemberList(builder.getBannedMembersList(), removedMember.getUuid());
+
+      if (index == -1) {
+        Log.w(TAG, "Deleted banned member on change not found in banned list");
+        continue;
+      }
+
+      builder.removeBannedMembers(index);
+    }
+  }
+
   private static DecryptedMember withNewProfileKey(DecryptedMember member, ByteString profileKey) {
     return DecryptedMember.newBuilder(member)
                           .setProfileKey(profileKey)
@@ -529,6 +559,16 @@ public final class DecryptedGroupUtil {
     }
 
     return pendingMemberCipherTexts;
+  }
+
+  private static Set<ByteString> getBannedMemberUuidSet(List<DecryptedBannedMember> bannedMemberList) {
+    Set<ByteString> memberUuids = new HashSet<>(bannedMemberList.size());
+
+    for (DecryptedBannedMember member : bannedMemberList) {
+      memberUuids.add(member.getUuid());
+    }
+
+    return memberUuids;
   }
 
   private static void removePendingAndRequestingMembersNowInGroup(DecryptedGroup.Builder builder) {
@@ -569,6 +609,13 @@ public final class DecryptedGroupUtil {
     return -1;
   }
 
+  private static int indexOfUuidInBannedMemberList(List<DecryptedBannedMember> memberList, ByteString uuid) {
+    for (int i = 0; i < memberList.size(); i++) {
+      if (uuid.equals(memberList.get(i).getUuid())) return i;
+    }
+    return -1;
+  }
+
   public static Optional<UUID> findInviter(List<DecryptedPendingMember> pendingMembersList, UUID uuid) {
     return Optional.fromNullable(findPendingByUuid(pendingMembersList, uuid).transform(DecryptedPendingMember::getAddedByUuid)
                                                                             .transform(UuidUtil::fromByteStringOrNull)
@@ -598,7 +645,9 @@ public final class DecryptedGroupUtil {
            change.getPromoteRequestingMembersCount() == 0 && // field 18
            change.getNewInviteLinkPassword().size()  == 0 && // field 19
            !change.hasNewDescription()                    && // field 20
-           isEmpty(change.getNewIsAnnouncementGroup());       // field 20
+           isEmpty(change.getNewIsAnnouncementGroup())    && // field 21
+           change.getNewBannedMembersCount()         == 0 && // field 22
+           change.getDeleteBannedMembersCount()      == 0;   // field 23
   }
 
   static boolean isEmpty(AccessControl.AccessRequired newAttributeAccess) {

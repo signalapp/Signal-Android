@@ -101,7 +101,7 @@ class ReviewCardRepository {
 
     SignalExecutors.BOUNDED.execute(() -> {
       try {
-        GroupManager.ejectFromGroup(context, groupId, reviewCard.getReviewRecipient());
+        GroupManager.ejectAndBanFromGroup(context, groupId, reviewCard.getReviewRecipient());
         onRemoveFromGroupListener.onActionCompleted();
       } catch (GroupChangeException | IOException e) {
         onRemoveFromGroupListener.onActionFailed();

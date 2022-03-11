@@ -45,6 +45,10 @@ message RequestingMember {
     uint64 timestamp    = 4;
 }
 
+message BannedMember {
+  bytes userId = 1;
+}
+
 message AccessControl {
   enum AccessRequired {
     UNKNOWN       = 0;
@@ -72,6 +76,7 @@ message Group {
            bytes            inviteLinkPassword        = 10;
            bytes            description               = 11;
            bool             announcementsOnly         = 12;
+  repeated BannedMember     bannedMembers             = 13;
 }
 
 message GroupChange {
@@ -119,6 +124,14 @@ message GroupChange {
     message PromoteRequestingMemberAction {
       bytes       userId = 1;
       Member.Role role   = 2;
+    }
+
+    message AddBannedMemberAction {
+      BannedMember added = 1;
+    }
+
+    message DeleteBannedMemberAction {
+      bytes deletedUserId = 1;
     }
 
     message ModifyTitleAction {
@@ -178,6 +191,8 @@ message GroupChange {
              ModifyInviteLinkPasswordAction             modifyInviteLinkPassword        = 19;
              ModifyDescriptionAction                    modifyDescription               = 20;
              ModifyAnnouncementsOnlyAction              modifyAnnouncementsOnly         = 21;
+    repeated AddBannedMemberAction                      addBannedMembers                = 22;
+    repeated DeleteBannedMemberAction                   deleteBannedMembers             = 23;
   }
 
   bytes  actions         = 1;

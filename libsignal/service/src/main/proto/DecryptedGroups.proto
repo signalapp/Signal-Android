@@ -33,6 +33,10 @@ message DecryptedRequestingMember {
   uint64 timestamp  = 4;
 }
 
+message DecryptedBannedMember {
+  bytes uuid = 1;
+}
+
 message DecryptedPendingMemberRemoval {
   bytes uuid           = 1;
   bytes uuidCipherText = 2;
@@ -62,6 +66,7 @@ message DecryptedGroup {
            bytes                     inviteLinkPassword        = 10;
            string                    description               = 11;
            EnabledState              isAnnouncementGroup       = 12;
+  repeated DecryptedBannedMember     bannedMembers             = 13;
 }
 
 // Decrypted version of message GroupChange.Actions
@@ -88,6 +93,8 @@ message DecryptedGroupChange {
            bytes                         newInviteLinkPassword    = 19;
            DecryptedString               newDescription           = 20;
            EnabledState                  newIsAnnouncementGroup   = 21;
+  repeated DecryptedBannedMember         newBannedMembers         = 22;
+  repeated DecryptedBannedMember         deleteBannedMembers      = 23;
 }
 
 message DecryptedString {

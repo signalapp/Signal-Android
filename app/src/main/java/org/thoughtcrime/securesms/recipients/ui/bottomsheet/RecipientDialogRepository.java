@@ -77,7 +77,7 @@ final class RecipientDialogRepository {
     SimpleTask.run(SignalExecutors.UNBOUNDED,
                    () -> {
                      try {
-                       GroupManager.ejectFromGroup(context, Objects.requireNonNull(groupId).requireV2(), Recipient.resolved(recipientId));
+                       GroupManager.ejectAndBanFromGroup(context, Objects.requireNonNull(groupId).requireV2(), Recipient.resolved(recipientId));
                        return true;
                      } catch (GroupChangeException | IOException e) {
                        Log.w(TAG, e);

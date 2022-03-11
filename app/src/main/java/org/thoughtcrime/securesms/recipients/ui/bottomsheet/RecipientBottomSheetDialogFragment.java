@@ -290,6 +290,10 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       makeGroupAdminButton.setVisibility(adminStatus.isCanMakeAdmin() ? View.VISIBLE : View.GONE);
       removeAdminButton.setVisibility(adminStatus.isCanMakeNonAdmin() ? View.VISIBLE : View.GONE);
       removeFromGroupButton.setVisibility(adminStatus.isCanRemove() ? View.VISIBLE : View.GONE);
+
+      if (adminStatus.isCanRemove()) {
+        removeFromGroupButton.setOnClickListener(view -> viewModel.onRemoveFromGroupClicked(requireActivity(), adminStatus.isLinkActive(), this::dismiss));
+      }
     });
 
     viewModel.getIdentity().observe(getViewLifecycleOwner(), identityRecord -> {
@@ -318,8 +322,6 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
     makeGroupAdminButton.setOnClickListener(view -> viewModel.onMakeGroupAdminClicked(requireActivity()));
     removeAdminButton.setOnClickListener(view -> viewModel.onRemoveGroupAdminClicked(requireActivity()));
-
-    removeFromGroupButton.setOnClickListener(view -> viewModel.onRemoveFromGroupClicked(requireActivity(), this::dismiss));
 
     addToGroupButton.setOnClickListener(view -> {
       dismiss();

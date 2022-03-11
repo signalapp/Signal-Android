@@ -10,11 +10,13 @@ import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Repository for modifying the requesting members on a single group.
@@ -31,12 +33,12 @@ final class RequestingMemberRepository {
     this.groupId = groupId;
   }
 
-  void approveRequests(@NonNull Collection<RecipientId> recipientIds,
-                       @NonNull AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason> callback)
+  void approveRequest(@NonNull Recipient recipient,
+                      @NonNull AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason> callback)
   {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        GroupManager.approveRequests(context, groupId, recipientIds);
+        GroupManager.approveRequests(context, groupId, Collections.singleton(recipient.getId()));
         callback.onComplete(null);
       } catch (GroupChangeException | IOException e) {
         Log.w(TAG, e);
@@ -45,12 +47,12 @@ final class RequestingMemberRepository {
     });
   }
 
-  void denyRequests(@NonNull Collection<RecipientId> recipientIds,
-                    @NonNull AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason> callback)
+  void denyRequest(@NonNull Recipient recipient,
+                   @NonNull AsynchronousCallback.WorkerThread<Void, GroupChangeFailureReason> callback)
   {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        GroupManager.denyRequests(context, groupId, recipientIds);
+        GroupManager.denyRequests(context, groupId, Collections.singleton(recipient.getId()));
         callback.onComplete(null);
       } catch (GroupChangeException | IOException e) {
         Log.w(TAG, e);

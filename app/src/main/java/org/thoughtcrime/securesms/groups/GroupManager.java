@@ -12,9 +12,11 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
+import org.signal.zkgroup.groups.GroupSecretParams;
 import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -22,9 +24,11 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
+import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -157,11 +161,11 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static void ejectFromGroup(@NonNull Context context, @NonNull GroupId.V2 groupId, @NonNull Recipient recipient)
+  public static void ejectAndBanFromGroup(@NonNull Context context, @NonNull GroupId.V2 groupId, @NonNull Recipient recipient)
       throws GroupChangeBusyException, GroupChangeFailedException, GroupInsufficientRightsException, GroupNotAMemberException, IOException
   {
     try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      edit.ejectMember(recipient.requireServiceId(), false);
+      edit.ejectMember(recipient.requireServiceId(), false, true);
       Log.i(TAG, "Member removed from group " + groupId);
     }
   }
@@ -270,6 +274,28 @@ public final class GroupManager {
   {
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
       editor.revokeInvites(uuidCipherTexts);
+    }
+  }
+
+  @WorkerThread
+  public static void ban(@NonNull Context context,
+                         @NonNull GroupId.V2 groupId,
+                         @NonNull RecipientId recipientId)
+      throws GroupChangeBusyException, IOException, GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.ban(Collections.singleton(Recipient.resolved(recipientId).requireServiceId().uuid()));
+    }
+  }
+
+  @WorkerThread
+  public static void unban(@NonNull Context context,
+                           @NonNull GroupId.V2 groupId,
+                           @NonNull RecipientId recipientId)
+      throws GroupChangeBusyException, IOException, GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.unban(Collections.singleton(Recipient.resolved(recipientId).requireServiceId().uuid()));
     }
   }
 

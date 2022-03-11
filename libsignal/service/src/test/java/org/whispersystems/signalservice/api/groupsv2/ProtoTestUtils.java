@@ -5,6 +5,7 @@ import com.google.protobuf.ByteString;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.RequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
+import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
@@ -120,6 +121,12 @@ final class ProtoTestUtils {
                                     .setUuid(UuidUtil.toByteString(uuid))
                                     .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                     .build();
+  }
+
+  static DecryptedBannedMember bannedMember(UUID uuid) {
+    return DecryptedBannedMember.newBuilder()
+                                .setUuid(UuidUtil.toByteString(uuid))
+                                .build();
   }
 
   static DecryptedApproveMember approveMember(UUID uuid) {

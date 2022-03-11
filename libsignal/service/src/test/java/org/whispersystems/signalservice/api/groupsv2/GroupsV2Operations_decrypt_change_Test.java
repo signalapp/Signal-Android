@@ -9,6 +9,7 @@ import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
+import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
@@ -65,7 +66,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("GroupV2Operations#decryptChange and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 21, maxFieldFound);
+                 23, maxFieldFound);
   }
 
   @Test
@@ -102,7 +103,8 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                        .setRole(Member.Role.DEFAULT)
                                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                        .setJoinedAtRevision(10)
-                                                                       .setUuid(UuidUtil.toByteString(newMember))));
+                                                                       .setUuid(UuidUtil.toByteString(newMember)))
+                                         .addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(newMember)).build()));
   }
 
   @Test
@@ -137,7 +139,8 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                        .setRole(Member.Role.DEFAULT)
                                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                        .setJoinedAtRevision(10)
-                                                                       .setUuid(UuidUtil.toByteString(newMember))));
+                                                                       .setUuid(UuidUtil.toByteString(newMember)))
+                                         .addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(newMember)).build()));
   }
 
   @Test(expected = InvalidGroupStateException.class)
@@ -156,7 +159,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
   public void can_decrypt_member_removals_field4() {
     UUID oldMember = UUID.randomUUID();
 
-    assertDecryption(groupOperations.createRemoveMembersChange(Collections.singleton(oldMember))
+    assertDecryption(groupOperations.createRemoveMembersChange(Collections.singleton(oldMember), false)
                                     .setRevision(10),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
@@ -227,7 +230,8 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                                      .setAddedByUuid(UuidUtil.toByteString(self))
                                                                                      .setUuidCipherText(groupOperations.encryptUuid(newMember))
                                                                                      .setRole(Member.Role.DEFAULT)
-                                                                                     .setUuid(UuidUtil.toByteString(newMember))));
+                                                                                     .setUuid(UuidUtil.toByteString(newMember)))
+                                         .addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(newMember)).build()));
   }
   
   @Test
@@ -340,11 +344,12 @@ public final class GroupsV2Operations_decrypt_change_Test {
   public void can_decrypt_member_requests_refusals_field17() {
     UUID newRequestingMember = UUID.randomUUID();
 
-    assertDecryption(groupOperations.createRefuseGroupJoinRequest(Collections.singleton(newRequestingMember))
+    assertDecryption(groupOperations.createRefuseGroupJoinRequest(Collections.singleton(newRequestingMember), true)
                                     .setRevision(10),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
-                                         .addDeleteRequestingMembers(UuidUtil.toByteString(newRequestingMember)));
+                                         .addDeleteRequestingMembers(UuidUtil.toByteString(newRequestingMember))
+                                         .addNewBannedMembers(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(newRequestingMember)).build()));
   }
 
   @Test
@@ -385,6 +390,30 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                                                                      .setAnnouncementsOnly(true)),
                      DecryptedGroupChange.newBuilder()
                                          .setNewIsAnnouncementGroup(EnabledState.ENABLED));
+  }
+
+  @Test
+  public void can_decrypt_member_bans_field22() {
+    UUID ban = UUID.randomUUID();
+
+    assertDecryption(groupOperations.createBanUuidsChange(Collections.singleton(ban))
+                                    .setRevision(13),
+                     DecryptedGroupChange.newBuilder()
+                                         .setRevision(13)
+                                         .addNewBannedMembers(DecryptedBannedMember.newBuilder()
+                                                                                   .setUuid(UuidUtil.toByteString(ban))));
+  }
+
+  @Test
+  public void can_decrypt_banned_member_removals_field23() {
+    UUID ban = UUID.randomUUID();
+
+    assertDecryption(groupOperations.createUnbanUuidsChange(Collections.singleton(ban))
+                                    .setRevision(13),
+                     DecryptedGroupChange.newBuilder()
+                                         .setRevision(13)
+                                         .addDeleteBannedMembers(DecryptedBannedMember.newBuilder()
+                                                                                      .setUuid(UuidUtil.toByteString(ban))));
   }
 
   private static ProfileKey newProfileKey() {

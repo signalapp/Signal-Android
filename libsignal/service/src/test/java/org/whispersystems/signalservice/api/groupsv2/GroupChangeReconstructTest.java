@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.admin;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.approveAdmin;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.approveMember;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.bannedMember;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.demoteAdmin;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.member;
 import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.newProfileKey;
@@ -42,7 +43,7 @@ public final class GroupChangeReconstructTest {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
 
     assertEquals("GroupChangeReconstruct and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
-                 12, maxFieldFound);
+                 13, maxFieldFound);
   }
 
   @Test
@@ -380,5 +381,27 @@ public final class GroupChangeReconstructTest {
                                      .setNewInviteLinkPassword(password2)
                                      .build(),
                  decryptedGroupChange);
+  }
+
+  @Test
+  public void new_banned_member() {
+    UUID           uuidNew = UUID.randomUUID();
+    DecryptedGroup from    = DecryptedGroup.newBuilder().build();
+    DecryptedGroup to      = DecryptedGroup.newBuilder().addBannedMembers(bannedMember(uuidNew)).build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder().addNewBannedMembers(bannedMember(uuidNew)).build(), decryptedGroupChange);
+  }
+
+  @Test
+  public void removed_banned_member() {
+    UUID           uuidOld = UUID.randomUUID();
+    DecryptedGroup from    = DecryptedGroup.newBuilder().addBannedMembers(bannedMember(uuidOld)).build();
+    DecryptedGroup to      = DecryptedGroup.newBuilder().build();
+
+    DecryptedGroupChange decryptedGroupChange = GroupChangeReconstruct.reconstructGroupChange(from, to);
+
+    assertEquals(DecryptedGroupChange.newBuilder().addDeleteBannedMembers(bannedMember(uuidOld)).build(), decryptedGroupChange);
   }
 }

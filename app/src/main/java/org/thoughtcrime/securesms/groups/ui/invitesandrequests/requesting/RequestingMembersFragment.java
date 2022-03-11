@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.R;
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.AdminActionsListener;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
+import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 
@@ -29,9 +31,9 @@ public class RequestingMembersFragment extends Fragment {
   private static final String GROUP_ID = "GROUP_ID";
 
   private RequestingMemberInvitesViewModel viewModel;
-  private GroupMemberListView             requestingMembers;
-  private View                            noRequestingMessage;
-  private View                            requestingExplanation;
+  private GroupMemberListView              requestingMembers;
+  private View                             noRequestingMessage;
+  private View                             requestingExplanation;
 
   public static RequestingMembersFragment newInstance(@NonNull GroupId.V2 groupId) {
     RequestingMembersFragment fragment = new RequestingMembersFragment();
@@ -53,9 +55,10 @@ public class RequestingMembersFragment extends Fragment {
 
     requestingMembers.initializeAdapter(getViewLifecycleOwner());
 
-    requestingMembers.setRecipientClickListener(recipient ->
+    requestingMembers.setRecipientClickListener(recipient -> {
       RecipientBottomSheetDialogFragment.create(recipient.getId(), null)
-                                        .show(requireActivity().getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG));
+                                        .show(requireActivity().getSupportFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+    });
 
     requestingMembers.setAdminActionsListener(new AdminActionsListener() {
 
@@ -71,31 +74,37 @@ public class RequestingMembersFragment extends Fragment {
 
       @Override
       public void onApproveRequest(@NonNull GroupMemberEntry.RequestingMember requestingMember) {
-        viewModel.approveRequestFor(requestingMember);
+        //noinspection CodeBlock2Expr
+        RequestConfirmationDialog.showApprove(requireContext(), requestingMember.getRequester(), () -> {
+          viewModel.approveRequestFor(requestingMember);
+        });
       }
 
       @Override
       public void onDenyRequest(@NonNull GroupMemberEntry.RequestingMember requestingMember) {
-        viewModel.denyRequestFor(requestingMember);
+        GroupLinkUrlAndStatus linkStatus  = viewModel.getInviteLink().getValue();
+        boolean               linkEnabled = linkStatus == null || linkStatus.isEnabled();
+
+        //noinspection CodeBlock2Expr
+        RequestConfirmationDialog.showDeny(requireContext(), requestingMember.getRequester(), linkEnabled, () -> {
+          viewModel.denyRequestFor(requestingMember);
+        });
       }
     });
 
     return view;
   }
 
-  @Override
-  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
-
+  @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     GroupId.V2 groupId = GroupId.parseOrThrow(Objects.requireNonNull(requireArguments().getString(GROUP_ID))).requireV2();
 
     RequestingMemberInvitesViewModel.Factory factory = new RequestingMemberInvitesViewModel.Factory(requireContext(), groupId);
 
-    viewModel = ViewModelProviders.of(requireActivity(), factory).get(RequestingMemberInvitesViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(RequestingMemberInvitesViewModel.class);
 
     viewModel.getRequesting().observe(getViewLifecycleOwner(), requesting -> {
       requestingMembers.setMembers(requesting);
-      noRequestingMessage.setVisibility(requesting.isEmpty() ? View.VISIBLE: View.GONE);
+      noRequestingMessage.setVisibility(requesting.isEmpty() ? View.VISIBLE : View.GONE);
       requestingExplanation.setVisibility(requesting.isEmpty() ? View.GONE : View.VISIBLE);
     });
 
