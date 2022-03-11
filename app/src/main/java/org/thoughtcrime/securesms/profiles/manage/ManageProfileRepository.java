@@ -57,7 +57,7 @@ final class ManageProfileRepository {
   public void setAvatar(@NonNull Context context, @NonNull byte[] data, @NonNull String contentType, @NonNull Consumer<Result> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        ProfileUtil.uploadProfileWithAvatar(context, new StreamDetails(new ByteArrayInputStream(data), contentType, data.length));
+        ProfileUtil.uploadProfileWithAvatar(new StreamDetails(new ByteArrayInputStream(data), contentType, data.length));
         AvatarHelper.setAvatar(context, Recipient.self().getId(), new ByteArrayInputStream(data));
         SignalStore.misc().markHasEverHadAnAvatar();
         ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
@@ -73,7 +73,7 @@ final class ManageProfileRepository {
   public void clearAvatar(@NonNull Context context, @NonNull Consumer<Result> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        ProfileUtil.uploadProfileWithAvatar(context, null);
+        ProfileUtil.uploadProfileWithAvatar(null);
         AvatarHelper.delete(context, Recipient.self().getId());
         ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -30,6 +31,7 @@ import org.whispersystems.signalservice.api.util.StreamDetails;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Objects;
 
 class ManageProfileViewModel extends ViewModel {
@@ -63,19 +65,6 @@ class ManageProfileViewModel extends ViewModel {
 
     SignalExecutors.BOUNDED.execute(() -> {
       onRecipientChanged(Recipient.self().fresh());
-
-      StreamDetails details = AvatarHelper.getSelfProfileAvatarStream(ApplicationDependencies.getApplication());
-      if (details != null) {
-        try {
-          internalAvatarState.postValue(InternalAvatarState.loaded(StreamUtil.readFully(details.getStream())));
-        } catch (IOException e) {
-          Log.w(TAG, "Failed to read avatar!");
-          internalAvatarState.postValue(InternalAvatarState.none());
-        }
-      } else {
-        internalAvatarState.postValue(InternalAvatarState.none());
-      }
-
       ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(Recipient.self().getId()));
     });
 
@@ -83,7 +72,7 @@ class ManageProfileViewModel extends ViewModel {
   }
 
   public @NonNull LiveData<AvatarState> getAvatar() {
-    return avatarState;
+    return Transformations.distinctUntilChanged(avatarState);
   }
 
   public @NonNull LiveData<ProfileName> getProfileName() {
@@ -169,6 +158,20 @@ class ManageProfileViewModel extends ViewModel {
     about.postValue(recipient.getAbout());
     aboutEmoji.postValue(recipient.getAboutEmoji());
     badge.postValue(Optional.fromNullable(recipient.getFeaturedBadge()));
+    renderAvatar(AvatarHelper.getSelfProfileAvatarStream(ApplicationDependencies.getApplication()));
+  }
+
+  private void renderAvatar(@Nullable StreamDetails details) {
+    if (details != null) {
+      try {
+        internalAvatarState.postValue(InternalAvatarState.loaded(StreamUtil.readFully(details.getStream())));
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to read avatar!");
+        internalAvatarState.postValue(InternalAvatarState.none());
+      }
+    } else {
+      internalAvatarState.postValue(InternalAvatarState.none());
+    }
   }
 
   @Override
@@ -197,6 +200,19 @@ class ManageProfileViewModel extends ViewModel {
 
     public @NonNull Recipient getSelf() {
       return self;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final AvatarState that = (AvatarState) o;
+      return Objects.equals(internalAvatarState, that.internalAvatarState) && Objects.equals(self, that.self);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(internalAvatarState, self);
     }
   }
 
@@ -227,6 +243,21 @@ class ManageProfileViewModel extends ViewModel {
 
     public LoadingState getLoadingState() {
       return loadingState;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final InternalAvatarState that = (InternalAvatarState) o;
+      return Arrays.equals(avatar, that.avatar) && loadingState == that.loadingState;
+    }
+
+    @Override
+    public int hashCode() {
+      int result = Objects.hash(loadingState);
+      result = 31 * result + Arrays.hashCode(avatar);
+      return result;
     }
   }
 

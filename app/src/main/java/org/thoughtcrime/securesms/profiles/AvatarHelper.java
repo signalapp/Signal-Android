@@ -83,6 +83,7 @@ public class AvatarHelper {
    */
   public static void delete(@NonNull Context context, @NonNull RecipientId recipientId) {
     getAvatarFile(context, recipientId).delete();
+    Recipient.live(recipientId).refresh();
   }
 
   /**

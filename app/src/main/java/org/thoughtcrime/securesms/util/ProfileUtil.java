@@ -227,8 +227,7 @@ public final class ProfileUtil {
   public static void uploadProfileWithBadges(@NonNull Context context, @NonNull List<Badge> badges) throws IOException {
     Log.d(TAG, "uploadProfileWithBadges()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      uploadProfile(context,
-                    Recipient.self().getProfileName(),
+      uploadProfile(Recipient.self().getProfileName(),
                     Optional.fromNullable(Recipient.self().getAbout()).or(""),
                     Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
                     getSelfPaymentsAddressProtobuf(),
@@ -245,8 +244,7 @@ public final class ProfileUtil {
   public static void uploadProfileWithName(@NonNull Context context, @NonNull ProfileName profileName) throws IOException {
     Log.d(TAG, "uploadProfileWithName()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      uploadProfile(context,
-                    profileName,
+      uploadProfile(profileName,
                     Optional.fromNullable(Recipient.self().getAbout()).or(""),
                     Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
                     getSelfPaymentsAddressProtobuf(),
@@ -263,8 +261,7 @@ public final class ProfileUtil {
   public static void uploadProfileWithAbout(@NonNull Context context, @NonNull String about, @NonNull String emoji) throws IOException {
     Log.d(TAG, "uploadProfileWithAbout()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      uploadProfile(context,
-                    Recipient.self().getProfileName(),
+      uploadProfile(Recipient.self().getProfileName(),
                     about,
                     emoji,
                     getSelfPaymentsAddressProtobuf(),
@@ -279,7 +276,7 @@ public final class ProfileUtil {
   public static void uploadProfile(@NonNull Context context) throws IOException {
     Log.d(TAG, "uploadProfile()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      uploadProfileWithAvatar(context, avatar);
+      uploadProfileWithAvatar(avatar);
     }
   }
 
@@ -288,10 +285,9 @@ public final class ProfileUtil {
    * avatar instead. This is useful when you want to ensure that the profile has been uploaded
    * successfully before persisting the change to disk.
    */
-  public static void uploadProfileWithAvatar(@NonNull Context context, @Nullable StreamDetails avatar) throws IOException {
+  public static void uploadProfileWithAvatar(@Nullable StreamDetails avatar) throws IOException {
     Log.d(TAG, "uploadProfileWithAvatar()");
-    uploadProfile(context,
-                  Recipient.self().getProfileName(),
+    uploadProfile(Recipient.self().getProfileName(),
                   Optional.fromNullable(Recipient.self().getAbout()).or(""),
                   Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
                   getSelfPaymentsAddressProtobuf(),
@@ -299,8 +295,7 @@ public final class ProfileUtil {
                   Recipient.self().getBadges());
   }
 
-  private static void uploadProfile(@NonNull Context context,
-                                    @NonNull ProfileName profileName,
+  private static void uploadProfile(@NonNull ProfileName profileName,
                                     @Nullable String about,
                                     @Nullable String aboutEmoji,
                                     @Nullable SignalServiceProtos.PaymentAddress paymentsAddress,
@@ -308,7 +303,6 @@ public final class ProfileUtil {
                                     @NonNull List<Badge> badges)
       throws IOException
   {
-
     List<String> badgeIds = badges.stream()
                                   .filter(Badge::getVisible)
                                   .map(Badge::getId)
@@ -333,6 +327,7 @@ public final class ProfileUtil {
                                                                                     badgeIds).orNull();
     SignalStore.registrationValues().markHasUploadedProfile();
     SignalDatabase.recipients().setProfileAvatar(Recipient.self().getId(), avatarPath);
+    ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
   }
 
   private static @Nullable SignalServiceProtos.PaymentAddress getSelfPaymentsAddressProtobuf() {
