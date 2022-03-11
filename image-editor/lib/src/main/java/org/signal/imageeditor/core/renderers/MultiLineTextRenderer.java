@@ -6,8 +6,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Parcel;
 import android.view.animation.Interpolator;
 
@@ -70,11 +68,8 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
   public MultiLineTextRenderer(@Nullable String text, @ColorInt int color, @NonNull Mode mode) {
     this.mode = mode;
 
-    Typeface typeface = getTypeface();
-
     modePaint.setAntiAlias(true);
     modePaint.setTextSize(100);
-    modePaint.setTypeface(typeface);
 
     setColorInternal(color);
 
@@ -82,7 +77,6 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
 
     paint.setAntiAlias(true);
     paint.setTextSize(100);
-    paint.setTypeface(typeface);
 
     textScale = paint.getTextSize() / regularTextSize;
 
@@ -95,6 +89,9 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
   @Override
   public void render(@NonNull RendererContext rendererContext) {
     super.render(rendererContext);
+
+    paint.setTypeface(rendererContext.typefaceProvider.getSelectedTypeface(rendererContext.context, this, rendererContext.invalidate));
+    modePaint.setTypeface(rendererContext.typefaceProvider.getSelectedTypeface(rendererContext.context, this, rendererContext.invalidate));
 
     float height = 0;
     float width  = 0;
@@ -505,17 +502,6 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
       }
       return Math.max(0, Math.min(1, input));
     };
-  }
-
-  private static @NonNull Typeface getTypeface() {
-    if (Build.VERSION.SDK_INT < 26) {
-      return Typeface.create(Typeface.DEFAULT, Typeface.BOLD);
-    } else {
-      return new Typeface.Builder("")
-                         .setFallback("sans-serif")
-                         .setWeight(900)
-                         .build();
-    }
   }
 
   public enum Mode {

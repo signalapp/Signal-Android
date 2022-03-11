@@ -278,7 +278,7 @@ class MediaSelectionViewModel(
   }
 
   fun send(
-    selectedContacts: List<RecipientSearchKey> = emptyList(),
+    selectedContacts: List<RecipientSearchKey> = emptyList()
   ): Maybe<MediaSendActivityResult> {
     return repository.send(
       store.state.selectedMedia,

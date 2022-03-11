@@ -1,12 +1,15 @@
 package org.signal.imageeditor.app;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -24,6 +27,8 @@ import androidx.core.content.ContextCompat;
 import org.signal.imageeditor.app.renderers.UriRenderer;
 import org.signal.imageeditor.app.renderers.UrlRenderer;
 import org.signal.imageeditor.core.ImageEditorView;
+import org.signal.imageeditor.core.Renderer;
+import org.signal.imageeditor.core.RendererContext;
 import org.signal.imageeditor.core.UndoRedoStackListener;
 import org.signal.imageeditor.core.model.EditorElement;
 import org.signal.imageeditor.core.model.EditorModel;
@@ -42,6 +47,17 @@ public final class MainActivity extends AppCompatActivity {
 
   private ImageEditorView imageEditorView;
   private Menu            menu;
+
+  private final RendererContext.TypefaceProvider typefaceProvider = (context, renderer, invalidate) -> {
+    if (Build.VERSION.SDK_INT < 26) {
+      return Typeface.create(Typeface.DEFAULT, Typeface.BOLD);
+    } else {
+      return new Typeface.Builder("")
+          .setFallback("sans-serif")
+          .setWeight(900)
+          .build();
+    }
+  };
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -206,7 +222,7 @@ public final class MainActivity extends AppCompatActivity {
           new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
           0);
         } else {
-          Bitmap bitmap = imageEditorView.getModel().render(this);
+          Bitmap bitmap = imageEditorView.getModel().render(this, typefaceProvider);
           try {
             Uri uri = saveBmp(bitmap);
 

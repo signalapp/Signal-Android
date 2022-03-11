@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 
-import org.thoughtcrime.securesms.R;
 import org.signal.imageeditor.core.model.EditorModel;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mediasend.v2.gallery.MediaGalleryFragment;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;

@@ -716,15 +716,15 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
    * Blocking render of the model.
    */
   @WorkerThread
-  public @NonNull Bitmap render(@NonNull Context context) {
-    return render(context, null);
+  public @NonNull Bitmap render(@NonNull Context context, @NonNull RendererContext.TypefaceProvider typefaceProvider) {
+    return render(context, null, typefaceProvider);
   }
 
   /**
    * Blocking render of the model.
    */
   @WorkerThread
-  public @NonNull Bitmap render(@NonNull Context context, @Nullable Point size) {
+  public @NonNull Bitmap render(@NonNull Context context, @Nullable Point size, @NonNull RendererContext.TypefaceProvider typefaceProvider) {
     EditorElement image      = editorElementHierarchy.getFlipRotate();
     RectF         cropRect   = editorElementHierarchy.getCropRect();
     Point         outputSize = size != null ? size : getOutputSize();
@@ -732,7 +732,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     Bitmap bitmap = Bitmap.createBitmap(outputSize.x, outputSize.y, Bitmap.Config.ARGB_8888);
     try {
       Canvas canvas = new Canvas(bitmap);
-      RendererContext rendererContext = new RendererContext(context, canvas, RendererContext.Ready.NULL, RendererContext.Invalidate.NULL);
+      RendererContext rendererContext = new RendererContext(context, canvas, RendererContext.Ready.NULL, RendererContext.Invalidate.NULL, typefaceProvider);
 
       RectF bitmapArea = new RectF();
       bitmapArea.right = bitmap.getWidth();

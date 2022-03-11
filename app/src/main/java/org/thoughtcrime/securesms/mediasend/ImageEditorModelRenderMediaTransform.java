@@ -12,6 +12,7 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.imageeditor.core.model.EditorModel;
+import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -40,7 +41,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
   public @NonNull Media transform(@NonNull Context context, @NonNull Media media) {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-    Bitmap bitmap = modelToRender.render(context, size);
+    Bitmap bitmap = modelToRender.render(context, size, FontTypefaceProvider.INSTANCE);
     try {
       bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
 

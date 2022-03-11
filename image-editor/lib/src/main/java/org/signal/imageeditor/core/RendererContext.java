@@ -6,6 +6,8 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +41,9 @@ public final class RendererContext {
   @NonNull
   public final Invalidate invalidate;
 
+  @NonNull
+  public final TypefaceProvider typefaceProvider;
+
   private boolean blockingLoad;
 
   private float fade = 1f;
@@ -48,12 +53,13 @@ public final class RendererContext {
   private List<EditorElement> children = Collections.emptyList();
   private Paint               maskPaint;
 
-  public RendererContext(@NonNull Context context, @NonNull Canvas canvas, @NonNull Ready rendererReady, @NonNull Invalidate invalidate) {
-    this.context       = context;
-    this.canvas        = canvas;
-    this.canvasMatrix  = new CanvasMatrix(canvas);
-    this.rendererReady = rendererReady;
-    this.invalidate    = invalidate;
+  public RendererContext(@NonNull Context context, @NonNull Canvas canvas, @NonNull Ready rendererReady, @NonNull Invalidate invalidate, @NonNull TypefaceProvider typefaceProvider) {
+    this.context          = context;
+    this.canvas           = canvas;
+    this.canvasMatrix     = new CanvasMatrix(canvas);
+    this.rendererReady    = rendererReady;
+    this.invalidate       = invalidate;
+    this.typefaceProvider = typefaceProvider;
   }
 
   public void setBlockingLoad(boolean blockingLoad) {
@@ -124,6 +130,13 @@ public final class RendererContext {
 
   public @Nullable Paint getMaskPaint() {
     return maskPaint;
+  }
+
+  /**
+   * Allows a RenderContext creator to specify which font to use for text on the fly.
+   */
+  public interface TypefaceProvider {
+    @NonNull Typeface getSelectedTypeface(@NonNull Context context, @NonNull Renderer renderer, @NonNull Invalidate invalidate);
   }
 
   public interface Ready {

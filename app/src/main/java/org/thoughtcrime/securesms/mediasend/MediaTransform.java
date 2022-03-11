@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.signal.imageeditor.core.RendererContext;
+
 public interface MediaTransform {
 
   @WorkerThread

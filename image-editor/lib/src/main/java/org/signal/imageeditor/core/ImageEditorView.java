@@ -76,8 +76,9 @@ public final class ImageEditorView extends FrameLayout {
   private final RectF  visibleViewPort = Bounds.newFullBounds();
   private final RectF  screen          = new RectF();
 
-  private TapListener     tapListener;
-  private RendererContext rendererContext;
+  private TapListener                      tapListener;
+  private RendererContext                  rendererContext;
+  private RendererContext.TypefaceProvider typefaceProvider;
 
   @Nullable
   private EditSession editSession;
@@ -145,10 +146,14 @@ public final class ImageEditorView extends FrameLayout {
     }
   }
 
+  public void setTypefaceProvider(@NonNull RendererContext.TypefaceProvider typefaceProvider) {
+    this.typefaceProvider = typefaceProvider;
+  }
+
   @Override
   protected void onDraw(Canvas canvas) {
-    if (rendererContext == null || rendererContext.canvas != canvas) {
-      rendererContext = new RendererContext(getContext(), canvas, rendererReady, rendererInvalidate);
+    if (rendererContext == null || rendererContext.canvas != canvas || rendererContext.typefaceProvider != typefaceProvider) {
+      rendererContext = new RendererContext(getContext(), canvas, rendererReady, rendererInvalidate, typefaceProvider);
     }
     rendererContext.save();
     try {
