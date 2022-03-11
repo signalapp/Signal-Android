@@ -30,7 +30,9 @@ final class LogSectionKeyPreferences implements LogSection {
                               .append("Push Registered      : ").append(SignalStore.account().isRegistered()).append("\n")
                               .append("Unauthorized Received: ").append(TextSecurePreferences.isUnauthorizedRecieved(context)).append("\n")
                               .append("self.isRegistered()  : ").append(SignalStore.account().getAci() == null ? "false" : Recipient.self().isRegistered()).append("\n")
-                              .append("Thread Trimming      : ").append(getThreadTrimmingString()).append("\n");
+                              .append("Thread Trimming      : ").append(getThreadTrimmingString()).append("\n")
+                              .append("Censorship Setting   : ").append(SignalStore.settings().getCensorshipCircumventionEnabled()).append("\n")
+                              .append("Network Reachable    : ").append(SignalStore.misc().isServiceReachableWithoutCircumvention()).append(", last checked: ").append(SignalStore.misc().getLastCensorshipServiceReachabilityCheckTime()).append("\n");
   }
 
   private static String getThreadTrimmingString() {
