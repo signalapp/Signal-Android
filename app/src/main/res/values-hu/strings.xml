@@ -126,7 +126,7 @@
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Kikapcsolod a cenzúramegkerülést?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Most már közvetlenül is csatlakozhatsz a Signal-hoz a jobb élmény érdekében.</string>
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Most már közvetlenül is csatlakozhatsz a Signalhoz a jobb élmény érdekében.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Kikapcsolás</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
