@@ -3823,6 +3823,8 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void handleReplyMessage(ConversationMessage conversationMessage) {
+    if (isSearchRequested) searchViewItem.collapseActionView();
+
     MessageRecord messageRecord = conversationMessage.getMessageRecord();
 
     Recipient author;
