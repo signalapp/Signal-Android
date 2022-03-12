@@ -3273,7 +3273,7 @@ public class ConversationParentFragment extends Fragment
     emojiDrawerStub.get().setFragmentManager(getChildFragmentManager());
 
     if (container.getCurrentInput() == emojiDrawerStub.get()) {
-      container.showSoftkey(composeText);
+      container.showSoftkey(composeText, true);
     } else {
       container.show(composeText, emojiDrawerStub.get());
     }
