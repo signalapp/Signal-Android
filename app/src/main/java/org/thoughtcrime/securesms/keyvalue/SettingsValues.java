@@ -396,6 +396,7 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public void setCensorshipCircumventionEnabled(boolean enabled) {
+    Log.i(TAG, "Changing censorship circumvention state to: " + enabled, new Throwable());
     putInteger(CENSORSHIP_CIRCUMVENTION_ENABLED, enabled ? CensorshipCircumventionEnabled.ENABLED.serialize() : CensorshipCircumventionEnabled.DISABLED.serialize());
   }
 

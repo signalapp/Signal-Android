@@ -175,7 +175,7 @@ object AndroidTelecomUtil {
   fun getSelectedAudioDevice(recipientId: RecipientId): SignalAudioManager.AudioDevice {
     if (telecomSupported) {
       val connection: AndroidCallConnection? = connections[recipientId]
-      if (connection != null) {
+      if (connection?.callAudioState != null) {
         return when (connection.callAudioState.route) {
           CallAudioState.ROUTE_SPEAKER -> SignalAudioManager.AudioDevice.SPEAKER_PHONE
           CallAudioState.ROUTE_BLUETOOTH -> SignalAudioManager.AudioDevice.BLUETOOTH

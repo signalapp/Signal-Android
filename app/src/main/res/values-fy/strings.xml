@@ -225,7 +225,7 @@
   <string name="ConversationActivity_message_an_admin">Berjocht ferstjoere nei in behearder</string>
   <string name="ConversationActivity_cant_start_group_call">Kin groepspetear net begjinne</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Allinnich behearders kinne yn dizze groep oproppen begjinne.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der is gjin app beskikber op dy apparaat om dizze ferwizing te iepenjen.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der is gjin app beskikber op dy apparaat om dizze keppeling te iepenjen.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Dyn fersyk om lid te wurden fan de groep is trochstjoerd nei in behearder. Do krigest in melding sa gau as dizze in beslút nommen hat.</string>
   <string name="ConversationActivity_cancel_request">Fersyk annulearje</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om audioberjochten op te nimmen, moatsto Signal tagong jaan ta dyn mikrofoan.</string>
@@ -398,22 +398,22 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Flater by ynstellen fan profylfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem by ynstellen fan profyl</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel dyn profyl op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dy profylnamme, -foto en -omskriuwing binne allinnich sichtber foar persoanen dy’t  bewarre binne yn dyn kontaktelist, persoanen nei wa’tsto sels in nij petear inisjearst, persoanen fan wa’tsto in petearfersyk oanfurdiget en alle leden fan in groep wêrfan do lid bist. Signal-profilen wurde krekt as berjochten ein-ta-ein-fersifere útwiksele, dêrom kinne sels Signals-ûntwikkelers dyn profylnamme, -foto en -omskriuwing nea sjen.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dyn profylnamme, -foto en -omskriuwing binne allinnich sichtber foar persoanen dy’t  bewarre binne yn dyn kontaktelist, persoanen nei wa’tsto sels in nij petear inisjearrest, persoanen fan wa’tsto in petearfersyk akseptearrest en alle leden fan in groep wêrfan\'tsto lid bist. Signal-profilen wurde krekt as berjochten ein-ta-ein-fersifere útwiksele, dêrom kinne sels Signals-ûntwikkelers dyn profylnamme, -foto en -omskriuwing nea sjen.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profylfoto ynstelle</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Reservekopygegevens weromsette?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">Do hast no de gelegenheid om berjochten en media út in reservekopybestân werom te setten. Let op: Werstellen fan in reservekopybestân kin allinnich wylst de ynstallaasje fan de Signal-app. Asto dizze stap oerslachst, kinsto dit net op in letter momint nochris dwaan.</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Do hast no de gelegenheid om berjochten en media út in reservekopy werom te setten. Let op: Werstellen fan in reservekopy kin allinnich wylst de ynstallaasje fan de Signal-app. Asto dizze stap oerslachst, kinsto dit net op in letter momint nochris dwaan.</string>
   <string name="ChooseBackupFragment__icon_content_description">Reserverkopygegevens weromsette-piktogram</string>
   <string name="ChooseBackupFragment__choose_backup">Reserverkopybestân kieze</string>
   <string name="ChooseBackupFragment__learn_more">Mear lêze</string>
   <string name="ChooseBackupFragment__no_file_browser_available">Gjin bestânsbrowser beskikber</string>
   <!--RestoreBackupFragment-->
-  <string name="RestoreBackupFragment__restore_complete">Gegevens werstelle fan in reservekopybestân út is foltôge</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Om reservekopybestannen meitsje te bliuwen, kies in map wêr’tsto reservekopybestannen fan no ôf yn bewarje wolle.</string>
+  <string name="RestoreBackupFragment__restore_complete">Gegevens werstelle fan in reservekopy út is foltôge</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Om reservekopyen meitsje te bliuwen, kies in map wêr’tsto reservekopyen fan no ôf yn bewarje wolst.</string>
   <string name="RestoreBackupFragment__choose_folder">Map kieze</string>
   <string name="RestoreBackupFragment__not_now">No net</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">Reservekopybestannen meitsje</string>
+  <string name="BackupsPreferenceFragment__chat_backups">Reservekopyen meitsje</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Reservekopyen wurde fersifere mei in wachtwurd en wurde allinnich offline op dyn eigen apparaat bewarre. Asto it meitsjen fan reservekopyen ynskeakelest makket Signal automatysk elke dei in nije reservekopy fan al dyn petearen en media. Allinnich de twa meast resinte slagge reservekopyen bliuwe bewarre, âldere reservekopyen wurde oerskreaun.</string>
   <string name="BackupsPreferenceFragment__create_backup">No in reservekopy meitsje</string>
   <string name="BackupsPreferenceFragment__last_backup">Meast resinte reservekopy: %1$s</string>
@@ -582,7 +582,7 @@
   <string name="LeaveGroupDialog_choose_admin">Behearder kieze</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Gjin foarbyld beskikber</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">Dizze groepsferwizing is net aktyf</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Dizze groepskeppeling is net aktyf</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -611,7 +611,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Lidmaatskipsfersiken yn ôfwachting</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Der binne gjin lidmaatskipsfersiken om te toanen.</string>
-  <string name="RequestingMembersFragment_explanation">Persoanen yn dizze list probearje fia de groepsferwizing lid te wurden fan dizze groep.</string>
+  <string name="RequestingMembersFragment_explanation">Persoanen yn dizze list probearje fia de groepskeppeling lid te wurden fan dizze groep.</string>
   <string name="RequestingMembersFragment_added_s">‘ %1$s’ tafoege</string>
   <string name="RequestingMembersFragment_denied_s">‘ %1$s’ ôfwêzen</string>
   <!--AddMembersActivity-->
@@ -665,7 +665,7 @@
   <string name="ManageGroupActivity_edit_group_info">Groepsynformaasje oanpasse</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Wa mei nije leden tafoegje?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Wa mei de groepsynformaasje oanpasse?</string>
-  <string name="ManageGroupActivity_group_link">Groepsferwizing</string>
+  <string name="ManageGroupActivity_group_link">Groepskeppeling</string>
   <string name="ManageGroupActivity_block_group">Groep blokkearje en ferlitte</string>
   <string name="ManageGroupActivity_unblock_group">Groep deblokkearje</string>
   <string name="ManageGroupActivity_leave_group">Groep ferlitte</string>
@@ -683,9 +683,9 @@
     <item quantity="one">%d persoan tafoege.</item>
     <item quantity="other">%d persoanen tafoege.</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Inkeld behearders kinne de groepsferwizing yn- of útskeakelje.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Inkeld behearders kinne de groepskeppeling yn- of útskeakelje.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Inkeld behearders kinne de behearderstastimming-eask om lid meie te wurden fan de groep yn- of útskeakelje.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Inkeld behearders kinne de groepsferwizing fernije.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Inkeld behearders kinne de groepskeppeling opnij ynstelle.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hast gjin rjochten om dit te dwaan</string>
   <string name="ManageGroupActivity_not_capable">Ien of mear fan de troch dy tafoege persoanen stypje de fernijde groepspetearen noch net. Sy moatte Signal bywurkje.</string>
   <string name="ManageGroupActivity_not_announcement_capable">Op syn minst ien persoan dy’tsto tafoege hast moat earst Signal bywurkje, eardat se oan meidielingsgroepen tafoege wurde kinne.</string>
@@ -741,15 +741,15 @@
   <string name="CustomNotificationsDialogFragment__default">Systeemstandert</string>
   <string name="CustomNotificationsDialogFragment__unknown">Unbekend</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Dielbere groepsferwizing</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Dielbere groepskeppeling</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheare &amp; diele</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Groepsferwizing</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Groepskeppeling</string>
   <string name="ShareableGroupLinkDialogFragment__share">Mei oaren diele</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">Ferwizing fernije</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Keppeling opnij ynstelle</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatskipsfersiken</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Behearderstastimming fereaskje</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Fereaskje foar elke persoan dy’t fia de groepsferwizing lid wurde wol earst tastimming fan in behearder.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Bisto wis datsto de groepsferwizing fernije wolst? Men sil dan net langer lid fan de groep wurde kinne fia de aktuele ferwizing.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Fereaskje foar elke persoan dy’t fia de groepskeppeling lid wurde wol, earst tastimming fan in behearder.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Bisto wis datsto de groepskeppeling opnij ynstelle wolst? Men sil dan net langer lid fan de groep wurde kinne fia de aktuele keppeling.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-koade</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Persoanen dy’t dizze koade scanne sille yn steat wêze lid te wurden fan dyn groep. As de opsje ‘Behearderstastimming fereaskje’ ynskeakele is moat in behearder earst noch tastimming jaan foar ien lid wurde mei fan de groep.</string>
@@ -766,7 +766,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Fersyk om lid te wurden</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kin gjin lid wurde fan de groep, probearje it letter nochris</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Der is in netwurkflater bard.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dizze groepsferwizing is net aktyf</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dizze groepskeppeling is net aktyf</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kin gjin ynformaasje oer de groep opfreegje, probearje it letter nochris</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wolsto lid wurde fan dizze groep en dyn namme en foto mei de oare leden diele?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">In behearder fan dizze groep moat earst dyn fersyk om lid te wurden goedkarre eardatsto lid wurde kinst fan dizze groep. Wannear\'tsto fersikest om lid te wurden sille dyn profylnamme, -foto en -omskriuwing daliks sichtber wêze foar de groepsleden.</string>
@@ -775,19 +775,19 @@
     <item quantity="other">Groep · %1$d leden</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Wurkje Signal by om groepsferwizingen brûke te kinnen</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De ferzje fan Signal dy’tsto brûkst stipet dizze groepsferwizing net. Wurkje Signal by nei de meast resinte ferzje om fia in ferwizing lid wurde te kinnen fan in groep.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Wurkje Signal by om groepskeppelingen brûke te kinnen</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De ferzje fan Signal dy’tsto brûkst stipet dizze groepskeppeling net. Wurkje Signal by nei de meast resinte ferzje om fia in keppeling lid wurde te kinnen fan in groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bywurkje</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Ien of meardere fan dyn keppele apparaten brûkt in ferzje fan Signal dy’t gjin groepsferwizingen stipet. Wurkje Signal op dy apparaten by om lid te wurden fan dizze groep.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Unjildige groepsferwizing</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Ien of meardere fan dyn keppele apparaten brûkt in ferzje fan Signal dy’t gjin groepskeppelingen stipet. Wurkje Signal op dy apparaten by om lid te wurden fan dizze groep.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Unjildige groepskeppeling</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Kennissen útnûgje</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Do kinst in groepsferwizing diele mei kennissen, sadat se sels maklik lid wurde kinne fan dizze groep.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Groepsferwizing ynskeakelje en diele</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Groepsferwizing diele</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Kin de groepsferwizing net ynskeakelje, probearje it letter opnij.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Do kinst in groepskeppeling diele mei kennissen, sadat se sels maklik lid wurde kinne fan dizze groep.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Groepskeppeling ynskeakelje en diele</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Groepskeppeling diele</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Kin de groepskeppeling net ynskeakelje, probearje it letter opnij.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Der is in netwurkflater bard.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Do hast gjin rjocht om groepsferwizingen yn te skeakelje, freegje dit oan in behearder.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Do hast gjin rjocht om groepskeppelingen yn te skeakeljen, freegje dit oan in behearder.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Do bist op dit stuit gjin lid fan dizze groep.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">‘%1$s’ oan de groep tafoegje?</string>
@@ -839,7 +839,7 @@
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Dit sil it selektearre bestân allinnich foar dy ûnûntkomber wiskje, mar dus net foar dyn petearpartner(s). Iennich berjochttekst assosjearre mei dizze bestannen sil ek wiske wurde.</item>
-    <item quantity="other">Dit sil alle %1$d selektearre bestannen allinnich foar dy ûnûntkomber wiskje, mar dus net foar dyn petearpartner(s). Iennich berjochttekst assosjearre mei dizze bestannen sil ek wiske wurde.</item>
+    <item quantity="other">Dit sil alle %1$d selektearre bestannen allinnich foar dy permanint wiskje, mar dus net foar dyn petearpartner(s). Iennich berjochttekst assosjearre mei dizze bestannen sil ek wiske wurde.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Oan it wiskjen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Berjochten oan it wiskjen…</string>
@@ -967,7 +967,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Do hast de groep oanmakke.</string>
   <string name="MessageRecord_group_updated">Groep oanpast.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">Do kinst freonen en kennissen foar dizze groep útnûgje fia in groepsferwizing</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Do kinst freonen en kennissen foar dizze groep útnûgje fia in groepskeppeling</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Do hast %1$s oan de groep tafoege.</string>
   <string name="MessageRecord_s_added_s">%1$s hat %2$s tafoege oan de groep.</string>
@@ -1055,31 +1055,31 @@
   <string name="MessageRecord_allow_all_members_to_send">De groepsynstellingen binne wizige om alle groepsleden de mooglikheid te jaan om berjochten te ferstjoeren.</string>
   <string name="MessageRecord_allow_only_admins_to_send">De groepsynstellingen binne wizige om allinnich behearders de mooglikheid te jaan om berjochten te ferstjoeren.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Do hast de groepsferwizingen ynskeakele sûnder behearderstastimming-eask om lid meie te wurden.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Do hast de groepsferwizingen ynskeakele mei behearderstastimming-eask om lid meie te wurde ek ynskeakele.</string>
-  <string name="MessageRecord_you_turned_off_the_group_link">Do hast de groepsferwizing útskeakele.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s hat de groepsferwizing ynskeakele sûnder behearderstastimming-eask om lid meie te wurden.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s hat de groepsferwizing ynskeakele mei behearderstastimming-eask om lid meie te wurden ek ynskeakele.</string>
-  <string name="MessageRecord_s_turned_off_the_group_link">%1$s hat de groepsferwizing útskeakele.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepsferwizing is ynskeakele sûnder behearderstastimming-eask om lid meie te wurden.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepsferwizing is ynskeakele sûnder behearderstastimming-eask om lid meie te wurden ek ynskeakele.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_off">De groepsferwizing is útskeakele.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Do hast de behearderstastimming-eask om fia de groepsferwizing lid meie te wurden útskeakele.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s hat de behearderstastimming-eask om fia de groepsferwizing lid meie te wurden fan de groep útskeakele.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De behearderstastimming-eask om fia de groepsferwizing lid meie te wurden fan de groep is útskeakele.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Do hast de behearderstastimming-eask om fia de groepsferwizing lid meie te wurden fan de groep ynskeakele.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s hat de behearderstastimming-eask fia de groepsferwizing foar persoanen dy’t lid wurde wolle útskeakele.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De behearderstastimming-eask om fia de groepsferwizing lid meie te wurden fan de groep is ynskeakele.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Do hast de groepskeppelingen ynskeakele sûnder behearderstastimming-eask om lid meie te wurden.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Do hast de groepskeppelingen ynskeakele mei behearderstastimming-eask om lid meie te wurde ek ynskeakele.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Do hast de groepskeppeling útskeakele.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s hat de groepskeppeling ynskeakele sûnder behearderstastimming-eask om lid meie te wurden.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s hat de groepskeppeling ynskeakele mei behearderstastimming-eask om lid meie te wurden ek ynskeakele.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s hat de groepskeppeling útskeakele.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepskeppeling is ynskeakele sûnder behearderstastimming-eask om lid meie te wurden.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepskeppeling is ynskeakele sûnder behearderstastimming-eask om lid meie te wurden ek ynskeakele.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">De groepskeppeling is útskeakele.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Do hast de behearderstastimming-eask om fia de groepskeppeling lid meie te wurden útskeakele.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s hat de behearderstastimming-eask om fia de groepskeppeling lid meie te wurden fan de groep útskeakele.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De behearderstastimming-eask om fia de groepskeppeling lid meie te wurden fan de groep is útskeakele.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Do hast de behearderstastimming-eask om fia de groepskeppeling lid meie te wurden fan de groep ynskeakele.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s hat de behearderstastimming-eask fia de groepskeppeling foar persoanen dy’t lid wurde wolle útskeakele.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De behearderstastimming-eask om fia de groepskeppeling lid meie te wurden fan de groep is ynskeakele.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Do hast de groepsferwizing fernijd.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s hat de groepsferwizing fernijd.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">De groepsferwizing is fernijd.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Do hast de groepskeppeling opnij ynsteld.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s hat de groepskeppeling opnij ynsteld.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">De groepskeppeling is opnij ynsteld.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Do bist fia de groepsferwizing lid wurden fan de groep.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s is fia de groepsferwizing lid wurden fan de groep.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Do bist fia de groepskeppeling lid wurden fan de groep.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s is fia de groepskeppeling lid wurden fan de groep.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Do hast in fersyk ferstjoerd om lid te wurden fan de groep.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s hat fia de groepsferwizing fersocht lid te wurden.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s hat fia de groepskeppeling fersocht lid te wurden.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s hat dyn fersyk om lid te wurden fan de groep goedkard.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s hat it fersyk fan %2$s om lid te wurden fan de groep goedkard.</string>
@@ -1223,7 +1223,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Nije pinkoade oanmeitsje</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Warskôging</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Asto de pinkoade útskeakelest silsto, wannear’tsto Signal opnij registrearrest, alle gegevens kwytreitsje, útsein asto se hânmjittich werstelst fan in reservekopybestân út. Dêrneist kinsto salang de pinkoade útskeakele is de registraasjebeskoatteling net ynskeakelje.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Asto de pinkoade útskeakelest silsto, wannear’tsto Signal opnij registrearrest, alle gegevens kwytreitsje, útsein asto se hânmjittich werstelst fan in reservekopy út. Dêrneist kinsto salang de pinkoade útskeakele is de registraasjebeskoatteling net ynskeakelje.</string>
   <string name="PinOptOutDialog_disable_pin">Pinkoade útskeakelje</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoardielje dizze app</string>
@@ -1899,7 +1899,7 @@
   <string name="CreateProfileActivity__username">Brûkersnamme</string>
   <string name="CreateProfileActivity__create_a_username">Brûkersnamme oanmeitsje</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Sels ynstelde mms-groepsnammen en groepsôfbyldingen sille allinnich sichtber wêze foar dy.</string>
-  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">De groepsnamme, -ôfbylding en -omskriuwing binne sichtber foar alle leden fan dizze groep, foar alle persoanen dy’t útnûge binne om lid te wurden en foar alle persoanen dy’t in wurkjende groepsferwizing hawwe, sels as se noch net fersocht hawwe om lid te wurden.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">De groepsnamme, -ôfbylding en -omskriuwing binne sichtber foar alle leden fan dizze groep, foar alle persoanen dy’t útnûge binne om lid te wurden en foar alle persoanen dy’t in wurkjende groepskeppeling hawwe, sels as se noch net fersocht hawwe om lid te wurden.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Oer my</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriuw in pear wurden oer dysels…</string>
@@ -2050,9 +2050,9 @@
   <string name="preferences__pref_enter_sends_title">Enter-toets ferstjoert</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Brûk de Enter-toets foar it ferstjoeren fan tekstberjochten</string>
   <string name="preferences__pref_use_address_book_photos">Profylfoto út systeemadresboek</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Jou wannear beskikber de profylfoto út dyn eigen systeemadresboek wer, yn stee fan de profylfoto hokker oaren foar harrensels ynsteld hawwe.</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Jou, wannear beskikber, de profylfoto út dyn eigen systeemadresboek wer, yn stee fan de profylfoto hokker oaren foar harrensels ynsteld hawwe.</string>
   <string name="preferences__generate_link_previews">Foarbyldôfbyldingen generearje</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Stean Signal ta om foar elke ferwizing nei in website dy’tsto ferstjoerst in foarbyldôfbylding te generearjen en oan dyn berjocht ta te foegjen. Echter, asto dit ynskeakelest soene websites detektearje kinne datsto harren yn dyn berjocht fermeldst en ek hokker side do fermeldst.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Stean Signal ta om foar elke keppeling nei in website dy’tsto ferstjoerst, in foarbyldôfbylding te generearjen en oan dyn berjocht ta te foegjen. Echter, asto dit ynskeakelest soene websites detektearje kinne datsto harren yn dyn berjocht fermeldst en ek hokker side do fermeldst.</string>
   <string name="preferences__choose_identity">Identiteit kieze</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies dyn kontaktgegevens út de list mei kontaktpersoanen.</string>
   <string name="preferences__change_passphrase">Wachtwurd wizigje</string>
@@ -2060,7 +2060,7 @@
   <string name="preferences__enable_passphrase">Appbeskoatteling mei wachtwurd ynskeakelje</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Beskoattelje de Signal-app en -meldingen mei in wachtwurd</string>
   <string name="preferences__screen_security">Skermbefeiliging</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Beskermje dyn petearen op dyn eigen telefoan tsjin skermopnamen fan oare apps út troch Signals ynhâld te ferstopjen yn de list fan resint iepene apps en troch skermôfdrukken te blokkearjen</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Beskermje dyn petearen op dyn eigen telefoan tsjin skermopnamen fan oare apps út, troch Signals ynhâld te ferstopjen yn de list fan resint iepene apps en troch skermôfdrukken te blokkearjen</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatysk beskoattelje nei in bepaalde perioade fan ynaktiviteit</string>
   <string name="preferences__inactivity_timeout_passphrase">Beskoatteljen by ynaktiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Ynaktiviteitsdoer foar beskoatteljen</string>
@@ -2104,8 +2104,8 @@
   <string name="preferences__mms_proxy_port">Mms-proxypoarte</string>
   <string name="preferences__mmsc_username">MMSC-brûkersnamme</string>
   <string name="preferences__mmsc_password">MMSC-wachtwurd</string>
-  <string name="preferences__sms_delivery_reports">Sms-oûntfangstbefêstigingen</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Freegje in ûntfangstbefêstiging foar elke ferstjoerd sms-berjocht</string>
+  <string name="preferences__sms_delivery_reports">Sms-ûntfangstbefêstigingen</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Freegje in ûntfangstbefêstiging foar elk ferstjoerd sms-berjocht</string>
   <string name="preferences__data_and_storage">Gegevensoerdracht en -ûnthâld</string>
   <string name="preferences__storage">Unthâld</string>
   <string name="preferences__payments">Oerskriuwingen</string>
@@ -2122,7 +2122,7 @@
   <string name="preferences__chat_color_and_wallpaper">Petearkleur &amp; -eftergrûn</string>
   <string name="preferences__disable_pin">Pinkoade útskeakelje</string>
   <string name="preferences__enable_pin">Pinkoade ynskeakelje</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Asto de pinkoade útskeakelest silsto, wannear’tsto Signal opnij registrearrest, alle gegevens kwytreitsje, útsein asto se hânmjittich werstelst fan in reservekopybestân út. Dêrneist kinsto salang de pinkoade útskeakele is de registraasjebeskoatteling net ynskeakelje.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Asto de pinkoade útskeakelest silsto, wannear’tsto Signal opnij registrearrest, alle gegevens kwytreitsje, útsein asto se hânmjittich werstelst fan in reservekopy út. Dêrneist kinsto, salang de pinkoade útskeakele is, de registraasjebeskoatteling net ynskeakelje.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Mei in pinkoade wurdt ynformaasje fersifere bewarre op Signal-servers, sadat allinnich do der tagong ta hast. Do kinst hjirtroch dyn profylnamme, -foto en -omskriuwing, ynstellingen en (blokkearre) kontakten werstelle, wannear’tsto Signal opnij ynstallearrest. Sels Signal-ûntwikkelers kinne dyn ynformaasje net ynsjen. Do hast de pinkoade net nedich om de app te iepenjen.</string>
   <string name="preferences__system_default">Systeemstandert</string>
   <string name="preferences__language">Taal</string>
@@ -2169,7 +2169,7 @@
   <string name="preferences_storage__custom">Sels ynsteld</string>
   <string name="preferences_advanced__use_system_emoji">Systeem-emoji brûke</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Brûk de systeem-emoji yn stee fan de ynboude emoji-stipe fan Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om foar te kommen dat dyn petearpartner dyn IP-adres efterhelje kin, wurden Signal-oproppen mei net-kontaktpersoanen altyd al omlaat fia de Signal-servers. Troch dizze opsje yn te skeakeljen wurdt dat ek dien foar Signal-oproppen mei kontakten dy’t wol yn dyn kontaktelist stean. Dit liedt echter ta in fermindere lûds- en fideokwaliteit.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om foar te kommen dat dyn petearpartner dyn IP-adres efterhelje kin, wurde Signal-oproppen mei net-kontaktpersoanen altyd al omlaat fia de Signal-servers. Troch dizze opsje yn te skeakeljen wurdt dat ek dien foar Signal-oproppen mei kontakten dy’t wol yn dyn kontaktelist stean. Dit liedt echter ta in fermindere lûds- en fideokwaliteit.</string>
   <string name="preferences_advanced__always_relay_calls">Alle oproppen omliede</string>
   <string name="preferences_app_protection__who_can">Wa mei…</string>
   <string name="preferences_app_protection__app_access">Tagong ta app</string>
@@ -2181,10 +2181,10 @@
   <string name="preferences_data_and_storage__never">Nea</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">By sawol wifi as mobile-gegevensoerdracht</string>
   <string name="preferences_data_and_storage__mobile_data_only">Allinnich by mobile-gegevensoerdracht</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Wannear’tsto in slimme ferbining hast kin it ynstellen fan minder gegevensoerdracht de kwaliteit fan in oprop ferbetterje</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Wannear’tsto in slimme ferbining hast, kin it ynstellen fan minder gegevensoerdracht de kwaliteit fan in oprop ferbetterje</string>
   <string name="preferences_notifications__messages">Berjochten</string>
   <string name="preferences_notifications__events">Barrens</string>
-  <string name="preferences_notifications__in_chat_sounds">Ek lûd foar iepene petear</string>
+  <string name="preferences_notifications__in_chat_sounds">Ek lûd foar in iepene petear</string>
   <string name="preferences_notifications__show">Werjaan</string>
   <string name="preferences_notifications__calls">Oproppen</string>
   <string name="preferences_notifications__ringtone">Oproplûd</string>
@@ -2280,7 +2280,7 @@
   <string name="PaymentsAddMoneyFragment__your_wallet_address">It adres fan dyn portemonnee</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiearje</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Nei it klamboerd kopiearre</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">Meitsje in account by in beurs dy’t MobileCoin stipet. Stjoer dernei fan dyn beurs-account ôf MobileCoin nei dyn Signal portemonnee-adres troch de QR-koade te scannen of troch it adres te kopiearjen om op Signal kredyt ta te foegjen.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Meitsje in account by in beurs dy’t MobileCoin stipet. Stjoer dernei fan dyn beurs-account ôf MobileCoin nei dyn Signal-portemonnee-adres troch de QR-koade te scannen of troch it adres te kopiearjen om op Signal kredyt ta te foegjen.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Details</string>
   <string name="PaymentsDetailsFragment__status">Steat</string>
@@ -2598,30 +2598,30 @@
   <string name="PushDecryptJob_new_locked_message">Nij beskoattele berjocht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Untskoattelje om dyn berjochten te lêzen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Resevekopywachtwurd</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Reservekopybestannen wurde bewarre op it eksterne ûnthâld en fersifere mei it wachtwurd hjirûnder. Do hast dit wachtwurd nedich om de reservekopy werom te heljen.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Do hast yn de takomst dit wachtwurd nedich om dyn gegevens fan in reservekopybestân út werom helje te kinnen.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Reservekopyen wurde bewarre op it eksterne ûnthâld en fersifere mei it wachtwurd hjirûnder. Do hast dit wachtwurd nedich om de reservekopy werom te heljen.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Do hast yn de takomst dit wachtwurd nedich om dyn gegevens fan in reservekopy út werom helje te kinnen.</string>
   <string name="backup_enable_dialog__folder">Map</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik haw dit wachtwurd opskreaun. Sûnder dit wachtwurd kin ik dizze reservekopybestannen net brûke om gegevens werom te setten.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik haw dit wachtwurd opskreaun. Sûnder dit wachtwurd kin ik dizze reservekopyen net brûke om gegevens werom te setten.</string>
   <string name="registration_activity__restore_backup">Reservekopygegevens weromsette</string>
   <string name="registration_activity__transfer_or_restore_account">Account oersette of werstelle</string>
   <string name="registration_activity__transfer_account">Alle Signalgegevens oersette</string>
   <string name="registration_activity__skip">Oerslaan</string>
-  <string name="preferences_chats__chat_backups">Reservekopybestannen meitsje</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Lit Signal fersifere reservekopybestannen meitsje fan petearen en media</string>
+  <string name="preferences_chats__chat_backups">Reservekopyen meitsje</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Lit Signal fersifere reservekopyen meitsje fan petearen en media</string>
   <string name="preferences_chats__transfer_account">Alle Signalgegevens oersette</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Account nei in nij Android-apparaat oersette</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Fier reservekopywachtwurd yn</string>
   <string name="RegistrationActivity_restore">Werom sette</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Kin gjin resevekopybestannen ymportearje hokker makke binne troch nijere ferzjes fan Signal</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Kin gjin reservekopyen ymportearje dy’t makke binne troch nijere ferzjes fan Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Ferkeard reservekopywachtwurd</string>
   <string name="RegistrationActivity_checking">Kontrolearje…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d berjochten oant no ta…</string>
   <string name="RegistrationActivity_restore_from_backup">Reservekopygegevens weromsette?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Do hast no de gelegenheid om berjochten en media út in reservekopybestân werom te setten. Let op: Werstellen fan in reservekopybestân kin allinnich wylst de ynstallaasje fan de Signal-app. Asto dizze stap oerslachst, kinsto dit net op in letter momint nochris dwaan.</string>
-  <string name="RegistrationActivity_backup_size_s">Reservekopybestânsgrutte: %s</string>
-  <string name="RegistrationActivity_backup_timestamp_s">Reservekopybestânstiid: %s</string>
-  <string name="BackupDialog_enable_local_backups">Reservekopybestannen meitsje?</string>
-  <string name="BackupDialog_enable_backups">Reservekopybestannen ynskeakelje</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Do hast no de gelegenheid om berjochten en media út in reservekopy werom te setten. Let op: Werstellen fan in reservekopy kin allinnich wylst de ynstallaasje fan de Signal-app. Asto dizze stap oerslachst, kinsto dit net op in letter momint nochris dwaan.</string>
+  <string name="RegistrationActivity_backup_size_s">Reservekopygrutte: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Reservekopytiid: %s</string>
+  <string name="BackupDialog_enable_local_backups">Reservekopyen meitsje?</string>
+  <string name="BackupDialog_enable_backups">Reservekopyen ynskeakelje</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ferklearje datsto it begrypst troch it seleksjefekje oan te finken.</string>
   <string name="BackupDialog_delete_backups">Reservekopyen fuortsmite?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Asto it meitsjen fan reservekopyen útskeakelest, dan sil Signal ek alle besteande reservekopyen út de reservekopylokaasje wiskje, om der wis fan te wêzen dat der gjin âlde petearen op dyn apparaat efterbliuwe.</string>
@@ -2835,14 +2835,14 @@
   <string name="GroupsLearnMore_paragraph_2">Ferâldere groepen kinne net omset wurde yn nije groepen, mar do kinst wol in nije groep oanmeitsje mei deselde leden, mits se allegearre de meast resinte ferzje fan Signal brûke.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal sil yn de takomst in manier oanbiede om ferâldere groepen om te setten yn nije groepen.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Elk dy’t oer dizze ferwizing beskikt kin de namme, ôfbylding en it oantal leden fan dizze groep sjen en kin ek in fersyk yntsjinje om lid wurde te meien. Diel dizze ferwizing allinnich mei persoanen dy’tsto fertroust.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Elk dy’t oer dizze ferwizing beskikt kin de namme, ôfbylding en it oantal leden fan dizze groep sjen en kin daliks lid wurde. Diel dizze ferwizing allinnich mei persoanen dy’tsto fertroust.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Elk dy’t oer dizze keppeling beskikt kin de namme, ôfbylding en it oantal leden fan dizze groep sjen en kin ek in fersyk yntsjinje om lid wurde te meien. Diel dizze keppeling allinnich mei persoanen dy’tsto fertroust.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Elk dy’t oer dizze keppeling beskikt kin de namme, ôfbylding en it oantal leden fan dizze groep sjen en kin daliks lid wurde. Diel dizze keppeling allinnich mei persoanen dy’tsto fertroust.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Ferstjoere fia Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiearje</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-koade</string>
   <string name="GroupLinkBottomSheet_share">Mei oaren diele</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiearre nei klamboerd</string>
-  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De ferwizing is op dit stuit net aktyf</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De keppeling is op dit stuit net aktyf</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">It ôfspyljen fan it audioberjocht is mislearre</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
@@ -3154,7 +3154,7 @@
   <string name="PrivacySettingsFragment__messaging">Berjochten</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Ferrinnende berjochten</string>
   <string name="PrivacySettingsFragment__app_security">App-befeiliging</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Beskermje dyn petearen op dyn eigen telefoan tsjin skermopnamen fan oare apps út troch Signals ynhâld te ferstopjen yn de list fan resint iepene apps en troch skermôfdrukken te blokkearjen</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Beskermje dyn petearen op dyn eigen telefoan tsjin skermopnamen fan oare apps út, troch Signals ynhâld te ferstopjen yn de list fan resint iepene apps en troch skermôfdrukken te blokkearjen</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berjochten en -oproppen, alle oproppen omliede en fersegele ôfstjoerder</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standert tiidrek foar alle nije petearen</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel yn dat berjochten yn alle nije petearen dy’tsto sels begjinst in bepaalde tiid neidat se sjoen binne foar sawol do as dyn petearpartner fansels wiske wurde.</string>
@@ -3187,7 +3187,7 @@
   <string name="HelpSettingsFragment__debug_log">Flateropspoaringslogboek</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Gebrûksbetingsten &amp; privacybelied</string>
   <string name="HelpFragment__copyright_signal_messenger">Auteursrjocht Signal-berjochte-app</string>
-  <string name="HelpFragment__licenced_under_the_gplv3">Utjûn ûnder in GPLv3 lisinsje</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Utjûn ûnder in GPLv3-lisinsje</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
   <string name="DataAndStorageSettingsFragment__sent_media_quality">Media-ferstjoerkwaliteit</string>
@@ -3236,7 +3236,7 @@
   <string name="ChatColorsMegaphone__appearance">Uterlik</string>
   <string name="ChatColorsMegaphone__not_now">No net</string>
   <!--AddAProfilePhotoMegaphone-->
-  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Foegje in profylfoto ta</string>
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Profylfoto tafoegje</string>
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Meitsje dysels werkenber troch in profylfoto yn te stellen of pas de kleur of tekst oan.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">No net</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Foegje in foto ta</string>
@@ -3286,7 +3286,7 @@
   <string name="ConversationSettingsFragment__add_members">Groepsleden tafoegje</string>
   <string name="ConversationSettingsFragment__permissions">Machtigingen</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Fersiken &amp; útnûgingen</string>
-  <string name="ConversationSettingsFragment__group_link">Groepsferwizing</string>
+  <string name="ConversationSettingsFragment__group_link">Groepskeppeling</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">As kontaktpersoan tafoegje</string>
   <string name="ConversationSettingsFragment__unmute">Meldingen net langer dôvje</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Do hast dit petear yn it ferline ta %1$s dôve</string>

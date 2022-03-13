@@ -124,7 +124,9 @@
   <string name="CameraContacts__menu_search">Buscar</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Desligar a driblagem de censura?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">A partir de agora, você pode se conectar ao serviço Signal diretamente, sem driblagem de censura, para receber uma melhor experiência.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Desativar</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -1256,7 +1258,7 @@
   <string name="RedPhone_got_it">Entendi</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
-  <string name="ValentinesDayMegaphone_happy_heart_day">Feliz dia 💜!</string>
+  <string name="ValentinesDayMegaphone_happy_heart_day">Feliz dia dos 💜!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
   <string name="ValentinesDayMegaphone_show_your_affection">Mostre o seu carinho ao tornar-se um apoiador recorrente do Signal.</string>
   <!--WebRtcCallActivity-->
@@ -2187,7 +2189,9 @@
   <string name="preferences_events__contact_joined_signal">O contato entrou no Signal!</string>
   <string name="preferences_notifications__priority">Prioridade</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Driblagem de censura</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Driblagem de censura</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Se ativado, Signal tentará contornar a censura. Não habilite esta função ao menos que você esteja em um lugar onde Signal é censurado. </string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">A driblagem de censura foi ativada tendo como base o número de telefone da sua conta.</string>
@@ -3471,7 +3475,7 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Você ainda pode usar o Signal, mas para apoiar o aplicativo e ter esse selo novamente, faça uma doação mensal.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Fazer doação mensal</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Não foi possível processar o pagamento da assinatura</string>
-  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Estamos tendo problemas para receber seu pagamento do Colaborador do Signal. Certifique-se de que seu método de pagamento esteja atualizado. Se não estiver, atualize-o no Google Pay. O Signal tentará processar o pagamento novamente dentro de alguns dias.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Estamos tendo problemas para receber seu pagamento de Colaborador do Signal. Certifique-se de que seu método de pagamento esteja atualizado. Se não estiver, atualize-o no Google Pay. O Signal tentará processar o pagamento novamente dentro de alguns dias.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Não mostrar novamente esta mensagem</string>
   <string name="Subscription__please_contact_support_for_more_information">Entre em contato com o suporte para obter mais informações, por favor.</string>
   <string name="Subscription__contact_support">Entre em contato com o suporte</string>
