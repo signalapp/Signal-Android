@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LargeIconClickPreference
-import org.thoughtcrime.securesms.util.fragments.findListener
+import org.thoughtcrime.securesms.util.fragments.requireListener
 
 class ChooseStoryTypeBottomSheet : DSLSettingsBottomSheetFragment(
   layoutId = R.layout.dsl_settings_bottom_sheet_no_handle
@@ -45,7 +45,7 @@ class ChooseStoryTypeBottomSheet : DSLSettingsBottomSheetFragment(
           ),
           onClick = {
             dismissAllowingStateLoss()
-            findListener<Callback>()?.onNewStoryClicked()
+            requireListener<Callback>().onNewStoryClicked()
           }
         )
       )
@@ -67,7 +67,7 @@ class ChooseStoryTypeBottomSheet : DSLSettingsBottomSheetFragment(
           ),
           onClick = {
             dismissAllowingStateLoss()
-            findListener<Callback>()?.onGroupStoryClicked()
+            requireListener<Callback>().onGroupStoryClicked()
           }
         )
       )

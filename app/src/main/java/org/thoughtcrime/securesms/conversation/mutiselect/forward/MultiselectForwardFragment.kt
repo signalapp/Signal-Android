@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
-import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
@@ -35,6 +34,7 @@ import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.stories.Stories.getHeaderAction
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -257,17 +257,8 @@ class MultiselectForwardFragment :
     viewModel.cancelSend()
   }
 
-  private fun getHeaderAction(): HeaderAction {
-    return HeaderAction(
-      R.string.ContactsCursorLoader_new_story,
-      R.drawable.ic_plus_20
-    ) {
-      ChooseStoryTypeBottomSheet().show(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-    }
-  }
-
   private fun getConfiguration(contactSearchState: ContactSearchState): ContactSearchConfiguration {
-    return findListener<SearchConfigurationProvider>()?.getSearchConfiguration(contactSearchState) ?: ContactSearchConfiguration.build {
+    return findListener<SearchConfigurationProvider>()?.getSearchConfiguration(childFragmentManager, contactSearchState) ?: ContactSearchConfiguration.build {
       query = contactSearchState.query
 
       if (Stories.isFeatureEnabled() && isSelectedMediaValidForStories()) {
@@ -275,7 +266,7 @@ class MultiselectForwardFragment :
           ContactSearchConfiguration.Section.Stories(
             groupStories = contactSearchState.groupStories,
             includeHeader = true,
-            headerAction = getHeaderAction(),
+            headerAction = getHeaderAction(childFragmentManager),
             expandConfig = ContactSearchConfiguration.ExpandConfig(
               isExpanded = contactSearchState.expandedSections.contains(ContactSearchConfiguration.SectionKey.STORIES)
             )

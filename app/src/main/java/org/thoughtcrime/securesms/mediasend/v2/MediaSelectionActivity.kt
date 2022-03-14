@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -208,7 +209,7 @@ class MediaSelectionActivity :
     viewModel.sendCommand(HudCommand.CloseEmojiSearch)
   }
 
-  override fun getSearchConfiguration(contactSearchState: ContactSearchState): ContactSearchConfiguration? {
+  override fun getSearchConfiguration(fragmentManager: FragmentManager, contactSearchState: ContactSearchState): ContactSearchConfiguration? {
     return if (isStory) {
       ContactSearchConfiguration.build {
         query = contactSearchState.query
@@ -217,7 +218,7 @@ class MediaSelectionActivity :
           ContactSearchConfiguration.Section.Stories(
             groupStories = contactSearchState.groupStories,
             includeHeader = true,
-            headerAction = Stories.getHeaderAction(supportFragmentManager)
+            headerAction = Stories.getHeaderAction(fragmentManager)
           )
         )
       }
