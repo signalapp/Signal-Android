@@ -84,7 +84,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
       return;
     }
 
-    if (Util.equals(profileAvatar, recipient.resolve().getProfileAvatar())) {
+    if (AvatarHelper.avatarFileExists(context, recipient.resolve().getAddress()) && Util.equals(profileAvatar, recipient.resolve().getProfileAvatar())) {
       Log.w(TAG, "Already retrieved profile avatar: " + profileAvatar);
       return;
     }

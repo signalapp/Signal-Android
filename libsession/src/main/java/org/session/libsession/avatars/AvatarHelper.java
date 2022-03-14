@@ -46,6 +46,11 @@ public class AvatarHelper {
     return new File(avatarDirectory, new File(address.serialize()).getName());
   }
 
+  public static boolean avatarFileExists(@NonNull Context context , @NonNull Address address) {
+    File avatarFile = getAvatarFile(context, address);
+    return avatarFile.exists();
+  }
+
   public static void setAvatar(@NonNull Context context, @NonNull Address address, @Nullable byte[] data)
     throws IOException
   {

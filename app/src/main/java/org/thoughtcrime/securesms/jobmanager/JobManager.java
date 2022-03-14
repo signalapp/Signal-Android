@@ -254,7 +254,7 @@ public class JobManager implements ConstraintObserver.Notifier {
     public static class Builder {
 
       private ExecutorFactory                 executorFactory     = new DefaultExecutorFactory();
-      private int                             jobThreadCount      = Math.max(2, Math.min(Runtime.getRuntime().availableProcessors() - 1, 4));
+      private int                             jobThreadCount      = 1;
       private Map<String, Job.Factory>        jobFactories        = new HashMap<>();
       private Map<String, Constraint.Factory> constraintFactories = new HashMap<>();
       private List<ConstraintObserver>        constraintObservers = new ArrayList<>();

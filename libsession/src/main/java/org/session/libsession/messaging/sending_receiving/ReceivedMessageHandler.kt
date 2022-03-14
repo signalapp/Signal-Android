@@ -1,6 +1,7 @@
 package org.session.libsession.messaging.sending_receiving
 
 import android.text.TextUtils
+import org.session.libsession.avatars.AvatarHelper
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -188,28 +189,33 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val storage = MessagingModuleConfiguration.shared.storage
     val context = MessagingModuleConfiguration.shared.context
     val userPublicKey = storage.getUserPublicKey()
+    val messageSender: String? = message.sender
     // Get or create thread
     // FIXME: In case this is an open group this actually * doesn't * create the thread if it doesn't yet
     //        exist. This is intentional, but it's very non-obvious.
     val threadID = storage.getOrCreateThreadIdFor(message.syncTarget
-        ?: message.sender!!, message.groupPublicKey, openGroupID)
+        ?: messageSender!!, message.groupPublicKey, openGroupID)
     if (threadID < 0) {
         // Thread doesn't exist; should only be reached in a case where we are processing open group messages for a no longer existent thread
         throw MessageReceiver.Error.NoThread
     }
     // Update profile if needed
-    val recipient = Recipient.from(context, Address.fromSerialized(message.sender!!), false)
+    val recipient = Recipient.from(context, Address.fromSerialized(messageSender!!), false)
     val profile = message.profile
-    if (profile != null && userPublicKey != message.sender) {
+    if (profile != null && userPublicKey != messageSender) {
         val profileManager = SSKEnvironment.shared.profileManager
         val name = profile.displayName!!
         if (name.isNotEmpty()) {
             profileManager.setName(context, recipient, name)
         }
         val newProfileKey = profile.profileKey
-        if (newProfileKey?.isNotEmpty() == true && (newProfileKey.size == 16 || newProfileKey.size == 32) && profile.profilePictureURL?.isNotEmpty() == true
-            && (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfileKey))) {
-            profileManager.setProfileKey(context, recipient, newProfileKey)
+
+        val needsProfilePicture = !AvatarHelper.avatarFileExists(context, Address.fromSerialized(messageSender))
+        val profileKeyValid = newProfileKey?.isNotEmpty() == true && (newProfileKey.size == 16 || newProfileKey.size == 32) && profile.profilePictureURL?.isNotEmpty() == true
+        val profileKeyChanged = (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfileKey))
+
+        if ((profileKeyValid && profileKeyChanged) || (profileKeyValid && needsProfilePicture)) {
+            profileManager.setProfileKey(context, recipient, newProfileKey!!)
             profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
             profileManager.setProfilePictureURL(context, recipient, profile.profilePictureURL!!)
         }
