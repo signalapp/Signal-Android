@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -23,7 +25,7 @@ class MultiselectForwardViewModel(
       store.update { it.copy(stage = MultiselectForwardState.Stage.FirstConfirmation) }
     } else {
       store.update { it.copy(stage = MultiselectForwardState.Stage.LoadingIdentities) }
-      repository.checkForBadIdentityRecords(selectedContacts) { identityRecords ->
+      UntrustedRecords.checkForBadIdentityRecords(selectedContacts.filterIsInstance(RecipientSearchKey::class.java).toSet()) { identityRecords ->
         if (identityRecords.isEmpty()) {
           performSend(additionalMessage, selectedContacts)
         } else {

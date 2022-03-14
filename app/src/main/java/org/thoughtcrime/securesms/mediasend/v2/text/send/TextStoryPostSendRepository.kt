@@ -2,19 +2,17 @@ package org.thoughtcrime.securesms.mediasend.v2.text.send
 
 import android.content.Context
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.RecipientSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
-import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
@@ -35,28 +33,23 @@ class TextStoryPostSendRepository(context: Context) {
   }
 
   fun send(contactSearchKey: Set<ContactSearchKey>, textStoryPostCreationState: TextStoryPostCreationState, linkPreview: LinkPreview?): Single<TextStoryPostSendResult> {
-    return checkForBadIdentityRecords(contactSearchKey).flatMap { result ->
-      if (result is TextStoryPostSendResult.Success) {
-        performSend(contactSearchKey, textStoryPostCreationState, linkPreview)
-      } else {
-        Single.just(result)
+    return UntrustedRecords
+      .checkForBadIdentityRecords(contactSearchKey.filterIsInstance(RecipientSearchKey::class.java).toSet())
+      .toSingleDefault<TextStoryPostSendResult>(TextStoryPostSendResult.Success)
+      .onErrorReturn {
+        if (it is UntrustedRecords.UntrustedRecordsException) {
+          TextStoryPostSendResult.UntrustedRecordsError(it.untrustedRecords)
+        } else {
+          TextStoryPostSendResult.Failure
+        }
       }
-    }
-  }
-
-  private fun checkForBadIdentityRecords(contactSearchKeys: Set<ContactSearchKey>): Single<TextStoryPostSendResult> {
-    return Single.fromCallable {
-      val recipients: List<Recipient> = contactSearchKeys
-        .filterIsInstance<RecipientSearchKey>()
-        .map { Recipient.resolved(it.recipientId) }
-      val identityRecordList: IdentityRecordList = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients)
-
-      if (identityRecordList.untrustedRecords.isNotEmpty()) {
-        TextStoryPostSendResult.UntrustedRecordsError(identityRecordList.untrustedRecords)
-      } else {
-        TextStoryPostSendResult.Success
+      .flatMap { result ->
+        if (result is TextStoryPostSendResult.Success) {
+          performSend(contactSearchKey, textStoryPostCreationState, linkPreview)
+        } else {
+          Single.just(result)
+        }
       }
-    }.subscribeOn(Schedulers.io())
   }
 
   private fun performSend(contactSearchKey: Set<ContactSearchKey>, textStoryPostCreationState: TextStoryPostCreationState, linkPreview: LinkPreview?): Single<TextStoryPostSendResult> {

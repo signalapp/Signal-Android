@@ -280,17 +280,19 @@ class MediaSelectionViewModel(
   fun send(
     selectedContacts: List<RecipientSearchKey> = emptyList()
   ): Maybe<MediaSendActivityResult> {
-    return repository.send(
-      store.state.selectedMedia,
-      store.state.editorStateMap,
-      store.state.quality,
-      store.state.message,
-      store.state.transportOption.isSms,
-      isViewOnceEnabled(),
-      destination.getRecipientSearchKey(),
-      if (selectedContacts.isNotEmpty()) selectedContacts else destination.getRecipientSearchKeyList(),
-      MentionAnnotation.getMentionsFromAnnotations(store.state.message),
-      store.state.transportOption
+    return UntrustedRecords.checkForBadIdentityRecords(selectedContacts.toSet()).andThen(
+      repository.send(
+        store.state.selectedMedia,
+        store.state.editorStateMap,
+        store.state.quality,
+        store.state.message,
+        store.state.transportOption.isSms,
+        isViewOnceEnabled(),
+        destination.getRecipientSearchKey(),
+        selectedContacts.ifEmpty { destination.getRecipientSearchKeyList() },
+        MentionAnnotation.getMentionsFromAnnotations(store.state.message),
+        store.state.transportOption
+      )
     )
   }
 

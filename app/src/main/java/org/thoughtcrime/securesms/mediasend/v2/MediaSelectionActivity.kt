@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.mediasend.Media
@@ -146,13 +147,18 @@ class MediaSelectionActivity :
   }
 
   override fun onSendError(error: Throwable) {
-    setResult(RESULT_CANCELED)
+    if (error is UntrustedRecords.UntrustedRecordsException) {
+      Log.w(TAG, "Send failed due to untrusted identities.")
+      SafetyNumberChangeDialog.show(supportFragmentManager, error.untrustedRecords)
+    } else {
+      setResult(RESULT_CANCELED)
 
-    // TODO [alex] - Toast
-    Log.w(TAG, "Failed to send message.", error)
+      // TODO [alex] - Toast
+      Log.w(TAG, "Failed to send message.", error)
 
-    finish()
-    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom)
+      finish()
+      overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom)
+    }
   }
 
   override fun onNoMediaSelected() {
