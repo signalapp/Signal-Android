@@ -741,13 +741,21 @@ public class MmsDatabase extends MessageDatabase {
       String   storiesBeforeTimestampWhere = IS_STORY_CLAUSE + " AND " + DATE_SENT + " < ?";
       String[] sharedArgs                  = SqlUtil.buildArgs(timestamp);
       String   deleteStoryRepliesQuery     = "DELETE FROM " + TABLE_NAME + " " +
-                                             "WHERE " + PARENT_STORY_ID + " IN (" +
+                                             "WHERE " + PARENT_STORY_ID + " > 0 AND " + PARENT_STORY_ID + " IN (" +
+                                                 "SELECT " + ID + " " +
+                                                 "FROM " + TABLE_NAME + " " +
+                                                 "WHERE " + storiesBeforeTimestampWhere +
+                                             ")";
+      String   disassociateQuoteQuery      = "UPDATE " + TABLE_NAME + " " +
+                                             "SET " + QUOTE_MISSING + " = 1, " + QUOTE_BODY + " = '' " +
+                                             "WHERE " + PARENT_STORY_ID + " < 0 AND ABS(" + PARENT_STORY_ID + ") IN (" +
                                                  "SELECT " + ID + " " +
                                                  "FROM " + TABLE_NAME + " " +
                                                  "WHERE " + storiesBeforeTimestampWhere +
                                              ")";
 
-      db.rawQuery(deleteStoryRepliesQuery, sharedArgs);
+      db.execSQL(deleteStoryRepliesQuery, sharedArgs);
+      db.execSQL(disassociateQuoteQuery, sharedArgs);
 
       try (Cursor cursor = db.query(TABLE_NAME, new String[]{RECIPIENT_ID}, storiesBeforeTimestampWhere, sharedArgs, null, null, null)) {
         while (cursor != null && cursor.moveToNext()) {
@@ -756,10 +764,18 @@ public class MmsDatabase extends MessageDatabase {
         }
       }
 
-      int deletedStories = db.delete(TABLE_NAME, storiesBeforeTimestampWhere, sharedArgs);
+      int deletedStoryCount;
+      try (Cursor cursor = db.query(TABLE_NAME, new String[]{ID}, storiesBeforeTimestampWhere, sharedArgs, null, null, null)) {
+        deletedStoryCount = cursor.getCount();
+
+        while (cursor.moveToNext()) {
+          long id = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+          deleteMessage(id);
+        }
+      }
 
       db.setTransactionSuccessful();
-      return deletedStories;
+      return deletedStoryCount;
     } finally {
       db.endTransaction();
     }
