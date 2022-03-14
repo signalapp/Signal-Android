@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -160,8 +161,11 @@ public class RecipientUtil {
     SignalDatabase.recipients().setBlocked(recipient.getId(), true);
 
     if (recipient.isSystemContact() || recipient.isProfileSharing() || isProfileSharedViaGroup(context, recipient)) {
-      ApplicationDependencies.getJobManager().add(new RotateProfileKeyJob());
       SignalDatabase.recipients().setProfileSharing(recipient.getId(), false);
+
+      ApplicationDependencies.getJobManager().startChain(new RefreshOwnProfileJob())
+                                             .then(new RotateProfileKeyJob())
+                                             .enqueue();
     }
 
     ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
