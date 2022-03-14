@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository.StickerManifestResult;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 final class StickerPackPreviewViewModel extends ViewModel {
 

@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.payments.proto.MobileCoinLedger;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
-import org.thoughtcrime.securesms.testutil.SystemOutLogger;
 import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.util.Uint64RangeException;

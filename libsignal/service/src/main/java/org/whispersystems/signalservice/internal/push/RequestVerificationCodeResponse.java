@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.internal.push;
 
 
-import org.whispersystems.libsignal.util.guava.Optional;
+import java.util.Optional;
 
 public final class RequestVerificationCodeResponse {
   private final Optional<String> fcmToken;

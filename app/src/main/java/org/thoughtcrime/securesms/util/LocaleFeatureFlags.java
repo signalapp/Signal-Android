@@ -39,7 +39,7 @@ public final class LocaleFeatureFlags {
 
   public static @NonNull Optional<PushMediaConstraints.MediaConfig> getMediaQualityLevel() {
     Map<String, Integer> countryValues = parseCountryValues(FeatureFlags.getMediaQualityLevels(), NOT_FOUND);
-    int                  level         = getCountryValue(countryValues, Recipient.self().getE164().or(""), NOT_FOUND);
+    int                  level         = getCountryValue(countryValues, Recipient.self().getE164().orElse(""), NOT_FOUND);
 
     return Optional.ofNullable(PushMediaConstraints.MediaConfig.forLevel(level));
   }
@@ -73,7 +73,7 @@ public final class LocaleFeatureFlags {
       return false;
     }
 
-    long countEnabled      = getCountryValue(countryCodeValues, self.getE164().or(""), 0);
+    long countEnabled      = getCountryValue(countryCodeValues, self.getE164().orElse(""), 0);
     long currentUserBucket = BucketingUtil.bucket(flag, self.requireServiceId().uuid(), 1_000_000);
 
     return countEnabled > currentUserBucket;

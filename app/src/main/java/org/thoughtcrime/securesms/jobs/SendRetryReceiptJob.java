@@ -14,11 +14,11 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public final class SendRetryReceiptJob extends BaseJob {
@@ -87,7 +87,7 @@ public final class SendRetryReceiptJob extends BaseJob {
 
     SignalServiceAddress             address   = RecipientUtil.toSignalServiceAddress(context, recipient);
     Optional<UnidentifiedAccessPair> access    = UnidentifiedAccessUtil.getAccessFor(context, recipient);
-    Optional<byte[]>                 group     = groupId.transform(GroupId::getDecodedId);
+    Optional<byte[]>                 group     = groupId.map(GroupId::getDecodedId);
 
     Log.i(TAG, "Sending retry receipt for " + errorMessage.getTimestamp() + " to " + recipientId + ", device: " + errorMessage.getDeviceId());
     ApplicationDependencies.getSignalServiceMessageSender().sendRetryReceipt(address, access, group, errorMessage);
@@ -108,7 +108,7 @@ public final class SendRetryReceiptJob extends BaseJob {
       try {
         RecipientId            recipientId  = RecipientId.from(data.getString(KEY_RECIPIENT_ID));
         DecryptionErrorMessage errorMessage = new DecryptionErrorMessage(data.getStringAsBlob(KEY_ERROR_MESSAGE));
-        Optional<GroupId>      groupId      = Optional.absent();
+        Optional<GroupId>      groupId      = Optional.empty();
 
         if (data.hasString(KEY_GROUP_ID)) {
           groupId = Optional.of(GroupId.pushOrThrow(data.getStringAsBlob(KEY_GROUP_ID)));

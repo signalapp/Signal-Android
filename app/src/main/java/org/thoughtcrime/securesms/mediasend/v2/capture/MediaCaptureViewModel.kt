@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.whispersystems.libsignal.util.guava.Optional
 import java.io.FileDescriptor
+import java.util.Optional
 
 class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : ViewModel() {
 
@@ -35,7 +35,7 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
   }
 
   fun getMostRecentMedia(): LiveData<Optional<Media>> {
-    return Transformations.map(store.stateLiveData) { Optional.fromNullable(it.mostRecentMedia) }
+    return Transformations.map(store.stateLiveData) { Optional.ofNullable(it.mostRecentMedia) }
   }
 
   private fun onMediaRendered(media: Media) {

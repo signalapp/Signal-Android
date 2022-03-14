@@ -60,7 +60,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       )
 
       if (!recipient.isGroup) {
-        val serviceId = recipient.serviceId.transform(ServiceId::toString).or("null")
+        val serviceId = recipient.serviceId.map(ServiceId::toString).orElse("null")
         longClickPref(
           title = DSLSettingsText.from("ServiceId"),
           summary = DSLSettingsText.from(serviceId),
@@ -226,7 +226,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
       SignalExecutors.BOUNDED.execute {
         val threadId: Long? = SignalDatabase.threads.getThreadIdFor(recipientId)
-        val groupId: GroupId? = SignalDatabase.groups.getGroup(recipientId).transform { it.id }.orNull()
+        val groupId: GroupId? = SignalDatabase.groups.getGroup(recipientId).map { it.id }.orElse(null)
         store.update { state -> state.copy(threadId = threadId, groupId = groupId) }
       }
     }

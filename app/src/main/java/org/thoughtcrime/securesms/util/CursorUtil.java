@@ -4,7 +4,8 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+import java.util.Optional;
+
 
 public final class CursorUtil {
 
@@ -48,15 +49,15 @@ public final class CursorUtil {
 
   public static Optional<String> getString(@NonNull Cursor cursor, @NonNull String column) {
     if (cursor.getColumnIndex(column) < 0) {
-      return Optional.absent();
+      return Optional.empty();
     } else {
-      return Optional.fromNullable(requireString(cursor, column));
+      return Optional.ofNullable(requireString(cursor, column));
     }
   }
 
   public static Optional<Integer> getInt(@NonNull Cursor cursor, @NonNull String column) {
     if (cursor.getColumnIndex(column) < 0) {
-      return Optional.absent();
+      return Optional.empty();
     } else {
       return Optional.of(requireInt(cursor, column));
     }
@@ -64,7 +65,7 @@ public final class CursorUtil {
 
   public static Optional<Boolean> getBoolean(@NonNull Cursor cursor, @NonNull String column) {
     if (cursor.getColumnIndex(column) < 0) {
-      return Optional.absent();
+      return Optional.empty();
     } else {
       return Optional.of(requireBoolean(cursor, column));
     }
@@ -72,9 +73,9 @@ public final class CursorUtil {
 
   public static Optional<byte[]> getBlob(@NonNull Cursor cursor, @NonNull String column) {
     if (cursor.getColumnIndex(column) < 0) {
-      return Optional.absent();
+      return Optional.empty();
     } else {
-      return Optional.fromNullable(requireBlob(cursor, column));
+      return Optional.ofNullable(requireBlob(cursor, column));
     }
   }
 

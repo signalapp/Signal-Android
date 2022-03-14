@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
 import android.content.Context;
-import android.text.Editable;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;

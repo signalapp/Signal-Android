@@ -139,7 +139,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                                        receiptCredentialPresentation.serialize())
                                       .build());
     } else {
-      Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orNull(), true);
+      Log.w(TAG, "Encountered a retryable exception: " + response.getStatus(), response.getExecutionError().orElse(null), true);
       throw new RetryableException();
     }
   }

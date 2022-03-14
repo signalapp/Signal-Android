@@ -4,7 +4,7 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
-import org.whispersystems.libsignal.util.guava.Preconditions;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.List;
 import java.util.Objects;

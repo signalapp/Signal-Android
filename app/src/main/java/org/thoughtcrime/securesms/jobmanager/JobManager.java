@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.CountDownLatch;
@@ -261,14 +261,14 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     try {
       if (!latch.await(timeout, TimeUnit.MILLISECONDS)) {
-        return Optional.absent();
+        return Optional.empty();
       }
     } catch (InterruptedException e) {
       Log.w(TAG, "Interrupted during runSynchronously()", e);
-      return Optional.absent();
+      return Optional.empty();
     }
 
-    return Optional.fromNullable(resultState.get());
+    return Optional.ofNullable(resultState.get());
   }
 
   /**

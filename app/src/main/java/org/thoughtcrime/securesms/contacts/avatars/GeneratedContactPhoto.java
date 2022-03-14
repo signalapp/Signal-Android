@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.avatar.Avatar;
 import org.thoughtcrime.securesms.avatar.AvatarRenderer;
 import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
-import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.NameUtil;
 
 import java.util.Objects;

@@ -6,12 +6,12 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeoutException;
 

@@ -85,7 +85,6 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
@@ -98,6 +97,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -1136,7 +1136,7 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public void markAsInsecure(long messageId) {
-    updateMailboxBitmask(messageId, Types.SECURE_MESSAGE_BIT, 0, Optional.<Long>absent());
+    updateMailboxBitmask(messageId, Types.SECURE_MESSAGE_BIT, 0, Optional.empty());
   }
 
   @Override
@@ -1378,7 +1378,7 @@ public class MmsDatabase extends MessageDatabase {
                                                    cursor.getString(cursor.getColumnIndexOrThrow(TRANSACTION_ID)),
                                                    cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID))));
       } else {
-        return Optional.absent();
+        return Optional.empty();
       }
     } finally {
       if (cursor != null)
@@ -1611,7 +1611,7 @@ public class MmsDatabase extends MessageDatabase {
 
     if (retrieved.isPushMessage() && isDuplicate(retrieved, threadId)) {
       Log.w(TAG, "Ignoring duplicate media message (" + retrieved.getSentTimeMillis() + ")");
-      return Optional.absent();
+      return Optional.empty();
     }
 
     long messageId = insertMediaMessage(threadId, retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), retrieved.getLinkPreviews(), retrieved.getMentions(), retrieved.getMessageRanges(), contentValues, null, true);

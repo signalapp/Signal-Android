@@ -17,10 +17,9 @@ import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 
-import java.util.List;
 import java.util.Objects;
 
 /**

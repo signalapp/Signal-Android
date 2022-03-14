@@ -15,10 +15,10 @@ import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 
 public class LinkPreviewViewModel extends ViewModel {
@@ -208,7 +208,7 @@ public class LinkPreviewViewModel extends ViewModel {
     }
 
     private static LinkPreviewState forLoading() {
-      return new LinkPreviewState(true, false, Optional.absent(), null);
+      return new LinkPreviewState(true, false, Optional.empty(), null);
     }
 
     private static LinkPreviewState forPreview(@NonNull LinkPreview linkPreview) {
@@ -216,11 +216,11 @@ public class LinkPreviewViewModel extends ViewModel {
     }
 
     private static LinkPreviewState forLinksWithNoPreview(@NonNull LinkPreviewRepository.Error error) {
-      return new LinkPreviewState(false, true, Optional.absent(), error);
+      return new LinkPreviewState(false, true, Optional.empty(), error);
     }
 
     private static LinkPreviewState forNoLinks() {
-      return new LinkPreviewState(false, false, Optional.absent(), null);
+      return new LinkPreviewState(false, false, Optional.empty(), null);
     }
 
     public boolean isLoading() {

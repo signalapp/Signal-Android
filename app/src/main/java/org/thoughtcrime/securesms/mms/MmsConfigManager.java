@@ -11,10 +11,10 @@ import com.android.mms.service_alt.MmsConfig;
 
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 final class MmsConfigManager {
 

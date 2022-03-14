@@ -6,7 +6,9 @@ import androidx.core.util.Consumer;
 
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 interface EditProfileRepository {
 

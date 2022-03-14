@@ -6,7 +6,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record;
-import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
 import java.util.Arrays;
 import java.util.LinkedList;

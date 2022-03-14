@@ -130,7 +130,7 @@ data class CallParticipantsState(
       ringerRecipient.hasServiceId()
     ) {
       val ringerName = ringerRecipient.getShortDisplayName(context)
-      val membersWithoutYouOrRinger: List<GroupMemberEntry.FullMember> = groupMembers.filterNot { it.member.isSelf || ringerRecipient.requireServiceId() == it.member.serviceId.orNull() }
+      val membersWithoutYouOrRinger: List<GroupMemberEntry.FullMember> = groupMembers.filterNot { it.member.isSelf || ringerRecipient.requireServiceId() == it.member.serviceId.orElse(null) }
 
       return when (membersWithoutYouOrRinger.size) {
         0 -> context.getString(R.string.WebRtcCallView__s_is_calling_you, ringerName)

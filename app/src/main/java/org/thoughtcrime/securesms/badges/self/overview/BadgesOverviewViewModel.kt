@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 
 private val TAG = Log.tag(BadgesOverviewViewModel::class.java)
 
@@ -54,13 +54,13 @@ class BadgesOverviewViewModel(
       subscriptionsRepository.getSubscriptions()
     ) { active, all ->
       if (!active.isActive && active.activeSubscription?.willCancelAtPeriodEnd() == true) {
-        Optional.fromNullable<String>(all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id)
+        Optional.ofNullable<String>(all.firstOrNull { it.level == active.activeSubscription?.level }?.badge?.id)
       } else {
-        Optional.absent()
+        Optional.empty()
       }
     }.subscribeBy(
       onSuccess = { badgeId ->
-        store.update { it.copy(fadedBadgeId = badgeId.orNull()) }
+        store.update { it.copy(fadedBadgeId = badgeId.orElse(null)) }
       },
       onError = { throwable ->
         Log.w(TAG, "Could not retrieve data from server", throwable)

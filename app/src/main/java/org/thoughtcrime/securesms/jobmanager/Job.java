@@ -7,14 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
  * A durable unit of work.

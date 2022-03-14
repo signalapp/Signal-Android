@@ -33,9 +33,9 @@ import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
+import java.util.Optional;
 
 import kotlin.Unit;
 
@@ -141,7 +141,7 @@ public class EmojiTextView extends AppCompatTextView {
     previousTransformationMethod = getTransformationMethod();
 
     if (useSystemEmoji || candidates == null || candidates.size() == 0) {
-      super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")), BufferType.SPANNABLE);
+      super.setText(new SpannableStringBuilder(Optional.ofNullable(text).orElse("")), BufferType.SPANNABLE);
     } else {
       CharSequence emojified = EmojiProvider.emojify(candidates, text, this, isJumbomoji || forceJumboEmoji);
       super.setText(new SpannableStringBuilder(emojified), BufferType.SPANNABLE);
@@ -291,7 +291,7 @@ public class EmojiTextView extends AppCompatTextView {
         SpannableStringBuilder newContent = new SpannableStringBuilder();
         newContent.append(getText().subSequence(0, overflowStart))
                   .append(ellipsized.subSequence(0, ellipsized.length()))
-                  .append(Optional.fromNullable(overflowText).or(""));
+                  .append(Optional.ofNullable(overflowText).orElse(""));
 
         EmojiParser.CandidateList newCandidates = isInEditMode() ? null : EmojiProvider.getCandidates(newContent);
         CharSequence              emojified     = EmojiProvider.emojify(newCandidates, newContent, this, isJumbomoji || forceJumboEmoji);

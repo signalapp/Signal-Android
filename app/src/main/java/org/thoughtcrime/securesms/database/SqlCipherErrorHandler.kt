@@ -10,10 +10,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.CursorUtil
-import java.lang.Error
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicReference
-import kotlin.text.StringBuilder
 
 /**
  * The default error handler wipes the file. This one instead prints some diagnostics and then crashes so the original corrupt file isn't lost.

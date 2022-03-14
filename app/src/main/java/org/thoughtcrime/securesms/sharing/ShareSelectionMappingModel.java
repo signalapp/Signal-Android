@@ -20,10 +20,10 @@ public class ShareSelectionMappingModel implements MappingModel<ShareSelectionMa
 
   @NonNull String getName(@NonNull Context context) {
     String name = shareContact.getRecipientId()
-                              .transform(Recipient::resolved)
-                              .transform(recipient -> recipient.isSelf() ? context.getString(R.string.note_to_self)
+                              .map(Recipient::resolved)
+                              .map(recipient -> recipient.isSelf() ? context.getString(R.string.note_to_self)
                                                                          : recipient.getShortDisplayNameIncludingUsername(context))
-                              .or(shareContact::getNumber);
+                              .orElseGet(shareContact::getNumber);
 
     return isFirst ? name : context.getString(R.string.ShareActivity__comma_s, name);
   }

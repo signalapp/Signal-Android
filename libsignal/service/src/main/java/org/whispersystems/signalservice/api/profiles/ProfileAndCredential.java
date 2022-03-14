@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.api.profiles;
 
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 public final class ProfileAndCredential {
 

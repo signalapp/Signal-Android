@@ -48,7 +48,7 @@ public class QuickResponseService extends IntentService {
       }
 
       Recipient recipient      = Recipient.external(this, number);
-      int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+      int       subscriptionId = recipient.getDefaultSubscriptionId().orElse(-1);
       long      expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
 
       if (!TextUtils.isEmpty(content)) {

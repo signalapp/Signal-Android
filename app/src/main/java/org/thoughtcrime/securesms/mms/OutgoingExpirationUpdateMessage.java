@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.mms;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.recipients.Recipient;

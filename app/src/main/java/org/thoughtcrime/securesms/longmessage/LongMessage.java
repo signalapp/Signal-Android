@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.longmessage;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 

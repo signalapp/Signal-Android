@@ -2,21 +2,22 @@ package org.thoughtcrime.securesms.payments.create;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
 import org.signal.core.util.money.FiatMoney;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
 import org.whispersystems.signalservice.api.payments.Money;
+
+import java.util.Optional;
 
 final class InputState {
   private final InputTarget                             inputTarget;
   private final String                                  moneyAmount;
-  private final String                                  fiatAmount;
-  private final Optional<FiatMoney>                     fiatMoney;
-  private final Money                                   money;
+  private final String              fiatAmount;
+  private final Optional<FiatMoney> fiatMoney;
+  private final Money               money;
   private final Optional<CurrencyExchange.ExchangeRate> exchangeRate;
 
   InputState() {
-    this(InputTarget.MONEY, "0", "0", Money.MobileCoin.ZERO, Optional.absent(), Optional.absent());
+    this(InputTarget.MONEY, "0", "0", Money.MobileCoin.ZERO, Optional.empty(), Optional.empty());
   }
 
   private InputState(@NonNull InputTarget inputTarget,

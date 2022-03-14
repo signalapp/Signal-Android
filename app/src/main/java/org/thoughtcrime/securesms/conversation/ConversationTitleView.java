@@ -19,7 +19,6 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.view.AvatarView;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
-import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;

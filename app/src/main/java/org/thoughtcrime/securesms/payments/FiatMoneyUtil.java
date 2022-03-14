@@ -6,13 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import org.signal.core.util.logging.Log;
+import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.io.IOException;
@@ -21,6 +20,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.Optional;
 
 public final class FiatMoneyUtil {
 
@@ -40,7 +40,7 @@ public final class FiatMoneyUtil {
                                       .exchange(a);
       } catch (IOException e) {
         Log.w(TAG, e);
-        return Optional.absent();
+        return Optional.empty();
       }
     });
   }

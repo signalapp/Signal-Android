@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.util;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +14,7 @@ import java.nio.channels.SocketChannel;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLContext;

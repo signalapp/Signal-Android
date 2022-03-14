@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;

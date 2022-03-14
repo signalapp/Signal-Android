@@ -13,7 +13,6 @@ import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.signal.libsignal.metadata.SealedSessionCipher;
 import org.signal.libsignal.metadata.SelfSendException;
 import org.signal.libsignal.metadata.certificate.CertificateValidator;
-import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.metadata.protocol.UnidentifiedSenderMessageContent;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.InvalidRegistrationIdException;

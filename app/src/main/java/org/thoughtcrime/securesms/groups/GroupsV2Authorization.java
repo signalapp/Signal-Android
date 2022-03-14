@@ -13,7 +13,6 @@ import org.whispersystems.signalservice.api.push.ACI;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class GroupsV2Authorization {

@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.internal.push;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
+
+import java.util.Optional;
 
 /**
  * Exception that indicates that the data message contains something that is not supported by this
@@ -20,9 +22,9 @@ public abstract class UnsupportedDataMessageException extends Exception {
                                             Optional<SignalServiceGroupContext> group)
   {
     super(message);
-    this.sender          = sender;
-    this.senderDevice    = senderDevice;
-    this.group           = group;
+    this.sender       = sender;
+    this.senderDevice = senderDevice;
+    this.group        = group;
   }
 
   public String getSender() {

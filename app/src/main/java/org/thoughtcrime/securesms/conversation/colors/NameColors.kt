@@ -11,9 +11,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry.FullMember
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
-import org.whispersystems.libsignal.util.guava.Optional
-import java.util.HashMap
-import java.util.HashSet
+import java.util.Optional
 
 object NameColors {
 
@@ -28,8 +26,8 @@ object NameColors {
     val recipient = Transformations.switchMap(recipientId) { r: RecipientId? -> Recipient.live(r!!).liveData }
     val group = Transformations.map(recipient) { obj: Recipient -> obj.groupId }
     val groupMembers = Transformations.switchMap(group) { g: Optional<GroupId> ->
-      g.transform { groupId: GroupId -> this.getSessionGroupRecipients(groupId, sessionMemberCache) }
-        .or { DefaultValueLiveData(emptySet()) }
+      g.map { groupId: GroupId -> this.getSessionGroupRecipients(groupId, sessionMemberCache) }
+        .orElseGet { DefaultValueLiveData(emptySet()) }
     }
     return Transformations.map(groupMembers) { members: Set<Recipient>? ->
       val sorted = Stream.of(members)

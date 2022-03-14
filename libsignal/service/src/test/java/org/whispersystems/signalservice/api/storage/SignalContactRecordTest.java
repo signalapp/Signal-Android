@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.junit.Test;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 

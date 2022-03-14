@@ -8,7 +8,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SetUtil;
 
 import java.util.List;

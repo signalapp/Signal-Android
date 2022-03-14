@@ -14,8 +14,8 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 public final class InviteReminderModel {
@@ -65,8 +65,8 @@ public final class InviteReminderModel {
 
   public @NonNull Optional<Reminder> getReminder() {
     ReminderInfo info = reminderInfo.get();
-    if (info == null) return Optional.absent();
-    else              return Optional.fromNullable(info.reminder);
+    if (info == null) return Optional.empty();
+    else              return Optional.ofNullable(info.reminder);
   }
 
   public void dismissReminder() {

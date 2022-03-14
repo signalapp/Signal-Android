@@ -3,14 +3,10 @@ package org.whispersystems.signalservice.internal.push;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 public class SendGroupMessageResponse {
 

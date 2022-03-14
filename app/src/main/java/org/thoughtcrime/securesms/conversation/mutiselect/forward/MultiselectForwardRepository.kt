@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.MultiShareSender
 import org.thoughtcrime.securesms.sharing.ShareContactAndThread
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 
 class MultiselectForwardRepository(context: Context) {
 

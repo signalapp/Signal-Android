@@ -6,13 +6,14 @@
 
 package org.whispersystems.signalservice.api.push.exceptions;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 public class RateLimitException extends NonSuccessfulResponseCodeException {
   private final Optional<Long> retryAfterMilliseconds;
 
   public RateLimitException(int status, String message) {
-    this(status, message, Optional.absent());
+    this(status, message, Optional.empty());
   }
 
   public RateLimitException(int status, String message, Optional<Long> retryAfterMilliseconds) {

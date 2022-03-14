@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4DisplayUpdater;
-import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.util.AccessibilityUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 

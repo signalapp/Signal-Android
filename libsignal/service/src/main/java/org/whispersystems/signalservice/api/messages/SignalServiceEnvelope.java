@@ -9,14 +9,15 @@ package org.whispersystems.signalservice.api.messages;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope;
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceEnvelopeProto;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * This class represents an encrypted Signal Service envelope.
@@ -131,18 +132,18 @@ public class SignalServiceEnvelope {
    * @return The envelope's sender as an E164 number.
    */
   public Optional<String> getSourceE164() {
-    return Optional.fromNullable(envelope.getSourceE164());
+    return Optional.ofNullable(envelope.getSourceE164());
   }
 
   /**
    * @return The envelope's sender as a UUID.
    */
   public Optional<String> getSourceUuid() {
-    return Optional.fromNullable(envelope.getSourceUuid());
+    return Optional.ofNullable(envelope.getSourceUuid());
   }
 
   public String getSourceIdentifier() {
-    return getSourceUuid().or(getSourceE164()).orNull();
+    return OptionalUtil.or(getSourceUuid(), getSourceE164()).orElse(null);
   }
 
   public boolean hasSourceDevice() {

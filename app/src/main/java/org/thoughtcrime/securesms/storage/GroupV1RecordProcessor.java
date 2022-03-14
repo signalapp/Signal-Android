@@ -12,10 +12,10 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * Handles merging remote storage updates into local group v1 state.
@@ -46,7 +46,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   @Override
   boolean isInvalid(@NonNull SignalGroupV1Record remote) {
     try {
-      GroupId.V1 id = GroupId.v1(remote.getGroupId());
+      GroupId.V1                          id       = GroupId.v1(remote.getGroupId());
       Optional<GroupDatabase.GroupRecord> v2Record = groupDatabase.getGroup(id.deriveV2MigrationGroupId());
 
       if (v2Record.isPresent()) {
@@ -67,9 +67,9 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
 
     Optional<RecipientId> recipientId = recipientDatabase.getByGroupId(groupId);
 
-    return recipientId.transform(recipientDatabase::getRecordForSync)
-                      .transform(StorageSyncModels::localToRemoteRecord)
-                      .transform(r -> r.getGroupV1().get());
+    return recipientId.map(recipientDatabase::getRecordForSync)
+                      .map(StorageSyncModels::localToRemoteRecord)
+                      .map(r -> r.getGroupV1().get());
   }
 
   @Override

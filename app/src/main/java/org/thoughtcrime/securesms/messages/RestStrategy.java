@@ -10,11 +10,11 @@ import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;

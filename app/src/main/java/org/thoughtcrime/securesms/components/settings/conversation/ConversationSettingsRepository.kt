@@ -28,8 +28,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.whispersystems.libsignal.util.guava.Optional
 import java.io.IOException
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 private val TAG = Log.tag(ConversationSettingsRepository::class.java)
@@ -41,7 +41,7 @@ class ConversationSettingsRepository(
   @WorkerThread
   fun getThreadMedia(threadId: Long): Optional<Cursor> {
     return if (threadId <= 0) {
-      Optional.absent()
+      Optional.empty()
     } else {
       Optional.of(SignalDatabase.media.getGalleryMediaForThread(threadId, MediaDatabase.Sorting.Newest))
     }
@@ -77,7 +77,7 @@ class ConversationSettingsRepository(
   fun getIdentity(recipientId: RecipientId, consumer: (IdentityRecord?) -> Unit) {
     SignalExecutors.BOUNDED.execute {
       if (SignalStore.account().aci != null && SignalStore.account().pni != null) {
-        consumer(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orNull())
+        consumer(ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(recipientId).orElse(null))
       } else {
         consumer(null)
       }

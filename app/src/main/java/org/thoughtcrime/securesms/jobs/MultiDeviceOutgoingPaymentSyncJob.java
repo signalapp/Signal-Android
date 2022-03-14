@@ -16,13 +16,13 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.multidevice.OutgoingPaymentMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -93,7 +93,7 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
     if (!defrag && payment.getPayee().hasRecipientId()) {
       uuid = Optional.of(new SignalServiceAddress(Recipient.resolved(payment.getPayee().requireRecipientId()).requireServiceId()));
     } else {
-      uuid = Optional.absent();
+      uuid = Optional.empty();
     }
 
     byte[] receipt = payment.getReceipt();
@@ -108,8 +108,8 @@ public final class MultiDeviceOutgoingPaymentSyncJob extends BaseJob {
                                                                                ByteString.copyFrom(receipt),
                                                                                payment.getBlockIndex(),
                                                                                payment.getTimestamp(),
-                                                                               defrag ? Optional.absent() : Optional.of(payment.getPayee().requirePublicAddress().serialize()),
-                                                                               defrag ? Optional.absent() : Optional.of(payment.getNote()),
+                                                                               defrag ? Optional.empty() : Optional.of(payment.getPayee().requirePublicAddress().serialize()),
+                                                                               defrag ? Optional.empty() : Optional.of(payment.getNote()),
                                                                                txoIdentification.getPublicKeyList(),
                                                                                txoIdentification.getKeyImagesList());
 

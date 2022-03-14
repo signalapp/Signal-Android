@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;

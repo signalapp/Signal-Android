@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
-import java.io.IOException;
-
 import io.reactivex.rxjava3.annotations.NonNull;
 
 /**

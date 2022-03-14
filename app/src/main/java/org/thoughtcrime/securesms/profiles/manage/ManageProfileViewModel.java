@@ -26,13 +26,13 @@ import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 class ManageProfileViewModel extends ViewModel {
 
@@ -46,8 +46,8 @@ class ManageProfileViewModel extends ViewModel {
   private final LiveData<AvatarState>                avatarState;
   private final SingleLiveEvent<Event>               events;
   private final RecipientForeverObserver             observer;
-  private final ManageProfileRepository              repository;
-  private final MutableLiveData<Optional<Badge>>     badge;
+  private final ManageProfileRepository          repository;
+  private final MutableLiveData<Optional<Badge>> badge;
 
   private byte[] previousAvatar;
 
@@ -59,7 +59,7 @@ class ManageProfileViewModel extends ViewModel {
     this.aboutEmoji          = new MutableLiveData<>();
     this.events              = new SingleLiveEvent<>();
     this.repository          = new ManageProfileRepository();
-    this.badge               = new DefaultValueLiveData<>(Optional.absent());
+    this.badge               = new DefaultValueLiveData<>(Optional.empty());
     this.observer            = this::onRecipientChanged;
     this.avatarState         = LiveDataUtil.combineLatest(Recipient.self().live().getLiveData(), internalAvatarState, (self, state) -> new AvatarState(state, self));
 
@@ -154,10 +154,10 @@ class ManageProfileViewModel extends ViewModel {
 
   private void onRecipientChanged(@NonNull Recipient recipient) {
     profileName.postValue(recipient.getProfileName());
-    username.postValue(recipient.getUsername().orNull());
+    username.postValue(recipient.getUsername().orElse(null));
     about.postValue(recipient.getAbout());
     aboutEmoji.postValue(recipient.getAboutEmoji());
-    badge.postValue(Optional.fromNullable(recipient.getFeaturedBadge()));
+    badge.postValue(Optional.ofNullable(recipient.getFeaturedBadge()));
     renderAvatar(AvatarHelper.getSelfProfileAvatarStream(ApplicationDependencies.getApplication()));
   }
 

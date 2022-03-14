@@ -170,7 +170,6 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -180,6 +179,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
@@ -570,7 +570,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       } else if (isSelf) {
         conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation));
       } else {
-        String subtitle = recipient.getE164().transform(PhoneNumberFormatter::prettyPrint).orNull();
+        String subtitle = recipient.getE164().map(PhoneNumberFormatter::prettyPrint).orElse(null);
 
         if (subtitle == null || subtitle.equals(title)) {
           conversationBanner.hideSubtitle();
@@ -1055,7 +1055,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private void performSave(final MediaMmsMessageRecord message) {
     List<SaveAttachmentTask.Attachment> attachments = Stream.of(message.getSlideDeck().getSlides())
                                                             .filter(s -> s.getUri() != null && (s.hasImage() || s.hasVideo() || s.hasAudio() || s.hasDocument()))
-                                                            .map(s -> new SaveAttachmentTask.Attachment(s.getUri(), s.getContentType(), message.getDateSent(), s.getFileName().orNull()))
+                                                            .map(s -> new SaveAttachmentTask.Attachment(s.getUri(), s.getContentType(), message.getDateSent(), s.getFileName().orElse(null)))
                                                             .toList();
 
     if (!Util.isEmpty(attachments)) {

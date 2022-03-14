@@ -12,7 +12,9 @@ import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.TransportOptions.OnTransportChangedListener;
 import org.thoughtcrime.securesms.TransportOptionsPopup;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 public class SendButton extends AppCompatImageButton
     implements TransportOptions.OnTransportChangedListener,
@@ -22,7 +24,7 @@ public class SendButton extends AppCompatImageButton
 
   private final TransportOptions transportOptions;
 
-  private Optional<TransportOptionsPopup> transportOptionsPopup = Optional.absent();
+  private Optional<TransportOptionsPopup> transportOptionsPopup = Optional.empty();
 
   @SuppressWarnings("unused")
   public SendButton(Context context) {

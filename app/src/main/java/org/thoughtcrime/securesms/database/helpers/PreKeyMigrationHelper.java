@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;

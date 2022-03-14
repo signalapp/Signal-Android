@@ -3,7 +3,8 @@ package org.thoughtcrime.securesms.util;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import org.whispersystems.libsignal.util.guava.Preconditions;
+import org.whispersystems.signalservice.api.util.Preconditions;
+
 
 /**
  * Helps prevent all the @Nullable warnings when working with LiveData.

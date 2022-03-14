@@ -22,7 +22,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.service.VerificationCodeParser;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 public final class RegistrationNavigationActivity extends AppCompatActivity {
 

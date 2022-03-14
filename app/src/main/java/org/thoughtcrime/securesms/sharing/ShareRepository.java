@@ -31,13 +31,13 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.UriUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 class ShareRepository {
 
@@ -52,7 +52,7 @@ class ShareRepository {
         callback.onResult(Optional.of(getResolvedInternal(uri, mimeType)));
       } catch (IOException e) {
         Log.w(TAG, "Failed to resolve!", e);
-        callback.onResult(Optional.absent());
+        callback.onResult(Optional.empty());
       }
     });
   }
@@ -63,10 +63,10 @@ class ShareRepository {
   void getResolved(@NonNull List<Uri> uris, @NonNull Callback<Optional<ShareData>> callback) {
     SignalExecutors.BOUNDED.execute(() -> {
       try {
-        callback.onResult(Optional.fromNullable(getResolvedInternal(uris)));
+        callback.onResult(Optional.ofNullable(getResolvedInternal(uris)));
       } catch (IOException e) {
         Log.w(TAG, "Failed to resolve!", e);
-        callback.onResult(Optional.absent());
+        callback.onResult(Optional.empty());
       }
     });
   }
@@ -135,7 +135,7 @@ class ShareRepository {
 
     TransportOptions options = new TransportOptions(context, true);
     options.setDefaultTransport(TransportOption.Type.SMS);
-    MediaConstraints mmsConstraints = MediaConstraints.getMmsMediaConstraints(options.getSelectedTransport().getSimSubscriptionId().or(-1));
+    MediaConstraints mmsConstraints = MediaConstraints.getMmsMediaConstraints(options.getSelectedTransport().getSimSubscriptionId().orElse(-1));
 
     return mmsConstraints.isSatisfied(context, attachment) || mmsConstraints.canResize(attachment);
   }
@@ -188,8 +188,8 @@ class ShareRepository {
                           false,
                           false,
                           Optional.of(Media.ALL_MEDIA_BUCKET_ID),
-                          Optional.absent(),
-                          Optional.absent()));
+                          Optional.empty(),
+                          Optional.empty()));
 
       if (media.size() >= MediaSendConstants.MAX_PUSH) {
         Log.w(TAG, "Exceeded the attachment limit! Skipping the rest.");

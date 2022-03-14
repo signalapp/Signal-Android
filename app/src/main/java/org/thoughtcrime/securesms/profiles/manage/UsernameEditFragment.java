@@ -63,7 +63,7 @@ public class UsernameEditFragment extends LoggingFragment {
     submitButton.setOnClickListener(v -> viewModel.onUsernameSubmitted(usernameInput.getText().toString()));
     deleteButton.setOnClickListener(v -> viewModel.onUsernameDeleted());
 
-    usernameInput.setText(Recipient.self().getUsername().orNull());
+    usernameInput.setText(Recipient.self().getUsername().orElse(null));
     usernameInput.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void onTextChanged(String text) {

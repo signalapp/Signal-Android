@@ -7,11 +7,11 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Optional;
 
 public final class MessageUtil {
 
@@ -23,7 +23,7 @@ public final class MessageUtil {
    */
   public static SplitResult getSplitMessage(@NonNull Context context, @NonNull String rawText, int maxPrimaryMessageSize) {
     String              bodyText  = rawText;
-    Optional<TextSlide> textSlide = Optional.absent();
+    Optional<TextSlide> textSlide = Optional.empty();
 
     if (bodyText.length() > maxPrimaryMessageSize) {
       bodyText = rawText.substring(0, maxPrimaryMessageSize);

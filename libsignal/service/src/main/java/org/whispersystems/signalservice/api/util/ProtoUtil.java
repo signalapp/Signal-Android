@@ -1,16 +1,11 @@
 package org.whispersystems.signalservice.api.util;
 
-import com.google.protobuf.CodedOutputStream;
 import com.google.protobuf.GeneratedMessageLite;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.UnknownFieldSetLite;
 
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.util.ByteUtil;
-import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;

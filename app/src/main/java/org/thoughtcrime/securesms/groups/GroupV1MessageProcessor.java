@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -37,6 +36,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -94,7 +94,7 @@ public final class GroupV1MessageProcessor {
     GroupContext.Builder builder  = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
-    SignalServiceAttachment avatar  = group.getAvatar().orNull();
+    SignalServiceAttachment avatar  = group.getAvatar().orElse(null);
     List<RecipientId>       members = new LinkedList<>();
 
     if (group.getMembers().isPresent()) {
@@ -103,7 +103,7 @@ public final class GroupV1MessageProcessor {
       }
     }
 
-    database.create(id, group.getName().orNull(), members,
+    database.create(id, group.getName().orElse(null), members,
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null);
 
     Recipient sender = Recipient.externalHighTrustPush(context, content.getSender());
@@ -170,8 +170,8 @@ public final class GroupV1MessageProcessor {
     }
 
     if (group.getName().isPresent() || group.getAvatar().isPresent()) {
-      SignalServiceAttachment avatar = group.getAvatar().orNull();
-      database.update(id, group.getName().orNull(), avatar != null ? avatar.asPointer() : null);
+      SignalServiceAttachment avatar = group.getAvatar().orElse(null);
+      database.update(id, group.getName().orElse(null), avatar != null ? avatar.asPointer() : null);
     }
 
     if (group.getName().isPresent() && group.getName().get().equals(groupRecord.getTitle())) {

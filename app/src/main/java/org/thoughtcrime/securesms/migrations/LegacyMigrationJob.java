@@ -7,7 +7,6 @@ import androidx.preference.PreferenceManager;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;

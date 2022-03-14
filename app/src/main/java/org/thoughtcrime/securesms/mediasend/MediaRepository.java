@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -97,7 +97,7 @@ public class MediaRepository {
   void getMostRecentItem(@NonNull Context context, @NonNull Callback<Optional<Media>> callback) {
     if (!StorageUtil.canReadFromMediaStore()) {
       Log.w(TAG, "No storage permissions!", new Throwable());
-      callback.onComplete(Optional.absent());
+      callback.onComplete(Optional.empty());
       return;
     }
 
@@ -253,7 +253,7 @@ public class MediaRepository {
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
         long   duration    = !isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Video.Media.DURATION)) : 0;
 
-        media.add(fixMimeType(context, new Media(uri, mimetype, date, width, height, size, duration, false, false, Optional.of(bucketId), Optional.absent(), Optional.absent())));
+        media.add(fixMimeType(context, new Media(uri, mimetype, date, width, height, size, duration, false, false, Optional.of(bucketId), Optional.empty(), Optional.empty())));
       }
     }
 
@@ -305,7 +305,7 @@ public class MediaRepository {
   @WorkerThread
   private Optional<Media> getMostRecentItem(@NonNull Context context) {
     List<Media> media = getMediaInBucket(context, Media.ALL_MEDIA_BUCKET_ID, Images.Media.EXTERNAL_CONTENT_URI, true);
-    return media.size() > 0 ? Optional.of(media.get(0)) : Optional.absent();
+    return media.size() > 0 ? Optional.of(media.get(0)) : Optional.empty();
   }
 
   @TargetApi(16)
@@ -332,7 +332,7 @@ public class MediaRepository {
     long size   = media.getSize();
 
     if (size <= 0) {
-      Optional<Long> optionalSize = Optional.fromNullable(PartAuthority.getAttachmentSize(context, media.getUri()));
+      Optional<Long> optionalSize = Optional.ofNullable(PartAuthority.getAttachmentSize(context, media.getUri()));
       size = optionalSize.isPresent() ? optionalSize.get() : 0;
     }
 
@@ -346,7 +346,7 @@ public class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.absent());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.empty());
   }
 
   private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
@@ -372,7 +372,7 @@ public class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.absent());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.empty());
   }
 
   @VisibleForTesting

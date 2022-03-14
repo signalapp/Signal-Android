@@ -33,9 +33,9 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.security.SecureRandom;
+import java.util.Optional;
 
 public abstract class Slide {
 
@@ -66,17 +66,17 @@ public abstract class Slide {
 
   @NonNull
   public Optional<String> getBody() {
-    return Optional.absent();
+    return Optional.empty();
   }
 
   @NonNull
   public Optional<String> getCaption() {
-    return Optional.fromNullable(attachment.getCaption());
+    return Optional.ofNullable(attachment.getCaption());
   }
 
   @NonNull
   public Optional<String> getFileName() {
-    return Optional.fromNullable(attachment.getFileName());
+    return Optional.ofNullable(attachment.getFileName());
   }
 
   @Nullable
@@ -195,7 +195,7 @@ public abstract class Slide {
                                                                    boolean        quote,
                                                          @Nullable AttachmentDatabase.TransformProperties transformProperties)
   {
-    String                 resolvedType    = Optional.fromNullable(MediaUtil.getMimeType(context, uri)).or(defaultMime);
+    String                 resolvedType    = Optional.ofNullable(MediaUtil.getMimeType(context, uri)).orElse(defaultMime);
     String                 fastPreflightId = String.valueOf(new SecureRandom().nextLong());
     return new UriAttachment(uri,
                              resolvedType,
@@ -226,7 +226,7 @@ public abstract class Slide {
       }
     }
 
-    return Optional.fromNullable(MediaUtil.getExtension(context, getUri()));
+    return Optional.ofNullable(MediaUtil.getExtension(context, getUri()));
   }
 
   private static @NonNull String getFileType(Optional<String> fileName) {

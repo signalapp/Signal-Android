@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 import java.util.function.Consumer
 
 /**
@@ -134,9 +134,9 @@ class MultiselectForwardFragmentArgs(
         0,
         isBorderless,
         isVideoGif,
-        Optional.absent(),
-        Optional.fromNullable(caption),
-        Optional.absent()
+        Optional.empty(),
+        Optional.ofNullable(caption),
+        Optional.empty()
       )
     }
   }

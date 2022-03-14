@@ -11,8 +11,7 @@ import com.annimon.stream.Stream;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.model.DatabaseId;
-import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.libsignal.util.guava.Preconditions;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.ArrayList;
 import java.util.Arrays;

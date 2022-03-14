@@ -10,10 +10,10 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
+import java.util.Optional;
 
 public class IncomingTextMessage implements Parcelable {
 
@@ -91,7 +91,7 @@ public class IncomingTextMessage implements Parcelable {
     this.subscriptionId          = -1;
     this.expiresInMillis         = expiresInMillis;
     this.unidentified            = unidentified;
-    this.groupId                 = groupId.orNull();
+    this.groupId                 = groupId.orElse(null);
     this.serverGuid              = serverGuid;
   }
 

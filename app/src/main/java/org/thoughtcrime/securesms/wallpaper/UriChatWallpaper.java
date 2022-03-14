@@ -10,15 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.conversation.colors.ChatColors;
-import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;

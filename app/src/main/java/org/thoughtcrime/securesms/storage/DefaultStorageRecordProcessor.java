@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.storage;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalRecord;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 

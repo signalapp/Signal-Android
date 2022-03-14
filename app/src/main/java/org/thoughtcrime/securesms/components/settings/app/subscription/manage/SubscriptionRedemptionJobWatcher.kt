@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.DonationReceiptRedemptionJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 /**
@@ -27,7 +27,7 @@ object SubscriptionRedemptionJobWatcher {
     if (jobState == null && SignalStore.donationsValues().getSubscriptionRedemptionFailed()) {
       Optional.of(JobTracker.JobState.FAILURE)
     } else {
-      Optional.fromNullable(jobState)
+      Optional.ofNullable(jobState)
     }
   }.distinctUntilChanged()
 }

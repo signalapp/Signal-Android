@@ -3,7 +3,6 @@ package org.whispersystems.signalservice.api.push;
 import com.google.protobuf.ByteString;
 
 import org.whispersystems.libsignal.SignalProtocolAddress;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Collection;

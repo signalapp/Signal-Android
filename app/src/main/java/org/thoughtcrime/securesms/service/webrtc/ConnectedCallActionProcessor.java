@@ -12,8 +12,6 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
-import java.util.List;
-
 /**
  * Handles action for a connected/ongoing call. At this point it's mostly responding
  * to user actions (local and remote) on video/mic and adjusting accordingly.

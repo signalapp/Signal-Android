@@ -76,7 +76,7 @@ class ReviewCardViewHolder extends RecyclerView.ViewHolder {
         setNonContactSublines(context, reviewCard);
         break;
       case YOUR_CONTACT:
-        subtextLine1.setText(reviewCard.getReviewRecipient().getE164().orNull());
+        subtextLine1.setText(reviewCard.getReviewRecipient().getE164().orElse(null));
         subtextLine2.setText(getGroupsInCommon(reviewCard.getInCommonGroupsCount()));
         break;
       default:

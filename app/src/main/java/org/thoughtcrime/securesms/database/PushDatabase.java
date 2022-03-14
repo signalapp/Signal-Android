@@ -8,13 +8,13 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.Optional;
 
 public class PushDatabase extends Database {
 
@@ -57,8 +57,8 @@ public class PushDatabase extends Database {
     } else {
       ContentValues values = new ContentValues();
       values.put(TYPE, envelope.getType());
-      values.put(SOURCE_UUID, envelope.getSourceUuid().orNull());
-      values.put(SOURCE_E164, envelope.getSourceE164().orNull());
+      values.put(SOURCE_UUID, envelope.getSourceUuid().orElse(null));
+      values.put(SOURCE_E164, envelope.getSourceE164().orElse(null));
       values.put(DEVICE_ID, envelope.getSourceDevice());
       values.put(LEGACY_MSG, envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "");
       values.put(CONTENT, envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "");
@@ -134,15 +134,15 @@ public class PushDatabase extends Database {
                                               envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "",
                                               envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "",
                                               String.valueOf(envelope.getTimestamp()),
-                                              String.valueOf(envelope.getSourceUuid().orNull()),
-                                              String.valueOf(envelope.getSourceE164().orNull()) };
+                                              String.valueOf(envelope.getSourceUuid().orElse(null)),
+                                              String.valueOf(envelope.getSourceE164().orElse(null)) };
 
 
     try (Cursor cursor = database.query(TABLE_NAME, null, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         return Optional.of(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
       } else {
-        return Optional.absent();
+        return Optional.empty();
       }
     }
   }

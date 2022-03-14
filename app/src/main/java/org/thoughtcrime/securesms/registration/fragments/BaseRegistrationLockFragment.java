@@ -1,9 +1,5 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
-import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
-
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.InputType;
@@ -35,6 +31,10 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
+
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
 
 /**
  * Base fragment used by registration and change number flow to deal with a registration locked account.

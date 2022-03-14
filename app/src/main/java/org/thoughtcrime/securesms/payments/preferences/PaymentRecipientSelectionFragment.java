@@ -24,8 +24,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
-import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 

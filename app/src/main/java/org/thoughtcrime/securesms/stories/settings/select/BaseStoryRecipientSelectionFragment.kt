@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.ShareContact
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.findListener
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 import java.util.function.Consumer
 
 abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_base_recipient_selection_fragment), ContactSelectionListFragment.OnContactSelectedListener, ContactSelectionListFragment.HeaderActionProvider {

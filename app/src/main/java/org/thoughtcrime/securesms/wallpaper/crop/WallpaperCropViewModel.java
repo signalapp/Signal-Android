@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.signal.imageeditor.core.RendererContext;
 import org.signal.imageeditor.core.model.EditorModel;
 import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;

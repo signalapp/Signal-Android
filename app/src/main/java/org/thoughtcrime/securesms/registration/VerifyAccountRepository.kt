@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
 import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.KbsPinData
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
@@ -23,6 +22,7 @@ import org.whispersystems.signalservice.internal.push.RequestVerificationCodeRes
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.io.IOException
 import java.util.Locale
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 /**
@@ -44,9 +44,9 @@ class VerifyAccountRepository(private val context: Application) {
       val pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, fcmToken, e164, PUSH_REQUEST_TIMEOUT)
 
       if (mode == Mode.PHONE_CALL) {
-        accountManager.requestVoiceVerificationCode(Locale.getDefault(), Optional.fromNullable(captchaToken), pushChallenge, fcmToken)
+        accountManager.requestVoiceVerificationCode(Locale.getDefault(), Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
       } else {
-        accountManager.requestSmsVerificationCode(mode.isSmsRetrieverSupported, Optional.fromNullable(captchaToken), pushChallenge, fcmToken)
+        accountManager.requestSmsVerificationCode(mode.isSmsRetrieverSupported, Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
       }
     }.subscribeOn(Schedulers.io())
   }

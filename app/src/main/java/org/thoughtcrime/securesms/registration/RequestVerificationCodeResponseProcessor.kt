@@ -6,7 +6,6 @@ import org.whispersystems.signalservice.api.push.exceptions.NonNormalizedPhoneNu
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor
 import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse
-import java.lang.IllegalStateException
 
 /**
  * Process responses from requesting an SMS or Phone code from the server.

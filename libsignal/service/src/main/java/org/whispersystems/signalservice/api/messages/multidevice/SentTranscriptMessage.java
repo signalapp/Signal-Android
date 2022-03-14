@@ -6,13 +6,14 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class SentTranscriptMessage {

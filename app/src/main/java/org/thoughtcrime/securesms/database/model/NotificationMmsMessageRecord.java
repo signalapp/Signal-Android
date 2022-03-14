@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 
 /**
  * Represents the message record model for MMS messages that are

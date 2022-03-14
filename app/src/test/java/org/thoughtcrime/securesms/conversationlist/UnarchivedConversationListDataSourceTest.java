@@ -3,9 +3,7 @@ package org.thoughtcrime.securesms.conversationlist;
 import android.app.Application;
 import android.database.Cursor;
 
-
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

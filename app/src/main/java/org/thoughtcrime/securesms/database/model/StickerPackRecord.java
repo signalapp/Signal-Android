@@ -4,9 +4,8 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import org.whispersystems.libsignal.util.guava.Optional;
-
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents a record for a sticker pack in the {@link org.thoughtcrime.securesms.database.StickerDatabase}.
@@ -29,8 +28,8 @@ public final class StickerPackRecord {
   {
     this.packId    = packId;
     this.packKey   = packKey;
-    this.title     = TextUtils.isEmpty(title) ? Optional.absent() : Optional.of(title);
-    this.author    = TextUtils.isEmpty(author) ? Optional.absent() : Optional.of(author);
+    this.title     = TextUtils.isEmpty(title) ? Optional.empty() : Optional.of(title);
+    this.author    = TextUtils.isEmpty(author) ? Optional.empty() : Optional.of(author);
     this.cover     = cover;
     this.installed = installed;
   }

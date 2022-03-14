@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -51,6 +50,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class PushMediaSendJob extends PushSendJob {
@@ -206,9 +206,9 @@ public class PushMediaSendJob extends PushSendJob {
       SignalServiceMessageSender                 messageSender       = ApplicationDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address             = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       List<Attachment>                           attachments         = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
-      List<SignalServiceAttachment>              serviceAttachments  = getAttachmentPointersFor(attachments);
-      Optional<byte[]>                           profileKey          = getProfileKey(messageRecipient);
-      Optional<SignalServiceDataMessage.Sticker> sticker             = getStickerFor(message);
+      List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
+      Optional<byte[]>                           profileKey         = getProfileKey(messageRecipient);
+      Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
       List<SharedContact>                        sharedContacts      = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews            = getPreviewsFor(message);
       SignalServiceDataMessage.Builder           mediaMessageBuilder = SignalServiceDataMessage.newBuilder()
@@ -217,8 +217,8 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                                .withTimestamp(message.getSentTimeMillis())
                                                                                                .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                                                .withViewOnce(message.isViewOnce())
-                                                                                               .withProfileKey(profileKey.orNull())
-                                                                                               .withSticker(sticker.orNull())
+                                                                                               .withProfileKey(profileKey.orElse(null))
+                                                                                               .withSticker(sticker.orElse(null))
                                                                                                .withSharedContacts(sharedContacts)
                                                                                                .withPreviews(previews)
                                                                                                .asExpirationUpdate(message.isExpirationUpdate());
@@ -233,7 +233,7 @@ public class PushMediaSendJob extends PushSendJob {
           throw new UndeliverableMessageException(e);
         }
       } else {
-        mediaMessageBuilder.withQuote(getQuoteFor(message).orNull());
+        mediaMessageBuilder.withQuote(getQuoteFor(message).orElse(null));
       }
 
       SignalServiceDataMessage mediaMessage = mediaMessageBuilder.build();

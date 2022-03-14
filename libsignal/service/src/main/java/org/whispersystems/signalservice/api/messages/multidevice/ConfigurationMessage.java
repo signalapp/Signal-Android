@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.messages.multidevice;
 
 
-import org.whispersystems.libsignal.util.guava.Optional;
+import java.util.Optional;
 
 public class ConfigurationMessage {
 

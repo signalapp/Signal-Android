@@ -3,7 +3,6 @@ package org.whispersystems.signalservice.api.crypto;
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Arrays;
 
 /**
  * SkippingOutputStream will skip a number of bytes being written as specified by toSkip and then

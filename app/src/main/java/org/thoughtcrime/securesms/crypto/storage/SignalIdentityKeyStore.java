@@ -11,9 +11,9 @@ import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 /**

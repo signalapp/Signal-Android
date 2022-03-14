@@ -14,10 +14,10 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.whispersystems.libsignal.util.guava.Optional
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
+import java.util.Optional
 import javax.annotation.meta.Exhaustive
 
 /**
@@ -128,6 +128,6 @@ object AvatarRenderer {
   }
 
   private fun createMedia(uri: Uri, size: Long): Media {
-    return Media(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), DIMENSIONS, DIMENSIONS, size, 0, false, false, Optional.absent(), Optional.absent(), Optional.absent())
+    return Media(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), DIMENSIONS, DIMENSIONS, size, 0, false, false, Optional.empty(), Optional.empty(), Optional.empty())
   }
 }

@@ -135,7 +135,6 @@ import org.thoughtcrime.securesms.util.VibrateUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.NullableStub;
 import org.thoughtcrime.securesms.util.views.Stub;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -143,6 +142,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -2080,7 +2080,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, messageRecord.getThreadId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getTimestamp());
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
-        intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
+        intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orElse(null));
         intent.putExtra(MediaPreviewActivity.IS_VIDEO_GIF, slide.isVideoGif());
         intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, false);
 

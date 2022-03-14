@@ -66,13 +66,13 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -524,8 +524,8 @@ public class ShareActivity extends PassphraseRequiredActivity
   private Set<ShareContactAndThread> resolvedShareContacts(@NonNull Set<ShareContact> sharedContacts) {
     Set<Recipient> recipients = Stream.of(sharedContacts)
                                       .map(contact -> contact.getRecipientId()
-                                                             .transform(Recipient::resolved)
-                                                             .or(() -> Recipient.external(this, contact.getNumber())))
+                                                             .map(Recipient::resolved)
+                                                             .orElseGet(() -> Recipient.external(this, contact.getNumber())))
                                       .collect(Collectors.toSet());
 
     Map<RecipientId, Long> existingThreads = SignalDatabase.threads()
@@ -591,7 +591,7 @@ public class ShareActivity extends PassphraseRequiredActivity
         return;
       }
 
-      onResolved.accept(data.orNull());
+      onResolved.accept(data.orElse(null));
     });
   }
 
@@ -681,9 +681,9 @@ public class ShareActivity extends PassphraseRequiredActivity
                               0,
                               false,
                               false,
-                              Optional.absent(),
-                              Optional.absent(),
-                              Optional.absent()));
+                              Optional.empty(),
+                              Optional.empty(),
+                              Optional.empty()));
         }
 
         Intent intent = MediaSelectionActivity.share(this,

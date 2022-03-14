@@ -1,7 +1,8 @@
 package org.whispersystems.signalservice.internal.push;
 
-import org.whispersystems.libsignal.util.guava.Optional;
 
+
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +27,7 @@ public final class ContentRange {
       }
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   private ContentRange(int rangeStart, int rangeEnd, int totalSize) {

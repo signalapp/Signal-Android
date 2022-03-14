@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.KeyValuePersistentStorage;
 import org.thoughtcrime.securesms.util.CursorUtil;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 

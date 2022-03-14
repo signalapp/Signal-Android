@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
@@ -69,7 +68,7 @@ final class SafetyNumberChangeAdapter extends ListAdapter<ChangedRecipient, Safe
           subtitle.setCompoundDrawables(check, null, null, null);
         }
       } else if (changedRecipient.getRecipient().hasAUserSetDisplayName(itemView.getContext())) {
-        subtitle.setText(changedRecipient.getRecipient().getE164().or(""));
+        subtitle.setText(changedRecipient.getRecipient().getE164().orElse(""));
         subtitle.setCompoundDrawables(null, null, null, null);
       } else {
         subtitle.setText("");

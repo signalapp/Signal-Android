@@ -4,8 +4,6 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
@@ -17,6 +15,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public final class SignalContactRecord implements SignalRecord {
 
@@ -224,7 +223,7 @@ public final class SignalContactRecord implements SignalRecord {
       }
 
       builder.setServiceUuid(address.getServiceId().toString());
-      builder.setServiceE164(address.getNumber().or(""));
+      builder.setServiceE164(address.getNumber().orElse(""));
     }
 
     public Builder setGivenName(String givenName) {

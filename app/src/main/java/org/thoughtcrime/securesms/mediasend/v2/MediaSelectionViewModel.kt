@@ -240,7 +240,7 @@ class MediaSelectionViewModel(
 
   fun getMediaConstraints(): MediaConstraints {
     return if (store.state.transportOption.isSms) {
-      MediaConstraints.getMmsMediaConstraints(store.state.transportOption.simSubscriptionId.or(-1))
+      MediaConstraints.getMmsMediaConstraints(store.state.transportOption.simSubscriptionId.orElse(-1))
     } else {
       MediaConstraints.getPushMediaConstraints()
     }

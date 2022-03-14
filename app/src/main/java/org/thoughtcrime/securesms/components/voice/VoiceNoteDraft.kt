@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.voice
 
 import android.net.Uri
 import org.thoughtcrime.securesms.database.DraftDatabase
-import java.lang.IllegalArgumentException
 
 private const val SIZE = "size"
 

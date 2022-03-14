@@ -7,10 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.testutil.LogRecorder;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
@@ -267,8 +266,8 @@ public final class RecipientIdCacheTest {
     Recipient mock = mock(Recipient.class);
 
     when(mock.getId()).thenReturn(recipientId);
-    when(mock.getServiceId()).thenReturn(Optional.fromNullable(serviceId));
-    when(mock.getE164()).thenReturn(Optional.fromNullable(e164));
+    when(mock.getServiceId()).thenReturn(Optional.ofNullable(serviceId));
+    when(mock.getE164()).thenReturn(Optional.ofNullable(e164));
 
     return mock;
   }

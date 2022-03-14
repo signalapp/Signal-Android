@@ -76,8 +76,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.libsignal.util.guava.Preconditions;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -87,8 +86,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class MessageSender {
 

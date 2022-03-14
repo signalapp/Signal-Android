@@ -16,11 +16,11 @@ import org.thoughtcrime.securesms.util.CursorUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.video.VideoUtil
-import org.whispersystems.libsignal.util.guava.Optional
 import java.io.FileDescriptor
 import java.io.FileInputStream
 import java.io.IOException
 import java.util.LinkedList
+import java.util.Optional
 
 private val TAG = Log.tag(MediaCaptureRepository::class.java)
 
@@ -105,8 +105,8 @@ class MediaCaptureRepository(context: Context) {
         false,
         false,
         Optional.of(Media.ALL_MEDIA_BUCKET_ID),
-        Optional.absent(),
-        Optional.absent()
+        Optional.empty(),
+        Optional.empty()
       )
     } catch (e: IOException) {
       return null
@@ -159,8 +159,8 @@ class MediaCaptureRepository(context: Context) {
                 false,
                 false,
                 Optional.of(bucketId),
-                Optional.absent(),
-                Optional.absent()
+                Optional.empty(),
+                Optional.empty()
               )
             )
           )

@@ -87,7 +87,7 @@ public final class MultiShareSender {
       List<Mention>   mentions       = getValidMentionsForRecipient(recipient, multiShareArgs.getMentions());
       TransportOption transport      = resolveTransportOption(context, recipient);
       boolean         forceSms       = recipient.isForceSmsSelection() && transport.isSms();
-      int             subscriptionId = transport.getSimSubscriptionId().or(-1);
+      int             subscriptionId = transport.getSimSubscriptionId().orElse(-1);
       long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
       boolean         needsSplit     = !transport.isSms() &&
                                        message != null    &&

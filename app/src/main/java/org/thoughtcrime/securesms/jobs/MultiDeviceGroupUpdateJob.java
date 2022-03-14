@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -40,6 +39,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -114,19 +114,19 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
           RecipientId               recipientId     = SignalDatabase.recipients().getOrInsertFromPossiblyMigratedGroupId(record.getId());
           Recipient                 recipient       = Recipient.resolved(recipientId);
-          Optional<Integer>         expirationTimer = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.absent();
+          Optional<Integer>         expirationTimer = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.empty();
           Map<RecipientId, Integer> inboxPositions  = SignalDatabase.threads().getInboxPositions();
           Set<RecipientId>          archived        = SignalDatabase.threads().getArchivedRecipients();
 
           out.write(new DeviceGroup(record.getId().getDecodedId(),
-                                    Optional.fromNullable(record.getTitle()),
+                                    Optional.ofNullable(record.getTitle()),
                                     members,
                                     getAvatar(record.getRecipientId()),
                                     record.isActive(),
                                     expirationTimer,
                                     Optional.of(ChatColorsMapper.getMaterialColor(recipient.getChatColors()).serialize()),
                                     recipient.isBlocked(),
-                                    Optional.fromNullable(inboxPositions.get(recipientId)),
+                                    Optional.ofNullable(inboxPositions.get(recipientId)),
                                     archived.contains(recipientId)));
 
           hasData = true;
@@ -186,7 +186,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
 
   private Optional<SignalServiceAttachmentStream> getAvatar(@NonNull RecipientId recipientId) throws IOException {
-    if (!AvatarHelper.hasAvatar(context, recipientId)) return Optional.absent();
+    if (!AvatarHelper.hasAvatar(context, recipientId)) return Optional.empty();
 
     return Optional.of(SignalServiceAttachment.newStreamBuilder()
                                               .withStream(AvatarHelper.getAvatar(context, recipientId))

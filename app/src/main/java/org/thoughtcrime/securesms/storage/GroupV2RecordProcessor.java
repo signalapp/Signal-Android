@@ -13,12 +13,12 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 
 public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<SignalGroupV2Record> {
 
@@ -51,8 +51,8 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
 
     Optional<RecipientId> recipientId = recipientDatabase.getByGroupId(groupId);
 
-    return recipientId.transform(recipientDatabase::getRecordForSync)
-                      .transform(settings -> {
+    return recipientId.map(recipientDatabase::getRecordForSync)
+                      .map(settings -> {
                         if (settings.getSyncExtras().getGroupMasterKey() != null) {
                           return StorageSyncModels.localToRemoteRecord(settings);
                         } else {
@@ -61,7 +61,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
                           return StorageSyncModels.localToRemoteRecord(settings, record.getMasterKeyOrThrow());
                         }
                       })
-                      .transform(r -> r.getGroupV2().get());
+                      .map(r -> r.getGroupV2().get());
   }
 
   @Override

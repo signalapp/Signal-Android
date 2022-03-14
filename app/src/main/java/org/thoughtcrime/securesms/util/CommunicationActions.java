@@ -197,7 +197,7 @@ public class CommunicationActions {
     GroupId.V2 groupId = GroupId.v2(groupInviteLinkUrl.getGroupMasterKey());
 
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
-      GroupDatabase.GroupRecord group = SignalDatabase.groups().getGroup(groupId).orNull();
+      GroupDatabase.GroupRecord group = SignalDatabase.groups().getGroup(groupId).orElse(null);
 
       return group != null && group.isActive() ? Recipient.resolved(group.getRecipientId())
                                                : null;

@@ -4,7 +4,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -27,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -66,9 +66,9 @@ public class WebSocketConnection extends WebSocketListener {
 
   private final String                                    name;
   private final String                                    wsUri;
-  private final TrustStore                                trustStore;
-  private final Optional<CredentialsProvider>             credentialsProvider;
-  private final String                                    signalAgent;
+  private final TrustStore                    trustStore;
+  private final Optional<CredentialsProvider> credentialsProvider;
+  private final String                        signalAgent;
   private final HealthMonitor                             healthMonitor;
   private final List<Interceptor>                         interceptors;
   private final Optional<Dns>                             dns;
@@ -137,7 +137,7 @@ public class WebSocketConnection extends WebSocketListener {
                                                                                        socketFactory.second())
                                                                      .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
                                                                      .readTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS)
-                                                                     .dns(dns.or(Dns.SYSTEM))
+                                                                     .dns(dns.orElse(Dns.SYSTEM))
                                                                      .connectTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS);
 
       for (Interceptor interceptor : interceptors) {

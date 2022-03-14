@@ -6,8 +6,9 @@
 
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+
+import java.util.Optional;
 
 /**
  * Represents a received SignalServiceAttachment "handle."  This

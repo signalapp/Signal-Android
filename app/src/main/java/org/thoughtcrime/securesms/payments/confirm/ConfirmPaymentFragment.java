@@ -33,8 +33,8 @@ import org.thoughtcrime.securesms.payments.Payee;
 import org.thoughtcrime.securesms.payments.preferences.RecipientHasNotEnabledPaymentsDialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
 

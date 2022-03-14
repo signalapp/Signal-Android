@@ -9,12 +9,12 @@ import android.content.pm.Signature;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.Optional;
 
 public final class AppSignatureUtil {
 
@@ -39,13 +39,13 @@ public final class AppSignatureUtil {
 
       if (signatures.length > 0) {
         String hash = hash(packageName, signatures[0].toCharsString());
-        return Optional.fromNullable(hash);
+        return Optional.ofNullable(hash);
       }
     } catch (PackageManager.NameNotFoundException e) {
       Log.w(TAG, e);
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   private static String hash(String packageName, String signature) {

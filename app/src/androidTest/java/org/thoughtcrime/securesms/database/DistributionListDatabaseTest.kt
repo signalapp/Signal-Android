@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ACI
-import java.lang.IllegalStateException
 import java.util.UUID
 
 class DistributionListDatabaseTest {

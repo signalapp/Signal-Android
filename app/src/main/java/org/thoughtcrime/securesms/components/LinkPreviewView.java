@@ -22,13 +22,13 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import okhttp3.HttpUrl;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * The view shown in the compose box or conversation that represents the state of the link preview.

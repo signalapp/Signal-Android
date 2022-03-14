@@ -15,7 +15,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 /**
  * A bottom sheet to be shown when we need to prompt the user to fill out a reCAPTCHA.

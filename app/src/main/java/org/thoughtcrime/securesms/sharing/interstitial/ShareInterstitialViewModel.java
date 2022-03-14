@@ -17,8 +17,8 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.sharing.MultiShareSender;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 
 class ShareInterstitialViewModel extends ViewModel {
 

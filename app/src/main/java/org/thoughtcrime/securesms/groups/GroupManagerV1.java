@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.ByteArrayInputStream;
@@ -37,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 final class GroupManagerV1 {
@@ -213,7 +213,7 @@ final class GroupManagerV1 {
 
     if (!groupDatabase.isActive(groupId)) {
       Log.w(TAG, "Group has already been left.");
-      return Optional.absent();
+      return Optional.empty();
     }
 
     return Optional.of(GroupUtil.createGroupV1LeaveMessage(groupId, groupRecipient));

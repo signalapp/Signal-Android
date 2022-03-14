@@ -8,10 +8,10 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 final class ContactHolder {
 
@@ -46,7 +46,7 @@ final class ContactHolder {
                                   phoneNumberRecord.getContactPhotoUri(),
                                   phoneNumberRecord.getContactLabel(),
                                   phoneNumberRecord.getPhoneType(),
-                                  Optional.fromNullable(phoneNumberRecord.getContactUri()).transform(Uri::toString).orNull());
+                                  Optional.ofNullable(phoneNumberRecord.getContactUri()).map(Uri::toString).orElse(null));
     }
   }
 

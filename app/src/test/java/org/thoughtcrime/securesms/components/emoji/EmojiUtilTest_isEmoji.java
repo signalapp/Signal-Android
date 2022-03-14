@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.test.core.app.ApplicationProvider;
 
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

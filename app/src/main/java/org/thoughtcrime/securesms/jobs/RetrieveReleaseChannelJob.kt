@@ -134,7 +134,7 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
     Log.i(TAG, "Updating release notes to ${Hex.toStringCondensed(manifestMd5)}")
 
     val values = SignalStore.releaseChannelValues()
-    val allReleaseNotes: ReleaseNotes? = S3.getAndVerifyObject(MANIFEST, ReleaseNotes::class.java, manifestMd5).result.orNull()
+    val allReleaseNotes: ReleaseNotes? = S3.getAndVerifyObject(MANIFEST, ReleaseNotes::class.java, manifestMd5).result.orElse(null)
 
     if (allReleaseNotes != null) {
       val resolvedNotes: List<FullReleaseNote?> = allReleaseNotes.announcements.asSequence()
@@ -227,7 +227,7 @@ class RetrieveReleaseChannelJob private constructor(private val force: Boolean, 
 
       if (translationJson.result.isPresent) {
         return FullReleaseNote(releaseNote, translationJson.result.get())
-      } else if (translationJson.status != 404 && translationJson.executionError.orNull() !is S3.Md5FailureException) {
+      } else if (translationJson.status != 404 && translationJson.executionError.orElse(null) !is S3.Md5FailureException) {
         throw RetryLaterException()
       }
     }

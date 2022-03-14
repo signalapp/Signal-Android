@@ -9,9 +9,6 @@ import org.whispersystems.libsignal.state.SessionRecord
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
-import java.util.ArrayList
-import java.util.HashMap
-import java.util.LinkedHashMap
 import java.util.LinkedList
 
 class SessionDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {

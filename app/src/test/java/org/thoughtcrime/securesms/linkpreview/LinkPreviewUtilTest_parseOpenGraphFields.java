@@ -4,13 +4,12 @@ import android.app.Application;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.robolectric.ParameterizedRobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -179,9 +178,9 @@ public class LinkPreviewUtilTest_parseOpenGraphFields {
   @Test
   public void parseOpenGraphFields() {
     LinkPreviewUtil.OpenGraph openGraph = LinkPreviewUtil.parseOpenGraphFields(html);
-    assertEquals(Optional.fromNullable(title), openGraph.getTitle());
-    assertEquals(Optional.fromNullable(description), openGraph.getDescription());
+    assertEquals(Optional.ofNullable(title), openGraph.getTitle());
+    assertEquals(Optional.ofNullable(description), openGraph.getDescription());
     assertEquals(date, openGraph.getDate());
-    assertEquals(Optional.fromNullable(imageUrl), openGraph.getImageUrl());
+    assertEquals(Optional.ofNullable(imageUrl), openGraph.getImageUrl());
   }
 }

@@ -5,8 +5,8 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
+import static java.util.Arrays.asList;
 
 public final class MoneyTest_MobileCoin_comparators {
 

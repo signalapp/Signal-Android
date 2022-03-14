@@ -4,7 +4,6 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -17,6 +16,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public final class SignalAccountRecord implements SignalRecord {
 
@@ -298,19 +298,19 @@ public final class SignalAccountRecord implements SignalRecord {
     }
 
     public static PinnedConversation forContact(SignalServiceAddress address) {
-      return new PinnedConversation(Optional.of(address), Optional.absent(), Optional.absent());
+      return new PinnedConversation(Optional.of(address), Optional.empty(), Optional.empty());
     }
 
     public static PinnedConversation forGroupV1(byte[] groupId) {
-      return new PinnedConversation(Optional.absent(), Optional.of(groupId), Optional.absent());
+      return new PinnedConversation(Optional.empty(), Optional.of(groupId), Optional.empty());
     }
 
     public static PinnedConversation forGroupV2(byte[] masterKey) {
-      return new PinnedConversation(Optional.absent(), Optional.absent(), Optional.of(masterKey));
+      return new PinnedConversation(Optional.empty(), Optional.empty(), Optional.of(masterKey));
     }
 
     private static PinnedConversation forEmpty() {
-      return new PinnedConversation(Optional.absent(), Optional.absent(), Optional.absent());
+      return new PinnedConversation(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     static PinnedConversation fromRemote(AccountRecord.PinnedConversation remote) {
@@ -391,8 +391,8 @@ public final class SignalAccountRecord implements SignalRecord {
         this.currencyCode = Optional.of(currencyCode);
         this.id           = Optional.of(id);
       } else {
-        this.currencyCode = Optional.absent();
-        this.id           = Optional.absent();
+        this.currencyCode = Optional.empty();
+        this.id           = Optional.empty();
       }
     }
 
@@ -425,12 +425,12 @@ public final class SignalAccountRecord implements SignalRecord {
     private final Optional<byte[]> entropy;
 
     public Payments(boolean enabled, Optional<byte[]> entropy) {
-      byte[] entropyBytes = entropy.orNull();
+      byte[] entropyBytes = entropy.orElse(null);
       if (entropyBytes != null && entropyBytes.length != PaymentsConstants.PAYMENTS_ENTROPY_LENGTH) {
         Log.w(TAG, "Blocked entropy of length " + entropyBytes.length);
         entropyBytes = null;
       }
-      this.entropy = Optional.fromNullable(entropyBytes);
+      this.entropy = Optional.ofNullable(entropyBytes);
       this.enabled = enabled && this.entropy.isPresent();
     }
 

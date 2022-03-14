@@ -39,6 +39,7 @@ import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -189,7 +190,7 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
 
     public static CharSequence contactToToken(@NonNull Context context, @NonNull Recipient c) {
       String name       = c.getDisplayName(context);
-      String number     = c.getE164().or(c.getEmail()).or("");
+      String number     = OptionalUtil.or(c.getE164(), c.getEmail()).orElse("");
       SpannableString s = new SpannableString(RecipientsFormatter.formatNameAndNumber(name, number));
       int len           = s.length();
 

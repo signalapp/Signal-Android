@@ -1,7 +1,8 @@
 package org.whispersystems.signalservice.api.util;
 
 import org.junit.Test;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,17 +13,17 @@ public final class OptionalUtilTest {
 
   @Test
   public void absent_are_equal() {
-    assertTrue(OptionalUtil.byteArrayEquals(Optional.<byte[]>absent(), Optional.<byte[]>absent()));
+    assertTrue(OptionalUtil.byteArrayEquals(Optional.empty(), Optional.empty()));
   }
 
   @Test
   public void first_non_absent_not_equal() {
-    assertFalse(OptionalUtil.byteArrayEquals(Optional.of(new byte[1]), Optional.<byte[]>absent()));
+    assertFalse(OptionalUtil.byteArrayEquals(Optional.of(new byte[1]), Optional.empty()));
   }
 
   @Test
   public void second_non_absent_not_equal() {
-    assertFalse(OptionalUtil.byteArrayEquals(Optional.<byte[]>absent(), Optional.of(new byte[1])));
+    assertFalse(OptionalUtil.byteArrayEquals(Optional.empty(), Optional.of(new byte[1])));
   }
 
   @Test
@@ -47,7 +48,26 @@ public final class OptionalUtilTest {
 
   @Test
   public void hash_code_absent() {
-    assertEquals(0, OptionalUtil.byteArrayHashCode(Optional.<byte[]>absent()));
+    assertEquals(0, OptionalUtil.byteArrayHashCode(Optional.empty()));
   }
 
+  @Test
+  public void or_singleAbsent() {
+    assertFalse(OptionalUtil.or(Optional.empty()).isPresent());
+  }
+
+  @Test
+  public void or_multipleAbsent() {
+    assertFalse(OptionalUtil.or(Optional.empty(), Optional.empty()).isPresent());
+  }
+
+  @Test
+  public void or_firstHasValue() {
+    assertEquals(5, OptionalUtil.or(Optional.of(5), Optional.empty()).get().longValue());
+  }
+
+  @Test
+  public void or_secondHasValue() {
+    assertEquals(5, OptionalUtil.or(Optional.empty(), Optional.of(5)).get().longValue());
+  }
 }

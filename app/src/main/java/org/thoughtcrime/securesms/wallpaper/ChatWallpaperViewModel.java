@@ -20,16 +20,16 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class ChatWallpaperViewModel extends ViewModel {
 
-  private final ChatWallpaperRepository                  repository              = new ChatWallpaperRepository();
-  private final MutableLiveData<Optional<ChatWallpaper>> wallpaper               = new MutableLiveData<>();
-  private final MutableLiveData<List<ChatWallpaper>>     builtins                = new MutableLiveData<>();
+  private final ChatWallpaperRepository                  repository = new ChatWallpaperRepository();
+  private final MutableLiveData<Optional<ChatWallpaper>> wallpaper  = new MutableLiveData<>();
+  private final MutableLiveData<List<ChatWallpaper>>     builtins   = new MutableLiveData<>();
   private final MutableLiveData<Boolean>                 dimInDarkTheme          = new MutableLiveData<>();
   private final MutableLiveData<Boolean>                 enableWallpaperControls = new MutableLiveData<>();
   private final MutableLiveData<ChatColors>              chatColors              = new MutableLiveData<>();
@@ -44,7 +44,7 @@ public class ChatWallpaperViewModel extends ViewModel {
     ChatWallpaper currentWallpaper = repository.getCurrentWallpaper(recipientId);
     dimInDarkTheme.setValue(currentWallpaper == null || currentWallpaper.getDimLevelForDarkTheme() > 0f);
     enableWallpaperControls.setValue(hasClearableWallpaper());
-    wallpaper.setValue(Optional.fromNullable(currentWallpaper));
+    wallpaper.setValue(Optional.ofNullable(currentWallpaper));
 
     if (recipientId != null) {
       liveRecipient = Recipient.live(recipientId);
@@ -87,7 +87,7 @@ public class ChatWallpaperViewModel extends ViewModel {
   }
 
   void setWallpaper(@Nullable ChatWallpaper chatWallpaper) {
-    wallpaper.setValue(Optional.fromNullable(chatWallpaper));
+    wallpaper.setValue(Optional.ofNullable(chatWallpaper));
   }
 
   void saveWallpaperSelection() {
@@ -100,7 +100,7 @@ public class ChatWallpaperViewModel extends ViewModel {
       if (recipientId != null) {
         ChatWallpaper globalWallpaper = SignalStore.wallpaper().getWallpaper();
 
-        this.wallpaper.setValue(Optional.fromNullable(globalWallpaper));
+        this.wallpaper.setValue(Optional.ofNullable(globalWallpaper));
         this.dimInDarkTheme.setValue(globalWallpaper == null || globalWallpaper.getDimLevelForDarkTheme() > 0);
       }
 
@@ -110,7 +110,7 @@ public class ChatWallpaperViewModel extends ViewModel {
       enableWallpaperControls.setValue(true);
     }
 
-    Optional<ChatWallpaper> updated = wallpaper.transform(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkTheme ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f));
+    Optional<ChatWallpaper> updated = wallpaper.map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkTheme ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f));
 
     if (updated.isPresent()) {
       repository.saveWallpaper(recipientId, updated.get(), this::refreshChatColors);

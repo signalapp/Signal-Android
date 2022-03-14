@@ -83,7 +83,7 @@ public final class SupportEmailUtil {
   }
 
   private static CharSequence getSignalPackage(@NonNull Context context) {
-    return String.format("%s (%s)", BuildConfig.APPLICATION_ID, AppSignatureUtil.getAppSignature(context).or("Unknown"));
+    return String.format("%s (%s)", BuildConfig.APPLICATION_ID, AppSignatureUtil.getAppSignature(context).orElse("Unknown"));
   }
 
   private static CharSequence getRegistrationLockEnabled(@NonNull Context context) {

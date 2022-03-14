@@ -6,29 +6,29 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 class ShareData {
 
-  private final Optional<Uri>              uri;
-  private final Optional<String>           mimeType;
+  private final Optional<Uri>    uri;
+  private final Optional<String> mimeType;
   private final Optional<ArrayList<Media>> media;
   private final boolean                    external;
   private final boolean                    isMmsOrSmsSupported;
 
   static ShareData forIntentData(@NonNull Uri uri, @NonNull String mimeType, boolean external, boolean isMmsOrSmsSupported) {
-    return new ShareData(Optional.of(uri), Optional.of(mimeType), Optional.absent(), external, isMmsOrSmsSupported);
+    return new ShareData(Optional.of(uri), Optional.of(mimeType), Optional.empty(), external, isMmsOrSmsSupported);
   }
 
   static ShareData forPrimitiveTypes() {
-    return new ShareData(Optional.absent(), Optional.absent(), Optional.absent(), true, true);
+    return new ShareData(Optional.empty(), Optional.empty(), Optional.empty(), true, true);
   }
 
   static ShareData forMedia(@NonNull List<Media> media, boolean isMmsOrSmsSupported) {
-    return new ShareData(Optional.absent(), Optional.absent(), Optional.of(new ArrayList<>(media)), true, isMmsOrSmsSupported);
+    return new ShareData(Optional.empty(), Optional.empty(), Optional.of(new ArrayList<>(media)), true, isMmsOrSmsSupported);
   }
 
   private ShareData(Optional<Uri> uri, Optional<String> mimeType, Optional<ArrayList<Media>> media, boolean external, boolean isMmsOrSmsSupported) {

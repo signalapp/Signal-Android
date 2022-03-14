@@ -75,7 +75,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
 
     var contact: DeviceContact? = deviceContacts.read()
     while (contact != null) {
-      val recipient = Recipient.externalPush(contact.address.serviceId, contact.address.number.orNull(), true)
+      val recipient = Recipient.externalPush(contact.address.serviceId, contact.address.number.orElse(null), true)
 
       if (recipient.isSelf) {
         contact = deviceContacts.read()

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.logging.Log;
+import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.database.PaymentDatabase.PaymentTransaction;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -17,14 +18,13 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil;
 import org.thoughtcrime.securesms.payments.PaymentTransactionLiveData;
 import org.thoughtcrime.securesms.payments.PaymentsAddressException;
 import org.thoughtcrime.securesms.payments.confirm.ConfirmPaymentRepository.ConfirmPaymentResult;
-import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.livedata.Store;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.Money;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -68,7 +68,7 @@ final class ConfirmPaymentViewModel extends ViewModel {
     this.paymentDone = Transformations.distinctUntilChanged(Transformations.map(store.getStateLiveData(), state -> state.getStatus().isTerminalStatus()));
 
     LiveData<Optional<FiatMoney>> exchange = FiatMoneyUtil.getExchange(amount);
-    this.store.update(exchange, (exchange1, confirmPaymentState1) -> confirmPaymentState1.updateExchange(exchange1.orNull()));
+    this.store.update(exchange, (exchange1, confirmPaymentState1) -> confirmPaymentState1.updateExchange(exchange1.orElse(null)));
 
     LiveData<ConfirmPaymentState.Status> statusLiveData = Transformations.map(store.getStateLiveData(), ConfirmPaymentState::getStatus);
     LiveData<ConfirmPaymentState.Status> timeoutSignal  = Transformations.switchMap(statusLiveData,

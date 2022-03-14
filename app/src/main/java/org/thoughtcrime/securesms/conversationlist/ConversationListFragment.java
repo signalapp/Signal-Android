@@ -163,7 +163,6 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -175,6 +174,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -809,7 +809,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       } else if (DozeReminder.isEligible(context)) {
         return Optional.of(new DozeReminder(context));
       } else {
-        return Optional.<Reminder>absent();
+        return Optional.<Reminder>empty();
       }
     }, reminder -> {
       if (reminder.isPresent() && getActivity() != null && !isRemoving()) {

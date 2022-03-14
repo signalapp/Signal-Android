@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
@@ -32,6 +31,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public final class GroupUtil {
 
@@ -96,7 +96,7 @@ public final class GroupUtil {
     if (groupContext.isPresent()) {
       return Optional.of(idFromGroupContext(groupContext.get()));
     }
-    return Optional.absent();
+    return Optional.empty();
   }
 
   public static @NonNull GroupMasterKey requireMasterKey(@NonNull byte[] masterKey) {

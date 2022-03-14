@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -66,6 +65,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -230,9 +230,9 @@ public final class PushGroupSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      GroupId.Push                               groupId            = groupRecipient.requireGroupId().requirePush();
-      Optional<byte[]>                           profileKey         = getProfileKey(groupRecipient);
-      Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
+      GroupId.Push                               groupId    = groupRecipient.requireGroupId().requirePush();
+      Optional<byte[]>                           profileKey = getProfileKey(groupRecipient);
+      Optional<SignalServiceDataMessage.Sticker> sticker    = getStickerFor(message);
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews           = getPreviewsFor(message);
       List<SignalServiceDataMessage.Mention>     mentions           = getMentionsFor(message.getMentions());
@@ -302,8 +302,8 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                       .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                       .withViewOnce(message.isViewOnce())
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
-                                                                      .withProfileKey(profileKey.orNull())
-                                                                      .withSticker(sticker.orNull())
+                                                                      .withProfileKey(profileKey.orElse(null))
+                                                                      .withSticker(sticker.orElse(null))
                                                                       .withSharedContacts(sharedContacts)
                                                                       .withPreviews(previews)
                                                                       .withMentions(mentions);
@@ -324,13 +324,13 @@ public final class PushGroupSendJob extends PushSendJob {
             throw new UndeliverableMessageException(e);
           }
         } else {
-          groupMessageBuilder.withQuote(getQuoteFor(message).orNull());
+          groupMessageBuilder.withQuote(getQuoteFor(message).orElse(null));
         }
 
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));
 
         return GroupSendUtil.sendResendableDataMessage(context,
-                                                       groupRecipient.getGroupId().transform(GroupId::requireV2).orNull(),
+                                                       groupRecipient.getGroupId().map(GroupId::requireV2).orElse(null),
                                                        destinations,
                                                        isRecipientUpdate,
                                                        ContentHint.RESENDABLE,
@@ -433,7 +433,7 @@ public final class PushGroupSendJob extends PushSendJob {
     } else if (!networkFailures.isEmpty()) {
       long retryAfter = results.stream()
                                .filter(r -> r.getRateLimitFailure() != null)
-                               .map(r -> r.getRateLimitFailure().getRetryAfterMilliseconds().or(-1L))
+                               .map(r -> r.getRateLimitFailure().getRetryAfterMilliseconds().orElse(-1L))
                                .max(Long::compare)
                                .orElse(-1L);
       Log.w(TAG, "Retrying because there were " + networkFailures.size() + " network failures. retryAfter: " + retryAfter);

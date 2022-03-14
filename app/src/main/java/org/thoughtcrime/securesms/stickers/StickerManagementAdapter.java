@@ -262,13 +262,13 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
               boolean lastInList,
               boolean allowApngAnimation)
     {
-      SpannableStringBuilder titleBuilder = new SpannableStringBuilder(stickerPack.getTitle().or(itemView.getResources().getString(R.string.StickerManagementAdapter_untitled)));
+      SpannableStringBuilder titleBuilder = new SpannableStringBuilder(stickerPack.getTitle().orElse(itemView.getResources().getString(R.string.StickerManagementAdapter_untitled)));
       if (BlessedPacks.contains(stickerPack.getPackId())) {
         titleBuilder.append(blessedBadge);
       }
 
       title.setText(titleBuilder);
-      author.setText(stickerPack.getAuthor().or(itemView.getResources().getString(R.string.StickerManagementAdapter_unknown)));
+      author.setText(stickerPack.getAuthor().orElse(itemView.getResources().getString(R.string.StickerManagementAdapter_unknown)));
       divider.setVisibility(lastInList ? View.GONE : View.VISIBLE);
 
       glideRequests.load(new DecryptableUri(stickerPack.getCover().getUri()))

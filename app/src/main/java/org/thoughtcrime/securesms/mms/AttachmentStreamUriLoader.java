@@ -10,11 +10,11 @@ import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.File;
 import java.io.InputStream;
 import java.security.MessageDigest;
+import java.util.Optional;
 
 public class AttachmentStreamUriLoader implements ModelLoader<AttachmentModel, InputStream> {
 

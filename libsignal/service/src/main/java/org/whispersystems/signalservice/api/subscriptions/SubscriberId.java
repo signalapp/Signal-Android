@@ -1,7 +1,7 @@
 package org.whispersystems.signalservice.api.subscriptions;
 
-import org.whispersystems.libsignal.util.guava.Preconditions;
-import org.whispersystems.util.Base64;
+
+import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.util.Base64UrlSafe;
 
 import java.security.SecureRandom;

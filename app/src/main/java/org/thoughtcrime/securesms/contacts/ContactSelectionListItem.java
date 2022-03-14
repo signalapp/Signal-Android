@@ -24,7 +24,9 @@ import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 public class ContactSelectionListItem extends ConstraintLayout implements RecipientForeverObserver {
 
@@ -232,7 +234,7 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
   }
 
   public Optional<RecipientId> getRecipientId() {
-    return recipient != null ? Optional.of(recipient.getId()) : Optional.absent();
+    return recipient != null ? Optional.of(recipient.getId()) : Optional.empty();
   }
 
   @Override
@@ -244,9 +246,9 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
       if (recipient.isGroup() && recipient.getGroupId().isPresent()) {
         contactNumber = recipient.getGroupId().get().toString();
       } else if (recipient.hasE164()) {
-        contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+        contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().orElse(""));
       } else if (!recipient.isDistributionList()) {
-        contactNumber = recipient.getEmail().or("");
+        contactNumber = recipient.getEmail().orElse("");
       }
 
       if (recipient.isMyStory()) {

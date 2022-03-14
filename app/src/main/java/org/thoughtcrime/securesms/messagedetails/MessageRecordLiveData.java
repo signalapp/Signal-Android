@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;

@@ -6,11 +6,12 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DeviceGroup {
 

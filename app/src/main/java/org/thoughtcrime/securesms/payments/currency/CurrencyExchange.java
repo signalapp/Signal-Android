@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.money.FiatMoney;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.math.BigDecimal;
@@ -15,6 +14,7 @@ import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public final class CurrencyExchange {
   private final Map<String, BigDecimal> conversions;
@@ -68,14 +68,14 @@ public final class CurrencyExchange {
       if (rate != null) {
         return Optional.of(new FiatMoney(amount.multiply(rate).setScale(currency.getDefaultFractionDigits(), RoundingMode.HALF_EVEN), currency, timestamp));
       }
-      return Optional.absent();
+      return Optional.empty();
     }
 
     public @NonNull Optional<Money> exchange(@NonNull FiatMoney fiatMoney) {
       if (rate != null) {
         return Optional.of(Money.mobileCoin(fiatMoney.getAmount().setScale(12, RoundingMode.HALF_EVEN).divide(rate, RoundingMode.HALF_EVEN)));
       } else {
-        return Optional.absent();
+        return Optional.empty();
       }
     }
   }

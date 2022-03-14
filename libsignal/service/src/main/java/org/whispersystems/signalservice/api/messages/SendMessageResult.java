@@ -2,13 +2,13 @@ package org.whispersystems.signalservice.api.messages;
 
 
 import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
 
 import java.util.List;
+import java.util.Optional;
 
 public class SendMessageResult {
 

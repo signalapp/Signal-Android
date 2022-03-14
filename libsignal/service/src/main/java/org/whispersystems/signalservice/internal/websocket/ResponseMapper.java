@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.internal.websocket;
 
-import org.whispersystems.libsignal.util.guava.Function;
+
 import org.whispersystems.signalservice.internal.ServiceResponse;
+
+import java.util.function.Function;
 
 /**
  * Responsible for taking an API response and converting it to a {@link ServiceResponse}. This includes

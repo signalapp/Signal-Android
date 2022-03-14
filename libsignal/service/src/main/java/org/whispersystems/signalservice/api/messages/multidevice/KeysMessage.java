@@ -1,8 +1,10 @@
 package org.whispersystems.signalservice.api.messages.multidevice;
 
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.storage.StorageKey;
+
+import java.util.Optional;
 
 public class KeysMessage {
 

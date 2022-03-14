@@ -1,8 +1,5 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
-import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.showConfirmNumberDialogIfTranslated;
-
 import android.animation.Animator;
 import android.os.Bundle;
 import android.view.View;
@@ -43,6 +40,9 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
+
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.showConfirmNumberDialogIfTranslated;
 
 /**
  * Base fragment used by registration and change number flow to input an SMS verification code or request a

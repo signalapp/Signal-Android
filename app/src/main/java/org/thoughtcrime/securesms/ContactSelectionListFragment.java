@@ -87,11 +87,11 @@ import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
 import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -637,8 +637,8 @@ public final class ContactSelectionListFragment extends LoggingFragment
   private class ListClickListener implements ContactSelectionListAdapter.ItemClickListener {
     @Override
     public void onItemClick(ContactSelectionListItem contact) {
-      SelectedContact selectedContact = contact.isUsernameType() ? SelectedContact.forUsername(contact.getRecipientId().orNull(), contact.getNumber())
-                                                                 : SelectedContact.forPhone(contact.getRecipientId().orNull(), contact.getNumber());
+      SelectedContact selectedContact = contact.isUsernameType() ? SelectedContact.forUsername(contact.getRecipientId().orElse(null), contact.getNumber())
+                                                                 : SelectedContact.forPhone(contact.getRecipientId().orElse(null), contact.getNumber());
 
       if (!canSelectSelf && Recipient.self().getId().equals(selectedContact.getOrCreateRecipientId(requireContext()))) {
         Toast.makeText(requireContext(), R.string.ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group, Toast.LENGTH_SHORT).show();
@@ -774,7 +774,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
       markContactUnselected(selectedContact);
 
       if (onContactSelectedListener != null) {
-        onContactSelectedListener.onContactDeselected(Optional.of(recipient.getId()), recipient.getE164().orNull());
+        onContactSelectedListener.onContactDeselected(Optional.of(recipient.getId()), recipient.getE164().orElse(null));
       }
     });
 

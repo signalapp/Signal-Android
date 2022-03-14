@@ -22,12 +22,12 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -153,10 +153,10 @@ public class SignalBaseIdentityKeyStore {
   public @NonNull Optional<IdentityRecord> getIdentityRecord(@NonNull Recipient recipient) {
     if (recipient.hasServiceId()) {
       IdentityStoreRecord record = cache.get(recipient.requireServiceId().toString());
-      return Optional.fromNullable(record).transform(r -> r.toIdentityRecord(recipient.getId()));
+      return Optional.ofNullable(record).map(r -> r.toIdentityRecord(recipient.getId()));
     } else {
       Log.w(TAG, "[getIdentityRecord] No ServiceId for " + recipient.getId());
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 

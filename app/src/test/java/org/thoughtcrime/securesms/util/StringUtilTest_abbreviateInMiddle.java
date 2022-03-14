@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.util;
 
-import androidx.annotation.Nullable;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

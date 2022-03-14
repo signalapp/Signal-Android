@@ -10,8 +10,6 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.TypedArrayUtils;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -23,7 +21,6 @@ import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment;
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ThemedFragment;
 
 public class MediaKeyboard extends FrameLayout implements InputView {

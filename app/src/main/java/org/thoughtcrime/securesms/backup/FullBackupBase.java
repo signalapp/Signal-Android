@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.logging.Log;
 import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.security.MessageDigest;

@@ -33,7 +33,6 @@ import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
@@ -51,6 +50,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Single;
@@ -125,7 +125,7 @@ public final class ProfileUtil {
                                                                                                 @NonNull ProfileService profileService,
                                                                                                 boolean allowUnidentifiedAccess)
   {
-    Optional<UnidentifiedAccess> unidentifiedAccess = allowUnidentifiedAccess ? getUnidentifiedAccess(context, recipient) : Optional.absent();
+    Optional<UnidentifiedAccess> unidentifiedAccess = allowUnidentifiedAccess ? getUnidentifiedAccess(context, recipient) : Optional.empty();
     Optional<ProfileKey>         profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
 
     return Single.fromCallable(() -> toSignalServiceAddress(context, recipient))
@@ -222,8 +222,8 @@ public final class ProfileUtil {
   public static void uploadProfileWithBadges(@NonNull Context context, @NonNull List<Badge> badges) throws IOException {
     Log.d(TAG, "uploadProfileWithBadges()");
     uploadProfile(Recipient.self().getProfileName(),
-                  Optional.fromNullable(Recipient.self().getAbout()).or(""),
-                  Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                  Optional.ofNullable(Recipient.self().getAbout()).orElse(""),
+                  Optional.ofNullable(Recipient.self().getAboutEmoji()).orElse(""),
                   getSelfPaymentsAddressProtobuf(),
                   AvatarUploadParams.unchanged(AvatarHelper.hasAvatar(context, Recipient.self().getId())),
                   badges);
@@ -238,8 +238,8 @@ public final class ProfileUtil {
     Log.d(TAG, "uploadProfileWithName()");
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
       uploadProfile(profileName,
-                    Optional.fromNullable(Recipient.self().getAbout()).or(""),
-                    Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                    Optional.ofNullable(Recipient.self().getAbout()).orElse(""),
+                    Optional.ofNullable(Recipient.self().getAboutEmoji()).orElse(""),
                     getSelfPaymentsAddressProtobuf(),
                     AvatarUploadParams.unchanged(AvatarHelper.hasAvatar(context, Recipient.self().getId())),
                     Recipient.self().getBadges());
@@ -281,8 +281,8 @@ public final class ProfileUtil {
   public static void uploadProfileWithAvatar(@Nullable StreamDetails avatar) throws IOException {
     Log.d(TAG, "uploadProfileWithAvatar()");
     uploadProfile(Recipient.self().getProfileName(),
-                  Optional.fromNullable(Recipient.self().getAbout()).or(""),
-                  Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                  Optional.ofNullable(Recipient.self().getAbout()).orElse(""),
+                  Optional.ofNullable(Recipient.self().getAboutEmoji()).orElse(""),
                   getSelfPaymentsAddressProtobuf(),
                   AvatarUploadParams.forAvatar(avatar),
                   Recipient.self().getBadges());
@@ -320,9 +320,9 @@ public final class ProfileUtil {
                                                                                     profileName.serialize(),
                                                                                     about,
                                                                                     aboutEmoji,
-                                                                                    Optional.fromNullable(paymentsAddress),
+                                                                                    Optional.ofNullable(paymentsAddress),
                                                                                     avatar,
-                                                                                    badgeIds).orNull();
+                                                                                    badgeIds).orElse(null);
     SignalStore.registrationValues().markHasUploadedProfile();
     if (!avatar.keepTheSame) {
       SignalDatabase.recipients().setProfileAvatar(Recipient.self().getId(), avatarPath);
@@ -350,13 +350,13 @@ public final class ProfileUtil {
       return unidentifiedAccess.get().getTargetUnidentifiedAccess();
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   private static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
     if (recipient.getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
       if (recipient.hasServiceId()) {
-        return new SignalServiceAddress(recipient.requireServiceId(), recipient.getE164().orNull());
+        return new SignalServiceAddress(recipient.requireServiceId(), recipient.getE164().orElse(null));
       } else {
         throw new IOException(recipient.getId() + " not registered!");
       }

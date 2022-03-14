@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.megaphone;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;

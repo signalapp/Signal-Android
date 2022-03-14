@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.database.Cursor
 import org.thoughtcrime.securesms.util.CursorUtil
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 
 fun Cursor.requireString(column: String): String? {
   return CursorUtil.requireString(this, column)

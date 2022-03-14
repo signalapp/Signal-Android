@@ -9,7 +9,6 @@ package org.whispersystems.signalservice.api;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -42,6 +41,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * The primary interface for receiving Signal Service messages.
@@ -98,14 +98,14 @@ public class SignalServiceMessageReceiver {
         return FutureTransformers.map(socket.retrieveVersionedProfile(serviceId.uuid(), profileKey.get(), unidentifiedAccess, locale), profile -> {
           return new ProfileAndCredential(profile,
                                           SignalServiceProfile.RequestType.PROFILE,
-                                          Optional.absent());
+                                          Optional.empty());
         });
       }
     } else {
       return FutureTransformers.map(socket.retrieveProfile(address, unidentifiedAccess, locale), profile -> {
         return new ProfileAndCredential(profile,
                                         SignalServiceProfile.RequestType.PROFILE,
-                                        Optional.absent());
+                                        Optional.empty());
       });
     }
   }
@@ -148,7 +148,7 @@ public class SignalServiceMessageReceiver {
     if (!pointer.getDigest().isPresent()) throw new InvalidMessageException("No attachment digest!");
 
     socket.retrieveAttachment(pointer.getCdnNumber(), pointer.getRemoteId(), destination, maxSizeBytes, listener);
-    return AttachmentCipherInputStream.createForAttachment(destination, pointer.getSize().or(0), pointer.getKey(), pointer.getDigest().get());
+    return AttachmentCipherInputStream.createForAttachment(destination, pointer.getSize().orElse(0), pointer.getKey(), pointer.getDigest().get());
   }
 
   public InputStream retrieveSticker(byte[] packId, byte[] packKey, int stickerId)

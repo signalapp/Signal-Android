@@ -10,9 +10,9 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**

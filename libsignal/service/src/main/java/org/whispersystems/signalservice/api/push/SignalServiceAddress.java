@@ -6,12 +6,12 @@
 
 package org.whispersystems.signalservice.api.push;
 
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * A class representing a message destination or origin.
@@ -34,9 +34,9 @@ public class SignalServiceAddress {
     this.e164      = e164;
   }
 
-  public SignalServiceAddress(ServiceId serviceId) {
+  @SuppressWarnings("NewApi") public SignalServiceAddress(ServiceId serviceId) {
     this.serviceId = Preconditions.checkNotNull(serviceId);
-    this.e164      = Optional.absent();
+    this.e164      = Optional.empty();
   }
 
   /**
@@ -78,7 +78,7 @@ public class SignalServiceAddress {
     if (isValidAddress(rawUuid, e164)) {
       return Optional.of(new SignalServiceAddress(ServiceId.parseOrThrow(rawUuid), e164));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 

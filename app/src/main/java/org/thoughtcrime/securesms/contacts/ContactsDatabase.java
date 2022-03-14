@@ -35,13 +35,13 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -415,7 +415,7 @@ public class ContactsDatabase {
       if (idCursor     != null) idCursor.close();
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   private @Nullable String getDisplayName(long contactId) {

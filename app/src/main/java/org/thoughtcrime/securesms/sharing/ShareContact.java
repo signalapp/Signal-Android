@@ -4,9 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public final class ShareContact {
   private final Optional<RecipientId> recipientId;

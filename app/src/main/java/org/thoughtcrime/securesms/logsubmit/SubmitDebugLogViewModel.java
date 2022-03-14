@@ -16,10 +16,10 @@ import org.signal.paging.PagingController;
 import org.signal.paging.ProxyPagingController;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class SubmitDebugLogViewModel extends ViewModel {
 

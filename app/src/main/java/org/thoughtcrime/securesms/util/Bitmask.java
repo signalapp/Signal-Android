@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.util;
 
-import org.whispersystems.libsignal.util.guava.Preconditions;
+
+
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.Locale;
 

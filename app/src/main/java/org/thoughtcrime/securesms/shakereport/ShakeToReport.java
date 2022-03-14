@@ -15,13 +15,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.ShakeDetector;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.core.util.tracing.Tracer;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
 import org.thoughtcrime.securesms.sharing.ShareIntents;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 

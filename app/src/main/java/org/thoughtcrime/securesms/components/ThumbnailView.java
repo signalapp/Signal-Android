@@ -40,11 +40,11 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
@@ -69,7 +69,7 @@ public class ThumbnailView extends FrameLayout {
   private final int[] bounds        = new int[4];
   private final int[] measureDimens = new int[2];
 
-  private Optional<TransferControlView> transferControls       = Optional.absent();
+  private Optional<TransferControlView> transferControls       = Optional.empty();
   private SlideClickListener            thumbnailClickListener = null;
   private SlidesClickedListener         downloadClickListener  = null;
   private Slide                         slide                  = null;

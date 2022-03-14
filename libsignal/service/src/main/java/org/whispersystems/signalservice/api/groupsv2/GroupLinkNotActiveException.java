@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 /**
  * Thrown when a group link:

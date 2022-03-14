@@ -94,7 +94,7 @@ object Multiselect {
     val options = TransportOptions(context, true)
     options.setDefaultTransport(TransportOption.Type.SMS)
 
-    val mmsConstraints = MediaConstraints.getMmsMediaConstraints(options.selectedTransport.simSubscriptionId.or(-1))
+    val mmsConstraints = MediaConstraints.getMmsMediaConstraints(options.selectedTransport.simSubscriptionId.orElse(-1))
     return mmsConstraints.isSatisfied(context, attachment) || mmsConstraints.canResize(attachment)
   }
 }

@@ -37,7 +37,7 @@ class DeleteAccountRepository {
   }
 
   @NonNull String getRegionDisplayName(@NonNull String region) {
-    return PhoneNumberFormatter.getRegionDisplayName(region).or("");
+    return PhoneNumberFormatter.getRegionDisplayName(region).orElse("");
   }
 
   int getRegionCountryCode(@NonNull String region) {
@@ -132,7 +132,7 @@ class DeleteAccountRepository {
   }
 
   private static @NonNull Country getCountryForRegion(@NonNull String region) {
-    return new Country(PhoneNumberFormatter.getRegionDisplayName(region).or(""),
+    return new Country(PhoneNumberFormatter.getRegionDisplayName(region).orElse(""),
                        PhoneNumberUtil.getInstance().getCountryCodeForRegion(region),
                        region);
   }

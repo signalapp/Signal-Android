@@ -1,14 +1,11 @@
 package org.thoughtcrime.securesms.payments;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.testutil.EmptyLogger;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import static org.junit.Assert.assertFalse;

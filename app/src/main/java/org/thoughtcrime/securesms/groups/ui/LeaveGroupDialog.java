@@ -56,8 +56,8 @@ public final class LeaveGroupDialog {
     SimpleTask.run(activity.getLifecycle(), () -> {
       GroupDatabase.V2GroupProperties groupProperties = SignalDatabase.groups()
                                                                       .getGroup(groupId)
-                                                                      .transform(GroupDatabase.GroupRecord::requireV2GroupProperties)
-                                                                      .orNull();
+                                                                      .map(GroupDatabase.GroupRecord::requireV2GroupProperties)
+                                                                      .orElse(null);
 
       if (groupProperties != null && groupProperties.isAdmin(Recipient.self())) {
         List<Recipient> otherMemberRecipients = groupProperties.getMemberRecipients(GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);

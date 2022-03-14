@@ -11,10 +11,10 @@ import com.airbnb.lottie.LottieAnimationView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.confirm.ConfirmPaymentState.Status;
+import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder;
-import org.thoughtcrime.securesms.util.SpanUtil;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
 import org.whispersystems.signalservice.api.payments.Money;
 

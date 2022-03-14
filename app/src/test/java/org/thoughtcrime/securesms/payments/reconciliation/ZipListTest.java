@@ -5,9 +5,9 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.Collections.emptyList;
 import static org.junit.Assert.assertEquals;
 import static org.thoughtcrime.securesms.payments.reconciliation.ZipList.zipList;
+import static java.util.Collections.emptyList;
 
 public final class ZipListTest {
 

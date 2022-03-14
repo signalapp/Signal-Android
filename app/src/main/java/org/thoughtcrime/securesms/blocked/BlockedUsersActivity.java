@@ -24,8 +24,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class BlockedUsersActivity extends PassphraseRequiredActivity implements BlockedUsersFragment.Listener, ContactSelectionListFragment.OnContactSelectedListener {
@@ -88,7 +88,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
 
   @Override
   public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
-    final String displayName = recipientId.transform(id -> Recipient.resolved(id).getDisplayName(this)).or(number);
+    final String displayName = recipientId.map(id -> Recipient.resolved(id).getDisplayName(this)).orElse(number);
 
     AlertDialog confirmationDialog = new MaterialAlertDialogBuilder(this)
         .setTitle(R.string.BlockedUsersActivity__block_user)

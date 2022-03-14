@@ -119,7 +119,7 @@ final class ConversationGroupViewModel extends ViewModel {
     if (recipient != null && recipient.isGroup()) {
       Application context         = ApplicationDependencies.getApplication();
       GroupDatabase groupDatabase = SignalDatabase.groups();
-      return groupDatabase.getGroup(recipient.getId()).orNull();
+      return groupDatabase.getGroup(recipient.getId()).orElse(null);
     } else {
       return null;
     }

@@ -16,7 +16,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 class UsernameEditViewModel extends ViewModel {
 
@@ -42,7 +44,7 @@ class UsernameEditViewModel extends ViewModel {
       return;
     }
 
-    if (username.equals(Recipient.self().getUsername().orNull())) {
+    if (username.equals(Recipient.self().getUsername().orElse(null))) {
       uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE));
       return;
     }
@@ -58,7 +60,7 @@ class UsernameEditViewModel extends ViewModel {
   }
 
   void onUsernameSubmitted(@NonNull String username) {
-    if (username.equals(Recipient.self().getUsername().orNull())) {
+    if (username.equals(Recipient.self().getUsername().orElse(null))) {
       uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE));
       return;
     }

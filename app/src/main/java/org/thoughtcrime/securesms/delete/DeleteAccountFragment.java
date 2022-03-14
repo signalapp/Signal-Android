@@ -37,7 +37,9 @@ import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 public class DeleteAccountFragment extends Fragment {
 

@@ -57,13 +57,12 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -78,6 +77,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import kotlin.Unit;
@@ -1452,7 +1452,9 @@ public class ThreadDatabase extends Database {
     if (!record.isMms() || record.isMmsNotification() || record.isGroupAction()) return null;
 
     SlideDeck slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
-    Slide     thumbnail = Optional.fromNullable(slideDeck.getThumbnailSlide()).or(Optional.fromNullable(slideDeck.getStickerSlide())).orNull();
+    Slide     thumbnail = OptionalUtil.or(Optional.ofNullable(slideDeck.getThumbnailSlide()),
+                                          Optional.ofNullable(slideDeck.getStickerSlide()))
+                                      .orElse(null);
 
     if (thumbnail != null && !((MmsMessageRecord) record).isViewOnce()) {
       return thumbnail.getUri();
@@ -1613,7 +1615,7 @@ public class ThreadDatabase extends Database {
         if (group != null) {
           RecipientDetails details = new RecipientDetails(group.getTitle(),
                                                           null,
-                                                          group.hasAvatar() ? Optional.of(group.getAvatarId()) : Optional.absent(),
+                                                          group.hasAvatar() ? Optional.of(group.getAvatarId()) : Optional.empty(),
                                                           false,
                                                           false,
                                                           recipientSettings.getRegistered(),

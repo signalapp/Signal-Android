@@ -18,9 +18,9 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * On received message, runs a job to poll for messages.

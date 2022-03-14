@@ -2,45 +2,42 @@ package org.whispersystems.signalservice.api.util;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.libsignal.util.guava.Function;
-import org.whispersystems.libsignal.util.guava.Optional;
-
 import java.util.Arrays;
+import java.util.Optional;
 
 public final class OptionalUtil {
 
-  private OptionalUtil() {
-  }
+  private OptionalUtil() { }
 
-  public static <T, R> Optional<R> flatMap(Optional<T> input, Function<T, Optional<R>> flatMapFunction) {
-    Optional<Optional<R>> output = input.transform(flatMapFunction);
-
-    if (output.isPresent()) {
-      return output.get();
-    } else {
-      return Optional.absent();
-    }
+  @SafeVarargs
+  public static <E> Optional<E> or(Optional<E>... optionals) {
+    return Arrays.stream(optionals)
+                 .filter(Optional::isPresent)
+                 .findFirst()
+                 .orElse(Optional.empty());
   }
 
   public static boolean byteArrayEquals(Optional<byte[]> a, Optional<byte[]> b) {
     if (a.isPresent() != b.isPresent()) {
       return false;
-    }
-
-    if (a.isPresent()) {
+    } else if (a.isPresent()) {
       return Arrays.equals(a.get(), b.get());
+    } else {
+      return true;
     }
-
-    return true;
   }
 
   public static int byteArrayHashCode(Optional<byte[]> bytes) {
-    return bytes.isPresent() ? Arrays.hashCode(bytes.get()) : 0;
+    if (bytes.isPresent()) {
+      return Arrays.hashCode(bytes.get());
+    } else {
+      return 0;
+    }
   }
 
   public static Optional<String> absentIfEmpty(String value) {
     if (value == null || value.length() == 0) {
-      return Optional.absent();
+      return Optional.empty();
     } else {
       return Optional.of(value);
     }
@@ -48,7 +45,7 @@ public final class OptionalUtil {
 
   public static Optional<byte[]> absentIfEmpty(ByteString value) {
     if (value == null || value.isEmpty()) {
-      return Optional.absent();
+      return Optional.empty();
     } else {
       return Optional.of(value.toByteArray());
     }

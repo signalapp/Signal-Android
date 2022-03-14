@@ -6,10 +6,11 @@
 
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Group information to include in SignalServiceMessages destined to groups.
@@ -63,9 +64,9 @@ public class SignalServiceGroup {
   {
     this.type    = type;
     this.groupId = groupId;
-    this.name    = Optional.fromNullable(name);
-    this.members = Optional.fromNullable(members);
-    this.avatar  = Optional.fromNullable(avatar);
+    this.name    = Optional.ofNullable(name);
+    this.members = Optional.ofNullable(members);
+    this.avatar  = Optional.ofNullable(avatar);
   }
 
   public byte[] getGroupId() {

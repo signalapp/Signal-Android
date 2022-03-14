@@ -6,7 +6,6 @@ import androidx.annotation.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * A nice interface for {@link LocalMetrics} that gives us a place to define string constants and nicer method names.

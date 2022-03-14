@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 public class SignalServiceTypingMessage {
 

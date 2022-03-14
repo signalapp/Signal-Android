@@ -8,12 +8,13 @@ import org.whispersystems.libsignal.UntrustedIdentityException;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.protocol.PlaintextContent;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage;
 import org.whispersystems.signalservice.internal.push.PushTransportDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope.Type;
 import org.whispersystems.util.Base64;
+
+import java.util.Optional;
 
 /**
  * An abstraction over the different types of message contents we can have.
@@ -165,7 +166,7 @@ public interface EnvelopeContent {
 
     @Override
     public Optional<Content> getContent() {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 }

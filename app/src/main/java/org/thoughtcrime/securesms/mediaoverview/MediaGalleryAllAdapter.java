@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -61,6 +60,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
@@ -363,9 +363,9 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     protected final View                               itemView;
     private final   TextView                           line1;
     private final   TextView                           line2;
-    private         LiveDataPair<Recipient, Recipient> liveDataPair;
-    private         Optional<String>                   fileName;
-    private         String                             fileTypeDescription;
+    private LiveDataPair<Recipient, Recipient> liveDataPair;
+    private Optional<String>                   fileName;
+    private String                             fileTypeDescription;
     private         Handler                            handler;
     private         Runnable                           selectForMarque;
 
@@ -383,7 +383,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       fileName            = slide.getFileName();
       fileTypeDescription = getFileTypeDescription(context, slide);
 
-      line1.setText(fileName.or(fileTypeDescription));
+      line1.setText(fileName.orElse(fileTypeDescription));
       line2.setText(getLine2(context, mediaRecord, slide));
       itemView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
       itemView.setOnLongClickListener(view -> onLongClick());
@@ -423,12 +423,12 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     protected @Nullable String getMediaTitle() {
-      return fileName.orNull();
+      return fileName.orElse(null);
     }
 
     private @NonNull String describe(@NonNull Recipient from, @NonNull Recipient thread) {
       if (from == Recipient.UNKNOWN && thread == Recipient.UNKNOWN) {
-        return fileName.or(fileTypeDescription);
+        return fileName.orElse(fileTypeDescription);
       }
 
       String sentFromToString = getSentFromToString(from, thread);
@@ -477,7 +477,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     public void bind(@NonNull Context context, @NonNull MediaDatabase.MediaRecord mediaRecord, @NonNull Slide slide) {
       super.bind(context, mediaRecord, slide);
 
-      documentType.setText(slide.getFileType(context).or("").toLowerCase());
+      documentType.setText(slide.getFileType(context).orElse("").toLowerCase());
     }
   }
 

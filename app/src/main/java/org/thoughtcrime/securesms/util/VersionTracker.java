@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.jobs.RetrieveReleaseChannelJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class VersionTracker {

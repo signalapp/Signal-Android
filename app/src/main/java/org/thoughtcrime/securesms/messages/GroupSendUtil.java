@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.InvalidRegistrationIdException;
 import org.whispersystems.libsignal.NoSessionException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.CancelationException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.LegacyGroupEvents;
@@ -57,6 +56,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
@@ -221,7 +221,7 @@ public final class GroupSendUtil {
     List<Recipient> registeredTargets   = allTargets.stream().filter(r -> !unregisteredTargets.contains(r)).collect(Collectors.toList());
 
     RecipientData         recipients  = new RecipientData(context, registeredTargets);
-    Optional<GroupRecord> groupRecord = groupId != null ? SignalDatabase.groups().getGroup(groupId) : Optional.absent();
+    Optional<GroupRecord> groupRecord = groupId != null ? SignalDatabase.groups().getGroup(groupId) : Optional.empty();
 
     List<Recipient> senderKeyTargets = new LinkedList<>();
     List<Recipient> legacyTargets    = new LinkedList<>();
@@ -370,7 +370,7 @@ public final class GroupSendUtil {
 
       List<SendMessageResult> unregisteredResults = unregisteredTargets.stream()
                                                                        .filter(Recipient::hasServiceId)
-                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireServiceId(), t.getE164().orNull())))
+                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireServiceId(), t.getE164().orElse(null))))
                                                                        .collect(Collectors.toList());
 
       if (unregisteredResults.size() < unregisteredTargets.size()) {
@@ -393,7 +393,7 @@ public final class GroupSendUtil {
 
   private static @Nullable DistributionId getDistributionId(@Nullable DistributionListId distributionListId) {
     if (distributionListId != null) {
-      return Optional.fromNullable(SignalDatabase.distributionLists().getDistributionId(distributionListId)).orNull();
+      return Optional.ofNullable(SignalDatabase.distributionLists().getDistributionId(distributionListId)).orElse(null);
     } else {
       return null;
     }
@@ -514,7 +514,7 @@ public final class GroupSendUtil {
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
       messageSender.sendGroupTyping(distributionId, targets, access, message);
-      return targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.absent())).collect(Collectors.toList());
+      return targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
     }
 
     @Override
@@ -527,7 +527,7 @@ public final class GroupSendUtil {
         throws IOException
     {
       messageSender.sendTyping(targets, access, message, cancelationSignal);
-      return targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.absent())).collect(Collectors.toList());
+      return targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
     }
 
     @Override
@@ -625,7 +625,7 @@ public final class GroupSendUtil {
                                                               boolean isRecipientUpdate)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
-      return messageSender.sendGroupStory(distributionId, Optional.fromNullable(groupId).transform(GroupId::getDecodedId), targets, access, message, getSentTimestamp());
+      return messageSender.sendGroupStory(distributionId, Optional.ofNullable(groupId).map(GroupId::getDecodedId), targets, access, message, getSentTimestamp());
     }
 
     @Override

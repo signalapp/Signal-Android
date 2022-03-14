@@ -14,13 +14,13 @@ import com.annimon.stream.function.Predicate;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
-import org.whispersystems.libsignal.util.guava.Function;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
+import java.util.function.Function;
 
 public final class LiveDataUtil {
 

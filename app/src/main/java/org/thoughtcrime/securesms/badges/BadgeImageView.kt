@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ThemeUtil
-import java.lang.IllegalArgumentException
 
 class BadgeImageView @JvmOverloads constructor(
   context: Context,

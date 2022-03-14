@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.jobmanager.migrations;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;

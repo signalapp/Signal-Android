@@ -195,7 +195,7 @@ public class RemoteDeleteSendJob extends BaseJob {
 
     SignalServiceDataMessage dataMessage = dataMessageBuilder.build();
     List<SendMessageResult>  results     = GroupSendUtil.sendResendableDataMessage(context,
-                                                                                   conversationRecipient.getGroupId().transform(GroupId::requireV2).orNull(),
+                                                                                   conversationRecipient.getGroupId().map(GroupId::requireV2).orElse(null),
                                                                                    destinations,
                                                                                    false,
                                                                                    ContentHint.RESENDABLE,

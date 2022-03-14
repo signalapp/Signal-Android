@@ -53,11 +53,11 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public class InputPanel extends LinearLayout
@@ -258,7 +258,7 @@ public class InputPanel extends LinearLayout
     if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
       return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody().toString(), false, quoteView.getAttachments(), quoteView.getMentions()));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 

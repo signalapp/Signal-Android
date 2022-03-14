@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.messages.multidevice;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 public class StickerPackOperationMessage {
 
@@ -9,9 +10,9 @@ public class StickerPackOperationMessage {
   private final Optional<Type>   type;
 
   public StickerPackOperationMessage(byte[] packId, byte[] packKey, Type type) {
-    this.packId  = Optional.fromNullable(packId);
-    this.packKey = Optional.fromNullable(packKey);
-    this.type    = Optional.fromNullable(type);
+    this.packId  = Optional.ofNullable(packId);
+    this.packKey = Optional.ofNullable(packKey);
+    this.type    = Optional.ofNullable(type);
   }
 
   public Optional<byte[]> getPackId() {

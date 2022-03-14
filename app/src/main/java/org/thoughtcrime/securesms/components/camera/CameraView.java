@@ -42,12 +42,12 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @SuppressWarnings("deprecation")
 public class CameraView extends ViewGroup {
@@ -56,8 +56,8 @@ public class CameraView extends ViewGroup {
   private final CameraSurfaceView   surface;
   private final OnOrientationChange onOrientationChange;
 
-  private volatile Optional<Camera> camera             = Optional.absent();
-  private volatile int              cameraId           = CameraInfo.CAMERA_FACING_BACK;
+  private volatile Optional<Camera> camera   = Optional.empty();
+  private volatile int              cameraId = CameraInfo.CAMERA_FACING_BACK;
   private volatile int              displayOrientation = -1;
 
   private @NonNull  State                    state = State.PAUSED;
@@ -104,7 +104,7 @@ public class CameraView extends ViewGroup {
       Void onRunBackground() {
         try {
           long openStartMillis = System.currentTimeMillis();
-          camera = Optional.fromNullable(Camera.open(cameraId));
+          camera = Optional.ofNullable(Camera.open(cameraId));
           Log.i(TAG, "camera.open() -> " + (System.currentTimeMillis() - openStartMillis) + "ms");
           synchronized (CameraView.this) {
             CameraView.this.notifyAll();
@@ -145,7 +145,7 @@ public class CameraView extends ViewGroup {
       @Override
       protected void onPreMain() {
         cameraToDestroy = camera;
-        camera = Optional.absent();
+        camera = Optional.empty();
       }
 
       @Override

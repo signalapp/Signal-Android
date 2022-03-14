@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.payments.confirm;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.payments.Payee;
 import org.signal.core.util.money.FiatMoney;
+import org.thoughtcrime.securesms.payments.Payee;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.util.UUID;

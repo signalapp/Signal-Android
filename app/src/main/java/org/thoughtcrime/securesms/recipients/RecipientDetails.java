@@ -12,25 +12,24 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
-import org.thoughtcrime.securesms.database.model.DistributionListId;
-import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.database.model.DistributionListId;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class RecipientDetails {
 
@@ -147,7 +146,7 @@ public class RecipientDetails {
     this.systemProfileName           = record.getSystemProfileName();
     this.groupName                   = groupName;
     this.systemContactName           = systemContactName;
-    this.extras                      = Optional.fromNullable(record.getExtras());
+    this.extras                      = Optional.ofNullable(record.getExtras());
     this.hasGroupsInCommon           = record.hasGroupsInCommon();
     this.badges                      = record.getBadges();
     this.isReleaseChannel            = isReleaseChannel;
@@ -175,7 +174,7 @@ public class RecipientDetails {
     this.participants                = new LinkedList<>();
     this.profileName                 = ProfileName.EMPTY;
     this.insightsBannerTier          = InsightsBannerTier.TIER_TWO;
-    this.defaultSubscriptionId       = Optional.absent();
+    this.defaultSubscriptionId       = Optional.empty();
     this.registered                  = RegisteredState.UNKNOWN;
     this.profileKey                  = null;
     this.profileKeyCredential        = null;
@@ -203,7 +202,7 @@ public class RecipientDetails {
     this.aboutEmoji                  = null;
     this.systemProfileName           = ProfileName.EMPTY;
     this.systemContactName           = null;
-    this.extras                      = Optional.absent();
+    this.extras                      = Optional.empty();
     this.hasGroupsInCommon           = false;
     this.badges                      = Collections.emptyList();
     this.isReleaseChannel            = false;
@@ -225,11 +224,11 @@ public class RecipientDetails {
       }
     }
 
-    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.absent(), systemContact, isSelf, registeredState, settings, null, isReleaseChannel);
+    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.empty(), systemContact, isSelf, registeredState, settings, null, isReleaseChannel);
   }
 
   public static @NonNull RecipientDetails forDistributionList(String title, @Nullable List<Recipient> members, @NonNull RecipientRecord record) {
-    return new RecipientDetails(title, null, Optional.absent(), false, false, record.getRegistered(), record, members, false);
+    return new RecipientDetails(title, null, Optional.empty(), false, false, record.getRegistered(), record, members, false);
   }
 
   public static @NonNull RecipientDetails forUnknown() {

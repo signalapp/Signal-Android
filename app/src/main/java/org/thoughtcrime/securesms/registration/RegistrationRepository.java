@@ -33,11 +33,9 @@ import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.KeyHelper;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -46,6 +44,7 @@ import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -147,7 +146,7 @@ public final class RegistrationRepository {
     generateAndRegisterPreKeys(ServiceIdType.PNI, accountManager, pniProtocolStore, SignalStore.account().pniPreKeys());
 
     if (registrationData.isFcm()) {
-      accountManager.setGcmId(Optional.fromNullable(registrationData.getFcmToken()));
+      accountManager.setGcmId(Optional.ofNullable(registrationData.getFcmToken()));
     }
 
     RecipientDatabase recipientDatabase = SignalDatabase.recipients();

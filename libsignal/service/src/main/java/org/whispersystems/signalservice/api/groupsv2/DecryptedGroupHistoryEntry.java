@@ -2,7 +2,9 @@ package org.whispersystems.signalservice.api.groupsv2;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 /**
  * Pair of a {@link DecryptedGroup} and the {@link DecryptedGroupChange} for that version.

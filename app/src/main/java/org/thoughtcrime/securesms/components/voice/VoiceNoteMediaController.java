@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.voice;
 
 import android.content.ComponentName;
-import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,7 +14,6 @@ import android.support.v4.media.session.PlaybackStateCompat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -29,9 +27,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Encapsulates control of voice note playback from an Activity component.
@@ -92,7 +90,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
                 playbackState.getTrackDuration(),
                 playbackState.getSpeed())));
       } else {
-        return new DefaultValueLiveData<>(Optional.absent());
+        return new DefaultValueLiveData<>(Optional.empty());
       }
     });
   }

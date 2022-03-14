@@ -7,9 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavDirections;
-import androidx.navigation.NavGraph;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.BaseActivity;

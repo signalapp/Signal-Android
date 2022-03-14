@@ -4,9 +4,9 @@ import org.junit.Test;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 
+import static org.junit.Assert.assertEquals;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
-import static org.junit.Assert.assertEquals;
 
 public final class GlobalGroupStateTest {
 

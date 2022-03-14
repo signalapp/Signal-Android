@@ -97,7 +97,7 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     return super.requestVerificationCode(mode)
                 .doOnSuccess(processor -> {
                   if (processor.hasResult()) {
-                    setFcmToken(processor.getResult().getFcmToken().orNull());
+                    setFcmToken(processor.getResult().getFcmToken().orElse(null));
                   }
                 });
   }

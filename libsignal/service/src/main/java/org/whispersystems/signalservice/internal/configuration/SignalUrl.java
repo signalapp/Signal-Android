@@ -1,14 +1,12 @@
 package org.whispersystems.signalservice.internal.configuration;
 
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.push.TrustStore;
-import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 
 import java.util.Collections;
 import java.util.List;
-
-import javax.net.ssl.TrustManager;
+import java.util.Optional;
 
 import okhttp3.ConnectionSpec;
 
@@ -28,9 +26,9 @@ public class SignalUrl {
                    ConnectionSpec connectionSpec)
   {
     this.url            = url;
-    this.hostHeader     = Optional.fromNullable(hostHeader);
+    this.hostHeader     = Optional.ofNullable(hostHeader);
     this.trustStore     = trustStore;
-    this.connectionSpec = Optional.fromNullable(connectionSpec);
+    this.connectionSpec = Optional.ofNullable(connectionSpec);
   }
 
 
@@ -47,7 +45,7 @@ public class SignalUrl {
   }
 
   public Optional<List<ConnectionSpec>> getConnectionSpecs() {
-    return connectionSpec.isPresent() ? Optional.of(Collections.singletonList(connectionSpec.get())) : Optional.<List<ConnectionSpec>>absent();
+    return connectionSpec.isPresent() ? Optional.of(Collections.singletonList(connectionSpec.get())) : Optional.empty();
   }
 
 }

@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;

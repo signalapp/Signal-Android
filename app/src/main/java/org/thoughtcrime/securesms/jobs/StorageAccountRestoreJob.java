@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
@@ -24,6 +23,7 @@ import org.whispersystems.signalservice.api.storage.StorageKey;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -95,7 +95,7 @@ public class StorageAccountRestoreJob extends BaseJob {
       return;
     }
 
-    SignalAccountRecord accountRecord = record.getAccount().orNull();
+    SignalAccountRecord accountRecord = record.getAccount().orElse(null);
     if (accountRecord == null) {
       Log.w(TAG, "The storage record didn't actually have an account on it! Not restoring.");
       return;

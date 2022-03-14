@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
@@ -56,6 +55,7 @@ import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMess
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -438,7 +438,7 @@ public abstract class WebRtcActionProcessor {
 
     if (errorCallState == WebRtcViewModel.State.UNTRUSTED_IDENTITY) {
       CallParticipant participant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
-      CallParticipant untrusted   = participant.withIdentityKey(identityKey.orNull());
+      CallParticipant untrusted   = participant.withIdentityKey(identityKey.orElse(null));
 
       builder.changeCallInfoState()
              .callState(WebRtcViewModel.State.UNTRUSTED_IDENTITY)

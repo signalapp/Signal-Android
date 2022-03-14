@@ -22,8 +22,8 @@ import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.whispersystems.libsignal.util.guava.Optional
 import java.io.FileDescriptor
+import java.util.Optional
 
 private val TAG = Log.tag(MediaCaptureFragment::class.java)
 

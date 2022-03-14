@@ -7,7 +7,9 @@ import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 /**
  * Add a {@link SentMediaQuality} value for {@link AttachmentDatabase.TransformProperties#getSentMediaQuality()} on the

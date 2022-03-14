@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.plusAssign
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.recipients.Recipient

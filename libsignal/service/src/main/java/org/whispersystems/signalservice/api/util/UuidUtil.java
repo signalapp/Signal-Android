@@ -2,12 +2,11 @@ package org.whispersystems.signalservice.api.util;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.libsignal.util.guava.Optional;
-
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -20,7 +19,7 @@ public final class UuidUtil {
   private UuidUtil() { }
 
   public static Optional<UUID> parse(String uuid) {
-    return Optional.fromNullable(parseOrNull(uuid));
+    return Optional.ofNullable(parseOrNull(uuid));
   }
 
   public static UUID parseOrNull(String uuid) {

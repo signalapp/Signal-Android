@@ -30,7 +30,10 @@ import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
+
+import java.util.Optional;
+
 
 /**
  * Shows the contents of a pack and allows the user to install it (if not installed) or remove it
@@ -182,12 +185,12 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
   }
 
   private void presentManifest(@NonNull StickerManifest manifest) {
-    stickerTitle.setText(manifest.getTitle().or(getString(R.string.StickerPackPreviewActivity_untitled)));
-    stickerAuthor.setText(manifest.getAuthor().or(getString(R.string.StickerPackPreviewActivity_unknown)));
+    stickerTitle.setText(manifest.getTitle().orElse(getString(R.string.StickerPackPreviewActivity_untitled)));
+    stickerAuthor.setText(manifest.getAuthor().orElse(getString(R.string.StickerPackPreviewActivity_unknown)));
     adapter.setStickers(manifest.getStickers());
 
     Sticker first = manifest.getStickers().isEmpty() ? null : manifest.getStickers().get(0);
-    Sticker cover = manifest.getCover().or(Optional.fromNullable(first)).orNull();
+    Sticker cover = OptionalUtil.or(manifest.getCover(), Optional.ofNullable(first)).orElse(null);
 
     if (cover != null) {
       Object  model = cover.getUri().isPresent() ? new DecryptableStreamUriLoader.DecryptableUri(cover.getUri().get())

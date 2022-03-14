@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.crypto;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -11,9 +9,9 @@ import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
+import java.util.Optional;
 
 public final class ProfileKeyUtil {
 
@@ -63,7 +61,7 @@ public final class ProfileKeyUtil {
   }
 
   public static @NonNull Optional<ProfileKey> profileKeyOptional(@Nullable byte[] profileKey) {
-    return Optional.fromNullable(profileKeyOrNull(profileKey));
+    return Optional.ofNullable(profileKeyOrNull(profileKey));
   }
 
   public static @NonNull Optional<ProfileKey> profileKeyOptionalOrThrow(@NonNull byte[] profileKey) {

@@ -40,7 +40,8 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
 import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
@@ -200,7 +201,7 @@ public final class WelcomeFragment extends LoggingFragment {
 
   @SuppressLint("MissingPermission")
   private void initializeNumber() {
-    Optional<Phonenumber.PhoneNumber> localNumber = Optional.absent();
+    Optional<Phonenumber.PhoneNumber> localNumber = Optional.empty();
 
     if (Permissions.hasAll(requireContext(), Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PHONE_NUMBERS)) {
       localNumber = Util.getDeviceNumber(requireContext());

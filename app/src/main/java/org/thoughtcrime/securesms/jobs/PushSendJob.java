@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
@@ -70,6 +69,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -166,7 +166,7 @@ public abstract class PushSendJob extends SendJob {
 
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {
     if (!recipient.resolve().isSystemContact() && !recipient.resolve().isProfileSharing()) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     return Optional.of(ProfileKeyUtil.getSelfProfileKey().serialize());
@@ -266,16 +266,16 @@ public abstract class PushSendJob extends SendJob {
                                                 attachment.getContentType(),
                                                 key,
                                                 Optional.of(Util.toIntExact(attachment.getSize())),
-                                                Optional.absent(),
+                                                Optional.empty(),
                                                 width,
                                                 height,
-                                                Optional.fromNullable(attachment.getDigest()),
-                                                Optional.fromNullable(attachment.getFileName()),
+                                                Optional.ofNullable(attachment.getDigest()),
+                                                Optional.ofNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 attachment.isBorderless(),
                                                 attachment.isVideoGif(),
-                                                Optional.fromNullable(attachment.getCaption()),
-                                                Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash),
+                                                Optional.ofNullable(attachment.getCaption()),
+                                                Optional.ofNullable(attachment.getBlurHash()).map(BlurHash::getHash),
                                                 attachment.getUploadTimestamp());
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
@@ -293,7 +293,7 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected Optional<SignalServiceDataMessage.Quote> getQuoteFor(OutgoingMediaMessage message) throws IOException {
-    if (message.getOutgoingQuote() == null) return Optional.absent();
+    if (message.getOutgoingQuote() == null) return Optional.empty();
 
     long                                                  quoteId             = message.getOutgoingQuote().getId();
     String                                                quoteBody           = message.getOutgoingQuote().getText();
@@ -349,7 +349,7 @@ public abstract class PushSendJob extends SendJob {
       SignalServiceAddress quoteAddress = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
       return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -357,7 +357,7 @@ public abstract class PushSendJob extends SendJob {
     Attachment stickerAttachment = Stream.of(message.getAttachments()).filter(Attachment::isSticker).findFirst().orElse(null);
 
     if (stickerAttachment == null) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     try {
@@ -371,7 +371,7 @@ public abstract class PushSendJob extends SendJob {
       return Optional.of(new SignalServiceDataMessage.Sticker(packId, packKey, stickerId, emoji, attachment));
     } catch (IOException e) {
       Log.w(TAG, "Failed to decode sticker id/key", e);
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -398,7 +398,7 @@ public abstract class PushSendJob extends SendJob {
   List<SignalServicePreview> getPreviewsFor(OutgoingMediaMessage mediaMessage) {
     return Stream.of(mediaMessage.getLinkPreviews()).map(lp -> {
       SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
-      return new SignalServicePreview(lp.getUrl(), lp.getTitle(), lp.getDescription(), lp.getDate(), Optional.fromNullable(attachment));
+      return new SignalServicePreview(lp.getUrl(), lp.getTitle(), lp.getDescription(), lp.getDate(), Optional.ofNullable(attachment));
     }).toList();
   }
 

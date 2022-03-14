@@ -24,9 +24,9 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.libsignal.util.guava.Function;
 
 import java.util.List;
+import java.util.function.Function;
 
 public final class LiveUpdateMessage {
 

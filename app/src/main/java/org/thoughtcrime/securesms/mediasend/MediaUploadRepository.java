@@ -92,8 +92,8 @@ public class MediaUploadRepository {
   }
 
   private boolean hasSameTransformProperties(@NonNull Media oldMedia, @NonNull Media newMedia) {
-    TransformProperties oldProperties = oldMedia.getTransformProperties().orNull();
-    TransformProperties newProperties = newMedia.getTransformProperties().orNull();
+    TransformProperties oldProperties = oldMedia.getTransformProperties().orElse(null);
+    TransformProperties newProperties = newMedia.getTransformProperties().orElse(null);
 
     if (oldProperties == null || newProperties == null) {
       return oldProperties == newProperties;
@@ -171,7 +171,7 @@ public class MediaUploadRepository {
       PreUploadResult result = uploadResults.get(updated);
 
       if (result != null) {
-        db.updateAttachmentCaption(result.getAttachmentId(), updated.getCaption().orNull());
+        db.updateAttachmentCaption(result.getAttachmentId(), updated.getCaption().orElse(null));
       } else {
         Log.w(TAG,"When updating captions, no pre-upload result could be found for media with URI: " + updated.getUri());
       }
@@ -205,11 +205,11 @@ public class MediaUploadRepository {
 
   public static @NonNull Attachment asAttachment(@NonNull Context context, @NonNull Media media) {
     if (MediaUtil.isVideoType(media.getMimeType())) {
-      return new VideoSlide(context, media.getUri(), media.getSize(), media.isVideoGif(), media.getWidth(), media.getHeight(), media.getCaption().orNull(), media.getTransformProperties().orNull()).asAttachment();
+      return new VideoSlide(context, media.getUri(), media.getSize(), media.isVideoGif(), media.getWidth(), media.getHeight(), media.getCaption().orElse(null), media.getTransformProperties().orElse(null)).asAttachment();
     } else if (MediaUtil.isGif(media.getMimeType())) {
-      return new GifSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull()).asAttachment();
+      return new GifSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orElse(null)).asAttachment();
     } else if (MediaUtil.isImageType(media.getMimeType())) {
-      return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull(), null, media.getTransformProperties().orNull()).asAttachment();
+      return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orElse(null), null, media.getTransformProperties().orElse(null)).asAttachment();
     } else if (MediaUtil.isTextType(media.getMimeType())) {
       return new TextSlide(context, media.getUri(), null, media.getSize()).asAttachment();
     } else {

@@ -15,7 +15,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
@@ -24,6 +23,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -148,7 +148,7 @@ public final class DecryptedGroupUtil {
    * The UUID of the member that made the change.
    */
   public static Optional<UUID> editorUuid(DecryptedGroupChange change) {
-    return Optional.fromNullable(change != null ? UuidUtil.fromByteStringOrNull(change.getEditor()) : null);
+    return Optional.ofNullable(change != null ? UuidUtil.fromByteStringOrNull(change.getEditor()) : null);
   }
 
   public static Optional<DecryptedMember> findMemberByUuid(Collection<DecryptedMember> members, UUID uuid) {
@@ -160,7 +160,7 @@ public final class DecryptedGroupUtil {
       }
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   public static Optional<DecryptedPendingMember> findPendingByUuid(Collection<DecryptedPendingMember> members, UUID uuid) {
@@ -172,7 +172,7 @@ public final class DecryptedGroupUtil {
       }
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   private static int findPendingIndexByUuidCipherText(List<DecryptedPendingMember> members, ByteString cipherText) {
@@ -206,7 +206,7 @@ public final class DecryptedGroupUtil {
       }
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   public static boolean isPendingOrRequesting(DecryptedGroup group, UUID uuid) {
@@ -617,9 +617,9 @@ public final class DecryptedGroupUtil {
   }
 
   public static Optional<UUID> findInviter(List<DecryptedPendingMember> pendingMembersList, UUID uuid) {
-    return Optional.fromNullable(findPendingByUuid(pendingMembersList, uuid).transform(DecryptedPendingMember::getAddedByUuid)
-                                                                            .transform(UuidUtil::fromByteStringOrNull)
-                                                                            .orNull());
+    return Optional.ofNullable(findPendingByUuid(pendingMembersList, uuid).map(DecryptedPendingMember::getAddedByUuid)
+                                                                          .map(UuidUtil::fromByteStringOrNull)
+                                                                          .orElse(null));
   }
 
   public static boolean changeIsEmpty(DecryptedGroupChange change) {

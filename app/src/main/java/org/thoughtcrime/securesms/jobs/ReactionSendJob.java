@@ -237,7 +237,7 @@ public class ReactionSendJob extends BaseJob {
     List<Recipient>          nonSelfDestinations = destinations.stream().filter(r -> !r.isSelf()).collect(Collectors.toList());
     boolean                  includesSelf        = nonSelfDestinations.size() != destinations.size();
     List<SendMessageResult>  results             = GroupSendUtil.sendResendableDataMessage(context,
-                                                                                           conversationRecipient.getGroupId().transform(GroupId::requireV2).orNull(),
+                                                                                           conversationRecipient.getGroupId().map(GroupId::requireV2).orElse(null),
                                                                                            nonSelfDestinations,
                                                                                            false,
                                                                                            ContentHint.RESENDABLE,

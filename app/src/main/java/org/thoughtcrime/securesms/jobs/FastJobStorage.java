@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class FastJobStorage implements JobStorage {
@@ -139,7 +139,7 @@ public class FastJobStorage implements JobStorage {
   }
 
   private Optional<JobSpec> getMigrationJob() {
-    return Optional.fromNullable(Stream.of(jobs)
+    return Optional.ofNullable(Stream.of(jobs)
                                        .filter(j -> Job.Parameters.MIGRATION_QUEUE_KEY.equals(j.getQueueKey()))
                                        .filter(this::firstInQueue)
                                        .findFirst()

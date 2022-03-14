@@ -1,16 +1,12 @@
 package org.thoughtcrime.securesms.reactions;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.model.MessageId;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 import java.util.Comparator;
 import java.util.List;
@@ -18,8 +14,6 @@ import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public class ReactionsViewModel extends ViewModel {
 

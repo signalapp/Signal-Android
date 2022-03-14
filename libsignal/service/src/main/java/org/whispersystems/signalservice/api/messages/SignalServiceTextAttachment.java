@@ -1,12 +1,13 @@
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 public class SignalServiceTextAttachment {
 
-  private final Optional<String>               text;
-  private final Optional<Style>                style;
-  private final Optional<Integer>              textForegroundColor;
+  private final Optional<String>  text;
+  private final Optional<Style>   style;
+  private final Optional<Integer> textForegroundColor;
   private final Optional<Integer>              textBackgroundColor;
   private final Optional<SignalServicePreview> preview;
   private final Optional<Gradient>             backgroundGradient;
@@ -40,7 +41,7 @@ public class SignalServiceTextAttachment {
                                            textBackgroundColor,
                                            preview,
                                            Optional.of(backgroundGradient),
-                                           Optional.absent());
+                                           Optional.empty());
   }
 
   public static SignalServiceTextAttachment forSolidBackground(Optional<String>               text,
@@ -54,7 +55,7 @@ public class SignalServiceTextAttachment {
                                            textForegroundColor,
                                            textBackgroundColor,
                                            preview,
-                                           Optional.absent(),
+                                           Optional.empty(),
                                            Optional.of(backgroundColor));
   }
 

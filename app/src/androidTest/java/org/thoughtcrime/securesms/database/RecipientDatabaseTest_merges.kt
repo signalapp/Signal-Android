@@ -224,12 +224,12 @@ class RecipientDatabaseTest_merges {
     }
   }
 
-  private fun smsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.absent()): IncomingTextMessage {
+  private fun smsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingTextMessage {
     return IncomingTextMessage(sender, 1, time, time, time, body, groupId, 0, true, null)
   }
 
-  private fun mmsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.absent()): IncomingMediaMessage {
-    return IncomingMediaMessage(sender, groupId, body, time, time, time, emptyList(), 0, 0, false, false, true, Optional.absent())
+  private fun mmsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingMediaMessage {
+    return IncomingMediaMessage(sender, groupId, body, time, time, time, emptyList(), 0, 0, false, false, true, Optional.empty())
   }
 
   private fun identityKey(value: Byte): IdentityKey {

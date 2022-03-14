@@ -41,7 +41,7 @@ class StoryLinkPreviewView @JvmOverloads constructor(
       val corners = DimensionUnit.DP.toPixels(18f).toInt()
       image.setCorners(corners, corners, corners, corners)
 
-      val imageSlide: ImageSlide? = linkPreview.thumbnail.transform { ImageSlide(image.context, it) }.orNull()
+      val imageSlide: ImageSlide? = linkPreview.thumbnail.map { ImageSlide(image.context, it) }.orElse(null)
       if (imageSlide != null) {
         image.setImageResource(GlideApp.with(image), imageSlide, false, false)
         image.visible = true
@@ -59,7 +59,7 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   }
 
   fun bind(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int = View.INVISIBLE) {
-    bind(linkPreviewState.linkPreview.orNull(), hiddenVisibility)
+    bind(linkPreviewState.linkPreview.orElse(null), hiddenVisibility)
   }
 
   private fun formatUrl(linkPreview: LinkPreview) {

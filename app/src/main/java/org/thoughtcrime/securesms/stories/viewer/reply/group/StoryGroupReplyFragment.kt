@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
-import java.lang.AssertionError
 
 /**
  * Fragment which contains UI to reply to a group story

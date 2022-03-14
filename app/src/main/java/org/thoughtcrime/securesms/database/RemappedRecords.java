@@ -4,12 +4,12 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.libsignal.util.guava.Preconditions;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -41,12 +41,12 @@ class RemappedRecords {
 
   @NonNull Optional<RecipientId> getRecipient(@NonNull RecipientId oldId) {
     ensureRecipientMapIsPopulated();
-    return Optional.fromNullable(recipientMap.get(oldId));
+    return Optional.ofNullable(recipientMap.get(oldId));
   }
 
   @NonNull Optional<Long> getThread(long oldId) {
     ensureThreadMapIsPopulated();
-    return Optional.fromNullable(threadMap.get(oldId));
+    return Optional.ofNullable(threadMap.get(oldId));
   }
 
   boolean areAnyRemapped(@NonNull Collection<RecipientId> recipientIds) {

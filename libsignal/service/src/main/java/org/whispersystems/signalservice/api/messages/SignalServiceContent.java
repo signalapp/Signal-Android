@@ -20,7 +20,6 @@ import org.whispersystems.libsignal.LegacyMessageException;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
@@ -45,7 +44,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.multidevice.ViewedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.payments.Money;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.StorageKey;
@@ -62,6 +60,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public final class SignalServiceContent {
 
@@ -108,14 +107,14 @@ public final class SignalServiceContent {
     this.groupId                  = groupId;
     this.serializedState          = serializedState;
 
-    this.message                      = Optional.fromNullable(message);
-    this.synchronizeMessage           = Optional.absent();
-    this.callMessage                  = Optional.absent();
-    this.readMessage                  = Optional.absent();
-    this.typingMessage                = Optional.absent();
+    this.message                      = Optional.ofNullable(message);
+    this.synchronizeMessage           = Optional.empty();
+    this.callMessage                  = Optional.empty();
+    this.readMessage                  = Optional.empty();
+    this.typingMessage                = Optional.empty();
     this.senderKeyDistributionMessage = senderKeyDistributionMessage;
-    this.decryptionErrorMessage       = Optional.absent();
-    this.storyMessage                 = Optional.absent();
+    this.decryptionErrorMessage       = Optional.empty();
+    this.storyMessage                 = Optional.empty();
   }
 
   private SignalServiceContent(SignalServiceSyncMessage synchronizeMessage,
@@ -140,14 +139,14 @@ public final class SignalServiceContent {
     this.groupId                  = groupId;
     this.serializedState          = serializedState;
 
-    this.message                      = Optional.absent();
-    this.synchronizeMessage           = Optional.fromNullable(synchronizeMessage);
-    this.callMessage                  = Optional.absent();
-    this.readMessage                  = Optional.absent();
-    this.typingMessage                = Optional.absent();
+    this.message                      = Optional.empty();
+    this.synchronizeMessage           = Optional.ofNullable(synchronizeMessage);
+    this.callMessage                  = Optional.empty();
+    this.readMessage                  = Optional.empty();
+    this.typingMessage                = Optional.empty();
     this.senderKeyDistributionMessage = senderKeyDistributionMessage;
-    this.decryptionErrorMessage       = Optional.absent();
-    this.storyMessage                 = Optional.absent();
+    this.decryptionErrorMessage       = Optional.empty();
+    this.storyMessage                 = Optional.empty();
   }
 
   private SignalServiceContent(SignalServiceCallMessage callMessage,
@@ -172,14 +171,14 @@ public final class SignalServiceContent {
     this.groupId                  = groupId;
     this.serializedState          = serializedState;
 
-    this.message                      = Optional.absent();
-    this.synchronizeMessage           = Optional.absent();
+    this.message                      = Optional.empty();
+    this.synchronizeMessage           = Optional.empty();
     this.callMessage                  = Optional.of(callMessage);
-    this.readMessage                  = Optional.absent();
-    this.typingMessage                = Optional.absent();
+    this.readMessage                  = Optional.empty();
+    this.typingMessage                = Optional.empty();
     this.senderKeyDistributionMessage = senderKeyDistributionMessage;
-    this.decryptionErrorMessage       = Optional.absent();
-    this.storyMessage                 = Optional.absent();
+    this.decryptionErrorMessage       = Optional.empty();
+    this.storyMessage                 = Optional.empty();
   }
 
   private SignalServiceContent(SignalServiceReceiptMessage receiptMessage,
@@ -204,14 +203,14 @@ public final class SignalServiceContent {
     this.groupId                  = groupId;
     this.serializedState          = serializedState;
 
-    this.message                      = Optional.absent();
-    this.synchronizeMessage           = Optional.absent();
-    this.callMessage                  = Optional.absent();
+    this.message                      = Optional.empty();
+    this.synchronizeMessage           = Optional.empty();
+    this.callMessage                  = Optional.empty();
     this.readMessage                  = Optional.of(receiptMessage);
-    this.typingMessage                = Optional.absent();
+    this.typingMessage                = Optional.empty();
     this.senderKeyDistributionMessage = senderKeyDistributionMessage;
-    this.decryptionErrorMessage       = Optional.absent();
-    this.storyMessage                 = Optional.absent();
+    this.decryptionErrorMessage       = Optional.empty();
+    this.storyMessage                 = Optional.empty();
   }
 
   private SignalServiceContent(DecryptionErrorMessage errorMessage,
@@ -236,14 +235,14 @@ public final class SignalServiceContent {
     this.groupId                  = groupId;
     this.serializedState          = serializedState;
 
-    this.message                      = Optional.absent();
-    this.synchronizeMessage           = Optional.absent();
-    this.callMessage                  = Optional.absent();
-    this.readMessage                  = Optional.absent();
-    this.typingMessage                = Optional.absent();
+    this.message                      = Optional.empty();
+    this.synchronizeMessage           = Optional.empty();
+    this.callMessage                  = Optional.empty();
+    this.readMessage                  = Optional.empty();
+    this.typingMessage                = Optional.empty();
     this.senderKeyDistributionMessage = senderKeyDistributionMessage;
     this.decryptionErrorMessage       = Optional.of(errorMessage);
-    this.storyMessage                 = Optional.absent();
+    this.storyMessage                 = Optional.empty();
   }
 
   private SignalServiceContent(SignalServiceTypingMessage typingMessage,
@@ -268,14 +267,14 @@ public final class SignalServiceContent {
     this.groupId                  = groupId;
     this.serializedState          = serializedState;
 
-    this.message                      = Optional.absent();
-    this.synchronizeMessage           = Optional.absent();
-    this.callMessage                  = Optional.absent();
-    this.readMessage                  = Optional.absent();
+    this.message                      = Optional.empty();
+    this.synchronizeMessage           = Optional.empty();
+    this.callMessage                  = Optional.empty();
+    this.readMessage                  = Optional.empty();
     this.typingMessage                = Optional.of(typingMessage);
     this.senderKeyDistributionMessage = senderKeyDistributionMessage;
-    this.decryptionErrorMessage       = Optional.absent();
-    this.storyMessage                 = Optional.absent();
+    this.decryptionErrorMessage       = Optional.empty();
+    this.storyMessage                 = Optional.empty();
   }
 
   private SignalServiceContent(SenderKeyDistributionMessage senderKeyDistributionMessage,
@@ -299,14 +298,14 @@ public final class SignalServiceContent {
     this.groupId                  = groupId;
     this.serializedState          = serializedState;
 
-    this.message                      = Optional.absent();
-    this.synchronizeMessage           = Optional.absent();
-    this.callMessage                  = Optional.absent();
-    this.readMessage                  = Optional.absent();
-    this.typingMessage                = Optional.absent();
+    this.message                      = Optional.empty();
+    this.synchronizeMessage           = Optional.empty();
+    this.callMessage                  = Optional.empty();
+    this.readMessage                  = Optional.empty();
+    this.typingMessage                = Optional.empty();
     this.senderKeyDistributionMessage = Optional.of(senderKeyDistributionMessage);
-    this.decryptionErrorMessage       = Optional.absent();
-    this.storyMessage                 = Optional.absent();
+    this.decryptionErrorMessage       = Optional.empty();
+    this.storyMessage                 = Optional.empty();
   }
 
   private SignalServiceContent(SignalServiceStoryMessage storyMessage,
@@ -330,13 +329,13 @@ public final class SignalServiceContent {
     this.groupId                  = groupId;
     this.serializedState          = serializedState;
 
-    this.message                      = Optional.absent();
-    this.synchronizeMessage           = Optional.absent();
-    this.callMessage                  = Optional.absent();
-    this.readMessage                  = Optional.absent();
-    this.typingMessage                = Optional.absent();
-    this.senderKeyDistributionMessage = Optional.absent();
-    this.decryptionErrorMessage       = Optional.absent();
+    this.message                      = Optional.empty();
+    this.synchronizeMessage           = Optional.empty();
+    this.callMessage                  = Optional.empty();
+    this.readMessage                  = Optional.empty();
+    this.typingMessage                = Optional.empty();
+    this.senderKeyDistributionMessage = Optional.empty();
+    this.decryptionErrorMessage       = Optional.empty();
     this.storyMessage                 = Optional.of(storyMessage);
   }
 
@@ -434,7 +433,7 @@ public final class SignalServiceContent {
       SignalServiceProtos.DataMessage message = serviceContentProto.getLegacyDataMessage();
 
       return new SignalServiceContent(createSignalServiceMessage(metadata, message),
-                                      Optional.absent(),
+                                      Optional.empty(),
                                       metadata.getSender(),
                                       metadata.getSenderDevice(),
                                       metadata.getTimestamp(),
@@ -446,7 +445,7 @@ public final class SignalServiceContent {
                                       serviceContentProto);
     } else if (serviceContentProto.getDataCase() == SignalServiceContentProto.DataCase.CONTENT) {
       SignalServiceProtos.Content            message                      = serviceContentProto.getContent();
-      Optional<SenderKeyDistributionMessage> senderKeyDistributionMessage = Optional.absent();
+      Optional<SenderKeyDistributionMessage> senderKeyDistributionMessage = Optional.empty();
 
       if (message.hasSenderKeyDistributionMessage()) {
         try {
@@ -646,7 +645,7 @@ public final class SignalServiceContent {
       SignalServiceDataMessage             dataMessage          = createSignalServiceMessage(metadata, sentContent.getMessage());
       Optional<SignalServiceAddress>       address              = SignalServiceAddress.isValidAddress(sentContent.getDestinationUuid())
                                                                   ? Optional.of(new SignalServiceAddress(ServiceId.parseOrThrow(sentContent.getDestinationUuid())))
-                                                                  : Optional.<SignalServiceAddress>absent();
+                                                                  : Optional.empty();
 
       if (!address.isPresent() && !dataMessage.getGroupContext().isPresent()) {
         throw new InvalidMessageStructureException("SyncMessage missing both destination and group ID!");
@@ -789,10 +788,10 @@ public final class SignalServiceContent {
       Boolean typingIndicators               = content.getConfiguration().hasTypingIndicators() ? content.getConfiguration().getTypingIndicators() : null;
       Boolean linkPreviews                   = content.getConfiguration().hasLinkPreviews() ? content.getConfiguration().getLinkPreviews() : null;
 
-      return SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.fromNullable(readReceipts),
-                                                                                Optional.fromNullable(unidentifiedDeliveryIndicators),
-                                                                                Optional.fromNullable(typingIndicators),
-                                                                                Optional.fromNullable(linkPreviews)));
+      return SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.ofNullable(readReceipts),
+                                                                                Optional.ofNullable(unidentifiedDeliveryIndicators),
+                                                                                Optional.ofNullable(typingIndicators),
+                                                                                Optional.ofNullable(linkPreviews)));
     }
 
     if (content.hasFetchLatest() && content.getFetchLatest().hasType()) {
@@ -857,7 +856,7 @@ public final class SignalServiceContent {
                                                                                         mobileCoin.getReceipt(),
                                                                                         mobileCoin.getLedgerBlockIndex(),
                                                                                         mobileCoin.getLedgerBlockTimestamp(),
-                                                                                        address.isEmpty() ? Optional.absent() : Optional.of(address.toByteArray()),
+                                                                                        address.isEmpty() ? Optional.empty() : Optional.of(address.toByteArray()),
                                                                                         Optional.of(outgoingPayment.getNote()),
                                                                                         mobileCoin.getOutputPublicKeysList(),
                                                                                         mobileCoin.getSpentKeyImagesList()));
@@ -949,7 +948,7 @@ public final class SignalServiceContent {
 
     return new SignalServiceTypingMessage(action, content.getTimestamp(),
                                           content.hasGroupId() ? Optional.of(content.getGroupId().toByteArray()) :
-                                                                 Optional.absent());
+                                                                 Optional.empty());
   }
 
   private static SignalServiceStoryMessage createStoryMessage(SignalServiceProtos.StoryMessage content) throws InvalidMessageStructureException {
@@ -1018,7 +1017,7 @@ public final class SignalServiceContent {
                                     preview.getTitle(),
                                     preview.getDescription(),
                                     preview.getDate(),
-                                    Optional.fromNullable(attachment));
+                                    Optional.ofNullable(attachment));
   }
 
   private static List<SignalServiceDataMessage.Mention> createMentions(List<SignalServiceProtos.DataMessage.BodyRange> bodyRanges, String body, boolean isGroupV2)
@@ -1274,10 +1273,10 @@ public final class SignalServiceContent {
       }
     }
 
-    Optional<String>               text                = Optional.fromNullable(attachment.hasText() ? attachment.getText() : null);
-    Optional<Integer>              textForegroundColor = Optional.fromNullable(attachment.hasTextForegroundColor() ? attachment.getTextForegroundColor() : null);
-    Optional<Integer>              textBackgroundColor = Optional.fromNullable(attachment.hasTextBackgroundColor() ? attachment.getTextBackgroundColor() : null);
-    Optional<SignalServicePreview> preview             = Optional.fromNullable(attachment.hasPreview() ? createPreview(attachment.getPreview()) : null);
+    Optional<String>               text                = Optional.ofNullable(attachment.hasText() ? attachment.getText() : null);
+    Optional<Integer>              textForegroundColor = Optional.ofNullable(attachment.hasTextForegroundColor() ? attachment.getTextForegroundColor() : null);
+    Optional<Integer>              textBackgroundColor = Optional.ofNullable(attachment.hasTextBackgroundColor() ? attachment.getTextBackgroundColor() : null);
+    Optional<SignalServicePreview> preview             = Optional.ofNullable(attachment.hasPreview() ? createPreview(attachment.getPreview()) : null);
 
     if (attachment.hasGradient()) {
       SignalServiceProtos.TextAttachment.Gradient attachmentGradient = attachment.getGradient();
@@ -1285,13 +1284,13 @@ public final class SignalServiceContent {
       Integer                              startColor         = attachmentGradient.hasStartColor() ? attachmentGradient.getStartColor() : null;
       Integer                              endColor           = attachmentGradient.hasEndColor() ? attachmentGradient.getEndColor() : null;
       Integer                              angle              = attachmentGradient.hasAngle() ? attachmentGradient.getAngle() : null;
-      SignalServiceTextAttachment.Gradient gradient           = new SignalServiceTextAttachment.Gradient(Optional.fromNullable(startColor),
-                                                                                                         Optional.fromNullable(endColor),
-                                                                                                         Optional.fromNullable(angle));
+      SignalServiceTextAttachment.Gradient gradient           = new SignalServiceTextAttachment.Gradient(Optional.ofNullable(startColor),
+                                                                                                         Optional.ofNullable(endColor),
+                                                                                                         Optional.ofNullable(angle));
 
-      return SignalServiceTextAttachment.forGradientBackground(text, Optional.fromNullable(style), textForegroundColor, textBackgroundColor, preview, gradient);
+      return SignalServiceTextAttachment.forGradientBackground(text, Optional.ofNullable(style), textForegroundColor, textBackgroundColor, preview, gradient);
     } else {
-      return SignalServiceTextAttachment.forSolidBackground(text, Optional.fromNullable(style), textForegroundColor, textBackgroundColor, preview, attachment.getColor());
+      return SignalServiceTextAttachment.forSolidBackground(text, Optional.ofNullable(style), textForegroundColor, textBackgroundColor, preview, attachment.getColor());
     }
   }
 

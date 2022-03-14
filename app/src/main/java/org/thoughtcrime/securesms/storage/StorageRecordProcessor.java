@@ -2,10 +2,7 @@ package org.thoughtcrime.securesms.storage;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
-
 import org.whispersystems.signalservice.api.storage.SignalRecord;
-import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 
 import java.io.IOException;
 import java.util.Collection;

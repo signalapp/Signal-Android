@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
-import java.util.ArrayList
 
 /**
  * General state of ongoing calls.

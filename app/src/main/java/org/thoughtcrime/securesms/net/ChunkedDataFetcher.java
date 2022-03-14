@@ -11,7 +11,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -20,6 +19,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import okhttp3.CacheControl;
 import okhttp3.Call;
@@ -48,7 +48,7 @@ public class ChunkedDataFetcher {
     }
 
     CompositeRequestController compositeController = new CompositeRequestController();
-    fetchChunks(url, contentLength, Optional.absent(), compositeController, callback);
+    fetchChunks(url, contentLength, Optional.empty(), compositeController, callback);
     return compositeController;
   }
 
@@ -231,11 +231,11 @@ public class ChunkedDataFetcher {
       try {
         return Optional.of(Long.parseLong(totalString));
       } catch (NumberFormatException e) {
-        return Optional.absent();
+        return Optional.empty();
       }
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   private List<ByteRange> getRequestPattern(long size) throws IOException {

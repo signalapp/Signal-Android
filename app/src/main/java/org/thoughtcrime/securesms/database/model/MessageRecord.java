@@ -58,7 +58,6 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -70,6 +69,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Function;
 
 /**
  * The base class for message record models that are displayed in
@@ -314,7 +314,7 @@ public abstract class MessageRecord extends DisplayRecord {
                                                           @NonNull Function<Recipient, String> stringGenerator,
                                                           @DrawableRes int iconResource)
   {
-    return UpdateDescription.mentioning(Collections.singletonList(recipient.getServiceId().or(ServiceId.UNKNOWN)),
+    return UpdateDescription.mentioning(Collections.singletonList(recipient.getServiceId().orElse(ServiceId.UNKNOWN)),
                                         () -> stringGenerator.apply(recipient.resolve()),
                                         iconResource);
   }

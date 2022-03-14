@@ -8,7 +8,6 @@ import android.text.util.Linkify;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 import androidx.core.text.HtmlCompat;
 import androidx.core.text.util.LinkifyCompat;
 
@@ -20,13 +19,13 @@ import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -228,7 +227,7 @@ public final class LinkPreviewUtil {
     }
 
     public Optional<Link> findFirst() {
-      return links.isEmpty() ? Optional.absent()
+      return links.isEmpty() ? Optional.empty()
                              : Optional.of(links.get(0));
     }
 

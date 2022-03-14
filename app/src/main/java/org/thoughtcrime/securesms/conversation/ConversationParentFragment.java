@@ -108,9 +108,6 @@ import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
-import org.thoughtcrime.securesms.database.model.StoryType;
-import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
@@ -127,6 +124,7 @@ import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -179,6 +177,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
@@ -292,11 +291,11 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.Stub;
+import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.io.IOException;
@@ -306,6 +305,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -805,19 +805,19 @@ public class ConversationParentFragment extends Fragment
       }
 
       long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-      int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+      int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
       boolean    initiating     = threadId == -1;
-      QuoteModel quote          = result.isViewOnce() ? null : inputPanel.getQuote().orNull();
+      QuoteModel quote          = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
       SlideDeck  slideDeck      = new SlideDeck();
       List<Mention> mentions    = new ArrayList<>(result.getMentions());
 
       for (Media mediaItem : result.getNonUploadedMedia()) {
         if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new VideoSlide(requireContext(), mediaItem.getUri(), mediaItem.getSize(), mediaItem.isVideoGif(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull(), mediaItem.getTransformProperties().orNull()));
+          slideDeck.addSlide(new VideoSlide(requireContext(), mediaItem.getUri(), mediaItem.getSize(), mediaItem.isVideoGif(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orElse(null), mediaItem.getTransformProperties().orElse(null)));
         } else if (MediaUtil.isGif(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new GifSlide(requireContext(), mediaItem.getUri(), mediaItem.getSize(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orNull()));
+          slideDeck.addSlide(new GifSlide(requireContext(), mediaItem.getUri(), mediaItem.getSize(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orElse(null)));
         } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new ImageSlide(requireContext(), mediaItem.getUri(), mediaItem.getMimeType(), mediaItem.getSize(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orNull(), null, mediaItem.getTransformProperties().orNull()));
+          slideDeck.addSlide(new ImageSlide(requireContext(), mediaItem.getUri(), mediaItem.getMimeType(), mediaItem.getSize(), mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.isBorderless(), mediaItem.getCaption().orElse(null), null, mediaItem.getTransformProperties().orElse(null)));
         } else {
           Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.getMimeType() + "'. Skipping.");
         }
@@ -1954,7 +1954,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void updateDefaultSubscriptionId(Optional<Integer> defaultSubscriptionId) {
-    Log.i(TAG, "updateDefaultSubscriptionId(" + defaultSubscriptionId.orNull() + ")");
+    Log.i(TAG, "updateDefaultSubscriptionId(" + defaultSubscriptionId.orElse(null) + ")");
     sendButton.setDefaultSubscriptionId(defaultSubscriptionId);
   }
 
@@ -2598,7 +2598,7 @@ public class ConversationParentFragment extends Fragment
         mimeType = mediaType.toFallbackMimeType();
       }
 
-      Media media = new Media(uri, mimeType, 0, width, height, 0, 0, borderless, videoGif, Optional.absent(), Optional.absent(), Optional.absent());
+      Media media = new Media(uri, mimeType, 0, width, height, 0, 0, borderless, videoGif, Optional.empty(), Optional.empty(), Optional.empty());
       startActivityForResult(MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedTransport(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
@@ -2620,7 +2620,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendSharedContact(List<Contact> contacts) {
-    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     boolean    initiating     = threadId == -1;
 
@@ -2862,7 +2862,7 @@ public class ConversationParentFragment extends Fragment
   private MediaConstraints getCurrentMediaConstraints() {
     return sendButton.getSelectedTransport().getType() == Type.TEXTSECURE
            ? MediaConstraints.getPushMediaConstraints()
-           : MediaConstraints.getMmsMediaConstraints(sendButton.getSelectedTransport().getSimSubscriptionId().or(-1));
+           : MediaConstraints.getMmsMediaConstraints(sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1));
   }
 
   private void markLastSeen() {
@@ -2923,7 +2923,7 @@ public class ConversationParentFragment extends Fragment
       String          message        = getMessage();
       TransportOption transport      = sendButton.getSelectedTransport();
       boolean         forceSms       = (recipient.isForceSmsSelection() || sendButton.isManualSelection()) && transport.isSms();
-      int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+      int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
       long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = !transport.isSms() && message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
@@ -2961,7 +2961,7 @@ public class ConversationParentFragment extends Fragment
   private void sendMediaMessage(@NonNull MediaSendActivityResult result) {
     long                 thread        = this.threadId;
     long                 expiresIn     = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    QuoteModel           quote         = result.isViewOnce() ? null : inputPanel.getQuote().orNull();
+    QuoteModel           quote         = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
     List<Mention>        mentions      = new ArrayList<>(result.getMentions());
     OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, result.getStoryType(), null, quote, Collections.emptyList(), Collections.emptyList(), mentions);
     OutgoingMediaMessage secureMessage = new OutgoingSecureMediaMessage(message);
@@ -2995,7 +2995,7 @@ public class ConversationParentFragment extends Fragment
                      forceSms,
                      getMessage(),
                      attachmentManager.buildSlideDeck(),
-                     inputPanel.getQuote().orNull(),
+                     inputPanel.getQuote().orElse(null),
                      Collections.emptyList(),
                      linkPreviews,
                      composeText.getMentions(),
@@ -3179,7 +3179,7 @@ public class ConversationParentFragment extends Fragment
       protected Void doInBackground(Void... params) {
         RecipientDatabase recipientDatabase = SignalDatabase.recipients();
 
-        recipientDatabase.setDefaultSubscriptionId(recipient.getId(), transportOption.getSimSubscriptionId().or(-1));
+        recipientDatabase.setDefaultSubscriptionId(recipient.getId(), transportOption.getSimSubscriptionId().orElse(-1));
 
         if (!recipient.resolve().isPushGroup()) {
           recipientDatabase.setForceSmsSelection(recipient.getId(), recipient.get().getRegistered() == RegisteredState.REGISTERED && transportOption.isSms());
@@ -3321,7 +3321,7 @@ public class ConversationParentFragment extends Fragment
   private void sendVoiceNote(@NonNull Uri uri, long size) {
     boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
     boolean    initiating     = threadId == -1;
-    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     AudioSlide audioSlide     = new AudioSlide(requireContext(), uri, size, MediaUtil.AUDIO_AAC, true);
     SlideDeck  slideDeck      = new SlideDeck();
@@ -3331,7 +3331,7 @@ public class ConversationParentFragment extends Fragment
                                                          forceSms,
                                                          "",
                                                          slideDeck,
-                                                         inputPanel.getQuote().orNull(),
+                                                         inputPanel.getQuote().orElse(null),
                                                          Collections.emptyList(),
                                                          Collections.emptyList(),
                                                          composeText.getMentions(),
@@ -3361,14 +3361,14 @@ public class ConversationParentFragment extends Fragment
 
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull String contentType, @NonNull Uri uri, long size, boolean clearCompose) {
     if (sendButton.getSelectedTransport().isSms()) {
-      Media  media  = new Media(uri, contentType, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, false, Optional.absent(), Optional.absent(), Optional.absent());
+      Media  media  = new Media(uri, contentType, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, false, Optional.empty(), Optional.empty(), Optional.empty());
       Intent intent = MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedTransport(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed());
       startActivityForResult(intent, MEDIA_SENDER);
       return;
     }
 
     long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+    int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
     boolean         initiating     = threadId == -1;
     TransportOption transport      = sendButton.getSelectedTransport();
     SlideDeck       slideDeck      = new SlideDeck();
@@ -3996,7 +3996,7 @@ public class ConversationParentFragment extends Fragment
     }
 
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
+    int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().orElse(-1);
     boolean    initiating     = threadId == -1;
     SlideDeck  slideDeck      = new SlideDeck();
 

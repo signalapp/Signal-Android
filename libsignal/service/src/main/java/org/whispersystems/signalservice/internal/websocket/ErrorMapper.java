@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.internal.websocket;
 
-import org.whispersystems.libsignal.util.guava.Function;
+
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
+
+import java.util.function.Function;
 
 /**
  * Can map an API response to an appropriate {@link Throwable}.

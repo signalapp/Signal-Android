@@ -1,11 +1,12 @@
 package org.whispersystems.signalservice.internal.websocket;
 
-import org.whispersystems.libsignal.util.guava.Function;
+
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.util.Objects;
+import java.util.function.Function;
 
 /**
  * A default implementation of a {@link ResponseMapper} that can parse most known

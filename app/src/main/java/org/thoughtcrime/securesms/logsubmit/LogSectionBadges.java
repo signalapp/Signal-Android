@@ -4,11 +4,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 final class LogSectionBadges implements LogSection {
 

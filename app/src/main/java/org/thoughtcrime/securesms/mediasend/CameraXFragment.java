@@ -51,10 +51,10 @@ import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.video.VideoUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Camera captured implemented using the CameraX SDK, which uses Camera2 under the hood. Should be

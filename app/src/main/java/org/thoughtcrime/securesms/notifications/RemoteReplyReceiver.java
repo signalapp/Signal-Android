@@ -74,7 +74,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
         long threadId;
 
         Recipient recipient      = Recipient.resolved(recipientId);
-        int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+        int       subscriptionId = recipient.getDefaultSubscriptionId().orElse(-1);
         long      expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
 
         switch (replyMethod) {

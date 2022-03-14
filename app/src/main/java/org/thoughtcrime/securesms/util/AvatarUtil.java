@@ -25,8 +25,8 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 public final class AvatarUtil {
@@ -167,7 +167,7 @@ public final class AvatarUtil {
   }
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient, int targetSize) {
-    String name = Optional.fromNullable(recipient.getDisplayName(context)).or("");
+    String name = Optional.ofNullable(recipient.getDisplayName(context)).orElse("");
 
     return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize).asDrawable(context, recipient.getAvatarColor());
   }

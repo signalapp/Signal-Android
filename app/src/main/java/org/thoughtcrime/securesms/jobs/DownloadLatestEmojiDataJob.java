@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.IntPair;
 import com.annimon.stream.Stream;
-import com.mobilecoin.lib.util.Hex;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
@@ -32,19 +31,10 @@ import org.thoughtcrime.securesms.util.ScreenDensity;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okio.Okio;
-import okio.Sink;
-import okio.Source;
 
 /**
  * Downloads Emoji JSON and Images to local persistent storage.

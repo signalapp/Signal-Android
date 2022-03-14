@@ -30,11 +30,11 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Executor;
 
 final class MessageRequestRepository {
@@ -60,14 +60,14 @@ final class MessageRequestRepository {
     executor.execute(() -> {
       GroupDatabase                       groupDatabase = SignalDatabase.groups();
       Optional<GroupDatabase.GroupRecord> groupRecord   = groupDatabase.getGroup(recipientId);
-      onGroupInfoLoaded.accept(groupRecord.transform(record -> {
+      onGroupInfoLoaded.accept(groupRecord.map(record -> {
         if (record.isV2Group()) {
           DecryptedGroup decryptedGroup = record.requireV2GroupProperties().getDecryptedGroup();
           return new GroupInfo(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount(), decryptedGroup.getDescription());
         } else {
           return new GroupInfo(record.getMembers().size(), 0, "");
         }
-      }).or(GroupInfo.ZERO));
+      }).orElse(GroupInfo.ZERO));
     });
   }
 
@@ -266,8 +266,8 @@ final class MessageRequestRepository {
   private GroupDatabase.MemberLevel getGroupMemberLevel(@NonNull RecipientId recipientId) {
     return SignalDatabase.groups()
                           .getGroup(recipientId)
-                          .transform(g -> g.memberLevel(Recipient.self()))
-                          .or(GroupDatabase.MemberLevel.NOT_A_MEMBER);
+                          .map(g -> g.memberLevel(Recipient.self()))
+                          .orElse(GroupDatabase.MemberLevel.NOT_A_MEMBER);
   }
 
 

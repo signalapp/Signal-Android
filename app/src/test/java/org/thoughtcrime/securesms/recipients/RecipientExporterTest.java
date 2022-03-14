@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 import static android.provider.ContactsContract.Intents.Insert.EMAIL;
 import static android.provider.ContactsContract.Intents.Insert.NAME;
@@ -55,7 +56,7 @@ public final class RecipientExporterTest {
 
     when(recipient.requireE164()).thenReturn(phone);
     when(recipient.getE164()).thenAnswer(i -> Optional.of(phone));
-    when(recipient.getEmail()).thenAnswer(i -> Optional.absent());
+    when(recipient.getEmail()).thenAnswer(i -> Optional.empty());
 
     return recipient;
   }
@@ -66,7 +67,7 @@ public final class RecipientExporterTest {
 
     when(recipient.requireEmail()).thenReturn(email);
     when(recipient.getEmail()).thenAnswer(i -> Optional.of(email));
-    when(recipient.getE164()).thenAnswer(i -> Optional.absent());
+    when(recipient.getE164()).thenAnswer(i -> Optional.empty());
 
     return recipient;
   }

@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
-import org.thoughtcrime.securesms.search.MessageResult;
-import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.search.MessageResult;
+import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 
 import java.util.Collections;

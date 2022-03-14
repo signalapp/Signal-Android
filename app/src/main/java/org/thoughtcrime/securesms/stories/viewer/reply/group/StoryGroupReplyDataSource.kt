@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
-import java.lang.UnsupportedOperationException
 
 class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSource<StoryGroupReplyItemData.Key, StoryGroupReplyItemData> {
   override fun size(): Int {

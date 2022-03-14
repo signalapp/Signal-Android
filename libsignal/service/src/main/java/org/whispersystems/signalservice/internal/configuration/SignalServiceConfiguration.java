@@ -1,9 +1,10 @@
 package org.whispersystems.signalservice.internal.configuration;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import okhttp3.Dns;
 import okhttp3.Interceptor;

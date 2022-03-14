@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.util;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Sometimes a message that is referencing another message can arrive out of order. In these cases,
@@ -42,7 +42,7 @@ public final class EarlyMessageCache {
    * @param sentTimestamp The sent timestamp of the message in question.
    */
   public Optional<List<SignalServiceContent>> retrieve(@NonNull RecipientId sender, long sentTimestamp) {
-    return Optional.fromNullable(cache.remove(new MessageId(sender, sentTimestamp)));
+    return Optional.ofNullable(cache.remove(new MessageId(sender, sentTimestamp)));
   }
 
   private static final class MessageId {

@@ -1,54 +1,34 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.BannedMember;
 import org.signal.storageservice.protos.groups.Group;
-import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.PendingMember;
 import org.signal.storageservice.protos.groups.RequestingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
 import org.signal.storageservice.protos.groups.local.DecryptedBannedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedString;
-import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
-import org.signal.zkgroup.groups.UuidCiphertext;
-import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
-import org.signal.zkgroup.profiles.ProfileKeyCommitment;
-import org.signal.zkgroup.profiles.ProfileKeyCredential;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialPresentation;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
-import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
-import java.util.Collections;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.whispersystems.signalservice.api.groupsv2.ProtobufTestUtils.getMaxDeclaredFieldNumber;
 
 public final class GroupsV2Operations_decrypt_group_Test {

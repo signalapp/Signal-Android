@@ -4,10 +4,10 @@ import android.os.Build;
 import android.os.PowerManager;
 
 import org.signal.core.util.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Optional;
 
 /**
  * Controls access to the proximity lock.
@@ -19,7 +19,7 @@ class ProximityLock {
 
   private static final String TAG = Log.tag(ProximityLock.class);
 
-  private final Method wakelockParameterizedRelease = getWakelockParamterizedReleaseMethod();
+  private final Method                          wakelockParameterizedRelease = getWakelockParamterizedReleaseMethod();
   private final Optional<PowerManager.WakeLock> proximityLock;
 
   private static final int PROXIMITY_SCREEN_OFF_WAKE_LOCK = 32;
@@ -32,16 +32,16 @@ class ProximityLock {
   private Optional<PowerManager.WakeLock> getProximityLock(PowerManager pm) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       if (pm.isWakeLockLevelSupported(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK)) {
-        return Optional.fromNullable(pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:proximity"));
+        return Optional.ofNullable(pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:proximity"));
       } else {
-        return Optional.absent();
+        return Optional.empty();
       }
     } else {
       try {
-        return Optional.fromNullable(pm.newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:incall"));
+        return Optional.ofNullable(pm.newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:incall"));
       } catch (Throwable t) {
         Log.e(TAG, "Failed to create proximity lock", t);
-        return Optional.absent();
+        return Optional.empty();
       }
     }
   }

@@ -5,10 +5,9 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.whispersystems.libsignal.util.guava.Optional;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Local model that represents the data present in the libsignal model
@@ -16,10 +15,10 @@ import java.util.List;
  */
 public final class StickerManifest {
 
-  private final String            packId;
-  private final String            packKey;
-  private final Optional<String>  title;
-  private final Optional<String>  author;
+  private final String           packId;
+  private final String           packKey;
+  private final Optional<String> title;
+  private final Optional<String> author;
   private final Optional<Sticker> cover;
   private final List<Sticker>     stickers;
 
@@ -80,7 +79,7 @@ public final class StickerManifest {
       this.id          = id;
       this.emoji       = emoji;
       this.contentType = contentType;
-      this.uri         = Optional.fromNullable(uri);
+      this.uri         = Optional.ofNullable(uri);
     }
 
     public @NonNull String getPackId() {

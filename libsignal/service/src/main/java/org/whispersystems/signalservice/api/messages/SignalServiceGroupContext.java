@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.api.messages;
 
 import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 public final class SignalServiceGroupContext {
 
@@ -10,11 +12,11 @@ public final class SignalServiceGroupContext {
 
   private SignalServiceGroupContext(SignalServiceGroup groupV1) {
     this.groupV1 = Optional.of(groupV1);
-    this.groupV2 = Optional.absent();
+    this.groupV2 = Optional.empty();
   }
 
   private SignalServiceGroupContext(SignalServiceGroupV2 groupV2) {
-    this.groupV1 = Optional.absent();
+    this.groupV1 = Optional.empty();
     this.groupV2 = Optional.of(groupV2);
   }
 
@@ -29,7 +31,7 @@ public final class SignalServiceGroupContext {
   static Optional<SignalServiceGroupContext> createOptional(SignalServiceGroup groupV1, SignalServiceGroupV2 groupV2)
       throws InvalidMessageException
   {
-    return Optional.fromNullable(create(groupV1, groupV2));
+    return Optional.ofNullable(create(groupV1, groupV2));
   }
 
   public static SignalServiceGroupContext create(SignalServiceGroup groupV1, SignalServiceGroupV2 groupV2)

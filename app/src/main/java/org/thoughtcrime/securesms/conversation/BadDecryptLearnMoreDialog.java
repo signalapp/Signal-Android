@@ -15,8 +15,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 
 /**
  * A dialog fragment that shows when you click 'learn more' on a {@link MessageRecord#isBadDecryptType()}.

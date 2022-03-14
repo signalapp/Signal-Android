@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -57,6 +56,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -138,7 +138,7 @@ private static final String[] GROUP_PROJECTION = {
         return getGroup(cursor);
       }
 
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -168,7 +168,7 @@ private static final String[] GROUP_PROJECTION = {
         return getGroup(cursor);
       }
 
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -190,7 +190,7 @@ private static final String[] GROUP_PROJECTION = {
       if (cursor.moveToFirst()) {
         return getGroup(cursor);
       } else {
-        return Optional.absent();
+        return Optional.empty();
       }
     }
   }
@@ -204,7 +204,7 @@ private static final String[] GROUP_PROJECTION = {
       if (cursor.moveToFirst()) {
         return getGroup(cursor);
       } else {
-        return Optional.absent();
+        return Optional.empty();
       }
     }
   }
@@ -234,7 +234,7 @@ private static final String[] GROUP_PROJECTION = {
 
   Optional<GroupRecord> getGroup(Cursor cursor) {
     Reader reader = new Reader(cursor);
-    return Optional.fromNullable(reader.getCurrent());
+    return Optional.ofNullable(reader.getCurrent());
   }
 
   /**
@@ -431,8 +431,8 @@ private static final String[] GROUP_PROJECTION = {
   @WorkerThread
   public @NonNull List<Recipient> getGroupMembers(@NonNull GroupId groupId, @NonNull MemberSet memberSet) {
     if (groupId.isV2()) {
-      return getGroup(groupId).transform(g -> g.requireV2GroupProperties().getMemberRecipients(memberSet))
-                              .or(Collections.emptyList());
+      return getGroup(groupId).map(g -> g.requireV2GroupProperties().getMemberRecipients(memberSet))
+                              .orElse(Collections.emptyList());
     } else {
       List<RecipientId> currentMembers = getCurrentMembers(groupId);
       List<Recipient>   recipients     = new ArrayList<>(currentMembers.size());
@@ -560,7 +560,7 @@ private static final String[] GROUP_PROJECTION = {
       contentValues.put(AVATAR_ID, avatar.getRemoteId().getV2().get());
       contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
-      contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
+      contentValues.put(AVATAR_DIGEST, avatar.getDigest().orElse(null));
     } else {
       contentValues.put(AVATAR_ID, 0);
     }
@@ -623,7 +623,7 @@ private static final String[] GROUP_PROJECTION = {
       contentValues.put(AVATAR_ID, avatar.getRemoteId().getV2().get());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_KEY, avatar.getKey());
-      contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
+      contentValues.put(AVATAR_DIGEST, avatar.getDigest().orElse(null));
     } else {
       contentValues.put(AVATAR_ID, 0);
     }
@@ -1006,7 +1006,7 @@ private static final String[] GROUP_PROJECTION = {
                              CursorUtil.requireBlob(cursor, V2_MASTER_KEY),
                              CursorUtil.requireInt(cursor, V2_REVISION),
                              CursorUtil.requireBlob(cursor, V2_DECRYPTED_GROUP),
-                             CursorUtil.getString(cursor, DISTRIBUTION_ID).transform(DistributionId::from).orNull());
+                             CursorUtil.getString(cursor, DISTRIBUTION_ID).map(DistributionId::from).orElse(null));
     }
 
     @Override
@@ -1287,8 +1287,8 @@ private static final String[] GROUP_PROJECTION = {
       }
 
       return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), serviceId.get().uuid())
-                               .transform(t -> t.getRole() == Member.Role.ADMINISTRATOR)
-                               .or(false);
+                               .map(t -> t.getRole() == Member.Role.ADMINISTRATOR)
+                               .orElse(false);
     }
 
     public @NonNull List<Recipient> getAdmins(@NonNull List<Recipient> members) {
@@ -1305,14 +1305,14 @@ private static final String[] GROUP_PROJECTION = {
       DecryptedGroup decryptedGroup = getDecryptedGroup();
 
       return DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), serviceId.get().uuid())
-                               .transform(member -> member.getRole() == Member.Role.ADMINISTRATOR
+                               .map(member -> member.getRole() == Member.Role.ADMINISTRATOR
                                                     ? MemberLevel.ADMINISTRATOR
                                                     : MemberLevel.FULL_MEMBER)
-                               .or(() -> DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), serviceId.get().uuid())
-                                                           .transform(m -> MemberLevel.PENDING_MEMBER)
-                                                           .or(() -> DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.getRequestingMembersList(), serviceId.get().uuid())
-                                                                                       .transform(m -> MemberLevel.REQUESTING_MEMBER)
-                                                                                       .or(MemberLevel.NOT_A_MEMBER)));
+                               .orElse(DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), serviceId.get().uuid())
+                                                         .map(m -> MemberLevel.PENDING_MEMBER)
+                                                         .orElse(DecryptedGroupUtil.findRequestingByUuid(decryptedGroup.getRequestingMembersList(), serviceId.get().uuid())
+                                                                                   .map(m -> MemberLevel.REQUESTING_MEMBER)
+                                                                                   .orElse(MemberLevel.NOT_A_MEMBER)));
     }
 
     public List<Recipient> getMemberRecipients(@NonNull MemberSet memberSet) {

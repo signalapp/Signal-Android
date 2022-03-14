@@ -14,13 +14,14 @@ import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 
@@ -33,8 +34,8 @@ public class TransportOptions {
   private final List<TransportOption>            enabledTransports;
 
   private Type                      defaultTransportType  = Type.SMS;
-  private Optional<Integer>         defaultSubscriptionId = Optional.absent();
-  private Optional<TransportOption> selectedOption        = Optional.absent();
+  private Optional<Integer>         defaultSubscriptionId = Optional.empty();
+  private Optional<TransportOption> selectedOption        = Optional.empty();
 
   private final Optional<Integer> systemSubscriptionId;
 
@@ -54,7 +55,7 @@ public class TransportOptions {
       setSelectedTransport(null);
     } else {
       this.defaultTransportType = Type.SMS;
-      this.defaultSubscriptionId = Optional.absent();
+      this.defaultSubscriptionId = Optional.empty();
 
       notifyTransportChangeListeners();
     }
@@ -81,7 +82,7 @@ public class TransportOptions {
   }
 
   public void setSelectedTransport(@Nullable  TransportOption transportOption) {
-    this.selectedOption = Optional.fromNullable(transportOption);
+    this.selectedOption = Optional.ofNullable(transportOption);
     notifyTransportChangeListeners();
   }
 
@@ -93,7 +94,7 @@ public class TransportOptions {
     if (selectedOption.isPresent()) return selectedOption.get();
 
     if (defaultTransportType == Type.SMS) {
-      TransportOption transportOption = findEnabledSmsTransportOption(defaultSubscriptionId.or(systemSubscriptionId));
+      TransportOption transportOption = findEnabledSmsTransportOption(OptionalUtil.or(defaultSubscriptionId, systemSubscriptionId));
       if (transportOption != null) {
         return transportOption;
       }
@@ -124,7 +125,7 @@ public class TransportOptions {
 
       for (TransportOption transportOption : enabledTransports) {
         if (transportOption.getType() == Type.SMS &&
-            subId == transportOption.getSimSubscriptionId().or(-1)) {
+            subId == transportOption.getSimSubscriptionId().orElse(-1)) {
           return transportOption;
         }
       }
@@ -133,7 +134,7 @@ public class TransportOptions {
   }
 
   public void disableTransport(Type type) {
-    TransportOption selected = selectedOption.orNull();
+    TransportOption selected = selectedOption.orElse(null);
 
     Iterator<TransportOption> iterator = enabledTransports.iterator();
     while (iterator.hasNext()) {

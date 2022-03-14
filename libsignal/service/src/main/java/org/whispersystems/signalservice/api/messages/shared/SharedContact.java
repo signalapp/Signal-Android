@@ -1,18 +1,19 @@
 package org.whispersystems.signalservice.api.messages.shared;
 
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class SharedContact {
 
   private final Name                          name;
-  private final Optional<Avatar>              avatar;
-  private final Optional<List<Phone>>         phone;
-  private final Optional<List<Email>>         email;
+  private final Optional<Avatar>      avatar;
+  private final Optional<List<Phone>> phone;
+  private final Optional<List<Email>> email;
   private final Optional<List<PostalAddress>> address;
   private final Optional<String>              organization;
 
@@ -185,12 +186,12 @@ public class SharedContact {
       }
 
       public Name build() {
-        return new Name(Optional.fromNullable(display),
-                        Optional.fromNullable(given),
-                        Optional.fromNullable(family),
-                        Optional.fromNullable(prefix),
-                        Optional.fromNullable(suffix),
-                        Optional.fromNullable(middle));
+        return new Name(Optional.ofNullable(display),
+                        Optional.ofNullable(given),
+                        Optional.ofNullable(family),
+                        Optional.ofNullable(prefix),
+                        Optional.ofNullable(suffix),
+                        Optional.ofNullable(middle));
       }
     }
   }
@@ -248,7 +249,7 @@ public class SharedContact {
       }
 
       public Phone build() {
-        return new Phone(value, type, Optional.fromNullable(label));
+        return new Phone(value, type, Optional.ofNullable(label));
       }
     }
   }
@@ -306,7 +307,7 @@ public class SharedContact {
       }
 
       public Email build() {
-        return new Email(value, type, Optional.fromNullable(label));
+        return new Email(value, type, Optional.ofNullable(label));
       }
     }
   }
@@ -440,10 +441,10 @@ public class SharedContact {
       }
 
       public PostalAddress build() {
-        return new PostalAddress(type, Optional.fromNullable(label), Optional.fromNullable(street),
-                                 Optional.fromNullable(pobox), Optional.fromNullable(neighborhood),
-                                 Optional.fromNullable(city), Optional.fromNullable(region),
-                                 Optional.fromNullable(postcode), Optional.fromNullable(country));
+        return new PostalAddress(type, Optional.ofNullable(label), Optional.ofNullable(street),
+                                 Optional.ofNullable(pobox), Optional.ofNullable(neighborhood),
+                                 Optional.ofNullable(city), Optional.ofNullable(region),
+                                 Optional.ofNullable(postcode), Optional.ofNullable(country));
       }
     }
   }
@@ -503,11 +504,11 @@ public class SharedContact {
     }
 
     public SharedContact build() {
-      return new SharedContact(name, Optional.fromNullable(avatar),
-                               phone.isEmpty()   ? Optional.<List<Phone>>absent() : Optional.of(phone),
-                               email.isEmpty()   ? Optional.<List<Email>>absent() : Optional.of(email),
-                               address.isEmpty() ? Optional.<List<PostalAddress>>absent() : Optional.of(address),
-                               Optional.fromNullable(organization));
+      return new SharedContact(name, Optional.ofNullable(avatar),
+                               phone.isEmpty()   ? Optional.empty() : Optional.of(phone),
+                               email.isEmpty()   ? Optional.empty() : Optional.of(email),
+                               address.isEmpty() ? Optional.empty() : Optional.of(address),
+                               Optional.ofNullable(organization));
     }
   }
 }

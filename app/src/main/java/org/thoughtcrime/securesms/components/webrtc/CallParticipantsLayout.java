@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.webrtc.RendererCommon;
 
 import java.util.Collections;
 import java.util.List;

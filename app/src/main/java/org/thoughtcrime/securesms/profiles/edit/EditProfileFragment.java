@@ -34,8 +34,6 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.mediasend.Media;

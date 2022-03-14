@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -57,6 +56,7 @@ import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageExce
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Handles taking an encrypted {@link SignalServiceEnvelope} and turning it into a plaintext model.
@@ -130,7 +130,7 @@ public final class MessageDecryptionUtil {
     ContentHint       contentHint       = ContentHint.fromType(protocolException.getContentHint());
     int               senderDevice      = protocolException.getSenderDevice();
     long              receivedTimestamp = System.currentTimeMillis();
-    Optional<GroupId> groupId           = Optional.absent();
+    Optional<GroupId> groupId           = Optional.empty();
 
     if (protocolException.getGroupId().isPresent()) {
       try {

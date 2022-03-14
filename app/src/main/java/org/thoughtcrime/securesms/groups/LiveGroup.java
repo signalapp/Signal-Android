@@ -27,9 +27,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -59,7 +57,7 @@ public final class LiveGroup {
 
     this.groupDatabase     = SignalDatabase.groups();
     this.recipient         = Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData);
-    this.groupRecord       = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient -> groupDatabase.getGroup(groupRecipient.getId()).orNull()));
+    this.groupRecord       = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient -> groupDatabase.getGroup(groupRecipient.getId()).orElse(null)));
     this.fullMembers       = mapToFullMembers(this.groupRecord);
     this.requestingMembers = mapToRequestingMembers(this.groupRecord);
 

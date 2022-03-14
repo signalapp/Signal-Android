@@ -9,9 +9,9 @@ import androidx.lifecycle.LiveData;
 
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FileDescriptor;
+import java.util.Optional;
 
 public interface CameraFragment {
 

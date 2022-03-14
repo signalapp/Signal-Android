@@ -3,16 +3,15 @@ package org.whispersystems.signalservice.api.storage;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class SignalStorageManifest {
   public static final SignalStorageManifest EMPTY = new SignalStorageManifest(0, Collections.emptyList());
@@ -66,7 +65,7 @@ public class SignalStorageManifest {
     if (list != null && list.size() > 0) {
       return Optional.of(list.get(0));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 

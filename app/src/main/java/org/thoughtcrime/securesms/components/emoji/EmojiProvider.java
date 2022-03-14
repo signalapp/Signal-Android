@@ -19,7 +19,6 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
-import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.emoji.EmojiPageCache;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;

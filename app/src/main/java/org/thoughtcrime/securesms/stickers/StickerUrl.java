@@ -8,8 +8,9 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,19 +22,19 @@ public class StickerUrl {
   private static final Pattern STICKER_URL_PATTERN = Pattern.compile("^https://signal\\.art/addstickers/#pack_id=(.*)&pack_key=(.*)$");
 
   public static Optional<Pair<String, String>> parseExternalUri(@Nullable Uri uri) {
-    if (uri == null) return Optional.absent();
+    if (uri == null) return Optional.empty();
 
-    return parseActionUri(uri).or(parseShareLink(uri.toString()));
+    return OptionalUtil.or(parseActionUri(uri), parseShareLink(uri.toString()));
   }
 
   public static Optional<Pair<String, String>> parseActionUri(@Nullable Uri uri) {
-    if (uri == null) return Optional.absent();
+    if (uri == null) return Optional.empty();
 
     String packId  = uri.getQueryParameter("pack_id");
     String packKey = uri.getQueryParameter("pack_key");
 
     if (TextUtils.isEmpty(packId) || TextUtils.isEmpty(packKey) || !isValidHex(packId) || !isValidHex(packKey)) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     return Optional.of(new Pair<>(packId, packKey));
@@ -48,7 +49,7 @@ public class StickerUrl {
   }
 
   public static @NonNull Optional<Pair<String, String>> parseShareLink(@Nullable String url) {
-    if (url == null) return Optional.absent();
+    if (url == null) return Optional.empty();
 
     Matcher matcher = STICKER_URL_PATTERN.matcher(url);
 
@@ -61,7 +62,7 @@ public class StickerUrl {
       }
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   public static String createShareLink(@NonNull String packId, @NonNull String packKey) {

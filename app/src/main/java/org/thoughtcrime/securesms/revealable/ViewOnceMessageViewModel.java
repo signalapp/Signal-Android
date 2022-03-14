@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.revealable;
 
-import android.app.Application;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -13,7 +11,9 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 class ViewOnceMessageViewModel extends ViewModel {
 
@@ -46,8 +46,8 @@ class ViewOnceMessageViewModel extends ViewModel {
 
   private void onMessageRetrieved(@NonNull Optional<MmsMessageRecord> optionalMessage) {
     ThreadUtil.runOnMain(() -> {
-      MmsMessageRecord current  = message.getValue() != null ? message.getValue().orNull() : null;
-      MmsMessageRecord proposed = optionalMessage.orNull();
+      MmsMessageRecord current  = message.getValue() != null ? message.getValue().orElse(null) : null;
+      MmsMessageRecord proposed = optionalMessage.orElse(null);
 
       if (current != null && proposed != null && current.getId() == proposed.getId()) {
         Log.d(TAG, "Same ID -- skipping update");

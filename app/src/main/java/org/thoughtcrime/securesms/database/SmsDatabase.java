@@ -62,7 +62,6 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -74,6 +73,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -1176,7 +1176,7 @@ public class SmsDatabase extends MessageDatabase {
 
     if (message.isPush() && isDuplicate(message, threadId)) {
       Log.w(TAG, "Duplicate message (" + message.getSentTimestampMillis() + "), ignoring...");
-      return Optional.absent();
+      return Optional.empty();
     } else {
       SQLiteDatabase db        = databaseHelper.getSignalWritableDatabase();
       long           messageId = db.insert(TABLE_NAME, null, values);

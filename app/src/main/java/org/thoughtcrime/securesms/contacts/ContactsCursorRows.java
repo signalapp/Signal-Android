@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 /**
  * Helper utility for generating cursors and cursor rows for subclasses of {@link AbstractContactsCursorLoader}.
@@ -49,7 +49,7 @@ public final class ContactsCursorRows {
    */
   public static @NonNull Object[] forRecipient(@NonNull Context context, @NonNull Recipient recipient) {
     String stringId = recipient.isGroup() ? recipient.requireGroupId().toString()
-                                          : recipient.getE164().transform(PhoneNumberFormatter::prettyPrint).or(recipient.getEmail()).or("");
+                                          : OptionalUtil.or(recipient.getE164().map(PhoneNumberFormatter::prettyPrint), recipient.getEmail()).orElse("");
 
     return new Object[]{recipient.getId().serialize(),
                         recipient.getDisplayName(context),

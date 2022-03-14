@@ -12,11 +12,11 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
+import java.util.Optional;
 
 public final class GroupRecordContactPhoto implements ContactPhoto {
 

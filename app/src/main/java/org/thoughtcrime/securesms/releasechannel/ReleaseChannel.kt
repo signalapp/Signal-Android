@@ -6,10 +6,10 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
+import java.util.Optional
 import java.util.UUID
 
 /**
@@ -36,23 +36,23 @@ object ReleaseChannel {
         SignalServiceAttachmentRemoteId.from(""),
         "image/webp",
         null,
-        Optional.absent(),
-        Optional.absent(),
+        Optional.empty(),
+        Optional.empty(),
         imageWidth,
         imageHeight,
-        Optional.absent(),
+        Optional.empty(),
         Optional.of(image),
         false,
         false,
         false,
-        Optional.absent(),
-        Optional.absent(),
+        Optional.empty(),
+        Optional.empty(),
         System.currentTimeMillis()
       )
 
       Optional.of(listOf(attachment))
     } else {
-      Optional.absent()
+      Optional.empty()
     }
 
     val message = IncomingMediaMessage(
@@ -66,6 +66,6 @@ object ReleaseChannel {
       messageRanges = messageRanges
     )
 
-    return SignalDatabase.mms.insertSecureDecryptedMessageInbox(message, threadId).orNull()
+    return SignalDatabase.mms.insertSecureDecryptedMessageInbox(message, threadId).orElse(null)
   }
 }

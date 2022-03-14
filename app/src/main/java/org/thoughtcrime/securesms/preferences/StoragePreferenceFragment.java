@@ -36,8 +36,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.widgets.StoragePreferenceCategory;
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 
 import java.text.NumberFormat;
 

@@ -11,6 +11,7 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.InvalidProtocolBufferException
 import net.zetetic.database.sqlcipher.SQLiteConstraintException
 import org.signal.core.util.logging.Log
+import org.signal.core.util.or
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.zkgroup.InvalidInputException
 import org.signal.zkgroup.profiles.ProfileKey
@@ -79,7 +80,6 @@ import org.thoughtcrime.securesms.wallpaper.WallpaperStorage
 import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.InvalidKeyException
 import org.whispersystems.libsignal.util.Pair
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
@@ -96,6 +96,7 @@ import java.util.Arrays
 import java.util.Collections
 import java.util.LinkedList
 import java.util.Objects
+import java.util.Optional
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
@@ -489,12 +490,12 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   private fun fetchRecipient(serviceId: ServiceId?, e164: String?, highTrust: Boolean, changeSelf: Boolean): RecipientFetch {
-    val byE164 = e164?.let { getByE164(it) } ?: Optional.absent()
-    val byAci = serviceId?.let { getByServiceId(it) } ?: Optional.absent()
+    val byE164 = e164?.let { getByE164(it) } ?: Optional.empty()
+    val byAci = serviceId?.let { getByServiceId(it) } ?: Optional.empty()
 
     var logs = LogBundle(
-      bySid = byAci.transform { id -> RecipientLogDetails(id = id) }.orNull(),
-      byE164 = byE164.transform { id -> RecipientLogDetails(id = id) }.orNull(),
+      bySid = byAci.map { id -> RecipientLogDetails(id = id) }.orElse(null),
+      byE164 = byE164.map { id -> RecipientLogDetails(id = id) }.orElse(null),
       label = "L0"
     )
 
@@ -797,7 +798,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val recipientId: RecipientId
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
-      recipientId = getAndPossiblyMerge(if (insert.address.hasValidServiceId()) insert.address.serviceId else null, insert.address.number.orNull(), true)
+      recipientId = getAndPossiblyMerge(if (insert.address.hasValidServiceId()) insert.address.serviceId else null, insert.address.number.orElse(null), true)
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
@@ -834,7 +835,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       var recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.old.id.raw)).get()
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Found user $recipientId. Possibly merging.")
-      recipientId = getAndPossiblyMerge(if (update.new.address.hasValidServiceId()) update.new.address.serviceId else null, update.new.address.number.orNull(), true)
+      recipientId = getAndPossiblyMerge(if (update.new.address.hasValidServiceId()) update.new.address.serviceId else null, update.new.address.number.orElse(null), true)
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
@@ -940,10 +941,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun applyStorageSyncAccountUpdate(update: StorageRecordUpdate<SignalAccountRecord>) {
-    val profileName = ProfileName.fromParts(update.new.givenName.orNull(), update.new.familyName.orNull())
-    val localKey = ProfileKeyUtil.profileKeyOptional(update.old.profileKey.orNull())
-    val remoteKey = ProfileKeyUtil.profileKeyOptional(update.new.profileKey.orNull())
-    val profileKey = remoteKey.or(localKey).transform { obj: ProfileKey -> obj.serialize() }.transform { source: ByteArray? -> Base64.encodeBytes(source!!) }.orNull()
+    val profileName = ProfileName.fromParts(update.new.givenName.orElse(null), update.new.familyName.orElse(null))
+    val localKey = ProfileKeyUtil.profileKeyOptional(update.old.profileKey.orElse(null))
+    val remoteKey = ProfileKeyUtil.profileKeyOptional(update.new.profileKey.orElse(null))
+    val profileKey = remoteKey.or(localKey).map { obj: ProfileKey -> obj.serialize() }.map { source: ByteArray? -> Base64.encodeBytes(source!!) }.orElse(null)
     if (!remoteKey.isPresent) {
       Log.w(TAG, "Got an empty profile key while applying an account record update!")
     }
@@ -1673,7 +1674,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           idWithWallpaper.add(
             Pair(
               RecipientId.from(cursor.requireInt(ID).toLong()),
-              cursor.optionalString(WALLPAPER_URI).orNull()
+              cursor.optionalString(WALLPAPER_URI).orElse(null)
             )
           )
         }
@@ -2012,7 +2013,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     db.beginTransaction()
     try {
       for ((e164, aci) in mapping) {
-        var aciEntry = if (aci != null) getByServiceId(aci) else Optional.absent()
+        var aciEntry = if (aci != null) getByServiceId(aci) else Optional.empty()
 
         if (aciEntry.isPresent) {
           val idChanged = setPhoneNumber(aciEntry.get(), e164)
@@ -2545,7 +2546,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       return if (cursor != null && cursor.moveToFirst()) {
         Optional.of(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))))
       } else {
-        Optional.absent()
+        Optional.empty()
       }
     }
   }
@@ -2694,17 +2695,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val uuidValues = ContentValues().apply {
       put(PHONE, e164Record.e164)
       put(BLOCKED, e164Record.isBlocked || aciRecord.isBlocked)
-      put(MESSAGE_RINGTONE, Optional.fromNullable(aciRecord.messageRingtone).or(Optional.fromNullable(e164Record.messageRingtone)).transform { obj: Uri? -> obj.toString() }.orNull())
+      put(MESSAGE_RINGTONE, Optional.ofNullable(aciRecord.messageRingtone).or(Optional.ofNullable(e164Record.messageRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null))
       put(MESSAGE_VIBRATE, if (aciRecord.messageVibrateState != VibrateState.DEFAULT) aciRecord.messageVibrateState.id else e164Record.messageVibrateState.id)
-      put(CALL_RINGTONE, Optional.fromNullable(aciRecord.callRingtone).or(Optional.fromNullable(e164Record.callRingtone)).transform { obj: Uri? -> obj.toString() }.orNull())
+      put(CALL_RINGTONE, Optional.ofNullable(aciRecord.callRingtone).or(Optional.ofNullable(e164Record.callRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null))
       put(CALL_VIBRATE, if (aciRecord.callVibrateState != VibrateState.DEFAULT) aciRecord.callVibrateState.id else e164Record.callVibrateState.id)
       put(NOTIFICATION_CHANNEL, aciRecord.notificationChannel ?: e164Record.notificationChannel)
       put(MUTE_UNTIL, if (aciRecord.muteUntil > 0) aciRecord.muteUntil else e164Record.muteUntil)
-      put(CHAT_COLORS, Optional.fromNullable(aciRecord.chatColors).or(Optional.fromNullable(e164Record.chatColors)).transform { colors: ChatColors? -> colors!!.serialize().toByteArray() }.orNull())
+      put(CHAT_COLORS, Optional.ofNullable(aciRecord.chatColors).or(Optional.ofNullable(e164Record.chatColors)).map { colors: ChatColors? -> colors!!.serialize().toByteArray() }.orElse(null))
       put(AVATAR_COLOR, aciRecord.avatarColor.serialize())
-      put(CUSTOM_CHAT_COLORS_ID, Optional.fromNullable(aciRecord.chatColors).or(Optional.fromNullable(e164Record.chatColors)).transform { colors: ChatColors? -> colors!!.id.longValue }.orNull())
+      put(CUSTOM_CHAT_COLORS_ID, Optional.ofNullable(aciRecord.chatColors).or(Optional.ofNullable(e164Record.chatColors)).map { colors: ChatColors? -> colors!!.id.longValue }.orElse(null))
       put(SEEN_INVITE_REMINDER, e164Record.insightsBannerTier.id)
-      put(DEFAULT_SUBSCRIPTION_ID, e164Record.getDefaultSubscriptionId().or(-1))
+      put(DEFAULT_SUBSCRIPTION_ID, e164Record.getDefaultSubscriptionId().orElse(-1))
       put(MESSAGE_EXPIRATION_TIME, if (aciRecord.expireMessages > 0) aciRecord.expireMessages else e164Record.expireMessages)
       put(REGISTERED, RegisteredState.REGISTERED.id)
       put(SYSTEM_GIVEN_NAME, e164Record.systemProfileName.givenName)
@@ -2746,18 +2747,18 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   private fun getValuesForStorageContact(contact: SignalContactRecord, isInsert: Boolean): ContentValues {
     return ContentValues().apply {
-      val profileName = ProfileName.fromParts(contact.givenName.orNull(), contact.familyName.orNull())
-      val username = contact.username.orNull()
+      val profileName = ProfileName.fromParts(contact.givenName.orElse(null), contact.familyName.orElse(null))
+      val username = contact.username.orElse(null)
 
       if (contact.address.hasValidServiceId()) {
         put(SERVICE_ID, contact.address.serviceId.toString())
       }
 
-      put(PHONE, contact.address.number.orNull())
+      put(PHONE, contact.address.number.orElse(null))
       put(PROFILE_GIVEN_NAME, profileName.givenName)
       put(PROFILE_FAMILY_NAME, profileName.familyName)
       put(PROFILE_JOINED_NAME, profileName.toString())
-      put(PROFILE_KEY, contact.profileKey.transform { source -> Base64.encodeBytes(source) }.orNull())
+      put(PROFILE_KEY, contact.profileKey.map { source -> Base64.encodeBytes(source) }.orElse(null))
       put(USERNAME, if (TextUtils.isEmpty(username)) null else username)
       put(PROFILE_SHARING, if (contact.isProfileSharingEnabled) "1" else "0")
       put(BLOCKED, if (contact.isBlocked) "1" else "0")
@@ -2961,13 +2962,13 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   private fun getSyncExtras(cursor: Cursor): RecipientRecord.SyncExtras {
-    val storageProtoRaw = cursor.optionalString(STORAGE_PROTO).orNull()
+    val storageProtoRaw = cursor.optionalString(STORAGE_PROTO).orElse(null)
     val storageProto = if (storageProtoRaw != null) Base64.decodeOrThrow(storageProtoRaw) else null
-    val archived = cursor.optionalBoolean(ThreadDatabase.ARCHIVED).or(false)
-    val forcedUnread = cursor.optionalInt(ThreadDatabase.READ).transform { status: Int -> status == ThreadDatabase.ReadStatus.FORCED_UNREAD.serialize() }.or(false)
-    val groupMasterKey = cursor.optionalBlob(GroupDatabase.V2_MASTER_KEY).transform { GroupUtil.requireMasterKey(it) }.orNull()
-    val identityKey = cursor.optionalString(IDENTITY_KEY).transform { Base64.decodeOrThrow(it) }.orNull()
-    val identityStatus = cursor.optionalInt(IDENTITY_STATUS).transform { VerifiedStatus.forState(it) }.or(VerifiedStatus.DEFAULT)
+    val archived = cursor.optionalBoolean(ThreadDatabase.ARCHIVED).orElse(false)
+    val forcedUnread = cursor.optionalInt(ThreadDatabase.READ).map { status: Int -> status == ThreadDatabase.ReadStatus.FORCED_UNREAD.serialize() }.orElse(false)
+    val groupMasterKey = cursor.optionalBlob(GroupDatabase.V2_MASTER_KEY).map { GroupUtil.requireMasterKey(it) }.orElse(null)
+    val identityKey = cursor.optionalString(IDENTITY_KEY).map { Base64.decodeOrThrow(it) }.orElse(null)
+    val identityStatus = cursor.optionalInt(IDENTITY_STATUS).map { VerifiedStatus.forState(it) }.orElse(VerifiedStatus.DEFAULT)
 
     return RecipientRecord.SyncExtras(storageProto, groupMasterKey, identityKey, identityStatus, archived, forcedUnread)
   }
@@ -2977,14 +2978,14 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   private fun getRecipientExtras(cursor: Cursor): RecipientExtras? {
-    return cursor.optionalBlob(EXTRAS).transform { b: ByteArray? ->
+    return cursor.optionalBlob(EXTRAS).map { b: ByteArray? ->
       try {
         RecipientExtras.parseFrom(b)
       } catch (e: InvalidProtocolBufferException) {
         Log.w(TAG, e)
         throw AssertionError(e)
       }
-    }.orNull()
+    }.orElse(null)
   }
 
   /**

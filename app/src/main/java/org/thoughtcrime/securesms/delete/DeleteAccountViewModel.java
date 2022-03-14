@@ -20,20 +20,20 @@ import org.thoughtcrime.securesms.payments.Balance;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DeleteAccountViewModel extends ViewModel {
 
-  private final DeleteAccountRepository           repository;
-  private final List<Country>                     allCountries;
-  private final LiveData<List<Country>>           filteredCountries;
-  private final MutableLiveData<String>           regionCode;
-  private final LiveData<String>                  countryDisplayName;
-  private final MutableLiveData<Long>             nationalNumber;
+  private final DeleteAccountRepository             repository;
+  private final List<Country>                       allCountries;
+  private final LiveData<List<Country>>             filteredCountries;
+  private final MutableLiveData<String>             regionCode;
+  private final LiveData<String>                    countryDisplayName;
+  private final MutableLiveData<Long>               nationalNumber;
   private final MutableLiveData<String>             query;
   private final SingleLiveEvent<DeleteAccountEvent> events;
   private final LiveData<Optional<String>>          walletBalance;
@@ -141,7 +141,7 @@ public class DeleteAccountViewModel extends ViewModel {
     if (amount.isPositive()) {
       return Optional.of(amount.toString(FormatterOptions.defaults()));
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 

@@ -19,9 +19,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
-import static java.util.stream.IntStream.range;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static java.util.stream.IntStream.range;
 
 @RunWith(Parameterized.class)
 public final class BlockTransactionReconstructionTests {

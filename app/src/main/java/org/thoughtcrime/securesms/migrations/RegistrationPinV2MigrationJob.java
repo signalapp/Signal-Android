@@ -15,7 +15,6 @@ import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Migrates an existing V1 registration lock user to a V2 registration lock that is backed by a

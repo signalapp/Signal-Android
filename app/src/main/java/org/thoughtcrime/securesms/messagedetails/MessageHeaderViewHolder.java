@@ -34,12 +34,12 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Optional;
 
 final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable, Colorizable {
   private final TextView               sentDate;
@@ -100,8 +100,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     }
     conversationItem.bind(lifecycleOwner,
                           conversationMessage,
-                          Optional.absent(),
-                          Optional.absent(),
+                          Optional.empty(),
+                          Optional.empty(),
                           glideRequests,
                           Locale.getDefault(),
                           new HashSet<>(),

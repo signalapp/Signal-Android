@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.mediasend.v2
 import android.net.Uri
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.mediasend.Media
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 
 object MediaBuilder {
   fun buildMedia(
@@ -16,8 +16,8 @@ object MediaBuilder {
     duration: Long = 0L,
     borderless: Boolean = false,
     videoGif: Boolean = false,
-    bucketId: Optional<String> = Optional.absent(),
-    caption: Optional<String> = Optional.absent(),
-    transformProperties: Optional<AttachmentDatabase.TransformProperties> = Optional.absent()
+    bucketId: Optional<String> = Optional.empty(),
+    caption: Optional<String> = Optional.empty(),
+    transformProperties: Optional<AttachmentDatabase.TransformProperties> = Optional.empty()
   ) = Media(uri, mimeType, date, width, height, size, duration, borderless, videoGif, bucketId, caption, transformProperties)
 }

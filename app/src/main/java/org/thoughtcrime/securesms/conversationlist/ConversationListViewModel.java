@@ -33,13 +33,13 @@ import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 

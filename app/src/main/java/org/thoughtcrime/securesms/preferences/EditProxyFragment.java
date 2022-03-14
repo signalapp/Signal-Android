@@ -26,9 +26,10 @@ import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
+
+import java.util.Optional;
 
 public class EditProxyFragment extends Fragment {
 
@@ -65,7 +66,7 @@ public class EditProxyFragment extends Fragment {
       }
     });
 
-    this.proxyText.setText(Optional.fromNullable(SignalStore.proxy().getProxy()).transform(SignalProxy::getHost).or(""));
+    this.proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
     this.proxySwitch.setChecked(SignalStore.proxy().isProxyEnabled());
 
     initViewModel();
@@ -146,7 +147,7 @@ public class EditProxyFragment extends Fragment {
     switch (event) {
       case PROXY_SUCCESS:
         proxyStatus.setVisibility(View.VISIBLE);
-        proxyText.setText(Optional.fromNullable(SignalStore.proxy().getProxy()).transform(SignalProxy::getHost).or(""));
+        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
         new AlertDialog.Builder(requireContext())
                        .setTitle(R.string.preferences_success)
                        .setMessage(R.string.preferences_you_are_connected_to_the_proxy)
@@ -158,7 +159,7 @@ public class EditProxyFragment extends Fragment {
         break;
       case PROXY_FAILURE:
         proxyStatus.setVisibility(View.INVISIBLE);
-        proxyText.setText(Optional.fromNullable(SignalStore.proxy().getProxy()).transform(SignalProxy::getHost).or(""));
+        proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
         ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(proxyText);
         new AlertDialog.Builder(requireContext())
                        .setTitle(R.string.preferences_failed_to_connect)

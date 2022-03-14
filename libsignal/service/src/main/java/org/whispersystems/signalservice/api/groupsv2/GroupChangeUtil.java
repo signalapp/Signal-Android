@@ -12,7 +12,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
-import org.signal.storageservice.protos.groups.local.EnabledState;
 
 import java.util.HashMap;
 import java.util.List;

@@ -25,7 +25,7 @@ class AppSettingsViewModel(private val subscriptionsRepository: SubscriptionsRep
   val state: LiveData<AppSettingsState> = store.stateLiveData
 
   init {
-    store.update(unreadPaymentsLiveData) { payments, state -> state.copy(unreadPaymentsCount = payments.transform { it.unreadCount }.or(0)) }
+    store.update(unreadPaymentsLiveData) { payments, state -> state.copy(unreadPaymentsCount = payments.map { it.unreadCount }.orElse(0)) }
     store.update(selfLiveData) { self, state -> state.copy(self = self) }
   }
 

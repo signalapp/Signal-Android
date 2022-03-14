@@ -5,8 +5,6 @@ import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
@@ -19,11 +17,8 @@ import org.thoughtcrime.securesms.ringrtc.CallState;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
-import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
-import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 

@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 
-import org.signal.glide.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ViewUtil;
 

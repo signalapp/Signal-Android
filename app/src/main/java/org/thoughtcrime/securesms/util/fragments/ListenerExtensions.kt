@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util.fragments
 
 import androidx.fragment.app.Fragment
-import java.lang.Exception
 
 /**
  * Given an input type [T], find an instance of it first looking through all

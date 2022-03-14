@@ -18,8 +18,6 @@ import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
@@ -36,8 +34,8 @@ import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ACI;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.PNI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
@@ -54,6 +52,7 @@ import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.storage.StorageManifestKey;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
+import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.contacts.crypto.ContactDiscoveryCipher;
@@ -100,6 +99,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -566,7 +566,7 @@ public class SignalServiceAccountManager {
       return Optional.of(SignalStorageModels.remoteToLocalStorageManifest(storageManifest, storageKey));
     } catch (InvalidKeyException | NotFoundException e) {
       Log.w(TAG, "Error while fetching manifest.", e);
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -588,12 +588,12 @@ public class SignalServiceAccountManager {
 
       if (storageManifest.getValue().isEmpty()) {
         Log.w(TAG, "Got an empty storage manifest!");
-        return Optional.absent();
+        return Optional.empty();
       }
 
       return Optional.of(SignalStorageModels.remoteToLocalStorageManifest(storageManifest, storageKey));
     } catch (NoContentException e) {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -725,7 +725,7 @@ public class SignalServiceAccountManager {
 
       return Optional.of(conflictManifest);
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -821,7 +821,7 @@ public class SignalServiceAccountManager {
     byte[]            ciphertextName              = profileCipher.encryptString(name, ProfileCipher.getTargetNameLength(name));
     byte[]            ciphertextAbout             = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
     byte[]            ciphertextEmoji             = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
-    byte[]            ciphertextMobileCoinAddress = paymentsAddress.transform(address -> profileCipher.encryptWithLength(address.toByteArray(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orNull();
+    byte[]            ciphertextMobileCoinAddress = paymentsAddress.map(address -> profileCipher.encryptWithLength(address.toByteArray(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orElse(null);
     ProfileAvatarData profileAvatarData           = null;
 
     if (avatar.stream != null && !avatar.keepTheSame) {
@@ -847,7 +847,7 @@ public class SignalServiceAccountManager {
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     try {
-      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(serviceId.uuid(), profileKey, Optional.absent(), locale).get(10, TimeUnit.SECONDS);
+      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(serviceId.uuid(), profileKey, Optional.empty(), locale).get(10, TimeUnit.SECONDS);
       return credential.getProfileKeyCredential();
     } catch (InterruptedException | TimeoutException e) {
       throw new PushNetworkException(e);

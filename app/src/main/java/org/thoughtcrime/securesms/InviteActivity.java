@@ -38,8 +38,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
-import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 
@@ -251,7 +251,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
       for (SelectedContact contact : contacts) {
         RecipientId recipientId    = contact.getOrCreateRecipientId(context);
         Recipient   recipient      = Recipient.resolved(recipientId);
-        int         subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+        int         subscriptionId = recipient.getDefaultSubscriptionId().orElse(-1);
 
         MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null, null);
 

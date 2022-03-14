@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 
-import org.signal.core.util.logging.Log;
-
 public final class VoiceNotePlaybackParameters {
 
   private final MediaSessionCompat mediaSessionCompat;

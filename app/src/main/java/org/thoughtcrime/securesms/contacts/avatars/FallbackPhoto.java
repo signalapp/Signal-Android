@@ -13,7 +13,6 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
 

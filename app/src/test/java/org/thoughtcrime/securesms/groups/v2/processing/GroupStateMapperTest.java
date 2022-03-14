@@ -12,9 +12,6 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.UUID;
 
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
-import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -23,6 +20,9 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.thoughtcrime.securesms.groups.v2.processing.GroupStateMapper.LATEST;
+import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 
 public final class GroupStateMapperTest {
 

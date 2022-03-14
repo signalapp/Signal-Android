@@ -5,7 +5,7 @@ import android.text.TextUtils
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 import java.util.UUID
 import android.database.sqlite.SQLiteDatabase as AndroidSQLiteDatabase
 
@@ -22,7 +22,7 @@ object TestSms {
     serverTimestampMillis: Long = System.currentTimeMillis(),
     receivedTimestampMillis: Long = System.currentTimeMillis(),
     encodedBody: String = "encodedBody",
-    groupId: Optional<GroupId> = Optional.absent(),
+    groupId: Optional<GroupId> = Optional.empty(),
     expiresInMillis: Long = 0,
     unidentified: Boolean = false,
     serverGuid: String = UUID.randomUUID().toString(),

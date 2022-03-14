@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.mediasend;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -46,9 +45,9 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Optional;
 
 /**
  * Camera capture implemented with the legacy camera API's. Should only be used if sdk < 21.

@@ -21,7 +21,7 @@ class StickerKeyboardRepository(private val stickerDatabase: StickerDatabase) {
       StickerPackRecordReader(stickerDatabase.installedStickerPacks).use { reader ->
         var pack: StickerPackRecord? = reader.next
         while (pack != null) {
-          packs += KeyboardStickerPack(packId = pack.packId, title = pack.title.orNull(), coverUri = pack.cover.uri)
+          packs += KeyboardStickerPack(packId = pack.packId, title = pack.title.orElse(null), coverUri = pack.cover.uri)
           pack = reader.next
         }
       }

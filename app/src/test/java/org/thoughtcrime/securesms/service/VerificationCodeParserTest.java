@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.thoughtcrime.securesms.BaseUnitTest;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

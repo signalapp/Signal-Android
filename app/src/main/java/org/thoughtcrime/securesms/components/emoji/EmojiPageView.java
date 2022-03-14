@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.Emoj
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 
 import java.util.List;
 import java.util.Optional;

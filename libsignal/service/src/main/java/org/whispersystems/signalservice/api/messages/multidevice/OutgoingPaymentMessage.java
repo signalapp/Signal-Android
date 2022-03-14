@@ -2,12 +2,11 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 
 public final class OutgoingPaymentMessage {
 

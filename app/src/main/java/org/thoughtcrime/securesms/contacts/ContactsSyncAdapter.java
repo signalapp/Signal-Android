@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
 
-
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;

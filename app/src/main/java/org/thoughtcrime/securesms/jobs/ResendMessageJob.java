@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -33,6 +32,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -152,7 +152,7 @@ public class ResendMessageJob extends BaseJob {
       contentToSend = contentToSend.toBuilder().setSenderKeyDistributionMessage(distributionBytes).build();
     }
 
-    SendMessageResult result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.fromNullable(groupId).transform(GroupId::getDecodedId));
+    SendMessageResult result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId));
 
     if (result.isSuccess() && distributionId != null) {
       List<SignalProtocolAddress> addresses = result.getSuccess()

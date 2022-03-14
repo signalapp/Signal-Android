@@ -18,9 +18,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Executor;
 
 class ConversationRepository {

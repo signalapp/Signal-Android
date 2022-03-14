@@ -9,12 +9,12 @@ import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.Base64;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class PointerAttachment extends Attachment {
 
@@ -93,7 +93,7 @@ public class PointerAttachment extends Attachment {
   }
 
   public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer, @Nullable StickerLocator stickerLocator, @Nullable String fastPreflightId) {
-    if (!pointer.isPresent() || !pointer.get().isPointer()) return Optional.absent();
+    if (!pointer.isPresent() || !pointer.get().isPointer()) return Optional.empty();
 
     String encodedKey = null;
 
@@ -103,12 +103,12 @@ public class PointerAttachment extends Attachment {
 
     return Optional.of(new PointerAttachment(pointer.get().getContentType(),
                                              AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
-                                             pointer.get().asPointer().getSize().or(0),
-                                             pointer.get().asPointer().getFileName().orNull(),
+                                             pointer.get().asPointer().getSize().orElse(0),
+                                             pointer.get().asPointer().getFileName().orElse(null),
                                              pointer.get().asPointer().getCdnNumber(),
                                              pointer.get().asPointer().getRemoteId().toString(),
                                              encodedKey, null,
-                                             pointer.get().asPointer().getDigest().orNull(),
+                                             pointer.get().asPointer().getDigest().orElse(null),
                                              fastPreflightId,
                                              pointer.get().asPointer().getVoiceNote(),
                                              pointer.get().asPointer().isBorderless(),
@@ -116,9 +116,9 @@ public class PointerAttachment extends Attachment {
                                              pointer.get().asPointer().getWidth(),
                                              pointer.get().asPointer().getHeight(),
                                              pointer.get().asPointer().getUploadTimestamp(),
-                                             pointer.get().asPointer().getCaption().orNull(),
+                                             pointer.get().asPointer().getCaption().orElse(null),
                                              stickerLocator,
-                                             BlurHash.parseOrNull(pointer.get().asPointer().getBlurHash().orNull())));
+                                             BlurHash.parseOrNull(pointer.get().asPointer().getBlurHash().orElse(null))));
 
   }
 
@@ -127,13 +127,13 @@ public class PointerAttachment extends Attachment {
 
     return Optional.of(new PointerAttachment(pointer.getContentType(),
                                              AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
-                                             thumbnail != null ? thumbnail.asPointer().getSize().or(0) : 0,
+                                             thumbnail != null ? thumbnail.asPointer().getSize().orElse(0) : 0,
                                              pointer.getFileName(),
                                              thumbnail != null ? thumbnail.asPointer().getCdnNumber() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getRemoteId().toString() : "0",
                                              thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,
                                              null,
-                                             thumbnail != null ? thumbnail.asPointer().getDigest().orNull() : null,
+                                             thumbnail != null ? thumbnail.asPointer().getDigest().orElse(null) : null,
                                              null,
                                              false,
                                              false,
@@ -141,7 +141,7 @@ public class PointerAttachment extends Attachment {
                                              thumbnail != null ? thumbnail.asPointer().getWidth() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getHeight() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getUploadTimestamp() : 0,
-                                             thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null,
+                                             thumbnail != null ? thumbnail.asPointer().getCaption().orElse(null) : null,
                                              null,
                                              null));
   }

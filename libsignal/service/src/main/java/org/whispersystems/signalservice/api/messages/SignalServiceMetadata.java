@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+
+import java.util.Optional;
 
 public final class SignalServiceMetadata {
   private final SignalServiceAddress sender;

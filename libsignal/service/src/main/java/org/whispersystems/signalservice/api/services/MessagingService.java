@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.api.services;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
@@ -28,6 +27,7 @@ import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 import io.reactivex.rxjava3.core.Single;
 

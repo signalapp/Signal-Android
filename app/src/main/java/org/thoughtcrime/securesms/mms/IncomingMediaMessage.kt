@@ -11,9 +11,9 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.GroupUtil
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext
+import java.util.Optional
 
 class IncomingMediaMessage(
   val from: RecipientId?,
@@ -62,7 +62,7 @@ class IncomingMediaMessage(
     sharedContacts: Optional<List<Contact>>
   ) : this(
     from = from,
-    groupId = groupId.orNull(),
+    groupId = groupId.orElse(null),
     body = body,
     isPushMessage = false,
     sentTimeMillis = sentTimeMillis,
@@ -76,7 +76,7 @@ class IncomingMediaMessage(
     isViewOnce = viewOnce,
     serverGuid = null,
     attachments = ArrayList(attachments),
-    sharedContacts = ArrayList(sharedContacts.or(emptyList()))
+    sharedContacts = ArrayList(sharedContacts.orElse(emptyList()))
   )
 
   constructor(
@@ -103,7 +103,7 @@ class IncomingMediaMessage(
   ) : this(
     from = from,
     groupId = if (group.isPresent) GroupUtil.idFromGroupContextOrThrow(group.get()) else null,
-    body = body.orNull(),
+    body = body.orElse(null),
     isPushMessage = true,
     storyType = storyType,
     parentStoryId = parentStoryId,
@@ -113,13 +113,13 @@ class IncomingMediaMessage(
     subscriptionId = subscriptionId,
     expiresIn = expiresIn,
     isExpirationUpdate = expirationUpdate,
-    quote = quote.orNull(),
+    quote = quote.orElse(null),
     isUnidentified = unidentified,
     isViewOnce = viewOnce,
     serverGuid = serverGuid,
     attachments = PointerAttachment.forPointers(attachments).apply { if (sticker.isPresent) add(sticker.get()) },
-    sharedContacts = sharedContacts.or(emptyList()),
-    linkPreviews = linkPreviews.or(emptyList()),
-    mentions = mentions.or(emptyList())
+    sharedContacts = sharedContacts.orElse(emptyList()),
+    linkPreviews = linkPreviews.orElse(emptyList()),
+    mentions = mentions.orElse(emptyList())
   )
 }

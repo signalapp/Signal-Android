@@ -5,7 +5,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.viewholders.RecipientMappingModel;

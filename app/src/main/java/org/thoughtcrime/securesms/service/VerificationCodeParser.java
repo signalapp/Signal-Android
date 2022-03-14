@@ -17,8 +17,9 @@
 package org.thoughtcrime.securesms.service;
 
 
-import org.whispersystems.libsignal.util.guava.Optional;
 
+
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,13 +29,13 @@ public class VerificationCodeParser {
 
   public static Optional<String> parse(String messageBody) {
     if (messageBody == null) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     Matcher challengeMatcher = CHALLENGE_PATTERN.matcher(messageBody);
 
     if (!challengeMatcher.matches()) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     return Optional.of(challengeMatcher.group(challengeMatcher.groupCount() - 1) +

@@ -62,7 +62,6 @@ import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.io.File;
@@ -81,6 +80,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -1130,7 +1130,7 @@ public class AttachmentDatabase extends Database {
                                         null,
                                         "1"))
     {
-      if (cursor == null || !cursor.moveToFirst()) return Optional.absent();
+      if (cursor == null || !cursor.moveToFirst()) return Optional.empty();
 
       if (cursor.getCount() > 0) {
         DataInfo dataInfo = new DataInfo(new File(CursorUtil.requireString(cursor, DATA)),
@@ -1139,7 +1139,7 @@ public class AttachmentDatabase extends Database {
                                          hash);
         return Optional.of(dataInfo);
       } else {
-        return Optional.absent();
+        return Optional.empty();
       }
     }
   }
@@ -1487,7 +1487,7 @@ public class AttachmentDatabase extends Database {
     }
 
     public static @NonNull TransformProperties forSentMediaQuality(@NonNull Optional<TransformProperties> currentProperties, @NonNull SentMediaQuality sentMediaQuality) {
-      TransformProperties existing = currentProperties.or(empty());
+      TransformProperties existing = currentProperties.orElse(empty());
       return new TransformProperties(existing.skipTransform, existing.videoTrim, existing.videoTrimStartTimeUs, existing.videoTrimEndTimeUs, sentMediaQuality.getCode());
     }
 

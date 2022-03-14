@@ -214,7 +214,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
               Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel with response code ${it.status}", it.applicationError.get(), true)
               SignalStore.donationsValues().clearLevelOperations()
             } else {
-              Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel", it.executionError.orNull(), true)
+              Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel", it.executionError.orElse(null), true)
             }
 
             LevelUpdate.updateProcessingState(false)

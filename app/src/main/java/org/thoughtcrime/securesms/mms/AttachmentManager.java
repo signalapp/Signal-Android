@@ -69,13 +69,13 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 
@@ -94,7 +94,7 @@ public class AttachmentManager {
   private SignalMapView              mapView;
 
   private @NonNull  List<Uri>       garbage = new LinkedList<>();
-  private @NonNull  Optional<Slide> slide   = Optional.absent();
+  private @NonNull  Optional<Slide> slide   = Optional.empty();
   private @Nullable Uri             captureUri;
 
   public AttachmentManager(@NonNull Activity activity, @NonNull AttachmentListener listener) {
@@ -143,7 +143,7 @@ public class AttachmentManager {
       }
 
       markGarbage(getSlideUri());
-      slide = Optional.absent();
+      slide = Optional.empty();
     }
   }
 
@@ -152,7 +152,7 @@ public class AttachmentManager {
     cleanup(getSlideUri());
 
     captureUri = null;
-    slide      = Optional.absent();
+    slide      = Optional.empty();
 
     Iterator<Uri> iterator = garbage.listIterator();
 
@@ -465,7 +465,7 @@ public class AttachmentManager {
       Intent intent = new Intent(context, MediaPreviewActivity.class);
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
-      intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
+      intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orElse(null));
       intent.setDataAndType(slide.getUri(), slide.getContentType());
 
       context.startActivity(intent);

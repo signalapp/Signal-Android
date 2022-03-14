@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
-import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 
 import java.util.Arrays;

@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -37,6 +36,7 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class PushTextSendJob extends PushSendJob {
 
@@ -183,7 +183,7 @@ public class PushTextSendJob extends PushSendJob {
                                                                            .withTimestamp(message.getDateSent())
                                                                            .withBody(message.getBody())
                                                                            .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                                           .withProfileKey(profileKey.orNull())
+                                                                           .withProfileKey(profileKey.orElse(null))
                                                                            .asEndSessionMessage(message.isEndSession())
                                                                            .build();
 

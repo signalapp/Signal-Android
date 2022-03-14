@@ -30,7 +30,6 @@ import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
@@ -95,7 +94,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
   private static @NonNull List<Recipient> getAdmins(@NonNull Context context, @NonNull GroupId groupId) {
     return SignalDatabase.groups()
                          .getGroup(groupId)
-                         .transform(GroupDatabase.GroupRecord::getAdmins)
-                         .or(Collections.emptyList());
+                         .map(GroupDatabase.GroupRecord::getAdmins)
+                         .orElse(Collections.emptyList());
   }
 }

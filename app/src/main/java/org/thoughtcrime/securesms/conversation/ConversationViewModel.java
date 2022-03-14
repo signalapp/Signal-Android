@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.livedata.Store;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -60,6 +59,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -323,12 +323,12 @@ public class ConversationViewModel extends ViewModel {
   }
 
   @NonNull LiveData<Map<RecipientId, NameColor>> getNameColorsMap() {
-    LiveData<Recipient>         recipient    = Transformations.switchMap(recipientId, r -> Recipient.live(r).getLiveData());
-    LiveData<Optional<GroupId>> group        = Transformations.map(recipient, Recipient::getGroupId);
+    LiveData<Recipient>         recipient = Transformations.switchMap(recipientId, r -> Recipient.live(r).getLiveData());
+    LiveData<Optional<GroupId>> group     = Transformations.map(recipient, Recipient::getGroupId);
     LiveData<Set<Recipient>>    groupMembers = Transformations.switchMap(group, g -> {
       //noinspection CodeBlock2Expr
-      return g.transform(this::getSessionGroupRecipients)
-              .or(() -> new DefaultValueLiveData<>(Collections.emptySet()));
+      return g.map(this::getSessionGroupRecipients)
+              .orElseGet(() -> new DefaultValueLiveData<>(Collections.emptySet()));
     });
 
     return Transformations.map(groupMembers, members -> {
@@ -363,7 +363,7 @@ public class ConversationViewModel extends ViewModel {
 
   @NonNull LiveData<Optional<NotificationProfile>> getActiveNotificationProfile() {
     final Observable<Optional<NotificationProfile>> activeProfile = Observable.combineLatest(Observable.interval(0, 30, TimeUnit.SECONDS), notificationProfilesRepository.getProfiles(), (interval, profiles) -> profiles)
-                                                                              .map(profiles -> Optional.fromNullable(NotificationProfiles.getActiveProfile(profiles)));
+                                                                              .map(profiles -> Optional.ofNullable(NotificationProfiles.getActiveProfile(profiles)));
 
     return LiveDataReactiveStreams.fromPublisher(activeProfile.toFlowable(BackpressureStrategy.LATEST));
   }

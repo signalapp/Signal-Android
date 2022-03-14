@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.util.NoCrossfadeChangeDefaultAnimator;
-import org.whispersystems.libsignal.util.guava.Function;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 
 import kotlin.collections.CollectionsKt;
 import kotlin.jvm.functions.Function1;

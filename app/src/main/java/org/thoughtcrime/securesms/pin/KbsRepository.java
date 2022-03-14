@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.lock.PinHashing;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
@@ -21,6 +20,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.core.Single;
@@ -37,9 +37,9 @@ public final class KbsRepository {
   public void getToken(@NonNull Consumer<Optional<TokenData>> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        callback.accept(Optional.fromNullable(getTokenSync(null)));
+        callback.accept(Optional.ofNullable(getTokenSync(null)));
       } catch (IOException e) {
-        callback.accept(Optional.absent());
+        callback.accept(Optional.empty());
       }
     });
   }

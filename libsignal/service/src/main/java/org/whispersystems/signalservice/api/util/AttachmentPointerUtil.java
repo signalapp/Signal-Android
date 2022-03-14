@@ -3,12 +3,13 @@ package org.whispersystems.signalservice.api.util;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.util.FlagUtil;
+
+import java.util.Optional;
 
 public final class AttachmentPointerUtil {
   public static SignalServiceAttachmentPointer createSignalAttachmentPointer(byte[] pointer) throws InvalidMessageStructureException, InvalidProtocolBufferException {
@@ -20,16 +21,16 @@ public final class AttachmentPointerUtil {
                                               SignalServiceAttachmentRemoteId.from(pointer),
                                               pointer.getContentType(),
                                               pointer.getKey().toByteArray(),
-                                              pointer.hasSize() ? Optional.of(pointer.getSize()) : Optional.<Integer>absent(),
-                                              pointer.hasThumbnail() ? Optional.of(pointer.getThumbnail().toByteArray()): Optional.<byte[]>absent(),
+                                              pointer.hasSize() ? Optional.of(pointer.getSize()) : Optional.empty(),
+                                              pointer.hasThumbnail() ? Optional.of(pointer.getThumbnail().toByteArray()): Optional.empty(),
                                               pointer.getWidth(), pointer.getHeight(),
-                                              pointer.hasDigest() ? Optional.of(pointer.getDigest().toByteArray()) : Optional.<byte[]>absent(),
-                                              pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.<String>absent(),
+                                              pointer.hasDigest() ? Optional.of(pointer.getDigest().toByteArray()) : Optional.empty(),
+                                              pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.empty(),
                                               (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE)) != 0,
                                               (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.BORDERLESS_VALUE)) != 0,
                                               (pointer.getFlags() & FlagUtil.toBinaryFlag(SignalServiceProtos.AttachmentPointer.Flags.GIF_VALUE)) != 0,
-                                              pointer.hasCaption() ? Optional.of(pointer.getCaption()) : Optional.<String>absent(),
-                                              pointer.hasBlurHash() ? Optional.of(pointer.getBlurHash()) : Optional.<String>absent(),
+                                              pointer.hasCaption() ? Optional.of(pointer.getCaption()) : Optional.empty(),
+                                              pointer.hasBlurHash() ? Optional.of(pointer.getBlurHash()) : Optional.empty(),
                                               pointer.hasUploadTimestamp() ? pointer.getUploadTimestamp() : 0);
 
   }

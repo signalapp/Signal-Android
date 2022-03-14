@@ -8,14 +8,11 @@ import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
 import org.signal.zkgroup.profiles.ProfileKeyVersion;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Function;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
@@ -30,7 +27,9 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketProtos;
 
 import java.security.SecureRandom;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -108,7 +107,7 @@ public final class ProfileService {
                                                                      Locale locale)
   {
     return Single.fromFuture(receiver.retrieveProfile(address, profileKey, unidentifiedAccess, requestType, locale), 10, TimeUnit.SECONDS)
-                 .onErrorResumeNext(t -> Single.fromFuture(receiver.retrieveProfile(address, profileKey, Optional.absent(), requestType, locale), 10, TimeUnit.SECONDS))
+                 .onErrorResumeNext(t -> Single.fromFuture(receiver.retrieveProfile(address, profileKey, Optional.empty(), requestType, locale), 10, TimeUnit.SECONDS))
                  .map(p -> ServiceResponse.forResult(p, 0, null));
   }
 
@@ -135,7 +134,7 @@ public final class ProfileService {
           profileKeyCredential = clientZkProfileOperations.receiveProfileKeyCredential(requestContext, signalServiceProfile.getProfileKeyCredentialResponse());
         }
 
-        return ServiceResponse.forResult(new ProfileAndCredential(signalServiceProfile, requestType, Optional.fromNullable(profileKeyCredential)), status, body);
+        return ServiceResponse.forResult(new ProfileAndCredential(signalServiceProfile, requestType, Optional.ofNullable(profileKeyCredential)), status, body);
       } catch (VerificationFailedException e) {
         return ServiceResponse.forApplicationError(e, status, body);
       }

@@ -8,7 +8,6 @@ package org.whispersystems.signalservice.api.messages;
 
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -16,6 +15,7 @@ import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Represents a decrypted Signal Service data message.
@@ -87,39 +87,39 @@ public class SignalServiceDataMessage {
     this.endSession       = endSession;
     this.expiresInSeconds = expiresInSeconds;
     this.expirationUpdate = expirationUpdate;
-    this.profileKey       = Optional.fromNullable(profileKey);
+    this.profileKey       = Optional.ofNullable(profileKey);
     this.profileKeyUpdate = profileKeyUpdate;
-    this.quote            = Optional.fromNullable(quote);
-    this.sticker          = Optional.fromNullable(sticker);
+    this.quote            = Optional.ofNullable(quote);
+    this.sticker          = Optional.ofNullable(sticker);
     this.viewOnce         = viewOnce;
-    this.reaction         = Optional.fromNullable(reaction);
-    this.remoteDelete     = Optional.fromNullable(remoteDelete);
-    this.groupCallUpdate  = Optional.fromNullable(groupCallUpdate);
-    this.payment          = Optional.fromNullable(payment);
-    this.storyContext     = Optional.fromNullable(storyContext);
+    this.reaction         = Optional.ofNullable(reaction);
+    this.remoteDelete     = Optional.ofNullable(remoteDelete);
+    this.groupCallUpdate  = Optional.ofNullable(groupCallUpdate);
+    this.payment          = Optional.ofNullable(payment);
+    this.storyContext     = Optional.ofNullable(storyContext);
 
     if (attachments != null && !attachments.isEmpty()) {
       this.attachments = Optional.of(attachments);
     } else {
-      this.attachments = Optional.absent();
+      this.attachments = Optional.empty();
     }
 
     if (sharedContacts != null && !sharedContacts.isEmpty()) {
       this.contacts = Optional.of(sharedContacts);
     } else {
-      this.contacts = Optional.absent();
+      this.contacts = Optional.empty();
     }
 
     if (previews != null && !previews.isEmpty()) {
       this.previews = Optional.of(previews);
     } else {
-      this.previews = Optional.absent();
+      this.previews = Optional.empty();
     }
 
     if (mentions != null && !mentions.isEmpty()) {
       this.mentions = Optional.of(mentions);
     } else {
-      this.mentions = Optional.absent();
+      this.mentions = Optional.empty();
     }
   }
 
@@ -264,7 +264,7 @@ public class SignalServiceDataMessage {
                                  .serialize();
     }
 
-    return Optional.fromNullable(groupId);
+    return Optional.ofNullable(groupId);
   }
 
   public static class Builder {

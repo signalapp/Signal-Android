@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.model.Mention;
-import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.stickers.StickerLocator;

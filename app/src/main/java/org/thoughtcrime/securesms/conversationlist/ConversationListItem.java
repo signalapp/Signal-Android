@@ -54,7 +54,6 @@ import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
-import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -79,7 +78,6 @@ import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
-import java.util.Collections;
 import java.util.Locale;
 import java.util.Set;
 
@@ -244,7 +242,7 @@ public final class ConversationListItem extends ConstraintLayout
     this.highlightSubstring = highlightSubstring;
 
     fromView.setText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getMediumBoldSpan, new SpannableString(contact.getDisplayName(getContext())), highlightSubstring, SearchUtil.MATCH_ALL));
-    setSubjectViewText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getBoldSpan, contact.getE164().or(""), highlightSubstring, SearchUtil.MATCH_ALL));
+    setSubjectViewText(SearchUtil.getHighlightedSpan(locale, SpanUtil::getBoldSpan, contact.getE164().orElse(""), highlightSubstring, SearchUtil.MATCH_ALL));
     dateView.setText("");
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);

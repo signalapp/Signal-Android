@@ -155,11 +155,11 @@ public final class LiveRecipientCache {
       }
 
       if (localAci != null) {
-        selfId = recipientDatabase.getByServiceId(localAci).orNull();
+        selfId = recipientDatabase.getByServiceId(localAci).orElse(null);
       }
 
       if (selfId == null && localE164 != null) {
-        selfId = recipientDatabase.getByE164(localE164).orNull();
+        selfId = recipientDatabase.getByE164(localE164).orElse(null);
       }
 
       if (selfId == null) {

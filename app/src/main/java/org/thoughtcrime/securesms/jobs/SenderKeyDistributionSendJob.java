@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -25,6 +24,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -98,8 +98,8 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
     SignalServiceMessageSender             messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
     List<SignalServiceAddress>             address        = Collections.singletonList(RecipientUtil.toSignalServiceAddress(context, recipient));
     DistributionId                         distributionId = groupDatabase.getOrCreateDistributionId(groupId);
-    SenderKeyDistributionMessage           message        = messageSender.getOrCreateNewGroupSession(distributionId);
-    List<Optional<UnidentifiedAccessPair>> access         = UnidentifiedAccessUtil.getAccessFor(context, Collections.singletonList(recipient));
+    SenderKeyDistributionMessage           message = messageSender.getOrCreateNewGroupSession(distributionId);
+    List<Optional<UnidentifiedAccessPair>> access  = UnidentifiedAccessUtil.getAccessFor(context, Collections.singletonList(recipient));
 
     SendMessageResult result = messageSender.sendSenderKeyDistributionMessage(distributionId, address, access, message, Optional.of(groupId.getDecodedId())).get(0);
 

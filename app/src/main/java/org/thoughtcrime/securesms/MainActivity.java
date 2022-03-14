@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
 public class MainActivity extends PassphraseRequiredActivity implements VoiceNoteMediaControllerOwner {

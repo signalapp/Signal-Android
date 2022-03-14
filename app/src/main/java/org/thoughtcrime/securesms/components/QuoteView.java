@@ -351,7 +351,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     } else if (documentSlide != null){
       thumbnailView.setVisibility(GONE);
       attachmentContainerView.setVisibility(VISIBLE);
-      attachmentNameView.setText(documentSlide.getFileName().or(""));
+      attachmentNameView.setText(documentSlide.getFileName().orElse(""));
     } else {
       thumbnailView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);

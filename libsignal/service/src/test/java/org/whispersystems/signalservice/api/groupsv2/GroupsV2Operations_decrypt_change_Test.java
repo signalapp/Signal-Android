@@ -32,12 +32,12 @@ import org.signal.zkgroup.profiles.ProfileKeyCredentialPresentation;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.signalservice.testutil.LibSignalLibraryUtil;
 
 import java.util.Collections;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
@@ -425,7 +425,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
   }
 
   static GroupCandidate groupCandidate(UUID uuid) {
-    return new GroupCandidate(uuid, Optional.absent());
+    return new GroupCandidate(uuid, Optional.empty());
   }
 
   GroupCandidate groupCandidate(UUID uuid, ProfileKey profileKey) {

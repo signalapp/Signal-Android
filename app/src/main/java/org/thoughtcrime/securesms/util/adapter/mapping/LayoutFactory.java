@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
-import org.whispersystems.libsignal.util.guava.Function;
+import java.util.function.Function;
+
 
 public class LayoutFactory<T extends MappingModel<T>> implements Factory<T> {
   private       Function<View, MappingViewHolder<T>> creator;

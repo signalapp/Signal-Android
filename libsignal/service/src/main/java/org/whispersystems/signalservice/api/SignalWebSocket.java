@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api;
 
 import org.whispersystems.libsignal.logging.Log;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
@@ -14,6 +13,7 @@ import org.whispersystems.signalservice.internal.websocket.WebsocketResponse;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.concurrent.TimeoutException;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -261,7 +261,7 @@ public final class SignalWebSocket {
           callback.onMessage(envelope);
           return Optional.of(envelope);
         } else if (isSocketEmptyRequest(request)) {
-          return Optional.absent();
+          return Optional.empty();
         }
       } finally {
         getWebSocket().sendResponse(response);
@@ -295,7 +295,7 @@ public final class SignalWebSocket {
 
   private static Optional<String> findHeader(WebSocketRequestMessage message) {
     if (message.getHeadersCount() == 0) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     for (String header : message.getHeadersList()) {
@@ -307,7 +307,7 @@ public final class SignalWebSocket {
       }
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   /**

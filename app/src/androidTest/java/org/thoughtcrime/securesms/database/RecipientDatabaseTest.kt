@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
-import java.lang.IllegalArgumentException
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)

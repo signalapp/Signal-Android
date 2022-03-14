@@ -9,7 +9,6 @@ import androidx.test.core.app.ApplicationProvider;
 import com.annimon.stream.Stream;
 import com.google.common.collect.ImmutableMap;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -41,7 +40,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mockStatic;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeBy;
 import static org.thoughtcrime.securesms.groups.v2.ChangeBuilder.changeByUnknown;
 import static org.thoughtcrime.securesms.util.StringUtil.isolateBidi;

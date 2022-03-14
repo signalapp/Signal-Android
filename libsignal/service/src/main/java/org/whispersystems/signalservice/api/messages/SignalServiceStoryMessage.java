@@ -1,11 +1,12 @@
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
 
 public class SignalServiceStoryMessage {
-  private final Optional<byte[]>                      profileKey;
-  private final Optional<SignalServiceGroupV2>        groupContext;
-  private final Optional<SignalServiceAttachment>     fileAttachment;
+  private final Optional<byte[]>                  profileKey;
+  private final Optional<SignalServiceGroupV2>    groupContext;
+  private final Optional<SignalServiceAttachment> fileAttachment;
   private final Optional<SignalServiceTextAttachment> textAttachment;
   private final Optional<Boolean>                     allowsReplies;
 
@@ -14,10 +15,10 @@ public class SignalServiceStoryMessage {
                                     SignalServiceAttachment fileAttachment,
                                     SignalServiceTextAttachment textAttachment,
                                     boolean allowsReplies) {
-    this.profileKey     = Optional.fromNullable(profileKey);
-    this.groupContext   = Optional.fromNullable(groupContext);
-    this.fileAttachment = Optional.fromNullable(fileAttachment);
-    this.textAttachment = Optional.fromNullable(textAttachment);
+    this.profileKey     = Optional.ofNullable(profileKey);
+    this.groupContext   = Optional.ofNullable(groupContext);
+    this.fileAttachment = Optional.ofNullable(fileAttachment);
+    this.textAttachment = Optional.ofNullable(textAttachment);
     this.allowsReplies  = Optional.of(allowsReplies);
   }
 

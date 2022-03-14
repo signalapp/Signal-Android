@@ -4,12 +4,12 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 import static org.thoughtcrime.securesms.contactshare.Contact.Email;
@@ -67,19 +67,19 @@ public class ContactModelMapper {
   }
 
   public static Contact remoteToLocal(@NonNull SharedContact sharedContact) {
-    Name name = new Name(sharedContact.getName().getDisplay().orNull(),
-        sharedContact.getName().getGiven().orNull(),
-        sharedContact.getName().getFamily().orNull(),
-        sharedContact.getName().getPrefix().orNull(),
-        sharedContact.getName().getSuffix().orNull(),
-        sharedContact.getName().getMiddle().orNull());
+    Name name = new Name(sharedContact.getName().getDisplay().orElse(null),
+        sharedContact.getName().getGiven().orElse(null),
+        sharedContact.getName().getFamily().orElse(null),
+        sharedContact.getName().getPrefix().orElse(null),
+        sharedContact.getName().getSuffix().orElse(null),
+        sharedContact.getName().getMiddle().orElse(null));
 
     List<Phone> phoneNumbers = new LinkedList<>();
     if (sharedContact.getPhone().isPresent()) {
       for (SharedContact.Phone phone : sharedContact.getPhone().get()) {
         phoneNumbers.add(new Phone(phone.getValue(),
                                    remoteToLocalType(phone.getType()),
-                                   phone.getLabel().orNull()));
+                                   phone.getLabel().orElse(null)));
       }
     }
 
@@ -88,7 +88,7 @@ public class ContactModelMapper {
       for (SharedContact.Email email : sharedContact.getEmail().get()) {
         emails.add(new Email(email.getValue(),
                              remoteToLocalType(email.getType()),
-                             email.getLabel().orNull()));
+                             email.getLabel().orElse(null)));
       }
     }
 
@@ -96,14 +96,14 @@ public class ContactModelMapper {
     if (sharedContact.getAddress().isPresent()) {
       for (SharedContact.PostalAddress postalAddress : sharedContact.getAddress().get()) {
         postalAddresses.add(new PostalAddress(remoteToLocalType(postalAddress.getType()),
-                                              postalAddress.getLabel().orNull(),
-                                              postalAddress.getStreet().orNull(),
-                                              postalAddress.getPobox().orNull(),
-                                              postalAddress.getNeighborhood().orNull(),
-                                              postalAddress.getCity().orNull(),
-                                              postalAddress.getRegion().orNull(),
-                                              postalAddress.getPostcode().orNull(),
-                                              postalAddress.getCountry().orNull()));
+                                              postalAddress.getLabel().orElse(null),
+                                              postalAddress.getStreet().orElse(null),
+                                              postalAddress.getPobox().orElse(null),
+                                              postalAddress.getNeighborhood().orElse(null),
+                                              postalAddress.getCity().orElse(null),
+                                              postalAddress.getRegion().orElse(null),
+                                              postalAddress.getPostcode().orElse(null),
+                                              postalAddress.getCountry().orElse(null)));
       }
     }
 
@@ -115,7 +115,7 @@ public class ContactModelMapper {
       avatar = new Avatar(null, attachment, isProfile);
     }
 
-    return new Contact(name, sharedContact.getOrganization().orNull(), phoneNumbers, emails, postalAddresses, avatar);
+    return new Contact(name, sharedContact.getOrganization().orElse(null), phoneNumbers, emails, postalAddresses, avatar);
   }
 
   private static Phone.Type remoteToLocalType(SharedContact.Phone.Type type) {

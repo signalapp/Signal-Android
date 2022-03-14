@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage;
@@ -64,6 +63,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -193,7 +193,7 @@ public class GroupsV2StateProcessor {
       GlobalGroupState inputGroupState = null;
 
       Optional<GroupRecord> localRecord = groupDatabase.getGroup(groupId);
-      DecryptedGroup        localState  = localRecord.transform(g -> g.requireV2GroupProperties().getDecryptedGroup()).orNull();
+      DecryptedGroup        localState  = localRecord.map(g -> g.requireV2GroupProperties().getDecryptedGroup()).orElse(null);
 
       if (signedGroupChange != null &&
           localState != null &&
@@ -429,7 +429,7 @@ public class GroupsV2StateProcessor {
                           .getResults()
                           .get(0)
                           .getGroup()
-                          .orNull();
+                          .orElse(null);
       } catch (GroupNotFoundException e) {
         throw new GroupDoesNotExistException(e);
       } catch (NotInGroupException e) {
@@ -530,8 +530,8 @@ public class GroupsV2StateProcessor {
         }
 
         for (DecryptedGroupHistoryEntry entry : groupHistoryPage.getResults()) {
-          DecryptedGroup       group  = entry.getGroup().orNull();
-          DecryptedGroupChange change = ignoreServerChanges ? null : entry.getChange().orNull();
+          DecryptedGroup       group  = entry.getGroup().orElse(null);
+          DecryptedGroupChange change = ignoreServerChanges ? null : entry.getChange().orElse(null);
 
           if (group != null || change != null) {
             history.add(new ServerGroupLogEntry(group, change));
@@ -581,9 +581,9 @@ public class GroupsV2StateProcessor {
                                                     .map(ServerGroupLogEntry::getChange)
                                                     .filter(c -> c != null && c.getRevision() == revisionJoinedAt)
                                                     .findFirst()
-                                                    .map(c -> Optional.fromNullable(UuidUtil.fromByteStringOrNull(c.getEditor()))
-                                                                      .transform(a -> Recipient.externalPush(ServiceId.fromByteStringOrNull(c.getEditor()), null, false)))
-                                                    .orElse(Optional.absent());
+                                                    .map(c -> Optional.ofNullable(UuidUtil.fromByteStringOrNull(c.getEditor()))
+                                                                      .map(a -> Recipient.externalPush(ServiceId.fromByteStringOrNull(c.getEditor()), null, false)))
+                                                    .orElse(Optional.empty());
 
         if (addedByOptional.isPresent()) {
           Recipient addedBy = addedByOptional.get();
@@ -653,7 +653,7 @@ public class GroupsV2StateProcessor {
     }
 
     void storeMessage(@NonNull DecryptedGroupV2Context decryptedGroupV2Context, long timestamp) {
-      Optional<ServiceId> editor = getEditor(decryptedGroupV2Context).transform(ServiceId::from);
+      Optional<ServiceId> editor = getEditor(decryptedGroupV2Context).map(ServiceId::from);
 
       boolean outgoing = !editor.isPresent() || selfAci.equals(editor.get());
 
@@ -695,10 +695,10 @@ public class GroupsV2StateProcessor {
       } else {
         Optional<DecryptedPendingMember> pendingByUuid = DecryptedGroupUtil.findPendingByUuid(decryptedGroupV2Context.getGroupState().getPendingMembersList(), selfAci.uuid());
         if (pendingByUuid.isPresent()) {
-          return Optional.fromNullable(UuidUtil.fromByteStringOrNull(pendingByUuid.get().getAddedByUuid()));
+          return Optional.ofNullable(UuidUtil.fromByteStringOrNull(pendingByUuid.get().getAddedByUuid()));
         }
       }
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 }

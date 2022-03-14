@@ -4,10 +4,10 @@ import org.whispersystems.util.StringUtil;
 
 import java.util.Arrays;
 
-import static java.util.Arrays.copyOfRange;
 import static org.whispersystems.signalservice.api.crypto.CryptoUtil.hmacSha256;
 import static org.whispersystems.util.ByteArrayUtil.concat;
 import static org.whispersystems.util.ByteArrayUtil.xor;
+import static java.util.Arrays.copyOfRange;
 
 /**
  * Encrypts or decrypts with a Synthetic IV.

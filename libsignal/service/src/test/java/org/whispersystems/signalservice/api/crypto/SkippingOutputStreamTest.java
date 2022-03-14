@@ -4,7 +4,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class SkippingOutputStreamTest {
 

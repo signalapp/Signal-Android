@@ -13,15 +13,14 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState
-import org.thoughtcrime.securesms.database.model.RecipientRecord.SyncExtras
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
+import java.util.Optional
 
 /**
  * Database model for [RecipientDatabase].
@@ -87,7 +86,7 @@ data class RecipientRecord(
 ) {
 
   fun getDefaultSubscriptionId(): Optional<Int> {
-    return if (defaultSubscriptionId != -1) Optional.of(defaultSubscriptionId) else Optional.absent()
+    return if (defaultSubscriptionId != -1) Optional.of(defaultSubscriptionId) else Optional.empty()
   }
 
   /**

@@ -48,7 +48,7 @@ class ManageDonationsViewModel(
     disposables += SubscriptionRedemptionJobWatcher.watch().subscribeBy { jobStateOptional ->
       store.update { manageDonationsState ->
         manageDonationsState.copy(
-          subscriptionRedemptionState = jobStateOptional.transform { jobState ->
+          subscriptionRedemptionState = jobStateOptional.map { jobState ->
             when (jobState) {
               JobTracker.JobState.PENDING -> ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS
               JobTracker.JobState.RUNNING -> ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS
@@ -56,7 +56,7 @@ class ManageDonationsViewModel(
               JobTracker.JobState.FAILURE -> ManageDonationsState.SubscriptionRedemptionState.FAILED
               JobTracker.JobState.IGNORED -> ManageDonationsState.SubscriptionRedemptionState.NONE
             }
-          }.or(ManageDonationsState.SubscriptionRedemptionState.NONE)
+          }.orElse(ManageDonationsState.SubscriptionRedemptionState.NONE)
         )
       }
     }

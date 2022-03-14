@@ -1,10 +1,11 @@
 package org.whispersystems.signalservice.internal.push.http;
 
 
-import org.whispersystems.libsignal.util.guava.Preconditions;
+
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream;
 import org.whispersystems.signalservice.api.crypto.SkippingOutputStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.io.IOException;
 import java.io.InputStream;

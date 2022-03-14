@@ -34,7 +34,6 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.DummyActivity;
 import org.thoughtcrime.securesms.MainActivity;

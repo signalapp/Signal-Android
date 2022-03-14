@@ -26,10 +26,10 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 
 public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, Colorizable, Multiselectable {

@@ -11,12 +11,12 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class UsernameUtil {
@@ -45,7 +45,7 @@ public class UsernameUtil {
     } else if (!FULL_PATTERN.matcher(value).matches()) {
       return Optional.of(InvalidReason.INVALID_CHARACTERS);
     } else {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 
@@ -67,10 +67,10 @@ public class UsernameUtil {
 
     try {
       Log.d(TAG, "No local user with this username. Searching remotely.");
-      SignalServiceProfile profile = ApplicationDependencies.getSignalServiceMessageReceiver().retrieveProfileByUsername(username, Optional.absent(), Locale.getDefault());
-      return Optional.fromNullable(profile.getServiceId());
+      SignalServiceProfile profile = ApplicationDependencies.getSignalServiceMessageReceiver().retrieveProfileByUsername(username, Optional.empty(), Locale.getDefault());
+      return Optional.ofNullable(profile.getServiceId());
     } catch (IOException e) {
-      return Optional.absent();
+      return Optional.empty();
     }
   }
 

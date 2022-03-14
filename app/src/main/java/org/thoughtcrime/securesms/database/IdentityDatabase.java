@@ -36,10 +36,10 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class IdentityDatabase extends Database {
 
@@ -211,7 +211,7 @@ public class IdentityDatabase extends Database {
       throw new AssertionError(e);
     }
 
-    return Optional.absent();
+    return Optional.empty();
   }
 
   private boolean hasMatchingKey(@NonNull String addressName, IdentityKey identityKey) {

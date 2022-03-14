@@ -1,14 +1,5 @@
 package org.thoughtcrime.securesms.webrtc;
 
-import android.content.Context;
-
-import androidx.annotation.NonNull;
-
-import org.signal.core.util.logging.Log;
-import org.signal.ringrtc.CallException;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.NetworkUtil;
-
 /**
  * Represents the user's desired bandwidth mode for calls.
  */

@@ -9,11 +9,9 @@ import android.text.TextUtils;
 
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.stubbing.Answer;

@@ -55,7 +55,6 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -73,6 +72,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Executor;
@@ -624,7 +624,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       }
       try {
         messageSender.sendCallMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
-                                      recipient.isSelf() ? Optional.absent() : UnidentifiedAccessUtil.getAccessFor(context, recipient),
+                                      recipient.isSelf() ? Optional.empty() : UnidentifiedAccessUtil.getAccessFor(context, recipient),
                                       callMessage);
       } catch (UntrustedIdentityException e) {
         Log.i(TAG, "sendOpaqueCallMessage onFailure: ", e);
@@ -891,13 +891,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                      (s, p) -> p.handleMessageSentError(s,
                                                                                         remotePeer.getCallId(),
                                                                                         UNTRUSTED_IDENTITY,
-                                                                                        Optional.fromNullable(e.getIdentityKey())));
+                                                                                        Optional.ofNullable(e.getIdentityKey())));
       } catch (IOException e) {
         processSendMessageFailureWithChangeDetection(remotePeer,
                                                      (s, p) -> p.handleMessageSentError(s,
                                                                                         remotePeer.getCallId(),
                                                                                         e instanceof UnregisteredUserException ? NO_SUCH_USER : NETWORK_FAILURE,
-                                                                                        Optional.absent()));
+                                                                                        Optional.empty()));
       }
     });
   }

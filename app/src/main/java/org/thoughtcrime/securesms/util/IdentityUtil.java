@@ -34,12 +34,12 @@ import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.state.SessionStore;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
+import java.util.Optional;
 
 public final class IdentityUtil {
 
@@ -95,7 +95,7 @@ public final class IdentityUtil {
     }
 
     if (remote) {
-      IncomingTextMessage incoming = new IncomingTextMessage(recipient.getId(), 1, time, -1, time, null, Optional.absent(), 0, false, null);
+      IncomingTextMessage incoming = new IncomingTextMessage(recipient.getId(), 1, time, -1, time, null, Optional.empty(), 0, false, null);
 
       if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
       else          incoming = new IncomingIdentityDefaultMessage(incoming);
@@ -133,7 +133,7 @@ public final class IdentityUtil {
       }
     }
 
-    IncomingTextMessage           incoming         = new IncomingTextMessage(recipientId, 1, time, -1, time, null, Optional.absent(), 0, false, null);
+    IncomingTextMessage           incoming         = new IncomingTextMessage(recipientId, 1, time, -1, time, null, Optional.empty(), 0, false, null);
     IncomingIdentityUpdateMessage individualUpdate = new IncomingIdentityUpdateMessage(incoming);
     Optional<InsertResult>        insertResult     = smsDatabase.insertMessageInbox(individualUpdate);
 

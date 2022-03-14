@@ -7,6 +7,8 @@ import org.signal.core.util.logging.Scrubber
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.model.LogEntry
+import org.thoughtcrime.securesms.logging.PersistentLogger.LogRequest
+import org.thoughtcrime.securesms.logging.PersistentLogger.WriteThread
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import java.text.SimpleDateFormat

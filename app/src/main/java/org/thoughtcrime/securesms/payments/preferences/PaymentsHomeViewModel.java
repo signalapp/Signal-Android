@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
+import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.SettingHeader;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.payments.UnreadPaymentsRepository;
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchangeRepository;
-import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.payments.preferences.model.InProgress;
 import org.thoughtcrime.securesms.payments.preferences.model.InfoCard;
 import org.thoughtcrime.securesms.payments.preferences.model.IntroducingPayments;
@@ -29,14 +29,14 @@ import org.thoughtcrime.securesms.payments.preferences.model.NoRecentActivity;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
 import org.thoughtcrime.securesms.payments.preferences.model.SeeAll;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.livedata.Store;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PaymentsHomeViewModel extends ViewModel {
 
@@ -82,7 +82,7 @@ public class PaymentsHomeViewModel extends ViewModel {
     LiveData<Optional<FiatMoney>> liveExchangeAmount = LiveDataUtil.combineLatest(this.balance,
                                                                                   liveExchangeRate,
                                                                                   (balance, exchangeRate) -> exchangeRate.exchange(balance));
-    this.store.update(liveExchangeAmount, (amount, state) -> state.updateCurrencyAmount(amount.orNull()));
+    this.store.update(liveExchangeAmount, (amount, state) -> state.updateCurrencyAmount(amount.orElse(null)));
 
     refreshExchangeRates(true);
   }

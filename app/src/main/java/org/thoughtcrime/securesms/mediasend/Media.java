@@ -7,10 +7,10 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Represents a piece of media that the user has on their device.
@@ -70,11 +70,11 @@ public class Media implements Parcelable {
     duration   = in.readLong();
     borderless = in.readInt() == 1;
     videoGif   = in.readInt() == 1;
-    bucketId   = Optional.fromNullable(in.readString());
-    caption    = Optional.fromNullable(in.readString());
+    bucketId   = Optional.ofNullable(in.readString());
+    caption    = Optional.ofNullable(in.readString());
     try {
       String json = in.readString();
-      transformProperties = json == null ? Optional.absent() : Optional.fromNullable(JsonUtil.fromJson(json, AttachmentDatabase.TransformProperties.class));
+      transformProperties = json == null ? Optional.empty() : Optional.ofNullable(JsonUtil.fromJson(json, AttachmentDatabase.TransformProperties.class));
     } catch (IOException e) {
       throw new AssertionError(e);
     }
@@ -125,7 +125,7 @@ public class Media implements Parcelable {
   }
 
   public void setCaption(String caption) {
-    this.caption = Optional.fromNullable(caption);
+    this.caption = Optional.ofNullable(caption);
   }
 
   public Optional<AttachmentDatabase.TransformProperties> getTransformProperties() {
@@ -148,9 +148,9 @@ public class Media implements Parcelable {
     dest.writeLong(duration);
     dest.writeInt(borderless ? 1 : 0);
     dest.writeInt(videoGif ? 1 : 0);
-    dest.writeString(bucketId.orNull());
-    dest.writeString(caption.orNull());
-    dest.writeString(transformProperties.transform(JsonUtil::toJson).orNull());
+    dest.writeString(bucketId.orElse(null));
+    dest.writeString(caption.orElse(null));
+    dest.writeString(transformProperties.map(JsonUtil::toJson).orElse(null));
   }
 
   public static final Creator<Media> CREATOR = new Creator<Media>() {

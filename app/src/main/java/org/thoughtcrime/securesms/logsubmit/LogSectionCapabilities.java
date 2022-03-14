@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.AppCapabilities;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 
 public final class LogSectionCapabilities implements LogSection {

@@ -12,8 +12,6 @@ import androidx.annotation.RequiresApi;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.whispersystems.libsignal.util.guava.Function;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -22,7 +20,9 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 public final class SubscriptionManagerCompat {
 
@@ -36,7 +36,7 @@ public final class SubscriptionManagerCompat {
 
   public Optional<Integer> getPreferredSubscriptionId() {
     if (Build.VERSION.SDK_INT < 24) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     return Optional.of(SubscriptionManager.getDefaultSmsSubscriptionId());
@@ -44,10 +44,10 @@ public final class SubscriptionManagerCompat {
 
   public Optional<SubscriptionInfoCompat> getActiveSubscriptionInfo(int subscriptionId) {
     if (Build.VERSION.SDK_INT < 22) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
-    return Optional.fromNullable(getActiveSubscriptionInfoMap(false).get(subscriptionId));
+    return Optional.ofNullable(getActiveSubscriptionInfoMap(false).get(subscriptionId));
   }
 
   public @NonNull Collection<SubscriptionInfoCompat> getActiveAndReadySubscriptionInfos() {

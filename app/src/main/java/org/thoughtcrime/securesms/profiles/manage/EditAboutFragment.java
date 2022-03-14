@@ -34,11 +34,11 @@ import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Let's you edit the 'About' section of your profile.
@@ -116,7 +116,7 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
       onEmojiSelectedInternal(savedInstanceState.getString(KEY_SELECTED_EMOJI, ""));
     } else {
       this.bodyView.setText(Recipient.self().getAbout());
-      onEmojiSelectedInternal(Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""));
+      onEmojiSelectedInternal(Optional.ofNullable(Recipient.self().getAboutEmoji()).orElse(""));
     }
 
     ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(bodyView);

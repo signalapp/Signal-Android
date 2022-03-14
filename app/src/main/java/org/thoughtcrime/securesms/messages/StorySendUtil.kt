@@ -4,9 +4,9 @@ import com.google.protobuf.InvalidProtocolBufferException
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.util.Base64
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServicePreview
 import org.whispersystems.signalservice.api.messages.SignalServiceTextAttachment
+import java.util.Optional
 import kotlin.math.roundToInt
 
 object StorySendUtil {
@@ -15,15 +15,15 @@ object StorySendUtil {
   fun deserializeBodyToStoryTextAttachment(message: OutgoingMediaMessage, getPreviewsFor: (OutgoingMediaMessage) -> List<SignalServicePreview>): SignalServiceTextAttachment {
     val storyTextPost = StoryTextPost.parseFrom(Base64.decode(message.body))
     val preview = if (message.linkPreviews.isEmpty()) {
-      Optional.absent()
+      Optional.empty()
     } else {
       Optional.of(getPreviewsFor(message)[0])
     }
 
     return if (storyTextPost.background.hasLinearGradient()) {
       SignalServiceTextAttachment.forGradientBackground(
-        Optional.fromNullable(storyTextPost.body),
-        Optional.fromNullable(getStyle(storyTextPost.style)),
+        Optional.ofNullable(storyTextPost.body),
+        Optional.ofNullable(getStyle(storyTextPost.style)),
         Optional.of(storyTextPost.textForegroundColor),
         Optional.of(storyTextPost.textBackgroundColor),
         preview,
@@ -35,8 +35,8 @@ object StorySendUtil {
       )
     } else {
       SignalServiceTextAttachment.forSolidBackground(
-        Optional.fromNullable(storyTextPost.body),
-        Optional.fromNullable(getStyle(storyTextPost.style)),
+        Optional.ofNullable(storyTextPost.body),
+        Optional.ofNullable(getStyle(storyTextPost.style)),
         Optional.of(storyTextPost.textForegroundColor),
         Optional.of(storyTextPost.textBackgroundColor),
         preview,

@@ -1,13 +1,15 @@
 package org.whispersystems.signalservice.internal.push.exceptions;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+
+import java.util.Optional;
 
 public final class ForbiddenException extends NonSuccessfulResponseCodeException {
   private Optional<String> reason;
 
   public ForbiddenException() {
-    this(Optional.absent());
+    this(Optional.empty());
   }
 
   public ForbiddenException(Optional<String> reason) {

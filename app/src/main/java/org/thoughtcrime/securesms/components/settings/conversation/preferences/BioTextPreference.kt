@@ -56,7 +56,7 @@ object BioTextPreference {
       }
     }
 
-    override fun getSubhead2Text(): String? = recipient.e164.transform(PhoneNumberFormatter::prettyPrint).orNull()
+    override fun getSubhead2Text(): String? = recipient.e164.map(PhoneNumberFormatter::prettyPrint).orElse(null)
 
     override fun areContentsTheSame(newItem: RecipientModel): Boolean {
       return super.areContentsTheSame(newItem) && newItem.recipient.hasSameContent(recipient)

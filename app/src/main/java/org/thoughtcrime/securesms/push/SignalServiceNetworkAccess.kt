@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.net.StaticDns
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.util.Base64
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
 import org.whispersystems.signalservice.internal.configuration.SignalCdshUrl
@@ -29,6 +28,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl
 import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
 import java.io.IOException
+import java.util.Optional
 
 /**
  * Provides a [SignalServiceConfiguration] to be used with our service layer.
@@ -172,7 +172,7 @@ class SignalServiceNetworkAccess(context: Context) {
     arrayOf(SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, serviceTrustStore)),
     interceptors,
     Optional.of(DNS),
-    Optional.absent(),
+    Optional.empty(),
     zkGroupServerPublicParams
   )
 
@@ -223,7 +223,7 @@ class SignalServiceNetworkAccess(context: Context) {
     arrayOf(SignalCdshUrl(BuildConfig.SIGNAL_CDSH_URL, serviceTrustStore)),
     interceptors,
     Optional.of(DNS),
-    if (SignalStore.proxy().isProxyEnabled) Optional.of(SignalStore.proxy().proxy) else Optional.absent(),
+    if (SignalStore.proxy().isProxyEnabled) Optional.ofNullable(SignalStore.proxy().proxy) else Optional.empty(),
     zkGroupServerPublicParams
   )
 
@@ -290,7 +290,7 @@ class SignalServiceNetworkAccess(context: Context) {
       cdshUrls,
       interceptors,
       Optional.of(DNS),
-      Optional.absent(),
+      Optional.empty(),
       zkGroupServerPublicParams
     )
   }

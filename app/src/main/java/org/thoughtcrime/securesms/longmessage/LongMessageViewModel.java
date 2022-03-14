@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 class LongMessageViewModel extends ViewModel {
 

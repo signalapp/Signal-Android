@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.whispersystems.libsignal.util.Pair;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Optional;
+
 
 public final class RecyclerViewConcatenateAdapterStickyHeader extends    RecyclerViewConcatenateAdapter
                                                               implements StickyHeaderDecoration.StickyHeaderAdapter,
@@ -16,12 +18,12 @@ public final class RecyclerViewConcatenateAdapterStickyHeader extends    Recycle
 
   @Override
   public long getHeaderId(int position) {
-    return getForPosition(position).transform(p -> p.first().getHeaderId(p.second())).or(-1L);
+    return getForPosition(position).map(p -> p.first().getHeaderId(p.second())).orElse(-1L);
   }
 
   @Override
   public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position, int type) {
-    return getForPosition(position).transform(p -> p.first().onCreateHeaderViewHolder(parent, p.second(), type)).orNull();
+    return getForPosition(position).map(p -> p.first().onCreateHeaderViewHolder(parent, p.second(), type)).orElse(null);
   }
 
   @Override
@@ -39,13 +41,13 @@ public final class RecyclerViewConcatenateAdapterStickyHeader extends    Recycle
   public CharSequence getBubbleText(int position) {
     Optional<Pair<StickyHeaderDecoration.StickyHeaderAdapter, Integer>> forPosition = getForPosition(position);
 
-    return forPosition.transform(a -> {
+    return forPosition.map(a -> {
       if (a.first() instanceof RecyclerViewFastScroller.FastScrollAdapter) {
         return ((RecyclerViewFastScroller.FastScrollAdapter) a.first()).getBubbleText(a.second());
       } else {
         return "";
       }
-    }).or("");
+    }).orElse("");
   }
 
   private Optional<Pair<StickyHeaderDecoration.StickyHeaderAdapter, Integer>> getForPosition(int position) {
@@ -56,6 +58,6 @@ public final class RecyclerViewConcatenateAdapterStickyHeader extends    Recycle
       StickyHeaderDecoration.StickyHeaderAdapter sticky = (StickyHeaderDecoration.StickyHeaderAdapter) adapter;
       return Optional.of(new Pair<>(sticky, localAdapterPosition.localPosition));
     }
-    return Optional.absent();
+    return Optional.empty();
   }
 }

@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
@@ -31,6 +30,7 @@ import org.whispersystems.signalservice.internal.contacts.crypto.Unauthenticated
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public final class PinState {

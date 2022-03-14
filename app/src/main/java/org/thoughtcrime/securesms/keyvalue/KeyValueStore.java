@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;

@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.InputStream;
+import java.util.Optional;
 
 import okhttp3.Call;
 
@@ -49,6 +49,6 @@ public class CallRequestController implements RequestController {
       Util.wait(this, 0);
     }
 
-    return Optional.fromNullable(this.stream);
+    return Optional.ofNullable(this.stream);
   }
 }

@@ -12,11 +12,11 @@ import androidx.lifecycle.ViewModel;
 
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class MediaPreviewViewModel extends ViewModel {
 
@@ -113,9 +113,9 @@ public class MediaPreviewViewModel extends ViewModel {
                      0,
                      mediaRecord.getAttachment().isBorderless(),
                      mediaRecord.getAttachment().isVideoGif(),
-                     Optional.absent(),
-                     Optional.fromNullable(mediaRecord.getAttachment().getCaption()),
-                     Optional.absent());
+                     Optional.empty(),
+                     Optional.ofNullable(mediaRecord.getAttachment().getCaption()),
+                     Optional.empty());
   }
 
   public LiveData<PreviewData> getPreviewData() {

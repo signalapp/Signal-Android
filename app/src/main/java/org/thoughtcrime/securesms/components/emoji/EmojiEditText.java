@@ -14,7 +14,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 
 public class EmojiEditText extends AppCompatEditText {

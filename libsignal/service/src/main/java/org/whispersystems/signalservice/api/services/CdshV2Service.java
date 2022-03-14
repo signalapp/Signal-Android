@@ -6,7 +6,6 @@ import org.signal.cds.ClientRequest;
 import org.signal.cds.ClientResponse;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.util.ByteUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
@@ -23,6 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -89,7 +89,7 @@ public final class CdshV2Service {
       if (!pniUuid.equals(EMPTY_UUID)) {
         PNI pni = PNI.from(pniUuid);
         ACI aci = aciUuid.equals(EMPTY_UUID) ? null : ACI.from(aciUuid);
-        results.put(e164, new ResponseItem(pni, Optional.fromNullable(aci)));
+        results.put(e164, new ResponseItem(pni, Optional.ofNullable(aci)));
       }
     }
 

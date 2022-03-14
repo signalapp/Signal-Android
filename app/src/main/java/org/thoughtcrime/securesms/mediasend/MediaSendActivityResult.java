@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult;
 import org.thoughtcrime.securesms.util.ParcelUtil;
-import org.whispersystems.libsignal.util.guava.Preconditions;
+import org.whispersystems.signalservice.api.util.Preconditions;
 
 import java.util.Collection;
 import java.util.Collections;

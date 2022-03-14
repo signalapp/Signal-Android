@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.util.CircularProgressButtonUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.whispersystems.libsignal.util.guava.Optional
+import java.util.Optional
 import java.util.function.Consumer
 
 /**

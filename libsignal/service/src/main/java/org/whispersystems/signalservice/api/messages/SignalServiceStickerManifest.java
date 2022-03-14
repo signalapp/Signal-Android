@@ -1,10 +1,11 @@
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class SignalServiceStickerManifest {
 
@@ -14,9 +15,9 @@ public class SignalServiceStickerManifest {
   private final List<StickerInfo>     stickers;
 
   public SignalServiceStickerManifest(String title, String author, StickerInfo cover, List<StickerInfo> stickers) {
-    this.title    = Optional.fromNullable(title);
-    this.author   = Optional.fromNullable(author);
-    this.cover    = Optional.fromNullable(cover);
+    this.title    = Optional.ofNullable(title);
+    this.author   = Optional.ofNullable(author);
+    this.cover    = Optional.ofNullable(cover);
     this.stickers = (stickers == null) ? Collections.<StickerInfo>emptyList() : new ArrayList<>(stickers);
   }
 

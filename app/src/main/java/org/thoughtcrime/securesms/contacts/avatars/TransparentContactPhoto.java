@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat;
 
 import com.makeramen.roundedimageview.RoundedDrawable;
 
-import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 

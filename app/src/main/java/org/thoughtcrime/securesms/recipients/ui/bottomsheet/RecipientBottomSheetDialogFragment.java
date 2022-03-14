@@ -199,7 +199,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       }
 
       String usernameNumberString = recipient.hasAUserSetDisplayName(requireContext()) && !recipient.isSelf()
-                                    ? recipient.getSmsAddress().transform(PhoneNumberFormatter::prettyPrint).or("").trim()
+                                    ? recipient.getSmsAddress().map(PhoneNumberFormatter::prettyPrint).orElse("").trim()
                                     : "";
       usernameNumber.setText(usernameNumberString);
       usernameNumber.setVisibility(TextUtils.isEmpty(usernameNumberString) ? View.GONE : View.VISIBLE);

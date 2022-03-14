@@ -15,10 +15,10 @@ import org.signal.imageeditor.core.model.EditorModel;
 import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Optional;
 
 public final class ImageEditorModelRenderMediaTransform implements MediaTransform {
 
@@ -50,7 +50,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
                             .withMimeType(MediaUtil.IMAGE_JPEG)
                             .createForSingleSessionOnDisk(context);
 
-      return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, false, media.getBucketId(), media.getCaption(), Optional.absent());
+      return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, false, media.getBucketId(), media.getCaption(), Optional.empty());
     } catch (IOException e) {
       Log.w(TAG, "Failed to render image. Using base image.");
       return media;

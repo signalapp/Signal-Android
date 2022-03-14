@@ -6,12 +6,13 @@
 
 package org.whispersystems.signalservice.api.messages;
 
-import org.whispersystems.libsignal.util.guava.Optional;
+
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Optional;
 
 public abstract class SignalServiceAttachment {
 
@@ -41,7 +42,7 @@ public abstract class SignalServiceAttachment {
   }
 
   public static SignalServiceAttachmentStream emptyStream(String contentType) {
-    return new SignalServiceAttachmentStream(new ByteArrayInputStream(new byte[0]), contentType, 0, Optional.absent(), false, false, false, null, null);
+    return new SignalServiceAttachmentStream(new ByteArrayInputStream(new byte[0]), contentType, 0, Optional.empty(), false, false, false, null, null);
   }
 
   public static class Builder {
@@ -147,19 +148,19 @@ public abstract class SignalServiceAttachment {
       return new SignalServiceAttachmentStream(inputStream,
                                                contentType,
                                                length,
-                                               Optional.fromNullable(fileName),
+                                               Optional.ofNullable(fileName),
                                                voiceNote,
                                                borderless,
                                                gif,
-                                               Optional.<byte[]>absent(),
+                                               Optional.empty(),
                                                width,
                                                height,
                                                uploadTimestamp,
-                                               Optional.fromNullable(caption),
-                                               Optional.fromNullable(blurHash),
+                                               Optional.ofNullable(caption),
+                                               Optional.ofNullable(blurHash),
                                                listener,
                                                cancelationSignal,
-                                               Optional.fromNullable(resumableUploadSpec));
+                                               Optional.ofNullable(resumableUploadSpec));
     }
   }
 

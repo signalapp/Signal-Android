@@ -33,11 +33,11 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public class SmsReceiveJob extends BaseJob {
@@ -171,7 +171,7 @@ public class SmsReceiveJob extends BaseJob {
 
   private Optional<IncomingTextMessage> assembleMessageFragments(@Nullable Object[] pdus, int subscriptionId) {
     if (pdus == null) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     List<IncomingTextMessage> messages = new LinkedList<>();
@@ -183,7 +183,7 @@ public class SmsReceiveJob extends BaseJob {
     }
 
     if (messages.isEmpty()) {
-      return Optional.absent();
+      return Optional.empty();
     }
 
     return Optional.of(new IncomingTextMessage(messages));
@@ -194,7 +194,7 @@ public class SmsReceiveJob extends BaseJob {
 
     return new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
                                  .setStyle(new NotificationCompat.MessagingStyle(new Person.Builder()
-                                                                 .setName(sender.getE164().or(""))
+                                                                 .setName(sender.getE164().orElse(""))
                                                                  .build())
                                                                  .addMessage(new NotificationCompat.MessagingStyle.Message(message.getMessageBody(),
                                                                                                                            message.getSentTimestampMillis(),
