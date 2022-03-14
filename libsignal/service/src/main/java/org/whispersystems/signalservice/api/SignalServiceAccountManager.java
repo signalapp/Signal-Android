@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifyDeviceResponse;
 import org.whispersystems.signalservice.api.payments.CurrencyConversions;
+import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ACI;
@@ -53,7 +54,6 @@ import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.storage.StorageManifestKey;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
-import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.contacts.crypto.ContactDiscoveryCipher;
@@ -811,7 +811,7 @@ public class SignalServiceAccountManager {
                                               String about,
                                               String aboutEmoji,
                                               Optional<SignalServiceProtos.PaymentAddress> paymentsAddress,
-                                              StreamDetails avatar,
+                                              AvatarUploadParams avatar,
                                               List<String> visibleBadgeIds)
       throws IOException
   {
@@ -822,13 +822,12 @@ public class SignalServiceAccountManager {
     byte[]            ciphertextAbout             = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
     byte[]            ciphertextEmoji             = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
     byte[]            ciphertextMobileCoinAddress = paymentsAddress.transform(address -> profileCipher.encryptWithLength(address.toByteArray(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orNull();
-    boolean           hasAvatar                   = avatar != null;
     ProfileAvatarData profileAvatarData           = null;
 
-    if (hasAvatar) {
-      profileAvatarData = new ProfileAvatarData(avatar.getStream(),
-                                                ProfileCipherOutputStream.getCiphertextLength(avatar.getLength()),
-                                                avatar.getContentType(),
+    if (avatar.stream != null && !avatar.keepTheSame) {
+      profileAvatarData = new ProfileAvatarData(avatar.stream.getStream(),
+                                                ProfileCipherOutputStream.getCiphertextLength(avatar.stream.getLength()),
+                                                avatar.stream.getContentType(),
                                                 new ProfileCipherOutputStreamFactory(profileKey));
     }
 
@@ -837,7 +836,8 @@ public class SignalServiceAccountManager {
                                                                              ciphertextAbout,
                                                                              ciphertextEmoji,
                                                                              ciphertextMobileCoinAddress,
-                                                                             hasAvatar,
+                                                                             avatar.hasAvatar,
+                                                                             avatar.keepTheSame,
                                                                              profileKey.getCommitment(aci.uuid()).serialize(),
                                                                              visibleBadgeIds),
                                                                              profileAvatarData);

@@ -6,20 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.google.protobuf.ByteString;
-
 import org.signal.core.util.logging.Log;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
@@ -44,12 +39,12 @@ import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.StreamDetails;
-import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
@@ -226,14 +221,12 @@ public final class ProfileUtil {
    */
   public static void uploadProfileWithBadges(@NonNull Context context, @NonNull List<Badge> badges) throws IOException {
     Log.d(TAG, "uploadProfileWithBadges()");
-    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      uploadProfile(Recipient.self().getProfileName(),
-                    Optional.fromNullable(Recipient.self().getAbout()).or(""),
-                    Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
-                    getSelfPaymentsAddressProtobuf(),
-                    avatar,
-                    badges);
-    }
+    uploadProfile(Recipient.self().getProfileName(),
+                  Optional.fromNullable(Recipient.self().getAbout()).or(""),
+                  Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                  getSelfPaymentsAddressProtobuf(),
+                  AvatarUploadParams.unchanged(AvatarHelper.hasAvatar(context, Recipient.self().getId())),
+                  badges);
   }
 
   /**
@@ -248,7 +241,7 @@ public final class ProfileUtil {
                     Optional.fromNullable(Recipient.self().getAbout()).or(""),
                     Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
                     getSelfPaymentsAddressProtobuf(),
-                    avatar,
+                    AvatarUploadParams.unchanged(AvatarHelper.hasAvatar(context, Recipient.self().getId())),
                     Recipient.self().getBadges());
     }
   }
@@ -265,7 +258,7 @@ public final class ProfileUtil {
                     about,
                     emoji,
                     getSelfPaymentsAddressProtobuf(),
-                    avatar,
+                    AvatarUploadParams.unchanged(AvatarHelper.hasAvatar(context, Recipient.self().getId())),
                     Recipient.self().getBadges());
     }
   }
@@ -291,7 +284,7 @@ public final class ProfileUtil {
                   Optional.fromNullable(Recipient.self().getAbout()).or(""),
                   Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
                   getSelfPaymentsAddressProtobuf(),
-                  avatar,
+                  AvatarUploadParams.forAvatar(avatar),
                   Recipient.self().getBadges());
   }
 
@@ -299,7 +292,7 @@ public final class ProfileUtil {
                                     @Nullable String about,
                                     @Nullable String aboutEmoji,
                                     @Nullable SignalServiceProtos.PaymentAddress paymentsAddress,
-                                    @Nullable StreamDetails avatar,
+                                    @NonNull AvatarUploadParams avatar,
                                     @NonNull List<Badge> badges)
       throws IOException
   {
@@ -312,8 +305,13 @@ public final class ProfileUtil {
     Log.d(TAG, "Uploading " + (!Util.isEmpty(about) ? "non-" : "") + "empty about.");
     Log.d(TAG, "Uploading " + (!Util.isEmpty(aboutEmoji) ? "non-" : "") + "empty emoji.");
     Log.d(TAG, "Uploading " + (paymentsAddress != null ? "non-" : "") + "empty payments address.");
-    Log.d(TAG, "Uploading " + (avatar != null && avatar.getLength() != 0 ? "non-" : "") + "empty avatar.");
-    Log.d(TAG, "Uploading " + ((!badgeIds.isEmpty()) ? "non-" : "") + "empty badge list");
+    Log.d(TAG, "Uploading " + ((!badgeIds.isEmpty()) ? "non-" : "") + "empty badge list.");
+
+    if (avatar.keepTheSame) {
+      Log.d(TAG, "Leaving avatar unchanged. We think we " + (avatar.hasAvatar ? "" : "do not ") + "have one.");
+    } else {
+      Log.d(TAG, "Uploading " + (avatar.stream != null && avatar.stream.getLength() != 0 ? "non-" : "") + "empty avatar.");
+    }
 
     ProfileKey                  profileKey     = ProfileKeyUtil.getSelfProfileKey();
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
@@ -326,7 +324,9 @@ public final class ProfileUtil {
                                                                                     avatar,
                                                                                     badgeIds).orNull();
     SignalStore.registrationValues().markHasUploadedProfile();
-    SignalDatabase.recipients().setProfileAvatar(Recipient.self().getId(), avatarPath);
+    if (!avatar.keepTheSame) {
+      SignalDatabase.recipients().setProfileAvatar(Recipient.self().getId(), avatarPath);
+    }
     ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
   }
 
