@@ -149,7 +149,7 @@ public class EmojiTextView extends AppCompatTextView {
 
     // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
     // We ellipsize them ourselves by manually truncating the appropriate section.
-    if (getText() != null && getText().length() > 0 && getEllipsize() == TextUtils.TruncateAt.END) {
+    if (getText() != null && getText().length() > 0 && isEllipsizedAtEnd()) {
       if (maxLength > 0) {
         ellipsizeAnyTextForMaxLength();
       } else if (getMaxLines() > 0) {
@@ -160,6 +160,17 @@ public class EmojiTextView extends AppCompatTextView {
     if (getLayoutParams() != null && getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT) {
       requestLayout();
     }
+  }
+
+  /**
+   * Used to determine whether to apply custom ellipsizing logic without necessarily having the
+   * ellipsize property set. This allows us to work around implementations of Layout which apply an
+   * ellipsis even when maxLines is not set.
+   */
+  private boolean isEllipsizedAtEnd() {
+    return getEllipsize() == TextUtils.TruncateAt.END ||
+           (getMaxLines() > 0 && getMaxLines() < Integer.MAX_VALUE) ||
+           maxLength > 0;
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
