@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 
 import java.util.HashSet;
@@ -164,7 +165,12 @@ public class NetworkConstraintObserver implements ConstraintObserver {
     @Override
     public void onLost(@NonNull Network network) {
       Log.w(TAG, logPrefix() + "Network unavailable. " + network.hashCode());
-      hasInternet = false;
+      if (isActiveNetworkConnected(ApplicationDependencies.getApplication())) {
+        Log.w(TAG, logPrefix() + "We got the onLost() event, but isActiveNetworkConnected() returns true. Assuming we have internet.");
+        hasInternet = true;
+      } else {
+        hasInternet = false;
+      }
       notifyListeners();
     }
   }
