@@ -28,6 +28,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
+import com.google.protobuf.ByteString;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
@@ -1093,6 +1094,8 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type) {
+    boolean tryToCollapseJoinRequestEvents = false;
+
     if (message.isJoined()) {
       type = (type & (Types.TOTAL_MASK - Types.BASE_TYPE_MASK)) | Types.JOINED_TYPE;
     } else if (message.isPreKeyBundle()) {
@@ -1108,6 +1111,8 @@ public class SmsDatabase extends MessageDatabase {
         type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
         if (incomingGroupUpdateMessage.isJustAGroupLeave()) {
           type |= Types.GROUP_LEAVE_BIT;
+        } else if (incomingGroupUpdateMessage.isCancelJoinRequest()) {
+          tryToCollapseJoinRequestEvents = true;
         }
       } else if (incomingGroupUpdateMessage.isUpdate()) {
         type |= Types.GROUP_UPDATE_BIT;
@@ -1151,6 +1156,13 @@ public class SmsDatabase extends MessageDatabase {
 
     if (groupRecipient == null) threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
     else                        threadId = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
+
+    if (tryToCollapseJoinRequestEvents) {
+        final Optional<InsertResult> result = collapseJoinRequestEventsIfPossible(threadId, (IncomingGroupUpdateMessage) message);
+        if (result.isPresent()) {
+          return result;
+        }
+    }
 
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, message.getSender().serialize());
@@ -1809,4 +1821,44 @@ public class SmsDatabase extends MessageDatabase {
     }
   }
 
+  @VisibleForTesting
+  Optional<InsertResult> collapseJoinRequestEventsIfPossible(long threadId, IncomingGroupUpdateMessage message) {
+    InsertResult result = null;
+
+
+    SQLiteDatabase db = getWritableDatabase();
+    db.beginTransaction();
+
+    try {
+      try (MmsSmsDatabase.Reader reader = MmsSmsDatabase.readerFor(SignalDatabase.mmsSms().getConversation(threadId, 0, 2))) {
+        MessageRecord latestMessage = reader.getNext();
+        if (latestMessage != null && latestMessage.isGroupV2()) {
+          Optional<ByteString> changeEditor = message.getChangeEditor();
+          if (changeEditor.isPresent() && latestMessage.isGroupV2JoinRequest(changeEditor.get())) {
+            String encodedBody;
+            long   id;
+
+            MessageRecord secondLatestMessage = reader.getNext();
+            if (secondLatestMessage != null && secondLatestMessage.isGroupV2JoinRequest(changeEditor.get())) {
+              id          = secondLatestMessage.getId();
+              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(secondLatestMessage, message.getChangeRevision(), changeEditor.get());
+              deleteMessage(latestMessage.getId());
+            } else {
+              id          = latestMessage.getId();
+              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(latestMessage, message.getChangeRevision(), changeEditor.get());
+            }
+
+            ContentValues values = new ContentValues(1);
+            values.put(BODY, encodedBody);
+            getWritableDatabase().update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(id));
+            result = new InsertResult(id, threadId);
+          }
+        }
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+    return Optional.ofNullable(result);
+  }
 }

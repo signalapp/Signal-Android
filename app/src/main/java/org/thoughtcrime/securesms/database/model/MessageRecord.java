@@ -26,10 +26,12 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
+import com.google.protobuf.ByteString;
 
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -70,6 +72,8 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
+
+import kotlin.collections.CollectionsKt;
 
 /**
  * The base class for message record models that are displayed in
@@ -234,7 +238,8 @@ public abstract class MessageRecord extends DisplayRecord {
     return selfCreatedGroup(change);
   }
 
-  private  @Nullable DecryptedGroupV2Context getDecryptedGroupV2Context() {
+  @VisibleForTesting
+  @Nullable DecryptedGroupV2Context getDecryptedGroupV2Context() {
     if (!isGroupUpdate() || !isGroupV2()) {
       return null;
     }
@@ -407,6 +412,31 @@ public abstract class MessageRecord extends DisplayRecord {
       return decryptedGroupV2Context.getChange().hasNewDescription() ? decryptedGroupV2Context.getChange().getNewDescription().getValue() : "";
     }
     return "";
+  }
+
+  public boolean isGroupV2JoinRequest(ByteString uuid) {
+    DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
+    if (decryptedGroupV2Context != null && decryptedGroupV2Context.hasChange()) {
+      DecryptedGroupChange change = decryptedGroupV2Context.getChange();
+      return change.getEditor().equals(uuid) && change.getNewRequestingMembersList().stream().anyMatch(r -> r.getUuid().equals(uuid));
+    }
+    return false;
+  }
+
+  public static @NonNull String createNewContextWithAppendedDeleteJoinRequest(@NonNull MessageRecord messageRecord, int revision, @NonNull ByteString id) {
+    DecryptedGroupV2Context decryptedGroupV2Context = messageRecord.getDecryptedGroupV2Context();
+
+    if (decryptedGroupV2Context != null && decryptedGroupV2Context.hasChange()) {
+      DecryptedGroupChange change = decryptedGroupV2Context.getChange();
+
+      return Base64.encodeBytes(decryptedGroupV2Context.toBuilder()
+                                                       .setChange(change.toBuilder()
+                                                                        .setRevision(revision)
+                                                                        .addDeleteRequestingMembers(id))
+                                                       .build().toByteArray());
+    }
+
+    throw new AssertionError("Attempting to modify a message with no change");
   }
 
   /**

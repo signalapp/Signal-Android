@@ -9,7 +9,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,10 +33,10 @@ import org.thoughtcrime.securesms.util.CursorUtil
 import org.whispersystems.libsignal.IdentityKey
 import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.libsignal.state.SessionRecord
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.util.UuidUtil
+import java.util.Optional
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
@@ -76,8 +75,6 @@ class RecipientDatabaseTest_merges {
 
     SignalStore.account().setAci(localAci)
     SignalStore.account().setPni(localPni)
-
-    ensureDbEmpty()
   }
 
   /** High trust lets you merge two different users into one. You should prefer the ACI user. Not shown: merging threads, dropping e164 sessions, etc. */
@@ -216,13 +213,6 @@ class RecipientDatabaseTest_merges {
 
   private val context: Application
     get() = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as Application
-
-  private fun ensureDbEmpty() {
-    SignalDatabase.rawDatabase.rawQuery("SELECT COUNT(*) FROM ${RecipientDatabase.TABLE_NAME}", null).use { cursor ->
-      assertTrue(cursor.moveToFirst())
-      assertEquals(0, cursor.getLong(0))
-    }
-  }
 
   private fun smsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingTextMessage {
     return IncomingTextMessage(sender, 1, time, time, time, body, groupId, 0, true, null)

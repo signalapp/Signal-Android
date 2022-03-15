@@ -131,6 +131,7 @@ dependencyResolutionManagement {
             alias('androidx-test-ext-junit').to('androidx.test.ext:junit:1.1.1')
             alias('espresso-core').to('androidx.test.espresso:espresso-core:3.2.0')
             alias('mockito-core').to('org.mockito:mockito-inline:4.4.0')
+            alias('mockito-kotlin').to('org.mockito.kotlin:mockito-kotlin:4.0.0')
             alias('robolectric-robolectric').to('org.robolectric', 'robolectric').versionRef('robolectric')
             alias('robolectric-shadows-multidex').to('org.robolectric', 'shadows-multidex').versionRef('robolectric')
             alias('bouncycastle-bcprov-jdk15on').to('org.bouncycastle:bcprov-jdk15on:1.70')

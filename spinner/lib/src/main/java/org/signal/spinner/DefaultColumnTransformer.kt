@@ -3,7 +3,7 @@ package org.signal.spinner
 import android.database.Cursor
 import android.util.Base64
 
-internal object DefaultColumnTransformer : ColumnTransformer {
+object DefaultColumnTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
     return true
   }

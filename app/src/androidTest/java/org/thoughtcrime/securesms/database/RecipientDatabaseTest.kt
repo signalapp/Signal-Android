@@ -18,9 +18,9 @@ import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
+import java.util.Optional
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)

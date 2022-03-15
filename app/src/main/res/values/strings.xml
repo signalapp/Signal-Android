@@ -1245,6 +1245,11 @@
     <!-- GV2 group link requests -->
     <string name="MessageRecord_you_sent_a_request_to_join_the_group">You sent a request to join the group.</string>
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s requested to join via the group link.</string>
+    <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
+    <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
+        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+    </plurals>
 
     <!-- GV2 group link approvals -->
     <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s approved your request to join the group.</string>

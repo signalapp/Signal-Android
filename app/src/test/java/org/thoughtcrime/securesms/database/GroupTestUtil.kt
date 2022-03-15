@@ -21,7 +21,6 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional
-import java.util.UUID
 
 fun DecryptedGroupChange.Builder.setNewDescription(description: String) {
   newDescription = DecryptedString.newBuilder().setValue(description).build()
@@ -223,22 +222,4 @@ fun decryptedGroup(
     .addAllRequestingMembers(requestingMembers)
 
   return builder.build()
-}
-
-fun member(serviceId: UUID, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
-  return member(ServiceId.from(serviceId), role, joinedAt)
-}
-
-fun member(serviceId: ServiceId, role: Member.Role = Member.Role.DEFAULT, joinedAt: Int = 0): DecryptedMember {
-  return DecryptedMember.newBuilder()
-    .setRole(role)
-    .setUuid(serviceId.toByteString())
-    .setJoinedAtRevision(joinedAt)
-    .build()
-}
-
-fun requestingMember(serviceId: ServiceId): DecryptedRequestingMember {
-  return DecryptedRequestingMember.newBuilder()
-    .setUuid(serviceId.toByteString())
-    .build()
 }

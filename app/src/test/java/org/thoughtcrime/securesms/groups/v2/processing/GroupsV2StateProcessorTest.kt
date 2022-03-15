@@ -28,8 +28,8 @@ import org.thoughtcrime.securesms.SignalStoreRule
 import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.RecipientDatabase
-import org.thoughtcrime.securesms.database.member
-import org.thoughtcrime.securesms.database.requestingMember
+import org.thoughtcrime.securesms.database.model.databaseprotos.member
+import org.thoughtcrime.securesms.database.model.databaseprotos.requestingMember
 import org.thoughtcrime.securesms.database.setNewDescription
 import org.thoughtcrime.securesms.database.setNewTitle
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies

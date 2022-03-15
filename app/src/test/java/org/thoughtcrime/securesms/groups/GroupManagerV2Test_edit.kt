@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.SignalStoreRule
 import org.thoughtcrime.securesms.TestZkGroupServer
 import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.GroupStateTestData
-import org.thoughtcrime.securesms.database.member
+import org.thoughtcrime.securesms.database.model.databaseprotos.member
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger

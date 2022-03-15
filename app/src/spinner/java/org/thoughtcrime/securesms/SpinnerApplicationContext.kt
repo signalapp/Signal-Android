@@ -6,6 +6,8 @@ import leakcanary.LeakCanary
 import org.signal.spinner.Spinner
 import org.signal.spinner.Spinner.DatabaseConfig
 import org.thoughtcrime.securesms.database.DatabaseMonitor
+import org.thoughtcrime.securesms.database.GV2Transformer
+import org.thoughtcrime.securesms.database.GV2UpdateTransformer
 import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.LocalMetricsDatabase
@@ -37,7 +39,7 @@ class SpinnerApplicationContext : ApplicationContext() {
       linkedMapOf(
         "signal" to DatabaseConfig(
           db = SignalDatabase.rawDatabase,
-          columnTransformers = listOf(MessageBitmaskColumnTransformer)
+          columnTransformers = listOf(MessageBitmaskColumnTransformer, GV2Transformer, GV2UpdateTransformer)
         ),
         "jobmanager" to DatabaseConfig(db = JobDatabase.getInstance(this).sqlCipherDatabase),
         "keyvalue" to DatabaseConfig(db = KeyValueDatabase.getInstance(this).sqlCipherDatabase),

@@ -91,7 +91,7 @@ public class GroupDatabase extends Database {
   /** Increments with every change to the group */
   private static final String V2_REVISION         = "revision";
   /** Serialized {@link DecryptedGroup} protobuf */
-  private static final String V2_DECRYPTED_GROUP  = "decrypted_group";
+  public  static final String V2_DECRYPTED_GROUP  = "decrypted_group";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                    + " INTEGER PRIMARY KEY, " +
                                                                                   GROUP_ID              + " TEXT, " +

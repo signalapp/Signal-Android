@@ -91,6 +91,54 @@ public class GroupV2UpdateMessageUtilTest {
     assertFalse(isJustAGroupLeave);
   }
 
+  @Test
+  public void isJoinRequestCancel_whenChangeRemovesRequestingMembers_shouldReturnTrue() {
+    // GIVEN
+    UUID alice = UUID.randomUUID();
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .denyRequest(alice)
+                                               .build();
+
+    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
+                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
+                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
+                                                             .setChange(change)
+                                                             .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    // WHEN
+    boolean isJoinRequestCancel = GroupV2UpdateMessageUtil.isJoinRequestCancel(messageGroupContext);
+
+    // THEN
+    assertTrue(isJoinRequestCancel);
+  }
+
+  @Test
+  public void isJoinRequestCancel_whenChangeContainsNoRemoveRequestingMembers_shouldReturnFalse() {
+    // GIVEN
+    UUID alice = UUID.randomUUID();
+    UUID bob   = UUID.randomUUID();
+    DecryptedGroupChange change = ChangeBuilder.changeBy(alice)
+                                               .deleteMember(alice)
+                                               .addMember(bob)
+                                               .build();
+
+    DecryptedGroupV2Context context = DecryptedGroupV2Context.newBuilder()
+                                                             .setContext(SignalServiceProtos.GroupContextV2.newBuilder()
+                                                                                                           .setMasterKey(ByteString.copyFrom(randomBytes())))
+                                                             .setChange(change)
+                                                             .build();
+
+    MessageGroupContext messageGroupContext = new MessageGroupContext(context);
+
+    // WHEN
+    boolean isJoinRequestCancel = GroupV2UpdateMessageUtil.isJoinRequestCancel(messageGroupContext);
+
+    // THEN
+    assertFalse(isJoinRequestCancel);
+  }
+
   private @NonNull byte[] randomBytes() {
     byte[] bytes = new byte[32];
     new Random().nextBytes(bytes);

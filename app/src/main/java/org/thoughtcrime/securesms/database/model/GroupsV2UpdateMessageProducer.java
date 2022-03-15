@@ -30,10 +30,13 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 final class GroupsV2UpdateMessageProducer {
 
@@ -639,13 +642,22 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeRequestingMembers(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    Set<ByteString> deleteRequestingUuids = new HashSet<>(change.getDeleteRequestingMembersList());
+
     for (DecryptedRequestingMember member : change.getNewRequestingMembersList()) {
       boolean requestingMemberIsYou = member.getUuid().equals(selfUuidBytes);
 
       if (requestingMemberIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_sent_a_request_to_join_the_group), R.drawable.ic_update_group_16));
       } else {
-        updates.add(updateDescription(member.getUuid(), requesting -> context.getString(R.string.MessageRecord_s_requested_to_join_via_the_group_link, requesting), R.drawable.ic_update_group_16));
+        if (deleteRequestingUuids.contains(member.getUuid())) {
+          updates.add(updateDescription(member.getUuid(), requesting -> context.getResources().getQuantityString(R.plurals.MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link,
+                                                                                                                 change.getDeleteRequestingMembersCount(),
+                                                                                                                 requesting,
+                                                                                                                 change.getDeleteRequestingMembersCount()), R.drawable.ic_update_group_16));
+        } else {
+          updates.add(updateDescription(member.getUuid(), requesting -> context.getString(R.string.MessageRecord_s_requested_to_join_via_the_group_link, requesting), R.drawable.ic_update_group_16));
+        }
       }
     }
   }
@@ -681,9 +693,15 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeRequestingMembersDeletes(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    Set<ByteString> newRequestingUuids = change.getNewRequestingMembersList().stream().map(r -> r.getUuid()).collect(Collectors.toSet());
+
     boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
 
     for (ByteString requestingMember : change.getDeleteRequestingMembersList()) {
+      if (newRequestingUuids.contains(requestingMember)) {
+        continue;
+      }
+
       boolean requestingMemberIsYou = requestingMember.equals(selfUuidBytes);
 
       if (requestingMemberIsYou) {
