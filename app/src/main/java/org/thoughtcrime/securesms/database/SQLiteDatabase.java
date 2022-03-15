@@ -13,6 +13,7 @@ import net.zetetic.database.sqlcipher.SQLiteTransactionListener;
 import org.signal.core.util.tracing.Tracer;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -201,7 +202,7 @@ public class SQLiteDatabase {
           @Override
           public void onCommit() {
             Set<Runnable> tasks = getPostTransactionTasks();
-            for (Runnable r : tasks) {
+            for (Runnable r : new HashSet<>(tasks)) {
               r.run();
             }
             tasks.clear();
