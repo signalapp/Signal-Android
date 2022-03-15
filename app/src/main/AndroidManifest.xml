@@ -757,6 +757,8 @@
 
     <receiver android:name=".service.ExpirationListener" />
 
+    <receiver android:name=".service.ExpiringStoriesManager$ExpireStoriesAlarm" />
+
     <receiver android:name=".revealable.ViewOnceMessageManager$ViewOnceAlarm" />
 
     <receiver android:name=".service.PendingRetryReceiptManager$PendingRetryReceiptAlarm" />
