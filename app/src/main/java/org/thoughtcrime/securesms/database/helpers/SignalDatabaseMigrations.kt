@@ -194,6 +194,7 @@ object SignalDatabaseMigrations {
   private const val STORIES = 132
   private const val ALLOW_STORY_REPLIES = 133
   private const val GROUP_STORIES = 134
+  private const val MMS_COUNT_INDEX = 135
 
   const val DATABASE_VERSION = 135
 
@@ -2480,6 +2481,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < GROUP_STORIES) {
       db.execSQL("ALTER TABLE groups ADD COLUMN display_as_story INTEGER DEFAULT 0")
+    }
+
+    if (oldVersion < MMS_COUNT_INDEX) {
+      db.execSQL("CREATE INDEX IF NOT EXISTS mms_thread_story_parent_story_index ON mms (thread_id, date_received, is_story, parent_story_id)")
     }
   }
 
