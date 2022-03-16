@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.wallpaper;
 
+import android.content.Context;
 import android.os.Parcelable;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
@@ -25,6 +27,11 @@ public interface ChatWallpaper extends Parcelable {
   boolean isSameSource(@NonNull ChatWallpaper chatWallpaper);
 
   void loadInto(@NonNull ImageView imageView);
+
+  @WorkerThread
+  default boolean prefetch(@NonNull Context context, long maxWaitTime) {
+    return true;
+  }
 
   default boolean isPhoto() {
     return false;
