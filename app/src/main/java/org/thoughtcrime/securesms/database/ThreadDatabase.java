@@ -1308,7 +1308,7 @@ public class ThreadDatabase extends Database {
     try {
       record = mmsSmsDatabase.getConversationSnippet(threadId);
     } catch (NoSuchMessageException e) {
-      if (allowDeletion) {
+      if (allowDeletion && !SignalDatabase.mms().containsStories(threadId)) {
         deleteConversation(threadId);
       }
       return true;

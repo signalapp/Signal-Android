@@ -1425,6 +1425,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public boolean containsStories(long threadId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public boolean hasSelfReplyInStory(long parentStoryId) {
     throw new UnsupportedOperationException();
   }

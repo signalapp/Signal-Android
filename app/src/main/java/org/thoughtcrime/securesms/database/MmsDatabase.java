@@ -709,6 +709,18 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public boolean containsStories(long threadId) {
+    SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
+    String[]       columns   = new String[]{"1"};
+    String         where     = THREAD_ID_WHERE + " AND " + STORY_TYPE + " > 0";
+    String[]       whereArgs = SqlUtil.buildArgs(threadId);
+
+    try (Cursor cursor = db.query(TABLE_NAME, columns, where, whereArgs, null, null, null, "1")) {
+      return cursor != null && cursor.moveToNext();
+    }
+  }
+
+  @Override
   public boolean hasSelfReplyInStory(long parentStoryId) {
     SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String[]       columns   = new String[]{"COUNT(*)"};
