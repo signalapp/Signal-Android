@@ -71,6 +71,8 @@ class ChooseStoryTypeBottomSheet : DSLSettingsBottomSheetFragment(
           }
         )
       )
+
+      space(DimensionUnit.DP.toPixels(32f).toInt())
     }
   }
 
