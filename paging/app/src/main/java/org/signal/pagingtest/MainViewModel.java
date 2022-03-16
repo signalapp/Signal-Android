@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import org.signal.paging.LivePagedData;
 import org.signal.paging.PagingController;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagedData;
@@ -12,14 +13,14 @@ import java.util.List;
 
 public class MainViewModel extends ViewModel {
 
-  private final PagedData<String, Item> pagedData;
-  private final MainDataSource          dataSource;
+  private final LivePagedData<String, Item> pagedData;
+  private final MainDataSource              dataSource;
 
   public MainViewModel() {
     this.dataSource = new MainDataSource(1000);
-    this.pagedData = PagedData.create(dataSource, new PagingConfig.Builder().setBufferPages(3)
-                                                                            .setPageSize(25)
-                                                                            .build());
+    this.pagedData = PagedData.createForLiveData(dataSource, new PagingConfig.Builder().setBufferPages(3)
+                                                                                       .setPageSize(25)
+                                                                                       .build());
   }
 
   public void onItemClicked(@NonNull String key) {

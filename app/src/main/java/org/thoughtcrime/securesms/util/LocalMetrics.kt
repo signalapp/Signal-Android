@@ -68,8 +68,8 @@ object LocalMetrics {
 
     executor.execute {
       val lastTime: Long? = lastSplitTimeById[id]
-
-      if (lastTime != null) {
+      val splitDoesNotExist: Boolean = eventsById[id]?.splits?.none { it.name == split } ?: true
+      if (lastTime != null && splitDoesNotExist) {
         eventsById[id]?.splits?.add(LocalMetricsSplit(split, time - lastTime))
         lastSplitTimeById[id] = time
       }

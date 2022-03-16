@@ -1379,10 +1379,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return DeviceLastResetTime.newBuilder().build()
   }
 
-  fun setBadges(id: RecipientId, badges: List<Badge?>) {
+  fun setBadges(id: RecipientId, badges: List<Badge>) {
     val badgeListBuilder = BadgeList.newBuilder()
     for (badge in badges) {
-      badgeListBuilder.addBadges(toDatabaseBadge(badge!!))
+      badgeListBuilder.addBadges(toDatabaseBadge(badge))
     }
 
     val values = ContentValues(1).apply {
@@ -1390,7 +1390,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     if (update(id, values)) {
-      ApplicationDependencies.getDatabaseObserver().notifyNotificationProfileObservers()
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }

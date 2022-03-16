@@ -72,14 +72,24 @@ public final class SignalLocalMetrics {
   public static final class ConversationOpen {
     private static final String NAME = "conversation-open";
 
-    private static final String SPLIT_DATA_LOADED = "data-loaded";
-    private static final String SPLIT_RENDER      = "render";
+    private static final String SPLIT_VIEWMODEL_INIT  = "viewmodel-init";
+    private static final String SPLIT_METADATA_LOADED = "metadata-loaded";
+    private static final String SPLIT_DATA_LOADED     = "data-loaded";
+    private static final String SPLIT_RENDER          = "render";
 
     private static String id;
 
     public static void start() {
       id = NAME + "-" + System.currentTimeMillis();
       LocalMetrics.getInstance().start(id, NAME);
+    }
+
+    public static void onMetadataLoadStarted() {
+      LocalMetrics.getInstance().split(id, SPLIT_VIEWMODEL_INIT);
+    }
+
+    public static void onMetadataLoaded() {
+      LocalMetrics.getInstance().split(id, SPLIT_METADATA_LOADED);
     }
 
     public static void onDataLoaded() {

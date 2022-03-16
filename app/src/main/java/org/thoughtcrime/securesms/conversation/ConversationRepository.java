@@ -5,10 +5,9 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -21,26 +20,15 @@ import org.thoughtcrime.securesms.util.ConversationUtil;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Executor;
 
 class ConversationRepository {
 
+  private static final String TAG = Log.tag(ConversationRepository.class);
+
   private final Context  context;
-  private final Executor executor;
 
   ConversationRepository() {
-    this.context  = ApplicationDependencies.getApplication();
-    this.executor = SignalExecutors.BOUNDED;
-  }
-
-  LiveData<ConversationData> getConversationData(long threadId, @NonNull Recipient recipient, int jumpToPosition) {
-    MutableLiveData<ConversationData> liveData = new MutableLiveData<>();
-
-    executor.execute(() -> {
-      liveData.postValue(getConversationDataInternal(threadId, recipient, jumpToPosition));
-    });
-
-    return liveData;
+    this.context = ApplicationDependencies.getApplication();
   }
 
   @WorkerThread
@@ -54,11 +42,11 @@ class ConversationRepository {
     }
   }
 
-  private @NonNull ConversationData getConversationDataInternal(long threadId, @NonNull Recipient conversationRecipient, int jumpToPosition) {
+  @WorkerThread
+  public @NonNull ConversationData getConversationData(long threadId, @NonNull Recipient conversationRecipient, int jumpToPosition) {
     ThreadDatabase.ConversationMetadata metadata                       = SignalDatabase.threads().getConversationMetadata(threadId);
     int                                 threadSize                     = SignalDatabase.mmsSms().getConversationCount(threadId);
     long                                lastSeen                       = metadata.getLastSeen();
-    boolean                             hasSent                        = metadata.hasSent();
     int                                 lastSeenPosition               = 0;
     long                                lastScrolled                   = metadata.getLastScrolled();
     int                                 lastScrolledPosition           = 0;
@@ -108,6 +96,6 @@ class ConversationRepository {
       showUniversalExpireTimerUpdate = true;
     }
 
-    return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, hasSent, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate);
+    return new ConversationData(threadId, lastSeen, lastSeenPosition, lastScrolledPosition, jumpToPosition, threadSize, messageRequestData, showUniversalExpireTimerUpdate);
   }
 }

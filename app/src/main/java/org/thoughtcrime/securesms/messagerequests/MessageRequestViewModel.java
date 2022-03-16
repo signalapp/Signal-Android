@@ -155,7 +155,6 @@ public class MessageRequestViewModel extends ViewModel {
   private void loadRecipient() {
     liveRecipient.observeForever(recipientObserver);
     SignalExecutors.BOUNDED.execute(() -> {
-      liveRecipient.refresh();
       recipient.postValue(liveRecipient.get());
     });
   }

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.paging.LivePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.thoughtcrime.securesms.database.DatabaseObserver
@@ -12,10 +13,10 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 
 class StoryGroupReplyRepository {
 
-  fun getPagedReplies(parentStoryId: Long): Observable<PagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> {
-    return Observable.create<PagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> { emitter ->
+  fun getPagedReplies(parentStoryId: Long): Observable<LivePagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> {
+    return Observable.create<LivePagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> { emitter ->
       fun refresh() {
-        emitter.onNext(PagedData.create(StoryGroupReplyDataSource(parentStoryId), PagingConfig.Builder().build()))
+        emitter.onNext(PagedData.createForLiveData(StoryGroupReplyDataSource(parentStoryId), PagingConfig.Builder().build()))
       }
 
       val observer = DatabaseObserver.Observer {

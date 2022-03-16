@@ -1,7 +1,6 @@
 package org.signal.paging;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -29,7 +28,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
   private final PagedDataSource<Key, Data>  dataSource;
   private final PagingConfig                config;
-  private final MutableLiveData<List<Data>> liveData;
+  private final DataStream<Data>            dataStream;
   private final DataStatus                  loadState;
   private final Map<Key, Integer>           keyToPosition;
 
@@ -39,15 +38,17 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
   FixedSizePagingController(@NonNull PagedDataSource<Key, Data> dataSource,
                             @NonNull PagingConfig config,
-                            @NonNull MutableLiveData<List<Data>> liveData,
+                            @NonNull DataStream<Data> dataStream,
                             int size)
   {
     this.dataSource    = dataSource;
     this.config        = config;
-    this.liveData      = liveData;
+    this.dataStream    = dataStream;
     this.loadState     = DataStatus.obtain(size);
     this.data          = new CompressedList<>(loadState.size());
     this.keyToPosition = new HashMap<>();
+
+    if (DEBUG) Log.d(TAG, "[Constructor] Creating with size " + size + " (loadState.size() = " + loadState.size() + ")");
   }
 
   /**
@@ -58,7 +59,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
   @Override
   public void onDataNeededAroundIndex(int aroundIndex) {
     if (invalidated) {
-      Log.w(TAG, buildLog(aroundIndex, "Invalidated! At very beginning."));
+      Log.w(TAG, buildDataNeededLog(aroundIndex, "Invalidated! At very beginning."));
       return;
     }
 
@@ -67,7 +68,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
     synchronized (loadState) {
       if (loadState.size() == 0) {
-        liveData.postValue(Collections.emptyList());
+        dataStream.next(Collections.emptyList());
         return;
       }
 
@@ -81,14 +82,14 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
       loadStart = loadState.getEarliestUnmarkedIndexInRange(leftLoadBoundary, rightLoadBoundary);
 
       if (loadStart < 0) {
-        if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "loadStart < 0"));
+        if (DEBUG) Log.i(TAG, buildDataNeededLog(aroundIndex, "loadStart < 0"));
         return;
       }
 
       loadEnd = loadState.getLatestUnmarkedIndexInRange(Math.max(leftLoadBoundary, loadStart), rightLoadBoundary) + 1;
 
       if (loadEnd <= loadStart) {
-        if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "loadEnd <= loadStart, loadEnd: " + loadEnd + ", loadStart: " + loadStart));
+        if (DEBUG) Log.i(TAG, buildDataNeededLog(aroundIndex, "loadEnd <= loadStart, loadEnd: " + loadEnd + ", loadStart: " + loadStart));
         return;
       }
 
@@ -96,19 +97,19 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
       loadState.markRange(loadStart, loadEnd);
 
-      if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "start: " + loadStart + ", end: " + loadEnd + ", totalSize: " + totalSize));
+      if (DEBUG) Log.i(TAG, buildDataNeededLog(aroundIndex, "start: " + loadStart + ", end: " + loadEnd + ", totalSize: " + totalSize));
     }
 
     FETCH_EXECUTOR.execute(() -> {
       if (invalidated) {
-        Log.w(TAG, buildLog(aroundIndex, "Invalidated! At beginning of load task."));
+        Log.w(TAG, buildDataNeededLog(aroundIndex, "Invalidated! At beginning of load task."));
         return;
       }
 
       List<Data> loaded = dataSource.load(loadStart, loadEnd - loadStart, () -> invalidated);
 
       if (invalidated) {
-        Log.w(TAG, buildLog(aroundIndex, "Invalidated! Just after data was loaded."));
+        Log.w(TAG, buildDataNeededLog(aroundIndex, "Invalidated! Just after data was loaded."));
         return;
       }
 
@@ -123,7 +124,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
       }
 
       data = updated;
-      liveData.postValue(updated);
+      dataStream.next(updated);
     });
   }
 
@@ -139,6 +140,8 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
   @Override
   public void onDataItemChanged(Key key) {
+    if (DEBUG) Log.d(TAG, buildItemChangedLog(key, ""));
+
     FETCH_EXECUTOR.execute(() -> {
       Integer position = keyToPosition.get(key);
 
@@ -172,12 +175,16 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
       updatedList.set(position, item);
       data = updatedList;
-      liveData.postValue(updatedList);
+      dataStream.next(updatedList);
+
+      if (DEBUG) Log.d(TAG, buildItemChangedLog(key, "Published updated data"));
     });
   }
 
   @Override
   public void onDataItemInserted(Key key, int position) {
+    if (DEBUG) Log.d(TAG, buildItemInsertedLog(key, position, ""));
+
     FETCH_EXECUTOR.execute(() -> {
       if (keyToPosition.containsKey(key)) {
         Log.w(TAG, "Notified of key " + key + " being inserted at " + position + ", but the item already exists!");
@@ -191,6 +198,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
       synchronized (loadState) {
         loadState.insertState(position, true);
+        if (DEBUG) Log.d(TAG, buildItemInsertedLog(key, position, "Size of loadState updated to " + loadState.size()));
       }
 
       Data item = dataSource.load(key);
@@ -211,7 +219,9 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
       rebuildKeyToPositionMap(keyToPosition, updatedList, dataSource);
 
       data = updatedList;
-      liveData.postValue(updatedList);
+      dataStream.next(updatedList);
+
+      if (DEBUG) Log.d(TAG, buildItemInsertedLog(key, position, "Published updated data"));
     });
   }
 
@@ -226,7 +236,15 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
     }
   }
 
-  private static String buildLog(int aroundIndex, String message) {
-    return "onDataNeededAroundIndex(" + aroundIndex + ") " + message;
+  private String buildDataNeededLog(int aroundIndex, String message) {
+    return "[onDataNeededAroundIndex(" + aroundIndex + "), size: " + loadState.size() + "] " + message;
+  }
+
+  private String buildItemInsertedLog(Key key, int position, String message) {
+    return "[onDataItemInserted(" + key + ", " + position + "), size: " + loadState.size() + "] " + message;
+  }
+
+  private String buildItemChangedLog(Key key, String message) {
+    return "[onDataItemInserted(" + key + "), size: " + loadState.size() + "] " + message;
   }
 }

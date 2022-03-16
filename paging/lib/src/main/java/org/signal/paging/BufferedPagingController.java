@@ -1,9 +1,7 @@
 package org.signal.paging;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 
-import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -24,16 +22,19 @@ class BufferedPagingController<Key, Data> implements PagingController<Key> {
 
   private final PagedDataSource<Key, Data>  dataSource;
   private final PagingConfig                config;
-  private final MutableLiveData<List<Data>> liveData;
+  private final DataStream<Data>            dataStream;
   private final Executor                    serializationExecutor;
 
   private PagingController<Key> activeController;
   private int                   lastRequestedIndex;
 
-  BufferedPagingController(PagedDataSource<Key, Data> dataSource, PagingConfig config, @NonNull MutableLiveData<List<Data>> liveData) {
+  BufferedPagingController(@NonNull PagedDataSource<Key, Data> dataSource,
+                           @NonNull PagingConfig config,
+                           @NonNull DataStream<Data> dataStream)
+  {
     this.dataSource            = dataSource;
     this.config                = config;
-    this.liveData              = liveData;
+    this.dataStream            = dataStream;
     this.serializationExecutor = Executors.newSingleThreadExecutor();
 
     this.activeController   = null;
@@ -57,7 +58,7 @@ class BufferedPagingController<Key, Data> implements PagingController<Key> {
         activeController.onDataInvalidated();
       }
 
-      activeController = new FixedSizePagingController<>(dataSource, config, liveData, dataSource.size());
+      activeController = new FixedSizePagingController<>(dataSource, config, dataStream, dataSource.size());
       activeController.onDataNeededAroundIndex(lastRequestedIndex);
     });
   }

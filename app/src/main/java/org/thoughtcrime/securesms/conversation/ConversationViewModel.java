@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
@@ -19,9 +18,9 @@ import com.annimon.stream.Stream;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.reactivestreams.Publisher;
 import org.signal.core.util.MapUtil;
 import org.signal.core.util.logging.Log;
+import org.signal.paging.ObservablePagedData;
 import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
@@ -31,12 +30,12 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.conversation.colors.NameColor;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
+import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.LiveGroup;
-import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
@@ -44,7 +43,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaRequiredEvent;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.DefaultValueLiveData;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -63,39 +62,41 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
-import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
 
 public class ConversationViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ConversationViewModel.class);
 
-  private final Application                         context;
-  private final MediaRepository                     mediaRepository;
-  private final ConversationRepository              conversationRepository;
-  private final MutableLiveData<List<Media>>        recentMedia;
-  private final MutableLiveData<Long>               threadId;
-  private final LiveData<List<ConversationMessage>> messages;
-  private final LiveData<ConversationData>          conversationMetadata;
-  private final MutableLiveData<Boolean>            showScrollButtons;
-  private final MutableLiveData<Boolean>            hasUnreadMentions;
-  private final LiveData<Boolean>                   canShowAsBubble;
-  private final ProxyPagingController<MessageId>    pagingController;
-  private final DatabaseObserver.Observer           conversationObserver;
-  private final DatabaseObserver.MessageObserver    messageUpdateObserver;
-  private final DatabaseObserver.MessageObserver    messageInsertObserver;
-  private final MutableLiveData<RecipientId>        recipientId;
-  private final LiveData<ChatWallpaper>             wallpaper;
-  private final SingleLiveEvent<Event>              events;
-  private final LiveData<ChatColors>                chatColors;
-  private final MutableLiveData<Integer>            toolbarBottom;
-  private final MutableLiveData<Integer>            inlinePlayerHeight;
-  private final LiveData<Integer>                   conversationTopMargin;
-  private final Store<ThreadAnimationState>         threadAnimationStateStore;
-  private final Observer<ThreadAnimationState>      threadAnimationStateStoreDriver;
-  private final NotificationProfilesRepository      notificationProfilesRepository;
-  private final MutableLiveData<String>             searchQuery;
+  private final Application                           context;
+  private final MediaRepository                       mediaRepository;
+  private final ConversationRepository                conversationRepository;
+  private final MutableLiveData<List<Media>>          recentMedia;
+  private final BehaviorSubject<Long>                 threadId;
+  private final Observable<MessageData>               messageData;
+  private final MutableLiveData<Boolean>              showScrollButtons;
+  private final MutableLiveData<Boolean>              hasUnreadMentions;
+  private final Observable<Boolean>                   canShowAsBubble;
+  private final ProxyPagingController<MessageId>      pagingController;
+  private final DatabaseObserver.Observer             conversationObserver;
+  private final DatabaseObserver.MessageObserver      messageUpdateObserver;
+  private final DatabaseObserver.MessageObserver      messageInsertObserver;
+  private final BehaviorSubject<RecipientId>          recipientId;
+  private final Observable<Optional<ChatWallpaper>>   wallpaper;
+  private final SingleLiveEvent<Event>                events;
+  private final Observable<ChatColors>                chatColors;
+  private final MutableLiveData<Integer>              toolbarBottom;
+  private final MutableLiveData<Integer>              inlinePlayerHeight;
+  private final LiveData<Integer>                     conversationTopMargin;
+  private final Store<ThreadAnimationState>           threadAnimationStateStore;
+  private final Observer<ThreadAnimationState>        threadAnimationStateStoreDriver;
+  private final NotificationProfilesRepository        notificationProfilesRepository;
+  private final MutableLiveData<String>               searchQuery;
 
   private final Map<GroupId, Set<Recipient>> sessionMemberCache = new HashMap<>();
 
@@ -107,10 +108,8 @@ public class ConversationViewModel extends ViewModel {
     this.mediaRepository                = new MediaRepository();
     this.conversationRepository         = new ConversationRepository();
     this.recentMedia                    = new MutableLiveData<>();
-    this.threadId                       = new MutableLiveData<>();
     this.showScrollButtons              = new MutableLiveData<>(false);
     this.hasUnreadMentions              = new MutableLiveData<>(false);
-    this.recipientId                    = new MutableLiveData<>();
     this.events                         = new SingleLiveEvent<>();
     this.pagingController               = new ProxyPagingController<>();
     this.conversationObserver           = pagingController::onDataInvalidated;
@@ -122,65 +121,75 @@ public class ConversationViewModel extends ViewModel {
     this.threadAnimationStateStore      = new Store<>(new ThreadAnimationState(-1L, null, false));
     this.notificationProfilesRepository = new NotificationProfilesRepository();
     this.searchQuery                    = new MutableLiveData<>();
+    this.recipientId                    = BehaviorSubject.create();
+    this.threadId                       = BehaviorSubject.create();
 
-    LiveData<Recipient>          recipientLiveData  = LiveDataUtil.mapAsync(recipientId, Recipient::resolved);
-    LiveData<ThreadAndRecipient> threadAndRecipient = LiveDataUtil.combineLatest(threadId, recipientLiveData, ThreadAndRecipient::new);
+    BehaviorSubject<Recipient> recipientCache = BehaviorSubject.create();
 
-    LiveData<ConversationData> metadata = Transformations.switchMap(threadAndRecipient, d -> {
-      LiveData<ConversationData> conversationData = conversationRepository.getConversationData(d.threadId, d.recipient, jumpToPosition);
+    recipientId
+        .observeOn(Schedulers.io())
+        .distinctUntilChanged()
+        .map(Recipient::resolved)
+        .subscribe(recipientCache);
 
-      jumpToPosition = -1;
+    BehaviorSubject<ConversationData> conversationMetadata = BehaviorSubject.create();
 
-      return conversationData;
-    });
+    Observable.combineLatest(threadId, recipientCache, Pair::new)
+        .observeOn(Schedulers.io())
+        .distinctUntilChanged()
+        .map(threadIdAndRecipient -> {
+          SignalLocalMetrics.ConversationOpen.onMetadataLoadStarted();
+          ConversationData conversationData = conversationRepository.getConversationData(threadIdAndRecipient.first(), threadIdAndRecipient.second(), jumpToPosition);
+          SignalLocalMetrics.ConversationOpen.onMetadataLoaded();
+
+          jumpToPosition = -1;
+
+          return conversationData;
+        })
+        .subscribe(conversationMetadata);
 
     ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageUpdateObserver);
 
-    LiveData<Pair<Long, PagedData<MessageId, ConversationMessage>>> pagedDataForThreadId = Transformations.map(metadata, data -> {
-      int                                 startPosition;
-      ConversationData.MessageRequestData messageRequestData = data.getMessageRequestData();
+    messageData = conversationMetadata
+        .observeOn(Schedulers.io())
+        .switchMap(data -> {
+          int startPosition;
 
-      if (data.shouldJumpToMessage()) {
-        startPosition = data.getJumpToPosition();
-      } else if (messageRequestData.isMessageRequestAccepted() && data.shouldScrollToLastSeen()) {
-        startPosition = data.getLastSeenPosition();
-      } else if (messageRequestData.isMessageRequestAccepted()) {
-        startPosition = data.getLastScrolledPosition();
-      } else {
-        startPosition = data.getThreadSize();
-      }
+          ConversationData.MessageRequestData messageRequestData = data.getMessageRequestData();
 
-      ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver);
-      ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver);
-      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(data.getThreadId(), conversationObserver);
-      ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(data.getThreadId(), messageInsertObserver);
+          if (data.shouldJumpToMessage()) {
+            startPosition = data.getJumpToPosition();
+          } else if (messageRequestData.isMessageRequestAccepted() && data.shouldScrollToLastSeen()) {
+            startPosition = data.getLastSeenPosition();
+          } else if (messageRequestData.isMessageRequestAccepted()) {
+            startPosition = data.getLastScrolledPosition();
+          } else {
+            startPosition = data.getThreadSize();
+          }
 
-      ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId(), messageRequestData, data.showUniversalExpireTimerMessage());
-      PagingConfig config = new PagingConfig.Builder().setPageSize(25)
-                                                      .setBufferPages(3)
-                                                      .setStartIndex(Math.max(startPosition, 0))
-                                                      .build();
+          ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver);
+          ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver);
+          ApplicationDependencies.getDatabaseObserver().registerConversationObserver(data.getThreadId(), conversationObserver);
+          ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(data.getThreadId(), messageInsertObserver);
 
-      Log.d(TAG, "Starting at position: " + startPosition + " || jumpToPosition: " + data.getJumpToPosition() + ", lastSeenPosition: " + data.getLastSeenPosition() + ", lastScrolledPosition: " + data.getLastScrolledPosition());
-      return new Pair<>(data.getThreadId(), PagedData.create(dataSource, config));
-    });
+          ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId(), messageRequestData, data.showUniversalExpireTimerMessage(), data.getThreadSize());
+          PagingConfig config = new PagingConfig.Builder().setPageSize(25)
+                                                          .setBufferPages(2)
+                                                          .setStartIndex(Math.max(startPosition, 0))
+                                                          .build();
 
-    this.messages = Transformations.switchMap(pagedDataForThreadId, pair -> {
-      pagingController.set(pair.second().getController());
-      return pair.second().getData();
-    });
+          Log.d(TAG, "Starting at position: " + startPosition + " || jumpToPosition: " + data.getJumpToPosition() + ", lastSeenPosition: " + data.getLastSeenPosition() + ", lastScrolledPosition: " + data.getLastScrolledPosition());
+          ObservablePagedData<MessageId, ConversationMessage> pagedData = PagedData.createForObservable(dataSource, config);
 
-    conversationMetadata = Transformations.switchMap(messages, m -> metadata);
-    canShowAsBubble      = LiveDataUtil.mapAsync(threadId, conversationRepository::canShowAsBubble);
-    wallpaper            = LiveDataUtil.mapDistinct(Transformations.switchMap(recipientId,
-                                                                              id -> Recipient.live(id).getLiveData()),
-                                                    Recipient::getWallpaper);
+          pagingController.set(pagedData.getController());
+          return pagedData.getData();
+        })
+        .observeOn(Schedulers.io())
+        .withLatestFrom(conversationMetadata, (messages, metadata) -> new MessageData(metadata, messages));
 
-    EventBus.getDefault().register(this);
-
-    chatColors = LiveDataUtil.mapDistinct(Transformations.switchMap(recipientId,
-                                                                    id -> Recipient.live(id).getLiveData()),
-                                          Recipient::getChatColors);
+    canShowAsBubble = threadId.observeOn(Schedulers.io()).map(conversationRepository::canShowAsBubble);
+    wallpaper       = recipientCache.map(r -> Optional.ofNullable(r.getWallpaper())).distinctUntilChanged();
+    chatColors      = recipientCache.map(Recipient::getChatColors).distinctUntilChanged();
 
     threadAnimationStateStore.update(threadId, (id, state) -> {
       if (state.getThreadId() == id) {
@@ -190,7 +199,7 @@ public class ConversationViewModel extends ViewModel {
       }
     });
 
-    threadAnimationStateStore.update(metadata, (m, state) -> {
+    threadAnimationStateStore.update(conversationMetadata, (m, state) -> {
       if (state.getThreadId() == m.getThreadId()) {
         return state.copy(state.getThreadId(), m, state.getHasCommittedNonEmptyMessageList());
       } else {
@@ -200,14 +209,16 @@ public class ConversationViewModel extends ViewModel {
 
     this.threadAnimationStateStoreDriver = state -> {};
     threadAnimationStateStore.getStateLiveData().observeForever(threadAnimationStateStoreDriver);
+
+    EventBus.getDefault().register(this);
   }
 
-  LiveData<StoryViewState> getStoryViewState(@NonNull LifecycleOwner lifecycle) {
-    Publisher<RecipientId>   recipientIdPublisher = LiveDataReactiveStreams.toPublisher(lifecycle, recipientId);
-    Flowable<StoryViewState> storyViewState       = Flowable.fromPublisher(recipientIdPublisher)
-                                                            .flatMap(id -> StoryViewState.getForRecipientId(id).toFlowable(BackpressureStrategy.LATEST));
-
-    return LiveDataReactiveStreams.fromPublisher(storyViewState);
+  Observable<StoryViewState> getStoryViewState() {
+    return recipientId
+        .subscribeOn(Schedulers.io())
+        .switchMap(StoryViewState::getForRecipientId)
+        .distinctUntilChanged()
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
   void onMessagesCommitted(@NonNull List<ConversationMessage> conversationMessages) {
@@ -249,13 +260,13 @@ public class ConversationViewModel extends ViewModel {
     Log.d(TAG, "[onConversationDataAvailable] recipientId: " + recipientId + ", threadId: " + threadId + ", startingPosition: " + startingPosition);
     this.jumpToPosition = startingPosition;
 
-    this.threadId.setValue(threadId);
-    this.recipientId.setValue(recipientId);
+    this.threadId.onNext(threadId);
+    this.recipientId.onNext(recipientId);
   }
 
   void clearThreadId() {
     this.jumpToPosition = -1;
-    this.threadId.postValue(-1L);
+    this.threadId.onNext(-1L);
   }
 
   void setSearchQuery(@Nullable String query) {
@@ -270,8 +281,9 @@ public class ConversationViewModel extends ViewModel {
     return conversationTopMargin;
   }
 
-  @NonNull LiveData<Boolean> canShowAsBubble() {
-    return canShowAsBubble;
+  @NonNull Observable<Boolean> canShowAsBubble() {
+    return canShowAsBubble
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
   @NonNull LiveData<Boolean> getShowScrollToBottom() {
@@ -282,16 +294,18 @@ public class ConversationViewModel extends ViewModel {
     return Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(showScrollButtons, hasUnreadMentions, (a, b) -> a && b));
   }
 
-  @NonNull LiveData<ChatWallpaper> getWallpaper() {
-    return wallpaper;
+  @NonNull Observable<Optional<ChatWallpaper>> getWallpaper() {
+    return wallpaper
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
   @NonNull LiveData<Event> getEvents() {
     return events;
   }
 
-  @NonNull LiveData<ChatColors> getChatColors() {
-    return chatColors;
+  @NonNull Observable<ChatColors> getChatColors() {
+    return chatColors
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
   void setHasUnreadMentions(boolean hasUnreadMentions) {
@@ -310,55 +324,45 @@ public class ConversationViewModel extends ViewModel {
     return recentMedia;
   }
 
-  @NonNull LiveData<ConversationData> getConversationMetadata() {
-    return conversationMetadata;
+  @NonNull Observable<MessageData> getMessageData() {
+    return messageData
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
-  @NonNull LiveData<List<ConversationMessage>> getMessages() {
-    return messages;
-  }
-
-  @NonNull PagingController getPagingController() {
+  @NonNull PagingController<MessageId> getPagingController() {
     return pagingController;
   }
 
-  @NonNull LiveData<Map<RecipientId, NameColor>> getNameColorsMap() {
-    LiveData<Recipient>         recipient = Transformations.switchMap(recipientId, r -> Recipient.live(r).getLiveData());
-    LiveData<Optional<GroupId>> group     = Transformations.map(recipient, Recipient::getGroupId);
-    LiveData<Set<Recipient>>    groupMembers = Transformations.switchMap(group, g -> {
-      //noinspection CodeBlock2Expr
-      return g.map(this::getSessionGroupRecipients)
-              .orElseGet(() -> new DefaultValueLiveData<>(Collections.emptySet()));
-    });
+  @NonNull Observable<Map<RecipientId, NameColor>> getNameColorsMap() {
+    return recipientId.map(Recipient::resolved)
+                      .map(Recipient::getGroupId)
+                      .map(groupId -> {
+                        if (groupId.isPresent()) {
+                          List<Recipient> fullMembers = SignalDatabase.groups().getGroupMembers(groupId.get(), GroupDatabase.MemberSet.FULL_MEMBERS_INCLUDING_SELF);
+                          Set<Recipient> cachedMembers = MapUtil.getOrDefault(sessionMemberCache, groupId.get(), new HashSet<>());
+                          cachedMembers.addAll(fullMembers);
+                          sessionMemberCache.put(groupId.get(), cachedMembers);
+                          return cachedMembers;
+                        } else {
+                          return Collections.<Recipient>emptySet();
+                        }
+                      })
+                      .map(members -> {
+                        List<Recipient> sorted = Stream.of(members)
+                                                       .filter(member -> !Objects.equals(member, Recipient.self()))
+                                                       .sortBy(Recipient::requireStringId)
+                                                       .toList();
 
-    return Transformations.map(groupMembers, members -> {
-      List<Recipient> sorted = Stream.of(members)
-                                     .filter(member -> !Objects.equals(member, Recipient.self()))
-                                     .sortBy(Recipient::requireStringId)
-                                     .toList();
+                        List<NameColor>             names  = ChatColorsPalette.Names.getAll();
+                        Map<RecipientId, NameColor> colors = new HashMap<>();
+                        for (int i = 0; i < sorted.size(); i++) {
+                          colors.put(sorted.get(i).getId(), names.get(i % names.size()));
+                        }
 
-      List<NameColor>             names  = ChatColorsPalette.Names.getAll();
-      Map<RecipientId, NameColor> colors = new HashMap<>();
-      for (int i = 0; i < sorted.size(); i++) {
-        colors.put(sorted.get(i).getId(), names.get(i % names.size()));
-      }
-
-      return colors;
-    });
-  }
-
-  private @NonNull LiveData<Set<Recipient>> getSessionGroupRecipients(@NonNull GroupId groupId) {
-    LiveData<List<Recipient>> fullMembers = Transformations.map(new LiveGroup(groupId).getFullMembers(),
-                                                                members -> Stream.of(members)
-                                                                                 .map(GroupMemberEntry.FullMember::getMember)
-                                                                                 .toList());
-
-    return Transformations.map(fullMembers, currentMembership -> {
-      Set<Recipient> cachedMembers = MapUtil.getOrDefault(sessionMemberCache, groupId, new HashSet<>());
-      cachedMembers.addAll(currentMembership);
-      sessionMemberCache.put(groupId, cachedMembers);
-      return cachedMembers;
-    });
+                        return colors;
+                      })
+                      .subscribeOn(Schedulers.io())
+                      .observeOn(AndroidSchedulers.mainThread());
   }
 
   @NonNull LiveData<Optional<NotificationProfile>> getActiveNotificationProfile() {
@@ -366,14 +370,6 @@ public class ConversationViewModel extends ViewModel {
                                                                               .map(profiles -> Optional.ofNullable(NotificationProfiles.getActiveProfile(profiles)));
 
     return LiveDataReactiveStreams.fromPublisher(activeProfile.toFlowable(BackpressureStrategy.LATEST));
-  }
-
-  long getLastSeen() {
-    return conversationMetadata.getValue() != null ? conversationMetadata.getValue().getLastSeen() : 0;
-  }
-
-  int getLastSeenPosition() {
-    return conversationMetadata.getValue() != null ? conversationMetadata.getValue().getLastSeenPosition() : 0;
   }
 
   void setArgs(@NonNull ConversationIntents.Args args) {
@@ -403,14 +399,21 @@ public class ConversationViewModel extends ViewModel {
     SHOW_RECAPTCHA
   }
 
-  private static class ThreadAndRecipient {
+  static class MessageData {
+    private final List<ConversationMessage> messages;
+    private final ConversationData          metadata;
 
-    private final long      threadId;
-    private final Recipient recipient;
+    MessageData(@NonNull ConversationData metadata, @NonNull List<ConversationMessage> messages) {
+      this.metadata = metadata;
+      this.messages = messages;
+    }
 
-    public ThreadAndRecipient(long threadId, Recipient recipient) {
-      this.threadId  = threadId;
-      this.recipient = recipient;
+    public @NonNull List<ConversationMessage> getMessages() {
+      return messages;
+    }
+
+    public @NonNull ConversationData getMetadata() {
+      return metadata;
     }
   }
 

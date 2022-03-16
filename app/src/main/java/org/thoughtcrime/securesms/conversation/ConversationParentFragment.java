@@ -108,6 +108,9 @@ import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
@@ -439,6 +442,8 @@ public class ConversationParentFragment extends Fragment
   private boolean       isSecurityInitialized         = false;
   private boolean       isSearchRequested             = false;
 
+  private final LifecycleDisposable disposables = new LifecycleDisposable();
+
   private volatile boolean screenInitialized = false;
 
   private IdentityRecordList   identityRecords = new IdentityRecordList(Collections.emptyList());
@@ -452,6 +457,8 @@ public class ConversationParentFragment extends Fragment
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    disposables.bindTo(getViewLifecycleOwner());
+
     if (requireActivity() instanceof Callback) {
       callback = (Callback) requireActivity();
     } else if (getParentFragment() instanceof Callback) {
@@ -552,7 +559,7 @@ public class ConversationParentFragment extends Fragment
     initializeInsightObserver();
     initializeActionBar();
 
-    viewModel.getStoryViewState(getViewLifecycleOwner()).observe(getViewLifecycleOwner(), titleView::setStoryRingFromState);
+    disposables.add(viewModel.getStoryViewState().subscribe(titleView::setStoryRingFromState));
 
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
       @Override
@@ -1026,13 +1033,13 @@ public class ConversationParentFragment extends Fragment
     }
 
     hideMenuItem(menu, R.id.menu_create_bubble);
-    viewModel.canShowAsBubble().observe(getViewLifecycleOwner(), canShowAsBubble -> {
+    disposables.add(viewModel.canShowAsBubble().subscribe(canShowAsBubble -> {
       MenuItem item = menu.findItem(R.id.menu_create_bubble);
 
       if (item != null) {
         item.setVisible(canShowAsBubble && !isInBubble());
       }
-    });
+    }));
 
     if (threadId == -1L) {
       hideMenuItem(menu, R.id.menu_view_media);
@@ -2300,8 +2307,8 @@ public class ConversationParentFragment extends Fragment
     this.viewModel = new ViewModelProvider(this, new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
     this.viewModel.setArgs(args);
-    this.viewModel.getWallpaper().observe(getViewLifecycleOwner(), this::updateWallpaper);
     this.viewModel.getEvents().observe(getViewLifecycleOwner(), this::onViewModelEvent);
+    disposables.add(this.viewModel.getWallpaper().subscribe(w -> updateWallpaper(w.orElse(null))));
   }
 
   private void initializeGroupViewModel() {

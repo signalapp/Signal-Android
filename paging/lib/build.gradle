@@ -18,6 +18,8 @@ android {
 dependencies {
     implementation libs.androidx.appcompat
     implementation libs.material.material
+    implementation libs.rxjava3.rxandroid
+    implementation libs.rxjava3.rxjava
     implementation project(':core-util')
     testImplementation testLibs.junit.junit
 }

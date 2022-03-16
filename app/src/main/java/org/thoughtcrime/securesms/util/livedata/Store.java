@@ -4,6 +4,7 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MediatorLiveData;
 
 import com.annimon.stream.function.Function;
@@ -14,6 +15,9 @@ import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Executor;
+
+import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * Manages a state to be updated from a view model and provide direct and live access. Updates
@@ -44,6 +48,11 @@ public class Store<State> {
   @MainThread
   public <Input> void update(@NonNull LiveData<Input> source, @NonNull Action<Input, State> action) {
     liveStore.update(source, action);
+  }
+
+  @MainThread
+  public <Input> void update(@NonNull Observable<Input> source, @NonNull Action<Input, State> action) {
+    liveStore.update(LiveDataReactiveStreams.fromPublisher(source.toFlowable(BackpressureStrategy.LATEST)), action);
   }
 
   @MainThread

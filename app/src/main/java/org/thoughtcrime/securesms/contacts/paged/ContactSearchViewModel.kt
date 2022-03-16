@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import org.signal.paging.LivePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.PagingController
@@ -30,7 +31,7 @@ class ContactSearchViewModel(
     .setStartIndex(0)
     .build()
 
-  private val pagedData = MutableLiveData<PagedData<ContactSearchKey, ContactSearchData>>()
+  private val pagedData = MutableLiveData<LivePagedData<ContactSearchKey, ContactSearchData>>()
   private val configurationStore = Store(ContactSearchState())
   private val selectionStore = Store<Set<ContactSearchKey>>(emptySet())
 
@@ -45,7 +46,7 @@ class ContactSearchViewModel(
 
   fun setConfiguration(contactSearchConfiguration: ContactSearchConfiguration) {
     val pagedDataSource = ContactSearchPagedDataSource(contactSearchConfiguration)
-    pagedData.value = PagedData.create(pagedDataSource, pagingConfig)
+    pagedData.value = PagedData.createForLiveData(pagedDataSource, pagingConfig)
   }
 
   fun setQuery(query: String?) {

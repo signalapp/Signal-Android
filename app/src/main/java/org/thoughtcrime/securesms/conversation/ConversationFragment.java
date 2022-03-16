@@ -195,8 +195,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
   private static final int CODE_ADD_EDIT_CONTACT      = 77;
 
-  private final ActionModeCallback actionModeCallback     = new ActionModeCallback();
-  private final ItemClickListener  selectionClickListener = new ConversationFragmentItemClickListener();
+  private final ActionModeCallback  actionModeCallback     = new ActionModeCallback();
+  private final ItemClickListener   selectionClickListener = new ConversationFragmentItemClickListener();
+  private final LifecycleDisposable disposables            = new LifecycleDisposable();
 
   private ConversationFragmentListener listener;
 
@@ -241,6 +242,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private MultiselectItemDecoration  multiselectItemDecoration;
   private LifecycleDisposable        lifecycleDisposable;
 
+  private @Nullable ConversationData conversationData;
+  private @Nullable ChatWallpaper    chatWallpaper;
+
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
     parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
@@ -263,6 +267,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+    disposables.bindTo(getViewLifecycleOwner());
+
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
     videoContainer = view.findViewById(R.id.video_container);
     list           = view.findViewById(android.R.id.list);
@@ -291,8 +297,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         () -> conversationViewModel.shouldPlayMessageAnimations() && list.getScrollState() == RecyclerView.SCROLL_STATE_IDLE,
         () -> list.canScrollVertically(1) || list.canScrollVertically(-1));
 
-    multiselectItemDecoration = new MultiselectItemDecoration(requireContext(),
-                                                              () -> conversationViewModel.getWallpaper().getValue());
+    multiselectItemDecoration = new MultiselectItemDecoration(requireContext(), () -> chatWallpaper);
 
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
@@ -333,17 +338,22 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     this.messageCountsViewModel = new ViewModelProvider(getParentFragment()).get(MessageCountsViewModel.class);
     this.conversationViewModel  = new ViewModelProvider(getParentFragment(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
-    conversationViewModel.getChatColors().observe(getViewLifecycleOwner(), recyclerViewColorizer::setChatColors);
-    conversationViewModel.getMessages().observe(getViewLifecycleOwner(), messages -> {
+    disposables.add(conversationViewModel.getChatColors().subscribe(recyclerViewColorizer::setChatColors));
+    disposables.add(conversationViewModel.getMessageData().subscribe(messageData -> {
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
+        List<ConversationMessage> messages = messageData.getMessages();
         getListAdapter().submitList(messages, () -> {
-          list.post(() -> conversationViewModel.onMessagesCommitted(messages));
+          list.post(() -> {
+            conversationViewModel.onMessagesCommitted(messages);
+          });
         });
       }
-    });
 
-    conversationViewModel.getConversationMetadata().observe(getViewLifecycleOwner(), this::presentConversationMetadata);
+      presentConversationMetadata(messageData.getMetadata());
+    }));
+
+    disposables.add(conversationViewModel.getWallpaper().subscribe(w -> chatWallpaper = w.orElse(null)));
 
     conversationViewModel.getShowMentionsButton().observe(getViewLifecycleOwner(), shouldShow -> {
       if (shouldShow) {
@@ -367,14 +377,14 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     updateToolbarDependentMargins();
 
     colorizer = new Colorizer();
-    conversationViewModel.getNameColorsMap().observe(getViewLifecycleOwner(), nameColorsMap -> {
+    disposables.add(conversationViewModel.getNameColorsMap().subscribe(nameColorsMap -> {
       colorizer.onNameColorsChanged(nameColorsMap);
 
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
         adapter.notifyItemRangeChanged(0, adapter.getItemCount(), ConversationAdapter.PAYLOAD_NAME_COLORS);
       }
-    });
+    }));
 
     conversationUpdateTick = new ConversationUpdateTick(this::updateConversationItemTimestamps);
     getViewLifecycleOwner().getLifecycle().addObserver(conversationUpdateTick);
@@ -491,7 +501,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   public void moveToLastSeen() {
-    if (conversationViewModel.getLastSeenPosition() <= 0) {
+    int lastSeenPosition = conversationData != null ? conversationData.getLastSeenPosition() : 0;
+    if (lastSeenPosition <= 0) {
       Log.i(TAG, "No need to move to last seen.");
       return;
     }
@@ -501,7 +512,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       return;
     }
 
-    int position = getListAdapter().getAdapterPositionForMessagePosition(conversationViewModel.getLastSeenPosition());
+    int position = getListAdapter().getAdapterPositionForMessagePosition(lastSeenPosition);
     snapToTopDataObserver.requestScrollPosition(position);
   }
 
@@ -631,9 +642,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private void initializeResources() {
-    long oldThreadId = threadId;
-
-    int startingPosition  = getStartPosition();
+    long oldThreadId      = threadId;
+    int  startingPosition = getStartPosition();
 
     this.recipient      = Recipient.live(conversationViewModel.getArgs().getRecipientId());
     this.threadId       = conversationViewModel.getArgs().getThreadId();
@@ -678,14 +688,14 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       adapter.registerAdapterDataObserver(snapToTopDataObserver);
       adapter.registerAdapterDataObserver(new CheckExpirationDataObserver());
 
-      setLastSeen(conversationViewModel.getLastSeen());
+      setLastSeen(conversationData != null ? conversationData.getLastSeen() : 0);
 
       adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
+          adapter.unregisterAdapterDataObserver(this);
           startupStopwatch.split("data-set");
           SignalLocalMetrics.ConversationOpen.onDataLoaded();
-          adapter.unregisterAdapterDataObserver(this);
           list.post(() -> {
             startupStopwatch.split("first-render");
             startupStopwatch.stop(TAG);
@@ -1100,6 +1110,13 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private void presentConversationMetadata(@NonNull ConversationData conversation) {
+    if (conversationData != null && conversationData.getThreadId() == conversation.getThreadId()) {
+      Log.d(TAG, "Already presented conversation data for thread " + threadId);
+      return;
+    }
+
+    conversationData = conversation;
+
     ConversationAdapter adapter = getListAdapter();
     if (adapter == null) {
       return;

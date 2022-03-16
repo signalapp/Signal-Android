@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
+import org.signal.paging.LivePagedData;
 import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
@@ -53,7 +54,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
                                                            .setStartIndex(0)
                                                            .build();
 
-      PagedData<Long, LogLine> pagedData = PagedData.create(dataSource, config);
+      LivePagedData<Long, LogLine> pagedData = PagedData.createForLiveData(dataSource, config);
 
       ThreadUtil.runOnMain(() -> {
         pagingController.set(pagedData.getController());

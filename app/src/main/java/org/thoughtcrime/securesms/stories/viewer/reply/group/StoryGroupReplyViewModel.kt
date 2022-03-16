@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
-import org.signal.paging.PagedData
+import org.signal.paging.LivePagedData
 import org.signal.paging.PagingController
 import org.thoughtcrime.securesms.conversation.colors.NameColors
 import org.thoughtcrime.securesms.groups.GroupId
@@ -23,7 +23,7 @@ class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyReposit
 
   val state: LiveData<StoryGroupReplyState> = store.stateLiveData
 
-  private val pagedData: MutableLiveData<PagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> = MutableLiveData()
+  private val pagedData: MutableLiveData<LivePagedData<StoryGroupReplyItemData.Key, StoryGroupReplyItemData>> = MutableLiveData()
 
   val pagingController: LiveData<PagingController<StoryGroupReplyItemData.Key>>
   val pageData: LiveData<List<StoryGroupReplyItemData>>

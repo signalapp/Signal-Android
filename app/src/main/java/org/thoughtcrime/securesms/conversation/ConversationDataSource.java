@@ -47,23 +47,39 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
   private final MessageRequestData messageRequestData;
   private final boolean            showUniversalExpireTimerUpdate;
 
-  ConversationDataSource(@NonNull Context context, long threadId, @NonNull MessageRequestData messageRequestData, boolean showUniversalExpireTimerUpdate) {
+  /** Used once for the initial fetch, then cleared. */
+  private int baseSize;
+
+  ConversationDataSource(@NonNull Context context, long threadId, @NonNull MessageRequestData messageRequestData, boolean showUniversalExpireTimerUpdate, int baseSize) {
     this.context                        = context;
     this.threadId                       = threadId;
     this.messageRequestData             = messageRequestData;
     this.showUniversalExpireTimerUpdate = showUniversalExpireTimerUpdate;
+    this.baseSize                       = baseSize;
   }
 
   @Override
   public int size() {
     long startTime = System.currentTimeMillis();
-    int  size      = SignalDatabase.mmsSms().getConversationCount(threadId) +
+    int  size      = getSizeInternal() +
                      (messageRequestData.includeWarningUpdateMessage() ? 1 : 0) +
                      (showUniversalExpireTimerUpdate ? 1 : 0);
 
-    Log.d(TAG, "size() for thread " + threadId + ": " + (System.currentTimeMillis() - startTime) + " ms");
+    Log.d(TAG, "[size(), thread " + threadId + "] " + (System.currentTimeMillis() - startTime) + " ms");
 
     return size;
+  }
+
+  private int getSizeInternal() {
+    synchronized (this) {
+      if (baseSize != -1) {
+        int size = baseSize;
+        baseSize = -1;
+        return size;
+      }
+    }
+
+    return SignalDatabase.mmsSms().getConversationCount(threadId);
   }
 
   @Override
