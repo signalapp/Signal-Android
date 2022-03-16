@@ -30,7 +30,7 @@ class AndroidCallConnection(private val context: Context, val recipientId: Recip
 
   override fun onShowIncomingCallUi() {
     Log.i(TAG, "onShowIncomingCallUi()")
-    WebRtcCallService.update(context, CallNotificationBuilder.TYPE_INCOMING_RINGING, recipientId)
+    WebRtcCallService.update(context, CallNotificationBuilder.TYPE_INCOMING_CONNECTING, recipientId)
     setRinging()
   }
 
