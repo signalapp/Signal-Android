@@ -47,7 +47,7 @@ public final class OnboardingValues extends SignalStoreValues {
   public boolean hasOnboarding(@NonNull Context context) {
     return shouldShowNewGroup()      ||
            shouldShowInviteFriends() ||
-           shouldShowSms(context)    ||
+           shouldShowSms()           ||
            shouldShowAppearance()    ||
            shouldShowAddPhoto();
   }
@@ -72,8 +72,8 @@ public final class OnboardingValues extends SignalStoreValues {
     putBoolean(SHOW_SMS, value);
   }
 
-  public boolean shouldShowSms(@NonNull Context context) {
-    return getBoolean(SHOW_SMS, false) && !Util.isDefaultSmsProvider(context) && LocaleFeatureFlags.shouldSuggestSms();
+  public boolean shouldShowSms() {
+    return false;
   }
 
   public void setShowAppearance(boolean value) {

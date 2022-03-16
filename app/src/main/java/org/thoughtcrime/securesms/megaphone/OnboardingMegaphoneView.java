@@ -148,7 +148,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
         data.add(TYPE_APPEARANCE);
       }
 
-      if (SignalStore.onboarding().shouldShowSms(context)) {
+      if (SignalStore.onboarding().shouldShowSms()) {
         data.add(TYPE_SMS);
       }
 
