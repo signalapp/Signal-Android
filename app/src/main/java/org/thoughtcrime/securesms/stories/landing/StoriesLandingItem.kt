@@ -9,12 +9,10 @@ import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
-import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -111,7 +109,7 @@ object StoriesLandingItem {
       avatarView.setStoryRingFromState(model.data.storyViewState)
 
       if (record.storyType.isTextStory) {
-        storyPreview.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel(StoryTextPost.parseFrom(Base64.decode(record.body))), 0, 0)
+        storyPreview.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel.parseFrom(record), 0, 0)
       } else if (record.slideDeck.thumbnailSlide != null) {
         storyPreview.setImageResource(GlideApp.with(storyPreview), record.slideDeck.thumbnailSlide!!, false, true)
       } else {
@@ -122,7 +120,7 @@ object StoriesLandingItem {
         val secondaryRecord = model.data.secondaryStory.messageRecord as MediaMmsMessageRecord
 
         if (secondaryRecord.storyType.isTextStory) {
-          storyMulti.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel(StoryTextPost.parseFrom(Base64.decode(secondaryRecord.body))), 0, 0)
+          storyMulti.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel.parseFrom(secondaryRecord), 0, 0)
         } else {
           storyMulti.setImageResource(GlideApp.with(storyPreview), secondaryRecord.slideDeck.thumbnailSlide!!, false, true)
         }

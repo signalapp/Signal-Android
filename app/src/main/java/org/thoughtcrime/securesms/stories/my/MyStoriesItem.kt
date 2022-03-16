@@ -11,11 +11,9 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
-import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -103,7 +101,7 @@ object MyStoriesItem {
 
       @Suppress("CascadeIf")
       if (record.storyType.isTextStory) {
-        storyPreview.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel(StoryTextPost.parseFrom(Base64.decode(record.body))), 0, 0)
+        storyPreview.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel.parseFrom(record), 0, 0)
       } else if (thumbnail != null) {
         storyPreview.setImageResource(GlideApp.with(itemView), thumbnail, false, true)
       } else {

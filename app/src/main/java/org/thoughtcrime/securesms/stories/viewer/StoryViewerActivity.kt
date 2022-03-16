@@ -21,10 +21,13 @@ class StoryViewerActivity : PassphraseRequiredActivity() {
 
     if (savedInstanceState == null) {
       supportFragmentManager.beginTransaction()
-        .replace(R.id.fragment_container, StoryViewerFragment.create(
-          intent.getParcelableExtra(ARG_START_RECIPIENT_ID)!!,
-          intent.getLongExtra(ARG_START_STORY_ID, -1L)
-        ))
+        .replace(
+          R.id.fragment_container,
+          StoryViewerFragment.create(
+            intent.getParcelableExtra(ARG_START_RECIPIENT_ID)!!,
+            intent.getLongExtra(ARG_START_STORY_ID, -1L)
+          )
+        )
         .commit()
     }
   }

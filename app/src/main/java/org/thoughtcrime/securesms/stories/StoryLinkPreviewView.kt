@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture
 import org.thoughtcrime.securesms.util.visible
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -33,7 +35,9 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   private val title: TextView = findViewById(R.id.link_preview_title)
   private val url: TextView = findViewById(R.id.link_preview_url)
 
-  fun bind(linkPreview: LinkPreview?, hiddenVisibility: Int = View.INVISIBLE) {
+  fun bind(linkPreview: LinkPreview?, hiddenVisibility: Int = View.INVISIBLE): ListenableFuture<Boolean> {
+    var listenableFuture: ListenableFuture<Boolean>? = null
+
     if (linkPreview != null) {
       visibility = View.VISIBLE
       isClickable = true
@@ -43,7 +47,7 @@ class StoryLinkPreviewView @JvmOverloads constructor(
 
       val imageSlide: ImageSlide? = linkPreview.thumbnail.map { ImageSlide(image.context, it) }.orElse(null)
       if (imageSlide != null) {
-        image.setImageResource(GlideApp.with(image), imageSlide, false, false)
+        listenableFuture = image.setImageResource(GlideApp.with(image), imageSlide, false, false)
         image.visible = true
       } else {
         image.visible = false
@@ -56,6 +60,8 @@ class StoryLinkPreviewView @JvmOverloads constructor(
       visibility = hiddenVisibility
       isClickable = false
     }
+
+    return listenableFuture ?: SettableFuture(false)
   }
 
   fun bind(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int = View.INVISIBLE) {

@@ -276,7 +276,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     if (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide()) {
       if (isTextStory && body != null) {
         try {
-          bodyView.setText(StoryTextPostModel.parseFrom(body.toString()).getText());
+          bodyView.setText(StoryTextPostModel.parseFrom(body.toString(), id, author.getId()).getText());
         } catch (Exception e) {
           Log.w(TAG, "Could not parse body of text post.", e);
           bodyView.setText("");
@@ -326,7 +326,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
   private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull CharSequence body, @NonNull SlideDeck slideDeck) {
     if (!attachments.containsMediaSlide() && isStoryReply()) {
-      StoryTextPostModel model = StoryTextPostModel.parseFrom(body.toString());
+      StoryTextPostModel model = StoryTextPostModel.parseFrom(body.toString(), id, author.getId());
       attachmentVideoOverlayView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);
       thumbnailView.setVisibility(VISIBLE);

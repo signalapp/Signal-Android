@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.mediasend.v2.text.TextAlignment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 
@@ -160,8 +161,8 @@ class StoryTextPostView @JvmOverloads constructor(
     postAdjustLinkPreviewTranslationY()
   }
 
-  fun bindLinkPreview(linkPreview: LinkPreview?) {
-    linkPreviewView.bind(linkPreview, View.GONE)
+  fun bindLinkPreview(linkPreview: LinkPreview?): ListenableFuture<Boolean> {
+    return linkPreviewView.bind(linkPreview, View.GONE)
   }
 
   fun bindLinkPreviewState(linkPreviewState: LinkPreviewViewModel.LinkPreviewState, hiddenVisibility: Int) {
