@@ -90,9 +90,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan bisa memberi pesan dan saling menelepon dan Anda akan membagikan nama dan foto dengan mereka.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang yang Anda blokir tidak akan dapat menelepon atau mengirim pesan pada Anda</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Blokir untuk mendapatkan pembaruan dan berita Signal.</string>
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Berhenti mendapat pembaruan dan berita Signal</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
-  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Lanjutkan untuk mendapatkan pembaruan dan berita Signal.</string>
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Lanjut mendapatkan pembaruan dan berita Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">Buka blokir %1$s?</string>
   <string name="BlockUnblockDialog_block">Blokir</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokir dan Tinggalkan</string>
@@ -123,7 +123,9 @@
   <string name="CameraContacts__menu_search">Pencarian</string>
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">Matikan penghindaran sensor?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">Sekarang Anda bisa terhubung langsung dengan layanan Signal untuk pengalaman yang lebih baik</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">Matikan</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -1036,9 +1038,9 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sebuah pesan dari %s tidak dapat diterima</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s mengubah nomor teleponnya.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Suka fitur baru ini? Ucapkan terimakasih dengan sebuah Penguat.</string>
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Suka fitur baru ini? Ucapkan terima kasih dengan Boost</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
-  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal didukung oleh orang seperti Anda. Jadilah penyokong hari ini.</string>
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal didukung oleh orang seperti Anda. Jadilah seorang Sustainer hari ini.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s memulai panggilan grup. %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s berada di panggilan grup. %2$s</string>
@@ -1190,7 +1192,7 @@
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Selamat Hari 💜!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">tunjukkan afeksi Anda dengan menjadi penyokong Signal.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">tunjukkan afeksi Anda dengan menjadi Sustainer Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ketuk di sini untuk menyalakan video Anda</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Untuk menelepon %1$s, Signal memerlukan akses kamera Anda</string>
@@ -1234,7 +1236,7 @@
   <string name="WebRtcCallView__s_is_in_this_call">%1$s sedang berada dalam panggilan ini</string>
   <string name="WebRtcCallView__s_are_in_this_call">%1$s berada dalam panggilan ini</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s dan %2$s sedang berada dalam panggilan ini</string>
-  <string name="WebRtcCallView__s_is_presenting">%1$s sedang berbagi layar</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s sedang presentasi</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s, %3$d dan lainnya, sedang berada didalam panggilan ini</item>
   </plurals>
@@ -1576,8 +1578,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Untuk menjawab panggilan, berikan Signal akses ke mikrofon Anda.</string>
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Untuk menjawab panggilan dari %s, berikan Signal akses ke mikrofon Anda.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal memerlukan izin Mikrofon dan Kamera untuk menerima atau melakukan panggilan, tetapi saat ini izin ditolak secara permanen. Mohon lanjutkan ke pengatuaran aplikasi, pilih \"Izin\" lalu aktifkan \"Mikrofon\" serta \"Kamera\". </string>
-  <string name="WebRtcCallActivity__answered_on_a_linked_device">Jawab di perangkat terhubung.</string>
-  <string name="WebRtcCallActivity__declined_on_a_linked_device">Tolak di perangkat terkait</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Dijawab dari perangkat terhubung.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Ditolak dari perangkat terhubung.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Sibuk di perangkat tersambung.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Seseorang telah bergabung dalam panggilan ini dengan nomor keamanan yang berubah.</string>
   <!--WebRtcCallScreen-->
@@ -1691,7 +1693,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Gulir ke bawah</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
-  <string name="BubbleOptOutTooltip__description">Gelembung adalah fitur Android yang dapat Anda matikan untuk obrolan Signal.</string>
+  <string name="BubbleOptOutTooltip__description">Bubbles adalah fitur Android yang dapat Anda matikan untuk percakapan Signal.</string>
   <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
   <string name="BubbleOptOutTooltip__not_now">Nanti saja</string>
   <!--Button to move to the system settings to control the use of Android bubbles-->
@@ -2100,7 +2102,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_events__contact_joined_signal">Kontak bergabung dengan Signal</string>
   <string name="preferences_notifications__priority">Prioritas</string>
   <!--Heading for the \'censorship circumvention\' section of privacy preferences-->
+  <string name="preferences_communication__category_censorship_circumvention">Hindari penyensoran</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
+  <string name="preferences_communication__censorship_circumvention">Hindari penyensoran</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Jika diaktifkan, Signal akan menggagalkan penyensoran. Jangan nonaktifkan fitur ini kecuali Anda berada di lokasi di mana Signal disensor.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Pengelabuan Penyensoran telah diaktifkan berdasarkan nomor telepon Anda.</string>
@@ -2132,7 +2136,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_you_are_connected_to_the_proxy">Anda tersambung ke proksi. Anda dapat mematikannya kapanpun dari Pengaturan.</string>
   <string name="preferences_success">Sukses</string>
   <string name="preferences_failed_to_connect">Gagal menyambungkan</string>
-  <string name="preferences_enter_proxy_address">Masukkan alamat proksi</string>
+  <string name="preferences_enter_proxy_address">Masukkan alamat proxy</string>
   <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
   <!--Internal only preferences-->
   <!--Payments-->

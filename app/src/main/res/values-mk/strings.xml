@@ -628,7 +628,7 @@
   <string name="AddGroupDetailsFragment__create">Создај</string>
   <string name="AddGroupDetailsFragment__members">Членови</string>
   <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Можете да додадете или да поканите пријатели откако ќе ја создадете оваа група.</string>
-  <string name="AddGroupDetailsFragment__group_name_required">Име на групата (задолжително)</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Име на група (задолжително)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Име на група (опционално)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Ова поле е задолжително.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Создавањето на групата е неуспешно.</string>
@@ -1097,7 +1097,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте сигурносниот број со %s како непроверен</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте сигурносен број со %s како непроверен од друг уред</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Пораката од %s не може да биде испорачана</string>
-  <string name="MessageRecord_s_changed_their_phone_number">%1$s го промени телефонскиот број</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s го промени телефонскиот број.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Ви се допаѓа оваа нова опција? Речете благодарам со „Поттик“.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
@@ -1298,11 +1298,11 @@
     <item quantity="other">Ѕвонам на %1$s, %2$s и %3$d други</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s Ве повикува</string>
-  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s Ве повикува и %2$s</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s Ве повикува, %2$s и %3$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s Ве повикува вас и %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s Ве повикува Вас, %2$s и %3$s</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-    <item quantity="one">%1$s те повикува, %2$s, %3$s, и %4$d друг</item>
-    <item quantity="other">%1$s Ве повикува, %2$s, %3$s и %4$d други</item>
+    <item quantity="one">%1$s Ве повикува Вас, %2$s, %3$s, и %4$d друг</item>
+    <item quantity="other">%1$s Ве повикува Вас, %2$s, %3$s и %4$d други</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Нема никој</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s е на овој повик</string>
@@ -1319,19 +1319,19 @@
   <string name="WebRtcCallView__unmute">Вклучи </string>
   <string name="WebRtcCallView__mute">Исклучи</string>
   <string name="WebRtcCallView__ring">Ѕвони</string>
-  <string name="WebRtcCallView__end_call">Спушти</string>
+  <string name="WebRtcCallView__end_call">Заврши повик</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">На овој повик · %1$d личност</item>
     <item quantity="other">На овој повик · %1$d луѓе</item>
   </plurals>
   <!--CallParticipantView-->
-  <string name="CallParticipantView__s_is_blocked">%1$s е блокиран/а.</string>
+  <string name="CallParticipantView__s_is_blocked">%1$s е блокиран/а</string>
   <string name="CallParticipantView__more_info">Повеќе информации</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Нема да добивате аудио и видео и тие нема да го добиваат Вашето аудио и видео.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Не добивам аудио и видео од %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не можам да добијам аудио и видео од %1$s</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ова може да се случи бидејќи тие го немаат проверено Вашиот сигурносен број по промената, има некаков проблем со нивниот уред или пак Ве имаат блокирано.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ова може да се случи бидејќи тие го немаат проверено Вашиот сигурносен број по промената, има некаков проблем со нивниот уред или Ве имаат блокирано.</string>
   <!--CallToastPopupWindow-->
   <string name="CallToastPopupWindow__swipe_to_view_screen_share">Повелчете за да го видите споделениот екран</string>
   <!--ProxyBottomSheetFragment-->
@@ -1339,15 +1339,15 @@
   <string name="ProxyBottomSheetFragment_proxy_address">Proxy адреса</string>
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Дали сакате да ја користите оваа proxy адресa?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Користи proxy</string>
-  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешно се поврзав со proxy серверот.</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешно поврзување со proxy серверот.</string>
   <!--RecaptchaProofActivity-->
-  <string name="RecaptchaProofActivity_failed_to_submit">Не успеав да испратам</string>
+  <string name="RecaptchaProofActivity_failed_to_submit">Не успеа да се испрати</string>
   <string name="RecaptchaProofActivity_complete_verification">Заврши проверка</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изберете држава</string>
-  <string name="RegistrationActivity_you_must_specify_your_country_code">Внесете го повикувачкиот број
-за вашата држава </string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Внесете го вашиот
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Мора да внесете повикувачки број
+за Вашата држава </string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Мора да го внесете Вашиот
 телефонски број</string>
   <string name="RegistrationActivity_invalid_number">Погрешен број</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Внесениот број
@@ -1361,7 +1361,7 @@
   <string name="RegistrationActivity_i_understand">Разбирам</string>
   <string name="RegistrationActivity_play_services_error">Грешка со Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services се ажурира или моментално е недостапна. Ве молиме обидетете се повторно.</string>
-  <string name="RegistrationActivity_terms_and_privacy">Услови и Политика на приватност</string>
+  <string name="RegistrationActivity_terms_and_privacy">Услови и политика за приватност</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да Ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се прикачуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти за да Ви помогне да се поврзете со пријателите. Вашите контакти се качуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Направивте премногу обиди за регистрација на овој број. Ве молиме обидете се повторно подоцна.</string>
@@ -1532,7 +1532,7 @@
   </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашиот контакт има стара верзија на Signal. Замолете го/ја да ажурираат пред да правите проверка на сигурносниот број.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашиот контакт има понова верзија на Signal со некомпатибилен формат на QR код. Ве молиме ажурирајте.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашиот контакт има понова верзија на Signal со некомпатибилен формат на QR код. Ве молиме ажурирајте го Signal за да споредите.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Скенираниот QR код не е правилно форматиран код за проверка на сигурносен број. Ве молиме скенирајте го повторно.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Сподели сигурносен број преку…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Нашиот Signal сигурносен број:</string>
@@ -1800,7 +1800,7 @@
   <string name="country_selection_fragment__search">Барај</string>
   <string name="country_selection_fragment__no_matching_countries">Нема совпаѓања</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Скенирајте го QR кодот прикажан на уредот за да продолжите со поврзувањето</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Скенирајте го QR кодот прикажан на уредот за да се поврзете</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Поврзи уред</string>
   <!--device_list_fragment-->
@@ -1872,7 +1872,7 @@
     <item quantity="one">%1$s се приклучи на групата.</item>
     <item quantity="other">%1$s се приклучија на групата.</item>
   </plurals>
-  <string name="GroupUtil_group_name_is_now">Името на групата е сега „%1$s“.</string>
+  <string name="GroupUtil_group_name_is_now">Името на групата сега е „%1$s“.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Отклучи</string>
   <!--prompt_mms_activity-->
@@ -1903,7 +1903,7 @@
   <string name="EditAboutFragment_working_on_something_new">Работам на нешто ново</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">Уреди група</string>
-  <string name="EditProfileFragment__group_name">Наслов на група</string>
+  <string name="EditProfileFragment__group_name">Име на група</string>
   <string name="EditProfileFragment__group_description">Опис на групата</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Вашето име</string>
@@ -2082,7 +2082,7 @@
   <string name="preferences__slow">Бавно</string>
   <string name="preferences__help">Помош</string>
   <string name="preferences__advanced">Напредно</string>
-  <string name="preferences__donate_to_signal">Донирајте на Signal</string>
+  <string name="preferences__donate_to_signal">Донирај на Signal</string>
   <string name="preferences__subscription">Претплатa</string>
   <string name="preferences__become_a_signal_sustainer">Станете поддржувач на Signal</string>
   <string name="preferences__signal_boost">Signal поттик</string>
@@ -2453,7 +2453,7 @@
   <string name="reminder_header_sms_import_text">Допрете за да ги увезете SMS пораките од телефонот во шифрираната база на податоци на Signal.</string>
   <string name="reminder_header_push_title">Вклучи Signal пораки и повици</string>
   <string name="reminder_header_push_text">Надградете го Вашето комуникациско искуство.</string>
-  <string name="reminder_header_service_outage_text">Signal се соочува со технички потешкотии. Работиме напорно да го повратиме сервисот што е можно поскоро.</string>
+  <string name="reminder_header_service_outage_text">Signal се соочува со технички потешкотии. Работиме напорно да ја вратиме услугата што е можно побрзо.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Зачувај</string>

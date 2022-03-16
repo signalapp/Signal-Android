@@ -3469,6 +3469,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya abonnemang</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Det går inte att behandla abonnemangsbetalningen</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Vi har problem med att samla in din Signal-upprätthållare betalning. Se till att din betalningsmetod är uppdaterad. Om den inte är det kan du uppdatera den i Google Pay. Signal kommer försöka bearbeta betalningen igen om ett par dagar.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Visa inte detta igen</string>
   <string name="Subscription__please_contact_support_for_more_information">Vänligen kontakta supporten för mer information.</string>
   <string name="Subscription__contact_support">Kontakta support</string>
@@ -3502,6 +3503,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Stripe decline code purchase not supported-->
   <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Ditt kort stöder inte denna typ av köp. Pröva en annan betalningsmetod.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Ditt betalkort har gått ut. Uppdatera din betalningsmetod i Google Pay och försök igen.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Gå till Google Pay</string>
   <!--Stripe decline code incorrect card number-->

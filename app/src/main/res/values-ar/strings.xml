@@ -1920,6 +1920,7 @@
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">لا وجود لأي نشاط متاح لفتح إعدادات قناة الإشعارات.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">حالة المكالمة</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل Signal!</string>
@@ -3880,6 +3881,7 @@
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام Signal، ولكن لدعم التطبيق وإعادة تفعيل شارتك، جدد الآن.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">لا تظهر هذا مجدداً</string>
   <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>
   <string name="Subscription__contact_support">الاتصال بالدعم</string>
   <string name="Subscription__earn_a_s_badge">احصل على شارة %1$s</string>
@@ -3909,6 +3911,7 @@
   <!--Stripe decline code purchase not supported-->
   <!--Stripe decline code your card has expired-->
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">انتقل الى Google Pay</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->

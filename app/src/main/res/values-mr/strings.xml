@@ -91,7 +91,9 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आपण एकमेकांना संदेश पाठविण्यात आणि कॉल करण्यात सक्षम असाल आणि आपले नाव आणि फोटो त्यांच्यासह सामायिक केला जाईल.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">अवरोधित लोक आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यास सक्षम असणार नाहीत.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal अपडेट्स आणि बातम्या मिळवणे ब्लॉक करा.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
+  <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal अपडेट्स आणि बातम्या मिळवणे पुन्हा सुरू करा.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s ला अनब्लॉक करायचे?</string>
   <string name="BlockUnblockDialog_block">अवरोधित करा</string>
   <string name="BlockUnblockDialog_block_and_leave">अवरोधित करा आणि सोडा</string>
@@ -123,6 +125,7 @@
   <!--Censorship Circumvention Megaphone-->
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">चांगल्या अनुभवासाठी आपन आता Signal सेवेशी थेट कनेक्ट होऊ शकता.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off">बंद करा</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
@@ -1093,8 +1096,10 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s सोबत आपण आपला सुरक्षितता नंबर असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s सोबत आपण आपला सुरक्षितता नंबर दुसऱ्या डिव्हाईस वरून असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s यांनी त्यांचा फोन नंबर बदलला.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
+  <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal आपल्यासारख्या लोकांद्वारे समर्थित आहे. आज आपला पाठिंबा दाखवा!</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये  आहे · %2$s</string>
@@ -3453,8 +3458,10 @@
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_automatically">आपले सस्टेनर सब्स्क्रिप्शन आपोआप रद्द झाले कारण आपन खूप काळ निष्क्रिय होता. आपला %1$s बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">आपले सस्टेनर सबस्क्रिप्शन रद्द करण्यात आले कारण आम्ही आपली पेमेंट प्रक्रिया पुर्ण करू शकलो नाही. तुमचा बॅज यापुढे तुमच्या प्रोफाईलवर दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपन Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription"> सब्स्क्रिप्शन नूतनीकरण करा</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">आपले Signal सस्टेनर पेमेंट गोळा करण्यात आम्हाला समस्या येत आहे. आपली पेमेंट पद्धत अद्ययावत असल्याची खात्री करा. तसे नसल्यास, ते Google Pay मध्ये अपडेट करा. Signal काही दिवसात पुन्हा पेमेंटवर प्रक्रिया करण्याचा प्रयत्न करेल.</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक माहितीकरिता सपोर्टशी संपर्क करा.</string>
   <string name="Subscription__contact_support">समर्थन सोबत संपर्क साधा</string>
   <string name="Subscription__earn_a_s_badge">%1$s बॅज मिळवा</string>
@@ -3477,12 +3484,16 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">दुसरी पेमेंट पद्धत वापरून पहा किंवा अधिक माहितीसाठी आपल्या बँकेशी संपर्क साधा.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">आपली पेमेंट पद्धत Google Pay मध्ये अद्ययावत असल्याची पडताळणी करा आणि पुन्हा प्रयत्न करा.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">अधिक जाणा</string>
   <!--Stripe decline code contact issuer-->
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">आपले कार्ड या प्रकारच्या खरेदीला समर्थन देत नाही. दुसरी पेमेंट पद्धत वापरून पहा.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">आपले कार्ड कालबाह्य झाले आहे. Google Pay मध्ये आपली पेमेंट पद्धत अपडेट करा आणि पुन्हा प्रयत्न करा.</string>
   <!--Stripe decline code go to google pay action label-->
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->

@@ -2234,6 +2234,7 @@
   <string name="conversation_expiring_off__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
   <!--conversation_selection-->
   <!--Button to view detailed information for a message-->
+  <string name="conversation_selection__menu_message_details">معلومات</string>
   <!--Button to copy a message\'s text to the clipboard-->
   <string name="conversation_selection__menu_copy">کاپی کریں</string>
   <!--Button to delete a message-->
@@ -2917,8 +2918,10 @@
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">ٹھیک ہے</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">نمبر تبدیل کریں</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">آپ نے جو فون نمبر داخل کیا ہے وہ آپ کے اکاؤنٹ کے مماثل نہیں ہے۔</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">نمبر تبدیل کریں</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__edit_number">نمبر ترتیب کرے</string>
   <!--ChangeNumberRegistrationLockFragment-->
