@@ -9,6 +9,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -95,6 +96,22 @@ public final class SqlUtilTest {
 
     assertEquals("(_id = ?) AND (a NOT NULL OR b != ? OR b IS NULL OR c != ? OR c IS NULL OR d NOT NULL OR e NOT NULL)", updateQuery.getWhere());
     assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
+  public void buildTrueUpdateQuery_blobComplex() {
+    String   selection = "_id = ?";
+    String[] args      = new String[]{"1"};
+
+    ContentValues values = new ContentValues();
+    values.put("a", hexToBytes("FF"));
+    values.put("b", 2);
+    values.putNull("c");
+
+    SqlUtil.Query updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+
+    assertEquals("(_id = ?) AND (hex(a) != ? OR a IS NULL OR b != ? OR b IS NULL OR c NOT NULL)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1", "FF", "2" }, updateQuery.getWhereArgs());
   }
 
   @Test
@@ -254,5 +271,13 @@ public final class SqlUtilTest {
 
     assertEquals("INSERT INTO mytable (a, b) VALUES (?, ?)", output.get(1).getWhere());
     assertArrayEquals(new String[] { "5", "6" }, output.get(1).getWhereArgs());
+  }
+
+  private static byte[] hexToBytes(String hex) {
+    try {
+      return Hex.fromStringCondensed(hex);
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
   }
 }
