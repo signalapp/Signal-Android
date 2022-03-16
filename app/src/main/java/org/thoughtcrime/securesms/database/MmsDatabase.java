@@ -660,7 +660,7 @@ public class MmsDatabase extends MessageDatabase {
                               "FROM " + TABLE_NAME + " JOIN " + ThreadDatabase.TABLE_NAME + " " +
                                   "ON " + TABLE_NAME + "." + THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " " +
                               "WHERE " + IS_STORY_CLAUSE + " " +
-                              "ORDER BY " + ThreadDatabase.RECIPIENT_ID + " DESC";
+                              "ORDER BY " + TABLE_NAME + "." + DATE_SENT + " DESC";
     List<RecipientId> recipientIds;
 
     try (Cursor cursor = db.rawQuery(query, null)) {
