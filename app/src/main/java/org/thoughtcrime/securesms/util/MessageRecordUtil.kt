@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.util
 
 import android.content.Context
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -35,6 +36,9 @@ fun MessageRecord.isCaptionlessMms(context: Context): Boolean =
 
 fun MessageRecord.hasThumbnail(): Boolean =
   isMms && (this as MmsMessageRecord).slideDeck.thumbnailSlide != null
+
+fun MessageRecord.isStoryReaction(): Boolean =
+  isMms && MmsSmsColumns.Types.isStoryReaction((this as MmsMessageRecord).type)
 
 fun MessageRecord.isBorderless(context: Context): Boolean {
   return isCaptionlessMms(context) &&

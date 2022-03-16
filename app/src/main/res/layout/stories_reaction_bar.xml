@@ -2,135 +2,106 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_width="@dimen/reaction_scrubber_width"
+    android:layout_height="?actionBarSize"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <View
-        android:id="@+id/conversation_reaction_scrubber_background"
-        android:layout_width="@dimen/reaction_scrubber_width"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="56dp"
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/reaction_1"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
         android:alpha="0"
-        android:background="@drawable/conversation_reaction_overlay_background"
-        android:elevation="4dp"
+        android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+        app:forceJumbo="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/reaction_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1"
+        tools:translationY="0dp" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/reaction_2"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
+        android:alpha="0"
+        android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+        app:forceJumbo="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/reaction_3"
+        app:layout_constraintStart_toEndOf="@id/reaction_1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1"
+        tools:translationY="0dp" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/reaction_3"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
+        android:alpha="0"
+        android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+        app:forceJumbo="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/reaction_4"
+        app:layout_constraintStart_toEndOf="@id/reaction_2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1"
+        tools:translationY="0dp" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/reaction_4"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
+        android:alpha="0"
+        android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+        app:forceJumbo="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/reaction_5"
+        app:layout_constraintStart_toEndOf="@id/reaction_3"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1"
+        tools:translationY="0dp" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/reaction_5"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
+        android:alpha="0"
+        android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+        app:forceJumbo="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/reaction_6"
+        app:layout_constraintStart_toEndOf="@id/reaction_4"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1"
+        tools:translationY="0dp" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/reaction_6"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
+        android:alpha="0"
+        android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+        app:forceJumbo="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/reaction_7"
+        app:layout_constraintStart_toEndOf="@id/reaction_5"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1"
+        tools:translationY="0dp" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/reaction_7"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
+        android:alpha="0"
+        android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+        app:forceJumbo="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:alpha="1" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/conversation_reaction_scrubber_foreground"
-        android:layout_width="@dimen/reaction_scrubber_width"
-        android:layout_height="@dimen/conversation_reaction_scrubber_height"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clipToPadding="false"
-        android:elevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-            android:id="@+id/reaction_1"
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            android:alpha="0"
-            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
-            app:forceJumbo="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/reaction_2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="1"
-            tools:translationY="0dp" />
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-            android:id="@+id/reaction_2"
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            android:alpha="0"
-            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
-            app:forceJumbo="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/reaction_3"
-            app:layout_constraintStart_toEndOf="@id/reaction_1"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="1"
-            tools:translationY="0dp" />
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-            android:id="@+id/reaction_3"
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            android:alpha="0"
-            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
-            app:forceJumbo="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/reaction_4"
-            app:layout_constraintStart_toEndOf="@id/reaction_2"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="1"
-            tools:translationY="0dp" />
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-            android:id="@+id/reaction_4"
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            android:alpha="0"
-            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
-            app:forceJumbo="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/reaction_5"
-            app:layout_constraintStart_toEndOf="@id/reaction_3"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="1"
-            tools:translationY="0dp" />
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-            android:id="@+id/reaction_5"
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            android:alpha="0"
-            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
-            app:forceJumbo="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/reaction_6"
-            app:layout_constraintStart_toEndOf="@id/reaction_4"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="1"
-            tools:translationY="0dp" />
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-            android:id="@+id/reaction_6"
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            android:alpha="0"
-            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
-            app:forceJumbo="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/reaction_7"
-            app:layout_constraintStart_toEndOf="@id/reaction_5"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="1"
-            tools:translationY="0dp" />
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-            android:id="@+id/reaction_7"
-            android:layout_width="32dp"
-            android:layout_height="48dp"
-            android:alpha="0"
-            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
-            app:forceJumbo="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/reaction_6"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="1"
-            tools:translationY="0dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintStart_toEndOf="@id/reaction_6"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1"
+        tools:translationY="0dp" />
 
 </merge>

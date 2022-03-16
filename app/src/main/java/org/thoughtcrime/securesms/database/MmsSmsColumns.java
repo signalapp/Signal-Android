@@ -45,20 +45,21 @@ public interface MmsSmsColumns {
    * {@link #TOTAL_MASK}.
    *
    * <pre>
-   *      _____________________________________ ENCRYPTION ({@link #ENCRYPTION_MASK})
-   *     |        _____________________________ SECURE MESSAGE INFORMATION (no mask, but look at {@link #SECURE_MESSAGE_BIT})
-   *     |       |     ________________________ GROUPS (no mask, but look at {@link #GROUP_UPDATE_BIT})
-   *     |       |    |       _________________ KEY_EXCHANGE ({@link #KEY_EXCHANGE_MASK})
-   *     |       |    |      |       _________  MESSAGE_ATTRIBUTES ({@link #MESSAGE_ATTRIBUTE_MASK})
-   *     |       |    |      |      |     ____  BASE_TYPE ({@link #BASE_TYPE_MASK})
-   *  ___|___   _|   _|   ___|__    |  __|_
-   * |       | |  | |  | |       | | ||    |
-   * 0000 0000 0000 0000 0000 0000 0000 0000
+   *   _____________________________________________ SPECIAL TYPES (Story reactions) ({@link #SPECIAL_TYPES_MASK}
+   *   |       _____________________________________ ENCRYPTION ({@link #ENCRYPTION_MASK})
+   *   |      |        _____________________________ SECURE MESSAGE INFORMATION (no mask, but look at {@link #SECURE_MESSAGE_BIT})
+   *   |      |       |     ________________________ GROUPS (no mask, but look at {@link #GROUP_UPDATE_BIT})
+   *   |      |       |    |       _________________ KEY_EXCHANGE ({@link #KEY_EXCHANGE_MASK})
+   *   |      |       |    |      |       _________  MESSAGE_ATTRIBUTES ({@link #MESSAGE_ATTRIBUTE_MASK})
+   *   |      |       |    |      |      |     ____  BASE_TYPE ({@link #BASE_TYPE_MASK})
+   *  _|   ___|___   _|   _|   ___|__    |  __|_
+   * |  | |       | |  | |  | |       | | ||    |
+   * 0000 0000 0000 0000 0000 0000 0000 0000 0000
    * </pre>
    */
   public static class Types {
 
-    protected static final long TOTAL_MASK = 0xFFFFFFFF;
+    protected static final long TOTAL_MASK = 0xFFFFFFFFFL;
 
     // Base Types
     protected static final long BASE_TYPE_MASK                     = 0x1F;
@@ -133,6 +134,18 @@ public interface MmsSmsColumns {
     protected static final long ENCRYPTION_REMOTE_NO_SESSION_BIT = 0x08000000;
     protected static final long ENCRYPTION_REMOTE_DUPLICATE_BIT  = 0x04000000;
     protected static final long ENCRYPTION_REMOTE_LEGACY_BIT     = 0x02000000;
+
+    // Special message types
+    public static final long SPECIAL_TYPES_MASK          = 0xF00000000L;
+    public static final long SPECIAL_TYPE_STORY_REACTION = 0x100000000L;
+
+    public static boolean isSpecialType(long type) {
+      return (type & SPECIAL_TYPES_MASK) != 0L;
+    }
+
+    public static boolean isStoryReaction(long type) {
+      return (type & SPECIAL_TYPE_STORY_REACTION) == SPECIAL_TYPE_STORY_REACTION;
+    }
 
     public static boolean isDraftMessageType(long type) {
       return (type & BASE_TYPE_MASK) == BASE_DRAFT_TYPE;

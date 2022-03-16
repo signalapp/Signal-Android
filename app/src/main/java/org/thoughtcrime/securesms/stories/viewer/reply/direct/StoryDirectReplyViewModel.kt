@@ -33,8 +33,12 @@ class StoryDirectReplyViewModel(
     }
   }
 
-  fun send(charSequence: CharSequence): Completable {
-    return repository.send(storyId, groupDirectReplyRecipientId, charSequence)
+  fun sendReply(charSequence: CharSequence): Completable {
+    return repository.send(storyId, groupDirectReplyRecipientId, charSequence, false)
+  }
+
+  fun sendReaction(emoji: CharSequence): Completable {
+    return repository.send(storyId, groupDirectReplyRecipientId, emoji, true)
   }
 
   override fun onCleared() {

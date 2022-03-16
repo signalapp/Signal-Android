@@ -19,6 +19,7 @@ public class OutgoingExpirationUpdateMessage extends OutgoingSecureMediaMessage 
           false,
           StoryType.NONE,
           null,
+          false,
           null,
           Collections.emptyList(),
           Collections.emptyList(),

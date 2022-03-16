@@ -176,6 +176,7 @@
             <enum name="outgoing" value="1" />
             <enum name="incoming" value="2" />
             <enum name="story_reply" value="3" />
+            <enum name="story_reply_preview" value="4" />
         </attr>
         <attr name="quote_colorPrimary" format="color" />
         <attr name="quote_colorSecondary" format="color" />

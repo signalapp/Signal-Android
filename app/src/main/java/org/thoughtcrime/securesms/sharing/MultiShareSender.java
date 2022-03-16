@@ -198,6 +198,7 @@ public final class MultiShareSender {
                                                                              ThreadDatabase.DistributionTypes.DEFAULT,
                                                                              storyType,
                                                                              null,
+                                                                             false,
                                                                              null,
                                                                              Collections.emptyList(),
                                                                              multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())
@@ -221,6 +222,7 @@ public final class MultiShareSender {
                                                                            ThreadDatabase.DistributionTypes.DEFAULT,
                                                                            StoryType.NONE,
                                                                            null,
+                                                                           false,
                                                                            null,
                                                                            Collections.emptyList(),
                                                                            multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())

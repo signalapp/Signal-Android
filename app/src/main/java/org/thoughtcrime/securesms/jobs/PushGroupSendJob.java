@@ -317,7 +317,14 @@ public final class PushGroupSendJob extends PushSendJob {
                                        .filter(r -> r.getStoriesCapability() == Recipient.Capability.SUPPORTED)
                                        .collect(java.util.stream.Collectors.toList());
 
-            groupMessageBuilder.withStoryContext(new SignalServiceDataMessage.StoryContext(recipient.requireServiceId(), storyRecord.getDateSent()));
+            SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(recipient.requireServiceId(), storyRecord.getDateSent());
+            groupMessageBuilder.withStoryContext(storyContext);
+
+            Optional<SignalServiceDataMessage.Reaction> reaction = getStoryReactionFor(message, storyContext);
+            if (reaction.isPresent()) {
+              groupMessageBuilder.withReaction(reaction.get());
+              groupMessageBuilder.withBody(null);
+            }
           } catch (NoSuchMessageException e) {
             // The story has probably expired
             // TODO [stories] check what should happen in this case

@@ -840,6 +840,7 @@ public final class MessageContentProcessor {
                                                                    receivedTime,
                                                                    StoryType.NONE,
                                                                    null,
+                                                                   false,
                                                                    -1,
                                                                    expiresInSeconds * 1000L,
                                                                    true,
@@ -873,8 +874,14 @@ public final class MessageContentProcessor {
     return null;
   }
 
-  private @Nullable MessageId handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) {
+  private @Nullable MessageId handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Handle reaction for message " + message.getReaction().get().getTargetSentTimestamp());
+
+    if (content.getStoryMessage().isPresent()) {
+      log(content.getTimestamp(), "Reaction has a story context. Treating as a story reaction.");
+      handleStoryReaction(content, message, senderRecipient);
+      return null;
+    }
 
     SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
 
@@ -1350,6 +1357,7 @@ public final class MessageContentProcessor {
                                                                    System.currentTimeMillis(),
                                                                    storyType,
                                                                    null,
+                                                                   false,
                                                                    -1,
                                                                    0,
                                                                    false,
@@ -1448,6 +1456,85 @@ public final class MessageContentProcessor {
     return Base64.encodeBytes(builder.build().toByteArray());
   }
 
+  private void handleStoryReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
+    log(content.getTimestamp(), "Story reaction.");
+
+    if (!Stories.isFeatureAvailable()) {
+      warn(content.getTimestamp(), "Dropping unsupported story reaction.");
+      return;
+    }
+
+    SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
+
+    if (!EmojiUtil.isEmoji(reaction.getEmoji())) {
+      warn(content.getTimestamp(), "Story reaction text is not a valid emoji! Ignoring the message.");
+      return;
+    }
+
+    SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
+
+    MessageDatabase database = SignalDatabase.mms();
+    database.beginTransaction();
+
+    try {
+      RecipientId   storyAuthorRecipient = RecipientId.from(storyContext.getAuthorServiceId(), null);
+      ParentStoryId parentStoryId;
+      QuoteModel    quoteModel = null;
+      try {
+        MessageId storyMessageId = database.getStoryId(storyAuthorRecipient, storyContext.getSentTimestamp());
+
+        if (message.getGroupContext().isPresent()) {
+          parentStoryId = new ParentStoryId.GroupReply(storyMessageId.getId());
+        } else {
+          MmsMessageRecord story = (MmsMessageRecord) database.getMessageRecord(storyMessageId.getId());
+
+          if (!story.getStoryType().isStoryWithReplies()) {
+            warn(content.getTimestamp(), "Story has reactions disabled. Dropping reaction.");
+            return;
+          }
+
+          parentStoryId = new ParentStoryId.DirectReply(storyMessageId.getId());
+          quoteModel    = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, "", false, story.getSlideDeck().asAttachments(), Collections.emptyList());
+        }
+      } catch (NoSuchMessageException e) {
+        warn(content.getTimestamp(), "Couldn't find story for reaction.", e);
+        return;
+      }
+
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
+                                                                   content.getTimestamp(),
+                                                                   content.getServerReceivedTimestamp(),
+                                                                   System.currentTimeMillis(),
+                                                                   StoryType.NONE,
+                                                                   parentStoryId,
+                                                                   true,
+                                                                   -1,
+                                                                   0,
+                                                                   false,
+                                                                   false,
+                                                                   content.isNeedsReceipt(),
+                                                                   Optional.of(reaction.getEmoji()),
+                                                                   Optional.ofNullable(GroupUtil.getGroupContextIfPresent(content)),
+                                                                   Optional.empty(),
+                                                                   Optional.ofNullable(quoteModel),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   content.getServerUuid());
+
+      Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+
+      if (insertResult.isPresent()) {
+        database.setTransactionSuccessful();
+      }
+    } catch (MmsException e) {
+      throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
+    } finally {
+      database.endTransaction();
+    }
+  }
+
   private void handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story reply.");
 
@@ -1492,6 +1579,7 @@ public final class MessageContentProcessor {
                                                                    System.currentTimeMillis(),
                                                                    StoryType.NONE,
                                                                    parentStoryId,
+                                                                   false,
                                                                    -1,
                                                                    0,
                                                                    false,
@@ -1549,6 +1637,7 @@ public final class MessageContentProcessor {
                                                                    receivedTime,
                                                                    StoryType.NONE,
                                                                    null,
+                                                                   false,
                                                                    -1,
                                                                    TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
                                                                    false,
@@ -1655,6 +1744,7 @@ public final class MessageContentProcessor {
                                                                  ThreadDatabase.DistributionTypes.DEFAULT,
                                                                  StoryType.NONE,
                                                                  null,
+                                                                 false,
                                                                  quote.orElse(null),
                                                                  sharedContacts.orElse(Collections.emptyList()),
                                                                  previews.orElse(Collections.emptyList()),
@@ -1849,6 +1939,7 @@ public final class MessageContentProcessor {
                                                                            ThreadDatabase.DistributionTypes.DEFAULT,
                                                                            StoryType.NONE,
                                                                            null,
+                                                                           false,
                                                                            null,
                                                                            Collections.emptyList(),
                                                                            Collections.emptyList(),

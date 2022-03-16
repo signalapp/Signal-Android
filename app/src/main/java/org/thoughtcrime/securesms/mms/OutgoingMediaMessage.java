@@ -33,6 +33,7 @@ public class OutgoingMediaMessage {
   private   final QuoteModel                outgoingQuote;
   private   final StoryType                 storyType;
   private   final ParentStoryId             parentStoryId;
+  private   final boolean                   isStoryReaction;
 
   private   final Set<NetworkFailure>      networkFailures       = new HashSet<>();
   private   final Set<IdentityKeyMismatch> identityKeyMismatches = new HashSet<>();
@@ -50,6 +51,7 @@ public class OutgoingMediaMessage {
                               int distributionType,
                               @NonNull StoryType storyType,
                               @Nullable ParentStoryId parentStoryId,
+                              boolean isStoryReaction,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
@@ -68,6 +70,7 @@ public class OutgoingMediaMessage {
     this.outgoingQuote         = outgoingQuote;
     this.storyType             = storyType;
     this.parentStoryId         = parentStoryId;
+    this.isStoryReaction       = isStoryReaction;
 
     this.contacts.addAll(contacts);
     this.linkPreviews.addAll(linkPreviews);
@@ -86,6 +89,7 @@ public class OutgoingMediaMessage {
                               int distributionType,
                               @NonNull StoryType storyType,
                               @Nullable ParentStoryId parentStoryId,
+                              boolean isStoryReaction,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews,
@@ -101,6 +105,7 @@ public class OutgoingMediaMessage {
          distributionType,
          storyType,
          parentStoryId,
+         isStoryReaction,
          outgoingQuote,
          contacts,
          linkPreviews,
@@ -121,6 +126,7 @@ public class OutgoingMediaMessage {
     this.outgoingQuote       = that.outgoingQuote;
     this.storyType           = that.storyType;
     this.parentStoryId       = that.parentStoryId;
+    this.isStoryReaction     = that.isStoryReaction;
 
     this.identityKeyMismatches.addAll(that.identityKeyMismatches);
     this.networkFailures.addAll(that.networkFailures);
@@ -141,6 +147,7 @@ public class OutgoingMediaMessage {
         distributionType,
         storyType,
         parentStoryId,
+        isStoryReaction,
         outgoingQuote,
         contacts,
         linkPreviews,
@@ -200,6 +207,10 @@ public class OutgoingMediaMessage {
 
   public @Nullable ParentStoryId getParentStoryId() {
     return parentStoryId;
+  }
+
+  public boolean isStoryReaction() {
+    return isStoryReaction;
   }
 
   public @Nullable QuoteModel getOutgoingQuote() {

@@ -1479,7 +1479,23 @@ public class MmsDatabase extends MessageDatabase {
           return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
         }
 
-        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, body, attachments, timestamp, subscriptionId, expiresIn, viewOnce, distributionType, storyType, parentStoryId, quote, contacts, previews, mentions, networkFailures, mismatches);
+        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient,
+                                                                body,
+                                                                attachments,
+                                                                timestamp,
+                                                                subscriptionId,
+                                                                expiresIn,
+                                                                viewOnce,
+                                                                distributionType,
+                                                                storyType,
+                                                                parentStoryId,
+                                                                Types.isStoryReaction(outboxType),
+                                                                quote,
+                                                                contacts,
+                                                                previews,
+                                                                mentions,
+                                                                networkFailures,
+                                                                mismatches);
 
         if (Types.isSecureType(outboxType)) {
           return new OutgoingSecureMediaMessage(message);
@@ -1675,6 +1691,10 @@ public class MmsDatabase extends MessageDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
+    if (retrieved.isStoryReaction()) {
+      type |= Types.SPECIAL_TYPE_STORY_REACTION;
+    }
+
     return insertMessageInbox(retrieved, "", threadId, type);
   }
 
@@ -1777,6 +1797,10 @@ public class MmsDatabase extends MessageDatabase {
 
     if (message.isExpirationUpdate()) {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
+    }
+
+    if (message.isStoryReaction()) {
+      type |= Types.SPECIAL_TYPE_STORY_REACTION;
     }
 
     Map<RecipientId, EarlyReceiptCache.Receipt> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(message.getSentTimeMillis());

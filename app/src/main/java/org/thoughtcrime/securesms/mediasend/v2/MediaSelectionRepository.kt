@@ -225,6 +225,7 @@ class MediaSelectionRepository(context: Context) {
         ThreadDatabase.DistributionTypes.DEFAULT,
         storyType,
         null,
+        false,
         null,
         emptyList(),
         emptyList(),

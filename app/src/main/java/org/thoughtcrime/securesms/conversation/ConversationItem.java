@@ -81,6 +81,7 @@ import org.thoughtcrime.securesms.components.Outliner;
 import org.thoughtcrime.securesms.components.PlaybackSpeedToggleTextView;
 import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.SharedContactView;
+import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -190,6 +191,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
             private   AlertView                  alertView;
             protected ReactionsConversationView  reactionsView;
             protected BadgeImageView             badgeImageView;
+            private   View                       storyReactionLabelWrapper;
+            private   TextView                   storyReactionLabel;
+            private   EmojiImageView             storyReactionEmoji;
 
   private @NonNull  Set<MultiselectPart>                    batchSelected = new HashSet<>();
   private @NonNull  Outliner                                outliner      = new Outliner();
@@ -271,28 +275,31 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     initializeAttributes();
 
-    this.bodyText                =                    findViewById(R.id.conversation_item_body);
-    this.footer                  =                    findViewById(R.id.conversation_item_footer);
-    this.stickerFooter           =                    findViewById(R.id.conversation_item_sticker_footer);
-    this.groupSender             =                    findViewById(R.id.group_message_sender);
-    this.alertView               =                    findViewById(R.id.indicators_parent);
-    this.contactPhoto            =                    findViewById(R.id.contact_photo);
-    this.contactPhotoHolder      =                    findViewById(R.id.contact_photo_container);
-    this.bodyBubble              =                    findViewById(R.id.body_bubble);
-    this.mediaThumbnailStub      = new NullableStub<>(findViewById(R.id.image_view_stub));
-    this.audioViewStub           =         new Stub<>(findViewById(R.id.audio_view_stub));
-    this.documentViewStub        =         new Stub<>(findViewById(R.id.document_view_stub));
-    this.sharedContactStub       =         new Stub<>(findViewById(R.id.shared_contact_view_stub));
-    this.linkPreviewStub         =         new Stub<>(findViewById(R.id.link_preview_stub));
-    this.stickerStub             =         new Stub<>(findViewById(R.id.sticker_view_stub));
-    this.revealableStub          =         new Stub<>(findViewById(R.id.revealable_view_stub));
-    this.callToActionStub        =           ViewUtil.findStubById(this, R.id.conversation_item_call_to_action_stub);
-    this.groupSenderHolder       =                    findViewById(R.id.group_sender_holder);
-    this.quoteView               =                    findViewById(R.id.quote_view);
-    this.reply                   =                    findViewById(R.id.reply_icon_wrapper);
-    this.replyIcon               =                    findViewById(R.id.reply_icon);
-    this.reactionsView           =                    findViewById(R.id.reactions_view);
-    this.badgeImageView          =                    findViewById(R.id.badge);
+    this.bodyText                  =                    findViewById(R.id.conversation_item_body);
+    this.footer                    =                    findViewById(R.id.conversation_item_footer);
+    this.stickerFooter             =                    findViewById(R.id.conversation_item_sticker_footer);
+    this.groupSender               =                    findViewById(R.id.group_message_sender);
+    this.alertView                 =                    findViewById(R.id.indicators_parent);
+    this.contactPhoto              =                    findViewById(R.id.contact_photo);
+    this.contactPhotoHolder        =                    findViewById(R.id.contact_photo_container);
+    this.bodyBubble                =                    findViewById(R.id.body_bubble);
+    this.mediaThumbnailStub        = new NullableStub<>(findViewById(R.id.image_view_stub));
+    this.audioViewStub             =         new Stub<>(findViewById(R.id.audio_view_stub));
+    this.documentViewStub          =         new Stub<>(findViewById(R.id.document_view_stub));
+    this.sharedContactStub         =         new Stub<>(findViewById(R.id.shared_contact_view_stub));
+    this.linkPreviewStub           =         new Stub<>(findViewById(R.id.link_preview_stub));
+    this.stickerStub               =         new Stub<>(findViewById(R.id.sticker_view_stub));
+    this.revealableStub            =         new Stub<>(findViewById(R.id.revealable_view_stub));
+    this.callToActionStub          =           ViewUtil.findStubById(this, R.id.conversation_item_call_to_action_stub);
+    this.groupSenderHolder         =                    findViewById(R.id.group_sender_holder);
+    this.quoteView                 =                    findViewById(R.id.quote_view);
+    this.reply                     =                    findViewById(R.id.reply_icon_wrapper);
+    this.replyIcon                 =                    findViewById(R.id.reply_icon);
+    this.reactionsView             =                    findViewById(R.id.reactions_view);
+    this.badgeImageView            =                    findViewById(R.id.badge);
+    this.storyReactionLabelWrapper =                    findViewById(R.id.story_reacted_label_holder);
+    this.storyReactionLabel        =                    findViewById(R.id.story_reacted_label);
+    this.storyReactionEmoji        =                    findViewById(R.id.story_reaction_emoji);
 
     setOnClickListener(new ClickListener(null));
 
@@ -355,6 +362,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setReactions(messageRecord);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread, hasWallpaper);
+    setStoryReactionLabel(messageRecord);
 
     if (audioViewStub.resolved()) {
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
@@ -454,6 +462,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (!updatingFooter                                                &&
         getActiveFooter(messageRecord) == footer                       &&
         !hasAudio(messageRecord)                                       &&
+        !isStoryReaction(messageRecord)                                &&
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
         !bodyText.isJumbomoji()                                        &&
         conversationMessage.getBottomButton() == null                  &&
@@ -493,8 +502,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
-    if (!updatingFooter && ViewUtil.getTopMargin(footer) != defaultTopMargin) {
-      ViewUtil.setTopMargin(footer, defaultTopMargin);
+    int defaultTopMarginForRecord = getDefaultTopMarginForRecord(messageRecord, defaultTopMargin, defaultBottomMargin);
+    if (!updatingFooter && ViewUtil.getTopMargin(footer) != defaultTopMarginForRecord) {
+      ViewUtil.setTopMargin(footer, defaultTopMarginForRecord);
       ViewUtil.setBottomMargin(footer, defaultBottomMargin);
       needsMeasure = true;
     }
@@ -535,6 +545,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else {
       measureCalls = 0;
       updatingFooter = false;
+    }
+  }
+
+  private int getDefaultTopMarginForRecord(@NonNull MessageRecord messageRecord, int defaultTopMargin, int defaultBottomMargin) {
+    if (isStoryReaction(messageRecord)) {
+      return defaultBottomMargin;
+    } else {
+      return defaultTopMargin;
     }
   }
 
@@ -837,6 +855,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
+  private boolean isStoryReaction(MessageRecord messageRecord) {
+    return MessageRecordUtil.isStoryReaction(messageRecord);
+  }
+
   private boolean isCaptionlessMms(MessageRecord messageRecord) {
     return MessageRecordUtil.isCaptionlessMms(messageRecord, context);
   }
@@ -914,7 +936,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       bodyText.setText(italics);
       bodyText.setVisibility(View.VISIBLE);
       bodyText.setOverflowText(null);
-    } else if (isCaptionlessMms(messageRecord)) {
+    } else if (isCaptionlessMms(messageRecord) || isStoryReaction(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
       Spannable styledText = conversationMessage.getDisplayBody(getContext());
@@ -1521,6 +1543,34 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       } else {
         activeFooter.disableBubbleBackground();
       }
+    }
+  }
+
+  private void setStoryReactionLabel(@NonNull MessageRecord record) {
+    if (isStoryReaction(record)) {
+      storyReactionLabelWrapper.setVisibility(View.VISIBLE);
+      storyReactionLabel.setTextColor(record.isOutgoing() ? colorizer.getOutgoingBodyTextColor(context) : ContextCompat.getColor(context, R.color.signal_text_primary));
+      storyReactionLabel.setText(getStoryReactionLabelText(messageRecord));
+      storyReactionEmoji.setImageEmoji(record.getBody());
+      storyReactionEmoji.setVisibility(View.VISIBLE);
+    } else if (storyReactionLabelWrapper != null) {
+      storyReactionLabelWrapper.setVisibility(View.GONE);
+      storyReactionEmoji.setVisibility(View.GONE);
+    }
+  }
+
+  private @NonNull String getStoryReactionLabelText(@NonNull MessageRecord messageRecord) {
+    if (hasQuote(messageRecord)) {
+      MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
+      RecipientId      author           = mmsMessageRecord.getQuote().getAuthor();
+
+      if (author.equals(Recipient.self().getId())) {
+        return context.getString(R.string.ConversationItem__s_dot_story, context.getString(R.string.QuoteView_you));
+      } else {
+        return context.getString(R.string.ConversationItem__s_dot_story, Recipient.resolved(author).getDisplayName(context));
+      }
+    } else {
+      return context.getString(R.string.ConversationItem__reacted_to_a_story);
     }
   }
 

@@ -2970,7 +2970,7 @@ public class ConversationParentFragment extends Fragment
     long                 expiresIn     = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     QuoteModel           quote         = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
     List<Mention>        mentions      = new ArrayList<>(result.getMentions());
-    OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, result.getStoryType(), null, quote, Collections.emptyList(), Collections.emptyList(), mentions);
+    OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, result.getStoryType(), null, false, quote, Collections.emptyList(), Collections.emptyList(), mentions);
     OutgoingMediaMessage secureMessage = new OutgoingSecureMediaMessage(message);
 
     final Context context = requireContext().getApplicationContext();
@@ -3046,7 +3046,7 @@ public class ConversationParentFragment extends Fragment
       }
     }
 
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId), slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, viewOnce, distributionType, StoryType.NONE, null, quote, contacts, previews, mentions);
+    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId), slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, viewOnce, distributionType, StoryType.NONE, null, false, quote, contacts, previews, mentions);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = requireContext().getApplicationContext();

@@ -82,6 +82,7 @@ class TextStoryPostSendRepository(context: Context) {
           ThreadDatabase.DistributionTypes.DEFAULT,
           storyType.toTextStoryType(),
           null,
+          false,
           null,
           emptyList(),
           listOfNotNull(linkPreview),

@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -50,7 +51,8 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     PREVIEW(0),
     OUTGOING(1),
     INCOMING(2),
-    STORY_REPLY(3);
+    STORY_REPLY(3),
+    STORY_REPLY_PREVIEW(4);
 
     private final int code;
 
@@ -178,7 +180,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
       int radius = getResources().getDimensionPixelOffset(R.dimen.quote_corner_radius_preview);
       cornerMask.setTopLeftRadius(radius);
       cornerMask.setTopRightRadius(radius);
-    } else if (messageType == MessageType.STORY_REPLY) {
+    } else if (isStoryReply()) {
       thumbWidth = getResources().getDimensionPixelOffset(R.dimen.quote_story_thumb_width);
       thumbHeight = getResources().getDimensionPixelOffset(R.dimen.quote_story_thumb_height);
     }
@@ -250,9 +252,9 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
   private void setQuoteAuthor(@NonNull Recipient author) {
     boolean outgoing = messageType != MessageType.INCOMING;
-    boolean preview  = messageType == MessageType.PREVIEW || messageType == MessageType.STORY_REPLY;
+    boolean preview  = messageType == MessageType.PREVIEW || messageType == MessageType.STORY_REPLY_PREVIEW;
 
-    if (messageType == MessageType.STORY_REPLY) {
+    if (isStoryReply()) {
       authorView.setText(author.isSelf() ? getContext().getString(R.string.QuoteView_your_story)
                                          : getContext().getString(R.string.QuoteView_s_story, author.getDisplayName(getContext())));
     } else {
@@ -264,23 +266,32 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     mainView.setBackgroundColor(ContextCompat.getColor(getContext(), preview ? R.color.quote_preview_background : R.color.quote_view_background));
   }
 
-  private void setQuoteText(@Nullable CharSequence body, @NonNull SlideDeck attachments) {
-    boolean isTextStory = !attachments.containsMediaSlide() && messageType == MessageType.STORY_REPLY;
+  private boolean isStoryReply() {
+    return messageType == MessageType.STORY_REPLY || messageType == MessageType.STORY_REPLY_PREVIEW;
+  }
 
-    if (!isTextStory && (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide())) {
+  private void setQuoteText(@Nullable CharSequence body, @NonNull SlideDeck attachments) {
+    boolean isTextStory = !attachments.containsMediaSlide() && isStoryReply();
+
+    if (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide()) {
+      if (isTextStory && body != null) {
+        try {
+          bodyView.setText(StoryTextPostModel.parseFrom(body.toString()).getText());
+        } catch (Exception e) {
+          Log.w(TAG, "Could not parse body of text post.", e);
+          bodyView.setText("");
+        }
+      } else {
+        bodyView.setText(body == null ? "" : body);
+      }
+
       bodyView.setVisibility(VISIBLE);
-      bodyView.setText(body == null ? "" : body);
       mediaDescriptionText.setVisibility(GONE);
       return;
     }
 
     bodyView.setVisibility(GONE);
     mediaDescriptionText.setVisibility(VISIBLE);
-
-    if (isTextStory) {
-      // TODO [alex] -- Media description.
-      return;
-    }
 
     Slide audioSlide    = attachments.getSlides().stream().filter(Slide::hasAudio).findFirst().orElse(null);
     Slide documentSlide = attachments.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
@@ -314,7 +325,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   }
 
   private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull CharSequence body, @NonNull SlideDeck slideDeck) {
-    if (!attachments.containsMediaSlide() && messageType == MessageType.STORY_REPLY) {
+    if (!attachments.containsMediaSlide() && isStoryReply()) {
       StoryTextPostModel model = StoryTextPostModel.parseFrom(body.toString());
       attachmentVideoOverlayView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);

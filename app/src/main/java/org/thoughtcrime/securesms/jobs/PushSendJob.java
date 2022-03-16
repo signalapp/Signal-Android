@@ -375,6 +375,17 @@ public abstract class PushSendJob extends SendJob {
     }
   }
 
+  protected Optional<SignalServiceDataMessage.Reaction> getStoryReactionFor(@NonNull OutgoingMediaMessage message, @NonNull SignalServiceDataMessage.StoryContext storyContext) {
+    if (message.isStoryReaction()) {
+      return Optional.of(new SignalServiceDataMessage.Reaction(
+                         message.getBody(),
+                         false,
+                         new SignalServiceAddress(storyContext.getAuthorServiceId()), storyContext.getSentTimestamp()));
+    } else {
+      return Optional.empty();
+    }
+  }
+
   List<SharedContact> getSharedContactsFor(OutgoingMediaMessage mediaMessage) {
     List<SharedContact> sharedContacts = new LinkedList<>();
 

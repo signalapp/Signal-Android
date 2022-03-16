@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:maxHeight="?actionBarSize">
+
+    <org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
+        android:id="@+id/reaction_bar"
+        android:layout_width="@dimen/reaction_scrubber_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp" />
+</FrameLayout>

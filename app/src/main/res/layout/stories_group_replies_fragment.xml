@@ -36,10 +36,4 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-    <org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
-        android:id="@+id/reaction_bar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </androidx.constraintlayout.widget.ConstraintLayout>

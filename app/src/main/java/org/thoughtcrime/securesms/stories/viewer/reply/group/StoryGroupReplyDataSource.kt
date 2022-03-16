@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.stories.viewer.reply.group
 
-import android.database.Cursor
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.MmsDatabase
+import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 
@@ -20,7 +20,7 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
       cursor.moveToPosition(start - 1)
       val reader = MmsDatabase.Reader(cursor)
       while (cursor.moveToNext() && cursor.position < start + length) {
-        results.add(readRowFromRecord(reader.current))
+        results.add(readRowFromRecord(reader.current as MmsMessageRecord))
       }
     }
 
@@ -35,21 +35,30 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
     return data.key
   }
 
-  private fun readRowFromRecord(record: MessageRecord): StoryGroupReplyItemData {
-    return readMessageRecordFromCursor(record)
+  private fun readRowFromRecord(record: MmsMessageRecord): StoryGroupReplyItemData {
+    return if (MmsSmsColumns.Types.isStoryReaction(record.type)) {
+      readReactionFromRecord(record)
+    } else {
+      readTextFromRecord(record)
+    }
   }
 
-  private fun readReactionFromCursor(cursor: Cursor): StoryGroupReplyItemData {
-    throw NotImplementedError("TODO -- Need to know what the special story reaction record looks like.")
-  }
-
-  private fun readMessageRecordFromCursor(messageRecord: MessageRecord): StoryGroupReplyItemData {
+  private fun readReactionFromRecord(record: MmsMessageRecord): StoryGroupReplyItemData {
     return StoryGroupReplyItemData(
-      key = StoryGroupReplyItemData.Key.Text(messageRecord.id),
-      sender = if (messageRecord.isOutgoing) Recipient.self() else messageRecord.individualRecipient,
-      sentAtMillis = messageRecord.dateSent,
+      key = StoryGroupReplyItemData.Key.Reaction(record.id),
+      sender = if (record.isOutgoing) Recipient.self() else record.individualRecipient,
+      sentAtMillis = record.dateSent,
+      replyBody = StoryGroupReplyItemData.ReplyBody.Reaction(record.body)
+    )
+  }
+
+  private fun readTextFromRecord(record: MmsMessageRecord): StoryGroupReplyItemData {
+    return StoryGroupReplyItemData(
+      key = StoryGroupReplyItemData.Key.Text(record.id),
+      sender = if (record.isOutgoing) Recipient.self() else record.individualRecipient,
+      sentAtMillis = record.dateSent,
       replyBody = StoryGroupReplyItemData.ReplyBody.Text(
-        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), messageRecord)
+        ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record)
       )
     )
   }

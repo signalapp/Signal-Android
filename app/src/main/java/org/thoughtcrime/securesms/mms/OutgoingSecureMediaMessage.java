@@ -25,12 +25,13 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                     boolean viewOnce,
                                     @NonNull StoryType storyType,
                                     @Nullable ParentStoryId parentStoryId,
+                                    boolean isStoryReaction,
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts,
                                     @NonNull List<LinkPreview> previews,
                                     @NonNull List<Mention> mentions)
   {
-    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, storyType, parentStoryId, quote, contacts, previews, mentions, Collections.emptySet(), Collections.emptySet());
+    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, storyType, parentStoryId, isStoryReaction, quote, contacts, previews, mentions, Collections.emptySet(), Collections.emptySet());
   }
 
   public OutgoingSecureMediaMessage(OutgoingMediaMessage base) {
@@ -53,6 +54,7 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           isViewOnce(),
                                           getStoryType(),
                                           getParentStoryId(),
+                                          isStoryReaction(),
                                           getOutgoingQuote(),
                                           getSharedContacts(),
                                           getLinkPreviews(),
@@ -69,6 +71,7 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           isViewOnce(),
                                           getStoryType(),
                                           getParentStoryId(),
+                                          isStoryReaction(),
                                           getOutgoingQuote(),
                                           getSharedContacts(),
                                           getLinkPreviews(),

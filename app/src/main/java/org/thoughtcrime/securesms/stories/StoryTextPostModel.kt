@@ -25,6 +25,8 @@ data class StoryTextPostModel(
     messageDigest.update(storyTextPost.toByteArray())
   }
 
+  val text: String = storyTextPost.body
+
   companion object {
     @JvmStatic
     fun parseFrom(body: String): StoryTextPostModel {

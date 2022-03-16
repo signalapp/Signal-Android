@@ -5,13 +5,13 @@
     android:id="@+id/conversation_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingEnd="@dimen/conversation_individual_right_gutter"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:focusable="true"
     android:nextFocusLeft="@id/container"
     android:nextFocusRight="@id/embedded_text_editor"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/conversation_individual_right_gutter">
 
     <FrameLayout
         android:id="@+id/reply_icon_wrapper"
@@ -26,9 +26,9 @@
             android:id="@+id/reply_icon"
             android:layout_width="@dimen/conversation_item_reply_size"
             android:layout_height="@dimen/conversation_item_reply_size"
+            android:layout_gravity="center"
             android:padding="9dp"
             android:tint="@color/signal_icon_tint_primary"
-            android:layout_gravity="center"
             app:srcCompat="@drawable/ic_reply_24" />
 
     </FrameLayout>
@@ -45,6 +45,31 @@
         android:clipToPadding="false"
         android:orientation="vertical"
         tools:backgroundTint="@color/core_grey_05">
+
+        <LinearLayout
+            android:id="@+id/story_reacted_label_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="-3dp"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/message_bubble_horizontal_padding"
+            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/story_reacted_label"
+                style="@style/TextAppearance.Signal.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/signal_text_secondary"
+                tools:text="Reacted to your story" />
+
+        </LinearLayout>
 
         <org.thoughtcrime.securesms.components.QuoteView
             android:id="@+id/quote_view"
@@ -127,8 +152,8 @@
             android:textColor="@color/conversation_item_sent_text_primary_color"
             android:textColorLink="@color/conversation_item_sent_text_primary_color"
             app:emoji_maxLength="1000"
-            app:scaleEmojis="true"
             app:measureLastLine="true"
+            app:scaleEmojis="true"
             tools:text="Mango pickle lorem ipsum" />
 
         <org.thoughtcrime.securesms.components.ConversationItemFooter
@@ -167,6 +192,18 @@
 
     </org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble>
 
+    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+        android:id="@+id/story_reaction_emoji"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignEnd="@id/body_bubble"
+        android:layout_alignBottom="@id/body_bubble"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"
+        tools:src="@drawable/ic_emoji"
+        tools:visibility="visible" />
+
     <org.thoughtcrime.securesms.components.AlertView
         android:id="@+id/indicators_parent"
         android:layout_width="wrap_content"
@@ -174,8 +211,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
-        android:padding="8dp"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:padding="8dp" />
 
     <org.thoughtcrime.securesms.reactions.ReactionsConversationView
         android:id="@+id/reactions_view"

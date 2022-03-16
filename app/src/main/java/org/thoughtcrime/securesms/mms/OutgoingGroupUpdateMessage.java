@@ -41,6 +41,7 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
           viewOnce,
           StoryType.NONE,
           null,
+          false,
           quote,
           contacts,
           previews,

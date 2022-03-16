@@ -1,13 +1,10 @@
 package org.thoughtcrime.securesms.stories.viewer.text
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import org.signal.core.util.DimensionUnit
@@ -17,9 +14,8 @@ import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.stories.StoryTextPostView
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.Projection
+import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.fragments.requireListener
-import kotlin.math.roundToInt
 
 class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview_fragment) {
 
@@ -85,29 +81,7 @@ class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview
 
     contentView.layout(0, 0, contentView.measuredWidth, contentView.measuredHeight)
 
-    val alertDialog = AlertDialog.Builder(requireContext())
-      .setView(contentView)
-      .create()
-
-    alertDialog.window!!.attributes = alertDialog.window!!.attributes.apply {
-      val rootProjection = Projection.relativeToViewRoot(view.rootView, null)
-      val viewProjection = Projection.relativeToViewRoot(view, null).translateY(view.translationY)
-
-      val dialogBottom = rootProjection.height / 2f + contentView.measuredHeight / 2f
-      val linkPreviewViewTop = viewProjection.y
-
-      rootProjection.release()
-      viewProjection.release()
-
-      val delta = linkPreviewViewTop - dialogBottom
-      this.y = delta.roundToInt()
-    }
-    alertDialog.window!!.setDimAmount(0f)
-    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    alertDialog.setOnDismissListener {
-      requireListener<Callback>().setIsDisplayingLinkPreviewTooltip(false)
-    }
-    alertDialog.show()
+    displayInDialogAboveAnchor(view, contentView, windowDim = 0f)
   }
 
   interface Callback {

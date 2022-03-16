@@ -206,9 +206,9 @@ public class PushMediaSendJob extends PushSendJob {
       SignalServiceMessageSender                 messageSender       = ApplicationDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address             = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       List<Attachment>                           attachments         = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
-      List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
-      Optional<byte[]>                           profileKey         = getProfileKey(messageRecipient);
-      Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
+      List<SignalServiceAttachment>              serviceAttachments  = getAttachmentPointersFor(attachments);
+      Optional<byte[]>                           profileKey          = getProfileKey(messageRecipient);
+      Optional<SignalServiceDataMessage.Sticker> sticker             = getStickerFor(message);
       List<SharedContact>                        sharedContacts      = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews            = getPreviewsFor(message);
       SignalServiceDataMessage.Builder           mediaMessageBuilder = SignalServiceDataMessage.newBuilder()
@@ -226,7 +226,15 @@ public class PushMediaSendJob extends PushSendJob {
       if (message.getParentStoryId() != null) {
         try {
           MessageRecord storyRecord = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().asMessageId().getId());
-          mediaMessageBuilder.withStoryContext(new SignalServiceDataMessage.StoryContext(address.getServiceId(), storyRecord.getDateSent()));
+
+          SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(address.getServiceId(), storyRecord.getDateSent());
+          mediaMessageBuilder.withStoryContext(storyContext);
+
+          Optional<SignalServiceDataMessage.Reaction> reaction = getStoryReactionFor(message, storyContext);
+          if (reaction.isPresent()) {
+            mediaMessageBuilder.withReaction(reaction.get());
+            mediaMessageBuilder.withBody(null);
+          }
         } catch (NoSuchMessageException e) {
           // The story has probably expired
           // TODO [stories] check what should happen in this case

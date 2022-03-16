@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPager
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
 import org.thoughtcrime.securesms.util.DeleteDialog
+import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -49,7 +50,6 @@ class StoryGroupReplyFragment :
   StoryViewsAndRepliesPagerChild,
   BottomSheetBehaviorDelegate,
   StoryReplyComposer.Callback,
-  StoryReactionBar.Callback,
   EmojiKeyboardCallback,
   ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
@@ -79,12 +79,10 @@ class StoryGroupReplyFragment :
 
   private lateinit var recyclerView: RecyclerView
   private lateinit var composer: StoryReplyComposer
-  private lateinit var reactionBar: StoryReactionBar
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     recyclerView = view.findViewById(R.id.recycler)
     composer = view.findViewById(R.id.composer)
-    reactionBar = view.findViewById(R.id.reaction_bar)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
 
@@ -98,7 +96,6 @@ class StoryGroupReplyFragment :
     StoryGroupReplyItem.register(adapter)
 
     composer.callback = this
-    reactionBar.callback = this
 
     onPageSelected(findListener<StoryViewsAndRepliesPagerParent>()?.selectedChild ?: StoryViewsAndRepliesPagerParent.Child.REPLIES)
 
@@ -189,7 +186,6 @@ class StoryGroupReplyFragment :
     val inputProjection = Projection.relativeToViewRoot(composer, null)
     val parentProjection = Projection.relativeToViewRoot(bottomSheet.parent as ViewGroup, null)
     composer.translationY = (parentProjection.height + parentProjection.y - (inputProjection.y + inputProjection.height))
-    reactionBar.translationY = composer.translationY
     inputProjection.release()
     parentProjection.release()
   }
@@ -204,22 +200,37 @@ class StoryGroupReplyFragment :
   }
 
   override fun onPickReactionClicked() {
-    reactionBar.show()
+    displayInDialogAboveAnchor(composer.reactionButton, R.layout.stories_reaction_bar_layout) { dialog, view ->
+      view.findViewById<StoryReactionBar>(R.id.reaction_bar).apply {
+        callback = object : StoryReactionBar.Callback {
+          override fun onTouchOutsideOfReactionBar() {
+            dialog.dismiss()
+          }
+
+          override fun onReactionSelected(emoji: String) {
+            dialog.dismiss()
+            sendReaction(emoji)
+          }
+
+          override fun onOpenReactionPicker() {
+            dialog.dismiss()
+            ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
+          }
+        }
+        animateIn()
+      }
+    }
   }
 
   override fun onEmojiSelected(emoji: String?) {
     composer.onEmojiSelected(emoji)
   }
 
-  override fun onReactionSelected(emoji: String) {
+  private fun sendReaction(emoji: String) {
     lifecycleDisposable += StoryGroupReplySender.sendReaction(requireContext(), storyId, emoji).subscribe()
   }
 
   override fun onKeyEvent(keyEvent: KeyEvent?) = Unit
-
-  override fun onOpenReactionPicker() {
-    ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
-  }
 
   override fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard) {
     keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
@@ -238,7 +249,7 @@ class StoryGroupReplyFragment :
   }
 
   override fun onReactWithAnyEmojiSelected(emoji: String) {
-    onReactionSelected(emoji)
+    sendReaction(emoji)
   }
 
   override fun onHeightChanged(height: Int) {
