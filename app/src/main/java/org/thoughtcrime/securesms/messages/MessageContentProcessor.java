@@ -1338,6 +1338,11 @@ public final class MessageContentProcessor {
       return;
     }
 
+    if (!(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
+      warn(content.getTimestamp(), "Dropping story from an untrusted user.");
+      return;
+    }
+
     Optional<InsertResult> insertResult;
 
     MessageDatabase database = SignalDatabase.mms();
