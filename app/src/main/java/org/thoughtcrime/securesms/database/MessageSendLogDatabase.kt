@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
+import net.zetetic.database.sqlcipher.SQLiteConstraintException
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -46,6 +48,8 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SignalDatabase?) : Database(context, databaseHelper) {
 
   companion object {
+    private val TAG = Log.tag(MessageSendLogDatabase::class.java)
+
     @JvmField
     val CREATE_TABLE: Array<String> = arrayOf(PayloadTable.CREATE_TABLE, RecipientTable.CREATE_TABLE, MessageTable.CREATE_TABLE)
 
@@ -193,8 +197,8 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
     return insert(recipientDevices, sentTimestamp, content, contentHint, listOf(messageId))
   }
 
-  fun addRecipientToExistingEntryIfPossible(payloadId: Long, recipientId: RecipientId, sendMessageResult: SendMessageResult) {
-    if (!FeatureFlags.retryReceipts()) return
+  fun addRecipientToExistingEntryIfPossible(payloadId: Long, recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId): Long {
+    if (!FeatureFlags.retryReceipts()) return payloadId
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
       val db = databaseHelper.signalWritableDatabase
@@ -210,11 +214,19 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
 
           db.insert(RecipientTable.TABLE_NAME, null, recipientValues)
         }
+
         db.setTransactionSuccessful()
+      } catch (e: SQLiteConstraintException) {
+        Log.w(TAG, "Failed to append to existing entry. Creating a new one.")
+        val payloadId = insertIfPossible(recipientId, sentTimestamp, sendMessageResult, contentHint, messageId)
+        db.setTransactionSuccessful()
+        return payloadId
       } finally {
         db.endTransaction()
       }
     }
+
+    return payloadId
   }
 
   private fun insert(recipients: List<RecipientDevice>, dateSent: Long, content: SignalServiceProtos.Content, contentHint: ContentHint, messageIds: List<MessageId>): Long {
