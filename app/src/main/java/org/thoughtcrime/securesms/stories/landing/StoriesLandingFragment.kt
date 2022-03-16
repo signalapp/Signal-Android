@@ -127,6 +127,9 @@ class StoriesLandingFragment :
       onRowClick = {
         if (it.data.storyRecipient.isMyStory) {
           startActivity(Intent(requireContext(), MyStoriesActivity::class.java))
+        } else if (it.data.primaryStory.messageRecord.isOutgoing && it.data.primaryStory.messageRecord.isFailed) {
+          lifecycleDisposable += viewModel.resend(it.data.primaryStory.messageRecord).subscribe()
+          Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
         } else {
           startActivity(StoryViewerActivity.createIntent(requireContext(), it.data.storyRecipient.id))
         }

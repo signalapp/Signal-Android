@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stories.my
 
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -56,8 +57,13 @@ class MyStoriesFragment : DSLSettingsFragment(
               MyStoriesItem.Model(
                 distributionStory = conversationMessage,
                 onClick = {
-                  // TODO [stories] pass in something more specific to start with the correct progress
-                  startActivity(StoryViewerActivity.createIntent(requireContext(), Recipient.self().id))
+                  if (it.distributionStory.messageRecord.isOutgoing && it.distributionStory.messageRecord.isFailed) {
+                    lifecycleDisposable += viewModel.resend(it.distributionStory.messageRecord).subscribe()
+                    Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
+                  } else {
+                    // TODO [stories] pass in something more specific to start with the correct progress
+                    startActivity(StoryViewerActivity.createIntent(requireContext(), Recipient.self().id))
+                  }
                 },
                 onSaveClick = {
                   StoryContextMenu.save(requireContext(), it.distributionStory.messageRecord)

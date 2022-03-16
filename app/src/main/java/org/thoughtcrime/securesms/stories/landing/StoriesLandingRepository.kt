@@ -14,10 +14,17 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.sms.MessageSender
 
 class StoriesLandingRepository(context: Context) {
 
   private val context = context.applicationContext
+
+  fun resend(story: MessageRecord): Completable {
+    return Completable.fromAction {
+      MessageSender.resend(context, story)
+    }.subscribeOn(Schedulers.io())
+  }
 
   fun getStories(): Observable<List<StoriesLandingItemData>> {
     return Observable.create<Observable<List<StoriesLandingItemData>>> { emitter ->

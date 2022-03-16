@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -29,6 +30,10 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
 
   override fun onCleared() {
     disposables.clear()
+  }
+
+  fun resend(story: MessageRecord): Completable {
+    return storiesLandingRepository.resend(story)
   }
 
   fun setHideStory(sender: Recipient, hide: Boolean): Completable {

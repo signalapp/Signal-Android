@@ -1,17 +1,26 @@
 package org.thoughtcrime.securesms.stories.my
 
 import android.content.Context
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sms.MessageSender
 
 class MyStoriesRepository(context: Context) {
 
   private val context = context.applicationContext
+
+  fun resend(story: MessageRecord): Completable {
+    return Completable.fromAction {
+      MessageSender.resend(context, story)
+    }.subscribeOn(Schedulers.io())
+  }
 
   fun getMyStories(): Observable<List<MyStoriesState.DistributionSet>> {
     return Observable.create { emitter ->
