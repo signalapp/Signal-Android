@@ -21,17 +21,22 @@ class StoryViewerActivity : PassphraseRequiredActivity() {
 
     if (savedInstanceState == null) {
       supportFragmentManager.beginTransaction()
-        .replace(R.id.fragment_container, StoryViewerFragment.create(intent.getParcelableExtra(ARG_START_RECIPIENT_ID)!!))
+        .replace(R.id.fragment_container, StoryViewerFragment.create(
+          intent.getParcelableExtra(ARG_START_RECIPIENT_ID)!!,
+          intent.getLongExtra(ARG_START_STORY_ID, -1L)
+        ))
         .commit()
     }
   }
 
   companion object {
     private const val ARG_START_RECIPIENT_ID = "start.recipient.id"
+    private const val ARG_START_STORY_ID = "start.story.id"
 
-    fun createIntent(context: Context, storyId: RecipientId): Intent {
+    fun createIntent(context: Context, recipientId: RecipientId, storyId: Long = -1L): Intent {
       return Intent(context, StoryViewerActivity::class.java)
-        .putExtra(ARG_START_RECIPIENT_ID, storyId)
+        .putExtra(ARG_START_RECIPIENT_ID, recipientId)
+        .putExtra(ARG_START_STORY_ID, storyId)
     }
   }
 }

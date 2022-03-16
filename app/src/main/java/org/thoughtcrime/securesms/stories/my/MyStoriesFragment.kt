@@ -61,8 +61,13 @@ class MyStoriesFragment : DSLSettingsFragment(
                     lifecycleDisposable += viewModel.resend(it.distributionStory.messageRecord).subscribe()
                     Toast.makeText(requireContext(), R.string.message_recipients_list_item__resend, Toast.LENGTH_SHORT).show()
                   } else {
-                    // TODO [stories] pass in something more specific to start with the correct progress
-                    startActivity(StoryViewerActivity.createIntent(requireContext(), Recipient.self().id))
+                    val recipientId = if (it.distributionStory.messageRecord.recipient.isGroup) {
+                      it.distributionStory.messageRecord.recipient.id
+                    } else {
+                      Recipient.self().id
+                    }
+
+                    startActivity(StoryViewerActivity.createIntent(requireContext(), recipientId, conversationMessage.messageRecord.id))
                   }
                 },
                 onSaveClick = {

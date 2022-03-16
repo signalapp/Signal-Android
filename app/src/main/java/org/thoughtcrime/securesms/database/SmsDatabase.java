@@ -1395,7 +1395,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull MessageDatabase.Reader getAllOutgoingStories() {
+  public @NonNull MessageDatabase.Reader getAllOutgoingStories(boolean reverse) {
     throw new UnsupportedOperationException();
   }
 

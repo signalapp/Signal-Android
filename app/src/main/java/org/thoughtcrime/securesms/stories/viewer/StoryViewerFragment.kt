@@ -27,10 +27,13 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
   private val storyRecipientId: RecipientId
     get() = requireArguments().getParcelable(ARG_START_RECIPIENT_ID)!!
 
+  private val storyId: Long
+    get() = requireArguments().getLong(ARG_START_STORY_ID, -1L)
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     storyPager = view.findViewById(R.id.story_item_pager)
 
-    val adapter = StoryViewerPagerAdapter(this)
+    val adapter = StoryViewerPagerAdapter(this, storyId)
     storyPager.adapter = adapter
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -77,11 +80,13 @@ class StoryViewerFragment : Fragment(R.layout.stories_viewer_fragment), StoryVie
 
   companion object {
     private const val ARG_START_RECIPIENT_ID = "start.recipient.id"
+    private const val ARG_START_STORY_ID = "start.story.id"
 
-    fun create(storyRecipientId: RecipientId): Fragment {
+    fun create(storyRecipientId: RecipientId, storyId: Long): Fragment {
       return StoryViewerFragment().apply {
         arguments = Bundle().apply {
           putParcelable(ARG_START_RECIPIENT_ID, storyRecipientId)
+          putLong(ARG_START_STORY_ID, storyId)
         }
       }
     }

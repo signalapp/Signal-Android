@@ -183,7 +183,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
   public abstract boolean isStory(long messageId);
   public abstract @NonNull Reader getOutgoingStoriesTo(@NonNull RecipientId recipientId);
-  public abstract @NonNull Reader getAllOutgoingStories();
+  public abstract @NonNull Reader getAllOutgoingStories(boolean reverse);
   public abstract @NonNull Reader getAllStories();
   public abstract @NonNull List<RecipientId> getAllStoriesRecipientsList();
   public abstract @NonNull Reader getAllStoriesFor(@NonNull RecipientId recipientId);

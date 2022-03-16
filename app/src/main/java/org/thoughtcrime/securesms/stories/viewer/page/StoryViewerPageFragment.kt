@@ -77,7 +77,7 @@ class StoryViewerPageFragment :
 
   private val viewModel: StoryViewerPageViewModel by viewModels(
     factoryProducer = {
-      StoryViewerPageViewModel.Factory(storyRecipientId, StoryViewerPageRepository(requireContext()))
+      StoryViewerPageViewModel.Factory(storyRecipientId, initialStoryId, StoryViewerPageRepository(requireContext()))
     }
   )
 
@@ -92,6 +92,9 @@ class StoryViewerPageFragment :
 
   private val storyRecipientId: RecipientId
     get() = requireArguments().getParcelable(ARG_STORY_RECIPIENT_ID)!!
+
+  private val initialStoryId: Long
+    get() = requireArguments().getLong(ARG_STORY_ID, -1L)
 
   @SuppressLint("ClickableViewAccessibility")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -624,11 +627,13 @@ class StoryViewerPageFragment :
 
   companion object {
     private const val ARG_STORY_RECIPIENT_ID = "arg.story.recipient.id"
+    private const val ARG_STORY_ID = "arg.story.id"
 
-    fun create(recipientId: RecipientId): Fragment {
+    fun create(recipientId: RecipientId, initialStoryId: Long): Fragment {
       return StoryViewerPageFragment().apply {
         arguments = Bundle().apply {
           putParcelable(ARG_STORY_RECIPIENT_ID, recipientId)
+          putLong(ARG_STORY_ID, initialStoryId)
         }
       }
     }

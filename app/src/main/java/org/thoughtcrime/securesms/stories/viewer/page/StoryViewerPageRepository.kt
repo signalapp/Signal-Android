@@ -31,7 +31,7 @@ class StoryViewerPageRepository(context: Context) {
 
       fun refresh() {
         val stories = if (recipient.isMyStory) {
-          SignalDatabase.mms.allOutgoingStories
+          SignalDatabase.mms.getAllOutgoingStories(false)
         } else {
           SignalDatabase.mms.getAllStoriesFor(recipientId)
         }

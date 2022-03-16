@@ -571,10 +571,10 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull MessageDatabase.Reader getAllOutgoingStories() {
+  public @NonNull MessageDatabase.Reader getAllOutgoingStories(boolean reverse) {
     String where = IS_STORY_CLAUSE + " AND (" + getOutgoingTypeClause() + ")";
 
-    return new Reader(rawQuery(where, null, true, -1L));
+    return new Reader(rawQuery(where, null, reverse, -1L));
   }
 
   @Override
@@ -587,7 +587,7 @@ public class MmsDatabase extends MessageDatabase {
     long     threadId  = SignalDatabase.threads().getThreadIdIfExistsFor(recipientId);
     String   where     = IS_STORY_CLAUSE + " AND " + THREAD_ID_WHERE;
     String[] whereArgs = SqlUtil.buildArgs(threadId);
-    Cursor   cursor    = rawQuery(where, whereArgs, true, -1L);
+    Cursor   cursor    = rawQuery(where, whereArgs, false, -1L);
 
     return new Reader(cursor);
   }

@@ -82,6 +82,7 @@ object MyStoriesItem {
     private val errorIndicator: View = itemView.findViewById(R.id.error_indicator)
 
     override fun bind(model: Model) {
+      storyPreview.isClickable = false
       itemView.setOnClickListener { model.onClick(model) }
       downloadTarget.setOnClickListener { model.onSaveClick(model) }
       moreTarget.setOnClickListener { showContextMenu(model) }

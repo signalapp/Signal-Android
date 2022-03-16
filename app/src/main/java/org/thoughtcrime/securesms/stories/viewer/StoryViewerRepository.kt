@@ -19,7 +19,7 @@ class StoryViewerRepository {
 
       val myStory: RecipientId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
 
-      val myStoriesCount = SignalDatabase.mms.allOutgoingStories.use {
+      val myStoriesCount = SignalDatabase.mms.getAllOutgoingStories(true).use {
         var count = 0
         while (it.next != null) {
           if (!it.current.recipient.isGroup) {
