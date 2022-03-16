@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <org.thoughtcrime.securesms.mediasend.v2.text.AutoSizeEmojiEditText
+        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
             android:id="@+id/input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,17 +29,14 @@
             android:gravity="center"
             android:hint="@string/TextStoryPostTextEntryFragment__add_text"
             android:inputType="textMultiLine"
-            android:maxLength="700"
-            android:maxLines="12"
             android:paddingHorizontal="12dp"
             android:paddingTop="15dp"
             android:paddingBottom="13dp"
             android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
             android:textColor="@color/core_white"
-            android:textSize="32dp"
-            android:textStyle="bold"
+            android:textSize="36dp"
             tools:ignore="SpUsage"
-            tools:text="Miles" />
+            tools:text="THIS IS SOME TEXT THAT I AM ENTERING" />
     </FrameLayout>
 
     <org.thoughtcrime.securesms.mediasend.v2.text.TextAlignmentButton

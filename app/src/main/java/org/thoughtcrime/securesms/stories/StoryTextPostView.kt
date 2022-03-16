@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.mediasend.v2.text.TextAlignment
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryScale
+import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryTextWatcher
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.visible
@@ -59,6 +60,7 @@ class StoryTextPostView @JvmOverloads constructor(
       }
     }
 
+    TextStoryTextWatcher.install(textView)
     textView.doAfterTextChanged {
       textAlignment?.apply {
         adjustTextTranslationX(this)

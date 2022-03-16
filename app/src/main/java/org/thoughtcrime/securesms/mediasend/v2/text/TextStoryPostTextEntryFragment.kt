@@ -104,6 +104,8 @@ class TextStoryPostTextEntryFragment : KeyboardEntryDialogFragment(
   }
 
   private fun initializeInput() {
+    TextStoryTextWatcher.install(input)
+
     input.filters = input.filters + bufferFilter
     input.doOnTextChanged { _, _, _, _ ->
       presentHint()
