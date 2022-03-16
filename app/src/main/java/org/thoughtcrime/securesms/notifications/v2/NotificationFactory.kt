@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.stories.my.MyStoriesActivity
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -296,9 +297,14 @@ object NotificationFactory {
       return
     }
 
-    val intent: Intent = ConversationIntents.createBuilder(context, recipient.id, threadId)
-      .build()
-      .makeUniqueToPreventMerging()
+    val intent: Intent = if (recipient.isDistributionList) {
+      Intent(context, MyStoriesActivity::class.java)
+        .makeUniqueToPreventMerging()
+    } else {
+      ConversationIntents.createBuilder(context, recipient.id, threadId)
+        .build()
+        .makeUniqueToPreventMerging()
+    }
 
     val builder: NotificationBuilder = NotificationBuilder.create(context)
 
@@ -323,9 +329,14 @@ object NotificationFactory {
       return
     }
 
-    val intent: Intent = ConversationIntents.createBuilder(context, recipient.id, threadId)
-      .build()
-      .makeUniqueToPreventMerging()
+    val intent: Intent = if (recipient.isDistributionList) {
+      Intent(context, MyStoriesActivity::class.java)
+        .makeUniqueToPreventMerging()
+    } else {
+      ConversationIntents.createBuilder(context, recipient.id, threadId)
+        .build()
+        .makeUniqueToPreventMerging()
+    }
 
     val builder: NotificationBuilder = NotificationBuilder.create(context)
 
