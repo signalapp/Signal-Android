@@ -26,6 +26,8 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository;
+import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository.GroupManagementResult;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -38,6 +40,9 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+
 final class ConversationGroupViewModel extends ViewModel {
 
   private final MutableLiveData<Recipient>          liveRecipient;
@@ -46,11 +51,13 @@ final class ConversationGroupViewModel extends ViewModel {
   private final LiveData<Integer>                   actionableRequestingMembers;
   private final LiveData<ReviewState>               reviewState;
   private final LiveData<List<RecipientId>>         gv1MigrationSuggestions;
+  private final GroupManagementRepository           groupManagementRepository;
 
   private boolean firstTimeInviteFriendsTriggered;
 
   private ConversationGroupViewModel() {
-    this.liveRecipient = new MutableLiveData<>();
+    this.liveRecipient             = new MutableLiveData<>();
+    this.groupManagementRepository = new GroupManagementRepository();
 
     LiveData<GroupRecord>     groupRecord = LiveDataUtil.mapAsync(liveRecipient, ConversationGroupViewModel::getGroupRecordForRecipient);
     LiveData<List<Recipient>> duplicates  = LiveDataUtil.mapAsync(groupRecord, record -> {
@@ -211,6 +218,11 @@ final class ConversationGroupViewModel extends ViewModel {
 
   void inviteFriends(@NonNull FragmentManager supportFragmentManager, @NonNull GroupId.V2 groupId) {
     GroupLinkInviteFriendsBottomSheetDialogFragment.show(supportFragmentManager, groupId);
+  }
+
+  public Single<GroupManagementResult> blockJoinRequests(@NonNull Recipient groupRecipient, @NonNull Recipient recipient) {
+    return groupManagementRepository.blockJoinRequests(groupRecipient.requireGroupId().requireV2(), recipient)
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
   static final class ReviewState {

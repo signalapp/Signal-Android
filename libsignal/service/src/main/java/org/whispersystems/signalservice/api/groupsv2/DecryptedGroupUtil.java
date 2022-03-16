@@ -627,6 +627,9 @@ public final class DecryptedGroupUtil {
            changeIsEmptyExceptForProfileKeyChanges(change);
   }
 
+  /*
+   * When updating this, update {@link #changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(DecryptedGroupChange)}
+   */
   public static boolean changeIsEmptyExceptForProfileKeyChanges(DecryptedGroupChange change) {
     return change.getNewMembersCount()               == 0 && // field 3
            change.getDeleteMembersCount()            == 0 && // field 4
@@ -650,11 +653,37 @@ public final class DecryptedGroupUtil {
            change.getDeleteBannedMembersCount()      == 0;   // field 23
   }
 
+  public static boolean changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(DecryptedGroupChange change) {
+    return (change.getNewBannedMembersCount() != 0 || change.getDeleteBannedMembersCount() != 0) &&
+           change.getNewMembersCount()               == 0 && // field 3
+           change.getDeleteMembersCount()            == 0 && // field 4
+           change.getModifyMemberRolesCount()        == 0 && // field 5
+           change.getNewPendingMembersCount()        == 0 && // field 7
+           change.getDeletePendingMembersCount()     == 0 && // field 8
+           change.getPromotePendingMembersCount()    == 0 && // field 9
+           !change.hasNewTitle()                          && // field 10
+           !change.hasNewAvatar()                         && // field 11
+           !change.hasNewTimer()                          && // field 12
+           isEmpty(change.getNewAttributeAccess())        && // field 13
+           isEmpty(change.getNewMemberAccess())           && // field 14
+           isEmpty(change.getNewInviteLinkAccess())       && // field 15
+           change.getNewRequestingMembersCount()     == 0 && // field 16
+           change.getDeleteRequestingMembersCount()  == 0 && // field 17
+           change.getPromoteRequestingMembersCount() == 0 && // field 18
+           change.getNewInviteLinkPassword().size()  == 0 && // field 19
+           !change.hasNewDescription()                    && // field 20
+           isEmpty(change.getNewIsAnnouncementGroup());      // field 21
+  }
+
   static boolean isEmpty(AccessControl.AccessRequired newAttributeAccess) {
     return newAttributeAccess == AccessControl.AccessRequired.UNKNOWN;
   }
 
   static boolean isEmpty(EnabledState enabledState) {
     return enabledState == EnabledState.UNKNOWN;
+  }
+
+  public static boolean changeIsSilent(DecryptedGroupChange plainGroupChange) {
+    return changeIsEmptyExceptForProfileKeyChanges(plainGroupChange) || changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(plainGroupChange);
   }
 }

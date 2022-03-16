@@ -1207,7 +1207,7 @@ final class GroupManagerV2 {
 
       DecryptedGroupChange plainGroupChange = groupMutation.getGroupChange();
 
-      if (plainGroupChange != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(plainGroupChange)) {
+      if (plainGroupChange != null && DecryptedGroupUtil.changeIsSilent(plainGroupChange)) {
         if (sendToMembers) {
           ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, groupMutation.getNewGroupState(), outgoingMessage));
         }

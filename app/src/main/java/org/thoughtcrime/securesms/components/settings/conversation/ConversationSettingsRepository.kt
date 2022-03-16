@@ -177,6 +177,7 @@ class ConversationSettingsRepository(
           val groupActionResult = GroupManager.addMembers(context, groupId.requirePush(), selected)
           GroupAddMembersResult.Success(groupActionResult.addedMemberCount, Recipient.resolvedList(groupActionResult.invitedMembers))
         } catch (e: Exception) {
+          Log.d(TAG, "Failure to add member", e)
           GroupAddMembersResult.Failure(GroupChangeFailureReason.fromException(e))
         }
       )

@@ -73,8 +73,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 
-import kotlin.collections.CollectionsKt;
-
 /**
  * The base class for message record models that are displayed in
  * conversations, as opposed to models that are displayed in a thread list.
@@ -419,6 +417,15 @@ public abstract class MessageRecord extends DisplayRecord {
     if (decryptedGroupV2Context != null && decryptedGroupV2Context.hasChange()) {
       DecryptedGroupChange change = decryptedGroupV2Context.getChange();
       return change.getEditor().equals(uuid) && change.getNewRequestingMembersList().stream().anyMatch(r -> r.getUuid().equals(uuid));
+    }
+    return false;
+  }
+
+  public boolean isCollapsedGroupV2JoinUpdate() {
+    DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
+    if (decryptedGroupV2Context != null && decryptedGroupV2Context.hasChange()) {
+      DecryptedGroupChange change = decryptedGroupV2Context.getChange();
+      return change.getNewRequestingMembersCount() > 0 && change.getDeleteRequestingMembersCount() > 0;
     }
     return false;
   }

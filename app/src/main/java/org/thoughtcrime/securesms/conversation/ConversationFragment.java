@@ -115,10 +115,12 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
+import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
+import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -151,6 +153,7 @@ import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -236,6 +239,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private Colorizer                  colorizer;
   private ConversationUpdateTick     conversationUpdateTick;
   private MultiselectItemDecoration  multiselectItemDecoration;
+  private LifecycleDisposable        lifecycleDisposable;
 
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
@@ -321,6 +325,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     ).attachToRecyclerView(list);
 
     giphyMp4ProjectionRecycler = initializeGiphyMp4();
+
+    lifecycleDisposable = new LifecycleDisposable();
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
 
     this.groupViewModel         = new ViewModelProvider(getParentFragment(), new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
     this.messageCountsViewModel = new ViewModelProvider(getParentFragment()).get(MessageCountsViewModel.class);
@@ -1862,6 +1869,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         startActivity(AppSettingsActivity.subscriptions(requireContext()));
       }
     }
+
+    @Override
+    public void onBlockJoinRequest(@NonNull Recipient recipient) {
+      new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.ConversationFragment__block_request)
+                                                      .setMessage(getString(R.string.ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link, recipient.getDisplayName(requireContext())))
+                                                      .setNegativeButton(R.string.ConversationFragment__cancel, null)
+                                                      .setPositiveButton(R.string.ConversationFragment__block_request_button, (d, w) -> handleBlockJoinRequest(recipient))
+                                                      .show();
+    }
   }
 
   public void refreshList() {
@@ -1890,6 +1906,18 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     list.invalidateItemDecorations();
 
     actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
+  }
+
+  private void handleBlockJoinRequest(@NonNull Recipient recipient) {
+    lifecycleDisposable.add(
+        groupViewModel.blockJoinRequests(ConversationFragment.this.recipient.get(), recipient)
+                      .subscribe(result -> {
+                        if (result instanceof GroupManagementRepository.GroupManagementResult.Failure) {
+                          int failureReason = GroupErrors.getUserDisplayMessage(((GroupManagementRepository.GroupManagementResult.Failure) result).getReason());
+                          Toast.makeText(requireContext(), failureReason, Toast.LENGTH_SHORT).show();
+                        }
+                      })
+    );
   }
 
   private final class CheckExpirationDataObserver extends RecyclerView.AdapterDataObserver {

@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
+import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -85,6 +86,7 @@ public final class ConversationUpdateItem extends FrameLayout
   private final PresentOnChange          presentOnChange = new PresentOnChange();
   private final RecipientObserverManager senderObserver  = new RecipientObserverManager(presentOnChange);
   private final RecipientObserverManager groupObserver   = new RecipientObserverManager(presentOnChange);
+  private final GroupDataManager         groupData       = new GroupDataManager(presentOnChange);
 
   public ConversationUpdateItem(Context context) {
     super(context);
@@ -153,8 +155,9 @@ public final class ConversationUpdateItem extends FrameLayout
 
     senderObserver.observe(lifecycleOwner, messageRecord.getIndividualRecipient());
 
-    if (conversationRecipient.isActiveGroup() && conversationMessage.getMessageRecord().isGroupCall()) {
+    if (conversationRecipient.isActiveGroup() && (conversationMessage.getMessageRecord().isGroupCall() || conversationMessage.getMessageRecord().isCollapsedGroupV2JoinUpdate())) {
       groupObserver.observe(lifecycleOwner, conversationRecipient);
+      groupData.observe(lifecycleOwner, conversationRecipient);
     } else {
       groupObserver.observe(lifecycleOwner, null);
     }
@@ -266,6 +269,47 @@ public final class ConversationUpdateItem extends FrameLayout
 
     @NonNull Recipient getObservedRecipient() {
       return recipient.get();
+    }
+  }
+
+  static final class GroupDataManager {
+
+    private final Observer<Recipient> recipientObserver;
+    private final Observer<Boolean>   isSelfAdminSetter;
+
+    private LiveGroup         liveGroup;
+    private LiveData<Boolean> liveIsSelfAdmin;
+    private boolean           isSelfAdmin;
+    private Recipient         conversationRecipient;
+
+    GroupDataManager(@NonNull Observer<Recipient> observer) {
+      this.recipientObserver = observer;
+      this.isSelfAdminSetter = isSelfAdmin -> {
+        this.isSelfAdmin = isSelfAdmin;
+        recipientObserver.onChanged(conversationRecipient);
+      };
+    }
+
+    public void observe(@NonNull LifecycleOwner lifecycleOwner, @Nullable Recipient recipient) {
+      if (liveGroup != null) {
+        liveIsSelfAdmin.removeObserver(isSelfAdminSetter);
+        liveIsSelfAdmin = null;
+      }
+
+      if (recipient != null) {
+        conversationRecipient = recipient;
+        liveGroup             = new LiveGroup(recipient.requireGroupId());
+        liveIsSelfAdmin       = liveGroup.isSelfAdmin();
+
+        liveIsSelfAdmin.observe(lifecycleOwner, isSelfAdminSetter);
+      } else {
+        conversationRecipient = null;
+        liveGroup             = null;
+      }
+    }
+
+    public boolean isSelfAdmin() {
+      return isSelfAdmin;
     }
   }
 
@@ -425,6 +469,14 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onChangeNumberUpdateContact(conversationMessage.getMessageRecord().getIndividualRecipient());
+        }
+      });
+    } else if (conversationMessage.getMessageRecord().isCollapsedGroupV2JoinUpdate() && groupData.isSelfAdmin()) {
+      actionButton.setText(R.string.ConversationUpdateItem_block_request);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onBlockJoinRequest(conversationMessage.getMessageRecord().getIndividualRecipient());
         }
       });
     } else {

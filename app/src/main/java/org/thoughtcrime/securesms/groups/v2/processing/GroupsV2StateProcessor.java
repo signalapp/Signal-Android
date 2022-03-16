@@ -612,6 +612,8 @@ public class GroupsV2StateProcessor {
       for (LocalGroupLogEntry entry : processedLogEntries) {
         if (entry.getChange() != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(entry.getChange()) && !DecryptedGroupUtil.changeIsEmpty(entry.getChange())) {
           Log.d(TAG, "Skipping profile key changes only update message");
+        } if (entry.getChange() != null && DecryptedGroupUtil.changeIsEmptyExceptForBanChangesAndOptionalProfileKeyChanges(entry.getChange())) {
+          Log.d(TAG, "Skipping ban changes only update message");
         } else {
           if (entry.getChange() != null && DecryptedGroupUtil.changeIsEmpty(entry.getChange()) && previousGroupState != null) {
             Log.w(TAG, "Empty group update message seen. Not inserting.");
