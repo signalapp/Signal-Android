@@ -12,11 +12,14 @@ import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.stories.StoryLinkPreviewView
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 
 class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
   contentLayoutId = R.layout.stories_text_post_link_entry_fragment
 ) {
+
+  private lateinit var input: EditText
 
   private val linkPreviewViewModel: LinkPreviewViewModel by viewModels(
     factoryProducer = { LinkPreviewViewModel.Factory(LinkPreviewRepository()) }
@@ -29,7 +32,8 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val input: EditText = view.findViewById(R.id.input)
+    input = view.findViewById(R.id.input)
+
     val linkPreview: StoryLinkPreviewView = view.findViewById(R.id.link_preview)
     val confirmButton: View = view.findViewById(R.id.confirm_button)
 
@@ -54,6 +58,11 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
       shareALinkGroup.visible = !state.isLoading && !state.linkPreview.isPresent && state.error == null
       confirmButton.isEnabled = state.linkPreview.isPresent
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    ViewUtil.focusAndShowKeyboard(input)
   }
 
   override fun onDismiss(dialog: DialogInterface) {
