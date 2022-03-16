@@ -1,11 +1,16 @@
 package org.thoughtcrime.securesms.stories
 
+import androidx.annotation.WorkerThread
 import androidx.fragment.app.FragmentManager
+import io.reactivex.rxjava3.core.Completable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 
@@ -26,6 +31,21 @@ object Stories {
       R.drawable.ic_plus_20
     ) {
       ChooseStoryTypeBottomSheet().show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    }
+  }
+
+  @WorkerThread
+  fun sendIndividualStory(message: OutgoingMediaMessage): Completable {
+    return Completable.create { emitter ->
+      MessageSender.send(
+        ApplicationDependencies.getApplication(),
+        message,
+        -1L,
+        false,
+        null
+      ) {
+        emitter.onComplete()
+      }
     }
   }
 }

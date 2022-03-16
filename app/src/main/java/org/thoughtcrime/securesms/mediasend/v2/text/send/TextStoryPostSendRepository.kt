@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.mediasend.v2.text.send
 
 import android.content.Context
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -17,7 +18,7 @@ import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Base64
 
 class TextStoryPostSendRepository(context: Context) {
@@ -93,8 +94,9 @@ class TextStoryPostSendRepository(context: Context) {
         ThreadUtil.sleep(5)
       }
 
-      MessageSender.sendMediaBroadcast(context, messages, emptyList())
-      TextStoryPostSendResult.Success
+      messages.map { Stories.sendIndividualStory(it) }
+    }.flatMap { messages ->
+      Completable.concat(messages).toSingleDefault<TextStoryPostSendResult>(TextStoryPostSendResult.Success)
     }
   }
 
