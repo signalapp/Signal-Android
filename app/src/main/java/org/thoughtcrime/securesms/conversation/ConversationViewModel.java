@@ -187,9 +187,11 @@ public class ConversationViewModel extends ViewModel {
         .observeOn(Schedulers.io())
         .withLatestFrom(conversationMetadata, (messages, metadata) -> new MessageData(metadata, messages));
 
+    Observable<Recipient> liveRecipient = recipientId.distinctUntilChanged().switchMap(id -> Recipient.live(id).asObservable());
+
     canShowAsBubble = threadId.observeOn(Schedulers.io()).map(conversationRepository::canShowAsBubble);
-    wallpaper       = recipientCache.map(r -> Optional.ofNullable(r.getWallpaper())).distinctUntilChanged();
-    chatColors      = recipientCache.map(Recipient::getChatColors).distinctUntilChanged();
+    wallpaper       = liveRecipient.map(r -> Optional.ofNullable(r.getWallpaper())).distinctUntilChanged();
+    chatColors      = liveRecipient.map(Recipient::getChatColors).distinctUntilChanged();
 
     threadAnimationStateStore.update(threadId, (id, state) -> {
       if (state.getThreadId() == id) {

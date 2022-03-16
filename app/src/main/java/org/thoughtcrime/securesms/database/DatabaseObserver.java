@@ -270,7 +270,7 @@ public class DatabaseObserver {
   }
 
   public void notifyRecipientChanged(@NonNull RecipientId recipientId) {
-    runPostSuccessfulTransaction(KEY_RECIPIENT + recipientId.serialize(), () -> {
+    SignalDatabase.runPostSuccessfulTransaction(KEY_RECIPIENT + recipientId.serialize(), () -> {
       Recipient.live(recipientId).refresh();
     });
   }

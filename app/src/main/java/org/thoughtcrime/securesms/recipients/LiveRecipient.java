@@ -29,6 +29,8 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicReference;
 
+import io.reactivex.rxjava3.core.Observable;
+
 public final class LiveRecipient {
 
   private static final String TAG = Log.tag(LiveRecipient.class);
@@ -93,6 +95,19 @@ public final class LiveRecipient {
    */
   public void removeObservers(@NonNull LifecycleOwner owner) {
     ThreadUtil.runOnMain(() -> observableLiveData.removeObservers(owner));
+  }
+
+  public Observable<Recipient> asObservable() {
+    return Observable.create(emitter -> {
+      Recipient current = recipient.get();
+      if (current != null && current.getId() != RecipientId.UNKNOWN) {
+        emitter.onNext(current);
+      }
+
+      RecipientForeverObserver foreverObserver = emitter::onNext;
+      observeForever(foreverObserver);
+      emitter.setCancellable(() -> removeForeverObserver(foreverObserver));
+    });
   }
 
   /**
