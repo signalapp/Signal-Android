@@ -11,7 +11,6 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
@@ -382,11 +381,9 @@ public class JobManager implements ConstraintObserver.Notifier {
       }
     }
 
-    SignalDatabase.runPostSuccessfulTransaction(() -> {
-      runOnExecutor(() -> {
-        jobController.submitNewJobChain(chain.getJobListChain());
-        jobController.wakeUp();
-      });
+    runOnExecutor(() -> {
+      jobController.submitNewJobChain(chain.getJobListChain());
+      jobController.wakeUp();
     });
   }
 
