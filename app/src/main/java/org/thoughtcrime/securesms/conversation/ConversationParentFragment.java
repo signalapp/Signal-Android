@@ -109,6 +109,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
+import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -442,7 +443,8 @@ public class ConversationParentFragment extends Fragment
   private boolean       isSecurityInitialized         = false;
   private boolean       isSearchRequested             = false;
 
-  private final LifecycleDisposable disposables = new LifecycleDisposable();
+  private final LifecycleDisposable disposables          = new LifecycleDisposable();
+  private final Debouncer           optionsMenuDebouncer = new Debouncer(50);
 
   private volatile boolean screenInitialized = false;
 
@@ -1109,7 +1111,11 @@ public class ConversationParentFragment extends Fragment
 
   public void invalidateOptionsMenu() {
     if (!isSearchRequested && getActivity() != null) {
-      onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
+      optionsMenuDebouncer.publish(() -> {
+        if (getActivity() != null) {
+          onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
+        }
+      });
     }
   }
 
@@ -2196,7 +2202,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   protected void initializeActionBar() {
-    onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
+    invalidateOptionsMenu();
     toolbar.setOnMenuItemClickListener(this::onOptionsItemSelected);
 
     if (isInBubble()) {
