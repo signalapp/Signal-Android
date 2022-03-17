@@ -71,13 +71,13 @@ class StoriesLandingRepository(context: Context) {
 
   private fun createStoriesLandingItemData(sender: Recipient, messageRecords: List<MessageRecord>): Observable<StoriesLandingItemData> {
     return Observable.create { emitter ->
-      fun refresh() {
+      fun refresh(sender: Recipient) {
         val itemData = StoriesLandingItemData(
           storyRecipient = sender,
           storyViewState = getStoryViewState(messageRecords),
           hasReplies = messageRecords.any { SignalDatabase.mms.getNumberOfStoryReplies(it.id) > 0 },
           hasRepliesFromSelf = messageRecords.any { SignalDatabase.mms.hasSelfReplyInStory(it.id) },
-          isHidden = Recipient.resolved(messageRecords.first().recipient.id).shouldHideStory(),
+          isHidden = sender.shouldHideStory(),
           primaryStory = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecords.first()),
           secondaryStory = messageRecords.drop(1).firstOrNull()?.let {
             ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it)
@@ -88,15 +88,15 @@ class StoriesLandingRepository(context: Context) {
       }
 
       val newRepliesObserver = DatabaseObserver.Observer {
-        refresh()
+        Recipient.live(sender.id).refresh()
       }
 
       val recipientChangedObserver = RecipientForeverObserver {
-        refresh()
+        refresh(it)
       }
 
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(messageRecords.first().threadId, newRepliesObserver)
-      val liveRecipient = Recipient.live(messageRecords.first().recipient.id)
+      val liveRecipient = Recipient.live(sender.id)
       liveRecipient.observeForever(recipientChangedObserver)
 
       emitter.setCancellable {
@@ -104,7 +104,7 @@ class StoriesLandingRepository(context: Context) {
         liveRecipient.removeForeverObserver(recipientChangedObserver)
       }
 
-      refresh()
+      refresh(sender)
     }
   }
 

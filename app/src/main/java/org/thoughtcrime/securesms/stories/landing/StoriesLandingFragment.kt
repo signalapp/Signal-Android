@@ -146,7 +146,7 @@ class StoriesLandingFragment :
         if (!it.data.isHidden) {
           handleHideStory(it)
         } else {
-          lifecycleDisposable += viewModel.setHideStory(it.data.storyRecipient, it.data.isHidden).subscribe()
+          lifecycleDisposable += viewModel.setHideStory(it.data.storyRecipient, !it.data.isHidden).subscribe()
         }
       },
       onShareStory = {
