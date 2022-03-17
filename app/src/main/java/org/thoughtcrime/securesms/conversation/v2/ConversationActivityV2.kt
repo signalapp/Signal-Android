@@ -579,6 +579,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             if (viewModel.recipient.isContactRecipient) {
                 binding?.blockedBanner?.isVisible = viewModel.recipient.isBlocked
             }
+            setUpMessageRequestsBar()
             invalidateOptionsMenu()
             updateSubtitle()
             showOrHideInputIfNeeded()
