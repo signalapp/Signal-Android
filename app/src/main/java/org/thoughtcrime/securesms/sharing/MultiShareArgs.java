@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.ParcelUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public final class MultiShareArgs implements Parcelable {
   private final List<Mention>              mentions;
   private final long                       timestamp;
   private final long                       expiresAt;
+  private final boolean                    isTextStory;
 
   private MultiShareArgs(@NonNull Builder builder) {
     shareContactAndThreads = builder.shareContactAndThreads;
@@ -51,6 +53,7 @@ public final class MultiShareArgs implements Parcelable {
     mentions               = builder.mentions == null ? new ArrayList<>() : new ArrayList<>(builder.mentions);
     timestamp              = builder.timestamp;
     expiresAt              = builder.expiresAt;
+    isTextStory            = builder.isTextStory;
   }
 
   protected MultiShareArgs(Parcel in) {
@@ -65,6 +68,7 @@ public final class MultiShareArgs implements Parcelable {
     mentions               = in.createTypedArrayList(Mention.CREATOR);
     timestamp              = in.readLong();
     expiresAt              = in.readLong();
+    isTextStory            = ParcelUtil.readBoolean(in);
 
     String      linkedPreviewString = in.readString();
     LinkPreview preview;
@@ -109,6 +113,10 @@ public final class MultiShareArgs implements Parcelable {
     return viewOnce;
   }
 
+  public boolean isTextStory() {
+    return isTextStory;
+  }
+
   public @Nullable LinkPreview getLinkPreview() {
     return linkPreview;
   }
@@ -126,7 +134,11 @@ public final class MultiShareArgs implements Parcelable {
   }
 
   public boolean isValidForStories() {
-    return !media.isEmpty() && media.stream().allMatch(m -> MediaUtil.isImageOrVideoType(m.getMimeType()) && !MediaUtil.isGif(m.getMimeType()));
+    return isTextStory || !media.isEmpty() && media.stream().allMatch(m -> MediaUtil.isImageOrVideoType(m.getMimeType()) && !MediaUtil.isGif(m.getMimeType()));
+  }
+
+  public boolean isValidForNonStories() {
+    return !isTextStory;
   }
 
   public @NonNull InterstitialContentType getInterstitialContentType() {
@@ -174,6 +186,7 @@ public final class MultiShareArgs implements Parcelable {
     dest.writeTypedList(mentions);
     dest.writeLong(timestamp);
     dest.writeLong(expiresAt);
+    ParcelUtil.writeBoolean(dest, isTextStory);
 
     if (linkPreview != null) {
       try {
@@ -201,7 +214,8 @@ public final class MultiShareArgs implements Parcelable {
                                               .withStickerLocator(stickerLocator)
                                               .withMentions(mentions)
                                               .withTimestamp(timestamp)
-                                              .withExpiration(expiresAt);
+                                              .withExpiration(expiresAt)
+                                              .asTextStory(isTextStory);
   }
 
   private boolean requiresInterstitial() {
@@ -224,6 +238,7 @@ public final class MultiShareArgs implements Parcelable {
     private List<Mention>  mentions;
     private long           timestamp;
     private long           expiresAt;
+    private boolean        isTextStory;
 
     public Builder(@NonNull Set<ShareContactAndThread> shareContactAndThreads) {
       this.shareContactAndThreads = shareContactAndThreads;
@@ -281,6 +296,11 @@ public final class MultiShareArgs implements Parcelable {
 
     public @NonNull Builder withExpiration(long expiresAt) {
       this.expiresAt = expiresAt;
+      return this;
+    }
+
+    public @NonNull Builder asTextStory(boolean isTextStory) {
+      this.isTextStory = isTextStory;
       return this;
     }
 

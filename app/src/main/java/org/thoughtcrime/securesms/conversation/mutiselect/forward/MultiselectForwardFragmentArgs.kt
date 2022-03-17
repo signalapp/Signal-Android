@@ -72,6 +72,7 @@ class MultiselectForwardFragmentArgs(
 
         val linkPreview = mediaMessage?.linkPreviews?.firstOrNull()
         builder.withLinkPreview(linkPreview)
+        builder.asTextStory(mediaMessage?.storyType?.isTextStory ?: false)
       }
 
       if (conversationMessage.messageRecord.isMms && conversationMessage.multiselectCollection.isMediaSelected(selectedParts)) {

@@ -61,13 +61,17 @@ class MultiselectForwardRepository(context: Context) {
       val results = mappedArgs.sortedBy { it.timestamp }.map { MultiShareSender.sendSync(it) }
 
       if (additionalMessage.isNotEmpty()) {
-        val additional = MultiShareArgs.Builder(sharedContactsAndThreads)
+        val additional = MultiShareArgs.Builder(sharedContactsAndThreads.filterNot { it.isStory }.toSet())
           .withDraftText(additionalMessage)
           .build()
 
-        val additionalResult: MultiShareSender.MultiShareSendResultCollection = MultiShareSender.sendSync(additional)
+        if (additional.shareContactAndThreads.isNotEmpty()) {
+          val additionalResult: MultiShareSender.MultiShareSendResultCollection = MultiShareSender.sendSync(additional)
 
-        handleResults(results + additionalResult, resultHandlers)
+          handleResults(results + additionalResult, resultHandlers)
+        } else {
+          handleResults(results, resultHandlers)
+        }
       } else {
         handleResults(results, resultHandlers)
       }

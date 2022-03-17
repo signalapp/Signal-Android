@@ -130,13 +130,15 @@ class MultiselectForwardFragment :
 
     container.addView(bottomBar)
 
-    contactSearchMediator.getSelectionState().observe(viewLifecycleOwner) {
-      shareSelectionAdapter.submitList(it.mapIndexed { index, key -> ShareSelectionMappingModel(key.requireShareContact(), index == 0) })
+    contactSearchMediator.getSelectionState().observe(viewLifecycleOwner) { contactSelection ->
+      shareSelectionAdapter.submitList(contactSelection.mapIndexed { index, key -> ShareSelectionMappingModel(key.requireShareContact(), index == 0) })
 
-      if (it.isNotEmpty() && !bottomBar.isVisible) {
+      addMessage.visible = contactSelection.any { key -> key !is ContactSearchKey.Story } && getMultiShareArgs().isNotEmpty()
+
+      if (contactSelection.isNotEmpty() && !bottomBar.isVisible) {
         bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_from_bottom)
         bottomBar.visible = true
-      } else if (it.isEmpty() && bottomBar.isVisible) {
+      } else if (contactSelection.isEmpty() && bottomBar.isVisible) {
         bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_to_bottom)
         bottomBar.visible = false
       }
@@ -161,8 +163,6 @@ class MultiselectForwardFragment :
 
       sendButton.isEnabled = it.stage == MultiselectForwardState.Stage.Selection
     }
-
-    addMessage.visible = getMultiShareArgs().isNotEmpty()
 
     setFragmentResultListener(CreateStoryWithViewersFragment.REQUEST_KEY) { _, bundle ->
       val recipientId: RecipientId = bundle.getParcelable(CreateStoryWithViewersFragment.STORY_RECIPIENT)!!
@@ -282,40 +282,48 @@ class MultiselectForwardFragment :
       query = contactSearchState.query
 
       if (Stories.isFeatureEnabled() && isSelectedMediaValidForStories()) {
+        val expandedConfig: ContactSearchConfiguration.ExpandConfig? = if (isSelectedMediaValidForNonStories()) {
+          ContactSearchConfiguration.ExpandConfig(
+            isExpanded = contactSearchState.expandedSections.contains(ContactSearchConfiguration.SectionKey.STORIES)
+          )
+        } else {
+          null
+        }
+
         addSection(
           ContactSearchConfiguration.Section.Stories(
             groupStories = contactSearchState.groupStories,
             includeHeader = true,
             headerAction = getHeaderAction(childFragmentManager),
-            expandConfig = ContactSearchConfiguration.ExpandConfig(
-              isExpanded = contactSearchState.expandedSections.contains(ContactSearchConfiguration.SectionKey.STORIES)
+            expandConfig = expandedConfig
+          )
+        )
+      }
+
+      if (isSelectedMediaValidForNonStories()) {
+        if (query.isNullOrEmpty()) {
+          addSection(
+            ContactSearchConfiguration.Section.Recents(
+              includeHeader = true
             )
           )
-        )
-      }
+        }
 
-      if (query.isNullOrEmpty()) {
         addSection(
-          ContactSearchConfiguration.Section.Recents(
-            includeHeader = true
+          ContactSearchConfiguration.Section.Individuals(
+            includeHeader = true,
+            transportType = if (includeSms()) ContactSearchConfiguration.TransportType.ALL else ContactSearchConfiguration.TransportType.PUSH,
+            includeSelf = true
+          )
+        )
+
+        addSection(
+          ContactSearchConfiguration.Section.Groups(
+            includeHeader = true,
+            includeMms = includeSms()
           )
         )
       }
-
-      addSection(
-        ContactSearchConfiguration.Section.Individuals(
-          includeHeader = true,
-          transportType = if (includeSms()) ContactSearchConfiguration.TransportType.ALL else ContactSearchConfiguration.TransportType.PUSH,
-          includeSelf = true
-        )
-      )
-
-      addSection(
-        ContactSearchConfiguration.Section.Groups(
-          includeHeader = true,
-          includeMms = includeSms()
-        )
-      )
     }
   }
 
@@ -325,6 +333,10 @@ class MultiselectForwardFragment :
 
   private fun isSelectedMediaValidForStories(): Boolean {
     return getMultiShareArgs().all { it.isValidForStories }
+  }
+
+  private fun isSelectedMediaValidForNonStories(): Boolean {
+    return getMultiShareArgs().all { it.isValidForNonStories }
   }
 
   override fun onGroupStoryClicked() {

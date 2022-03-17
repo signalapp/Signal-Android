@@ -104,7 +104,7 @@ public final class MultiShareSender {
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.MMS_NOT_ENABLED));
-      } else if (hasMmsMedia && transport.isSms() || hasPushMedia && !transport.isSms()) {
+      } else if (hasMmsMedia && transport.isSms() || hasPushMedia && !transport.isSms() || multiShareArgs.isTextStory()) {
         sendMediaMessage(context, multiShareArgs, recipient, slideDeck, transport, shareContactAndThread.getThreadId(), forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId, mentions, shareContactAndThread.isStory());
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.SUCCESS));
       } else if (shareContactAndThread.isStory()) {
@@ -184,32 +184,52 @@ public final class MultiShareSender {
         SignalDatabase.groups().markDisplayAsStory(recipient.requireGroupId());
       }
 
-      for (final Slide slide : slideDeck.getSlides()) {
-        SlideDeck singletonDeck = new SlideDeck();
-        singletonDeck.addSlide(slide);
-
+      if (multiShareArgs.isTextStory()) {
         OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient,
-                                                                             singletonDeck,
+                                                                             new SlideDeck(),
                                                                              body,
                                                                              System.currentTimeMillis(),
                                                                              subscriptionId,
-                                                                             expiresIn,
-                                                                             isViewOnce,
+                                                                             0L,
+                                                                             false,
                                                                              ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                             storyType,
+                                                                             storyType.toTextStoryType(),
                                                                              null,
                                                                              false,
                                                                              null,
                                                                              Collections.emptyList(),
                                                                              multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())
                                                                                                                      : Collections.emptyList(),
-                                                                             validatedMentions);
+                                                                             Collections.emptyList());
 
         outgoingMessages.add(outgoingMediaMessage);
+      } else {
+        for (final Slide slide : slideDeck.getSlides()) {
+          SlideDeck singletonDeck = new SlideDeck();
+          singletonDeck.addSlide(slide);
 
-        // XXX We must do this to avoid sending out messages to the same recipient with the same
-        //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
-        ThreadUtil.sleep(5);
+          OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient,
+                                                                               singletonDeck,
+                                                                               body,
+                                                                               System.currentTimeMillis(),
+                                                                               subscriptionId,
+                                                                               0L,
+                                                                               false,
+                                                                               ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                               storyType,
+                                                                               null,
+                                                                               false,
+                                                                               null,
+                                                                               Collections.emptyList(),
+                                                                               Collections.emptyList(),
+                                                                               validatedMentions);
+
+          outgoingMessages.add(outgoingMediaMessage);
+
+          // XXX We must do this to avoid sending out messages to the same recipient with the same
+          //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
+          ThreadUtil.sleep(5);
+        }
       }
     } else {
       OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient,
