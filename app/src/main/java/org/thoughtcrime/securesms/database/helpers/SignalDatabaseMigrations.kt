@@ -195,7 +195,7 @@ object SignalDatabaseMigrations {
   private const val ALLOW_STORY_REPLIES = 133
   private const val GROUP_STORIES = 134
 
-  const val DATABASE_VERSION = 134
+  const val DATABASE_VERSION = 135
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
