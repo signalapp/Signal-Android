@@ -27,12 +27,10 @@ class TextStoryPostSendViewModel(private val repository: TextStoryPostSendReposi
     disposables.clear()
   }
 
-  fun isFirstSendToAStory(contactSearchKeys: Set<ContactSearchKey>): Boolean {
+  fun onSending() {
     store.update {
       TextStoryPostSendState.SENDING
     }
-
-    return repository.isFirstSendToStory(contactSearchKeys)
   }
 
   fun onSendCancelled() {

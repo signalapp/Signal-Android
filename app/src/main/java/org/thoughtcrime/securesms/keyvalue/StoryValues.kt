@@ -24,5 +24,5 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var lastFontVersionCheck: Long by longValue(LAST_FONT_VERSION_CHECK, 0)
 
-  var userHasAddedToAStory: Boolean by booleanValue(USER_HAS_ADDED_TO_A_STORY, false)
+  var userHasBeenNotifiedAboutStories: Boolean by booleanValue(USER_HAS_ADDED_TO_A_STORY, false)
 }

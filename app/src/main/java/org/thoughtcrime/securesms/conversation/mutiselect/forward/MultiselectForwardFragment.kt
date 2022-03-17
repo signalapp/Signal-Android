@@ -35,8 +35,10 @@ import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.Stories.getHeaderAction
+import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
+import org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
@@ -105,7 +107,21 @@ class MultiselectForwardFragment :
 
     sendButton.setOnClickListener {
       sendButton.isEnabled = false
-      viewModel.send(addMessage.text.toString(), contactSearchMediator.getSelectedContacts())
+
+      StoryDialogs.guardWithAddToYourStoryDialog(
+        requireContext(),
+        contactSearchMediator.getSelectedContacts(),
+        onAddToStory = {
+          performSend()
+        },
+        onEditViewers = {
+          sendButton.isEnabled = true
+          HideStoryFromDialogFragment().show(childFragmentManager, null)
+        },
+        onCancel = {
+          sendButton.isEnabled = true
+        }
+      )
     }
 
     shareSelectionRecycler.adapter = shareSelectionAdapter
@@ -209,6 +225,10 @@ class MultiselectForwardFragment :
         viewModel.cancelSend()
       }
       .show()
+  }
+
+  private fun performSend() {
+    viewModel.send(addMessage.text.toString(), contactSearchMediator.getSelectedContacts())
   }
 
   private fun displaySafetyNumberConfirmation(identityRecords: List<IdentityRecord>) {

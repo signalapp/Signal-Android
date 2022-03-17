@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -56,6 +57,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity;
 import org.thoughtcrime.securesms.stories.Stories;
+import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs;
+import org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromDialogFragment;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -78,6 +81,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Unit;
 
 /**
  * Entry point for sharing content into the app.
@@ -380,11 +384,30 @@ public class ShareActivity extends PassphraseRequiredActivity
                                .commit();
 
     shareConfirm.setOnClickListener(unused -> {
+      shareConfirm.setEnabled(false);
+
       Set<ShareContact> shareContacts = viewModel.getShareContacts();
 
-      if (shareContacts.isEmpty())        throw new AssertionError();
-      else if (shareContacts.size() == 1) onConfirmSingleDestination(shareContacts.iterator().next());
-      else                                onConfirmMultipleDestinations(shareContacts);
+      StoryDialogs.INSTANCE.guardWithAddToYourStoryDialog(this,
+                                                          shareContacts.stream()
+                                                                       .filter(contact -> contact.getRecipientId().isPresent())
+                                                                       .map(contact -> Recipient.resolved(contact.getRecipientId().get()))
+                                                                       .filter(Recipient::isMyStory)
+                                                                       .map(myStory -> new ContactSearchKey.Story(myStory.getId()))
+                                                                       .collect(java.util.stream.Collectors.toList()),
+                                                          () -> {
+                                                            performSend(shareContacts);
+                                                            return Unit.INSTANCE;
+                                                          },
+                                                          () -> {
+                                                            shareConfirm.setEnabled(true);
+                                                            new HideStoryFromDialogFragment().show(getSupportFragmentManager(), null);
+                                                            return Unit.INSTANCE;
+                                                          },
+                                                          () -> {
+                                                            shareConfirm.setEnabled(true);
+                                                            return Unit.INSTANCE;
+                                                          });
     });
 
     viewModel.getSelectedContactModels().observe(this, models -> {
@@ -436,6 +459,12 @@ public class ShareActivity extends PassphraseRequiredActivity
 
       validateAvailableRecipients();
     });
+  }
+
+  private void performSend(Set<ShareContact> shareContacts) {
+    if (shareContacts.isEmpty())        throw new AssertionError();
+    else if (shareContacts.size() == 1) onConfirmSingleDestination(shareContacts.iterator().next());
+    else                                onConfirmMultipleDestinations(shareContacts);
   }
 
   private void initializeArgs() {

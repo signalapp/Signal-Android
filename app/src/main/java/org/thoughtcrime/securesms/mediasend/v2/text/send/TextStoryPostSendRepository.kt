@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.mediasend.v2.text.send
 
-import android.content.Context
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.ThreadUtil
@@ -11,7 +10,6 @@ import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.TextFont
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryPostCreationState
@@ -21,17 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Base64
 
-class TextStoryPostSendRepository(context: Context) {
-
-  private val context = context.applicationContext
-
-  fun isFirstSendToStory(shareContacts: Set<ContactSearchKey>): Boolean {
-    if (SignalStore.storyValues().userHasAddedToAStory) {
-      return false
-    }
-
-    return shareContacts.any { it is ContactSearchKey.Story }
-  }
+class TextStoryPostSendRepository {
 
   fun send(contactSearchKey: Set<ContactSearchKey>, textStoryPostCreationState: TextStoryPostCreationState, linkPreview: LinkPreview?): Single<TextStoryPostSendResult> {
     return UntrustedRecords

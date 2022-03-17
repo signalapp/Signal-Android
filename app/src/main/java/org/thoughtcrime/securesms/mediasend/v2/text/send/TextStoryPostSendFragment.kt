@@ -46,7 +46,7 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
 
   private val viewModel: TextStoryPostSendViewModel by viewModels(
     factoryProducer = {
-      TextStoryPostSendViewModel.Factory(TextStoryPostSendRepository(requireContext()))
+      TextStoryPostSendViewModel.Factory(TextStoryPostSendRepository())
     }
   )
 
@@ -83,21 +83,19 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
     }
 
     shareConfirmButton.setOnClickListener {
-      if (viewModel.isFirstSendToAStory(contactSearchMediator.getSelectedContacts())) {
-        StoryDialogs.guardWithAddToYourStoryDialog(
-          context = requireContext(),
-          onAddToStory = { send() },
-          onEditViewers = {
-            viewModel.onSendCancelled()
-            HideStoryFromDialogFragment().show(childFragmentManager, null)
-          },
-          onCancel = {
-            viewModel.onSendCancelled()
-          }
-        )
-      } else {
-        send()
-      }
+      viewModel.onSending()
+      StoryDialogs.guardWithAddToYourStoryDialog(
+        contacts = contactSearchMediator.getSelectedContacts(),
+        context = requireContext(),
+        onAddToStory = { send() },
+        onEditViewers = {
+          viewModel.onSendCancelled()
+          HideStoryFromDialogFragment().show(childFragmentManager, null)
+        },
+        onCancel = {
+          viewModel.onSendCancelled()
+        }
+      )
     }
 
     disposables += viewModel.untrustedIdentities.subscribe {
