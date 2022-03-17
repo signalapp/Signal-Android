@@ -270,7 +270,7 @@ public final class ConversationUpdateItem extends FrameLayout
     }
   }
 
-  static final class GroupDataManager {
+  private final class GroupDataManager {
 
     private final Observer<Recipient> recipientObserver;
     private final Observer<Boolean>   isSelfAdminSetter;
@@ -284,7 +284,7 @@ public final class ConversationUpdateItem extends FrameLayout
       this.recipientObserver = observer;
       this.isSelfAdminSetter = isSelfAdmin -> {
         this.isSelfAdmin = isSelfAdmin;
-        recipientObserver.onChanged(conversationRecipient);
+        present(conversationMessage, nextMessageRecord, conversationRecipient, isMessageRequestAccepted);
       };
     }
 
