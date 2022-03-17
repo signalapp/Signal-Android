@@ -39,18 +39,18 @@ object AndroidTelecomUtil {
   @JvmStatic
   val telecomSupported: Boolean
     get() {
-//      if (Build.VERSION.SDK_INT >= 26 && !systemRejected) {
-//        if (!accountRegistered) {
-//          registerPhoneAccount()
-//        }
-//
-//        if (accountRegistered) {
-//          val phoneAccount = ContextCompat.getSystemService(context, TelecomManager::class.java)!!.getPhoneAccount(getPhoneAccountHandle())
-//          if (phoneAccount != null && phoneAccount.isEnabled) {
-//            return true
-//          }
-//        }
-//      }
+      if (Build.VERSION.SDK_INT >= 26 && !systemRejected && !isRestrictedDevice()) {
+        if (!accountRegistered) {
+          registerPhoneAccount()
+        }
+
+        if (accountRegistered) {
+          val phoneAccount = ContextCompat.getSystemService(context, TelecomManager::class.java)!!.getPhoneAccount(getPhoneAccountHandle())
+          if (phoneAccount != null && phoneAccount.isEnabled) {
+            return true
+          }
+        }
+      }
       return false
     }
 
@@ -185,6 +185,10 @@ object AndroidTelecomUtil {
       }
     }
     return SignalAudioManager.AudioDevice.NONE
+  }
+
+  private fun isRestrictedDevice(): Boolean {
+    return "${Build.MODEL} ${Build.PRODUCT} ${Build.MANUFACTURER}".contains(other = "oneplus", ignoreCase = true)
   }
 }
 
