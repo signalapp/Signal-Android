@@ -462,8 +462,8 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Неименувана датотека</string>
   <!--DozeReminder-->
-  <string name="DozeReminder_optimize_for_missing_play_services">Оптимизација за недостапни Play сервиси</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овој уред не поддржува Play сервиси. Допрете за да ја исклучите системската оптимизација на батеријата која што го спречува Signal да прима пораки при неактивност.</string>
+  <string name="DozeReminder_optimize_for_missing_play_services">Оптимизација за недостапни Play услуги</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овој уред не поддржува Play услуги. Допрете овде за да исклучите системска оптимизација на батеријата што го спречува Signal да прима пораки додека е неактивен.</string>
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Оваа верзија на Signal е истечена. Ажурирајте веднаш за да испраќате и примате пораки.</string>
   <string name="ExpiredBuildReminder_update_now">Ажурирај веднаш</string>
@@ -479,7 +479,7 @@
   <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Немате дозвола да испраќате на оваа група</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајно неуспешна комуникација со Signal</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успеа да се регистрира со Google Play Сервиси. Пораките и повиците од Signal се оневозможени. Ве молиме пробајте да се регистрирате повторно во Поставувања &gt; Напредно.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успеа да се регистрира со Google Play услуги. Пораките и повиците од Signal се оневозможени. Ве молиме пробајте да се регистрирате повторно во Поставувања &gt; Напредно.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Грешка при преземање на GIF со целосна резолуција</string>
   <!--GiphyFragmentPageAdapter-->
@@ -1096,7 +1096,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Го обележавте сигурносниот број со %s како проверен од друг уред</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте сигурносниот број со %s како непроверен</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте сигурносен број со %s како непроверен од друг уред</string>
-  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Пораката од %s не може да биде испорачана</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Пораката од %s не може да биде доставена</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s го промени телефонскиот број.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">Ви се допаѓа оваа нова опција? Речете благодарам со „Поттик“.</string>
@@ -1197,7 +1197,7 @@
   <string name="PlacePickerActivity_drop_pin">Фрли покажувач</string>
   <string name="PlacePickerActivity_accept_address">Прифати адреса</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Инсталираната верзија на Google Play Services не функционира како што треба. Ве молиме реинсталирајте Google Play Services и обидете се повторно.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Инсталираната верзија на Google Play услуги не функционира како што треба. Ве молиме реинсталирајте Google Play услуги и обидете се повторно.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Погрешен PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Да го прескокнам PIN-от за влез?</string>
@@ -1355,8 +1355,8 @@
   <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Код за проверка ќе биде испратен на:</string>
   <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Ќе добиете повик за проверка на овој број.</string>
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Дали Вашиот телефонски број погоре е точен?</string>
-  <string name="RegistrationActivity_edit_number">Измени број</string>
-  <string name="RegistrationActivity_missing_google_play_services">Недостасуваат Google Play Services</string>
+  <string name="RegistrationActivity_edit_number">Уреди го бројот</string>
+  <string name="RegistrationActivity_missing_google_play_services">Недостасуваат Google Play услуги</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Овој уред нема Google Play Services. Сѐ уште можете да го користите Signal, но оваа конфигурација може да резултира со намалување на доверливоста или на перформансите.\n\nАко не сте напреден корисник, кој не користи не-оригинален Android ROM, или верувате дека го гледате ова по грешка, Ве молиме контактирајте не на support@signal.org за помош околу наоѓање на проблемот.</string>
   <string name="RegistrationActivity_i_understand">Разбирам</string>
   <string name="RegistrationActivity_play_services_error">Грешка со Play Services</string>
@@ -1940,7 +1940,7 @@
   <string name="message_details_recipient_header__pending_send">На чекање</string>
   <string name="message_details_recipient_header__sent_to">Испратено на</string>
   <string name="message_details_recipient_header__sent_from">Испратено од</string>
-  <string name="message_details_recipient_header__delivered_to">Испорачано на</string>
+  <string name="message_details_recipient_header__delivered_to">Доставено на</string>
   <string name="message_details_recipient_header__read_by">Прочитано од</string>
   <string name="message_details_recipient_header__not_sent">Не е испратено на</string>
   <string name="message_details_recipient_header__viewed">Видено од</string>
@@ -2189,16 +2189,16 @@
   <string name="preferences_communication__censorship_circumvention">Заобиколување на цензура</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Ако е вклучено, Signal ќе се обиде да ја заобиколи цензурата. Вклучете ја оваа опција само ако сте на локација каде Signal е цензуриран.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
-  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Заобиколувањето на цензурата е активирано врз основа на телефонскиот број на Вашата сметка.</string>
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Заобиколување на цензурата е активирано врз основа на телефонскиот број на Вашата сметка.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Рачно го исклучивте заобиколувањето на цензурата.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
-  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Заобиколувањето на цензурата не е потребно; веќе сте поврзани со Signal услугата.</string>
+  <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">Заобиколување на цензурата не е потребно; веќе сте поврзани со Signal услугата.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet-->
   <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Заобиколувањето на цензурата може да се активира само кога сте поврзани на интернет.</string>
   <string name="preferences_communication__category_sealed_sender">Запечатен испраќач</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Индикатори за приказ</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Покажува икона за статус кога ќе изберете „Детали за порака“ на пораки испорачани со употреба на запечатен испраќач.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Прикажи икона за статус кога ќе изберете \"Детали за порака\" на пораки доставени со користење на запечатен испраќач.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Дозволи од секого</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Овозможете го запечатениот испраќач за дојдовни пораки од нерегистрирани контакти и луѓе со кои не сте го споделиле Вашиот профил.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Дознајте повеќе</string>
@@ -3013,11 +3013,11 @@
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Вашата резервна фраза</string>
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Запишете ги следниве %1$d зборови во истиот редослед. Складирајте ја листата на безбедно место.</string>
-  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Осигурајте се дека сте ја внеле фразата точно.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Погрижете се точно да ја внесете фразата.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Не правете слики од екранот и не испраќајте по е-пошта.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Невалидна резервна фраза</string>
-  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Осигурајте се дека сте ја внеле фразата точно и пробајте пак.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Погрижете се точно да ја внесете фразата и обидете се повторно. </string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да копирам на таблата со исечоци?</string>
   <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ако изберете да ја зачувате резервната фраза дигитално, осигурајте се да биде зачувана на безбедно место.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
@@ -3150,7 +3150,7 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Поставете стандарден тајмер за пораки што исчезнуваат за сите нови разговори започнати од Вас.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи статусна икона</string>
-  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Покажи икона во детали за порака кога пораката е доставена со користење на запечатен испраќач</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Прикажи икона во детали за порака кога пораката е доставена со користење на запечатен испраќач.</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во нови разговори започнати од Вас ќе исчезнат откако ќе бидат видени.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во овој разговор ќе исчезнат откако ќе бидат видени.</string>
@@ -3481,7 +3481,7 @@
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
   <string name="DonationsErrors__error_processing_payment_s">Грешка при обработката. %1$s</string>
   <string name="DonationsErrors__your_badge_could_not_be_added">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со тимот за поддршка.</string>
-  <string name="DonationsErrors__your_payment">Вашето плаќање не можеше да се обработи и не Ви е наплатено. Ве молиме пробајте пак.</string>
+  <string name="DonationsErrors__your_payment">Вашето плаќање не можеше да се обработи и не Ви е наплатено. Ве молиме обидете се повторно.</string>
   <string name="DonationsErrors__still_processing">Сѐ уште се обработува</string>
   <string name="DonationsErrors__couldnt_add_badge">Не може да се додаде беџ</string>
   <string name="DonationsErrors__your_badge_could_not">Вашиот беџ не може да се додаде на Вашата сметка, но можеби Ви е наплатено. Ве молиме контактирајте со тимот за поддршка.</string>
