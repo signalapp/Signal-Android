@@ -22,7 +22,6 @@ import java.util.Set;
 public final class UpdateDescription {
 
   public interface StringFactory {
-    @WorkerThread
     String create();
   }
 
@@ -109,14 +108,12 @@ public final class UpdateDescription {
       return staticString;
     }
 
-    ThreadUtil.assertNotMainThread();
-
     //noinspection ConstantConditions
     return stringFactory.create();
   }
 
   @AnyThread
-  public Collection<ServiceId> getMentioned() {
+  public @NonNull Collection<ServiceId> getMentioned() {
     return mentioned;
   }
 

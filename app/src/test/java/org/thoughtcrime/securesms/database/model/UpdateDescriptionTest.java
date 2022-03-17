@@ -1,13 +1,6 @@
 package org.thoughtcrime.securesms.database.model;
 
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-import org.signal.core.util.ThreadUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.Arrays;
@@ -21,19 +14,6 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 public final class UpdateDescriptionTest {
-
-  @Rule
-  public MockitoRule rule = MockitoJUnit.rule();
-
-  @Mock
-  private MockedStatic<ThreadUtil> threadUtilMockedStatic;
-
-  @Before
-  public void setup() {
-    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(true);
-    threadUtilMockedStatic.when(ThreadUtil::assertMainThread).thenCallRealMethod();
-    threadUtilMockedStatic.when(ThreadUtil::assertNotMainThread).thenCallRealMethod();
-  }
 
   @Test
   public void staticDescription_byGetStaticString() {
@@ -56,15 +36,6 @@ public final class UpdateDescriptionTest {
     assertEquals("update", description.getString());
   }
 
-  @Test(expected = AssertionError.class)
-  public void stringFactory_cannot_run_on_main_thread() {
-    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), () -> "update", 0);
-
-    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(true);
-
-    description.getString();
-  }
-
   @Test(expected = UnsupportedOperationException.class)
   public void stringFactory_cannot_call_static_string() {
     UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), () -> "update", 0);
@@ -85,8 +56,6 @@ public final class UpdateDescriptionTest {
 
     assertEquals(0, factoryCalls.get());
 
-    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(false);
-
     String string = description.getString();
 
     assertEquals("update", string);
@@ -98,8 +67,6 @@ public final class UpdateDescriptionTest {
     AtomicInteger                   factoryCalls  = new AtomicInteger();
     UpdateDescription.StringFactory stringFactory = () -> "call" + factoryCalls.incrementAndGet();
     UpdateDescription               description   = UpdateDescription.mentioning(Collections.singletonList(ServiceId.from(UUID.randomUUID())), stringFactory, 0);
-
-    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(false);
 
     assertEquals("call1", description.getString());
     assertEquals("call2", description.getString());
@@ -143,8 +110,6 @@ public final class UpdateDescriptionTest {
 
     assertFalse(description.isStringStatic());
 
-    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(false);
-
     assertEquals("update.11\nupdate.21", description.getString());
     assertEquals("update.12\nupdate.22", description.getString());
     assertEquals("update.13\nupdate.23", description.getString());
@@ -166,8 +131,6 @@ public final class UpdateDescriptionTest {
     UpdateDescription description = UpdateDescription.concatWithNewLines(Arrays.asList(description1, description2, description3));
 
     assertFalse(description.isStringStatic());
-
-    threadUtilMockedStatic.when(ThreadUtil::isMainThread).thenReturn(false);
 
     assertEquals("update.101\nstatic\nupdate.201", description.getString());
     assertEquals("update.102\nstatic\nupdate.202", description.getString());

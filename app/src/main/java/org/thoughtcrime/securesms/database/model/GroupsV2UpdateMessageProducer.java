@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.database.model;
 import android.content.Context;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -763,11 +764,9 @@ final class GroupsV2UpdateMessageProducer {
   interface DescribeMemberStrategy {
 
     /**
-     * Map an ACI to a string that describes the group member.
-     * @param serviceId
+     * Map a ServiceId to a string that describes the group member.
      */
     @NonNull
-    @WorkerThread
     String describe(@NonNull ServiceId serviceId);
   }
 

@@ -22,17 +22,23 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -90,6 +96,7 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
     MentionHelper       mentionHelper    = new MentionHelper();
     AttachmentHelper    attachmentHelper = new AttachmentHelper();
     ReactionHelper      reactionHelper   = new ReactionHelper();
+    Set<ServiceId>      referencedIds    = new HashSet<>();
 
     try (MmsSmsDatabase.Reader reader = MmsSmsDatabase.readerFor(db.getConversation(threadId, start, length))) {
       MessageRecord record;
@@ -98,6 +105,11 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
         mentionHelper.add(record);
         reactionHelper.add(record);
         attachmentHelper.add(record);
+
+        UpdateDescription description = record.getUpdateDisplayBody(context);
+        if (description != null) {
+          referencedIds.addAll(description.getMentioned());
+        }
       }
     }
 
@@ -125,6 +137,11 @@ class ConversationDataSource implements PagedDataSource<MessageId, ConversationM
 
     records = attachmentHelper.buildUpdatedModels(context, records);
     stopwatch.split("attachment-models");
+
+    for (ServiceId serviceId : referencedIds) {
+      Recipient.resolved(RecipientId.from(serviceId, null));
+    }
+    stopwatch.split("recipient-resolves");
 
     List<ConversationMessage> messages = Stream.of(records)
                                                .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, mentionHelper.getMentions(m.getId())))

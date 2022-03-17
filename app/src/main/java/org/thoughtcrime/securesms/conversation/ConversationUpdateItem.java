@@ -73,13 +73,12 @@ public final class ConversationUpdateItem extends FrameLayout
   private Stub<CardView>            donateButtonStub;
   private View                      background;
   private ConversationMessage       conversationMessage;
-  private Recipient               conversationRecipient;
-  private Optional<MessageRecord> nextMessageRecord;
-  private MessageRecord           messageRecord;
+  private Recipient                 conversationRecipient;
+  private Optional<MessageRecord>   nextMessageRecord;
+  private MessageRecord             messageRecord;
   private boolean                   isMessageRequestAccepted;
   private LiveData<SpannableString> displayBody;
   private EventListener             eventListener;
-  private boolean                   hasWallpaper;
 
   private final UpdateObserver updateObserver = new UpdateObserver();
 
@@ -146,7 +145,6 @@ public final class ConversationUpdateItem extends FrameLayout
                     boolean hasWallpaper,
                     boolean isMessageRequestAccepted)
   {
-    this.hasWallpaper             = hasWallpaper;
     this.conversationMessage      = conversationMessage;
     this.messageRecord            = conversationMessage.getMessageRecord();
     this.nextMessageRecord        = nextMessageRecord;
