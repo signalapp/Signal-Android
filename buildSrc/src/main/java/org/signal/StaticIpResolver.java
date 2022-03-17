@@ -11,6 +11,10 @@ import org.xbill.DNS.Type;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public final class StaticIpResolver {
 
@@ -29,7 +33,18 @@ public final class StaticIpResolver {
     return builder.append("}").toString();
   }
 
-  private static String[] resolve(String hostName) {
+  private static String[] resolve(String hostname) {
+    Set<String> ips = new HashSet<>();
+
+    // Run several resolves to mitigate DNS round robin
+    for (int i = 0; i < 10; i++) {
+      ips.addAll(resolveOnce(hostname));
+    }
+
+    return ips.stream().sorted().toArray(String[]::new);
+  }
+
+  private static List<String> resolveOnce(String hostName) {
     try {
       Resolver resolver = new SimpleResolver("1.1.1.1");
       Lookup   lookup   = doLookup(hostName);
@@ -44,7 +59,7 @@ public final class StaticIpResolver {
                      .map(r -> (ARecord) r)
                      .map(ARecord::getAddress)
                      .map(InetAddress::getHostAddress)
-                     .toArray(String[]::new);
+                     .collect(Collectors.toList());
       } else {
         throw new IllegalStateException("Failed to resolve host! " + hostName);
       }
