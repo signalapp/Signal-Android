@@ -337,35 +337,40 @@ public class ConversationViewModel extends ViewModel {
   }
 
   @NonNull Observable<Map<RecipientId, NameColor>> getNameColorsMap() {
-    return recipientId.map(Recipient::resolved)
-                      .map(Recipient::getGroupId)
-                      .map(groupId -> {
-                        if (groupId.isPresent()) {
-                          List<Recipient> fullMembers = SignalDatabase.groups().getGroupMembers(groupId.get(), GroupDatabase.MemberSet.FULL_MEMBERS_INCLUDING_SELF);
-                          Set<Recipient> cachedMembers = MapUtil.getOrDefault(sessionMemberCache, groupId.get(), new HashSet<>());
-                          cachedMembers.addAll(fullMembers);
-                          sessionMemberCache.put(groupId.get(), cachedMembers);
-                          return cachedMembers;
-                        } else {
-                          return Collections.<Recipient>emptySet();
-                        }
-                      })
-                      .map(members -> {
-                        List<Recipient> sorted = Stream.of(members)
-                                                       .filter(member -> !Objects.equals(member, Recipient.self()))
-                                                       .sortBy(Recipient::requireStringId)
-                                                       .toList();
+    return recipientId
+        .observeOn(Schedulers.io())
+        .distinctUntilChanged()
+        .map(Recipient::resolved)
+        .map(Recipient::getGroupId)
+        .map(groupId -> {
+          if (groupId.isPresent()) {
+            List<Recipient> fullMembers   = SignalDatabase.groups().getGroupMembers(groupId.get(), GroupDatabase.MemberSet.FULL_MEMBERS_INCLUDING_SELF);
+            Set<Recipient>  cachedMembers = MapUtil.getOrDefault(sessionMemberCache, groupId.get(), new HashSet<>());
 
-                        List<NameColor>             names  = ChatColorsPalette.Names.getAll();
-                        Map<RecipientId, NameColor> colors = new HashMap<>();
-                        for (int i = 0; i < sorted.size(); i++) {
-                          colors.put(sorted.get(i).getId(), names.get(i % names.size()));
-                        }
+            cachedMembers.addAll(fullMembers);
+            sessionMemberCache.put(groupId.get(), cachedMembers);
 
-                        return colors;
-                      })
-                      .subscribeOn(Schedulers.io())
-                      .observeOn(AndroidSchedulers.mainThread());
+            return cachedMembers;
+          } else {
+            return Collections.<Recipient>emptySet();
+          }
+        })
+        .map(members -> {
+          List<Recipient> sorted = Stream.of(members)
+                                         .filter(member -> !Objects.equals(member, Recipient.self()))
+                                         .sortBy(Recipient::requireStringId)
+                                         .toList();
+
+          List<NameColor>             names  = ChatColorsPalette.Names.getAll();
+          Map<RecipientId, NameColor> colors = new HashMap<>();
+
+          for (int i = 0; i < sorted.size(); i++) {
+            colors.put(sorted.get(i).getId(), names.get(i % names.size()));
+          }
+
+          return colors;
+        })
+        .observeOn(AndroidSchedulers.mainThread());
   }
 
   @NonNull LiveData<Optional<NotificationProfile>> getActiveNotificationProfile() {
