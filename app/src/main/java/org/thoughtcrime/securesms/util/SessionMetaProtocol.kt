@@ -53,7 +53,7 @@ object SessionMetaProtocol {
     }
 
     @JvmStatic
-    fun shouldSendTypingIndicator(address: Address): Boolean {
-        return !address.isGroup
+    fun shouldSendTypingIndicator(recipient: Recipient): Boolean {
+        return !recipient.isGroupRecipient && recipient.isApproved
     }
 }
