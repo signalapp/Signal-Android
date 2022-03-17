@@ -393,7 +393,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sommige contactpersonen kunnen geen lid worden van verouderde groepen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sommige contactpersonen kunnen geen lid worden van verouderde groepen.</string> -->
   <string name="CreateGroupActivity__select_members">Kies leden</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiel</string>
@@ -642,25 +642,25 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
   <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s van deze groep verwijderen?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d groepslid ondersteunt geen nieuwe-stijl groepen, dus deze groep wordt een verouderde groep.</item>
     <item quantity="other">%d groepsleden ondersteunen geen nieuwe-stijl groepen, dus deze groep wordt een verouderde groep.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d groepslid ondersteunt geen nieuwe-stijl groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
     <item quantity="other">%d groepsleden ondersteunen geen nieuwe-stijl groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Er zal een verouderde groep aangemaakt worden omdat “%1$s” een oude versie van Signal gebruikt. Je kunt een nieuwe-stijl groep aanmaken met hem als lid nadat hij Signal heeft bijgewerkt, of hem voordat je de groep aanmaakt verwijderen.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Er zal een verouderde groep aangemaakt worden omdat “%1$s” een oude versie van Signal gebruikt. Je kunt een nieuwe-stijl groep aanmaken met hem als lid nadat hij Signal heeft bijgewerkt, of hem voordat je de groep aanmaakt verwijderen.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Er zal een verouderde groep aangemaakt worden omdat %1$d lid een oude versie van Signal gebruikt. Je kunt een nieuwe-stijl groep aanmaken met hem als lid nadat hij Signal heeft bijgewerkt, of hem voordat je de groep aanmaakt verwijderen.</item>
     <item quantity="other">Er zal een verouderde groep aangemaakt worden omdat %1$d leden een oude versie van Signal gebruiken. Je kunt een nieuwe-stijl groep aanmaken met hen als lid nadat ze Signal hebben bijgewerkt, of hen voordat je de groep aanmaakt verwijderen.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">De nieuwe groep kon niet aangemaakt worden omdat “%1$s” een oude versie van Signal gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">De nieuwe groep kon niet aangemaakt worden omdat “%1$s” een oude versie van Signal gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">De nieuwe groep kon niet aangemaakt worden omdat %1$d lid een oude versie van Signal gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</item>
     <item quantity="other">De nieuwe groep kon niet aangemaakt worden omdat %1$d leden een oude versie van Signal gebruiken. Je zult hen moeten verwijderen om een nieuwe groep aan te kunnen maken.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatschapsverzoeken &amp; -uitnodigingen</string>
   <string name="ManageGroupActivity_add_members">Leden toevoegen</string>
@@ -769,7 +769,7 @@ In groepen zullen jouw berichten niet zichtbaar zijn voor personen die je hebt g
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kan geen lid worden van de groep, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet eerst je verzoek om lid te worden goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je profielnaam, -foto en -omschrijving direct zichtbaar zijn voor de groepsleden.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

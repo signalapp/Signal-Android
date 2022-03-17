@@ -341,7 +341,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ځینې مخاطبین  په زړو ګروپونو کې نشي راتلای.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ځینې مخاطبین  په زړو ګروپونو کې نشي راتلای.</string> -->
   <string name="CreateGroupActivity__select_members">د غړو ټاکنه</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
@@ -589,25 +589,25 @@
   <string name="AddGroupDetailsFragment__remove">ایسته کول</string>
   <string name="AddGroupDetailsFragment__sms_contact">مخاطب ته SMS کول</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">غواړئ %1$s له دغه ګروپ څخه ایسته کړئ؟</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d غړی له نويو ګروپونو څخه ملاتړ نه کوي، نو دا به یو پخوانی ګروپ وي.</item>
     <item quantity="other">%d غړي له نويو ګروپونو څخه ملاتړ نه کوي، نو دا به یو پخوانی ګروپ وي.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d غړی له نویو ګروپونو څخه ملاتړ نه کوي، نو دا ګروپ نشي رامنځته کېدای.</item>
     <item quantity="other">%d غړي له نويو ګروپونو څخه ملاتړ نه کوي، نو دا ګروپ نشي رامنځته کېدای.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">یو پخوانی ګروپ به رامنځته شي ځکه چې”%1$s“ د Signal پخوانۍ نسخه کاروي. تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ کله چې هغوی Signal اپډیټ کړ، یا هم د ګروپ له جوړولو وړاندې یې رامنځته کړ.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">یو پخوانی ګروپ به رامنځته شي ځکه چې”%1$s“ د Signal پخوانۍ نسخه کاروي. تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ کله چې هغوی Signal اپډیټ کړ، یا هم د ګروپ له جوړولو وړاندې یې رامنځته کړ.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">یو پخوانی ګروپ به رامنځته شي ځکه چې %1$d غړی د Signal پخوانۍ نسخه کاروي. تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ کله چې هغوی Signal اپډیټ کړ، یا هم د ګروپ له جوړولو وړاندې یې ایسته کړئ.</item>
     <item quantity="other">یو پخوانی ګروپ به رامنځته شي ځکه چې %1$d غړي د Signal پخوانۍ نسخه کاروي. کله چې هغوی Signal اپډیټ کړ نو تاسې کولای شئ له هغوی سره د نوي سټایل ګروپ رامنځته کړئ یا هم د ګروپ له جوړولو وړاندې یې له منځه یوسئ.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">دا ګروپ نشي جوړیدای، ځکه چې ”%1$s“ د Signal زړه نسخه کاروي. تاسې باید هغه د ګروپ له جوړولو وړاندې ایسته کړئ.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">دا ګروپ نشي جوړیدای، ځکه چې ”%1$s“ د Signal زړه نسخه کاروي. تاسې باید هغه د ګروپ له جوړولو وړاندې ایسته کړئ.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">دغه ګروپ نشي جوړیدای ځکه چې %1$d غړی د Signal زړه نسخه کاروي. تاسې باید د ګروپ له جوړولو وړاندې هغه ایسته کړئ.</item>
     <item quantity="other">دا ګروپ نشي جوړیدای، ځکه چې د %1$d غړي د Signal زړه نسخه کاروي. تاسې باید هغه د ګروپ له جوړولو وړاندې ایسته کړئ.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">د غړي غوښتنې او بلنې</string>
   <string name="ManageGroupActivity_add_members">د غړو اضافه کول</string>
@@ -715,7 +715,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">له ګروپ سره نشي یو ځای کېدای. مهرباني وکړئ وروسته هڅه وکړئ</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">نیټورک له تیروتنې سره مخ شوی.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">د دغه ګروپ لینک فعال نه دی</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">د ګروپ په اړه معلومات نشي تر لاسه کېدای، مهرباني وکړئ وروسته هڅه وکړئ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">د ګروپ په اړه معلومات نشي تر لاسه کېدای، مهرباني وکړئ وروسته هڅه وکړئ</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">غواړئ له دغه ګروپ سره یو ځای شئ او خپل نوم او انځور مو د هغه له غړو سره شریک کړئ؟</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">د دغه ګروپ یو اډمین باید وړاندې تر دې چې له دغه ګروپ سره یو ځای شئ، ستاسې غوښتنه باید تایید کړي. کله چې تاسې د یو ځای کېدو لپاره غوښتنه لیږئ، نو ستاسې نوم او انځور به د هغه له غړو سره شریک شی.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

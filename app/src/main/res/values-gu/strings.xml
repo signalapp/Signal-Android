@@ -341,7 +341,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">કેટલાક સંપર્કો જૂના જૂથોમાં હોઈ શકતા નથી.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">કેટલાક સંપર્કો જૂના જૂથોમાં હોઈ શકતા નથી.</string> -->
   <string name="CreateGroupActivity__select_members">સભ્યો પસંદ કરો</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">પ્રોફાઇલ</string>
@@ -589,25 +589,25 @@
   <string name="AddGroupDetailsFragment__remove">દૂર કરો</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS સંપર્ક</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">આ ગ્રુપમાંથી %1$s દૂર કરવું છે?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d સભ્યો નવા ગ્રુપ ને સપોર્ટ કરતા નથી, તેથી આ જૂથ લેગસી ગ્રુપ હશે.</item>
     <item quantity="other">%d સભ્યો નવા ગ્રુપને સપોર્ટ કરતા નથી, તેથી આ ગ્રુપ જુના ગ્રુપ હશે.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d સભ્યો નવા ગ્રુપ ને ટેકો આપતા નથી, તેથી આ ગ્રુપ બનાવી શકાતું નથી.</item>
     <item quantity="other">%d સભ્યો નવા ગ્રુપને ટેકો આપતા નથી, તેથી આ ગ્રુપ બનાવી શકાતું નથી.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">જુના ગ્રુપ બનાવવામાં આવશે કારણ કે “%1$s” Signal નાં જૂના વર્ઝનનો ઉપયોગ કરી રહ્યું છે. તમે Signal અપડેટ કર્યા પછી તેમની સાથે નવું સ્ટાઇલ ગ્રુપ બનાવી શકો છો અથવા ગ્રુપ બનાવતા પહેલા તેને દૂર કરી શકો છો.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">જુના ગ્રુપ બનાવવામાં આવશે કારણ કે “%1$s” Signal નાં જૂના વર્ઝનનો ઉપયોગ કરી રહ્યું છે. તમે Signal અપડેટ કર્યા પછી તેમની સાથે નવું સ્ટાઇલ ગ્રુપ બનાવી શકો છો અથવા ગ્રુપ બનાવતા પહેલા તેને દૂર કરી શકો છો.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">જુના ગ્રુપ બનાવવામાં આવશે કારણ કે %1$d સભ્યો સિગ્નલના જૂના વર્ઝનનો ઉપયોગ કરી રહ્યા છે. તમે Signal અપડેટ કર્યા પછી તેમની સાથે નવું સ્ટાઇલ ગ્રુપ બનાવી શકો છો અથવા ગ્રુપ બનાવતા પહેલા તેને દૂર કરી શકો છો.</item>
     <item quantity="other">જુના ગ્રુપ બનાવવામાં આવશે કારણ કે %1$d સભ્યો સિગ્નલના જૂના વર્ઝનનો ઉપયોગ કરી રહ્યા છે. તમે સિગ્નલ અપડેટ કર્યા પછી તેમની સાથે નવું સ્ટાઇલ ગ્રુપ બનાવી શકો છો અથવા ગ્રુપ બનાવતા પહેલા તેને દૂર કરી શકો છો.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">આ ગ્રુપ બનાવી શકાતું નથી કારણ કે “%1$s” Signal નાં જૂના વર્ઝનનો ઉપયોગ કરી રહ્યું છે. ગ્રુપ બનાવતા પહેલા તમારે તેમને દૂર કરવા પડશે.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">આ ગ્રુપ બનાવી શકાતું નથી કારણ કે “%1$s” Signal નાં જૂના વર્ઝનનો ઉપયોગ કરી રહ્યું છે. ગ્રુપ બનાવતા પહેલા તમારે તેમને દૂર કરવા પડશે.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">આ ગ્રુપ બનાવી શકાતું નથી કારણ કે %1$d મેમ્બર Signal ના જૂના વર્ઝનનો ઉપયોગ કરી રહ્યા છે. ગ્રુપ બનાવતા પહેલા તમારે તેમને દૂર કરવા પડશે.</item>
     <item quantity="other">આ ગ્રુપ બનાવી શકાતું નથી કારણ કે %1$d સભ્યો Signal ના જૂના વર્ઝન નો ઉપયોગ કરી રહ્યા છે. ગ્રુપ બનાવતા પહેલા તમારે તેમને દૂર કરવા પડશે.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">મેમ્બર વિનંતીઓ &amp; આમંત્રણ આપે છે</string>
   <string name="ManageGroupActivity_add_members">સભ્યો ઉમેરો</string>
@@ -714,7 +714,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ગ્રુપમાં જોડાઈ શક્યા નથી. પછી ફરી પ્રયાસ કરો.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">નેટવર્ક ભૂલ મળી.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">આ ગ્રુપ લિંક સક્રિય નથી</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ગ્રુપની માહિતી પ્રાપ્ત થઈ શકી નથી. પછી ફરી પ્રયાસ કરો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ગ્રુપની માહિતી પ્રાપ્ત થઈ શકી નથી. પછી ફરી પ્રયાસ કરો.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">શું તમે આ ગ્રુપમાં જોડાવા માંગો છો અને તેના સભ્યો સાથે તમારું નામ અને ફોટો શેર કરવા માંગો છો?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">તમે આ ગ્રુપમાં જોડાઈ શકો તે પહેલા આ ગ્રુપના એડમીને તમારી વિનંતી મંજૂર કરવી જોઈએ. જ્યારે તમે જોડાવાની વિતંતી કરો છો ,ત્યારે  તમારું નામ અને ફોટો તેના સભ્યો સાથે શેર કરવામાં આવશે.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

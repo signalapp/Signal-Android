@@ -368,7 +368,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">部份聯絡人冇得用舊版谷。</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">部份聯絡人冇得用舊版谷。</string> -->
   <string name="CreateGroupActivity__select_members">揀選成員</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">個人資料</string>
@@ -600,21 +600,21 @@
   <string name="AddGroupDetailsFragment__remove">移除</string>
   <string name="AddGroupDetailsFragment__sms_contact">短訊聯絡人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">係咪要踼 %1$s 出呢個谷？</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%d 位成員唔支援新版谷，因此呢個谷將會係舊版谷。</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">%d 位成員唔支援新版谷，因此呢個谷就開唔成嘞。</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">將會開一個舊版谷，因為「%1$s」用緊舊版本嘅 Signal。您可以等佢更新咗 Signal 之後先開一個新版谷，又或者踼走佢先開新谷。</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">將會開一個舊版谷，因為「%1$s」用緊舊版本嘅 Signal。您可以等佢更新咗 Signal 之後先開一個新版谷，又或者踼走佢先開新谷。</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">將會開一個舊版谷，因為 %1$d 位成員用緊舊版本嘅 Signal。您可以等佢哋更新咗 Signal 之後先開一個新版谷，又或者踼走佢哋先開新谷。</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">開唔成呢個谷，因為「%1$s」用緊舊版本嘅 Signal。您要踼走佢先開得成呢個谷。</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">開唔成呢個谷，因為「%1$s」用緊舊版本嘅 Signal。您要踼走佢先開得成呢個谷。</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">開唔成呢個谷，因為 %1$d 位成員用緊舊版本嘅 Signal。您要踼走佢哋先開得成呢個谷。</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">成員請求同邀請</string>
   <string name="ManageGroupActivity_add_members">加成員</string>
@@ -719,7 +719,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">加唔到入谷。麻煩陣間再試下啦</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">網絡有問題。</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">呢條谷拎未有生效</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">攞唔到個谷嘅資訊，麻煩陣間再試下啦</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">攞唔到個谷嘅資訊，麻煩陣間再試下啦</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">係咪要加入呢個谷，並且向所有成員分享您嘅名同埋相？</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">呢個谷嘅話事人要先審批您嘅請求，先可以畀您加入呢個谷。當您請求加入嘅時候，您嘅名同埋相將會向呢個谷嘅成員分享。</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

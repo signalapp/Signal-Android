@@ -319,7 +319,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kra n yinermisen ur zmiren ara ad ilin deg yigrawen iqburen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kra n yinermisen ur zmiren ara ad ilin deg yigrawen iqburen.</string> -->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Amaɣnu</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Tella-d tuccḍa deg usbadu n tewlaft n umaɣnu</string>
@@ -574,25 +574,25 @@
   <string name="AddGroupDetailsFragment__remove">Kkes</string>
   <string name="AddGroupDetailsFragment__sms_contact">Anermis SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Kkes %1$s seg ugraw-a?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d uεeggal ur isefrak ara igrawen imaynuten, ihi ad yili d agraw amaynut.</item>
     <item quantity="other">%d yiεeggalen ur sefraken ara igrawen imaynuten, ihi agraw-a ad yili d agraw ameqqran.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d uεeggal ur sefraken ara igrawen imaynuten, ihi agraw-a ad yili d agraw ameqqran.</item>
     <item quantity="other">%d yiεeggalen ur sefraken ara igrawen imaynuten, ihi agraw-a ur yezmir ara ad d-yettwarnu.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Agraw aqbur ad yettwarnu acku \"%1$s\" iseqdac lqem aqbur n Signal. Tzemreḍ ad ternuḍ agraw n uɣanib amaynut yid-sen seld lqem n Signal, neɣ kkes-iten send timerna n ugraw.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Agraw aqbur ad yettwarnu acku \"%1$s\" iseqdac lqem aqbur n Signal. Tzemreḍ ad ternuḍ agraw n uɣanib amaynut yid-sen seld lqem n Signal, neɣ kkes-iten send timerna n ugraw.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Agraw aqbur ad yettwarnu acku %1$d n uεeggal iseqdac lqem aqbur n Signal. Tzemreḍ ad ternuḍ agraw n uɣanib amaynut yid-s seld lqem n Signal, neɣ kkes-it send timerna n ugraw.</item>
     <item quantity="other">Agraw aqbur ad yettwarnu acku %1$d n yiεeggalen seqdacen lqem aqbur n Signal. Tzemreḍ ad ternuḍ agraw n uɣanib amaynut yid-sen seld lqem n Signal, neɣ kkes-iten send timerna n ugraw.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Agraw-a ur yezmir ara ad yettwarnu acku \"%1$s\" iseqdac lqem aqbur n Signal. Ilaq ad t-tekkseḍ send timerna n ugraw.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Agraw-a ur yezmir ara ad yettwarnu acku \"%1$s\" iseqdac lqem aqbur n Signal. Ilaq ad t-tekkseḍ send timerna n ugraw.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Agraw-a ur yezmir ara ad yettwarnu acku %1$d n uεeggal iseqdac lqem aqbur n Signal. Ilaq ad t-tekkseḍ send timerna n ugraw.</item>
     <item quantity="other">Agraw-a ur yezmir ara ad yettwarnu acku %1$d n yiεeggalen seqdacen lqem aqbur n Signal. Ilaq ad ten-tekkseḍ send timerna n ugraw.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Tuttriwin n uεeggal &amp; tinubgiwin</string>
   <string name="ManageGroupActivity_add_members">Rnu iɛeggalen</string>
@@ -696,7 +696,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Timerna ɣer ugraw d awezɣi. Ttxil-k·m εreḍ tikkelt-nniḍen</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Nemlal-d d tuccḍa deg uzeṭṭa</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Aseɣwen-a n ugraw ur yermid ara</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Awway n telɣut n ugraw d awezɣi, ttxil-k·m εreḍ tikkelt-nniḍen ticki</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Awway n telɣut n ugraw d awezɣi, ttxil-k·m εreḍ tikkelt-nniḍen ticki</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Tebɣiḍ ad ternuḍ ɣer ugraw-a, ad ternuḍ ad tebḍuḍ isem d tewlaft inek·inem akked yiɛeggalen-is?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Anedbal n ugraw-a ilaq ad yeqbel asuter-inek·inem send ad tizmireḍ ad ternuḍ ɣer ugraw-a. Mi ara d-tettusutreḍ ad ternuḍ, isem d tewlaft inek·inem ad ttwabḍun d yiεeggalen-is.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

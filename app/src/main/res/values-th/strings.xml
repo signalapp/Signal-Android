@@ -330,7 +330,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">รายชื่อผู้ติดต่อบางคนไม่สามารถอยู่ในกลุ่มแบบเก่าได้</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">รายชื่อผู้ติดต่อบางคนไม่สามารถอยู่ในกลุ่มแบบเก่าได้</string> -->
   <string name="CreateGroupActivity__select_members">เลือกสมาชิก</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">โปรไฟล์</string>
@@ -561,21 +561,21 @@
   <string name="AddGroupDetailsFragment__remove">ลบ</string>
   <string name="AddGroupDetailsFragment__sms_contact">ผู้ติดต่อ SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">ลบ %1$s ออกจากกลุ่มนี้หรือไม่?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">สมาชิก %d คนใช้กลุ่มแบบใหม่ไม่ได้ ดังนั้นกลุ่มนี้จะกลายเป็นกลุ่มแบบเก่า</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">สมาชิก %d คนใช้กลุ่มแบบใหม่ไม่ได้ ดังนั้นกลุ่มนี้จะกลายเป็นกลุ่มแบบเก่า</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">กลุ่มแบบเก่าจะถูกสร้างขึ้นเนื่องจาก \"%1$s\" ใช้ Signal รุ่นเก่าอยู่ คุณสามารถสร้างกลุ่มแบบใหม่ที่มีเขาหลังจากที่เขาปรับรุ่น Signal หรือเอาเขาออกก่อนจะสร้างกลุ่ม</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">กลุ่มแบบเก่าจะถูกสร้างขึ้นเนื่องจาก \"%1$s\" ใช้ Signal รุ่นเก่าอยู่ คุณสามารถสร้างกลุ่มแบบใหม่ที่มีเขาหลังจากที่เขาปรับรุ่น Signal หรือเอาเขาออกก่อนจะสร้างกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">กลุ่มแบบเก่าจะถูกสร้างขึ้นเนื่องจากมีสมาชิก %1$d คนใช้ Signal รุ่นเก่าอยู่ คุณสามารถสร้างกลุ่มแบบใหม่ที่มีคนเหล่านี้หลังจากที่พวกเขาปรับรุ่น Signal หรือเอาพวกเขาออกก่อนจะสร้างกลุ่ม</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ไม่สามารถสร้างกลุ่มนี้ได้ เนื่องจาก “%1$s” ใช้ Signal รุ่นเก่า คุณต้องนำเขาออกก่อนสร้างกลุ่ม</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ไม่สามารถสร้างกลุ่มนี้ได้ เนื่องจาก “%1$s” ใช้ Signal รุ่นเก่า คุณต้องนำเขาออกก่อนสร้างกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">ไม่สามารถสร้างกลุ่มนี้ได้ เนื่องจากสมาชิก %1$d รายใช้ Signal รุ่นเก่า คุณต้องนำพวกเขาออกก่อนสร้างกลุ่ม</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">คำขอและคำเชิญเป็นสมาชิก</string>
   <string name="ManageGroupActivity_add_members">เพิ่มสมาชิก</string>
@@ -678,7 +678,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ไม่สามารถเข้าร่วมกลุ่ม กรุณาลองอีกครั้งภายหลัง</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ลิงก์กลุ่มนี้ไม่ได้เปิดให้ใช้</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ไม่สามารถเข้าถึงข้อมูลกลุ่มได้ กรุณาลองอีกครั้งภายหลัง</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ไม่สามารถเข้าถึงข้อมูลกลุ่มได้ กรุณาลองอีกครั้งภายหลัง</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">คุณต้องการเข้าร่วมกลุ่มและเปิดเผยชื่อกับรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">ผู้ดูแลของกลุ่มนี้จะต้องอนุมัติคำขอเข้าร่วมของคุณก่อนที่คุณจะสามารถเข้าร่วมกลุ่มนี้ได้ เมื่อคุณส่งคำร้องขอเข้าร่วม ชื่อและรูปของคุณจะสามารถเห็นได้โดยสมาชิกคนอื่น</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

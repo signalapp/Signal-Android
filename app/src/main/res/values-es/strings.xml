@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algunas personas no pueden añadirse a grupos antiguos.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algunas personas no pueden añadirse a grupos antiguos.</string> -->
   <string name="CreateGroupActivity__select_members">Seleccionar participantes</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Eliminar</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacto SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">¿Expulsar a %1$s del grupo?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d participante no soporta el nuevo sistema de grupos. Este será un grupo del sistema heredado.</item>
     <item quantity="other">%d participantes no soportan el nuevo sistema de grupos. Este será un grupo del sistema antiguo.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d participante no soporta el nuevo sistema de grupos. No se ha podido crear el grupo.</item>
     <item quantity="other">%d participantes no soportan el nuevo sistema de grupos. No se ha podido crear el grupo.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Se creará un grupo del sistema antiguo porque %1$s usa una versión antigua de Signal. Podrás crear un grupo en el nuevo sistema si esa persona actualiza Signal. También puedes crear un grupo en el nuevo sistema sin ella, y añadirla cuando haya actualizado.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Se creará un grupo del sistema antiguo porque %1$s usa una versión antigua de Signal. Podrás crear un grupo en el nuevo sistema si esa persona actualiza Signal. También puedes crear un grupo en el nuevo sistema sin ella, y añadirla cuando haya actualizado.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Se creará un grupo del sistema antiguo porque %1$d persona usa una versión antigua de Signal. Podrás crear un grupo en el nuevo sistema si esa persona actualiza Signal. También puedes crear un grupo en el nuevo sistema sin ella, y añadirla cuando haya actualizado.</item>
     <item quantity="other">Se creará un grupo del sistema antiguo porque %1$d personas usan una versión antigua de Signal. Podrás crear un grupo en el nuevo sistema si esas personas actualizan Signal. También puedes crear un grupo en el nuevo sistema sin ellas, y añadirlas cuando hayan actualizado.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">No se puede crear este grupo porque %1$s usa una versión antigua de Signal. Debes eliminar a esa persona para poder crear el grupo.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">No se puede crear este grupo porque %1$s usa una versión antigua de Signal. Debes eliminar a esa persona para poder crear el grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">No se puede crear este grupo porque %1$d persona usa una versión antigua de Signal. Debes eliminarla para poder crear el grupo.</item>
     <item quantity="other">No se puede crear este grupo porque %1$d personas usan una versión antigua de Signal. Debes eliminarlas para poder crear el grupo.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitudes e invitaciones</string>
   <string name="ManageGroupActivity_add_members">Añadir participantes</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Fallo al unirse al grupo. Por favor, inténtalo más tarde</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este enlace al grupo no está disponible</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del grupo, por favor inténtalo más tarde</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del grupo, por favor inténtalo más tarde</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un@ admin de este grupo debe aprobar tu solicitud de acceso para unirte al grupo. Al solicitar unirte, tu nombre y foto se compartirán con sus participantes.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

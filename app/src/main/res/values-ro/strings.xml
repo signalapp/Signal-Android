@@ -410,7 +410,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Anumite contacte nu pot exista în grupurile vechi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Anumite contacte nu pot exista în grupurile vechi.</string> -->
   <string name="CreateGroupActivity__select_members">Selectează membrii</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -676,29 +676,29 @@
   <string name="AddGroupDetailsFragment__remove">Elimină</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Elimină pe %1$s din acest grup?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d membru nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
     <item quantity="few">%d membri nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
     <item quantity="other">%d de membri nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d membru nu acceptă grupurile noi, prin urmare acest grup nu poate fi creat.</item>
     <item quantity="few">%d membri nu acceptă grupurile noi, prin urmare acest grup nu poate fi creat.</item>
     <item quantity="other">%d de membri nu acceptă grupurile noi, prin urmare acest grup nu poate fi creat.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un Grup Vechi va fi creat deoarece “%1$s” folosește o versiune veche de Signal. Poți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi elimini înainte de a crea grupul.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un Grup Vechi va fi creat deoarece “%1$s” folosește o versiune veche de Signal. Poți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi elimini înainte de a crea grupul.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Un Grup Vechi ca fi creat deoarece %1$d membru folosește o versiune veche de Signal. Poți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îl elimini înainte de a crea grupul.</item>
     <item quantity="few">Un Grup Vechi ca fi creat deoarece %1$d membri folosesc o versiune veche de Signal. Poți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi elimini înainte de a crea grupul.</item>
     <item quantity="other">Un Grup Vechi va fi creat deoarece %1$d de membri folosesc o versiune veche de Signal. Poți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi elimini înainte de a crea grupul.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Acest grup nu poate fi creat pentru că „%1$s” utilizează o versiune veche a aplicației Signal. Trebuie să-i elimini înainte de a crea grupul.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Acest grup nu poate fi creat pentru că „%1$s” utilizează o versiune veche a aplicației Signal. Trebuie să-i elimini înainte de a crea grupul.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Acest grup nu poate fi creat pentru că %1$d membru utilizează o versiune veche a aplicației Signal. Trebuie să-l elimini înainte de a crea grupul.</item>
     <item quantity="few">Acest grup nu poate fi creat pentru că %1$d membri utilizează o versiune veche a aplicației Signal. Trebuie să-i elimini înainte de a crea grupul.</item>
     <item quantity="other">Acest grup nu poate fi creat pentru că %1$d de membri utilizează o versiune veche a aplicației Signal. Trebuie să-i elimini înainte de a crea grupul.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitări și invitații ale membrilor</string>
   <string name="ManageGroupActivity_add_members">Adăugare membri</string>
@@ -811,7 +811,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Alăturarea la grup nu a reușit. Te rugăm să încerci din nou mai târziu</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">A apărut o eroare de rețea.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Acest link de grup nu este activ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nu s-au putut obține informații despre grup, încearcă din nou mai târziu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nu s-au putut obține informații despre grup, încearcă din nou mai târziu</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Dorești să te alături acestui grup și să îți împărtășești numele și fotografia cu membrii săi?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să îți aprobe solicitarea înainte de a te putea alătura grupului. Când soliciți să te înscrii, numele și fotografia ta vor fi distribuite membrilor săi.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

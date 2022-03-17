@@ -472,7 +472,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعض جهات الاتصال لا يمكنها الوجود في المجموعات من الطراز القديم.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعض جهات الاتصال لا يمكنها الوجود في المجموعات من الطراز القديم.</string> -->
   <string name="CreateGroupActivity__select_members">حدِّد الأعضاء</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">الملف الشخصي</string>
@@ -789,41 +789,41 @@
   <string name="AddGroupDetailsFragment__remove">إزالة</string>
   <string name="AddGroupDetailsFragment__sms_contact">جهة اتصال عبر الرسائل القصيرة (SMS)</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">إزالة %1$s من هذه المجموعة؟</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="zero">%d عضو لا يدعم المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
     <item quantity="one">%d عضو لا يدعم المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
     <item quantity="two">%d أعضاء لا يدعمان المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
     <item quantity="few">%d أعضاء لا يدعمون المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
     <item quantity="many">%d عضوا لا يدعمون المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
     <item quantity="other">%d عضو لا يدعمون المجموعات من الطراز الحديث، لذلك ستكون هذه المجموعة من الطراز القديم.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="zero">%d عضو لا يدعم المجموعات من الطراز الحديث، لذلك لن يتم إنشاء هذه المجموعة.</item>
     <item quantity="one">%d عضو لا يدعم المجموعات من الطراز الحديث، لذلك لن يتم إنشاء هذه المجموعة.</item>
     <item quantity="two">%d أعضاء لا يدعمان المجموعات من الطراز الحديث، لذلك لن يتم إنشاء هذه المجموعة.</item>
     <item quantity="few">%d أعضاء لا يدعمون المجموعات من الطراز الحديث، لذلك لن يتم إنشاء هذه المجموعة.</item>
     <item quantity="many">%d عضو لا يدعمون المجموعات من الطراز الحديث، لذلك لن يتم إنشاء هذه المجموعة.</item>
     <item quantity="other">%d عضو لا يدعمون المجموعات من الطراز الحديث، لذلك لن يتم إنشاء هذه المجموعة.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">سيتم إنشاء مجموعة من الطراز القديم لأن العضو \"%1$s\" يستخدم إصدار Signal قديم، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقوم بتحديث Signal، أو عليك بإزالته قبل إنشاء المجموعة.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">سيتم إنشاء مجموعة من الطراز القديم لأن العضو \"%1$s\" يستخدم إصدار Signal قديم، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقوم بتحديث Signal، أو عليك بإزالته قبل إنشاء المجموعة.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="zero">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" عضو يستخدم إصدار Signal قديم، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقوم بتحديث Signal، أو عليك بإزالته قبل إنشاء المجموعة.</item>
     <item quantity="one">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" عضو يستخدم إصدار Signal قديم، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقوم بتحديث Signal، أو عليك بإزالته قبل إنشاء المجموعة.</item>
     <item quantity="two">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" أعضاء يستخدمان إصدار Signal قديم، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقوما بتحديث Signal، أو عليك بإزالتهما قبل إنشاء المجموعة.</item>
     <item quantity="few">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" أعضاء يستخدمون إصدار Signal قديم، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقوموا بتحديث Signal، أو عليك بإزالتهم قبل إنشاء المجموعة.</item>
     <item quantity="many">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" عضو يستخدمون إصدار Signal قديم، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقوموا بتحديث Signal، أو عليك بإزالتهم قبل إنشاء المجموعة.</item>
     <item quantity="other">سيتم إنشاء مجموعة من الطراز القديم لأن \"%1$d\" عضو يستخدمون إصدار Signal قديم، يمكنك إنشاء مجموعة من الطراز الجديد بعد أن يقوموا بتحديث Signal، أو عليك بإزالتهم قبل إنشاء المجموعة.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">لا يمكن إنشاء هذه المجموعة لأن العضو \"%1$s\" يستخدم إصدار Signal قديم. يجب عليك إزالته قبل إنشاء المجموعة.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">لا يمكن إنشاء هذه المجموعة لأن العضو \"%1$s\" يستخدم إصدار Signal قديم. يجب عليك إزالته قبل إنشاء المجموعة.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="zero">لا يمكن إنشاء هذه المجموعة لأن %1$d عضو يستخدم إصدار Signal قديم. يجب عليك إزالته قبل إنشاء المجموعة.</item>
     <item quantity="one">لا يمكن إنشاء هذه المجموعة لأن %1$d عضو يستخدم إصدار Signal قديم. يجب عليك إزالته قبل إنشاء المجموعة.</item>
     <item quantity="two">لا يمكن إنشاء هذه المجموعة لأن %1$d أعضاء يستخدمان إصدار Signal قديم. يجب عليك إزالتهما قبل إنشاء المجموعة.</item>
     <item quantity="few">لا يمكن إنشاء هذه المجموعة لأن %1$d أعضاء يستخدمون إصدار Signal قديم. يجب عليك إزالتهم قبل إنشاء المجموعة.</item>
     <item quantity="many">لا يمكن إنشاء هذه المجموعة لأن %1$d عضوا يستخدمون إصدار Signal قديم. يجب عليك إزالتهم قبل إنشاء المجموعة.</item>
     <item quantity="other">لا يمكن إنشاء هذه المجموعة لأن %1$d عضو يستخدمون إصدار Signal قديم. يجب عليك إزالتهم قبل إنشاء المجموعة.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">طلبات و دعوات اﻷعضاء</string>
   <string name="ManageGroupActivity_add_members">إضافة أعضاء</string>
@@ -948,7 +948,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">تعذر الانضمام إلى المجموعة. يُرجى إعادة المحاولة لاحقا</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">وصلة هذه المجموعة غير مُفعَّلة</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">فشل الحصول على معلومات المجموعة ، يرجى المحاولة مرة أخرى لاحقاً</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">فشل الحصول على معلومات المجموعة ، يرجى المحاولة مرة أخرى لاحقاً</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">هل تريد الانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">لتستطيع الإنضمام إلى هذه المجموعة يجب أن يوافق مشرف من هذه المجموعة على طلب انضمامك. عندما ترسل طلب انضمام، سيتم مشاركة اسمك وصورتك مع أعضاء المجموعة.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعضی از مخاطبین نمی‌توانند در گروه‌های قدیمی باشند.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعضی از مخاطبین نمی‌توانند در گروه‌های قدیمی باشند.</string> -->
   <string name="CreateGroupActivity__select_members">اعضا را انتخاب کنید</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">حذف</string>
   <string name="AddGroupDetailsFragment__sms_contact">مخاطب پیامکی</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">حذف %1$s از این گروه؟</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d عضو از گروه‌های جدید پشتیبانی نمی‌کند، پس این گروه یک گروه قدیمی خواهد بود.</item>
     <item quantity="other">%d عضو از گرو‌های جدید پشتیبانی نمی‌کنند، پس این گروه یک گروه قدیمی خواهد بود.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d عضو از گروه‌های جدید پشتیبانی نمی‌کند، پس این گروه نمی‌تواند ایجاد شود.</item>
     <item quantity="other">%d عضو از گروه‌های جدید پشتیبانی نمی‌کنند، پس این گروه نمی‌تواند ایجاد شود.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">یک گروه قدیمی ساخته خواهد شد، چون «%1$s» از یک نسخهٔ قدیمی سیگنال استفاده می‌کند. شما می‌توانید با آن‌ها، بعد از اینکه سیگنال را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">یک گروه قدیمی ساخته خواهد شد، چون «%1$s» از یک نسخهٔ قدیمی سیگنال استفاده می‌کند. شما می‌توانید با آن‌ها، بعد از اینکه سیگنال را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">یک گروه قدیمی ساخته خواهد شد، چون %1$d عضو از یک نسخهٔ قدیمی سیگنال استفاده می‌کند. شما می‌توانید با آن‌ها، بعد از اینکه سیگنال را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</item>
     <item quantity="other">یک گروه قدیمی ساخته خواهد شد، چون %1$d عضو از یک نسخهٔ قدیمی سیگنال استفاده می‌کنند. شما می‌توانید با آن‌ها، بعد ازینکه سیگنال را به‌روزرسانی می‌کنند، یک گروه با سبک جدید بسازید، یا آن‌ها را قبل از ساختن گروه حذف کنید.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">این گروه نمی‌تواند ایجاد شود چون «%1$s» از یک نسخهٔ قدیمی سیگنال استفاده می‌کند. شما باید قبل از ایجاد کردن گروه آن‌ها را حذف کنید.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">این گروه نمی‌تواند ایجاد شود چون «%1$s» از یک نسخهٔ قدیمی سیگنال استفاده می‌کند. شما باید قبل از ایجاد کردن گروه آن‌ها را حذف کنید.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">این گروه نمی‌تواند ایجاد شود چون %1$d نفر از اعضا از یک نسخهٔ قدیمی سیگنال استفاده می‌کند. شما باید قبل از ایجاد کردن گروه او را حذف کنید.</item>
     <item quantity="other">این گروه نمی‌تواند ایجاد شود چون %1$d نفر از اعضا از یک نسخهٔ قدیمی سیگنال استفاده می‌کنند. شما باید قبل از ایجاد کردن گروه آن‌ها را حذف کنید.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">درخواست‌های عضویت و دعوت‌ها</string>
   <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">پیوستن به گروه ممکن نبود. لطفاً بعداً دوباره امتحان کنید</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">دریافت اطلاعات گروه ممکن نبود. لطفاً بعداً دوباره امتحان کنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">دریافت اطلاعات گروه ممکن نبود. لطفاً بعداً دوباره امتحان کنید</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">آیا می‌خواهید به این گروه بپیوندید و شماره و عکس خود را با اعضای آن به اشتراک بگذارید؟</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">یک مدیر از این گروه باید با درخواست شما قبل از پیوستن به گروه، موافقت کند. هنگامی که درخواست عضویت می‌دهید، نام و عکس شما با اعضای گروه به اشتراک گذاشته خواهد شد.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

@@ -364,7 +364,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+ %1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Một vài liên hệ không thể ở trong nhóm cũ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Một vài liên hệ không thể ở trong nhóm cũ.</string> -->
   <string name="CreateGroupActivity__select_members">Chọn thành viên</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Hồ sơ</string>
@@ -596,21 +596,21 @@
   <string name="AddGroupDetailsFragment__remove">Xóa</string>
   <string name="AddGroupDetailsFragment__sms_contact">Liên hệ SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Xóa %1$s khỏi nhóm này?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%d thành viên không hỗ trợ Nhóm Mới, vì vậy nhóm này sẽ là Nhóm Cũ.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">%d thành viên không hỗ trợ Nhóm Mới, vì vậy nhóm này không thể được tạo.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Một Nhóm Cũ sẽ được tạo vì \"%1$s\" đang sử dụng phiên bản cũ của Signal. Bạn có thể tạo Nhóm Mới với họ sau khi họ cập nhật Signal, hoặc xóa họ khỏi danh sách thành viên trước khi tạo nhóm.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Một Nhóm Cũ sẽ được tạo vì \"%1$s\" đang sử dụng phiên bản cũ của Signal. Bạn có thể tạo Nhóm Mới với họ sau khi họ cập nhật Signal, hoặc xóa họ khỏi danh sách thành viên trước khi tạo nhóm.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">Một Nhóm Cũ sẽ được tạo vì %1$d thành viên đang sử dụng phiên bản cũ của Signal. Bạn có thể tạo Nhóm Mới với họ sau khi họ cập nhật Signal, hoặc xóa họ khỏi danh sách thành viên trước khi tạo nhóm.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Nhóm này không thể được tạo vì \"%1$s\" đang sử dụng một phiên bản cũ của Signal. Bạn cần phải bỏ chọn họ trước khi tạo nhóm.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Nhóm này không thể được tạo vì \"%1$s\" đang sử dụng một phiên bản cũ của Signal. Bạn cần phải bỏ chọn họ trước khi tạo nhóm.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">Nhóm này không thể được tạo vì %1$d thành viên đang dùng phiên bản cũ của Signal. Bạn cần phải bỏ chọn họ trước khi tạo nhóm.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Yêu cầu tham gia &amp; Lời mời</string>
   <string name="ManageGroupActivity_add_members">Thêm thành viên</string>
@@ -715,7 +715,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Không thể tham gia nhóm. Vui lòng thử lại sau.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Lỗi mạng.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Đường dẫn nhóm không khả dụng</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Không thể lấy thông tin nhóm, vui lòng thử lại sau</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Không thể lấy thông tin nhóm, vui lòng thử lại sau</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bạn có muốn tham gia nhóm này và công khai tên và ảnh đại diện với các thành viên trong nhóm?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Cần một quản trị viên chấp nhận yêu cầu trước khi bạn tham gia nhóm này. Khi bạn yêu cầu tham gia, tên và ảnh đại diện của bạn sẽ được công khai với các thành viên nhóm.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

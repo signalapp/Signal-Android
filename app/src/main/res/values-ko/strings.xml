@@ -360,7 +360,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">일부 연락처는 기존 그룹에 있을 수 없습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">일부 연락처는 기존 그룹에 있을 수 없습니다.</string> -->
   <string name="CreateGroupActivity__select_members">멤버 선택</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">프로필</string>
@@ -591,21 +591,21 @@
   <string name="AddGroupDetailsFragment__remove">삭제</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS 연락</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">이 그룹에서 %1$s를 제외하시겠습니까?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%d명의 멤버가 새 그룹을 지원하지 않으므로 이 그룹은 구형 그룹이 됩니다.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">%d명의 멤버가 새 그룹을 지원하지 않으므로 이 그룹을 만들 수 없습니다.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\'%1$s\' 님이 이전 버전의 Signal을 사용하고 있으므로 구형 그룹이 생성됩니다. Signal을 업데이트한 후 새 스타일 그룹을 만들거나 그룹을 만들기 전에 제거할 수 있습니다.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\'%1$s\' 님이 이전 버전의 Signal을 사용하고 있으므로 구형 그룹이 생성됩니다. Signal을 업데이트한 후 새 스타일 그룹을 만들거나 그룹을 만들기 전에 제거할 수 있습니다.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">%1$d명의 멤버가 이전 버전의 Signal을 사용하고 있으므로 구형 그룹이 생성됩니다. Signal을 업데이트한 후 새 스타일 그룹을 만들거나 그룹을 만들기 전에 제거할 수 있습니다.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">\'%1$s; 님이 이전 버전의 Signal을 사용 중이므로 그룹을 만들 수 없습니다. 그룹을 만들기 전에 제거해야 합니다.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">\'%1$s; 님이 이전 버전의 Signal을 사용 중이므로 그룹을 만들 수 없습니다. 그룹을 만들기 전에 제거해야 합니다.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">%1$d명의 멤버가 이전 버전의 Signal을 사용 중이므로 그룹을 만들 수 없습니다. 그룹을 만들기 전에 제거해야 합니다.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">멤버 요청 &amp; 초대</string>
   <string name="ManageGroupActivity_add_members">멤버 추가</string>
@@ -709,7 +709,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">그룹에 참가가 불가능합니다. 나중에 다시 시도해 주세요.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">이 그룹 링크가 비활성화 되었습니다.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">그룹 정보를 가져올 수 없습니다. 나중에 다시 시도하세요.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">그룹 정보를 가져올 수 없습니다. 나중에 다시 시도하세요.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">그룹에 참가하고 그룹 멤버에게 내 이름과 사진을 공유하시겠습니까?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">이 그룹에 가입하려면 그룹의 관리자가 요청을 승인해야 합니다. 가입을 요청하면 내 이름과 사진이 공유됩니다.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

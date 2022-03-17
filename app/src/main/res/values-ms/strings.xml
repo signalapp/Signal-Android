@@ -360,7 +360,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sesetengah contact tidak boleh berada dalam group legasi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sesetengah contact tidak boleh berada dalam group legasi.</string> -->
   <string name="CreateGroupActivity__select_members">Pilih ahli</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -592,21 +592,21 @@
   <string name="AddGroupDetailsFragment__remove">Alih keluar</string>
   <string name="AddGroupDetailsFragment__sms_contact">Kenalan SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Keluarkan %1$s daripada kumpulan ini?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%d ahli tidak menyokong Kumpulan Baru, jadi kumpulan ini akan menjadi Kumpulan Legasi.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">%d ahli tidak menyokong Kumpulan Baru, supaya kumpulan ini tidak boleh dicipta.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Kumpulan Legasi akan dicipta kerana “%1$s” menggunakan versi lama Signal. Anda boleh mencipta Kumpulan Gaya Baru dengan mereka selepas mereka mengemas kini Signal, atau mengeluarkan mereka sebelum mencipta kumpulan.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Kumpulan Legasi akan dicipta kerana “%1$s” menggunakan versi lama Signal. Anda boleh mencipta Kumpulan Gaya Baru dengan mereka selepas mereka mengemas kini Signal, atau mengeluarkan mereka sebelum mencipta kumpulan.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">Kumpulan Legasi akan dicipta kerana %1$d ahli menggunakan Signal versi lama. Anda boleh mencipta Kumpulan Gaya Baharu dengan mereka selepas mereka mengemas kini Signal, atau mengalih keluar mereka sebelum mencipta kumpulan.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Kumpulan ini tidak dapat dicipta kerana “%1$s” menggunakan Signal versi lama. Anda mesti mengalih keluar mereka sebelum mencipta kumpulan.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Kumpulan ini tidak dapat dicipta kerana “%1$s” menggunakan Signal versi lama. Anda mesti mengalih keluar mereka sebelum mencipta kumpulan.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">Kumpulan ini tidak dapat dicipta kerana %1$d ahli menggunakan Signal versi lama. Anda mesti mengalih keluar mereka sebelum mencipta kumpulan.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Permintaan &amp; jemputan ahli</string>
   <string name="ManageGroupActivity_add_members">Tambah ahli</string>
@@ -711,7 +711,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Tidak dapat menyertai kumpulan. Sila cuba semula kemudian</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Menghadapi ralat rangkaian.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Pautan kumpulan ini tidak aktif</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Tidak boleh mendapatkan maklumat kumpulan, sila cuba sebentar lagi</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Tidak boleh mendapatkan maklumat kumpulan, sila cuba sebentar lagi</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Adakah anda ingin menyertai kumpulan ini dan kongsikan nama dan foto anda dengan ahli-ahlinya?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Pentadbir kumpulan ini mesti meluluskan permintaan anda sebelum anda dapat menyertai kumpulan ini. Apabila anda meminta untuk menyertai kumpulan, nama dan foto anda akan dikongsikan dengan ahli-ahlinya.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

@@ -431,7 +431,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kai kurie adresatai negali būti pasenusiose grupėse.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kai kurie adresatai negali būti pasenusiose grupėse.</string> -->
   <string name="CreateGroupActivity__select_members">Pasirinkti narius</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilis</string>
@@ -714,33 +714,33 @@
   <string name="AddGroupDetailsFragment__remove">Šalinti</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS adresatas</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Pašalinti %1$s iš šios grupės?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d narys nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
     <item quantity="few">%d nariai nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
     <item quantity="many">%d narių nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
     <item quantity="other">%d narys nepalaiko naujųjų grupių, todėl tai bus pasenusi grupė.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d narys nepalaiko naujųjų grupių, todėl ši grupė negali būti sukurta.</item>
     <item quantity="few">%d nariai nepalaiko naujųjų grupių, todėl ši grupė negali būti sukurta.</item>
     <item quantity="many">%d narių nepalaiko naujųjų grupių, todėl ši grupė negali būti sukurta.</item>
     <item quantity="other">%d narys nepalaiko naujųjų grupių, todėl ši grupė negali būti sukurta.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Kadangi „%1$s“ naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiam žmogui atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, pašalinkite šį žmogų.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Kadangi „%1$s“ naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiam žmogui atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, pašalinkite šį žmogų.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Kadangi %1$d narys naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiam žmogui atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, pašalinkite šį žmogų.</item>
     <item quantity="few">Kadangi %1$d nariai naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, pašalinkite šiuos žmones.</item>
     <item quantity="many">Kadangi %1$d narių naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, pašalinkite šiuos žmones.</item>
     <item quantity="other">Kadangi %1$d narys naudoja seną Signal versiją, tai bus sukurta pasenusi grupė. Šiems žmonėms atnaujinus Signal, galėsite sukurti naujojo stiliaus grupę arba, prieš sukurdami grupę, pašalinkite šiuos žmones.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ši grupė negali būti sukurta, nes „%1$s“ naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šį naudotoją.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ši grupė negali būti sukurta, nes „%1$s“ naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šį naudotoją.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Ši grupė negali būti sukurta, nes %1$d narys naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šį naudotoją.</item>
     <item quantity="few">Ši grupė negali būti sukurta, nes %1$d nariai naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šiuos naudotojus.</item>
     <item quantity="many">Ši grupė negali būti sukurta, nes %1$d narių naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šiuos naudotojus.</item>
     <item quantity="other">Ši grupė negali būti sukurta, nes %1$d narys naudoja seną Signal versiją. Prieš sukurdami grupę, privalote pašalinti šiuos naudotojus.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Narių prašymai ir pakvietimai</string>
   <string name="ManageGroupActivity_add_members">Pridėti narių</string>
@@ -857,7 +857,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nepavyko prisijungti prie grupės. Vėliau bandykite dar kartą</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Šios grupės nuoroda nėra aktyvi</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nepavyko gauti grupės informacijos, bandykite dar kartą</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nepavyko gauti grupės informacijos, bandykite dar kartą</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ar norite prisijungti prie šios grupės ir bendrinti su jos nariais savo vardą ir nuotrauką?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Prieš tai, kai galėsite prisijungti prie šios grupės, jos administratorius privalo patvirtinti jūsų prašymą. Kai paprašysite prisijungti prie grupės, jūsų vardas ir nuotrauka bus bendrinami su jos nariais.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

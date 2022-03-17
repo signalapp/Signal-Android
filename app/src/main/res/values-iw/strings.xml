@@ -431,7 +431,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">כמה אנשי קשר אינם יכולים להיות בקבוצות מיושנות.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">כמה אנשי קשר אינם יכולים להיות בקבוצות מיושנות.</string> -->
   <string name="CreateGroupActivity__select_members">בחר חברי קבוצה</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">פרופיל</string>
@@ -714,33 +714,33 @@
   <string name="AddGroupDetailsFragment__remove">הסר</string>
   <string name="AddGroupDetailsFragment__sms_contact">שלח מסרון אל איש קשר</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">להסיר את %1$s מקבוצה זו?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">חבר קבוצה %d אינו תומך בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
     <item quantity="two">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
     <item quantity="many">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
     <item quantity="other">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">חבר קבוצה %d אינו תומך בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
     <item quantity="two">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
     <item quantity="many">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
     <item quantity="other">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">קבוצה מיושנת תיוצר כי \"%1$s\" משתמש בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתו לאחר שהוא יעדכן את Signal, או להסיר אותו לפני יצירת הקבוצה.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">קבוצה מיושנת תיוצר כי \"%1$s\" משתמש בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתו לאחר שהוא יעדכן את Signal, או להסיר אותו לפני יצירת הקבוצה.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">קבוצה מיושנת תיוצר כי חבר קבוצה %1$d משתמש בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתו לאחר שהוא יעדכן את Signal, או להסיר אותו לפני יצירת הקבוצה.</item>
     <item quantity="two">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
     <item quantity="many">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
     <item quantity="other">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">קבוצה זו אינה יכולה להיווצר כי \"%1$s\" משתמש/ת בגרסה ישנה של Signal. אתה חייב להסיר אותו/אותה לפני יצירת הקבוצה.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">קבוצה זו אינה יכולה להיווצר כי \"%1$s\" משתמש/ת בגרסה ישנה של Signal. אתה חייב להסיר אותו/אותה לפני יצירת הקבוצה.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">קבוצה זו אינה יכולה להיווצר כי חבר קבוצה %1$d משתמש בגרסה ישנה של Signal. אתה חייב להסיר אותו לפני יצירת הקבוצה.</item>
     <item quantity="two">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
     <item quantity="many">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
     <item quantity="other">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">בקשות והזמנות של חברי קבוצה</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
@@ -857,7 +857,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">לא היה ניתן להצטרף אל הקבוצה. אנא נסה שוב מאוחר יותר</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">קישור קבוצה זה אינו פעיל</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">לא היה ניתן לקבל את מידע הקבוצה. אנא נסה שוב מאוחר יותר</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">לא היה ניתן לקבל את מידע הקבוצה. אנא נסה שוב מאוחר יותר</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">האם אתה רוצה להצטרף אל קבוצה זו ולשתף את השם והתמונה שלך עם חבריה?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">מנהלן של קבוצה זו חייב לאשר את בקשתך לפני שתוכל להצטרף אל קבוצה זו. כאשר אתה מבקש להצטרף, השם והתמונה שלך ישותפו עם חברי הקבוצה.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

@@ -368,7 +368,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">លេខទំនាក់ទំនងខ្លះមិនអាចនៅក្នុងក្រុមចាស់បានទេ។</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">លេខទំនាក់ទំនងខ្លះមិនអាចនៅក្នុងក្រុមចាស់បានទេ។</string> -->
   <string name="CreateGroupActivity__select_members">ជ្រើសរើសសមាជិក</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ប្រវត្តិរូប</string>
@@ -600,21 +600,21 @@
   <string name="AddGroupDetailsFragment__remove">លុបចេញ</string>
   <string name="AddGroupDetailsFragment__sms_contact">បញ្ជីទំនាក់ទំនង SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">លុប%1$s ចេញពីក្រុមនេះ?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">សមាជិក %d មិនគាំទ្រក្រុមថ្មី ដូចនេះ ក្រុមនេះនឹងក្លាយជាក្រុមមុន។</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">សមាជិក %d នាក់មិនគាំទ្រក្រុមថ្មី ដូច្នេះក្រុមនេះមិនអាចបង្កើតបានទេ។</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">ក្រុមជំនាន់មុនមួយនឹងត្រូវបង្កើត ដោយសារ “%1$s” កំពុងប្រើប្រាស់ Signal កំណែចាស់។ អ្នកអាចបង្កើតក្រុមស្ទាយថ្មី ជាមួយពួកគេ បន្ទាប់ពីពួកគេធ្វើបច្ចុប្បន្នភាព Signal ឬលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">ក្រុមជំនាន់មុនមួយនឹងត្រូវបង្កើត ដោយសារ “%1$s” កំពុងប្រើប្រាស់ Signal កំណែចាស់។ អ្នកអាចបង្កើតក្រុមស្ទាយថ្មី ជាមួយពួកគេ បន្ទាប់ពីពួកគេធ្វើបច្ចុប្បន្នភាព Signal ឬលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">ក្រុមជំនាន់មុនមួយនឹងត្រូវបង្កើត ដោយសារសមាជិក %1$d នាក់កំពុងប្រើប្រាស់ Signal កំណែចាស់។ អ្នកអាចបង្កើតក្រុមស្ទាយថ្មី ជាមួយពួកគេ បន្ទាប់ពីពួកគេធ្វើបច្ចុប្បន្នភាព Signal ឬលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ក្រុមនេះមិនអាចបង្កើតបាន ដោយសារ “%1$s” កំពុងប្រើប្រាស់ Signal​ កំណែចាស់។ អ្នកត្រូវលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។ </string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ក្រុមនេះមិនអាចបង្កើតបាន ដោយសារ “%1$s” កំពុងប្រើប្រាស់ Signal​ កំណែចាស់។ អ្នកត្រូវលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។ </string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">ក្រុមនេះមិនអាចបង្កើតបាន ដោយសារសមាជិក %1$d នាក់កំពុងប្រើប្រាស់ Signal​ កំណែចាស់។ អ្នកត្រូវលុបពួកគេចេញ មុនពេលបង្កើតក្រុម។ </item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">ការស្នើសុំសមាជិក &amp; ការអញ្ជើញ</string>
   <string name="ManageGroupActivity_add_members">បន្ថែមសមាជិក</string>
@@ -719,7 +719,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">មិនអាចចូលក្រុម។ សូមសាកល្បងម្តងទៀតពេលក្រោយ</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">តំណភ្ជាប់របស់ក្រុមនេះមិនដំណើរការទេ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">មិនអាចទទួលព័ត៌មានក្រុម សូមសាកល្បងម្តងទៀតពេលក្រោយ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">មិនអាចទទួលព័ត៌មានក្រុម សូមសាកល្បងម្តងទៀតពេលក្រោយ</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">តើអ្នកចង់ចូលរួមក្រុមនេះ និងចែករំលែកឈ្មោះអ្នក និងរូបភាពជាមួយសមាជិកក្រុមឬទេ?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">អភិបាលនៃក្រុមនេះ ត្រូវអនុម័តសំណើរបស់អ្នក មុនពេលអ្នកអាចចូលរួមក្រុមនេះ។ នៅពេលអ្នកបានស្នើចូលរួម ឈ្មោះនិងរូបភាពរបស់អ្នក នឹងត្រូវចែករំលែកជាមួយសមាជិកក្រុម។</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

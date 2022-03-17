@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Vissa kontakter kan inte vara i gamla grupper.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Vissa kontakter kan inte vara i gamla grupper.</string> -->
   <string name="CreateGroupActivity__select_members">Välj medlemmar</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Ta bort</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ta bort %1$s från denna grupp?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d medlem stöder inte nya grupper, så detta kommer att vara en äldre grupp.</item>
     <item quantity="other">%d medlemmar stöder inte nya grupper, så denna grupp kommer att vara en äldre grupp.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d medlem stöder inte Nya grupper, så denna grupp kan inte skapas.</item>
     <item quantity="other">%d medlemmar stöder inte Nya grupper, så denna grupp kan inte skapas.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">En Äldre grupp skapas eftersom \"%1$s\" använder en gammal version av Signal. Du kan skapa en Ny formatgrupp med medlemmen när medlemmen har uppdaterat Signal eller ta bort medlemmen före du skapar gruppen.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">En Äldre grupp skapas eftersom \"%1$s\" använder en gammal version av Signal. Du kan skapa en Ny formatgrupp med medlemmen när medlemmen har uppdaterat Signal eller ta bort medlemmen före du skapar gruppen.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">En äldre grupp skapas eftersom %1$d medlem använder en gammal version av Signal. Du kan skapa en ny formatgrupp med medlemmen när medlemmen har uppdaterat Signal eller ta bort medlemmen innan du skapar gruppen.</item>
     <item quantity="other">En Äldre grupp skapas eftersom %1$d medlemmar använder en gammal version av Signal. Du kan skapa en Ny formatgrupp med dem när de har uppdaterat Signal eller ta bort dem innan du skapar gruppen.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denna grupp kan inte skapas eftersom \"%1$s\" använder en gammal version av Signal. Du måste ta bort medlemmen innan du skapar gruppen.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denna grupp kan inte skapas eftersom \"%1$s\" använder en gammal version av Signal. Du måste ta bort medlemmen innan du skapar gruppen.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Denna grupp kan inte skapas eftersom %1$d medlem använder en gammal version av Signal. Du måste ta bort dem innan du skapar gruppen.</item>
     <item quantity="other">Denna grupp kan inte skapas eftersom %1$d medlemmar använder en gammal version av Signal. Du måste ta bort dem innan du skapar gruppen.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Medlemsförfrågningar &amp; inbjudningar</string>
   <string name="ManageGroupActivity_add_members">Lägg till medlemmar</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Det gick inte att gå med i gruppen. Vänligen försök igen senare</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det går inte att få gruppinformation, vänligen försök igen senare</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Det går inte att få gruppinformation, vänligen försök igen senare</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vill du gå med i denna grupp och dela ditt namn och foto med dess medlemmar?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">En administratör av denna grupp måste godkänna din förfrågan innan du kan gå med i denna grupp. När du begär att gå med kommer ditt namn och foto att delas med medlemmarna.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

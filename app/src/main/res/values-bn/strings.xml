@@ -381,7 +381,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+ %1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">কিছু কন্ট্যাক্ট লিগ্যাসি গ্রুপে থাকতে পারবে না।</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">কিছু কন্ট্যাক্ট লিগ্যাসি গ্রুপে থাকতে পারবে না।</string> -->
   <string name="CreateGroupActivity__select_members">সদস্য নির্বাচন করুন</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">প্রোফাইল</string>
@@ -629,25 +629,25 @@
   <string name="AddGroupDetailsFragment__remove">সরান</string>
   <string name="AddGroupDetailsFragment__sms_contact">এসএমএস কন্টাক্ট</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s কে এই গ্রুপ থেকে বের করে দিবেন?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d জন সদস্য নতুন গ্রুপ সমর্থন করে না, সুতরাং এই গ্রুপটি একটি লিগ্যাসি গ্রুপ হবে।</item>
     <item quantity="other">%d জন সদস্য নতুন গ্রুপ সমর্থন করে না, সুতরাং এই গ্রুপটি একটি লিগ্যাসি গ্রুপ হবে।</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d জন সদস্য নতুন গ্রুপ সমর্থন করে না, সুতরাং এই গ্রুপটি তৈরি করা যাবে না।</item>
     <item quantity="other">%d জন সদস্য নতুন গ্রুপ সমর্থন করে না, সুতরাং এই গ্রুপটি তৈরি করা যাবে না।</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">একটি লিগ্যাসি গ্রুপ তৈরি করা হবে কারণ \"%1$s\" Signal এর একটি পুরানো সংস্করণ ব্যবহার করছে। তারা Signal আপডেট করার পরে আপনি তাদের সাথে একটি নতুন ধরনের গ্রুপ তৈরি করতে পারেন বা গ্রুপ তৈরির আগে তাদের সরিয়ে ফেলতে পারেন।</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">একটি লিগ্যাসি গ্রুপ তৈরি করা হবে কারণ \"%1$s\" Signal এর একটি পুরানো সংস্করণ ব্যবহার করছে। তারা Signal আপডেট করার পরে আপনি তাদের সাথে একটি নতুন ধরনের গ্রুপ তৈরি করতে পারেন বা গ্রুপ তৈরির আগে তাদের সরিয়ে ফেলতে পারেন।</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">একটি লিগ্যাসি গ্রুপ তৈরি করা হবে কারণ %1$d জন সদস্য Signal এর একটি পুরানো সংস্করণ ব্যবহার করছে। তারা Signal আপডেট করার পরে আপনি তাদের সাথে একটি নতুন ধরনের গ্রুপ তৈরি করতে পারেন বা এই গ্রুপটি তৈরির আগে তাদের সরিয়ে ফেলতে পারেন।</item>
     <item quantity="other">একটি লিগ্যাসি গ্রুপ তৈরি করা হবে কারণ %1$d জন সদস্য Signal এর একটি পুরানো সংস্করণ ব্যবহার করছে। তারা Signal আপডেট করার পরে আপনি তাদের সাথে একটি নতুন ধরনের গ্রুপ তৈরি করতে পারেন বা এই গ্রুপটি তৈরির আগে তাদের সরিয়ে ফেলতে পারেন।</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">এই গ্রুপটি তৈরি করা যাবে না কারণ \"%1$s\" Signal এর একটি পুরানো সংস্করণ ব্যবহার করছে। গ্রুপ তৈরির আগে আপনাকে তাদের সরিয়ে ফেলতে হবে।</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">এই গ্রুপটি তৈরি করা যাবে না কারণ \"%1$s\" Signal এর একটি পুরানো সংস্করণ ব্যবহার করছে। গ্রুপ তৈরির আগে আপনাকে তাদের সরিয়ে ফেলতে হবে।</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">এই গ্রুপটি তৈরি করা যাবে না কারণ %1$dজন সদস্য Signal এর একটি পুরানো সংস্করণ ব্যবহার করছে। গ্রুপ তৈরির আগে অবশ্যই আপনাকে তাদের সরিয়ে ফেলতে হবে।</item>
     <item quantity="other">এই গ্রুপটি তৈরি করা যাবে না কারণ %1$d জন সদস্য  Signal এর একটি পুরানো সংস্করণ ব্যবহার করছে। গ্রুপ তৈরির আগে অবশ্যই আপনাকে তাদের সরিয়ে ফেলতে হবে।</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">সদস্যদের অনুরোধ &amp; আমন্ত্রণ সমূহ</string>
   <string name="ManageGroupActivity_add_members">সদস্য যোগ করুন</string>
@@ -756,7 +756,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">গ্রুপে যোগ দিতে অক্ষম। পরে আবার চেষ্টা করুন</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">এই গ্রুপ লিংকটি সচল নেই</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">গ্রুপ সম্পর্কিত তথ্য পেতে অক্ষম, দয়া করে পরে আবার চেষ্টা করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">গ্রুপ সম্পর্কিত তথ্য পেতে অক্ষম, দয়া করে পরে আবার চেষ্টা করুন</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">আপনি কি এই গ্রুপে যোগ দিতে এবং এর সদস্যদের সাথে নিজের নাম এবং ফটো শেয়ার করতে চান?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">আপনি এই গ্রুপে যোগদানের আগে এই গ্রুপের একজন এডমিন অবশ্যই আপনার অনুরোধটি অনুমোদন করতে হবে। আপনি যখন যোগদানের জন্য অনুরোধ করবেন তখন আপনার নাম এবং ফটো এর সদস্যদের সাথে শেয়ার করা হবে।</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

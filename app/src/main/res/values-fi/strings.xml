@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Jotkut yhteystiedot eivät voi olla vanhan tyylisissä ryhmissä.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Jotkut yhteystiedot eivät voi olla vanhan tyylisissä ryhmissä.</string> -->
   <string name="CreateGroupActivity__select_members">Valitse jäsenet</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiili</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Poista</string>
   <string name="AddGroupDetailsFragment__sms_contact">Tekstiviestiyhteyshenkilö</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Poistetaanko %1$s tästä ryhmästä?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d jäsen ei tue uusia ryhmiä, joten tästä tulee vanhan tyylin ryhmä.</item>
     <item quantity="other">%d jäsentä ei tue uusia ryhmiä, joten tästä tulee vanhan tyylin ryhmä.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one"> %d jäsenellä ei ole tukea uusille ryhmille, joten tätä ryhmää ei pystytä luomaan.</item>
     <item quantity="other">%d jäsenellä ei ole tukea uusille ryhmille, joten tätä ryhmää ei pystytä luomaan.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Ryhmä luodaan vanhan tyylisenä, koska \"%1$s\" käyttää Signalin vanhaa versiota. Voit luoda uuden tyylin ryhmän sen jälkeen kun hän on päivittänyt Signalin, tai voit poistaa hänet ennen kuin luot ryhmän.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Ryhmä luodaan vanhan tyylisenä, koska \"%1$s\" käyttää Signalin vanhaa versiota. Voit luoda uuden tyylin ryhmän sen jälkeen kun hän on päivittänyt Signalin, tai voit poistaa hänet ennen kuin luot ryhmän.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Vanhan tyylin ryhmä luodaan koska %1$d jäsen käyttää Signalin vanhaa versiota. Voit luoda uuden tyylin ryhmä sen jälkeen kun hän on päivittänyt Signalin, tai voit poistaa hänet ennen kuin luot ryhmän.</item>
     <item quantity="other">Ryhmä luodaan vahnan tyylisenä, koska %1$d jäsentä käyttää Signalin vanhaa versiota. Voit luoda uuden tyylin ryhmän sen jälkeen kun he ovat päivittäneet Signalin, tai voit poistaa heidät ennen kuin luot ryhmän.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tätä ryhmää ei pystytä luomaan koska \"%1$s\" käyttää vanhaa versiota Signalista. Sinun täytyy poistaa hänet ennen ryhmän luomista.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tätä ryhmää ei pystytä luomaan koska \"%1$s\" käyttää vanhaa versiota Signalista. Sinun täytyy poistaa hänet ennen ryhmän luomista.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Tätä ryhmää ei pystytä luomaan koska %1$d jäsen käyttää vanhaa versiota Signalista. Sinun täytyy poistaa hänet ennen ryhmän luomista.</item>
     <item quantity="other">Tätä ryhmää ei pystytä luomaan koska %1$d jäsentä käyttää vanhaa versiota Signalista. Sinun täytyy poistaa heidät ennen ryhmän luomista.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Liittymispyynnöt &amp; kutsut</string>
   <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Ryhmään liittyminen ei onnistunut. Yritä myöhemmin uudelleen.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Verkkovirhe.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tämä ryhmälinkki ei ole aktiivinen</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Ryhmätietoja ei saatu. Yritä myöhemmin uudelleen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Ryhmätietoja ei saatu. Yritä myöhemmin uudelleen.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Haluatko liittyä tähän ryhmään ja jakaa nimesi ja profiilikuvasi sen jäsenille?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Ryhmän ylläpitäjän on hyväksyttävä liittymispyyntö ennen ryhmään pääsemistä. Liittymispyynnön yhteydessä nimesi ja kuvasi näkyvät ryhmän jäsenille.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

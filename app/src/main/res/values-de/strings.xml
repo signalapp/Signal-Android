@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Einige Kontakte können keine Mitglieder von Gruppen alten Typs sein.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Einige Kontakte können keine Mitglieder von Gruppen alten Typs sein.</string> -->
   <string name="CreateGroupActivity__select_members">Mitglieder auswählen</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Entfernen</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-Kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s aus dieser Gruppe entfernen?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d Mitglied unterstützt keine Gruppen neuen Typs, daher wird diese Gruppe als Gruppe alten Typs erstellt.</item>
     <item quantity="other">%d Mitglieder unterstützen keine Gruppen neuen Typs, daher wird diese Gruppe als Gruppe alten Typs erstellt.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d Mitglied unterstützt keine Gruppen neuen Typs, daher kann diese Gruppe nicht erstellt werden.</item>
     <item quantity="other">%d Mitglieder unterstützen keine Gruppen neuen Typs, daher kann diese Gruppe nicht erstellt werden.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Es wird eine Gruppe alten Typs erstellt, da »%1$s« eine alte Signal-Version verwendet. Du kannst eine Gruppe neuen Typs mit diesem Mitglied erstellen, sobald es Signal aktualisiert hat, oder es vor Erstellen der Gruppe entfernen.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Es wird eine Gruppe alten Typs erstellt, da »%1$s« eine alte Signal-Version verwendet. Du kannst eine Gruppe neuen Typs mit diesem Mitglied erstellen, sobald es Signal aktualisiert hat, oder es vor Erstellen der Gruppe entfernen.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Es wird eine Gruppen alten Typs erstellt, da %1$d Mitglied eine alte Signal-Version verwendet. Du kannst eine Gruppe neuen Typs mit diesem Mitglied erstellen, sobald es Signal aktualisiert hat, oder es vor Erstellen der Gruppe entfernen.</item>
     <item quantity="other">Es wird eine Gruppe alten Typs erstellt, da %1$d Mitglieder eine alte Signal-Version verwenden. Du kannst eine Gruppe neuen Typs mit diesen Mitgliedern erstellen, sobald sie Signal aktualisiert haben, oder sie vor Erstellen der Gruppe entfernen.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Diese Gruppe kann nicht erstellt werden, da »%1$s« eine alte Signal-Version verwendet. Entferne das Mitglied vor Erstellen der Gruppe.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Diese Gruppe kann nicht erstellt werden, da »%1$s« eine alte Signal-Version verwendet. Entferne das Mitglied vor Erstellen der Gruppe.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Diese Gruppe kann nicht erstellt werden, da %1$d Mitglied eine alte Signal-Version verwendet. Entferne dieses Mitglied vor Erstellen der Gruppe.</item>
     <item quantity="other">Diese Gruppe kann nicht erstellt werden, da %1$d Mitglieder eine alte Signal-Version verwenden. Entferne diese Mitglieder vor Erstellen der Gruppe.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Beitrittsanfragen &amp; Einladungen</string>
   <string name="ManageGroupActivity_add_members">Mitglieder hinzufügen</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Beitritt zur Gruppe nicht möglich. Bitte versuche es später erneut.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dieser Gruppen-Link ist nicht aktiv</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Gruppeninformationen können nicht abgerufen werden. Bitte versuche es später erneut.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Gruppeninformationen können nicht abgerufen werden. Bitte versuche es später erneut.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit deren Mitgliedern teilen?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Bevor du der Gruppe beitreten kannst, muss ein Admin dieser Gruppe deine Anfrage bestätigen. Wenn du eine Beitrittsanfrage stellst, werden dein Name und dein Foto mit den Mitgliedern geteilt.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

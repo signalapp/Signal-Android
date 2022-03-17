@@ -433,7 +433,7 @@ Anfon neges heb ei diogelu?</string>
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nid oes modd i rai cysylltiadau fod mewn hen grwpiau.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nid oes modd i rai cysylltiadau fod mewn hen grwpiau.</string> -->
   <string name="CreateGroupActivity__select_members">Dewis aelodau</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Proffil</string>
@@ -716,33 +716,33 @@ Anfon neges heb ei diogelu?</string>
   <string name="AddGroupDetailsFragment__remove">Tynnu</string>
   <string name="AddGroupDetailsFragment__sms_contact">Cyswllt SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Tynnu %1$s o\'r grŵp hwn?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">Nid yw %d aelod yn cefnogi Grwpiau Newydd, felly Hen Grŵp fydd hwn.</item>
     <item quantity="two">Nid yw %d aelod yn cefnogi Grwpiau Newydd, felly Hen Grŵp fydd hwn.</item>
     <item quantity="many">Nid yw %d aelod yn cefnogi Grwpiau Newydd, felly Hen Grŵp fydd hwn.</item>
     <item quantity="other">Nid yw %d aelod yn cefnogi Grwpiau Newydd, felly Hen Grŵp fydd hwn.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">Nid yw aelod %d yn cefnogi Grwpiau Newydd, felly nid oes modd creu\'r grŵp hwn.</item>
     <item quantity="two">Nid yw aelod %d yn cefnogi Grwpiau Newydd, felly nid oes modd creu\'r grŵp hwn.</item>
     <item quantity="many">Nid yw aelod %d yn cefnogi Grwpiau Newydd, felly nid oes modd creu\'r grŵp hwn.</item>
     <item quantity="other">Nid yw aelod %d yn cefnogi Grwpiau Newydd, felly nid oes modd creu\'r grŵp hwn.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Bydd Hen Grŵp yn cael ei greu oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Bydd Hen Grŵp yn cael ei greu oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Bydd Hen Grŵp yn cael ei greu oherwydd bod aelod %1$s yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</item>
     <item quantity="two">Bydd Hen Grŵp yn cael ei greu oherwydd bod aelod %1$s yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</item>
     <item quantity="many">Bydd Hen Grŵp yn cael ei greu oherwydd bod aelod %1$s yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</item>
     <item quantity="other">Bydd Hen Grŵp yn cael ei greu oherwydd bod aelod %1$s yn defnyddio hen fersiwn o Signal. Gallwch greu Grŵp Arddull Newydd gyda nhw ar ôl iddyn nhw ddiweddaru Signal, neu eu tynnu cyn creu\'r grŵp.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Nid oes modd creu’r grŵp hwn oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Rhaid i chi eu tynnu cyn creu\'r grŵp.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Nid oes modd creu’r grŵp hwn oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Rhaid i chi eu tynnu cyn creu\'r grŵp.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Nid oes modd creu’r grŵp hwn oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Rhaid i chi eu tynnu cyn creu\'r grŵp.</item>
     <item quantity="two">Nid oes modd creu’r grŵp hwn oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Rhaid i chi eu tynnu cyn creu\'r grŵp.</item>
     <item quantity="many">Nid oes modd creu’r grŵp hwn oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Rhaid i chi eu tynnu cyn creu\'r grŵp.</item>
     <item quantity="other">Nid oes modd creu’r grŵp hwn oherwydd bod “%1$s” yn defnyddio hen fersiwn o Signal. Rhaid i chi eu tynnu cyn creu\'r grŵp.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Ceisiadau aelodau a gwahoddiadau</string>
   <string name="ManageGroupActivity_add_members">Ychwanegu aelodau</string>
@@ -859,7 +859,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Methu ymuno â\'r grŵp. Ceisiwch eto</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Profwyd gwall rhwydwaith.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Nid yw\'r ddolen grŵp hwn yn weithredol</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Methu derbyn manylion grŵp. Ceisiwch eto</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Methu derbyn manylion grŵp. Ceisiwch eto</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Hoffech ymuno â\'r grŵp hwn a rhannu eich enw a llun gyda\'i aelodau?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Rhaid i weinyddwr y grŵp hwn gymeradwyo\'ch cais cyn y gallwch ymuno â\'r grŵp hwn. Pan fyddwch yn gofyn i ymuno, bydd eich enw a\'ch llun yn cael eu rhannu gyda\'i aelodau.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

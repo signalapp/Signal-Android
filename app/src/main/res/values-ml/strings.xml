@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ചില കോൺ‌ടാക്റ്റുകൾ‌ ലെഗസി ഗ്രൂപ്പുകളിൽ‌ ഉണ്ടാകാനാകില്ല.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ചില കോൺ‌ടാക്റ്റുകൾ‌ ലെഗസി ഗ്രൂപ്പുകളിൽ‌ ഉണ്ടാകാനാകില്ല.</string> -->
   <string name="CreateGroupActivity__select_members">അംഗങ്ങളെ തിരഞ്ഞെടുക്കൂ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">പ്രൊഫൈൽ</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">നീക്കംചെയ്യൂ</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS കോൺടാക്റ്റ്</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">ഈ ഗ്രൂപ്പിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d അംഗത്തിന് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് ഒരു ലെഗസി ഗ്രൂപ്പായിരിക്കും.</item>
     <item quantity="other">%d അംഗങ്ങൾ‌ക്ക് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് ഒരു ലെഗസി ഗ്രൂപ്പായിരിക്കും.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d അംഗത്തിന് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല.</item>
     <item quantity="other">%d അംഗങ്ങൾ‌ക്ക് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">%1$d അംഗം Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</item>
     <item quantity="other">%1$d അംഗങ്ങള്‍ Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration"> \"%1$s\" Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration"> \"%1$s\" Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">%1$d അംഗം Signal(സിഗ്നലി)ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</item>
     <item quantity="other">%1$d അംഗങ്ങള്‍ Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">അംഗത്വ അഭ്യർത്ഥനകളും ക്ഷണങ്ങളും </string>
   <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ഗ്രൂപ്പിൽ ചേരാനായില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ഗ്രൂപ്പ് വിവരങ്ങൾ‌ നേടാൻ‌ കഴിയില്ല, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ഗ്രൂപ്പ് വിവരങ്ങൾ‌ നേടാൻ‌ കഴിയില്ല, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">ഈ ഗ്രൂപ്പിൽ ചേരാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടാനും നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് മുമ്പ് നിങ്ങളുടെ അഭ്യർത്ഥന ഈ ഗ്രൂപ്പിന്റെ അഡ്മിൻ അംഗീകരിക്കണം. ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങൾ അഭ്യർത്ഥിക്കുമ്പോൾ, നിങ്ങളുടെ ഫോട്ടോയും നമ്പറും അതിലെ അംഗങ്ങളുമായി പങ്കിടും</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

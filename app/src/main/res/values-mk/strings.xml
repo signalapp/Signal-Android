@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Некои контакти не можат да бидат во застарените групи.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Некои контакти не можат да бидат во застарените групи.</string> -->
   <string name="CreateGroupActivity__select_members">Изберете членови</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Профил</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Отстрани</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Да го/ја отстранам %1$s од оваа група?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d член нема поддршка за нови групи, оваа група ќе биде застарена група.</item>
     <item quantity="other">%d членови немаат поддршка за нови групи, оваа група ќе биде застарена група.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d член нема поддршка за нови групи, оваа група нема да биде создадена.</item>
     <item quantity="other">%d членови немаат поддршка за нови групи, оваа група нема да биде создадена.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Застарена група ќе биде содадена бидејќи “%1$s” кориси стара верзија на Signal. Можете да создадете нов стил на група со оваа личност откако ќе го ажурира Signal или да ја отстраните пред да ја создадете групата.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Застарена група ќе биде содадена бидејќи “%1$s” кориси стара верзија на Signal. Можете да создадете нов стил на група со оваа личност откако ќе го ажурира Signal или да ја отстраните пред да ја создадете групата.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Застарена група ќе биде создадена бидејќи %1$d член кориси стара верзија на Signal. Можете да создадете нов стил на група со оваа личност откако ќе го ажурира Signal или да ја отстраните пред да ја создадете групата.</item>
     <item quantity="other">Застарена група ќе биде создадена бидејќи %1$d членови користат стара верзија на Signal. Можете да создадете нов стил на група со нив откако ќе го ажурираат Signal или да ги отстраните пред да ја создадете групата.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Оваа група не може да биде создадена бидејќи „%1$s“ користи стара верзија на Signal. Морате да ја отстраните оваа личност пред да ја создадете групата.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Оваа група не може да биде создадена бидејќи „%1$s“ користи стара верзија на Signal. Морате да ја отстраните оваа личност пред да ја создадете групата.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Оваа група не може да биде создадена бидејќи %1$d член користи стара верзија на Signal. Морате да ја отстраните оваа личност пред да ја создадете групата.</item>
     <item quantity="other">Оваа група не може да биде создадена бидејќи %1$d членови користат стара верзија на Signal. Морате да ги отстраните пред да ја создадете групата.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Барања за членство и покани</string>
   <string name="ManageGroupActivity_add_members">Додај членови</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Не успеав да се приклучам на групата. Ве молиме, обидете се повторно подоцна</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Се случи мрежна грешка.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Групниот линк не е активен</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Не може да се добијат информации за групата, Ве молиме обидете се повторно подоцна</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Не може да се добијат информации за групата, Ве молиме обидете се повторно подоцна</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Дали сакате да се приклучите на оваа група и да го споделите Вашето име и слика со нејзините членови?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Администраторот на ова група мора да го одобри Вашето барање пред да се приклучите. Кога барате да се приклучите, Вашето име и слика ќе бидат споделени со членовите.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -1357,10 +1357,10 @@
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Дали Вашиот телефонски број погоре е точен?</string>
   <string name="RegistrationActivity_edit_number">Уреди го бројот</string>
   <string name="RegistrationActivity_missing_google_play_services">Недостасуваат Google Play услуги</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Овој уред нема Google Play Services. Сѐ уште можете да го користите Signal, но оваа конфигурација може да резултира со намалување на доверливоста или на перформансите.\n\nАко не сте напреден корисник, кој не користи не-оригинален Android ROM, или верувате дека го гледате ова по грешка, Ве молиме контактирајте не на support@signal.org за помош околу наоѓање на проблемот.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Овој уред нема Google Play услуги. Сѐ уште можете да го користите Signal, но оваа конфигурација може да резултира со намалување на доверливоста или на перформансите.\n\nАко не сте напреден корисник, ако не користи прилагоден Android ROM или верувате дека го гледате ова по грешка, Ве молиме контактирајте нѐ на support@signal.org за помош околу решавање на проблемот.</string>
   <string name="RegistrationActivity_i_understand">Разбирам</string>
-  <string name="RegistrationActivity_play_services_error">Грешка со Play Services</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services се ажурира или моментално е недостапна. Ве молиме обидетете се повторно.</string>
+  <string name="RegistrationActivity_play_services_error">Грешка со Play услуги</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play услугите се ажурираат или привремено се недостапни. Ве молиме обидете се повторно.</string>
   <string name="RegistrationActivity_terms_and_privacy">Услови и политика за приватност</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти и склад за да Ви помогне да се поврзете со пријателите и да испраќате пораки. Вашите контакти се прикачуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal има потреба од дозвола до контакти за да Ви помогне да се поврзете со пријателите. Вашите контакти се качуваат преку приватното откривање на контакти во Signal, ова значи дека се шифрирани од крај до крај и никогаш не се видливи за Signal услугата.</string>
@@ -1377,14 +1377,14 @@
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Треба да провериме дали сте човек.</string>
   <string name="RegistrationActivity_next">Следно</string>
   <string name="RegistrationActivity_continue">Продолжи</string>
-  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Понесете ја приватноста со Вас.\nБидете свои во секоја порака. </string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Задржете ја приватноста со Вас.\nБидете свои во секоја порака.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Внесете го Вашиот телефонски број за да започнете</string>
   <string name="RegistrationActivity_enter_your_phone_number">Внесете го Вашиот телефонски број</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ќе добиете код за проверка. Можно е да важат цените од операторот.</string>
-  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Внесете го кодот што Ви го испративме на %s</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Внесете го кодот што го испративме на %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Осигурајте се дека Вашиот телефон има мобилен сигнал за да примите SMS или повик</string>
   <string name="RegistrationActivity_phone_number_description">Телефонски број</string>
-  <string name="RegistrationActivity_country_code_description">Повикувачки број на земјата </string>
+  <string name="RegistrationActivity_country_code_description">Повикувачки број на државата</string>
   <string name="RegistrationActivity_call">Повикај</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Да вклучам заклучување на регистрација?</string>

@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sumir tengiliðir geta ekki verið í eldri gerð hópa.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sumir tengiliðir geta ekki verið í eldri gerð hópa.</string> -->
   <string name="CreateGroupActivity__select_members">Veldu meðlimi</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Notandasnið</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Fjarlægja</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-tengiliður</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Fjarlægja %1$s úr hópnum?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d meðlimur er ekki með stuðning við nýju gerðina af hópum, þannig að þessi hópur verður af eldri gerðinni.</item>
     <item quantity="other">%d meðlimir eru ekki með stuðning við nýju gerðina af hópum, þannig að þessi hópur verður af eldri gerðinni.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d meðlimur er ekki með stuðning við nýju gerðina af hópum, þannig að þessi hópur verður ekki útbúinn.</item>
     <item quantity="other">%d meðlimir eru ekki með stuðning við nýju gerðina af hópum, þannig að þessi hópur verður ekki útbúinn.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Búinn verður til hópur af eldri gerðinni þar sem \"%1$s\" er að nota gamla útgáfu af Signal. Þú getur búið til hóp af nýju gerðinni með viðkomandi eftir að hann hefur uppfært Signal, eða að fjarlægja hann áður en hópurinn er útbúinn.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Búinn verður til hópur af eldri gerðinni þar sem \"%1$s\" er að nota gamla útgáfu af Signal. Þú getur búið til hóp af nýju gerðinni með viðkomandi eftir að hann hefur uppfært Signal, eða að fjarlægja hann áður en hópurinn er útbúinn.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Búinn verður til hópur af eldri gerðinni þar sem %1$d meðlimur er að nota gamla útgáfu af Signal. Þú getur búið til hóp af nýju gerðinni með viðkomandi eftir að hann hefur uppfært Signal, eða að fjarlægja hann áður en hópurinn er útbúinn.</item>
     <item quantity="other">Búinn verður til hópur af eldri gerðinni þar sem %1$d meðlimir eru að nota gamla útgáfu af Signal. Þú getur búið til hóp af nýju gerðinni með viðkomandi eftir að þeir hafa uppfært Signal, eða að fjarlægja þessa meðlimi áður en hópurinn er útbúinn.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ekki er hægt að búa til þennan hóp þar sem \"%1$s\" er að nota gamla útgáfu af Signal. Þú verður að fjarlægja hann áður en hópurinn er útbúinn.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ekki er hægt að búa til þennan hóp þar sem \"%1$s\" er að nota gamla útgáfu af Signal. Þú verður að fjarlægja hann áður en hópurinn er útbúinn.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Ekki er hægt að búa til þennan hóp þar sem %1$d meðlimur eru að nota gamla útgáfu af Signal. Þú þarft að fjarlægja þennan meðlim áður en hópurinn er útbúinn.</item>
     <item quantity="other">Ekki er hægt að búa til þennan hóp þar sem %1$d meðlimir eru að nota gamla útgáfu af Signal. Þú þarft að fjarlægja þessa meðlimi áður en hópurinn er útbúinn.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Beiðnir um þátttöku og boð</string>
   <string name="ManageGroupActivity_add_members">Bæta við meðlimum</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Gast ekki gengið í hópinn. Prófaðu aftur síðar</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Rakst á villu í netkerfi.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Þessi hóptengill er ekki virkur</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Get ekki náð í upplýsingar um hóp, prófaðu aftur síðar</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Get ekki náð í upplýsingar um hóp, prófaðu aftur síðar</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Viltu ganga í þennan hóp og deila nafninu þínu og mynd með meðlimum hans?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Stjórnandi í hópnum verður að samþykkja beiðnina þína áður en þú getur gengið í hópinn. Ef hún er samþykkt, verður nafninu þínu og mynd deilt með meðlimum hópsins.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

@@ -328,7 +328,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">部分联系人无法被置于旧版群组中。</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">部分联系人无法被置于旧版群组中。</string> -->
   <string name="CreateGroupActivity__select_members">选择成员</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">个人资料</string>
@@ -556,21 +556,21 @@
   <string name="AddGroupDetailsFragment__remove">删除</string>
   <string name="AddGroupDetailsFragment__sms_contact">短信联系人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">将 %1$s 从群组移除？</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">有%d位成员无法使用新版群组，所以将创建旧版群组。</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">%d位成员不支持新版群组，因此无法创建此群组。</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">将创建旧版群组，因为“%1$s”还在使用旧版 Signal。您可以在他们都升级到新版 Signal 后创建新版群组，或将他们排除后再建群。</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">将创建旧版群组，因为“%1$s”还在使用旧版 Signal。您可以在他们都升级到新版 Signal 后创建新版群组，或将他们排除后再建群。</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">将创建旧版群组因为%1$d位群成员还在使用旧版 Signal。您可以在他们都升级到新版 Signal 后创建新版群组，或将他们排除后再建群。</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">“%1$s”仍在使用旧版 Signal，因此无法创建此此群组。您需要将其移出后才能建群。</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">“%1$s”仍在使用旧版 Signal，因此无法创建此此群组。您需要将其移出后才能建群。</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">%1$d位成员仍在使用旧版 Signal，因此无法创建此此群组。您需要将其移出后才能建群。</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">入群申请和邀请</string>
   <string name="ManageGroupActivity_add_members">添加成员</string>
@@ -672,7 +672,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">无法加入群组，请稍候再试</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">网络出错。</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">此群组链接未激活</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">无法获取群组信息，请稍候再试</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">无法获取群组信息，请稍候再试</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">您要加入此群组并向其成员分享您的名字和头像吗？</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">您需要经过此群管理员同意才能加入群组。当您申请入群时，群组成员将能看到您的您的昵称和头像。</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

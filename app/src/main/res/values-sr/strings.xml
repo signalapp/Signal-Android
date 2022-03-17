@@ -408,7 +408,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Неки контакти не могу бити у застарелим групама.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Неки контакти не могу бити у застарелим групама.</string> -->
   <string name="CreateGroupActivity__select_members">Одаберите чланове</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Профил</string>
@@ -674,29 +674,29 @@
   <string name="AddGroupDetailsFragment__remove">Уклони</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Желите да уклоните %1$s из ове групе?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one"> %dчлан не подржава Нове Групе, тако да ће ова група бити Стара Група.</item>
     <item quantity="few">%d чланова не подржава Нове Групе, тако да ће ова група бити Стара Група.</item>
     <item quantity="other">%d чланова не подржава Нове Групе, тако да ће ова група бити Стара Група.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d члана не подржава Нове Групе, тако да ова група не може да се креира.</item>
     <item quantity="few">%d чланова не подржава Нове Групе, тако да ова група не може да се креира.</item>
     <item quantity="other">%d чланова не подржава Нове Групе, тако да ова група не може да се креира.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Стара група ће бити створена јер „%1$s“ користи стару верзију Signal-а. Можете да направите Нову Групу Стилова са њима након што ажурирају Signal или да их уклоните пре креирања групе.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Стара група ће бити створена јер „%1$s“ користи стару верзију Signal-а. Можете да направите Нову Групу Стилова са њима након што ажурирају Signal или да их уклоните пре креирања групе.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Стара Група ће бити креирана јер %1$d члан користи стару верзију Signal-а. Можете да направите Нову Групу Стилова са њим након што ажурира Signal, или да га уклоните пре креирања групе.</item>
     <item quantity="few">Стара Група ће бити креирана јер %1$d чланова користе стару верзију Signal-а. Можете да направите Нову Групу Стилова са њима након што ажурирају Signal, или да их уклоните пре креирања групе.</item>
     <item quantity="other">Стара Група ће бити креирана јер %1$d чланова користе стару верзију Signal-а. Можете да направите Нову Групу Стилова са њима након што ажурирају Signal, или да их уклоните пре креирања групе.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ову групу није могуће креирати јер „%1$s“ користи стару верзију Signal-а. Морате их уклонити пре стварања групе.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ову групу није могуће креирати јер „%1$s“ користи стару верзију Signal-а. Морате их уклонити пре стварања групе.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Ову групу није могуће креирати јер %1$d члан користи стару верзију Signal-а. Морате га уклонити пре стварања групе.</item>
     <item quantity="few">Ову групу није могуће креирати јер %1$d чланова користи стару верзију Signal-а. Морате их уклонити пре стварања групе.</item>
     <item quantity="other">Ову групу није могуће креирати јер %1$d чланова користи стару верзију Signal-а. Морате их уклонити пре стварања групе.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Захтеви за чланство &amp; позива</string>
   <string name="ManageGroupActivity_add_members">Додајте чланове</string>
@@ -809,7 +809,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Није могуће придружити се групи. Пробајте поново касније.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Дошло је до грешке мреже.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Веза до групе није активна</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Није могуће прузети информацију о групи, пробајте поново касније.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Није могуће прузети информацију о групи, пробајте поново касније.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Да ли желите да се придружите овој групи и да са њеним члановима поделите ваше име и слику?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Администратор ове групе мора одобрити ваш захтев пре него што се придружите овој групи. Када затражите придруживање, ваше име и фотографија ће се делити са члановима.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

@@ -385,7 +385,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Κάποιες επαφές δεν μπορούν να προστεθούν σε ομάδες παλαιού τύπου.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Κάποιες επαφές δεν μπορούν να προστεθούν σε ομάδες παλαιού τύπου.</string> -->
   <string name="CreateGroupActivity__select_members">Επιλογή μελών</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Προφίλ</string>
@@ -634,25 +634,25 @@
   <string name="AddGroupDetailsFragment__remove">Αφαίρεση</string>
   <string name="AddGroupDetailsFragment__sms_contact">Επαφή SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Αφαίρεση του/της %1$s από την ομάδα;</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d μέλος δεν έχει υποστήριξη για νέες ομάδες, οπότε αυτή η ομάδα θα είναι παλαιού τύπου.</item>
     <item quantity="other">%d μέλη δεν έχουν υποστήριξη για Νέες ομάδες, οπότε αυτή η ομάδα θα είναι παλαιού τύπου.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d μέλος δεν έχει υποστήριξη για Ομάδες νέου τύπου, οπότε η ομάδα δεν μπορεί να δημιουργηθεί.</item>
     <item quantity="other">%d μέλη δεν έχουν υποστήριξη για Ομάδες νέου τύπου,  οπότε η ομάδα δεν μπορεί να δημιουργηθεί.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Θα δημιουργηθεί ομάδα παλαιού τύπου γιατί ο/η \"%1$s\" χρησιμοποιεί μια παλιά έκδοση του Signal. Θα μπορείς να δημιουργήσεις ομάδα νέου τύπου μαζί του/της αφού αναβαθμίσει το Signal, ή αν τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Θα δημιουργηθεί ομάδα παλαιού τύπου γιατί ο/η \"%1$s\" χρησιμοποιεί μια παλιά έκδοση του Signal. Θα μπορείς να δημιουργήσεις ομάδα νέου τύπου μαζί του/της αφού αναβαθμίσει το Signal, ή αν τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Θα δημιουργηθεί ομάδα παλαιού τύπου γιατί %1$d μέλος χρησιμοποιεί μια παλιά έκδοση του Signal. Θα μπορείς να δημιουργήσεις ομάδα νέου τύπου μαζί του/της αφού αναβαθμίσει το Signal, ή αν τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</item>
     <item quantity="other">Θα δημιουργηθεί ομάδα παλαιού τύπου γιατί %1$d μέλη χρησιμοποιούν μια παλιά έκδοση του Signal. Θα μπορείς να δημιουργήσεις ομάδα νέου τύπου μαζί τους αφού αναβαθμίσουν το Signal, ή αν τους αφαιρέσεις πριν δημιουργήσεις την ομάδα.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Η ομάδα δεν μπορεί να δημιουργηθεί επειδή ο/η \"%1$s\" χρησιμοποιεί μια παλιά έκδοση του Signal. Θα πρέπει να τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Η ομάδα δεν μπορεί να δημιουργηθεί επειδή ο/η \"%1$s\" χρησιμοποιεί μια παλιά έκδοση του Signal. Θα πρέπει να τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Η ομάδα δεν μπορεί να δημιουργηθεί επειδή %1$d μέλος χρησιμοποιεί μια παλιά έκδοση του Signal. Θα πρέπει να τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.</item>
     <item quantity="other">Η ομάδα δεν μπορεί να δημιουργηθεί επειδή %1$d μέλη χρησιμοποιούν μια παλιά έκδοση του Signal. Θα πρέπει να τους/τις αφαιρέσεις πριν δημιουργήσεις την ομάδα.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Αιτήματα μελών &amp; προσκλήσεις</string>
   <string name="ManageGroupActivity_add_members">Προσθήκη μελών</string>
@@ -761,7 +761,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Αποτυχία εισόδου στην ομάδα. Παρακαλώ ξαναπροσπάθησε αργότερα</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ο σύνδεσμος της ομάδας δεν είναι ενεργός</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Δεν μπορέσαμε να λάβουμε τις πληροφορίες της ομάδας, προσπάθησε ξανά αργότερα</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Δεν μπορέσαμε να λάβουμε τις πληροφορίες της ομάδας, προσπάθησε ξανά αργότερα</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Θέλεις να μπεις σε αυτή την ομάδα και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Κάποιος διαχειριστής/τρια αυτής της ομάδας θα πρέπει να εγκρίνει το αίτημά σου για να μπορέσεις να μπεις στην ομάδα. Όταν ζητήσεις να μπεις, το όνομα και η φωτογραφία σου θα μοιραστούν με τα μέλη της.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

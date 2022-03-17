@@ -388,7 +388,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Bazı kişiler eski gruplarda bulunamaz.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Bazı kişiler eski gruplarda bulunamaz.</string> -->
   <string name="CreateGroupActivity__select_members">Üyeleri seçin</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -637,25 +637,25 @@
   <string name="AddGroupDetailsFragment__remove">Kaldır</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kişisi</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s bu gruptan çıkartılsın mı?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d üye Yeni Grupları desteklemiyor, bu yüzden bu grup Eski Grup olacaktır.</item>
     <item quantity="other">%d üye Yeni Grupları desteklemiyor, bu yüzden bu grup Eski Grup olacaktır.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d üye Yeni Grupları desteklemiyor, bu grup oluşturulamaz.</item>
     <item quantity="other">%d üye Yeni Grupları desteklemiyor, bu grup oluşturulamaz.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\" eski bir Signal sürümü kullandığı için bir Eski Grup oluşturulacaktır. Bu kişilerle Yeni Grup Türünü Signal sürümlerini güncelleyince veya grubu oluşturmadan önce kişiyi silerek oluşturabilirsiniz.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\" eski bir Signal sürümü kullandığı için bir Eski Grup oluşturulacaktır. Bu kişilerle Yeni Grup Türünü Signal sürümlerini güncelleyince veya grubu oluşturmadan önce kişiyi silerek oluşturabilirsiniz.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">%1$d üye Signal\'in eski bir sürümünü kullandığı için eski bir grup oluşturulacaktır. Signal\'i güncelledikten sonra üyeler ile yeni bir grup oluşturabilir veya grubu oluşturmadan önce üyeleri kaldırabilirsiniz.</item>
     <item quantity="other">%1$d üye Signal\'in eski bir sürümünü kullandığı için eski bir grup oluşturulacaktır. Signal\'i güncelledikten sonra üyeler ile yeni bir grup oluşturabilir veya grubu oluşturmadan önce üyeleri kaldırabilirsiniz.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Bu grup \"%1$s\" eski bir Signal sürümü kullandığı için oluşturulamaz. Grubu oluşturmadan önce kendisini çıkartmalısınız.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Bu grup \"%1$s\" eski bir Signal sürümü kullandığı için oluşturulamaz. Grubu oluşturmadan önce kendisini çıkartmalısınız.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Bu grup %1$d üyenin eski bir Signal sürümü kullandığı için oluşturulamaz. Grubu oluşturmadan önce kendisini çıkartmalısınız.</item>
     <item quantity="other">Bu grup %1$d üyenin eski bir Signal sürümü kullandığı için oluşturulamaz. Grubu oluşturmadan önce kendilerini çıkartmalısınız.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Üyelik istekleri &amp; davetleri</string>
   <string name="ManageGroupActivity_add_members">Üye ekle</string>
@@ -764,7 +764,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Gruba katılma başarısız oldu, lütfen daha sonra tekrar deneyin</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Bir ağ hatası ile karşılaşıldı.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Grup bilgisi alınamadı, lütfen daha sonra tekrar deneyin</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Grup bilgisi alınamadı, lütfen daha sonra tekrar deneyin</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bu gruba katılmak ve adınızı ve fotoğrafınızı üyeleriyle paylaşmak ister misiniz?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Gruba katılmadan önce bu grubun bir yöneticisinin isteğinizi onaylaması gerekiyor. Katılma isteğinde bulunduğunuzda, adınız ve fotoğrafınız üyeleriyle paylaşılacaktır.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

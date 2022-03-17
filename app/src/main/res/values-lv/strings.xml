@@ -410,7 +410,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Daži kontakti nedrīkst būt vecā tipa grupās.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Daži kontakti nedrīkst būt vecā tipa grupās.</string> -->
   <string name="CreateGroupActivity__select_members">Atlasiet grupas dalībniekus</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profils</string>
@@ -676,29 +676,29 @@
   <string name="AddGroupDetailsFragment__remove">Noņemt/Izņemt</string>
   <string name="AddGroupDetailsFragment__sms_contact">Īsziņu kontakts</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Vai dzēst %1$s no šīs grupas?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="zero">%d dalībnieks neatbalsta jaunas grupas, tādēļ šī grupa būs mantotā jeb vecā tipa grupa.</item>
     <item quantity="one">%d dalībnieks neatbalsta jaunas grupas, tādēļ šī grupa būs mantotā jeb vecā tipa grupa.</item>
     <item quantity="other">%d dalībnieki neatbalsta jaunas grupas, tādēļ šī grupa būs mantotā jeb vecā tipa grupa.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="zero">%d dalībnieks neatbalsta jaunas grupas, tādēļ šo grupu nav iespējams izveidot.</item>
     <item quantity="one">%d dalībnieks neatbalsta jaunas grupas, tādēļ šo grupu nav iespējams izveidot.</item>
     <item quantity="other">%d dalībnieki neatbalsta jaunas grupas, tādēļ šo grupu nav iespējams izveidot.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Tiks izveidota vecā tipa grupa, jo “%1$s” izmanto veco Signal versiju. Jauna veida grupu varēsiet izveidot, kad attiecīgais dalībnieks atjauninās lietotni Signal, vai arī pirms grupas izveides dzēsiet šo dalībnieku.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Tiks izveidota vecā tipa grupa, jo “%1$s” izmanto veco Signal versiju. Jauna veida grupu varēsiet izveidot, kad attiecīgais dalībnieks atjauninās lietotni Signal, vai arī pirms grupas izveides dzēsiet šo dalībnieku.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="zero">Tiks izveidota vecā tipa grupa, jo %1$d dalībnieks izmanto veco Signal versiju. Kad attiecīgie dalībnieki ir atjauninājuši lietotni Signal, varat izveidot jauna veida grupu vai arī pirms grupas izveides varat dzēst šos dalībniekus.</item>
     <item quantity="one">Tiks izveidota vecā tipa grupa, jo %1$d dalībnieks izmanto veco Signal versiju. Kad attiecīgie dalībnieki ir atjauninājuši lietotni Signal, varat izveidot jauna veida grupu vai arī pirms grupas izveides varat dzēst šos dalībniekus.</item>
     <item quantity="other">Tiks izveidota vecā tipa grupa, jo %1$d dalībnieki izmanto veco Signal versiju. Jauna veida grupu varēsiet izveidot, kad attiecīgie dalībnieki atjauninās lietotni Signal, vai arī pirms grupas izveides dzēsiet šos dalībniekus.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Šo grupu nevar izveidot, jo “%1$s” izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgais dalībnieks ir jādzēš.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Šo grupu nevar izveidot, jo “%1$s” izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgais dalībnieks ir jādzēš.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="zero">Šo grupu nevar izveidot, jo %1$d dalībnieks izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgie dalībnieki ir jādzēš.</item>
     <item quantity="one">Šo grupu nevar izveidot, jo %1$d dalībnieks izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgie dalībnieki ir jādzēš.</item>
     <item quantity="other">Šo grupu nevar izveidot, jo %1$d dalībnieki izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgie dalībnieki ir jādzēš.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Dalības pieprasījumi &amp; uzaicinājumi</string>
   <string name="ManageGroupActivity_add_members">Pievienot dalībniekus</string>
@@ -811,7 +811,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nevar pievienoties grupai. Lūdzu, mēģiniet vēlāk vēlreiz </string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Tīkla kļūme.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Šī grupas saite nav aktīva.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nevar iegūt grupas informāciju. Vēlāk mēģiniet vēlreiz.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nevar iegūt grupas informāciju. Vēlāk mēģiniet vēlreiz.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Vai vēlaties pievienoties šai grupai un rādīt savu vārdu un fotoattēlu šīs grupas dalībniekiem?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Lai varētu pievienoties šai grupai, šīs grupas administratoram ir jāapstiprina jūsu pieprasījums. Kad nosūtīsiet pieprasījumu pievienoties, grupas dalībnieki redzēs jūsu vārdu un fotoattēlu.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

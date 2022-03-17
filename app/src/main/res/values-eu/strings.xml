@@ -316,7 +316,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kontaktu batzuk ezin dira jarauntsitako taldeetan egon.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kontaktu batzuk ezin dira jarauntsitako taldeetan egon.</string> -->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profila</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Errorea gertatu da profileko argazkia gordetzean</string>
@@ -572,25 +572,25 @@
   <string name="AddGroupDetailsFragment__remove">Ezabatu</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontaktua</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ezabatu %1$s erabiltzailea talde honetatk?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">Kide %dek ez du aukerarik Talde Berriak erabiltzeko; beraz, talde hau Jarauntsitako Taldea izango da.</item>
     <item quantity="other">%d kidek ez dute aukerarik Talde Berriak erabiltzeko; beraz, talde hau Jarauntsitako Taldea izango da.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">Kide %dek ezin ditu Talde Berriak erabili, beraz talde hau ezin da sortu.</item>
     <item quantity="other">%d kidek ezin dute Talde Berririk erabili, beraz talde hau ezin da sortu.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Jarauntsitako talde bat sortuko da \"%1$s\" erabiltzailea Signal-en bertsio zahar bat erabiltzen ari delako. Signal eguneratu ondoren, mota Berriko talde bat sortu dezakezu berarekin; beste aukera bat ondokoa da: taldea sortu aurretik, bera ezabatu.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Jarauntsitako talde bat sortuko da \"%1$s\" erabiltzailea Signal-en bertsio zahar bat erabiltzen ari delako. Signal eguneratu ondoren, mota Berriko talde bat sortu dezakezu berarekin; beste aukera bat ondokoa da: taldea sortu aurretik, bera ezabatu.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Jarauntsitako talde bat sortuko da %1$d erabiltzailea Signal-en bertsio zahar bat erabiltzen ari delako. Mota Berriko talde batu sortu dezakezu berarekin Signal eguneratu ondoren; beste aukera bat ondokoa da: taldea sortu aurretik, bera ezabatu.</item>
     <item quantity="other">Jarauntsitako talde bat sortuko da %1$d erabiltzailea Signal-en bertsio zahar bat erabiltzen ari delako. Mota Berriko talde bat sortu dezakezu beraiekin Signal eguneratu ondoren; beste aukera bat ondokoa da: taldea sortu aurretik, beraiek ezabatu.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ezin izan da talde hau sortu \"%1$s\" Signal bertsio zahar bat erabiltzen ari delako. Taldekideen zerrendatik ezabatu beharko duzu taldea sortu aurretik.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ezin izan da talde hau sortu \"%1$s\" Signal bertsio zahar bat erabiltzen ari delako. Taldekideen zerrendatik ezabatu beharko duzu taldea sortu aurretik.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Ezin izan da talde hau sortu kide %1$d Signal bertsio zahar bat erabiltzen ari delako. Taldekideen zerrendatik ezabatu beharko duzu taldea sortu aurretik.</item>
     <item quantity="other">Ezin izan da talde hau sortu %1$d kide Signal bertsio zahar bat erabiltzen ari delako. Taldekideen zerrendatik ezabatu beharko dituzu taldea sortu aurretik.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Kideen eskaera &amp; gonbidapenak</string>
   <string name="ManageGroupActivity_add_members">Kideak gehitu</string>
@@ -691,7 +691,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Ezin izan da taldera gehitu. Mesedez, saia zaitez beranduago</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Sare errore bat izan da.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Talde esteka hau ez dago indarrean</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Ez da posible izan taldeari buruzko informazioa eskuratzea; mesedez, saia zaitez berriro beranduago</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Ez da posible izan taldeari buruzko informazioa eskuratzea; mesedez, saia zaitez berriro beranduago</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Talde honetara sartu eta zure izena eta argazkia kideekin partekatu nahi duzu?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Talde honetako administratzaile batek zure eskaera onartu behar du talde honetara sartu ahal izan aurretik. Sartzeko eskatzen duzunean, zure izena eta argazkia taldeko kideekin partekatuko dira.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

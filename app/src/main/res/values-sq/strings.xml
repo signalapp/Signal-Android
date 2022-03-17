@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Disa kontakte s\’mund të jenë në grupe të dikurshëm.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Disa kontakte s\’mund të jenë në grupe të dikurshëm.</string> -->
   <string name="CreateGroupActivity__select_members">Përzgjidhni anëtarë</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -639,28 +639,28 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="AddGroupDetailsFragment__remove">Hiqe</string>
   <string name="AddGroupDetailsFragment__sms_contact">Kontakt SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Të hiqet %1$s prej këtij grupi?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d anëtar nuk mbulon Grupe të Rinj, ndaj ky do të jetë Grup i Dikurshëm.</item>
     <item quantity="other">%d anëtarë nuk mbulojnë Grupe të Rinj, ndaj ky grup do të jetë Grup i Dikurshëm.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d anëtar nuk mbulon Grupe të Rinj, ndaj ky grup s\’mund të krijohet.</item>
     <item quantity="other">%d anëtarë nuk mbulojnë Grupe të Rinj, ndaj ky grup s\’mund të krijohet.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Do të krijohet një Grup i Dikurshëm, ngaqë “%1$s” po përdor një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me të pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Do të krijohet një Grup i Dikurshëm, ngaqë “%1$s” po përdor një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me të pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Do të krijohet një Grup i Dikurshëm, ngaqë %1$d anëtar po përdor një
  version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri 
 me të pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.</item>
     <item quantity="other">Do të krijohet një Grup i Dikurshëm, ngaqë %1$d anëtarë po përdorin një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me ta, pasi 
 të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ky grup s\’mund të krijohet, ngaqë “%1$s” po përdor një version të vjetër të Signal-it. Duhet ta hiqni para krijimit të grupit.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ky grup s\’mund të krijohet, ngaqë “%1$s” po përdor një version të vjetër të Signal-it. Duhet ta hiqni para krijimit të grupit.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Ky grup s\’mund të krijohet, ngaqë %1$d anëtar i grupit po përdor një version të vjetër të Signal-it. Duhet ta hiqni, para krijimit të grupit.</item>
     <item quantity="other">Ky grup s\’mund të krijohet, ngaqë %1$d anëtarë të grupit po përdorin një version të vjetër të Signal-it. Duhet t\’i hiqni, para krijimit të grupit.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Kërkesa &amp; ftesa anëtarësie</string>
   <string name="ManageGroupActivity_add_members">Shtoni anëtarë</string>
@@ -769,7 +769,7 @@ të përditësojnë Signal-in, ose t\’i hiqni para krijimit të grupit.</item>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">S\’arrihet të bëhet pjesë e grupit. Ju lutemi, riprovoni më vonë</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">U has një gabim rrjeti.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Kjo lidhje grupi s\’është aktive</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">S\’arrihet të merren të dhëna grupi, ju lutemi, riprovoni më vonë</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">S\’arrihet të merren të dhëna grupi, ju lutemi, riprovoni më vonë</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Doni të bëheni pjesë e këtij grupi dhe të ndani me anëtarët e tij emrin dhe foton tuaj?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Përpara se të bëheni pjesë e këtij grupi, kërkesën tuaj duhet ta miratojë një përgjegjës i grupit. Kur kërkoni të bëheni pjesë, emri dhe fotoja juaj do të ndahet me anëtarët e tij.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

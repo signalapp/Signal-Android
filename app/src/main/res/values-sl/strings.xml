@@ -431,7 +431,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nekateri uporabniki_ce ne morejo biti v starih skupinah.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nekateri uporabniki_ce ne morejo biti v starih skupinah.</string> -->
   <string name="CreateGroupActivity__select_members">Izbira članov_ic</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -714,33 +714,33 @@
   <string name="AddGroupDetailsFragment__remove">Odstrani</string>
   <string name="AddGroupDetailsFragment__sms_contact">Stik SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Želite odstraniti uporabnika_co %1$s iz skupine?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d član_ica skupine ne podpira Novih skupin, zato bo to Stara skupina.</item>
     <item quantity="two">%d člana_ici skupine ne podpirata Novih skupin, zato bo to Stara skupina.</item>
     <item quantity="few">%d člani_ce skupine ne podpirajo Novih skupin, zato bo to Stara skupina.</item>
     <item quantity="other">%d članov_ic skupine ne podpira Novih skupin, zato bo to Stara skupina.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d član_ica skupine ne podpira Novih skupin, zato ta skupina ne more biti ustvarjena.</item>
     <item quantity="two">%d člana_ici skupine ne podpirata Novih skupin, zato ta skupina ne more biti ustvarjena.</item>
     <item quantity="few">%d člani_ce skupine ne podpirajo Novih skupin, zato ta skupina ne more biti ustvarjena.</item>
     <item quantity="other">%d članov_ic skupine ne podpira Novih skupin, zato ta skupina ne more biti ustvarjena.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” ima nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njegovi_njeni posodobitvi Signala, ali pa če ga_jo odstranite iz skupine.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” ima nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njegovi_njeni posodobitvi Signala, ali pa če ga_jo odstranite iz skupine.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">%1$d član skupine ima nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njegovi_njeni posodobitvi Signala, ali pa če ga_jo odstranite iz skupine.</item>
     <item quantity="two">%1$d člana_ici skupine imata nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njuni posodobitvi Signala, ali pa če ju odstranite iz skupine.</item>
     <item quantity="few">%1$d člani_ce skupine imajo nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njihovi posodobitvi Signala, ali pa če jih odstranite iz skupine.</item>
     <item quantity="other">%1$d članov_ic skupine ima nameščeno zastarelo verzijo aplikacije Signal, zato bo ustvarjena Stara skupina. Novo obliko skupine lahko ustvarite šele po njihovi posodobitvi Signala, ali pa če jih odstranite iz skupine.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Skupina ne more biti ustvarjena, ker uporablja uporabnik_ca “%1$s” zastarelo različico aplikacije Signal. Če želite ustvariti skupino, ga_jo morate najprej odstarniti.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Skupina ne more biti ustvarjena, ker uporablja uporabnik_ca “%1$s” zastarelo različico aplikacije Signal. Če želite ustvariti skupino, ga_jo morate najprej odstarniti.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Skupina ne more biti ustvarjena, ker %1$d član_ica uporablja zastarelo različico aplikacije Signal. Če želite ustvariti skupino, ga/jo morate najprej odstarniti.</item>
     <item quantity="two">Skupina ne more biti ustvarjena, ker %1$d člana_ici uporabljata zastarelo različico aplikacije Signal. Če želite ustvariti skupino, ju morate najprej odstarniti.</item>
     <item quantity="few">Skupina ne more biti ustvarjena, ker %1$d člani_ce uporabljajo zastarelo različico aplikacije Signal. Če želite ustvariti skupino, jih morate najprej odstarniti.</item>
     <item quantity="other">Skupina ne more biti ustvarjena, ker %1$d članov_ic uporablja zastarelo različico aplikacije Signal. Če želite ustvariti skupino, jih morate najprej odstarniti.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Vabila in prošnje za članstvo</string>
   <string name="ManageGroupActivity_add_members">Dodajanje članov_ic</string>
@@ -857,7 +857,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Skupini se ni bilo mogoče pridružiti. Poskusite spet kasneje.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Prišlo je do napake na omrežju.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Povezava do skupine ni aktivna</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Podatkov o skupini ni bilo mogoče pridobiti. Poskusite znova kasneje.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Podatkov o skupini ni bilo mogoče pridobiti. Poskusite znova kasneje.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Se želite pridružiti skupini in z njenimi člani_cami deliti svoje ime in fotografijo?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Preden se lahko pridružite, mora vašo prošnjo potrditi skrbnik_ca skupine. Ko pošljete prošnjo za pridružitev, s člani_cami skupine delite svoje ime in fotografijo.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

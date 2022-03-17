@@ -431,7 +431,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Niektóre kontakty nie mogą być w Starych grupach.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Niektóre kontakty nie mogą być w Starych grupach.</string> -->
   <string name="CreateGroupActivity__select_members">Wybierz członków</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -714,33 +714,33 @@
   <string name="AddGroupDetailsFragment__remove">Usuń</string>
   <string name="AddGroupDetailsFragment__sms_contact">Kontakt SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Usunąć %1$s z tej grupy?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d członek nie ma wsparcia dla Nowych grup, więc zostanie utworzona Stara grupa.</item>
     <item quantity="few">%d członków nie ma wsparcia dla Nowych grup. więc zostanie utworzona Stara grupa.</item>
     <item quantity="many">%d członków nie ma wsparcia dla Nowych grup, więc zostanie utworzona Stara grupa.</item>
     <item quantity="other">%d członków nie ma wsparcia dla Nowych grup, więc zostanie utworzona Stara grupa.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d członek nie ma wsparcia dla Nowych grup, więc nie można utworzyć tej grupy.</item>
     <item quantity="few">%d członków nie ma wsparcia dla Nowych grup, więc nie można utworzyć tej grupy.</item>
     <item quantity="many">%d członków nie ma wsparcia dla Nowych grup, więc nie można utworzyć tej grypy.</item>
     <item quantity="other">%d członków nie ma wsparcia dla Nowych grup, więc nie można utworzyć tej grupy.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Zostanie utworzona Stara grupa, gdyż “%1$s” używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal lub usunąć go przed utworzeniem grupy.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Zostanie utworzona Stara grupa, gdyż “%1$s” używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal lub usunąć go przed utworzeniem grupy.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Zostanie utworzona Stara grupa, gdyż %1$d członek używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tym kontaktem, gdy zaktualizuje Signal lub usunąć go przed utworzeniem grupy.</item>
     <item quantity="few">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal lub usunąć je przed utworzeniem grupy.</item>
     <item quantity="many">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal lub usunąć je przed utworzeniem grupy.</item>
     <item quantity="other">Zostanie utworzona Stara grupa, gdyż %1$d członków używa starej wersji Signal. Możesz utworzyć Nową wersję grupy z tymi kontaktami, gdy zaktualizują Signal lub usunąć je przed utworzeniem grupy.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ta grupa nie może zostać utworzona, gdyż \"%1$s\" używa starej wersji Signal. Musisz usunąć go przed utworzeniem grupy.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ta grupa nie może zostać utworzona, gdyż \"%1$s\" używa starej wersji Signal. Musisz usunąć go przed utworzeniem grupy.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Ta grupa nie może zostać utworzona, gdyż %1$d członek używa starej wersji Signal. Musisz go usunąć przed utworzeniem grupy.</item>
     <item quantity="few">Ta grupa nie może zostać utworzona, gdyż %1$d członków używa starej wersji Signal. Musisz ich usunąć przed utworzeniem grupy.</item>
     <item quantity="many">Ta grupa nie może zostać utworzona, gdyż %1$d członków używa starej wersji Signal. Musisz ich usunąć przed utworzeniem grupy.</item>
     <item quantity="other">Ta grupa nie może zostać utworzona, gdyż %1$d członków używa starej wersji Signal. Musisz ich usunąć przed utworzeniem grupy.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Prośby o przyjęcie i zaproszenia</string>
   <string name="ManageGroupActivity_add_members">Dodaj członków</string>
@@ -857,7 +857,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nie udało się dołączyć do grupy. Spróbuj później.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Wystąpił błąd sieci.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Link do tej grupy jest nieaktywny</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nie udało się pobrać informacji o grupie. Spróbuj później.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nie udało się pobrać informacji o grupie. Spróbuj później.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Czy chcesz dołączyć do tej grupy i udostępnić swoje imię i zdjęcie jej członkom?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Administrator tej grupy musi zaakceptować Twoją prośbę, zanim będziesz móc dołączyć do grupy. Gdy poprosisz o przyjęcie, Twoje imię i zdjęcie zostanie udostępnione członkom grupy.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

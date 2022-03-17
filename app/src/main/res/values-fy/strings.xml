@@ -391,7 +391,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Guon kontaktpersoanen kinne gjin lid wurde fan ferâldere groepen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Guon kontaktpersoanen kinne gjin lid wurde fan ferâldere groepen.</string> -->
   <string name="CreateGroupActivity__select_members">Leden kieze</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profyl</string>
@@ -640,25 +640,25 @@
   <string name="AddGroupDetailsFragment__remove">Furt helje</string>
   <string name="AddGroupDetailsFragment__sms_contact">Sms-kontaktpersoan</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s út dizze groep fuortsmite?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d groepslid stipet gjin nije-styl-groepen, dus dizze groep wurdt in ferâldere groep.</item>
     <item quantity="other">%d groepsleden stypje gjin nije-styl-groepen, dus dizze groep wurdt in ferâldere groep.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d groepslid stipet gjin nije-styl-groepen, dus dizze nije groep kin net oanmakke wurde.</item>
     <item quantity="other">%d groepsleden stypje gjin nije-styl-groepen, dus dizze nije groep kin net oanmakke wurde.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Der sil in ferâldere groep oanmakke wurden, omdat ‘%1$s’ in âlde ferzje fan Signal brûkt. Do kinst in nije-styl-groep oanmeitsje mei dyjinge as lid neidat dyjinge Signal bywurke hat, of eardatsto de groep oanmakkest dyjinge fuortsmytst.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Der sil in ferâldere groep oanmakke wurden, omdat ‘%1$s’ in âlde ferzje fan Signal brûkt. Do kinst in nije-styl-groep oanmeitsje mei dyjinge as lid neidat dyjinge Signal bywurke hat, of eardatsto de groep oanmakkest dyjinge fuortsmytst.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Der sil in ferâldere groep oanmakke wurden, omdat %1$d lid in âlde ferzje fan Signal brûkt. Do kinst in nije-styl-groep oanmeitsje mei dyjinge as lid neidat dy Signal bywurke hat, of eardatsto de groep oanmakkest dyjinge fuortsmytst.</item>
     <item quantity="other">Der sil in ferâldere groep oanmakke wurden, omdat %1$d leden in âlde ferzje fan Signal brûke. Do kinst in nije-styl-groep oanmeitsje mei harren as lid neidat sy Signal bywurke hawwe, of eardatsto de groep oanmakkest harren fuortsmytst.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">De nije groep koe net oanmakke wurde, omdat ‘%1$s’ in âlde ferzje fan Signal brûkt. Do silst dyjinge fuortsmite moatte om in nije groep oanmeitsje te kinnen.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">De nije groep koe net oanmakke wurde, omdat ‘%1$s’ in âlde ferzje fan Signal brûkt. Do silst dyjinge fuortsmite moatte om in nije groep oanmeitsje te kinnen.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">De nije groep koe net oanmakke wurde, omdat %1$d lid in âlde ferzje fan Signal brûkt. Do silst dyjinge fuortsmite moatte om in nije groep oanmeitsje te kinnen.</item>
     <item quantity="other">De nije groep koe net oanmakke wurde, omdat %1$d leden in âlde ferzje fan Signal brûke. Do silst harren fuortsmite moatte om in nije groep oanmeitsje te kinnen.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatskipsfersiken &amp; -útnûgingen</string>
   <string name="ManageGroupActivity_add_members">Groepsleden tafoegje</string>
@@ -767,7 +767,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kin gjin lid wurde fan de groep, probearje it letter nochris</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Der is in netwurkflater bard.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dizze groepskeppeling is net aktyf</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kin gjin ynformaasje oer de groep opfreegje, probearje it letter nochris</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kin gjin ynformaasje oer de groep opfreegje, probearje it letter nochris</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wolsto lid wurde fan dizze groep en dyn namme en foto mei de oare leden diele?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">In behearder fan dizze groep moat earst dyn fersyk om lid te wurden goedkarre eardatsto lid wurde kinst fan dizze groep. Wannear\'tsto fersikest om lid te wurden sille dyn profylnamme, -foto en -omskriuwing daliks sichtber wêze foar de groepsleden.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

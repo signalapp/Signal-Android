@@ -341,7 +341,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Baadhi ya waasiliani hawawezi kuwa katika vikundi vizee.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Baadhi ya waasiliani hawawezi kuwa katika vikundi vizee.</string> -->
   <string name="CreateGroupActivity__select_members">Chagua wanachama</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Wasifa</string>
@@ -589,25 +589,25 @@
   <string name="AddGroupDetailsFragment__remove">Ondoa</string>
   <string name="AddGroupDetailsFragment__sms_contact">Mawasiliano ya SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ungependa kumwondoa %1$s kwenye kikundi?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">Mwanachama %d hakubali Vikundi Vipya, kwa hivyo hiki kitakuwa Kikundi Kizee. </item>
     <item quantity="other">Wanachama %d hawakubali Vikundi Vipya, kwa hivyo hiki kitakuwa Kikundi Kizee. </item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">Mwanachama %d hakubali Vikundi Vipya, kwa hivyo kikundi hiki hakiwezi kuundwa. </item>
     <item quantity="other">Wanachama %d hawakubali Vikundi Vipya, kwa hivyo hiki hakiwezi kuundwa. </item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Kikundi Kizee kitaundwa kwa sababu “%1$s” anatumia toleo la awali la Signal. Unaweza kuunda Kikundi Kipya cha Mitindo kinachowajumuisha baada ya kusasisha Signal, au uwaondoe kabla ya kuunda kikundi.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Kikundi Kizee kitaundwa kwa sababu “%1$s” anatumia toleo la awali la Signal. Unaweza kuunda Kikundi Kipya cha Mitindo kinachowajumuisha baada ya kusasisha Signal, au uwaondoe kabla ya kuunda kikundi.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Kikundi Kizee kitaundwa kwa sababu mwanachama %1$danatumia toleo la awali la Signal. Unaweza kuunda Kikundi Kipya cha Mitindo kinachomjumuisha baada ya kusasisha Signal, au umwondoe kabla ya kuunda kikundi.</item>
     <item quantity="other">Kikundi Kizee kitaundwa kwa sababu wanachama wa %1$dwanatumia toleo la awali la Signal. Unaweza kuunda Kikundi Kipya cha Mitindo kinachowajumuisha baada ya kusasisha Signal, au uwaondoe kabla ya kuunda kikundi.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Kikundi hiki hakiwezi kuundwa kwa sababu \"%1$s\" anatumia toleo zee la Signal. Unatakiwa kumwondoa kabla ya kuunda kikundi.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Kikundi hiki hakiwezi kuundwa kwa sababu \"%1$s\" anatumia toleo zee la Signal. Unatakiwa kumwondoa kabla ya kuunda kikundi.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Kikundi hiki hakiwezi kuundwa kwa sababu mwanachama %1$d anatumia toleo zee la Signal. Unatakiwa kumwondoa kabla ya kuunda kikundi.</item>
     <item quantity="other">Kikundi hiki hakiwezi kuundwa kwa sababu wanachama %1$dwanatumia toleo zee la Signal. Unatakiwa kuwaondoa kabla ya kuunda kikundi.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Maombi na mialiko ya wanachama </string>
   <string name="ManageGroupActivity_add_members">Ongeza wanachama</string>
@@ -714,7 +714,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Hujaweza kujiunga na kikundi. Jaribu tena baadaye.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Imekumbana na hitilafu ya mtandao.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Kiungo hiki cha kikundi hakifanyi kazi</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Hujaweza kupata maelezo ya kikundi, jaribu tena baadaye</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Hujaweza kupata maelezo ya kikundi, jaribu tena baadaye</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Je, unataka kujiunga na kikundi hiki na ushiriki jina na picha yako na washiriki wake?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Msimamizi wa kikundi hiki sharti aidhinishe ombi lako kabla ya kujiunga na kikundi hiki. Ukiomba kujiunga, jina na picha yako zitashirikiwa na washiriki wake.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

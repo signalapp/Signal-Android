@@ -381,7 +381,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Mõned kontod ei saa vanades gruppides olla.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Mõned kontod ei saa vanades gruppides olla.</string> -->
   <string name="CreateGroupActivity__select_members">Vali liikmed</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiil</string>
@@ -628,25 +628,25 @@
   <string name="AddGroupDetailsFragment__remove">Eemalda</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Kas eemaldada %1$s sellest grupist?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d liige ei toeta uusi gruppe, seega see grupp jääb vanaks grupiks.</item>
     <item quantity="other">%d liiget ei toeta uusi gruppe, seega see grupp jääb vanaks grupiks.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d liige ei toeta uusi gruppe, seega seda gruppi ei saa luua.</item>
     <item quantity="other">%d liiget ei toeta uusi gruppe, seega seda gruppi ei saa luua.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Luuakse vana grupp, sest “%1$s” kasutab Signali vana versiooni. Selle kasutajaga on võimalik luua uus grupp pärast seda, kui ta on Signalit uuendanud või oled ta enne uue grupi loomist eemaldanud.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Luuakse vana grupp, sest “%1$s” kasutab Signali vana versiooni. Selle kasutajaga on võimalik luua uus grupp pärast seda, kui ta on Signalit uuendanud või oled ta enne uue grupi loomist eemaldanud.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Luuakse vana grupp, sest %1$d liige kasutab Signali vana versiooni. Selle kasutajaga on võimalik luua uus grupp pärast seda, kui ta on Signalit uuendanud või oled ta enne uue grupi loomist eemaldanud.</item>
     <item quantity="other">Luuakse vana grupp, sest %1$d liiget kasutavad Signali vana versiooni. Nende kasutajatega on võimalik luua uus grupp pärast seda, kui nad on Signalit uuendanud või oled nad enne uue grupi loomist eemaldanud.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Seda gruppi pole võimalik luuga, kuna \"%1$s\" kasutab Signali vana versiooni. Sa pead ta eemaldama enne grupi loomist.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Seda gruppi pole võimalik luuga, kuna \"%1$s\" kasutab Signali vana versiooni. Sa pead ta eemaldama enne grupi loomist.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Seda gruppi pole võimalik luuga, kuna %1$d liige kasutab Signali vana versiooni. Sa pead nad eemaldama enne grupi loomist.</item>
     <item quantity="other">Seda gruppi pole võimalik luuga, kuna %1$d liiget kasutavad Signali vana versiooni. Sa pead nad eemaldama enne grupi loomist.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Liikmetaotlused ja -kutsed</string>
   <string name="ManageGroupActivity_add_members">Lisa liikmeid</string>
@@ -754,7 +754,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Grupiga liitumine ei õnnestunud. Proovi hiljem uuesti.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Esines võrgu viga.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">See grupilink ei ole aktiivne</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Grupi info hankimine ei õnnestunud, palun proovi hiljem uuesti.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Grupi info hankimine ei õnnestunud, palun proovi hiljem uuesti.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Kas sa soovid selle grupiga liituda ja jagada enda nime ning fotot grupi liikmetega?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Selle grupi administraator peab kinnitama sinu taotluse enne kui saad selle grupiga liituda. Kui esitad taotluse liituda, siis jagatakse sinu nime ja fotot grupi liikmetega.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

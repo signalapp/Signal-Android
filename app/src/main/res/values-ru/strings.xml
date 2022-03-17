@@ -431,7 +431,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Некоторые контакты не могут находиться в старых группах.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Некоторые контакты не могут находиться в старых группах.</string> -->
   <string name="CreateGroupActivity__select_members">Выберите участников</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Профиль</string>
@@ -714,33 +714,33 @@
   <string name="AddGroupDetailsFragment__remove">Удалить</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Удалить %1$s из этой группы?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d участник не поддерживает Новые группы, поэтому эта группа будет Старой группой.</item>
     <item quantity="few">%d участника не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
     <item quantity="many">%d участников не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
     <item quantity="other">%d участников не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d участник не поддерживает Новые группы, поэтому эта группа не может быть создана.</item>
     <item quantity="few">%d участника не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
     <item quantity="many">%d участников не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
     <item quantity="other">%d участников не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Будет создана Старая группа, потому что «%1$s» использует устаревшую версию Signal. Вы сможете создать группу нового типа после того, как этот человек обновит Signal. Либо вы можете удалить его перед созданием группы.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Будет создана Старая группа, потому что «%1$s» использует устаревшую версию Signal. Вы сможете создать группу нового типа после того, как этот человек обновит Signal. Либо вы можете удалить его перед созданием группы.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Будет создана Старая группа, потому что %1$d участник использует устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
     <item quantity="few">Будет создана Старая группа, потому что %1$d участника используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
     <item quantity="many">Будет создана Старая группа, потому что %1$d участников используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
     <item quantity="other">Будет создана Старая группа, потому что %1$d участников используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Эта группа не может быть создана, потому что «%1$s» использует устаревшую версию Signal. Вы должны удалить этого участника перед созданием группы.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Эта группа не может быть создана, потому что «%1$s» использует устаревшую версию Signal. Вы должны удалить этого участника перед созданием группы.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Эта группа не может быть создана, потому что %1$d участник использует устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
     <item quantity="few">Эта группа не может быть создана, потому что %1$d участника используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
     <item quantity="many">Эта группа не может быть создана, потому что %1$d участников используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
     <item quantity="other">Эта группа не может быть создана, потому что %1$d участников используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Запросы на участие и приглашения</string>
   <string name="ManageGroupActivity_add_members">Добавить участников</string>
@@ -857,7 +857,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Не удалось присоединиться к группе. Пожалуйста, попробуйте ещё раз позже</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Произошла ошибка сети.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Не удалось получить информацию группы. Пожалуйста, попробуйте ещё раз позже</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Не удалось получить информацию группы. Пожалуйста, попробуйте ещё раз позже</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Вы хотите присоединиться к этой группе и открыть своё имя и фото её участникам?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Администратор этой группы должен принять ваш запрос, прежде чем вы сможете присоединиться к ней. Когда вы отправите запрос, ваши имя и фото станут доступны участникам этой группы.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

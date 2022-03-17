@@ -368,7 +368,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Beberapa kontak tidak dapat berada di grup lama.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Beberapa kontak tidak dapat berada di grup lama.</string> -->
   <string name="CreateGroupActivity__select_members">Pilih anggota</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -600,21 +600,21 @@
   <string name="AddGroupDetailsFragment__remove">Hapus</string>
   <string name="AddGroupDetailsFragment__sms_contact">Kontak SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Keluarkan %1$s dari grup ini?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%d anggota tidak mendukung Grup Baru, sehingga grup ini akan menjadi Grup Lama.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">%d anggota tidak mendukung Grup Baru, sehingga grup ini tidak dapat dibuat.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Sebuah Grup Lama dibuat karena \"%1$s\" menggunakan versi Signal yang lama. Anda dapat membuat Grup Gaya Baru dengan mereka setelah mereka memperbarui Signal, atau mengeluarkannya sebelum membuat grup.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Sebuah Grup Lama dibuat karena \"%1$s\" menggunakan versi Signal yang lama. Anda dapat membuat Grup Gaya Baru dengan mereka setelah mereka memperbarui Signal, atau mengeluarkannya sebelum membuat grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">Sebuah Grup Lama dibuat karena %1$d anggota menggunakan versi Signal yang lama. Anda dapat membuat Grup Gaya Baru dengan mereka setelah mereka memperbarui Signal, atau mengeluarkannya sebelum membuat grup.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Grup ini tidak dapat dibuat karena \"%1$s\" menggunakan versi Signal yang lama. Anda harus mengeluarkan mereka sebelum membuat grup.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Grup ini tidak dapat dibuat karena \"%1$s\" menggunakan versi Signal yang lama. Anda harus mengeluarkan mereka sebelum membuat grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">Grup ini tidak dapat dibuat karena %1$danggota menggunakan versi Signal yang lama. Anda harus mengeluarkan mereka sebelum membuat grup.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Permintaan anggota  &amp; undangan</string>
   <string name="ManageGroupActivity_add_members">Tambahkan anggota</string>
@@ -719,7 +719,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Tidak dapat bergabung ke grup. Mohon coba lagi nanti</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Terjadi galat jaringan.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tautan grup ini tidak aktif</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Tidak dapat mendapatkan informasi grup, mohon coba lagi nanti</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Tidak dapat mendapatkan informasi grup, mohon coba lagi nanti</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Apakah Anda ingin bergabung dengan grup ini dan membagikan nama dan foto Anda dengan anggota grup?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Seorang admin dari grup ini harus menerima permintaan Anda sebelum dapat bergabung ke grup ini. Saat Anda meminta untuk bergabung, nama dan foto Anda akan diibagikan dengan anggota grup.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

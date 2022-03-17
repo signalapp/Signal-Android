@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Néhány kontakt nem lehet régi típusú csoport tagja.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Néhány kontakt nem lehet régi típusú csoport tagja.</string> -->
   <string name="CreateGroupActivity__select_members">Tagok kiválasztása</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Eltávolítás</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eltávolítod %1$s-t ebből a csoportból?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d tag nem támogatja az új típusú csoportokat, ezért a csoport továbbra is régi típusú marad.</item>
     <item quantity="other">%d tag nem támogatja az új típusú csoportokat, ezért a csoport továbbra is régi típusú marad.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d tag nem támogatja az új típusú csoportokat, ezért ezt a csoport nem lehet létrehozni.</item>
     <item quantity="other">%d tag nem támogatja az új típusú csoportokat, ezért ezt a csoport nem lehet létrehozni.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Régi típusú csoport lesz létrehozva, mivel \"%1$s\" a Signal egy régi verzióját használja. Új típusú csoportot csak azután fogsz tudni létrehozni, hogy ő is frissítette Signalját, vagy ha eltávolítod a felvételre kerülő tagok közül.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Régi típusú csoport lesz létrehozva, mivel \"%1$s\" a Signal egy régi verzióját használja. Új típusú csoportot csak azután fogsz tudni létrehozni, hogy ő is frissítette Signalját, vagy ha eltávolítod a felvételre kerülő tagok közül.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Régi típusú csoport lesz létrehozva, mivel %1$d tag a Signal egy régi verzióját használja. Új típusú csoportot csak azután fogsz tudni létrehozni, hogy ő is frissítette Signalját, vagy ha eltávolítod a felvételre kerülő tagok közül.</item>
     <item quantity="other">Régi típusú csoport lesz létrehozva, mivel %1$d tag a Signal egy régi verzióját használja. Új típusú csoportot csak azután fogsz tudni létrehozni, hogy ők is frissítették Signaljukat, vagy ha eltávolítod őket a felvételre kerülő tagok közül.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ez a csoport nem hozható létre, mivel \"%1$s\"  még a Signal egy régi verzióját használja. A csoport létrehozása előtt el kell távolítanod őt a tagok közül.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ez a csoport nem hozható létre, mivel \"%1$s\"  még a Signal egy régi verzióját használja. A csoport létrehozása előtt el kell távolítanod őt a tagok közül.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Ez a csoport nem hozható létre, mivel %1$d db tag még a Signal egy régi verzióját használja. Távolítsd el ezt a felhasznált a meghívottak közül, mielőtt létrehoznád a csoportot!</item>
     <item quantity="other">Ez a csoport nem hozható létre, mivel %1$d db tag még a Signal egy régi verzióját használja. Távolítsd el ezeket a felhasználókat a meghívottak közül, mielőtt létrehoznád a csoportot!</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Tagsági kérések és meghívók</string>
   <string name="ManageGroupActivity_add_members">Tagok hozzáadása</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nem sikerült belépni a csoportba. Kérlek próbáld később!</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Hálózati hiba történt.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ez a csoporthivatkozás nem aktív</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nem sikerült a csoport információ lekérése. Kérlek próbáld újra később!</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nem sikerült a csoport információ lekérése. Kérlek próbáld újra később!</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Szeretnél csatlakozni a csoporthoz? Ezzel profilod láthatóvá is válik.</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">A csoportba történő belépéshez a csoport egy adminjának jóváhagyása szükséges. A csatlakozási igény elküldésével neved és képed láthatóvá válik a csoport tagjai számára.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

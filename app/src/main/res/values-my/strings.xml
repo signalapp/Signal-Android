@@ -328,7 +328,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">အချို့သော အဆက်အသွယ်များသည် အမွေအုပ်စုများတွင်မဖြစ်နိုင်ပါ။</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">အချို့သော အဆက်အသွယ်များသည် အမွေအုပ်စုများတွင်မဖြစ်နိုင်ပါ။</string> -->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ပရိုဖိုင်</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ဓါတ်ပုံတင်ရာတွင် အခက်အခဲရှိ </string>
@@ -555,21 +555,21 @@
   <string name="AddGroupDetailsFragment__remove">ဖယ်ပစ်ပါ။</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS နှင့်ဆက်သွယ်ပါ</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">၎င်းအဖွဲ့မှ %1$s ကို ဖယ်ရှားမည်လား?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%dအဖွဲ့ဝင်များသည် အဖွဲ့ဝင်အသစ်များကိုမထောက်ခံပါ။ ထို့ကြောင့်ဤအဖွဲ့သည် Legacy Group ဖြစ်လိမ့်မည်။</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="other">အဖွဲ့ဝင် %d ဦးသည် အဖွဲ့အသစ်များကို မပံ့ပိုးပါ၊ ထို့ကြောင့် ဤအဖွဲ့ကိုမဖန်တီးနိုင်ပါ။</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">အဖွဲ့ဝင် \"%1$s\" သည် Signal ဗားရှင်းအဟောင်းတစ်ခု ကိုသုံးနေ၍ အမွေအဖွဲ့သာ ဖန်တီးခဲ့ပါသည်။ ၎င်းသူမှ​ Signal ကို အဆင့်မြှင့်ပြီးလျှင် သို့မဟုတ် ထိုသူကို ဖယ်ရှားပြီးလျှင် အဖွဲ့သစ်ကို ဖန်တီးနိုင်ပါသည်။</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">အဖွဲ့ဝင် \"%1$s\" သည် Signal ဗားရှင်းအဟောင်းတစ်ခု ကိုသုံးနေ၍ အမွေအဖွဲ့သာ ဖန်တီးခဲ့ပါသည်။ ၎င်းသူမှ​ Signal ကို အဆင့်မြှင့်ပြီးလျှင် သို့မဟုတ် ထိုသူကို ဖယ်ရှားပြီးလျှင် အဖွဲ့သစ်ကို ဖန်တီးနိုင်ပါသည်။</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">ဘာဖြစ်လို့လဲဆိုတော့တစ် ဦး ကအမွေအုပ်စုကိုဖန်တီးလိမ့်မည်%1$d အဖွဲ့ဝင်များသည် Signal ပုံစံဟောင်းကိုအသုံးပြုနေသည်။ သူတို့က Signal ကို update ပြီးနောက်သူတို့နှင့်အတူ New Style Group တစ်ခုကိုဖန်တီးနိုင်သည်၊</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">\"%1$s\" သည် Signal ၏ဗားရှင်းအဟောင်းကို အသုံးပြုနေ၍ ဤအုပ်စုကို မဖန်တီးနိုင်ပါ။ အုပ်စုကိုမဖွဲ့စည်းခင် ၎င်းတို့ကို သင်ဖယ်ရှား ရပါမည်။</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">\"%1$s\" သည် Signal ၏ဗားရှင်းအဟောင်းကို အသုံးပြုနေ၍ ဤအုပ်စုကို မဖန်တီးနိုင်ပါ။ အုပ်စုကိုမဖွဲ့စည်းခင် ၎င်းတို့ကို သင်ဖယ်ရှား ရပါမည်။</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="other">ဤအုပ်စုအား ဖန်တီး၍ မရပါ%1$d အဖွဲ့ဝင်များသည် Signal ပုံစံဟောင်းကိုအသုံးပြုနေသည်။ အုပ်စုကိုမဖွဲ့စည်းခင် သင်ဖယ်ရှားပစ်ရမည်။</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">အသင်းဝင်တောင်းဆိုမှုများ &amp; amp; ဖိတ်ကြားထား</string>
   <string name="ManageGroupActivity_add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
@@ -668,7 +668,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">အဖွဲ့ထဲဝင်လို့မရပါ။ နောက်မှ ပြန်ကြိုးစားပေးပါ။</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ကွန်ယက် မှားယွင်းချက် တစ်ခုနှင့် ကြုံတွေ့ခဲ့ရသည်</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">၎င်းအဖွဲ့လင့်ခ်သည် အသက်မဝင်ပါ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">အဖွဲ့လိုက်အချက်အလက်မရနိုင်ပါက ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">အဖွဲ့လိုက်အချက်အလက်မရနိုင်ပါက ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">သင်သည်ဤအဖွဲ့သို့ ဝင်၍ သင်၏အမည်နှင့်ဓာတ်ပုံကို အဖွဲ့ဝင်များနှင့် မျှဝေလိုသလား?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">သင်သည် အဖွဲ့ထဲသို့မဝင်နိုင်ခင် သင်၏ တောင်းဆိုမှုကို အဖွဲ့၏ စီမံသူတစ်ဦးမှ လက်ခံရပါမည်။ သင်မှ​ဝင်ရောက်ရန် တောင်းဆိုလျှင် သင်၏ အမည် နှင့် ရုပ်ပုံကို အဖွဲ့ဝင်များနှင့် မျှဝေပါမည်။</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

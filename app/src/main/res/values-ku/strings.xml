@@ -313,7 +313,7 @@
   <string name="ConversationTitleView_verified">Piştrastkirî</string>
   <string name="ConversationTitleView_you">Tu</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Hin kes nabe di nav komên kevn de bin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Hin kes nabe di nav komên kevn de bin.</string> -->
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profîl</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Di sazkirina wêneyê profîlê de çewtî derket</string>
@@ -556,8 +556,8 @@
   <string name="AddGroupDetailsFragment__sms_contact">Kesê SMS\'ê</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ji vê komê derxîne?</string>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Komeke Kevnê bê darxistin ji ber ku \"%1$s\"  guhertoyeke Signal ê ye kevn bikartîne. Hûn dikarin Komeke Sitîla Nû li gel wan darbixin piştî ku ew guhertoya Signal a xwe bilin dikin, an jî hûn dikarin wan jêbibin berîya ku hûn komê dardixin</string>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ev koma nikare bê darxistin ji ber ku \" %1$s \" guhertoyeke Signal ê ye kevn bikartîne. Ger hûn wan jêbibin berîya ku hûn komê darbixin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Komeke Kevnê bê darxistin ji ber ku \"%1$s\"  guhertoyeke Signal ê ye kevn bikartîne. Hûn dikarin Komeke Sitîla Nû li gel wan darbixin piştî ku ew guhertoya Signal a xwe bilin dikin, an jî hûn dikarin wan jêbibin berîya ku hûn komê dardixin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Ev koma nikare bê darxistin ji ber ku \" %1$s \" guhertoyeke Signal ê ye kevn bikartîne. Ger hûn wan jêbibin berîya ku hûn komê darbixin.</string> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Daxwaz û vexwendinên endambûnê</string>
   <string name="ManageGroupActivity_add_members">Endaman tevlî bike</string>
@@ -670,7 +670,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nikare tevlî komê bibe. Ji kerema xwe paşê dîsa biceribîne</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Çewtiyeke torê rû da.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Girêdana komê ne çalak e</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nikare agahiyên komê bistîne. Ji kerema xwe paşê dîsa biceribîne</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nikare agahiyên komê bistîne. Ji kerema xwe paşê dîsa biceribîne</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Hûn dixwazin tevlî vê komê bibin û nav û wêneya xwe bi endamên wê re parve bikin?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Berîya ku hun biharibin tev li vê komê bibin, gerek rêvebirekî vê komê daxwaza we bipejirîne. Dema ku hun dixwaza tevlêbuna vê komê dişînin, navê we u wêneyê we yên ji endamên vê komê ra bêne parvekirin.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

@@ -388,7 +388,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">काही संपर्क लेगसी गटात असू शकत नाहीत.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">काही संपर्क लेगसी गटात असू शकत नाहीत.</string> -->
   <string name="CreateGroupActivity__select_members">सदस्य निवडा</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">प्रोफाईल</string>
@@ -637,25 +637,25 @@
   <string name="AddGroupDetailsFragment__remove">काढा</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS संपर्क</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">या गटातून %1$s ला काढायचे?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d सदस्य नवीन गटाचे समर्थन करत नाही, त्यामुळे हा गट आता लेगसी गट असेल.</item>
     <item quantity="other">%d सदस्य नवीन गटाचे समर्थन करत नाहीत, त्यामुळे हा गट आता लेगसी गट असेल.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d सदस्य नवीन गटाचे समर्थन करत नाही, त्यामुळे हा गट आता तयार केला जाऊ शकत नाही.</item>
     <item quantity="other">%d सदस्य नवीन गटाचे समर्थन करत नाहीत, त्यामुळे हा गट आता तयार केला जाऊ शकत नाही.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">लेगसी गट तयार केला जाईल कारण \"%1$s\" Signal ची जुनी आवृत्ती वापरत आहे. त्यांनी Signal अद्यतनित केल्यानंतर आपण त्यांच्यासोबत नवीन शैली गट तयार करू शकता, किंवा गट तयार करण्यापूर्वी त्यांना काढून टाकू शकता.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">लेगसी गट तयार केला जाईल कारण \"%1$s\" Signal ची जुनी आवृत्ती वापरत आहे. त्यांनी Signal अद्यतनित केल्यानंतर आपण त्यांच्यासोबत नवीन शैली गट तयार करू शकता, किंवा गट तयार करण्यापूर्वी त्यांना काढून टाकू शकता.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">लेगसी गट तयार केला जाईल कारण %1$d सदस्य Signal ची जुनी आवृत्ती वापरत आहे. त्यांनी Signal अद्यतनित केल्यानंतर आपण त्यांच्यासोबत नवीन शैली गट तयार करू शकता, किंवा गट तयार करण्यापूर्वी त्यांना काढून टाकू शकता.</item>
     <item quantity="other">लेगसी गट तयार केला जाईल कारण %1$d सदस्य Signal ची जुनी आवृत्ती वापरत आहेत. त्यांनी Signal अद्यतनित केल्यानंतर आपण त्यांच्यासोबत नवीन शैली गट तयार करू शकता, किंवा गट तयार करण्यापूर्वी त्यांना काढून टाकू शकता.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">हा गट तयार केला जाऊ शकत नाही कारण \"%1$s\" Signal ची जुनी आवृत्ती वापरत आहे. आपण गट तयार करण्यापूर्वी त्यांना काढून टाकायला हवे.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">हा गट तयार केला जाऊ शकत नाही कारण \"%1$s\" Signal ची जुनी आवृत्ती वापरत आहे. आपण गट तयार करण्यापूर्वी त्यांना काढून टाकायला हवे.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">हा गट तयार केला जाऊ शकत नाही कारण %1$d सदस्य Signal ची जुनी आवृत्ती वापरत आहे. आपण गट तयार करण्यापूर्वी त्यांना काढून टाकायला हवे.</item>
     <item quantity="other">हा गट तयार केला जाऊ शकत नाही कारण %1$d सदस्य Signal ची जुनी आवृत्ती वापरत आहेत. आपण गट तयार करण्यापूर्वी त्यांना काढून टाकायला हवे.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites"> सदस्य विनंत्या &amp; आमंत्रणे</string>
   <string name="ManageGroupActivity_add_members">सदस्य जोडा</string>
@@ -764,7 +764,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">गटात सामील होण्यास अक्षम. कृपया नंतर पुन्हा प्रयत्न करा</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">एक नेटवर्क त्रुटी आढळली.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ही गट लिंक सक्रिय नाही</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">गट माहिती मिळवण्यात अक्षम, कृपया नंतर पुन्हा प्रयत्न करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">गट माहिती मिळवण्यात अक्षम, कृपया नंतर पुन्हा प्रयत्न करा</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">आपण या गटात सामील होण्यास आणि आपले नाव आणि फोटो त्याच्या सदस्यांसह सामायिक करण्यास इच्छुक आहात?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">आपण या गटामध्ये सामील होण्यापूर्वी या गटाच्या प्रशासकाने आपली विनंती मंजूर करणे आवश्यक आहे. आपण सामील होण्याची विनंती करता तेव्हा आपले नाव आणि फोटो सदस्यांसह सामायिक केला जाईल.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

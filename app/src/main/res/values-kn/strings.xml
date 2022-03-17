@@ -343,7 +343,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ಕೆಲವು ಸಂಪರ್ಕಗಳು ಹಳೆಯ ಗುಂಪುಗಳಲ್ಲಿ ಇರಬಾರದು.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ಕೆಲವು ಸಂಪರ್ಕಗಳು ಹಳೆಯ ಗುಂಪುಗಳಲ್ಲಿ ಇರಬಾರದು.</string> -->
   <string name="CreateGroupActivity__select_members">ಸದಸ್ಯರನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ಪ್ರೊಫೈಲ್</string>
@@ -591,25 +591,25 @@
   <string name="AddGroupDetailsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS ಸಂಪರ್ಕ</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ತೆಗೆಯುವುದೇ?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d ಸದಸ್ಯರು ಹೊಸ ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಹೀಗಾಗಿ ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್ ಆಗುತ್ತದೆ.</item>
     <item quantity="other">%d ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ಇದು ಹಳೆಯ ಗುಂಪಾಗುತ್ತದೆ.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಗುಂಪನ್ನು ರಚಿಸಲಾಗದು.</item>
     <item quantity="other">%d ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\" Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿರುವುದರಿಂದ ಲೆಗಸಿ ಗುಂಪನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ. ಅವರು Signal ಅನ್ನು ನವೀಕರಣ ಮಾಡಿದ ಬಳಿಕ ಹೊಸ ಶೈಲಿಯ ಗುಂಪನ್ನು ನೀವು ರಚಿಸಬಹುದು ಅಥವಾ ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬಹುದು.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\" Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿರುವುದರಿಂದ ಲೆಗಸಿ ಗುಂಪನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ. ಅವರು Signal ಅನ್ನು ನವೀಕರಣ ಮಾಡಿದ ಬಳಿಕ ಹೊಸ ಶೈಲಿಯ ಗುಂಪನ್ನು ನೀವು ರಚಿಸಬಹುದು ಅಥವಾ ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬಹುದು.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">%1$d ಸದಸ್ಯರು Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿರುವುದರಿಂದ ಹಳೆಯ ಗುಂಪನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ. ಅವರು Signal ಅನ್ನು ನವೀಕರಣ ಮಾಡಿದ ಬಳಿಕ ಹೊಸ ಶೈಲಿಯ ಗುಂಪನ್ನು ನೀವು ರಚಿಸಬಹುದು ಅಥವಾ ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬಹುದು.</item>
     <item quantity="other">%1$d ಸದಸ್ಯರು Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿರುವುದರಿಂದ ಹಳೆಯ ಗುಂಪನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ. ಅವರು Signal ಅನ್ನು ನವೀಕರಣ ಮಾಡಿದ ಬಳಿಕ ಹೊಸ ಶೈಲಿಯ ಗುಂಪನ್ನು ನೀವು ರಚಿಸಬಹುದು ಅಥವಾ ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬಹುದು.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ \"%1$s\"\' Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದಾರೆ. ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬೇಕು.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ \"%1$s\"\' Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದಾರೆ. ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬೇಕು.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ %1$d ಸದಸ್ಯರು Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದಾರೆ. ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬೇಕು.</item>
     <item quantity="other">ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ %1$d ಸದಸ್ಯರು Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದಾರೆ. ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬೇಕು.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">ಸದಸ್ಯ ವಿನಂತಿಗಳು &amp; ಆಹ್ವಾನಗಳು</string>
   <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
@@ -716,7 +716,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ಗ್ರೂಪ್‌ಗೆ ಸೇರಲು ಅಸಾಧ್ಯ. ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ಗುಂಪಿನ ಲಿಂಕ್ ಸಕ್ರಿಯವಾಗಿಲ್ಲ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ಗ್ರೂಪ್‌ ಮಾಹಿತಿ ಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ಗ್ರೂಪ್‌ ಮಾಹಿತಿ ಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">ನೀವು ಈ ಗುಂಪನ್ನು ಸೇರಲು ಹಾಗೂ ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಇದರ ಸದಸ್ಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ಬಯಸುತ್ತೀರಾ?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">ಈ ಗ್ರೂಪ್‌ಗೆ ನೀವು ಸೇರುವುದಕ್ಕೂ ಮೊದಲು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಈ ಗ್ರೂಪ್‌ನ ಒಬ್ಬ ಅಡ್ಮಿನ್ ಅನುಮತಿಸಬೇಕು. ನೀವು ಸೇರಲು ವಿನಂತಿಸಿದಾಗ, ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅದರ ಸದಸ್ಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

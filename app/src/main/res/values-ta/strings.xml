@@ -355,7 +355,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">சில தொடர்புகள் பழைய மரபு குழுக்களில் இருக்க முடியாது.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">சில தொடர்புகள் பழைய மரபு குழுக்களில் இருக்க முடியாது.</string> -->
   <string name="CreateGroupActivity__select_members">தேர்ந்தெடு உறுப்பினர்கள்</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">விவரம்</string>
@@ -603,25 +603,25 @@
   <string name="AddGroupDetailsFragment__remove">நீக்கு</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS தொடர்பு</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">இந்த குழுவிலிருந்து %1$s ஐ அகற்றவா?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d இந்த உறுப்பினர்கள் புதிய குழுக்களை ஆதரிக்கவில்லை, எனவே இந்த குழு ஒரு மரபு குழுவாக இருக்கும்.</item>
     <item quantity="other">%d இந்த உறுப்பினர்கள் புதிய குழுக்களை ஆதரிக்கவில்லை, எனவே இந்த குழு ஒரு பழைய மரபு குழுவாக இருக்கும்.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d உறுப்பினர் புதிய குழுக்களை ஆதரிக்கவில்லை, எனவே இந்த குழுவை உருவாக்க முடியாது.</item>
     <item quantity="other">%dஉறுப்பினர்கள் புதிய குழுக்களை ஆதரிக்க மாட்டார்கள், எனவே இந்த குழுவை உருவாக்க முடியாது.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” பழைய Signal பதிப்பைப் பயன்படுத்துவதால் ஒரு பழைய மரபு குழு உருவாக்கப்படும். அவர்கள் Signal புதுப்பித்த பிறகு அவர்களுடன் ஒரு புதிய பாணி குழுவை உருவாக்கலாம் அல்லது குழுவை உருவாக்கும் முன் இந்த உறுப்பினரை அகற்றலாம்.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” பழைய Signal பதிப்பைப் பயன்படுத்துவதால் ஒரு பழைய மரபு குழு உருவாக்கப்படும். அவர்கள் Signal புதுப்பித்த பிறகு அவர்களுடன் ஒரு புதிய பாணி குழுவை உருவாக்கலாம் அல்லது குழுவை உருவாக்கும் முன் இந்த உறுப்பினரை அகற்றலாம்.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">%1$d உறுப்பினர் பழைய Signal பதிப்பைப் பயன்படுத்துவதால் பழைய மரபு குழு உருவாக்கப்படும். அவர்கள் Signal புதுப்பித்த பிறகு அவர்களுடன் புதிய பாணி குழுவை உருவாக்கலாம் அல்லது குழுவை உருவாக்கும் முன் அவரை அகற்றலாம்.</item>
     <item quantity="other">%1$d உறுப்பினர்கள் பழைய Signal பதிப்பைப் பயன்படுத்துவதால் பழைய மரபு குழு உருவாக்கப்படும். அவர்கள் Signal புதுப்பித்த பிறகு அவர்களுடன் புதிய பாணி குழுவை உருவாக்கலாம் அல்லது குழுவை உருவாக்கும் முன் அவர்களை அகற்றலாம்.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">இந்த குழுவை உருவாக்க முடியாது, ஏனென்றால் \"%1$s\" சிக்னலின் பழைய பதிப்பைப் பயன்படுத்துகிறார். குழுவை உருவாக்கும் முன் அத்தகைய உறுப்பினர்களை நீக்க வேண்டும்.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">இந்த குழுவை உருவாக்க முடியாது, ஏனென்றால் \"%1$s\" சிக்னலின் பழைய பதிப்பைப் பயன்படுத்துகிறார். குழுவை உருவாக்கும் முன் அத்தகைய உறுப்பினர்களை நீக்க வேண்டும்.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">இந்த குழுவை உருவாக்க முடியாது, ஏனெனில் %1$d உறுப்பினர் சிக்னலின் பழைய பதிப்பைப் பயன்படுத்துகிறார். குழுவை உருவாக்கும் முன் உறுப்பினரை நீக்க வேண்டும்.</item>
     <item quantity="other">இந்த குழுவை உருவாக்க முடியாது, ஏனெனில் %1$d உறுப்பினர்கள் சிக்னலின் பழைய பதிப்பைப் பயன்படுத்துகின்றனர். குழுவை உருவாக்கும் முன் அந்த உறுப்பினர்களை நீக்க வேண்டும்.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">உறுப்பினர் கோரிக்கைகள் மற்றும் அழைப்புகள்</string>
   <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்தல்</string>
@@ -729,7 +729,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">இந்த குழுவில் சேர முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">இந்த குழு இணைப்பு செயலில் இல்லை</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">குழு தகவல்களைப் பெற முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">குழு தகவல்களைப் பெற முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">இந்த குழுவில் சேர்ந்து உங்கள் பெயரையும் புகைப்படத்தையும் அதன் உறுப்பினர்களுடன் பகிர்ந்து கொள்ள விரும்புகிறீர்களா?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">இந்த குழுவில் சேருவதற்கு முன்பு இந்த குழுவின் நிர்வாகி உங்கள் கோரிக்கையை அங்கீகரிக்க வேண்டும். நீங்கள் சேரக் கோரும்போது, உங்கள் பெயர் மற்றும் புகைப்படம் அதன் உறுப்பினர்களுடன் பகிரப்படும்.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contactos não podem estar nos grupos legados.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contactos não podem estar nos grupos legados.</string> -->
   <string name="CreateGroupActivity__select_members">Selecionar  membros</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Remover</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacto SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Remover %1$s deste grupo?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d membro não suporta \'Novos grupos\', como tal, este grupo será um \'Grupo legado\'.</item>
     <item quantity="other">%d membros não suportam \'Novos grupos\', como tal, este grupo será um \'Grupo legado\'.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d membro não suporta \'Novos grupos\', como tal, este grupo não pode ser criado.</item>
     <item quantity="other">%d membros não suportam \'Novos grupos\', como tal, este grupo não pode ser criado.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Será criado um \'Grupo legado\' porque \"%1$s\" está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Será criado um \'Grupo legado\' porque \"%1$s\" está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Será criado um \'Grupo legado\' porque %1$d membro está a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com ele depois de ele atualizar o Signal, ou removê-lo antes de criar o grupo.</item>
     <item quantity="other">Será criado um \'Grupo legado\' porque %1$d membros estão a utilizar uma versão antiga do Signal. Você pode criar um \'Novo tipo de grupo\' com eles depois de eles atualizarem o Signal, ou removê-los antes de criar o grupo.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Este grupo não pode ser criado porque “%1$s” está a utilizar uma versão antiga do Signal. Você deverá removê-lo antes de criar o grupo.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Este grupo não pode ser criado porque “%1$s” está a utilizar uma versão antiga do Signal. Você deverá removê-lo antes de criar o grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Este grupo não pode ser criado porque %1$d membro está a utilizar uma versão antiga do Signal. Você deverá removê-lo antes de criar o grupo.</item>
     <item quantity="other">Este grupo não pode ser criado porque %1$d membros está a utilizar uma versão antiga do Signal. Você deverá removê-los antes de criar o grupo.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Pedidos e convites para membro</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Não foi possível entrar para o grupo. Por favor, tente mais tarde</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Encontrado um erro de rede.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este link de grupo não se encontra ativo</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Impossível obter a informação de grupo. Por favor, tente mais tarde</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Impossível obter a informação de grupo. Por favor, tente mais tarde</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Deseja entrar para este grupo e partilhar o seu nome e fotografia com os seus membros?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Um administrador deste grupo deverá aprovar o seu pedido antes de você poder entrar para o grupo. Quando pede para entrar o seu nome e fotografia são partilhados com os membros desse grupo.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

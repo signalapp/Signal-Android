@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contactes no poden ser en grups de llegat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contactes no poden ser en grups de llegat.</string> -->
   <string name="CreateGroupActivity__select_members">Seleccioneu membres</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Suprimeix</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contacte d\'SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Voleu suprimir %1$s d\'aquest grup?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d membre no admet els grups nous, per això aquest grup serà un grup de llegat.</item>
     <item quantity="other">%d membres no admeten els grups nous, per això aquest grup serà un grup de llegat.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one"> %d membre no admet els grups nous, per això no es pot crear aquest grup.</item>
     <item quantity="other">%d membres no admeten els grups nous, per això no es pot crear aquest grup.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Es crearà un grup de llegat perquè %1$s usa una versió antiga del Signal. Podeu crear un grup d\'estil nou amb ells després que actualitzin el Signal o suprimir-los-en abans de crear el grup.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Es crearà un grup de llegat perquè %1$s usa una versió antiga del Signal. Podeu crear un grup d\'estil nou amb ells després que actualitzin el Signal o suprimir-los-en abans de crear el grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Es crearà un grup de llegat perquè %1$d membre usa una versió antiga del Signal. Podeu crear un grup d\'estil nou amb ells després que actualitzin el Signal o suprimir-los-en abans de crear el grup.</item>
     <item quantity="other">Es crearà un grup de llegat perquè %1$d membres usen una versió antiga del Signal. Podeu crear un grup d\'estil nou amb ells després que actualitzin el Signal o suprimir-los-en abans de crear el grup.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Aquest grup no es pot crear perquè %1$s usa una versió antiga del Signal. L\'heu de suprimir abans de crear el grup.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Aquest grup no es pot crear perquè %1$s usa una versió antiga del Signal. L\'heu de suprimir abans de crear el grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Aquest grup no es pot crear perquè %1$d membre usa una versió antiga del Signal. L\'heu de suprimir abans de crear el grup.</item>
     <item quantity="other">Aquest grup no es pot crear perquè %1$d membres usen una versió antiga del Signal. Els heu de suprimir abans de crear el grup.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Sol·licituds d\'adhesió i invitacions</string>
   <string name="ManageGroupActivity_add_members">Afegiu-hi membres</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">No es pot afegir al grup. Torneu-ho a provar és tard.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Aquest enllaç de grup no està actiu.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No es pot obtenir la informació del grup. Torneu-ho a provar més tard.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No es pot obtenir la informació del grup. Torneu-ho a provar més tard.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Voleu afegir-vos a aquest grup i compartir-hi el nom i la fotografia?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrador d\'aquest grup ha d\'aprovar la sol·licitud abans de poder-vos afegir-hi. Quan demaneu afegir-vos-hi, el vostre nom i la fotografia es compartiran amb els seus membres.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">

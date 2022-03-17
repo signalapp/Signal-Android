@@ -389,7 +389,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kelkaj kontaktoj ne povas esti en malnovtipaj grupoj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kelkaj kontaktoj ne povas esti en malnovtipaj grupoj.</string> -->
   <string name="CreateGroupActivity__select_members">Elekti anojn</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilo</string>
@@ -638,25 +638,25 @@
   <string name="AddGroupDetailsFragment__remove">Forviŝi</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakto</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ĉu forigi %1$s el tiu grupo?</string>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d ano ne povas uzi novtipajn grupojn, do tiu ĉi grupo estos malnovtipa grupo.</item>
     <item quantity="other">%d anoj ne povas uzi novtipajn grupojn, do tiu ĉi grupo estos malnovtipa grupo.</item>
-  </plurals>
-  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d ano ne povas uzi novtipajn grupojn, do tiu ĉi grupo ne povas esti kreita.</item>
     <item quantity="other">%d anoj ne povas uzi novtipajn grupojn, do tiu ĉi grupo ne povas esti kreita.</item>
-  </plurals>
+  </plurals> -->
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Malvotipa grupo kreiĝos, ĉar „%1$s“ uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ŝi aŭ li, post kiam ŝi aŭ li ĝisdatigos Signal-on, aŭ se vi forigas ŝin aŭ lin, antaŭ ol krei la grupon.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Malvotipa grupo kreiĝos, ĉar „%1$s“ uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ŝi aŭ li, post kiam ŝi aŭ li ĝisdatigos Signal-on, aŭ se vi forigas ŝin aŭ lin, antaŭ ol krei la grupon.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Malvotipa grupo kreiĝos, ĉar %1$d ano uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ili, post kiam ili ĝisdatigos Signal-on, aŭ se vi tuj forigas ilin, antaŭ ol krei la grupon.</item>
     <item quantity="other">Malvotipa grupo kreiĝos, ĉar %1$d anoj uzas malnovan version de Signal. Vi povos krei novstilan grupon kun ili, post kiam ili ĝisdatigos Signal-on, aŭ se vi tuj forigas ilin, antaŭ ol krei la grupon.</item>
-  </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tiu ĉi grupo ne kreiĝos, ĉar „%1$s“ uzas malnovan version de Signal. Vi devas forigi ŝin aŭ lin, antaŭ ol krei la grupon.</string>
-  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Tiu ĉi grupo ne kreiĝos, ĉar „%1$s“ uzas malnovan version de Signal. Vi devas forigi ŝin aŭ lin, antaŭ ol krei la grupon.</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Tiu ĉi grupo ne kreiĝos, ĉar %1$d ano uzas malnovan version de Signal. Vi devas forigi ŝin aŭ lin, antaŭ ol krei la grupon.</item>
     <item quantity="other">Tiu ĉi grupo ne kreiĝos, ĉar %1$d anoj uzas malnovan version de Signal. Vi devas forigi ilin, antaŭ ol krei la grupon.</item>
-  </plurals>
+  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Petoj kaj invitoj por aniĝi</string>
   <string name="ManageGroupActivity_add_members">Aldoni anojn</string>
@@ -765,7 +765,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Malsukceso anigi la grupon. Reprovu poste.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Okazis reta eraro.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">La grupligilo ne estas aktiva</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Malsukceso havi la grupinformon. Reprovu poste.</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Malsukceso havi la grupinformon. Reprovu poste.</string> -->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ĉu vi volas aniĝi al tiu grupo kaj kunhavigi vian nomon kaj foton kun la anoj?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Tiugrupa administranto aprobu vian peton, antaŭ ol vi povas aniĝi. Kiam vi petas aniĝi, viaj nomo kaj foto kunhaviĝos kun la anoj.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
