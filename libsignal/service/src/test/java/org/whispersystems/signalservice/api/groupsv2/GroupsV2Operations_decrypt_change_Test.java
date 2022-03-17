@@ -95,7 +95,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     ProfileKey     profileKey     = newProfileKey();
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
-    assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), self)
+    assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), Collections.emptySet(), self)
                                     .setRevision(10),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
@@ -103,8 +103,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                        .setRole(Member.Role.DEFAULT)
                                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                        .setJoinedAtRevision(10)
-                                                                       .setUuid(UuidUtil.toByteString(newMember)))
-                                         .addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(newMember)).build()));
+                                                                       .setUuid(UuidUtil.toByteString(newMember))));
   }
 
   @Test
@@ -131,7 +130,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     ProfileKey     profileKey     = newProfileKey();
     GroupCandidate groupCandidate = groupCandidate(newMember, profileKey);
 
-    assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), self)
+    assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), Collections.emptySet(), self)
                                     .setRevision(10),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(10)
@@ -139,8 +138,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                        .setRole(Member.Role.DEFAULT)
                                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
                                                                        .setJoinedAtRevision(10)
-                                                                       .setUuid(UuidUtil.toByteString(newMember)))
-                                         .addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(newMember)).build()));
+                                                                       .setUuid(UuidUtil.toByteString(newMember))));
   }
 
   @Test(expected = InvalidGroupStateException.class)
@@ -222,7 +220,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     UUID           newMember      = UUID.randomUUID();
     GroupCandidate groupCandidate = groupCandidate(newMember);
 
-    assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), self)
+    assertDecryption(groupOperations.createModifyGroupMembershipChange(Collections.singleton(groupCandidate), Collections.emptySet(), self)
                                     .setRevision(13),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(13)
@@ -230,8 +228,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
                                                                                      .setAddedByUuid(UuidUtil.toByteString(self))
                                                                                      .setUuidCipherText(groupOperations.encryptUuid(newMember))
                                                                                      .setRole(Member.Role.DEFAULT)
-                                                                                     .setUuid(UuidUtil.toByteString(newMember)))
-                                         .addDeleteBannedMembers(DecryptedBannedMember.newBuilder().setUuid(UuidUtil.toByteString(newMember)).build()));
+                                                                                     .setUuid(UuidUtil.toByteString(newMember))));
   }
   
   @Test

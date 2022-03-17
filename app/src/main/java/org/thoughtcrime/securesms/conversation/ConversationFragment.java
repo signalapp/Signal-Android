@@ -119,6 +119,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult;
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
@@ -1930,8 +1931,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     lifecycleDisposable.add(
         groupViewModel.blockJoinRequests(ConversationFragment.this.recipient.get(), recipient)
                       .subscribe(result -> {
-                        if (result instanceof GroupManagementRepository.GroupManagementResult.Failure) {
-                          int failureReason = GroupErrors.getUserDisplayMessage(((GroupManagementRepository.GroupManagementResult.Failure) result).getReason());
+                        if (result.isFailure()) {
+                          int failureReason = GroupErrors.getUserDisplayMessage(((GroupBlockJoinRequestResult.Failure) result).getReason());
                           Toast.makeText(requireContext(), failureReason, Toast.LENGTH_SHORT).show();
                         }
                       })

@@ -379,8 +379,10 @@ public final class GroupManager {
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException, MembershipNotSuitableForV2Exception
   {
     if (groupId.isV2()) {
+      GroupDatabase.GroupRecord groupRecord  = SignalDatabase.groups().requireGroup(groupId);
+
       try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-        return editor.addMembers(newMembers);
+        return editor.addMembers(newMembers, groupRecord.requireV2GroupProperties().getBannedMembers());
       }
     } else {
       GroupDatabase.GroupRecord groupRecord  = SignalDatabase.groups().requireGroup(groupId);

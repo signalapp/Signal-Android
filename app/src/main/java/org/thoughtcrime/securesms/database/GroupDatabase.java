@@ -1350,6 +1350,10 @@ private static final String[] GROUP_PROJECTION = {
 
       return recipients;
     }
+
+    public @NonNull Set<UUID> getBannedMembers() {
+      return DecryptedGroupUtil.bannedMembersToUuidSet(getDecryptedGroup().getBannedMembersList());
+    }
   }
 
   public @NonNull List<GroupId> getGroupsToDisplayAsStories() throws BadGroupIdException {

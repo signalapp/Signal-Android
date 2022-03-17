@@ -160,10 +160,13 @@ public final class GroupsV2Operations {
       return GroupChange.Actions.newBuilder().setModifyDescription(createModifyGroupDescriptionAction(description));
     }
 
-    public GroupChange.Actions.Builder createModifyGroupMembershipChange(Set<GroupCandidate> membersToAdd, UUID selfUuid) {
+    public GroupChange.Actions.Builder createModifyGroupMembershipChange(Set<GroupCandidate> membersToAdd, Set<UUID> bannedMembers, UUID selfUuid) {
       final GroupOperations groupOperations = forGroup(groupSecretParams);
 
-      GroupChange.Actions.Builder actions = createUnbanUuidsChange(membersToAdd.stream().map(GroupCandidate::getUuid).collect(Collectors.toSet()));
+      Set<UUID> membersToUnban = membersToAdd.stream().map(GroupCandidate::getUuid).filter(bannedMembers::contains).collect(Collectors.toSet());
+
+      GroupChange.Actions.Builder actions = membersToUnban.isEmpty() ? GroupChange.Actions.newBuilder()
+                                                                     : createUnbanUuidsChange(membersToUnban);
 
       for (GroupCandidate credential : membersToAdd) {
         Member.Role          newMemberRole        = Member.Role.DEFAULT;
@@ -479,7 +482,7 @@ public final class GroupsV2Operations {
      *                        <p>
      *                        Also, if you know it's version 0, do not verify because changes for version 0
      *                        are not signed, but should be empty.
-     * @return {@link Optional#absent} if the epoch for the change is higher that this code can decrypt.
+     * @return {@link Optional#empty()} if the epoch for the change is higher that this code can decrypt.
      */
     public Optional<DecryptedGroupChange> decryptChange(GroupChange groupChange, boolean verifySignature)
         throws InvalidProtocolBufferException, VerificationFailedException, InvalidGroupStateException

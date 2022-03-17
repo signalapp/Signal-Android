@@ -26,8 +26,8 @@ import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.invite.GroupLinkInviteFriendsBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult;
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository;
-import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository.GroupManagementResult;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewRecipient;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -220,7 +220,7 @@ final class ConversationGroupViewModel extends ViewModel {
     GroupLinkInviteFriendsBottomSheetDialogFragment.show(supportFragmentManager, groupId);
   }
 
-  public Single<GroupManagementResult> blockJoinRequests(@NonNull Recipient groupRecipient, @NonNull Recipient recipient) {
+  public Single<GroupBlockJoinRequestResult> blockJoinRequests(@NonNull Recipient groupRecipient, @NonNull Recipient recipient) {
     return groupManagementRepository.blockJoinRequests(groupRecipient.requireGroupId().requireV2(), recipient)
         .observeOn(AndroidSchedulers.mainThread());
   }

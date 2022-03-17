@@ -326,7 +326,7 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult addMembers(@NonNull Collection<RecipientId> newMembers)
+    @NonNull GroupManager.GroupActionResult addMembers(@NonNull Collection<RecipientId> newMembers, @NonNull Set<UUID> bannedMembers)
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, MembershipNotSuitableForV2Exception
     {
       if (!GroupsV2CapabilityChecker.allHaveServiceId(newMembers)) {
@@ -339,7 +339,7 @@ final class GroupManagerV2 {
         groupCandidates = GroupCandidate.withoutProfileKeyCredentials(groupCandidates);
       }
 
-      return commitChangeWithConflictResolution(groupOperations.createModifyGroupMembershipChange(groupCandidates, selfAci.uuid()));
+      return commitChangeWithConflictResolution(groupOperations.createModifyGroupMembershipChange(groupCandidates, bannedMembers, selfAci.uuid()));
     }
 
     @WorkerThread

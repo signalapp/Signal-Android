@@ -9,25 +9,31 @@ import androidx.lifecycle.ViewModelProvider;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
+import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult;
+import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import kotlin.Unit;
+
 public final class AddToGroupViewModel extends ViewModel {
 
-  private final Application            context;
-  private final AddToGroupRepository   repository;
-  private final RecipientId            recipientId;
+  private final Application               context;
+  private final GroupManagementRepository repository;
+  private final RecipientId               recipientId;
   private final SingleLiveEvent<Event> events      = new SingleLiveEvent<>();
 
   private AddToGroupViewModel(@NonNull RecipientId recipientId) {
     this.context     = ApplicationDependencies.getApplication();
     this.recipientId = recipientId;
-    this.repository  = new AddToGroupRepository();
+    this.repository  = new GroupManagementRepository();
   }
 
   public SingleLiveEvent<Event> getEvents() {
@@ -58,13 +64,15 @@ public final class AddToGroupViewModel extends ViewModel {
   }
 
   void onAddToGroupsConfirmed(@NonNull Event.AddToSingleGroupConfirmationEvent event) {
-    repository.add(recipientId,
-                   event.groupRecipient,
-                   error -> events.postValue(new Event.ToastEvent(context.getResources().getString(GroupErrors.getUserDisplayMessage(error)))),
-                   () -> {
-                     events.postValue(new Event.ToastEvent(context.getResources().getString(R.string.AddToGroupActivity_s_added_to_s, event.recipientName, event.groupName)));
-                     events.postValue(new Event.CloseEvent());
-                   });
+    repository.addMembers(event.groupRecipient, Collections.singletonList(recipientId), result -> {
+      if (result.isFailure()) {
+        GroupChangeFailureReason reason = ((GroupAddMembersResult.Failure) result).getReason();
+        events.postValue(new Event.ToastEvent(context.getResources().getString(GroupErrors.getUserDisplayMessage(reason))));
+      } else {
+        events.postValue(new Event.ToastEvent(context.getResources().getString(R.string.AddToGroupActivity_s_added_to_s, event.recipientName, event.groupName)));
+        events.postValue(new Event.CloseEvent());
+      }
+    });
   }
 
   static abstract class Event {

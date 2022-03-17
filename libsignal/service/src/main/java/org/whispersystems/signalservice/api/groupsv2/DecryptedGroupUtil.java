@@ -132,11 +132,29 @@ public final class DecryptedGroupUtil {
     return uuidList;
   }
 
+  public static Set<UUID> bannedMembersToUuidSet(Collection<DecryptedBannedMember> membersList) {
+    Set<UUID> uuidSet = new HashSet<>(membersList.size());
+
+    for (DecryptedBannedMember member : membersList) {
+      UUID uuid = toUuid(member);
+
+      if (!UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+        uuidSet.add(uuid);
+      }
+    }
+
+    return uuidSet;
+  }
+
   public static UUID toUuid(DecryptedMember member) {
     return toUuid(member.getUuid());
   }
 
   public static UUID toUuid(DecryptedPendingMember member) {
+    return toUuid(member.getUuid());
+  }
+
+  public static UUID toUuid(DecryptedBannedMember member) {
     return toUuid(member.getUuid());
   }
 
