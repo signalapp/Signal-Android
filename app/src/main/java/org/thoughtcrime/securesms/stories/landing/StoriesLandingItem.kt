@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
+import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
@@ -78,6 +79,7 @@ object StoriesLandingItem {
   private class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
 
     private val avatarView: AvatarView = itemView.findViewById(R.id.avatar)
+    private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
     private val storyPreview: ThumbnailView = itemView.findViewById<ThumbnailView>(R.id.story).apply {
       isClickable = false
     }
@@ -100,8 +102,10 @@ object StoriesLandingItem {
 
       if (model.data.storyRecipient.isMyStory) {
         avatarView.displayProfileAvatar(Recipient.self())
+        badgeView.setBadgeFromRecipient(Recipient.self())
       } else {
         avatarView.displayProfileAvatar(model.data.storyRecipient)
+        badgeView.setBadgeFromRecipient(model.data.storyRecipient)
       }
 
       val record = model.data.primaryStory.messageRecord as MediaMmsMessageRecord
