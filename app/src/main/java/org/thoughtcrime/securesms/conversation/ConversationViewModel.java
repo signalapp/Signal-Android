@@ -185,7 +185,8 @@ public class ConversationViewModel extends ViewModel {
           return pagedData.getData();
         })
         .observeOn(Schedulers.io())
-        .withLatestFrom(conversationMetadata, (messages, metadata) -> new MessageData(metadata, messages));
+        .withLatestFrom(conversationMetadata, (messages, metadata) ->  new MessageData(metadata, messages))
+        .doOnNext(a -> SignalLocalMetrics.ConversationOpen.onDataLoaded());
 
     Observable<Recipient> liveRecipient = recipientId.distinctUntilChanged().switchMap(id -> Recipient.live(id).asObservable());
 

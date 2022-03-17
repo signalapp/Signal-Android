@@ -340,6 +340,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     disposables.add(conversationViewModel.getChatColors().subscribe(recyclerViewColorizer::setChatColors));
     disposables.add(conversationViewModel.getMessageData().subscribe(messageData -> {
+      SignalLocalMetrics.ConversationOpen.onDataPostedToMain();
+
       ConversationAdapter adapter = getListAdapter();
       if (adapter != null) {
         List<ConversationMessage> messages = messageData.getMessages();
@@ -695,7 +697,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         public void onItemRangeInserted(int positionStart, int itemCount) {
           adapter.unregisterAdapterDataObserver(this);
           startupStopwatch.split("data-set");
-          SignalLocalMetrics.ConversationOpen.onDataLoaded();
           list.post(() -> {
             startupStopwatch.split("first-render");
             startupStopwatch.stop(TAG);
