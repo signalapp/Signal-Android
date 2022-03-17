@@ -7,6 +7,7 @@ import android.widget.EditText
 import androidx.constraintlayout.widget.Group
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
@@ -36,6 +37,7 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
 
     val linkPreview: StoryLinkPreviewView = view.findViewById(R.id.link_preview)
     val confirmButton: View = view.findViewById(R.id.confirm_button)
+    val progress: CircularProgressIndicator = view.findViewById(R.id.loading_spinner)
 
     val shareALinkGroup: Group = view.findViewById(R.id.share_a_link_group)
 
@@ -57,6 +59,7 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
       linkPreview.bind(state)
       shareALinkGroup.visible = !state.isLoading && !state.linkPreview.isPresent && state.error == null
       confirmButton.isEnabled = state.linkPreview.isPresent
+      progress.visible = state.isLoading
     }
   }
 
