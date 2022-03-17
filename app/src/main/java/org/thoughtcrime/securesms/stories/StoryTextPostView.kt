@@ -185,7 +185,7 @@ class StoryTextPostView @JvmOverloads constructor(
   }
 
   fun setTextViewClickListener(onClickListener: OnClickListener) {
-    textView.setOnClickListener(onClickListener)
+    setOnClickListener(onClickListener)
   }
 
   fun setLinkPreviewCloseListener(onClickListener: OnClickListener) {
