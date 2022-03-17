@@ -39,18 +39,18 @@ object AndroidTelecomUtil {
   @JvmStatic
   val telecomSupported: Boolean
     get() {
-      if (Build.VERSION.SDK_INT >= 26 && !systemRejected) {
-        if (!accountRegistered) {
-          registerPhoneAccount()
-        }
-
-        if (accountRegistered) {
-          val phoneAccount = ContextCompat.getSystemService(context, TelecomManager::class.java)!!.getPhoneAccount(getPhoneAccountHandle())
-          if (phoneAccount != null && phoneAccount.isEnabled) {
-            return true
-          }
-        }
-      }
+//      if (Build.VERSION.SDK_INT >= 26 && !systemRejected) {
+//        if (!accountRegistered) {
+//          registerPhoneAccount()
+//        }
+//
+//        if (accountRegistered) {
+//          val phoneAccount = ContextCompat.getSystemService(context, TelecomManager::class.java)!!.getPhoneAccount(getPhoneAccountHandle())
+//          if (phoneAccount != null && phoneAccount.isEnabled) {
+//            return true
+//          }
+//        }
+//      }
       return false
     }
 
@@ -161,7 +161,7 @@ object AndroidTelecomUtil {
     if (telecomSupported) {
       val connection: AndroidCallConnection? = connections[recipientId]
       Log.i(TAG, "Selecting audio route: $device connection: ${connection != null}")
-      if (connection != null) {
+      if (connection?.callAudioState != null) {
         when (device) {
           SignalAudioManager.AudioDevice.SPEAKER_PHONE -> connection.setAudioRouteIfDifferent(CallAudioState.ROUTE_SPEAKER)
           SignalAudioManager.AudioDevice.BLUETOOTH -> connection.setAudioRouteIfDifferent(CallAudioState.ROUTE_BLUETOOTH)
