@@ -53,13 +53,7 @@
         android:id="@+id/textStoryPostSendFragment"
         android:name="org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendFragment"
         android:label="text_story_post_send_fragment"
-        tools:layout="@layout/stories_send_text_post_fragment">
-        <action
-            android:id="@+id/action_textStoryPostSendFragment_to_newStory"
-            app:destination="@+id/new_story" />
-    </fragment>
-
-    <include app:graph="@navigation/new_story" />
+        tools:layout="@layout/stories_send_text_post_fragment" />
 
     <action
         android:id="@+id/action_directly_to_mediaCaptureFragment"

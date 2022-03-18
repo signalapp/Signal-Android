@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
+import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
 import org.thoughtcrime.securesms.stories.settings.hide.HideStoryFromDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -179,7 +180,7 @@ class TextStoryPostSendFragment : Fragment(R.layout.stories_send_text_post_fragm
   }
 
   override fun onNewStoryClicked() {
-    findNavController().navigate(R.id.action_textStoryPostSendFragment_to_newStory)
+    CreateStoryFlowDialogFragment().show(parentFragmentManager, CreateStoryWithViewersFragment.REQUEST_KEY)
   }
 
   override fun onGroupStoryClicked() {
