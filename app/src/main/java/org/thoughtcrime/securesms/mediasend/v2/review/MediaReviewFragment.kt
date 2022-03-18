@@ -240,7 +240,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       MediaValidator.FilterError.TooManyItems -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
       is MediaValidator.FilterError.NoItems -> {
         if (error.cause != null) {
-          handleMediaValidatorFilterError(error)
+          handleMediaValidatorFilterError(error.cause)
         } else {
           Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
         }
