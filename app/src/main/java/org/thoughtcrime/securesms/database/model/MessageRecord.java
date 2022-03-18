@@ -412,7 +412,15 @@ public abstract class MessageRecord extends DisplayRecord {
     return "";
   }
 
-  public boolean isGroupV2JoinRequest(ByteString uuid) {
+  public boolean isGroupV2JoinRequest(@Nullable ServiceId serviceId) {
+    if (serviceId == null) {
+      return false;
+    }
+
+    return isGroupV2JoinRequest(UuidUtil.toByteString(serviceId.uuid()));
+  }
+
+  public boolean isGroupV2JoinRequest(@NonNull ByteString uuid) {
     DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
     if (decryptedGroupV2Context != null && decryptedGroupV2Context.hasChange()) {
       DecryptedGroupChange change = decryptedGroupV2Context.getChange();
@@ -422,10 +430,16 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isCollapsedGroupV2JoinUpdate() {
+    return isCollapsedGroupV2JoinUpdate(null);
+  }
+
+  public boolean isCollapsedGroupV2JoinUpdate(@Nullable ServiceId serviceId) {
     DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
     if (decryptedGroupV2Context != null && decryptedGroupV2Context.hasChange()) {
       DecryptedGroupChange change = decryptedGroupV2Context.getChange();
-      return change.getNewRequestingMembersCount() > 0 && change.getDeleteRequestingMembersCount() > 0;
+      return change.getNewRequestingMembersCount() > 0 &&
+             change.getDeleteRequestingMembersCount() > 0 &&
+             (serviceId == null || change.getEditor().equals(UuidUtil.toByteString(serviceId.uuid())));
     }
     return false;
   }

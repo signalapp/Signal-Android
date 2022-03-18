@@ -77,6 +77,7 @@ public final class ConversationUpdateItem extends FrameLayout
   private View                      background;
   private ConversationMessage       conversationMessage;
   private Recipient                 conversationRecipient;
+  private Optional<MessageRecord>   previousMessageRecord;
   private Optional<MessageRecord>   nextMessageRecord;
   private MessageRecord             messageRecord;
   private boolean                   isMessageRequestAccepted;
@@ -150,13 +151,15 @@ public final class ConversationUpdateItem extends FrameLayout
   {
     this.conversationMessage      = conversationMessage;
     this.messageRecord            = conversationMessage.getMessageRecord();
+    this.previousMessageRecord    = previousMessageRecord;
     this.nextMessageRecord        = nextMessageRecord;
     this.conversationRecipient    = conversationRecipient;
     this.isMessageRequestAccepted = isMessageRequestAccepted;
 
     senderObserver.observe(lifecycleOwner, messageRecord.getIndividualRecipient());
 
-    if (conversationRecipient.isActiveGroup() && (conversationMessage.getMessageRecord().isGroupCall() || conversationMessage.getMessageRecord().isCollapsedGroupV2JoinUpdate())) {
+    if (conversationRecipient.isActiveGroup() &&
+        (messageRecord.isGroupCall() || messageRecord.isCollapsedGroupV2JoinUpdate() || messageRecord.isGroupV2JoinRequest(messageRecord.getIndividualRecipient().getServiceId().orElse(null)))) {
       groupObserver.observe(lifecycleOwner, conversationRecipient);
       groupData.observe(lifecycleOwner, conversationRecipient);
     } else {
@@ -509,10 +512,7 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onChangeNumberUpdateContact(conversationMessage.getMessageRecord().getIndividualRecipient());
         }
       });
-    } else if (conversationMessage.getMessageRecord().isCollapsedGroupV2JoinUpdate() &&
-               groupData.isSelfAdmin() &&
-               !groupData.isBanned(conversationMessage.getMessageRecord().getIndividualRecipient()) &&
-               !groupData.isFullMember(conversationMessage.getMessageRecord().getIndividualRecipient())) {
+    } else if (shouldShowBlockRequestAction(conversationMessage.getMessageRecord())) {
       actionButton.setText(R.string.ConversationUpdateItem_block_request);
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {
@@ -552,6 +552,17 @@ public final class ConversationUpdateItem extends FrameLayout
     } else if (donateButtonStub.resolved()) {
       donateButtonStub.get().setVisibility(GONE);
     }
+  }
+
+  private boolean shouldShowBlockRequestAction(MessageRecord messageRecord) {
+    Recipient toBlock = messageRecord.getIndividualRecipient();
+
+    if (!toBlock.hasServiceId() || !groupData.isSelfAdmin() || groupData.isBanned(toBlock) || groupData.isFullMember(toBlock)) {
+      return false;
+    }
+
+    return (messageRecord.isCollapsedGroupV2JoinUpdate() && !nextMessageRecord.map(m -> m.isGroupV2JoinRequest(toBlock.requireServiceId())).orElse(false)) ||
+           (messageRecord.isGroupV2JoinRequest(toBlock.requireServiceId()) && previousMessageRecord.map(m -> m.isCollapsedGroupV2JoinUpdate(toBlock.requireServiceId())).orElse(false));
   }
 
   private void presentBackground(boolean collapseAbove, boolean collapseBelow, boolean hasWallpaper) {
