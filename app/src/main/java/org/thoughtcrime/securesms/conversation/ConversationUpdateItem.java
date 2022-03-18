@@ -316,10 +316,17 @@ public final class ConversationUpdateItem extends FrameLayout
     }
 
     public boolean isSelfAdmin() {
+      if (liveIsSelfAdmin == null) {
+        return false;
+      }
       return liveIsSelfAdmin.getValue() != null ? liveIsSelfAdmin.getValue() : false;
     }
 
     public boolean isBanned(Recipient recipient) {
+      if (liveBannedMembers == null) {
+        return false;
+      }
+
       Set<UUID> bannedMembers = liveBannedMembers.getValue();
       if (bannedMembers != null) {
         return recipient.getServiceId().isPresent() && bannedMembers.contains(recipient.requireServiceId().uuid());
@@ -328,6 +335,10 @@ public final class ConversationUpdateItem extends FrameLayout
     }
 
     public boolean isFullMember(Recipient recipient) {
+      if (liveFullMembers == null) {
+        return false;
+      }
+
       Set<UUID> members = liveFullMembers.getValue();
       if (members != null) {
         return recipient.getServiceId().isPresent() && members.contains(recipient.requireServiceId().uuid());
