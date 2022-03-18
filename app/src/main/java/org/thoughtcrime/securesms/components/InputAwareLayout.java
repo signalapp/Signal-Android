@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.os.Build;
-import android.text.InputType;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
@@ -14,7 +12,6 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKeyboardShownListener {
   private InputView current;
-  private int       previousInputType = InputType.TYPE_NULL;
 
   public InputAwareLayout(Context context) {
     this(context, null);
@@ -47,8 +44,6 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
       input.show(getKeyboardHeight(), current != null);
       current = input;
     }
-
-    setShowSoftInputOnFocusCompat(imeTarget, false);
   }
 
   public InputView getCurrentInput() {
@@ -58,8 +53,6 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
   public void hideCurrentInput(EditText imeTarget) {
     if (isKeyboardOpen()) hideSoftkey(imeTarget, null);
     else                  hideAttachedInput(false);
-
-    setShowSoftInputOnFocusCompat(imeTarget, true);
   }
 
   public void hideAttachedInput(boolean instant) {
@@ -72,13 +65,6 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
   }
 
   public void showSoftkey(final EditText inputTarget) {
-    showSoftkey(inputTarget, false);
-  }
-
-  public void showSoftkey(final EditText inputTarget, boolean force) {
-    if (!force && isInputOpen()) return;
-
-    setShowSoftInputOnFocusCompat(inputTarget, true);
     postOnKeyboardOpen(new Runnable() {
       @Override public void run() {
         hideAttachedInput(true);
@@ -97,20 +83,6 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
 
     ServiceUtil.getInputMethodManager(inputTarget.getContext())
                .hideSoftInputFromWindow(inputTarget.getWindowToken(), 0);
-  }
-
-  private void setShowSoftInputOnFocusCompat(EditText imeTarget, boolean show) {
-    if (Build.VERSION.SDK_INT >= 21) {
-      imeTarget.setShowSoftInputOnFocus(show);
-    } else if (show) {
-      if (previousInputType != InputType.TYPE_NULL) {
-        imeTarget.setInputType(previousInputType);
-      }
-    } else {
-      previousInputType = imeTarget.getInputType();
-      imeTarget.setRawInputType(InputType.TYPE_CLASS_TEXT);
-      imeTarget.setTextIsSelectable(true);
-    }
   }
 
   public interface InputView {
