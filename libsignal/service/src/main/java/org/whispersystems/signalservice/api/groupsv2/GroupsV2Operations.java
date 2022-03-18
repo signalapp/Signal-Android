@@ -387,9 +387,9 @@ public final class GroupsV2Operations {
 
       for (PendingMember member : pendingMembersList) {
         UUID pendingMemberUuid = decryptUuidOrUnknown(member.getMember().getUserId());
-        decryptedMembers.add(DecryptedMember.newBuilder()
-                                            .setUuid(UuidUtil.toByteString(pendingMemberUuid))
-                                            .build());
+        decryptedPendingMembers.add(DecryptedPendingMember.newBuilder()
+                                                          .setUuid(UuidUtil.toByteString(pendingMemberUuid))
+                                                          .build());
       }
 
       DecryptedGroup decryptedGroup = DecryptedGroup.newBuilder()
