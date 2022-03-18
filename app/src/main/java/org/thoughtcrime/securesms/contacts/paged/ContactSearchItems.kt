@@ -171,7 +171,11 @@ object ContactSearchItems {
     }
 
     protected open fun bindSmsTagField(model: T) {
-      smsTag.visible = false
+      smsTag.visible = isSmsContact(model)
+    }
+
+    private fun isSmsContact(model: T): Boolean {
+      return (getRecipient(model).isForceSmsSelection || getRecipient(model).isUnregistered) && !getRecipient(model).isDistributionList
     }
 
     abstract fun isSelected(model: T): Boolean

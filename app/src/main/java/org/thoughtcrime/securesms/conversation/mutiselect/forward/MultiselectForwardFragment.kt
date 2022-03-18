@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.PluralsRes
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -47,10 +48,7 @@ import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 
-class MultiselectForwardFragment :
-  Fragment(),
-  SafetyNumberChangeDialog.Callback,
-  ChooseStoryTypeBottomSheet.Callback {
+class MultiselectForwardFragment : Fragment(R.layout.multiselect_forward_fragment), SafetyNumberChangeDialog.Callback, ChooseStoryTypeBottomSheet.Callback {
 
   private val viewModel: MultiselectForwardViewModel by viewModels(factoryProducer = this::createViewModelFactory)
   private val disposables = LifecycleDisposable()
@@ -69,8 +67,12 @@ class MultiselectForwardFragment :
 
   private fun getMultiShareArgs(): ArrayList<MultiShareArgs> = requireNotNull(requireArguments().getParcelableArrayList(ARG_MULTISHARE_ARGS))
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.multiselect_forward_fragment, container, false)
+  override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+    return if (parentFragment != null) {
+      requireParentFragment().onGetLayoutInflater(savedInstanceState)
+    } else {
+      super.onGetLayoutInflater(savedInstanceState)
+    }
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
