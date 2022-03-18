@@ -163,6 +163,9 @@
   <string name="ContactsCursorLoader_groups">קבוצות</string>
   <string name="ContactsCursorLoader_phone_number_search">חיפוש מספר טלפון</string>
   <string name="ContactsCursorLoader_username_search">חיפוש שם משתמש</string>
+  <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">הסיפורים שלי</string>
+  <!--Action for creating a new story-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s של הודעה</string>
   <string name="ContactsDatabase_signal_call_s">שיחת Signal אל %s</string>
@@ -326,6 +329,13 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">מספר הביטחון שלך עם %s השתנה, כנראה מאחר שהוא/היא התקין/ה מחדש את Signal או שינה/שינתה מכשירים. הקש וודא כדי לאשר את המספר החדש של הביטחון. זה רשותי.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s מופעל</string>
+  <!--Dialog title for block group link join requests-->
+  <!--Dialog message for block group link join requests-->
+  <!--Dialog confirm block request button-->
+  <!--Dialog cancel block request button-->
+  <string name="ConversationFragment__cancel">בטל</string>
+  <!--Message shown after successfully blocking join requests for a user-->
+  <string name="ConversationFragment__blocked">חסום</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">למחוק שיחה נבחרת?</item>
     <item quantity="two">למחוק שיחות נבחרות?</item>
@@ -431,7 +441,6 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">כמה אנשי קשר אינם יכולים להיות בקבוצות מיושנות.</string> -->
   <string name="CreateGroupActivity__select_members">בחר חברי קבוצה</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">פרופיל</string>
@@ -452,6 +461,9 @@
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">כדי להמשיך להשתמש בגיבויים, אנא בחר תיקייה. גיבויים חדשים יישמרו במיקום זה.</string>
   <string name="RestoreBackupFragment__choose_folder">בחר תיקייה</string>
   <string name="RestoreBackupFragment__not_now">לא עכשיו</string>
+  <!--Couldn\'t find the selected backup-->
+  <!--Couldn\'t read the selected backup-->
+  <!--Backup has an unsupported file extension-->
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">גיבויי התכתבויות</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">גיבויים מוצפנים עם משפט־סיסמה ומאוחסנים במכשיר שלך.</string>
@@ -714,33 +726,6 @@
   <string name="AddGroupDetailsFragment__remove">הסר</string>
   <string name="AddGroupDetailsFragment__sms_contact">שלח מסרון אל איש קשר</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">להסיר את %1$s מקבוצה זו?</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">חבר קבוצה %d אינו תומך בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
-    <item quantity="two">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
-    <item quantity="many">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
-    <item quantity="other">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו תהיה קבוצה מיושנת.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="one">חבר קבוצה %d אינו תומך בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
-    <item quantity="two">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
-    <item quantity="many">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
-    <item quantity="other">%d חברי קבוצה אינם תומכים בקבוצות חדשות, כך שקבוצה זו אינה יכולה להיווצר.</item>
-  </plurals> -->
-  <!--NonGv2MemberDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">קבוצה מיושנת תיוצר כי \"%1$s\" משתמש בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתו לאחר שהוא יעדכן את Signal, או להסיר אותו לפני יצירת הקבוצה.</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">קבוצה מיושנת תיוצר כי חבר קבוצה %1$d משתמש בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתו לאחר שהוא יעדכן את Signal, או להסיר אותו לפני יצירת הקבוצה.</item>
-    <item quantity="two">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
-    <item quantity="many">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
-    <item quantity="other">קבוצה מיושנת תיוצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה יכול ליצור קבוצה בסגנון חדש איתם לאחר שהם יעדכנו את Signal, או להסיר אותם לפני יצירת הקבוצה.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">קבוצה זו אינה יכולה להיווצר כי \"%1$s\" משתמש/ת בגרסה ישנה של Signal. אתה חייב להסיר אותו/אותה לפני יצירת הקבוצה.</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="one">קבוצה זו אינה יכולה להיווצר כי חבר קבוצה %1$d משתמש בגרסה ישנה של Signal. אתה חייב להסיר אותו לפני יצירת הקבוצה.</item>
-    <item quantity="two">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
-    <item quantity="many">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
-    <item quantity="other">קבוצה זו אינה יכולה להיווצר כי %1$d חברי קבוצה משתמשים בגרסה ישנה של Signal. אתה חייב להסיר אותם לפני יצירת הקבוצה.</item>
-  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">בקשות והזמנות של חברי קבוצה</string>
   <string name="ManageGroupActivity_add_members">הוסף חברי קבוצה</string>
@@ -857,7 +842,13 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">לא היה ניתן להצטרף אל הקבוצה. אנא נסה שוב מאוחר יותר</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">קישור קבוצה זה אינו פעיל</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">לא היה ניתן לקבל את מידע הקבוצה. אנא נסה שוב מאוחר יותר</string> -->
+  <!--Title shown when there was an known issue getting group information from a group link-->
+  <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">קישור קבוצה זה אינו תקף יותר.</string>
+  <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">הצטרפות באמצעות קישור זה נכשלה. נסה להצטרף מאוחר יותר.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">האם אתה רוצה להצטרף אל קבוצה זו ולשתף את השם והתמונה שלך עם חבריה?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">מנהלן של קבוצה זו חייב לאשר את בקשתך לפני שתוכל להצטרף אל קבוצה זו. כאשר אתה מבקש להצטרף, השם והתמונה שלך ישותפו עם חברי הקבוצה.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -884,6 +875,7 @@
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">להוסיף את ”%1$s“ אל הקבוצה?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">לדחות בקשה מאת ”%1$s“?</string>
+  <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
   <string name="RequestConfirmationDialog_add">הוסף</string>
   <string name="RequestConfirmationDialog_deny">דחה</string>
   <!--ImageEditorHud-->
@@ -1200,6 +1192,7 @@
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">שלחת בקשה להצטרף אל הקבוצה.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ביקש/ה להצטרף באמצעות קישור הקבוצה.</string>
+  <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s אישר/ה את בקשתך להצטרף אל הקבוצה.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s אישר/ה בקשה להצטרף אל הקבוצה מאת %2$s.</string>
@@ -1377,6 +1370,7 @@
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">לאחר וידוא, אתה יכול להמשיך להתכתב. הודעות מושהות כלשהן יישלחו באופן אוטומטי.</string>
   <!--Recipient-->
   <string name="Recipient_you">את/ה</string>
+  <!--Name of recipient representing user\'s \'My Story\'-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">חסום</string>
   <string name="RecipientPreferenceActivity_unblock">שחרר חסימה</string>
@@ -1869,6 +1863,7 @@
     <item quantity="many">%1$d חברי קבוצה</item>
     <item quantity="other">%1$d חברי קבוצה</item>
   </plurals>
+  <!--Displays number of viewers for a story-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">הודעת Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">מסרון בלתי מאובטח</string>
@@ -1906,6 +1901,7 @@
   <string name="ConversationUpdateItem_invite_friends">הזמן חברים</string>
   <string name="ConversationUpdateItem_enable_call_notifications">אפשר התראות שיחה</string>
   <string name="ConversationUpdateItem_update_contact">עדכן איש קשר</string>
+  <!--Update item button text to show to block a recipient from requesting to join via group link-->
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">אין קבוצות במשותף. סקור בקשות בזהירות.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">אין אנשי קשר בקבוצה הזאת. סקור בקשות בזהירות.</string>
   <string name="ConversationUpdateItem_view">הצג</string>
@@ -1926,6 +1922,8 @@
   <string name="QuoteView_sticker">מדבקה</string>
   <string name="QuoteView_you">את/ה</string>
   <string name="QuoteView_original_missing">הודעה מקורית לא נמצאה</string>
+  <!--Author formatting for group stories-->
+  <!--Label indicating that a quote is for a reply to a story you created-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">גלול לתחתית</string>
   <!--BubbleOptOutTooltip-->
@@ -2121,6 +2119,7 @@
   <string name="message_details_recipient_header__read_by">נקראה ע״י</string>
   <string name="message_details_recipient_header__not_sent">לא נשלחה</string>
   <string name="message_details_recipient_header__viewed">נצפה ע״י</string>
+  <string name="message_details_recipient_header__skipped">מדולג</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">נכשל בשליחה</string>
   <string name="message_details_recipient__new_safety_number">מספר ביטחון חדש</string>
@@ -3007,6 +3006,7 @@
   <string name="RecipientBottomSheet_remove_s_as_group_admin">להסיר את %1$s מתפקיד מנהלן קבוצה?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" יוכל/תוכל לערוך קבוצה זו ואת חבריה.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">להסיר את %1$s מהקבוצה?</string>
+  <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
   <string name="RecipientBottomSheet_remove">הסר</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupRecipientListItem_admin">מנהלן</string>
@@ -3100,6 +3100,7 @@
   <string name="DeleteAccountFragment__leaving_groups">עוזב קבוצות…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">מוחק חשבון…</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">תלוי במספר הקבוצות שאתה נמצא בהן, זה עשוי לקחת מספר דקות</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3653,6 +3654,7 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal הוא ארגון ללא מטרות רווח בלי מפרסמים או משקיעים, שנתמך רק ע״י אנשים כמוך.</string>
   <string name="ManageDonationsFragment__my_support">התמיכה שלי</string>
   <string name="ManageDonationsFragment__manage_subscription">נהל מינוי</string>
+  <!--Label for Tax Receipts button-->
   <string name="ManageDonationsFragment__badges">תגים</string>
   <string name="ManageDonationsFragment__subscription_faq">שאלות נפוצות של מינוי</string>
   <string name="ManageDonationsFragment__error_getting_subscription">שגיאה בהשגת מינוי.</string>
@@ -3876,5 +3878,174 @@
   <string name="NotificationSettingsFragment__failed_to_open_picker">נכשל בפתיחת בורר.</string>
   <!--Description shown for the Signal Release Notes channel-->
   <string name="ReleaseNotes__signal_release_notes_and_news">הערות שחרור וחדשות של Signal</string>
+  <!--Donation receipts activity title-->
+  <string name="DonationReceiptListFragment__all_activity">כל הפעילות</string>
+  <!--Donation receipts all tab label-->
+  <string name="DonationReceiptListFragment__all">הכול</string>
+  <!--Donation receipts recurring tab label-->
+  <!--Donation receipts one time tab label-->
+  <string name="DonationReceiptListFragment__one_time">פעם אחת</string>
+  <!--Donation receipts boost row label-->
+  <!--Donation receipts details title-->
+  <string name="DonationReceiptDetailsFragment__details">פרטים</string>
+  <!--Donation receipts donation type heading-->
+  <!--Donation receipts date paid heading-->
+  <!--Donation receipts share PNG-->
+  <!--Donation receipts list end note-->
+  <!--Donation receipts document title-->
+  <!--Donation receipts amount title-->
+  <!--Donation receipts thanks-->
+  <!--Donation receipt type-->
+  <!--region "Stories Tab"-->
+  <!--Label for Chats tab in home app screen-->
+  <string name="ConversationListTabs__chats">התכתבויות</string>
+  <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">סיפורים</string>
+  <!--String for counts above 99 in conversation list tabs-->
+  <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">הסיפורים שלי</string>
+  <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">הוסף סיפור</string>
+  <!--Displayed when there are no stories to display-->
+  <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">הסתר סיפור</string>
+  <!--Context menu option to unhide a story-->
+  <!--Context menu option to forward a story-->
+  <string name="StoriesLandingItem__forward">העבר הלאה</string>
+  <!--Context menu option to share a story-->
+  <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">לך אל התכתבות</string>
+  <!--Label when a story is pending sending-->
+  <string name="StoriesLandingItem__sending">שולח…</string>
+  <!--Label when a story fails to send-->
+  <!--Title of dialog confirming decision to hide a story-->
+  <!--Message of dialog confirming decision to hide a story-->
+  <!--Positive action of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide">הסתר</string>
+  <!--Displayed in Snackbar after story is hidden-->
+  <!--Section header for hidden stories-->
+  <!--Displayed on each sent story under My Stories-->
+  <!--Forward story label, displayed in My Stories context menu-->
+  <string name="MyStories_forward">העבר הלאה</string>
+  <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <!--Title of dialog to confirm deletion of story-->
+  <!--Message of dialog to confirm deletion of story-->
+  <!--Displayed at bottom of story viewer when current item has views-->
+  <!--Displayed at bottom of story viewer when current item has replies-->
+  <!--Used to join views and replies when both exist on a story item-->
+  <string name="StoryViewerFragment__s_s">%1$s%2$s</string>
+  <!--Displayed when viewing a post you sent-->
+  <string name="StoryViewerPageFragment__you">את/ה</string>
+  <!--Displayed when viewing a post displayed to a group-->
+  <string name="StoryViewerPageFragment__s_to_s">%1$s אל %2$s</string>
+  <!--Displayed when viewing a post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply">השב</string>
+  <!--Displayed when a story has no views-->
+  <!--Displayed when a story has no replies yet-->
+  <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">הגיב/ה אל סיפור</string>
+  <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">צפיות</string>
+  <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">תגובות</string>
+  <!--Description of action for reaction button-->
+  <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <!--Context menu item to privately reply to a story response-->
+  <!--Context menu item to copy a story response-->
+  <string name="StoryGroupReplyItem__copy">העתק</string>
+  <!--Context menu item to delete a story response-->
+  <string name="StoryGroupReplyItem__delete">מחק</string>
+  <!--Story settings page title-->
+  <!--Story settings private stories heading-->
+  <!--Option label for creating a new private story-->
+  <!--Page title for My Story options-->
+  <!--Section heading for story visibility-->
+  <!--Clickable option for selecting people to hide your story from-->
+  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Section header for options related to replies and reactions-->
+  <!--Switchable option for allowing replies and reactions on your stories-->
+  <!--Summary for switchable option allowing replies and reactions on your story-->
+  <!--Note about default sharing-->
+  <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <!--Signal connections sheet bullet point 1-->
+  <!--Signal connections sheet bullet point 2-->
+  <!--Signal connections sheet bullet point 3-->
+  <!--Note at the bottom of the Signal connections sheet-->
+  <!--Clickable option to add a viewer to a private story-->
+  <!--Clickable option to delete a custom story-->
+  <!--Dialog title when attempting to remove someone from a private story-->
+  <!--Dialog message when attempting to remove someone from a private story-->
+  <!--Positive action label when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove">הסר</string>
+  <!--Dialog title when deleting a private story-->
+  <!--Dialog message when deleting a private story-->
+  <!--Page title for editing a private story name-->
+  <!--Input field hint when editing a private story name-->
+  <!--Save button label when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__save">שמור</string>
+  <!--Displayed in text post creator before user enters text-->
+  <!--Button label for changing font when creating a text post-->
+  <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">הוסף טקסט</string>
+  <!--Content description for \'done\' button when adding text to a story post-->
+  <!--Text label for media selection toggle-->
+  <string name="MediaSelectionActivity__text">מלל</string>
+  <!--Camera label for media selection toggle-->
+  <string name="MediaSelectionActivity__camera">מצלמה</string>
+  <!--Hint for entering a URL for a text post-->
+  <!--Displayed prior to the user entering a URL for a text post-->
+  <!--Hint text for searching for a story text post recipient.-->
+  <string name="TextStoryPostSendFragment__search">חפש</string>
+  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <!--Done button label for hide story from screen-->
+  <string name="HideStoryFromFragment__done">סיים</string>
+  <!--Dialog title for first time adding something to a story-->
+  <!--Dialog message for first time adding something to a story-->
+  <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Privacy Settings toggle title for stories-->
+  <!--Privacy Settings toggle summary for stories-->
+  <!--New story viewer selection screen title-->
+  <!--New story viewer selection action button label-->
+  <string name="CreateStoryViewerSelectionFragment__next">הבא</string>
+  <!--New story viewer selection screen title as recipients are selected-->
+  <!--Name story screen title-->
+  <!--Name story screen label hint-->
+  <!--Name story screen viewers subheading-->
+  <!--Name story screen create button label-->
+  <string name="CreateStoryWithViewersFragment__create">צור</string>
+  <!--Name story screen error when save attempted with no label-->
+  <string name="CreateStoryWithViewersFragment__this_field_is_required">שדה זה דרוש.</string>
+  <!--Name story screen error when save attempted but label is duplicate-->
+  <!--Text for select all action when editing recipients for a story-->
+  <string name="BaseStoryRecipientSelectionFragment__select_all">בחר הכול</string>
+  <!--Choose story type bottom sheet title-->
+  <!--Choose story type bottom sheet new story row title-->
+  <!--Choose story type bottom sheet new story row summary-->
+  <!--Choose story type bottom sheet group story title-->
+  <!--Choose story type bottom sheet group story summary-->
+  <!--Choose groups bottom sheet title-->
+  <!--Displayed when copying group story reply text to clipboard-->
+  <string name="StoryGroupReplyFragment__copied_to_clipboard">הועתק ללוח</string>
+  <!--Displayed in story caption when content is longer than 5 lines-->
+  <!--Displayed in toast after sending a direct reply-->
+  <!--Displayed in toast after sending a direct reaction-->
+  <!--Displayed in the viewer when a story is no longer available-->
+  <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">אין חיבור אינטרנט</string>
+  <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">לכבות עקיפת צנזורה?</string>
+  <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">אתה יכול להתחבר עכשיו אל שירות Signal ישירות למען חוויה טובה יותר.</string>
+  <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_no_thanks">לא תודה</string>
+  <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
+  <string name="TurnOffCircumventionMegaphone_turn_off">כבה</string>
+  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for reactions to an unavailable story-->
+  <!--endregion-->
+  <!--Content description for expand contacts chevron-->
   <!--EOF-->
 </resources>

@@ -163,6 +163,10 @@
   <string name="ContactsCursorLoader_groups">Группы</string>
   <string name="ContactsCursorLoader_phone_number_search">Поиск по номеру телефона</string>
   <string name="ContactsCursorLoader_username_search">Поиск по имени пользователя</string>
+  <!--Label for my stories when selecting who to send media to-->
+  <string name="ContactsCursorLoader_my_stories">Мои истории</string>
+  <!--Action for creating a new story-->
+  <string name="ContactsCursorLoader_new_story">Новая история</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Сообщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Позвонить через Signal на %s</string>
@@ -326,6 +330,16 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш с %s код безопасности изменился — скорее всего потому, что этот собеседник переустановил Signal или сменил устройство. Нажмите «Подтвердить», чтобы проверить новый код безопасности. Это необязательно.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">«%1$s» включён</string>
+  <!--Dialog title for block group link join requests-->
+  <string name="ConversationFragment__block_request">Заблокировать запрос?</string>
+  <!--Dialog message for block group link join requests-->
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s не сможет присоединиться или запросить присоединиться к этой группе с помощью ссылки. Этого пользователя всё равно можно будет добавить вручную.</string>
+  <!--Dialog confirm block request button-->
+  <string name="ConversationFragment__block_request_button">Заблокировать запрос</string>
+  <!--Dialog cancel block request button-->
+  <string name="ConversationFragment__cancel">Отменить</string>
+  <!--Message shown after successfully blocking join requests for a user-->
+  <string name="ConversationFragment__blocked">Пользователь заблокирован</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Удалить выбранный разговор?</item>
     <item quantity="few">Удалить выбранные разговоры?</item>
@@ -431,7 +445,6 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Некоторые контакты не могут находиться в старых группах.</string> -->
   <string name="CreateGroupActivity__select_members">Выберите участников</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Профиль</string>
@@ -452,6 +465,12 @@
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Чтобы продолжить резервное копирование, пожалуйста, выберите папку. Новые резервные копии будут сохраняться в ней.</string>
   <string name="RestoreBackupFragment__choose_folder">Выбрать папку</string>
   <string name="RestoreBackupFragment__not_now">Не сейчас</string>
+  <!--Couldn\'t find the selected backup-->
+  <string name="RestoreBackupFragment__backup_not_found">Резервная копия не найдена.</string>
+  <!--Couldn\'t read the selected backup-->
+  <string name="RestoreBackupFragment__backup_could_not_be_read">Не удалось прочитать резервную копию.</string>
+  <!--Backup has an unsupported file extension-->
+  <string name="RestoreBackupFragment__backup_has_a_bad_extension">У резервной копии неподдерживаемое расширение файла.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Резервные копии чатов</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Резервные копии шифруются парольной фразой и хранятся на вашем устройстве.</string>
@@ -714,33 +733,6 @@
   <string name="AddGroupDetailsFragment__remove">Удалить</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Удалить %1$s из этой группы?</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">%d участник не поддерживает Новые группы, поэтому эта группа будет Старой группой.</item>
-    <item quantity="few">%d участника не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
-    <item quantity="many">%d участников не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
-    <item quantity="other">%d участников не поддерживают Новые группы, поэтому эта группа будет Старой группой.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="one">%d участник не поддерживает Новые группы, поэтому эта группа не может быть создана.</item>
-    <item quantity="few">%d участника не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
-    <item quantity="many">%d участников не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
-    <item quantity="other">%d участников не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
-  </plurals> -->
-  <!--NonGv2MemberDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Будет создана Старая группа, потому что «%1$s» использует устаревшую версию Signal. Вы сможете создать группу нового типа после того, как этот человек обновит Signal. Либо вы можете удалить его перед созданием группы.</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Будет создана Старая группа, потому что %1$d участник использует устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
-    <item quantity="few">Будет создана Старая группа, потому что %1$d участника используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
-    <item quantity="many">Будет создана Старая группа, потому что %1$d участников используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
-    <item quantity="other">Будет создана Старая группа, потому что %1$d участников используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Эта группа не может быть создана, потому что «%1$s» использует устаревшую версию Signal. Вы должны удалить этого участника перед созданием группы.</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="one">Эта группа не может быть создана, потому что %1$d участник использует устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
-    <item quantity="few">Эта группа не может быть создана, потому что %1$d участника используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
-    <item quantity="many">Эта группа не может быть создана, потому что %1$d участников используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
-    <item quantity="other">Эта группа не может быть создана, потому что %1$d участников используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
-  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Запросы на участие и приглашения</string>
   <string name="ManageGroupActivity_add_members">Добавить участников</string>
@@ -857,7 +849,16 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Не удалось присоединиться к группе. Пожалуйста, попробуйте ещё раз позже</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Произошла ошибка сети.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Не удалось получить информацию группы. Пожалуйста, попробуйте ещё раз позже</string> -->
+  <!--Title shown when there was an known issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Невозможно присоединиться к группе</string>
+  <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Вы не можете присоединиться к этой группе по ссылке, потому что администратор удалил вас из этой группы.</string>
+  <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Эта ссылка на группу уже недействительна.</string>
+  <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Ошибка ссылки</string>
+  <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Не удалось присоединиться по этой ссылке. Попробуйте присоединиться ещё раз позже.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Вы хотите присоединиться к этой группе и открыть своё имя и фото её участникам?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Администратор этой группы должен принять ваш запрос, прежде чем вы сможете присоединиться к ней. Когда вы отправите запрос, ваши имя и фото станут доступны участникам этой группы.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -884,6 +885,8 @@
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Добавить «%1$s» в группу?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Отклонить запрос от «%1$s»?</string>
+  <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Отклонить запрос от «%1$s»? Этот пользователь больше не сможет запросить присоединиться к группе по ссылке.</string>
   <string name="RequestConfirmationDialog_add">Добавить</string>
   <string name="RequestConfirmationDialog_deny">Отклонить</string>
   <!--ImageEditorHud-->
@@ -1200,6 +1203,13 @@
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Вы отправили запрос на присоединение к группе.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s запросил(-а) присоединение к группе по ссылке.</string>
+  <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
+  <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
+    <item quantity="one">%1$s запросил(-а) и отменил(-а) свой запрос на присоединение к группе по ссылке.</item>
+    <item quantity="few">%1$s запросил(-а) и отменил(-а) %2$d запроса на присоединение к группе по ссылке.</item>
+    <item quantity="many">%1$s запросил(-а) и отменил(-а) %2$d запросов на присоединение к группе по ссылке.</item>
+    <item quantity="other">%1$s запросил(-а) и отменил(-а) %2$d запросов на присоединение к группе по ссылке.</item>
+  </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s принял(-а) ваш запрос на присоединение к группе.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s принял(-а) запрос на присоединение к группе от %2$s.</string>
@@ -1376,6 +1386,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">После проверки вы сможете продолжить общаться. Все приостановленные сообщения будут отправлены автоматически.</string>
   <!--Recipient-->
   <string name="Recipient_you">Вы</string>
+  <!--Name of recipient representing user\'s \'My Story\'-->
+  <string name="Recipient_my_story">Моя история</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Заблокировать</string>
   <string name="RecipientPreferenceActivity_unblock">Разблокировать</string>
@@ -1862,6 +1874,13 @@
     <item quantity="many">%1$d участников</item>
     <item quantity="other">%1$d участников</item>
   </plurals>
+  <!--Displays number of viewers for a story-->
+  <plurals name="contact_selection_list_item__number_of_viewers">
+    <item quantity="one">%1$d зритель</item>
+    <item quantity="few">%1$d зрителя</item>
+    <item quantity="many">%1$d зрителей</item>
+    <item quantity="other">%1$d зрителей</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Сообщение Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Незащищённое SMS</string>
@@ -1899,6 +1918,8 @@
   <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Включить уведомления о звонках</string>
   <string name="ConversationUpdateItem_update_contact">Обновить контакт</string>
+  <!--Update item button text to show to block a recipient from requesting to join via group link-->
+  <string name="ConversationUpdateItem_block_request">Заблокировать запрос</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нет общих групп. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">В этой группе нет ваших контактов. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_view">Просмотреть</string>
@@ -1919,6 +1940,10 @@
   <string name="QuoteView_sticker">Стикер</string>
   <string name="QuoteView_you">Вы</string>
   <string name="QuoteView_original_missing">Исходное сообщение не найдено</string>
+  <!--Author formatting for group stories-->
+  <string name="QuoteView_s_story">История %1$s</string>
+  <!--Label indicating that a quote is for a reply to a story you created-->
+  <string name="QuoteView_your_story">Ваша история</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Прокрутить вниз</string>
   <!--BubbleOptOutTooltip-->
@@ -2114,6 +2139,7 @@
   <string name="message_details_recipient_header__read_by">Прочитано</string>
   <string name="message_details_recipient_header__not_sent">Не отправлено</string>
   <string name="message_details_recipient_header__viewed">Просмотрено</string>
+  <string name="message_details_recipient_header__skipped">Пропущено</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Не удалось отправить</string>
   <string name="message_details_recipient__new_safety_number">Новый код безопасности</string>
@@ -3000,6 +3026,8 @@
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Удалить %1$s как администратора группы?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">«%1$s» сможет редактировать эту группу и её участников.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Удалить %1$s из группы?</string>
+  <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Удалить %1$s из группы? Этот пользователь не сможет заново присоединиться к группе по ссылке.</string>
   <string name="RecipientBottomSheet_remove">Удалить</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Скопировано в буфер обмена</string>
   <string name="GroupRecipientListItem_admin">Администратор</string>
@@ -3093,6 +3121,8 @@
   <string name="DeleteAccountFragment__leaving_groups">Выход из групп…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">Удаление учётной записи…</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Отмена подписки…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">В зависимости от количества групп, в которых вы состоите, это может занять несколько минут</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3646,6 +3676,8 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal — это некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только такими людьми, как вы.</string>
   <string name="ManageDonationsFragment__my_support">Моя поддержка</string>
   <string name="ManageDonationsFragment__manage_subscription">Управлять подпиской</string>
+  <!--Label for Tax Receipts button-->
+  <string name="ManageDonationsFragment__tax_receipts">Налоговые квитанции</string>
   <string name="ManageDonationsFragment__badges">Значки</string>
   <string name="ManageDonationsFragment__subscription_faq">ЧаВо о подписке</string>
   <string name="ManageDonationsFragment__error_getting_subscription">Не удалось получить информацию о подписке.</string>
@@ -3869,5 +3901,287 @@
   <string name="NotificationSettingsFragment__failed_to_open_picker">Не удалось открыть приложение для выбора мелодии.</string>
   <!--Description shown for the Signal Release Notes channel-->
   <string name="ReleaseNotes__signal_release_notes_and_news">Обновления и новости Signal</string>
+  <!--Donation receipts activity title-->
+  <string name="DonationReceiptListFragment__all_activity">Вся активность</string>
+  <!--Donation receipts all tab label-->
+  <string name="DonationReceiptListFragment__all">Все</string>
+  <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Повторяющиеся</string>
+  <!--Donation receipts one time tab label-->
+  <string name="DonationReceiptListFragment__one_time">Одноразовые</string>
+  <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Ускорение</string>
+  <!--Donation receipts details title-->
+  <string name="DonationReceiptDetailsFragment__details">Подробнее</string>
+  <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Тип пожертвования</string>
+  <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Дата оплаты</string>
+  <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Поделиться квитанцией</string>
+  <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Если вы переустановили Signal, квитанции для ранее сделанных пожертвованиях не будут доступны.</string>
+  <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Квитанция о пожертвовании</string>
+  <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Сумма</string>
+  <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Спасибо, что поддерживаете Signal. Ваш вклад помогает поддерживать миссию по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение между миллионами людей по всему миру. Если вы проживаете в США, пожалуйста, сохраните эту квитанцию для своего налогового учёта. Signal Technology Foundation — это некоммерческая организация, освобождённая от налогов со статусом 501c3, которая базируется в США. Наш ИНН: 82–4506840.</string>
+  <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
+  <!--region "Stories Tab"-->
+  <!--Label for Chats tab in home app screen-->
+  <string name="ConversationListTabs__chats">Чаты</string>
+  <!--Label for Stories tab in home app screen-->
+  <string name="ConversationListTabs__stories">Истории</string>
+  <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
+  <!--Title for "My Stories" row item in Stories landing page-->
+  <string name="StoriesLandingFragment__my_stories">Мои истории</string>
+  <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">Добавьте историю</string>
+  <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates">Нет недавних историй.</string>
+  <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">Скрыть историю</string>
+  <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Показать историю</string>
+  <!--Context menu option to forward a story-->
+  <string name="StoriesLandingItem__forward">Переслать</string>
+  <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Поделиться…</string>
+  <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Перейти к чату</string>
+  <!--Label when a story is pending sending-->
+  <string name="StoriesLandingItem__sending">Отправляется…</string>
+  <!--Label when a story fails to send-->
+  <string name="StoriesLandingItem__couldnt_send">Не удалось отправить</string>
+  <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Скрыть историю?</string>
+  <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Новые истории от %1$s и их обновления больше не будут показываться сверху списка историй.</string>
+  <!--Positive action of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide">Скрыть</string>
+  <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">История скрыта</string>
+  <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Скрытые истории</string>
+  <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d просмотр</item>
+    <item quantity="few">%1$d просмотра</item>
+    <item quantity="many">%1$d просмотров</item>
+    <item quantity="other">%1$d просмотров</item>
+  </plurals>
+  <!--Forward story label, displayed in My Stories context menu-->
+  <string name="MyStories_forward">Переслать</string>
+  <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">История от %1$s</string>
+  <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Удалить историю?</string>
+  <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Эта история будет удалена для вас и для всех, кто её получил.</string>
+  <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d просмотр</item>
+    <item quantity="few">%1$d просмотра</item>
+    <item quantity="many">%1$d просмотров</item>
+    <item quantity="other">%1$d просмотров</item>
+  </plurals>
+  <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d ответ</item>
+    <item quantity="few">%1$d ответа</item>
+    <item quantity="many">%1$d ответов</item>
+    <item quantity="other">%1$d ответов</item>
+  </plurals>
+  <!--Used to join views and replies when both exist on a story item-->
+  <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
+  <!--Displayed when viewing a post you sent-->
+  <string name="StoryViewerPageFragment__you">Вы</string>
+  <!--Displayed when viewing a post displayed to a group-->
+  <string name="StoryViewerPageFragment__s_to_s">%1$s в %2$s</string>
+  <!--Displayed when viewing a post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply">Ответить</string>
+  <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Ещё нет просмотров</string>
+  <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Ещё нет ответов</string>
+  <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Отреагировал(-а) на историю</string>
+  <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Просмотры</string>
+  <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">Ответы</string>
+  <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Отреагировать на историю</string>
+  <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Приватный ответ для %1$s</string>
+  <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Ответить приватно</string>
+  <!--Context menu item to copy a story response-->
+  <string name="StoryGroupReplyItem__copy">Копировать</string>
+  <!--Context menu item to delete a story response-->
+  <string name="StoryGroupReplyItem__delete">Удалить</string>
+  <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Настройки истории</string>
+  <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Частные истории</string>
+  <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Новая частная история</string>
+  <!--Page title for My Story options-->
+  <string name="MyStorySettingsFragment__my_story">Моя история</string>
+  <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Кто может видеть эту историю</string>
+  <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Скрыть историю от</string>
+  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d человека</item>
+    <item quantity="few">%1$d человек</item>
+    <item quantity="many">%1$d людей</item>
+    <item quantity="other">%1$d людей</item>
+  </plurals>
+  <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Ответы и реакции</string>
+  <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Разрешить ответы и реакции</string>
+  <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Разрешить людям, которые могут видеть вашу историю, реагировать и отвечать</string>
+  <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Скрыть вашу историю от определённых людей. По умолчанию ваша история видна вашим %1$s</string>
+  <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <string name="MyStorySettingsFragment__signal_connections">связям Signal.</string>
+  <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people"><strong>Связи Signal</strong> — это люди, которым вы решили доверять одним из следующих способов:</string>
+  <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Начав разговор</string>
+  <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Приняв запрос на общение</string>
+  <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Имея их в своих системных контактах</string>
+  <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Ваши связи могут видеть ваше имя и фото, а также обновления истории «Моя история», если вы не скроете её от них.</string>
+  <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Добавить зрителя</string>
+  <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">Удалить частную историю</string>
+  <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Удалить %1$s?</string>
+  <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Этот человек больше не будет видеть вашу историю.</string>
+  <!--Positive action label when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove">Удалить</string>
+  <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Вы уверены?</string>
+  <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">Это действие не может быть отменено.</string>
+  <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Редактировать название истории</string>
+  <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Название истории</string>
+  <!--Save button label when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__save">Сохранить</string>
+  <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Нажмите, чтобы добавить текст</string>
+  <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Аа</string>
+  <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">Добавьте текст</string>
+  <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Завершить добавление текста</string>
+  <!--Text label for media selection toggle-->
+  <string name="MediaSelectionActivity__text">Текст</string>
+  <!--Camera label for media selection toggle-->
+  <string name="MediaSelectionActivity__camera">Камера</string>
+  <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Наберите или вставьте URL</string>
+  <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Поделитесь ссылкой со зрителями своей истории</string>
+  <!--Hint text for searching for a story text post recipient.-->
+  <string name="TextStoryPostSendFragment__search">Поиск</string>
+  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <string name="HideStoryFromFragment__hide_story_from">Скрыть историю от…</string>
+  <!--Done button label for hide story from screen-->
+  <string name="HideStoryFromFragment__done">Готово</string>
+  <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Добавить в историю?</string>
+  <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Добавление содержимого в историю позволит вашим связям Signal просматривать её в течение 24 часов. Вы можете изменить, кто может видеть вашу историю, в настройках.</string>
+  <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Добавить в историю</string>
+  <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Редактировать зрителей</string>
+  <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Делиться историями и просматривать их</string>
+  <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Если эта настройка отключена, вы не сможете делиться историями и просматривать их.</string>
+  <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Выберите зрителей</string>
+  <!--New story viewer selection action button label-->
+  <string name="CreateStoryViewerSelectionFragment__next">Далее</string>
+  <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d зритель</item>
+    <item quantity="few">%1$d зрителя</item>
+    <item quantity="many">%1$d зрителей</item>
+    <item quantity="other">%1$d зрителей</item>
+  </plurals>
+  <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Назовите историю</string>
+  <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Название истории (обязательно)</string>
+  <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Зрители</string>
+  <!--Name story screen create button label-->
+  <string name="CreateStoryWithViewersFragment__create">Создать</string>
+  <!--Name story screen error when save attempted with no label-->
+  <string name="CreateStoryWithViewersFragment__this_field_is_required">Это поле обязательно.</string>
+  <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Уже есть история с таким названием.</string>
+  <!--Text for select all action when editing recipients for a story-->
+  <string name="BaseStoryRecipientSelectionFragment__select_all">Выбрать все</string>
+  <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Выберите тип вашей истории</string>
+  <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Новая частная история</string>
+  <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Видна только определённым людям</string>
+  <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">История группы</string>
+  <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Поделитесь с существующей группой</string>
+  <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Выберите группы</string>
+  <!--Displayed when copying group story reply text to clipboard-->
+  <string name="StoryGroupReplyFragment__copied_to_clipboard">Скопировано в буфер обмена</string>
+  <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Увидеть больше</string>
+  <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__reply_sent">Ответ отправлен</string>
+  <!--Displayed in toast after sending a direct reaction-->
+  <string name="StoryDirectReplyDialogFragment__reaction_sent">Реакция отправлена</string>
+  <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Эта история больше не доступна.</string>
+  <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">Нет подключения к интернету</string>
+  <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Не удалось загрузить содержимое</string>
+  <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Отключить обход цензуры?</string>
+  <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Теперь вы можете подключаться к сервису Signal напрямую для лучшего опыта использования.</string>
+  <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_no_thanks">Нет, спасибо</string>
+  <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
+  <string name="TurnOffCircumventionMegaphone_turn_off">Отключить</string>
+  <!--Conversation Item label for reactions to a story-->
+  <string name="ConversationItem__s_dot_story">%1$s · История</string>
+  <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">Отреагировал(-а) на историю</string>
+  <!--endregion-->
+  <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Просмотреть больше</string>
+  <string name="StoriesLinkPopup__visit_link">Посетить ссылку</string>
   <!--EOF-->
 </resources>

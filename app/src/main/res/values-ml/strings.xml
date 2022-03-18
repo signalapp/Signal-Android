@@ -161,6 +161,8 @@
   <string name="ContactsCursorLoader_groups">ഗ്രൂപ്പുകൾ</string>
   <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
   <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമ തിരയൽ</string>
+  <!--Label for my stories when selecting who to send media to-->
+  <!--Action for creating a new story-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">സന്ദേശ൦ %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal കോള്‍ %s</string>
@@ -312,6 +314,13 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s -മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതുകൊണ്ടോ ഡിവൈസ് മാറിയതുകൊണ്ടോ ആവാമിത്. പുതിയ സുരക്ഷാ നമ്പർ ഉറപ്പുവരുത്താൻ \'ഉറപ്പാക്കു\' ടാപ് ചെയ്യുക. ഇത് ഓപ്ഷണൽ ആണ്.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$sസജീവം</string>
+  <!--Dialog title for block group link join requests-->
+  <!--Dialog message for block group link join requests-->
+  <!--Dialog confirm block request button-->
+  <!--Dialog cancel block request button-->
+  <string name="ConversationFragment__cancel">റദ്ദാക്കൂ</string>
+  <!--Message shown after successfully blocking join requests for a user-->
+  <string name="ConversationFragment__blocked">തടഞ്ഞത്</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">തിരഞ്ഞെടുത്ത സംഭാഷണം ഇല്ലാതാക്കണോ?</item>
     <item quantity="other">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കണോ?</item>
@@ -389,7 +398,6 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ചില കോൺ‌ടാക്റ്റുകൾ‌ ലെഗസി ഗ്രൂപ്പുകളിൽ‌ ഉണ്ടാകാനാകില്ല.</string> -->
   <string name="CreateGroupActivity__select_members">അംഗങ്ങളെ തിരഞ്ഞെടുക്കൂ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">പ്രൊഫൈൽ</string>
@@ -410,6 +418,9 @@
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ, ദയവായി ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക. പുതിയ ബാക്കപ്പുകൾ ഇവിടെ സൂക്ഷിക്കും.</string>
   <string name="RestoreBackupFragment__choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക </string>
   <string name="RestoreBackupFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <!--Couldn\'t find the selected backup-->
+  <!--Couldn\'t read the selected backup-->
+  <!--Backup has an unsupported file extension-->
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">ഒരു രഹസ്യവാക്യം ഉപയോഗിച്ച് ബാക്കപ്പുകൾ എൻക്രിപ്റ്റുചെയ്‌ത് നിങ്ങളുടെ ഉപകരണത്തിൽ സംഭരിക്കുന്നു.</string>
@@ -638,25 +649,6 @@
   <string name="AddGroupDetailsFragment__remove">നീക്കംചെയ്യൂ</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS കോൺടാക്റ്റ്</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">ഈ ഗ്രൂപ്പിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">%d അംഗത്തിന് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് ഒരു ലെഗസി ഗ്രൂപ്പായിരിക്കും.</item>
-    <item quantity="other">%d അംഗങ്ങൾ‌ക്ക് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് ഒരു ലെഗസി ഗ്രൂപ്പായിരിക്കും.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="one">%d അംഗത്തിന് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല.</item>
-    <item quantity="other">%d അംഗങ്ങൾ‌ക്ക് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല.</item>
-  </plurals> -->
-  <!--NonGv2MemberDialog-->
-  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">%1$d അംഗം Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</item>
-    <item quantity="other">%1$d അംഗങ്ങള്‍ Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration"> \"%1$s\" Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="one">%1$d അംഗം Signal(സിഗ്നലി)ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</item>
-    <item quantity="other">%1$d അംഗങ്ങള്‍ Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</item>
-  </plurals> -->
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">അംഗത്വ അഭ്യർത്ഥനകളും ക്ഷണങ്ങളും </string>
   <string name="ManageGroupActivity_add_members">അംഗങ്ങളെ ചേർക്കുക</string>
@@ -765,7 +757,12 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ഗ്രൂപ്പിൽ ചേരാനായില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ഗ്രൂപ്പ് വിവരങ്ങൾ‌ നേടാൻ‌ കഴിയില്ല, ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string> -->
+  <!--Title shown when there was an known issue getting group information from a group link-->
+  <!--Message shown when you try to get information for a group via link but an admin has removed you-->
+  <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല.</string>
+  <!--Title shown when there was an unknown issue getting group information from a group link-->
+  <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">ഈ ഗ്രൂപ്പിൽ ചേരാനും നിങ്ങളുടെ പേരും ഫോട്ടോയും അതിന്റെ അംഗങ്ങളുമായി പങ്കിടാനും നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് മുമ്പ് നിങ്ങളുടെ അഭ്യർത്ഥന ഈ ഗ്രൂപ്പിന്റെ അഡ്മിൻ അംഗീകരിക്കണം. ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങൾ അഭ്യർത്ഥിക്കുമ്പോൾ, നിങ്ങളുടെ ഫോട്ടോയും നമ്പറും അതിലെ അംഗങ്ങളുമായി പങ്കിടും</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -790,6 +787,7 @@
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">ഗ്രൂപ്പിലേക്ക് \"%1$s\"-നെ ചേർക്കണോ?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” ൽ നിന്നുള്ള അഭ്യർത്ഥന നിരസിക്കണോ?</string>
+  <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
   <string name="RequestConfirmationDialog_add">ചേർക്കുക</string>
   <string name="RequestConfirmationDialog_deny">നിരസിക്കുക</string>
   <!--ImageEditorHud-->
@@ -1078,6 +1076,7 @@
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">ഗ്രൂപ്പിൽ ചേരാൻ നിങ്ങൾ ഒരു അഭ്യർത്ഥന അയച്ചു.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരാൻ %1$s അഭ്യർത്ഥിച്ചു.</string>
+  <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">ഗ്രൂപ്പിൽ ചേരാനുള്ള നിങ്ങളുടെ അഭ്യർത്ഥന %1$s അംഗീകരിച്ചു.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">ഗ്രൂപ്പിൽ ചേരാനുള്ള %2$s-യുടെ അഭ്യർത്ഥന %1$s അംഗീകരിച്ചു.</string>
@@ -1240,6 +1239,7 @@
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">പരിശോധിച്ചുറപ്പിച്ച ശേഷം, നിങ്ങൾക്ക് സന്ദേശ വിനിമയം തുടരാം. താൽ‌ക്കാലികമായി നിർത്തിയ ഏതെങ്കിലും സന്ദേശങ്ങള്‍ സ്വപ്രേരിതമായി അയയ്‌ക്കും.</string>
   <!--Recipient-->
   <string name="Recipient_you">നിങ്ങൾ</string>
+  <!--Name of recipient representing user\'s \'My Story\'-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">തടയുക</string>
   <string name="RecipientPreferenceActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
@@ -1703,6 +1703,7 @@
     <item quantity="one">%1$d അംഗം</item>
     <item quantity="other">%1$d അംഗങ്ങൾ</item>
   </plurals>
+  <!--Displays number of viewers for a story-->
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal സന്ദേശം</string>
   <string name="conversation_activity__type_message_sms_insecure">സുരക്ഷിതമല്ലാത്ത SMS</string>
@@ -1740,6 +1741,7 @@
   <string name="ConversationUpdateItem_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <string name="ConversationUpdateItem_enable_call_notifications">കോൾ അറിയിപ്പുകൾ പ്രാപ്തമാക്കുക</string>
   <string name="ConversationUpdateItem_update_contact">കോൺ‌ടാക്റ്റ് പുതുക്കുക</string>
+  <!--Update item button text to show to block a recipient from requesting to join via group link-->
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ഈ ഗ്രൂപ്പിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_view">കാണുക</string>
@@ -1760,6 +1762,8 @@
   <string name="QuoteView_sticker">സ്റ്റിക്കർ</string>
   <string name="QuoteView_you">നിങ്ങൾ</string>
   <string name="QuoteView_original_missing">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
+  <!--Author formatting for group stories-->
+  <!--Label indicating that a quote is for a reply to a story you created-->
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">താഴേക്ക് സ്ക്രോൾ ചെയ്യുക</string>
   <!--BubbleOptOutTooltip-->
@@ -1941,6 +1945,7 @@
   <string name="message_details_recipient_header__read_by">വായിച്ചത്</string>
   <string name="message_details_recipient_header__not_sent">അയച്ചില്ല</string>
   <string name="message_details_recipient_header__viewed">കണ്ടത്</string>
+  <string name="message_details_recipient_header__skipped">ഒഴിവാക്കി</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="message_details_recipient__new_safety_number">പുതിയ സുരക്ഷാ നമ്പർ </string>
@@ -2810,6 +2815,7 @@
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s-നെ അഡ്മിൻ സ്ഥാനത്ത് നിന്ന് ഒഴിവാക്കണോ?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\"-ന് ഈ ഗ്രൂപ്പിനെയും അതിന്റെ അംഗങ്ങളെയും എഡിറ്റുചെയ്യാൻ കഴിയും.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">ഗ്രൂപ്പിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
+  <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
   <string name="RecipientBottomSheet_remove">നീക്കംചെയ്യൂ</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupRecipientListItem_admin">അഡ്‌മിൻ‌</string>
@@ -2899,6 +2905,7 @@
   <string name="DeleteAccountFragment__leaving_groups">ഗ്രൂപ്പുകള്‍ വിട്ടുപോകുന്നു…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_account">അക്കൌണ്ട് ഇല്ലാതാക്കുന്നു…</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
   <string name="DeleteAccountFragment__depending_on_the_number_of_groups">നിങ്ങൾ ഉൾപ്പെടുന്ന ഗ്രൂപ്പുകളുടെ എണ്ണം അനുസരിച്ച്, ഇതിന് കുറച്ച് സമയമെടുത്തേക്കാം</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
@@ -3438,6 +3445,7 @@
   <string name="BecomeASustainerFragment__signal_is_a_non_profit">നിങ്ങളെപ്പോലുള്ള ആളുകൾ മാത്രം പിന്തുണയ്ക്കുന്ന, പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാത്ത ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒന്നാണ്  Signal.</string>
   <string name="ManageDonationsFragment__my_support">എന്റെ പിന്തുണ</string>
   <string name="ManageDonationsFragment__manage_subscription">സബ്സ്ക്രിപ്ഷൻ നിയന്ത്രിക്കുക</string>
+  <!--Label for Tax Receipts button-->
   <string name="ManageDonationsFragment__badges">ബാഡ്ജുകള്‍</string>
   <string name="ManageDonationsFragment__subscription_faq">സബ്സ്ക്രിപ്ഷൻ FAQ</string>
   <string name="ManageDonationsFragment__error_getting_subscription">സബ്‌സ്ക്രിപ്‌ഷൻ ലഭിക്കുന്നതിൽ പിശക്.</string>
@@ -3661,5 +3669,164 @@
   <string name="NotificationSettingsFragment__failed_to_open_picker">പിക്കർ തുറക്കുന്നത് പരാജയപ്പെട്ടു.</string>
   <!--Description shown for the Signal Release Notes channel-->
   <string name="ReleaseNotes__signal_release_notes_and_news">Signal പ്രകാശന കുറിപ്പുകളും വാര്‍ത്തകളും</string>
+  <!--Donation receipts activity title-->
+  <string name="DonationReceiptListFragment__all_activity">എല്ലാ പ്രവർത്തനങ്ങളും</string>
+  <!--Donation receipts all tab label-->
+  <string name="DonationReceiptListFragment__all">എല്ലാം</string>
+  <!--Donation receipts recurring tab label-->
+  <!--Donation receipts one time tab label-->
+  <string name="DonationReceiptListFragment__one_time">ഒരിക്കൽ</string>
+  <!--Donation receipts boost row label-->
+  <!--Donation receipts details title-->
+  <string name="DonationReceiptDetailsFragment__details">വിശദാംശങ്ങൾ</string>
+  <!--Donation receipts donation type heading-->
+  <!--Donation receipts date paid heading-->
+  <!--Donation receipts share PNG-->
+  <!--Donation receipts list end note-->
+  <!--Donation receipts document title-->
+  <!--Donation receipts amount title-->
+  <!--Donation receipts thanks-->
+  <!--Donation receipt type-->
+  <!--region "Stories Tab"-->
+  <!--Label for Chats tab in home app screen-->
+  <string name="ConversationListTabs__chats">ചാറ്റുകൾ</string>
+  <!--Label for Stories tab in home app screen-->
+  <!--String for counts above 99 in conversation list tabs-->
+  <!--Title for "My Stories" row item in Stories landing page-->
+  <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <!--Displayed when there are no stories to display-->
+  <!--Context menu option to hide a story-->
+  <!--Context menu option to unhide a story-->
+  <!--Context menu option to forward a story-->
+  <string name="StoriesLandingItem__forward">ഫോർവേഡ് ചെയ്യുക</string>
+  <!--Context menu option to share a story-->
+  <!--Context menu option to go to story chat-->
+  <!--Label when a story is pending sending-->
+  <string name="StoriesLandingItem__sending">അയയ്ക്കുന്നു…</string>
+  <!--Label when a story fails to send-->
+  <!--Title of dialog confirming decision to hide a story-->
+  <!--Message of dialog confirming decision to hide a story-->
+  <!--Positive action of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide">മറയ്ക്കുക</string>
+  <!--Displayed in Snackbar after story is hidden-->
+  <!--Section header for hidden stories-->
+  <!--Displayed on each sent story under My Stories-->
+  <!--Forward story label, displayed in My Stories context menu-->
+  <string name="MyStories_forward">ഫോർവേഡ് ചെയ്യുക</string>
+  <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <!--Title of dialog to confirm deletion of story-->
+  <!--Message of dialog to confirm deletion of story-->
+  <!--Displayed at bottom of story viewer when current item has views-->
+  <!--Displayed at bottom of story viewer when current item has replies-->
+  <!--Used to join views and replies when both exist on a story item-->
+  <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
+  <!--Displayed when viewing a post you sent-->
+  <string name="StoryViewerPageFragment__you">നിങ്ങൾ</string>
+  <!--Displayed when viewing a post displayed to a group-->
+  <string name="StoryViewerPageFragment__s_to_s">%1$s %2$s-നോട്</string>
+  <!--Displayed when viewing a post from another user with no replies-->
+  <string name="StoryViewerPageFragment__reply">മറുപടി</string>
+  <!--Displayed when a story has no views-->
+  <!--Displayed when a story has no replies yet-->
+  <!--Displayed for each user that reacted to a story when viewing replies-->
+  <!--Label for story views tab-->
+  <!--Label for story replies tab-->
+  <!--Description of action for reaction button-->
+  <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <!--Context menu item to privately reply to a story response-->
+  <!--Context menu item to copy a story response-->
+  <string name="StoryGroupReplyItem__copy">പകർത്തൂ</string>
+  <!--Context menu item to delete a story response-->
+  <string name="StoryGroupReplyItem__delete">ഇല്ലാതാക്കൂ</string>
+  <!--Story settings page title-->
+  <!--Story settings private stories heading-->
+  <!--Option label for creating a new private story-->
+  <!--Page title for My Story options-->
+  <!--Section heading for story visibility-->
+  <!--Clickable option for selecting people to hide your story from-->
+  <!--Summary of clickable option displaying how many people you have hidden your story from-->
+  <!--Section header for options related to replies and reactions-->
+  <!--Switchable option for allowing replies and reactions on your stories-->
+  <!--Summary for switchable option allowing replies and reactions on your story-->
+  <!--Note about default sharing-->
+  <!--Signal connections linked text that opens the Signal Connections sheet-->
+  <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <!--Signal connections sheet bullet point 1-->
+  <!--Signal connections sheet bullet point 2-->
+  <!--Signal connections sheet bullet point 3-->
+  <!--Note at the bottom of the Signal connections sheet-->
+  <!--Clickable option to add a viewer to a private story-->
+  <!--Clickable option to delete a custom story-->
+  <!--Dialog title when attempting to remove someone from a private story-->
+  <!--Dialog message when attempting to remove someone from a private story-->
+  <!--Positive action label when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove">നീക്കംചെയ്യൂ</string>
+  <!--Dialog title when deleting a private story-->
+  <!--Dialog message when deleting a private story-->
+  <!--Page title for editing a private story name-->
+  <!--Input field hint when editing a private story name-->
+  <!--Save button label when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__save">സംരക്ഷിക്കൂ</string>
+  <!--Displayed in text post creator before user enters text-->
+  <!--Button label for changing font when creating a text post-->
+  <!--Displayed in text post creator when prompting user to enter text-->
+  <!--Content description for \'done\' button when adding text to a story post-->
+  <!--Text label for media selection toggle-->
+  <string name="MediaSelectionActivity__text">വാചകം</string>
+  <!--Camera label for media selection toggle-->
+  <string name="MediaSelectionActivity__camera">ക്യാമറ</string>
+  <!--Hint for entering a URL for a text post-->
+  <!--Displayed prior to the user entering a URL for a text post-->
+  <!--Hint text for searching for a story text post recipient.-->
+  <string name="TextStoryPostSendFragment__search">തിരയുക</string>
+  <!--Title for screen allowing user to hide "My Story" entries from specific people-->
+  <!--Done button label for hide story from screen-->
+  <string name="HideStoryFromFragment__done">ചെയ്‌തു</string>
+  <!--Dialog title for first time adding something to a story-->
+  <!--Dialog message for first time adding something to a story-->
+  <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <!--Privacy Settings toggle title for stories-->
+  <!--Privacy Settings toggle summary for stories-->
+  <!--New story viewer selection screen title-->
+  <!--New story viewer selection action button label-->
+  <string name="CreateStoryViewerSelectionFragment__next">അടുത്തത്</string>
+  <!--New story viewer selection screen title as recipients are selected-->
+  <!--Name story screen title-->
+  <!--Name story screen label hint-->
+  <!--Name story screen viewers subheading-->
+  <!--Name story screen create button label-->
+  <string name="CreateStoryWithViewersFragment__create">സൃഷ്ടിക്കൂ</string>
+  <!--Name story screen error when save attempted with no label-->
+  <string name="CreateStoryWithViewersFragment__this_field_is_required">ഈ ഫീൽഡ് പൂരിപ്പിക്കേണ്ടതുണ്ട്.</string>
+  <!--Name story screen error when save attempted but label is duplicate-->
+  <!--Text for select all action when editing recipients for a story-->
+  <string name="BaseStoryRecipientSelectionFragment__select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
+  <!--Choose story type bottom sheet title-->
+  <!--Choose story type bottom sheet new story row title-->
+  <!--Choose story type bottom sheet new story row summary-->
+  <!--Choose story type bottom sheet group story title-->
+  <!--Choose story type bottom sheet group story summary-->
+  <!--Choose groups bottom sheet title-->
+  <!--Displayed when copying group story reply text to clipboard-->
+  <string name="StoryGroupReplyFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
+  <!--Displayed in story caption when content is longer than 5 lines-->
+  <!--Displayed in toast after sending a direct reply-->
+  <!--Displayed in toast after sending a direct reaction-->
+  <!--Displayed in the viewer when a story is no longer available-->
+  <!--Displayed in the viewer when the network is not available-->
+  <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">സെൻസർഷിപ്പ് മറികടക്കൽ ഓഫാക്കണോ?</string>
+  <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">മികച്ച അനുഭവത്തിനായി നിങ്ങൾക്ക് ഇപ്പോൾ Signal സേവനത്തിലേക്ക് നേരിട്ട് ബന്ധിപ്പിക്കാനാകും.</string>
+  <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
+  <string name="TurnOffCircumventionMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
+  <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
+  <string name="TurnOffCircumventionMegaphone_turn_off">ഓഫ് ആക്കുക</string>
+  <!--Conversation Item label for reactions to a story-->
+  <!--Conversation Item label for reactions to an unavailable story-->
+  <!--endregion-->
+  <!--Content description for expand contacts chevron-->
   <!--EOF-->
 </resources>
