@@ -1279,17 +1279,19 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       return;
     }
 
-    if (position >= (isTypingIndicatorShowing() ? 1 : 0)) {
-      ConversationMessage item = getListAdapter().getItem(position);
-      if (item != null) {
-        MessageRecord record                 = item.getMessageRecord();
-        long          latestReactionReceived = Stream.of(record.getReactions())
-                                                     .map(ReactionRecord::getDateReceived)
-                                                     .max(Long::compareTo)
-                                                     .orElse(0L);
+    ConversationMessage item = getListAdapter().getItem(position);
+    if (item == null) {
+      item = getListAdapter().getItem(position + 1);
+    }
 
-        markReadHelper.onViewsRevealed(Math.max(record.getDateReceived(), latestReactionReceived));
-      }
+    if (item != null) {
+      MessageRecord record = item.getMessageRecord();
+      long latestReactionReceived = Stream.of(record.getReactions())
+                                          .map(ReactionRecord::getDateReceived)
+                                          .max(Long::compareTo)
+                                          .orElse(0L);
+
+      markReadHelper.onViewsRevealed(Math.max(record.getDateReceived(), latestReactionReceived));
     }
   }
 

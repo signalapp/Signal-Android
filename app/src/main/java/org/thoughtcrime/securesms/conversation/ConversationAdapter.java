@@ -416,7 +416,7 @@ public class ConversationAdapter
   }
 
   boolean hasNoConversationMessages() {
-    return getItemCount() + fastRecords.size() == 0;
+    return super.getItemCount() + fastRecords.size() == 0;
   }
 
   /**
