@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.migrations;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -47,7 +47,7 @@ public final class DirectoryRefreshMigrationJob extends MigrationJob {
       return;
     }
 
-    DirectoryHelper.refreshDirectory(context, true);
+    ContactDiscovery.refreshAll(context, true);
   }
 
   @Override

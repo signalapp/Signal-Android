@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.ContactSelectionActivity;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -176,7 +176,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       for (Recipient recipient : registeredChecks) {
         try {
-          DirectoryHelper.refreshDirectoryFor(this, recipient, false);
+          ContactDiscovery.refresh(this, recipient, false);
         } catch (IOException e) {
           Log.w(TAG, "Failed to refresh registered status for " + recipient.getId(), e);
         }

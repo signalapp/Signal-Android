@@ -109,6 +109,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
@@ -128,7 +129,6 @@ import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -147,7 +147,6 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -295,7 +294,6 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.Stub;
-import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -778,7 +776,7 @@ public class ConversationParentFragment extends Fragment
     case ADD_CONTACT:
       SimpleTask.run(() -> {
         try {
-          DirectoryHelper.refreshDirectoryFor(requireContext(), recipient.get(), false);
+          ContactDiscovery.refresh(requireContext(), recipient.get(), false);
         } catch (IOException e) {
           Log.w(TAG, "Failed to refresh user after adding to contacts.");
         }
@@ -1855,7 +1853,7 @@ public class ConversationParentFragment extends Fragment
         if (registeredState == RegisteredState.UNKNOWN) {
           try {
             Log.i(TAG, "Refreshing directory for user: " + recipient.getId().serialize());
-            registeredState = DirectoryHelper.refreshDirectoryFor(context, recipient, false);
+            registeredState = ContactDiscovery.refresh(context, recipient, false);
           } catch (IOException e) {
             Log.w(TAG, e);
           }

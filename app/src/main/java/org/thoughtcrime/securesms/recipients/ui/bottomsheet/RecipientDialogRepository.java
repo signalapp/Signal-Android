@@ -8,7 +8,7 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
@@ -66,7 +66,7 @@ final class RecipientDialogRepository {
   void refreshRecipient() {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
-        DirectoryHelper.refreshDirectoryFor(context, Recipient.resolved(recipientId), false);
+        ContactDiscovery.refresh(context, Recipient.resolved(recipientId), false);
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh user after adding to contacts.");
       }

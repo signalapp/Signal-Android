@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -45,7 +45,7 @@ class GroupManagementRepository @JvmOverloads constructor(private val context: C
         .toList()
 
       try {
-        DirectoryHelper.refreshDirectoryFor(context, recipients, false)
+        ContactDiscovery.refresh(context, recipients, false)
         recipients.forEach { Recipient.live(it.id).refresh() }
       } catch (e: IOException) {
         consumer.accept(GroupAddMembersResult.Failure(GroupChangeFailureReason.NETWORK))

@@ -531,7 +531,12 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public CdshV2Service.Response getRegisteredUsersWithCdshV2(Set<String> previousE164s, Set<String> newE164s, Map<ServiceId, ProfileKey> serviceIds, Optional<byte[]> token, String hexPublicKey, String hexCodeHash)
+  public CdshV2Service.Response getRegisteredUsersWithCdshV2(Set<String> previousE164s,
+                                                             Set<String> newE164s,
+                                                             Map<ServiceId, ProfileKey> serviceIds,
+                                                             Optional<byte[]> token,
+                                                             String hexPublicKey,
+                                                             String hexCodeHash)
       throws IOException
   {
     CdshAuthResponse                                auth    = pushServiceSocket.getCdshAuth();

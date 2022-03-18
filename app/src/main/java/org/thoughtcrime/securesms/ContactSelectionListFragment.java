@@ -70,7 +70,7 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.HeaderAction;
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -576,7 +576,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
       @Override
       protected Boolean doInBackground(Void... voids) {
         try {
-          DirectoryHelper.refreshDirectory(context, false);
+          ContactDiscovery.refreshAll(context, false);
           return true;
         } catch (IOException e) {
           Log.w(TAG, e);

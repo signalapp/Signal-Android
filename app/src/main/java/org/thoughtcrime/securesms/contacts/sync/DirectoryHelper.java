@@ -76,12 +76,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 /**
  * Manages all the stuff around determining if a user is registered or not.
  */
-public class DirectoryHelper {
+class DirectoryHelper {
 
   private static final String TAG = Log.tag(DirectoryHelper.class);
 
   @WorkerThread
-  public static void refreshDirectory(@NonNull Context context, boolean notifyOfNewUsers) throws IOException {
+  static void refreshAll(@NonNull Context context, boolean notifyOfNewUsers) throws IOException {
     if (TextUtils.isEmpty(SignalStore.account().getE164())) {
       Log.w(TAG, "Have not yet set our own local number. Skipping.");
       return;
@@ -108,7 +108,7 @@ public class DirectoryHelper {
   }
 
   @WorkerThread
-  public static void refreshDirectoryFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean notifyOfNewUsers) throws IOException {
+  static void refresh(@NonNull Context context, @NonNull List<Recipient> recipients, boolean notifyOfNewUsers) throws IOException {
     RecipientDatabase recipientDatabase = SignalDatabase.recipients();
 
     for (Recipient recipient : recipients) {
@@ -130,7 +130,7 @@ public class DirectoryHelper {
   }
 
   @WorkerThread
-  public static RegisteredState refreshDirectoryFor(@NonNull Context context, @NonNull Recipient recipient, boolean notifyOfNewUsers) throws IOException {
+  static RegisteredState refresh(@NonNull Context context, @NonNull Recipient recipient, boolean notifyOfNewUsers) throws IOException {
     Stopwatch         stopwatch               = new Stopwatch("single");
     RecipientDatabase recipientDatabase       = SignalDatabase.recipients();
     RegisteredState   originalRegisteredState = recipient.resolve().getRegistered();
@@ -215,7 +215,7 @@ public class DirectoryHelper {
   /**
    * Reads the system contacts and copies over any matching data (like names) int our local store.
    */
-  public static void syncRecipientInfoWithSystemContacts(@NonNull Context context) {
+  static void syncRecipientInfoWithSystemContacts(@NonNull Context context) {
     syncRecipientInfoWithSystemContacts(context, Collections.emptyMap());
   }
 

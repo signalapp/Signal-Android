@@ -24,7 +24,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -242,7 +242,7 @@ public class CommunicationActions {
 
         if (!recipient.isRegistered() || !recipient.hasServiceId()) {
           try {
-            DirectoryHelper.refreshDirectoryFor(activity, recipient, false);
+            ContactDiscovery.refresh(activity, recipient, false);
             recipient = Recipient.resolved(recipient.getId());
           } catch (IOException e) {
             Log.w(TAG, "[handlePotentialMeUrl] Failed to refresh directory for new contact.");

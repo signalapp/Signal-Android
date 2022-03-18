@@ -10,7 +10,7 @@ import android.os.Bundle;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
@@ -47,7 +47,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
 
     if (!SignalStore.account().isRegistered()) {
       Log.i(TAG, "Not push registered. Just syncing contact info.");
-      DirectoryHelper.syncRecipientInfoWithSystemContacts(context);
+      ContactDiscovery.syncRecipientInfoWithSystemContacts(context);
       return;
     }
 
@@ -58,7 +58,7 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
     if (unknownSystemNumbers.size() > FULL_SYNC_THRESHOLD) {
       Log.i(TAG, "There are " + unknownSystemNumbers.size() + " unknown contacts. Doing a full sync.");
       try {
-        DirectoryHelper.refreshDirectory(context, true);
+        ContactDiscovery.refreshAll(context, true);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -69,14 +69,14 @@ public class ContactsSyncAdapter extends AbstractThreadedSyncAdapter {
                                          .map(s -> Recipient.external(getContext(), s))
                                          .toList();
       try {
-        DirectoryHelper.refreshDirectoryFor(context, recipients, true);
+        ContactDiscovery.refresh(context, recipients, true);
       } catch (IOException e) {
         Log.w(TAG, "Failed to refresh! Scheduling for later.", e);
         ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(true));
       }
     } else {
       Log.i(TAG, "No new contacts. Just syncing system contact data.");
-      DirectoryHelper.syncRecipientInfoWithSystemContacts(context);
+      ContactDiscovery.syncRecipientInfoWithSystemContacts(context);
     }
   }
 

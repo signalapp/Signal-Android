@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -37,7 +37,7 @@ public class RecipientSearchMigrationJob extends MigrationJob {
 
   @Override
   void performMigration() throws Exception {
-    DirectoryHelper.refreshDirectory(context, false);
+    ContactDiscovery.refreshAll(context, false);
   }
 
   @Override
