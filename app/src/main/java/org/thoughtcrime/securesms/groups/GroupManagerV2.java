@@ -530,8 +530,8 @@ final class GroupManagerV2 {
       return commitChangeWithConflictResolution(groupOperations.createAcceptInviteChange(groupCandidate.getProfileKeyCredential().get()));
     }
 
-    public GroupManager.GroupActionResult ban(Set<UUID> uuids) throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException {
-      return commitChangeWithConflictResolution(groupOperations.createBanUuidsChange(uuids));
+    public GroupManager.GroupActionResult ban(Set<UUID> uuids, boolean rejectJoinRequest) throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException {
+      return commitChangeWithConflictResolution(groupOperations.createBanUuidsChange(uuids, rejectJoinRequest));
     }
 
     public GroupManager.GroupActionResult unban(Set<UUID> uuids) throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException {

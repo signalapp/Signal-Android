@@ -393,7 +393,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
   public void can_decrypt_member_bans_field22() {
     UUID ban = UUID.randomUUID();
 
-    assertDecryption(groupOperations.createBanUuidsChange(Collections.singleton(ban))
+    assertDecryption(groupOperations.createBanUuidsChange(Collections.singleton(ban), false)
                                     .setRevision(13),
                      DecryptedGroupChange.newBuilder()
                                          .setRevision(13)

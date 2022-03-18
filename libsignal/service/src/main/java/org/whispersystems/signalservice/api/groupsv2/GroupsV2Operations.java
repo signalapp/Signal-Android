@@ -210,7 +210,7 @@ public final class GroupsV2Operations {
     }
 
     public GroupChange.Actions.Builder createRefuseGroupJoinRequest(Set<UUID> requestsToRemove, boolean alsoBan) {
-      GroupChange.Actions.Builder actions = alsoBan ? createBanUuidsChange(requestsToRemove)
+      GroupChange.Actions.Builder actions = alsoBan ? createBanUuidsChange(requestsToRemove, false)
                                                     : GroupChange.Actions.newBuilder();
 
       for (UUID uuid : requestsToRemove) {
@@ -236,7 +236,7 @@ public final class GroupsV2Operations {
     }
 
     public GroupChange.Actions.Builder createRemoveMembersChange(final Set<UUID> membersToRemove, boolean alsoBan) {
-      GroupChange.Actions.Builder actions = alsoBan ? createBanUuidsChange(membersToRemove)
+      GroupChange.Actions.Builder actions = alsoBan ? createBanUuidsChange(membersToRemove, false)
                                                     : GroupChange.Actions.newBuilder();
 
       for (UUID remove: membersToRemove) {
@@ -350,8 +350,9 @@ public final class GroupsV2Operations {
                                                                        .setAnnouncementsOnly(isAnnouncementGroup));
     }
 
-    public GroupChange.Actions.Builder createBanUuidsChange(Set<UUID> banUuids) {
-      GroupChange.Actions.Builder builder = GroupChange.Actions.newBuilder();
+    public GroupChange.Actions.Builder createBanUuidsChange(Set<UUID> banUuids, boolean rejectJoinRequest) {
+      GroupChange.Actions.Builder builder = rejectJoinRequest ? createRefuseGroupJoinRequest(banUuids, false)
+                                                              : GroupChange.Actions.newBuilder();
 
       for (UUID uuid : banUuids) {
         builder.addAddBannedMembers(GroupChange.Actions.AddBannedMemberAction.newBuilder().setAdded(BannedMember.newBuilder().setUserId(encryptUuid(uuid)).build()));

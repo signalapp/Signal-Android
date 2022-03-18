@@ -32,6 +32,8 @@ import org.whispersystems.signalservice.api.push.ServiceId;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public final class LiveGroup {
 
@@ -139,6 +141,10 @@ public final class LiveGroup {
 
   public LiveData<Boolean> isSelfAdmin() {
     return Transformations.map(groupRecord, g -> g.isAdmin(Recipient.self()));
+  }
+
+  public LiveData<Set<UUID>> getBannedMembers() {
+    return Transformations.map(groupRecord, g -> g.isV2Group() ? g.requireV2GroupProperties().getBannedMembers() : Collections.emptySet());
   }
 
   public LiveData<Boolean> isActive() {

@@ -1934,6 +1934,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                         if (result.isFailure()) {
                           int failureReason = GroupErrors.getUserDisplayMessage(((GroupBlockJoinRequestResult.Failure) result).getReason());
                           Toast.makeText(requireContext(), failureReason, Toast.LENGTH_SHORT).show();
+                        } else {
+                          Toast.makeText(requireContext(), R.string.ConversationFragment__blocked, Toast.LENGTH_SHORT).show();
                         }
                       })
     );

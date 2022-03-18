@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.Transformations;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.common.collect.Sets;
@@ -57,7 +58,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 public final class ConversationUpdateItem extends FrameLayout
                                           implements BindableConversationItem
@@ -85,7 +88,7 @@ public final class ConversationUpdateItem extends FrameLayout
   private final PresentOnChange          presentOnChange = new PresentOnChange();
   private final RecipientObserverManager senderObserver  = new RecipientObserverManager(presentOnChange);
   private final RecipientObserverManager groupObserver   = new RecipientObserverManager(presentOnChange);
-  private final GroupDataManager         groupData       = new GroupDataManager(presentOnChange);
+  private final GroupDataManager         groupData       = new GroupDataManager();
 
   public ConversationUpdateItem(Context context) {
     super(context);
@@ -272,42 +275,68 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private final class GroupDataManager {
 
-    private final Observer<Recipient> recipientObserver;
-    private final Observer<Boolean>   isSelfAdminSetter;
+    private final Observer<Object> updater;
 
-    private LiveGroup         liveGroup;
-    private LiveData<Boolean> liveIsSelfAdmin;
-    private boolean           isSelfAdmin;
-    private Recipient         conversationRecipient;
+    private LiveGroup           liveGroup;
+    private LiveData<Boolean>   liveIsSelfAdmin;
+    private LiveData<Set<UUID>> liveBannedMembers;
+    private LiveData<Set<UUID>> liveFullMembers;
+    private Recipient           conversationRecipient;
 
-    GroupDataManager(@NonNull Observer<Recipient> observer) {
-      this.recipientObserver = observer;
-      this.isSelfAdminSetter = isSelfAdmin -> {
-        this.isSelfAdmin = isSelfAdmin;
-        present(conversationMessage, nextMessageRecord, conversationRecipient, isMessageRequestAccepted);
-      };
+    GroupDataManager() {
+      this.updater = unused -> update();
     }
 
     public void observe(@NonNull LifecycleOwner lifecycleOwner, @Nullable Recipient recipient) {
       if (liveGroup != null) {
-        liveIsSelfAdmin.removeObserver(isSelfAdminSetter);
-        liveIsSelfAdmin = null;
+        liveIsSelfAdmin.removeObserver(updater);
+        liveBannedMembers.removeObserver(updater);
+        liveFullMembers.removeObserver(updater);
       }
 
       if (recipient != null) {
         conversationRecipient = recipient;
         liveGroup             = new LiveGroup(recipient.requireGroupId());
         liveIsSelfAdmin       = liveGroup.isSelfAdmin();
+        liveBannedMembers     = liveGroup.getBannedMembers();
+        liveFullMembers       = Transformations.map(liveGroup.getFullMembers(),
+                                                    members -> members.stream()
+                                                                      .map(m -> m.getMember().requireServiceId().uuid())
+                                                                      .collect(Collectors.toSet()));
 
-        liveIsSelfAdmin.observe(lifecycleOwner, isSelfAdminSetter);
+        liveIsSelfAdmin.observe(lifecycleOwner, updater);
+        liveBannedMembers.observe(lifecycleOwner, updater);
+        liveFullMembers.observe(lifecycleOwner, updater);
       } else {
         conversationRecipient = null;
         liveGroup             = null;
+        liveBannedMembers     = null;
+        liveIsSelfAdmin       = null;
       }
     }
 
     public boolean isSelfAdmin() {
-      return isSelfAdmin;
+      return liveIsSelfAdmin.getValue() != null ? liveIsSelfAdmin.getValue() : false;
+    }
+
+    public boolean isBanned(Recipient recipient) {
+      Set<UUID> bannedMembers = liveBannedMembers.getValue();
+      if (bannedMembers != null) {
+        return recipient.getServiceId().isPresent() && bannedMembers.contains(recipient.requireServiceId().uuid());
+      }
+      return false;
+    }
+
+    public boolean isFullMember(Recipient recipient) {
+      Set<UUID> members = liveFullMembers.getValue();
+      if (members != null) {
+        return recipient.getServiceId().isPresent() && members.contains(recipient.requireServiceId().uuid());
+      }
+      return false;
+    }
+
+    private void update() {
+      present(conversationMessage, nextMessageRecord, conversationRecipient, isMessageRequestAccepted);
     }
   }
 
@@ -469,7 +498,10 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onChangeNumberUpdateContact(conversationMessage.getMessageRecord().getIndividualRecipient());
         }
       });
-    } else if (conversationMessage.getMessageRecord().isCollapsedGroupV2JoinUpdate() && groupData.isSelfAdmin()) {
+    } else if (conversationMessage.getMessageRecord().isCollapsedGroupV2JoinUpdate() &&
+               groupData.isSelfAdmin() &&
+               !groupData.isBanned(conversationMessage.getMessageRecord().getIndividualRecipient()) &&
+               !groupData.isFullMember(conversationMessage.getMessageRecord().getIndividualRecipient())) {
       actionButton.setText(R.string.ConversationUpdateItem_block_request);
       actionButton.setVisibility(VISIBLE);
       actionButton.setOnClickListener(v -> {

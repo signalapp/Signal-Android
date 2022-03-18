@@ -375,6 +375,8 @@
     <string name="ConversationFragment__block_request_button">Block request</string>
     <!-- Dialog cancel block request button -->
     <string name="ConversationFragment__cancel">Cancel</string>
+    <!-- Message shown after successfully blocking join requests for a user -->
+    <string name="ConversationFragment__blocked">Blocked</string>
 
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Delete selected conversation?</item>

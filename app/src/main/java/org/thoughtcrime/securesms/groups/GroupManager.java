@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.google.protobuf.ByteString;
+
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -22,6 +24,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.GroupLinkNotActiveException;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -280,8 +283,19 @@ public final class GroupManager {
                          @NonNull RecipientId recipientId)
       throws GroupChangeBusyException, IOException, GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException
   {
+    GroupDatabase.GroupRecord groupRecord = SignalDatabase.groups().requireGroup(groupId);
+    Recipient                 recipient   = Recipient.resolved(recipientId);
+
+    if (groupRecord.requireV2GroupProperties().getBannedMembers().contains(recipient.requireServiceId().uuid())) {
+      Log.i(TAG, "Attempt to ban already banned recipient: " + recipientId);
+      return;
+    }
+
+    ByteString uuid              = UuidUtil.toByteString(recipient.requireServiceId().uuid());
+    boolean    rejectJoinRequest = groupRecord.requireV2GroupProperties().getDecryptedGroup().getRequestingMembersList().stream().anyMatch(m -> m.getUuid().equals(uuid));
+
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
-      editor.ban(Collections.singleton(Recipient.resolved(recipientId).requireServiceId().uuid()));
+      editor.ban(Collections.singleton(recipient.requireServiceId().uuid()), rejectJoinRequest);
     }
   }
 
