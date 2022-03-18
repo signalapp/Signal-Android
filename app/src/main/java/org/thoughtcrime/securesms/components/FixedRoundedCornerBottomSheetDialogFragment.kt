@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components
 import android.app.Dialog
 import android.os.Bundle
 import android.view.ContextThemeWrapper
-import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StyleRes
 import androidx.core.view.ViewCompat

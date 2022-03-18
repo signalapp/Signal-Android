@@ -416,6 +416,8 @@
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet</item>
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox_dialog</item>
+        <item name="android:windowEnterAnimation">@anim/slide_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
     </style>
 
     <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
