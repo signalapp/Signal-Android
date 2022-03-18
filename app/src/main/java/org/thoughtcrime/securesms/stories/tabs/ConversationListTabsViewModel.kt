@@ -35,6 +35,14 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
     store.update { it.copy(tab = ConversationListTab.STORIES) }
   }
 
+  fun onSearchOpened() {
+    store.update { it.copy(isSearchOpen = true) }
+  }
+
+  fun onSearchClosed() {
+    store.update { it.copy(isSearchOpen = false) }
+  }
+
   class Factory(private val repository: ConversationListTabRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
       return modelClass.cast(ConversationListTabsViewModel(repository)) as T

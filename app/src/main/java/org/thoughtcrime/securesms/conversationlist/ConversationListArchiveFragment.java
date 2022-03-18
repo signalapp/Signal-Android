@@ -29,6 +29,9 @@ import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHostController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -62,7 +65,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    toolbar = new Stub<>(view.findViewById(R.id.toolbar_basic));
+    toolbar = requireCallback().getBasicToolbar();
 
     super.onViewCreated(view, savedInstanceState);
 
@@ -71,8 +74,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
     cameraFab  = view.findViewById(R.id.camera_fab);
     emptyState = new Stub<>(view.findViewById(R.id.empty_state));
 
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    toolbar.get().setNavigationOnClickListener(v -> requireActivity().onBackPressed());
+    toolbar.get().setNavigationOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
     toolbar.get().setTitle(R.string.AndroidManifest_archived_conversations);
 
     fab.hide();

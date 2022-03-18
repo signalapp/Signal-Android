@@ -4,16 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:contentInsetStart="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/ConversationListTabs__stories" />
-
     <View
         android:id="@+id/toolbar_shadow"
         android:layout_width="match_parent"
@@ -22,7 +12,7 @@
         android:background="@drawable/toolbar_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
@@ -31,7 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
         android:id="@+id/camera_fab"

@@ -47,6 +47,8 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
 
     storiesUnreadIndicator.visible = state.unreadStoriesCount > 0
     storiesUnreadIndicator.text = formatCount(state.unreadStoriesCount)
+
+    requireView().visible = !state.isSearchOpen
   }
 
   private fun formatCount(count: Long): String {

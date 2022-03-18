@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_activity_list"
+    app:startDestination="@id/conversationListFragment">
+
+    <fragment
+        android:id="@+id/conversationListFragment"
+        android:name="org.thoughtcrime.securesms.conversationlist.ConversationListFragment"
+        android:label="conversation_list_fragment" >
+        <action
+            android:id="@+id/action_conversationListFragment_to_conversationListArchiveFragment"
+            app:destination="@id/conversationListArchiveFragment" />
+        <action
+            android:id="@+id/action_conversationListFragment_to_storiesLandingFragment"
+            app:destination="@id/storiesLandingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/conversationListArchiveFragment"
+        android:name="org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment"
+        android:label="conversation_list_archive_fragment" >
+        <action
+            android:id="@+id/action_conversationListArchiveFragment_to_storiesLandingFragment"
+            app:destination="@id/storiesLandingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storiesLandingFragment"
+        android:name="org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment"
+        android:label="stories_landing_fragment" />
+
+</navigation>
