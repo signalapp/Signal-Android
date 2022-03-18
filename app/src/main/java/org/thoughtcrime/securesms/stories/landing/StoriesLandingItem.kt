@@ -112,6 +112,7 @@ object StoriesLandingItem {
 
       avatarView.setStoryRingFromState(model.data.storyViewState)
 
+      @Suppress("CascadeIf")
       if (record.storyType.isTextStory) {
         storyPreview.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel.parseFrom(record), 0, 0)
       } else if (record.slideDeck.thumbnailSlide != null) {
@@ -123,12 +124,17 @@ object StoriesLandingItem {
       if (model.data.secondaryStory != null) {
         val secondaryRecord = model.data.secondaryStory.messageRecord as MediaMmsMessageRecord
 
+        @Suppress("CascadeIf")
         if (secondaryRecord.storyType.isTextStory) {
           storyMulti.setImageResource(GlideApp.with(storyPreview), StoryTextPostModel.parseFrom(secondaryRecord), 0, 0)
-        } else {
+          storyMulti.visible = true
+        } else if (secondaryRecord.slideDeck.thumbnailSlide != null) {
           storyMulti.setImageResource(GlideApp.with(storyPreview), secondaryRecord.slideDeck.thumbnailSlide!!, false, true)
+          storyMulti.visible = true
+        } else {
+          storyMulti.clear(GlideApp.with(storyPreview))
+          storyMulti.visible = false
         }
-        storyMulti.visible = true
       } else {
         storyMulti.visible = false
       }
