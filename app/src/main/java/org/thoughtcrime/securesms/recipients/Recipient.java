@@ -503,7 +503,7 @@ public class Recipient {
       }
 
       return Util.join(names, ", ");
-    } else if (isMyStory()) {
+    } else if (!resolving && isMyStory()) {
       return context.getString(R.string.Recipient_my_story);
     } else {
       return this.groupName;
