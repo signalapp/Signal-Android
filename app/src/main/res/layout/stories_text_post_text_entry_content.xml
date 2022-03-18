@@ -34,7 +34,7 @@
             android:paddingBottom="13dp"
             android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
             android:textColor="@color/core_white"
-            android:textSize="36dp"
+            android:textSize="34dp"
             tools:ignore="SpUsage"
             tools:text="THIS IS SOME TEXT THAT I AM ENTERING" />
     </FrameLayout>

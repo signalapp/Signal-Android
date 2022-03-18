@@ -26,7 +26,7 @@
         android:text="@string/TextStoryPostCreationFragment__tap_to_add_text"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
         android:textColor="@color/core_white"
-        android:textSize="36dp"
+        android:textSize="34dp"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"

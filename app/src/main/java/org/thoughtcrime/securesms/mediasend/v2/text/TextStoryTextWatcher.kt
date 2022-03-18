@@ -25,7 +25,7 @@ class TextStoryTextWatcher private constructor(private val textView: TextView) :
       breakIteratorCompat.setText(textView.text)
       val length = breakIteratorCompat.countBreaks()
       val expectedTextSize = when {
-        length < 50 -> 36f
+        length < 50 -> 34f
         length < 200 -> 24f
         else -> 18f
       }
