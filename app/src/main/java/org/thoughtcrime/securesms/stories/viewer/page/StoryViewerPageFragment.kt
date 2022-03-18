@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
@@ -661,7 +662,11 @@ class StoryViewerPageFragment :
         return false
       }
 
-      if (velocityX > 0) {
+      if (ViewUtil.isLtr(container)) {
+        if (velocityX < 0) {
+          onReplyToPost()
+        }
+      } else if (velocityX > 0) {
         onReplyToPost()
       }
 
