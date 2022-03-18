@@ -983,7 +983,7 @@
   <string name="MessageRecord_you_made_s_an_admin">आपण %1$s ला अॅडमिन केले.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s ला अॅडमिन केले.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपल्याला अॅडमिन केले.</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s चे अॅडमिन विशेषाधिकार आपन रद्द केले.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपले अॅडमिन विशेषाधिकार रद्द केले.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s आता अॅडमिन आहे.</string>
@@ -1098,6 +1098,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s यांनी त्यांचा फोन नंबर बदलला.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_say_thanks_with_a_boost">हे नवीन वैशिष्ट्य आवडले ? बूस्टसह धन्यवाद म्हणा.</string>
   <!--Update item message shown in the release channel when someone is not a sustainer so we ask them to consider becoming one-->
   <string name="MessageRecord_signal_is_powered_by_people_like_you_become_a_sustainer_today">Signal आपल्यासारख्या लोकांद्वारे समर्थित आहे. आज आपला पाठिंबा दाखवा!</string>
   <!--Group Calling update messages-->
@@ -1128,6 +1129,7 @@
   <string name="MessageRequestBottomView_unblock">अनब्लॉक करा</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s ला आपल्याला संदेश देऊ द्या आणि आपले नाव आणि फोटो त्यांच्यासह शेअर करू द्यायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ला आपल्याला संदेश देऊ द्या आणि आपले नाव आणि फोटो त्यांच्यासह सामायिक करू द्या? आपण त्यांना अनब्लॉक करेपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
+  <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s कडून अद्यतने आणि बातम्या मिळवायच्या ? आपन त्यांना अनब्लॉक करेपर्यंत आपल्याला कोणत्याही अपडेट्स मिळणार नाहीत.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">आपले या गटासोबतचे संभाषण आणि आपले नाव आणि फोटो त्याच्या सदस्यांसह सामायिक करणे सुरू ठेवायचे?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@उल्लेख आणि अॅडमिन सारखे नवीन वैशिष्ट्ये सक्रिय करण्यासाठी गट श्रेणीसुधारित करा. ज्या सदस्यांनी त्यांचे नाव किंवा फोटो या गटात शेअर केलेले नाही त्यांना सामील होण्याचे आमंत्रण दिले जाईल.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">हा लेगसी गट वापरला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
@@ -1255,7 +1257,9 @@
   <string name="RedPhone_got_it">कळले</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
+  <string name="ValentinesDayMegaphone_happy_heart_day">💜 दिवसाच्या शुभेच्छा!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
+  <string name="ValentinesDayMegaphone_show_your_affection">Signal सस्टेनर बनून आपुलकी दाखवा.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">आपला व्हिडिओ चालू करण्यासाठी येथे टॅप करा</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ला कॉल करण्यासाठी, Signal ला आपल्या कॅमेराचा अॅक्सेस हवा आहे</string>
@@ -1612,7 +1616,9 @@
   <string name="NotificationChannel_contact_joined_signal">संपर्क Signal मध्ये सामील झाला</string>
   <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">सूचना चॅनल सेटिंग उघडण्यासाठी कुठलीही अॅक्टिव्हिटी उपलब्ध नाही.</string>
   <!--Notification channel name for showing persistent background connection on devices without push notifications-->
+  <string name="NotificationChannel_background_connection">बॅकग्राऊंड कनेकशन</string>
   <!--Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing.-->
+  <string name="NotificationChannel_call_status">कॉल स्थिती</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक केलेले असताना जलद प्रतिसाद अनुपलब्ध!</string>
@@ -3064,6 +3070,7 @@
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">तुमचा वर्तमान फोन नंबर नवीन फोन नंबरवर बदलण्यासाठी याचा वापर करा.आपण हा बदल पूर्ववत करु शकत नाही.\n\nपुढे जाण्यापूर्वी, तुमच्या नवीन नंबरवर SMS किंवा कॉल मिळू शकतील याची खात्री करा.</string>
   <string name="ChangeNumberFragment__continue">सुरू ठेवा</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">आपला फोन नंबर %1$s वर बदलला आहे</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">ठीक आहे</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
@@ -3461,7 +3468,9 @@
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer_subscription_was_canceled">आपले सस्टेनर सबस्क्रिप्शन रद्द करण्यात आले कारण आम्ही आपली पेमेंट प्रक्रिया पुर्ण करू शकलो नाही. तुमचा बॅज यापुढे तुमच्या प्रोफाईलवर दिसणार नाही.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपन Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription"> सब्स्क्रिप्शन नूतनीकरण करा</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">सब्स्क्रिप्शन पेमेंटवर प्रक्रिया करू शकत नाही</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">आपले Signal सस्टेनर पेमेंट गोळा करण्यात आम्हाला समस्या येत आहे. आपली पेमेंट पद्धत अद्ययावत असल्याची खात्री करा. तसे नसल्यास, ते Google Pay मध्ये अपडेट करा. Signal काही दिवसात पुन्हा पेमेंटवर प्रक्रिया करण्याचा प्रयत्न करेल.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">हे पुन्हा दाखवू नका</string>
   <string name="Subscription__please_contact_support_for_more_information">अधिक माहितीकरिता सपोर्टशी संपर्क करा.</string>
   <string name="Subscription__contact_support">समर्थन सोबत संपर्क साधा</string>
   <string name="Subscription__earn_a_s_badge">%1$s बॅज मिळवा</string>
@@ -3490,18 +3499,27 @@
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">अधिक जाणा</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">आपली पेमेंट पद्धत Google Pay मध्ये अद्ययावत असल्याची पडताळणी करा आणि पुन्हा प्रयत्न करा. समस्या कायम राहिल्यास, आपल्या बँकेशी संपर्क साधा.</string>
   <!--Stripe decline code purchase not supported-->
   <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">आपले कार्ड या प्रकारच्या खरेदीला समर्थन देत नाही. दुसरी पेमेंट पद्धत वापरून पहा.</string>
   <!--Stripe decline code your card has expired-->
   <string name="DeclineCode__your_card_has_expired">आपले कार्ड कालबाह्य झाले आहे. Google Pay मध्ये आपली पेमेंट पद्धत अपडेट करा आणि पुन्हा प्रयत्न करा.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Google Pay वर जा</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">आपला कार्ड क्रमांक चुकीचा आहे. तो Google Pay मध्ये अपडेट करा आणि पुन्हा प्रयत्न करा.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">आपल्या कार्डचा CVC क्रमांक चुकीचा आहे. तो Google Pay मध्ये अपडेट करा आणि पुन्हा प्रयत्न करा</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">ही खरेदी पूर्ण करण्यासाठी आपल्या कार्डमध्ये पुरेसा निधी नाही. दुसरी पेमेंट पद्धत वापरून पहा.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">आपल्या पेमेंट पद्धतीवरील कालबाह्यता महिना चुकीचा आहे. तो Google Pay मध्ये अपडेट करा आणि पुन्हा प्रयत्न करा.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">आपल्या पेमेंट पद्धतीवरील कालबाह्यता वर्ष चुकीचा आहे. तो Google Pay मध्ये अपडेट करा आणि पुन्हा प्रयत्न करा.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">पुन्हा पेमेंट पूर्ण करण्याचा प्रयत्न करा किंवा अधिक माहितीसाठी आपल्या बँकेशी संपर्क साधा.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">पुन्हा प्रयत्न करा किंवा अधिक माहितीसाठी आपल्या बँकेशी संपर्क साधा.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">आपल्या प्रोफाइलला नाव द्या</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3643,5 +3661,6 @@
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">पिकर उघडण्यात अयशस्वी.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal रिलीझ नोट्स आणिamp; न्यूज</string>
   <!--EOF-->
 </resources>

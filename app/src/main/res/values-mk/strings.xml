@@ -1415,12 +1415,12 @@
   <!--SignalBottomActionBar-->
   <string name="SignalBottomActionBar_more">Повеќе</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Ќе Ве потсетиме повторно подоцна.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ќе Ве потсетиме повторно утре.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Повторно ќе Ве потсетиме подоцна.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Повторно ќе Ве потсетиме утре.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Повторно ќе Ве потсетиме за неколку дена.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Ќе Ве потсетиме повторно за една недела.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Ќе Ве потсетиме повторно за неколку недели.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Ќе Ве потсетиме повторно за еден месец.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Повторно ќе Ве потсетиме за една недела.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Повторно ќе Ве потсетиме за неколку недели.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Повторно ќе Ве потсетиме за еден месец.</string>
   <!--Slide-->
   <string name="Slide_image">Слика</string>
   <string name="Slide_sticker">Стикер</string>
