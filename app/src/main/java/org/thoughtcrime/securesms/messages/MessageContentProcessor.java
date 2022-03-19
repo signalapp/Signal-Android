@@ -2694,7 +2694,7 @@ public final class MessageContentProcessor {
                                     .map(t -> new SyncMessageId(senderRecipient.getId(), t))
                                     .toList();
 
-    Collection<SyncMessageId> unhandled = SignalDatabase.messages().incrementDeliveryReceiptCounts(ids, System.currentTimeMillis());
+    Collection<SyncMessageId> unhandled = SignalDatabase.messages().incrementDeliveryReceiptCounts(ids, content.getTimestamp());
 
     for (SyncMessageId id : unhandled) {
       warn(String.valueOf(content.getTimestamp()), "[handleDeliveryReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + id.getRecipientId());
