@@ -328,7 +328,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     if (activeAdapter != null) {
-      activeAdapter.notifyDataSetChanged();
+      activeAdapter.notifyItemRangeChanged(0, activeAdapter.getItemCount());
     }
 
     SignalProxyUtil.startListeningToWebsocket();
