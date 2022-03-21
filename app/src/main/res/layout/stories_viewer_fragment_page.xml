@@ -243,4 +243,9 @@
         app:totalSegments="0"
         tools:totalSegments="5" />
 
+    <org.thoughtcrime.securesms.stories.viewer.reply.reaction.OnReactionSentView
+        android:id="@+id/on_reaction_sent_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

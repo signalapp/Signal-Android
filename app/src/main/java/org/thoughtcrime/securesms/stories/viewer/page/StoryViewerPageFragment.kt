@@ -18,6 +18,7 @@ import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyBottomSheetDialogFragment
+import org.thoughtcrime.securesms.stories.viewer.reply.reaction.OnReactionSentView
 import org.thoughtcrime.securesms.stories.viewer.reply.tabs.StoryViewsAndRepliesDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.text.StoryTextPostPreviewFragment
 import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsBottomSheetDialogFragment
@@ -113,6 +115,7 @@ class StoryViewerPageFragment :
     val caption: TextView = view.findViewById(R.id.story_caption)
     val largeCaption: TextView = view.findViewById(R.id.story_large_caption)
     val largeCaptionOverlay: View = view.findViewById(R.id.story_large_caption_overlay)
+    val reactionAnimationView: OnReactionSentView = view.findViewById(R.id.on_reaction_sent_view)
 
     storySlate = view.findViewById(R.id.story_slate)
     progressBar = view.findViewById(R.id.progress)
@@ -204,6 +207,12 @@ class StoryViewerPageFragment :
       }
     }
 
+    reactionAnimationView.callback = object : OnReactionSentView.Callback {
+      override fun onFinished() {
+        viewModel.setIsDisplayingReactionAnimation(false)
+      }
+    }
+
     sharedViewModel.isScrolling.observe(viewLifecycleOwner) { isScrolling ->
       viewModel.setIsUserScrollingParent(isScrolling)
     }
@@ -276,6 +285,14 @@ class StoryViewerPageFragment :
     }
 
     adjustConstraintsForScreenDimensions(viewsAndReplies, cardWrapper, card)
+
+    childFragmentManager.setFragmentResultListener(StoryDirectReplyDialogFragment.REQUEST_EMOJI, viewLifecycleOwner) { _, bundle ->
+      val emoji = bundle.getString(StoryDirectReplyDialogFragment.REQUEST_EMOJI)
+      if (emoji != null) {
+        reactionAnimationView.playForEmoji(emoji)
+        viewModel.setIsDisplayingReactionAnimation(true)
+      }
+    }
   }
 
   override fun onResume() {

@@ -13,7 +13,8 @@ data class StoryViewerPlaybackState(
   val isSelectedPage: Boolean = false,
   val isDisplayingSlate: Boolean = false,
   val isFragmentResumed: Boolean = false,
-  val isDisplayingLinkPreviewTooltip: Boolean = false
+  val isDisplayingLinkPreviewTooltip: Boolean = false,
+  val isDisplayingReactionAnimation: Boolean = false
 ) {
   val isPaused: Boolean = !areSegmentsInitialized ||
     isUserTouching ||
@@ -28,5 +29,6 @@ data class StoryViewerPlaybackState(
     !isSelectedPage ||
     isDisplayingSlate ||
     !isFragmentResumed ||
-    isDisplayingLinkPreviewTooltip
+    isDisplayingLinkPreviewTooltip ||
+    isDisplayingReactionAnimation
 }

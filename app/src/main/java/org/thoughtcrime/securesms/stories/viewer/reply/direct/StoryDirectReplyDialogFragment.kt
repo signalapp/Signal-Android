@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.thoughtcrime.securesms.R
@@ -146,6 +147,7 @@ class StoryDirectReplyDialogFragment :
   }
 
   companion object {
+    const val REQUEST_EMOJI = "request.code.emoji"
 
     private const val ARG_STORY_ID = "arg.story.id"
     private const val ARG_RECIPIENT_ID = "arg.recipient.id"
@@ -180,7 +182,12 @@ class StoryDirectReplyDialogFragment :
     lifecycleDisposable += viewModel.sendReaction(emoji)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe {
-        // TODO [alex] -- Reaction explosion animation instead of toast.
+        setFragmentResult(
+          REQUEST_EMOJI,
+          Bundle().apply {
+            putString(REQUEST_EMOJI, emoji)
+          }
+        )
         Toast.makeText(requireContext(), R.string.StoryDirectReplyDialogFragment__reaction_sent, Toast.LENGTH_LONG).show()
         dismissAllowingStateLoss()
       }

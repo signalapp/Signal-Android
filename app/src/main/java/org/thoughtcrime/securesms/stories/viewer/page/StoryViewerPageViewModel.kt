@@ -135,6 +135,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isSelectedPage = isSelectedPage) }
   }
 
+  fun setIsDisplayingReactionAnimation(isDisplayingReactionAnimation: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingReactionAnimation = isDisplayingReactionAnimation) }
+  }
+
   fun setIsDisplayingContextMenu(isDisplayingContextMenu: Boolean) {
     storyViewerPlaybackStore.update { it.copy(isDisplayingContextMenu = isDisplayingContextMenu) }
   }
