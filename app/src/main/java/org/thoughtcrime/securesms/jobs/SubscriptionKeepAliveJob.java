@@ -90,8 +90,13 @@ public class SubscriptionKeepAliveJob extends BaseJob {
     Log.i(TAG, "Successful call to GET active subscription", true);
 
     ActiveSubscription activeSubscription = activeSubscriptionResponse.getResult().get();
-    if (activeSubscription.getActiveSubscription() == null || !activeSubscription.getActiveSubscription().isActive()) {
+    if (activeSubscription.getActiveSubscription() == null) {
       Log.i(TAG, "User does not have an active subscription. Exiting.", true);
+      return;
+    }
+
+    if (!activeSubscription.getActiveSubscription().isActive()) {
+      Log.i(TAG, "User has an inactive subscription. Status message: " + activeSubscription.getActiveSubscription().getStatus() + " Exiting.", true);
       return;
     }
 
