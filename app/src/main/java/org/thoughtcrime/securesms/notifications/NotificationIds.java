@@ -14,6 +14,7 @@ public final class NotificationIds {
   public static final int USER_NOTIFICATION_MIGRATION = 525600;
   public static final int DEVICE_TRANSFER             = 625420;
   public static final int DONOR_BADGE_FAILURE         = 630001;
+  public static final int INTERNAL_NET_ERROR          = 404404;
 
   private NotificationIds() { }
 
