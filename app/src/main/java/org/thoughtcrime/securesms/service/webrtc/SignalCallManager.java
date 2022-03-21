@@ -468,10 +468,12 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         case ENDED_REMOTE_HANGUP_DECLINED:
         case ENDED_REMOTE_BUSY:
         case ENDED_REMOTE_GLARE:
+        case ENDED_REMOTE_RECALL:
           return p.handleEndedRemote(s, event, remotePeer);
         case ENDED_TIMEOUT:
         case ENDED_INTERNAL_FAILURE:
         case ENDED_SIGNALING_FAILURE:
+        case ENDED_GLARE_HANDLING_FAILURE:
         case ENDED_CONNECTION_FAILURE:
           return p.handleEnded(s, event, remotePeer);
         case RECEIVED_OFFER_EXPIRED:

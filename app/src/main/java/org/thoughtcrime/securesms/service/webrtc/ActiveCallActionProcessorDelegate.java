@@ -41,6 +41,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     put(CallEvent.ENDED_REMOTE_BUSY, WebRtcViewModel.State.CALL_BUSY);
     put(CallEvent.ENDED_REMOTE_HANGUP_NEED_PERMISSION, WebRtcViewModel.State.CALL_NEEDS_PERMISSION);
     put(CallEvent.ENDED_REMOTE_GLARE, WebRtcViewModel.State.CALL_DISCONNECTED_GLARE);
+    put(CallEvent.ENDED_REMOTE_RECALL, WebRtcViewModel.State.CALL_DISCONNECTED_GLARE);
   }};
 
   public ActiveCallActionProcessorDelegate(@NonNull WebRtcInteractor webRtcInteractor, @NonNull String tag) {
@@ -179,6 +180,8 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
       ringer.start(OutgoingRinger.Type.BUSY);
       ThreadUtil.runOnMainDelayed(ringer::stop, SignalCallManager.BUSY_TONE_LENGTH);
     } else if (endedRemoteEvent == CallEvent.ENDED_REMOTE_GLARE && incomingBeforeAccept) {
+      webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState(remotePeer).isRemoteVideoOffer());
+    } else if (endedRemoteEvent == CallEvent.ENDED_REMOTE_RECALL && incomingBeforeAccept) {
       webRtcInteractor.insertMissedCall(remotePeer, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState(remotePeer).isRemoteVideoOffer());
     }
 
