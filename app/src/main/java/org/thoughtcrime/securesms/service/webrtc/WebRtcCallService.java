@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -54,7 +56,7 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
 
   private SignalCallManager callManager;
 
-  private NetworkListener                 networkListener;
+  private NetworkReceiver                 networkReceiver;
   private PowerButtonReceiver             powerButtonReceiver;
   private UncaughtExceptionHandlerManager uncaughtExceptionHandlerManager;
   private PhoneStateListener              hangUpRtcOnDeviceCallAnswered;
@@ -224,16 +226,18 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
   }
 
   private void registerNetworkReceiver() {
-    if (networkListener == null) {
-      networkListener = new NetworkListener();
-      NetworkConstraintObserver.getInstance(ApplicationDependencies.getApplication()).addListener(networkListener);
+    if (networkReceiver == null) {
+      networkReceiver = new NetworkReceiver();
+
+      registerReceiver(networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
   }
 
   private void unregisterNetworkReceiver() {
-    if (networkListener != null) {
-      NetworkConstraintObserver.getInstance(ApplicationDependencies.getApplication()).removeListener(networkListener);
-      networkListener = null;
+    if (networkReceiver != null) {
+      unregisterReceiver(networkReceiver);
+
+      networkReceiver = null;
     }
   }
 
@@ -278,10 +282,13 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     }
   }
 
-  private static class NetworkListener implements NetworkConstraintObserver.NetworkListener {
+  private static class NetworkReceiver extends BroadcastReceiver {
     @Override
-    public void onNetworkChanged() {
-      ApplicationDependencies.getSignalCallManager().networkChange(NetworkConstraint.isMet(ApplicationDependencies.getApplication()));
+    public void onReceive(Context context, Intent intent) {
+      ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+      NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
+
+      ApplicationDependencies.getSignalCallManager().networkChange(activeNetworkInfo != null && activeNetworkInfo.isConnected());
       ApplicationDependencies.getSignalCallManager().bandwidthModeUpdate();
     }
   }
