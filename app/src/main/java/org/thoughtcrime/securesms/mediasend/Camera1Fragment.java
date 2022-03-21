@@ -42,6 +42,9 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.stories.Stories;
+import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -275,6 +278,20 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
     View galleryButton = requireView().findViewById(R.id.camera_gallery_button);
     View countButton   = requireView().findViewById(R.id.camera_review_button);
+    View toggleSpacer  = requireView().findViewById(R.id.toggle_spacer);
+
+    if (toggleSpacer != null) {
+      if (Stories.isFeatureEnabled() && FeatureFlags.storiesTextPosts()) {
+        StoryDisplay storyDisplay = StoryDisplay.Companion.getStoryDisplay(getResources().getDisplayMetrics().widthPixels, getResources().getDisplayMetrics().heightPixels);
+        if (storyDisplay == StoryDisplay.SMALL) {
+          toggleSpacer.setVisibility(View.VISIBLE);
+        } else {
+          toggleSpacer.setVisibility(View.GONE);
+        }
+      } else {
+        toggleSpacer.setVisibility(View.GONE);
+      }
+    }
 
     captureButton.setOnClickListener(v -> {
       captureButton.setEnabled(false);

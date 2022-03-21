@@ -341,16 +341,19 @@ class StoryViewerPageFragment :
 
     when (StoryDisplay.getStoryDisplay(resources.displayMetrics.widthPixels.toFloat(), resources.displayMetrics.heightPixels.toFloat())) {
       StoryDisplay.LARGE -> {
+        constraintSet.setDimensionRatio(cardWrapper.id, "9:16")
         constraintSet.connect(viewsAndReplies.id, ConstraintSet.TOP, cardWrapper.id, ConstraintSet.BOTTOM)
         constraintSet.connect(viewsAndReplies.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
         card.radius = DimensionUnit.DP.toPixels(18f)
       }
       StoryDisplay.MEDIUM -> {
+        constraintSet.setDimensionRatio(cardWrapper.id, "9:16")
         constraintSet.clear(viewsAndReplies.id, ConstraintSet.TOP)
         constraintSet.connect(viewsAndReplies.id, ConstraintSet.BOTTOM, cardWrapper.id, ConstraintSet.BOTTOM)
         card.radius = DimensionUnit.DP.toPixels(18f)
       }
       StoryDisplay.SMALL -> {
+        constraintSet.setDimensionRatio(cardWrapper.id, null)
         constraintSet.clear(viewsAndReplies.id, ConstraintSet.TOP)
         constraintSet.connect(viewsAndReplies.id, ConstraintSet.BOTTOM, cardWrapper.id, ConstraintSet.BOTTOM)
         card.radius = DimensionUnit.DP.toPixels(0f)
