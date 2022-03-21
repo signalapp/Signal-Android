@@ -74,14 +74,10 @@ class MediaSelectionActivity :
     val cameraSwitch: View = findViewById(R.id.camera_switch)
 
     textSwitch.setOnClickListener {
-      textSwitch.isSelected = true
-      cameraSwitch.isSelected = false
       viewModel.sendCommand(HudCommand.GoToText)
     }
 
     cameraSwitch.setOnClickListener {
-      textSwitch.isSelected = false
-      cameraSwitch.isSelected = true
       viewModel.sendCommand(HudCommand.GoToCapture)
     }
 
@@ -103,8 +99,16 @@ class MediaSelectionActivity :
 
     (supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as NavHostFragment).navController.addOnDestinationChangedListener { _, d, _ ->
       when (d.id) {
-        R.id.mediaCaptureFragment -> textStoryToggle.visible = canDisplayStorySwitch()
-        R.id.textStoryPostCreationFragment -> textStoryToggle.visible = canDisplayStorySwitch()
+        R.id.mediaCaptureFragment -> {
+          textStoryToggle.visible = canDisplayStorySwitch()
+          textSwitch.isSelected = false
+          cameraSwitch.isSelected = true
+        }
+        R.id.textStoryPostCreationFragment -> {
+          textStoryToggle.visible = canDisplayStorySwitch()
+          textSwitch.isSelected = true
+          cameraSwitch.isSelected = false
+        }
         else -> textStoryToggle.visible = false
       }
     }

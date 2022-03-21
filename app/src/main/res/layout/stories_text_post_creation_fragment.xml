@@ -26,7 +26,7 @@
         android:layout_marginBottom="6dp"
         android:padding="6dp"
         android:src="@drawable/story_text_background_button_overlay"
-        app:layout_constraintBottom_toBottomOf="@id/story_text_post"
+        app:layout_constraintBottom_toTopOf="@id/button_bar_barrier"
         app:layout_constraintStart_toStartOf="@id/story_text_post"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         tools:background="@color/signal_alert_primary" />
@@ -40,7 +40,7 @@
         android:background="@drawable/story_text_circle_button_background_inset_6"
         android:scaleType="centerInside"
         app:backgroundTint="@color/transparent_black_40"
-        app:layout_constraintBottom_toBottomOf="@id/story_text_post"
+        app:layout_constraintBottom_toTopOf="@id/button_bar_barrier"
         app:layout_constraintStart_toEndOf="@id/background_selector"
         app:srcCompat="@drawable/ic_link_24"
         app:tint="@color/core_white" />
@@ -50,13 +50,35 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="6dp"
         android:background="@drawable/story_text_circle_button_background_inset_5"
         android:scaleType="centerInside"
         app:backgroundTint="@color/core_ultramarine"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/toggle_spacer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/toggle_spacer"
         app:srcCompat="@drawable/ic_arrow_end_24"
         app:tint="@color/core_white" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/button_bar_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="barrier_helper,toggle_spacer" />
+
+    <View
+        android:id="@+id/barrier_helper"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/story_text_post" />
+
+    <View
+        android:id="@+id/toggle_spacer"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
