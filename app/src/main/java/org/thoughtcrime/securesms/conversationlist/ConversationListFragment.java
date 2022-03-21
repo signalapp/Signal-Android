@@ -364,6 +364,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     } else if (unexpectedSubscriptionCancellation != null && !SignalStore.donationsValues().isUserManuallyCancelled() && SignalStore.donationsValues().getShowCantProcessDialog()) {
       Log.w(TAG, "Displaying bottom sheet for unexpected cancellation: " + unexpectedSubscriptionCancellation, true);
       new CantProcessSubscriptionPaymentBottomSheetDialogFragment().show(getChildFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
+    } else if (unexpectedSubscriptionCancellation != null && SignalStore.donationsValues().isUserManuallyCancelled()) {
+      Log.w(TAG, "Unexpected cancellation detected but not displaying dialog because user manually cancelled their subscription: " + unexpectedSubscriptionCancellation, true);
+    } else if (unexpectedSubscriptionCancellation != null && !SignalStore.donationsValues().getShowCantProcessDialog()) {
+      Log.w(TAG, "Unexpected cancellation detected but not displaying dialog because user has silenced it.", true);
     }
   }
 

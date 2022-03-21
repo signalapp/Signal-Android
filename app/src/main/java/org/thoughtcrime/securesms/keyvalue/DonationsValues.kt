@@ -116,6 +116,7 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   }
 
   fun setSubscriber(subscriber: Subscriber) {
+    Log.i(TAG, "Setting subscriber for currency ${subscriber.currencyCode}", Exception(), true)
     val currencyCode = subscriber.currencyCode
     store.beginWrite()
       .putBlob("$KEY_SUBSCRIBER_ID_PREFIX$currencyCode", subscriber.subscriberId.bytes)
